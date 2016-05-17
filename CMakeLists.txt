@@ -979,3 +979,34 @@ else()
 endif()
 
 export(TARGETS ${EXPORTS} FILE aws-sdk-cpp-config.cmake)
+
+#packaging
+if(GIT_FOUND)
+    execute_process(COMMAND ${GIT_EXECUTABLE} describe --abbrev=0 --tags
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    OUTPUT_VARIABLE VERSION_STRING
+    OUTPUT_STRIP_TRAILING_WHITESPACE)
+
+    if(VERSION_STRING)
+        set(CPACK_PACKAGE_VERSION ${VERSION_STRING})
+    else()
+        set(CPACK_PACKAGE_VERSION "0.10.14")
+    endif()
+else()
+    set(CPACK_PACKAGE_VERSION "0.10.14")
+endif()
+set(CPACK_GENERATOR "RPM")
+set(CPACK_PACKAGE_NAME "aws-sdk-cpp")
+set(CPACK_PACKAGE_RELEASE 1)
+set(CPACK_PACKAGE_CONTACT "AWS")
+set(CPACK_PACKAGE_VENDOR "AWS")
+set(CPACK_PACKAGING_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
+set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-${CPACK_PACKAGE_RELEASE}.${CMAKE_SYSTEM_PROCESSOR}")
+#configure_file("${CMAKE_CURRENT_SOURCE_DIR}/aws-sdk-cpp.spec.in" "${CMAKE_CURRENT_BINARY_DIR}/aws-sdk-cpp.spec" @ONLY IMMEDIATE)
+#set(CPACK_RPM_USER_BINARY_SPECFILE "${CMAKE_CURRENT_BINARY_DIR}/aws-sdk-cpp.spec")
+set(CPACK_RPM_PACKAGE_SUMMARY "AWS SDK for C++")
+set(CPACK_RPM_PACKAGE_LICENSE "Apache License Version 2.0")
+set(CPACK_RPM_PACKAGE_GROUP "Development/Libraries")
+set(CPACK_RPM_PACKAGE_DESCRIPTION "The AWS SDK for C++ provides a modern C++ (version C++ 11 or later) interface
+for Amazon Web Services (AWS).")
+include(CPack)

@@ -1009,6 +1009,7 @@ if (EXISTS ${VERSION_FILE})
     file(READ ${VERSION_FILE} LAST_VERSION)
 else()
     set(LAST_VERSION ${CPACK_PACKAGE_VERSION})
+    file(WRITE ${VERSION_FILE} ${LAST_VERSION})
 endif()
 
 message(STATUS "Build num = " ${BUILD_NUM})

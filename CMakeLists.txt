@@ -1071,9 +1071,6 @@ else()
     file(WRITE ${VERSION_FILE} ${LAST_VERSION})
 endif()
 
-message(STATUS "Build num = " ${BUILD_NUM})
-message(STATUS "Current Version = " ${CPACK_PACKAGE_VERSION})
-
 if (${LAST_VERSION} STREQUAL ${CPACK_PACKAGE_VERSION})
     math(EXPR BUILD_NUM ${BUILD_NUM}+1)
 else()
@@ -1082,6 +1079,9 @@ else()
     file(WRITE ${VERSION_FILE} ${LAST_VERSION})
 endif()
 file(WRITE ${BUILD_NUM_FILE} ${BUILD_NUM})
+
+message(STATUS "Build num = " ${BUILD_NUM})
+message(STATUS "Current Version = " ${CPACK_PACKAGE_VERSION})
 
 set(CPACK_GENERATOR "RPM")
 set(CPACK_PACKAGE_NAME "aws-sdk-cpp")

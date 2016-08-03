@@ -34,17 +34,20 @@ ReplicationInstance::ReplicationInstance() :
     m_allocatedStorage(0),
     m_allocatedStorageHasBeenSet(false),
     m_instanceCreateTimeHasBeenSet(false),
+    m_vpcSecurityGroupsHasBeenSet(false),
     m_availabilityZoneHasBeenSet(false),
     m_replicationSubnetGroupHasBeenSet(false),
     m_preferredMaintenanceWindowHasBeenSet(false),
     m_pendingModifiedValuesHasBeenSet(false),
+    m_multiAZ(false),
+    m_multiAZHasBeenSet(false),
     m_engineVersionHasBeenSet(false),
     m_autoMinorVersionUpgrade(false),
     m_autoMinorVersionUpgradeHasBeenSet(false),
     m_kmsKeyIdHasBeenSet(false),
     m_replicationInstanceArnHasBeenSet(false),
-    m_replicationInstancePublicIpAddressHasBeenSet(false),
-    m_replicationInstancePrivateIpAddressHasBeenSet(false),
+    m_replicationInstancePublicIpAddressesHasBeenSet(false),
+    m_replicationInstancePrivateIpAddressesHasBeenSet(false),
     m_publiclyAccessible(false),
     m_publiclyAccessibleHasBeenSet(false)
 {
@@ -57,17 +60,20 @@ ReplicationInstance::ReplicationInstance(const JsonValue& jsonValue) :
     m_allocatedStorage(0),
     m_allocatedStorageHasBeenSet(false),
     m_instanceCreateTimeHasBeenSet(false),
+    m_vpcSecurityGroupsHasBeenSet(false),
     m_availabilityZoneHasBeenSet(false),
     m_replicationSubnetGroupHasBeenSet(false),
     m_preferredMaintenanceWindowHasBeenSet(false),
     m_pendingModifiedValuesHasBeenSet(false),
+    m_multiAZ(false),
+    m_multiAZHasBeenSet(false),
     m_engineVersionHasBeenSet(false),
     m_autoMinorVersionUpgrade(false),
     m_autoMinorVersionUpgradeHasBeenSet(false),
     m_kmsKeyIdHasBeenSet(false),
     m_replicationInstanceArnHasBeenSet(false),
-    m_replicationInstancePublicIpAddressHasBeenSet(false),
-    m_replicationInstancePrivateIpAddressHasBeenSet(false),
+    m_replicationInstancePublicIpAddressesHasBeenSet(false),
+    m_replicationInstancePrivateIpAddressesHasBeenSet(false),
     m_publiclyAccessible(false),
     m_publiclyAccessibleHasBeenSet(false)
 {
@@ -111,6 +117,16 @@ ReplicationInstance& ReplicationInstance::operator =(const JsonValue& jsonValue)
     m_instanceCreateTimeHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("VpcSecurityGroups"))
+  {
+    Array<JsonValue> vpcSecurityGroupsJsonList = jsonValue.GetArray("VpcSecurityGroups");
+    for(unsigned vpcSecurityGroupsIndex = 0; vpcSecurityGroupsIndex < vpcSecurityGroupsJsonList.GetLength(); ++vpcSecurityGroupsIndex)
+    {
+      m_vpcSecurityGroups.push_back(vpcSecurityGroupsJsonList[vpcSecurityGroupsIndex].AsObject());
+    }
+    m_vpcSecurityGroupsHasBeenSet = true;
+  }
+
   if(jsonValue.ValueExists("AvailabilityZone"))
   {
     m_availabilityZone = jsonValue.GetString("AvailabilityZone");
@@ -137,6 +153,13 @@ ReplicationInstance& ReplicationInstance::operator =(const JsonValue& jsonValue)
     m_pendingModifiedValues = jsonValue.GetObject("PendingModifiedValues");
 
     m_pendingModifiedValuesHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("MultiAZ"))
+  {
+    m_multiAZ = jsonValue.GetBool("MultiAZ");
+
+    m_multiAZHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("EngineVersion"))
@@ -167,18 +190,24 @@ ReplicationInstance& ReplicationInstance::operator =(const JsonValue& jsonValue)
     m_replicationInstanceArnHasBeenSet = true;
   }
 
-  if(jsonValue.ValueExists("ReplicationInstancePublicIpAddress"))
+  if(jsonValue.ValueExists("ReplicationInstancePublicIpAddresses"))
   {
-    m_replicationInstancePublicIpAddress = jsonValue.GetString("ReplicationInstancePublicIpAddress");
-
-    m_replicationInstancePublicIpAddressHasBeenSet = true;
+    Array<JsonValue> replicationInstancePublicIpAddressesJsonList = jsonValue.GetArray("ReplicationInstancePublicIpAddresses");
+    for(unsigned replicationInstancePublicIpAddressesIndex = 0; replicationInstancePublicIpAddressesIndex < replicationInstancePublicIpAddressesJsonList.GetLength(); ++replicationInstancePublicIpAddressesIndex)
+    {
+      m_replicationInstancePublicIpAddresses.push_back(replicationInstancePublicIpAddressesJsonList[replicationInstancePublicIpAddressesIndex].AsString());
+    }
+    m_replicationInstancePublicIpAddressesHasBeenSet = true;
   }
 
-  if(jsonValue.ValueExists("ReplicationInstancePrivateIpAddress"))
+  if(jsonValue.ValueExists("ReplicationInstancePrivateIpAddresses"))
   {
-    m_replicationInstancePrivateIpAddress = jsonValue.GetString("ReplicationInstancePrivateIpAddress");
-
-    m_replicationInstancePrivateIpAddressHasBeenSet = true;
+    Array<JsonValue> replicationInstancePrivateIpAddressesJsonList = jsonValue.GetArray("ReplicationInstancePrivateIpAddresses");
+    for(unsigned replicationInstancePrivateIpAddressesIndex = 0; replicationInstancePrivateIpAddressesIndex < replicationInstancePrivateIpAddressesJsonList.GetLength(); ++replicationInstancePrivateIpAddressesIndex)
+    {
+      m_replicationInstancePrivateIpAddresses.push_back(replicationInstancePrivateIpAddressesJsonList[replicationInstancePrivateIpAddressesIndex].AsString());
+    }
+    m_replicationInstancePrivateIpAddressesHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("PubliclyAccessible"))
@@ -224,6 +253,17 @@ JsonValue ReplicationInstance::Jsonize() const
    payload.WithDouble("InstanceCreateTime", m_instanceCreateTime.SecondsWithMSPrecision());
   }
 
+  if(m_vpcSecurityGroupsHasBeenSet)
+  {
+   Array<JsonValue> vpcSecurityGroupsJsonList(m_vpcSecurityGroups.size());
+   for(unsigned vpcSecurityGroupsIndex = 0; vpcSecurityGroupsIndex < vpcSecurityGroupsJsonList.GetLength(); ++vpcSecurityGroupsIndex)
+   {
+     vpcSecurityGroupsJsonList[vpcSecurityGroupsIndex].AsObject(m_vpcSecurityGroups[vpcSecurityGroupsIndex].Jsonize());
+   }
+   payload.WithArray("VpcSecurityGroups", std::move(vpcSecurityGroupsJsonList));
+
+  }
+
   if(m_availabilityZoneHasBeenSet)
   {
    payload.WithString("AvailabilityZone", m_availabilityZone);
@@ -245,6 +285,12 @@ JsonValue ReplicationInstance::Jsonize() const
   if(m_pendingModifiedValuesHasBeenSet)
   {
    payload.WithObject("PendingModifiedValues", m_pendingModifiedValues.Jsonize());
+
+  }
+
+  if(m_multiAZHasBeenSet)
+  {
+   payload.WithBool("MultiAZ", m_multiAZ);
 
   }
 
@@ -272,15 +318,25 @@ JsonValue ReplicationInstance::Jsonize() const
 
   }
 
-  if(m_replicationInstancePublicIpAddressHasBeenSet)
+  if(m_replicationInstancePublicIpAddressesHasBeenSet)
   {
-   payload.WithString("ReplicationInstancePublicIpAddress", m_replicationInstancePublicIpAddress);
+   Array<JsonValue> replicationInstancePublicIpAddressesJsonList(m_replicationInstancePublicIpAddresses.size());
+   for(unsigned replicationInstancePublicIpAddressesIndex = 0; replicationInstancePublicIpAddressesIndex < replicationInstancePublicIpAddressesJsonList.GetLength(); ++replicationInstancePublicIpAddressesIndex)
+   {
+     replicationInstancePublicIpAddressesJsonList[replicationInstancePublicIpAddressesIndex].AsString(m_replicationInstancePublicIpAddresses[replicationInstancePublicIpAddressesIndex]);
+   }
+   payload.WithArray("ReplicationInstancePublicIpAddresses", std::move(replicationInstancePublicIpAddressesJsonList));
 
   }
 
-  if(m_replicationInstancePrivateIpAddressHasBeenSet)
+  if(m_replicationInstancePrivateIpAddressesHasBeenSet)
   {
-   payload.WithString("ReplicationInstancePrivateIpAddress", m_replicationInstancePrivateIpAddress);
+   Array<JsonValue> replicationInstancePrivateIpAddressesJsonList(m_replicationInstancePrivateIpAddresses.size());
+   for(unsigned replicationInstancePrivateIpAddressesIndex = 0; replicationInstancePrivateIpAddressesIndex < replicationInstancePrivateIpAddressesJsonList.GetLength(); ++replicationInstancePrivateIpAddressesIndex)
+   {
+     replicationInstancePrivateIpAddressesJsonList[replicationInstancePrivateIpAddressesIndex].AsString(m_replicationInstancePrivateIpAddresses[replicationInstancePrivateIpAddressesIndex]);
+   }
+   payload.WithArray("ReplicationInstancePrivateIpAddresses", std::move(replicationInstancePrivateIpAddressesJsonList));
 
   }
 

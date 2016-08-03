@@ -21,7 +21,7 @@ namespace Aws
 {
 namespace SNS
 {
-enum class AWS_SNS_API SNSErrors
+enum class SNSErrors
 {
   //From Core//
   //////////////////////////////////////////////////////////////////////////////////////////
@@ -55,6 +55,7 @@ enum class AWS_SNS_API SNSErrors
   NOT_FOUND,
   PLATFORM_APPLICATION_DISABLED,
   SUBSCRIPTION_LIMIT_EXCEEDED,
+  THROTTLED,
   TOPIC_LIMIT_EXCEEDED
 };
 namespace SNSErrorMapper

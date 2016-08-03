@@ -30,6 +30,9 @@ namespace DatabaseMigrationService
 namespace Model
 {
 
+  /**
+   * <p/>
+   */
   class AWS_DATABASEMIGRATIONSERVICE_API ReplicationPendingModifiedValues
   {
   public:
@@ -39,104 +42,125 @@ namespace Model
     Aws::Utils::Json::JsonValue Jsonize() const;
 
     /**
-     * <p> The compute and memory capacity of the replication instance. </p> <p> Valid
+     * <p>The compute and memory capacity of the replication instance.</p> <p> Valid
      * Values: <code>dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large |
-     * dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code></p>
+     * dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code> </p>
      */
     inline const Aws::String& GetReplicationInstanceClass() const{ return m_replicationInstanceClass; }
 
     /**
-     * <p> The compute and memory capacity of the replication instance. </p> <p> Valid
+     * <p>The compute and memory capacity of the replication instance.</p> <p> Valid
      * Values: <code>dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large |
-     * dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code></p>
+     * dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code> </p>
      */
     inline void SetReplicationInstanceClass(const Aws::String& value) { m_replicationInstanceClassHasBeenSet = true; m_replicationInstanceClass = value; }
 
     /**
-     * <p> The compute and memory capacity of the replication instance. </p> <p> Valid
+     * <p>The compute and memory capacity of the replication instance.</p> <p> Valid
      * Values: <code>dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large |
-     * dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code></p>
+     * dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code> </p>
      */
     inline void SetReplicationInstanceClass(Aws::String&& value) { m_replicationInstanceClassHasBeenSet = true; m_replicationInstanceClass = value; }
 
     /**
-     * <p> The compute and memory capacity of the replication instance. </p> <p> Valid
+     * <p>The compute and memory capacity of the replication instance.</p> <p> Valid
      * Values: <code>dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large |
-     * dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code></p>
+     * dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code> </p>
      */
     inline void SetReplicationInstanceClass(const char* value) { m_replicationInstanceClassHasBeenSet = true; m_replicationInstanceClass.assign(value); }
 
     /**
-     * <p> The compute and memory capacity of the replication instance. </p> <p> Valid
+     * <p>The compute and memory capacity of the replication instance.</p> <p> Valid
      * Values: <code>dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large |
-     * dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code></p>
+     * dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code> </p>
      */
     inline ReplicationPendingModifiedValues& WithReplicationInstanceClass(const Aws::String& value) { SetReplicationInstanceClass(value); return *this;}
 
     /**
-     * <p> The compute and memory capacity of the replication instance. </p> <p> Valid
+     * <p>The compute and memory capacity of the replication instance.</p> <p> Valid
      * Values: <code>dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large |
-     * dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code></p>
+     * dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code> </p>
      */
     inline ReplicationPendingModifiedValues& WithReplicationInstanceClass(Aws::String&& value) { SetReplicationInstanceClass(value); return *this;}
 
     /**
-     * <p> The compute and memory capacity of the replication instance. </p> <p> Valid
+     * <p>The compute and memory capacity of the replication instance.</p> <p> Valid
      * Values: <code>dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large |
-     * dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code></p>
+     * dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code> </p>
      */
     inline ReplicationPendingModifiedValues& WithReplicationInstanceClass(const char* value) { SetReplicationInstanceClass(value); return *this;}
 
     /**
-     * <p> The amount of storage (in gigabytes) that is allocated for the replication
-     * instance. </p>
+     * <p>The amount of storage (in gigabytes) that is allocated for the replication
+     * instance.</p>
      */
     inline int GetAllocatedStorage() const{ return m_allocatedStorage; }
 
     /**
-     * <p> The amount of storage (in gigabytes) that is allocated for the replication
-     * instance. </p>
+     * <p>The amount of storage (in gigabytes) that is allocated for the replication
+     * instance.</p>
      */
     inline void SetAllocatedStorage(int value) { m_allocatedStorageHasBeenSet = true; m_allocatedStorage = value; }
 
     /**
-     * <p> The amount of storage (in gigabytes) that is allocated for the replication
-     * instance. </p>
+     * <p>The amount of storage (in gigabytes) that is allocated for the replication
+     * instance.</p>
      */
     inline ReplicationPendingModifiedValues& WithAllocatedStorage(int value) { SetAllocatedStorage(value); return *this;}
 
     /**
-     * <p> The engine version number of the replication instance. </p>
+     * <p> Specifies if the replication instance is a Multi-AZ deployment. You cannot
+     * set the <code>AvailabilityZone</code> parameter if the Multi-AZ parameter is set
+     * to <code>true</code>. </p>
+     */
+    inline bool GetMultiAZ() const{ return m_multiAZ; }
+
+    /**
+     * <p> Specifies if the replication instance is a Multi-AZ deployment. You cannot
+     * set the <code>AvailabilityZone</code> parameter if the Multi-AZ parameter is set
+     * to <code>true</code>. </p>
+     */
+    inline void SetMultiAZ(bool value) { m_multiAZHasBeenSet = true; m_multiAZ = value; }
+
+    /**
+     * <p> Specifies if the replication instance is a Multi-AZ deployment. You cannot
+     * set the <code>AvailabilityZone</code> parameter if the Multi-AZ parameter is set
+     * to <code>true</code>. </p>
+     */
+    inline ReplicationPendingModifiedValues& WithMultiAZ(bool value) { SetMultiAZ(value); return *this;}
+
+    /**
+     * <p>The engine version number of the replication instance.</p>
      */
     inline const Aws::String& GetEngineVersion() const{ return m_engineVersion; }
 
     /**
-     * <p> The engine version number of the replication instance. </p>
+     * <p>The engine version number of the replication instance.</p>
      */
     inline void SetEngineVersion(const Aws::String& value) { m_engineVersionHasBeenSet = true; m_engineVersion = value; }
 
     /**
-     * <p> The engine version number of the replication instance. </p>
+     * <p>The engine version number of the replication instance.</p>
      */
     inline void SetEngineVersion(Aws::String&& value) { m_engineVersionHasBeenSet = true; m_engineVersion = value; }
 
     /**
-     * <p> The engine version number of the replication instance. </p>
+     * <p>The engine version number of the replication instance.</p>
      */
     inline void SetEngineVersion(const char* value) { m_engineVersionHasBeenSet = true; m_engineVersion.assign(value); }
 
     /**
-     * <p> The engine version number of the replication instance. </p>
+     * <p>The engine version number of the replication instance.</p>
      */
     inline ReplicationPendingModifiedValues& WithEngineVersion(const Aws::String& value) { SetEngineVersion(value); return *this;}
 
     /**
-     * <p> The engine version number of the replication instance. </p>
+     * <p>The engine version number of the replication instance.</p>
      */
     inline ReplicationPendingModifiedValues& WithEngineVersion(Aws::String&& value) { SetEngineVersion(value); return *this;}
 
     /**
-     * <p> The engine version number of the replication instance. </p>
+     * <p>The engine version number of the replication instance.</p>
      */
     inline ReplicationPendingModifiedValues& WithEngineVersion(const char* value) { SetEngineVersion(value); return *this;}
 
@@ -145,6 +169,8 @@ namespace Model
     bool m_replicationInstanceClassHasBeenSet;
     int m_allocatedStorage;
     bool m_allocatedStorageHasBeenSet;
+    bool m_multiAZ;
+    bool m_multiAZHasBeenSet;
     Aws::String m_engineVersion;
     bool m_engineVersionHasBeenSet;
   };

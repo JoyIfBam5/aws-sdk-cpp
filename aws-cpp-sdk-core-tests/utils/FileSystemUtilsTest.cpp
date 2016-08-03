@@ -13,6 +13,7 @@
   * permissions and limitations under the License.
   */
 
+#include <aws/core/platform/FileSystem.h>
 #include <aws/core/utils/FileSystemUtils.h>
 #include <aws/external/gtest.h>
 #include <aws/testing/MemoryTesting.h>
@@ -24,26 +25,33 @@ using namespace Aws::Utils;
 
 TEST(FileTest, HomeDirectory)
 {
-    auto homeDirectory = Aws::Utils::FileSystemUtils::GetHomeDirectory();
+    auto homeDirectory = Aws::FileSystem::GetHomeDirectory();
 
     ASSERT_TRUE(homeDirectory.size() > 0);
 }
 
 TEST(FileTest, TempFile)
 {
-    auto tempFilePath = Aws::Utils::FileSystemUtils::CreateTempFilePath();
-    ASSERT_TRUE(tempFilePath.size() > 0);
+    Aws::String filePath; 
 
-    std::ofstream testFile(tempFilePath.c_str());
-    testFile << "1" << std::endl;
-    ASSERT_TRUE(testFile.good());
+    {
+        TempFile tempFile(std::ios_base::out | std::ios_base::trunc);
+        ASSERT_TRUE(tempFile.GetFileName().size() > 0);
 
-    testFile.close();
+        tempFile << "1" << std::endl;
+        ASSERT_TRUE(tempFile.good());
 
-    int32_t test = 0;
-    std::ifstream testIn(tempFilePath.c_str());
-    testIn >> test;
-    testIn.close();
+        tempFile.close();
 
-    ASSERT_EQ(test, 1);
+        int32_t test = 0;
+        std::ifstream testIn(tempFile.GetFileName().c_str());
+        testIn >> test;
+        testIn.close();
+
+        ASSERT_EQ(test, 1);
+        filePath = tempFile.GetFileName();
+    }
+
+    std::ifstream testIn(filePath.c_str());
+    ASSERT_FALSE(testIn.good());
 }

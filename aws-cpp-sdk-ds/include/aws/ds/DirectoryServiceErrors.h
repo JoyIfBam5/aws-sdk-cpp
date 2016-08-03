@@ -21,7 +21,7 @@ namespace Aws
 {
 namespace DirectoryService
 {
-enum class AWS_DIRECTORYSERVICE_API DirectoryServiceErrors
+enum class DirectoryServiceErrors
 {
   //From Core//
   //////////////////////////////////////////////////////////////////////////////////////////
@@ -57,8 +57,10 @@ enum class AWS_DIRECTORYSERVICE_API DirectoryServiceErrors
   INSUFFICIENT_PERMISSIONS,
   INVALID_NEXT_TOKEN,
   INVALID_PARAMETER,
+  IP_ROUTE_LIMIT_EXCEEDED,
   SERVICE,
   SNAPSHOT_LIMIT_EXCEEDED,
+  TAG_LIMIT_EXCEEDED,
   UNSUPPORTED_OPERATION
 };
 namespace DirectoryServiceErrorMapper

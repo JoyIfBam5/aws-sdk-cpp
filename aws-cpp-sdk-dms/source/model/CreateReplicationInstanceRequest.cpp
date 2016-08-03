@@ -26,9 +26,12 @@ CreateReplicationInstanceRequest::CreateReplicationInstanceRequest() :
     m_allocatedStorage(0),
     m_allocatedStorageHasBeenSet(false),
     m_replicationInstanceClassHasBeenSet(false),
+    m_vpcSecurityGroupIdsHasBeenSet(false),
     m_availabilityZoneHasBeenSet(false),
     m_replicationSubnetGroupIdentifierHasBeenSet(false),
     m_preferredMaintenanceWindowHasBeenSet(false),
+    m_multiAZ(false),
+    m_multiAZHasBeenSet(false),
     m_engineVersionHasBeenSet(false),
     m_autoMinorVersionUpgrade(false),
     m_autoMinorVersionUpgradeHasBeenSet(false),
@@ -61,6 +64,17 @@ Aws::String CreateReplicationInstanceRequest::SerializePayload() const
 
   }
 
+  if(m_vpcSecurityGroupIdsHasBeenSet)
+  {
+   Array<JsonValue> vpcSecurityGroupIdsJsonList(m_vpcSecurityGroupIds.size());
+   for(unsigned vpcSecurityGroupIdsIndex = 0; vpcSecurityGroupIdsIndex < vpcSecurityGroupIdsJsonList.GetLength(); ++vpcSecurityGroupIdsIndex)
+   {
+     vpcSecurityGroupIdsJsonList[vpcSecurityGroupIdsIndex].AsString(m_vpcSecurityGroupIds[vpcSecurityGroupIdsIndex]);
+   }
+   payload.WithArray("VpcSecurityGroupIds", std::move(vpcSecurityGroupIdsJsonList));
+
+  }
+
   if(m_availabilityZoneHasBeenSet)
   {
    payload.WithString("AvailabilityZone", m_availabilityZone);
@@ -76,6 +90,12 @@ Aws::String CreateReplicationInstanceRequest::SerializePayload() const
   if(m_preferredMaintenanceWindowHasBeenSet)
   {
    payload.WithString("PreferredMaintenanceWindow", m_preferredMaintenanceWindow);
+
+  }
+
+  if(m_multiAZHasBeenSet)
+  {
+   payload.WithBool("MultiAZ", m_multiAZ);
 
   }
 

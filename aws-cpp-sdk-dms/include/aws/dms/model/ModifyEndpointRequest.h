@@ -17,6 +17,7 @@
 #include <aws/dms/DatabaseMigrationServiceRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/dms/model/ReplicationEndpointTypeValue.h>
+#include <aws/dms/model/DmsSslModeValue.h>
 
 namespace Aws
 {
@@ -26,6 +27,7 @@ namespace Model
 {
 
   /**
+   * <p/>
    */
   class AWS_DATABASEMIGRATIONSERVICE_API ModifyEndpointRequest : public DatabaseMigrationServiceRequest
   {
@@ -80,49 +82,49 @@ namespace Model
     /**
      * <p>The database endpoint identifier. Identifiers must begin with a letter; must
      * contain only ASCII letters, digits, and hyphens; and must not end with a hyphen
-     * or contain two consecutive hyphens. </p>
+     * or contain two consecutive hyphens.</p>
      */
     inline const Aws::String& GetEndpointIdentifier() const{ return m_endpointIdentifier; }
 
     /**
      * <p>The database endpoint identifier. Identifiers must begin with a letter; must
      * contain only ASCII letters, digits, and hyphens; and must not end with a hyphen
-     * or contain two consecutive hyphens. </p>
+     * or contain two consecutive hyphens.</p>
      */
     inline void SetEndpointIdentifier(const Aws::String& value) { m_endpointIdentifierHasBeenSet = true; m_endpointIdentifier = value; }
 
     /**
      * <p>The database endpoint identifier. Identifiers must begin with a letter; must
      * contain only ASCII letters, digits, and hyphens; and must not end with a hyphen
-     * or contain two consecutive hyphens. </p>
+     * or contain two consecutive hyphens.</p>
      */
     inline void SetEndpointIdentifier(Aws::String&& value) { m_endpointIdentifierHasBeenSet = true; m_endpointIdentifier = value; }
 
     /**
      * <p>The database endpoint identifier. Identifiers must begin with a letter; must
      * contain only ASCII letters, digits, and hyphens; and must not end with a hyphen
-     * or contain two consecutive hyphens. </p>
+     * or contain two consecutive hyphens.</p>
      */
     inline void SetEndpointIdentifier(const char* value) { m_endpointIdentifierHasBeenSet = true; m_endpointIdentifier.assign(value); }
 
     /**
      * <p>The database endpoint identifier. Identifiers must begin with a letter; must
      * contain only ASCII letters, digits, and hyphens; and must not end with a hyphen
-     * or contain two consecutive hyphens. </p>
+     * or contain two consecutive hyphens.</p>
      */
     inline ModifyEndpointRequest& WithEndpointIdentifier(const Aws::String& value) { SetEndpointIdentifier(value); return *this;}
 
     /**
      * <p>The database endpoint identifier. Identifiers must begin with a letter; must
      * contain only ASCII letters, digits, and hyphens; and must not end with a hyphen
-     * or contain two consecutive hyphens. </p>
+     * or contain two consecutive hyphens.</p>
      */
     inline ModifyEndpointRequest& WithEndpointIdentifier(Aws::String&& value) { SetEndpointIdentifier(value); return *this;}
 
     /**
      * <p>The database endpoint identifier. Identifiers must begin with a letter; must
      * contain only ASCII letters, digits, and hyphens; and must not end with a hyphen
-     * or contain two consecutive hyphens. </p>
+     * or contain two consecutive hyphens.</p>
      */
     inline ModifyEndpointRequest& WithEndpointIdentifier(const char* value) { SetEndpointIdentifier(value); return *this;}
 
@@ -153,43 +155,43 @@ namespace Model
 
     /**
      * <p>The type of engine for the endpoint. Valid values include MYSQL, ORACLE,
-     * POSTGRES.</p>
+     * POSTGRES, MARIADB, AURORA, REDSHIFT, and SQLSERVER.</p>
      */
     inline const Aws::String& GetEngineName() const{ return m_engineName; }
 
     /**
      * <p>The type of engine for the endpoint. Valid values include MYSQL, ORACLE,
-     * POSTGRES.</p>
+     * POSTGRES, MARIADB, AURORA, REDSHIFT, and SQLSERVER.</p>
      */
     inline void SetEngineName(const Aws::String& value) { m_engineNameHasBeenSet = true; m_engineName = value; }
 
     /**
      * <p>The type of engine for the endpoint. Valid values include MYSQL, ORACLE,
-     * POSTGRES.</p>
+     * POSTGRES, MARIADB, AURORA, REDSHIFT, and SQLSERVER.</p>
      */
     inline void SetEngineName(Aws::String&& value) { m_engineNameHasBeenSet = true; m_engineName = value; }
 
     /**
      * <p>The type of engine for the endpoint. Valid values include MYSQL, ORACLE,
-     * POSTGRES.</p>
+     * POSTGRES, MARIADB, AURORA, REDSHIFT, and SQLSERVER.</p>
      */
     inline void SetEngineName(const char* value) { m_engineNameHasBeenSet = true; m_engineName.assign(value); }
 
     /**
      * <p>The type of engine for the endpoint. Valid values include MYSQL, ORACLE,
-     * POSTGRES.</p>
+     * POSTGRES, MARIADB, AURORA, REDSHIFT, and SQLSERVER.</p>
      */
     inline ModifyEndpointRequest& WithEngineName(const Aws::String& value) { SetEngineName(value); return *this;}
 
     /**
      * <p>The type of engine for the endpoint. Valid values include MYSQL, ORACLE,
-     * POSTGRES.</p>
+     * POSTGRES, MARIADB, AURORA, REDSHIFT, and SQLSERVER.</p>
      */
     inline ModifyEndpointRequest& WithEngineName(Aws::String&& value) { SetEngineName(value); return *this;}
 
     /**
      * <p>The type of engine for the endpoint. Valid values include MYSQL, ORACLE,
-     * POSTGRES.</p>
+     * POSTGRES, MARIADB, AURORA, REDSHIFT, and SQLSERVER.</p>
      */
     inline ModifyEndpointRequest& WithEngineName(const char* value) { SetEngineName(value); return *this;}
 
@@ -383,6 +385,78 @@ namespace Model
      */
     inline ModifyEndpointRequest& WithExtraConnectionAttributes(const char* value) { SetExtraConnectionAttributes(value); return *this;}
 
+    /**
+     * <p>The Amazon Resource Name (ARN) of the certificate used for SSL
+     * connection.</p>
+     */
+    inline const Aws::String& GetCertificateArn() const{ return m_certificateArn; }
+
+    /**
+     * <p>The Amazon Resource Name (ARN) of the certificate used for SSL
+     * connection.</p>
+     */
+    inline void SetCertificateArn(const Aws::String& value) { m_certificateArnHasBeenSet = true; m_certificateArn = value; }
+
+    /**
+     * <p>The Amazon Resource Name (ARN) of the certificate used for SSL
+     * connection.</p>
+     */
+    inline void SetCertificateArn(Aws::String&& value) { m_certificateArnHasBeenSet = true; m_certificateArn = value; }
+
+    /**
+     * <p>The Amazon Resource Name (ARN) of the certificate used for SSL
+     * connection.</p>
+     */
+    inline void SetCertificateArn(const char* value) { m_certificateArnHasBeenSet = true; m_certificateArn.assign(value); }
+
+    /**
+     * <p>The Amazon Resource Name (ARN) of the certificate used for SSL
+     * connection.</p>
+     */
+    inline ModifyEndpointRequest& WithCertificateArn(const Aws::String& value) { SetCertificateArn(value); return *this;}
+
+    /**
+     * <p>The Amazon Resource Name (ARN) of the certificate used for SSL
+     * connection.</p>
+     */
+    inline ModifyEndpointRequest& WithCertificateArn(Aws::String&& value) { SetCertificateArn(value); return *this;}
+
+    /**
+     * <p>The Amazon Resource Name (ARN) of the certificate used for SSL
+     * connection.</p>
+     */
+    inline ModifyEndpointRequest& WithCertificateArn(const char* value) { SetCertificateArn(value); return *this;}
+
+    /**
+     * <p>The SSL mode to be used.</p> <p>SSL mode can be one of four values: none,
+     * require, verify-ca, verify-full. </p> <p>The default value is none.</p>
+     */
+    inline const DmsSslModeValue& GetSslMode() const{ return m_sslMode; }
+
+    /**
+     * <p>The SSL mode to be used.</p> <p>SSL mode can be one of four values: none,
+     * require, verify-ca, verify-full. </p> <p>The default value is none.</p>
+     */
+    inline void SetSslMode(const DmsSslModeValue& value) { m_sslModeHasBeenSet = true; m_sslMode = value; }
+
+    /**
+     * <p>The SSL mode to be used.</p> <p>SSL mode can be one of four values: none,
+     * require, verify-ca, verify-full. </p> <p>The default value is none.</p>
+     */
+    inline void SetSslMode(DmsSslModeValue&& value) { m_sslModeHasBeenSet = true; m_sslMode = value; }
+
+    /**
+     * <p>The SSL mode to be used.</p> <p>SSL mode can be one of four values: none,
+     * require, verify-ca, verify-full. </p> <p>The default value is none.</p>
+     */
+    inline ModifyEndpointRequest& WithSslMode(const DmsSslModeValue& value) { SetSslMode(value); return *this;}
+
+    /**
+     * <p>The SSL mode to be used.</p> <p>SSL mode can be one of four values: none,
+     * require, verify-ca, verify-full. </p> <p>The default value is none.</p>
+     */
+    inline ModifyEndpointRequest& WithSslMode(DmsSslModeValue&& value) { SetSslMode(value); return *this;}
+
   private:
     Aws::String m_endpointArn;
     bool m_endpointArnHasBeenSet;
@@ -404,6 +478,10 @@ namespace Model
     bool m_databaseNameHasBeenSet;
     Aws::String m_extraConnectionAttributes;
     bool m_extraConnectionAttributesHasBeenSet;
+    Aws::String m_certificateArn;
+    bool m_certificateArnHasBeenSet;
+    DmsSslModeValue m_sslMode;
+    bool m_sslModeHasBeenSet;
   };
 
 } // namespace Model

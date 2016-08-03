@@ -24,7 +24,7 @@ namespace Aws
     /**
      * AWS Regions
      */
-    enum class AWS_CORE_API Region
+    enum class Region
     {
         US_EAST_1,
         US_WEST_1,
@@ -46,6 +46,11 @@ namespace Aws
          * Converts a Region member to a string
          */
         AWS_CORE_API const char* GetRegionName(Region region);
+
+        /** Converts a string to a Region
+         *
+         */
+        AWS_CORE_API Region GetRegionFromName(const char* regionName);
     }
 
 } // namespace Aws

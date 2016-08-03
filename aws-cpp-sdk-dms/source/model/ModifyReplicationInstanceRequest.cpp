@@ -28,7 +28,10 @@ ModifyReplicationInstanceRequest::ModifyReplicationInstanceRequest() :
     m_applyImmediately(false),
     m_applyImmediatelyHasBeenSet(false),
     m_replicationInstanceClassHasBeenSet(false),
+    m_vpcSecurityGroupIdsHasBeenSet(false),
     m_preferredMaintenanceWindowHasBeenSet(false),
+    m_multiAZ(false),
+    m_multiAZHasBeenSet(false),
     m_engineVersionHasBeenSet(false),
     m_allowMajorVersionUpgrade(false),
     m_allowMajorVersionUpgradeHasBeenSet(false),
@@ -66,9 +69,26 @@ Aws::String ModifyReplicationInstanceRequest::SerializePayload() const
 
   }
 
+  if(m_vpcSecurityGroupIdsHasBeenSet)
+  {
+   Array<JsonValue> vpcSecurityGroupIdsJsonList(m_vpcSecurityGroupIds.size());
+   for(unsigned vpcSecurityGroupIdsIndex = 0; vpcSecurityGroupIdsIndex < vpcSecurityGroupIdsJsonList.GetLength(); ++vpcSecurityGroupIdsIndex)
+   {
+     vpcSecurityGroupIdsJsonList[vpcSecurityGroupIdsIndex].AsString(m_vpcSecurityGroupIds[vpcSecurityGroupIdsIndex]);
+   }
+   payload.WithArray("VpcSecurityGroupIds", std::move(vpcSecurityGroupIdsJsonList));
+
+  }
+
   if(m_preferredMaintenanceWindowHasBeenSet)
   {
    payload.WithString("PreferredMaintenanceWindow", m_preferredMaintenanceWindow);
+
+  }
+
+  if(m_multiAZHasBeenSet)
+  {
+   payload.WithBool("MultiAZ", m_multiAZ);
 
   }
 

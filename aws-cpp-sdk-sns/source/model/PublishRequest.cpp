@@ -22,6 +22,7 @@ using namespace Aws::Utils;
 PublishRequest::PublishRequest() : 
     m_topicArnHasBeenSet(false),
     m_targetArnHasBeenSet(false),
+    m_phoneNumberHasBeenSet(false),
     m_messageHasBeenSet(false),
     m_subjectHasBeenSet(false),
     m_messageStructureHasBeenSet(false),
@@ -37,22 +38,32 @@ Aws::String PublishRequest::SerializePayload() const
   {
     ss << "TopicArn=" << StringUtils::URLEncode(m_topicArn.c_str()) << "&";
   }
+
   if(m_targetArnHasBeenSet)
   {
     ss << "TargetArn=" << StringUtils::URLEncode(m_targetArn.c_str()) << "&";
   }
+
+  if(m_phoneNumberHasBeenSet)
+  {
+    ss << "PhoneNumber=" << StringUtils::URLEncode(m_phoneNumber.c_str()) << "&";
+  }
+
   if(m_messageHasBeenSet)
   {
     ss << "Message=" << StringUtils::URLEncode(m_message.c_str()) << "&";
   }
+
   if(m_subjectHasBeenSet)
   {
     ss << "Subject=" << StringUtils::URLEncode(m_subject.c_str()) << "&";
   }
+
   if(m_messageStructureHasBeenSet)
   {
     ss << "MessageStructure=" << StringUtils::URLEncode(m_messageStructure.c_str()) << "&";
   }
+
   if(m_messageAttributesHasBeenSet)
   {
     unsigned messageAttributesCount = 1;
@@ -64,6 +75,7 @@ Aws::String PublishRequest::SerializePayload() const
       messageAttributesCount++;
     }
   }
+
   ss << "Version=2010-03-31";
   return ss.str();
 }

@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -247,8 +247,7 @@ namespace Model
      * of the <code>HostedZoneIdMarker</code>,
      * <code>TrafficPolicyInstanceNameMarker</code>, and
      * <code>TrafficPolicyInstanceTypeMarker</code> elements in the corresponding
-     * request parameters.</p> <p>Valid Values: <code>true</code> |
-     * <code>false</code></p>
+     * request parameters.</p>
      */
     inline bool GetIsTruncated() const{ return m_isTruncated; }
 
@@ -260,8 +259,7 @@ namespace Model
      * of the <code>HostedZoneIdMarker</code>,
      * <code>TrafficPolicyInstanceNameMarker</code>, and
      * <code>TrafficPolicyInstanceTypeMarker</code> elements in the corresponding
-     * request parameters.</p> <p>Valid Values: <code>true</code> |
-     * <code>false</code></p>
+     * request parameters.</p>
      */
     inline void SetIsTruncated(bool value) { m_isTruncated = value; }
 
@@ -273,8 +271,7 @@ namespace Model
      * of the <code>HostedZoneIdMarker</code>,
      * <code>TrafficPolicyInstanceNameMarker</code>, and
      * <code>TrafficPolicyInstanceTypeMarker</code> elements in the corresponding
-     * request parameters.</p> <p>Valid Values: <code>true</code> |
-     * <code>false</code></p>
+     * request parameters.</p>
      */
     inline ListTrafficPolicyInstancesByPolicyResult& WithIsTruncated(bool value) { SetIsTruncated(value); return *this;}
 

@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -35,7 +35,10 @@ namespace APIGateway
 namespace Model
 {
   /**
-   * <p>Represents a collection of <a>ClientCertificate</a> resources.</p>
+   * <p>Represents a collection of <a>ClientCertificate</a> resources.</p> <div
+   * class="seeAlso"> <a
+   * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-client-side-ssl-authentication.html">Use
+   * Client-Side Certificate</a> </div>
    */
   class AWS_APIGATEWAY_API GetClientCertificatesResult
   {

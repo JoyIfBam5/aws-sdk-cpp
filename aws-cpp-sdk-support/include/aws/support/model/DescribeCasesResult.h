@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -35,7 +35,7 @@ namespace Support
 namespace Model
 {
   /**
-   * <p>Returns an array of <a>CaseDetails</a> objects and a <code>NextToken</code>
+   * <p>Returns an array of <a>CaseDetails</a> objects and a <code>nextToken</code>
    * that defines a point for pagination in the result set.</p>
    */
   class AWS_SUPPORT_API DescribeCasesResult

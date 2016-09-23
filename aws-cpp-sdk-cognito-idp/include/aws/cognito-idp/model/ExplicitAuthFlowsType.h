@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -25,7 +25,8 @@ namespace Model
   enum class ExplicitAuthFlowsType
   {
     NOT_SET,
-    ADMIN_NO_SRP_AUTH
+    ADMIN_NO_SRP_AUTH,
+    CUSTOM_AUTH_FLOW_ONLY
   };
 
 namespace ExplicitAuthFlowsTypeMapper

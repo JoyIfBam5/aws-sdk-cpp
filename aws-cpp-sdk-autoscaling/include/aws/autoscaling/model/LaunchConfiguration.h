@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -555,31 +555,31 @@ namespace Model
 
     /**
      * <p>Controls whether instances in this group are launched with detailed
-     * monitoring.</p>
+     * (<code>true</code>) or basic (<code>false</code>) monitoring.</p>
      */
     inline const InstanceMonitoring& GetInstanceMonitoring() const{ return m_instanceMonitoring; }
 
     /**
      * <p>Controls whether instances in this group are launched with detailed
-     * monitoring.</p>
+     * (<code>true</code>) or basic (<code>false</code>) monitoring.</p>
      */
     inline void SetInstanceMonitoring(const InstanceMonitoring& value) { m_instanceMonitoringHasBeenSet = true; m_instanceMonitoring = value; }
 
     /**
      * <p>Controls whether instances in this group are launched with detailed
-     * monitoring.</p>
+     * (<code>true</code>) or basic (<code>false</code>) monitoring.</p>
      */
     inline void SetInstanceMonitoring(InstanceMonitoring&& value) { m_instanceMonitoringHasBeenSet = true; m_instanceMonitoring = value; }
 
     /**
      * <p>Controls whether instances in this group are launched with detailed
-     * monitoring.</p>
+     * (<code>true</code>) or basic (<code>false</code>) monitoring.</p>
      */
     inline LaunchConfiguration& WithInstanceMonitoring(const InstanceMonitoring& value) { SetInstanceMonitoring(value); return *this;}
 
     /**
      * <p>Controls whether instances in this group are launched with detailed
-     * monitoring.</p>
+     * (<code>true</code>) or basic (<code>false</code>) monitoring.</p>
      */
     inline LaunchConfiguration& WithInstanceMonitoring(InstanceMonitoring&& value) { SetInstanceMonitoring(value); return *this;}
 

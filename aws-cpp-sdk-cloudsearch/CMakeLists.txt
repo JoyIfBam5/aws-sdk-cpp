@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.12)
 project(aws-cpp-sdk-cloudsearch)
 
   file(GLOB AWS_CLOUDSEARCH_HEADERS
@@ -84,7 +84,7 @@ project(aws-cpp-sdk-cloudsearch)
   install (FILES ${AWS_CLOUDSEARCH_HEADERS} DESTINATION include/aws/cloudsearch)
   install (FILES ${AWS_CLOUDSEARCH_MODEL_HEADERS} DESTINATION include/aws/cloudsearch/model)
 
-  if(MSVC)
+  if(PLATFORM_WINDOWS AND MSVC)
     install (FILES nuget/aws-cpp-sdk-cloudsearch.autopkg DESTINATION nuget)
   endif()
 

@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -32,7 +32,7 @@ namespace Model
 
   /**
    * <p>A code and name pair that represent a severity level that can be applied to a
-   * support case. </p>
+   * support case.</p>
    */
   class AWS_SUPPORT_API SeverityLevel
   {
@@ -45,49 +45,49 @@ namespace Model
     /**
      * <p>One of four values: "low," "medium," "high," and "urgent". These values
      * correspond to response times returned to the caller in
-     * <code>SeverityLevel.name</code>. </p>
+     * <code>severityLevel.name</code>. </p>
      */
     inline const Aws::String& GetCode() const{ return m_code; }
 
     /**
      * <p>One of four values: "low," "medium," "high," and "urgent". These values
      * correspond to response times returned to the caller in
-     * <code>SeverityLevel.name</code>. </p>
+     * <code>severityLevel.name</code>. </p>
      */
     inline void SetCode(const Aws::String& value) { m_codeHasBeenSet = true; m_code = value; }
 
     /**
      * <p>One of four values: "low," "medium," "high," and "urgent". These values
      * correspond to response times returned to the caller in
-     * <code>SeverityLevel.name</code>. </p>
+     * <code>severityLevel.name</code>. </p>
      */
     inline void SetCode(Aws::String&& value) { m_codeHasBeenSet = true; m_code = value; }
 
     /**
      * <p>One of four values: "low," "medium," "high," and "urgent". These values
      * correspond to response times returned to the caller in
-     * <code>SeverityLevel.name</code>. </p>
+     * <code>severityLevel.name</code>. </p>
      */
     inline void SetCode(const char* value) { m_codeHasBeenSet = true; m_code.assign(value); }
 
     /**
      * <p>One of four values: "low," "medium," "high," and "urgent". These values
      * correspond to response times returned to the caller in
-     * <code>SeverityLevel.name</code>. </p>
+     * <code>severityLevel.name</code>. </p>
      */
     inline SeverityLevel& WithCode(const Aws::String& value) { SetCode(value); return *this;}
 
     /**
      * <p>One of four values: "low," "medium," "high," and "urgent". These values
      * correspond to response times returned to the caller in
-     * <code>SeverityLevel.name</code>. </p>
+     * <code>severityLevel.name</code>. </p>
      */
     inline SeverityLevel& WithCode(Aws::String&& value) { SetCode(value); return *this;}
 
     /**
      * <p>One of four values: "low," "medium," "high," and "urgent". These values
      * correspond to response times returned to the caller in
-     * <code>SeverityLevel.name</code>. </p>
+     * <code>severityLevel.name</code>. </p>
      */
     inline SeverityLevel& WithCode(const char* value) { SetCode(value); return *this;}
 

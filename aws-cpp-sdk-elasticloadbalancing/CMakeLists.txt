@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.12)
 project(aws-cpp-sdk-elasticloadbalancing)
 
   file(GLOB AWS_ELASTICLOADBALANCING_HEADERS
@@ -84,7 +84,7 @@ project(aws-cpp-sdk-elasticloadbalancing)
   install (FILES ${AWS_ELASTICLOADBALANCING_HEADERS} DESTINATION include/aws/elasticloadbalancing)
   install (FILES ${AWS_ELASTICLOADBALANCING_MODEL_HEADERS} DESTINATION include/aws/elasticloadbalancing/model)
 
-  if(MSVC)
+  if(PLATFORM_WINDOWS AND MSVC)
     install (FILES nuget/aws-cpp-sdk-elasticloadbalancing.autopkg DESTINATION nuget)
   endif()
 

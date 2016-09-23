@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -31,8 +31,9 @@ namespace Model
 {
 
   /**
-   * <p>Optional key/value pairs to associate with this provisioning. These tags are
-   * propagated to the resources created in the provisioning.</p>
+   * <p>Key/value pairs to associate with this provisioning. These tags are entirely
+   * discretionary and are propagated to the resources created in the
+   * provisioning.</p>
    */
   class AWS_SERVICECATALOG_API Tag
   {

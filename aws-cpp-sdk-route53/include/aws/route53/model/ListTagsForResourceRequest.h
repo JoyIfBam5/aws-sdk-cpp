@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -36,37 +36,37 @@ namespace Model
     Aws::String SerializePayload() const override;
 
     /**
-     * <p>The type of the resource.</p> <p>- The resource type for health checks is
-     * <code>healthcheck</code>.</p> <p>- The resource type for hosted zones is
-     * <code>hostedzone</code>.</p>
+     * <p>The type of the resource.</p> <ul> <li> <p>The resource type for health
+     * checks is <code>healthcheck</code>.</p> </li> <li> <p>The resource type for
+     * hosted zones is <code>hostedzone</code>.</p> </li> </ul>
      */
     inline const TagResourceType& GetResourceType() const{ return m_resourceType; }
 
     /**
-     * <p>The type of the resource.</p> <p>- The resource type for health checks is
-     * <code>healthcheck</code>.</p> <p>- The resource type for hosted zones is
-     * <code>hostedzone</code>.</p>
+     * <p>The type of the resource.</p> <ul> <li> <p>The resource type for health
+     * checks is <code>healthcheck</code>.</p> </li> <li> <p>The resource type for
+     * hosted zones is <code>hostedzone</code>.</p> </li> </ul>
      */
     inline void SetResourceType(const TagResourceType& value) { m_resourceTypeHasBeenSet = true; m_resourceType = value; }
 
     /**
-     * <p>The type of the resource.</p> <p>- The resource type for health checks is
-     * <code>healthcheck</code>.</p> <p>- The resource type for hosted zones is
-     * <code>hostedzone</code>.</p>
+     * <p>The type of the resource.</p> <ul> <li> <p>The resource type for health
+     * checks is <code>healthcheck</code>.</p> </li> <li> <p>The resource type for
+     * hosted zones is <code>hostedzone</code>.</p> </li> </ul>
      */
     inline void SetResourceType(TagResourceType&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = value; }
 
     /**
-     * <p>The type of the resource.</p> <p>- The resource type for health checks is
-     * <code>healthcheck</code>.</p> <p>- The resource type for hosted zones is
-     * <code>hostedzone</code>.</p>
+     * <p>The type of the resource.</p> <ul> <li> <p>The resource type for health
+     * checks is <code>healthcheck</code>.</p> </li> <li> <p>The resource type for
+     * hosted zones is <code>hostedzone</code>.</p> </li> </ul>
      */
     inline ListTagsForResourceRequest& WithResourceType(const TagResourceType& value) { SetResourceType(value); return *this;}
 
     /**
-     * <p>The type of the resource.</p> <p>- The resource type for health checks is
-     * <code>healthcheck</code>.</p> <p>- The resource type for hosted zones is
-     * <code>hostedzone</code>.</p>
+     * <p>The type of the resource.</p> <ul> <li> <p>The resource type for health
+     * checks is <code>healthcheck</code>.</p> </li> <li> <p>The resource type for
+     * hosted zones is <code>hostedzone</code>.</p> </li> </ul>
      */
     inline ListTagsForResourceRequest& WithResourceType(TagResourceType&& value) { SetResourceType(value); return *this;}
 

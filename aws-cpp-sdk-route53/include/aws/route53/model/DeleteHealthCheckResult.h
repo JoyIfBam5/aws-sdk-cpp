@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -32,7 +32,7 @@ namespace Route53
 namespace Model
 {
   /**
-   * <p>Empty response for the request.</p>
+   * <p>An empty element.</p>
    */
   class AWS_ROUTE53_API DeleteHealthCheckResult
   {

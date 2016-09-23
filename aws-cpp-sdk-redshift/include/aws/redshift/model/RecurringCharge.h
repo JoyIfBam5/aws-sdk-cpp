@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -46,19 +46,19 @@ namespace Model
 
     /**
      * <p>The amount charged per the period of time specified by the recurring charge
-     * frequency. </p>
+     * frequency.</p>
      */
     inline double GetRecurringChargeAmount() const{ return m_recurringChargeAmount; }
 
     /**
      * <p>The amount charged per the period of time specified by the recurring charge
-     * frequency. </p>
+     * frequency.</p>
      */
     inline void SetRecurringChargeAmount(double value) { m_recurringChargeAmountHasBeenSet = true; m_recurringChargeAmount = value; }
 
     /**
      * <p>The amount charged per the period of time specified by the recurring charge
-     * frequency. </p>
+     * frequency.</p>
      */
     inline RecurringCharge& WithRecurringChargeAmount(double value) { SetRecurringChargeAmount(value); return *this;}
 

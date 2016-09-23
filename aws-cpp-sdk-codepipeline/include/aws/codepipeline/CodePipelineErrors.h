@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -64,6 +64,7 @@ enum class CodePipelineErrors
   JOB_NOT_FOUND,
   LIMIT_EXCEEDED,
   NOT_LATEST_PIPELINE_EXECUTION,
+  PIPELINE_EXECUTION_NOT_FOUND,
   PIPELINE_NAME_IN_USE,
   PIPELINE_NOT_FOUND,
   PIPELINE_VERSION_NOT_FOUND,

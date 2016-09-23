@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -30,6 +30,7 @@ namespace Aws
       {
 
         static const int ecs_service_DesiredCount_HASH = HashingUtils::HashString("ecs:service:DesiredCount");
+        static const int ec2_spot_fleet_request_TargetCapacity_HASH = HashingUtils::HashString("ec2:spot-fleet-request:TargetCapacity");
 
 
         ScalableDimension GetScalableDimensionForName(const Aws::String& name)
@@ -38,6 +39,10 @@ namespace Aws
           if (hashCode == ecs_service_DesiredCount_HASH)
           {
             return ScalableDimension::ecs_service_DesiredCount;
+          }
+          else if (hashCode == ec2_spot_fleet_request_TargetCapacity_HASH)
+          {
+            return ScalableDimension::ec2_spot_fleet_request_TargetCapacity;
           }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
@@ -55,6 +60,8 @@ namespace Aws
           {
           case ScalableDimension::ecs_service_DesiredCount:
             return "ecs:service:DesiredCount";
+          case ScalableDimension::ec2_spot_fleet_request_TargetCapacity:
+            return "ec2:spot-fleet-request:TargetCapacity";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -38,7 +38,8 @@ RunJobFlowRequest::RunJobFlowRequest() :
     m_visibleToAllUsersHasBeenSet(false),
     m_jobFlowRoleHasBeenSet(false),
     m_serviceRoleHasBeenSet(false),
-    m_tagsHasBeenSet(false)
+    m_tagsHasBeenSet(false),
+    m_securityConfigurationHasBeenSet(false)
 {
 }
 
@@ -174,6 +175,12 @@ Aws::String RunJobFlowRequest::SerializePayload() const
      tagsJsonList[tagsIndex].AsObject(m_tags[tagsIndex].Jsonize());
    }
    payload.WithArray("Tags", std::move(tagsJsonList));
+
+  }
+
+  if(m_securityConfigurationHasBeenSet)
+  {
+   payload.WithString("SecurityConfiguration", m_securityConfiguration);
 
   }
 

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.12)
 project(aws-cpp-sdk-acm)
 
   file(GLOB AWS_ACM_HEADERS
@@ -84,7 +84,7 @@ project(aws-cpp-sdk-acm)
   install (FILES ${AWS_ACM_HEADERS} DESTINATION include/aws/acm)
   install (FILES ${AWS_ACM_MODEL_HEADERS} DESTINATION include/aws/acm/model)
 
-  if(MSVC)
+  if(PLATFORM_WINDOWS AND MSVC)
     install (FILES nuget/aws-cpp-sdk-acm.autopkg DESTINATION nuget)
   endif()
 

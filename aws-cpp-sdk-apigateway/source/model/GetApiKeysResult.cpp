@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -36,6 +36,15 @@ GetApiKeysResult::GetApiKeysResult(const AmazonWebServiceResult<JsonValue>& resu
 GetApiKeysResult& GetApiKeysResult::operator =(const AmazonWebServiceResult<JsonValue>& result)
 {
   const JsonValue& jsonValue = result.GetPayload();
+  if(jsonValue.ValueExists("warnings"))
+  {
+    Array<JsonValue> warningsJsonList = jsonValue.GetArray("warnings");
+    for(unsigned warningsIndex = 0; warningsIndex < warningsJsonList.GetLength(); ++warningsIndex)
+    {
+      m_warnings.push_back(warningsJsonList[warningsIndex].AsString());
+    }
+  }
+
   if(jsonValue.ValueExists("position"))
   {
     m_position = jsonValue.GetString("position");

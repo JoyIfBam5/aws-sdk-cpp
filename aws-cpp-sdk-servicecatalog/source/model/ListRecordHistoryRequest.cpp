@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -23,6 +23,7 @@ using namespace Aws::Utils;
 
 ListRecordHistoryRequest::ListRecordHistoryRequest() : 
     m_acceptLanguageHasBeenSet(false),
+    m_accessLevelFilterHasBeenSet(false),
     m_searchFilterHasBeenSet(false),
     m_pageSize(0),
     m_pageSizeHasBeenSet(false),
@@ -37,6 +38,12 @@ Aws::String ListRecordHistoryRequest::SerializePayload() const
   if(m_acceptLanguageHasBeenSet)
   {
    payload.WithString("AcceptLanguage", m_acceptLanguage);
+
+  }
+
+  if(m_accessLevelFilterHasBeenSet)
+  {
+   payload.WithObject("AccessLevelFilter", m_accessLevelFilter.Jsonize());
 
   }
 

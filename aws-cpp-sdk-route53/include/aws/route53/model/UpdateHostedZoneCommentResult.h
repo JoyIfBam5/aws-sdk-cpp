@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -33,8 +33,8 @@ namespace Route53
 namespace Model
 {
   /**
-   * <p>A complex type containing information about the specified hosted zone after
-   * the update.</p>
+   * <p>A complex type that contains the response to the
+   * UpdateHostedZoneCommentRequest.</p>
    */
   class AWS_ROUTE53_API UpdateHostedZoneCommentResult
   {

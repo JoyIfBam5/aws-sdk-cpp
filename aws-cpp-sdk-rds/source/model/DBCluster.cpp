@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -44,6 +44,7 @@ DBCluster::DBCluster() :
     m_percentProgressHasBeenSet(false),
     m_earliestRestorableTimeHasBeenSet(false),
     m_endpointHasBeenSet(false),
+    m_readerEndpointHasBeenSet(false),
     m_engineHasBeenSet(false),
     m_engineVersionHasBeenSet(false),
     m_latestRestorableTimeHasBeenSet(false),
@@ -61,7 +62,8 @@ DBCluster::DBCluster() :
     m_storageEncrypted(false),
     m_storageEncryptedHasBeenSet(false),
     m_kmsKeyIdHasBeenSet(false),
-    m_dbClusterResourceIdHasBeenSet(false)
+    m_dbClusterResourceIdHasBeenSet(false),
+    m_dBClusterArnHasBeenSet(false)
 {
 }
 
@@ -80,6 +82,7 @@ DBCluster::DBCluster(const XmlNode& xmlNode) :
     m_percentProgressHasBeenSet(false),
     m_earliestRestorableTimeHasBeenSet(false),
     m_endpointHasBeenSet(false),
+    m_readerEndpointHasBeenSet(false),
     m_engineHasBeenSet(false),
     m_engineVersionHasBeenSet(false),
     m_latestRestorableTimeHasBeenSet(false),
@@ -97,7 +100,8 @@ DBCluster::DBCluster(const XmlNode& xmlNode) :
     m_storageEncrypted(false),
     m_storageEncryptedHasBeenSet(false),
     m_kmsKeyIdHasBeenSet(false),
-    m_dbClusterResourceIdHasBeenSet(false)
+    m_dbClusterResourceIdHasBeenSet(false),
+    m_dBClusterArnHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -185,6 +189,12 @@ DBCluster& DBCluster::operator =(const XmlNode& xmlNode)
     {
       m_endpoint = StringUtils::Trim(endpointNode.GetText().c_str());
       m_endpointHasBeenSet = true;
+    }
+    XmlNode readerEndpointNode = resultNode.FirstChild("ReaderEndpoint");
+    if(!readerEndpointNode.IsNull())
+    {
+      m_readerEndpoint = StringUtils::Trim(readerEndpointNode.GetText().c_str());
+      m_readerEndpointHasBeenSet = true;
     }
     XmlNode engineNode = resultNode.FirstChild("Engine");
     if(!engineNode.IsNull())
@@ -306,6 +316,12 @@ DBCluster& DBCluster::operator =(const XmlNode& xmlNode)
       m_dbClusterResourceId = StringUtils::Trim(dbClusterResourceIdNode.GetText().c_str());
       m_dbClusterResourceIdHasBeenSet = true;
     }
+    XmlNode dBClusterArnNode = resultNode.FirstChild("DBClusterArn");
+    if(!dBClusterArnNode.IsNull())
+    {
+      m_dBClusterArn = StringUtils::Trim(dBClusterArnNode.GetText().c_str());
+      m_dBClusterArnHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -375,6 +391,11 @@ void DBCluster::OutputToStream(Aws::OStream& oStream, const char* location, unsi
   if(m_endpointHasBeenSet)
   {
       oStream << location << index << locationValue << ".Endpoint=" << StringUtils::URLEncode(m_endpoint.c_str()) << "&";
+  }
+
+  if(m_readerEndpointHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".ReaderEndpoint=" << StringUtils::URLEncode(m_readerEndpoint.c_str()) << "&";
   }
 
   if(m_engineHasBeenSet)
@@ -479,6 +500,11 @@ void DBCluster::OutputToStream(Aws::OStream& oStream, const char* location, unsi
       oStream << location << index << locationValue << ".DbClusterResourceId=" << StringUtils::URLEncode(m_dbClusterResourceId.c_str()) << "&";
   }
 
+  if(m_dBClusterArnHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".DBClusterArn=" << StringUtils::URLEncode(m_dBClusterArn.c_str()) << "&";
+  }
+
 }
 
 void DBCluster::OutputToStream(Aws::OStream& oStream, const char* location) const
@@ -534,6 +560,10 @@ void DBCluster::OutputToStream(Aws::OStream& oStream, const char* location) cons
   if(m_endpointHasBeenSet)
   {
       oStream << location << ".Endpoint=" << StringUtils::URLEncode(m_endpoint.c_str()) << "&";
+  }
+  if(m_readerEndpointHasBeenSet)
+  {
+      oStream << location << ".ReaderEndpoint=" << StringUtils::URLEncode(m_readerEndpoint.c_str()) << "&";
   }
   if(m_engineHasBeenSet)
   {
@@ -620,6 +650,10 @@ void DBCluster::OutputToStream(Aws::OStream& oStream, const char* location) cons
   if(m_dbClusterResourceIdHasBeenSet)
   {
       oStream << location << ".DbClusterResourceId=" << StringUtils::URLEncode(m_dbClusterResourceId.c_str()) << "&";
+  }
+  if(m_dBClusterArnHasBeenSet)
+  {
+      oStream << location << ".DBClusterArn=" << StringUtils::URLEncode(m_dBClusterArn.c_str()) << "&";
   }
 }
 

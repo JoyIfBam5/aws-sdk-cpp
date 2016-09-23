@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -27,8 +27,8 @@ namespace Model
   /**
    * <p>Gets information about a specified traffic policy instance.</p> <p>To get
    * information about a traffic policy instance, send a <code>GET</code> request to
-   * the <code>/<i>Route 53 API version</i>/trafficpolicyinstance/<i>Id</i></code>
-   * resource.</p>
+   * the <code>/<i>Amazon Route 53 API version</i>/trafficpolicyinstance/<i>Id</i>
+   * </code> resource.</p>
    */
   class AWS_ROUTE53_API GetTrafficPolicyInstanceRequest : public Route53Request
   {

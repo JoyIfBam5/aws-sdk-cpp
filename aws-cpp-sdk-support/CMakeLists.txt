@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.12)
 project(aws-cpp-sdk-support)
 
   file(GLOB AWS_SUPPORT_HEADERS
@@ -84,7 +84,7 @@ project(aws-cpp-sdk-support)
   install (FILES ${AWS_SUPPORT_HEADERS} DESTINATION include/aws/support)
   install (FILES ${AWS_SUPPORT_MODEL_HEADERS} DESTINATION include/aws/support/model)
 
-  if(MSVC)
+  if(PLATFORM_WINDOWS AND MSVC)
     install (FILES nuget/aws-cpp-sdk-support.autopkg DESTINATION nuget)
   endif()
 

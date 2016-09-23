@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -32,8 +32,9 @@ namespace Model
 
   /**
    * <p>Contains information about a WorkSpace that could not be rebooted
-   * (<a>RebootWorkspaces</a>), rebuilt (<a>RebuildWorkspaces</a>), or terminated
-   * (<a>TerminateWorkspaces</a>).</p>
+   * (<a>RebootWorkspaces</a>), rebuilt (<a>RebuildWorkspaces</a>), terminated
+   * (<a>TerminateWorkspaces</a>), started (<a>StartWorkspaces</a>), or stopped
+   * (<a>StopWorkspaces</a>).</p>
    */
   class AWS_WORKSPACES_API FailedWorkspaceChangeRequest
   {

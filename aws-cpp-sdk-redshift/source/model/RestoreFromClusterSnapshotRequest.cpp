@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -43,6 +43,8 @@ RestoreFromClusterSnapshotRequest::RestoreFromClusterSnapshotRequest() :
     m_automatedSnapshotRetentionPeriodHasBeenSet(false),
     m_kmsKeyIdHasBeenSet(false),
     m_nodeTypeHasBeenSet(false),
+    m_enhancedVpcRouting(false),
+    m_enhancedVpcRoutingHasBeenSet(false),
     m_additionalInfoHasBeenSet(false),
     m_iamRolesHasBeenSet(false)
 {
@@ -157,6 +159,11 @@ Aws::String RestoreFromClusterSnapshotRequest::SerializePayload() const
   if(m_nodeTypeHasBeenSet)
   {
     ss << "NodeType=" << StringUtils::URLEncode(m_nodeType.c_str()) << "&";
+  }
+
+  if(m_enhancedVpcRoutingHasBeenSet)
+  {
+    ss << "EnhancedVpcRouting=" << m_enhancedVpcRouting << "&";
   }
 
   if(m_additionalInfoHasBeenSet)

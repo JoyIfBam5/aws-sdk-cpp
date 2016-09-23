@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -67,7 +67,8 @@ CreateDBInstanceRequest::CreateDBInstanceRequest() :
     m_monitoringRoleArnHasBeenSet(false),
     m_domainIAMRoleNameHasBeenSet(false),
     m_promotionTier(0),
-    m_promotionTierHasBeenSet(false)
+    m_promotionTierHasBeenSet(false),
+    m_timezoneHasBeenSet(false)
 {
 }
 
@@ -275,6 +276,11 @@ Aws::String CreateDBInstanceRequest::SerializePayload() const
   if(m_promotionTierHasBeenSet)
   {
     ss << "PromotionTier=" << m_promotionTier << "&";
+  }
+
+  if(m_timezoneHasBeenSet)
+  {
+    ss << "Timezone=" << StringUtils::URLEncode(m_timezone.c_str()) << "&";
   }
 
   ss << "Version=2014-10-31";

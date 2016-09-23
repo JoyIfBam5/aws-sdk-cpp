@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -19,6 +19,7 @@
 #include <aws/gamelift/model/FleetStatus.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/gamelift/model/ProtectionPolicy.h>
+#include <aws/gamelift/model/OperatingSystem.h>
 
 namespace Aws
 {
@@ -158,127 +159,132 @@ namespace Model
     inline FleetAttributes& WithName(const char* value) { SetName(value); return *this;}
 
     /**
-     * <p>Time stamp indicating when this object was created. Format is an integer
-     * representing the number of seconds since the Unix epoch (Unix time).</p>
+     * <p>Time stamp indicating when this data object was created. Format is a number
+     * expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
      */
     inline const Aws::Utils::DateTime& GetCreationTime() const{ return m_creationTime; }
 
     /**
-     * <p>Time stamp indicating when this object was created. Format is an integer
-     * representing the number of seconds since the Unix epoch (Unix time).</p>
+     * <p>Time stamp indicating when this data object was created. Format is a number
+     * expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
      */
     inline void SetCreationTime(const Aws::Utils::DateTime& value) { m_creationTimeHasBeenSet = true; m_creationTime = value; }
 
     /**
-     * <p>Time stamp indicating when this object was created. Format is an integer
-     * representing the number of seconds since the Unix epoch (Unix time).</p>
+     * <p>Time stamp indicating when this data object was created. Format is a number
+     * expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
      */
     inline void SetCreationTime(Aws::Utils::DateTime&& value) { m_creationTimeHasBeenSet = true; m_creationTime = value; }
 
     /**
-     * <p>Time stamp indicating when this object was created. Format is an integer
-     * representing the number of seconds since the Unix epoch (Unix time).</p>
+     * <p>Time stamp indicating when this data object was created. Format is a number
+     * expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
      */
     inline FleetAttributes& WithCreationTime(const Aws::Utils::DateTime& value) { SetCreationTime(value); return *this;}
 
     /**
-     * <p>Time stamp indicating when this object was created. Format is an integer
-     * representing the number of seconds since the Unix epoch (Unix time).</p>
+     * <p>Time stamp indicating when this data object was created. Format is a number
+     * expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
      */
     inline FleetAttributes& WithCreationTime(Aws::Utils::DateTime&& value) { SetCreationTime(value); return *this;}
 
     /**
-     * <p>Time stamp indicating when this fleet was terminated. Format is an integer
-     * representing the number of seconds since the Unix epoch (Unix time).</p>
+     * <p>Time stamp indicating when this data object was terminated. Format is a
+     * number expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
      */
     inline const Aws::Utils::DateTime& GetTerminationTime() const{ return m_terminationTime; }
 
     /**
-     * <p>Time stamp indicating when this fleet was terminated. Format is an integer
-     * representing the number of seconds since the Unix epoch (Unix time).</p>
+     * <p>Time stamp indicating when this data object was terminated. Format is a
+     * number expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
      */
     inline void SetTerminationTime(const Aws::Utils::DateTime& value) { m_terminationTimeHasBeenSet = true; m_terminationTime = value; }
 
     /**
-     * <p>Time stamp indicating when this fleet was terminated. Format is an integer
-     * representing the number of seconds since the Unix epoch (Unix time).</p>
+     * <p>Time stamp indicating when this data object was terminated. Format is a
+     * number expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
      */
     inline void SetTerminationTime(Aws::Utils::DateTime&& value) { m_terminationTimeHasBeenSet = true; m_terminationTime = value; }
 
     /**
-     * <p>Time stamp indicating when this fleet was terminated. Format is an integer
-     * representing the number of seconds since the Unix epoch (Unix time).</p>
+     * <p>Time stamp indicating when this data object was terminated. Format is a
+     * number expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
      */
     inline FleetAttributes& WithTerminationTime(const Aws::Utils::DateTime& value) { SetTerminationTime(value); return *this;}
 
     /**
-     * <p>Time stamp indicating when this fleet was terminated. Format is an integer
-     * representing the number of seconds since the Unix epoch (Unix time).</p>
+     * <p>Time stamp indicating when this data object was terminated. Format is a
+     * number expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
      */
     inline FleetAttributes& WithTerminationTime(Aws::Utils::DateTime&& value) { SetTerminationTime(value); return *this;}
 
     /**
-     * <p>Current status of the fleet. Possible fleet states include the following:
-     * <ul><li><b>NEW</b> – A new fleet has been defined and desired instances is set
-     * to 1. </li><li><b>DOWNLOADING/VALIDATING/BUILDING/ACTIVATING</b> – GameLift is
-     * setting up the new fleet, creating new instances with the game build and
-     * starting server processes.</li><li><b>ACTIVE</b> – Hosts can now accept game
+     * <p>Current status of the fleet.</p> <p>Possible fleet statuses include the
+     * following:</p> <ul><li><b>NEW</b> – A new fleet has been defined and desired
+     * instances is set to 1.
+     * </li><li><b>DOWNLOADING/VALIDATING/BUILDING/ACTIVATING</b> – GameLift is setting
+     * up the new fleet, creating new instances with the game build and starting server
+     * processes.</li><li><b>ACTIVE</b> – Hosts can now accept game
      * sessions.</li><li><b>ERROR</b> – An error occurred when downloading, validating,
      * building, or activating the fleet.</li><li><b>DELETING</b> – Hosts are
      * responding to a delete fleet request.</li><li><b>TERMINATED</b> – The fleet no
-     * longer exists.</li></ul></p>
+     * longer exists.</li></ul>
      */
     inline const FleetStatus& GetStatus() const{ return m_status; }
 
     /**
-     * <p>Current status of the fleet. Possible fleet states include the following:
-     * <ul><li><b>NEW</b> – A new fleet has been defined and desired instances is set
-     * to 1. </li><li><b>DOWNLOADING/VALIDATING/BUILDING/ACTIVATING</b> – GameLift is
-     * setting up the new fleet, creating new instances with the game build and
-     * starting server processes.</li><li><b>ACTIVE</b> – Hosts can now accept game
+     * <p>Current status of the fleet.</p> <p>Possible fleet statuses include the
+     * following:</p> <ul><li><b>NEW</b> – A new fleet has been defined and desired
+     * instances is set to 1.
+     * </li><li><b>DOWNLOADING/VALIDATING/BUILDING/ACTIVATING</b> – GameLift is setting
+     * up the new fleet, creating new instances with the game build and starting server
+     * processes.</li><li><b>ACTIVE</b> – Hosts can now accept game
      * sessions.</li><li><b>ERROR</b> – An error occurred when downloading, validating,
      * building, or activating the fleet.</li><li><b>DELETING</b> – Hosts are
      * responding to a delete fleet request.</li><li><b>TERMINATED</b> – The fleet no
-     * longer exists.</li></ul></p>
+     * longer exists.</li></ul>
      */
     inline void SetStatus(const FleetStatus& value) { m_statusHasBeenSet = true; m_status = value; }
 
     /**
-     * <p>Current status of the fleet. Possible fleet states include the following:
-     * <ul><li><b>NEW</b> – A new fleet has been defined and desired instances is set
-     * to 1. </li><li><b>DOWNLOADING/VALIDATING/BUILDING/ACTIVATING</b> – GameLift is
-     * setting up the new fleet, creating new instances with the game build and
-     * starting server processes.</li><li><b>ACTIVE</b> – Hosts can now accept game
+     * <p>Current status of the fleet.</p> <p>Possible fleet statuses include the
+     * following:</p> <ul><li><b>NEW</b> – A new fleet has been defined and desired
+     * instances is set to 1.
+     * </li><li><b>DOWNLOADING/VALIDATING/BUILDING/ACTIVATING</b> – GameLift is setting
+     * up the new fleet, creating new instances with the game build and starting server
+     * processes.</li><li><b>ACTIVE</b> – Hosts can now accept game
      * sessions.</li><li><b>ERROR</b> – An error occurred when downloading, validating,
      * building, or activating the fleet.</li><li><b>DELETING</b> – Hosts are
      * responding to a delete fleet request.</li><li><b>TERMINATED</b> – The fleet no
-     * longer exists.</li></ul></p>
+     * longer exists.</li></ul>
      */
     inline void SetStatus(FleetStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
 
     /**
-     * <p>Current status of the fleet. Possible fleet states include the following:
-     * <ul><li><b>NEW</b> – A new fleet has been defined and desired instances is set
-     * to 1. </li><li><b>DOWNLOADING/VALIDATING/BUILDING/ACTIVATING</b> – GameLift is
-     * setting up the new fleet, creating new instances with the game build and
-     * starting server processes.</li><li><b>ACTIVE</b> – Hosts can now accept game
+     * <p>Current status of the fleet.</p> <p>Possible fleet statuses include the
+     * following:</p> <ul><li><b>NEW</b> – A new fleet has been defined and desired
+     * instances is set to 1.
+     * </li><li><b>DOWNLOADING/VALIDATING/BUILDING/ACTIVATING</b> – GameLift is setting
+     * up the new fleet, creating new instances with the game build and starting server
+     * processes.</li><li><b>ACTIVE</b> – Hosts can now accept game
      * sessions.</li><li><b>ERROR</b> – An error occurred when downloading, validating,
      * building, or activating the fleet.</li><li><b>DELETING</b> – Hosts are
      * responding to a delete fleet request.</li><li><b>TERMINATED</b> – The fleet no
-     * longer exists.</li></ul></p>
+     * longer exists.</li></ul>
      */
     inline FleetAttributes& WithStatus(const FleetStatus& value) { SetStatus(value); return *this;}
 
     /**
-     * <p>Current status of the fleet. Possible fleet states include the following:
-     * <ul><li><b>NEW</b> – A new fleet has been defined and desired instances is set
-     * to 1. </li><li><b>DOWNLOADING/VALIDATING/BUILDING/ACTIVATING</b> – GameLift is
-     * setting up the new fleet, creating new instances with the game build and
-     * starting server processes.</li><li><b>ACTIVE</b> – Hosts can now accept game
+     * <p>Current status of the fleet.</p> <p>Possible fleet statuses include the
+     * following:</p> <ul><li><b>NEW</b> – A new fleet has been defined and desired
+     * instances is set to 1.
+     * </li><li><b>DOWNLOADING/VALIDATING/BUILDING/ACTIVATING</b> – GameLift is setting
+     * up the new fleet, creating new instances with the game build and starting server
+     * processes.</li><li><b>ACTIVE</b> – Hosts can now accept game
      * sessions.</li><li><b>ERROR</b> – An error occurred when downloading, validating,
      * building, or activating the fleet.</li><li><b>DELETING</b> – Hosts are
      * responding to a delete fleet request.</li><li><b>TERMINATED</b> – The fleet no
-     * longer exists.</li></ul></p>
+     * longer exists.</li></ul>
      */
     inline FleetAttributes& WithStatus(FleetStatus&& value) { SetStatus(value); return *this;}
 
@@ -318,86 +324,114 @@ namespace Model
     inline FleetAttributes& WithBuildId(const char* value) { SetBuildId(value); return *this;}
 
     /**
-     * <p>Deprecated. Server launch parameters are now set using a
-     * <code><a>RuntimeConfiguration</a></code> object.</p>
+     * <p>Path to a game server executable in the fleet's build, specified for fleets
+     * created prior to 2016-08-04 (or AWS SDK v. 0.12.16). Server launch paths for
+     * fleets created after this date are specified in the fleet's
+     * <code><a>RuntimeConfiguration</a></code>.</p>
      */
     inline const Aws::String& GetServerLaunchPath() const{ return m_serverLaunchPath; }
 
     /**
-     * <p>Deprecated. Server launch parameters are now set using a
-     * <code><a>RuntimeConfiguration</a></code> object.</p>
+     * <p>Path to a game server executable in the fleet's build, specified for fleets
+     * created prior to 2016-08-04 (or AWS SDK v. 0.12.16). Server launch paths for
+     * fleets created after this date are specified in the fleet's
+     * <code><a>RuntimeConfiguration</a></code>.</p>
      */
     inline void SetServerLaunchPath(const Aws::String& value) { m_serverLaunchPathHasBeenSet = true; m_serverLaunchPath = value; }
 
     /**
-     * <p>Deprecated. Server launch parameters are now set using a
-     * <code><a>RuntimeConfiguration</a></code> object.</p>
+     * <p>Path to a game server executable in the fleet's build, specified for fleets
+     * created prior to 2016-08-04 (or AWS SDK v. 0.12.16). Server launch paths for
+     * fleets created after this date are specified in the fleet's
+     * <code><a>RuntimeConfiguration</a></code>.</p>
      */
     inline void SetServerLaunchPath(Aws::String&& value) { m_serverLaunchPathHasBeenSet = true; m_serverLaunchPath = value; }
 
     /**
-     * <p>Deprecated. Server launch parameters are now set using a
-     * <code><a>RuntimeConfiguration</a></code> object.</p>
+     * <p>Path to a game server executable in the fleet's build, specified for fleets
+     * created prior to 2016-08-04 (or AWS SDK v. 0.12.16). Server launch paths for
+     * fleets created after this date are specified in the fleet's
+     * <code><a>RuntimeConfiguration</a></code>.</p>
      */
     inline void SetServerLaunchPath(const char* value) { m_serverLaunchPathHasBeenSet = true; m_serverLaunchPath.assign(value); }
 
     /**
-     * <p>Deprecated. Server launch parameters are now set using a
-     * <code><a>RuntimeConfiguration</a></code> object.</p>
+     * <p>Path to a game server executable in the fleet's build, specified for fleets
+     * created prior to 2016-08-04 (or AWS SDK v. 0.12.16). Server launch paths for
+     * fleets created after this date are specified in the fleet's
+     * <code><a>RuntimeConfiguration</a></code>.</p>
      */
     inline FleetAttributes& WithServerLaunchPath(const Aws::String& value) { SetServerLaunchPath(value); return *this;}
 
     /**
-     * <p>Deprecated. Server launch parameters are now set using a
-     * <code><a>RuntimeConfiguration</a></code> object.</p>
+     * <p>Path to a game server executable in the fleet's build, specified for fleets
+     * created prior to 2016-08-04 (or AWS SDK v. 0.12.16). Server launch paths for
+     * fleets created after this date are specified in the fleet's
+     * <code><a>RuntimeConfiguration</a></code>.</p>
      */
     inline FleetAttributes& WithServerLaunchPath(Aws::String&& value) { SetServerLaunchPath(value); return *this;}
 
     /**
-     * <p>Deprecated. Server launch parameters are now set using a
-     * <code><a>RuntimeConfiguration</a></code> object.</p>
+     * <p>Path to a game server executable in the fleet's build, specified for fleets
+     * created prior to 2016-08-04 (or AWS SDK v. 0.12.16). Server launch paths for
+     * fleets created after this date are specified in the fleet's
+     * <code><a>RuntimeConfiguration</a></code>.</p>
      */
     inline FleetAttributes& WithServerLaunchPath(const char* value) { SetServerLaunchPath(value); return *this;}
 
     /**
-     * <p>Deprecated. Server launch parameters are now specified using a
-     * <code><a>RuntimeConfiguration</a></code> object.</p>
+     * <p>Game server launch parameters specified for fleets created prior to
+     * 2016-08-04 (or AWS SDK v. 0.12.16). Server launch parameters for fleets created
+     * after this date are specified in the fleet's
+     * <code><a>RuntimeConfiguration</a></code>.</p>
      */
     inline const Aws::String& GetServerLaunchParameters() const{ return m_serverLaunchParameters; }
 
     /**
-     * <p>Deprecated. Server launch parameters are now specified using a
-     * <code><a>RuntimeConfiguration</a></code> object.</p>
+     * <p>Game server launch parameters specified for fleets created prior to
+     * 2016-08-04 (or AWS SDK v. 0.12.16). Server launch parameters for fleets created
+     * after this date are specified in the fleet's
+     * <code><a>RuntimeConfiguration</a></code>.</p>
      */
     inline void SetServerLaunchParameters(const Aws::String& value) { m_serverLaunchParametersHasBeenSet = true; m_serverLaunchParameters = value; }
 
     /**
-     * <p>Deprecated. Server launch parameters are now specified using a
-     * <code><a>RuntimeConfiguration</a></code> object.</p>
+     * <p>Game server launch parameters specified for fleets created prior to
+     * 2016-08-04 (or AWS SDK v. 0.12.16). Server launch parameters for fleets created
+     * after this date are specified in the fleet's
+     * <code><a>RuntimeConfiguration</a></code>.</p>
      */
     inline void SetServerLaunchParameters(Aws::String&& value) { m_serverLaunchParametersHasBeenSet = true; m_serverLaunchParameters = value; }
 
     /**
-     * <p>Deprecated. Server launch parameters are now specified using a
-     * <code><a>RuntimeConfiguration</a></code> object.</p>
+     * <p>Game server launch parameters specified for fleets created prior to
+     * 2016-08-04 (or AWS SDK v. 0.12.16). Server launch parameters for fleets created
+     * after this date are specified in the fleet's
+     * <code><a>RuntimeConfiguration</a></code>.</p>
      */
     inline void SetServerLaunchParameters(const char* value) { m_serverLaunchParametersHasBeenSet = true; m_serverLaunchParameters.assign(value); }
 
     /**
-     * <p>Deprecated. Server launch parameters are now specified using a
-     * <code><a>RuntimeConfiguration</a></code> object.</p>
+     * <p>Game server launch parameters specified for fleets created prior to
+     * 2016-08-04 (or AWS SDK v. 0.12.16). Server launch parameters for fleets created
+     * after this date are specified in the fleet's
+     * <code><a>RuntimeConfiguration</a></code>.</p>
      */
     inline FleetAttributes& WithServerLaunchParameters(const Aws::String& value) { SetServerLaunchParameters(value); return *this;}
 
     /**
-     * <p>Deprecated. Server launch parameters are now specified using a
-     * <code><a>RuntimeConfiguration</a></code> object.</p>
+     * <p>Game server launch parameters specified for fleets created prior to
+     * 2016-08-04 (or AWS SDK v. 0.12.16). Server launch parameters for fleets created
+     * after this date are specified in the fleet's
+     * <code><a>RuntimeConfiguration</a></code>.</p>
      */
     inline FleetAttributes& WithServerLaunchParameters(Aws::String&& value) { SetServerLaunchParameters(value); return *this;}
 
     /**
-     * <p>Deprecated. Server launch parameters are now specified using a
-     * <code><a>RuntimeConfiguration</a></code> object.</p>
+     * <p>Game server launch parameters specified for fleets created prior to
+     * 2016-08-04 (or AWS SDK v. 0.12.16). Server launch parameters for fleets created
+     * after this date are specified in the fleet's
+     * <code><a>RuntimeConfiguration</a></code>.</p>
      */
     inline FleetAttributes& WithServerLaunchParameters(const char* value) { SetServerLaunchParameters(value); return *this;}
 
@@ -491,48 +525,83 @@ namespace Model
 
     /**
      * <p>Type of game session protection to set for all new instances started in the
-     * fleet. <ul><li><b>NoProtection</b> – The game session can be terminated during a
-     * scale-down event.</li> <li><b>FullProtection</b> – If the game session is in an
-     * <code>ACTIVE</code> status, it cannot be terminated during a scale-down
-     * event.</li></ul></p>
+     * fleet.</p> <ul><li><b>NoProtection</b> – The game session can be terminated
+     * during a scale-down event.</li> <li><b>FullProtection</b> – If the game session
+     * is in an <code>ACTIVE</code> status, it cannot be terminated during a scale-down
+     * event.</li></ul>
      */
     inline const ProtectionPolicy& GetNewGameSessionProtectionPolicy() const{ return m_newGameSessionProtectionPolicy; }
 
     /**
      * <p>Type of game session protection to set for all new instances started in the
-     * fleet. <ul><li><b>NoProtection</b> – The game session can be terminated during a
-     * scale-down event.</li> <li><b>FullProtection</b> – If the game session is in an
-     * <code>ACTIVE</code> status, it cannot be terminated during a scale-down
-     * event.</li></ul></p>
+     * fleet.</p> <ul><li><b>NoProtection</b> – The game session can be terminated
+     * during a scale-down event.</li> <li><b>FullProtection</b> – If the game session
+     * is in an <code>ACTIVE</code> status, it cannot be terminated during a scale-down
+     * event.</li></ul>
      */
     inline void SetNewGameSessionProtectionPolicy(const ProtectionPolicy& value) { m_newGameSessionProtectionPolicyHasBeenSet = true; m_newGameSessionProtectionPolicy = value; }
 
     /**
      * <p>Type of game session protection to set for all new instances started in the
-     * fleet. <ul><li><b>NoProtection</b> – The game session can be terminated during a
-     * scale-down event.</li> <li><b>FullProtection</b> – If the game session is in an
-     * <code>ACTIVE</code> status, it cannot be terminated during a scale-down
-     * event.</li></ul></p>
+     * fleet.</p> <ul><li><b>NoProtection</b> – The game session can be terminated
+     * during a scale-down event.</li> <li><b>FullProtection</b> – If the game session
+     * is in an <code>ACTIVE</code> status, it cannot be terminated during a scale-down
+     * event.</li></ul>
      */
     inline void SetNewGameSessionProtectionPolicy(ProtectionPolicy&& value) { m_newGameSessionProtectionPolicyHasBeenSet = true; m_newGameSessionProtectionPolicy = value; }
 
     /**
      * <p>Type of game session protection to set for all new instances started in the
-     * fleet. <ul><li><b>NoProtection</b> – The game session can be terminated during a
-     * scale-down event.</li> <li><b>FullProtection</b> – If the game session is in an
-     * <code>ACTIVE</code> status, it cannot be terminated during a scale-down
-     * event.</li></ul></p>
+     * fleet.</p> <ul><li><b>NoProtection</b> – The game session can be terminated
+     * during a scale-down event.</li> <li><b>FullProtection</b> – If the game session
+     * is in an <code>ACTIVE</code> status, it cannot be terminated during a scale-down
+     * event.</li></ul>
      */
     inline FleetAttributes& WithNewGameSessionProtectionPolicy(const ProtectionPolicy& value) { SetNewGameSessionProtectionPolicy(value); return *this;}
 
     /**
      * <p>Type of game session protection to set for all new instances started in the
-     * fleet. <ul><li><b>NoProtection</b> – The game session can be terminated during a
-     * scale-down event.</li> <li><b>FullProtection</b> – If the game session is in an
-     * <code>ACTIVE</code> status, it cannot be terminated during a scale-down
-     * event.</li></ul></p>
+     * fleet.</p> <ul><li><b>NoProtection</b> – The game session can be terminated
+     * during a scale-down event.</li> <li><b>FullProtection</b> – If the game session
+     * is in an <code>ACTIVE</code> status, it cannot be terminated during a scale-down
+     * event.</li></ul>
      */
     inline FleetAttributes& WithNewGameSessionProtectionPolicy(ProtectionPolicy&& value) { SetNewGameSessionProtectionPolicy(value); return *this;}
+
+    /**
+     * <p>Operating system of the fleet's computing resources. A fleet's operating
+     * system depends on the OS specified for the build that is deployed on this
+     * fleet.</p>
+     */
+    inline const OperatingSystem& GetOperatingSystem() const{ return m_operatingSystem; }
+
+    /**
+     * <p>Operating system of the fleet's computing resources. A fleet's operating
+     * system depends on the OS specified for the build that is deployed on this
+     * fleet.</p>
+     */
+    inline void SetOperatingSystem(const OperatingSystem& value) { m_operatingSystemHasBeenSet = true; m_operatingSystem = value; }
+
+    /**
+     * <p>Operating system of the fleet's computing resources. A fleet's operating
+     * system depends on the OS specified for the build that is deployed on this
+     * fleet.</p>
+     */
+    inline void SetOperatingSystem(OperatingSystem&& value) { m_operatingSystemHasBeenSet = true; m_operatingSystem = value; }
+
+    /**
+     * <p>Operating system of the fleet's computing resources. A fleet's operating
+     * system depends on the OS specified for the build that is deployed on this
+     * fleet.</p>
+     */
+    inline FleetAttributes& WithOperatingSystem(const OperatingSystem& value) { SetOperatingSystem(value); return *this;}
+
+    /**
+     * <p>Operating system of the fleet's computing resources. A fleet's operating
+     * system depends on the OS specified for the build that is deployed on this
+     * fleet.</p>
+     */
+    inline FleetAttributes& WithOperatingSystem(OperatingSystem&& value) { SetOperatingSystem(value); return *this;}
 
   private:
     Aws::String m_fleetId;
@@ -557,6 +626,8 @@ namespace Model
     bool m_logPathsHasBeenSet;
     ProtectionPolicy m_newGameSessionProtectionPolicy;
     bool m_newGameSessionProtectionPolicyHasBeenSet;
+    OperatingSystem m_operatingSystem;
+    bool m_operatingSystemHasBeenSet;
   };
 
 } // namespace Model

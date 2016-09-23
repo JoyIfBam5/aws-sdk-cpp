@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -104,37 +104,37 @@ namespace Model
     inline DeleteMethodResponseRequest& WithResourceId(const char* value) { SetResourceId(value); return *this;}
 
     /**
-     * <p>The HTTP verb identifier for the parent <a>Method</a> resource.</p>
+     * <p>The HTTP verb of the <a>Method</a> resource.</p>
      */
     inline const Aws::String& GetHttpMethod() const{ return m_httpMethod; }
 
     /**
-     * <p>The HTTP verb identifier for the parent <a>Method</a> resource.</p>
+     * <p>The HTTP verb of the <a>Method</a> resource.</p>
      */
     inline void SetHttpMethod(const Aws::String& value) { m_httpMethodHasBeenSet = true; m_httpMethod = value; }
 
     /**
-     * <p>The HTTP verb identifier for the parent <a>Method</a> resource.</p>
+     * <p>The HTTP verb of the <a>Method</a> resource.</p>
      */
     inline void SetHttpMethod(Aws::String&& value) { m_httpMethodHasBeenSet = true; m_httpMethod = value; }
 
     /**
-     * <p>The HTTP verb identifier for the parent <a>Method</a> resource.</p>
+     * <p>The HTTP verb of the <a>Method</a> resource.</p>
      */
     inline void SetHttpMethod(const char* value) { m_httpMethodHasBeenSet = true; m_httpMethod.assign(value); }
 
     /**
-     * <p>The HTTP verb identifier for the parent <a>Method</a> resource.</p>
+     * <p>The HTTP verb of the <a>Method</a> resource.</p>
      */
     inline DeleteMethodResponseRequest& WithHttpMethod(const Aws::String& value) { SetHttpMethod(value); return *this;}
 
     /**
-     * <p>The HTTP verb identifier for the parent <a>Method</a> resource.</p>
+     * <p>The HTTP verb of the <a>Method</a> resource.</p>
      */
     inline DeleteMethodResponseRequest& WithHttpMethod(Aws::String&& value) { SetHttpMethod(value); return *this;}
 
     /**
-     * <p>The HTTP verb identifier for the parent <a>Method</a> resource.</p>
+     * <p>The HTTP verb of the <a>Method</a> resource.</p>
      */
     inline DeleteMethodResponseRequest& WithHttpMethod(const char* value) { SetHttpMethod(value); return *this;}
 

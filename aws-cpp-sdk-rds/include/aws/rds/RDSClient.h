@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -71,6 +71,7 @@
 #include <aws/rds/model/DescribePendingMaintenanceActionsResult.h>
 #include <aws/rds/model/DescribeReservedDBInstancesResult.h>
 #include <aws/rds/model/DescribeReservedDBInstancesOfferingsResult.h>
+#include <aws/rds/model/DescribeSourceRegionsResult.h>
 #include <aws/rds/model/DownloadDBLogFilePortionResult.h>
 #include <aws/rds/model/FailoverDBClusterResult.h>
 #include <aws/rds/model/ListTagsForResourceResult.h>
@@ -90,6 +91,7 @@
 #include <aws/rds/model/RemoveSourceIdentifierFromSubscriptionResult.h>
 #include <aws/rds/model/ResetDBClusterParameterGroupResult.h>
 #include <aws/rds/model/ResetDBParameterGroupResult.h>
+#include <aws/rds/model/RestoreDBClusterFromS3Result.h>
 #include <aws/rds/model/RestoreDBClusterFromSnapshotResult.h>
 #include <aws/rds/model/RestoreDBClusterToPointInTimeResult.h>
 #include <aws/rds/model/RestoreDBInstanceFromDBSnapshotResult.h>
@@ -198,6 +200,7 @@ namespace Model
         class DescribePendingMaintenanceActionsRequest;
         class DescribeReservedDBInstancesRequest;
         class DescribeReservedDBInstancesOfferingsRequest;
+        class DescribeSourceRegionsRequest;
         class DownloadDBLogFilePortionRequest;
         class FailoverDBClusterRequest;
         class ListTagsForResourceRequest;
@@ -218,6 +221,7 @@ namespace Model
         class RemoveTagsFromResourceRequest;
         class ResetDBClusterParameterGroupRequest;
         class ResetDBParameterGroupRequest;
+        class RestoreDBClusterFromS3Request;
         class RestoreDBClusterFromSnapshotRequest;
         class RestoreDBClusterToPointInTimeRequest;
         class RestoreDBInstanceFromDBSnapshotRequest;
@@ -281,6 +285,7 @@ namespace Model
         typedef Aws::Utils::Outcome<DescribePendingMaintenanceActionsResult, Aws::Client::AWSError<RDSErrors>> DescribePendingMaintenanceActionsOutcome;
         typedef Aws::Utils::Outcome<DescribeReservedDBInstancesResult, Aws::Client::AWSError<RDSErrors>> DescribeReservedDBInstancesOutcome;
         typedef Aws::Utils::Outcome<DescribeReservedDBInstancesOfferingsResult, Aws::Client::AWSError<RDSErrors>> DescribeReservedDBInstancesOfferingsOutcome;
+        typedef Aws::Utils::Outcome<DescribeSourceRegionsResult, Aws::Client::AWSError<RDSErrors>> DescribeSourceRegionsOutcome;
         typedef Aws::Utils::Outcome<DownloadDBLogFilePortionResult, Aws::Client::AWSError<RDSErrors>> DownloadDBLogFilePortionOutcome;
         typedef Aws::Utils::Outcome<FailoverDBClusterResult, Aws::Client::AWSError<RDSErrors>> FailoverDBClusterOutcome;
         typedef Aws::Utils::Outcome<ListTagsForResourceResult, Aws::Client::AWSError<RDSErrors>> ListTagsForResourceOutcome;
@@ -301,6 +306,7 @@ namespace Model
         typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<RDSErrors>> RemoveTagsFromResourceOutcome;
         typedef Aws::Utils::Outcome<ResetDBClusterParameterGroupResult, Aws::Client::AWSError<RDSErrors>> ResetDBClusterParameterGroupOutcome;
         typedef Aws::Utils::Outcome<ResetDBParameterGroupResult, Aws::Client::AWSError<RDSErrors>> ResetDBParameterGroupOutcome;
+        typedef Aws::Utils::Outcome<RestoreDBClusterFromS3Result, Aws::Client::AWSError<RDSErrors>> RestoreDBClusterFromS3Outcome;
         typedef Aws::Utils::Outcome<RestoreDBClusterFromSnapshotResult, Aws::Client::AWSError<RDSErrors>> RestoreDBClusterFromSnapshotOutcome;
         typedef Aws::Utils::Outcome<RestoreDBClusterToPointInTimeResult, Aws::Client::AWSError<RDSErrors>> RestoreDBClusterToPointInTimeOutcome;
         typedef Aws::Utils::Outcome<RestoreDBInstanceFromDBSnapshotResult, Aws::Client::AWSError<RDSErrors>> RestoreDBInstanceFromDBSnapshotOutcome;
@@ -364,6 +370,7 @@ namespace Model
         typedef std::future<DescribePendingMaintenanceActionsOutcome> DescribePendingMaintenanceActionsOutcomeCallable;
         typedef std::future<DescribeReservedDBInstancesOutcome> DescribeReservedDBInstancesOutcomeCallable;
         typedef std::future<DescribeReservedDBInstancesOfferingsOutcome> DescribeReservedDBInstancesOfferingsOutcomeCallable;
+        typedef std::future<DescribeSourceRegionsOutcome> DescribeSourceRegionsOutcomeCallable;
         typedef std::future<DownloadDBLogFilePortionOutcome> DownloadDBLogFilePortionOutcomeCallable;
         typedef std::future<FailoverDBClusterOutcome> FailoverDBClusterOutcomeCallable;
         typedef std::future<ListTagsForResourceOutcome> ListTagsForResourceOutcomeCallable;
@@ -384,6 +391,7 @@ namespace Model
         typedef std::future<RemoveTagsFromResourceOutcome> RemoveTagsFromResourceOutcomeCallable;
         typedef std::future<ResetDBClusterParameterGroupOutcome> ResetDBClusterParameterGroupOutcomeCallable;
         typedef std::future<ResetDBParameterGroupOutcome> ResetDBParameterGroupOutcomeCallable;
+        typedef std::future<RestoreDBClusterFromS3Outcome> RestoreDBClusterFromS3OutcomeCallable;
         typedef std::future<RestoreDBClusterFromSnapshotOutcome> RestoreDBClusterFromSnapshotOutcomeCallable;
         typedef std::future<RestoreDBClusterToPointInTimeOutcome> RestoreDBClusterToPointInTimeOutcomeCallable;
         typedef std::future<RestoreDBInstanceFromDBSnapshotOutcome> RestoreDBInstanceFromDBSnapshotOutcomeCallable;
@@ -450,6 +458,7 @@ namespace Model
     typedef std::function<void(const RDSClient*, const Model::DescribePendingMaintenanceActionsRequest&, const Model::DescribePendingMaintenanceActionsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribePendingMaintenanceActionsResponseReceivedHandler;
     typedef std::function<void(const RDSClient*, const Model::DescribeReservedDBInstancesRequest&, const Model::DescribeReservedDBInstancesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeReservedDBInstancesResponseReceivedHandler;
     typedef std::function<void(const RDSClient*, const Model::DescribeReservedDBInstancesOfferingsRequest&, const Model::DescribeReservedDBInstancesOfferingsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeReservedDBInstancesOfferingsResponseReceivedHandler;
+    typedef std::function<void(const RDSClient*, const Model::DescribeSourceRegionsRequest&, const Model::DescribeSourceRegionsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeSourceRegionsResponseReceivedHandler;
     typedef std::function<void(const RDSClient*, const Model::DownloadDBLogFilePortionRequest&, const Model::DownloadDBLogFilePortionOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DownloadDBLogFilePortionResponseReceivedHandler;
     typedef std::function<void(const RDSClient*, const Model::FailoverDBClusterRequest&, const Model::FailoverDBClusterOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > FailoverDBClusterResponseReceivedHandler;
     typedef std::function<void(const RDSClient*, const Model::ListTagsForResourceRequest&, const Model::ListTagsForResourceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListTagsForResourceResponseReceivedHandler;
@@ -470,6 +479,7 @@ namespace Model
     typedef std::function<void(const RDSClient*, const Model::RemoveTagsFromResourceRequest&, const Model::RemoveTagsFromResourceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > RemoveTagsFromResourceResponseReceivedHandler;
     typedef std::function<void(const RDSClient*, const Model::ResetDBClusterParameterGroupRequest&, const Model::ResetDBClusterParameterGroupOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ResetDBClusterParameterGroupResponseReceivedHandler;
     typedef std::function<void(const RDSClient*, const Model::ResetDBParameterGroupRequest&, const Model::ResetDBParameterGroupOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ResetDBParameterGroupResponseReceivedHandler;
+    typedef std::function<void(const RDSClient*, const Model::RestoreDBClusterFromS3Request&, const Model::RestoreDBClusterFromS3Outcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > RestoreDBClusterFromS3ResponseReceivedHandler;
     typedef std::function<void(const RDSClient*, const Model::RestoreDBClusterFromSnapshotRequest&, const Model::RestoreDBClusterFromSnapshotOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > RestoreDBClusterFromSnapshotResponseReceivedHandler;
     typedef std::function<void(const RDSClient*, const Model::RestoreDBClusterToPointInTimeRequest&, const Model::RestoreDBClusterToPointInTimeOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > RestoreDBClusterToPointInTimeResponseReceivedHandler;
     typedef std::function<void(const RDSClient*, const Model::RestoreDBInstanceFromDBSnapshotRequest&, const Model::RestoreDBInstanceFromDBSnapshotOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > RestoreDBInstanceFromDBSnapshotResponseReceivedHandler;
@@ -2226,6 +2236,31 @@ namespace Model
         virtual void DescribeReservedDBInstancesOfferingsAsync(const Model::DescribeReservedDBInstancesOfferingsRequest& request, const DescribeReservedDBInstancesOfferingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
+         * <p>Returns a list of the source AWS regions where the current AWS region can
+         * create a Read Replica or copy a DB snapshot from. This API action supports
+         * pagination.</p>
+         */
+        virtual Model::DescribeSourceRegionsOutcome DescribeSourceRegions(const Model::DescribeSourceRegionsRequest& request) const;
+
+        /**
+         * <p>Returns a list of the source AWS regions where the current AWS region can
+         * create a Read Replica or copy a DB snapshot from. This API action supports
+         * pagination.</p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::DescribeSourceRegionsOutcomeCallable DescribeSourceRegionsCallable(const Model::DescribeSourceRegionsRequest& request) const;
+
+        /**
+         * <p>Returns a list of the source AWS regions where the current AWS region can
+         * create a Read Replica or copy a DB snapshot from. This API action supports
+         * pagination.</p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void DescribeSourceRegionsAsync(const Model::DescribeSourceRegionsRequest& request, const DescribeSourceRegionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
          * <p>Downloads all or a portion of the specified log file, up to 1 MB in size.</p>
          */
         virtual Model::DownloadDBLogFilePortionOutcome DownloadDBLogFilePortion(const Model::DownloadDBLogFilePortionRequest& request) const;
@@ -2487,14 +2522,14 @@ namespace Model
         virtual void ModifyDBClusterSnapshotAttributeAsync(const Model::ModifyDBClusterSnapshotAttributeRequest& request, const ModifyDBClusterSnapshotAttributeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Modify settings for a DB instance. You can change one or more database
+         * <p>Modifies settings for a DB instance. You can change one or more database
          * configuration parameters by specifying these parameters and the new values in
          * the request.</p>
          */
         virtual Model::ModifyDBInstanceOutcome ModifyDBInstance(const Model::ModifyDBInstanceRequest& request) const;
 
         /**
-         * <p>Modify settings for a DB instance. You can change one or more database
+         * <p>Modifies settings for a DB instance. You can change one or more database
          * configuration parameters by specifying these parameters and the new values in
          * the request.</p>
          *
@@ -2503,7 +2538,7 @@ namespace Model
         virtual Model::ModifyDBInstanceOutcomeCallable ModifyDBInstanceCallable(const Model::ModifyDBInstanceRequest& request) const;
 
         /**
-         * <p>Modify settings for a DB instance. You can change one or more database
+         * <p>Modifies settings for a DB instance. You can change one or more database
          * configuration parameters by specifying these parameters and the new values in
          * the request.</p>
          *
@@ -2984,6 +3019,37 @@ namespace Model
         virtual void ResetDBParameterGroupAsync(const Model::ResetDBParameterGroupRequest& request, const ResetDBParameterGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
+         * <p>Creates an Amazon Aurora DB cluster from data stored in an Amazon S3 bucket.
+         * Amazon RDS must be authorized to access the Amazon S3 bucket and the data must
+         * be created using the Percona XtraBackup utility as described in <a
+         * href="AmazonRDS/latest/UserGuide/Aurora.Migrate.MySQL.html#Aurora.Migrate.MySQL.S3">Migrating
+         * Data from MySQL by Using an Amazon S3 Bucket</a>.</p>
+         */
+        virtual Model::RestoreDBClusterFromS3Outcome RestoreDBClusterFromS3(const Model::RestoreDBClusterFromS3Request& request) const;
+
+        /**
+         * <p>Creates an Amazon Aurora DB cluster from data stored in an Amazon S3 bucket.
+         * Amazon RDS must be authorized to access the Amazon S3 bucket and the data must
+         * be created using the Percona XtraBackup utility as described in <a
+         * href="AmazonRDS/latest/UserGuide/Aurora.Migrate.MySQL.html#Aurora.Migrate.MySQL.S3">Migrating
+         * Data from MySQL by Using an Amazon S3 Bucket</a>.</p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::RestoreDBClusterFromS3OutcomeCallable RestoreDBClusterFromS3Callable(const Model::RestoreDBClusterFromS3Request& request) const;
+
+        /**
+         * <p>Creates an Amazon Aurora DB cluster from data stored in an Amazon S3 bucket.
+         * Amazon RDS must be authorized to access the Amazon S3 bucket and the data must
+         * be created using the Percona XtraBackup utility as described in <a
+         * href="AmazonRDS/latest/UserGuide/Aurora.Migrate.MySQL.html#Aurora.Migrate.MySQL.S3">Migrating
+         * Data from MySQL by Using an Amazon S3 Bucket</a>.</p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void RestoreDBClusterFromS3Async(const Model::RestoreDBClusterFromS3Request& request, const RestoreDBClusterFromS3ResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
          * <p>Creates a new DB cluster from a DB cluster snapshot. The target DB cluster is
          * created from the source DB cluster restore point with the same configuration as
          * the original source DB cluster, except that the new DB cluster is created with
@@ -3257,6 +3323,7 @@ namespace Model
         void DescribePendingMaintenanceActionsAsyncHelper(const Model::DescribePendingMaintenanceActionsRequest& request, const DescribePendingMaintenanceActionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeReservedDBInstancesAsyncHelper(const Model::DescribeReservedDBInstancesRequest& request, const DescribeReservedDBInstancesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeReservedDBInstancesOfferingsAsyncHelper(const Model::DescribeReservedDBInstancesOfferingsRequest& request, const DescribeReservedDBInstancesOfferingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void DescribeSourceRegionsAsyncHelper(const Model::DescribeSourceRegionsRequest& request, const DescribeSourceRegionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DownloadDBLogFilePortionAsyncHelper(const Model::DownloadDBLogFilePortionRequest& request, const DownloadDBLogFilePortionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void FailoverDBClusterAsyncHelper(const Model::FailoverDBClusterRequest& request, const FailoverDBClusterResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListTagsForResourceAsyncHelper(const Model::ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -3277,6 +3344,7 @@ namespace Model
         void RemoveTagsFromResourceAsyncHelper(const Model::RemoveTagsFromResourceRequest& request, const RemoveTagsFromResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ResetDBClusterParameterGroupAsyncHelper(const Model::ResetDBClusterParameterGroupRequest& request, const ResetDBClusterParameterGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ResetDBParameterGroupAsyncHelper(const Model::ResetDBParameterGroupRequest& request, const ResetDBParameterGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void RestoreDBClusterFromS3AsyncHelper(const Model::RestoreDBClusterFromS3Request& request, const RestoreDBClusterFromS3ResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void RestoreDBClusterFromSnapshotAsyncHelper(const Model::RestoreDBClusterFromSnapshotRequest& request, const RestoreDBClusterFromSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void RestoreDBClusterToPointInTimeAsyncHelper(const Model::RestoreDBClusterToPointInTimeRequest& request, const RestoreDBClusterToPointInTimeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void RestoreDBInstanceFromDBSnapshotAsyncHelper(const Model::RestoreDBInstanceFromDBSnapshotRequest& request, const RestoreDBInstanceFromDBSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;

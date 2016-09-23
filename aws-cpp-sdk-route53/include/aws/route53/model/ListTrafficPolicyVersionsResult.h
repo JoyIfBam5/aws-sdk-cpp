@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -91,8 +91,7 @@ namespace Model
      * If the response was truncated, you can get the next group of
      * <code>maxitems</code> traffic policies by calling
      * <code>ListTrafficPolicyVersions</code> again and specifying the value of the
-     * <code>NextMarker</code> element in the marker parameter.</p> <p>Valid Values:
-     * <code>true</code> | <code>false</code></p>
+     * <code>NextMarker</code> element in the <code>marker</code> parameter.</p>
      */
     inline bool GetIsTruncated() const{ return m_isTruncated; }
 
@@ -101,8 +100,7 @@ namespace Model
      * If the response was truncated, you can get the next group of
      * <code>maxitems</code> traffic policies by calling
      * <code>ListTrafficPolicyVersions</code> again and specifying the value of the
-     * <code>NextMarker</code> element in the marker parameter.</p> <p>Valid Values:
-     * <code>true</code> | <code>false</code></p>
+     * <code>NextMarker</code> element in the <code>marker</code> parameter.</p>
      */
     inline void SetIsTruncated(bool value) { m_isTruncated = value; }
 
@@ -111,8 +109,7 @@ namespace Model
      * If the response was truncated, you can get the next group of
      * <code>maxitems</code> traffic policies by calling
      * <code>ListTrafficPolicyVersions</code> again and specifying the value of the
-     * <code>NextMarker</code> element in the marker parameter.</p> <p>Valid Values:
-     * <code>true</code> | <code>false</code></p>
+     * <code>NextMarker</code> element in the <code>marker</code> parameter.</p>
      */
     inline ListTrafficPolicyVersionsResult& WithIsTruncated(bool value) { SetIsTruncated(value); return *this;}
 

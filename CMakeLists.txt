@@ -146,6 +146,7 @@ export(TARGETS ${EXPORTS} FILE aws-sdk-cpp-config.cmake)
 
 #packaging
 if(GIT_FOUND)
+    # sed -n 's/#define AWS_SDK_VERSION_STRING "\(.*\)"/\1/p' aws-cpp-sdk-core/include/aws/core/VersionConfig.h
     execute_process(COMMAND ${GIT_EXECUTABLE} describe --abbrev=0 --tags
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
         OUTPUT_VARIABLE VERSION_STRING

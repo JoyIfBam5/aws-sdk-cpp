@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.12)
 project(aws-cpp-sdk-sqs)
 
   file(GLOB AWS_SQS_HEADERS
@@ -84,7 +84,7 @@ project(aws-cpp-sdk-sqs)
   install (FILES ${AWS_SQS_HEADERS} DESTINATION include/aws/sqs)
   install (FILES ${AWS_SQS_MODEL_HEADERS} DESTINATION include/aws/sqs/model)
 
-  if(MSVC)
+  if(PLATFORM_WINDOWS AND MSVC)
     install (FILES nuget/aws-cpp-sdk-sqs.autopkg DESTINATION nuget)
   endif()
 

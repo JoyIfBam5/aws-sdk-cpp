@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -24,7 +24,8 @@ using namespace Aws::Utils;
 CreateBuildRequest::CreateBuildRequest() : 
     m_nameHasBeenSet(false),
     m_versionHasBeenSet(false),
-    m_storageLocationHasBeenSet(false)
+    m_storageLocationHasBeenSet(false),
+    m_operatingSystemHasBeenSet(false)
 {
 }
 
@@ -48,6 +49,11 @@ Aws::String CreateBuildRequest::SerializePayload() const
   {
    payload.WithObject("StorageLocation", m_storageLocation.Jsonize());
 
+  }
+
+  if(m_operatingSystemHasBeenSet)
+  {
+   payload.WithString("OperatingSystem", OperatingSystemMapper::GetNameForOperatingSystem(m_operatingSystem));
   }
 
   return payload.WriteReadable();

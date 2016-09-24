@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.12)
 project(aws-cpp-sdk-importexport)
 
   file(GLOB AWS_IMPORTEXPORT_HEADERS
@@ -84,7 +84,7 @@ project(aws-cpp-sdk-importexport)
   install (FILES ${AWS_IMPORTEXPORT_HEADERS} DESTINATION include/aws/importexport)
   install (FILES ${AWS_IMPORTEXPORT_MODEL_HEADERS} DESTINATION include/aws/importexport/model)
 
-  if(MSVC)
+  if(PLATFORM_WINDOWS AND MSVC)
     install (FILES nuget/aws-cpp-sdk-importexport.autopkg DESTINATION nuget)
   endif()
 

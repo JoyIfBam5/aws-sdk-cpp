@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -32,7 +32,7 @@ namespace CognitoIdentityProvider
 namespace Model
 {
   /**
-   * <p>The global signot response, as an administrator.</p>
+   * <p>The global sign-out response, as an administrator.</p>
    */
   class AWS_COGNITOIDENTITYPROVIDER_API AdminUserGlobalSignOutResult
   {

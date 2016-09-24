@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -45,6 +45,21 @@ UpdateAccountResult& UpdateAccountResult::operator =(const AmazonWebServiceResul
   if(jsonValue.ValueExists("throttleSettings"))
   {
     m_throttleSettings = jsonValue.GetObject("throttleSettings");
+
+  }
+
+  if(jsonValue.ValueExists("features"))
+  {
+    Array<JsonValue> featuresJsonList = jsonValue.GetArray("features");
+    for(unsigned featuresIndex = 0; featuresIndex < featuresJsonList.GetLength(); ++featuresIndex)
+    {
+      m_features.push_back(featuresJsonList[featuresIndex].AsString());
+    }
+  }
+
+  if(jsonValue.ValueExists("apiKeyVersion"))
+  {
+    m_apiKeyVersion = jsonValue.GetString("apiKeyVersion");
 
   }
 

@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -104,37 +104,37 @@ namespace Model
     inline CreateRestApiRequest& WithDescription(const char* value) { SetDescription(value); return *this;}
 
     /**
-     * <p>The Id of the <a>RestApi</a> that you want to clone from.</p>
+     * <p>The ID of the <a>RestApi</a> that you want to clone from.</p>
      */
     inline const Aws::String& GetCloneFrom() const{ return m_cloneFrom; }
 
     /**
-     * <p>The Id of the <a>RestApi</a> that you want to clone from.</p>
+     * <p>The ID of the <a>RestApi</a> that you want to clone from.</p>
      */
     inline void SetCloneFrom(const Aws::String& value) { m_cloneFromHasBeenSet = true; m_cloneFrom = value; }
 
     /**
-     * <p>The Id of the <a>RestApi</a> that you want to clone from.</p>
+     * <p>The ID of the <a>RestApi</a> that you want to clone from.</p>
      */
     inline void SetCloneFrom(Aws::String&& value) { m_cloneFromHasBeenSet = true; m_cloneFrom = value; }
 
     /**
-     * <p>The Id of the <a>RestApi</a> that you want to clone from.</p>
+     * <p>The ID of the <a>RestApi</a> that you want to clone from.</p>
      */
     inline void SetCloneFrom(const char* value) { m_cloneFromHasBeenSet = true; m_cloneFrom.assign(value); }
 
     /**
-     * <p>The Id of the <a>RestApi</a> that you want to clone from.</p>
+     * <p>The ID of the <a>RestApi</a> that you want to clone from.</p>
      */
     inline CreateRestApiRequest& WithCloneFrom(const Aws::String& value) { SetCloneFrom(value); return *this;}
 
     /**
-     * <p>The Id of the <a>RestApi</a> that you want to clone from.</p>
+     * <p>The ID of the <a>RestApi</a> that you want to clone from.</p>
      */
     inline CreateRestApiRequest& WithCloneFrom(Aws::String&& value) { SetCloneFrom(value); return *this;}
 
     /**
-     * <p>The Id of the <a>RestApi</a> that you want to clone from.</p>
+     * <p>The ID of the <a>RestApi</a> that you want to clone from.</p>
      */
     inline CreateRestApiRequest& WithCloneFrom(const char* value) { SetCloneFrom(value); return *this;}
 

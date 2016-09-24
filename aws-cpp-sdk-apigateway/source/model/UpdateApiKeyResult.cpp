@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -44,6 +44,12 @@ UpdateApiKeyResult& UpdateApiKeyResult::operator =(const AmazonWebServiceResult<
 
   }
 
+  if(jsonValue.ValueExists("value"))
+  {
+    m_value = jsonValue.GetString("value");
+
+  }
+
   if(jsonValue.ValueExists("name"))
   {
     m_name = jsonValue.GetString("name");
@@ -62,15 +68,6 @@ UpdateApiKeyResult& UpdateApiKeyResult::operator =(const AmazonWebServiceResult<
 
   }
 
-  if(jsonValue.ValueExists("stageKeys"))
-  {
-    Array<JsonValue> stageKeysJsonList = jsonValue.GetArray("stageKeys");
-    for(unsigned stageKeysIndex = 0; stageKeysIndex < stageKeysJsonList.GetLength(); ++stageKeysIndex)
-    {
-      m_stageKeys.push_back(stageKeysJsonList[stageKeysIndex].AsString());
-    }
-  }
-
   if(jsonValue.ValueExists("createdDate"))
   {
     m_createdDate = jsonValue.GetDouble("createdDate");
@@ -81,6 +78,15 @@ UpdateApiKeyResult& UpdateApiKeyResult::operator =(const AmazonWebServiceResult<
   {
     m_lastUpdatedDate = jsonValue.GetDouble("lastUpdatedDate");
 
+  }
+
+  if(jsonValue.ValueExists("stageKeys"))
+  {
+    Array<JsonValue> stageKeysJsonList = jsonValue.GetArray("stageKeys");
+    for(unsigned stageKeysIndex = 0; stageKeysIndex < stageKeysJsonList.GetLength(); ++stageKeysIndex)
+    {
+      m_stageKeys.push_back(stageKeysJsonList[stageKeysIndex].AsString());
+    }
   }
 
 

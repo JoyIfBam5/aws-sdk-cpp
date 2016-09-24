@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -49,7 +49,8 @@ namespace Model
     AWS_RDS_DBSubnetGroup,
     AWS_RDS_DBSecurityGroup,
     AWS_RDS_DBSnapshot,
-    AWS_RDS_EventSubscription
+    AWS_RDS_EventSubscription,
+    AWS_ElasticLoadBalancingV2_LoadBalancer
   };
 
 namespace ResourceTypeMapper

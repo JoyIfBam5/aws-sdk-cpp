@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.12)
 project(aws-cpp-sdk-cognito-sync)
 
   file(GLOB AWS_COGNITO-SYNC_HEADERS
@@ -84,7 +84,7 @@ project(aws-cpp-sdk-cognito-sync)
   install (FILES ${AWS_COGNITO-SYNC_HEADERS} DESTINATION include/aws/cognito-sync)
   install (FILES ${AWS_COGNITO-SYNC_MODEL_HEADERS} DESTINATION include/aws/cognito-sync/model)
 
-  if(MSVC)
+  if(PLATFORM_WINDOWS AND MSVC)
     install (FILES nuget/aws-cpp-sdk-cognito-sync.autopkg DESTINATION nuget)
   endif()
 

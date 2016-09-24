@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -26,7 +26,8 @@ namespace Model
 {
 
   /**
-   * <p>A complex type that contains a change batch.</p>
+   * <p>A complex type that contains change information for the resource record
+   * set.</p>
    */
   class AWS_ROUTE53_API ChangeResourceRecordSetsRequest : public Route53Request
   {

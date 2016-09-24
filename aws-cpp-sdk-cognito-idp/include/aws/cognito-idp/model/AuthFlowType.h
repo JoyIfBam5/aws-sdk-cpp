@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -27,6 +27,7 @@ namespace Model
     NOT_SET,
     USER_SRP_AUTH,
     REFRESH_TOKEN_AUTH,
+    REFRESH_TOKEN,
     CUSTOM_AUTH,
     ADMIN_NO_SRP_AUTH
   };

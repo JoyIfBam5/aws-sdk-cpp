@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -34,7 +34,7 @@ namespace WorkSpaces
 namespace Model
 {
   /**
-   * <p>The result of the describe tags action.</p>
+   * <p>The result of the <a>DescribeTags</a> operation.</p>
    */
   class AWS_WORKSPACES_API DescribeTagsResult
   {

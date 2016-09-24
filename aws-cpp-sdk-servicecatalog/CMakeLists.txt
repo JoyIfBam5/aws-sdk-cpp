@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.12)
 project(aws-cpp-sdk-servicecatalog)
 
   file(GLOB AWS_SERVICECATALOG_HEADERS
@@ -84,7 +84,7 @@ project(aws-cpp-sdk-servicecatalog)
   install (FILES ${AWS_SERVICECATALOG_HEADERS} DESTINATION include/aws/servicecatalog)
   install (FILES ${AWS_SERVICECATALOG_MODEL_HEADERS} DESTINATION include/aws/servicecatalog/model)
 
-  if(MSVC)
+  if(PLATFORM_WINDOWS AND MSVC)
     install (FILES nuget/aws-cpp-sdk-servicecatalog.autopkg DESTINATION nuget)
   endif()
 

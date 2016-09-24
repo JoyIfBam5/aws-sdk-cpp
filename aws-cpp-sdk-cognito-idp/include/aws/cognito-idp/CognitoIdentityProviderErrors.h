@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -65,10 +65,12 @@ enum class CognitoIdentityProviderErrors
   M_F_A_METHOD_NOT_FOUND,
   NOT_AUTHORIZED,
   PASSWORD_RESET_REQUIRED,
+  PRECONDITION_NOT_MET,
   TOO_MANY_FAILED_ATTEMPTS,
   TOO_MANY_REQUESTS,
   UNEXPECTED_LAMBDA,
   USERNAME_EXISTS,
+  USER_IMPORT_IN_PROGRESS,
   USER_LAMBDA_VALIDATION,
   USER_NOT_CONFIRMED,
   USER_NOT_FOUND

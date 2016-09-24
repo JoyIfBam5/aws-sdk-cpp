@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -32,8 +32,8 @@ namespace Model
 {
 
   /**
-   * <p> Returns the destination region and retention period that are configured for
-   * cross-region snapshot copy. </p>
+   * <p>Returns the destination region and retention period that are configured for
+   * cross-region snapshot copy.</p>
    */
   class AWS_REDSHIFT_API ClusterSnapshotCopyStatus
   {

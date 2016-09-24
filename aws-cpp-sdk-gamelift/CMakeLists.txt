@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.12)
 project(aws-cpp-sdk-gamelift)
 
   file(GLOB AWS_GAMELIFT_HEADERS
@@ -84,7 +84,7 @@ project(aws-cpp-sdk-gamelift)
   install (FILES ${AWS_GAMELIFT_HEADERS} DESTINATION include/aws/gamelift)
   install (FILES ${AWS_GAMELIFT_MODEL_HEADERS} DESTINATION include/aws/gamelift/model)
 
-  if(MSVC)
+  if(PLATFORM_WINDOWS AND MSVC)
     install (FILES nuget/aws-cpp-sdk-gamelift.autopkg DESTINATION nuget)
   endif()
 

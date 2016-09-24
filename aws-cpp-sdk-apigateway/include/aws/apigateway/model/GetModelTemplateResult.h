@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -33,7 +33,10 @@ namespace APIGateway
 namespace Model
 {
   /**
-   * <p>Represents a mapping template used to transform a payload.</p>
+   * <p>Represents a mapping template used to transform a payload.</p> <div
+   * class="seeAlso"> <a
+   * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html#models-mappings-mappings">Mapping
+   * Templates</a> </div>
    */
   class AWS_APIGATEWAY_API GetModelTemplateResult
   {

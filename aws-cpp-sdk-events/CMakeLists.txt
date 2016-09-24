@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.12)
 project(aws-cpp-sdk-events)
 
   file(GLOB AWS_EVENTS_HEADERS
@@ -84,7 +84,7 @@ project(aws-cpp-sdk-events)
   install (FILES ${AWS_EVENTS_HEADERS} DESTINATION include/aws/events)
   install (FILES ${AWS_EVENTS_MODEL_HEADERS} DESTINATION include/aws/events/model)
 
-  if(MSVC)
+  if(PLATFORM_WINDOWS AND MSVC)
     install (FILES nuget/aws-cpp-sdk-events.autopkg DESTINATION nuget)
   endif()
 

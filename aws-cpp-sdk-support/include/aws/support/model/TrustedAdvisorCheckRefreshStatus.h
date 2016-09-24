@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -31,7 +31,7 @@ namespace Model
 {
 
   /**
-   * <p>The refresh status of a Trusted Advisor check. </p>
+   * <p>The refresh status of a Trusted Advisor check.</p>
    */
   class AWS_SUPPORT_API TrustedAdvisorCheckRefreshStatus
   {

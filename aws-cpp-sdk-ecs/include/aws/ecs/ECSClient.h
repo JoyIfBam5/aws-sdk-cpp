@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -282,16 +282,19 @@ namespace Model
          * <a>UpdateService</a>.</p> <p>In addition to maintaining the desired count of
          * tasks in your service, you can optionally run your service behind a load
          * balancer. The load balancer distributes traffic across the tasks that are
-         * associated with the service.</p> <p>You can optionally specify a deployment
-         * configuration for your service. During a deployment (which is triggered by
-         * changing the task definition of a service with an <a>UpdateService</a>
-         * operation), the service scheduler uses the <code>minimumHealthyPercent</code>
-         * and <code>maximumPercent</code> parameters to determine the deployment
-         * strategy.</p> <p>If the <code>minimumHealthyPercent</code> is below 100%, the
-         * scheduler can ignore the <code>desiredCount</code> temporarily during a
-         * deployment. For example, if your service has a <code>desiredCount</code> of four
-         * tasks, a <code>minimumHealthyPercent</code> of 50% allows the scheduler to stop
-         * two existing tasks before starting two new tasks. Tasks for services that <i>do
+         * associated with the service. For more information, see <a
+         * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-load-balancing.html">Service
+         * Load Balancing</a> in the <i>Amazon EC2 Container Service Developer
+         * Guide</i>.</p> <p>You can optionally specify a deployment configuration for your
+         * service. During a deployment (which is triggered by changing the task definition
+         * of a service with an <a>UpdateService</a> operation), the service scheduler uses
+         * the <code>minimumHealthyPercent</code> and <code>maximumPercent</code>
+         * parameters to determine the deployment strategy.</p> <p>If the
+         * <code>minimumHealthyPercent</code> is below 100%, the scheduler can ignore the
+         * <code>desiredCount</code> temporarily during a deployment. For example, if your
+         * service has a <code>desiredCount</code> of four tasks, a
+         * <code>minimumHealthyPercent</code> of 50% allows the scheduler to stop two
+         * existing tasks before starting two new tasks. Tasks for services that <i>do
          * not</i> use a load balancer are considered healthy if they are in the
          * <code>RUNNING</code> state; tasks for services that <i>do</i> use a load
          * balancer are considered healthy if they are in the <code>RUNNING</code> state
@@ -327,16 +330,19 @@ namespace Model
          * <a>UpdateService</a>.</p> <p>In addition to maintaining the desired count of
          * tasks in your service, you can optionally run your service behind a load
          * balancer. The load balancer distributes traffic across the tasks that are
-         * associated with the service.</p> <p>You can optionally specify a deployment
-         * configuration for your service. During a deployment (which is triggered by
-         * changing the task definition of a service with an <a>UpdateService</a>
-         * operation), the service scheduler uses the <code>minimumHealthyPercent</code>
-         * and <code>maximumPercent</code> parameters to determine the deployment
-         * strategy.</p> <p>If the <code>minimumHealthyPercent</code> is below 100%, the
-         * scheduler can ignore the <code>desiredCount</code> temporarily during a
-         * deployment. For example, if your service has a <code>desiredCount</code> of four
-         * tasks, a <code>minimumHealthyPercent</code> of 50% allows the scheduler to stop
-         * two existing tasks before starting two new tasks. Tasks for services that <i>do
+         * associated with the service. For more information, see <a
+         * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-load-balancing.html">Service
+         * Load Balancing</a> in the <i>Amazon EC2 Container Service Developer
+         * Guide</i>.</p> <p>You can optionally specify a deployment configuration for your
+         * service. During a deployment (which is triggered by changing the task definition
+         * of a service with an <a>UpdateService</a> operation), the service scheduler uses
+         * the <code>minimumHealthyPercent</code> and <code>maximumPercent</code>
+         * parameters to determine the deployment strategy.</p> <p>If the
+         * <code>minimumHealthyPercent</code> is below 100%, the scheduler can ignore the
+         * <code>desiredCount</code> temporarily during a deployment. For example, if your
+         * service has a <code>desiredCount</code> of four tasks, a
+         * <code>minimumHealthyPercent</code> of 50% allows the scheduler to stop two
+         * existing tasks before starting two new tasks. Tasks for services that <i>do
          * not</i> use a load balancer are considered healthy if they are in the
          * <code>RUNNING</code> state; tasks for services that <i>do</i> use a load
          * balancer are considered healthy if they are in the <code>RUNNING</code> state
@@ -374,16 +380,19 @@ namespace Model
          * <a>UpdateService</a>.</p> <p>In addition to maintaining the desired count of
          * tasks in your service, you can optionally run your service behind a load
          * balancer. The load balancer distributes traffic across the tasks that are
-         * associated with the service.</p> <p>You can optionally specify a deployment
-         * configuration for your service. During a deployment (which is triggered by
-         * changing the task definition of a service with an <a>UpdateService</a>
-         * operation), the service scheduler uses the <code>minimumHealthyPercent</code>
-         * and <code>maximumPercent</code> parameters to determine the deployment
-         * strategy.</p> <p>If the <code>minimumHealthyPercent</code> is below 100%, the
-         * scheduler can ignore the <code>desiredCount</code> temporarily during a
-         * deployment. For example, if your service has a <code>desiredCount</code> of four
-         * tasks, a <code>minimumHealthyPercent</code> of 50% allows the scheduler to stop
-         * two existing tasks before starting two new tasks. Tasks for services that <i>do
+         * associated with the service. For more information, see <a
+         * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-load-balancing.html">Service
+         * Load Balancing</a> in the <i>Amazon EC2 Container Service Developer
+         * Guide</i>.</p> <p>You can optionally specify a deployment configuration for your
+         * service. During a deployment (which is triggered by changing the task definition
+         * of a service with an <a>UpdateService</a> operation), the service scheduler uses
+         * the <code>minimumHealthyPercent</code> and <code>maximumPercent</code>
+         * parameters to determine the deployment strategy.</p> <p>If the
+         * <code>minimumHealthyPercent</code> is below 100%, the scheduler can ignore the
+         * <code>desiredCount</code> temporarily during a deployment. For example, if your
+         * service has a <code>desiredCount</code> of four tasks, a
+         * <code>minimumHealthyPercent</code> of 50% allows the scheduler to stop two
+         * existing tasks before starting two new tasks. Tasks for services that <i>do
          * not</i> use a load balancer are considered healthy if they are in the
          * <code>RUNNING</code> state; tasks for services that <i>do</i> use a load
          * balancer are considered healthy if they are in the <code>RUNNING</code> state
@@ -929,14 +938,18 @@ namespace Model
          * task definition parameters and defaults, see <a
          * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html">Amazon
          * ECS Task Definitions</a> in the <i>Amazon EC2 Container Service Developer
-         * Guide</i>.</p> <p>You may also specify an IAM role for your task with the
+         * Guide</i>.</p> <p>You can specify an IAM role for your task with the
          * <code>taskRoleArn</code> parameter. When you specify an IAM role for a task, its
          * containers can then use the latest versions of the AWS CLI or SDKs to make API
          * requests to the AWS services that are specified in the IAM policy associated
          * with the role. For more information, see <a
          * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html">IAM
          * Roles for Tasks</a> in the <i>Amazon EC2 Container Service Developer
-         * Guide</i>.</p>
+         * Guide</i>.</p> <p>You can specify a Docker networking mode for the containers in
+         * your task definition with the <code>networkMode</code> parameter. The available
+         * network modes correspond to those described in <a
+         * href="https://docs.docker.com/engine/reference/run/#/network-settings">Network
+         * settings</a> in the Docker run reference.</p>
          */
         virtual Model::RegisterTaskDefinitionOutcome RegisterTaskDefinition(const Model::RegisterTaskDefinitionRequest& request) const;
 
@@ -947,14 +960,18 @@ namespace Model
          * task definition parameters and defaults, see <a
          * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html">Amazon
          * ECS Task Definitions</a> in the <i>Amazon EC2 Container Service Developer
-         * Guide</i>.</p> <p>You may also specify an IAM role for your task with the
+         * Guide</i>.</p> <p>You can specify an IAM role for your task with the
          * <code>taskRoleArn</code> parameter. When you specify an IAM role for a task, its
          * containers can then use the latest versions of the AWS CLI or SDKs to make API
          * requests to the AWS services that are specified in the IAM policy associated
          * with the role. For more information, see <a
          * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html">IAM
          * Roles for Tasks</a> in the <i>Amazon EC2 Container Service Developer
-         * Guide</i>.</p>
+         * Guide</i>.</p> <p>You can specify a Docker networking mode for the containers in
+         * your task definition with the <code>networkMode</code> parameter. The available
+         * network modes correspond to those described in <a
+         * href="https://docs.docker.com/engine/reference/run/#/network-settings">Network
+         * settings</a> in the Docker run reference.</p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -967,14 +984,18 @@ namespace Model
          * task definition parameters and defaults, see <a
          * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html">Amazon
          * ECS Task Definitions</a> in the <i>Amazon EC2 Container Service Developer
-         * Guide</i>.</p> <p>You may also specify an IAM role for your task with the
+         * Guide</i>.</p> <p>You can specify an IAM role for your task with the
          * <code>taskRoleArn</code> parameter. When you specify an IAM role for a task, its
          * containers can then use the latest versions of the AWS CLI or SDKs to make API
          * requests to the AWS services that are specified in the IAM policy associated
          * with the role. For more information, see <a
          * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html">IAM
          * Roles for Tasks</a> in the <i>Amazon EC2 Container Service Developer
-         * Guide</i>.</p>
+         * Guide</i>.</p> <p>You can specify a Docker networking mode for the containers in
+         * your task definition with the <code>networkMode</code> parameter. The available
+         * network modes correspond to those described in <a
+         * href="https://docs.docker.com/engine/reference/run/#/network-settings">Network
+         * settings</a> in the Docker run reference.</p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */

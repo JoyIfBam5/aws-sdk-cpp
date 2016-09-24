@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.12)
 project(aws-cpp-sdk-rds)
 
   file(GLOB AWS_RDS_HEADERS
@@ -84,7 +84,7 @@ project(aws-cpp-sdk-rds)
   install (FILES ${AWS_RDS_HEADERS} DESTINATION include/aws/rds)
   install (FILES ${AWS_RDS_MODEL_HEADERS} DESTINATION include/aws/rds/model)
 
-  if(MSVC)
+  if(PLATFORM_WINDOWS AND MSVC)
     install (FILES nuget/aws-cpp-sdk-rds.autopkg DESTINATION nuget)
   endif()
 

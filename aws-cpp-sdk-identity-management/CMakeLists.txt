@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.12)
 project(aws-cpp-sdk-identity-management)
 
 file(GLOB AWS_IDENTITY_PROVIDER_HEADERS
@@ -63,3 +63,8 @@ endif()
 
 install (FILES ${AWS_IDENTITY_HEADERS} DESTINATION include/aws/identity-management)
 install (FILES ${AWS_IDENTITY_PROVIDER_HEADERS} DESTINATION include/aws/identity-management/auth)
+
+
+if(PLATFORM_WINDOWS AND MSVC)
+    install (FILES nuget/aws-cpp-sdk-identity-management.autopkg DESTINATION nuget)
+endif()

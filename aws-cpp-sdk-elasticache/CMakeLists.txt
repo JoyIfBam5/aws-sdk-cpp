@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.12)
 project(aws-cpp-sdk-elasticache)
 
   file(GLOB AWS_ELASTICACHE_HEADERS
@@ -84,7 +84,7 @@ project(aws-cpp-sdk-elasticache)
   install (FILES ${AWS_ELASTICACHE_HEADERS} DESTINATION include/aws/elasticache)
   install (FILES ${AWS_ELASTICACHE_MODEL_HEADERS} DESTINATION include/aws/elasticache/model)
 
-  if(MSVC)
+  if(PLATFORM_WINDOWS AND MSVC)
     install (FILES nuget/aws-cpp-sdk-elasticache.autopkg DESTINATION nuget)
   endif()
 

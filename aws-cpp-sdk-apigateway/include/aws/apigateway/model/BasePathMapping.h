@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -31,8 +31,12 @@ namespace Model
 {
 
   /**
-   * <p>Represents the base path that callers of the API that must provide as part of
-   * the URL after the domain name.</p>
+   * <p>Represents the base path that callers of the API must provide as part of the
+   * URL after the domain name.</p> <div class="remarks">A custom domain name plus a
+   * <code>BasePathMapping</code> specification identifies a deployed <a>RestApi</a>
+   * in a given stage of the owner <a>Account</a>.</div> <div class="seeAlso"> <a
+   * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html">Use
+   * Custom Domain Names</a> </div>
    */
   class AWS_APIGATEWAY_API BasePathMapping
   {

@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -33,7 +33,8 @@ namespace Route53
 namespace Model
 {
   /**
-   * <p>A complex type containing tags for the specified resource.</p>
+   * <p>A complex type that contains information about the health checks or hosted
+   * zones for which you want to list tags.</p>
    */
   class AWS_ROUTE53_API ListTagsForResourceResult
   {

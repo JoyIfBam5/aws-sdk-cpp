@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -26,6 +26,9 @@ CreateApiKeyRequest::CreateApiKeyRequest() :
     m_descriptionHasBeenSet(false),
     m_enabled(false),
     m_enabledHasBeenSet(false),
+    m_generateDistinctId(false),
+    m_generateDistinctIdHasBeenSet(false),
+    m_valueHasBeenSet(false),
     m_stageKeysHasBeenSet(false)
 {
 }
@@ -49,6 +52,18 @@ Aws::String CreateApiKeyRequest::SerializePayload() const
   if(m_enabledHasBeenSet)
   {
    payload.WithBool("enabled", m_enabled);
+
+  }
+
+  if(m_generateDistinctIdHasBeenSet)
+  {
+   payload.WithBool("generateDistinctId", m_generateDistinctId);
+
+  }
+
+  if(m_valueHasBeenSet)
+  {
+   payload.WithString("value", m_value);
 
   }
 

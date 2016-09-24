@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.12)
 project(aws-cpp-sdk-cloudhsm)
 
   file(GLOB AWS_CLOUDHSM_HEADERS
@@ -84,7 +84,7 @@ project(aws-cpp-sdk-cloudhsm)
   install (FILES ${AWS_CLOUDHSM_HEADERS} DESTINATION include/aws/cloudhsm)
   install (FILES ${AWS_CLOUDHSM_MODEL_HEADERS} DESTINATION include/aws/cloudhsm/model)
 
-  if(MSVC)
+  if(PLATFORM_WINDOWS AND MSVC)
     install (FILES nuget/aws-cpp-sdk-cloudhsm.autopkg DESTINATION nuget)
   endif()
 

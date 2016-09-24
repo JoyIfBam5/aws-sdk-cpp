@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -34,8 +34,10 @@ namespace APIGateway
 namespace Model
 {
   /**
-   * <p>A list of <a>Stage</a> resource that are associated with the <a>ApiKey</a>
-   * resource.</p>
+   * <p>A list of <a>Stage</a> resources that are associated with the <a>ApiKey</a>
+   * resource.</p> <div class="seeAlso"><a
+   * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/stages.html">Deploying
+   * API in Stages</a></div>
    */
   class AWS_APIGATEWAY_API GetStagesResult
   {

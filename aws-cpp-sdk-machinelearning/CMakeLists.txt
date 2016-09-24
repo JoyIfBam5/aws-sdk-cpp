@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.12)
 project(aws-cpp-sdk-machinelearning)
 
   file(GLOB AWS_MACHINELEARNING_HEADERS
@@ -84,7 +84,7 @@ project(aws-cpp-sdk-machinelearning)
   install (FILES ${AWS_MACHINELEARNING_HEADERS} DESTINATION include/aws/machinelearning)
   install (FILES ${AWS_MACHINELEARNING_MODEL_HEADERS} DESTINATION include/aws/machinelearning/model)
 
-  if(MSVC)
+  if(PLATFORM_WINDOWS AND MSVC)
     install (FILES nuget/aws-cpp-sdk-machinelearning.autopkg DESTINATION nuget)
   endif()
 

@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -70,9 +70,32 @@ namespace Model
      */
     inline StopDeploymentRequest& WithDeploymentId(const char* value) { SetDeploymentId(value); return *this;}
 
+    /**
+     * <p>Indicates, when a deployment is stopped, whether instances that have been
+     * updated should be rolled back to the previous version of the application
+     * revision.</p>
+     */
+    inline bool GetAutoRollbackEnabled() const{ return m_autoRollbackEnabled; }
+
+    /**
+     * <p>Indicates, when a deployment is stopped, whether instances that have been
+     * updated should be rolled back to the previous version of the application
+     * revision.</p>
+     */
+    inline void SetAutoRollbackEnabled(bool value) { m_autoRollbackEnabledHasBeenSet = true; m_autoRollbackEnabled = value; }
+
+    /**
+     * <p>Indicates, when a deployment is stopped, whether instances that have been
+     * updated should be rolled back to the previous version of the application
+     * revision.</p>
+     */
+    inline StopDeploymentRequest& WithAutoRollbackEnabled(bool value) { SetAutoRollbackEnabled(value); return *this;}
+
   private:
     Aws::String m_deploymentId;
     bool m_deploymentIdHasBeenSet;
+    bool m_autoRollbackEnabled;
+    bool m_autoRollbackEnabledHasBeenSet;
   };
 
 } // namespace Model

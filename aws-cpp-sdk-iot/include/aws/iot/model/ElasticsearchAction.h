@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -31,7 +31,7 @@ namespace Model
 {
 
   /**
-   * <p>Describes an action that writes data to an Amazon Elasticsearch Service;
+   * <p>Describes an action that writes data to an Amazon Elasticsearch Service
    * domain.</p>
    */
   class AWS_IOT_API ElasticsearchAction

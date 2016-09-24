@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -487,6 +487,104 @@ namespace Model
      * cluster.</p>
      */
     inline DBCluster& WithEndpoint(const char* value) { SetEndpoint(value); return *this;}
+
+    /**
+     * <p>The reader endpoint for the DB cluster. The reader endpoint for a DB cluster
+     * load-balances connections across the Aurora Replicas that are available in a DB
+     * cluster. As clients request new connections to the reader endpoint, Aurora
+     * distributes the connection requests among the Aurora Replicas in the DB cluster.
+     * This functionality can help balance your read workload across multiple Aurora
+     * Replicas in your DB cluster. </p> <p>If a failover occurs, and the Aurora
+     * Replica that you are connected to is promoted to be the primary instance, your
+     * connection will be dropped. To continue sending your read workload to other
+     * Aurora Replicas in the cluster, you can then recoonect to the reader
+     * endpoint.</p>
+     */
+    inline const Aws::String& GetReaderEndpoint() const{ return m_readerEndpoint; }
+
+    /**
+     * <p>The reader endpoint for the DB cluster. The reader endpoint for a DB cluster
+     * load-balances connections across the Aurora Replicas that are available in a DB
+     * cluster. As clients request new connections to the reader endpoint, Aurora
+     * distributes the connection requests among the Aurora Replicas in the DB cluster.
+     * This functionality can help balance your read workload across multiple Aurora
+     * Replicas in your DB cluster. </p> <p>If a failover occurs, and the Aurora
+     * Replica that you are connected to is promoted to be the primary instance, your
+     * connection will be dropped. To continue sending your read workload to other
+     * Aurora Replicas in the cluster, you can then recoonect to the reader
+     * endpoint.</p>
+     */
+    inline void SetReaderEndpoint(const Aws::String& value) { m_readerEndpointHasBeenSet = true; m_readerEndpoint = value; }
+
+    /**
+     * <p>The reader endpoint for the DB cluster. The reader endpoint for a DB cluster
+     * load-balances connections across the Aurora Replicas that are available in a DB
+     * cluster. As clients request new connections to the reader endpoint, Aurora
+     * distributes the connection requests among the Aurora Replicas in the DB cluster.
+     * This functionality can help balance your read workload across multiple Aurora
+     * Replicas in your DB cluster. </p> <p>If a failover occurs, and the Aurora
+     * Replica that you are connected to is promoted to be the primary instance, your
+     * connection will be dropped. To continue sending your read workload to other
+     * Aurora Replicas in the cluster, you can then recoonect to the reader
+     * endpoint.</p>
+     */
+    inline void SetReaderEndpoint(Aws::String&& value) { m_readerEndpointHasBeenSet = true; m_readerEndpoint = value; }
+
+    /**
+     * <p>The reader endpoint for the DB cluster. The reader endpoint for a DB cluster
+     * load-balances connections across the Aurora Replicas that are available in a DB
+     * cluster. As clients request new connections to the reader endpoint, Aurora
+     * distributes the connection requests among the Aurora Replicas in the DB cluster.
+     * This functionality can help balance your read workload across multiple Aurora
+     * Replicas in your DB cluster. </p> <p>If a failover occurs, and the Aurora
+     * Replica that you are connected to is promoted to be the primary instance, your
+     * connection will be dropped. To continue sending your read workload to other
+     * Aurora Replicas in the cluster, you can then recoonect to the reader
+     * endpoint.</p>
+     */
+    inline void SetReaderEndpoint(const char* value) { m_readerEndpointHasBeenSet = true; m_readerEndpoint.assign(value); }
+
+    /**
+     * <p>The reader endpoint for the DB cluster. The reader endpoint for a DB cluster
+     * load-balances connections across the Aurora Replicas that are available in a DB
+     * cluster. As clients request new connections to the reader endpoint, Aurora
+     * distributes the connection requests among the Aurora Replicas in the DB cluster.
+     * This functionality can help balance your read workload across multiple Aurora
+     * Replicas in your DB cluster. </p> <p>If a failover occurs, and the Aurora
+     * Replica that you are connected to is promoted to be the primary instance, your
+     * connection will be dropped. To continue sending your read workload to other
+     * Aurora Replicas in the cluster, you can then recoonect to the reader
+     * endpoint.</p>
+     */
+    inline DBCluster& WithReaderEndpoint(const Aws::String& value) { SetReaderEndpoint(value); return *this;}
+
+    /**
+     * <p>The reader endpoint for the DB cluster. The reader endpoint for a DB cluster
+     * load-balances connections across the Aurora Replicas that are available in a DB
+     * cluster. As clients request new connections to the reader endpoint, Aurora
+     * distributes the connection requests among the Aurora Replicas in the DB cluster.
+     * This functionality can help balance your read workload across multiple Aurora
+     * Replicas in your DB cluster. </p> <p>If a failover occurs, and the Aurora
+     * Replica that you are connected to is promoted to be the primary instance, your
+     * connection will be dropped. To continue sending your read workload to other
+     * Aurora Replicas in the cluster, you can then recoonect to the reader
+     * endpoint.</p>
+     */
+    inline DBCluster& WithReaderEndpoint(Aws::String&& value) { SetReaderEndpoint(value); return *this;}
+
+    /**
+     * <p>The reader endpoint for the DB cluster. The reader endpoint for a DB cluster
+     * load-balances connections across the Aurora Replicas that are available in a DB
+     * cluster. As clients request new connections to the reader endpoint, Aurora
+     * distributes the connection requests among the Aurora Replicas in the DB cluster.
+     * This functionality can help balance your read workload across multiple Aurora
+     * Replicas in your DB cluster. </p> <p>If a failover occurs, and the Aurora
+     * Replica that you are connected to is promoted to be the primary instance, your
+     * connection will be dropped. To continue sending your read workload to other
+     * Aurora Replicas in the cluster, you can then recoonect to the reader
+     * endpoint.</p>
+     */
+    inline DBCluster& WithReaderEndpoint(const char* value) { SetReaderEndpoint(value); return *this;}
 
     /**
      * <p>Provides the name of the database engine to be used for this DB cluster.</p>
@@ -1072,6 +1170,41 @@ namespace Model
      */
     inline DBCluster& WithDbClusterResourceId(const char* value) { SetDbClusterResourceId(value); return *this;}
 
+    /**
+     * <p>The Amazon Resource Name (ARN) for the DB cluster.</p>
+     */
+    inline const Aws::String& GetDBClusterArn() const{ return m_dBClusterArn; }
+
+    /**
+     * <p>The Amazon Resource Name (ARN) for the DB cluster.</p>
+     */
+    inline void SetDBClusterArn(const Aws::String& value) { m_dBClusterArnHasBeenSet = true; m_dBClusterArn = value; }
+
+    /**
+     * <p>The Amazon Resource Name (ARN) for the DB cluster.</p>
+     */
+    inline void SetDBClusterArn(Aws::String&& value) { m_dBClusterArnHasBeenSet = true; m_dBClusterArn = value; }
+
+    /**
+     * <p>The Amazon Resource Name (ARN) for the DB cluster.</p>
+     */
+    inline void SetDBClusterArn(const char* value) { m_dBClusterArnHasBeenSet = true; m_dBClusterArn.assign(value); }
+
+    /**
+     * <p>The Amazon Resource Name (ARN) for the DB cluster.</p>
+     */
+    inline DBCluster& WithDBClusterArn(const Aws::String& value) { SetDBClusterArn(value); return *this;}
+
+    /**
+     * <p>The Amazon Resource Name (ARN) for the DB cluster.</p>
+     */
+    inline DBCluster& WithDBClusterArn(Aws::String&& value) { SetDBClusterArn(value); return *this;}
+
+    /**
+     * <p>The Amazon Resource Name (ARN) for the DB cluster.</p>
+     */
+    inline DBCluster& WithDBClusterArn(const char* value) { SetDBClusterArn(value); return *this;}
+
   private:
     int m_allocatedStorage;
     bool m_allocatedStorageHasBeenSet;
@@ -1097,6 +1230,8 @@ namespace Model
     bool m_earliestRestorableTimeHasBeenSet;
     Aws::String m_endpoint;
     bool m_endpointHasBeenSet;
+    Aws::String m_readerEndpoint;
+    bool m_readerEndpointHasBeenSet;
     Aws::String m_engine;
     bool m_engineHasBeenSet;
     Aws::String m_engineVersion;
@@ -1129,6 +1264,8 @@ namespace Model
     bool m_kmsKeyIdHasBeenSet;
     Aws::String m_dbClusterResourceId;
     bool m_dbClusterResourceIdHasBeenSet;
+    Aws::String m_dBClusterArn;
+    bool m_dBClusterArnHasBeenSet;
   };
 
 } // namespace Model

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.12)
 project(aws-cpp-sdk-datapipeline)
 
   file(GLOB AWS_DATAPIPELINE_HEADERS
@@ -84,7 +84,7 @@ project(aws-cpp-sdk-datapipeline)
   install (FILES ${AWS_DATAPIPELINE_HEADERS} DESTINATION include/aws/datapipeline)
   install (FILES ${AWS_DATAPIPELINE_MODEL_HEADERS} DESTINATION include/aws/datapipeline/model)
 
-  if(MSVC)
+  if(PLATFORM_WINDOWS AND MSVC)
     install (FILES nuget/aws-cpp-sdk-datapipeline.autopkg DESTINATION nuget)
   endif()
 

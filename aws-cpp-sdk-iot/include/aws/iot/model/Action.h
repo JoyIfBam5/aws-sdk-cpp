@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -302,27 +302,27 @@ namespace Model
     inline Action& WithCloudwatchAlarm(CloudwatchAlarmAction&& value) { SetCloudwatchAlarm(value); return *this;}
 
     /**
-     * <p>Write data to an Amazon Elasticsearch Service; domain.</p>
+     * <p>Write data to an Amazon Elasticsearch Service domain.</p>
      */
     inline const ElasticsearchAction& GetElasticsearch() const{ return m_elasticsearch; }
 
     /**
-     * <p>Write data to an Amazon Elasticsearch Service; domain.</p>
+     * <p>Write data to an Amazon Elasticsearch Service domain.</p>
      */
     inline void SetElasticsearch(const ElasticsearchAction& value) { m_elasticsearchHasBeenSet = true; m_elasticsearch = value; }
 
     /**
-     * <p>Write data to an Amazon Elasticsearch Service; domain.</p>
+     * <p>Write data to an Amazon Elasticsearch Service domain.</p>
      */
     inline void SetElasticsearch(ElasticsearchAction&& value) { m_elasticsearchHasBeenSet = true; m_elasticsearch = value; }
 
     /**
-     * <p>Write data to an Amazon Elasticsearch Service; domain.</p>
+     * <p>Write data to an Amazon Elasticsearch Service domain.</p>
      */
     inline Action& WithElasticsearch(const ElasticsearchAction& value) { SetElasticsearch(value); return *this;}
 
     /**
-     * <p>Write data to an Amazon Elasticsearch Service; domain.</p>
+     * <p>Write data to an Amazon Elasticsearch Service domain.</p>
      */
     inline Action& WithElasticsearch(ElasticsearchAction&& value) { SetElasticsearch(value); return *this;}
 

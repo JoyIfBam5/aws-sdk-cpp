@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -27,7 +27,7 @@ namespace Model
 {
 
   /**
-   * <p>The request of the create tags action.</p>
+   * <p>The request of the <a>CreateTags</a> operation.</p>
    */
   class AWS_WORKSPACES_API CreateTagsRequest : public WorkSpacesRequest
   {

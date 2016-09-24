@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.12)
 project(aws-cpp-sdk-ssm)
 
   file(GLOB AWS_SSM_HEADERS
@@ -84,7 +84,7 @@ project(aws-cpp-sdk-ssm)
   install (FILES ${AWS_SSM_HEADERS} DESTINATION include/aws/ssm)
   install (FILES ${AWS_SSM_MODEL_HEADERS} DESTINATION include/aws/ssm/model)
 
-  if(MSVC)
+  if(PLATFORM_WINDOWS AND MSVC)
     install (FILES nuget/aws-cpp-sdk-ssm.autopkg DESTINATION nuget)
   endif()
 

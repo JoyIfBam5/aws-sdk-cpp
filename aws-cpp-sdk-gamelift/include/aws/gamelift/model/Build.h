@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
@@ -16,6 +16,7 @@
 #include <aws/gamelift/GameLift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/gamelift/model/BuildStatus.h>
+#include <aws/gamelift/model/OperatingSystem.h>
 #include <aws/core/utils/DateTime.h>
 
 namespace Aws
@@ -170,105 +171,140 @@ namespace Model
     inline Build& WithVersion(const char* value) { SetVersion(value); return *this;}
 
     /**
-     * <p>Current status of the build. Possible build states include the following:
-     * <ul><li><b>INITIALIZED</b> – A new build has been defined, but no files have
-     * been uploaded. You cannot create fleets for builds that are in this state. When
-     * a build is successfully created, the build state is set to this value.
-     * </li><li><b>READY</b> – The game build has been successfully uploaded. You can
-     * now create new fleets for this build.</li><li><b>FAILED</b> – The game build
-     * upload failed. You cannot create new fleets for this build. </li></ul></p>
+     * <p>Current status of the build.</p> <p>Possible build statuses include the
+     * following:</p> <ul><li><b>INITIALIZED</b> – A new build has been defined, but no
+     * files have been uploaded. You cannot create fleets for builds that are in this
+     * status. When a build is successfully created, the build status is set to this
+     * value. </li><li><b>READY</b> – The game build has been successfully uploaded.
+     * You can now create new fleets for this build.</li><li><b>FAILED</b> – The game
+     * build upload failed. You cannot create new fleets for this build. </li></ul>
      */
     inline const BuildStatus& GetStatus() const{ return m_status; }
 
     /**
-     * <p>Current status of the build. Possible build states include the following:
-     * <ul><li><b>INITIALIZED</b> – A new build has been defined, but no files have
-     * been uploaded. You cannot create fleets for builds that are in this state. When
-     * a build is successfully created, the build state is set to this value.
-     * </li><li><b>READY</b> – The game build has been successfully uploaded. You can
-     * now create new fleets for this build.</li><li><b>FAILED</b> – The game build
-     * upload failed. You cannot create new fleets for this build. </li></ul></p>
+     * <p>Current status of the build.</p> <p>Possible build statuses include the
+     * following:</p> <ul><li><b>INITIALIZED</b> – A new build has been defined, but no
+     * files have been uploaded. You cannot create fleets for builds that are in this
+     * status. When a build is successfully created, the build status is set to this
+     * value. </li><li><b>READY</b> – The game build has been successfully uploaded.
+     * You can now create new fleets for this build.</li><li><b>FAILED</b> – The game
+     * build upload failed. You cannot create new fleets for this build. </li></ul>
      */
     inline void SetStatus(const BuildStatus& value) { m_statusHasBeenSet = true; m_status = value; }
 
     /**
-     * <p>Current status of the build. Possible build states include the following:
-     * <ul><li><b>INITIALIZED</b> – A new build has been defined, but no files have
-     * been uploaded. You cannot create fleets for builds that are in this state. When
-     * a build is successfully created, the build state is set to this value.
-     * </li><li><b>READY</b> – The game build has been successfully uploaded. You can
-     * now create new fleets for this build.</li><li><b>FAILED</b> – The game build
-     * upload failed. You cannot create new fleets for this build. </li></ul></p>
+     * <p>Current status of the build.</p> <p>Possible build statuses include the
+     * following:</p> <ul><li><b>INITIALIZED</b> – A new build has been defined, but no
+     * files have been uploaded. You cannot create fleets for builds that are in this
+     * status. When a build is successfully created, the build status is set to this
+     * value. </li><li><b>READY</b> – The game build has been successfully uploaded.
+     * You can now create new fleets for this build.</li><li><b>FAILED</b> – The game
+     * build upload failed. You cannot create new fleets for this build. </li></ul>
      */
     inline void SetStatus(BuildStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
 
     /**
-     * <p>Current status of the build. Possible build states include the following:
-     * <ul><li><b>INITIALIZED</b> – A new build has been defined, but no files have
-     * been uploaded. You cannot create fleets for builds that are in this state. When
-     * a build is successfully created, the build state is set to this value.
-     * </li><li><b>READY</b> – The game build has been successfully uploaded. You can
-     * now create new fleets for this build.</li><li><b>FAILED</b> – The game build
-     * upload failed. You cannot create new fleets for this build. </li></ul></p>
+     * <p>Current status of the build.</p> <p>Possible build statuses include the
+     * following:</p> <ul><li><b>INITIALIZED</b> – A new build has been defined, but no
+     * files have been uploaded. You cannot create fleets for builds that are in this
+     * status. When a build is successfully created, the build status is set to this
+     * value. </li><li><b>READY</b> – The game build has been successfully uploaded.
+     * You can now create new fleets for this build.</li><li><b>FAILED</b> – The game
+     * build upload failed. You cannot create new fleets for this build. </li></ul>
      */
     inline Build& WithStatus(const BuildStatus& value) { SetStatus(value); return *this;}
 
     /**
-     * <p>Current status of the build. Possible build states include the following:
-     * <ul><li><b>INITIALIZED</b> – A new build has been defined, but no files have
-     * been uploaded. You cannot create fleets for builds that are in this state. When
-     * a build is successfully created, the build state is set to this value.
-     * </li><li><b>READY</b> – The game build has been successfully uploaded. You can
-     * now create new fleets for this build.</li><li><b>FAILED</b> – The game build
-     * upload failed. You cannot create new fleets for this build. </li></ul></p>
+     * <p>Current status of the build.</p> <p>Possible build statuses include the
+     * following:</p> <ul><li><b>INITIALIZED</b> – A new build has been defined, but no
+     * files have been uploaded. You cannot create fleets for builds that are in this
+     * status. When a build is successfully created, the build status is set to this
+     * value. </li><li><b>READY</b> – The game build has been successfully uploaded.
+     * You can now create new fleets for this build.</li><li><b>FAILED</b> – The game
+     * build upload failed. You cannot create new fleets for this build. </li></ul>
      */
     inline Build& WithStatus(BuildStatus&& value) { SetStatus(value); return *this;}
 
     /**
      * <p>File size of the uploaded game build, expressed in bytes. When the build
-     * state is <code>INITIALIZED</code>, this value is 0.</p>
+     * status is <code>INITIALIZED</code>, this value is 0.</p>
      */
     inline long long GetSizeOnDisk() const{ return m_sizeOnDisk; }
 
     /**
      * <p>File size of the uploaded game build, expressed in bytes. When the build
-     * state is <code>INITIALIZED</code>, this value is 0.</p>
+     * status is <code>INITIALIZED</code>, this value is 0.</p>
      */
     inline void SetSizeOnDisk(long long value) { m_sizeOnDiskHasBeenSet = true; m_sizeOnDisk = value; }
 
     /**
      * <p>File size of the uploaded game build, expressed in bytes. When the build
-     * state is <code>INITIALIZED</code>, this value is 0.</p>
+     * status is <code>INITIALIZED</code>, this value is 0.</p>
      */
     inline Build& WithSizeOnDisk(long long value) { SetSizeOnDisk(value); return *this;}
 
     /**
-     * <p>Time stamp indicating when this object was created. Format is an integer
-     * representing the number of seconds since the Unix epoch (Unix time).</p>
+     * <p>Operating system that the game server binaries are built to run on. This
+     * value determines the type of fleet resources that you can use for this
+     * build.</p>
+     */
+    inline const OperatingSystem& GetOperatingSystem() const{ return m_operatingSystem; }
+
+    /**
+     * <p>Operating system that the game server binaries are built to run on. This
+     * value determines the type of fleet resources that you can use for this
+     * build.</p>
+     */
+    inline void SetOperatingSystem(const OperatingSystem& value) { m_operatingSystemHasBeenSet = true; m_operatingSystem = value; }
+
+    /**
+     * <p>Operating system that the game server binaries are built to run on. This
+     * value determines the type of fleet resources that you can use for this
+     * build.</p>
+     */
+    inline void SetOperatingSystem(OperatingSystem&& value) { m_operatingSystemHasBeenSet = true; m_operatingSystem = value; }
+
+    /**
+     * <p>Operating system that the game server binaries are built to run on. This
+     * value determines the type of fleet resources that you can use for this
+     * build.</p>
+     */
+    inline Build& WithOperatingSystem(const OperatingSystem& value) { SetOperatingSystem(value); return *this;}
+
+    /**
+     * <p>Operating system that the game server binaries are built to run on. This
+     * value determines the type of fleet resources that you can use for this
+     * build.</p>
+     */
+    inline Build& WithOperatingSystem(OperatingSystem&& value) { SetOperatingSystem(value); return *this;}
+
+    /**
+     * <p>Time stamp indicating when this data object was created. Format is a number
+     * expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
      */
     inline const Aws::Utils::DateTime& GetCreationTime() const{ return m_creationTime; }
 
     /**
-     * <p>Time stamp indicating when this object was created. Format is an integer
-     * representing the number of seconds since the Unix epoch (Unix time).</p>
+     * <p>Time stamp indicating when this data object was created. Format is a number
+     * expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
      */
     inline void SetCreationTime(const Aws::Utils::DateTime& value) { m_creationTimeHasBeenSet = true; m_creationTime = value; }
 
     /**
-     * <p>Time stamp indicating when this object was created. Format is an integer
-     * representing the number of seconds since the Unix epoch (Unix time).</p>
+     * <p>Time stamp indicating when this data object was created. Format is a number
+     * expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
      */
     inline void SetCreationTime(Aws::Utils::DateTime&& value) { m_creationTimeHasBeenSet = true; m_creationTime = value; }
 
     /**
-     * <p>Time stamp indicating when this object was created. Format is an integer
-     * representing the number of seconds since the Unix epoch (Unix time).</p>
+     * <p>Time stamp indicating when this data object was created. Format is a number
+     * expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
      */
     inline Build& WithCreationTime(const Aws::Utils::DateTime& value) { SetCreationTime(value); return *this;}
 
     /**
-     * <p>Time stamp indicating when this object was created. Format is an integer
-     * representing the number of seconds since the Unix epoch (Unix time).</p>
+     * <p>Time stamp indicating when this data object was created. Format is a number
+     * expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
      */
     inline Build& WithCreationTime(Aws::Utils::DateTime&& value) { SetCreationTime(value); return *this;}
 
@@ -283,6 +319,8 @@ namespace Model
     bool m_statusHasBeenSet;
     long long m_sizeOnDisk;
     bool m_sizeOnDiskHasBeenSet;
+    OperatingSystem m_operatingSystem;
+    bool m_operatingSystemHasBeenSet;
     Aws::Utils::DateTime m_creationTime;
     bool m_creationTimeHasBeenSet;
   };

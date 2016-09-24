@@ -1983,6 +1983,56 @@
       ],
       "documentation":"<p>List the device certificates signed by the specified CA certificate.</p>"
     },
+    "ListOutgoingCertificates":{
+      "name":"ListOutgoingCertificates",
+      "http":{
+        "method":"GET",
+        "requestUri":"/certificates-out-going"
+      },
+      "input":{
+        "shape":"ListOutgoingCertificatesRequest",
+        "documentation":"<p>The input to the ListOutgoingCertificates operation.</p>"
+      },
+      "output":{
+        "shape":"ListOutgoingCertificatesResponse",
+        "documentation":"<p>The output from the ListOutgoingCertificates operation.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InvalidRequestException",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>The request is not valid.</p>"
+        },
+        {
+          "shape":"ThrottlingException",
+          "error":{"httpStatusCode":429},
+          "exception":true,
+          "documentation":"<p>The rate exceeds the limit.</p>"
+        },
+        {
+          "shape":"UnauthorizedException",
+          "error":{"httpStatusCode":401},
+          "exception":true,
+          "documentation":"<p>You are not authorized to perform this operation.</p>"
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "error":{"httpStatusCode":503},
+          "exception":true,
+          "fault":true,
+          "documentation":"<p>The service is temporarily unavailable.</p>"
+        },
+        {
+          "shape":"InternalFailureException",
+          "error":{"httpStatusCode":500},
+          "exception":true,
+          "fault":true,
+          "documentation":"<p>An unexpected error has occurred.</p>"
+        }
+      ],
+      "documentation":"<p>Lists certificates that are being transfered but not yet accepted.</p>"
+    },
     "ListPolicies":{
       "name":"ListPolicies",
       "http":{
@@ -3095,7 +3145,7 @@
         },
         "elasticsearch":{
           "shape":"ElasticsearchAction",
-          "documentation":"<p>Write data to an Amazon Elasticsearch Service; domain.</p>"
+          "documentation":"<p>Write data to an Amazon Elasticsearch Service domain.</p>"
         }
       },
       "documentation":"<p>Describes the actions associated with a rule.</p>"
@@ -3107,6 +3157,7 @@
       "max":10
     },
     "AlarmName":{"type":"string"},
+    "AllowAutoRegistration":{"type":"boolean"},
     "AscendingOrder":{"type":"boolean"},
     "AttachPrincipalPolicyRequest":{
       "type":"structure",
@@ -3188,6 +3239,13 @@
       "key":{"shape":"AttributeName"},
       "value":{"shape":"AttributeValue"}
     },
+    "AutoRegistrationStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLE",
+        "DISABLE"
+      ]
+    },
     "AwsAccountId":{
       "type":"string",
       "pattern":"[0-9]{12}"
@@ -3244,6 +3302,10 @@
         "creationDate":{
           "shape":"DateType",
           "documentation":"<p>The date the CA certificate was created.</p>"
+        },
+        "autoRegistrationStatus":{
+          "shape":"AutoRegistrationStatus",
+          "documentation":"<p>Whether the CA certificate configured for auto registration of device certificates. Valid values are \"ENABLE\" and \"DISABLE\"</p>"
         }
       },
       "documentation":"<p>Describes a CA certificate.</p>"
@@ -3271,6 +3333,19 @@
         }
       },
       "documentation":"<p>The input for the CancelCertificateTransfer operation.</p>"
+    },
+    "CannedAccessControlList":{
+      "type":"string",
+      "enum":[
+        "private",
+        "public-read",
+        "public-read-write",
+        "aws-exec-read",
+        "authenticated-read",
+        "bucket-owner-read",
+        "bucket-owner-full-control",
+        "log-delivery-write"
+      ]
     },
     "Certificate":{
       "type":"structure",
@@ -3387,7 +3462,8 @@
         "INACTIVE",
         "REVOKED",
         "PENDING_TRANSFER",
-        "REGISTER_INACTIVE"
+        "REGISTER_INACTIVE",
+        "PENDING_ACTIVATION"
       ]
     },
     "CertificateValidationException":{
@@ -4178,7 +4254,7 @@
           "documentation":"<p>The unique identifier for the document you are storing.</p>"
         }
       },
-      "documentation":"<p>Describes an action that writes data to an Amazon Elasticsearch Service; domain.</p>"
+      "documentation":"<p>Describes an action that writes data to an Amazon Elasticsearch Service domain.</p>"
     },
     "ElasticsearchEndpoint":{
       "type":"string",
@@ -4218,7 +4294,7 @@
         },
         "separator":{
           "shape":"FirehoseSeparator",
-          "documentation":"<p>A character separator that will be used to separate records written to the firehose stream. Valid values are: '\\n' (newline), '\\t' (tab), '\\r\\n' (Windows newline), ',' (comma).</p>"
+          "documentation":"<p>A character separator that will be used to separate records written to the Firehose stream. Valid values are: '\\n' (newline), '\\t' (tab), '\\r\\n' (Windows newline), ',' (comma).</p>"
         }
       },
       "documentation":"<p>Describes an action that writes data to an Amazon Kinesis Firehose stream.</p>"
@@ -4597,6 +4673,44 @@
         }
       },
       "documentation":"<p>The output of the ListCertificates operation.</p>"
+    },
+    "ListOutgoingCertificatesRequest":{
+      "type":"structure",
+      "members":{
+        "pageSize":{
+          "shape":"PageSize",
+          "location":"querystring",
+          "locationName":"pageSize",
+          "documentation":"<p>The result page size.</p>"
+        },
+        "marker":{
+          "shape":"Marker",
+          "location":"querystring",
+          "locationName":"marker",
+          "documentation":"<p>The marker for the next set of results.</p>"
+        },
+        "ascendingOrder":{
+          "shape":"AscendingOrder",
+          "location":"querystring",
+          "locationName":"isAscendingOrder",
+          "documentation":"<p>Specifies the order for results. If True, the results are returned in ascending order, based on the creation date.</p>"
+        }
+      },
+      "documentation":"<p>The input to the ListOutgoingCertificates operation.</p>"
+    },
+    "ListOutgoingCertificatesResponse":{
+      "type":"structure",
+      "members":{
+        "outgoingCertificates":{
+          "shape":"OutgoingCertificates",
+          "documentation":"<p>The certificates that are being transfered but not yet accepted.</p>"
+        },
+        "nextMarker":{
+          "shape":"Marker",
+          "documentation":"<p>The marker for the next set of results.</p>"
+        }
+      },
+      "documentation":"<p>The output from the ListOutgoingCertificates operation.</p>"
     },
     "ListPoliciesRequest":{
       "type":"structure",
@@ -5004,6 +5118,40 @@
     "MetricValue":{"type":"string"},
     "NextToken":{"type":"string"},
     "OptionalVersion":{"type":"long"},
+    "OutgoingCertificate":{
+      "type":"structure",
+      "members":{
+        "certificateArn":{
+          "shape":"CertificateArn",
+          "documentation":"<p>The certificate ARN.</p>"
+        },
+        "certificateId":{
+          "shape":"CertificateId",
+          "documentation":"<p>The certificate ID.</p>"
+        },
+        "transferredTo":{
+          "shape":"AwsAccountId",
+          "documentation":"<p>The AWS account to which the transfer was made.</p>"
+        },
+        "transferDate":{
+          "shape":"DateType",
+          "documentation":"<p>The date the transfer was initiated.</p>"
+        },
+        "transferMessage":{
+          "shape":"Message",
+          "documentation":"<p>The transfer message.</p>"
+        },
+        "creationDate":{
+          "shape":"DateType",
+          "documentation":"<p>The certificate creation date.</p>"
+        }
+      },
+      "documentation":"<p>A certificate that has been transfered but not yet accepted.</p>"
+    },
+    "OutgoingCertificates":{
+      "type":"list",
+      "member":{"shape":"OutgoingCertificate"}
+    },
     "PageSize":{
       "type":"integer",
       "min":1,
@@ -5101,6 +5249,12 @@
           "location":"querystring",
           "locationName":"setAsActive",
           "documentation":"<p>A boolean value that specifies if the CA certificate is set to active.</p>"
+        },
+        "allowAutoRegistration":{
+          "shape":"AllowAutoRegistration",
+          "location":"querystring",
+          "locationName":"allowAutoRegistration",
+          "documentation":"<p>Allows this CA certificate to be used for auto registration of device certificates.</p>"
         }
       },
       "documentation":"<p>The input to the RegisterCACertificate operation.</p>"
@@ -5132,11 +5286,13 @@
           "documentation":"<p>The CA certificate used to sign the device certificate being registered.</p>"
         },
         "setAsActive":{
-          "shape":"SetAsActive",
+          "shape":"SetAsActiveFlag",
+          "deprecated":true,
           "location":"querystring",
           "locationName":"setAsActive",
           "documentation":"<p>A boolean value that specifies if the CA certificate is set to active.</p>"
-        }
+        },
+        "status":{"shape":"CertificateStatus"}
       },
       "documentation":"<p>The input to the RegisterCertificate operation.</p>"
     },
@@ -5235,6 +5391,14 @@
         "message":{
           "shape":"errorMessage",
           "documentation":"<p>The message for the exception.</p>"
+        },
+        "resourceId":{
+          "shape":"resourceId",
+          "documentation":"<p>The ID of the resource that caused the exception.</p>"
+        },
+        "resourceArn":{
+          "shape":"resourceArn",
+          "documentation":"<p>The ARN of the resource that caused the exception.</p>"
         }
       },
       "error":{"httpStatusCode":409},
@@ -5279,6 +5443,10 @@
         "key":{
           "shape":"Key",
           "documentation":"<p>The object key.</p>"
+        },
+        "cannedAcl":{
+          "shape":"CannedAccessControlList",
+          "documentation":"<p>The Amazon S3 canned ACL that controls access to the object identified by the object key. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl\">S3 canned ACLs</a>.</p>"
         }
       },
       "documentation":"<p>Describes an action to write data to an Amazon S3 bucket.</p>"
@@ -5302,6 +5470,7 @@
       "documentation":"<p>The service is temporarily unavailable.</p>"
     },
     "SetAsActive":{"type":"boolean"},
+    "SetAsActiveFlag":{"type":"boolean"},
     "SetAsDefault":{"type":"boolean"},
     "SetDefaultPolicyVersionRequest":{
       "type":"structure",
@@ -5706,10 +5875,7 @@
     "UndoDeprecate":{"type":"boolean"},
     "UpdateCACertificateRequest":{
       "type":"structure",
-      "required":[
-        "certificateId",
-        "newStatus"
-      ],
+      "required":["certificateId"],
       "members":{
         "certificateId":{
           "shape":"CertificateId",
@@ -5722,6 +5888,12 @@
           "location":"querystring",
           "locationName":"newStatus",
           "documentation":"<p>The updated status of the CA certificate.</p> <p><b>Note:</b> The status value REGISTER_INACTIVE is deprecated and should not be used.</p>"
+        },
+        "newAutoRegistrationStatus":{
+          "shape":"AutoRegistrationStatus",
+          "location":"querystring",
+          "locationName":"newAutoRegistrationStatus",
+          "documentation":"<p>The new value for the auto registration status. Valid values are: \"ENABLE\" or \"DISABLE\".</p>"
         }
       },
       "documentation":"<p>The input to the UpdateCACertificate operation.</p>"
@@ -5809,7 +5981,9 @@
       "exception":true,
       "documentation":"<p>The number of policy versions exceeds the limit.</p>"
     },
-    "errorMessage":{"type":"string"}
+    "errorMessage":{"type":"string"},
+    "resourceArn":{"type":"string"},
+    "resourceId":{"type":"string"}
   },
   "examples":{
   }

@@ -20,6 +20,7 @@
 #include <aws/gamelift/model/EC2InstanceType.h>
 #include <aws/gamelift/model/ProtectionPolicy.h>
 #include <aws/gamelift/model/RuntimeConfiguration.h>
+#include <aws/gamelift/model/ResourceCreationLimitPolicy.h>
 #include <aws/gamelift/model/IpPermission.h>
 
 namespace Aws
@@ -285,7 +286,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-api-server-code">Amazon
      * GameLift Developer Guide</a>. If no default log path for a fleet is specified,
      * GameLift will automatically upload logs stored on each instance at
-     * <code>C:\game\logs</code>. Use the GameLift console to access stored logs. </p>
+     * <code>C:\game\logs</code> (for Windows) or <code>/local/game/logs</code> (for
+     * Linux). Use the GameLift console to access stored logs. </p>
      */
     inline const Aws::Vector<Aws::String>& GetLogPaths() const{ return m_logPaths; }
 
@@ -296,7 +298,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-api-server-code">Amazon
      * GameLift Developer Guide</a>. If no default log path for a fleet is specified,
      * GameLift will automatically upload logs stored on each instance at
-     * <code>C:\game\logs</code>. Use the GameLift console to access stored logs. </p>
+     * <code>C:\game\logs</code> (for Windows) or <code>/local/game/logs</code> (for
+     * Linux). Use the GameLift console to access stored logs. </p>
      */
     inline void SetLogPaths(const Aws::Vector<Aws::String>& value) { m_logPathsHasBeenSet = true; m_logPaths = value; }
 
@@ -307,7 +310,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-api-server-code">Amazon
      * GameLift Developer Guide</a>. If no default log path for a fleet is specified,
      * GameLift will automatically upload logs stored on each instance at
-     * <code>C:\game\logs</code>. Use the GameLift console to access stored logs. </p>
+     * <code>C:\game\logs</code> (for Windows) or <code>/local/game/logs</code> (for
+     * Linux). Use the GameLift console to access stored logs. </p>
      */
     inline void SetLogPaths(Aws::Vector<Aws::String>&& value) { m_logPathsHasBeenSet = true; m_logPaths = value; }
 
@@ -318,7 +322,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-api-server-code">Amazon
      * GameLift Developer Guide</a>. If no default log path for a fleet is specified,
      * GameLift will automatically upload logs stored on each instance at
-     * <code>C:\game\logs</code>. Use the GameLift console to access stored logs. </p>
+     * <code>C:\game\logs</code> (for Windows) or <code>/local/game/logs</code> (for
+     * Linux). Use the GameLift console to access stored logs. </p>
      */
     inline CreateFleetRequest& WithLogPaths(const Aws::Vector<Aws::String>& value) { SetLogPaths(value); return *this;}
 
@@ -329,7 +334,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-api-server-code">Amazon
      * GameLift Developer Guide</a>. If no default log path for a fleet is specified,
      * GameLift will automatically upload logs stored on each instance at
-     * <code>C:\game\logs</code>. Use the GameLift console to access stored logs. </p>
+     * <code>C:\game\logs</code> (for Windows) or <code>/local/game/logs</code> (for
+     * Linux). Use the GameLift console to access stored logs. </p>
      */
     inline CreateFleetRequest& WithLogPaths(Aws::Vector<Aws::String>&& value) { SetLogPaths(value); return *this;}
 
@@ -340,7 +346,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-api-server-code">Amazon
      * GameLift Developer Guide</a>. If no default log path for a fleet is specified,
      * GameLift will automatically upload logs stored on each instance at
-     * <code>C:\game\logs</code>. Use the GameLift console to access stored logs. </p>
+     * <code>C:\game\logs</code> (for Windows) or <code>/local/game/logs</code> (for
+     * Linux). Use the GameLift console to access stored logs. </p>
      */
     inline CreateFleetRequest& AddLogPaths(const Aws::String& value) { m_logPathsHasBeenSet = true; m_logPaths.push_back(value); return *this; }
 
@@ -351,7 +358,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-api-server-code">Amazon
      * GameLift Developer Guide</a>. If no default log path for a fleet is specified,
      * GameLift will automatically upload logs stored on each instance at
-     * <code>C:\game\logs</code>. Use the GameLift console to access stored logs. </p>
+     * <code>C:\game\logs</code> (for Windows) or <code>/local/game/logs</code> (for
+     * Linux). Use the GameLift console to access stored logs. </p>
      */
     inline CreateFleetRequest& AddLogPaths(Aws::String&& value) { m_logPathsHasBeenSet = true; m_logPaths.push_back(value); return *this; }
 
@@ -362,7 +370,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-api-server-code">Amazon
      * GameLift Developer Guide</a>. If no default log path for a fleet is specified,
      * GameLift will automatically upload logs stored on each instance at
-     * <code>C:\game\logs</code>. Use the GameLift console to access stored logs. </p>
+     * <code>C:\game\logs</code> (for Windows) or <code>/local/game/logs</code> (for
+     * Linux). Use the GameLift console to access stored logs. </p>
      */
     inline CreateFleetRequest& AddLogPaths(const char* value) { m_logPathsHasBeenSet = true; m_logPaths.push_back(value); return *this; }
 
@@ -371,7 +380,7 @@ namespace Model
      * instance type determines the computing resources of each instance in the fleet,
      * including CPU, memory, storage, and networking capacity. GameLift supports the
      * following EC2 instance types. See <a
-     * href="https://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance Types</a>
+     * href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance Types</a>
      * for detailed descriptions.</p>
      */
     inline const EC2InstanceType& GetEC2InstanceType() const{ return m_eC2InstanceType; }
@@ -381,7 +390,7 @@ namespace Model
      * instance type determines the computing resources of each instance in the fleet,
      * including CPU, memory, storage, and networking capacity. GameLift supports the
      * following EC2 instance types. See <a
-     * href="https://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance Types</a>
+     * href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance Types</a>
      * for detailed descriptions.</p>
      */
     inline void SetEC2InstanceType(const EC2InstanceType& value) { m_eC2InstanceTypeHasBeenSet = true; m_eC2InstanceType = value; }
@@ -391,7 +400,7 @@ namespace Model
      * instance type determines the computing resources of each instance in the fleet,
      * including CPU, memory, storage, and networking capacity. GameLift supports the
      * following EC2 instance types. See <a
-     * href="https://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance Types</a>
+     * href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance Types</a>
      * for detailed descriptions.</p>
      */
     inline void SetEC2InstanceType(EC2InstanceType&& value) { m_eC2InstanceTypeHasBeenSet = true; m_eC2InstanceType = value; }
@@ -401,7 +410,7 @@ namespace Model
      * instance type determines the computing resources of each instance in the fleet,
      * including CPU, memory, storage, and networking capacity. GameLift supports the
      * following EC2 instance types. See <a
-     * href="https://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance Types</a>
+     * href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance Types</a>
      * for detailed descriptions.</p>
      */
     inline CreateFleetRequest& WithEC2InstanceType(const EC2InstanceType& value) { SetEC2InstanceType(value); return *this;}
@@ -411,7 +420,7 @@ namespace Model
      * instance type determines the computing resources of each instance in the fleet,
      * including CPU, memory, storage, and networking capacity. GameLift supports the
      * following EC2 instance types. See <a
-     * href="https://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance Types</a>
+     * href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance Types</a>
      * for detailed descriptions.</p>
      */
     inline CreateFleetRequest& WithEC2InstanceType(EC2InstanceType&& value) { SetEC2InstanceType(value); return *this;}
@@ -484,11 +493,11 @@ namespace Model
      * this parameter is not set, instances in this fleet default to no protection. You
      * can change a fleet's protection policy using UpdateFleetAttributes, but this
      * change will only affect sessions created after the policy change. You can also
-     * set protection for individual instances using <a>UpdateGameSession</a>.</p>
-     * <ul><li><b>NoProtection</b> – The game session can be terminated during a
-     * scale-down event.</li> <li><b>FullProtection</b> – If the game session is in an
-     * <code>ACTIVE</code> status, it cannot be terminated during a scale-down
-     * event.</li></ul>
+     * set protection for individual instances using <a>UpdateGameSession</a>.</p> <ul>
+     * <li> <p> <b>NoProtection</b> – The game session can be terminated during a
+     * scale-down event.</p> </li> <li> <p> <b>FullProtection</b> – If the game session
+     * is in an <code>ACTIVE</code> status, it cannot be terminated during a scale-down
+     * event.</p> </li> </ul>
      */
     inline const ProtectionPolicy& GetNewGameSessionProtectionPolicy() const{ return m_newGameSessionProtectionPolicy; }
 
@@ -497,11 +506,11 @@ namespace Model
      * this parameter is not set, instances in this fleet default to no protection. You
      * can change a fleet's protection policy using UpdateFleetAttributes, but this
      * change will only affect sessions created after the policy change. You can also
-     * set protection for individual instances using <a>UpdateGameSession</a>.</p>
-     * <ul><li><b>NoProtection</b> – The game session can be terminated during a
-     * scale-down event.</li> <li><b>FullProtection</b> – If the game session is in an
-     * <code>ACTIVE</code> status, it cannot be terminated during a scale-down
-     * event.</li></ul>
+     * set protection for individual instances using <a>UpdateGameSession</a>.</p> <ul>
+     * <li> <p> <b>NoProtection</b> – The game session can be terminated during a
+     * scale-down event.</p> </li> <li> <p> <b>FullProtection</b> – If the game session
+     * is in an <code>ACTIVE</code> status, it cannot be terminated during a scale-down
+     * event.</p> </li> </ul>
      */
     inline void SetNewGameSessionProtectionPolicy(const ProtectionPolicy& value) { m_newGameSessionProtectionPolicyHasBeenSet = true; m_newGameSessionProtectionPolicy = value; }
 
@@ -510,11 +519,11 @@ namespace Model
      * this parameter is not set, instances in this fleet default to no protection. You
      * can change a fleet's protection policy using UpdateFleetAttributes, but this
      * change will only affect sessions created after the policy change. You can also
-     * set protection for individual instances using <a>UpdateGameSession</a>.</p>
-     * <ul><li><b>NoProtection</b> – The game session can be terminated during a
-     * scale-down event.</li> <li><b>FullProtection</b> – If the game session is in an
-     * <code>ACTIVE</code> status, it cannot be terminated during a scale-down
-     * event.</li></ul>
+     * set protection for individual instances using <a>UpdateGameSession</a>.</p> <ul>
+     * <li> <p> <b>NoProtection</b> – The game session can be terminated during a
+     * scale-down event.</p> </li> <li> <p> <b>FullProtection</b> – If the game session
+     * is in an <code>ACTIVE</code> status, it cannot be terminated during a scale-down
+     * event.</p> </li> </ul>
      */
     inline void SetNewGameSessionProtectionPolicy(ProtectionPolicy&& value) { m_newGameSessionProtectionPolicyHasBeenSet = true; m_newGameSessionProtectionPolicy = value; }
 
@@ -523,11 +532,11 @@ namespace Model
      * this parameter is not set, instances in this fleet default to no protection. You
      * can change a fleet's protection policy using UpdateFleetAttributes, but this
      * change will only affect sessions created after the policy change. You can also
-     * set protection for individual instances using <a>UpdateGameSession</a>.</p>
-     * <ul><li><b>NoProtection</b> – The game session can be terminated during a
-     * scale-down event.</li> <li><b>FullProtection</b> – If the game session is in an
-     * <code>ACTIVE</code> status, it cannot be terminated during a scale-down
-     * event.</li></ul>
+     * set protection for individual instances using <a>UpdateGameSession</a>.</p> <ul>
+     * <li> <p> <b>NoProtection</b> – The game session can be terminated during a
+     * scale-down event.</p> </li> <li> <p> <b>FullProtection</b> – If the game session
+     * is in an <code>ACTIVE</code> status, it cannot be terminated during a scale-down
+     * event.</p> </li> </ul>
      */
     inline CreateFleetRequest& WithNewGameSessionProtectionPolicy(const ProtectionPolicy& value) { SetNewGameSessionProtectionPolicy(value); return *this;}
 
@@ -536,11 +545,11 @@ namespace Model
      * this parameter is not set, instances in this fleet default to no protection. You
      * can change a fleet's protection policy using UpdateFleetAttributes, but this
      * change will only affect sessions created after the policy change. You can also
-     * set protection for individual instances using <a>UpdateGameSession</a>.</p>
-     * <ul><li><b>NoProtection</b> – The game session can be terminated during a
-     * scale-down event.</li> <li><b>FullProtection</b> – If the game session is in an
-     * <code>ACTIVE</code> status, it cannot be terminated during a scale-down
-     * event.</li></ul>
+     * set protection for individual instances using <a>UpdateGameSession</a>.</p> <ul>
+     * <li> <p> <b>NoProtection</b> – The game session can be terminated during a
+     * scale-down event.</p> </li> <li> <p> <b>FullProtection</b> – If the game session
+     * is in an <code>ACTIVE</code> status, it cannot be terminated during a scale-down
+     * event.</p> </li> </ul>
      */
     inline CreateFleetRequest& WithNewGameSessionProtectionPolicy(ProtectionPolicy&& value) { SetNewGameSessionProtectionPolicy(value); return *this;}
 
@@ -619,6 +628,36 @@ namespace Model
      */
     inline CreateFleetRequest& WithRuntimeConfiguration(RuntimeConfiguration&& value) { SetRuntimeConfiguration(value); return *this;}
 
+    /**
+     * <p>Policy that limits the number of game sessions an individual player can
+     * create over a span of time for this fleet.</p>
+     */
+    inline const ResourceCreationLimitPolicy& GetResourceCreationLimitPolicy() const{ return m_resourceCreationLimitPolicy; }
+
+    /**
+     * <p>Policy that limits the number of game sessions an individual player can
+     * create over a span of time for this fleet.</p>
+     */
+    inline void SetResourceCreationLimitPolicy(const ResourceCreationLimitPolicy& value) { m_resourceCreationLimitPolicyHasBeenSet = true; m_resourceCreationLimitPolicy = value; }
+
+    /**
+     * <p>Policy that limits the number of game sessions an individual player can
+     * create over a span of time for this fleet.</p>
+     */
+    inline void SetResourceCreationLimitPolicy(ResourceCreationLimitPolicy&& value) { m_resourceCreationLimitPolicyHasBeenSet = true; m_resourceCreationLimitPolicy = value; }
+
+    /**
+     * <p>Policy that limits the number of game sessions an individual player can
+     * create over a span of time for this fleet.</p>
+     */
+    inline CreateFleetRequest& WithResourceCreationLimitPolicy(const ResourceCreationLimitPolicy& value) { SetResourceCreationLimitPolicy(value); return *this;}
+
+    /**
+     * <p>Policy that limits the number of game sessions an individual player can
+     * create over a span of time for this fleet.</p>
+     */
+    inline CreateFleetRequest& WithResourceCreationLimitPolicy(ResourceCreationLimitPolicy&& value) { SetResourceCreationLimitPolicy(value); return *this;}
+
   private:
     Aws::String m_name;
     bool m_nameHasBeenSet;
@@ -640,6 +679,8 @@ namespace Model
     bool m_newGameSessionProtectionPolicyHasBeenSet;
     RuntimeConfiguration m_runtimeConfiguration;
     bool m_runtimeConfigurationHasBeenSet;
+    ResourceCreationLimitPolicy m_resourceCreationLimitPolicy;
+    bool m_resourceCreationLimitPolicyHasBeenSet;
   };
 
 } // namespace Model

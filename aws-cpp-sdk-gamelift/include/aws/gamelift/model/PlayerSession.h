@@ -114,37 +114,44 @@ namespace Model
     inline PlayerSession& WithPlayerId(const char* value) { SetPlayerId(value); return *this;}
 
     /**
-     * <p>Unique identifier for a game session.</p>
+     * <p>Unique identifier for the game session that the player session is connected
+     * to.</p>
      */
     inline const Aws::String& GetGameSessionId() const{ return m_gameSessionId; }
 
     /**
-     * <p>Unique identifier for a game session.</p>
+     * <p>Unique identifier for the game session that the player session is connected
+     * to.</p>
      */
     inline void SetGameSessionId(const Aws::String& value) { m_gameSessionIdHasBeenSet = true; m_gameSessionId = value; }
 
     /**
-     * <p>Unique identifier for a game session.</p>
+     * <p>Unique identifier for the game session that the player session is connected
+     * to.</p>
      */
     inline void SetGameSessionId(Aws::String&& value) { m_gameSessionIdHasBeenSet = true; m_gameSessionId = value; }
 
     /**
-     * <p>Unique identifier for a game session.</p>
+     * <p>Unique identifier for the game session that the player session is connected
+     * to.</p>
      */
     inline void SetGameSessionId(const char* value) { m_gameSessionIdHasBeenSet = true; m_gameSessionId.assign(value); }
 
     /**
-     * <p>Unique identifier for a game session.</p>
+     * <p>Unique identifier for the game session that the player session is connected
+     * to.</p>
      */
     inline PlayerSession& WithGameSessionId(const Aws::String& value) { SetGameSessionId(value); return *this;}
 
     /**
-     * <p>Unique identifier for a game session.</p>
+     * <p>Unique identifier for the game session that the player session is connected
+     * to.</p>
      */
     inline PlayerSession& WithGameSessionId(Aws::String&& value) { SetGameSessionId(value); return *this;}
 
     /**
-     * <p>Unique identifier for a game session.</p>
+     * <p>Unique identifier for the game session that the player session is connected
+     * to.</p>
      */
     inline PlayerSession& WithGameSessionId(const char* value) { SetGameSessionId(value); return *this;}
 
@@ -185,163 +192,168 @@ namespace Model
 
     /**
      * <p>Time stamp indicating when this data object was created. Format is a number
-     * expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
+     * expressed in Unix time as milliseconds (ex: "1469498468.057").</p>
      */
     inline const Aws::Utils::DateTime& GetCreationTime() const{ return m_creationTime; }
 
     /**
      * <p>Time stamp indicating when this data object was created. Format is a number
-     * expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
+     * expressed in Unix time as milliseconds (ex: "1469498468.057").</p>
      */
     inline void SetCreationTime(const Aws::Utils::DateTime& value) { m_creationTimeHasBeenSet = true; m_creationTime = value; }
 
     /**
      * <p>Time stamp indicating when this data object was created. Format is a number
-     * expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
+     * expressed in Unix time as milliseconds (ex: "1469498468.057").</p>
      */
     inline void SetCreationTime(Aws::Utils::DateTime&& value) { m_creationTimeHasBeenSet = true; m_creationTime = value; }
 
     /**
      * <p>Time stamp indicating when this data object was created. Format is a number
-     * expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
+     * expressed in Unix time as milliseconds (ex: "1469498468.057").</p>
      */
     inline PlayerSession& WithCreationTime(const Aws::Utils::DateTime& value) { SetCreationTime(value); return *this;}
 
     /**
      * <p>Time stamp indicating when this data object was created. Format is a number
-     * expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
+     * expressed in Unix time as milliseconds (ex: "1469498468.057").</p>
      */
     inline PlayerSession& WithCreationTime(Aws::Utils::DateTime&& value) { SetCreationTime(value); return *this;}
 
     /**
      * <p>Time stamp indicating when this data object was terminated. Format is a
-     * number expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
+     * number expressed in Unix time as milliseconds (ex: "1469498468.057").</p>
      */
     inline const Aws::Utils::DateTime& GetTerminationTime() const{ return m_terminationTime; }
 
     /**
      * <p>Time stamp indicating when this data object was terminated. Format is a
-     * number expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
+     * number expressed in Unix time as milliseconds (ex: "1469498468.057").</p>
      */
     inline void SetTerminationTime(const Aws::Utils::DateTime& value) { m_terminationTimeHasBeenSet = true; m_terminationTime = value; }
 
     /**
      * <p>Time stamp indicating when this data object was terminated. Format is a
-     * number expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
+     * number expressed in Unix time as milliseconds (ex: "1469498468.057").</p>
      */
     inline void SetTerminationTime(Aws::Utils::DateTime&& value) { m_terminationTimeHasBeenSet = true; m_terminationTime = value; }
 
     /**
      * <p>Time stamp indicating when this data object was terminated. Format is a
-     * number expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
+     * number expressed in Unix time as milliseconds (ex: "1469498468.057").</p>
      */
     inline PlayerSession& WithTerminationTime(const Aws::Utils::DateTime& value) { SetTerminationTime(value); return *this;}
 
     /**
      * <p>Time stamp indicating when this data object was terminated. Format is a
-     * number expressed in Unix time as milliseconds (ex: "1469498468.057".</p>
+     * number expressed in Unix time as milliseconds (ex: "1469498468.057").</p>
      */
     inline PlayerSession& WithTerminationTime(Aws::Utils::DateTime&& value) { SetTerminationTime(value); return *this;}
 
     /**
      * <p>Current status of the player session.</p> <p>Possible player session statuses
-     * include the following:</p> <ul><li><b>RESERVED</b> – The player session request
-     * has been received, but the player has not yet connected to the server process
-     * and/or been validated. </li><li><b>ACTIVE</b> – The player has been validated by
-     * the server process and is currently connected.</li><li><b>COMPLETED</b> – The
-     * player connection has been dropped.</li><li><b>TIMEDOUT</b> – A player session
-     * request was received, but the player did not connect and/or was not validated
-     * within the time-out limit (60 seconds).</li></ul>
+     * include the following:</p> <ul> <li> <p> <b>RESERVED</b> – The player session
+     * request has been received, but the player has not yet connected to the server
+     * process and/or been validated. </p> </li> <li> <p> <b>ACTIVE</b> – The player
+     * has been validated by the server process and is currently connected.</p> </li>
+     * <li> <p> <b>COMPLETED</b> – The player connection has been dropped.</p> </li>
+     * <li> <p> <b>TIMEDOUT</b> – A player session request was received, but the player
+     * did not connect and/or was not validated within the time-out limit (60
+     * seconds).</p> </li> </ul>
      */
     inline const PlayerSessionStatus& GetStatus() const{ return m_status; }
 
     /**
      * <p>Current status of the player session.</p> <p>Possible player session statuses
-     * include the following:</p> <ul><li><b>RESERVED</b> – The player session request
-     * has been received, but the player has not yet connected to the server process
-     * and/or been validated. </li><li><b>ACTIVE</b> – The player has been validated by
-     * the server process and is currently connected.</li><li><b>COMPLETED</b> – The
-     * player connection has been dropped.</li><li><b>TIMEDOUT</b> – A player session
-     * request was received, but the player did not connect and/or was not validated
-     * within the time-out limit (60 seconds).</li></ul>
+     * include the following:</p> <ul> <li> <p> <b>RESERVED</b> – The player session
+     * request has been received, but the player has not yet connected to the server
+     * process and/or been validated. </p> </li> <li> <p> <b>ACTIVE</b> – The player
+     * has been validated by the server process and is currently connected.</p> </li>
+     * <li> <p> <b>COMPLETED</b> – The player connection has been dropped.</p> </li>
+     * <li> <p> <b>TIMEDOUT</b> – A player session request was received, but the player
+     * did not connect and/or was not validated within the time-out limit (60
+     * seconds).</p> </li> </ul>
      */
     inline void SetStatus(const PlayerSessionStatus& value) { m_statusHasBeenSet = true; m_status = value; }
 
     /**
      * <p>Current status of the player session.</p> <p>Possible player session statuses
-     * include the following:</p> <ul><li><b>RESERVED</b> – The player session request
-     * has been received, but the player has not yet connected to the server process
-     * and/or been validated. </li><li><b>ACTIVE</b> – The player has been validated by
-     * the server process and is currently connected.</li><li><b>COMPLETED</b> – The
-     * player connection has been dropped.</li><li><b>TIMEDOUT</b> – A player session
-     * request was received, but the player did not connect and/or was not validated
-     * within the time-out limit (60 seconds).</li></ul>
+     * include the following:</p> <ul> <li> <p> <b>RESERVED</b> – The player session
+     * request has been received, but the player has not yet connected to the server
+     * process and/or been validated. </p> </li> <li> <p> <b>ACTIVE</b> – The player
+     * has been validated by the server process and is currently connected.</p> </li>
+     * <li> <p> <b>COMPLETED</b> – The player connection has been dropped.</p> </li>
+     * <li> <p> <b>TIMEDOUT</b> – A player session request was received, but the player
+     * did not connect and/or was not validated within the time-out limit (60
+     * seconds).</p> </li> </ul>
      */
     inline void SetStatus(PlayerSessionStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
 
     /**
      * <p>Current status of the player session.</p> <p>Possible player session statuses
-     * include the following:</p> <ul><li><b>RESERVED</b> – The player session request
-     * has been received, but the player has not yet connected to the server process
-     * and/or been validated. </li><li><b>ACTIVE</b> – The player has been validated by
-     * the server process and is currently connected.</li><li><b>COMPLETED</b> – The
-     * player connection has been dropped.</li><li><b>TIMEDOUT</b> – A player session
-     * request was received, but the player did not connect and/or was not validated
-     * within the time-out limit (60 seconds).</li></ul>
+     * include the following:</p> <ul> <li> <p> <b>RESERVED</b> – The player session
+     * request has been received, but the player has not yet connected to the server
+     * process and/or been validated. </p> </li> <li> <p> <b>ACTIVE</b> – The player
+     * has been validated by the server process and is currently connected.</p> </li>
+     * <li> <p> <b>COMPLETED</b> – The player connection has been dropped.</p> </li>
+     * <li> <p> <b>TIMEDOUT</b> – A player session request was received, but the player
+     * did not connect and/or was not validated within the time-out limit (60
+     * seconds).</p> </li> </ul>
      */
     inline PlayerSession& WithStatus(const PlayerSessionStatus& value) { SetStatus(value); return *this;}
 
     /**
      * <p>Current status of the player session.</p> <p>Possible player session statuses
-     * include the following:</p> <ul><li><b>RESERVED</b> – The player session request
-     * has been received, but the player has not yet connected to the server process
-     * and/or been validated. </li><li><b>ACTIVE</b> – The player has been validated by
-     * the server process and is currently connected.</li><li><b>COMPLETED</b> – The
-     * player connection has been dropped.</li><li><b>TIMEDOUT</b> – A player session
-     * request was received, but the player did not connect and/or was not validated
-     * within the time-out limit (60 seconds).</li></ul>
+     * include the following:</p> <ul> <li> <p> <b>RESERVED</b> – The player session
+     * request has been received, but the player has not yet connected to the server
+     * process and/or been validated. </p> </li> <li> <p> <b>ACTIVE</b> – The player
+     * has been validated by the server process and is currently connected.</p> </li>
+     * <li> <p> <b>COMPLETED</b> – The player connection has been dropped.</p> </li>
+     * <li> <p> <b>TIMEDOUT</b> – A player session request was received, but the player
+     * did not connect and/or was not validated within the time-out limit (60
+     * seconds).</p> </li> </ul>
      */
     inline PlayerSession& WithStatus(PlayerSessionStatus&& value) { SetStatus(value); return *this;}
 
     /**
      * <p>Game session IP address. All player sessions reference the game session
-     * location. </p>
+     * location.</p>
      */
     inline const Aws::String& GetIpAddress() const{ return m_ipAddress; }
 
     /**
      * <p>Game session IP address. All player sessions reference the game session
-     * location. </p>
+     * location.</p>
      */
     inline void SetIpAddress(const Aws::String& value) { m_ipAddressHasBeenSet = true; m_ipAddress = value; }
 
     /**
      * <p>Game session IP address. All player sessions reference the game session
-     * location. </p>
+     * location.</p>
      */
     inline void SetIpAddress(Aws::String&& value) { m_ipAddressHasBeenSet = true; m_ipAddress = value; }
 
     /**
      * <p>Game session IP address. All player sessions reference the game session
-     * location. </p>
+     * location.</p>
      */
     inline void SetIpAddress(const char* value) { m_ipAddressHasBeenSet = true; m_ipAddress.assign(value); }
 
     /**
      * <p>Game session IP address. All player sessions reference the game session
-     * location. </p>
+     * location.</p>
      */
     inline PlayerSession& WithIpAddress(const Aws::String& value) { SetIpAddress(value); return *this;}
 
     /**
      * <p>Game session IP address. All player sessions reference the game session
-     * location. </p>
+     * location.</p>
      */
     inline PlayerSession& WithIpAddress(Aws::String&& value) { SetIpAddress(value); return *this;}
 
     /**
      * <p>Game session IP address. All player sessions reference the game session
-     * location. </p>
+     * location.</p>
      */
     inline PlayerSession& WithIpAddress(const char* value) { SetIpAddress(value); return *this;}
 

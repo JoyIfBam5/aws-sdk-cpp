@@ -12,6 +12,9 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
+#ifndef NO_SYMMETRIC_ENCRYPTION
+
 #include <aws/external/gtest.h>
 #include <aws/core/utils/crypto/CryptoStream.h>
 #include <aws/core/utils/memory/stl/AWSQueue.h>
@@ -337,6 +340,25 @@ TEST(CryptoStreamsTest, TestDecyptSinkStreamLargeBufferDestructorFinalizes)
     ASSERT_EQ(1u, cipher.m_finalizeDecryptionCalledCount);
 }
 
+TEST(CryptoStreamsTest, TestDecyptSinkStreamWithBlockOffset)
+{
+    std::ostringstream os;
+    MockSymmetricCipher cipher;
+    InitMockCipher(cipher);
+    size_t srcLen = strlen(ORIGINAL_SRC) + 1;
+
+    {
+        SymmetricCryptoStream stream(os, CipherMode::Decrypt, cipher, srcLen, 5);
+        stream << ORIGINAL_SRC;
+    }
+
+    ASSERT_STREQ(ComputePartialOutput().c_str() + 5, os.str().c_str());
+    ASSERT_EQ(0u, cipher.m_encryptCalledCount);
+    ASSERT_EQ(0u, cipher.m_finalizeEncryptionCalledCount);
+    ASSERT_EQ(1u, cipher.m_decryptCalledCount);
+    ASSERT_EQ(1u, cipher.m_finalizeDecryptionCalledCount);
+}
+
 TEST(CryptoStreamsTest, TestDecryptSinkStreamLargeBufferExplicitFinalize)
 {
     std::ostringstream os;
@@ -542,3 +564,5 @@ TEST(CryptoStreamsTest, TestLiveSymmetricCipher)
     }
 }
 #endif
+
+#endif // NO_SYMMETRIC_ENCRYPTION

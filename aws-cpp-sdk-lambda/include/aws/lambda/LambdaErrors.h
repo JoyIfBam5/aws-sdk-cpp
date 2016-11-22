@@ -44,7 +44,12 @@ enum class LambdaErrors
   RESOURCE_NOT_FOUND = 16,
   UNRECOGNIZED_CLIENT = 17,
   MALFORMED_QUERY_STRING = 18,
+  SLOW_DOWN = 19,
+  REQUEST_TIME_TOO_SKEWED = 20,
+  INVALID_SIGNATURE = 21,
+  SIGNATURE_DOES_NOT_MATCH = 22,
   NETWORK_CONNECTION = 99,
+  
   UNKNOWN = 100,
   ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -57,6 +62,10 @@ enum class LambdaErrors
   INVALID_SECURITY_GROUP_I_D,
   INVALID_SUBNET_I_D,
   INVALID_ZIP_FILE,
+  K_M_S_ACCESS_DENIED,
+  K_M_S_DISABLED,
+  K_M_S_INVALID_STATE,
+  K_M_S_NOT_FOUND,
   POLICY_LENGTH_EXCEEDED,
   REQUEST_TOO_LARGE,
   RESOURCE_CONFLICT,

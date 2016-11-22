@@ -146,9 +146,9 @@ namespace Model
      * Amazon Route 53 sends a DNS request to resolve the domain name that you specify
      * in <code>FullyQualifiedDomainName</code> at the interval you specify in
      * <code>RequestInterval</code>. Using an IP address that DNS returns, Amazon Route
-     * 53 then checks the health of the endpoint.</p> <p>f the endpoint is an Amazon
-     * EC2 instance, we recommend that you create an Elastic IP address, associate it
-     * with your Amazon EC2 instance, and specify the Elastic IP address for
+     * 53 then checks the health of the endpoint.</p> <p>f the endpoint is an EC2
+     * instance, we recommend that you create an Elastic IP address, associate it with
+     * your EC2 instance, and specify the Elastic IP address for
      * <code>IPAddress</code>. This ensures that the IP address of your instance never
      * changes. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic
@@ -167,9 +167,9 @@ namespace Model
      * Amazon Route 53 sends a DNS request to resolve the domain name that you specify
      * in <code>FullyQualifiedDomainName</code> at the interval you specify in
      * <code>RequestInterval</code>. Using an IP address that DNS returns, Amazon Route
-     * 53 then checks the health of the endpoint.</p> <p>f the endpoint is an Amazon
-     * EC2 instance, we recommend that you create an Elastic IP address, associate it
-     * with your Amazon EC2 instance, and specify the Elastic IP address for
+     * 53 then checks the health of the endpoint.</p> <p>f the endpoint is an EC2
+     * instance, we recommend that you create an Elastic IP address, associate it with
+     * your EC2 instance, and specify the Elastic IP address for
      * <code>IPAddress</code>. This ensures that the IP address of your instance never
      * changes. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic
@@ -188,9 +188,9 @@ namespace Model
      * Amazon Route 53 sends a DNS request to resolve the domain name that you specify
      * in <code>FullyQualifiedDomainName</code> at the interval you specify in
      * <code>RequestInterval</code>. Using an IP address that DNS returns, Amazon Route
-     * 53 then checks the health of the endpoint.</p> <p>f the endpoint is an Amazon
-     * EC2 instance, we recommend that you create an Elastic IP address, associate it
-     * with your Amazon EC2 instance, and specify the Elastic IP address for
+     * 53 then checks the health of the endpoint.</p> <p>f the endpoint is an EC2
+     * instance, we recommend that you create an Elastic IP address, associate it with
+     * your EC2 instance, and specify the Elastic IP address for
      * <code>IPAddress</code>. This ensures that the IP address of your instance never
      * changes. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic
@@ -209,9 +209,9 @@ namespace Model
      * Amazon Route 53 sends a DNS request to resolve the domain name that you specify
      * in <code>FullyQualifiedDomainName</code> at the interval you specify in
      * <code>RequestInterval</code>. Using an IP address that DNS returns, Amazon Route
-     * 53 then checks the health of the endpoint.</p> <p>f the endpoint is an Amazon
-     * EC2 instance, we recommend that you create an Elastic IP address, associate it
-     * with your Amazon EC2 instance, and specify the Elastic IP address for
+     * 53 then checks the health of the endpoint.</p> <p>f the endpoint is an EC2
+     * instance, we recommend that you create an Elastic IP address, associate it with
+     * your EC2 instance, and specify the Elastic IP address for
      * <code>IPAddress</code>. This ensures that the IP address of your instance never
      * changes. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic
@@ -230,9 +230,9 @@ namespace Model
      * Amazon Route 53 sends a DNS request to resolve the domain name that you specify
      * in <code>FullyQualifiedDomainName</code> at the interval you specify in
      * <code>RequestInterval</code>. Using an IP address that DNS returns, Amazon Route
-     * 53 then checks the health of the endpoint.</p> <p>f the endpoint is an Amazon
-     * EC2 instance, we recommend that you create an Elastic IP address, associate it
-     * with your Amazon EC2 instance, and specify the Elastic IP address for
+     * 53 then checks the health of the endpoint.</p> <p>f the endpoint is an EC2
+     * instance, we recommend that you create an Elastic IP address, associate it with
+     * your EC2 instance, and specify the Elastic IP address for
      * <code>IPAddress</code>. This ensures that the IP address of your instance never
      * changes. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic
@@ -251,9 +251,9 @@ namespace Model
      * Amazon Route 53 sends a DNS request to resolve the domain name that you specify
      * in <code>FullyQualifiedDomainName</code> at the interval you specify in
      * <code>RequestInterval</code>. Using an IP address that DNS returns, Amazon Route
-     * 53 then checks the health of the endpoint.</p> <p>f the endpoint is an Amazon
-     * EC2 instance, we recommend that you create an Elastic IP address, associate it
-     * with your Amazon EC2 instance, and specify the Elastic IP address for
+     * 53 then checks the health of the endpoint.</p> <p>f the endpoint is an EC2
+     * instance, we recommend that you create an Elastic IP address, associate it with
+     * your EC2 instance, and specify the Elastic IP address for
      * <code>IPAddress</code>. This ensures that the IP address of your instance never
      * changes. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic
@@ -272,9 +272,9 @@ namespace Model
      * Amazon Route 53 sends a DNS request to resolve the domain name that you specify
      * in <code>FullyQualifiedDomainName</code> at the interval you specify in
      * <code>RequestInterval</code>. Using an IP address that DNS returns, Amazon Route
-     * 53 then checks the health of the endpoint.</p> <p>f the endpoint is an Amazon
-     * EC2 instance, we recommend that you create an Elastic IP address, associate it
-     * with your Amazon EC2 instance, and specify the Elastic IP address for
+     * 53 then checks the health of the endpoint.</p> <p>f the endpoint is an EC2
+     * instance, we recommend that you create an Elastic IP address, associate it with
+     * your EC2 instance, and specify the Elastic IP address for
      * <code>IPAddress</code>. This ensures that the IP address of your instance never
      * changes. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic
@@ -1059,19 +1059,69 @@ namespace Model
     
     inline UpdateHealthCheckRequest& WithAlarmIdentifier(AlarmIdentifier&& value) { SetAlarmIdentifier(value); return *this;}
 
-    
+    /**
+     * <p>When CloudWatch has insufficient data about the metric to determine the alarm
+     * state, the status that you want Amazon Route 53 to assign to the health
+     * check:</p> <ul> <li> <p> <code>Healthy</code>: Amazon Route 53 considers the
+     * health check to be healthy.</p> </li> <li> <p> <code>Unhealthy</code>: Amazon
+     * Route 53 considers the health check to be unhealthy.</p> </li> <li> <p>
+     * <code>LastKnownStatus</code>: Amazon Route 53 uses the status of the health
+     * check from the last time CloudWatch had sufficient data to determine the alarm
+     * state. For new health checks that have no last known status, the default status
+     * for the health check is healthy.</p> </li> </ul>
+     */
     inline const InsufficientDataHealthStatus& GetInsufficientDataHealthStatus() const{ return m_insufficientDataHealthStatus; }
 
-    
+    /**
+     * <p>When CloudWatch has insufficient data about the metric to determine the alarm
+     * state, the status that you want Amazon Route 53 to assign to the health
+     * check:</p> <ul> <li> <p> <code>Healthy</code>: Amazon Route 53 considers the
+     * health check to be healthy.</p> </li> <li> <p> <code>Unhealthy</code>: Amazon
+     * Route 53 considers the health check to be unhealthy.</p> </li> <li> <p>
+     * <code>LastKnownStatus</code>: Amazon Route 53 uses the status of the health
+     * check from the last time CloudWatch had sufficient data to determine the alarm
+     * state. For new health checks that have no last known status, the default status
+     * for the health check is healthy.</p> </li> </ul>
+     */
     inline void SetInsufficientDataHealthStatus(const InsufficientDataHealthStatus& value) { m_insufficientDataHealthStatusHasBeenSet = true; m_insufficientDataHealthStatus = value; }
 
-    
+    /**
+     * <p>When CloudWatch has insufficient data about the metric to determine the alarm
+     * state, the status that you want Amazon Route 53 to assign to the health
+     * check:</p> <ul> <li> <p> <code>Healthy</code>: Amazon Route 53 considers the
+     * health check to be healthy.</p> </li> <li> <p> <code>Unhealthy</code>: Amazon
+     * Route 53 considers the health check to be unhealthy.</p> </li> <li> <p>
+     * <code>LastKnownStatus</code>: Amazon Route 53 uses the status of the health
+     * check from the last time CloudWatch had sufficient data to determine the alarm
+     * state. For new health checks that have no last known status, the default status
+     * for the health check is healthy.</p> </li> </ul>
+     */
     inline void SetInsufficientDataHealthStatus(InsufficientDataHealthStatus&& value) { m_insufficientDataHealthStatusHasBeenSet = true; m_insufficientDataHealthStatus = value; }
 
-    
+    /**
+     * <p>When CloudWatch has insufficient data about the metric to determine the alarm
+     * state, the status that you want Amazon Route 53 to assign to the health
+     * check:</p> <ul> <li> <p> <code>Healthy</code>: Amazon Route 53 considers the
+     * health check to be healthy.</p> </li> <li> <p> <code>Unhealthy</code>: Amazon
+     * Route 53 considers the health check to be unhealthy.</p> </li> <li> <p>
+     * <code>LastKnownStatus</code>: Amazon Route 53 uses the status of the health
+     * check from the last time CloudWatch had sufficient data to determine the alarm
+     * state. For new health checks that have no last known status, the default status
+     * for the health check is healthy.</p> </li> </ul>
+     */
     inline UpdateHealthCheckRequest& WithInsufficientDataHealthStatus(const InsufficientDataHealthStatus& value) { SetInsufficientDataHealthStatus(value); return *this;}
 
-    
+    /**
+     * <p>When CloudWatch has insufficient data about the metric to determine the alarm
+     * state, the status that you want Amazon Route 53 to assign to the health
+     * check:</p> <ul> <li> <p> <code>Healthy</code>: Amazon Route 53 considers the
+     * health check to be healthy.</p> </li> <li> <p> <code>Unhealthy</code>: Amazon
+     * Route 53 considers the health check to be unhealthy.</p> </li> <li> <p>
+     * <code>LastKnownStatus</code>: Amazon Route 53 uses the status of the health
+     * check from the last time CloudWatch had sufficient data to determine the alarm
+     * state. For new health checks that have no last known status, the default status
+     * for the health check is healthy.</p> </li> </ul>
+     */
     inline UpdateHealthCheckRequest& WithInsufficientDataHealthStatus(InsufficientDataHealthStatus&& value) { SetInsufficientDataHealthStatus(value); return *this;}
 
   private:

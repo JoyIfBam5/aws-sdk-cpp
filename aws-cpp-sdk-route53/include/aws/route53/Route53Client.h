@@ -17,6 +17,7 @@
 #include <aws/route53/Route53Errors.h>
 #include <aws/core/client/AWSError.h>
 #include <aws/core/client/ClientConfiguration.h>
+#include <aws/core/AmazonSerializableWebServiceRequest.h>
 #include <aws/core/client/AWSClient.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
@@ -357,7 +358,9 @@ namespace Model
          * account, the AWS account that created the private hosted zone must first submit
          * a <code>CreateVPCAssociationAuthorization</code> request. Then the account that
          * created the VPC must submit an <code>AssociateVPCWithHostedZone</code>
-         * request.</p> </note>
+         * request.</p> </note><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/AssociateVPCWithHostedZone">AWS
+         * API Reference</a></p>
          */
         virtual Model::AssociateVPCWithHostedZoneOutcome AssociateVPCWithHostedZone(const Model::AssociateVPCWithHostedZoneRequest& request) const;
 
@@ -375,7 +378,9 @@ namespace Model
          * account, the AWS account that created the private hosted zone must first submit
          * a <code>CreateVPCAssociationAuthorization</code> request. Then the account that
          * created the VPC must submit an <code>AssociateVPCWithHostedZone</code>
-         * request.</p> </note>
+         * request.</p> </note><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/AssociateVPCWithHostedZone">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -395,7 +400,9 @@ namespace Model
          * account, the AWS account that created the private hosted zone must first submit
          * a <code>CreateVPCAssociationAuthorization</code> request. Then the account that
          * created the VPC must submit an <code>AssociateVPCWithHostedZone</code>
-         * request.</p> </note>
+         * request.</p> </note><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/AssociateVPCWithHostedZone">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -435,35 +442,38 @@ namespace Model
          * perform the following actions:</p> <ul> <li> <p> <code>CREATE</code>: Creates a
          * resource record set that has the specified values.</p> </li> <li> <p>
          * <code>DELETE</code>: Deletes an existing resource record set that has the
-         * applicable values for the following elements:</p> <ul> <li> <p>
-         * <code>Name</code>: required to delete any resource record set</p> </li> <li> <p>
-         * <code>Type</code>: required to delete any resource record set</p> </li> <li> <p>
-         * <code>AliasTarget</code>, <code>DNSName</code>,
-         * <code>EvaluateTargetHealth</code>, and <code>HostedZoneId</code>: required to
-         * delete an alias resource record set</p> </li> <li> <p>
-         * <code>SetIdentifier</code>: required to delete a failover, geolocation, latency,
-         * or weighted resource record set </p> </li> <li> <p> <code>TTL</code>: required
-         * to delete any resource record set except an alias resource record set (For alias
-         * resource record sets, the TTL is determined by the AWS resource tat you're
-         * routing traffic to.)</p> </li> </ul> </li> <li> <p> <code>UPSERT</code>: If a
-         * resource record set does not already exist, AWS creates it. If a resource set
-         * does exist, Amazon Route 53 updates it with the values in the request. Amazon
-         * Route 53 can update an existing resource record set only when all of the
-         * following values match: <code>Name</code>, <code>Type</code>, and <code>Set
-         * Identifier</code> (for weighted, latency, geolocation, and failover resource
-         * record sets).</p> </li> </ul> <p>In response to a
-         * <code>ChangeResourceRecordSets</code> request, the DNS data is changed on all
-         * Amazon Route 53 DNS servers. Initially, the status of a change is
-         * <code>PENDING</code>, meaning the change has not yet propagated to all the
-         * authoritative Amazon Route 53 DNS servers. When the change is propagated to all
-         * hosts, the change returns a status of <code>INSYNC</code>.</p> <p>After sending
-         * a change request, confirm your change has propagated to all Amazon Route 53 DNS
-         * servers. Changes generally propagate to all Amazon Route 53 name servers in a
-         * few minutes. In rare circumstances, propagation can take up to 30 minutes. For
-         * more information, see <a>GetChange</a>.</p> <p>For information about the limits
-         * on a <code>ChangeResourceRecordSets</code> request, see <a
+         * specified values.</p> </li> <li> <p> <code>UPSERT</code>: If a resource record
+         * set does not already exist, AWS creates it. If a resource set does exist, Amazon
+         * Route 53 updates it with the values in the request. </p> </li> </ul> <p>The
+         * values that you need to include in the request depend on the type of resource
+         * record set that you're creating, deleting, or updating:</p> <p> <b>Basic
+         * resource record sets (excluding alias, failover, geolocation, latency, and
+         * weighted resource record sets)</b> </p> <ul> <li> <p> <code>Name</code> </p>
+         * </li> <li> <p> <code>Type</code> </p> </li> <li> <p> <code>TTL</code> </p> </li>
+         * </ul> <p> <b>Failover, geolocation, latency, or weighted resource record sets
+         * (excluding alias resource record sets)</b> </p> <ul> <li> <p> <code>Name</code>
+         * </p> </li> <li> <p> <code>Type</code> </p> </li> <li> <p> <code>TTL</code> </p>
+         * </li> <li> <p> <code>SetIdentifier</code> </p> </li> </ul> <p> <b>Alias resource
+         * record sets (including failover alias, geolocation alias, latency alias, and
+         * weighted alias resource record sets)</b> </p> <ul> <li> <p> <code>Name</code>
+         * </p> </li> <li> <p> <code>Type</code> </p> </li> <li> <p>
+         * <code>AliasTarget</code> (includes <code>DNSName</code>,
+         * <code>EvaluateTargetHealth</code>, and <code>HostedZoneId</code>)</p> </li> <li>
+         * <p> <code>SetIdentifier</code> (for failover, geolocation, latency, and weighted
+         * resource record sets)</p> </li> </ul> <p>When you submit a
+         * <code>ChangeResourceRecordSets</code> request, Amazon Route 53 propagates your
+         * changes to all of the Amazon Route 53 authoritative DNS servers. While your
+         * changes are propagating, <code>GetChange</code> returns a status of
+         * <code>PENDING</code>. When propagation is complete, <code>GetChange</code>
+         * returns a status of <code>INSYNC</code>. Changes generally propagate to all
+         * Amazon Route 53 name servers in a few minutes. In rare circumstances,
+         * propagation can take up to 30 minutes. For more information, see
+         * <a>GetChange</a> </p> <p>For information about the limits on a
+         * <code>ChangeResourceRecordSets</code> request, see <a
          * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html">Limits</a>
-         * in the <i>Amazon Route 53 Developer Guide</i>.</p>
+         * in the <i>Amazon Route 53 Developer Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ChangeResourceRecordSets">AWS
+         * API Reference</a></p>
          */
         virtual Model::ChangeResourceRecordSetsOutcome ChangeResourceRecordSets(const Model::ChangeResourceRecordSetsRequest& request) const;
 
@@ -501,35 +511,38 @@ namespace Model
          * perform the following actions:</p> <ul> <li> <p> <code>CREATE</code>: Creates a
          * resource record set that has the specified values.</p> </li> <li> <p>
          * <code>DELETE</code>: Deletes an existing resource record set that has the
-         * applicable values for the following elements:</p> <ul> <li> <p>
-         * <code>Name</code>: required to delete any resource record set</p> </li> <li> <p>
-         * <code>Type</code>: required to delete any resource record set</p> </li> <li> <p>
-         * <code>AliasTarget</code>, <code>DNSName</code>,
-         * <code>EvaluateTargetHealth</code>, and <code>HostedZoneId</code>: required to
-         * delete an alias resource record set</p> </li> <li> <p>
-         * <code>SetIdentifier</code>: required to delete a failover, geolocation, latency,
-         * or weighted resource record set </p> </li> <li> <p> <code>TTL</code>: required
-         * to delete any resource record set except an alias resource record set (For alias
-         * resource record sets, the TTL is determined by the AWS resource tat you're
-         * routing traffic to.)</p> </li> </ul> </li> <li> <p> <code>UPSERT</code>: If a
-         * resource record set does not already exist, AWS creates it. If a resource set
-         * does exist, Amazon Route 53 updates it with the values in the request. Amazon
-         * Route 53 can update an existing resource record set only when all of the
-         * following values match: <code>Name</code>, <code>Type</code>, and <code>Set
-         * Identifier</code> (for weighted, latency, geolocation, and failover resource
-         * record sets).</p> </li> </ul> <p>In response to a
-         * <code>ChangeResourceRecordSets</code> request, the DNS data is changed on all
-         * Amazon Route 53 DNS servers. Initially, the status of a change is
-         * <code>PENDING</code>, meaning the change has not yet propagated to all the
-         * authoritative Amazon Route 53 DNS servers. When the change is propagated to all
-         * hosts, the change returns a status of <code>INSYNC</code>.</p> <p>After sending
-         * a change request, confirm your change has propagated to all Amazon Route 53 DNS
-         * servers. Changes generally propagate to all Amazon Route 53 name servers in a
-         * few minutes. In rare circumstances, propagation can take up to 30 minutes. For
-         * more information, see <a>GetChange</a>.</p> <p>For information about the limits
-         * on a <code>ChangeResourceRecordSets</code> request, see <a
+         * specified values.</p> </li> <li> <p> <code>UPSERT</code>: If a resource record
+         * set does not already exist, AWS creates it. If a resource set does exist, Amazon
+         * Route 53 updates it with the values in the request. </p> </li> </ul> <p>The
+         * values that you need to include in the request depend on the type of resource
+         * record set that you're creating, deleting, or updating:</p> <p> <b>Basic
+         * resource record sets (excluding alias, failover, geolocation, latency, and
+         * weighted resource record sets)</b> </p> <ul> <li> <p> <code>Name</code> </p>
+         * </li> <li> <p> <code>Type</code> </p> </li> <li> <p> <code>TTL</code> </p> </li>
+         * </ul> <p> <b>Failover, geolocation, latency, or weighted resource record sets
+         * (excluding alias resource record sets)</b> </p> <ul> <li> <p> <code>Name</code>
+         * </p> </li> <li> <p> <code>Type</code> </p> </li> <li> <p> <code>TTL</code> </p>
+         * </li> <li> <p> <code>SetIdentifier</code> </p> </li> </ul> <p> <b>Alias resource
+         * record sets (including failover alias, geolocation alias, latency alias, and
+         * weighted alias resource record sets)</b> </p> <ul> <li> <p> <code>Name</code>
+         * </p> </li> <li> <p> <code>Type</code> </p> </li> <li> <p>
+         * <code>AliasTarget</code> (includes <code>DNSName</code>,
+         * <code>EvaluateTargetHealth</code>, and <code>HostedZoneId</code>)</p> </li> <li>
+         * <p> <code>SetIdentifier</code> (for failover, geolocation, latency, and weighted
+         * resource record sets)</p> </li> </ul> <p>When you submit a
+         * <code>ChangeResourceRecordSets</code> request, Amazon Route 53 propagates your
+         * changes to all of the Amazon Route 53 authoritative DNS servers. While your
+         * changes are propagating, <code>GetChange</code> returns a status of
+         * <code>PENDING</code>. When propagation is complete, <code>GetChange</code>
+         * returns a status of <code>INSYNC</code>. Changes generally propagate to all
+         * Amazon Route 53 name servers in a few minutes. In rare circumstances,
+         * propagation can take up to 30 minutes. For more information, see
+         * <a>GetChange</a> </p> <p>For information about the limits on a
+         * <code>ChangeResourceRecordSets</code> request, see <a
          * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html">Limits</a>
-         * in the <i>Amazon Route 53 Developer Guide</i>.</p>
+         * in the <i>Amazon Route 53 Developer Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ChangeResourceRecordSets">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -569,35 +582,38 @@ namespace Model
          * perform the following actions:</p> <ul> <li> <p> <code>CREATE</code>: Creates a
          * resource record set that has the specified values.</p> </li> <li> <p>
          * <code>DELETE</code>: Deletes an existing resource record set that has the
-         * applicable values for the following elements:</p> <ul> <li> <p>
-         * <code>Name</code>: required to delete any resource record set</p> </li> <li> <p>
-         * <code>Type</code>: required to delete any resource record set</p> </li> <li> <p>
-         * <code>AliasTarget</code>, <code>DNSName</code>,
-         * <code>EvaluateTargetHealth</code>, and <code>HostedZoneId</code>: required to
-         * delete an alias resource record set</p> </li> <li> <p>
-         * <code>SetIdentifier</code>: required to delete a failover, geolocation, latency,
-         * or weighted resource record set </p> </li> <li> <p> <code>TTL</code>: required
-         * to delete any resource record set except an alias resource record set (For alias
-         * resource record sets, the TTL is determined by the AWS resource tat you're
-         * routing traffic to.)</p> </li> </ul> </li> <li> <p> <code>UPSERT</code>: If a
-         * resource record set does not already exist, AWS creates it. If a resource set
-         * does exist, Amazon Route 53 updates it with the values in the request. Amazon
-         * Route 53 can update an existing resource record set only when all of the
-         * following values match: <code>Name</code>, <code>Type</code>, and <code>Set
-         * Identifier</code> (for weighted, latency, geolocation, and failover resource
-         * record sets).</p> </li> </ul> <p>In response to a
-         * <code>ChangeResourceRecordSets</code> request, the DNS data is changed on all
-         * Amazon Route 53 DNS servers. Initially, the status of a change is
-         * <code>PENDING</code>, meaning the change has not yet propagated to all the
-         * authoritative Amazon Route 53 DNS servers. When the change is propagated to all
-         * hosts, the change returns a status of <code>INSYNC</code>.</p> <p>After sending
-         * a change request, confirm your change has propagated to all Amazon Route 53 DNS
-         * servers. Changes generally propagate to all Amazon Route 53 name servers in a
-         * few minutes. In rare circumstances, propagation can take up to 30 minutes. For
-         * more information, see <a>GetChange</a>.</p> <p>For information about the limits
-         * on a <code>ChangeResourceRecordSets</code> request, see <a
+         * specified values.</p> </li> <li> <p> <code>UPSERT</code>: If a resource record
+         * set does not already exist, AWS creates it. If a resource set does exist, Amazon
+         * Route 53 updates it with the values in the request. </p> </li> </ul> <p>The
+         * values that you need to include in the request depend on the type of resource
+         * record set that you're creating, deleting, or updating:</p> <p> <b>Basic
+         * resource record sets (excluding alias, failover, geolocation, latency, and
+         * weighted resource record sets)</b> </p> <ul> <li> <p> <code>Name</code> </p>
+         * </li> <li> <p> <code>Type</code> </p> </li> <li> <p> <code>TTL</code> </p> </li>
+         * </ul> <p> <b>Failover, geolocation, latency, or weighted resource record sets
+         * (excluding alias resource record sets)</b> </p> <ul> <li> <p> <code>Name</code>
+         * </p> </li> <li> <p> <code>Type</code> </p> </li> <li> <p> <code>TTL</code> </p>
+         * </li> <li> <p> <code>SetIdentifier</code> </p> </li> </ul> <p> <b>Alias resource
+         * record sets (including failover alias, geolocation alias, latency alias, and
+         * weighted alias resource record sets)</b> </p> <ul> <li> <p> <code>Name</code>
+         * </p> </li> <li> <p> <code>Type</code> </p> </li> <li> <p>
+         * <code>AliasTarget</code> (includes <code>DNSName</code>,
+         * <code>EvaluateTargetHealth</code>, and <code>HostedZoneId</code>)</p> </li> <li>
+         * <p> <code>SetIdentifier</code> (for failover, geolocation, latency, and weighted
+         * resource record sets)</p> </li> </ul> <p>When you submit a
+         * <code>ChangeResourceRecordSets</code> request, Amazon Route 53 propagates your
+         * changes to all of the Amazon Route 53 authoritative DNS servers. While your
+         * changes are propagating, <code>GetChange</code> returns a status of
+         * <code>PENDING</code>. When propagation is complete, <code>GetChange</code>
+         * returns a status of <code>INSYNC</code>. Changes generally propagate to all
+         * Amazon Route 53 name servers in a few minutes. In rare circumstances,
+         * propagation can take up to 30 minutes. For more information, see
+         * <a>GetChange</a> </p> <p>For information about the limits on a
+         * <code>ChangeResourceRecordSets</code> request, see <a
          * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html">Limits</a>
-         * in the <i>Amazon Route 53 Developer Guide</i>.</p>
+         * in the <i>Amazon Route 53 Developer Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ChangeResourceRecordSets">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -608,7 +624,9 @@ namespace Model
          * information about using tags for cost allocation, see <a
          * href="http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html">Using
          * Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User
-         * Guide</i>.</p>
+         * Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ChangeTagsForResource">AWS
+         * API Reference</a></p>
          */
         virtual Model::ChangeTagsForResourceOutcome ChangeTagsForResource(const Model::ChangeTagsForResourceRequest& request) const;
 
@@ -617,7 +635,9 @@ namespace Model
          * information about using tags for cost allocation, see <a
          * href="http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html">Using
          * Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User
-         * Guide</i>.</p>
+         * Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ChangeTagsForResource">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -628,7 +648,9 @@ namespace Model
          * information about using tags for cost allocation, see <a
          * href="http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html">Using
          * Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User
-         * Guide</i>.</p>
+         * Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ChangeTagsForResource">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -661,7 +683,9 @@ namespace Model
          * state of the alarm. For information about creating CloudWatch metrics and alarms
          * by using the CloudWatch console, see the <a
          * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatch.html">Amazon
-         * CloudWatch User Guide</a>.</p> </li> </ul>
+         * CloudWatch User Guide</a>.</p> </li> </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateHealthCheck">AWS
+         * API Reference</a></p>
          */
         virtual Model::CreateHealthCheckOutcome CreateHealthCheck(const Model::CreateHealthCheckRequest& request) const;
 
@@ -692,7 +716,9 @@ namespace Model
          * state of the alarm. For information about creating CloudWatch metrics and alarms
          * by using the CloudWatch console, see the <a
          * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatch.html">Amazon
-         * CloudWatch User Guide</a>.</p> </li> </ul>
+         * CloudWatch User Guide</a>.</p> </li> </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateHealthCheck">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -725,7 +751,9 @@ namespace Model
          * state of the alarm. For information about creating CloudWatch metrics and alarms
          * by using the CloudWatch console, see the <a
          * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatch.html">Amazon
-         * CloudWatch User Guide</a>.</p> </li> </ul>
+         * CloudWatch User Guide</a>.</p> </li> </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateHealthCheck">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -761,7 +789,9 @@ namespace Model
          * SOA records are available on all Amazon Route 53 DNS servers. </p> <p>When
          * trying to create a hosted zone using a reusable delegation set, specify an
          * optional DelegationSetId, and Amazon Route 53 would assign those 4 NS records
-         * for the zone, instead of allotting a new one.</p>
+         * for the zone, instead of allotting a new one.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateHostedZone">AWS
+         * API Reference</a></p>
          */
         virtual Model::CreateHostedZoneOutcome CreateHostedZone(const Model::CreateHostedZoneRequest& request) const;
 
@@ -795,7 +825,9 @@ namespace Model
          * SOA records are available on all Amazon Route 53 DNS servers. </p> <p>When
          * trying to create a hosted zone using a reusable delegation set, specify an
          * optional DelegationSetId, and Amazon Route 53 would assign those 4 NS records
-         * for the zone, instead of allotting a new one.</p>
+         * for the zone, instead of allotting a new one.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateHostedZone">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -831,7 +863,9 @@ namespace Model
          * SOA records are available on all Amazon Route 53 DNS servers. </p> <p>When
          * trying to create a hosted zone using a reusable delegation set, specify an
          * optional DelegationSetId, and Amazon Route 53 would assign those 4 NS records
-         * for the zone, instead of allotting a new one.</p>
+         * for the zone, instead of allotting a new one.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateHostedZone">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -849,7 +883,9 @@ namespace Model
          * create and configure a reusable delegation set (also known as white label name
          * servers), see <a
          * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/white-label-name-servers.html">Configuring
-         * White Label Name Servers</a>.</p>
+         * White Label Name Servers</a>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateReusableDelegationSet">AWS
+         * API Reference</a></p>
          */
         virtual Model::CreateReusableDelegationSetOutcome CreateReusableDelegationSet(const Model::CreateReusableDelegationSetRequest& request) const;
 
@@ -865,7 +901,9 @@ namespace Model
          * create and configure a reusable delegation set (also known as white label name
          * servers), see <a
          * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/white-label-name-servers.html">Configuring
-         * White Label Name Servers</a>.</p>
+         * White Label Name Servers</a>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateReusableDelegationSet">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -883,7 +921,9 @@ namespace Model
          * create and configure a reusable delegation set (also known as white label name
          * servers), see <a
          * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/white-label-name-servers.html">Configuring
-         * White Label Name Servers</a>.</p>
+         * White Label Name Servers</a>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateReusableDelegationSet">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -896,7 +936,9 @@ namespace Model
          * <code>/2013-04-01/trafficpolicy</code> resource. The request body must include a
          * document with a <code>CreateTrafficPolicyRequest</code> element. The response
          * includes the <code>CreateTrafficPolicyResponse</code> element, which contains
-         * information about the new traffic policy.</p>
+         * information about the new traffic policy.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateTrafficPolicy">AWS
+         * API Reference</a></p>
          */
         virtual Model::CreateTrafficPolicyOutcome CreateTrafficPolicy(const Model::CreateTrafficPolicyRequest& request) const;
 
@@ -907,7 +949,9 @@ namespace Model
          * <code>/2013-04-01/trafficpolicy</code> resource. The request body must include a
          * document with a <code>CreateTrafficPolicyRequest</code> element. The response
          * includes the <code>CreateTrafficPolicyResponse</code> element, which contains
-         * information about the new traffic policy.</p>
+         * information about the new traffic policy.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateTrafficPolicy">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -920,7 +964,9 @@ namespace Model
          * <code>/2013-04-01/trafficpolicy</code> resource. The request body must include a
          * document with a <code>CreateTrafficPolicyRequest</code> element. The response
          * includes the <code>CreateTrafficPolicyResponse</code> element, which contains
-         * information about the new traffic policy.</p>
+         * information about the new traffic policy.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateTrafficPolicy">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -938,7 +984,9 @@ namespace Model
          * resource. The request body must include a document with a
          * <code>CreateTrafficPolicyRequest</code> element. The response returns the
          * <code>CreateTrafficPolicyInstanceResponse</code> element, which contains
-         * information about the traffic policy instance.</p>
+         * information about the traffic policy instance.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateTrafficPolicyInstance">AWS
+         * API Reference</a></p>
          */
         virtual Model::CreateTrafficPolicyInstanceOutcome CreateTrafficPolicyInstance(const Model::CreateTrafficPolicyInstanceRequest& request) const;
 
@@ -954,7 +1002,9 @@ namespace Model
          * resource. The request body must include a document with a
          * <code>CreateTrafficPolicyRequest</code> element. The response returns the
          * <code>CreateTrafficPolicyInstanceResponse</code> element, which contains
-         * information about the traffic policy instance.</p>
+         * information about the traffic policy instance.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateTrafficPolicyInstance">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -972,7 +1022,9 @@ namespace Model
          * resource. The request body must include a document with a
          * <code>CreateTrafficPolicyRequest</code> element. The response returns the
          * <code>CreateTrafficPolicyInstanceResponse</code> element, which contains
-         * information about the traffic policy instance.</p>
+         * information about the traffic policy instance.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateTrafficPolicyInstance">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -990,7 +1042,10 @@ namespace Model
          * <code>/2013-04-01/trafficpolicy/</code> resource. The request body includes a
          * document with a <code>CreateTrafficPolicyVersionRequest</code> element. The
          * response returns the <code>CreateTrafficPolicyVersionResponse</code> element,
-         * which contains information about the new version of the traffic policy.</p>
+         * which contains information about the new version of the traffic
+         * policy.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateTrafficPolicyVersion">AWS
+         * API Reference</a></p>
          */
         virtual Model::CreateTrafficPolicyVersionOutcome CreateTrafficPolicyVersion(const Model::CreateTrafficPolicyVersionRequest& request) const;
 
@@ -1006,7 +1061,10 @@ namespace Model
          * <code>/2013-04-01/trafficpolicy/</code> resource. The request body includes a
          * document with a <code>CreateTrafficPolicyVersionRequest</code> element. The
          * response returns the <code>CreateTrafficPolicyVersionResponse</code> element,
-         * which contains information about the new version of the traffic policy.</p>
+         * which contains information about the new version of the traffic
+         * policy.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateTrafficPolicyVersion">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1024,7 +1082,10 @@ namespace Model
          * <code>/2013-04-01/trafficpolicy/</code> resource. The request body includes a
          * document with a <code>CreateTrafficPolicyVersionRequest</code> element. The
          * response returns the <code>CreateTrafficPolicyVersionResponse</code> element,
-         * which contains information about the new version of the traffic policy.</p>
+         * which contains information about the new version of the traffic
+         * policy.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateTrafficPolicyVersion">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1044,7 +1105,10 @@ namespace Model
          * <code>/2013-04-01/hostedzone/<i>hosted zone
          * ID</i>/authorizevpcassociation</code> resource. The request body must include a
          * document with a <code>CreateVPCAssociationAuthorizationRequest</code> element.
-         * The response contains information about the authorization.</p>
+         * The response contains information about the authorization.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateVPCAssociationAuthorization">AWS
+         * API Reference</a></p>
          */
         virtual Model::CreateVPCAssociationAuthorizationOutcome CreateVPCAssociationAuthorization(const Model::CreateVPCAssociationAuthorizationRequest& request) const;
 
@@ -1062,7 +1126,10 @@ namespace Model
          * <code>/2013-04-01/hostedzone/<i>hosted zone
          * ID</i>/authorizevpcassociation</code> resource. The request body must include a
          * document with a <code>CreateVPCAssociationAuthorizationRequest</code> element.
-         * The response contains information about the authorization.</p>
+         * The response contains information about the authorization.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateVPCAssociationAuthorization">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1082,7 +1149,10 @@ namespace Model
          * <code>/2013-04-01/hostedzone/<i>hosted zone
          * ID</i>/authorizevpcassociation</code> resource. The request body must include a
          * document with a <code>CreateVPCAssociationAuthorizationRequest</code> element.
-         * The response contains information about the authorization.</p>
+         * The response contains information about the authorization.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateVPCAssociationAuthorization">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1099,7 +1169,9 @@ namespace Model
          * For more information, see <a
          * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-deleting.html#health-checks-deleting.html">Replacing
          * and Deleting Health Checks</a> in the Amazon Route 53 Developer Guide.</p>
-         * </important>
+         * </important><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteHealthCheck">AWS
+         * API Reference</a></p>
          */
         virtual Model::DeleteHealthCheckOutcome DeleteHealthCheck(const Model::DeleteHealthCheckRequest& request) const;
 
@@ -1114,7 +1186,9 @@ namespace Model
          * For more information, see <a
          * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-deleting.html#health-checks-deleting.html">Replacing
          * and Deleting Health Checks</a> in the Amazon Route 53 Developer Guide.</p>
-         * </important>
+         * </important><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteHealthCheck">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1131,7 +1205,9 @@ namespace Model
          * For more information, see <a
          * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-deleting.html#health-checks-deleting.html">Replacing
          * and Deleting Health Checks</a> in the Amazon Route 53 Developer Guide.</p>
-         * </important>
+         * </important><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteHealthCheck">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1146,7 +1222,10 @@ namespace Model
          * deleting the hosted zone. If you try to delete a hosted zone that contains other
          * resource record sets, Amazon Route 53 denies your request with a
          * <code>HostedZoneNotEmpty</code> error. For information about deleting records
-         * from your hosted zone, see <a>ChangeResourceRecordSets</a>.</p> </important>
+         * from your hosted zone, see <a>ChangeResourceRecordSets</a>.</p>
+         * </important><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteHostedZone">AWS
+         * API Reference</a></p>
          */
         virtual Model::DeleteHostedZoneOutcome DeleteHostedZone(const Model::DeleteHostedZoneRequest& request) const;
 
@@ -1159,7 +1238,10 @@ namespace Model
          * deleting the hosted zone. If you try to delete a hosted zone that contains other
          * resource record sets, Amazon Route 53 denies your request with a
          * <code>HostedZoneNotEmpty</code> error. For information about deleting records
-         * from your hosted zone, see <a>ChangeResourceRecordSets</a>.</p> </important>
+         * from your hosted zone, see <a>ChangeResourceRecordSets</a>.</p>
+         * </important><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteHostedZone">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1174,7 +1256,10 @@ namespace Model
          * deleting the hosted zone. If you try to delete a hosted zone that contains other
          * resource record sets, Amazon Route 53 denies your request with a
          * <code>HostedZoneNotEmpty</code> error. For information about deleting records
-         * from your hosted zone, see <a>ChangeResourceRecordSets</a>.</p> </important>
+         * from your hosted zone, see <a>ChangeResourceRecordSets</a>.</p>
+         * </important><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteHostedZone">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1187,7 +1272,9 @@ namespace Model
          * associated hosted zones.</p> </important> <p>To verify that the reusable
          * delegation set is not associated with any hosted zones, run the
          * <a>GetReusableDelegationSet</a> action and specify the ID of the reusable
-         * delegation set that you want to delete.</p>
+         * delegation set that you want to delete.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteReusableDelegationSet">AWS
+         * API Reference</a></p>
          */
         virtual Model::DeleteReusableDelegationSetOutcome DeleteReusableDelegationSet(const Model::DeleteReusableDelegationSetRequest& request) const;
 
@@ -1198,7 +1285,9 @@ namespace Model
          * associated hosted zones.</p> </important> <p>To verify that the reusable
          * delegation set is not associated with any hosted zones, run the
          * <a>GetReusableDelegationSet</a> action and specify the ID of the reusable
-         * delegation set that you want to delete.</p>
+         * delegation set that you want to delete.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteReusableDelegationSet">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1211,7 +1300,9 @@ namespace Model
          * associated hosted zones.</p> </important> <p>To verify that the reusable
          * delegation set is not associated with any hosted zones, run the
          * <a>GetReusableDelegationSet</a> action and specify the ID of the reusable
-         * delegation set that you want to delete.</p>
+         * delegation set that you want to delete.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteReusableDelegationSet">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1219,13 +1310,19 @@ namespace Model
 
         /**
          * <p>Deletes a traffic policy.</p> <p>Send a <code>DELETE</code> request to the
-         * <code>/<i>Amazon Route 53 API version</i>/trafficpolicy</code> resource.</p>
+         * <code>/<i>Amazon Route 53 API version</i>/trafficpolicy</code>
+         * resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteTrafficPolicy">AWS
+         * API Reference</a></p>
          */
         virtual Model::DeleteTrafficPolicyOutcome DeleteTrafficPolicy(const Model::DeleteTrafficPolicyRequest& request) const;
 
         /**
          * <p>Deletes a traffic policy.</p> <p>Send a <code>DELETE</code> request to the
-         * <code>/<i>Amazon Route 53 API version</i>/trafficpolicy</code> resource.</p>
+         * <code>/<i>Amazon Route 53 API version</i>/trafficpolicy</code>
+         * resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteTrafficPolicy">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1233,7 +1330,10 @@ namespace Model
 
         /**
          * <p>Deletes a traffic policy.</p> <p>Send a <code>DELETE</code> request to the
-         * <code>/<i>Amazon Route 53 API version</i>/trafficpolicy</code> resource.</p>
+         * <code>/<i>Amazon Route 53 API version</i>/trafficpolicy</code>
+         * resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteTrafficPolicy">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1245,7 +1345,9 @@ namespace Model
          * <code>DELETE</code> request to the <code>/<i>Amazon Route 53 API
          * version</i>/trafficpolicy/<i>traffic policy instance ID</i> </code>
          * resource.</p> <note> <p>In the Amazon Route 53 console, traffic policy instances
-         * are known as policy records.</p> </note>
+         * are known as policy records.</p> </note><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteTrafficPolicyInstance">AWS
+         * API Reference</a></p>
          */
         virtual Model::DeleteTrafficPolicyInstanceOutcome DeleteTrafficPolicyInstance(const Model::DeleteTrafficPolicyInstanceRequest& request) const;
 
@@ -1255,7 +1357,9 @@ namespace Model
          * <code>DELETE</code> request to the <code>/<i>Amazon Route 53 API
          * version</i>/trafficpolicy/<i>traffic policy instance ID</i> </code>
          * resource.</p> <note> <p>In the Amazon Route 53 console, traffic policy instances
-         * are known as policy records.</p> </note>
+         * are known as policy records.</p> </note><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteTrafficPolicyInstance">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1267,7 +1371,9 @@ namespace Model
          * <code>DELETE</code> request to the <code>/<i>Amazon Route 53 API
          * version</i>/trafficpolicy/<i>traffic policy instance ID</i> </code>
          * resource.</p> <note> <p>In the Amazon Route 53 console, traffic policy instances
-         * are known as policy records.</p> </note>
+         * are known as policy records.</p> </note><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteTrafficPolicyInstance">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1287,7 +1393,9 @@ namespace Model
          * <code>DELETE</code> request to the <code>/2013-04-01/hostedzone/<i>hosted zone
          * ID</i>/deauthorizevpcassociation</code> resource. The request body must include
          * a document with a <code>DeleteVPCAssociationAuthorizationRequest</code>
-         * element.</p>
+         * element.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteVPCAssociationAuthorization">AWS
+         * API Reference</a></p>
          */
         virtual Model::DeleteVPCAssociationAuthorizationOutcome DeleteVPCAssociationAuthorization(const Model::DeleteVPCAssociationAuthorizationRequest& request) const;
 
@@ -1305,7 +1413,9 @@ namespace Model
          * <code>DELETE</code> request to the <code>/2013-04-01/hostedzone/<i>hosted zone
          * ID</i>/deauthorizevpcassociation</code> resource. The request body must include
          * a document with a <code>DeleteVPCAssociationAuthorizationRequest</code>
-         * element.</p>
+         * element.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteVPCAssociationAuthorization">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1325,7 +1435,9 @@ namespace Model
          * <code>DELETE</code> request to the <code>/2013-04-01/hostedzone/<i>hosted zone
          * ID</i>/deauthorizevpcassociation</code> resource. The request body must include
          * a document with a <code>DeleteVPCAssociationAuthorizationRequest</code>
-         * element.</p>
+         * element.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteVPCAssociationAuthorization">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1341,7 +1453,9 @@ namespace Model
          * a <code>DisassociateVPCFromHostedZoneResponse</code> element.</p> <important>
          * <p>You can't disassociate a VPC from a private hosted zone when only one VPC is
          * associated with the hosted zone. You also can't convert a private hosted zone
-         * into a public hosted zone.</p> </important>
+         * into a public hosted zone.</p> </important><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DisassociateVPCFromHostedZone">AWS
+         * API Reference</a></p>
          */
         virtual Model::DisassociateVPCFromHostedZoneOutcome DisassociateVPCFromHostedZone(const Model::DisassociateVPCFromHostedZoneRequest& request) const;
 
@@ -1355,7 +1469,9 @@ namespace Model
          * a <code>DisassociateVPCFromHostedZoneResponse</code> element.</p> <important>
          * <p>You can't disassociate a VPC from a private hosted zone when only one VPC is
          * associated with the hosted zone. You also can't convert a private hosted zone
-         * into a public hosted zone.</p> </important>
+         * into a public hosted zone.</p> </important><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DisassociateVPCFromHostedZone">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1371,7 +1487,9 @@ namespace Model
          * a <code>DisassociateVPCFromHostedZoneResponse</code> element.</p> <important>
          * <p>You can't disassociate a VPC from a private hosted zone when only one VPC is
          * associated with the hosted zone. You also can't convert a private hosted zone
-         * into a public hosted zone.</p> </important>
+         * into a public hosted zone.</p> </important><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DisassociateVPCFromHostedZone">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1383,7 +1501,9 @@ namespace Model
          * changes in this request have not replicated to all Amazon Route 53 DNS servers.
          * This is the initial status of all change batch requests.</p> </li> <li> <p>
          * <code>INSYNC</code> indicates that the changes have replicated to all Amazon
-         * Route 53 DNS servers. </p> </li> </ul>
+         * Route 53 DNS servers. </p> </li> </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetChange">AWS
+         * API Reference</a></p>
          */
         virtual Model::GetChangeOutcome GetChange(const Model::GetChangeRequest& request) const;
 
@@ -1393,7 +1513,9 @@ namespace Model
          * changes in this request have not replicated to all Amazon Route 53 DNS servers.
          * This is the initial status of all change batch requests.</p> </li> <li> <p>
          * <code>INSYNC</code> indicates that the changes have replicated to all Amazon
-         * Route 53 DNS servers. </p> </li> </ul>
+         * Route 53 DNS servers. </p> </li> </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetChange">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1405,7 +1527,9 @@ namespace Model
          * changes in this request have not replicated to all Amazon Route 53 DNS servers.
          * This is the initial status of all change batch requests.</p> </li> <li> <p>
          * <code>INSYNC</code> indicates that the changes have replicated to all Amazon
-         * Route 53 DNS servers. </p> </li> </ul>
+         * Route 53 DNS servers. </p> </li> </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetChange">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1416,7 +1540,9 @@ namespace Model
          * check the health of your resources. Send a <code>GET</code> request to the
          * <code>/<i>Amazon Route 53 API version</i>/checkeripranges</code> resource. Use
          * these IP addresses to configure router and firewall rules to allow health
-         * checkers to check the health of your resources.</p>
+         * checkers to check the health of your resources.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetCheckerIpRanges">AWS
+         * API Reference</a></p>
          */
         virtual Model::GetCheckerIpRangesOutcome GetCheckerIpRanges(const Model::GetCheckerIpRangesRequest& request) const;
 
@@ -1425,7 +1551,9 @@ namespace Model
          * check the health of your resources. Send a <code>GET</code> request to the
          * <code>/<i>Amazon Route 53 API version</i>/checkeripranges</code> resource. Use
          * these IP addresses to configure router and firewall rules to allow health
-         * checkers to check the health of your resources.</p>
+         * checkers to check the health of your resources.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetCheckerIpRanges">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1436,7 +1564,9 @@ namespace Model
          * check the health of your resources. Send a <code>GET</code> request to the
          * <code>/<i>Amazon Route 53 API version</i>/checkeripranges</code> resource. Use
          * these IP addresses to configure router and firewall rules to allow health
-         * checkers to check the health of your resources.</p>
+         * checkers to check the health of your resources.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetCheckerIpRanges">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1445,14 +1575,20 @@ namespace Model
         /**
          * <p>Retrieves a single geo location. Send a <code>GET</code> request to the
          * <code>/2013-04-01/geolocation</code> resource with one of these options:
-         * continentcode | countrycode | countrycode and subdivisioncode.</p>
+         * continentcode | countrycode | countrycode and subdivisioncode.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetGeoLocation">AWS
+         * API Reference</a></p>
          */
         virtual Model::GetGeoLocationOutcome GetGeoLocation(const Model::GetGeoLocationRequest& request) const;
 
         /**
          * <p>Retrieves a single geo location. Send a <code>GET</code> request to the
          * <code>/2013-04-01/geolocation</code> resource with one of these options:
-         * continentcode | countrycode | countrycode and subdivisioncode.</p>
+         * continentcode | countrycode | countrycode and subdivisioncode.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetGeoLocation">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1461,7 +1597,10 @@ namespace Model
         /**
          * <p>Retrieves a single geo location. Send a <code>GET</code> request to the
          * <code>/2013-04-01/geolocation</code> resource with one of these options:
-         * continentcode | countrycode | countrycode and subdivisioncode.</p>
+         * continentcode | countrycode | countrycode and subdivisioncode.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetGeoLocation">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1474,7 +1613,9 @@ namespace Model
          * operation, see <a
          * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html">Amazon
          * Route 53 Health Checks and DNS Failover</a> in the Amazon Route 53 Developer
-         * Guide.</p>
+         * Guide.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheck">AWS
+         * API Reference</a></p>
          */
         virtual Model::GetHealthCheckOutcome GetHealthCheck(const Model::GetHealthCheckRequest& request) const;
 
@@ -1485,7 +1626,9 @@ namespace Model
          * operation, see <a
          * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html">Amazon
          * Route 53 Health Checks and DNS Failover</a> in the Amazon Route 53 Developer
-         * Guide.</p>
+         * Guide.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheck">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1498,7 +1641,9 @@ namespace Model
          * operation, see <a
          * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html">Amazon
          * Route 53 Health Checks and DNS Failover</a> in the Amazon Route 53 Developer
-         * Guide.</p>
+         * Guide.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheck">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1506,13 +1651,19 @@ namespace Model
 
         /**
          * <p>To retrieve a count of all your health checks, send a <code>GET</code>
-         * request to the <code>/2013-04-01/healthcheckcount</code> resource.</p>
+         * request to the <code>/2013-04-01/healthcheckcount</code> resource.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheckCount">AWS
+         * API Reference</a></p>
          */
         virtual Model::GetHealthCheckCountOutcome GetHealthCheckCount(const Model::GetHealthCheckCountRequest& request) const;
 
         /**
          * <p>To retrieve a count of all your health checks, send a <code>GET</code>
-         * request to the <code>/2013-04-01/healthcheckcount</code> resource.</p>
+         * request to the <code>/2013-04-01/healthcheckcount</code> resource.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheckCount">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1520,7 +1671,10 @@ namespace Model
 
         /**
          * <p>To retrieve a count of all your health checks, send a <code>GET</code>
-         * request to the <code>/2013-04-01/healthcheckcount</code> resource.</p>
+         * request to the <code>/2013-04-01/healthcheckcount</code> resource.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheckCount">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1531,7 +1685,9 @@ namespace Model
          * most recently (if at all), you can get the failure reason for the most recent
          * failure. Send a <code>GET</code> request to the <code>/<i>Amazon Route 53 API
          * version</i>/healthcheck/<i>health check ID</i>/lastfailurereason</code>
-         * resource.</p>
+         * resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheckLastFailureReason">AWS
+         * API Reference</a></p>
          */
         virtual Model::GetHealthCheckLastFailureReasonOutcome GetHealthCheckLastFailureReason(const Model::GetHealthCheckLastFailureReasonRequest& request) const;
 
@@ -1540,7 +1696,9 @@ namespace Model
          * most recently (if at all), you can get the failure reason for the most recent
          * failure. Send a <code>GET</code> request to the <code>/<i>Amazon Route 53 API
          * version</i>/healthcheck/<i>health check ID</i>/lastfailurereason</code>
-         * resource.</p>
+         * resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheckLastFailureReason">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1551,7 +1709,9 @@ namespace Model
          * most recently (if at all), you can get the failure reason for the most recent
          * failure. Send a <code>GET</code> request to the <code>/<i>Amazon Route 53 API
          * version</i>/healthcheck/<i>health check ID</i>/lastfailurereason</code>
-         * resource.</p>
+         * resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheckLastFailureReason">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1560,14 +1720,20 @@ namespace Model
         /**
          * <p>Gets status of a specified health check. Send a <code>GET</code> request to
          * the <code>/2013-04-01/healthcheck/<i>health check ID</i>/status</code> resource.
-         * You can use this call to get a health check's current status. </p>
+         * You can use this call to get a health check's current status. </p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheckStatus">AWS
+         * API Reference</a></p>
          */
         virtual Model::GetHealthCheckStatusOutcome GetHealthCheckStatus(const Model::GetHealthCheckStatusRequest& request) const;
 
         /**
          * <p>Gets status of a specified health check. Send a <code>GET</code> request to
          * the <code>/2013-04-01/healthcheck/<i>health check ID</i>/status</code> resource.
-         * You can use this call to get a health check's current status. </p>
+         * You can use this call to get a health check's current status. </p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheckStatus">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1576,7 +1742,10 @@ namespace Model
         /**
          * <p>Gets status of a specified health check. Send a <code>GET</code> request to
          * the <code>/2013-04-01/healthcheck/<i>health check ID</i>/status</code> resource.
-         * You can use this call to get a health check's current status. </p>
+         * You can use this call to get a health check's current status. </p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheckStatus">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1586,7 +1755,9 @@ namespace Model
          * <p>Retrieves the delegation set for a hosted zone, including the four name
          * servers assigned to the hosted zone. Send a <code>GET</code> request to the
          * <code>/<i>Amazon Route 53 API version</i>/hostedzone/<i>hosted zone ID</i>
-         * </code> resource. </p>
+         * </code> resource. </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHostedZone">AWS
+         * API Reference</a></p>
          */
         virtual Model::GetHostedZoneOutcome GetHostedZone(const Model::GetHostedZoneRequest& request) const;
 
@@ -1594,7 +1765,9 @@ namespace Model
          * <p>Retrieves the delegation set for a hosted zone, including the four name
          * servers assigned to the hosted zone. Send a <code>GET</code> request to the
          * <code>/<i>Amazon Route 53 API version</i>/hostedzone/<i>hosted zone ID</i>
-         * </code> resource. </p>
+         * </code> resource. </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHostedZone">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1604,7 +1777,9 @@ namespace Model
          * <p>Retrieves the delegation set for a hosted zone, including the four name
          * servers assigned to the hosted zone. Send a <code>GET</code> request to the
          * <code>/<i>Amazon Route 53 API version</i>/hostedzone/<i>hosted zone ID</i>
-         * </code> resource. </p>
+         * </code> resource. </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHostedZone">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1612,13 +1787,19 @@ namespace Model
 
         /**
          * <p>Retrieves a count of all your hosted zones. Send a <code>GET</code> request
-         * to the <code>/2013-04-01/hostedzonecount</code> resource.</p>
+         * to the <code>/2013-04-01/hostedzonecount</code> resource.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHostedZoneCount">AWS
+         * API Reference</a></p>
          */
         virtual Model::GetHostedZoneCountOutcome GetHostedZoneCount(const Model::GetHostedZoneCountRequest& request) const;
 
         /**
          * <p>Retrieves a count of all your hosted zones. Send a <code>GET</code> request
-         * to the <code>/2013-04-01/hostedzonecount</code> resource.</p>
+         * to the <code>/2013-04-01/hostedzonecount</code> resource.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHostedZoneCount">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1626,7 +1807,10 @@ namespace Model
 
         /**
          * <p>Retrieves a count of all your hosted zones. Send a <code>GET</code> request
-         * to the <code>/2013-04-01/hostedzonecount</code> resource.</p>
+         * to the <code>/2013-04-01/hostedzonecount</code> resource.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHostedZoneCount">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1634,13 +1818,19 @@ namespace Model
 
         /**
          * <p>Retrieves the reusable delegation set. Send a <code>GET</code> request to the
-         * <code>/2013-04-01/delegationset/<i>delegation set ID</i> </code> resource.</p>
+         * <code>/2013-04-01/delegationset/<i>delegation set ID</i> </code>
+         * resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetReusableDelegationSet">AWS
+         * API Reference</a></p>
          */
         virtual Model::GetReusableDelegationSetOutcome GetReusableDelegationSet(const Model::GetReusableDelegationSetRequest& request) const;
 
         /**
          * <p>Retrieves the reusable delegation set. Send a <code>GET</code> request to the
-         * <code>/2013-04-01/delegationset/<i>delegation set ID</i> </code> resource.</p>
+         * <code>/2013-04-01/delegationset/<i>delegation set ID</i> </code>
+         * resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetReusableDelegationSet">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1648,7 +1838,10 @@ namespace Model
 
         /**
          * <p>Retrieves the reusable delegation set. Send a <code>GET</code> request to the
-         * <code>/2013-04-01/delegationset/<i>delegation set ID</i> </code> resource.</p>
+         * <code>/2013-04-01/delegationset/<i>delegation set ID</i> </code>
+         * resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetReusableDelegationSet">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1657,14 +1850,18 @@ namespace Model
         /**
          * <p>Gets information about a specific traffic policy version.</p> <p>Send a
          * <code>GET</code> request to the <code>/<i>Amazon Route 53 API
-         * version</i>/trafficpolicy</code> resource.</p>
+         * version</i>/trafficpolicy</code> resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetTrafficPolicy">AWS
+         * API Reference</a></p>
          */
         virtual Model::GetTrafficPolicyOutcome GetTrafficPolicy(const Model::GetTrafficPolicyRequest& request) const;
 
         /**
          * <p>Gets information about a specific traffic policy version.</p> <p>Send a
          * <code>GET</code> request to the <code>/<i>Amazon Route 53 API
-         * version</i>/trafficpolicy</code> resource.</p>
+         * version</i>/trafficpolicy</code> resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetTrafficPolicy">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1673,7 +1870,9 @@ namespace Model
         /**
          * <p>Gets information about a specific traffic policy version.</p> <p>Send a
          * <code>GET</code> request to the <code>/<i>Amazon Route 53 API
-         * version</i>/trafficpolicy</code> resource.</p>
+         * version</i>/trafficpolicy</code> resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetTrafficPolicy">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1688,7 +1887,10 @@ namespace Model
          * Amazon Route 53 creates the resource record sets that are specified in the
          * traffic policy definition. For more information, see the <code>State</code>
          * response element.</p> </note> <note> <p>In the Amazon Route 53 console, traffic
-         * policy instances are known as policy records.</p> </note>
+         * policy instances are known as policy records.</p> </note><p><h3>See Also:</h3>  
+         * <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetTrafficPolicyInstance">AWS
+         * API Reference</a></p>
          */
         virtual Model::GetTrafficPolicyInstanceOutcome GetTrafficPolicyInstance(const Model::GetTrafficPolicyInstanceRequest& request) const;
 
@@ -1701,7 +1903,10 @@ namespace Model
          * Amazon Route 53 creates the resource record sets that are specified in the
          * traffic policy definition. For more information, see the <code>State</code>
          * response element.</p> </note> <note> <p>In the Amazon Route 53 console, traffic
-         * policy instances are known as policy records.</p> </note>
+         * policy instances are known as policy records.</p> </note><p><h3>See Also:</h3>  
+         * <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetTrafficPolicyInstance">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1716,7 +1921,10 @@ namespace Model
          * Amazon Route 53 creates the resource record sets that are specified in the
          * traffic policy definition. For more information, see the <code>State</code>
          * response element.</p> </note> <note> <p>In the Amazon Route 53 console, traffic
-         * policy instances are known as policy records.</p> </note>
+         * policy instances are known as policy records.</p> </note><p><h3>See Also:</h3>  
+         * <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetTrafficPolicyInstance">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1726,7 +1934,10 @@ namespace Model
          * <p>Gets the number of traffic policy instances that are associated with the
          * current AWS account.</p> <p>To get the number of traffic policy instances, send
          * a <code>GET</code> request to the
-         * <code>/2013-04-01/trafficpolicyinstancecount</code> resource.</p>
+         * <code>/2013-04-01/trafficpolicyinstancecount</code> resource.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetTrafficPolicyInstanceCount">AWS
+         * API Reference</a></p>
          */
         virtual Model::GetTrafficPolicyInstanceCountOutcome GetTrafficPolicyInstanceCount(const Model::GetTrafficPolicyInstanceCountRequest& request) const;
 
@@ -1734,7 +1945,10 @@ namespace Model
          * <p>Gets the number of traffic policy instances that are associated with the
          * current AWS account.</p> <p>To get the number of traffic policy instances, send
          * a <code>GET</code> request to the
-         * <code>/2013-04-01/trafficpolicyinstancecount</code> resource.</p>
+         * <code>/2013-04-01/trafficpolicyinstancecount</code> resource.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetTrafficPolicyInstanceCount">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1744,7 +1958,10 @@ namespace Model
          * <p>Gets the number of traffic policy instances that are associated with the
          * current AWS account.</p> <p>To get the number of traffic policy instances, send
          * a <code>GET</code> request to the
-         * <code>/2013-04-01/trafficpolicyinstancecount</code> resource.</p>
+         * <code>/2013-04-01/trafficpolicyinstancecount</code> resource.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetTrafficPolicyInstanceCount">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1757,7 +1974,10 @@ namespace Model
          * that Amazon Route 53 supports.</p> <p>Countries are listed first, and continents
          * are listed last. If Amazon Route 53 supports subdivisions for a country (for
          * example, states or provinces), the subdivisions for that country are listed in
-         * alphabetical order immediately after the corresponding country. </p>
+         * alphabetical order immediately after the corresponding country. </p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListGeoLocations">AWS
+         * API Reference</a></p>
          */
         virtual Model::ListGeoLocationsOutcome ListGeoLocations(const Model::ListGeoLocationsRequest& request) const;
 
@@ -1768,7 +1988,10 @@ namespace Model
          * that Amazon Route 53 supports.</p> <p>Countries are listed first, and continents
          * are listed last. If Amazon Route 53 supports subdivisions for a country (for
          * example, states or provinces), the subdivisions for that country are listed in
-         * alphabetical order immediately after the corresponding country. </p>
+         * alphabetical order immediately after the corresponding country. </p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListGeoLocations">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1781,7 +2004,10 @@ namespace Model
          * that Amazon Route 53 supports.</p> <p>Countries are listed first, and continents
          * are listed last. If Amazon Route 53 supports subdivisions for a country (for
          * example, states or provinces), the subdivisions for that country are listed in
-         * alphabetical order immediately after the corresponding country. </p>
+         * alphabetical order immediately after the corresponding country. </p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListGeoLocations">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1798,7 +2024,9 @@ namespace Model
          * with.</p> <p>For information about listing health checks using the Amazon Route
          * 53 console, see <a
          * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html">Amazon
-         * Route 53 Health Checks and DNS Failover</a>.</p>
+         * Route 53 Health Checks and DNS Failover</a>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListHealthChecks">AWS
+         * API Reference</a></p>
          */
         virtual Model::ListHealthChecksOutcome ListHealthChecks(const Model::ListHealthChecksRequest& request) const;
 
@@ -1813,7 +2041,9 @@ namespace Model
          * with.</p> <p>For information about listing health checks using the Amazon Route
          * 53 console, see <a
          * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html">Amazon
-         * Route 53 Health Checks and DNS Failover</a>.</p>
+         * Route 53 Health Checks and DNS Failover</a>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListHealthChecks">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1830,7 +2060,9 @@ namespace Model
          * with.</p> <p>For information about listing health checks using the Amazon Route
          * 53 console, see <a
          * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html">Amazon
-         * Route 53 Health Checks and DNS Failover</a>.</p>
+         * Route 53 Health Checks and DNS Failover</a>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListHealthChecks">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1857,7 +2089,9 @@ namespace Model
          * omitted from the response.</p> </li> <li> <p>If you're making the second or
          * subsequent call to <code>ListHostedZones</code>, the <code>Marker</code> element
          * matches the value that you specified in the <code>marker</code> parameter in the
-         * previous request.</p> </li> </ul>
+         * previous request.</p> </li> </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListHostedZones">AWS
+         * API Reference</a></p>
          */
         virtual Model::ListHostedZonesOutcome ListHostedZones(const Model::ListHostedZonesRequest& request) const;
 
@@ -1882,7 +2116,9 @@ namespace Model
          * omitted from the response.</p> </li> <li> <p>If you're making the second or
          * subsequent call to <code>ListHostedZones</code>, the <code>Marker</code> element
          * matches the value that you specified in the <code>marker</code> parameter in the
-         * previous request.</p> </li> </ul>
+         * previous request.</p> </li> </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListHostedZones">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -1909,7 +2145,9 @@ namespace Model
          * omitted from the response.</p> </li> <li> <p>If you're making the second or
          * subsequent call to <code>ListHostedZones</code>, the <code>Marker</code> element
          * matches the value that you specified in the <code>marker</code> parameter in the
-         * previous request.</p> </li> </ul>
+         * previous request.</p> </li> </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListHostedZones">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -1956,7 +2194,9 @@ namespace Model
          * <code>ListHostedZonesByName</code>, and specify the value of
          * <code>NextDNSName</code> and <code>NextHostedZoneId</code> in the
          * <code>dnsname</code> and <code>hostedzoneid</code> parameters, respectively.</p>
-         * </li> </ul>
+         * </li> </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListHostedZonesByName">AWS
+         * API Reference</a></p>
          */
         virtual Model::ListHostedZonesByNameOutcome ListHostedZonesByName(const Model::ListHostedZonesByNameRequest& request) const;
 
@@ -2001,7 +2241,9 @@ namespace Model
          * <code>ListHostedZonesByName</code>, and specify the value of
          * <code>NextDNSName</code> and <code>NextHostedZoneId</code> in the
          * <code>dnsname</code> and <code>hostedzoneid</code> parameters, respectively.</p>
-         * </li> </ul>
+         * </li> </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListHostedZonesByName">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -2048,7 +2290,9 @@ namespace Model
          * <code>ListHostedZonesByName</code>, and specify the value of
          * <code>NextDNSName</code> and <code>NextHostedZoneId</code> in the
          * <code>dnsname</code> and <code>hostedzoneid</code> parameters, respectively.</p>
-         * </li> </ul>
+         * </li> </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListHostedZonesByName">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -2081,7 +2325,9 @@ namespace Model
          * request while you're paging through the results of a
          * <code>ListResourceRecordSets</code> request. If you do, some pages may display
          * results without the latest changes while other pages display results with the
-         * latest changes.</p>
+         * latest changes.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListResourceRecordSets">AWS
+         * API Reference</a></p>
          */
         virtual Model::ListResourceRecordSetsOutcome ListResourceRecordSets(const Model::ListResourceRecordSetsRequest& request) const;
 
@@ -2112,7 +2358,9 @@ namespace Model
          * request while you're paging through the results of a
          * <code>ListResourceRecordSets</code> request. If you do, some pages may display
          * results without the latest changes while other pages display results with the
-         * latest changes.</p>
+         * latest changes.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListResourceRecordSets">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -2145,7 +2393,9 @@ namespace Model
          * request while you're paging through the results of a
          * <code>ListResourceRecordSets</code> request. If you do, some pages may display
          * results without the latest changes while other pages display results with the
-         * latest changes.</p>
+         * latest changes.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListResourceRecordSets">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -2161,7 +2411,9 @@ namespace Model
          * the <code>Marker</code> parameter to control the delegation set that the list
          * begins with. </p> <note> <p> Amazon Route 53 returns a maximum of 100 items. If
          * you set MaxItems to a value greater than 100, Amazon Route 53 returns only the
-         * first 100.</p> </note>
+         * first 100.</p> </note><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListReusableDelegationSets">AWS
+         * API Reference</a></p>
          */
         virtual Model::ListReusableDelegationSetsOutcome ListReusableDelegationSets(const Model::ListReusableDelegationSetsRequest& request) const;
 
@@ -2175,7 +2427,9 @@ namespace Model
          * the <code>Marker</code> parameter to control the delegation set that the list
          * begins with. </p> <note> <p> Amazon Route 53 returns a maximum of 100 items. If
          * you set MaxItems to a value greater than 100, Amazon Route 53 returns only the
-         * first 100.</p> </note>
+         * first 100.</p> </note><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListReusableDelegationSets">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -2191,7 +2445,9 @@ namespace Model
          * the <code>Marker</code> parameter to control the delegation set that the list
          * begins with. </p> <note> <p> Amazon Route 53 returns a maximum of 100 items. If
          * you set MaxItems to a value greater than 100, Amazon Route 53 returns only the
-         * first 100.</p> </note>
+         * first 100.</p> </note><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListReusableDelegationSets">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -2202,7 +2458,9 @@ namespace Model
          * using tags for cost allocation, see <a
          * href="http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html">Using
          * Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User
-         * Guide</i>.</p>
+         * Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTagsForResource">AWS
+         * API Reference</a></p>
          */
         virtual Model::ListTagsForResourceOutcome ListTagsForResource(const Model::ListTagsForResourceRequest& request) const;
 
@@ -2211,7 +2469,9 @@ namespace Model
          * using tags for cost allocation, see <a
          * href="http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html">Using
          * Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User
-         * Guide</i>.</p>
+         * Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTagsForResource">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -2222,7 +2482,9 @@ namespace Model
          * using tags for cost allocation, see <a
          * href="http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html">Using
          * Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User
-         * Guide</i>.</p>
+         * Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTagsForResource">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -2233,7 +2495,9 @@ namespace Model
          * about using tags for cost allocation, see <a
          * href="http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html">Using
          * Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User
-         * Guide</i>.</p>
+         * Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTagsForResources">AWS
+         * API Reference</a></p>
          */
         virtual Model::ListTagsForResourcesOutcome ListTagsForResources(const Model::ListTagsForResourcesRequest& request) const;
 
@@ -2242,7 +2506,9 @@ namespace Model
          * about using tags for cost allocation, see <a
          * href="http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html">Using
          * Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User
-         * Guide</i>.</p>
+         * Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTagsForResources">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -2253,7 +2519,9 @@ namespace Model
          * about using tags for cost allocation, see <a
          * href="http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html">Using
          * Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User
-         * Guide</i>.</p>
+         * Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTagsForResources">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -2283,7 +2551,9 @@ namespace Model
          * <code>TrafficPolicyIdMarker</code> element is omitted from the response.</p>
          * </li> <li> <p> <b>MaxItems</b> </p> <p>The value that you specified for the
          * <code>MaxItems</code> parameter in the request that produced the current
-         * response.</p> </li> </ul>
+         * response.</p> </li> </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicies">AWS
+         * API Reference</a></p>
          */
         virtual Model::ListTrafficPoliciesOutcome ListTrafficPolicies(const Model::ListTrafficPoliciesRequest& request) const;
 
@@ -2311,7 +2581,9 @@ namespace Model
          * <code>TrafficPolicyIdMarker</code> element is omitted from the response.</p>
          * </li> <li> <p> <b>MaxItems</b> </p> <p>The value that you specified for the
          * <code>MaxItems</code> parameter in the request that produced the current
-         * response.</p> </li> </ul>
+         * response.</p> </li> </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicies">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -2341,7 +2613,9 @@ namespace Model
          * <code>TrafficPolicyIdMarker</code> element is omitted from the response.</p>
          * </li> <li> <p> <b>MaxItems</b> </p> <p>The value that you specified for the
          * <code>MaxItems</code> parameter in the request that produced the current
-         * response.</p> </li> </ul>
+         * response.</p> </li> </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicies">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -2375,7 +2649,9 @@ namespace Model
          * <code>ListTrafficPolicyInstances</code>, and specify these values in the
          * corresponding request parameters.</p> <p>If <code>IsTruncated</code> is
          * <code>false</code>, all three elements are omitted from the response.</p> </li>
-         * </ul>
+         * </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyInstances">AWS
+         * API Reference</a></p>
          */
         virtual Model::ListTrafficPolicyInstancesOutcome ListTrafficPolicyInstances(const Model::ListTrafficPolicyInstancesRequest& request) const;
 
@@ -2407,7 +2683,9 @@ namespace Model
          * <code>ListTrafficPolicyInstances</code>, and specify these values in the
          * corresponding request parameters.</p> <p>If <code>IsTruncated</code> is
          * <code>false</code>, all three elements are omitted from the response.</p> </li>
-         * </ul>
+         * </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyInstances">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -2441,7 +2719,9 @@ namespace Model
          * <code>ListTrafficPolicyInstances</code>, and specify these values in the
          * corresponding request parameters.</p> <p>If <code>IsTruncated</code> is
          * <code>false</code>, all three elements are omitted from the response.</p> </li>
-         * </ul>
+         * </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyInstances">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -2475,7 +2755,9 @@ namespace Model
          * <code>ListTrafficPolicyInstancesByHostedZone</code>, and specify these values in
          * the corresponding request parameters.</p> <p>If <code>IsTruncated</code> is
          * <code>false</code>, all three elements are omitted from the response.</p> </li>
-         * </ul>
+         * </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyInstancesByHostedZone">AWS
+         * API Reference</a></p>
          */
         virtual Model::ListTrafficPolicyInstancesByHostedZoneOutcome ListTrafficPolicyInstancesByHostedZone(const Model::ListTrafficPolicyInstancesByHostedZoneRequest& request) const;
 
@@ -2507,7 +2789,9 @@ namespace Model
          * <code>ListTrafficPolicyInstancesByHostedZone</code>, and specify these values in
          * the corresponding request parameters.</p> <p>If <code>IsTruncated</code> is
          * <code>false</code>, all three elements are omitted from the response.</p> </li>
-         * </ul>
+         * </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyInstancesByHostedZone">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -2541,7 +2825,9 @@ namespace Model
          * <code>ListTrafficPolicyInstancesByHostedZone</code>, and specify these values in
          * the corresponding request parameters.</p> <p>If <code>IsTruncated</code> is
          * <code>false</code>, all three elements are omitted from the response.</p> </li>
-         * </ul>
+         * </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyInstancesByHostedZone">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -2577,7 +2863,9 @@ namespace Model
          * <code>ListTrafficPolicyInstancesByPolicy</code>, and specify these values in the
          * corresponding request parameters.</p> <p>If <code>IsTruncated</code> is
          * <code>false</code>, all three elements are omitted from the response.</p> </li>
-         * </ul>
+         * </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyInstancesByPolicy">AWS
+         * API Reference</a></p>
          */
         virtual Model::ListTrafficPolicyInstancesByPolicyOutcome ListTrafficPolicyInstancesByPolicy(const Model::ListTrafficPolicyInstancesByPolicyRequest& request) const;
 
@@ -2611,7 +2899,9 @@ namespace Model
          * <code>ListTrafficPolicyInstancesByPolicy</code>, and specify these values in the
          * corresponding request parameters.</p> <p>If <code>IsTruncated</code> is
          * <code>false</code>, all three elements are omitted from the response.</p> </li>
-         * </ul>
+         * </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyInstancesByPolicy">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -2647,7 +2937,9 @@ namespace Model
          * <code>ListTrafficPolicyInstancesByPolicy</code>, and specify these values in the
          * corresponding request parameters.</p> <p>If <code>IsTruncated</code> is
          * <code>false</code>, all three elements are omitted from the response.</p> </li>
-         * </ul>
+         * </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyInstancesByPolicy">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -2677,7 +2969,9 @@ namespace Model
          * <code>TrafficPolicyVersionMarker</code> element from the response.</p> </li>
          * <li> <p> <b>MaxItems</b> </p> <p>The value that you specified for the
          * <code>MaxItems</code> parameter in the request that produced the current
-         * response.</p> </li> </ul>
+         * response.</p> </li> </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyVersions">AWS
+         * API Reference</a></p>
          */
         virtual Model::ListTrafficPolicyVersionsOutcome ListTrafficPolicyVersions(const Model::ListTrafficPolicyVersionsRequest& request) const;
 
@@ -2705,7 +2999,9 @@ namespace Model
          * <code>TrafficPolicyVersionMarker</code> element from the response.</p> </li>
          * <li> <p> <b>MaxItems</b> </p> <p>The value that you specified for the
          * <code>MaxItems</code> parameter in the request that produced the current
-         * response.</p> </li> </ul>
+         * response.</p> </li> </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyVersions">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -2735,7 +3031,9 @@ namespace Model
          * <code>TrafficPolicyVersionMarker</code> element from the response.</p> </li>
          * <li> <p> <b>MaxItems</b> </p> <p>The value that you specified for the
          * <code>MaxItems</code> parameter in the request that produced the current
-         * response.</p> </li> </ul>
+         * response.</p> </li> </ul><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyVersions">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -2760,7 +3058,9 @@ namespace Model
          * <code>NextToken</code> request parameter:</p> <p>
          * <code>/2013-04-01/hostedzone/<i>hosted zone
          * ID</i>/authorizevpcassociation?MaxItems=<i>VPCs per page</i>&amp;NextToken=<i/>
-         * </code> </p>
+         * </code> </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListVPCAssociationAuthorizations">AWS
+         * API Reference</a></p>
          */
         virtual Model::ListVPCAssociationAuthorizationsOutcome ListVPCAssociationAuthorizations(const Model::ListVPCAssociationAuthorizationsRequest& request) const;
 
@@ -2783,7 +3083,9 @@ namespace Model
          * <code>NextToken</code> request parameter:</p> <p>
          * <code>/2013-04-01/hostedzone/<i>hosted zone
          * ID</i>/authorizevpcassociation?MaxItems=<i>VPCs per page</i>&amp;NextToken=<i/>
-         * </code> </p>
+         * </code> </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListVPCAssociationAuthorizations">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -2808,7 +3110,9 @@ namespace Model
          * <code>NextToken</code> request parameter:</p> <p>
          * <code>/2013-04-01/hostedzone/<i>hosted zone
          * ID</i>/authorizevpcassociation?MaxItems=<i>VPCs per page</i>&amp;NextToken=<i/>
-         * </code> </p>
+         * </code> </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListVPCAssociationAuthorizations">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -2817,14 +3121,20 @@ namespace Model
         /**
          * <p>Gets the value that Amazon Route 53 returns in response to a DNS request for
          * a specified record name and type. You can optionally specify the IP address of a
-         * DNS resolver, an EDNS0 client subnet IP address, and a subnet mask. </p>
+         * DNS resolver, an EDNS0 client subnet IP address, and a subnet mask.
+         * </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/TestDNSAnswer">AWS
+         * API Reference</a></p>
          */
         virtual Model::TestDNSAnswerOutcome TestDNSAnswer(const Model::TestDNSAnswerRequest& request) const;
 
         /**
          * <p>Gets the value that Amazon Route 53 returns in response to a DNS request for
          * a specified record name and type. You can optionally specify the IP address of a
-         * DNS resolver, an EDNS0 client subnet IP address, and a subnet mask. </p>
+         * DNS resolver, an EDNS0 client subnet IP address, and a subnet mask.
+         * </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/TestDNSAnswer">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -2833,7 +3143,10 @@ namespace Model
         /**
          * <p>Gets the value that Amazon Route 53 returns in response to a DNS request for
          * a specified record name and type. You can optionally specify the IP address of a
-         * DNS resolver, an EDNS0 client subnet IP address, and a subnet mask. </p>
+         * DNS resolver, an EDNS0 client subnet IP address, and a subnet mask.
+         * </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/TestDNSAnswer">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -2847,7 +3160,9 @@ namespace Model
          * updating health checks, see <a
          * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-deleting.html">Creating,
          * Updating, and Deleting Health Checks</a> in the Amazon Route 53 Developer
-         * Guide.</p>
+         * Guide.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateHealthCheck">AWS
+         * API Reference</a></p>
          */
         virtual Model::UpdateHealthCheckOutcome UpdateHealthCheck(const Model::UpdateHealthCheckRequest& request) const;
 
@@ -2859,7 +3174,9 @@ namespace Model
          * updating health checks, see <a
          * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-deleting.html">Creating,
          * Updating, and Deleting Health Checks</a> in the Amazon Route 53 Developer
-         * Guide.</p>
+         * Guide.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateHealthCheck">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -2873,7 +3190,9 @@ namespace Model
          * updating health checks, see <a
          * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-deleting.html">Creating,
          * Updating, and Deleting Health Checks</a> in the Amazon Route 53 Developer
-         * Guide.</p>
+         * Guide.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateHealthCheck">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -2881,13 +3200,19 @@ namespace Model
 
         /**
          * <p>Updates the hosted zone comment. Send a <code>POST</code> request to the
-         * <code>/2013-04-01/hostedzone/<i>hosted zone ID</i> </code> resource. </p>
+         * <code>/2013-04-01/hostedzone/<i>hosted zone ID</i> </code> resource.
+         * </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateHostedZoneComment">AWS
+         * API Reference</a></p>
          */
         virtual Model::UpdateHostedZoneCommentOutcome UpdateHostedZoneComment(const Model::UpdateHostedZoneCommentRequest& request) const;
 
         /**
          * <p>Updates the hosted zone comment. Send a <code>POST</code> request to the
-         * <code>/2013-04-01/hostedzone/<i>hosted zone ID</i> </code> resource. </p>
+         * <code>/2013-04-01/hostedzone/<i>hosted zone ID</i> </code> resource.
+         * </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateHostedZoneComment">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -2895,7 +3220,10 @@ namespace Model
 
         /**
          * <p>Updates the hosted zone comment. Send a <code>POST</code> request to the
-         * <code>/2013-04-01/hostedzone/<i>hosted zone ID</i> </code> resource. </p>
+         * <code>/2013-04-01/hostedzone/<i>hosted zone ID</i> </code> resource.
+         * </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateHostedZoneComment">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -2905,7 +3233,10 @@ namespace Model
          * <p>Updates the comment for a specified traffic policy version.</p> <p>Send a
          * <code>POST</code> request to the <code>/2013-04-01/trafficpolicy/</code>
          * resource.</p> <p>The request body must include a document with an
-         * <code>UpdateTrafficPolicyCommentRequest</code> element.</p>
+         * <code>UpdateTrafficPolicyCommentRequest</code> element.</p><p><h3>See Also:</h3>
+         * <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateTrafficPolicyComment">AWS
+         * API Reference</a></p>
          */
         virtual Model::UpdateTrafficPolicyCommentOutcome UpdateTrafficPolicyComment(const Model::UpdateTrafficPolicyCommentRequest& request) const;
 
@@ -2913,7 +3244,10 @@ namespace Model
          * <p>Updates the comment for a specified traffic policy version.</p> <p>Send a
          * <code>POST</code> request to the <code>/2013-04-01/trafficpolicy/</code>
          * resource.</p> <p>The request body must include a document with an
-         * <code>UpdateTrafficPolicyCommentRequest</code> element.</p>
+         * <code>UpdateTrafficPolicyCommentRequest</code> element.</p><p><h3>See Also:</h3>
+         * <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateTrafficPolicyComment">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -2923,7 +3257,10 @@ namespace Model
          * <p>Updates the comment for a specified traffic policy version.</p> <p>Send a
          * <code>POST</code> request to the <code>/2013-04-01/trafficpolicy/</code>
          * resource.</p> <p>The request body must include a document with an
-         * <code>UpdateTrafficPolicyCommentRequest</code> element.</p>
+         * <code>UpdateTrafficPolicyCommentRequest</code> element.</p><p><h3>See Also:</h3>
+         * <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateTrafficPolicyComment">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
@@ -2947,7 +3284,9 @@ namespace Model
          * DNS queries for the root resource record set name (such as example.com) by using
          * the new resource record sets.</p> </li> <li> <p>Amazon Route 53 deletes the old
          * group of resource record sets that are associated with the root resource record
-         * set name.</p> </li> </ol>
+         * set name.</p> </li> </ol><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateTrafficPolicyInstance">AWS
+         * API Reference</a></p>
          */
         virtual Model::UpdateTrafficPolicyInstanceOutcome UpdateTrafficPolicyInstance(const Model::UpdateTrafficPolicyInstanceRequest& request) const;
 
@@ -2969,7 +3308,9 @@ namespace Model
          * DNS queries for the root resource record set name (such as example.com) by using
          * the new resource record sets.</p> </li> <li> <p>Amazon Route 53 deletes the old
          * group of resource record sets that are associated with the root resource record
-         * set name.</p> </li> </ol>
+         * set name.</p> </li> </ol><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateTrafficPolicyInstance">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
@@ -2993,7 +3334,9 @@ namespace Model
          * DNS queries for the root resource record set name (such as example.com) by using
          * the new resource record sets.</p> </li> <li> <p>Amazon Route 53 deletes the old
          * group of resource record sets that are associated with the root resource record
-         * set name.</p> </li> </ol>
+         * set name.</p> </li> </ol><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateTrafficPolicyInstance">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */

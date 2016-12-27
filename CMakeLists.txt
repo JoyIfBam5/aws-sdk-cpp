@@ -132,8 +132,6 @@ endif()
 
 add_sdks()
 
-export(TARGETS ${EXPORTS} FILE aws-sdk-cpp-config.cmake)
-
 #packaging
 if(GIT_FOUND)
     # sed -n 's/#define AWS_SDK_VERSION_STRING "\(.*\)"/\1/p' aws-cpp-sdk-core/include/aws/core/VersionConfig.h

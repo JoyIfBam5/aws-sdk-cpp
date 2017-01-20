@@ -133,6 +133,7 @@ endif()
 add_sdks()
 
 #packaging
+find_package(Git)
 if(GIT_FOUND)
     # sed -n 's/#define AWS_SDK_VERSION_STRING "\(.*\)"/\1/p' aws-cpp-sdk-core/include/aws/core/VersionConfig.h
     execute_process(COMMAND ${GIT_EXECUTABLE} describe --abbrev=0 --tags

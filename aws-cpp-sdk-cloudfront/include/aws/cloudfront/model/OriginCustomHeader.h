@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudfront/CloudFront_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,9 +33,10 @@ namespace Model
 {
 
   /**
-   * A complex type that contains information related to a Header<p><h3>See
+   * <p>A complex type that contains <code>HeaderName</code> and
+   * <code>HeaderValue</code> elements, if any, for this distribution. </p><p><h3>See
    * Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/cloudfront-2016-01-28/OriginCustomHeader">AWS
+   * href="http://docs.aws.amazon.com/goto/WebAPI/cloudfront-2017-03-25/OriginCustomHeader">AWS
    * API Reference</a></p>
    */
   class AWS_CLOUDFRONT_API OriginCustomHeader
@@ -45,79 +48,118 @@ namespace Model
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
 
+
     /**
-     * The header's name.
+     * <p>The name of a header that you want CloudFront to forward to your origin. For
+     * more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/forward-custom-headers.html">Forwarding
+     * Custom Headers to Your Origin (Web Distributions Only)</a> in the <i>Amazon
+     * Amazon CloudFront Developer Guide</i>.</p>
      */
     inline const Aws::String& GetHeaderName() const{ return m_headerName; }
 
     /**
-     * The header's name.
+     * <p>The name of a header that you want CloudFront to forward to your origin. For
+     * more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/forward-custom-headers.html">Forwarding
+     * Custom Headers to Your Origin (Web Distributions Only)</a> in the <i>Amazon
+     * Amazon CloudFront Developer Guide</i>.</p>
      */
     inline void SetHeaderName(const Aws::String& value) { m_headerNameHasBeenSet = true; m_headerName = value; }
 
     /**
-     * The header's name.
+     * <p>The name of a header that you want CloudFront to forward to your origin. For
+     * more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/forward-custom-headers.html">Forwarding
+     * Custom Headers to Your Origin (Web Distributions Only)</a> in the <i>Amazon
+     * Amazon CloudFront Developer Guide</i>.</p>
      */
-    inline void SetHeaderName(Aws::String&& value) { m_headerNameHasBeenSet = true; m_headerName = value; }
+    inline void SetHeaderName(Aws::String&& value) { m_headerNameHasBeenSet = true; m_headerName = std::move(value); }
 
     /**
-     * The header's name.
+     * <p>The name of a header that you want CloudFront to forward to your origin. For
+     * more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/forward-custom-headers.html">Forwarding
+     * Custom Headers to Your Origin (Web Distributions Only)</a> in the <i>Amazon
+     * Amazon CloudFront Developer Guide</i>.</p>
      */
     inline void SetHeaderName(const char* value) { m_headerNameHasBeenSet = true; m_headerName.assign(value); }
 
     /**
-     * The header's name.
+     * <p>The name of a header that you want CloudFront to forward to your origin. For
+     * more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/forward-custom-headers.html">Forwarding
+     * Custom Headers to Your Origin (Web Distributions Only)</a> in the <i>Amazon
+     * Amazon CloudFront Developer Guide</i>.</p>
      */
     inline OriginCustomHeader& WithHeaderName(const Aws::String& value) { SetHeaderName(value); return *this;}
 
     /**
-     * The header's name.
+     * <p>The name of a header that you want CloudFront to forward to your origin. For
+     * more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/forward-custom-headers.html">Forwarding
+     * Custom Headers to Your Origin (Web Distributions Only)</a> in the <i>Amazon
+     * Amazon CloudFront Developer Guide</i>.</p>
      */
-    inline OriginCustomHeader& WithHeaderName(Aws::String&& value) { SetHeaderName(value); return *this;}
+    inline OriginCustomHeader& WithHeaderName(Aws::String&& value) { SetHeaderName(std::move(value)); return *this;}
 
     /**
-     * The header's name.
+     * <p>The name of a header that you want CloudFront to forward to your origin. For
+     * more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/forward-custom-headers.html">Forwarding
+     * Custom Headers to Your Origin (Web Distributions Only)</a> in the <i>Amazon
+     * Amazon CloudFront Developer Guide</i>.</p>
      */
     inline OriginCustomHeader& WithHeaderName(const char* value) { SetHeaderName(value); return *this;}
 
+
     /**
-     * The header's value.
+     * <p>The value for the header that you specified in the <code>HeaderName</code>
+     * field.</p>
      */
     inline const Aws::String& GetHeaderValue() const{ return m_headerValue; }
 
     /**
-     * The header's value.
+     * <p>The value for the header that you specified in the <code>HeaderName</code>
+     * field.</p>
      */
     inline void SetHeaderValue(const Aws::String& value) { m_headerValueHasBeenSet = true; m_headerValue = value; }
 
     /**
-     * The header's value.
+     * <p>The value for the header that you specified in the <code>HeaderName</code>
+     * field.</p>
      */
-    inline void SetHeaderValue(Aws::String&& value) { m_headerValueHasBeenSet = true; m_headerValue = value; }
+    inline void SetHeaderValue(Aws::String&& value) { m_headerValueHasBeenSet = true; m_headerValue = std::move(value); }
 
     /**
-     * The header's value.
+     * <p>The value for the header that you specified in the <code>HeaderName</code>
+     * field.</p>
      */
     inline void SetHeaderValue(const char* value) { m_headerValueHasBeenSet = true; m_headerValue.assign(value); }
 
     /**
-     * The header's value.
+     * <p>The value for the header that you specified in the <code>HeaderName</code>
+     * field.</p>
      */
     inline OriginCustomHeader& WithHeaderValue(const Aws::String& value) { SetHeaderValue(value); return *this;}
 
     /**
-     * The header's value.
+     * <p>The value for the header that you specified in the <code>HeaderName</code>
+     * field.</p>
      */
-    inline OriginCustomHeader& WithHeaderValue(Aws::String&& value) { SetHeaderValue(value); return *this;}
+    inline OriginCustomHeader& WithHeaderValue(Aws::String&& value) { SetHeaderValue(std::move(value)); return *this;}
 
     /**
-     * The header's value.
+     * <p>The value for the header that you specified in the <code>HeaderName</code>
+     * field.</p>
      */
     inline OriginCustomHeader& WithHeaderValue(const char* value) { SetHeaderValue(value); return *this;}
 
   private:
+
     Aws::String m_headerName;
     bool m_headerNameHasBeenSet;
+
     Aws::String m_headerValue;
     bool m_headerValueHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/sns/SNS_EXPORTS.h>
 #include <aws/sns/SNSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,19 @@ namespace Model
   {
   public:
     SetSubscriptionAttributesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "SetSubscriptionAttributes"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The ARN of the subscription to modify.</p>
@@ -48,7 +62,7 @@ namespace Model
     /**
      * <p>The ARN of the subscription to modify.</p>
      */
-    inline void SetSubscriptionArn(Aws::String&& value) { m_subscriptionArnHasBeenSet = true; m_subscriptionArn = value; }
+    inline void SetSubscriptionArn(Aws::String&& value) { m_subscriptionArnHasBeenSet = true; m_subscriptionArn = std::move(value); }
 
     /**
      * <p>The ARN of the subscription to modify.</p>
@@ -63,12 +77,13 @@ namespace Model
     /**
      * <p>The ARN of the subscription to modify.</p>
      */
-    inline SetSubscriptionAttributesRequest& WithSubscriptionArn(Aws::String&& value) { SetSubscriptionArn(value); return *this;}
+    inline SetSubscriptionAttributesRequest& WithSubscriptionArn(Aws::String&& value) { SetSubscriptionArn(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of the subscription to modify.</p>
      */
     inline SetSubscriptionAttributesRequest& WithSubscriptionArn(const char* value) { SetSubscriptionArn(value); return *this;}
+
 
     /**
      * <p>The name of the attribute you want to set. Only a subset of the subscriptions
@@ -89,7 +104,7 @@ namespace Model
      * attributes are mutable.</p> <p>Valid values: <code>DeliveryPolicy</code> |
      * <code>RawMessageDelivery</code> </p>
      */
-    inline void SetAttributeName(Aws::String&& value) { m_attributeNameHasBeenSet = true; m_attributeName = value; }
+    inline void SetAttributeName(Aws::String&& value) { m_attributeNameHasBeenSet = true; m_attributeName = std::move(value); }
 
     /**
      * <p>The name of the attribute you want to set. Only a subset of the subscriptions
@@ -110,7 +125,7 @@ namespace Model
      * attributes are mutable.</p> <p>Valid values: <code>DeliveryPolicy</code> |
      * <code>RawMessageDelivery</code> </p>
      */
-    inline SetSubscriptionAttributesRequest& WithAttributeName(Aws::String&& value) { SetAttributeName(value); return *this;}
+    inline SetSubscriptionAttributesRequest& WithAttributeName(Aws::String&& value) { SetAttributeName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the attribute you want to set. Only a subset of the subscriptions
@@ -118,6 +133,7 @@ namespace Model
      * <code>RawMessageDelivery</code> </p>
      */
     inline SetSubscriptionAttributesRequest& WithAttributeName(const char* value) { SetAttributeName(value); return *this;}
+
 
     /**
      * <p>The new value for the attribute in JSON format.</p>
@@ -132,7 +148,7 @@ namespace Model
     /**
      * <p>The new value for the attribute in JSON format.</p>
      */
-    inline void SetAttributeValue(Aws::String&& value) { m_attributeValueHasBeenSet = true; m_attributeValue = value; }
+    inline void SetAttributeValue(Aws::String&& value) { m_attributeValueHasBeenSet = true; m_attributeValue = std::move(value); }
 
     /**
      * <p>The new value for the attribute in JSON format.</p>
@@ -147,7 +163,7 @@ namespace Model
     /**
      * <p>The new value for the attribute in JSON format.</p>
      */
-    inline SetSubscriptionAttributesRequest& WithAttributeValue(Aws::String&& value) { SetAttributeValue(value); return *this;}
+    inline SetSubscriptionAttributesRequest& WithAttributeValue(Aws::String&& value) { SetAttributeValue(std::move(value)); return *this;}
 
     /**
      * <p>The new value for the attribute in JSON format.</p>
@@ -155,10 +171,13 @@ namespace Model
     inline SetSubscriptionAttributesRequest& WithAttributeValue(const char* value) { SetAttributeValue(value); return *this;}
 
   private:
+
     Aws::String m_subscriptionArn;
     bool m_subscriptionArnHasBeenSet;
+
     Aws::String m_attributeName;
     bool m_attributeNameHasBeenSet;
+
     Aws::String m_attributeValue;
     bool m_attributeValueHasBeenSet;
   };

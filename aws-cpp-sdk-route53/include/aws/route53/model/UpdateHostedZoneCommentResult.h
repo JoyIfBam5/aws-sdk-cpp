@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53/Route53_EXPORTS.h>
 #include <aws/route53/model/HostedZone.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,7 +36,7 @@ namespace Model
 {
   /**
    * <p>A complex type that contains the response to the
-   * UpdateHostedZoneCommentRequest.</p><p><h3>See Also:</h3>   <a
+   * <code>UpdateHostedZoneComment</code> request.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateHostedZoneCommentResponse">AWS
    * API Reference</a></p>
    */
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     UpdateHostedZoneCommentResult();
-    UpdateHostedZoneCommentResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    UpdateHostedZoneCommentResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    UpdateHostedZoneCommentResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    UpdateHostedZoneCommentResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     
     inline const HostedZone& GetHostedZone() const{ return m_hostedZone; }
@@ -52,15 +55,16 @@ namespace Model
     inline void SetHostedZone(const HostedZone& value) { m_hostedZone = value; }
 
     
-    inline void SetHostedZone(HostedZone&& value) { m_hostedZone = value; }
+    inline void SetHostedZone(HostedZone&& value) { m_hostedZone = std::move(value); }
 
     
     inline UpdateHostedZoneCommentResult& WithHostedZone(const HostedZone& value) { SetHostedZone(value); return *this;}
 
     
-    inline UpdateHostedZoneCommentResult& WithHostedZone(HostedZone&& value) { SetHostedZone(value); return *this;}
+    inline UpdateHostedZoneCommentResult& WithHostedZone(HostedZone&& value) { SetHostedZone(std::move(value)); return *this;}
 
   private:
+
     HostedZone m_hostedZone;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/devicefarm/DeviceFarm_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/devicefarm/model/DeviceAttribute.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     IncompatibilityMessage& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>A message about the incompatibility.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>A message about the incompatibility.</p>
      */
-    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = value; }
+    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = std::move(value); }
 
     /**
      * <p>A message about the incompatibility.</p>
@@ -72,18 +75,21 @@ namespace Model
     /**
      * <p>A message about the incompatibility.</p>
      */
-    inline IncompatibilityMessage& WithMessage(Aws::String&& value) { SetMessage(value); return *this;}
+    inline IncompatibilityMessage& WithMessage(Aws::String&& value) { SetMessage(std::move(value)); return *this;}
 
     /**
      * <p>A message about the incompatibility.</p>
      */
     inline IncompatibilityMessage& WithMessage(const char* value) { SetMessage(value); return *this;}
 
+
     /**
      * <p>The type of incompatibility.</p> <p>Allowed values include:</p> <ul> <li>
      * <p>ARN: The ARN.</p> </li> <li> <p>FORM_FACTOR: The form factor (for example,
      * phone or tablet).</p> </li> <li> <p>MANUFACTURER: The manufacturer.</p> </li>
-     * <li> <p>PLATFORM: The platform (for example, Android or iOS).</p> </li> </ul>
+     * <li> <p>PLATFORM: The platform (for example, Android or iOS).</p> </li> <li>
+     * <p>REMOTE_ACCESS_ENABLED: Whether the device is enabled for remote access.</p>
+     * </li> <li> <p>APPIUM_VERSION: The Appium version for the test.</p> </li> </ul>
      */
     inline const DeviceAttribute& GetType() const{ return m_type; }
 
@@ -91,7 +97,9 @@ namespace Model
      * <p>The type of incompatibility.</p> <p>Allowed values include:</p> <ul> <li>
      * <p>ARN: The ARN.</p> </li> <li> <p>FORM_FACTOR: The form factor (for example,
      * phone or tablet).</p> </li> <li> <p>MANUFACTURER: The manufacturer.</p> </li>
-     * <li> <p>PLATFORM: The platform (for example, Android or iOS).</p> </li> </ul>
+     * <li> <p>PLATFORM: The platform (for example, Android or iOS).</p> </li> <li>
+     * <p>REMOTE_ACCESS_ENABLED: Whether the device is enabled for remote access.</p>
+     * </li> <li> <p>APPIUM_VERSION: The Appium version for the test.</p> </li> </ul>
      */
     inline void SetType(const DeviceAttribute& value) { m_typeHasBeenSet = true; m_type = value; }
 
@@ -99,15 +107,19 @@ namespace Model
      * <p>The type of incompatibility.</p> <p>Allowed values include:</p> <ul> <li>
      * <p>ARN: The ARN.</p> </li> <li> <p>FORM_FACTOR: The form factor (for example,
      * phone or tablet).</p> </li> <li> <p>MANUFACTURER: The manufacturer.</p> </li>
-     * <li> <p>PLATFORM: The platform (for example, Android or iOS).</p> </li> </ul>
+     * <li> <p>PLATFORM: The platform (for example, Android or iOS).</p> </li> <li>
+     * <p>REMOTE_ACCESS_ENABLED: Whether the device is enabled for remote access.</p>
+     * </li> <li> <p>APPIUM_VERSION: The Appium version for the test.</p> </li> </ul>
      */
-    inline void SetType(DeviceAttribute&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(DeviceAttribute&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The type of incompatibility.</p> <p>Allowed values include:</p> <ul> <li>
      * <p>ARN: The ARN.</p> </li> <li> <p>FORM_FACTOR: The form factor (for example,
      * phone or tablet).</p> </li> <li> <p>MANUFACTURER: The manufacturer.</p> </li>
-     * <li> <p>PLATFORM: The platform (for example, Android or iOS).</p> </li> </ul>
+     * <li> <p>PLATFORM: The platform (for example, Android or iOS).</p> </li> <li>
+     * <p>REMOTE_ACCESS_ENABLED: Whether the device is enabled for remote access.</p>
+     * </li> <li> <p>APPIUM_VERSION: The Appium version for the test.</p> </li> </ul>
      */
     inline IncompatibilityMessage& WithType(const DeviceAttribute& value) { SetType(value); return *this;}
 
@@ -115,13 +127,17 @@ namespace Model
      * <p>The type of incompatibility.</p> <p>Allowed values include:</p> <ul> <li>
      * <p>ARN: The ARN.</p> </li> <li> <p>FORM_FACTOR: The form factor (for example,
      * phone or tablet).</p> </li> <li> <p>MANUFACTURER: The manufacturer.</p> </li>
-     * <li> <p>PLATFORM: The platform (for example, Android or iOS).</p> </li> </ul>
+     * <li> <p>PLATFORM: The platform (for example, Android or iOS).</p> </li> <li>
+     * <p>REMOTE_ACCESS_ENABLED: Whether the device is enabled for remote access.</p>
+     * </li> <li> <p>APPIUM_VERSION: The Appium version for the test.</p> </li> </ul>
      */
-    inline IncompatibilityMessage& WithType(DeviceAttribute&& value) { SetType(value); return *this;}
+    inline IncompatibilityMessage& WithType(DeviceAttribute&& value) { SetType(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_message;
     bool m_messageHasBeenSet;
+
     DeviceAttribute m_type;
     bool m_typeHasBeenSet;
   };

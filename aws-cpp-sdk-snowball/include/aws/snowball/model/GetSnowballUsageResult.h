@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/snowball/Snowball_EXPORTS.h>
 
@@ -35,8 +36,9 @@ namespace Model
   {
   public:
     GetSnowballUsageResult();
-    GetSnowballUsageResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetSnowballUsageResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetSnowballUsageResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetSnowballUsageResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The service limit for number of Snowballs this account can have at once. The
@@ -56,6 +58,7 @@ namespace Model
      */
     inline GetSnowballUsageResult& WithSnowballLimit(int value) { SetSnowballLimit(value); return *this;}
 
+
     /**
      * <p>The number of Snowballs that this account is currently using.</p>
      */
@@ -72,7 +75,9 @@ namespace Model
     inline GetSnowballUsageResult& WithSnowballsInUse(int value) { SetSnowballsInUse(value); return *this;}
 
   private:
+
     int m_snowballLimit;
+
     int m_snowballsInUse;
   };
 

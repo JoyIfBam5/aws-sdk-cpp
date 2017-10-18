@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codedeploy/CodeDeploy_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     ApplicationInfo& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The application ID.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The application ID.</p>
      */
-    inline void SetApplicationId(Aws::String&& value) { m_applicationIdHasBeenSet = true; m_applicationId = value; }
+    inline void SetApplicationId(Aws::String&& value) { m_applicationIdHasBeenSet = true; m_applicationId = std::move(value); }
 
     /**
      * <p>The application ID.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The application ID.</p>
      */
-    inline ApplicationInfo& WithApplicationId(Aws::String&& value) { SetApplicationId(value); return *this;}
+    inline ApplicationInfo& WithApplicationId(Aws::String&& value) { SetApplicationId(std::move(value)); return *this;}
 
     /**
      * <p>The application ID.</p>
      */
     inline ApplicationInfo& WithApplicationId(const char* value) { SetApplicationId(value); return *this;}
+
 
     /**
      * <p>The application name.</p>
@@ -92,7 +96,7 @@ namespace Model
     /**
      * <p>The application name.</p>
      */
-    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = value; }
+    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = std::move(value); }
 
     /**
      * <p>The application name.</p>
@@ -107,12 +111,13 @@ namespace Model
     /**
      * <p>The application name.</p>
      */
-    inline ApplicationInfo& WithApplicationName(Aws::String&& value) { SetApplicationName(value); return *this;}
+    inline ApplicationInfo& WithApplicationName(Aws::String&& value) { SetApplicationName(std::move(value)); return *this;}
 
     /**
      * <p>The application name.</p>
      */
     inline ApplicationInfo& WithApplicationName(const char* value) { SetApplicationName(value); return *this;}
+
 
     /**
      * <p>The time at which the application was created.</p>
@@ -127,7 +132,7 @@ namespace Model
     /**
      * <p>The time at which the application was created.</p>
      */
-    inline void SetCreateTime(Aws::Utils::DateTime&& value) { m_createTimeHasBeenSet = true; m_createTime = value; }
+    inline void SetCreateTime(Aws::Utils::DateTime&& value) { m_createTimeHasBeenSet = true; m_createTime = std::move(value); }
 
     /**
      * <p>The time at which the application was created.</p>
@@ -137,7 +142,8 @@ namespace Model
     /**
      * <p>The time at which the application was created.</p>
      */
-    inline ApplicationInfo& WithCreateTime(Aws::Utils::DateTime&& value) { SetCreateTime(value); return *this;}
+    inline ApplicationInfo& WithCreateTime(Aws::Utils::DateTime&& value) { SetCreateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>True if the user has authenticated with GitHub for the specified application;
@@ -157,15 +163,58 @@ namespace Model
      */
     inline ApplicationInfo& WithLinkedToGitHub(bool value) { SetLinkedToGitHub(value); return *this;}
 
+
+    /**
+     * <p>The name for a connection to a GitHub account.</p>
+     */
+    inline const Aws::String& GetGitHubAccountName() const{ return m_gitHubAccountName; }
+
+    /**
+     * <p>The name for a connection to a GitHub account.</p>
+     */
+    inline void SetGitHubAccountName(const Aws::String& value) { m_gitHubAccountNameHasBeenSet = true; m_gitHubAccountName = value; }
+
+    /**
+     * <p>The name for a connection to a GitHub account.</p>
+     */
+    inline void SetGitHubAccountName(Aws::String&& value) { m_gitHubAccountNameHasBeenSet = true; m_gitHubAccountName = std::move(value); }
+
+    /**
+     * <p>The name for a connection to a GitHub account.</p>
+     */
+    inline void SetGitHubAccountName(const char* value) { m_gitHubAccountNameHasBeenSet = true; m_gitHubAccountName.assign(value); }
+
+    /**
+     * <p>The name for a connection to a GitHub account.</p>
+     */
+    inline ApplicationInfo& WithGitHubAccountName(const Aws::String& value) { SetGitHubAccountName(value); return *this;}
+
+    /**
+     * <p>The name for a connection to a GitHub account.</p>
+     */
+    inline ApplicationInfo& WithGitHubAccountName(Aws::String&& value) { SetGitHubAccountName(std::move(value)); return *this;}
+
+    /**
+     * <p>The name for a connection to a GitHub account.</p>
+     */
+    inline ApplicationInfo& WithGitHubAccountName(const char* value) { SetGitHubAccountName(value); return *this;}
+
   private:
+
     Aws::String m_applicationId;
     bool m_applicationIdHasBeenSet;
+
     Aws::String m_applicationName;
     bool m_applicationNameHasBeenSet;
+
     Aws::Utils::DateTime m_createTime;
     bool m_createTimeHasBeenSet;
+
     bool m_linkedToGitHub;
     bool m_linkedToGitHubHasBeenSet;
+
+    Aws::String m_gitHubAccountName;
+    bool m_gitHubAccountNameHasBeenSet;
   };
 
 } // namespace Model

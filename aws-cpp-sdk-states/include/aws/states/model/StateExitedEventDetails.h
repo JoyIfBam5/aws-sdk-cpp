@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/states/SFN_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,6 +40,7 @@ namespace Model
     StateExitedEventDetails& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the state.</p>
      */
@@ -51,7 +54,7 @@ namespace Model
     /**
      * <p>The name of the state.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the state.</p>
@@ -66,12 +69,13 @@ namespace Model
     /**
      * <p>The name of the state.</p>
      */
-    inline StateExitedEventDetails& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline StateExitedEventDetails& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the state.</p>
      */
     inline StateExitedEventDetails& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The JSON output data of the state.</p>
@@ -86,7 +90,7 @@ namespace Model
     /**
      * <p>The JSON output data of the state.</p>
      */
-    inline void SetOutput(Aws::String&& value) { m_outputHasBeenSet = true; m_output = value; }
+    inline void SetOutput(Aws::String&& value) { m_outputHasBeenSet = true; m_output = std::move(value); }
 
     /**
      * <p>The JSON output data of the state.</p>
@@ -101,7 +105,7 @@ namespace Model
     /**
      * <p>The JSON output data of the state.</p>
      */
-    inline StateExitedEventDetails& WithOutput(Aws::String&& value) { SetOutput(value); return *this;}
+    inline StateExitedEventDetails& WithOutput(Aws::String&& value) { SetOutput(std::move(value)); return *this;}
 
     /**
      * <p>The JSON output data of the state.</p>
@@ -109,8 +113,10 @@ namespace Model
     inline StateExitedEventDetails& WithOutput(const char* value) { SetOutput(value); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_output;
     bool m_outputHasBeenSet;
   };

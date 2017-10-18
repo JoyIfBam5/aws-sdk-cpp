@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/devicefarm/DeviceFarm_EXPORTS.h>
 #include <aws/devicefarm/model/MonetaryAmount.h>
 #include <aws/devicefarm/model/RecurringChargeFrequency.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     RecurringCharge& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The cost of the recurring charge.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The cost of the recurring charge.</p>
      */
-    inline void SetCost(MonetaryAmount&& value) { m_costHasBeenSet = true; m_cost = value; }
+    inline void SetCost(MonetaryAmount&& value) { m_costHasBeenSet = true; m_cost = std::move(value); }
 
     /**
      * <p>The cost of the recurring charge.</p>
@@ -68,7 +71,8 @@ namespace Model
     /**
      * <p>The cost of the recurring charge.</p>
      */
-    inline RecurringCharge& WithCost(MonetaryAmount&& value) { SetCost(value); return *this;}
+    inline RecurringCharge& WithCost(MonetaryAmount&& value) { SetCost(std::move(value)); return *this;}
+
 
     /**
      * <p>The frequency in which charges will recur.</p>
@@ -83,7 +87,7 @@ namespace Model
     /**
      * <p>The frequency in which charges will recur.</p>
      */
-    inline void SetFrequency(RecurringChargeFrequency&& value) { m_frequencyHasBeenSet = true; m_frequency = value; }
+    inline void SetFrequency(RecurringChargeFrequency&& value) { m_frequencyHasBeenSet = true; m_frequency = std::move(value); }
 
     /**
      * <p>The frequency in which charges will recur.</p>
@@ -93,11 +97,13 @@ namespace Model
     /**
      * <p>The frequency in which charges will recur.</p>
      */
-    inline RecurringCharge& WithFrequency(RecurringChargeFrequency&& value) { SetFrequency(value); return *this;}
+    inline RecurringCharge& WithFrequency(RecurringChargeFrequency&& value) { SetFrequency(std::move(value)); return *this;}
 
   private:
+
     MonetaryAmount m_cost;
     bool m_costHasBeenSet;
+
     RecurringChargeFrequency m_frequency;
     bool m_frequencyHasBeenSet;
   };

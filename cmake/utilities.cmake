@@ -1,14 +1,36 @@
-macro(copyDlls exeName)
+macro(generate_pkgconfig_link_flags LIBS_LIST OUTPUT_VAR)
+    set(${OUTPUT_VAR} "")
+    foreach(LIB IN LISTS ${LIBS_LIST})
+        if(${OUTPUT_VAR})
+            set(${OUTPUT_VAR} "${${OUTPUT_VAR}} -l${LIB}")
+        else() 
+            set(${OUTPUT_VAR} "-l${LIB}")
+        endif()
+    endforeach()
+endmacro()
+
+function(copyDlls exeName)
     if(PLATFORM_WINDOWS AND BUILD_SHARED_LIBS)
-        foreach(arg ${ARGN})
-            add_custom_command(TARGET ${exeName}
+        string(FIND ${CMAKE_GENERATOR} "Visual Studio" INDEX)
+        if(0 EQUAL INDEX)
+            foreach(arg ${ARGN})
+                add_custom_command(TARGET ${exeName}
                     POST_BUILD
                     COMMAND ${CMAKE_COMMAND} -E copy_if_different
                     "${CMAKE_BINARY_DIR}/${arg}/$<CONFIGURATION>/${arg}.dll"
                     ${CMAKE_CURRENT_BINARY_DIR}/$<CONFIGURATION>/)
-        endforeach()
+            endforeach()
+        else()
+            foreach(arg ${ARGN})
+                add_custom_command(TARGET ${exeName}
+                    POST_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    "${CMAKE_BINARY_DIR}/${arg}/${arg}.dll"
+                    ${CMAKE_CURRENT_BINARY_DIR})
+            endforeach()
+        endif()
     endif()
-endmacro()
+endfunction()
 
 # this function is based on the unity build function described at: https://cheind.wordpress.com/2009/12/10/reducing-compilation-time-unity-builds/
 function(enable_unity_build UNITY_SUFFIX SOURCE_FILES)
@@ -34,7 +56,11 @@ endfunction(enable_unity_build)
 
 macro(setup_install)
     if(SIMPLE_INSTALL)
-        configure_file("${CMAKE_SOURCE_DIR}/toolchains/pkg-config.pc.in" "${PROJECT_NAME}.pc" @ONLY)
+        set(ALL_DEP_LIBS ${PLATFORM_DEP_LIBS_ABSTRACT_NAME} ${CLIENT_LIBS_ABSTRACT_NAME} ${CRYPTO_LIBS_ABSTRACT_NAME})
+        generate_pkgconfig_link_flags(ALL_DEP_LIBS ALL_DEP_LIBS_LINK_FLAGS)
+        set(ALL_DEP_LIBS_LINK_FLAGS "${ALL_DEP_LIBS_LINK_FLAGS}" PARENT_SCOPE)
+
+        configure_file("${AWS_NATIVE_SDK_ROOT}/toolchains/pkg-config.pc.in" "${PROJECT_NAME}.pc" @ONLY)
 
         install( TARGETS ${PROJECT_NAME}
                 EXPORT "${PROJECT_NAME}-targets"
@@ -76,7 +102,7 @@ macro(do_packaging)
         )
 
         configure_file(
-            "${CMAKE_SOURCE_DIR}/toolchains/cmakeProjectConfig.cmake"
+            "${AWS_NATIVE_SDK_ROOT}/toolchains/cmakeProjectConfig.cmake"
             "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config.cmake"
             @ONLY)
 
@@ -96,4 +122,5 @@ macro(do_packaging)
             Devel)
     endif()
 endmacro()
+
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/Reservation.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,21 +31,21 @@ namespace Model
 {
 
 Reservation::Reservation() : 
-    m_reservationIdHasBeenSet(false),
-    m_ownerIdHasBeenSet(false),
-    m_requesterIdHasBeenSet(false),
     m_groupsHasBeenSet(false),
     m_instancesHasBeenSet(false),
+    m_ownerIdHasBeenSet(false),
+    m_requesterIdHasBeenSet(false),
+    m_reservationIdHasBeenSet(false),
     m_responseMetadataHasBeenSet(false)
 {
 }
 
 Reservation::Reservation(const XmlNode& xmlNode) : 
-    m_reservationIdHasBeenSet(false),
-    m_ownerIdHasBeenSet(false),
-    m_requesterIdHasBeenSet(false),
     m_groupsHasBeenSet(false),
     m_instancesHasBeenSet(false),
+    m_ownerIdHasBeenSet(false),
+    m_requesterIdHasBeenSet(false),
+    m_reservationIdHasBeenSet(false),
     m_responseMetadataHasBeenSet(false)
 {
   *this = xmlNode;
@@ -56,24 +57,6 @@ Reservation& Reservation::operator =(const XmlNode& xmlNode)
 
   if(!resultNode.IsNull())
   {
-    XmlNode reservationIdNode = resultNode.FirstChild("reservationId");
-    if(!reservationIdNode.IsNull())
-    {
-      m_reservationId = StringUtils::Trim(reservationIdNode.GetText().c_str());
-      m_reservationIdHasBeenSet = true;
-    }
-    XmlNode ownerIdNode = resultNode.FirstChild("ownerId");
-    if(!ownerIdNode.IsNull())
-    {
-      m_ownerId = StringUtils::Trim(ownerIdNode.GetText().c_str());
-      m_ownerIdHasBeenSet = true;
-    }
-    XmlNode requesterIdNode = resultNode.FirstChild("requesterId");
-    if(!requesterIdNode.IsNull())
-    {
-      m_requesterId = StringUtils::Trim(requesterIdNode.GetText().c_str());
-      m_requesterIdHasBeenSet = true;
-    }
     XmlNode groupsNode = resultNode.FirstChild("groupSet");
     if(!groupsNode.IsNull())
     {
@@ -98,6 +81,24 @@ Reservation& Reservation::operator =(const XmlNode& xmlNode)
 
       m_instancesHasBeenSet = true;
     }
+    XmlNode ownerIdNode = resultNode.FirstChild("ownerId");
+    if(!ownerIdNode.IsNull())
+    {
+      m_ownerId = StringUtils::Trim(ownerIdNode.GetText().c_str());
+      m_ownerIdHasBeenSet = true;
+    }
+    XmlNode requesterIdNode = resultNode.FirstChild("requesterId");
+    if(!requesterIdNode.IsNull())
+    {
+      m_requesterId = StringUtils::Trim(requesterIdNode.GetText().c_str());
+      m_requesterIdHasBeenSet = true;
+    }
+    XmlNode reservationIdNode = resultNode.FirstChild("reservationId");
+    if(!reservationIdNode.IsNull())
+    {
+      m_reservationId = StringUtils::Trim(reservationIdNode.GetText().c_str());
+      m_reservationIdHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -105,21 +106,6 @@ Reservation& Reservation::operator =(const XmlNode& xmlNode)
 
 void Reservation::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
-  if(m_reservationIdHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".ReservationId=" << StringUtils::URLEncode(m_reservationId.c_str()) << "&";
-  }
-
-  if(m_ownerIdHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".OwnerId=" << StringUtils::URLEncode(m_ownerId.c_str()) << "&";
-  }
-
-  if(m_requesterIdHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".RequesterId=" << StringUtils::URLEncode(m_requesterId.c_str()) << "&";
-  }
-
   if(m_groupsHasBeenSet)
   {
       unsigned groupsIdx = 1;
@@ -142,6 +128,21 @@ void Reservation::OutputToStream(Aws::OStream& oStream, const char* location, un
       }
   }
 
+  if(m_ownerIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".OwnerId=" << StringUtils::URLEncode(m_ownerId.c_str()) << "&";
+  }
+
+  if(m_requesterIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".RequesterId=" << StringUtils::URLEncode(m_requesterId.c_str()) << "&";
+  }
+
+  if(m_reservationIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".ReservationId=" << StringUtils::URLEncode(m_reservationId.c_str()) << "&";
+  }
+
   if(m_responseMetadataHasBeenSet)
   {
       Aws::StringStream responseMetadataLocationAndMemberSs;
@@ -153,25 +154,13 @@ void Reservation::OutputToStream(Aws::OStream& oStream, const char* location, un
 
 void Reservation::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
-  if(m_reservationIdHasBeenSet)
-  {
-      oStream << location << ".ReservationId=" << StringUtils::URLEncode(m_reservationId.c_str()) << "&";
-  }
-  if(m_ownerIdHasBeenSet)
-  {
-      oStream << location << ".OwnerId=" << StringUtils::URLEncode(m_ownerId.c_str()) << "&";
-  }
-  if(m_requesterIdHasBeenSet)
-  {
-      oStream << location << ".RequesterId=" << StringUtils::URLEncode(m_requesterId.c_str()) << "&";
-  }
   if(m_groupsHasBeenSet)
   {
       unsigned groupsIdx = 1;
       for(auto& item : m_groups)
       {
         Aws::StringStream groupsSs;
-        groupsSs << location <<  ".Item." << groupsIdx++;
+        groupsSs << location <<  ".GroupSet." << groupsIdx++;
         item.OutputToStream(oStream, groupsSs.str().c_str());
       }
   }
@@ -181,9 +170,21 @@ void Reservation::OutputToStream(Aws::OStream& oStream, const char* location) co
       for(auto& item : m_instances)
       {
         Aws::StringStream instancesSs;
-        instancesSs << location <<  ".Item." << instancesIdx++;
+        instancesSs << location <<  ".InstancesSet." << instancesIdx++;
         item.OutputToStream(oStream, instancesSs.str().c_str());
       }
+  }
+  if(m_ownerIdHasBeenSet)
+  {
+      oStream << location << ".OwnerId=" << StringUtils::URLEncode(m_ownerId.c_str()) << "&";
+  }
+  if(m_requesterIdHasBeenSet)
+  {
+      oStream << location << ".RequesterId=" << StringUtils::URLEncode(m_requesterId.c_str()) << "&";
+  }
+  if(m_reservationIdHasBeenSet)
+  {
+      oStream << location << ".ReservationId=" << StringUtils::URLEncode(m_reservationId.c_str()) << "&";
   }
   if(m_responseMetadataHasBeenSet)
   {

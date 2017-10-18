@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     ListClustersResult();
-    ListClustersResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListClustersResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListClustersResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListClustersResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The list of full Amazon Resource Name (ARN) entries for each cluster
@@ -56,7 +59,7 @@ namespace Model
      * <p>The list of full Amazon Resource Name (ARN) entries for each cluster
      * associated with your account.</p>
      */
-    inline void SetClusterArns(Aws::Vector<Aws::String>&& value) { m_clusterArns = value; }
+    inline void SetClusterArns(Aws::Vector<Aws::String>&& value) { m_clusterArns = std::move(value); }
 
     /**
      * <p>The list of full Amazon Resource Name (ARN) entries for each cluster
@@ -68,7 +71,7 @@ namespace Model
      * <p>The list of full Amazon Resource Name (ARN) entries for each cluster
      * associated with your account.</p>
      */
-    inline ListClustersResult& WithClusterArns(Aws::Vector<Aws::String>&& value) { SetClusterArns(value); return *this;}
+    inline ListClustersResult& WithClusterArns(Aws::Vector<Aws::String>&& value) { SetClusterArns(std::move(value)); return *this;}
 
     /**
      * <p>The list of full Amazon Resource Name (ARN) entries for each cluster
@@ -80,13 +83,14 @@ namespace Model
      * <p>The list of full Amazon Resource Name (ARN) entries for each cluster
      * associated with your account.</p>
      */
-    inline ListClustersResult& AddClusterArns(Aws::String&& value) { m_clusterArns.push_back(value); return *this; }
+    inline ListClustersResult& AddClusterArns(Aws::String&& value) { m_clusterArns.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The list of full Amazon Resource Name (ARN) entries for each cluster
      * associated with your account.</p>
      */
     inline ListClustersResult& AddClusterArns(const char* value) { m_clusterArns.push_back(value); return *this; }
+
 
     /**
      * <p>The <code>nextToken</code> value to include in a future
@@ -113,7 +117,7 @@ namespace Model
      * be used to retrieve the next page of results. This value is <code>null</code>
      * when there are no more results to return.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The <code>nextToken</code> value to include in a future
@@ -140,7 +144,7 @@ namespace Model
      * be used to retrieve the next page of results. This value is <code>null</code>
      * when there are no more results to return.</p>
      */
-    inline ListClustersResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListClustersResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The <code>nextToken</code> value to include in a future
@@ -152,7 +156,9 @@ namespace Model
     inline ListClustersResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_clusterArns;
+
     Aws::String m_nextToken;
   };
 

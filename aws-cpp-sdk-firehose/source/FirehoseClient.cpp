@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/core/utils/Outcome.h>
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
@@ -29,6 +30,7 @@
 #include <aws/firehose/model/CreateDeliveryStreamRequest.h>
 #include <aws/firehose/model/DeleteDeliveryStreamRequest.h>
 #include <aws/firehose/model/DescribeDeliveryStreamRequest.h>
+#include <aws/firehose/model/GetKinesisStreamRequest.h>
 #include <aws/firehose/model/ListDeliveryStreamsRequest.h>
 #include <aws/firehose/model/PutRecordRequest.h>
 #include <aws/firehose/model/PutRecordBatchRequest.h>
@@ -101,9 +103,10 @@ void FirehoseClient::init(const ClientConfiguration& config)
 CreateDeliveryStreamOutcome FirehoseClient::CreateDeliveryStream(const CreateDeliveryStreamRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return CreateDeliveryStreamOutcome(CreateDeliveryStreamResult(outcome.GetResult()));
@@ -135,9 +138,10 @@ void FirehoseClient::CreateDeliveryStreamAsyncHelper(const CreateDeliveryStreamR
 DeleteDeliveryStreamOutcome FirehoseClient::DeleteDeliveryStream(const DeleteDeliveryStreamRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DeleteDeliveryStreamOutcome(DeleteDeliveryStreamResult(outcome.GetResult()));
@@ -169,9 +173,10 @@ void FirehoseClient::DeleteDeliveryStreamAsyncHelper(const DeleteDeliveryStreamR
 DescribeDeliveryStreamOutcome FirehoseClient::DescribeDeliveryStream(const DescribeDeliveryStreamRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeDeliveryStreamOutcome(DescribeDeliveryStreamResult(outcome.GetResult()));
@@ -200,12 +205,48 @@ void FirehoseClient::DescribeDeliveryStreamAsyncHelper(const DescribeDeliveryStr
   handler(this, request, DescribeDeliveryStream(request), context);
 }
 
+GetKinesisStreamOutcome FirehoseClient::GetKinesisStream(const GetKinesisStreamRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return GetKinesisStreamOutcome(GetKinesisStreamResult(outcome.GetResult()));
+  }
+  else
+  {
+    return GetKinesisStreamOutcome(outcome.GetError());
+  }
+}
+
+GetKinesisStreamOutcomeCallable FirehoseClient::GetKinesisStreamCallable(const GetKinesisStreamRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< GetKinesisStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetKinesisStream(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void FirehoseClient::GetKinesisStreamAsync(const GetKinesisStreamRequest& request, const GetKinesisStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->GetKinesisStreamAsyncHelper( request, handler, context ); } );
+}
+
+void FirehoseClient::GetKinesisStreamAsyncHelper(const GetKinesisStreamRequest& request, const GetKinesisStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, GetKinesisStream(request), context);
+}
+
 ListDeliveryStreamsOutcome FirehoseClient::ListDeliveryStreams(const ListDeliveryStreamsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ListDeliveryStreamsOutcome(ListDeliveryStreamsResult(outcome.GetResult()));
@@ -237,9 +278,10 @@ void FirehoseClient::ListDeliveryStreamsAsyncHelper(const ListDeliveryStreamsReq
 PutRecordOutcome FirehoseClient::PutRecord(const PutRecordRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return PutRecordOutcome(PutRecordResult(outcome.GetResult()));
@@ -271,9 +313,10 @@ void FirehoseClient::PutRecordAsyncHelper(const PutRecordRequest& request, const
 PutRecordBatchOutcome FirehoseClient::PutRecordBatch(const PutRecordBatchRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return PutRecordBatchOutcome(PutRecordBatchResult(outcome.GetResult()));
@@ -305,9 +348,10 @@ void FirehoseClient::PutRecordBatchAsyncHelper(const PutRecordBatchRequest& requ
 UpdateDestinationOutcome FirehoseClient::UpdateDestination(const UpdateDestinationRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return UpdateDestinationOutcome(UpdateDestinationResult(outcome.GetResult()));

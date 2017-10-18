@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 
 #include <aws/core/client/CoreErrors.h>
@@ -54,7 +55,7 @@ enum class EC2Errors
   UNKNOWN = 100,
   ///////////////////////////////////////////////////////////////////////////////////////////
 
-  ACTIVE_VPC_PEERING_CONNECTION_PER_VPC_LIMIT_EXCEEDED= static_cast<int>(Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
+  ACTIVE_VPC_PEERING_CONNECTION_PER_VPC_LIMIT_EXCEEDED= static_cast<int>(Aws::Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
   ADDRESS_LIMIT_EXCEEDED,
   ATTACHMENT_LIMIT_EXCEEDED,
   BUNDLING_IN_PROGRESS,
@@ -230,7 +231,7 @@ enum class EC2Errors
 };
 namespace EC2ErrorMapper
 {
-  AWS_EC2_API Client::AWSError<Client::CoreErrors> GetErrorForName(const char* errorName);
+  AWS_EC2_API Aws::Client::AWSError<Aws::Client::CoreErrors> GetErrorForName(const char* errorName);
 }
 
 } // namespace EC2

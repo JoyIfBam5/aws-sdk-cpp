@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lambda/Lambda_EXPORTS.h>
 #include <aws/lambda/LambdaRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,15 @@ namespace Model
   {
   public:
     UpdateEventSourceMappingRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateEventSourceMapping"; }
+
     Aws::String SerializePayload() const override;
+
 
     /**
      * <p>The event source mapping identifier.</p>
@@ -48,7 +58,7 @@ namespace Model
     /**
      * <p>The event source mapping identifier.</p>
      */
-    inline void SetUUID(Aws::String&& value) { m_uUIDHasBeenSet = true; m_uUID = value; }
+    inline void SetUUID(Aws::String&& value) { m_uUIDHasBeenSet = true; m_uUID = std::move(value); }
 
     /**
      * <p>The event source mapping identifier.</p>
@@ -63,12 +73,13 @@ namespace Model
     /**
      * <p>The event source mapping identifier.</p>
      */
-    inline UpdateEventSourceMappingRequest& WithUUID(Aws::String&& value) { SetUUID(value); return *this;}
+    inline UpdateEventSourceMappingRequest& WithUUID(Aws::String&& value) { SetUUID(std::move(value)); return *this;}
 
     /**
      * <p>The event source mapping identifier.</p>
      */
     inline UpdateEventSourceMappingRequest& WithUUID(const char* value) { SetUUID(value); return *this;}
+
 
     /**
      * <p>The Lambda function to which you want the stream records sent.</p> <p> You
@@ -76,9 +87,11 @@ namespace Model
      * specify Amazon Resource Name (ARN) of the function (for example,
      * <code>arn:aws:lambda:us-west-2:account-id:function:ThumbNail</code>). AWS Lambda
      * also allows you to specify a partial ARN (for example,
-     * <code>account-id:Thumbnail</code>). </p> <p>If you are using versioning, you can
-     * also provide a qualified function ARN (ARN that is qualified with function
-     * version or alias name as suffix). For more information about versioning, see <a
+     * <code>account-id:Thumbnail</code>). Note that the length constraint applies only
+     * to the ARN. If you specify only the function name, it is limited to 64
+     * characters in length. </p> <p>If you are using versioning, you can also provide
+     * a qualified function ARN (ARN that is qualified with function version or alias
+     * name as suffix). For more information about versioning, see <a
      * href="http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">AWS
      * Lambda Function Versioning and Aliases</a> </p> <p>Note that the length
      * constraint applies only to the ARN. If you specify only the function name, it is
@@ -92,9 +105,11 @@ namespace Model
      * specify Amazon Resource Name (ARN) of the function (for example,
      * <code>arn:aws:lambda:us-west-2:account-id:function:ThumbNail</code>). AWS Lambda
      * also allows you to specify a partial ARN (for example,
-     * <code>account-id:Thumbnail</code>). </p> <p>If you are using versioning, you can
-     * also provide a qualified function ARN (ARN that is qualified with function
-     * version or alias name as suffix). For more information about versioning, see <a
+     * <code>account-id:Thumbnail</code>). Note that the length constraint applies only
+     * to the ARN. If you specify only the function name, it is limited to 64
+     * characters in length. </p> <p>If you are using versioning, you can also provide
+     * a qualified function ARN (ARN that is qualified with function version or alias
+     * name as suffix). For more information about versioning, see <a
      * href="http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">AWS
      * Lambda Function Versioning and Aliases</a> </p> <p>Note that the length
      * constraint applies only to the ARN. If you specify only the function name, it is
@@ -108,15 +123,17 @@ namespace Model
      * specify Amazon Resource Name (ARN) of the function (for example,
      * <code>arn:aws:lambda:us-west-2:account-id:function:ThumbNail</code>). AWS Lambda
      * also allows you to specify a partial ARN (for example,
-     * <code>account-id:Thumbnail</code>). </p> <p>If you are using versioning, you can
-     * also provide a qualified function ARN (ARN that is qualified with function
-     * version or alias name as suffix). For more information about versioning, see <a
+     * <code>account-id:Thumbnail</code>). Note that the length constraint applies only
+     * to the ARN. If you specify only the function name, it is limited to 64
+     * characters in length. </p> <p>If you are using versioning, you can also provide
+     * a qualified function ARN (ARN that is qualified with function version or alias
+     * name as suffix). For more information about versioning, see <a
      * href="http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">AWS
      * Lambda Function Versioning and Aliases</a> </p> <p>Note that the length
      * constraint applies only to the ARN. If you specify only the function name, it is
      * limited to 64 character in length.</p>
      */
-    inline void SetFunctionName(Aws::String&& value) { m_functionNameHasBeenSet = true; m_functionName = value; }
+    inline void SetFunctionName(Aws::String&& value) { m_functionNameHasBeenSet = true; m_functionName = std::move(value); }
 
     /**
      * <p>The Lambda function to which you want the stream records sent.</p> <p> You
@@ -124,9 +141,11 @@ namespace Model
      * specify Amazon Resource Name (ARN) of the function (for example,
      * <code>arn:aws:lambda:us-west-2:account-id:function:ThumbNail</code>). AWS Lambda
      * also allows you to specify a partial ARN (for example,
-     * <code>account-id:Thumbnail</code>). </p> <p>If you are using versioning, you can
-     * also provide a qualified function ARN (ARN that is qualified with function
-     * version or alias name as suffix). For more information about versioning, see <a
+     * <code>account-id:Thumbnail</code>). Note that the length constraint applies only
+     * to the ARN. If you specify only the function name, it is limited to 64
+     * characters in length. </p> <p>If you are using versioning, you can also provide
+     * a qualified function ARN (ARN that is qualified with function version or alias
+     * name as suffix). For more information about versioning, see <a
      * href="http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">AWS
      * Lambda Function Versioning and Aliases</a> </p> <p>Note that the length
      * constraint applies only to the ARN. If you specify only the function name, it is
@@ -140,9 +159,11 @@ namespace Model
      * specify Amazon Resource Name (ARN) of the function (for example,
      * <code>arn:aws:lambda:us-west-2:account-id:function:ThumbNail</code>). AWS Lambda
      * also allows you to specify a partial ARN (for example,
-     * <code>account-id:Thumbnail</code>). </p> <p>If you are using versioning, you can
-     * also provide a qualified function ARN (ARN that is qualified with function
-     * version or alias name as suffix). For more information about versioning, see <a
+     * <code>account-id:Thumbnail</code>). Note that the length constraint applies only
+     * to the ARN. If you specify only the function name, it is limited to 64
+     * characters in length. </p> <p>If you are using versioning, you can also provide
+     * a qualified function ARN (ARN that is qualified with function version or alias
+     * name as suffix). For more information about versioning, see <a
      * href="http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">AWS
      * Lambda Function Versioning and Aliases</a> </p> <p>Note that the length
      * constraint applies only to the ARN. If you specify only the function name, it is
@@ -156,15 +177,17 @@ namespace Model
      * specify Amazon Resource Name (ARN) of the function (for example,
      * <code>arn:aws:lambda:us-west-2:account-id:function:ThumbNail</code>). AWS Lambda
      * also allows you to specify a partial ARN (for example,
-     * <code>account-id:Thumbnail</code>). </p> <p>If you are using versioning, you can
-     * also provide a qualified function ARN (ARN that is qualified with function
-     * version or alias name as suffix). For more information about versioning, see <a
+     * <code>account-id:Thumbnail</code>). Note that the length constraint applies only
+     * to the ARN. If you specify only the function name, it is limited to 64
+     * characters in length. </p> <p>If you are using versioning, you can also provide
+     * a qualified function ARN (ARN that is qualified with function version or alias
+     * name as suffix). For more information about versioning, see <a
      * href="http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">AWS
      * Lambda Function Versioning and Aliases</a> </p> <p>Note that the length
      * constraint applies only to the ARN. If you specify only the function name, it is
      * limited to 64 character in length.</p>
      */
-    inline UpdateEventSourceMappingRequest& WithFunctionName(Aws::String&& value) { SetFunctionName(value); return *this;}
+    inline UpdateEventSourceMappingRequest& WithFunctionName(Aws::String&& value) { SetFunctionName(std::move(value)); return *this;}
 
     /**
      * <p>The Lambda function to which you want the stream records sent.</p> <p> You
@@ -172,15 +195,18 @@ namespace Model
      * specify Amazon Resource Name (ARN) of the function (for example,
      * <code>arn:aws:lambda:us-west-2:account-id:function:ThumbNail</code>). AWS Lambda
      * also allows you to specify a partial ARN (for example,
-     * <code>account-id:Thumbnail</code>). </p> <p>If you are using versioning, you can
-     * also provide a qualified function ARN (ARN that is qualified with function
-     * version or alias name as suffix). For more information about versioning, see <a
+     * <code>account-id:Thumbnail</code>). Note that the length constraint applies only
+     * to the ARN. If you specify only the function name, it is limited to 64
+     * characters in length. </p> <p>If you are using versioning, you can also provide
+     * a qualified function ARN (ARN that is qualified with function version or alias
+     * name as suffix). For more information about versioning, see <a
      * href="http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">AWS
      * Lambda Function Versioning and Aliases</a> </p> <p>Note that the length
      * constraint applies only to the ARN. If you specify only the function name, it is
      * limited to 64 character in length.</p>
      */
     inline UpdateEventSourceMappingRequest& WithFunctionName(const char* value) { SetFunctionName(value); return *this;}
+
 
     /**
      * <p>Specifies whether AWS Lambda should actively poll the stream or not. If
@@ -199,6 +225,7 @@ namespace Model
      * disabled, AWS Lambda will not poll the stream.</p>
      */
     inline UpdateEventSourceMappingRequest& WithEnabled(bool value) { SetEnabled(value); return *this;}
+
 
     /**
      * <p>The maximum number of stream records that can be sent to your Lambda function
@@ -219,12 +246,16 @@ namespace Model
     inline UpdateEventSourceMappingRequest& WithBatchSize(int value) { SetBatchSize(value); return *this;}
 
   private:
+
     Aws::String m_uUID;
     bool m_uUIDHasBeenSet;
+
     Aws::String m_functionName;
     bool m_functionNameHasBeenSet;
+
     bool m_enabled;
     bool m_enabledHasBeenSet;
+
     int m_batchSize;
     bool m_batchSizeHasBeenSet;
   };

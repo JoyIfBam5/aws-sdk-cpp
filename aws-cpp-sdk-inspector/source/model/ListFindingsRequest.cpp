@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/inspector/model/ListFindingsRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -22,7 +23,7 @@ using namespace Aws::Utils::Json;
 using namespace Aws::Utils;
 
 ListFindingsRequest::ListFindingsRequest() : 
-    m_runArnsHasBeenSet(false),
+    m_assessmentRunArnsHasBeenSet(false),
     m_filterHasBeenSet(false),
     m_nextTokenHasBeenSet(false),
     m_maxResults(0),
@@ -34,14 +35,14 @@ Aws::String ListFindingsRequest::SerializePayload() const
 {
   JsonValue payload;
 
-  if(m_runArnsHasBeenSet)
+  if(m_assessmentRunArnsHasBeenSet)
   {
-   Array<JsonValue> runArnsJsonList(m_runArns.size());
-   for(unsigned runArnsIndex = 0; runArnsIndex < runArnsJsonList.GetLength(); ++runArnsIndex)
+   Array<JsonValue> assessmentRunArnsJsonList(m_assessmentRunArns.size());
+   for(unsigned assessmentRunArnsIndex = 0; assessmentRunArnsIndex < assessmentRunArnsJsonList.GetLength(); ++assessmentRunArnsIndex)
    {
-     runArnsJsonList[runArnsIndex].AsString(m_runArns[runArnsIndex]);
+     assessmentRunArnsJsonList[assessmentRunArnsIndex].AsString(m_assessmentRunArns[assessmentRunArnsIndex]);
    }
-   payload.WithArray("runArns", std::move(runArnsJsonList));
+   payload.WithArray("assessmentRunArns", std::move(assessmentRunArnsJsonList));
 
   }
 
@@ -73,6 +74,7 @@ Aws::Http::HeaderValueCollection ListFindingsRequest::GetRequestSpecificHeaders(
   return headers;
 
 }
+
 
 
 

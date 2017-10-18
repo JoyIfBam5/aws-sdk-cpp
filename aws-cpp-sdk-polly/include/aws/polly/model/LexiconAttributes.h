@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/polly/Polly_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/polly/model/LanguageCode.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     LexiconAttributes& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Phonetic alphabet used in the lexicon. Valid values are <code>ipa</code> and
      * <code>x-sampa</code>.</p>
@@ -64,7 +67,7 @@ namespace Model
      * <p>Phonetic alphabet used in the lexicon. Valid values are <code>ipa</code> and
      * <code>x-sampa</code>.</p>
      */
-    inline void SetAlphabet(Aws::String&& value) { m_alphabetHasBeenSet = true; m_alphabet = value; }
+    inline void SetAlphabet(Aws::String&& value) { m_alphabetHasBeenSet = true; m_alphabet = std::move(value); }
 
     /**
      * <p>Phonetic alphabet used in the lexicon. Valid values are <code>ipa</code> and
@@ -82,13 +85,14 @@ namespace Model
      * <p>Phonetic alphabet used in the lexicon. Valid values are <code>ipa</code> and
      * <code>x-sampa</code>.</p>
      */
-    inline LexiconAttributes& WithAlphabet(Aws::String&& value) { SetAlphabet(value); return *this;}
+    inline LexiconAttributes& WithAlphabet(Aws::String&& value) { SetAlphabet(std::move(value)); return *this;}
 
     /**
      * <p>Phonetic alphabet used in the lexicon. Valid values are <code>ipa</code> and
      * <code>x-sampa</code>.</p>
      */
     inline LexiconAttributes& WithAlphabet(const char* value) { SetAlphabet(value); return *this;}
+
 
     /**
      * <p>Language code that the lexicon applies to. A lexicon with a language code
@@ -109,7 +113,7 @@ namespace Model
      * such as "en" would be applied to all English languages (en-GB, en-US, en-AUS,
      * en-WLS, and so on.</p>
      */
-    inline void SetLanguageCode(LanguageCode&& value) { m_languageCodeHasBeenSet = true; m_languageCode = value; }
+    inline void SetLanguageCode(LanguageCode&& value) { m_languageCodeHasBeenSet = true; m_languageCode = std::move(value); }
 
     /**
      * <p>Language code that the lexicon applies to. A lexicon with a language code
@@ -123,7 +127,8 @@ namespace Model
      * such as "en" would be applied to all English languages (en-GB, en-US, en-AUS,
      * en-WLS, and so on.</p>
      */
-    inline LexiconAttributes& WithLanguageCode(LanguageCode&& value) { SetLanguageCode(value); return *this;}
+    inline LexiconAttributes& WithLanguageCode(LanguageCode&& value) { SetLanguageCode(std::move(value)); return *this;}
+
 
     /**
      * <p>Date lexicon was last modified (a timestamp value).</p>
@@ -138,7 +143,7 @@ namespace Model
     /**
      * <p>Date lexicon was last modified (a timestamp value).</p>
      */
-    inline void SetLastModified(Aws::Utils::DateTime&& value) { m_lastModifiedHasBeenSet = true; m_lastModified = value; }
+    inline void SetLastModified(Aws::Utils::DateTime&& value) { m_lastModifiedHasBeenSet = true; m_lastModified = std::move(value); }
 
     /**
      * <p>Date lexicon was last modified (a timestamp value).</p>
@@ -148,7 +153,8 @@ namespace Model
     /**
      * <p>Date lexicon was last modified (a timestamp value).</p>
      */
-    inline LexiconAttributes& WithLastModified(Aws::Utils::DateTime&& value) { SetLastModified(value); return *this;}
+    inline LexiconAttributes& WithLastModified(Aws::Utils::DateTime&& value) { SetLastModified(std::move(value)); return *this;}
+
 
     /**
      * <p>Amazon Resource Name (ARN) of the lexicon.</p>
@@ -163,7 +169,7 @@ namespace Model
     /**
      * <p>Amazon Resource Name (ARN) of the lexicon.</p>
      */
-    inline void SetLexiconArn(Aws::String&& value) { m_lexiconArnHasBeenSet = true; m_lexiconArn = value; }
+    inline void SetLexiconArn(Aws::String&& value) { m_lexiconArnHasBeenSet = true; m_lexiconArn = std::move(value); }
 
     /**
      * <p>Amazon Resource Name (ARN) of the lexicon.</p>
@@ -178,12 +184,13 @@ namespace Model
     /**
      * <p>Amazon Resource Name (ARN) of the lexicon.</p>
      */
-    inline LexiconAttributes& WithLexiconArn(Aws::String&& value) { SetLexiconArn(value); return *this;}
+    inline LexiconAttributes& WithLexiconArn(Aws::String&& value) { SetLexiconArn(std::move(value)); return *this;}
 
     /**
      * <p>Amazon Resource Name (ARN) of the lexicon.</p>
      */
     inline LexiconAttributes& WithLexiconArn(const char* value) { SetLexiconArn(value); return *this;}
+
 
     /**
      * <p>Number of lexemes in the lexicon.</p>
@@ -199,6 +206,7 @@ namespace Model
      * <p>Number of lexemes in the lexicon.</p>
      */
     inline LexiconAttributes& WithLexemesCount(int value) { SetLexemesCount(value); return *this;}
+
 
     /**
      * <p>Total size of the lexicon, in characters.</p>
@@ -216,16 +224,22 @@ namespace Model
     inline LexiconAttributes& WithSize(int value) { SetSize(value); return *this;}
 
   private:
+
     Aws::String m_alphabet;
     bool m_alphabetHasBeenSet;
+
     LanguageCode m_languageCode;
     bool m_languageCodeHasBeenSet;
+
     Aws::Utils::DateTime m_lastModified;
     bool m_lastModifiedHasBeenSet;
+
     Aws::String m_lexiconArn;
     bool m_lexiconArnHasBeenSet;
+
     int m_lexemesCount;
     bool m_lexemesCountHasBeenSet;
+
     int m_size;
     bool m_sizeHasBeenSet;
   };

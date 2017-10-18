@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-sync/CognitoSync_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/cognito-sync/model/Record.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     UpdateRecordsResult();
-    UpdateRecordsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    UpdateRecordsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdateRecordsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdateRecordsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * A list of records that have been updated.
@@ -58,7 +61,7 @@ namespace Model
     /**
      * A list of records that have been updated.
      */
-    inline void SetRecords(Aws::Vector<Record>&& value) { m_records = value; }
+    inline void SetRecords(Aws::Vector<Record>&& value) { m_records = std::move(value); }
 
     /**
      * A list of records that have been updated.
@@ -68,7 +71,7 @@ namespace Model
     /**
      * A list of records that have been updated.
      */
-    inline UpdateRecordsResult& WithRecords(Aws::Vector<Record>&& value) { SetRecords(value); return *this;}
+    inline UpdateRecordsResult& WithRecords(Aws::Vector<Record>&& value) { SetRecords(std::move(value)); return *this;}
 
     /**
      * A list of records that have been updated.
@@ -78,9 +81,10 @@ namespace Model
     /**
      * A list of records that have been updated.
      */
-    inline UpdateRecordsResult& AddRecords(Record&& value) { m_records.push_back(value); return *this; }
+    inline UpdateRecordsResult& AddRecords(Record&& value) { m_records.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<Record> m_records;
   };
 

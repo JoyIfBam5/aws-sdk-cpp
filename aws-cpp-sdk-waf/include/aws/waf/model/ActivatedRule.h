@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/waf/model/WafAction.h>
+#include <aws/waf/model/WafRuleType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -51,6 +54,7 @@ namespace Model
     ActivatedRule& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Specifies the order in which the <code>Rules</code> in a <code>WebACL</code>
      * are evaluated. Rules with a lower value for <code>Priority</code> are evaluated
@@ -77,6 +81,7 @@ namespace Model
      * values don't need to be consecutive.</p>
      */
     inline ActivatedRule& WithPriority(int value) { SetPriority(value); return *this;}
+
 
     /**
      * <p>The <code>RuleId</code> for a <code>Rule</code>. You use <code>RuleId</code>
@@ -109,7 +114,7 @@ namespace Model
      * <a>DeleteRule</a>).</p> <p> <code>RuleId</code> is returned by <a>CreateRule</a>
      * and by <a>ListRules</a>.</p>
      */
-    inline void SetRuleId(Aws::String&& value) { m_ruleIdHasBeenSet = true; m_ruleId = value; }
+    inline void SetRuleId(Aws::String&& value) { m_ruleIdHasBeenSet = true; m_ruleId = std::move(value); }
 
     /**
      * <p>The <code>RuleId</code> for a <code>Rule</code>. You use <code>RuleId</code>
@@ -142,7 +147,7 @@ namespace Model
      * <a>DeleteRule</a>).</p> <p> <code>RuleId</code> is returned by <a>CreateRule</a>
      * and by <a>ListRules</a>.</p>
      */
-    inline ActivatedRule& WithRuleId(Aws::String&& value) { SetRuleId(value); return *this;}
+    inline ActivatedRule& WithRuleId(Aws::String&& value) { SetRuleId(std::move(value)); return *this;}
 
     /**
      * <p>The <code>RuleId</code> for a <code>Rule</code>. You use <code>RuleId</code>
@@ -154,6 +159,7 @@ namespace Model
      * and by <a>ListRules</a>.</p>
      */
     inline ActivatedRule& WithRuleId(const char* value) { SetRuleId(value); return *this;}
+
 
     /**
      * <p>Specifies the action that CloudFront or AWS WAF takes when a web request
@@ -189,7 +195,7 @@ namespace Model
      * requests that match the conditions in the rule and then continues to inspect the
      * web request based on the remaining rules in the web ACL. </p> </li> </ul>
      */
-    inline void SetAction(WafAction&& value) { m_actionHasBeenSet = true; m_action = value; }
+    inline void SetAction(WafAction&& value) { m_actionHasBeenSet = true; m_action = std::move(value); }
 
     /**
      * <p>Specifies the action that CloudFront or AWS WAF takes when a web request
@@ -213,15 +219,72 @@ namespace Model
      * requests that match the conditions in the rule and then continues to inspect the
      * web request based on the remaining rules in the web ACL. </p> </li> </ul>
      */
-    inline ActivatedRule& WithAction(WafAction&& value) { SetAction(value); return *this;}
+    inline ActivatedRule& WithAction(WafAction&& value) { SetAction(std::move(value)); return *this;}
+
+
+    /**
+     * <p>The rule type, either <code>REGULAR</code>, as defined by <a>Rule</a>, or
+     * <code>RATE_BASED</code>, as defined by <a>RateBasedRule</a>. The default is
+     * REGULAR. Although this field is optional, be aware that if you try to add a
+     * RATE_BASED rule to a web ACL without setting the type, the <a>UpdateWebACL</a>
+     * request will fail because the request tries to add a REGULAR rule with the
+     * specified ID, which does not exist. </p>
+     */
+    inline const WafRuleType& GetType() const{ return m_type; }
+
+    /**
+     * <p>The rule type, either <code>REGULAR</code>, as defined by <a>Rule</a>, or
+     * <code>RATE_BASED</code>, as defined by <a>RateBasedRule</a>. The default is
+     * REGULAR. Although this field is optional, be aware that if you try to add a
+     * RATE_BASED rule to a web ACL without setting the type, the <a>UpdateWebACL</a>
+     * request will fail because the request tries to add a REGULAR rule with the
+     * specified ID, which does not exist. </p>
+     */
+    inline void SetType(const WafRuleType& value) { m_typeHasBeenSet = true; m_type = value; }
+
+    /**
+     * <p>The rule type, either <code>REGULAR</code>, as defined by <a>Rule</a>, or
+     * <code>RATE_BASED</code>, as defined by <a>RateBasedRule</a>. The default is
+     * REGULAR. Although this field is optional, be aware that if you try to add a
+     * RATE_BASED rule to a web ACL without setting the type, the <a>UpdateWebACL</a>
+     * request will fail because the request tries to add a REGULAR rule with the
+     * specified ID, which does not exist. </p>
+     */
+    inline void SetType(WafRuleType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
+
+    /**
+     * <p>The rule type, either <code>REGULAR</code>, as defined by <a>Rule</a>, or
+     * <code>RATE_BASED</code>, as defined by <a>RateBasedRule</a>. The default is
+     * REGULAR. Although this field is optional, be aware that if you try to add a
+     * RATE_BASED rule to a web ACL without setting the type, the <a>UpdateWebACL</a>
+     * request will fail because the request tries to add a REGULAR rule with the
+     * specified ID, which does not exist. </p>
+     */
+    inline ActivatedRule& WithType(const WafRuleType& value) { SetType(value); return *this;}
+
+    /**
+     * <p>The rule type, either <code>REGULAR</code>, as defined by <a>Rule</a>, or
+     * <code>RATE_BASED</code>, as defined by <a>RateBasedRule</a>. The default is
+     * REGULAR. Although this field is optional, be aware that if you try to add a
+     * RATE_BASED rule to a web ACL without setting the type, the <a>UpdateWebACL</a>
+     * request will fail because the request tries to add a REGULAR rule with the
+     * specified ID, which does not exist. </p>
+     */
+    inline ActivatedRule& WithType(WafRuleType&& value) { SetType(std::move(value)); return *this;}
 
   private:
+
     int m_priority;
     bool m_priorityHasBeenSet;
+
     Aws::String m_ruleId;
     bool m_ruleIdHasBeenSet;
+
     WafAction m_action;
     bool m_actionHasBeenSet;
+
+    WafRuleType m_type;
+    bool m_typeHasBeenSet;
   };
 
 } // namespace Model

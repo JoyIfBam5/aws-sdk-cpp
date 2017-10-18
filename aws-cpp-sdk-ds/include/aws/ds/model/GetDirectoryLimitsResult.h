@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ds/DirectoryService_EXPORTS.h>
 #include <aws/ds/model/DirectoryLimits.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     GetDirectoryLimitsResult();
-    GetDirectoryLimitsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetDirectoryLimitsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDirectoryLimitsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDirectoryLimitsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A <a>DirectoryLimits</a> object that contains the directory limits for the
@@ -61,7 +64,7 @@ namespace Model
      * <p>A <a>DirectoryLimits</a> object that contains the directory limits for the
      * current region.</p>
      */
-    inline void SetDirectoryLimits(DirectoryLimits&& value) { m_directoryLimits = value; }
+    inline void SetDirectoryLimits(DirectoryLimits&& value) { m_directoryLimits = std::move(value); }
 
     /**
      * <p>A <a>DirectoryLimits</a> object that contains the directory limits for the
@@ -73,9 +76,10 @@ namespace Model
      * <p>A <a>DirectoryLimits</a> object that contains the directory limits for the
      * current region.</p>
      */
-    inline GetDirectoryLimitsResult& WithDirectoryLimits(DirectoryLimits&& value) { SetDirectoryLimits(value); return *this;}
+    inline GetDirectoryLimitsResult& WithDirectoryLimits(DirectoryLimits&& value) { SetDirectoryLimits(std::move(value)); return *this;}
 
   private:
+
     DirectoryLimits m_directoryLimits;
   };
 

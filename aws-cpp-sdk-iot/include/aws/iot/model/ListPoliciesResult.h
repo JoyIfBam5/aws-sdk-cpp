@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/iot/model/Policy.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     ListPoliciesResult();
-    ListPoliciesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListPoliciesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListPoliciesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListPoliciesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The descriptions of the policies.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The descriptions of the policies.</p>
      */
-    inline void SetPolicies(Aws::Vector<Policy>&& value) { m_policies = value; }
+    inline void SetPolicies(Aws::Vector<Policy>&& value) { m_policies = std::move(value); }
 
     /**
      * <p>The descriptions of the policies.</p>
@@ -69,7 +72,7 @@ namespace Model
     /**
      * <p>The descriptions of the policies.</p>
      */
-    inline ListPoliciesResult& WithPolicies(Aws::Vector<Policy>&& value) { SetPolicies(value); return *this;}
+    inline ListPoliciesResult& WithPolicies(Aws::Vector<Policy>&& value) { SetPolicies(std::move(value)); return *this;}
 
     /**
      * <p>The descriptions of the policies.</p>
@@ -79,7 +82,8 @@ namespace Model
     /**
      * <p>The descriptions of the policies.</p>
      */
-    inline ListPoliciesResult& AddPolicies(Policy&& value) { m_policies.push_back(value); return *this; }
+    inline ListPoliciesResult& AddPolicies(Policy&& value) { m_policies.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The marker for the next set of results, or null if there are no additional
@@ -97,7 +101,7 @@ namespace Model
      * <p>The marker for the next set of results, or null if there are no additional
      * results.</p>
      */
-    inline void SetNextMarker(Aws::String&& value) { m_nextMarker = value; }
+    inline void SetNextMarker(Aws::String&& value) { m_nextMarker = std::move(value); }
 
     /**
      * <p>The marker for the next set of results, or null if there are no additional
@@ -115,7 +119,7 @@ namespace Model
      * <p>The marker for the next set of results, or null if there are no additional
      * results.</p>
      */
-    inline ListPoliciesResult& WithNextMarker(Aws::String&& value) { SetNextMarker(value); return *this;}
+    inline ListPoliciesResult& WithNextMarker(Aws::String&& value) { SetNextMarker(std::move(value)); return *this;}
 
     /**
      * <p>The marker for the next set of results, or null if there are no additional
@@ -124,7 +128,9 @@ namespace Model
     inline ListPoliciesResult& WithNextMarker(const char* value) { SetNextMarker(value); return *this;}
 
   private:
+
     Aws::Vector<Policy> m_policies;
+
     Aws::String m_nextMarker;
   };
 

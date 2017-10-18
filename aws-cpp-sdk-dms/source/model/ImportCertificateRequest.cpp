@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/dms/model/ImportCertificateRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 #include <aws/core/utils/HashingUtils.h>
@@ -25,7 +26,8 @@ using namespace Aws::Utils;
 ImportCertificateRequest::ImportCertificateRequest() : 
     m_certificateIdentifierHasBeenSet(false),
     m_certificatePemHasBeenSet(false),
-    m_certificateWalletHasBeenSet(false)
+    m_certificateWalletHasBeenSet(false),
+    m_tagsHasBeenSet(false)
 {
 }
 
@@ -50,6 +52,17 @@ Aws::String ImportCertificateRequest::SerializePayload() const
    payload.WithString("CertificateWallet", HashingUtils::Base64Encode(m_certificateWallet));
   }
 
+  if(m_tagsHasBeenSet)
+  {
+   Array<JsonValue> tagsJsonList(m_tags.size());
+   for(unsigned tagsIndex = 0; tagsIndex < tagsJsonList.GetLength(); ++tagsIndex)
+   {
+     tagsJsonList[tagsIndex].AsObject(m_tags[tagsIndex].Jsonize());
+   }
+   payload.WithArray("Tags", std::move(tagsJsonList));
+
+  }
+
   return payload.WriteReadable();
 }
 
@@ -60,6 +73,7 @@ Aws::Http::HeaderValueCollection ImportCertificateRequest::GetRequestSpecificHea
   return headers;
 
 }
+
 
 
 

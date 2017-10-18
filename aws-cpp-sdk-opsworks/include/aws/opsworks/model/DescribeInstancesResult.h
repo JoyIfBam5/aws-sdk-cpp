@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/opsworks/model/Instance.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     DescribeInstancesResult();
-    DescribeInstancesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeInstancesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeInstancesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeInstancesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>An array of <code>Instance</code> objects that describe the instances.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>An array of <code>Instance</code> objects that describe the instances.</p>
      */
-    inline void SetInstances(Aws::Vector<Instance>&& value) { m_instances = value; }
+    inline void SetInstances(Aws::Vector<Instance>&& value) { m_instances = std::move(value); }
 
     /**
      * <p>An array of <code>Instance</code> objects that describe the instances.</p>
@@ -69,7 +72,7 @@ namespace Model
     /**
      * <p>An array of <code>Instance</code> objects that describe the instances.</p>
      */
-    inline DescribeInstancesResult& WithInstances(Aws::Vector<Instance>&& value) { SetInstances(value); return *this;}
+    inline DescribeInstancesResult& WithInstances(Aws::Vector<Instance>&& value) { SetInstances(std::move(value)); return *this;}
 
     /**
      * <p>An array of <code>Instance</code> objects that describe the instances.</p>
@@ -79,9 +82,10 @@ namespace Model
     /**
      * <p>An array of <code>Instance</code> objects that describe the instances.</p>
      */
-    inline DescribeInstancesResult& AddInstances(Instance&& value) { m_instances.push_back(value); return *this; }
+    inline DescribeInstancesResult& AddInstances(Instance&& value) { m_instances.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<Instance> m_instances;
   };
 

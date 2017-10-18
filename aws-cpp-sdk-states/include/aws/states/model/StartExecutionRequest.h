@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/states/SFN_EXPORTS.h>
 #include <aws/states/SFNRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     StartExecutionRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "StartExecution"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the state machine to execute.</p>
@@ -47,7 +57,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the state machine to execute.</p>
      */
-    inline void SetStateMachineArn(Aws::String&& value) { m_stateMachineArnHasBeenSet = true; m_stateMachineArn = value; }
+    inline void SetStateMachineArn(Aws::String&& value) { m_stateMachineArnHasBeenSet = true; m_stateMachineArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the state machine to execute.</p>
@@ -62,12 +72,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the state machine to execute.</p>
      */
-    inline StartExecutionRequest& WithStateMachineArn(Aws::String&& value) { SetStateMachineArn(value); return *this;}
+    inline StartExecutionRequest& WithStateMachineArn(Aws::String&& value) { SetStateMachineArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the state machine to execute.</p>
      */
     inline StartExecutionRequest& WithStateMachineArn(const char* value) { SetStateMachineArn(value); return *this;}
+
 
     /**
      * <p>The name of the execution. This name must be unique for your AWS account and
@@ -85,7 +96,7 @@ namespace Model
      * <p>The name of the execution. This name must be unique for your AWS account and
      * region.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the execution. This name must be unique for your AWS account and
@@ -103,13 +114,14 @@ namespace Model
      * <p>The name of the execution. This name must be unique for your AWS account and
      * region.</p>
      */
-    inline StartExecutionRequest& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline StartExecutionRequest& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the execution. This name must be unique for your AWS account and
      * region.</p>
      */
     inline StartExecutionRequest& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The JSON input data for the execution.</p>
@@ -124,7 +136,7 @@ namespace Model
     /**
      * <p>The JSON input data for the execution.</p>
      */
-    inline void SetInput(Aws::String&& value) { m_inputHasBeenSet = true; m_input = value; }
+    inline void SetInput(Aws::String&& value) { m_inputHasBeenSet = true; m_input = std::move(value); }
 
     /**
      * <p>The JSON input data for the execution.</p>
@@ -139,7 +151,7 @@ namespace Model
     /**
      * <p>The JSON input data for the execution.</p>
      */
-    inline StartExecutionRequest& WithInput(Aws::String&& value) { SetInput(value); return *this;}
+    inline StartExecutionRequest& WithInput(Aws::String&& value) { SetInput(std::move(value)); return *this;}
 
     /**
      * <p>The JSON input data for the execution.</p>
@@ -147,10 +159,13 @@ namespace Model
     inline StartExecutionRequest& WithInput(const char* value) { SetInput(value); return *this;}
 
   private:
+
     Aws::String m_stateMachineArn;
     bool m_stateMachineArnHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_input;
     bool m_inputHasBeenSet;
   };

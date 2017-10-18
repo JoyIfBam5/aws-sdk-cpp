@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-identity/CognitoIdentity_EXPORTS.h>
 #include <aws/cognito-identity/CognitoIdentityRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,9 +37,17 @@ namespace Model
   {
   public:
     UnlinkIdentityRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UnlinkIdentity"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>A unique identifier in the format REGION:GUID.</p>
@@ -52,7 +62,7 @@ namespace Model
     /**
      * <p>A unique identifier in the format REGION:GUID.</p>
      */
-    inline void SetIdentityId(Aws::String&& value) { m_identityIdHasBeenSet = true; m_identityId = value; }
+    inline void SetIdentityId(Aws::String&& value) { m_identityIdHasBeenSet = true; m_identityId = std::move(value); }
 
     /**
      * <p>A unique identifier in the format REGION:GUID.</p>
@@ -67,12 +77,13 @@ namespace Model
     /**
      * <p>A unique identifier in the format REGION:GUID.</p>
      */
-    inline UnlinkIdentityRequest& WithIdentityId(Aws::String&& value) { SetIdentityId(value); return *this;}
+    inline UnlinkIdentityRequest& WithIdentityId(Aws::String&& value) { SetIdentityId(std::move(value)); return *this;}
 
     /**
      * <p>A unique identifier in the format REGION:GUID.</p>
      */
     inline UnlinkIdentityRequest& WithIdentityId(const char* value) { SetIdentityId(value); return *this;}
+
 
     /**
      * <p>A set of optional name-value pairs that map provider names to provider
@@ -90,7 +101,7 @@ namespace Model
      * <p>A set of optional name-value pairs that map provider names to provider
      * tokens.</p>
      */
-    inline void SetLogins(Aws::Map<Aws::String, Aws::String>&& value) { m_loginsHasBeenSet = true; m_logins = value; }
+    inline void SetLogins(Aws::Map<Aws::String, Aws::String>&& value) { m_loginsHasBeenSet = true; m_logins = std::move(value); }
 
     /**
      * <p>A set of optional name-value pairs that map provider names to provider
@@ -102,49 +113,50 @@ namespace Model
      * <p>A set of optional name-value pairs that map provider names to provider
      * tokens.</p>
      */
-    inline UnlinkIdentityRequest& WithLogins(Aws::Map<Aws::String, Aws::String>&& value) { SetLogins(value); return *this;}
+    inline UnlinkIdentityRequest& WithLogins(Aws::Map<Aws::String, Aws::String>&& value) { SetLogins(std::move(value)); return *this;}
 
     /**
      * <p>A set of optional name-value pairs that map provider names to provider
      * tokens.</p>
      */
-    inline UnlinkIdentityRequest& AddLogins(const Aws::String& key, const Aws::String& value) { m_loginsHasBeenSet = true; m_logins[key] = value; return *this; }
+    inline UnlinkIdentityRequest& AddLogins(const Aws::String& key, const Aws::String& value) { m_loginsHasBeenSet = true; m_logins.emplace(key, value); return *this; }
 
     /**
      * <p>A set of optional name-value pairs that map provider names to provider
      * tokens.</p>
      */
-    inline UnlinkIdentityRequest& AddLogins(Aws::String&& key, const Aws::String& value) { m_loginsHasBeenSet = true; m_logins[key] = value; return *this; }
+    inline UnlinkIdentityRequest& AddLogins(Aws::String&& key, const Aws::String& value) { m_loginsHasBeenSet = true; m_logins.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A set of optional name-value pairs that map provider names to provider
      * tokens.</p>
      */
-    inline UnlinkIdentityRequest& AddLogins(const Aws::String& key, Aws::String&& value) { m_loginsHasBeenSet = true; m_logins[key] = value; return *this; }
+    inline UnlinkIdentityRequest& AddLogins(const Aws::String& key, Aws::String&& value) { m_loginsHasBeenSet = true; m_logins.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A set of optional name-value pairs that map provider names to provider
      * tokens.</p>
      */
-    inline UnlinkIdentityRequest& AddLogins(Aws::String&& key, Aws::String&& value) { m_loginsHasBeenSet = true; m_logins[key] = value; return *this; }
+    inline UnlinkIdentityRequest& AddLogins(Aws::String&& key, Aws::String&& value) { m_loginsHasBeenSet = true; m_logins.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>A set of optional name-value pairs that map provider names to provider
      * tokens.</p>
      */
-    inline UnlinkIdentityRequest& AddLogins(const char* key, Aws::String&& value) { m_loginsHasBeenSet = true; m_logins[key] = value; return *this; }
+    inline UnlinkIdentityRequest& AddLogins(const char* key, Aws::String&& value) { m_loginsHasBeenSet = true; m_logins.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A set of optional name-value pairs that map provider names to provider
      * tokens.</p>
      */
-    inline UnlinkIdentityRequest& AddLogins(Aws::String&& key, const char* value) { m_loginsHasBeenSet = true; m_logins[key] = value; return *this; }
+    inline UnlinkIdentityRequest& AddLogins(Aws::String&& key, const char* value) { m_loginsHasBeenSet = true; m_logins.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A set of optional name-value pairs that map provider names to provider
      * tokens.</p>
      */
-    inline UnlinkIdentityRequest& AddLogins(const char* key, const char* value) { m_loginsHasBeenSet = true; m_logins[key] = value; return *this; }
+    inline UnlinkIdentityRequest& AddLogins(const char* key, const char* value) { m_loginsHasBeenSet = true; m_logins.emplace(key, value); return *this; }
+
 
     /**
      * <p>Provider names to unlink from this identity.</p>
@@ -159,7 +171,7 @@ namespace Model
     /**
      * <p>Provider names to unlink from this identity.</p>
      */
-    inline void SetLoginsToRemove(Aws::Vector<Aws::String>&& value) { m_loginsToRemoveHasBeenSet = true; m_loginsToRemove = value; }
+    inline void SetLoginsToRemove(Aws::Vector<Aws::String>&& value) { m_loginsToRemoveHasBeenSet = true; m_loginsToRemove = std::move(value); }
 
     /**
      * <p>Provider names to unlink from this identity.</p>
@@ -169,7 +181,7 @@ namespace Model
     /**
      * <p>Provider names to unlink from this identity.</p>
      */
-    inline UnlinkIdentityRequest& WithLoginsToRemove(Aws::Vector<Aws::String>&& value) { SetLoginsToRemove(value); return *this;}
+    inline UnlinkIdentityRequest& WithLoginsToRemove(Aws::Vector<Aws::String>&& value) { SetLoginsToRemove(std::move(value)); return *this;}
 
     /**
      * <p>Provider names to unlink from this identity.</p>
@@ -179,7 +191,7 @@ namespace Model
     /**
      * <p>Provider names to unlink from this identity.</p>
      */
-    inline UnlinkIdentityRequest& AddLoginsToRemove(Aws::String&& value) { m_loginsToRemoveHasBeenSet = true; m_loginsToRemove.push_back(value); return *this; }
+    inline UnlinkIdentityRequest& AddLoginsToRemove(Aws::String&& value) { m_loginsToRemoveHasBeenSet = true; m_loginsToRemove.push_back(std::move(value)); return *this; }
 
     /**
      * <p>Provider names to unlink from this identity.</p>
@@ -187,10 +199,13 @@ namespace Model
     inline UnlinkIdentityRequest& AddLoginsToRemove(const char* value) { m_loginsToRemoveHasBeenSet = true; m_loginsToRemove.push_back(value); return *this; }
 
   private:
+
     Aws::String m_identityId;
     bool m_identityIdHasBeenSet;
+
     Aws::Map<Aws::String, Aws::String> m_logins;
     bool m_loginsHasBeenSet;
+
     Aws::Vector<Aws::String> m_loginsToRemove;
     bool m_loginsToRemoveHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticache/ElastiCache_EXPORTS.h>
 #include <aws/elasticache/ElastiCacheRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,7 +36,19 @@ namespace Model
   {
   public:
     CreateSnapshotRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateSnapshot"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The identifier of an existing replication group. The snapshot is created from
@@ -52,7 +66,7 @@ namespace Model
      * <p>The identifier of an existing replication group. The snapshot is created from
      * this replication group.</p>
      */
-    inline void SetReplicationGroupId(Aws::String&& value) { m_replicationGroupIdHasBeenSet = true; m_replicationGroupId = value; }
+    inline void SetReplicationGroupId(Aws::String&& value) { m_replicationGroupIdHasBeenSet = true; m_replicationGroupId = std::move(value); }
 
     /**
      * <p>The identifier of an existing replication group. The snapshot is created from
@@ -70,13 +84,14 @@ namespace Model
      * <p>The identifier of an existing replication group. The snapshot is created from
      * this replication group.</p>
      */
-    inline CreateSnapshotRequest& WithReplicationGroupId(Aws::String&& value) { SetReplicationGroupId(value); return *this;}
+    inline CreateSnapshotRequest& WithReplicationGroupId(Aws::String&& value) { SetReplicationGroupId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of an existing replication group. The snapshot is created from
      * this replication group.</p>
      */
     inline CreateSnapshotRequest& WithReplicationGroupId(const char* value) { SetReplicationGroupId(value); return *this;}
+
 
     /**
      * <p>The identifier of an existing cache cluster. The snapshot is created from
@@ -94,7 +109,7 @@ namespace Model
      * <p>The identifier of an existing cache cluster. The snapshot is created from
      * this cache cluster.</p>
      */
-    inline void SetCacheClusterId(Aws::String&& value) { m_cacheClusterIdHasBeenSet = true; m_cacheClusterId = value; }
+    inline void SetCacheClusterId(Aws::String&& value) { m_cacheClusterIdHasBeenSet = true; m_cacheClusterId = std::move(value); }
 
     /**
      * <p>The identifier of an existing cache cluster. The snapshot is created from
@@ -112,13 +127,14 @@ namespace Model
      * <p>The identifier of an existing cache cluster. The snapshot is created from
      * this cache cluster.</p>
      */
-    inline CreateSnapshotRequest& WithCacheClusterId(Aws::String&& value) { SetCacheClusterId(value); return *this;}
+    inline CreateSnapshotRequest& WithCacheClusterId(Aws::String&& value) { SetCacheClusterId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of an existing cache cluster. The snapshot is created from
      * this cache cluster.</p>
      */
     inline CreateSnapshotRequest& WithCacheClusterId(const char* value) { SetCacheClusterId(value); return *this;}
+
 
     /**
      * <p>A name for the snapshot being created.</p>
@@ -133,7 +149,7 @@ namespace Model
     /**
      * <p>A name for the snapshot being created.</p>
      */
-    inline void SetSnapshotName(Aws::String&& value) { m_snapshotNameHasBeenSet = true; m_snapshotName = value; }
+    inline void SetSnapshotName(Aws::String&& value) { m_snapshotNameHasBeenSet = true; m_snapshotName = std::move(value); }
 
     /**
      * <p>A name for the snapshot being created.</p>
@@ -148,7 +164,7 @@ namespace Model
     /**
      * <p>A name for the snapshot being created.</p>
      */
-    inline CreateSnapshotRequest& WithSnapshotName(Aws::String&& value) { SetSnapshotName(value); return *this;}
+    inline CreateSnapshotRequest& WithSnapshotName(Aws::String&& value) { SetSnapshotName(std::move(value)); return *this;}
 
     /**
      * <p>A name for the snapshot being created.</p>
@@ -156,10 +172,13 @@ namespace Model
     inline CreateSnapshotRequest& WithSnapshotName(const char* value) { SetSnapshotName(value); return *this;}
 
   private:
+
     Aws::String m_replicationGroupId;
     bool m_replicationGroupIdHasBeenSet;
+
     Aws::String m_cacheClusterId;
     bool m_cacheClusterIdHasBeenSet;
+
     Aws::String m_snapshotName;
     bool m_snapshotNameHasBeenSet;
   };

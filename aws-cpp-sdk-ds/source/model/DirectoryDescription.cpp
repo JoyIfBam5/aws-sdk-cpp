@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ds/model/DirectoryDescription.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -50,7 +51,9 @@ DirectoryDescription::DirectoryDescription() :
     m_radiusStatusHasBeenSet(false),
     m_stageReasonHasBeenSet(false),
     m_ssoEnabled(false),
-    m_ssoEnabledHasBeenSet(false)
+    m_ssoEnabledHasBeenSet(false),
+    m_desiredNumberOfDomainControllers(0),
+    m_desiredNumberOfDomainControllersHasBeenSet(false)
 {
 }
 
@@ -77,7 +80,9 @@ DirectoryDescription::DirectoryDescription(const JsonValue& jsonValue) :
     m_radiusStatusHasBeenSet(false),
     m_stageReasonHasBeenSet(false),
     m_ssoEnabled(false),
-    m_ssoEnabledHasBeenSet(false)
+    m_ssoEnabledHasBeenSet(false),
+    m_desiredNumberOfDomainControllers(0),
+    m_desiredNumberOfDomainControllersHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -213,6 +218,13 @@ DirectoryDescription& DirectoryDescription::operator =(const JsonValue& jsonValu
     m_ssoEnabledHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("DesiredNumberOfDomainControllers"))
+  {
+    m_desiredNumberOfDomainControllers = jsonValue.GetInteger("DesiredNumberOfDomainControllers");
+
+    m_desiredNumberOfDomainControllersHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -324,6 +336,12 @@ JsonValue DirectoryDescription::Jsonize() const
   if(m_ssoEnabledHasBeenSet)
   {
    payload.WithBool("SsoEnabled", m_ssoEnabled);
+
+  }
+
+  if(m_desiredNumberOfDomainControllersHasBeenSet)
+  {
+   payload.WithInteger("DesiredNumberOfDomainControllers", m_desiredNumberOfDomainControllers);
 
   }
 

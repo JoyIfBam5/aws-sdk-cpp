@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/devicefarm/model/AccountSettings.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -30,14 +31,26 @@ namespace Model
 AccountSettings::AccountSettings() : 
     m_awsAccountNumberHasBeenSet(false),
     m_unmeteredDevicesHasBeenSet(false),
-    m_unmeteredRemoteAccessDevicesHasBeenSet(false)
+    m_unmeteredRemoteAccessDevicesHasBeenSet(false),
+    m_maxJobTimeoutMinutes(0),
+    m_maxJobTimeoutMinutesHasBeenSet(false),
+    m_trialMinutesHasBeenSet(false),
+    m_maxSlotsHasBeenSet(false),
+    m_defaultJobTimeoutMinutes(0),
+    m_defaultJobTimeoutMinutesHasBeenSet(false)
 {
 }
 
 AccountSettings::AccountSettings(const JsonValue& jsonValue) : 
     m_awsAccountNumberHasBeenSet(false),
     m_unmeteredDevicesHasBeenSet(false),
-    m_unmeteredRemoteAccessDevicesHasBeenSet(false)
+    m_unmeteredRemoteAccessDevicesHasBeenSet(false),
+    m_maxJobTimeoutMinutes(0),
+    m_maxJobTimeoutMinutesHasBeenSet(false),
+    m_trialMinutesHasBeenSet(false),
+    m_maxSlotsHasBeenSet(false),
+    m_defaultJobTimeoutMinutes(0),
+    m_defaultJobTimeoutMinutesHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -69,6 +82,37 @@ AccountSettings& AccountSettings::operator =(const JsonValue& jsonValue)
       m_unmeteredRemoteAccessDevices[DevicePlatformMapper::GetDevicePlatformForName(unmeteredRemoteAccessDevicesItem.first)] = unmeteredRemoteAccessDevicesItem.second.AsInteger();
     }
     m_unmeteredRemoteAccessDevicesHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("maxJobTimeoutMinutes"))
+  {
+    m_maxJobTimeoutMinutes = jsonValue.GetInteger("maxJobTimeoutMinutes");
+
+    m_maxJobTimeoutMinutesHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("trialMinutes"))
+  {
+    m_trialMinutes = jsonValue.GetObject("trialMinutes");
+
+    m_trialMinutesHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("maxSlots"))
+  {
+    Aws::Map<Aws::String, JsonValue> maxSlotsJsonMap = jsonValue.GetObject("maxSlots").GetAllObjects();
+    for(auto& maxSlotsItem : maxSlotsJsonMap)
+    {
+      m_maxSlots[maxSlotsItem.first] = maxSlotsItem.second.AsInteger();
+    }
+    m_maxSlotsHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("defaultJobTimeoutMinutes"))
+  {
+    m_defaultJobTimeoutMinutes = jsonValue.GetInteger("defaultJobTimeoutMinutes");
+
+    m_defaultJobTimeoutMinutesHasBeenSet = true;
   }
 
   return *this;
@@ -103,6 +147,35 @@ JsonValue AccountSettings::Jsonize() const
      unmeteredRemoteAccessDevicesJsonMap.WithInteger(DevicePlatformMapper::GetNameForDevicePlatform(unmeteredRemoteAccessDevicesItem.first), unmeteredRemoteAccessDevicesItem.second);
    }
    payload.WithObject("unmeteredRemoteAccessDevices", std::move(unmeteredRemoteAccessDevicesJsonMap));
+
+  }
+
+  if(m_maxJobTimeoutMinutesHasBeenSet)
+  {
+   payload.WithInteger("maxJobTimeoutMinutes", m_maxJobTimeoutMinutes);
+
+  }
+
+  if(m_trialMinutesHasBeenSet)
+  {
+   payload.WithObject("trialMinutes", m_trialMinutes.Jsonize());
+
+  }
+
+  if(m_maxSlotsHasBeenSet)
+  {
+   JsonValue maxSlotsJsonMap;
+   for(auto& maxSlotsItem : m_maxSlots)
+   {
+     maxSlotsJsonMap.WithInteger(maxSlotsItem.first, maxSlotsItem.second);
+   }
+   payload.WithObject("maxSlots", std::move(maxSlotsJsonMap));
+
+  }
+
+  if(m_defaultJobTimeoutMinutesHasBeenSet)
+  {
+   payload.WithInteger("defaultJobTimeoutMinutes", m_defaultJobTimeoutMinutes);
 
   }
 

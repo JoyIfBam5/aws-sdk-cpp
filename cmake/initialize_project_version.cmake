@@ -22,8 +22,10 @@ macro(add_project name description)
     set(PROJECT_BUGREPORT "https://github.com/aws/aws-sdk-cpp/issues/")
     set(PROJECT_DESCRIPTION "${description}")
     set(PROJECT_LIBS "")
+    set(PROJECT_LIBS_STRING "")
     foreach(library_var ${ARGN})
         list(APPEND PROJECT_LIBS "${library_var}")
+        set(PROJECT_LIBS_STRING "${PROJECT_LIBS_STRING} ${library_var}")
     endforeach()
 
     if(POLICY CMP0028)
@@ -39,6 +41,6 @@ macro(add_project name description)
 	cmake_policy(SET CMP0056 NEW)
     endif()
 
-    project(${name} VERSION "${PROJECT_VERSION}" LANGUAGES CXX)
+    project(${name} VERSION "${PROJECT_VERSION}" LANGUAGES CXX C)
 
 endmacro()

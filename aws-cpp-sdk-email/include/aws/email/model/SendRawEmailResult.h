@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/email/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     SendRawEmailResult();
-    SendRawEmailResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    SendRawEmailResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    SendRawEmailResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    SendRawEmailResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>The unique message identifier returned from the <code>SendRawEmail</code>
@@ -61,7 +64,7 @@ namespace Model
      * <p>The unique message identifier returned from the <code>SendRawEmail</code>
      * action. </p>
      */
-    inline void SetMessageId(Aws::String&& value) { m_messageId = value; }
+    inline void SetMessageId(Aws::String&& value) { m_messageId = std::move(value); }
 
     /**
      * <p>The unique message identifier returned from the <code>SendRawEmail</code>
@@ -79,13 +82,14 @@ namespace Model
      * <p>The unique message identifier returned from the <code>SendRawEmail</code>
      * action. </p>
      */
-    inline SendRawEmailResult& WithMessageId(Aws::String&& value) { SetMessageId(value); return *this;}
+    inline SendRawEmailResult& WithMessageId(Aws::String&& value) { SetMessageId(std::move(value)); return *this;}
 
     /**
      * <p>The unique message identifier returned from the <code>SendRawEmail</code>
      * action. </p>
      */
     inline SendRawEmailResult& WithMessageId(const char* value) { SetMessageId(value); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -94,16 +98,18 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline SendRawEmailResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline SendRawEmailResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline SendRawEmailResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_messageId;
+
     ResponseMetadata m_responseMetadata;
   };
 

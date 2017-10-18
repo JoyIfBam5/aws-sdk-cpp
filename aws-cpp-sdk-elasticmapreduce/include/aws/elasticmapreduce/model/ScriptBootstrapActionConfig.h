@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     ScriptBootstrapActionConfig& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Location of the script to run during a bootstrap action. Can be either a
      * location in Amazon S3 or on a local file system.</p>
@@ -61,7 +64,7 @@ namespace Model
      * <p>Location of the script to run during a bootstrap action. Can be either a
      * location in Amazon S3 or on a local file system.</p>
      */
-    inline void SetPath(Aws::String&& value) { m_pathHasBeenSet = true; m_path = value; }
+    inline void SetPath(Aws::String&& value) { m_pathHasBeenSet = true; m_path = std::move(value); }
 
     /**
      * <p>Location of the script to run during a bootstrap action. Can be either a
@@ -79,13 +82,14 @@ namespace Model
      * <p>Location of the script to run during a bootstrap action. Can be either a
      * location in Amazon S3 or on a local file system.</p>
      */
-    inline ScriptBootstrapActionConfig& WithPath(Aws::String&& value) { SetPath(value); return *this;}
+    inline ScriptBootstrapActionConfig& WithPath(Aws::String&& value) { SetPath(std::move(value)); return *this;}
 
     /**
      * <p>Location of the script to run during a bootstrap action. Can be either a
      * location in Amazon S3 or on a local file system.</p>
      */
     inline ScriptBootstrapActionConfig& WithPath(const char* value) { SetPath(value); return *this;}
+
 
     /**
      * <p>A list of command line arguments to pass to the bootstrap action script.</p>
@@ -100,7 +104,7 @@ namespace Model
     /**
      * <p>A list of command line arguments to pass to the bootstrap action script.</p>
      */
-    inline void SetArgs(Aws::Vector<Aws::String>&& value) { m_argsHasBeenSet = true; m_args = value; }
+    inline void SetArgs(Aws::Vector<Aws::String>&& value) { m_argsHasBeenSet = true; m_args = std::move(value); }
 
     /**
      * <p>A list of command line arguments to pass to the bootstrap action script.</p>
@@ -110,7 +114,7 @@ namespace Model
     /**
      * <p>A list of command line arguments to pass to the bootstrap action script.</p>
      */
-    inline ScriptBootstrapActionConfig& WithArgs(Aws::Vector<Aws::String>&& value) { SetArgs(value); return *this;}
+    inline ScriptBootstrapActionConfig& WithArgs(Aws::Vector<Aws::String>&& value) { SetArgs(std::move(value)); return *this;}
 
     /**
      * <p>A list of command line arguments to pass to the bootstrap action script.</p>
@@ -120,7 +124,7 @@ namespace Model
     /**
      * <p>A list of command line arguments to pass to the bootstrap action script.</p>
      */
-    inline ScriptBootstrapActionConfig& AddArgs(Aws::String&& value) { m_argsHasBeenSet = true; m_args.push_back(value); return *this; }
+    inline ScriptBootstrapActionConfig& AddArgs(Aws::String&& value) { m_argsHasBeenSet = true; m_args.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of command line arguments to pass to the bootstrap action script.</p>
@@ -128,8 +132,10 @@ namespace Model
     inline ScriptBootstrapActionConfig& AddArgs(const char* value) { m_argsHasBeenSet = true; m_args.push_back(value); return *this; }
 
   private:
+
     Aws::String m_path;
     bool m_pathHasBeenSet;
+
     Aws::Vector<Aws::String> m_args;
     bool m_argsHasBeenSet;
   };

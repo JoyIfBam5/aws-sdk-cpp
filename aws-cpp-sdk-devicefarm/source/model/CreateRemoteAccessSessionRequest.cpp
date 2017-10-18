@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/devicefarm/model/CreateRemoteAccessSessionRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -24,7 +25,11 @@ using namespace Aws::Utils;
 CreateRemoteAccessSessionRequest::CreateRemoteAccessSessionRequest() : 
     m_projectArnHasBeenSet(false),
     m_deviceArnHasBeenSet(false),
+    m_sshPublicKeyHasBeenSet(false),
+    m_remoteDebugEnabled(false),
+    m_remoteDebugEnabledHasBeenSet(false),
     m_nameHasBeenSet(false),
+    m_clientIdHasBeenSet(false),
     m_configurationHasBeenSet(false)
 {
 }
@@ -45,9 +50,27 @@ Aws::String CreateRemoteAccessSessionRequest::SerializePayload() const
 
   }
 
+  if(m_sshPublicKeyHasBeenSet)
+  {
+   payload.WithString("sshPublicKey", m_sshPublicKey);
+
+  }
+
+  if(m_remoteDebugEnabledHasBeenSet)
+  {
+   payload.WithBool("remoteDebugEnabled", m_remoteDebugEnabled);
+
+  }
+
   if(m_nameHasBeenSet)
   {
    payload.WithString("name", m_name);
+
+  }
+
+  if(m_clientIdHasBeenSet)
+  {
+   payload.WithString("clientId", m_clientId);
 
   }
 
@@ -67,6 +90,7 @@ Aws::Http::HeaderValueCollection CreateRemoteAccessSessionRequest::GetRequestSpe
   return headers;
 
 }
+
 
 
 

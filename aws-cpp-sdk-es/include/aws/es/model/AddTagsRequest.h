@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/es/ElasticsearchService_EXPORTS.h>
 #include <aws/es/ElasticsearchServiceRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/es/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,7 +39,15 @@ namespace Model
   {
   public:
     AddTagsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "AddTags"; }
+
     Aws::String SerializePayload() const override;
+
 
     /**
      * <p> Specify the <code>ARN</code> for which you want to add the tags.</p>
@@ -52,7 +62,7 @@ namespace Model
     /**
      * <p> Specify the <code>ARN</code> for which you want to add the tags.</p>
      */
-    inline void SetARN(Aws::String&& value) { m_aRNHasBeenSet = true; m_aRN = value; }
+    inline void SetARN(Aws::String&& value) { m_aRNHasBeenSet = true; m_aRN = std::move(value); }
 
     /**
      * <p> Specify the <code>ARN</code> for which you want to add the tags.</p>
@@ -67,12 +77,13 @@ namespace Model
     /**
      * <p> Specify the <code>ARN</code> for which you want to add the tags.</p>
      */
-    inline AddTagsRequest& WithARN(Aws::String&& value) { SetARN(value); return *this;}
+    inline AddTagsRequest& WithARN(Aws::String&& value) { SetARN(std::move(value)); return *this;}
 
     /**
      * <p> Specify the <code>ARN</code> for which you want to add the tags.</p>
      */
     inline AddTagsRequest& WithARN(const char* value) { SetARN(value); return *this;}
+
 
     /**
      * <p> List of <code>Tag</code> that need to be added for the Elasticsearch domain.
@@ -90,7 +101,7 @@ namespace Model
      * <p> List of <code>Tag</code> that need to be added for the Elasticsearch domain.
      * </p>
      */
-    inline void SetTagList(Aws::Vector<Tag>&& value) { m_tagListHasBeenSet = true; m_tagList = value; }
+    inline void SetTagList(Aws::Vector<Tag>&& value) { m_tagListHasBeenSet = true; m_tagList = std::move(value); }
 
     /**
      * <p> List of <code>Tag</code> that need to be added for the Elasticsearch domain.
@@ -102,7 +113,7 @@ namespace Model
      * <p> List of <code>Tag</code> that need to be added for the Elasticsearch domain.
      * </p>
      */
-    inline AddTagsRequest& WithTagList(Aws::Vector<Tag>&& value) { SetTagList(value); return *this;}
+    inline AddTagsRequest& WithTagList(Aws::Vector<Tag>&& value) { SetTagList(std::move(value)); return *this;}
 
     /**
      * <p> List of <code>Tag</code> that need to be added for the Elasticsearch domain.
@@ -114,11 +125,13 @@ namespace Model
      * <p> List of <code>Tag</code> that need to be added for the Elasticsearch domain.
      * </p>
      */
-    inline AddTagsRequest& AddTagList(Tag&& value) { m_tagListHasBeenSet = true; m_tagList.push_back(value); return *this; }
+    inline AddTagsRequest& AddTagList(Tag&& value) { m_tagListHasBeenSet = true; m_tagList.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_aRN;
     bool m_aRNHasBeenSet;
+
     Aws::Vector<Tag> m_tagList;
     bool m_tagListHasBeenSet;
   };

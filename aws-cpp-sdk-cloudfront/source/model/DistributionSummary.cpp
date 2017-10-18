@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/cloudfront/model/DistributionSummary.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -31,6 +32,7 @@ namespace Model
 
 DistributionSummary::DistributionSummary() : 
     m_idHasBeenSet(false),
+    m_aRNHasBeenSet(false),
     m_statusHasBeenSet(false),
     m_lastModifiedTimeHasBeenSet(false),
     m_domainNameHasBeenSet(false),
@@ -46,12 +48,17 @@ DistributionSummary::DistributionSummary() :
     m_enabledHasBeenSet(false),
     m_viewerCertificateHasBeenSet(false),
     m_restrictionsHasBeenSet(false),
-    m_webACLIdHasBeenSet(false)
+    m_webACLIdHasBeenSet(false),
+    m_httpVersion(HttpVersion::NOT_SET),
+    m_httpVersionHasBeenSet(false),
+    m_isIPV6Enabled(false),
+    m_isIPV6EnabledHasBeenSet(false)
 {
 }
 
 DistributionSummary::DistributionSummary(const XmlNode& xmlNode) : 
     m_idHasBeenSet(false),
+    m_aRNHasBeenSet(false),
     m_statusHasBeenSet(false),
     m_lastModifiedTimeHasBeenSet(false),
     m_domainNameHasBeenSet(false),
@@ -67,7 +74,11 @@ DistributionSummary::DistributionSummary(const XmlNode& xmlNode) :
     m_enabledHasBeenSet(false),
     m_viewerCertificateHasBeenSet(false),
     m_restrictionsHasBeenSet(false),
-    m_webACLIdHasBeenSet(false)
+    m_webACLIdHasBeenSet(false),
+    m_httpVersion(HttpVersion::NOT_SET),
+    m_httpVersionHasBeenSet(false),
+    m_isIPV6Enabled(false),
+    m_isIPV6EnabledHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -83,6 +94,12 @@ DistributionSummary& DistributionSummary::operator =(const XmlNode& xmlNode)
     {
       m_id = StringUtils::Trim(idNode.GetText().c_str());
       m_idHasBeenSet = true;
+    }
+    XmlNode aRNNode = resultNode.FirstChild("ARN");
+    if(!aRNNode.IsNull())
+    {
+      m_aRN = StringUtils::Trim(aRNNode.GetText().c_str());
+      m_aRNHasBeenSet = true;
     }
     XmlNode statusNode = resultNode.FirstChild("Status");
     if(!statusNode.IsNull())
@@ -168,6 +185,18 @@ DistributionSummary& DistributionSummary::operator =(const XmlNode& xmlNode)
       m_webACLId = StringUtils::Trim(webACLIdNode.GetText().c_str());
       m_webACLIdHasBeenSet = true;
     }
+    XmlNode httpVersionNode = resultNode.FirstChild("HttpVersion");
+    if(!httpVersionNode.IsNull())
+    {
+      m_httpVersion = HttpVersionMapper::GetHttpVersionForName(StringUtils::Trim(httpVersionNode.GetText().c_str()).c_str());
+      m_httpVersionHasBeenSet = true;
+    }
+    XmlNode isIPV6EnabledNode = resultNode.FirstChild("IsIPV6Enabled");
+    if(!isIPV6EnabledNode.IsNull())
+    {
+      m_isIPV6Enabled = StringUtils::ConvertToBool(StringUtils::Trim(isIPV6EnabledNode.GetText().c_str()).c_str());
+      m_isIPV6EnabledHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -182,6 +211,12 @@ void DistributionSummary::AddToNode(XmlNode& parentNode) const
    idNode.SetText(m_id);
   }
 
+  if(m_aRNHasBeenSet)
+  {
+   XmlNode aRNNode = parentNode.CreateChildElement("ARN");
+   aRNNode.SetText(m_aRN);
+  }
+
   if(m_statusHasBeenSet)
   {
    XmlNode statusNode = parentNode.CreateChildElement("Status");
@@ -190,8 +225,8 @@ void DistributionSummary::AddToNode(XmlNode& parentNode) const
 
   if(m_lastModifiedTimeHasBeenSet)
   {
-     XmlNode lastModifiedTimeNode = parentNode.CreateChildElement("LastModifiedTime");
-     lastModifiedTimeNode.SetText(m_lastModifiedTime.ToGmtString(DateFormat::ISO_8601));
+   XmlNode lastModifiedTimeNode = parentNode.CreateChildElement("LastModifiedTime");
+   lastModifiedTimeNode.SetText(m_lastModifiedTime.ToGmtString(DateFormat::ISO_8601));
   }
 
   if(m_domainNameHasBeenSet)
@@ -245,9 +280,9 @@ void DistributionSummary::AddToNode(XmlNode& parentNode) const
   if(m_enabledHasBeenSet)
   {
    XmlNode enabledNode = parentNode.CreateChildElement("Enabled");
-  ss << m_enabled;
+   ss << std::boolalpha << m_enabled;
    enabledNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_viewerCertificateHasBeenSet)
@@ -266,6 +301,20 @@ void DistributionSummary::AddToNode(XmlNode& parentNode) const
   {
    XmlNode webACLIdNode = parentNode.CreateChildElement("WebACLId");
    webACLIdNode.SetText(m_webACLId);
+  }
+
+  if(m_httpVersionHasBeenSet)
+  {
+   XmlNode httpVersionNode = parentNode.CreateChildElement("HttpVersion");
+   httpVersionNode.SetText(HttpVersionMapper::GetNameForHttpVersion(m_httpVersion));
+  }
+
+  if(m_isIPV6EnabledHasBeenSet)
+  {
+   XmlNode isIPV6EnabledNode = parentNode.CreateChildElement("IsIPV6Enabled");
+   ss << std::boolalpha << m_isIPV6Enabled;
+   isIPV6EnabledNode.SetText(ss.str());
+   ss.str("");
   }
 
 }

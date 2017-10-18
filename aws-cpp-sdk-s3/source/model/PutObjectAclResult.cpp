@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/s3/model/PutObjectAclResult.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
@@ -30,13 +31,13 @@ PutObjectAclResult::PutObjectAclResult() :
 {
 }
 
-PutObjectAclResult::PutObjectAclResult(const AmazonWebServiceResult<XmlDocument>& result) : 
+PutObjectAclResult::PutObjectAclResult(const Aws::AmazonWebServiceResult<XmlDocument>& result) : 
     m_requestCharged(RequestCharged::NOT_SET)
 {
   *this = result;
 }
 
-PutObjectAclResult& PutObjectAclResult::operator =(const AmazonWebServiceResult<XmlDocument>& result)
+PutObjectAclResult& PutObjectAclResult::operator =(const Aws::AmazonWebServiceResult<XmlDocument>& result)
 {
   const XmlDocument& xmlDocument = result.GetPayload();
   XmlNode resultNode = xmlDocument.GetRootElement();

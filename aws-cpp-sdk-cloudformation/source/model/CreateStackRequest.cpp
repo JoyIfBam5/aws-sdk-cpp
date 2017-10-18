@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/cloudformation/model/CreateStackRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -26,6 +27,7 @@ CreateStackRequest::CreateStackRequest() :
     m_parametersHasBeenSet(false),
     m_disableRollback(false),
     m_disableRollbackHasBeenSet(false),
+    m_rollbackConfigurationHasBeenSet(false),
     m_timeoutInMinutes(0),
     m_timeoutInMinutesHasBeenSet(false),
     m_notificationARNsHasBeenSet(false),
@@ -36,7 +38,10 @@ CreateStackRequest::CreateStackRequest() :
     m_onFailureHasBeenSet(false),
     m_stackPolicyBodyHasBeenSet(false),
     m_stackPolicyURLHasBeenSet(false),
-    m_tagsHasBeenSet(false)
+    m_tagsHasBeenSet(false),
+    m_clientRequestTokenHasBeenSet(false),
+    m_enableTerminationProtection(false),
+    m_enableTerminationProtectionHasBeenSet(false)
 {
 }
 
@@ -72,6 +77,11 @@ Aws::String CreateStackRequest::SerializePayload() const
   if(m_disableRollbackHasBeenSet)
   {
     ss << "DisableRollback=" << std::boolalpha << m_disableRollback << "&";
+  }
+
+  if(m_rollbackConfigurationHasBeenSet)
+  {
+    m_rollbackConfiguration.OutputToStream(ss, "RollbackConfiguration");
   }
 
   if(m_timeoutInMinutesHasBeenSet)
@@ -142,7 +152,22 @@ Aws::String CreateStackRequest::SerializePayload() const
     }
   }
 
+  if(m_clientRequestTokenHasBeenSet)
+  {
+    ss << "ClientRequestToken=" << StringUtils::URLEncode(m_clientRequestToken.c_str()) << "&";
+  }
+
+  if(m_enableTerminationProtectionHasBeenSet)
+  {
+    ss << "EnableTerminationProtection=" << std::boolalpha << m_enableTerminationProtection << "&";
+  }
+
   ss << "Version=2010-05-15";
   return ss.str();
 }
 
+
+void  CreateStackRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

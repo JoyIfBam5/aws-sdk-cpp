@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesisanalytics/KinesisAnalytics_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/kinesisanalytics/model/InputStartingPositionConfiguration.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     InputConfiguration& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Input source ID. You can get this ID by calling the
      * <a>DescribeApplication</a> operation.</p>
@@ -62,7 +65,7 @@ namespace Model
      * <p>Input source ID. You can get this ID by calling the
      * <a>DescribeApplication</a> operation.</p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>Input source ID. You can get this ID by calling the
@@ -80,13 +83,14 @@ namespace Model
      * <p>Input source ID. You can get this ID by calling the
      * <a>DescribeApplication</a> operation.</p>
      */
-    inline InputConfiguration& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline InputConfiguration& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>Input source ID. You can get this ID by calling the
      * <a>DescribeApplication</a> operation.</p>
      */
     inline InputConfiguration& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>Point at which you want the application to start processing records from the
@@ -104,7 +108,7 @@ namespace Model
      * <p>Point at which you want the application to start processing records from the
      * streaming source.</p>
      */
-    inline void SetInputStartingPositionConfiguration(InputStartingPositionConfiguration&& value) { m_inputStartingPositionConfigurationHasBeenSet = true; m_inputStartingPositionConfiguration = value; }
+    inline void SetInputStartingPositionConfiguration(InputStartingPositionConfiguration&& value) { m_inputStartingPositionConfigurationHasBeenSet = true; m_inputStartingPositionConfiguration = std::move(value); }
 
     /**
      * <p>Point at which you want the application to start processing records from the
@@ -116,11 +120,13 @@ namespace Model
      * <p>Point at which you want the application to start processing records from the
      * streaming source.</p>
      */
-    inline InputConfiguration& WithInputStartingPositionConfiguration(InputStartingPositionConfiguration&& value) { SetInputStartingPositionConfiguration(value); return *this;}
+    inline InputConfiguration& WithInputStartingPositionConfiguration(InputStartingPositionConfiguration&& value) { SetInputStartingPositionConfiguration(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     InputStartingPositionConfiguration m_inputStartingPositionConfiguration;
     bool m_inputStartingPositionConfigurationHasBeenSet;
   };

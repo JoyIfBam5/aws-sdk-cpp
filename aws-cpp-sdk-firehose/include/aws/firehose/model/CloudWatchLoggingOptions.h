@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/firehose/Firehose_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,7 +33,7 @@ namespace Model
 {
 
   /**
-   * <p>Describes the CloudWatch logging options for your delivery
+   * <p>Describes the Amazon CloudWatch logging options for your delivery
    * stream.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/CloudWatchLoggingOptions">AWS
    * API Reference</a></p>
@@ -43,6 +45,7 @@ namespace Model
     CloudWatchLoggingOptions(const Aws::Utils::Json::JsonValue& jsonValue);
     CloudWatchLoggingOptions& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>Enables or disables CloudWatch logging.</p>
@@ -58,6 +61,7 @@ namespace Model
      * <p>Enables or disables CloudWatch logging.</p>
      */
     inline CloudWatchLoggingOptions& WithEnabled(bool value) { SetEnabled(value); return *this;}
+
 
     /**
      * <p>The CloudWatch group name for logging. This value is required if CloudWatch
@@ -75,7 +79,7 @@ namespace Model
      * <p>The CloudWatch group name for logging. This value is required if CloudWatch
      * logging is enabled.</p>
      */
-    inline void SetLogGroupName(Aws::String&& value) { m_logGroupNameHasBeenSet = true; m_logGroupName = value; }
+    inline void SetLogGroupName(Aws::String&& value) { m_logGroupNameHasBeenSet = true; m_logGroupName = std::move(value); }
 
     /**
      * <p>The CloudWatch group name for logging. This value is required if CloudWatch
@@ -93,13 +97,14 @@ namespace Model
      * <p>The CloudWatch group name for logging. This value is required if CloudWatch
      * logging is enabled.</p>
      */
-    inline CloudWatchLoggingOptions& WithLogGroupName(Aws::String&& value) { SetLogGroupName(value); return *this;}
+    inline CloudWatchLoggingOptions& WithLogGroupName(Aws::String&& value) { SetLogGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The CloudWatch group name for logging. This value is required if CloudWatch
      * logging is enabled.</p>
      */
     inline CloudWatchLoggingOptions& WithLogGroupName(const char* value) { SetLogGroupName(value); return *this;}
+
 
     /**
      * <p>The CloudWatch log stream name for logging. This value is required if
@@ -117,7 +122,7 @@ namespace Model
      * <p>The CloudWatch log stream name for logging. This value is required if
      * CloudWatch logging is enabled.</p>
      */
-    inline void SetLogStreamName(Aws::String&& value) { m_logStreamNameHasBeenSet = true; m_logStreamName = value; }
+    inline void SetLogStreamName(Aws::String&& value) { m_logStreamNameHasBeenSet = true; m_logStreamName = std::move(value); }
 
     /**
      * <p>The CloudWatch log stream name for logging. This value is required if
@@ -135,7 +140,7 @@ namespace Model
      * <p>The CloudWatch log stream name for logging. This value is required if
      * CloudWatch logging is enabled.</p>
      */
-    inline CloudWatchLoggingOptions& WithLogStreamName(Aws::String&& value) { SetLogStreamName(value); return *this;}
+    inline CloudWatchLoggingOptions& WithLogStreamName(Aws::String&& value) { SetLogStreamName(std::move(value)); return *this;}
 
     /**
      * <p>The CloudWatch log stream name for logging. This value is required if
@@ -144,10 +149,13 @@ namespace Model
     inline CloudWatchLoggingOptions& WithLogStreamName(const char* value) { SetLogStreamName(value); return *this;}
 
   private:
+
     bool m_enabled;
     bool m_enabledHasBeenSet;
+
     Aws::String m_logGroupName;
     bool m_logGroupNameHasBeenSet;
+
     Aws::String m_logStreamName;
     bool m_logStreamNameHasBeenSet;
   };

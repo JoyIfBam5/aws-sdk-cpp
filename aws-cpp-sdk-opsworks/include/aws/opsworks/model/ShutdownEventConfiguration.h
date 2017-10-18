@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 
@@ -42,23 +43,25 @@ namespace Model
     ShutdownEventConfiguration& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p>The time, in seconds, that AWS OpsWorks will wait after triggering a Shutdown
-     * event before shutting down an instance.</p>
+     * <p>The time, in seconds, that AWS OpsWorks Stacks will wait after triggering a
+     * Shutdown event before shutting down an instance.</p>
      */
     inline int GetExecutionTimeout() const{ return m_executionTimeout; }
 
     /**
-     * <p>The time, in seconds, that AWS OpsWorks will wait after triggering a Shutdown
-     * event before shutting down an instance.</p>
+     * <p>The time, in seconds, that AWS OpsWorks Stacks will wait after triggering a
+     * Shutdown event before shutting down an instance.</p>
      */
     inline void SetExecutionTimeout(int value) { m_executionTimeoutHasBeenSet = true; m_executionTimeout = value; }
 
     /**
-     * <p>The time, in seconds, that AWS OpsWorks will wait after triggering a Shutdown
-     * event before shutting down an instance.</p>
+     * <p>The time, in seconds, that AWS OpsWorks Stacks will wait after triggering a
+     * Shutdown event before shutting down an instance.</p>
      */
     inline ShutdownEventConfiguration& WithExecutionTimeout(int value) { SetExecutionTimeout(value); return *this;}
+
 
     /**
      * <p>Whether to enable Elastic Load Balancing connection draining. For more
@@ -85,8 +88,10 @@ namespace Model
     inline ShutdownEventConfiguration& WithDelayUntilElbConnectionsDrained(bool value) { SetDelayUntilElbConnectionsDrained(value); return *this;}
 
   private:
+
     int m_executionTimeout;
     bool m_executionTimeoutHasBeenSet;
+
     bool m_delayUntilElbConnectionsDrained;
     bool m_delayUntilElbConnectionsDrainedHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudsearch/CloudSearch_EXPORTS.h>
 #include <aws/cloudsearch/CloudSearchRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,7 +38,19 @@ namespace Model
   {
   public:
     UpdateServiceAccessPoliciesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateServiceAccessPolicies"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     
     inline const Aws::String& GetDomainName() const{ return m_domainName; }
@@ -45,7 +59,7 @@ namespace Model
     inline void SetDomainName(const Aws::String& value) { m_domainNameHasBeenSet = true; m_domainName = value; }
 
     
-    inline void SetDomainName(Aws::String&& value) { m_domainNameHasBeenSet = true; m_domainName = value; }
+    inline void SetDomainName(Aws::String&& value) { m_domainNameHasBeenSet = true; m_domainName = std::move(value); }
 
     
     inline void SetDomainName(const char* value) { m_domainNameHasBeenSet = true; m_domainName.assign(value); }
@@ -54,10 +68,11 @@ namespace Model
     inline UpdateServiceAccessPoliciesRequest& WithDomainName(const Aws::String& value) { SetDomainName(value); return *this;}
 
     
-    inline UpdateServiceAccessPoliciesRequest& WithDomainName(Aws::String&& value) { SetDomainName(value); return *this;}
+    inline UpdateServiceAccessPoliciesRequest& WithDomainName(Aws::String&& value) { SetDomainName(std::move(value)); return *this;}
 
     
     inline UpdateServiceAccessPoliciesRequest& WithDomainName(const char* value) { SetDomainName(value); return *this;}
+
 
     /**
      * <p>The access rules you want to configure. These rules replace any existing
@@ -75,7 +90,7 @@ namespace Model
      * <p>The access rules you want to configure. These rules replace any existing
      * rules. </p>
      */
-    inline void SetAccessPolicies(Aws::String&& value) { m_accessPoliciesHasBeenSet = true; m_accessPolicies = value; }
+    inline void SetAccessPolicies(Aws::String&& value) { m_accessPoliciesHasBeenSet = true; m_accessPolicies = std::move(value); }
 
     /**
      * <p>The access rules you want to configure. These rules replace any existing
@@ -93,7 +108,7 @@ namespace Model
      * <p>The access rules you want to configure. These rules replace any existing
      * rules. </p>
      */
-    inline UpdateServiceAccessPoliciesRequest& WithAccessPolicies(Aws::String&& value) { SetAccessPolicies(value); return *this;}
+    inline UpdateServiceAccessPoliciesRequest& WithAccessPolicies(Aws::String&& value) { SetAccessPolicies(std::move(value)); return *this;}
 
     /**
      * <p>The access rules you want to configure. These rules replace any existing
@@ -102,8 +117,10 @@ namespace Model
     inline UpdateServiceAccessPoliciesRequest& WithAccessPolicies(const char* value) { SetAccessPolicies(value); return *this;}
 
   private:
+
     Aws::String m_domainName;
     bool m_domainNameHasBeenSet;
+
     Aws::String m_accessPolicies;
     bool m_accessPoliciesHasBeenSet;
   };

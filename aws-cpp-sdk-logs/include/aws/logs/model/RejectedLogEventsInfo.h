@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/logs/CloudWatchLogs_EXPORTS.h>
 
@@ -42,6 +43,7 @@ namespace Model
     RejectedLogEventsInfo& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The log events that are too new.</p>
      */
@@ -57,6 +59,7 @@ namespace Model
      */
     inline RejectedLogEventsInfo& WithTooNewLogEventStartIndex(int value) { SetTooNewLogEventStartIndex(value); return *this;}
 
+
     /**
      * <p>The log events that are too old.</p>
      */
@@ -71,6 +74,7 @@ namespace Model
      * <p>The log events that are too old.</p>
      */
     inline RejectedLogEventsInfo& WithTooOldLogEventEndIndex(int value) { SetTooOldLogEventEndIndex(value); return *this;}
+
 
     /**
      * <p>The expired log events.</p>
@@ -88,10 +92,13 @@ namespace Model
     inline RejectedLogEventsInfo& WithExpiredLogEventEndIndex(int value) { SetExpiredLogEventEndIndex(value); return *this;}
 
   private:
+
     int m_tooNewLogEventStartIndex;
     bool m_tooNewLogEventStartIndexHasBeenSet;
+
     int m_tooOldLogEventEndIndex;
     bool m_tooOldLogEventEndIndexHasBeenSet;
+
     int m_expiredLogEventEndIndex;
     bool m_expiredLogEventEndIndexHasBeenSet;
   };

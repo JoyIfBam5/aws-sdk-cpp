@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/waf/model/HTTPHeader.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +51,7 @@ namespace Model
     HTTPRequest& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The IP address that the request originated from. If the <code>WebACL</code>
      * is associated with a CloudFront distribution, this is the value of one of the
@@ -77,7 +80,7 @@ namespace Model
      * request</p> </li> <li> <p> <code>x-forwarded-for</code>, if the viewer did use
      * an HTTP proxy or a load balancer to send the request</p> </li> </ul>
      */
-    inline void SetClientIP(Aws::String&& value) { m_clientIPHasBeenSet = true; m_clientIP = value; }
+    inline void SetClientIP(Aws::String&& value) { m_clientIPHasBeenSet = true; m_clientIP = std::move(value); }
 
     /**
      * <p>The IP address that the request originated from. If the <code>WebACL</code>
@@ -107,7 +110,7 @@ namespace Model
      * request</p> </li> <li> <p> <code>x-forwarded-for</code>, if the viewer did use
      * an HTTP proxy or a load balancer to send the request</p> </li> </ul>
      */
-    inline HTTPRequest& WithClientIP(Aws::String&& value) { SetClientIP(value); return *this;}
+    inline HTTPRequest& WithClientIP(Aws::String&& value) { SetClientIP(std::move(value)); return *this;}
 
     /**
      * <p>The IP address that the request originated from. If the <code>WebACL</code>
@@ -118,6 +121,7 @@ namespace Model
      * an HTTP proxy or a load balancer to send the request</p> </li> </ul>
      */
     inline HTTPRequest& WithClientIP(const char* value) { SetClientIP(value); return *this;}
+
 
     /**
      * <p>The two-letter country code for the country that the request originated from.
@@ -141,7 +145,7 @@ namespace Model
      * href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1
      * alpha-2</a>.</p>
      */
-    inline void SetCountry(Aws::String&& value) { m_countryHasBeenSet = true; m_country = value; }
+    inline void SetCountry(Aws::String&& value) { m_countryHasBeenSet = true; m_country = std::move(value); }
 
     /**
      * <p>The two-letter country code for the country that the request originated from.
@@ -165,7 +169,7 @@ namespace Model
      * href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1
      * alpha-2</a>.</p>
      */
-    inline HTTPRequest& WithCountry(Aws::String&& value) { SetCountry(value); return *this;}
+    inline HTTPRequest& WithCountry(Aws::String&& value) { SetCountry(std::move(value)); return *this;}
 
     /**
      * <p>The two-letter country code for the country that the request originated from.
@@ -174,6 +178,7 @@ namespace Model
      * alpha-2</a>.</p>
      */
     inline HTTPRequest& WithCountry(const char* value) { SetCountry(value); return *this;}
+
 
     /**
      * <p>The part of a web request that identifies the resource, for example,
@@ -191,7 +196,7 @@ namespace Model
      * <p>The part of a web request that identifies the resource, for example,
      * <code>/images/daily-ad.jpg</code>.</p>
      */
-    inline void SetURI(Aws::String&& value) { m_uRIHasBeenSet = true; m_uRI = value; }
+    inline void SetURI(Aws::String&& value) { m_uRIHasBeenSet = true; m_uRI = std::move(value); }
 
     /**
      * <p>The part of a web request that identifies the resource, for example,
@@ -209,13 +214,14 @@ namespace Model
      * <p>The part of a web request that identifies the resource, for example,
      * <code>/images/daily-ad.jpg</code>.</p>
      */
-    inline HTTPRequest& WithURI(Aws::String&& value) { SetURI(value); return *this;}
+    inline HTTPRequest& WithURI(Aws::String&& value) { SetURI(std::move(value)); return *this;}
 
     /**
      * <p>The part of a web request that identifies the resource, for example,
      * <code>/images/daily-ad.jpg</code>.</p>
      */
     inline HTTPRequest& WithURI(const char* value) { SetURI(value); return *this;}
+
 
     /**
      * <p>The HTTP method specified in the sampled web request. CloudFront supports the
@@ -239,7 +245,7 @@ namespace Model
      * <code>OPTIONS</code>, <code>PATCH</code>, <code>POST</code>, and
      * <code>PUT</code>. </p>
      */
-    inline void SetMethod(Aws::String&& value) { m_methodHasBeenSet = true; m_method = value; }
+    inline void SetMethod(Aws::String&& value) { m_methodHasBeenSet = true; m_method = std::move(value); }
 
     /**
      * <p>The HTTP method specified in the sampled web request. CloudFront supports the
@@ -263,7 +269,7 @@ namespace Model
      * <code>OPTIONS</code>, <code>PATCH</code>, <code>POST</code>, and
      * <code>PUT</code>. </p>
      */
-    inline HTTPRequest& WithMethod(Aws::String&& value) { SetMethod(value); return *this;}
+    inline HTTPRequest& WithMethod(Aws::String&& value) { SetMethod(std::move(value)); return *this;}
 
     /**
      * <p>The HTTP method specified in the sampled web request. CloudFront supports the
@@ -272,6 +278,7 @@ namespace Model
      * <code>PUT</code>. </p>
      */
     inline HTTPRequest& WithMethod(const char* value) { SetMethod(value); return *this;}
+
 
     /**
      * <p>The HTTP version specified in the sampled web request, for example,
@@ -289,7 +296,7 @@ namespace Model
      * <p>The HTTP version specified in the sampled web request, for example,
      * <code>HTTP/1.1</code>.</p>
      */
-    inline void SetHTTPVersion(Aws::String&& value) { m_hTTPVersionHasBeenSet = true; m_hTTPVersion = value; }
+    inline void SetHTTPVersion(Aws::String&& value) { m_hTTPVersionHasBeenSet = true; m_hTTPVersion = std::move(value); }
 
     /**
      * <p>The HTTP version specified in the sampled web request, for example,
@@ -307,13 +314,14 @@ namespace Model
      * <p>The HTTP version specified in the sampled web request, for example,
      * <code>HTTP/1.1</code>.</p>
      */
-    inline HTTPRequest& WithHTTPVersion(Aws::String&& value) { SetHTTPVersion(value); return *this;}
+    inline HTTPRequest& WithHTTPVersion(Aws::String&& value) { SetHTTPVersion(std::move(value)); return *this;}
 
     /**
      * <p>The HTTP version specified in the sampled web request, for example,
      * <code>HTTP/1.1</code>.</p>
      */
     inline HTTPRequest& WithHTTPVersion(const char* value) { SetHTTPVersion(value); return *this;}
+
 
     /**
      * <p>A complex type that contains two values for each header in the sampled web
@@ -331,7 +339,7 @@ namespace Model
      * <p>A complex type that contains two values for each header in the sampled web
      * request: the name of the header and the value of the header.</p>
      */
-    inline void SetHeaders(Aws::Vector<HTTPHeader>&& value) { m_headersHasBeenSet = true; m_headers = value; }
+    inline void SetHeaders(Aws::Vector<HTTPHeader>&& value) { m_headersHasBeenSet = true; m_headers = std::move(value); }
 
     /**
      * <p>A complex type that contains two values for each header in the sampled web
@@ -343,7 +351,7 @@ namespace Model
      * <p>A complex type that contains two values for each header in the sampled web
      * request: the name of the header and the value of the header.</p>
      */
-    inline HTTPRequest& WithHeaders(Aws::Vector<HTTPHeader>&& value) { SetHeaders(value); return *this;}
+    inline HTTPRequest& WithHeaders(Aws::Vector<HTTPHeader>&& value) { SetHeaders(std::move(value)); return *this;}
 
     /**
      * <p>A complex type that contains two values for each header in the sampled web
@@ -355,19 +363,25 @@ namespace Model
      * <p>A complex type that contains two values for each header in the sampled web
      * request: the name of the header and the value of the header.</p>
      */
-    inline HTTPRequest& AddHeaders(HTTPHeader&& value) { m_headersHasBeenSet = true; m_headers.push_back(value); return *this; }
+    inline HTTPRequest& AddHeaders(HTTPHeader&& value) { m_headersHasBeenSet = true; m_headers.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_clientIP;
     bool m_clientIPHasBeenSet;
+
     Aws::String m_country;
     bool m_countryHasBeenSet;
+
     Aws::String m_uRI;
     bool m_uRIHasBeenSet;
+
     Aws::String m_method;
     bool m_methodHasBeenSet;
+
     Aws::String m_hTTPVersion;
     bool m_hTTPVersionHasBeenSet;
+
     Aws::Vector<HTTPHeader> m_headers;
     bool m_headersHasBeenSet;
   };

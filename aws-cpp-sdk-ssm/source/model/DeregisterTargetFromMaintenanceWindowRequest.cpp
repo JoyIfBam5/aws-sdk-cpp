@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ssm/model/DeregisterTargetFromMaintenanceWindowRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -23,7 +24,9 @@ using namespace Aws::Utils;
 
 DeregisterTargetFromMaintenanceWindowRequest::DeregisterTargetFromMaintenanceWindowRequest() : 
     m_windowIdHasBeenSet(false),
-    m_windowTargetIdHasBeenSet(false)
+    m_windowTargetIdHasBeenSet(false),
+    m_safe(false),
+    m_safeHasBeenSet(false)
 {
 }
 
@@ -43,6 +46,12 @@ Aws::String DeregisterTargetFromMaintenanceWindowRequest::SerializePayload() con
 
   }
 
+  if(m_safeHasBeenSet)
+  {
+   payload.WithBool("Safe", m_safe);
+
+  }
+
   return payload.WriteReadable();
 }
 
@@ -53,6 +62,7 @@ Aws::Http::HeaderValueCollection DeregisterTargetFromMaintenanceWindowRequest::G
   return headers;
 
 }
+
 
 
 

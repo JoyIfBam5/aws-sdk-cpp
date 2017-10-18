@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-identity/CognitoIdentity_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/cognito-identity/model/IdentityPoolShortDescription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     ListIdentityPoolsResult();
-    ListIdentityPoolsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListIdentityPoolsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListIdentityPoolsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListIdentityPoolsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The identity pools returned by the ListIdentityPools action.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The identity pools returned by the ListIdentityPools action.</p>
      */
-    inline void SetIdentityPools(Aws::Vector<IdentityPoolShortDescription>&& value) { m_identityPools = value; }
+    inline void SetIdentityPools(Aws::Vector<IdentityPoolShortDescription>&& value) { m_identityPools = std::move(value); }
 
     /**
      * <p>The identity pools returned by the ListIdentityPools action.</p>
@@ -70,7 +73,7 @@ namespace Model
     /**
      * <p>The identity pools returned by the ListIdentityPools action.</p>
      */
-    inline ListIdentityPoolsResult& WithIdentityPools(Aws::Vector<IdentityPoolShortDescription>&& value) { SetIdentityPools(value); return *this;}
+    inline ListIdentityPoolsResult& WithIdentityPools(Aws::Vector<IdentityPoolShortDescription>&& value) { SetIdentityPools(std::move(value)); return *this;}
 
     /**
      * <p>The identity pools returned by the ListIdentityPools action.</p>
@@ -80,7 +83,8 @@ namespace Model
     /**
      * <p>The identity pools returned by the ListIdentityPools action.</p>
      */
-    inline ListIdentityPoolsResult& AddIdentityPools(IdentityPoolShortDescription&& value) { m_identityPools.push_back(value); return *this; }
+    inline ListIdentityPoolsResult& AddIdentityPools(IdentityPoolShortDescription&& value) { m_identityPools.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>A pagination token.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>A pagination token.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>A pagination token.</p>
@@ -110,7 +114,7 @@ namespace Model
     /**
      * <p>A pagination token.</p>
      */
-    inline ListIdentityPoolsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListIdentityPoolsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>A pagination token.</p>
@@ -118,7 +122,9 @@ namespace Model
     inline ListIdentityPoolsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<IdentityPoolShortDescription> m_identityPools;
+
     Aws::String m_nextToken;
   };
 

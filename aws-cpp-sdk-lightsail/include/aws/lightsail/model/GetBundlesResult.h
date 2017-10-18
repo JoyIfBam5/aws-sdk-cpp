@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/lightsail/model/Bundle.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     GetBundlesResult();
-    GetBundlesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetBundlesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetBundlesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetBundlesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>An array of key-value pairs that contains information about the available
@@ -57,7 +60,7 @@ namespace Model
      * <p>An array of key-value pairs that contains information about the available
      * bundles.</p>
      */
-    inline void SetBundles(Aws::Vector<Bundle>&& value) { m_bundles = value; }
+    inline void SetBundles(Aws::Vector<Bundle>&& value) { m_bundles = std::move(value); }
 
     /**
      * <p>An array of key-value pairs that contains information about the available
@@ -69,7 +72,7 @@ namespace Model
      * <p>An array of key-value pairs that contains information about the available
      * bundles.</p>
      */
-    inline GetBundlesResult& WithBundles(Aws::Vector<Bundle>&& value) { SetBundles(value); return *this;}
+    inline GetBundlesResult& WithBundles(Aws::Vector<Bundle>&& value) { SetBundles(std::move(value)); return *this;}
 
     /**
      * <p>An array of key-value pairs that contains information about the available
@@ -81,7 +84,8 @@ namespace Model
      * <p>An array of key-value pairs that contains information about the available
      * bundles.</p>
      */
-    inline GetBundlesResult& AddBundles(Bundle&& value) { m_bundles.push_back(value); return *this; }
+    inline GetBundlesResult& AddBundles(Bundle&& value) { m_bundles.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>A token used for advancing to the next page of results from your get active
@@ -99,7 +103,7 @@ namespace Model
      * <p>A token used for advancing to the next page of results from your get active
      * names request.</p>
      */
-    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = value; }
+    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = std::move(value); }
 
     /**
      * <p>A token used for advancing to the next page of results from your get active
@@ -117,7 +121,7 @@ namespace Model
      * <p>A token used for advancing to the next page of results from your get active
      * names request.</p>
      */
-    inline GetBundlesResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(value); return *this;}
+    inline GetBundlesResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(std::move(value)); return *this;}
 
     /**
      * <p>A token used for advancing to the next page of results from your get active
@@ -126,7 +130,9 @@ namespace Model
     inline GetBundlesResult& WithNextPageToken(const char* value) { SetNextPageToken(value); return *this;}
 
   private:
+
     Aws::Vector<Bundle> m_bundles;
+
     Aws::String m_nextPageToken;
   };
 

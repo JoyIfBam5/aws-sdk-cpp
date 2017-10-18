@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticloadbalancingv2/ElasticLoadBalancingv2_EXPORTS.h>
 #include <aws/elasticloadbalancingv2/ElasticLoadBalancingv2Request.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <aws/elasticloadbalancingv2/model/SubnetMapping.h>
+#include <utility>
 
 namespace Aws
 {
@@ -26,15 +29,24 @@ namespace Model
 {
 
   /**
-   * <p>Contains the parameters for SetSubnets.</p><p><h3>See Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/SetSubnetsInput">AWS
-   * API Reference</a></p>
    */
   class AWS_ELASTICLOADBALANCINGV2_API SetSubnetsRequest : public ElasticLoadBalancingv2Request
   {
   public:
     SetSubnetsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "SetSubnets"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The Amazon Resource Name (ARN) of the load balancer.</p>
@@ -49,7 +61,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the load balancer.</p>
      */
-    inline void SetLoadBalancerArn(Aws::String&& value) { m_loadBalancerArnHasBeenSet = true; m_loadBalancerArn = value; }
+    inline void SetLoadBalancerArn(Aws::String&& value) { m_loadBalancerArnHasBeenSet = true; m_loadBalancerArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the load balancer.</p>
@@ -64,66 +76,144 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the load balancer.</p>
      */
-    inline SetSubnetsRequest& WithLoadBalancerArn(Aws::String&& value) { SetLoadBalancerArn(value); return *this;}
+    inline SetSubnetsRequest& WithLoadBalancerArn(Aws::String&& value) { SetLoadBalancerArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the load balancer.</p>
      */
     inline SetSubnetsRequest& WithLoadBalancerArn(const char* value) { SetLoadBalancerArn(value); return *this;}
 
+
     /**
-     * <p>The IDs of the subnets. You must specify at least two subnets. You can add
-     * only one subnet per Availability Zone.</p>
+     * <p>The IDs of the subnets. You must specify subnets from at least two
+     * Availability Zones. You can specify only one subnet per Availability Zone. You
+     * must specify either subnets or subnet mappings.</p>
      */
     inline const Aws::Vector<Aws::String>& GetSubnets() const{ return m_subnets; }
 
     /**
-     * <p>The IDs of the subnets. You must specify at least two subnets. You can add
-     * only one subnet per Availability Zone.</p>
+     * <p>The IDs of the subnets. You must specify subnets from at least two
+     * Availability Zones. You can specify only one subnet per Availability Zone. You
+     * must specify either subnets or subnet mappings.</p>
      */
     inline void SetSubnets(const Aws::Vector<Aws::String>& value) { m_subnetsHasBeenSet = true; m_subnets = value; }
 
     /**
-     * <p>The IDs of the subnets. You must specify at least two subnets. You can add
-     * only one subnet per Availability Zone.</p>
+     * <p>The IDs of the subnets. You must specify subnets from at least two
+     * Availability Zones. You can specify only one subnet per Availability Zone. You
+     * must specify either subnets or subnet mappings.</p>
      */
-    inline void SetSubnets(Aws::Vector<Aws::String>&& value) { m_subnetsHasBeenSet = true; m_subnets = value; }
+    inline void SetSubnets(Aws::Vector<Aws::String>&& value) { m_subnetsHasBeenSet = true; m_subnets = std::move(value); }
 
     /**
-     * <p>The IDs of the subnets. You must specify at least two subnets. You can add
-     * only one subnet per Availability Zone.</p>
+     * <p>The IDs of the subnets. You must specify subnets from at least two
+     * Availability Zones. You can specify only one subnet per Availability Zone. You
+     * must specify either subnets or subnet mappings.</p>
      */
     inline SetSubnetsRequest& WithSubnets(const Aws::Vector<Aws::String>& value) { SetSubnets(value); return *this;}
 
     /**
-     * <p>The IDs of the subnets. You must specify at least two subnets. You can add
-     * only one subnet per Availability Zone.</p>
+     * <p>The IDs of the subnets. You must specify subnets from at least two
+     * Availability Zones. You can specify only one subnet per Availability Zone. You
+     * must specify either subnets or subnet mappings.</p>
      */
-    inline SetSubnetsRequest& WithSubnets(Aws::Vector<Aws::String>&& value) { SetSubnets(value); return *this;}
+    inline SetSubnetsRequest& WithSubnets(Aws::Vector<Aws::String>&& value) { SetSubnets(std::move(value)); return *this;}
 
     /**
-     * <p>The IDs of the subnets. You must specify at least two subnets. You can add
-     * only one subnet per Availability Zone.</p>
+     * <p>The IDs of the subnets. You must specify subnets from at least two
+     * Availability Zones. You can specify only one subnet per Availability Zone. You
+     * must specify either subnets or subnet mappings.</p>
      */
     inline SetSubnetsRequest& AddSubnets(const Aws::String& value) { m_subnetsHasBeenSet = true; m_subnets.push_back(value); return *this; }
 
     /**
-     * <p>The IDs of the subnets. You must specify at least two subnets. You can add
-     * only one subnet per Availability Zone.</p>
+     * <p>The IDs of the subnets. You must specify subnets from at least two
+     * Availability Zones. You can specify only one subnet per Availability Zone. You
+     * must specify either subnets or subnet mappings.</p>
      */
-    inline SetSubnetsRequest& AddSubnets(Aws::String&& value) { m_subnetsHasBeenSet = true; m_subnets.push_back(value); return *this; }
+    inline SetSubnetsRequest& AddSubnets(Aws::String&& value) { m_subnetsHasBeenSet = true; m_subnets.push_back(std::move(value)); return *this; }
 
     /**
-     * <p>The IDs of the subnets. You must specify at least two subnets. You can add
-     * only one subnet per Availability Zone.</p>
+     * <p>The IDs of the subnets. You must specify subnets from at least two
+     * Availability Zones. You can specify only one subnet per Availability Zone. You
+     * must specify either subnets or subnet mappings.</p>
      */
     inline SetSubnetsRequest& AddSubnets(const char* value) { m_subnetsHasBeenSet = true; m_subnets.push_back(value); return *this; }
 
+
+    /**
+     * <p>The IDs of the subnets. You must specify subnets from at least two
+     * Availability Zones. You can specify only one subnet per Availability Zone. You
+     * must specify either subnets or subnet mappings.</p> <p>The load balancer is
+     * allocated one static IP address per subnet. You cannot specify your own Elastic
+     * IP addresses.</p>
+     */
+    inline const Aws::Vector<SubnetMapping>& GetSubnetMappings() const{ return m_subnetMappings; }
+
+    /**
+     * <p>The IDs of the subnets. You must specify subnets from at least two
+     * Availability Zones. You can specify only one subnet per Availability Zone. You
+     * must specify either subnets or subnet mappings.</p> <p>The load balancer is
+     * allocated one static IP address per subnet. You cannot specify your own Elastic
+     * IP addresses.</p>
+     */
+    inline void SetSubnetMappings(const Aws::Vector<SubnetMapping>& value) { m_subnetMappingsHasBeenSet = true; m_subnetMappings = value; }
+
+    /**
+     * <p>The IDs of the subnets. You must specify subnets from at least two
+     * Availability Zones. You can specify only one subnet per Availability Zone. You
+     * must specify either subnets or subnet mappings.</p> <p>The load balancer is
+     * allocated one static IP address per subnet. You cannot specify your own Elastic
+     * IP addresses.</p>
+     */
+    inline void SetSubnetMappings(Aws::Vector<SubnetMapping>&& value) { m_subnetMappingsHasBeenSet = true; m_subnetMappings = std::move(value); }
+
+    /**
+     * <p>The IDs of the subnets. You must specify subnets from at least two
+     * Availability Zones. You can specify only one subnet per Availability Zone. You
+     * must specify either subnets or subnet mappings.</p> <p>The load balancer is
+     * allocated one static IP address per subnet. You cannot specify your own Elastic
+     * IP addresses.</p>
+     */
+    inline SetSubnetsRequest& WithSubnetMappings(const Aws::Vector<SubnetMapping>& value) { SetSubnetMappings(value); return *this;}
+
+    /**
+     * <p>The IDs of the subnets. You must specify subnets from at least two
+     * Availability Zones. You can specify only one subnet per Availability Zone. You
+     * must specify either subnets or subnet mappings.</p> <p>The load balancer is
+     * allocated one static IP address per subnet. You cannot specify your own Elastic
+     * IP addresses.</p>
+     */
+    inline SetSubnetsRequest& WithSubnetMappings(Aws::Vector<SubnetMapping>&& value) { SetSubnetMappings(std::move(value)); return *this;}
+
+    /**
+     * <p>The IDs of the subnets. You must specify subnets from at least two
+     * Availability Zones. You can specify only one subnet per Availability Zone. You
+     * must specify either subnets or subnet mappings.</p> <p>The load balancer is
+     * allocated one static IP address per subnet. You cannot specify your own Elastic
+     * IP addresses.</p>
+     */
+    inline SetSubnetsRequest& AddSubnetMappings(const SubnetMapping& value) { m_subnetMappingsHasBeenSet = true; m_subnetMappings.push_back(value); return *this; }
+
+    /**
+     * <p>The IDs of the subnets. You must specify subnets from at least two
+     * Availability Zones. You can specify only one subnet per Availability Zone. You
+     * must specify either subnets or subnet mappings.</p> <p>The load balancer is
+     * allocated one static IP address per subnet. You cannot specify your own Elastic
+     * IP addresses.</p>
+     */
+    inline SetSubnetsRequest& AddSubnetMappings(SubnetMapping&& value) { m_subnetMappingsHasBeenSet = true; m_subnetMappings.push_back(std::move(value)); return *this; }
+
   private:
+
     Aws::String m_loadBalancerArn;
     bool m_loadBalancerArnHasBeenSet;
+
     Aws::Vector<Aws::String> m_subnets;
     bool m_subnetsHasBeenSet;
+
+    Aws::Vector<SubnetMapping> m_subnetMappings;
+    bool m_subnetMappingsHasBeenSet;
   };
 
 } // namespace Model

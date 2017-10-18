@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/storagegateway/model/TapeArchive.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -35,7 +36,9 @@ TapeArchive::TapeArchive() :
     m_tapeSizeInBytesHasBeenSet(false),
     m_completionTimeHasBeenSet(false),
     m_retrievedToHasBeenSet(false),
-    m_tapeStatusHasBeenSet(false)
+    m_tapeStatusHasBeenSet(false),
+    m_tapeUsedInBytes(0),
+    m_tapeUsedInBytesHasBeenSet(false)
 {
 }
 
@@ -47,7 +50,9 @@ TapeArchive::TapeArchive(const JsonValue& jsonValue) :
     m_tapeSizeInBytesHasBeenSet(false),
     m_completionTimeHasBeenSet(false),
     m_retrievedToHasBeenSet(false),
-    m_tapeStatusHasBeenSet(false)
+    m_tapeStatusHasBeenSet(false),
+    m_tapeUsedInBytes(0),
+    m_tapeUsedInBytesHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -103,6 +108,13 @@ TapeArchive& TapeArchive::operator =(const JsonValue& jsonValue)
     m_tapeStatusHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("TapeUsedInBytes"))
+  {
+    m_tapeUsedInBytes = jsonValue.GetInt64("TapeUsedInBytes");
+
+    m_tapeUsedInBytesHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -147,6 +159,12 @@ JsonValue TapeArchive::Jsonize() const
   if(m_tapeStatusHasBeenSet)
   {
    payload.WithString("TapeStatus", m_tapeStatus);
+
+  }
+
+  if(m_tapeUsedInBytesHasBeenSet)
+  {
+   payload.WithInt64("TapeUsedInBytes", m_tapeUsedInBytes);
 
   }
 

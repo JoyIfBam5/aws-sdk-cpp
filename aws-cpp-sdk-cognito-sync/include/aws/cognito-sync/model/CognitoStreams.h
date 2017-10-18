@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-sync/CognitoSync_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/cognito-sync/model/StreamingStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     CognitoStreams& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * The name of the Cognito stream to receive updates. This stream must be in the
      * developers account and in the same region as the identity pool.
@@ -60,7 +63,7 @@ namespace Model
      * The name of the Cognito stream to receive updates. This stream must be in the
      * developers account and in the same region as the identity pool.
      */
-    inline void SetStreamName(Aws::String&& value) { m_streamNameHasBeenSet = true; m_streamName = value; }
+    inline void SetStreamName(Aws::String&& value) { m_streamNameHasBeenSet = true; m_streamName = std::move(value); }
 
     /**
      * The name of the Cognito stream to receive updates. This stream must be in the
@@ -78,13 +81,14 @@ namespace Model
      * The name of the Cognito stream to receive updates. This stream must be in the
      * developers account and in the same region as the identity pool.
      */
-    inline CognitoStreams& WithStreamName(Aws::String&& value) { SetStreamName(value); return *this;}
+    inline CognitoStreams& WithStreamName(Aws::String&& value) { SetStreamName(std::move(value)); return *this;}
 
     /**
      * The name of the Cognito stream to receive updates. This stream must be in the
      * developers account and in the same region as the identity pool.
      */
     inline CognitoStreams& WithStreamName(const char* value) { SetStreamName(value); return *this;}
+
 
     /**
      * The ARN of the role Amazon Cognito can assume in order to publish to the stream.
@@ -105,7 +109,7 @@ namespace Model
      * This role must grant access to Amazon Cognito (cognito-sync) to invoke PutRecord
      * on your Cognito stream.
      */
-    inline void SetRoleArn(Aws::String&& value) { m_roleArnHasBeenSet = true; m_roleArn = value; }
+    inline void SetRoleArn(Aws::String&& value) { m_roleArnHasBeenSet = true; m_roleArn = std::move(value); }
 
     /**
      * The ARN of the role Amazon Cognito can assume in order to publish to the stream.
@@ -126,7 +130,7 @@ namespace Model
      * This role must grant access to Amazon Cognito (cognito-sync) to invoke PutRecord
      * on your Cognito stream.
      */
-    inline CognitoStreams& WithRoleArn(Aws::String&& value) { SetRoleArn(value); return *this;}
+    inline CognitoStreams& WithRoleArn(Aws::String&& value) { SetRoleArn(std::move(value)); return *this;}
 
     /**
      * The ARN of the role Amazon Cognito can assume in order to publish to the stream.
@@ -134,6 +138,7 @@ namespace Model
      * on your Cognito stream.
      */
     inline CognitoStreams& WithRoleArn(const char* value) { SetRoleArn(value); return *this;}
+
 
     /**
      * Status of the Cognito streams. Valid values are: <p>ENABLED - Streaming of
@@ -157,7 +162,7 @@ namespace Model
      * identity pool is disabled. Bulk publish will also fail if StreamingStatus is
      * DISABLED.</p>
      */
-    inline void SetStreamingStatus(StreamingStatus&& value) { m_streamingStatusHasBeenSet = true; m_streamingStatus = value; }
+    inline void SetStreamingStatus(StreamingStatus&& value) { m_streamingStatusHasBeenSet = true; m_streamingStatus = std::move(value); }
 
     /**
      * Status of the Cognito streams. Valid values are: <p>ENABLED - Streaming of
@@ -173,13 +178,16 @@ namespace Model
      * identity pool is disabled. Bulk publish will also fail if StreamingStatus is
      * DISABLED.</p>
      */
-    inline CognitoStreams& WithStreamingStatus(StreamingStatus&& value) { SetStreamingStatus(value); return *this;}
+    inline CognitoStreams& WithStreamingStatus(StreamingStatus&& value) { SetStreamingStatus(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_streamName;
     bool m_streamNameHasBeenSet;
+
     Aws::String m_roleArn;
     bool m_roleArnHasBeenSet;
+
     StreamingStatus m_streamingStatus;
     bool m_streamingStatusHasBeenSet;
   };

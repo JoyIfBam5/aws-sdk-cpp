@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -64,10 +65,17 @@ namespace Model
     r4_16xlarge,
     x1_16xlarge,
     x1_32xlarge,
+    x1e_32xlarge,
     i2_xlarge,
     i2_2xlarge,
     i2_4xlarge,
     i2_8xlarge,
+    i3_large,
+    i3_xlarge,
+    i3_2xlarge,
+    i3_4xlarge,
+    i3_8xlarge,
+    i3_16xlarge,
     hi1_4xlarge,
     hs1_8xlarge,
     c1_medium,
@@ -86,6 +94,9 @@ namespace Model
     cc2_8xlarge,
     g2_2xlarge,
     g2_8xlarge,
+    g3_4xlarge,
+    g3_8xlarge,
+    g3_16xlarge,
     cg1_4xlarge,
     p2_xlarge,
     p2_8xlarge,

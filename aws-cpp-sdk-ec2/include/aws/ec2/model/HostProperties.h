@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,20 +48,6 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
-    /**
-     * <p>The number of sockets on the Dedicated Host.</p>
-     */
-    inline int GetSockets() const{ return m_sockets; }
-
-    /**
-     * <p>The number of sockets on the Dedicated Host.</p>
-     */
-    inline void SetSockets(int value) { m_socketsHasBeenSet = true; m_sockets = value; }
-
-    /**
-     * <p>The number of sockets on the Dedicated Host.</p>
-     */
-    inline HostProperties& WithSockets(int value) { SetSockets(value); return *this;}
 
     /**
      * <p>The number of cores on the Dedicated Host.</p>
@@ -76,20 +64,6 @@ namespace Model
      */
     inline HostProperties& WithCores(int value) { SetCores(value); return *this;}
 
-    /**
-     * <p>The number of vCPUs on the Dedicated Host.</p>
-     */
-    inline int GetTotalVCpus() const{ return m_totalVCpus; }
-
-    /**
-     * <p>The number of vCPUs on the Dedicated Host.</p>
-     */
-    inline void SetTotalVCpus(int value) { m_totalVCpusHasBeenSet = true; m_totalVCpus = value; }
-
-    /**
-     * <p>The number of vCPUs on the Dedicated Host.</p>
-     */
-    inline HostProperties& WithTotalVCpus(int value) { SetTotalVCpus(value); return *this;}
 
     /**
      * <p>The instance type size that the Dedicated Host supports (for example,
@@ -107,7 +81,7 @@ namespace Model
      * <p>The instance type size that the Dedicated Host supports (for example,
      * <code>m3.medium</code>).</p>
      */
-    inline void SetInstanceType(Aws::String&& value) { m_instanceTypeHasBeenSet = true; m_instanceType = value; }
+    inline void SetInstanceType(Aws::String&& value) { m_instanceTypeHasBeenSet = true; m_instanceType = std::move(value); }
 
     /**
      * <p>The instance type size that the Dedicated Host supports (for example,
@@ -125,7 +99,7 @@ namespace Model
      * <p>The instance type size that the Dedicated Host supports (for example,
      * <code>m3.medium</code>).</p>
      */
-    inline HostProperties& WithInstanceType(Aws::String&& value) { SetInstanceType(value); return *this;}
+    inline HostProperties& WithInstanceType(Aws::String&& value) { SetInstanceType(std::move(value)); return *this;}
 
     /**
      * <p>The instance type size that the Dedicated Host supports (for example,
@@ -133,15 +107,51 @@ namespace Model
      */
     inline HostProperties& WithInstanceType(const char* value) { SetInstanceType(value); return *this;}
 
+
+    /**
+     * <p>The number of sockets on the Dedicated Host.</p>
+     */
+    inline int GetSockets() const{ return m_sockets; }
+
+    /**
+     * <p>The number of sockets on the Dedicated Host.</p>
+     */
+    inline void SetSockets(int value) { m_socketsHasBeenSet = true; m_sockets = value; }
+
+    /**
+     * <p>The number of sockets on the Dedicated Host.</p>
+     */
+    inline HostProperties& WithSockets(int value) { SetSockets(value); return *this;}
+
+
+    /**
+     * <p>The number of vCPUs on the Dedicated Host.</p>
+     */
+    inline int GetTotalVCpus() const{ return m_totalVCpus; }
+
+    /**
+     * <p>The number of vCPUs on the Dedicated Host.</p>
+     */
+    inline void SetTotalVCpus(int value) { m_totalVCpusHasBeenSet = true; m_totalVCpus = value; }
+
+    /**
+     * <p>The number of vCPUs on the Dedicated Host.</p>
+     */
+    inline HostProperties& WithTotalVCpus(int value) { SetTotalVCpus(value); return *this;}
+
   private:
-    int m_sockets;
-    bool m_socketsHasBeenSet;
+
     int m_cores;
     bool m_coresHasBeenSet;
-    int m_totalVCpus;
-    bool m_totalVCpusHasBeenSet;
+
     Aws::String m_instanceType;
     bool m_instanceTypeHasBeenSet;
+
+    int m_sockets;
+    bool m_socketsHasBeenSet;
+
+    int m_totalVCpus;
+    bool m_totalVCpusHasBeenSet;
   };
 
 } // namespace Model

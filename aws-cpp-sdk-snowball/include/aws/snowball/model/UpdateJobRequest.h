@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/snowball/Snowball_EXPORTS.h>
 #include <aws/snowball/SnowballRequest.h>
@@ -20,6 +21,7 @@
 #include <aws/snowball/model/JobResource.h>
 #include <aws/snowball/model/ShippingOption.h>
 #include <aws/snowball/model/SnowballCapacity.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     UpdateJobRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateJob"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The job ID of the job that you want to update, for example
@@ -54,7 +64,7 @@ namespace Model
      * <p>The job ID of the job that you want to update, for example
      * <code>JID123e4567-e89b-12d3-a456-426655440000</code>.</p>
      */
-    inline void SetJobId(Aws::String&& value) { m_jobIdHasBeenSet = true; m_jobId = value; }
+    inline void SetJobId(Aws::String&& value) { m_jobIdHasBeenSet = true; m_jobId = std::move(value); }
 
     /**
      * <p>The job ID of the job that you want to update, for example
@@ -72,7 +82,7 @@ namespace Model
      * <p>The job ID of the job that you want to update, for example
      * <code>JID123e4567-e89b-12d3-a456-426655440000</code>.</p>
      */
-    inline UpdateJobRequest& WithJobId(Aws::String&& value) { SetJobId(value); return *this;}
+    inline UpdateJobRequest& WithJobId(Aws::String&& value) { SetJobId(std::move(value)); return *this;}
 
     /**
      * <p>The job ID of the job that you want to update, for example
@@ -80,61 +90,63 @@ namespace Model
      */
     inline UpdateJobRequest& WithJobId(const char* value) { SetJobId(value); return *this;}
 
+
     /**
      * <p>The new role Amazon Resource Name (ARN) that you want to associate with this
      * job. To create a role ARN, use the <a
-     * href="http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a>
-     * AWS Identity and Access Management (IAM) API action.</p>
+     * href="http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a>AWS
+     * Identity and Access Management (IAM) API action.</p>
      */
     inline const Aws::String& GetRoleARN() const{ return m_roleARN; }
 
     /**
      * <p>The new role Amazon Resource Name (ARN) that you want to associate with this
      * job. To create a role ARN, use the <a
-     * href="http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a>
-     * AWS Identity and Access Management (IAM) API action.</p>
+     * href="http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a>AWS
+     * Identity and Access Management (IAM) API action.</p>
      */
     inline void SetRoleARN(const Aws::String& value) { m_roleARNHasBeenSet = true; m_roleARN = value; }
 
     /**
      * <p>The new role Amazon Resource Name (ARN) that you want to associate with this
      * job. To create a role ARN, use the <a
-     * href="http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a>
-     * AWS Identity and Access Management (IAM) API action.</p>
+     * href="http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a>AWS
+     * Identity and Access Management (IAM) API action.</p>
      */
-    inline void SetRoleARN(Aws::String&& value) { m_roleARNHasBeenSet = true; m_roleARN = value; }
+    inline void SetRoleARN(Aws::String&& value) { m_roleARNHasBeenSet = true; m_roleARN = std::move(value); }
 
     /**
      * <p>The new role Amazon Resource Name (ARN) that you want to associate with this
      * job. To create a role ARN, use the <a
-     * href="http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a>
-     * AWS Identity and Access Management (IAM) API action.</p>
+     * href="http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a>AWS
+     * Identity and Access Management (IAM) API action.</p>
      */
     inline void SetRoleARN(const char* value) { m_roleARNHasBeenSet = true; m_roleARN.assign(value); }
 
     /**
      * <p>The new role Amazon Resource Name (ARN) that you want to associate with this
      * job. To create a role ARN, use the <a
-     * href="http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a>
-     * AWS Identity and Access Management (IAM) API action.</p>
+     * href="http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a>AWS
+     * Identity and Access Management (IAM) API action.</p>
      */
     inline UpdateJobRequest& WithRoleARN(const Aws::String& value) { SetRoleARN(value); return *this;}
 
     /**
      * <p>The new role Amazon Resource Name (ARN) that you want to associate with this
      * job. To create a role ARN, use the <a
-     * href="http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a>
-     * AWS Identity and Access Management (IAM) API action.</p>
+     * href="http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a>AWS
+     * Identity and Access Management (IAM) API action.</p>
      */
-    inline UpdateJobRequest& WithRoleARN(Aws::String&& value) { SetRoleARN(value); return *this;}
+    inline UpdateJobRequest& WithRoleARN(Aws::String&& value) { SetRoleARN(std::move(value)); return *this;}
 
     /**
      * <p>The new role Amazon Resource Name (ARN) that you want to associate with this
      * job. To create a role ARN, use the <a
-     * href="http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a>
-     * AWS Identity and Access Management (IAM) API action.</p>
+     * href="http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a>AWS
+     * Identity and Access Management (IAM) API action.</p>
      */
     inline UpdateJobRequest& WithRoleARN(const char* value) { SetRoleARN(value); return *this;}
+
 
     /**
      * <p>The new or updated <a>Notification</a> object.</p>
@@ -149,7 +161,7 @@ namespace Model
     /**
      * <p>The new or updated <a>Notification</a> object.</p>
      */
-    inline void SetNotification(Notification&& value) { m_notificationHasBeenSet = true; m_notification = value; }
+    inline void SetNotification(Notification&& value) { m_notificationHasBeenSet = true; m_notification = std::move(value); }
 
     /**
      * <p>The new or updated <a>Notification</a> object.</p>
@@ -159,7 +171,8 @@ namespace Model
     /**
      * <p>The new or updated <a>Notification</a> object.</p>
      */
-    inline UpdateJobRequest& WithNotification(Notification&& value) { SetNotification(value); return *this;}
+    inline UpdateJobRequest& WithNotification(Notification&& value) { SetNotification(std::move(value)); return *this;}
+
 
     /**
      * <p>The updated <a>S3Resource</a> object (for a single Amazon S3 bucket or key
@@ -180,7 +193,7 @@ namespace Model
      * range), or the updated <a>JobResource</a> object (for multiple buckets or key
      * ranges). </p>
      */
-    inline void SetResources(JobResource&& value) { m_resourcesHasBeenSet = true; m_resources = value; }
+    inline void SetResources(JobResource&& value) { m_resourcesHasBeenSet = true; m_resources = std::move(value); }
 
     /**
      * <p>The updated <a>S3Resource</a> object (for a single Amazon S3 bucket or key
@@ -194,7 +207,8 @@ namespace Model
      * range), or the updated <a>JobResource</a> object (for multiple buckets or key
      * ranges). </p>
      */
-    inline UpdateJobRequest& WithResources(JobResource&& value) { SetResources(value); return *this;}
+    inline UpdateJobRequest& WithResources(JobResource&& value) { SetResources(std::move(value)); return *this;}
+
 
     /**
      * <p>The ID of the updated <a>Address</a> object.</p>
@@ -209,7 +223,7 @@ namespace Model
     /**
      * <p>The ID of the updated <a>Address</a> object.</p>
      */
-    inline void SetAddressId(Aws::String&& value) { m_addressIdHasBeenSet = true; m_addressId = value; }
+    inline void SetAddressId(Aws::String&& value) { m_addressIdHasBeenSet = true; m_addressId = std::move(value); }
 
     /**
      * <p>The ID of the updated <a>Address</a> object.</p>
@@ -224,12 +238,13 @@ namespace Model
     /**
      * <p>The ID of the updated <a>Address</a> object.</p>
      */
-    inline UpdateJobRequest& WithAddressId(Aws::String&& value) { SetAddressId(value); return *this;}
+    inline UpdateJobRequest& WithAddressId(Aws::String&& value) { SetAddressId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the updated <a>Address</a> object.</p>
      */
     inline UpdateJobRequest& WithAddressId(const char* value) { SetAddressId(value); return *this;}
+
 
     /**
      * <p>The updated shipping option value of this job's <a>ShippingDetails</a>
@@ -247,7 +262,7 @@ namespace Model
      * <p>The updated shipping option value of this job's <a>ShippingDetails</a>
      * object.</p>
      */
-    inline void SetShippingOption(ShippingOption&& value) { m_shippingOptionHasBeenSet = true; m_shippingOption = value; }
+    inline void SetShippingOption(ShippingOption&& value) { m_shippingOptionHasBeenSet = true; m_shippingOption = std::move(value); }
 
     /**
      * <p>The updated shipping option value of this job's <a>ShippingDetails</a>
@@ -259,7 +274,8 @@ namespace Model
      * <p>The updated shipping option value of this job's <a>ShippingDetails</a>
      * object.</p>
      */
-    inline UpdateJobRequest& WithShippingOption(ShippingOption&& value) { SetShippingOption(value); return *this;}
+    inline UpdateJobRequest& WithShippingOption(ShippingOption&& value) { SetShippingOption(std::move(value)); return *this;}
+
 
     /**
      * <p>The updated description of this job's <a>JobMetadata</a> object.</p>
@@ -274,7 +290,7 @@ namespace Model
     /**
      * <p>The updated description of this job's <a>JobMetadata</a> object.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The updated description of this job's <a>JobMetadata</a> object.</p>
@@ -289,12 +305,13 @@ namespace Model
     /**
      * <p>The updated description of this job's <a>JobMetadata</a> object.</p>
      */
-    inline UpdateJobRequest& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline UpdateJobRequest& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The updated description of this job's <a>JobMetadata</a> object.</p>
      */
     inline UpdateJobRequest& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The updated <code>SnowballCapacityPreference</code> of this job's
@@ -315,7 +332,7 @@ namespace Model
      * <a>JobMetadata</a> object. The 50 TB Snowballs are only available in the US
      * regions.</p>
      */
-    inline void SetSnowballCapacityPreference(SnowballCapacity&& value) { m_snowballCapacityPreferenceHasBeenSet = true; m_snowballCapacityPreference = value; }
+    inline void SetSnowballCapacityPreference(SnowballCapacity&& value) { m_snowballCapacityPreferenceHasBeenSet = true; m_snowballCapacityPreference = std::move(value); }
 
     /**
      * <p>The updated <code>SnowballCapacityPreference</code> of this job's
@@ -329,25 +346,79 @@ namespace Model
      * <a>JobMetadata</a> object. The 50 TB Snowballs are only available in the US
      * regions.</p>
      */
-    inline UpdateJobRequest& WithSnowballCapacityPreference(SnowballCapacity&& value) { SetSnowballCapacityPreference(value); return *this;}
+    inline UpdateJobRequest& WithSnowballCapacityPreference(SnowballCapacity&& value) { SetSnowballCapacityPreference(std::move(value)); return *this;}
+
+
+    /**
+     * <p>The updated ID for the forwarding address for a job. This field is not
+     * supported in most regions.</p>
+     */
+    inline const Aws::String& GetForwardingAddressId() const{ return m_forwardingAddressId; }
+
+    /**
+     * <p>The updated ID for the forwarding address for a job. This field is not
+     * supported in most regions.</p>
+     */
+    inline void SetForwardingAddressId(const Aws::String& value) { m_forwardingAddressIdHasBeenSet = true; m_forwardingAddressId = value; }
+
+    /**
+     * <p>The updated ID for the forwarding address for a job. This field is not
+     * supported in most regions.</p>
+     */
+    inline void SetForwardingAddressId(Aws::String&& value) { m_forwardingAddressIdHasBeenSet = true; m_forwardingAddressId = std::move(value); }
+
+    /**
+     * <p>The updated ID for the forwarding address for a job. This field is not
+     * supported in most regions.</p>
+     */
+    inline void SetForwardingAddressId(const char* value) { m_forwardingAddressIdHasBeenSet = true; m_forwardingAddressId.assign(value); }
+
+    /**
+     * <p>The updated ID for the forwarding address for a job. This field is not
+     * supported in most regions.</p>
+     */
+    inline UpdateJobRequest& WithForwardingAddressId(const Aws::String& value) { SetForwardingAddressId(value); return *this;}
+
+    /**
+     * <p>The updated ID for the forwarding address for a job. This field is not
+     * supported in most regions.</p>
+     */
+    inline UpdateJobRequest& WithForwardingAddressId(Aws::String&& value) { SetForwardingAddressId(std::move(value)); return *this;}
+
+    /**
+     * <p>The updated ID for the forwarding address for a job. This field is not
+     * supported in most regions.</p>
+     */
+    inline UpdateJobRequest& WithForwardingAddressId(const char* value) { SetForwardingAddressId(value); return *this;}
 
   private:
+
     Aws::String m_jobId;
     bool m_jobIdHasBeenSet;
+
     Aws::String m_roleARN;
     bool m_roleARNHasBeenSet;
+
     Notification m_notification;
     bool m_notificationHasBeenSet;
+
     JobResource m_resources;
     bool m_resourcesHasBeenSet;
+
     Aws::String m_addressId;
     bool m_addressIdHasBeenSet;
+
     ShippingOption m_shippingOption;
     bool m_shippingOptionHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     SnowballCapacity m_snowballCapacityPreference;
     bool m_snowballCapacityPreferenceHasBeenSet;
+
+    Aws::String m_forwardingAddressId;
+    bool m_forwardingAddressIdHasBeenSet;
   };
 
 } // namespace Model

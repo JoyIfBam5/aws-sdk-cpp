@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ssm/model/AssociationDescription.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -30,6 +31,7 @@ namespace Model
 AssociationDescription::AssociationDescription() : 
     m_nameHasBeenSet(false),
     m_instanceIdHasBeenSet(false),
+    m_associationVersionHasBeenSet(false),
     m_dateHasBeenSet(false),
     m_lastUpdateAssociationDateHasBeenSet(false),
     m_statusHasBeenSet(false),
@@ -41,13 +43,15 @@ AssociationDescription::AssociationDescription() :
     m_scheduleExpressionHasBeenSet(false),
     m_outputLocationHasBeenSet(false),
     m_lastExecutionDateHasBeenSet(false),
-    m_lastSuccessfulExecutionDateHasBeenSet(false)
+    m_lastSuccessfulExecutionDateHasBeenSet(false),
+    m_associationNameHasBeenSet(false)
 {
 }
 
 AssociationDescription::AssociationDescription(const JsonValue& jsonValue) : 
     m_nameHasBeenSet(false),
     m_instanceIdHasBeenSet(false),
+    m_associationVersionHasBeenSet(false),
     m_dateHasBeenSet(false),
     m_lastUpdateAssociationDateHasBeenSet(false),
     m_statusHasBeenSet(false),
@@ -59,7 +63,8 @@ AssociationDescription::AssociationDescription(const JsonValue& jsonValue) :
     m_scheduleExpressionHasBeenSet(false),
     m_outputLocationHasBeenSet(false),
     m_lastExecutionDateHasBeenSet(false),
-    m_lastSuccessfulExecutionDateHasBeenSet(false)
+    m_lastSuccessfulExecutionDateHasBeenSet(false),
+    m_associationNameHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -78,6 +83,13 @@ AssociationDescription& AssociationDescription::operator =(const JsonValue& json
     m_instanceId = jsonValue.GetString("InstanceId");
 
     m_instanceIdHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("AssociationVersion"))
+  {
+    m_associationVersion = jsonValue.GetString("AssociationVersion");
+
+    m_associationVersionHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("Date"))
@@ -177,6 +189,13 @@ AssociationDescription& AssociationDescription::operator =(const JsonValue& json
     m_lastSuccessfulExecutionDateHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("AssociationName"))
+  {
+    m_associationName = jsonValue.GetString("AssociationName");
+
+    m_associationNameHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -193,6 +212,12 @@ JsonValue AssociationDescription::Jsonize() const
   if(m_instanceIdHasBeenSet)
   {
    payload.WithString("InstanceId", m_instanceId);
+
+  }
+
+  if(m_associationVersionHasBeenSet)
+  {
+   payload.WithString("AssociationVersion", m_associationVersion);
 
   }
 
@@ -277,6 +302,12 @@ JsonValue AssociationDescription::Jsonize() const
   if(m_lastSuccessfulExecutionDateHasBeenSet)
   {
    payload.WithDouble("LastSuccessfulExecutionDate", m_lastSuccessfulExecutionDate.SecondsWithMSPrecision());
+  }
+
+  if(m_associationNameHasBeenSet)
+  {
+   payload.WithString("AssociationName", m_associationName);
+
   }
 
   return payload;

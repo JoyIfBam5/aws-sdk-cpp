@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/monitoring/CloudWatch_EXPORTS.h>
 #include <aws/monitoring/CloudWatchRequest.h>
@@ -20,6 +21,7 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/monitoring/model/StandardUnit.h>
 #include <aws/monitoring/model/Dimension.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,7 +36,19 @@ namespace Model
   {
   public:
     DescribeAlarmsForMetricRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeAlarmsForMetric"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The name of the metric.</p>
@@ -49,7 +63,7 @@ namespace Model
     /**
      * <p>The name of the metric.</p>
      */
-    inline void SetMetricName(Aws::String&& value) { m_metricNameHasBeenSet = true; m_metricName = value; }
+    inline void SetMetricName(Aws::String&& value) { m_metricNameHasBeenSet = true; m_metricName = std::move(value); }
 
     /**
      * <p>The name of the metric.</p>
@@ -64,12 +78,13 @@ namespace Model
     /**
      * <p>The name of the metric.</p>
      */
-    inline DescribeAlarmsForMetricRequest& WithMetricName(Aws::String&& value) { SetMetricName(value); return *this;}
+    inline DescribeAlarmsForMetricRequest& WithMetricName(Aws::String&& value) { SetMetricName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the metric.</p>
      */
     inline DescribeAlarmsForMetricRequest& WithMetricName(const char* value) { SetMetricName(value); return *this;}
+
 
     /**
      * <p>The namespace of the metric.</p>
@@ -84,7 +99,7 @@ namespace Model
     /**
      * <p>The namespace of the metric.</p>
      */
-    inline void SetNamespace(Aws::String&& value) { m_namespaceHasBeenSet = true; m_namespace = value; }
+    inline void SetNamespace(Aws::String&& value) { m_namespaceHasBeenSet = true; m_namespace = std::move(value); }
 
     /**
      * <p>The namespace of the metric.</p>
@@ -99,12 +114,13 @@ namespace Model
     /**
      * <p>The namespace of the metric.</p>
      */
-    inline DescribeAlarmsForMetricRequest& WithNamespace(Aws::String&& value) { SetNamespace(value); return *this;}
+    inline DescribeAlarmsForMetricRequest& WithNamespace(Aws::String&& value) { SetNamespace(std::move(value)); return *this;}
 
     /**
      * <p>The namespace of the metric.</p>
      */
     inline DescribeAlarmsForMetricRequest& WithNamespace(const char* value) { SetNamespace(value); return *this;}
+
 
     /**
      * <p>The statistic for the metric, other than percentiles. For percentile
@@ -122,7 +138,7 @@ namespace Model
      * <p>The statistic for the metric, other than percentiles. For percentile
      * statistics, use <code>ExtendedStatistics</code>.</p>
      */
-    inline void SetStatistic(Statistic&& value) { m_statisticHasBeenSet = true; m_statistic = value; }
+    inline void SetStatistic(Statistic&& value) { m_statisticHasBeenSet = true; m_statistic = std::move(value); }
 
     /**
      * <p>The statistic for the metric, other than percentiles. For percentile
@@ -134,7 +150,8 @@ namespace Model
      * <p>The statistic for the metric, other than percentiles. For percentile
      * statistics, use <code>ExtendedStatistics</code>.</p>
      */
-    inline DescribeAlarmsForMetricRequest& WithStatistic(Statistic&& value) { SetStatistic(value); return *this;}
+    inline DescribeAlarmsForMetricRequest& WithStatistic(Statistic&& value) { SetStatistic(std::move(value)); return *this;}
+
 
     /**
      * <p>The percentile statistic for the metric. Specify a value between p0.0 and
@@ -152,7 +169,7 @@ namespace Model
      * <p>The percentile statistic for the metric. Specify a value between p0.0 and
      * p100.</p>
      */
-    inline void SetExtendedStatistic(Aws::String&& value) { m_extendedStatisticHasBeenSet = true; m_extendedStatistic = value; }
+    inline void SetExtendedStatistic(Aws::String&& value) { m_extendedStatisticHasBeenSet = true; m_extendedStatistic = std::move(value); }
 
     /**
      * <p>The percentile statistic for the metric. Specify a value between p0.0 and
@@ -170,13 +187,14 @@ namespace Model
      * <p>The percentile statistic for the metric. Specify a value between p0.0 and
      * p100.</p>
      */
-    inline DescribeAlarmsForMetricRequest& WithExtendedStatistic(Aws::String&& value) { SetExtendedStatistic(value); return *this;}
+    inline DescribeAlarmsForMetricRequest& WithExtendedStatistic(Aws::String&& value) { SetExtendedStatistic(std::move(value)); return *this;}
 
     /**
      * <p>The percentile statistic for the metric. Specify a value between p0.0 and
      * p100.</p>
      */
     inline DescribeAlarmsForMetricRequest& WithExtendedStatistic(const char* value) { SetExtendedStatistic(value); return *this;}
+
 
     /**
      * <p>The dimensions associated with the metric. If the metric has any associated
@@ -194,7 +212,7 @@ namespace Model
      * <p>The dimensions associated with the metric. If the metric has any associated
      * dimensions, you must specify them in order for the call to succeed.</p>
      */
-    inline void SetDimensions(Aws::Vector<Dimension>&& value) { m_dimensionsHasBeenSet = true; m_dimensions = value; }
+    inline void SetDimensions(Aws::Vector<Dimension>&& value) { m_dimensionsHasBeenSet = true; m_dimensions = std::move(value); }
 
     /**
      * <p>The dimensions associated with the metric. If the metric has any associated
@@ -206,7 +224,7 @@ namespace Model
      * <p>The dimensions associated with the metric. If the metric has any associated
      * dimensions, you must specify them in order for the call to succeed.</p>
      */
-    inline DescribeAlarmsForMetricRequest& WithDimensions(Aws::Vector<Dimension>&& value) { SetDimensions(value); return *this;}
+    inline DescribeAlarmsForMetricRequest& WithDimensions(Aws::Vector<Dimension>&& value) { SetDimensions(std::move(value)); return *this;}
 
     /**
      * <p>The dimensions associated with the metric. If the metric has any associated
@@ -218,7 +236,8 @@ namespace Model
      * <p>The dimensions associated with the metric. If the metric has any associated
      * dimensions, you must specify them in order for the call to succeed.</p>
      */
-    inline DescribeAlarmsForMetricRequest& AddDimensions(Dimension&& value) { m_dimensionsHasBeenSet = true; m_dimensions.push_back(value); return *this; }
+    inline DescribeAlarmsForMetricRequest& AddDimensions(Dimension&& value) { m_dimensionsHasBeenSet = true; m_dimensions.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The period, in seconds, over which the statistic is applied.</p>
@@ -235,6 +254,7 @@ namespace Model
      */
     inline DescribeAlarmsForMetricRequest& WithPeriod(int value) { SetPeriod(value); return *this;}
 
+
     /**
      * <p>The unit for the metric.</p>
      */
@@ -248,7 +268,7 @@ namespace Model
     /**
      * <p>The unit for the metric.</p>
      */
-    inline void SetUnit(StandardUnit&& value) { m_unitHasBeenSet = true; m_unit = value; }
+    inline void SetUnit(StandardUnit&& value) { m_unitHasBeenSet = true; m_unit = std::move(value); }
 
     /**
      * <p>The unit for the metric.</p>
@@ -258,21 +278,28 @@ namespace Model
     /**
      * <p>The unit for the metric.</p>
      */
-    inline DescribeAlarmsForMetricRequest& WithUnit(StandardUnit&& value) { SetUnit(value); return *this;}
+    inline DescribeAlarmsForMetricRequest& WithUnit(StandardUnit&& value) { SetUnit(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_metricName;
     bool m_metricNameHasBeenSet;
+
     Aws::String m_namespace;
     bool m_namespaceHasBeenSet;
+
     Statistic m_statistic;
     bool m_statisticHasBeenSet;
+
     Aws::String m_extendedStatistic;
     bool m_extendedStatisticHasBeenSet;
+
     Aws::Vector<Dimension> m_dimensions;
     bool m_dimensionsHasBeenSet;
+
     int m_period;
     bool m_periodHasBeenSet;
+
     StandardUnit m_unit;
     bool m_unitHasBeenSet;
   };

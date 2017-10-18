@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/devicefarm/DeviceFarm_EXPORTS.h>
 #include <aws/devicefarm/DeviceFarmRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,9 +37,17 @@ namespace Model
   {
   public:
     InstallToRemoteAccessSessionRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "InstallToRemoteAccessSession"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the remote access session about which you
@@ -55,7 +65,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the remote access session about which you
      * are requesting information.</p>
      */
-    inline void SetRemoteAccessSessionArn(Aws::String&& value) { m_remoteAccessSessionArnHasBeenSet = true; m_remoteAccessSessionArn = value; }
+    inline void SetRemoteAccessSessionArn(Aws::String&& value) { m_remoteAccessSessionArnHasBeenSet = true; m_remoteAccessSessionArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the remote access session about which you
@@ -73,13 +83,14 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the remote access session about which you
      * are requesting information.</p>
      */
-    inline InstallToRemoteAccessSessionRequest& WithRemoteAccessSessionArn(Aws::String&& value) { SetRemoteAccessSessionArn(value); return *this;}
+    inline InstallToRemoteAccessSessionRequest& WithRemoteAccessSessionArn(Aws::String&& value) { SetRemoteAccessSessionArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the remote access session about which you
      * are requesting information.</p>
      */
     inline InstallToRemoteAccessSessionRequest& WithRemoteAccessSessionArn(const char* value) { SetRemoteAccessSessionArn(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the app about which you are requesting
@@ -97,7 +108,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the app about which you are requesting
      * information.</p>
      */
-    inline void SetAppArn(Aws::String&& value) { m_appArnHasBeenSet = true; m_appArn = value; }
+    inline void SetAppArn(Aws::String&& value) { m_appArnHasBeenSet = true; m_appArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the app about which you are requesting
@@ -115,7 +126,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the app about which you are requesting
      * information.</p>
      */
-    inline InstallToRemoteAccessSessionRequest& WithAppArn(Aws::String&& value) { SetAppArn(value); return *this;}
+    inline InstallToRemoteAccessSessionRequest& WithAppArn(Aws::String&& value) { SetAppArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the app about which you are requesting
@@ -124,8 +135,10 @@ namespace Model
     inline InstallToRemoteAccessSessionRequest& WithAppArn(const char* value) { SetAppArn(value); return *this;}
 
   private:
+
     Aws::String m_remoteAccessSessionArn;
     bool m_remoteAccessSessionArnHasBeenSet;
+
     Aws::String m_appArn;
     bool m_appArnHasBeenSet;
   };

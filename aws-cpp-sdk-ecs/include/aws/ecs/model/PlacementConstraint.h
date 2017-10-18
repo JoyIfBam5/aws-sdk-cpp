@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/ecs/model/PlacementConstraintType.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,40 +50,47 @@ namespace Model
     PlacementConstraint& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The type of constraint. Use <code>distinctInstance</code> to ensure that each
      * task in a particular group is running on a different container instance. Use
-     * <code>memberOf</code> to restrict selection to a group of valid candidates.</p>
+     * <code>memberOf</code> to restrict selection to a group of valid candidates. Note
+     * that <code>distinctInstance</code> is not supported in task definitions.</p>
      */
     inline const PlacementConstraintType& GetType() const{ return m_type; }
 
     /**
      * <p>The type of constraint. Use <code>distinctInstance</code> to ensure that each
      * task in a particular group is running on a different container instance. Use
-     * <code>memberOf</code> to restrict selection to a group of valid candidates.</p>
+     * <code>memberOf</code> to restrict selection to a group of valid candidates. Note
+     * that <code>distinctInstance</code> is not supported in task definitions.</p>
      */
     inline void SetType(const PlacementConstraintType& value) { m_typeHasBeenSet = true; m_type = value; }
 
     /**
      * <p>The type of constraint. Use <code>distinctInstance</code> to ensure that each
      * task in a particular group is running on a different container instance. Use
-     * <code>memberOf</code> to restrict selection to a group of valid candidates.</p>
+     * <code>memberOf</code> to restrict selection to a group of valid candidates. Note
+     * that <code>distinctInstance</code> is not supported in task definitions.</p>
      */
-    inline void SetType(PlacementConstraintType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(PlacementConstraintType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The type of constraint. Use <code>distinctInstance</code> to ensure that each
      * task in a particular group is running on a different container instance. Use
-     * <code>memberOf</code> to restrict selection to a group of valid candidates.</p>
+     * <code>memberOf</code> to restrict selection to a group of valid candidates. Note
+     * that <code>distinctInstance</code> is not supported in task definitions.</p>
      */
     inline PlacementConstraint& WithType(const PlacementConstraintType& value) { SetType(value); return *this;}
 
     /**
      * <p>The type of constraint. Use <code>distinctInstance</code> to ensure that each
      * task in a particular group is running on a different container instance. Use
-     * <code>memberOf</code> to restrict selection to a group of valid candidates.</p>
+     * <code>memberOf</code> to restrict selection to a group of valid candidates. Note
+     * that <code>distinctInstance</code> is not supported in task definitions.</p>
      */
-    inline PlacementConstraint& WithType(PlacementConstraintType&& value) { SetType(value); return *this;}
+    inline PlacementConstraint& WithType(PlacementConstraintType&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p>A cluster query language expression to apply to the constraint. Note you
@@ -111,7 +120,7 @@ namespace Model
      * Query Language</a> in the <i>Amazon EC2 Container Service Developer
      * Guide</i>.</p>
      */
-    inline void SetExpression(Aws::String&& value) { m_expressionHasBeenSet = true; m_expression = value; }
+    inline void SetExpression(Aws::String&& value) { m_expressionHasBeenSet = true; m_expression = std::move(value); }
 
     /**
      * <p>A cluster query language expression to apply to the constraint. Note you
@@ -141,7 +150,7 @@ namespace Model
      * Query Language</a> in the <i>Amazon EC2 Container Service Developer
      * Guide</i>.</p>
      */
-    inline PlacementConstraint& WithExpression(Aws::String&& value) { SetExpression(value); return *this;}
+    inline PlacementConstraint& WithExpression(Aws::String&& value) { SetExpression(std::move(value)); return *this;}
 
     /**
      * <p>A cluster query language expression to apply to the constraint. Note you
@@ -154,8 +163,10 @@ namespace Model
     inline PlacementConstraint& WithExpression(const char* value) { SetExpression(value); return *this;}
 
   private:
+
     PlacementConstraintType m_type;
     bool m_typeHasBeenSet;
+
     Aws::String m_expression;
     bool m_expressionHasBeenSet;
   };

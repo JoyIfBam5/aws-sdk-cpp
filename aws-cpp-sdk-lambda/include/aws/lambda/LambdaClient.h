@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lambda/Lambda_EXPORTS.h>
 #include <aws/lambda/LambdaErrors.h>
@@ -35,6 +36,7 @@
 #include <aws/lambda/model/ListAliasesResult.h>
 #include <aws/lambda/model/ListEventSourceMappingsResult.h>
 #include <aws/lambda/model/ListFunctionsResult.h>
+#include <aws/lambda/model/ListTagsResult.h>
 #include <aws/lambda/model/ListVersionsByFunctionResult.h>
 #include <aws/lambda/model/PublishVersionResult.h>
 #include <aws/lambda/model/UpdateAliasResult.h>
@@ -104,9 +106,12 @@ namespace Model
         class ListAliasesRequest;
         class ListEventSourceMappingsRequest;
         class ListFunctionsRequest;
+        class ListTagsRequest;
         class ListVersionsByFunctionRequest;
         class PublishVersionRequest;
         class RemovePermissionRequest;
+        class TagResourceRequest;
+        class UntagResourceRequest;
         class UpdateAliasRequest;
         class UpdateEventSourceMappingRequest;
         class UpdateFunctionCodeRequest;
@@ -116,9 +121,9 @@ namespace Model
         typedef Aws::Utils::Outcome<CreateAliasResult, Aws::Client::AWSError<LambdaErrors>> CreateAliasOutcome;
         typedef Aws::Utils::Outcome<CreateEventSourceMappingResult, Aws::Client::AWSError<LambdaErrors>> CreateEventSourceMappingOutcome;
         typedef Aws::Utils::Outcome<CreateFunctionResult, Aws::Client::AWSError<LambdaErrors>> CreateFunctionOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<LambdaErrors>> DeleteAliasOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<LambdaErrors>> DeleteAliasOutcome;
         typedef Aws::Utils::Outcome<DeleteEventSourceMappingResult, Aws::Client::AWSError<LambdaErrors>> DeleteEventSourceMappingOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<LambdaErrors>> DeleteFunctionOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<LambdaErrors>> DeleteFunctionOutcome;
         typedef Aws::Utils::Outcome<GetAccountSettingsResult, Aws::Client::AWSError<LambdaErrors>> GetAccountSettingsOutcome;
         typedef Aws::Utils::Outcome<GetAliasResult, Aws::Client::AWSError<LambdaErrors>> GetAliasOutcome;
         typedef Aws::Utils::Outcome<GetEventSourceMappingResult, Aws::Client::AWSError<LambdaErrors>> GetEventSourceMappingOutcome;
@@ -129,9 +134,12 @@ namespace Model
         typedef Aws::Utils::Outcome<ListAliasesResult, Aws::Client::AWSError<LambdaErrors>> ListAliasesOutcome;
         typedef Aws::Utils::Outcome<ListEventSourceMappingsResult, Aws::Client::AWSError<LambdaErrors>> ListEventSourceMappingsOutcome;
         typedef Aws::Utils::Outcome<ListFunctionsResult, Aws::Client::AWSError<LambdaErrors>> ListFunctionsOutcome;
+        typedef Aws::Utils::Outcome<ListTagsResult, Aws::Client::AWSError<LambdaErrors>> ListTagsOutcome;
         typedef Aws::Utils::Outcome<ListVersionsByFunctionResult, Aws::Client::AWSError<LambdaErrors>> ListVersionsByFunctionOutcome;
         typedef Aws::Utils::Outcome<PublishVersionResult, Aws::Client::AWSError<LambdaErrors>> PublishVersionOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<LambdaErrors>> RemovePermissionOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<LambdaErrors>> RemovePermissionOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<LambdaErrors>> TagResourceOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<LambdaErrors>> UntagResourceOutcome;
         typedef Aws::Utils::Outcome<UpdateAliasResult, Aws::Client::AWSError<LambdaErrors>> UpdateAliasOutcome;
         typedef Aws::Utils::Outcome<UpdateEventSourceMappingResult, Aws::Client::AWSError<LambdaErrors>> UpdateEventSourceMappingOutcome;
         typedef Aws::Utils::Outcome<UpdateFunctionCodeResult, Aws::Client::AWSError<LambdaErrors>> UpdateFunctionCodeOutcome;
@@ -154,9 +162,12 @@ namespace Model
         typedef std::future<ListAliasesOutcome> ListAliasesOutcomeCallable;
         typedef std::future<ListEventSourceMappingsOutcome> ListEventSourceMappingsOutcomeCallable;
         typedef std::future<ListFunctionsOutcome> ListFunctionsOutcomeCallable;
+        typedef std::future<ListTagsOutcome> ListTagsOutcomeCallable;
         typedef std::future<ListVersionsByFunctionOutcome> ListVersionsByFunctionOutcomeCallable;
         typedef std::future<PublishVersionOutcome> PublishVersionOutcomeCallable;
         typedef std::future<RemovePermissionOutcome> RemovePermissionOutcomeCallable;
+        typedef std::future<TagResourceOutcome> TagResourceOutcomeCallable;
+        typedef std::future<UntagResourceOutcome> UntagResourceOutcomeCallable;
         typedef std::future<UpdateAliasOutcome> UpdateAliasOutcomeCallable;
         typedef std::future<UpdateEventSourceMappingOutcome> UpdateEventSourceMappingOutcomeCallable;
         typedef std::future<UpdateFunctionCodeOutcome> UpdateFunctionCodeOutcomeCallable;
@@ -182,9 +193,12 @@ namespace Model
     typedef std::function<void(const LambdaClient*, const Model::ListAliasesRequest&, const Model::ListAliasesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListAliasesResponseReceivedHandler;
     typedef std::function<void(const LambdaClient*, const Model::ListEventSourceMappingsRequest&, const Model::ListEventSourceMappingsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListEventSourceMappingsResponseReceivedHandler;
     typedef std::function<void(const LambdaClient*, const Model::ListFunctionsRequest&, const Model::ListFunctionsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListFunctionsResponseReceivedHandler;
+    typedef std::function<void(const LambdaClient*, const Model::ListTagsRequest&, const Model::ListTagsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListTagsResponseReceivedHandler;
     typedef std::function<void(const LambdaClient*, const Model::ListVersionsByFunctionRequest&, const Model::ListVersionsByFunctionOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListVersionsByFunctionResponseReceivedHandler;
     typedef std::function<void(const LambdaClient*, const Model::PublishVersionRequest&, const Model::PublishVersionOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > PublishVersionResponseReceivedHandler;
     typedef std::function<void(const LambdaClient*, const Model::RemovePermissionRequest&, const Model::RemovePermissionOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > RemovePermissionResponseReceivedHandler;
+    typedef std::function<void(const LambdaClient*, const Model::TagResourceRequest&, const Model::TagResourceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > TagResourceResponseReceivedHandler;
+    typedef std::function<void(const LambdaClient*, const Model::UntagResourceRequest&, const Model::UntagResourceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UntagResourceResponseReceivedHandler;
     typedef std::function<void(const LambdaClient*, const Model::UpdateAliasRequest&, const Model::UpdateAliasOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateAliasResponseReceivedHandler;
     typedef std::function<void(const LambdaClient*, const Model::UpdateEventSourceMappingRequest&, const Model::UpdateEventSourceMappingOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateEventSourceMappingResponseReceivedHandler;
     typedef std::function<void(const LambdaClient*, const Model::UpdateFunctionCodeRequest&, const Model::UpdateFunctionCodeOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateFunctionCodeResponseReceivedHandler;
@@ -208,22 +222,25 @@ namespace Model
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        LambdaClient(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        LambdaClient(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        LambdaClient(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        LambdaClient(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        LambdaClient(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        LambdaClient(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
         virtual ~LambdaClient();
+
+        inline virtual const char* GetServiceClientName() const override { return "lambda"; }
+
 
         /**
          * <p>Adds a permission to the resource policy associated with the specified AWS
@@ -337,7 +354,7 @@ namespace Model
          * either an Amazon Kinesis stream or an Amazon DynamoDB stream. AWS Lambda invokes
          * the specified function when records are posted to the stream.</p> <p>This
          * association between a stream source and a Lambda function is called the event
-         * source mapping.</p> <important><p>This event source mapping is relevant only in
+         * source mapping.</p> <important> <p>This event source mapping is relevant only in
          * the AWS Lambda pull model, where AWS Lambda invokes the function. For more
          * information, see <a
          * href="http://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html">AWS
@@ -363,7 +380,7 @@ namespace Model
          * either an Amazon Kinesis stream or an Amazon DynamoDB stream. AWS Lambda invokes
          * the specified function when records are posted to the stream.</p> <p>This
          * association between a stream source and a Lambda function is called the event
-         * source mapping.</p> <important><p>This event source mapping is relevant only in
+         * source mapping.</p> <important> <p>This event source mapping is relevant only in
          * the AWS Lambda pull model, where AWS Lambda invokes the function. For more
          * information, see <a
          * href="http://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html">AWS
@@ -391,7 +408,7 @@ namespace Model
          * either an Amazon Kinesis stream or an Amazon DynamoDB stream. AWS Lambda invokes
          * the specified function when records are posted to the stream.</p> <p>This
          * association between a stream source and a Lambda function is called the event
-         * source mapping.</p> <important><p>This event source mapping is relevant only in
+         * source mapping.</p> <important> <p>This event source mapping is relevant only in
          * the AWS Lambda pull model, where AWS Lambda invokes the function. For more
          * information, see <a
          * href="http://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html">AWS
@@ -832,8 +849,7 @@ namespace Model
          * specifying the version or alias name using the <code>Qualifier</code> parameter.
          * For more information about versioning, see <a
          * href="http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">AWS
-         * Lambda Function Versioning and Aliases</a>. </p> <p>For information about adding
-         * permissions, see <a>AddPermission</a>.</p> <p>You need permission for the
+         * Lambda Function Versioning and Aliases</a>. </p> <p>You need permission for the
          * <code>lambda:GetPolicy action.</code> </p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetPolicy">AWS
          * API Reference</a></p>
@@ -847,8 +863,7 @@ namespace Model
          * specifying the version or alias name using the <code>Qualifier</code> parameter.
          * For more information about versioning, see <a
          * href="http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">AWS
-         * Lambda Function Versioning and Aliases</a>. </p> <p>For information about adding
-         * permissions, see <a>AddPermission</a>.</p> <p>You need permission for the
+         * Lambda Function Versioning and Aliases</a>. </p> <p>You need permission for the
          * <code>lambda:GetPolicy action.</code> </p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetPolicy">AWS
          * API Reference</a></p>
@@ -864,8 +879,7 @@ namespace Model
          * specifying the version or alias name using the <code>Qualifier</code> parameter.
          * For more information about versioning, see <a
          * href="http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">AWS
-         * Lambda Function Versioning and Aliases</a>. </p> <p>For information about adding
-         * permissions, see <a>AddPermission</a>.</p> <p>You need permission for the
+         * Lambda Function Versioning and Aliases</a>. </p> <p>You need permission for the
          * <code>lambda:GetPolicy action.</code> </p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetPolicy">AWS
          * API Reference</a></p>
@@ -1041,8 +1055,9 @@ namespace Model
          * includes the function configuration information. You must use <a>GetFunction</a>
          * to retrieve the code for your function.</p> <p>This operation requires
          * permission for the <code>lambda:ListFunctions</code> action.</p> <p>If you are
-         * using versioning feature, the response returns list of $LATEST versions of your
-         * functions. For information about the versioning feature, see <a
+         * using the versioning feature, you can list all of your functions or only
+         * <code>$LATEST</code> versions. For information about the versioning feature, see
+         * <a
          * href="http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">AWS
          * Lambda Function Versioning and Aliases</a>. </p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListFunctions">AWS
@@ -1055,8 +1070,9 @@ namespace Model
          * includes the function configuration information. You must use <a>GetFunction</a>
          * to retrieve the code for your function.</p> <p>This operation requires
          * permission for the <code>lambda:ListFunctions</code> action.</p> <p>If you are
-         * using versioning feature, the response returns list of $LATEST versions of your
-         * functions. For information about the versioning feature, see <a
+         * using the versioning feature, you can list all of your functions or only
+         * <code>$LATEST</code> versions. For information about the versioning feature, see
+         * <a
          * href="http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">AWS
          * Lambda Function Versioning and Aliases</a>. </p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListFunctions">AWS
@@ -1071,8 +1087,9 @@ namespace Model
          * includes the function configuration information. You must use <a>GetFunction</a>
          * to retrieve the code for your function.</p> <p>This operation requires
          * permission for the <code>lambda:ListFunctions</code> action.</p> <p>If you are
-         * using versioning feature, the response returns list of $LATEST versions of your
-         * functions. For information about the versioning feature, see <a
+         * using the versioning feature, you can list all of your functions or only
+         * <code>$LATEST</code> versions. For information about the versioning feature, see
+         * <a
          * href="http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html">AWS
          * Lambda Function Versioning and Aliases</a>. </p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListFunctions">AWS
@@ -1081,6 +1098,34 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void ListFunctionsAsync(const Model::ListFunctionsRequest& request, const ListFunctionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Returns a list of tags assigned to a function when supplied the function ARN
+         * (Amazon Resource Name).</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListTags">AWS API
+         * Reference</a></p>
+         */
+        virtual Model::ListTagsOutcome ListTags(const Model::ListTagsRequest& request) const;
+
+        /**
+         * <p>Returns a list of tags assigned to a function when supplied the function ARN
+         * (Amazon Resource Name).</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListTags">AWS API
+         * Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::ListTagsOutcomeCallable ListTagsCallable(const Model::ListTagsRequest& request) const;
+
+        /**
+         * <p>Returns a list of tags assigned to a function when supplied the function ARN
+         * (Amazon Resource Name).</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListTags">AWS API
+         * Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void ListTagsAsync(const Model::ListTagsRequest& request, const ListTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>List all versions of a function. For information about the versioning
@@ -1213,6 +1258,68 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void RemovePermissionAsync(const Model::RemovePermissionRequest& request, const RemovePermissionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Creates a list of tags (key-value pairs) on the Lambda function. Requires the
+         * Lambda function ARN (Amazon Resource Name). If a key is specified without a
+         * value, Lambda creates a tag with the specified key and a value of null.
+         * </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/TagResource">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::TagResourceOutcome TagResource(const Model::TagResourceRequest& request) const;
+
+        /**
+         * <p>Creates a list of tags (key-value pairs) on the Lambda function. Requires the
+         * Lambda function ARN (Amazon Resource Name). If a key is specified without a
+         * value, Lambda creates a tag with the specified key and a value of null.
+         * </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/TagResource">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::TagResourceOutcomeCallable TagResourceCallable(const Model::TagResourceRequest& request) const;
+
+        /**
+         * <p>Creates a list of tags (key-value pairs) on the Lambda function. Requires the
+         * Lambda function ARN (Amazon Resource Name). If a key is specified without a
+         * value, Lambda creates a tag with the specified key and a value of null.
+         * </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/TagResource">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void TagResourceAsync(const Model::TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Removes tags from a Lambda function. Requires the function ARN (Amazon
+         * Resource Name). </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/UntagResource">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::UntagResourceOutcome UntagResource(const Model::UntagResourceRequest& request) const;
+
+        /**
+         * <p>Removes tags from a Lambda function. Requires the function ARN (Amazon
+         * Resource Name). </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/UntagResource">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::UntagResourceOutcomeCallable UntagResourceCallable(const Model::UntagResourceRequest& request) const;
+
+        /**
+         * <p>Removes tags from a Lambda function. Requires the function ARN (Amazon
+         * Resource Name). </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/UntagResource">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void UntagResourceAsync(const Model::UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Using this API you can update the function version to which the alias points
@@ -1424,7 +1531,7 @@ namespace Model
 
 
     private:
-      void init(const Client::ClientConfiguration& clientConfiguration);
+      void init(const Aws::Client::ClientConfiguration& clientConfiguration);
 
         /**Async helpers**/
         void AddPermissionAsyncHelper(const Model::AddPermissionRequest& request, const AddPermissionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -1444,16 +1551,19 @@ namespace Model
         void ListAliasesAsyncHelper(const Model::ListAliasesRequest& request, const ListAliasesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListEventSourceMappingsAsyncHelper(const Model::ListEventSourceMappingsRequest& request, const ListEventSourceMappingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListFunctionsAsyncHelper(const Model::ListFunctionsRequest& request, const ListFunctionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void ListTagsAsyncHelper(const Model::ListTagsRequest& request, const ListTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListVersionsByFunctionAsyncHelper(const Model::ListVersionsByFunctionRequest& request, const ListVersionsByFunctionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void PublishVersionAsyncHelper(const Model::PublishVersionRequest& request, const PublishVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void RemovePermissionAsyncHelper(const Model::RemovePermissionRequest& request, const RemovePermissionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void TagResourceAsyncHelper(const Model::TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void UntagResourceAsyncHelper(const Model::UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateAliasAsyncHelper(const Model::UpdateAliasRequest& request, const UpdateAliasResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateEventSourceMappingAsyncHelper(const Model::UpdateEventSourceMappingRequest& request, const UpdateEventSourceMappingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateFunctionCodeAsyncHelper(const Model::UpdateFunctionCodeRequest& request, const UpdateFunctionCodeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateFunctionConfigurationAsyncHelper(const Model::UpdateFunctionConfigurationRequest& request, const UpdateFunctionConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
       Aws::String m_uri;
-      std::shared_ptr<Utils::Threading::Executor> m_executor;
+      std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;
   };
 
 } // namespace Lambda

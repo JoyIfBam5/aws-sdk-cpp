@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/kinesis/model/Record.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 #include <aws/core/utils/HashingUtils.h>
@@ -32,7 +33,9 @@ Record::Record() :
     m_sequenceNumberHasBeenSet(false),
     m_approximateArrivalTimestampHasBeenSet(false),
     m_dataHasBeenSet(false),
-    m_partitionKeyHasBeenSet(false)
+    m_partitionKeyHasBeenSet(false),
+    m_encryptionType(EncryptionType::NOT_SET),
+    m_encryptionTypeHasBeenSet(false)
 {
 }
 
@@ -40,7 +43,9 @@ Record::Record(const JsonValue& jsonValue) :
     m_sequenceNumberHasBeenSet(false),
     m_approximateArrivalTimestampHasBeenSet(false),
     m_dataHasBeenSet(false),
-    m_partitionKeyHasBeenSet(false)
+    m_partitionKeyHasBeenSet(false),
+    m_encryptionType(EncryptionType::NOT_SET),
+    m_encryptionTypeHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -74,6 +79,13 @@ Record& Record::operator =(const JsonValue& jsonValue)
     m_partitionKeyHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("EncryptionType"))
+  {
+    m_encryptionType = EncryptionTypeMapper::GetEncryptionTypeForName(jsonValue.GetString("EncryptionType"));
+
+    m_encryptionTypeHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -101,6 +113,11 @@ JsonValue Record::Jsonize() const
   {
    payload.WithString("PartitionKey", m_partitionKey);
 
+  }
+
+  if(m_encryptionTypeHasBeenSet)
+  {
+   payload.WithString("EncryptionType", EncryptionTypeMapper::GetNameForEncryptionType(m_encryptionType));
   }
 
   return payload;

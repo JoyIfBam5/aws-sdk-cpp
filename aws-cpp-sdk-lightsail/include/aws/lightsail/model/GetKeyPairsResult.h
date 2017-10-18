@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/lightsail/model/KeyPair.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     GetKeyPairsResult();
-    GetKeyPairsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetKeyPairsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetKeyPairsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetKeyPairsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>An array of key-value pairs containing information about the key pairs.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>An array of key-value pairs containing information about the key pairs.</p>
      */
-    inline void SetKeyPairs(Aws::Vector<KeyPair>&& value) { m_keyPairs = value; }
+    inline void SetKeyPairs(Aws::Vector<KeyPair>&& value) { m_keyPairs = std::move(value); }
 
     /**
      * <p>An array of key-value pairs containing information about the key pairs.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>An array of key-value pairs containing information about the key pairs.</p>
      */
-    inline GetKeyPairsResult& WithKeyPairs(Aws::Vector<KeyPair>&& value) { SetKeyPairs(value); return *this;}
+    inline GetKeyPairsResult& WithKeyPairs(Aws::Vector<KeyPair>&& value) { SetKeyPairs(std::move(value)); return *this;}
 
     /**
      * <p>An array of key-value pairs containing information about the key pairs.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>An array of key-value pairs containing information about the key pairs.</p>
      */
-    inline GetKeyPairsResult& AddKeyPairs(KeyPair&& value) { m_keyPairs.push_back(value); return *this; }
+    inline GetKeyPairsResult& AddKeyPairs(KeyPair&& value) { m_keyPairs.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>A token used for advancing to the next page of results from your get key
@@ -92,7 +96,7 @@ namespace Model
      * <p>A token used for advancing to the next page of results from your get key
      * pairs request.</p>
      */
-    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = value; }
+    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = std::move(value); }
 
     /**
      * <p>A token used for advancing to the next page of results from your get key
@@ -110,7 +114,7 @@ namespace Model
      * <p>A token used for advancing to the next page of results from your get key
      * pairs request.</p>
      */
-    inline GetKeyPairsResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(value); return *this;}
+    inline GetKeyPairsResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(std::move(value)); return *this;}
 
     /**
      * <p>A token used for advancing to the next page of results from your get key
@@ -119,7 +123,9 @@ namespace Model
     inline GetKeyPairsResult& WithNextPageToken(const char* value) { SetNextPageToken(value); return *this;}
 
   private:
+
     Aws::Vector<KeyPair> m_keyPairs;
+
     Aws::String m_nextPageToken;
   };
 

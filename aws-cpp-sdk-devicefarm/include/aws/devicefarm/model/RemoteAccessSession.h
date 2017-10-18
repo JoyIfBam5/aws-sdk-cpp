@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/devicefarm/DeviceFarm_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -21,6 +22,7 @@
 #include <aws/devicefarm/model/Device.h>
 #include <aws/devicefarm/model/BillingMethod.h>
 #include <aws/devicefarm/model/DeviceMinutes.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,6 +52,7 @@ namespace Model
     RemoteAccessSession& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The Amazon Resource Name (ARN) of the remote access session.</p>
      */
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the remote access session.</p>
      */
-    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = value; }
+    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the remote access session.</p>
@@ -78,12 +81,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the remote access session.</p>
      */
-    inline RemoteAccessSession& WithArn(Aws::String&& value) { SetArn(value); return *this;}
+    inline RemoteAccessSession& WithArn(Aws::String&& value) { SetArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the remote access session.</p>
      */
     inline RemoteAccessSession& WithArn(const char* value) { SetArn(value); return *this;}
+
 
     /**
      * <p>The name of the remote access session.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>The name of the remote access session.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the remote access session.</p>
@@ -113,12 +117,13 @@ namespace Model
     /**
      * <p>The name of the remote access session.</p>
      */
-    inline RemoteAccessSession& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline RemoteAccessSession& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the remote access session.</p>
      */
     inline RemoteAccessSession& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The date and time the remote access session was created.</p>
@@ -133,7 +138,7 @@ namespace Model
     /**
      * <p>The date and time the remote access session was created.</p>
      */
-    inline void SetCreated(Aws::Utils::DateTime&& value) { m_createdHasBeenSet = true; m_created = value; }
+    inline void SetCreated(Aws::Utils::DateTime&& value) { m_createdHasBeenSet = true; m_created = std::move(value); }
 
     /**
      * <p>The date and time the remote access session was created.</p>
@@ -143,7 +148,8 @@ namespace Model
     /**
      * <p>The date and time the remote access session was created.</p>
      */
-    inline RemoteAccessSession& WithCreated(Aws::Utils::DateTime&& value) { SetCreated(value); return *this;}
+    inline RemoteAccessSession& WithCreated(Aws::Utils::DateTime&& value) { SetCreated(std::move(value)); return *this;}
+
 
     /**
      * <p>The status of the remote access session. Can be any of the following:</p>
@@ -179,7 +185,7 @@ namespace Model
      * <p>COMPLETED: A completed status.</p> </li> <li> <p>STOPPING: A stopping
      * status.</p> </li> </ul>
      */
-    inline void SetStatus(ExecutionStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(ExecutionStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The status of the remote access session. Can be any of the following:</p>
@@ -203,7 +209,8 @@ namespace Model
      * <p>COMPLETED: A completed status.</p> </li> <li> <p>STOPPING: A stopping
      * status.</p> </li> </ul>
      */
-    inline RemoteAccessSession& WithStatus(ExecutionStatus&& value) { SetStatus(value); return *this;}
+    inline RemoteAccessSession& WithStatus(ExecutionStatus&& value) { SetStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The result of the remote access session. Can be any of the following:</p>
@@ -233,7 +240,7 @@ namespace Model
      * condition.</p> </li> <li> <p>ERRORED: An error condition.</p> </li> <li>
      * <p>STOPPED: A stopped condition.</p> </li> </ul>
      */
-    inline void SetResult(ExecutionResult&& value) { m_resultHasBeenSet = true; m_result = value; }
+    inline void SetResult(ExecutionResult&& value) { m_resultHasBeenSet = true; m_result = std::move(value); }
 
     /**
      * <p>The result of the remote access session. Can be any of the following:</p>
@@ -253,7 +260,8 @@ namespace Model
      * condition.</p> </li> <li> <p>ERRORED: An error condition.</p> </li> <li>
      * <p>STOPPED: A stopped condition.</p> </li> </ul>
      */
-    inline RemoteAccessSession& WithResult(ExecutionResult&& value) { SetResult(value); return *this;}
+    inline RemoteAccessSession& WithResult(ExecutionResult&& value) { SetResult(std::move(value)); return *this;}
+
 
     /**
      * <p>A message about the remote access session.</p>
@@ -268,7 +276,7 @@ namespace Model
     /**
      * <p>A message about the remote access session.</p>
      */
-    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = value; }
+    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = std::move(value); }
 
     /**
      * <p>A message about the remote access session.</p>
@@ -283,12 +291,13 @@ namespace Model
     /**
      * <p>A message about the remote access session.</p>
      */
-    inline RemoteAccessSession& WithMessage(Aws::String&& value) { SetMessage(value); return *this;}
+    inline RemoteAccessSession& WithMessage(Aws::String&& value) { SetMessage(std::move(value)); return *this;}
 
     /**
      * <p>A message about the remote access session.</p>
      */
     inline RemoteAccessSession& WithMessage(const char* value) { SetMessage(value); return *this;}
+
 
     /**
      * <p>The date and time the remote access session was started.</p>
@@ -303,7 +312,7 @@ namespace Model
     /**
      * <p>The date and time the remote access session was started.</p>
      */
-    inline void SetStarted(Aws::Utils::DateTime&& value) { m_startedHasBeenSet = true; m_started = value; }
+    inline void SetStarted(Aws::Utils::DateTime&& value) { m_startedHasBeenSet = true; m_started = std::move(value); }
 
     /**
      * <p>The date and time the remote access session was started.</p>
@@ -313,7 +322,8 @@ namespace Model
     /**
      * <p>The date and time the remote access session was started.</p>
      */
-    inline RemoteAccessSession& WithStarted(Aws::Utils::DateTime&& value) { SetStarted(value); return *this;}
+    inline RemoteAccessSession& WithStarted(Aws::Utils::DateTime&& value) { SetStarted(std::move(value)); return *this;}
+
 
     /**
      * <p>The date and time the remote access session was stopped.</p>
@@ -328,7 +338,7 @@ namespace Model
     /**
      * <p>The date and time the remote access session was stopped.</p>
      */
-    inline void SetStopped(Aws::Utils::DateTime&& value) { m_stoppedHasBeenSet = true; m_stopped = value; }
+    inline void SetStopped(Aws::Utils::DateTime&& value) { m_stoppedHasBeenSet = true; m_stopped = std::move(value); }
 
     /**
      * <p>The date and time the remote access session was stopped.</p>
@@ -338,22 +348,146 @@ namespace Model
     /**
      * <p>The date and time the remote access session was stopped.</p>
      */
-    inline RemoteAccessSession& WithStopped(Aws::Utils::DateTime&& value) { SetStopped(value); return *this;}
+    inline RemoteAccessSession& WithStopped(Aws::Utils::DateTime&& value) { SetStopped(std::move(value)); return *this;}
 
-    
+
+    /**
+     * <p>The device (phone or tablet) used in the remote access session.</p>
+     */
     inline const Device& GetDevice() const{ return m_device; }
 
-    
+    /**
+     * <p>The device (phone or tablet) used in the remote access session.</p>
+     */
     inline void SetDevice(const Device& value) { m_deviceHasBeenSet = true; m_device = value; }
 
-    
-    inline void SetDevice(Device&& value) { m_deviceHasBeenSet = true; m_device = value; }
+    /**
+     * <p>The device (phone or tablet) used in the remote access session.</p>
+     */
+    inline void SetDevice(Device&& value) { m_deviceHasBeenSet = true; m_device = std::move(value); }
 
-    
+    /**
+     * <p>The device (phone or tablet) used in the remote access session.</p>
+     */
     inline RemoteAccessSession& WithDevice(const Device& value) { SetDevice(value); return *this;}
 
-    
-    inline RemoteAccessSession& WithDevice(Device&& value) { SetDevice(value); return *this;}
+    /**
+     * <p>The device (phone or tablet) used in the remote access session.</p>
+     */
+    inline RemoteAccessSession& WithDevice(Device&& value) { SetDevice(std::move(value)); return *this;}
+
+
+    /**
+     * <p>This flag is set to <code>true</code> if remote debugging is enabled for the
+     * remote access session.</p>
+     */
+    inline bool GetRemoteDebugEnabled() const{ return m_remoteDebugEnabled; }
+
+    /**
+     * <p>This flag is set to <code>true</code> if remote debugging is enabled for the
+     * remote access session.</p>
+     */
+    inline void SetRemoteDebugEnabled(bool value) { m_remoteDebugEnabledHasBeenSet = true; m_remoteDebugEnabled = value; }
+
+    /**
+     * <p>This flag is set to <code>true</code> if remote debugging is enabled for the
+     * remote access session.</p>
+     */
+    inline RemoteAccessSession& WithRemoteDebugEnabled(bool value) { SetRemoteDebugEnabled(value); return *this;}
+
+
+    /**
+     * <p>IP address of the EC2 host where you need to connect to remotely debug
+     * devices. Only returned if remote debugging is enabled for the remote access
+     * session.</p>
+     */
+    inline const Aws::String& GetHostAddress() const{ return m_hostAddress; }
+
+    /**
+     * <p>IP address of the EC2 host where you need to connect to remotely debug
+     * devices. Only returned if remote debugging is enabled for the remote access
+     * session.</p>
+     */
+    inline void SetHostAddress(const Aws::String& value) { m_hostAddressHasBeenSet = true; m_hostAddress = value; }
+
+    /**
+     * <p>IP address of the EC2 host where you need to connect to remotely debug
+     * devices. Only returned if remote debugging is enabled for the remote access
+     * session.</p>
+     */
+    inline void SetHostAddress(Aws::String&& value) { m_hostAddressHasBeenSet = true; m_hostAddress = std::move(value); }
+
+    /**
+     * <p>IP address of the EC2 host where you need to connect to remotely debug
+     * devices. Only returned if remote debugging is enabled for the remote access
+     * session.</p>
+     */
+    inline void SetHostAddress(const char* value) { m_hostAddressHasBeenSet = true; m_hostAddress.assign(value); }
+
+    /**
+     * <p>IP address of the EC2 host where you need to connect to remotely debug
+     * devices. Only returned if remote debugging is enabled for the remote access
+     * session.</p>
+     */
+    inline RemoteAccessSession& WithHostAddress(const Aws::String& value) { SetHostAddress(value); return *this;}
+
+    /**
+     * <p>IP address of the EC2 host where you need to connect to remotely debug
+     * devices. Only returned if remote debugging is enabled for the remote access
+     * session.</p>
+     */
+    inline RemoteAccessSession& WithHostAddress(Aws::String&& value) { SetHostAddress(std::move(value)); return *this;}
+
+    /**
+     * <p>IP address of the EC2 host where you need to connect to remotely debug
+     * devices. Only returned if remote debugging is enabled for the remote access
+     * session.</p>
+     */
+    inline RemoteAccessSession& WithHostAddress(const char* value) { SetHostAddress(value); return *this;}
+
+
+    /**
+     * <p>Unique identifier of your client for the remote access session. Only returned
+     * if remote debugging is enabled for the remote access session.</p>
+     */
+    inline const Aws::String& GetClientId() const{ return m_clientId; }
+
+    /**
+     * <p>Unique identifier of your client for the remote access session. Only returned
+     * if remote debugging is enabled for the remote access session.</p>
+     */
+    inline void SetClientId(const Aws::String& value) { m_clientIdHasBeenSet = true; m_clientId = value; }
+
+    /**
+     * <p>Unique identifier of your client for the remote access session. Only returned
+     * if remote debugging is enabled for the remote access session.</p>
+     */
+    inline void SetClientId(Aws::String&& value) { m_clientIdHasBeenSet = true; m_clientId = std::move(value); }
+
+    /**
+     * <p>Unique identifier of your client for the remote access session. Only returned
+     * if remote debugging is enabled for the remote access session.</p>
+     */
+    inline void SetClientId(const char* value) { m_clientIdHasBeenSet = true; m_clientId.assign(value); }
+
+    /**
+     * <p>Unique identifier of your client for the remote access session. Only returned
+     * if remote debugging is enabled for the remote access session.</p>
+     */
+    inline RemoteAccessSession& WithClientId(const Aws::String& value) { SetClientId(value); return *this;}
+
+    /**
+     * <p>Unique identifier of your client for the remote access session. Only returned
+     * if remote debugging is enabled for the remote access session.</p>
+     */
+    inline RemoteAccessSession& WithClientId(Aws::String&& value) { SetClientId(std::move(value)); return *this;}
+
+    /**
+     * <p>Unique identifier of your client for the remote access session. Only returned
+     * if remote debugging is enabled for the remote access session.</p>
+     */
+    inline RemoteAccessSession& WithClientId(const char* value) { SetClientId(value); return *this;}
+
 
     /**
      * <p>The billing method of the remote access session. Possible values include
@@ -380,7 +514,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/devicefarm/latest/developerguide/welcome.html#welcome-terminology">AWS
      * Device Farm terminology</a>."</p>
      */
-    inline void SetBillingMethod(BillingMethod&& value) { m_billingMethodHasBeenSet = true; m_billingMethod = value; }
+    inline void SetBillingMethod(BillingMethod&& value) { m_billingMethodHasBeenSet = true; m_billingMethod = std::move(value); }
 
     /**
      * <p>The billing method of the remote access session. Possible values include
@@ -398,22 +532,39 @@ namespace Model
      * href="http://docs.aws.amazon.com/devicefarm/latest/developerguide/welcome.html#welcome-terminology">AWS
      * Device Farm terminology</a>."</p>
      */
-    inline RemoteAccessSession& WithBillingMethod(BillingMethod&& value) { SetBillingMethod(value); return *this;}
+    inline RemoteAccessSession& WithBillingMethod(BillingMethod&& value) { SetBillingMethod(std::move(value)); return *this;}
 
-    
+
+    /**
+     * <p>The number of minutes a device is used in a remote access sesssion (including
+     * setup and teardown minutes).</p>
+     */
     inline const DeviceMinutes& GetDeviceMinutes() const{ return m_deviceMinutes; }
 
-    
+    /**
+     * <p>The number of minutes a device is used in a remote access sesssion (including
+     * setup and teardown minutes).</p>
+     */
     inline void SetDeviceMinutes(const DeviceMinutes& value) { m_deviceMinutesHasBeenSet = true; m_deviceMinutes = value; }
 
-    
-    inline void SetDeviceMinutes(DeviceMinutes&& value) { m_deviceMinutesHasBeenSet = true; m_deviceMinutes = value; }
+    /**
+     * <p>The number of minutes a device is used in a remote access sesssion (including
+     * setup and teardown minutes).</p>
+     */
+    inline void SetDeviceMinutes(DeviceMinutes&& value) { m_deviceMinutesHasBeenSet = true; m_deviceMinutes = std::move(value); }
 
-    
+    /**
+     * <p>The number of minutes a device is used in a remote access sesssion (including
+     * setup and teardown minutes).</p>
+     */
     inline RemoteAccessSession& WithDeviceMinutes(const DeviceMinutes& value) { SetDeviceMinutes(value); return *this;}
 
-    
-    inline RemoteAccessSession& WithDeviceMinutes(DeviceMinutes&& value) { SetDeviceMinutes(value); return *this;}
+    /**
+     * <p>The number of minutes a device is used in a remote access sesssion (including
+     * setup and teardown minutes).</p>
+     */
+    inline RemoteAccessSession& WithDeviceMinutes(DeviceMinutes&& value) { SetDeviceMinutes(std::move(value)); return *this;}
+
 
     /**
      * <p>The endpoint for the remote access sesssion.</p>
@@ -428,7 +579,7 @@ namespace Model
     /**
      * <p>The endpoint for the remote access sesssion.</p>
      */
-    inline void SetEndpoint(Aws::String&& value) { m_endpointHasBeenSet = true; m_endpoint = value; }
+    inline void SetEndpoint(Aws::String&& value) { m_endpointHasBeenSet = true; m_endpoint = std::move(value); }
 
     /**
      * <p>The endpoint for the remote access sesssion.</p>
@@ -443,38 +594,105 @@ namespace Model
     /**
      * <p>The endpoint for the remote access sesssion.</p>
      */
-    inline RemoteAccessSession& WithEndpoint(Aws::String&& value) { SetEndpoint(value); return *this;}
+    inline RemoteAccessSession& WithEndpoint(Aws::String&& value) { SetEndpoint(std::move(value)); return *this;}
 
     /**
      * <p>The endpoint for the remote access sesssion.</p>
      */
     inline RemoteAccessSession& WithEndpoint(const char* value) { SetEndpoint(value); return *this;}
 
+
+    /**
+     * <p>Unique device identifier for the remote device. Only returned if remote
+     * debugging is enabled for the remote access session.</p>
+     */
+    inline const Aws::String& GetDeviceUdid() const{ return m_deviceUdid; }
+
+    /**
+     * <p>Unique device identifier for the remote device. Only returned if remote
+     * debugging is enabled for the remote access session.</p>
+     */
+    inline void SetDeviceUdid(const Aws::String& value) { m_deviceUdidHasBeenSet = true; m_deviceUdid = value; }
+
+    /**
+     * <p>Unique device identifier for the remote device. Only returned if remote
+     * debugging is enabled for the remote access session.</p>
+     */
+    inline void SetDeviceUdid(Aws::String&& value) { m_deviceUdidHasBeenSet = true; m_deviceUdid = std::move(value); }
+
+    /**
+     * <p>Unique device identifier for the remote device. Only returned if remote
+     * debugging is enabled for the remote access session.</p>
+     */
+    inline void SetDeviceUdid(const char* value) { m_deviceUdidHasBeenSet = true; m_deviceUdid.assign(value); }
+
+    /**
+     * <p>Unique device identifier for the remote device. Only returned if remote
+     * debugging is enabled for the remote access session.</p>
+     */
+    inline RemoteAccessSession& WithDeviceUdid(const Aws::String& value) { SetDeviceUdid(value); return *this;}
+
+    /**
+     * <p>Unique device identifier for the remote device. Only returned if remote
+     * debugging is enabled for the remote access session.</p>
+     */
+    inline RemoteAccessSession& WithDeviceUdid(Aws::String&& value) { SetDeviceUdid(std::move(value)); return *this;}
+
+    /**
+     * <p>Unique device identifier for the remote device. Only returned if remote
+     * debugging is enabled for the remote access session.</p>
+     */
+    inline RemoteAccessSession& WithDeviceUdid(const char* value) { SetDeviceUdid(value); return *this;}
+
   private:
+
     Aws::String m_arn;
     bool m_arnHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::Utils::DateTime m_created;
     bool m_createdHasBeenSet;
+
     ExecutionStatus m_status;
     bool m_statusHasBeenSet;
+
     ExecutionResult m_result;
     bool m_resultHasBeenSet;
+
     Aws::String m_message;
     bool m_messageHasBeenSet;
+
     Aws::Utils::DateTime m_started;
     bool m_startedHasBeenSet;
+
     Aws::Utils::DateTime m_stopped;
     bool m_stoppedHasBeenSet;
+
     Device m_device;
     bool m_deviceHasBeenSet;
+
+    bool m_remoteDebugEnabled;
+    bool m_remoteDebugEnabledHasBeenSet;
+
+    Aws::String m_hostAddress;
+    bool m_hostAddressHasBeenSet;
+
+    Aws::String m_clientId;
+    bool m_clientIdHasBeenSet;
+
     BillingMethod m_billingMethod;
     bool m_billingMethodHasBeenSet;
+
     DeviceMinutes m_deviceMinutes;
     bool m_deviceMinutesHasBeenSet;
+
     Aws::String m_endpoint;
     bool m_endpointHasBeenSet;
+
+    Aws::String m_deviceUdid;
+    bool m_deviceUdidHasBeenSet;
   };
 
 } // namespace Model

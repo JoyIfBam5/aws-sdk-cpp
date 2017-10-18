@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/iam/model/StatusType.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,6 +52,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the user the signing certificate is associated with.</p>
      */
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>The name of the user the signing certificate is associated with.</p>
      */
-    inline void SetUserName(Aws::String&& value) { m_userNameHasBeenSet = true; m_userName = value; }
+    inline void SetUserName(Aws::String&& value) { m_userNameHasBeenSet = true; m_userName = std::move(value); }
 
     /**
      * <p>The name of the user the signing certificate is associated with.</p>
@@ -78,12 +81,13 @@ namespace Model
     /**
      * <p>The name of the user the signing certificate is associated with.</p>
      */
-    inline SigningCertificate& WithUserName(Aws::String&& value) { SetUserName(value); return *this;}
+    inline SigningCertificate& WithUserName(Aws::String&& value) { SetUserName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the user the signing certificate is associated with.</p>
      */
     inline SigningCertificate& WithUserName(const char* value) { SetUserName(value); return *this;}
+
 
     /**
      * <p>The ID for the signing certificate.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>The ID for the signing certificate.</p>
      */
-    inline void SetCertificateId(Aws::String&& value) { m_certificateIdHasBeenSet = true; m_certificateId = value; }
+    inline void SetCertificateId(Aws::String&& value) { m_certificateIdHasBeenSet = true; m_certificateId = std::move(value); }
 
     /**
      * <p>The ID for the signing certificate.</p>
@@ -113,12 +117,13 @@ namespace Model
     /**
      * <p>The ID for the signing certificate.</p>
      */
-    inline SigningCertificate& WithCertificateId(Aws::String&& value) { SetCertificateId(value); return *this;}
+    inline SigningCertificate& WithCertificateId(Aws::String&& value) { SetCertificateId(std::move(value)); return *this;}
 
     /**
      * <p>The ID for the signing certificate.</p>
      */
     inline SigningCertificate& WithCertificateId(const char* value) { SetCertificateId(value); return *this;}
+
 
     /**
      * <p>The contents of the signing certificate.</p>
@@ -133,7 +138,7 @@ namespace Model
     /**
      * <p>The contents of the signing certificate.</p>
      */
-    inline void SetCertificateBody(Aws::String&& value) { m_certificateBodyHasBeenSet = true; m_certificateBody = value; }
+    inline void SetCertificateBody(Aws::String&& value) { m_certificateBodyHasBeenSet = true; m_certificateBody = std::move(value); }
 
     /**
      * <p>The contents of the signing certificate.</p>
@@ -148,12 +153,13 @@ namespace Model
     /**
      * <p>The contents of the signing certificate.</p>
      */
-    inline SigningCertificate& WithCertificateBody(Aws::String&& value) { SetCertificateBody(value); return *this;}
+    inline SigningCertificate& WithCertificateBody(Aws::String&& value) { SetCertificateBody(std::move(value)); return *this;}
 
     /**
      * <p>The contents of the signing certificate.</p>
      */
     inline SigningCertificate& WithCertificateBody(const char* value) { SetCertificateBody(value); return *this;}
+
 
     /**
      * <p>The status of the signing certificate. <code>Active</code> means the key is
@@ -171,7 +177,7 @@ namespace Model
      * <p>The status of the signing certificate. <code>Active</code> means the key is
      * valid for API calls, while <code>Inactive</code> means it is not.</p>
      */
-    inline void SetStatus(StatusType&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(StatusType&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The status of the signing certificate. <code>Active</code> means the key is
@@ -183,7 +189,8 @@ namespace Model
      * <p>The status of the signing certificate. <code>Active</code> means the key is
      * valid for API calls, while <code>Inactive</code> means it is not.</p>
      */
-    inline SigningCertificate& WithStatus(StatusType&& value) { SetStatus(value); return *this;}
+    inline SigningCertificate& WithStatus(StatusType&& value) { SetStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The date when the signing certificate was uploaded.</p>
@@ -198,7 +205,7 @@ namespace Model
     /**
      * <p>The date when the signing certificate was uploaded.</p>
      */
-    inline void SetUploadDate(Aws::Utils::DateTime&& value) { m_uploadDateHasBeenSet = true; m_uploadDate = value; }
+    inline void SetUploadDate(Aws::Utils::DateTime&& value) { m_uploadDateHasBeenSet = true; m_uploadDate = std::move(value); }
 
     /**
      * <p>The date when the signing certificate was uploaded.</p>
@@ -208,17 +215,22 @@ namespace Model
     /**
      * <p>The date when the signing certificate was uploaded.</p>
      */
-    inline SigningCertificate& WithUploadDate(Aws::Utils::DateTime&& value) { SetUploadDate(value); return *this;}
+    inline SigningCertificate& WithUploadDate(Aws::Utils::DateTime&& value) { SetUploadDate(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_userName;
     bool m_userNameHasBeenSet;
+
     Aws::String m_certificateId;
     bool m_certificateIdHasBeenSet;
+
     Aws::String m_certificateBody;
     bool m_certificateBodyHasBeenSet;
+
     StatusType m_status;
     bool m_statusHasBeenSet;
+
     Aws::Utils::DateTime m_uploadDate;
     bool m_uploadDateHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ds/DirectoryService_EXPORTS.h>
 #include <aws/ds/DirectoryServiceRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ds/model/DirectorySize.h>
 #include <aws/ds/model/DirectoryVpcSettings.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,9 +38,17 @@ namespace Model
   {
   public:
     CreateDirectoryRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateDirectory"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The fully qualified name for the directory, such as
@@ -56,7 +66,7 @@ namespace Model
      * <p>The fully qualified name for the directory, such as
      * <code>corp.example.com</code>.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The fully qualified name for the directory, such as
@@ -74,13 +84,14 @@ namespace Model
      * <p>The fully qualified name for the directory, such as
      * <code>corp.example.com</code>.</p>
      */
-    inline CreateDirectoryRequest& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline CreateDirectoryRequest& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The fully qualified name for the directory, such as
      * <code>corp.example.com</code>.</p>
      */
     inline CreateDirectoryRequest& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The short name of the directory, such as <code>CORP</code>.</p>
@@ -95,7 +106,7 @@ namespace Model
     /**
      * <p>The short name of the directory, such as <code>CORP</code>.</p>
      */
-    inline void SetShortName(Aws::String&& value) { m_shortNameHasBeenSet = true; m_shortName = value; }
+    inline void SetShortName(Aws::String&& value) { m_shortNameHasBeenSet = true; m_shortName = std::move(value); }
 
     /**
      * <p>The short name of the directory, such as <code>CORP</code>.</p>
@@ -110,12 +121,13 @@ namespace Model
     /**
      * <p>The short name of the directory, such as <code>CORP</code>.</p>
      */
-    inline CreateDirectoryRequest& WithShortName(Aws::String&& value) { SetShortName(value); return *this;}
+    inline CreateDirectoryRequest& WithShortName(Aws::String&& value) { SetShortName(std::move(value)); return *this;}
 
     /**
      * <p>The short name of the directory, such as <code>CORP</code>.</p>
      */
     inline CreateDirectoryRequest& WithShortName(const char* value) { SetShortName(value); return *this;}
+
 
     /**
      * <p>The password for the directory administrator. The directory creation process
@@ -136,7 +148,7 @@ namespace Model
      * creates a directory administrator account with the username
      * <code>Administrator</code> and this password.</p>
      */
-    inline void SetPassword(Aws::String&& value) { m_passwordHasBeenSet = true; m_password = value; }
+    inline void SetPassword(Aws::String&& value) { m_passwordHasBeenSet = true; m_password = std::move(value); }
 
     /**
      * <p>The password for the directory administrator. The directory creation process
@@ -157,7 +169,7 @@ namespace Model
      * creates a directory administrator account with the username
      * <code>Administrator</code> and this password.</p>
      */
-    inline CreateDirectoryRequest& WithPassword(Aws::String&& value) { SetPassword(value); return *this;}
+    inline CreateDirectoryRequest& WithPassword(Aws::String&& value) { SetPassword(std::move(value)); return *this;}
 
     /**
      * <p>The password for the directory administrator. The directory creation process
@@ -165,6 +177,7 @@ namespace Model
      * <code>Administrator</code> and this password.</p>
      */
     inline CreateDirectoryRequest& WithPassword(const char* value) { SetPassword(value); return *this;}
+
 
     /**
      * <p>A textual description for the directory.</p>
@@ -179,7 +192,7 @@ namespace Model
     /**
      * <p>A textual description for the directory.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>A textual description for the directory.</p>
@@ -194,12 +207,13 @@ namespace Model
     /**
      * <p>A textual description for the directory.</p>
      */
-    inline CreateDirectoryRequest& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline CreateDirectoryRequest& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>A textual description for the directory.</p>
      */
     inline CreateDirectoryRequest& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The size of the directory.</p>
@@ -214,7 +228,7 @@ namespace Model
     /**
      * <p>The size of the directory.</p>
      */
-    inline void SetSize(DirectorySize&& value) { m_sizeHasBeenSet = true; m_size = value; }
+    inline void SetSize(DirectorySize&& value) { m_sizeHasBeenSet = true; m_size = std::move(value); }
 
     /**
      * <p>The size of the directory.</p>
@@ -224,7 +238,8 @@ namespace Model
     /**
      * <p>The size of the directory.</p>
      */
-    inline CreateDirectoryRequest& WithSize(DirectorySize&& value) { SetSize(value); return *this;}
+    inline CreateDirectoryRequest& WithSize(DirectorySize&& value) { SetSize(std::move(value)); return *this;}
+
 
     /**
      * <p>A <a>DirectoryVpcSettings</a> object that contains additional information for
@@ -242,7 +257,7 @@ namespace Model
      * <p>A <a>DirectoryVpcSettings</a> object that contains additional information for
      * the operation.</p>
      */
-    inline void SetVpcSettings(DirectoryVpcSettings&& value) { m_vpcSettingsHasBeenSet = true; m_vpcSettings = value; }
+    inline void SetVpcSettings(DirectoryVpcSettings&& value) { m_vpcSettingsHasBeenSet = true; m_vpcSettings = std::move(value); }
 
     /**
      * <p>A <a>DirectoryVpcSettings</a> object that contains additional information for
@@ -254,19 +269,25 @@ namespace Model
      * <p>A <a>DirectoryVpcSettings</a> object that contains additional information for
      * the operation.</p>
      */
-    inline CreateDirectoryRequest& WithVpcSettings(DirectoryVpcSettings&& value) { SetVpcSettings(value); return *this;}
+    inline CreateDirectoryRequest& WithVpcSettings(DirectoryVpcSettings&& value) { SetVpcSettings(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_shortName;
     bool m_shortNameHasBeenSet;
+
     Aws::String m_password;
     bool m_passwordHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     DirectorySize m_size;
     bool m_sizeHasBeenSet;
+
     DirectoryVpcSettings m_vpcSettings;
     bool m_vpcSettingsHasBeenSet;
   };

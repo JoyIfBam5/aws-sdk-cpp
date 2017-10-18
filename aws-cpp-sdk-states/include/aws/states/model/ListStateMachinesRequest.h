@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/states/SFN_EXPORTS.h>
 #include <aws/states/SFNRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     ListStateMachinesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListStateMachines"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The maximum number of results that will be returned per call.
@@ -61,6 +71,7 @@ namespace Model
      */
     inline ListStateMachinesRequest& WithMaxResults(int value) { SetMaxResults(value); return *this;}
 
+
     /**
      * <p>If a <code>nextToken</code> was returned by a previous call, there are more
      * results available. To retrieve the next page of results, make the call again
@@ -86,7 +97,7 @@ namespace Model
      * unchanged.</p> <p>The configured <code>maxResults</code> determines how many
      * results can be returned in a single call.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>If a <code>nextToken</code> was returned by a previous call, there are more
@@ -113,7 +124,7 @@ namespace Model
      * unchanged.</p> <p>The configured <code>maxResults</code> determines how many
      * results can be returned in a single call.</p>
      */
-    inline ListStateMachinesRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListStateMachinesRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>If a <code>nextToken</code> was returned by a previous call, there are more
@@ -125,8 +136,10 @@ namespace Model
     inline ListStateMachinesRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     int m_maxResults;
     bool m_maxResultsHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/gamelift/GameLift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -32,7 +34,23 @@ namespace Model
 
   /**
    * <p>Current status of fleet utilization, including the number of game and player
-   * sessions being hosted.</p><p><h3>See Also:</h3>   <a
+   * sessions being hosted.</p> <p>Fleet-related operations include:</p> <ul> <li>
+   * <p> <a>CreateFleet</a> </p> </li> <li> <p> <a>ListFleets</a> </p> </li> <li>
+   * <p>Describe fleets:</p> <ul> <li> <p> <a>DescribeFleetAttributes</a> </p> </li>
+   * <li> <p> <a>DescribeFleetPortSettings</a> </p> </li> <li> <p>
+   * <a>DescribeFleetUtilization</a> </p> </li> <li> <p>
+   * <a>DescribeRuntimeConfiguration</a> </p> </li> <li> <p>
+   * <a>DescribeFleetEvents</a> </p> </li> </ul> </li> <li> <p>Update fleets:</p>
+   * <ul> <li> <p> <a>UpdateFleetAttributes</a> </p> </li> <li> <p>
+   * <a>UpdateFleetCapacity</a> </p> </li> <li> <p> <a>UpdateFleetPortSettings</a>
+   * </p> </li> <li> <p> <a>UpdateRuntimeConfiguration</a> </p> </li> </ul> </li>
+   * <li> <p>Manage fleet capacity:</p> <ul> <li> <p> <a>DescribeFleetCapacity</a>
+   * </p> </li> <li> <p> <a>UpdateFleetCapacity</a> </p> </li> <li> <p>
+   * <a>PutScalingPolicy</a> (automatic scaling)</p> </li> <li> <p>
+   * <a>DescribeScalingPolicies</a> (automatic scaling)</p> </li> <li> <p>
+   * <a>DeleteScalingPolicy</a> (automatic scaling)</p> </li> <li> <p>
+   * <a>DescribeEC2InstanceLimits</a> </p> </li> </ul> </li> <li> <p>
+   * <a>DeleteFleet</a> </p> </li> </ul><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/FleetUtilization">AWS
    * API Reference</a></p>
    */
@@ -43,6 +61,7 @@ namespace Model
     FleetUtilization(const Aws::Utils::Json::JsonValue& jsonValue);
     FleetUtilization& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>Unique identifier for a fleet.</p>
@@ -57,7 +76,7 @@ namespace Model
     /**
      * <p>Unique identifier for a fleet.</p>
      */
-    inline void SetFleetId(Aws::String&& value) { m_fleetIdHasBeenSet = true; m_fleetId = value; }
+    inline void SetFleetId(Aws::String&& value) { m_fleetIdHasBeenSet = true; m_fleetId = std::move(value); }
 
     /**
      * <p>Unique identifier for a fleet.</p>
@@ -72,12 +91,13 @@ namespace Model
     /**
      * <p>Unique identifier for a fleet.</p>
      */
-    inline FleetUtilization& WithFleetId(Aws::String&& value) { SetFleetId(value); return *this;}
+    inline FleetUtilization& WithFleetId(Aws::String&& value) { SetFleetId(std::move(value)); return *this;}
 
     /**
      * <p>Unique identifier for a fleet.</p>
      */
     inline FleetUtilization& WithFleetId(const char* value) { SetFleetId(value); return *this;}
+
 
     /**
      * <p>Number of server processes in an <code>ACTIVE</code> status currently running
@@ -97,6 +117,7 @@ namespace Model
      */
     inline FleetUtilization& WithActiveServerProcessCount(int value) { SetActiveServerProcessCount(value); return *this;}
 
+
     /**
      * <p>Number of active game sessions currently being hosted on all instances in the
      * fleet.</p>
@@ -115,6 +136,7 @@ namespace Model
      */
     inline FleetUtilization& WithActiveGameSessionCount(int value) { SetActiveGameSessionCount(value); return *this;}
 
+
     /**
      * <p>Number of active player sessions currently being hosted on all instances in
      * the fleet.</p>
@@ -132,6 +154,7 @@ namespace Model
      * the fleet.</p>
      */
     inline FleetUtilization& WithCurrentPlayerSessionCount(int value) { SetCurrentPlayerSessionCount(value); return *this;}
+
 
     /**
      * <p>Maximum players allowed across all game sessions currently being hosted on
@@ -152,14 +175,19 @@ namespace Model
     inline FleetUtilization& WithMaximumPlayerSessionCount(int value) { SetMaximumPlayerSessionCount(value); return *this;}
 
   private:
+
     Aws::String m_fleetId;
     bool m_fleetIdHasBeenSet;
+
     int m_activeServerProcessCount;
     bool m_activeServerProcessCountHasBeenSet;
+
     int m_activeGameSessionCount;
     bool m_activeGameSessionCountHasBeenSet;
+
     int m_currentPlayerSessionCount;
     bool m_currentPlayerSessionCountHasBeenSet;
+
     int m_maximumPlayerSessionCount;
     bool m_maximumPlayerSessionCountHasBeenSet;
   };

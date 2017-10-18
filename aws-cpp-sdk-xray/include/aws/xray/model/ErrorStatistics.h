@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/xray/XRay_EXPORTS.h>
 
@@ -43,6 +44,7 @@ namespace Model
     ErrorStatistics& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The number of requests that failed with a 419 throttling status code.</p>
      */
@@ -57,6 +59,7 @@ namespace Model
      * <p>The number of requests that failed with a 419 throttling status code.</p>
      */
     inline ErrorStatistics& WithThrottleCount(long long value) { SetThrottleCount(value); return *this;}
+
 
     /**
      * <p>The number of requests that failed with untracked 4xx Client Error status
@@ -75,6 +78,7 @@ namespace Model
      * codes.</p>
      */
     inline ErrorStatistics& WithOtherCount(long long value) { SetOtherCount(value); return *this;}
+
 
     /**
      * <p>The total number of requests that failed with a 4xx Client Error status
@@ -95,10 +99,13 @@ namespace Model
     inline ErrorStatistics& WithTotalCount(long long value) { SetTotalCount(value); return *this;}
 
   private:
+
     long long m_throttleCount;
     bool m_throttleCountHasBeenSet;
+
     long long m_otherCount;
     bool m_otherCountHasBeenSet;
+
     long long m_totalCount;
     bool m_totalCountHasBeenSet;
   };

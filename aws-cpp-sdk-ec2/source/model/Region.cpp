@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/Region.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,14 +31,14 @@ namespace Model
 {
 
 Region::Region() : 
-    m_regionNameHasBeenSet(false),
-    m_endpointHasBeenSet(false)
+    m_endpointHasBeenSet(false),
+    m_regionNameHasBeenSet(false)
 {
 }
 
 Region::Region(const XmlNode& xmlNode) : 
-    m_regionNameHasBeenSet(false),
-    m_endpointHasBeenSet(false)
+    m_endpointHasBeenSet(false),
+    m_regionNameHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -48,17 +49,17 @@ Region& Region::operator =(const XmlNode& xmlNode)
 
   if(!resultNode.IsNull())
   {
-    XmlNode regionNameNode = resultNode.FirstChild("regionName");
-    if(!regionNameNode.IsNull())
-    {
-      m_regionName = StringUtils::Trim(regionNameNode.GetText().c_str());
-      m_regionNameHasBeenSet = true;
-    }
     XmlNode endpointNode = resultNode.FirstChild("regionEndpoint");
     if(!endpointNode.IsNull())
     {
       m_endpoint = StringUtils::Trim(endpointNode.GetText().c_str());
       m_endpointHasBeenSet = true;
+    }
+    XmlNode regionNameNode = resultNode.FirstChild("regionName");
+    if(!regionNameNode.IsNull())
+    {
+      m_regionName = StringUtils::Trim(regionNameNode.GetText().c_str());
+      m_regionNameHasBeenSet = true;
     }
   }
 
@@ -67,27 +68,27 @@ Region& Region::operator =(const XmlNode& xmlNode)
 
 void Region::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
-  if(m_regionNameHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".RegionName=" << StringUtils::URLEncode(m_regionName.c_str()) << "&";
-  }
-
   if(m_endpointHasBeenSet)
   {
       oStream << location << index << locationValue << ".Endpoint=" << StringUtils::URLEncode(m_endpoint.c_str()) << "&";
+  }
+
+  if(m_regionNameHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".RegionName=" << StringUtils::URLEncode(m_regionName.c_str()) << "&";
   }
 
 }
 
 void Region::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
-  if(m_regionNameHasBeenSet)
-  {
-      oStream << location << ".RegionName=" << StringUtils::URLEncode(m_regionName.c_str()) << "&";
-  }
   if(m_endpointHasBeenSet)
   {
       oStream << location << ".Endpoint=" << StringUtils::URLEncode(m_endpoint.c_str()) << "&";
+  }
+  if(m_regionNameHasBeenSet)
+  {
+      oStream << location << ".RegionName=" << StringUtils::URLEncode(m_regionName.c_str()) << "&";
   }
 }
 

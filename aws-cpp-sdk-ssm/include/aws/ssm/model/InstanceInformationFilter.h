@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/ssm/model/InstanceInformationFilterKey.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     InstanceInformationFilter& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the filter. </p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The name of the filter. </p>
      */
-    inline void SetKey(InstanceInformationFilterKey&& value) { m_keyHasBeenSet = true; m_key = value; }
+    inline void SetKey(InstanceInformationFilterKey&& value) { m_keyHasBeenSet = true; m_key = std::move(value); }
 
     /**
      * <p>The name of the filter. </p>
@@ -69,7 +72,8 @@ namespace Model
     /**
      * <p>The name of the filter. </p>
      */
-    inline InstanceInformationFilter& WithKey(InstanceInformationFilterKey&& value) { SetKey(value); return *this;}
+    inline InstanceInformationFilter& WithKey(InstanceInformationFilterKey&& value) { SetKey(std::move(value)); return *this;}
+
 
     /**
      * <p>The filter values.</p>
@@ -84,7 +88,7 @@ namespace Model
     /**
      * <p>The filter values.</p>
      */
-    inline void SetValueSet(Aws::Vector<Aws::String>&& value) { m_valueSetHasBeenSet = true; m_valueSet = value; }
+    inline void SetValueSet(Aws::Vector<Aws::String>&& value) { m_valueSetHasBeenSet = true; m_valueSet = std::move(value); }
 
     /**
      * <p>The filter values.</p>
@@ -94,7 +98,7 @@ namespace Model
     /**
      * <p>The filter values.</p>
      */
-    inline InstanceInformationFilter& WithValueSet(Aws::Vector<Aws::String>&& value) { SetValueSet(value); return *this;}
+    inline InstanceInformationFilter& WithValueSet(Aws::Vector<Aws::String>&& value) { SetValueSet(std::move(value)); return *this;}
 
     /**
      * <p>The filter values.</p>
@@ -104,7 +108,7 @@ namespace Model
     /**
      * <p>The filter values.</p>
      */
-    inline InstanceInformationFilter& AddValueSet(Aws::String&& value) { m_valueSetHasBeenSet = true; m_valueSet.push_back(value); return *this; }
+    inline InstanceInformationFilter& AddValueSet(Aws::String&& value) { m_valueSetHasBeenSet = true; m_valueSet.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The filter values.</p>
@@ -112,8 +116,10 @@ namespace Model
     inline InstanceInformationFilter& AddValueSet(const char* value) { m_valueSetHasBeenSet = true; m_valueSet.push_back(value); return *this; }
 
   private:
+
     InstanceInformationFilterKey m_key;
     bool m_keyHasBeenSet;
+
     Aws::Vector<Aws::String> m_valueSet;
     bool m_valueSetHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/ec2/model/ResponseMetadata.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     RunScheduledInstancesResponse();
-    RunScheduledInstancesResponse(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    RunScheduledInstancesResponse& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    RunScheduledInstancesResponse(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    RunScheduledInstancesResponse& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>The IDs of the newly launched instances.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The IDs of the newly launched instances.</p>
      */
-    inline void SetInstanceIdSet(Aws::Vector<Aws::String>&& value) { m_instanceIdSet = value; }
+    inline void SetInstanceIdSet(Aws::Vector<Aws::String>&& value) { m_instanceIdSet = std::move(value); }
 
     /**
      * <p>The IDs of the newly launched instances.</p>
@@ -69,7 +72,7 @@ namespace Model
     /**
      * <p>The IDs of the newly launched instances.</p>
      */
-    inline RunScheduledInstancesResponse& WithInstanceIdSet(Aws::Vector<Aws::String>&& value) { SetInstanceIdSet(value); return *this;}
+    inline RunScheduledInstancesResponse& WithInstanceIdSet(Aws::Vector<Aws::String>&& value) { SetInstanceIdSet(std::move(value)); return *this;}
 
     /**
      * <p>The IDs of the newly launched instances.</p>
@@ -79,12 +82,13 @@ namespace Model
     /**
      * <p>The IDs of the newly launched instances.</p>
      */
-    inline RunScheduledInstancesResponse& AddInstanceIdSet(Aws::String&& value) { m_instanceIdSet.push_back(value); return *this; }
+    inline RunScheduledInstancesResponse& AddInstanceIdSet(Aws::String&& value) { m_instanceIdSet.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The IDs of the newly launched instances.</p>
      */
     inline RunScheduledInstancesResponse& AddInstanceIdSet(const char* value) { m_instanceIdSet.push_back(value); return *this; }
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -93,16 +97,18 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline RunScheduledInstancesResponse& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline RunScheduledInstancesResponse& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline RunScheduledInstancesResponse& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_instanceIdSet;
+
     ResponseMetadata m_responseMetadata;
   };
 

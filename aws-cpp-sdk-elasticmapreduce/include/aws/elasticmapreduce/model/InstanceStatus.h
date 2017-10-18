@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/elasticmapreduce/model/InstanceState.h>
 #include <aws/elasticmapreduce/model/InstanceStateChangeReason.h>
 #include <aws/elasticmapreduce/model/InstanceTimeline.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     InstanceStatus& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The current state of the instance.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The current state of the instance.</p>
      */
-    inline void SetState(InstanceState&& value) { m_stateHasBeenSet = true; m_state = value; }
+    inline void SetState(InstanceState&& value) { m_stateHasBeenSet = true; m_state = std::move(value); }
 
     /**
      * <p>The current state of the instance.</p>
@@ -68,7 +71,8 @@ namespace Model
     /**
      * <p>The current state of the instance.</p>
      */
-    inline InstanceStatus& WithState(InstanceState&& value) { SetState(value); return *this;}
+    inline InstanceStatus& WithState(InstanceState&& value) { SetState(std::move(value)); return *this;}
+
 
     /**
      * <p>The details of the status change reason for the instance.</p>
@@ -83,7 +87,7 @@ namespace Model
     /**
      * <p>The details of the status change reason for the instance.</p>
      */
-    inline void SetStateChangeReason(InstanceStateChangeReason&& value) { m_stateChangeReasonHasBeenSet = true; m_stateChangeReason = value; }
+    inline void SetStateChangeReason(InstanceStateChangeReason&& value) { m_stateChangeReasonHasBeenSet = true; m_stateChangeReason = std::move(value); }
 
     /**
      * <p>The details of the status change reason for the instance.</p>
@@ -93,7 +97,8 @@ namespace Model
     /**
      * <p>The details of the status change reason for the instance.</p>
      */
-    inline InstanceStatus& WithStateChangeReason(InstanceStateChangeReason&& value) { SetStateChangeReason(value); return *this;}
+    inline InstanceStatus& WithStateChangeReason(InstanceStateChangeReason&& value) { SetStateChangeReason(std::move(value)); return *this;}
+
 
     /**
      * <p>The timeline of the instance status over time.</p>
@@ -108,7 +113,7 @@ namespace Model
     /**
      * <p>The timeline of the instance status over time.</p>
      */
-    inline void SetTimeline(InstanceTimeline&& value) { m_timelineHasBeenSet = true; m_timeline = value; }
+    inline void SetTimeline(InstanceTimeline&& value) { m_timelineHasBeenSet = true; m_timeline = std::move(value); }
 
     /**
      * <p>The timeline of the instance status over time.</p>
@@ -118,13 +123,16 @@ namespace Model
     /**
      * <p>The timeline of the instance status over time.</p>
      */
-    inline InstanceStatus& WithTimeline(InstanceTimeline&& value) { SetTimeline(value); return *this;}
+    inline InstanceStatus& WithTimeline(InstanceTimeline&& value) { SetTimeline(std::move(value)); return *this;}
 
   private:
+
     InstanceState m_state;
     bool m_stateHasBeenSet;
+
     InstanceStateChangeReason m_stateChangeReason;
     bool m_stateChangeReasonHasBeenSet;
+
     InstanceTimeline m_timeline;
     bool m_timelineHasBeenSet;
   };

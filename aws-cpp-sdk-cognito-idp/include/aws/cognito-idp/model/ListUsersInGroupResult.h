@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/cognito-idp/model/UserType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     ListUsersInGroupResult();
-    ListUsersInGroupResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListUsersInGroupResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListUsersInGroupResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListUsersInGroupResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The users returned in the request to list users.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>The users returned in the request to list users.</p>
      */
-    inline void SetUsers(Aws::Vector<UserType>&& value) { m_users = value; }
+    inline void SetUsers(Aws::Vector<UserType>&& value) { m_users = std::move(value); }
 
     /**
      * <p>The users returned in the request to list users.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>The users returned in the request to list users.</p>
      */
-    inline ListUsersInGroupResult& WithUsers(Aws::Vector<UserType>&& value) { SetUsers(value); return *this;}
+    inline ListUsersInGroupResult& WithUsers(Aws::Vector<UserType>&& value) { SetUsers(std::move(value)); return *this;}
 
     /**
      * <p>The users returned in the request to list users.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>The users returned in the request to list users.</p>
      */
-    inline ListUsersInGroupResult& AddUsers(UserType&& value) { m_users.push_back(value); return *this; }
+    inline ListUsersInGroupResult& AddUsers(UserType&& value) { m_users.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>An identifier that was returned from the previous call to this operation,
@@ -92,7 +96,7 @@ namespace Model
      * <p>An identifier that was returned from the previous call to this operation,
      * which can be used to return the next set of items in the list.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>An identifier that was returned from the previous call to this operation,
@@ -110,7 +114,7 @@ namespace Model
      * <p>An identifier that was returned from the previous call to this operation,
      * which can be used to return the next set of items in the list.</p>
      */
-    inline ListUsersInGroupResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListUsersInGroupResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>An identifier that was returned from the previous call to this operation,
@@ -119,7 +123,9 @@ namespace Model
     inline ListUsersInGroupResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<UserType> m_users;
+
     Aws::String m_nextToken;
   };
 

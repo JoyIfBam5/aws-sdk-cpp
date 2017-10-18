@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/ecs/model/TransportProtocol.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     PortMapping& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The port number on the container that is bound to the user-specified or
      * automatically assigned host port. If you specify a container port and not a host
@@ -78,24 +81,26 @@ namespace Model
      */
     inline PortMapping& WithContainerPort(int value) { SetContainerPort(value); return *this;}
 
+
     /**
      * <p>The port number on the container instance to reserve for your container. You
      * can specify a non-reserved host port for your container port mapping, or you can
      * omit the <code>hostPort</code> (or set it to <code>0</code>) while specifying a
      * <code>containerPort</code> and your container automatically receives a port in
      * the ephemeral port range for your container instance operating system and Docker
-     * version.</p> <p>The default ephemeral port range is 49153 to 65535, and this
-     * range is used for Docker versions prior to 1.6.0. For Docker version 1.6.0 and
-     * later, the Docker daemon tries to read the ephemeral port range from
+     * version.</p> <p>The default ephemeral port range for Docker version 1.6.0 and
+     * later is listed on the instance under
      * <code>/proc/sys/net/ipv4/ip_local_port_range</code>; if this kernel parameter is
-     * unavailable, the default ephemeral port range is used. You should not attempt to
-     * specify a host port in the ephemeral port range, because these are reserved for
-     * automatic assignment. In general, ports below 32768 are outside of the ephemeral
-     * port range.</p> <p>The default reserved ports are 22 for SSH, the Docker ports
-     * 2375 and 2376, and the Amazon ECS container agent ports 51678 and 51679. Any
-     * host port that was previously specified in a running task is also reserved while
-     * the task is running (after a task stops, the host port is released).The current
-     * reserved ports are displayed in the <code>remainingResources</code> of
+     * unavailable, the default ephemeral port range of 49153 to 65535 is used. You
+     * should not attempt to specify a host port in the ephemeral port range as these
+     * are reserved for automatic assignment. In general, ports below 32768 are outside
+     * of the ephemeral port range.</p> <note> <p>The default ephemeral port range of
+     * 49153 to 65535 will always be used for Docker versions prior to 1.6.0.</p>
+     * </note> <p>The default reserved ports are 22 for SSH, the Docker ports 2375 and
+     * 2376, and the Amazon ECS container agent ports 51678 and 51679. Any host port
+     * that was previously specified in a running task is also reserved while the task
+     * is running (after a task stops, the host port is released).The current reserved
+     * ports are displayed in the <code>remainingResources</code> of
      * <a>DescribeContainerInstances</a> output, and a container instance may have up
      * to 100 reserved ports at a time, including the default reserved ports
      * (automatically assigned ports do not count toward the 100 reserved ports
@@ -109,18 +114,19 @@ namespace Model
      * omit the <code>hostPort</code> (or set it to <code>0</code>) while specifying a
      * <code>containerPort</code> and your container automatically receives a port in
      * the ephemeral port range for your container instance operating system and Docker
-     * version.</p> <p>The default ephemeral port range is 49153 to 65535, and this
-     * range is used for Docker versions prior to 1.6.0. For Docker version 1.6.0 and
-     * later, the Docker daemon tries to read the ephemeral port range from
+     * version.</p> <p>The default ephemeral port range for Docker version 1.6.0 and
+     * later is listed on the instance under
      * <code>/proc/sys/net/ipv4/ip_local_port_range</code>; if this kernel parameter is
-     * unavailable, the default ephemeral port range is used. You should not attempt to
-     * specify a host port in the ephemeral port range, because these are reserved for
-     * automatic assignment. In general, ports below 32768 are outside of the ephemeral
-     * port range.</p> <p>The default reserved ports are 22 for SSH, the Docker ports
-     * 2375 and 2376, and the Amazon ECS container agent ports 51678 and 51679. Any
-     * host port that was previously specified in a running task is also reserved while
-     * the task is running (after a task stops, the host port is released).The current
-     * reserved ports are displayed in the <code>remainingResources</code> of
+     * unavailable, the default ephemeral port range of 49153 to 65535 is used. You
+     * should not attempt to specify a host port in the ephemeral port range as these
+     * are reserved for automatic assignment. In general, ports below 32768 are outside
+     * of the ephemeral port range.</p> <note> <p>The default ephemeral port range of
+     * 49153 to 65535 will always be used for Docker versions prior to 1.6.0.</p>
+     * </note> <p>The default reserved ports are 22 for SSH, the Docker ports 2375 and
+     * 2376, and the Amazon ECS container agent ports 51678 and 51679. Any host port
+     * that was previously specified in a running task is also reserved while the task
+     * is running (after a task stops, the host port is released).The current reserved
+     * ports are displayed in the <code>remainingResources</code> of
      * <a>DescribeContainerInstances</a> output, and a container instance may have up
      * to 100 reserved ports at a time, including the default reserved ports
      * (automatically assigned ports do not count toward the 100 reserved ports
@@ -134,24 +140,26 @@ namespace Model
      * omit the <code>hostPort</code> (or set it to <code>0</code>) while specifying a
      * <code>containerPort</code> and your container automatically receives a port in
      * the ephemeral port range for your container instance operating system and Docker
-     * version.</p> <p>The default ephemeral port range is 49153 to 65535, and this
-     * range is used for Docker versions prior to 1.6.0. For Docker version 1.6.0 and
-     * later, the Docker daemon tries to read the ephemeral port range from
+     * version.</p> <p>The default ephemeral port range for Docker version 1.6.0 and
+     * later is listed on the instance under
      * <code>/proc/sys/net/ipv4/ip_local_port_range</code>; if this kernel parameter is
-     * unavailable, the default ephemeral port range is used. You should not attempt to
-     * specify a host port in the ephemeral port range, because these are reserved for
-     * automatic assignment. In general, ports below 32768 are outside of the ephemeral
-     * port range.</p> <p>The default reserved ports are 22 for SSH, the Docker ports
-     * 2375 and 2376, and the Amazon ECS container agent ports 51678 and 51679. Any
-     * host port that was previously specified in a running task is also reserved while
-     * the task is running (after a task stops, the host port is released).The current
-     * reserved ports are displayed in the <code>remainingResources</code> of
+     * unavailable, the default ephemeral port range of 49153 to 65535 is used. You
+     * should not attempt to specify a host port in the ephemeral port range as these
+     * are reserved for automatic assignment. In general, ports below 32768 are outside
+     * of the ephemeral port range.</p> <note> <p>The default ephemeral port range of
+     * 49153 to 65535 will always be used for Docker versions prior to 1.6.0.</p>
+     * </note> <p>The default reserved ports are 22 for SSH, the Docker ports 2375 and
+     * 2376, and the Amazon ECS container agent ports 51678 and 51679. Any host port
+     * that was previously specified in a running task is also reserved while the task
+     * is running (after a task stops, the host port is released).The current reserved
+     * ports are displayed in the <code>remainingResources</code> of
      * <a>DescribeContainerInstances</a> output, and a container instance may have up
      * to 100 reserved ports at a time, including the default reserved ports
      * (automatically assigned ports do not count toward the 100 reserved ports
      * limit).</p>
      */
     inline PortMapping& WithHostPort(int value) { SetHostPort(value); return *this;}
+
 
     /**
      * <p>The protocol used for the port mapping. Valid values are <code>tcp</code> and
@@ -169,7 +177,7 @@ namespace Model
      * <p>The protocol used for the port mapping. Valid values are <code>tcp</code> and
      * <code>udp</code>. The default is <code>tcp</code>.</p>
      */
-    inline void SetProtocol(TransportProtocol&& value) { m_protocolHasBeenSet = true; m_protocol = value; }
+    inline void SetProtocol(TransportProtocol&& value) { m_protocolHasBeenSet = true; m_protocol = std::move(value); }
 
     /**
      * <p>The protocol used for the port mapping. Valid values are <code>tcp</code> and
@@ -181,13 +189,16 @@ namespace Model
      * <p>The protocol used for the port mapping. Valid values are <code>tcp</code> and
      * <code>udp</code>. The default is <code>tcp</code>.</p>
      */
-    inline PortMapping& WithProtocol(TransportProtocol&& value) { SetProtocol(value); return *this;}
+    inline PortMapping& WithProtocol(TransportProtocol&& value) { SetProtocol(std::move(value)); return *this;}
 
   private:
+
     int m_containerPort;
     bool m_containerPortHasBeenSet;
+
     int m_hostPort;
     bool m_hostPortHasBeenSet;
+
     TransportProtocol m_protocol;
     bool m_protocolHasBeenSet;
   };

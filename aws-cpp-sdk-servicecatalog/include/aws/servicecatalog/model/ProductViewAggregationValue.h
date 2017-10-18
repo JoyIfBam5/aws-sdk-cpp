@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     ProductViewAggregationValue& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The value of the product view aggregation.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The value of the product view aggregation.</p>
      */
-    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = value; }
+    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = std::move(value); }
 
     /**
      * <p>The value of the product view aggregation.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The value of the product view aggregation.</p>
      */
-    inline ProductViewAggregationValue& WithValue(Aws::String&& value) { SetValue(value); return *this;}
+    inline ProductViewAggregationValue& WithValue(Aws::String&& value) { SetValue(std::move(value)); return *this;}
 
     /**
      * <p>The value of the product view aggregation.</p>
      */
     inline ProductViewAggregationValue& WithValue(const char* value) { SetValue(value); return *this;}
+
 
     /**
      * <p>An approximate count of the products that match the value.</p>
@@ -95,8 +99,10 @@ namespace Model
     inline ProductViewAggregationValue& WithApproximateCount(int value) { SetApproximateCount(value); return *this;}
 
   private:
+
     Aws::String m_value;
     bool m_valueHasBeenSet;
+
     int m_approximateCount;
     bool m_approximateCountHasBeenSet;
   };

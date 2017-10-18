@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/appstream/model/VpcConfig.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -28,12 +29,14 @@ namespace Model
 {
 
 VpcConfig::VpcConfig() : 
-    m_subnetIdsHasBeenSet(false)
+    m_subnetIdsHasBeenSet(false),
+    m_securityGroupIdsHasBeenSet(false)
 {
 }
 
 VpcConfig::VpcConfig(const JsonValue& jsonValue) : 
-    m_subnetIdsHasBeenSet(false)
+    m_subnetIdsHasBeenSet(false),
+    m_securityGroupIdsHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -48,6 +51,16 @@ VpcConfig& VpcConfig::operator =(const JsonValue& jsonValue)
       m_subnetIds.push_back(subnetIdsJsonList[subnetIdsIndex].AsString());
     }
     m_subnetIdsHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("SecurityGroupIds"))
+  {
+    Array<JsonValue> securityGroupIdsJsonList = jsonValue.GetArray("SecurityGroupIds");
+    for(unsigned securityGroupIdsIndex = 0; securityGroupIdsIndex < securityGroupIdsJsonList.GetLength(); ++securityGroupIdsIndex)
+    {
+      m_securityGroupIds.push_back(securityGroupIdsJsonList[securityGroupIdsIndex].AsString());
+    }
+    m_securityGroupIdsHasBeenSet = true;
   }
 
   return *this;
@@ -65,6 +78,17 @@ JsonValue VpcConfig::Jsonize() const
      subnetIdsJsonList[subnetIdsIndex].AsString(m_subnetIds[subnetIdsIndex]);
    }
    payload.WithArray("SubnetIds", std::move(subnetIdsJsonList));
+
+  }
+
+  if(m_securityGroupIdsHasBeenSet)
+  {
+   Array<JsonValue> securityGroupIdsJsonList(m_securityGroupIds.size());
+   for(unsigned securityGroupIdsIndex = 0; securityGroupIdsIndex < securityGroupIdsJsonList.GetLength(); ++securityGroupIdsIndex)
+   {
+     securityGroupIdsJsonList[securityGroupIdsIndex].AsString(m_securityGroupIds[securityGroupIdsIndex]);
+   }
+   payload.WithArray("SecurityGroupIds", std::move(securityGroupIdsJsonList));
 
   }
 

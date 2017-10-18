@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/iam/IAMRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,7 +32,19 @@ namespace Model
   {
   public:
     UploadServerCertificateRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UploadServerCertificate"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The path for the server certificate. For more information about paths, see <a
@@ -81,7 +95,7 @@ namespace Model
      * path must begin with <code>/cloudfront</code> and must include a trailing slash
      * (for example, <code>/cloudfront/test/</code>).</p> </note>
      */
-    inline void SetPath(Aws::String&& value) { m_pathHasBeenSet = true; m_path = value; }
+    inline void SetPath(Aws::String&& value) { m_pathHasBeenSet = true; m_path = std::move(value); }
 
     /**
      * <p>The path for the server certificate. For more information about paths, see <a
@@ -132,7 +146,7 @@ namespace Model
      * path must begin with <code>/cloudfront</code> and must include a trailing slash
      * (for example, <code>/cloudfront/test/</code>).</p> </note>
      */
-    inline UploadServerCertificateRequest& WithPath(Aws::String&& value) { SetPath(value); return *this;}
+    inline UploadServerCertificateRequest& WithPath(Aws::String&& value) { SetPath(std::move(value)); return *this;}
 
     /**
      * <p>The path for the server certificate. For more information about paths, see <a
@@ -150,6 +164,7 @@ namespace Model
      * (for example, <code>/cloudfront/test/</code>).</p> </note>
      */
     inline UploadServerCertificateRequest& WithPath(const char* value) { SetPath(value); return *this;}
+
 
     /**
      * <p>The name for the server certificate. Do not include the path in this value.
@@ -176,7 +191,7 @@ namespace Model
      * string of characters consisting of upper and lowercase alphanumeric characters
      * with no spaces. You can also include any of the following characters: =,.@-</p>
      */
-    inline void SetServerCertificateName(Aws::String&& value) { m_serverCertificateNameHasBeenSet = true; m_serverCertificateName = value; }
+    inline void SetServerCertificateName(Aws::String&& value) { m_serverCertificateNameHasBeenSet = true; m_serverCertificateName = std::move(value); }
 
     /**
      * <p>The name for the server certificate. Do not include the path in this value.
@@ -203,7 +218,7 @@ namespace Model
      * string of characters consisting of upper and lowercase alphanumeric characters
      * with no spaces. You can also include any of the following characters: =,.@-</p>
      */
-    inline UploadServerCertificateRequest& WithServerCertificateName(Aws::String&& value) { SetServerCertificateName(value); return *this;}
+    inline UploadServerCertificateRequest& WithServerCertificateName(Aws::String&& value) { SetServerCertificateName(std::move(value)); return *this;}
 
     /**
      * <p>The name for the server certificate. Do not include the path in this value.
@@ -213,6 +228,7 @@ namespace Model
      * with no spaces. You can also include any of the following characters: =,.@-</p>
      */
     inline UploadServerCertificateRequest& WithServerCertificateName(const char* value) { SetServerCertificateName(value); return *this;}
+
 
     /**
      * <p>The contents of the public key certificate in PEM-encoded format.</p> <p>The
@@ -245,7 +261,7 @@ namespace Model
      * Latin-1 Supplement character set (through \u00FF). It also includes the special
      * characters tab (\u0009), line feed (\u000A), and carriage return (\u000D).</p>
      */
-    inline void SetCertificateBody(Aws::String&& value) { m_certificateBodyHasBeenSet = true; m_certificateBody = value; }
+    inline void SetCertificateBody(Aws::String&& value) { m_certificateBodyHasBeenSet = true; m_certificateBody = std::move(value); }
 
     /**
      * <p>The contents of the public key certificate in PEM-encoded format.</p> <p>The
@@ -278,7 +294,7 @@ namespace Model
      * Latin-1 Supplement character set (through \u00FF). It also includes the special
      * characters tab (\u0009), line feed (\u000A), and carriage return (\u000D).</p>
      */
-    inline UploadServerCertificateRequest& WithCertificateBody(Aws::String&& value) { SetCertificateBody(value); return *this;}
+    inline UploadServerCertificateRequest& WithCertificateBody(Aws::String&& value) { SetCertificateBody(std::move(value)); return *this;}
 
     /**
      * <p>The contents of the public key certificate in PEM-encoded format.</p> <p>The
@@ -290,6 +306,7 @@ namespace Model
      * characters tab (\u0009), line feed (\u000A), and carriage return (\u000D).</p>
      */
     inline UploadServerCertificateRequest& WithCertificateBody(const char* value) { SetCertificateBody(value); return *this;}
+
 
     /**
      * <p>The contents of the private key in PEM-encoded format.</p> <p>The <a
@@ -322,7 +339,7 @@ namespace Model
      * Supplement character set (through \u00FF). It also includes the special
      * characters tab (\u0009), line feed (\u000A), and carriage return (\u000D).</p>
      */
-    inline void SetPrivateKey(Aws::String&& value) { m_privateKeyHasBeenSet = true; m_privateKey = value; }
+    inline void SetPrivateKey(Aws::String&& value) { m_privateKeyHasBeenSet = true; m_privateKey = std::move(value); }
 
     /**
      * <p>The contents of the private key in PEM-encoded format.</p> <p>The <a
@@ -355,7 +372,7 @@ namespace Model
      * Supplement character set (through \u00FF). It also includes the special
      * characters tab (\u0009), line feed (\u000A), and carriage return (\u000D).</p>
      */
-    inline UploadServerCertificateRequest& WithPrivateKey(Aws::String&& value) { SetPrivateKey(value); return *this;}
+    inline UploadServerCertificateRequest& WithPrivateKey(Aws::String&& value) { SetPrivateKey(std::move(value)); return *this;}
 
     /**
      * <p>The contents of the private key in PEM-encoded format.</p> <p>The <a
@@ -367,6 +384,7 @@ namespace Model
      * characters tab (\u0009), line feed (\u000A), and carriage return (\u000D).</p>
      */
     inline UploadServerCertificateRequest& WithPrivateKey(const char* value) { SetPrivateKey(value); return *this;}
+
 
     /**
      * <p>The contents of the certificate chain. This is typically a concatenation of
@@ -402,7 +420,7 @@ namespace Model
      * Supplement character set (through \u00FF). It also includes the special
      * characters tab (\u0009), line feed (\u000A), and carriage return (\u000D).</p>
      */
-    inline void SetCertificateChain(Aws::String&& value) { m_certificateChainHasBeenSet = true; m_certificateChain = value; }
+    inline void SetCertificateChain(Aws::String&& value) { m_certificateChainHasBeenSet = true; m_certificateChain = std::move(value); }
 
     /**
      * <p>The contents of the certificate chain. This is typically a concatenation of
@@ -438,7 +456,7 @@ namespace Model
      * Supplement character set (through \u00FF). It also includes the special
      * characters tab (\u0009), line feed (\u000A), and carriage return (\u000D).</p>
      */
-    inline UploadServerCertificateRequest& WithCertificateChain(Aws::String&& value) { SetCertificateChain(value); return *this;}
+    inline UploadServerCertificateRequest& WithCertificateChain(Aws::String&& value) { SetCertificateChain(std::move(value)); return *this;}
 
     /**
      * <p>The contents of the certificate chain. This is typically a concatenation of
@@ -453,14 +471,19 @@ namespace Model
     inline UploadServerCertificateRequest& WithCertificateChain(const char* value) { SetCertificateChain(value); return *this;}
 
   private:
+
     Aws::String m_path;
     bool m_pathHasBeenSet;
+
     Aws::String m_serverCertificateName;
     bool m_serverCertificateNameHasBeenSet;
+
     Aws::String m_certificateBody;
     bool m_certificateBodyHasBeenSet;
+
     Aws::String m_privateKey;
     bool m_privateKeyHasBeenSet;
+
     Aws::String m_certificateChain;
     bool m_certificateChainHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/rds/RDSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/rds/model/Filter.h>
+#include <utility>
 
 namespace Aws
 {
@@ -32,7 +34,19 @@ namespace Model
   {
   public:
     DescribeDBEngineVersionsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeDBEngineVersions"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The database engine to return.</p>
@@ -47,7 +61,7 @@ namespace Model
     /**
      * <p>The database engine to return.</p>
      */
-    inline void SetEngine(Aws::String&& value) { m_engineHasBeenSet = true; m_engine = value; }
+    inline void SetEngine(Aws::String&& value) { m_engineHasBeenSet = true; m_engine = std::move(value); }
 
     /**
      * <p>The database engine to return.</p>
@@ -62,12 +76,13 @@ namespace Model
     /**
      * <p>The database engine to return.</p>
      */
-    inline DescribeDBEngineVersionsRequest& WithEngine(Aws::String&& value) { SetEngine(value); return *this;}
+    inline DescribeDBEngineVersionsRequest& WithEngine(Aws::String&& value) { SetEngine(std::move(value)); return *this;}
 
     /**
      * <p>The database engine to return.</p>
      */
     inline DescribeDBEngineVersionsRequest& WithEngine(const char* value) { SetEngine(value); return *this;}
+
 
     /**
      * <p>The database engine version to return.</p> <p>Example: <code>5.1.49</code>
@@ -85,7 +100,7 @@ namespace Model
      * <p>The database engine version to return.</p> <p>Example: <code>5.1.49</code>
      * </p>
      */
-    inline void SetEngineVersion(Aws::String&& value) { m_engineVersionHasBeenSet = true; m_engineVersion = value; }
+    inline void SetEngineVersion(Aws::String&& value) { m_engineVersionHasBeenSet = true; m_engineVersion = std::move(value); }
 
     /**
      * <p>The database engine version to return.</p> <p>Example: <code>5.1.49</code>
@@ -103,7 +118,7 @@ namespace Model
      * <p>The database engine version to return.</p> <p>Example: <code>5.1.49</code>
      * </p>
      */
-    inline DescribeDBEngineVersionsRequest& WithEngineVersion(Aws::String&& value) { SetEngineVersion(value); return *this;}
+    inline DescribeDBEngineVersionsRequest& WithEngineVersion(Aws::String&& value) { SetEngineVersion(std::move(value)); return *this;}
 
     /**
      * <p>The database engine version to return.</p> <p>Example: <code>5.1.49</code>
@@ -111,61 +126,56 @@ namespace Model
      */
     inline DescribeDBEngineVersionsRequest& WithEngineVersion(const char* value) { SetEngineVersion(value); return *this;}
 
+
     /**
      * <p>The name of a specific DB parameter group family to return details for.</p>
-     * <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 alphanumeric characters</p>
-     * </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with
-     * a hyphen or contain two consecutive hyphens</p> </li> </ul>
+     * <p>Constraints:</p> <ul> <li> <p>If supplied, must match an existing
+     * DBParameterGroupFamily.</p> </li> </ul>
      */
     inline const Aws::String& GetDBParameterGroupFamily() const{ return m_dBParameterGroupFamily; }
 
     /**
      * <p>The name of a specific DB parameter group family to return details for.</p>
-     * <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 alphanumeric characters</p>
-     * </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with
-     * a hyphen or contain two consecutive hyphens</p> </li> </ul>
+     * <p>Constraints:</p> <ul> <li> <p>If supplied, must match an existing
+     * DBParameterGroupFamily.</p> </li> </ul>
      */
     inline void SetDBParameterGroupFamily(const Aws::String& value) { m_dBParameterGroupFamilyHasBeenSet = true; m_dBParameterGroupFamily = value; }
 
     /**
      * <p>The name of a specific DB parameter group family to return details for.</p>
-     * <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 alphanumeric characters</p>
-     * </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with
-     * a hyphen or contain two consecutive hyphens</p> </li> </ul>
+     * <p>Constraints:</p> <ul> <li> <p>If supplied, must match an existing
+     * DBParameterGroupFamily.</p> </li> </ul>
      */
-    inline void SetDBParameterGroupFamily(Aws::String&& value) { m_dBParameterGroupFamilyHasBeenSet = true; m_dBParameterGroupFamily = value; }
+    inline void SetDBParameterGroupFamily(Aws::String&& value) { m_dBParameterGroupFamilyHasBeenSet = true; m_dBParameterGroupFamily = std::move(value); }
 
     /**
      * <p>The name of a specific DB parameter group family to return details for.</p>
-     * <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 alphanumeric characters</p>
-     * </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with
-     * a hyphen or contain two consecutive hyphens</p> </li> </ul>
+     * <p>Constraints:</p> <ul> <li> <p>If supplied, must match an existing
+     * DBParameterGroupFamily.</p> </li> </ul>
      */
     inline void SetDBParameterGroupFamily(const char* value) { m_dBParameterGroupFamilyHasBeenSet = true; m_dBParameterGroupFamily.assign(value); }
 
     /**
      * <p>The name of a specific DB parameter group family to return details for.</p>
-     * <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 alphanumeric characters</p>
-     * </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with
-     * a hyphen or contain two consecutive hyphens</p> </li> </ul>
+     * <p>Constraints:</p> <ul> <li> <p>If supplied, must match an existing
+     * DBParameterGroupFamily.</p> </li> </ul>
      */
     inline DescribeDBEngineVersionsRequest& WithDBParameterGroupFamily(const Aws::String& value) { SetDBParameterGroupFamily(value); return *this;}
 
     /**
      * <p>The name of a specific DB parameter group family to return details for.</p>
-     * <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 alphanumeric characters</p>
-     * </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with
-     * a hyphen or contain two consecutive hyphens</p> </li> </ul>
+     * <p>Constraints:</p> <ul> <li> <p>If supplied, must match an existing
+     * DBParameterGroupFamily.</p> </li> </ul>
      */
-    inline DescribeDBEngineVersionsRequest& WithDBParameterGroupFamily(Aws::String&& value) { SetDBParameterGroupFamily(value); return *this;}
+    inline DescribeDBEngineVersionsRequest& WithDBParameterGroupFamily(Aws::String&& value) { SetDBParameterGroupFamily(std::move(value)); return *this;}
 
     /**
      * <p>The name of a specific DB parameter group family to return details for.</p>
-     * <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 alphanumeric characters</p>
-     * </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with
-     * a hyphen or contain two consecutive hyphens</p> </li> </ul>
+     * <p>Constraints:</p> <ul> <li> <p>If supplied, must match an existing
+     * DBParameterGroupFamily.</p> </li> </ul>
      */
     inline DescribeDBEngineVersionsRequest& WithDBParameterGroupFamily(const char* value) { SetDBParameterGroupFamily(value); return *this;}
+
 
     /**
      * <p>Not currently supported.</p>
@@ -180,7 +190,7 @@ namespace Model
     /**
      * <p>Not currently supported.</p>
      */
-    inline void SetFilters(Aws::Vector<Filter>&& value) { m_filtersHasBeenSet = true; m_filters = value; }
+    inline void SetFilters(Aws::Vector<Filter>&& value) { m_filtersHasBeenSet = true; m_filters = std::move(value); }
 
     /**
      * <p>Not currently supported.</p>
@@ -190,7 +200,7 @@ namespace Model
     /**
      * <p>Not currently supported.</p>
      */
-    inline DescribeDBEngineVersionsRequest& WithFilters(Aws::Vector<Filter>&& value) { SetFilters(value); return *this;}
+    inline DescribeDBEngineVersionsRequest& WithFilters(Aws::Vector<Filter>&& value) { SetFilters(std::move(value)); return *this;}
 
     /**
      * <p>Not currently supported.</p>
@@ -200,7 +210,8 @@ namespace Model
     /**
      * <p>Not currently supported.</p>
      */
-    inline DescribeDBEngineVersionsRequest& AddFilters(Filter&& value) { m_filtersHasBeenSet = true; m_filters.push_back(value); return *this; }
+    inline DescribeDBEngineVersionsRequest& AddFilters(Filter&& value) { m_filtersHasBeenSet = true; m_filters.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p> The maximum number of records to include in the response. If more than the
@@ -226,6 +237,7 @@ namespace Model
      */
     inline DescribeDBEngineVersionsRequest& WithMaxRecords(int value) { SetMaxRecords(value); return *this;}
 
+
     /**
      * <p> An optional pagination token provided by a previous request. If this
      * parameter is specified, the response includes only records beyond the marker, up
@@ -245,7 +257,7 @@ namespace Model
      * parameter is specified, the response includes only records beyond the marker, up
      * to the value specified by <code>MaxRecords</code>. </p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p> An optional pagination token provided by a previous request. If this
@@ -266,7 +278,7 @@ namespace Model
      * parameter is specified, the response includes only records beyond the marker, up
      * to the value specified by <code>MaxRecords</code>. </p>
      */
-    inline DescribeDBEngineVersionsRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeDBEngineVersionsRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p> An optional pagination token provided by a previous request. If this
@@ -274,6 +286,7 @@ namespace Model
      * to the value specified by <code>MaxRecords</code>. </p>
      */
     inline DescribeDBEngineVersionsRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>Indicates that only the default version of the specified engine or engine and
@@ -292,6 +305,7 @@ namespace Model
      * major version combination is returned.</p>
      */
     inline DescribeDBEngineVersionsRequest& WithDefaultOnly(bool value) { SetDefaultOnly(value); return *this;}
+
 
     /**
      * <p>If this parameter is specified and the requested engine supports the
@@ -317,6 +331,7 @@ namespace Model
      */
     inline DescribeDBEngineVersionsRequest& WithListSupportedCharacterSets(bool value) { SetListSupportedCharacterSets(value); return *this;}
 
+
     /**
      * <p>If this parameter is specified and the requested engine supports the
      * <code>TimeZone</code> parameter for <code>CreateDBInstance</code>, the response
@@ -339,22 +354,31 @@ namespace Model
     inline DescribeDBEngineVersionsRequest& WithListSupportedTimezones(bool value) { SetListSupportedTimezones(value); return *this;}
 
   private:
+
     Aws::String m_engine;
     bool m_engineHasBeenSet;
+
     Aws::String m_engineVersion;
     bool m_engineVersionHasBeenSet;
+
     Aws::String m_dBParameterGroupFamily;
     bool m_dBParameterGroupFamilyHasBeenSet;
+
     Aws::Vector<Filter> m_filters;
     bool m_filtersHasBeenSet;
+
     int m_maxRecords;
     bool m_maxRecordsHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
+
     bool m_defaultOnly;
     bool m_defaultOnlyHasBeenSet;
+
     bool m_listSupportedCharacterSets;
     bool m_listSupportedCharacterSetsHasBeenSet;
+
     bool m_listSupportedTimezones;
     bool m_listSupportedTimezonesHasBeenSet;
   };

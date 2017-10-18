@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/DescribePrefixListsRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -22,11 +23,11 @@ using namespace Aws::Utils;
 DescribePrefixListsRequest::DescribePrefixListsRequest() : 
     m_dryRun(false),
     m_dryRunHasBeenSet(false),
-    m_prefixListIdsHasBeenSet(false),
     m_filtersHasBeenSet(false),
     m_maxResults(0),
     m_maxResultsHasBeenSet(false),
-    m_nextTokenHasBeenSet(false)
+    m_nextTokenHasBeenSet(false),
+    m_prefixListIdsHasBeenSet(false)
 {
 }
 
@@ -37,17 +38,6 @@ Aws::String DescribePrefixListsRequest::SerializePayload() const
   if(m_dryRunHasBeenSet)
   {
     ss << "DryRun=" << std::boolalpha << m_dryRun << "&";
-  }
-
-  if(m_prefixListIdsHasBeenSet)
-  {
-    unsigned prefixListIdsCount = 1;
-    for(auto& item : m_prefixListIds)
-    {
-      ss << "PrefixListId." << prefixListIdsCount << "="
-          << StringUtils::URLEncode(item.c_str()) << "&";
-      prefixListIdsCount++;
-    }
   }
 
   if(m_filtersHasBeenSet)
@@ -70,7 +60,23 @@ Aws::String DescribePrefixListsRequest::SerializePayload() const
     ss << "NextToken=" << StringUtils::URLEncode(m_nextToken.c_str()) << "&";
   }
 
+  if(m_prefixListIdsHasBeenSet)
+  {
+    unsigned prefixListIdsCount = 1;
+    for(auto& item : m_prefixListIds)
+    {
+      ss << "PrefixListId." << prefixListIdsCount << "="
+          << StringUtils::URLEncode(item.c_str()) << "&";
+      prefixListIdsCount++;
+    }
+  }
+
   ss << "Version=2016-11-15";
   return ss.str();
 }
 
+
+void  DescribePrefixListsRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

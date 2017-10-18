@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/cognito-identity/model/CognitoIdentityProvider.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -29,13 +30,17 @@ namespace Model
 
 CognitoIdentityProvider::CognitoIdentityProvider() : 
     m_providerNameHasBeenSet(false),
-    m_clientIdHasBeenSet(false)
+    m_clientIdHasBeenSet(false),
+    m_serverSideTokenCheck(false),
+    m_serverSideTokenCheckHasBeenSet(false)
 {
 }
 
 CognitoIdentityProvider::CognitoIdentityProvider(const JsonValue& jsonValue) : 
     m_providerNameHasBeenSet(false),
-    m_clientIdHasBeenSet(false)
+    m_clientIdHasBeenSet(false),
+    m_serverSideTokenCheck(false),
+    m_serverSideTokenCheckHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -56,6 +61,13 @@ CognitoIdentityProvider& CognitoIdentityProvider::operator =(const JsonValue& js
     m_clientIdHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("ServerSideTokenCheck"))
+  {
+    m_serverSideTokenCheck = jsonValue.GetBool("ServerSideTokenCheck");
+
+    m_serverSideTokenCheckHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -72,6 +84,12 @@ JsonValue CognitoIdentityProvider::Jsonize() const
   if(m_clientIdHasBeenSet)
   {
    payload.WithString("ClientId", m_clientId);
+
+  }
+
+  if(m_serverSideTokenCheckHasBeenSet)
+  {
+   payload.WithBool("ServerSideTokenCheck", m_serverSideTokenCheck);
 
   }
 

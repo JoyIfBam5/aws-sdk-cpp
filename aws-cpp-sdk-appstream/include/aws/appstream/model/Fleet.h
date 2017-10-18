@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,15 +12,19 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/appstream/AppStream_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <aws/appstream/model/FleetType.h>
 #include <aws/appstream/model/ComputeCapacityStatus.h>
 #include <aws/appstream/model/FleetState.h>
 #include <aws/appstream/model/VpcConfig.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <aws/appstream/model/DomainJoinInfo.h>
 #include <aws/appstream/model/FleetError.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +53,7 @@ namespace Model
     Fleet& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ARN for the fleet.</p>
      */
@@ -62,7 +67,7 @@ namespace Model
     /**
      * <p>The ARN for the fleet.</p>
      */
-    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = value; }
+    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = std::move(value); }
 
     /**
      * <p>The ARN for the fleet.</p>
@@ -77,12 +82,13 @@ namespace Model
     /**
      * <p>The ARN for the fleet.</p>
      */
-    inline Fleet& WithArn(Aws::String&& value) { SetArn(value); return *this;}
+    inline Fleet& WithArn(Aws::String&& value) { SetArn(std::move(value)); return *this;}
 
     /**
      * <p>The ARN for the fleet.</p>
      */
     inline Fleet& WithArn(const char* value) { SetArn(value); return *this;}
+
 
     /**
      * <p>The name of the fleet.</p>
@@ -97,7 +103,7 @@ namespace Model
     /**
      * <p>The name of the fleet.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the fleet.</p>
@@ -112,82 +118,85 @@ namespace Model
     /**
      * <p>The name of the fleet.</p>
      */
-    inline Fleet& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline Fleet& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the fleet.</p>
      */
     inline Fleet& WithName(const char* value) { SetName(value); return *this;}
 
+
     /**
-     * <p>The name displayed to end users on the AppStream 2.0 portal.</p>
+     * <p>The fleet name displayed to end users.</p>
      */
     inline const Aws::String& GetDisplayName() const{ return m_displayName; }
 
     /**
-     * <p>The name displayed to end users on the AppStream 2.0 portal.</p>
+     * <p>The fleet name displayed to end users.</p>
      */
     inline void SetDisplayName(const Aws::String& value) { m_displayNameHasBeenSet = true; m_displayName = value; }
 
     /**
-     * <p>The name displayed to end users on the AppStream 2.0 portal.</p>
+     * <p>The fleet name displayed to end users.</p>
      */
-    inline void SetDisplayName(Aws::String&& value) { m_displayNameHasBeenSet = true; m_displayName = value; }
+    inline void SetDisplayName(Aws::String&& value) { m_displayNameHasBeenSet = true; m_displayName = std::move(value); }
 
     /**
-     * <p>The name displayed to end users on the AppStream 2.0 portal.</p>
+     * <p>The fleet name displayed to end users.</p>
      */
     inline void SetDisplayName(const char* value) { m_displayNameHasBeenSet = true; m_displayName.assign(value); }
 
     /**
-     * <p>The name displayed to end users on the AppStream 2.0 portal.</p>
+     * <p>The fleet name displayed to end users.</p>
      */
     inline Fleet& WithDisplayName(const Aws::String& value) { SetDisplayName(value); return *this;}
 
     /**
-     * <p>The name displayed to end users on the AppStream 2.0 portal.</p>
+     * <p>The fleet name displayed to end users.</p>
      */
-    inline Fleet& WithDisplayName(Aws::String&& value) { SetDisplayName(value); return *this;}
+    inline Fleet& WithDisplayName(Aws::String&& value) { SetDisplayName(std::move(value)); return *this;}
 
     /**
-     * <p>The name displayed to end users on the AppStream 2.0 portal.</p>
+     * <p>The fleet name displayed to end users.</p>
      */
     inline Fleet& WithDisplayName(const char* value) { SetDisplayName(value); return *this;}
 
+
     /**
-     * <p>The description displayed to end users on the AppStream 2.0 portal.</p>
+     * <p>The description displayed to end users.</p>
      */
     inline const Aws::String& GetDescription() const{ return m_description; }
 
     /**
-     * <p>The description displayed to end users on the AppStream 2.0 portal.</p>
+     * <p>The description displayed to end users.</p>
      */
     inline void SetDescription(const Aws::String& value) { m_descriptionHasBeenSet = true; m_description = value; }
 
     /**
-     * <p>The description displayed to end users on the AppStream 2.0 portal.</p>
+     * <p>The description displayed to end users.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
-     * <p>The description displayed to end users on the AppStream 2.0 portal.</p>
+     * <p>The description displayed to end users.</p>
      */
     inline void SetDescription(const char* value) { m_descriptionHasBeenSet = true; m_description.assign(value); }
 
     /**
-     * <p>The description displayed to end users on the AppStream 2.0 portal.</p>
+     * <p>The description displayed to end users.</p>
      */
     inline Fleet& WithDescription(const Aws::String& value) { SetDescription(value); return *this;}
 
     /**
-     * <p>The description displayed to end users on the AppStream 2.0 portal.</p>
+     * <p>The description displayed to end users.</p>
      */
-    inline Fleet& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline Fleet& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
-     * <p>The description displayed to end users on the AppStream 2.0 portal.</p>
+     * <p>The description displayed to end users.</p>
      */
     inline Fleet& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The image used by the fleet.</p>
@@ -202,7 +211,7 @@ namespace Model
     /**
      * <p>The image used by the fleet.</p>
      */
-    inline void SetImageName(Aws::String&& value) { m_imageNameHasBeenSet = true; m_imageName = value; }
+    inline void SetImageName(Aws::String&& value) { m_imageNameHasBeenSet = true; m_imageName = std::move(value); }
 
     /**
      * <p>The image used by the fleet.</p>
@@ -217,115 +226,135 @@ namespace Model
     /**
      * <p>The image used by the fleet.</p>
      */
-    inline Fleet& WithImageName(Aws::String&& value) { SetImageName(value); return *this;}
+    inline Fleet& WithImageName(Aws::String&& value) { SetImageName(std::move(value)); return *this;}
 
     /**
      * <p>The image used by the fleet.</p>
      */
     inline Fleet& WithImageName(const char* value) { SetImageName(value); return *this;}
 
+
     /**
-     * <p>The instance type of compute resources for the fleet. The fleet instances are
-     * launched from this instance type. </p>
+     * <p>The instance type to use when launching fleet instances.</p>
      */
     inline const Aws::String& GetInstanceType() const{ return m_instanceType; }
 
     /**
-     * <p>The instance type of compute resources for the fleet. The fleet instances are
-     * launched from this instance type. </p>
+     * <p>The instance type to use when launching fleet instances.</p>
      */
     inline void SetInstanceType(const Aws::String& value) { m_instanceTypeHasBeenSet = true; m_instanceType = value; }
 
     /**
-     * <p>The instance type of compute resources for the fleet. The fleet instances are
-     * launched from this instance type. </p>
+     * <p>The instance type to use when launching fleet instances.</p>
      */
-    inline void SetInstanceType(Aws::String&& value) { m_instanceTypeHasBeenSet = true; m_instanceType = value; }
+    inline void SetInstanceType(Aws::String&& value) { m_instanceTypeHasBeenSet = true; m_instanceType = std::move(value); }
 
     /**
-     * <p>The instance type of compute resources for the fleet. The fleet instances are
-     * launched from this instance type. </p>
+     * <p>The instance type to use when launching fleet instances.</p>
      */
     inline void SetInstanceType(const char* value) { m_instanceTypeHasBeenSet = true; m_instanceType.assign(value); }
 
     /**
-     * <p>The instance type of compute resources for the fleet. The fleet instances are
-     * launched from this instance type. </p>
+     * <p>The instance type to use when launching fleet instances.</p>
      */
     inline Fleet& WithInstanceType(const Aws::String& value) { SetInstanceType(value); return *this;}
 
     /**
-     * <p>The instance type of compute resources for the fleet. The fleet instances are
-     * launched from this instance type. </p>
+     * <p>The instance type to use when launching fleet instances.</p>
      */
-    inline Fleet& WithInstanceType(Aws::String&& value) { SetInstanceType(value); return *this;}
+    inline Fleet& WithInstanceType(Aws::String&& value) { SetInstanceType(std::move(value)); return *this;}
 
     /**
-     * <p>The instance type of compute resources for the fleet. The fleet instances are
-     * launched from this instance type. </p>
+     * <p>The instance type to use when launching fleet instances.</p>
      */
     inline Fleet& WithInstanceType(const char* value) { SetInstanceType(value); return *this;}
 
+
+    
+    inline const FleetType& GetFleetType() const{ return m_fleetType; }
+
+    
+    inline void SetFleetType(const FleetType& value) { m_fleetTypeHasBeenSet = true; m_fleetType = value; }
+
+    
+    inline void SetFleetType(FleetType&& value) { m_fleetTypeHasBeenSet = true; m_fleetType = std::move(value); }
+
+    
+    inline Fleet& WithFleetType(const FleetType& value) { SetFleetType(value); return *this;}
+
+    
+    inline Fleet& WithFleetType(FleetType&& value) { SetFleetType(std::move(value)); return *this;}
+
+
     /**
-     * <p>The capacity information for the fleet.</p>
+     * <p>The capacity status for the fleet.</p>
      */
     inline const ComputeCapacityStatus& GetComputeCapacityStatus() const{ return m_computeCapacityStatus; }
 
     /**
-     * <p>The capacity information for the fleet.</p>
+     * <p>The capacity status for the fleet.</p>
      */
     inline void SetComputeCapacityStatus(const ComputeCapacityStatus& value) { m_computeCapacityStatusHasBeenSet = true; m_computeCapacityStatus = value; }
 
     /**
-     * <p>The capacity information for the fleet.</p>
+     * <p>The capacity status for the fleet.</p>
      */
-    inline void SetComputeCapacityStatus(ComputeCapacityStatus&& value) { m_computeCapacityStatusHasBeenSet = true; m_computeCapacityStatus = value; }
+    inline void SetComputeCapacityStatus(ComputeCapacityStatus&& value) { m_computeCapacityStatusHasBeenSet = true; m_computeCapacityStatus = std::move(value); }
 
     /**
-     * <p>The capacity information for the fleet.</p>
+     * <p>The capacity status for the fleet.</p>
      */
     inline Fleet& WithComputeCapacityStatus(const ComputeCapacityStatus& value) { SetComputeCapacityStatus(value); return *this;}
 
     /**
-     * <p>The capacity information for the fleet.</p>
+     * <p>The capacity status for the fleet.</p>
      */
-    inline Fleet& WithComputeCapacityStatus(ComputeCapacityStatus&& value) { SetComputeCapacityStatus(value); return *this;}
+    inline Fleet& WithComputeCapacityStatus(ComputeCapacityStatus&& value) { SetComputeCapacityStatus(std::move(value)); return *this;}
+
 
     /**
-     * <p>The maximum time during which a streaming session can run.</p>
+     * <p>The maximum time that a streaming session can run, in seconds. Specify a
+     * value between 600 and 57600.</p>
      */
     inline int GetMaxUserDurationInSeconds() const{ return m_maxUserDurationInSeconds; }
 
     /**
-     * <p>The maximum time during which a streaming session can run.</p>
+     * <p>The maximum time that a streaming session can run, in seconds. Specify a
+     * value between 600 and 57600.</p>
      */
     inline void SetMaxUserDurationInSeconds(int value) { m_maxUserDurationInSecondsHasBeenSet = true; m_maxUserDurationInSeconds = value; }
 
     /**
-     * <p>The maximum time during which a streaming session can run.</p>
+     * <p>The maximum time that a streaming session can run, in seconds. Specify a
+     * value between 600 and 57600.</p>
      */
     inline Fleet& WithMaxUserDurationInSeconds(int value) { SetMaxUserDurationInSeconds(value); return *this;}
 
+
     /**
-     * <p>The time after disconnection when a session is considered to have ended. When
-     * a user reconnects after a disconnection, the user is connected to the same
-     * session and instance within this time interval.</p>
+     * <p>The time after disconnection when a session is considered to have ended, in
+     * seconds. If a user who was disconnected reconnects within this time interval,
+     * the user is connected to their previous session. Specify a value between 60 and
+     * 57600.</p>
      */
     inline int GetDisconnectTimeoutInSeconds() const{ return m_disconnectTimeoutInSeconds; }
 
     /**
-     * <p>The time after disconnection when a session is considered to have ended. When
-     * a user reconnects after a disconnection, the user is connected to the same
-     * session and instance within this time interval.</p>
+     * <p>The time after disconnection when a session is considered to have ended, in
+     * seconds. If a user who was disconnected reconnects within this time interval,
+     * the user is connected to their previous session. Specify a value between 60 and
+     * 57600.</p>
      */
     inline void SetDisconnectTimeoutInSeconds(int value) { m_disconnectTimeoutInSecondsHasBeenSet = true; m_disconnectTimeoutInSeconds = value; }
 
     /**
-     * <p>The time after disconnection when a session is considered to have ended. When
-     * a user reconnects after a disconnection, the user is connected to the same
-     * session and instance within this time interval.</p>
+     * <p>The time after disconnection when a session is considered to have ended, in
+     * seconds. If a user who was disconnected reconnects within this time interval,
+     * the user is connected to their previous session. Specify a value between 60 and
+     * 57600.</p>
      */
     inline Fleet& WithDisconnectTimeoutInSeconds(int value) { SetDisconnectTimeoutInSeconds(value); return *this;}
+
 
     /**
      * <p>The current state for the fleet.</p>
@@ -340,7 +369,7 @@ namespace Model
     /**
      * <p>The current state for the fleet.</p>
      */
-    inline void SetState(FleetState&& value) { m_stateHasBeenSet = true; m_state = value; }
+    inline void SetState(FleetState&& value) { m_stateHasBeenSet = true; m_state = std::move(value); }
 
     /**
      * <p>The current state for the fleet.</p>
@@ -350,7 +379,8 @@ namespace Model
     /**
      * <p>The current state for the fleet.</p>
      */
-    inline Fleet& WithState(FleetState&& value) { SetState(value); return *this;}
+    inline Fleet& WithState(FleetState&& value) { SetState(std::move(value)); return *this;}
+
 
     /**
      * <p>The VPC configuration for the fleet.</p>
@@ -365,7 +395,7 @@ namespace Model
     /**
      * <p>The VPC configuration for the fleet.</p>
      */
-    inline void SetVpcConfig(VpcConfig&& value) { m_vpcConfigHasBeenSet = true; m_vpcConfig = value; }
+    inline void SetVpcConfig(VpcConfig&& value) { m_vpcConfigHasBeenSet = true; m_vpcConfig = std::move(value); }
 
     /**
      * <p>The VPC configuration for the fleet.</p>
@@ -375,95 +405,161 @@ namespace Model
     /**
      * <p>The VPC configuration for the fleet.</p>
      */
-    inline Fleet& WithVpcConfig(VpcConfig&& value) { SetVpcConfig(value); return *this;}
+    inline Fleet& WithVpcConfig(VpcConfig&& value) { SetVpcConfig(std::move(value)); return *this;}
+
 
     /**
-     * <p>The time at which the fleet was created.</p>
+     * <p>The time the fleet was created.</p>
      */
     inline const Aws::Utils::DateTime& GetCreatedTime() const{ return m_createdTime; }
 
     /**
-     * <p>The time at which the fleet was created.</p>
+     * <p>The time the fleet was created.</p>
      */
     inline void SetCreatedTime(const Aws::Utils::DateTime& value) { m_createdTimeHasBeenSet = true; m_createdTime = value; }
 
     /**
-     * <p>The time at which the fleet was created.</p>
+     * <p>The time the fleet was created.</p>
      */
-    inline void SetCreatedTime(Aws::Utils::DateTime&& value) { m_createdTimeHasBeenSet = true; m_createdTime = value; }
+    inline void SetCreatedTime(Aws::Utils::DateTime&& value) { m_createdTimeHasBeenSet = true; m_createdTime = std::move(value); }
 
     /**
-     * <p>The time at which the fleet was created.</p>
+     * <p>The time the fleet was created.</p>
      */
     inline Fleet& WithCreatedTime(const Aws::Utils::DateTime& value) { SetCreatedTime(value); return *this;}
 
     /**
-     * <p>The time at which the fleet was created.</p>
+     * <p>The time the fleet was created.</p>
      */
-    inline Fleet& WithCreatedTime(Aws::Utils::DateTime&& value) { SetCreatedTime(value); return *this;}
+    inline Fleet& WithCreatedTime(Aws::Utils::DateTime&& value) { SetCreatedTime(std::move(value)); return *this;}
+
 
     /**
-     * <p>The list of fleet errors is appended to this list.</p>
+     * <p>The fleet errors.</p>
      */
     inline const Aws::Vector<FleetError>& GetFleetErrors() const{ return m_fleetErrors; }
 
     /**
-     * <p>The list of fleet errors is appended to this list.</p>
+     * <p>The fleet errors.</p>
      */
     inline void SetFleetErrors(const Aws::Vector<FleetError>& value) { m_fleetErrorsHasBeenSet = true; m_fleetErrors = value; }
 
     /**
-     * <p>The list of fleet errors is appended to this list.</p>
+     * <p>The fleet errors.</p>
      */
-    inline void SetFleetErrors(Aws::Vector<FleetError>&& value) { m_fleetErrorsHasBeenSet = true; m_fleetErrors = value; }
+    inline void SetFleetErrors(Aws::Vector<FleetError>&& value) { m_fleetErrorsHasBeenSet = true; m_fleetErrors = std::move(value); }
 
     /**
-     * <p>The list of fleet errors is appended to this list.</p>
+     * <p>The fleet errors.</p>
      */
     inline Fleet& WithFleetErrors(const Aws::Vector<FleetError>& value) { SetFleetErrors(value); return *this;}
 
     /**
-     * <p>The list of fleet errors is appended to this list.</p>
+     * <p>The fleet errors.</p>
      */
-    inline Fleet& WithFleetErrors(Aws::Vector<FleetError>&& value) { SetFleetErrors(value); return *this;}
+    inline Fleet& WithFleetErrors(Aws::Vector<FleetError>&& value) { SetFleetErrors(std::move(value)); return *this;}
 
     /**
-     * <p>The list of fleet errors is appended to this list.</p>
+     * <p>The fleet errors.</p>
      */
     inline Fleet& AddFleetErrors(const FleetError& value) { m_fleetErrorsHasBeenSet = true; m_fleetErrors.push_back(value); return *this; }
 
     /**
-     * <p>The list of fleet errors is appended to this list.</p>
+     * <p>The fleet errors.</p>
      */
-    inline Fleet& AddFleetErrors(FleetError&& value) { m_fleetErrorsHasBeenSet = true; m_fleetErrors.push_back(value); return *this; }
+    inline Fleet& AddFleetErrors(FleetError&& value) { m_fleetErrorsHasBeenSet = true; m_fleetErrors.push_back(std::move(value)); return *this; }
+
+
+    /**
+     * <p>Indicates whether default internet access is enabled for the fleet.</p>
+     */
+    inline bool GetEnableDefaultInternetAccess() const{ return m_enableDefaultInternetAccess; }
+
+    /**
+     * <p>Indicates whether default internet access is enabled for the fleet.</p>
+     */
+    inline void SetEnableDefaultInternetAccess(bool value) { m_enableDefaultInternetAccessHasBeenSet = true; m_enableDefaultInternetAccess = value; }
+
+    /**
+     * <p>Indicates whether default internet access is enabled for the fleet.</p>
+     */
+    inline Fleet& WithEnableDefaultInternetAccess(bool value) { SetEnableDefaultInternetAccess(value); return *this;}
+
+
+    /**
+     * <p>The information needed for streaming instances to join a domain.</p>
+     */
+    inline const DomainJoinInfo& GetDomainJoinInfo() const{ return m_domainJoinInfo; }
+
+    /**
+     * <p>The information needed for streaming instances to join a domain.</p>
+     */
+    inline void SetDomainJoinInfo(const DomainJoinInfo& value) { m_domainJoinInfoHasBeenSet = true; m_domainJoinInfo = value; }
+
+    /**
+     * <p>The information needed for streaming instances to join a domain.</p>
+     */
+    inline void SetDomainJoinInfo(DomainJoinInfo&& value) { m_domainJoinInfoHasBeenSet = true; m_domainJoinInfo = std::move(value); }
+
+    /**
+     * <p>The information needed for streaming instances to join a domain.</p>
+     */
+    inline Fleet& WithDomainJoinInfo(const DomainJoinInfo& value) { SetDomainJoinInfo(value); return *this;}
+
+    /**
+     * <p>The information needed for streaming instances to join a domain.</p>
+     */
+    inline Fleet& WithDomainJoinInfo(DomainJoinInfo&& value) { SetDomainJoinInfo(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_arn;
     bool m_arnHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_displayName;
     bool m_displayNameHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     Aws::String m_imageName;
     bool m_imageNameHasBeenSet;
+
     Aws::String m_instanceType;
     bool m_instanceTypeHasBeenSet;
+
+    FleetType m_fleetType;
+    bool m_fleetTypeHasBeenSet;
+
     ComputeCapacityStatus m_computeCapacityStatus;
     bool m_computeCapacityStatusHasBeenSet;
+
     int m_maxUserDurationInSeconds;
     bool m_maxUserDurationInSecondsHasBeenSet;
+
     int m_disconnectTimeoutInSeconds;
     bool m_disconnectTimeoutInSecondsHasBeenSet;
+
     FleetState m_state;
     bool m_stateHasBeenSet;
+
     VpcConfig m_vpcConfig;
     bool m_vpcConfigHasBeenSet;
+
     Aws::Utils::DateTime m_createdTime;
     bool m_createdTimeHasBeenSet;
+
     Aws::Vector<FleetError> m_fleetErrors;
     bool m_fleetErrorsHasBeenSet;
+
+    bool m_enableDefaultInternetAccess;
+    bool m_enableDefaultInternetAccessHasBeenSet;
+
+    DomainJoinInfo m_domainJoinInfo;
+    bool m_domainJoinInfoHasBeenSet;
   };
 
 } // namespace Model

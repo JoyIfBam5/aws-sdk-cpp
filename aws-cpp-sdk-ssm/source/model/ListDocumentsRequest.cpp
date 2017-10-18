@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ssm/model/ListDocumentsRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -23,6 +24,7 @@ using namespace Aws::Utils;
 
 ListDocumentsRequest::ListDocumentsRequest() : 
     m_documentFilterListHasBeenSet(false),
+    m_filtersHasBeenSet(false),
     m_maxResults(0),
     m_maxResultsHasBeenSet(false),
     m_nextTokenHasBeenSet(false)
@@ -41,6 +43,17 @@ Aws::String ListDocumentsRequest::SerializePayload() const
      documentFilterListJsonList[documentFilterListIndex].AsObject(m_documentFilterList[documentFilterListIndex].Jsonize());
    }
    payload.WithArray("DocumentFilterList", std::move(documentFilterListJsonList));
+
+  }
+
+  if(m_filtersHasBeenSet)
+  {
+   Array<JsonValue> filtersJsonList(m_filters.size());
+   for(unsigned filtersIndex = 0; filtersIndex < filtersJsonList.GetLength(); ++filtersIndex)
+   {
+     filtersJsonList[filtersIndex].AsObject(m_filters[filtersIndex].Jsonize());
+   }
+   payload.WithArray("Filters", std::move(filtersJsonList));
 
   }
 
@@ -66,6 +79,7 @@ Aws::Http::HeaderValueCollection ListDocumentsRequest::GetRequestSpecificHeaders
   return headers;
 
 }
+
 
 
 

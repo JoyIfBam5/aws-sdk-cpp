@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/cognito-idp/model/UserPoolType.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -39,9 +40,11 @@ UserPoolType::UserPoolType() :
     m_schemaAttributesHasBeenSet(false),
     m_autoVerifiedAttributesHasBeenSet(false),
     m_aliasAttributesHasBeenSet(false),
+    m_usernameAttributesHasBeenSet(false),
     m_smsVerificationMessageHasBeenSet(false),
     m_emailVerificationMessageHasBeenSet(false),
     m_emailVerificationSubjectHasBeenSet(false),
+    m_verificationMessageTemplateHasBeenSet(false),
     m_smsAuthenticationMessageHasBeenSet(false),
     m_mfaConfiguration(UserPoolMfaType::NOT_SET),
     m_mfaConfigurationHasBeenSet(false),
@@ -69,9 +72,11 @@ UserPoolType::UserPoolType(const JsonValue& jsonValue) :
     m_schemaAttributesHasBeenSet(false),
     m_autoVerifiedAttributesHasBeenSet(false),
     m_aliasAttributesHasBeenSet(false),
+    m_usernameAttributesHasBeenSet(false),
     m_smsVerificationMessageHasBeenSet(false),
     m_emailVerificationMessageHasBeenSet(false),
     m_emailVerificationSubjectHasBeenSet(false),
+    m_verificationMessageTemplateHasBeenSet(false),
     m_smsAuthenticationMessageHasBeenSet(false),
     m_mfaConfiguration(UserPoolMfaType::NOT_SET),
     m_mfaConfigurationHasBeenSet(false),
@@ -169,6 +174,16 @@ UserPoolType& UserPoolType::operator =(const JsonValue& jsonValue)
     m_aliasAttributesHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("UsernameAttributes"))
+  {
+    Array<JsonValue> usernameAttributesJsonList = jsonValue.GetArray("UsernameAttributes");
+    for(unsigned usernameAttributesIndex = 0; usernameAttributesIndex < usernameAttributesJsonList.GetLength(); ++usernameAttributesIndex)
+    {
+      m_usernameAttributes.push_back(UsernameAttributeTypeMapper::GetUsernameAttributeTypeForName(usernameAttributesJsonList[usernameAttributesIndex].AsString()));
+    }
+    m_usernameAttributesHasBeenSet = true;
+  }
+
   if(jsonValue.ValueExists("SmsVerificationMessage"))
   {
     m_smsVerificationMessage = jsonValue.GetString("SmsVerificationMessage");
@@ -188,6 +203,13 @@ UserPoolType& UserPoolType::operator =(const JsonValue& jsonValue)
     m_emailVerificationSubject = jsonValue.GetString("EmailVerificationSubject");
 
     m_emailVerificationSubjectHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("VerificationMessageTemplate"))
+  {
+    m_verificationMessageTemplate = jsonValue.GetObject("VerificationMessageTemplate");
+
+    m_verificationMessageTemplateHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("SmsAuthenticationMessage"))
@@ -342,6 +364,17 @@ JsonValue UserPoolType::Jsonize() const
 
   }
 
+  if(m_usernameAttributesHasBeenSet)
+  {
+   Array<JsonValue> usernameAttributesJsonList(m_usernameAttributes.size());
+   for(unsigned usernameAttributesIndex = 0; usernameAttributesIndex < usernameAttributesJsonList.GetLength(); ++usernameAttributesIndex)
+   {
+     usernameAttributesJsonList[usernameAttributesIndex].AsString(UsernameAttributeTypeMapper::GetNameForUsernameAttributeType(m_usernameAttributes[usernameAttributesIndex]));
+   }
+   payload.WithArray("UsernameAttributes", std::move(usernameAttributesJsonList));
+
+  }
+
   if(m_smsVerificationMessageHasBeenSet)
   {
    payload.WithString("SmsVerificationMessage", m_smsVerificationMessage);
@@ -357,6 +390,12 @@ JsonValue UserPoolType::Jsonize() const
   if(m_emailVerificationSubjectHasBeenSet)
   {
    payload.WithString("EmailVerificationSubject", m_emailVerificationSubject);
+
+  }
+
+  if(m_verificationMessageTemplateHasBeenSet)
+  {
+   payload.WithObject("VerificationMessageTemplate", m_verificationMessageTemplate.Jsonize());
 
   }
 

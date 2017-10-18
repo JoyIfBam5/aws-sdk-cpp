@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/states/SFN_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,6 +40,7 @@ namespace Model
     ExecutionStartedEventDetails& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The JSON data input to the execution.</p>
      */
@@ -51,7 +54,7 @@ namespace Model
     /**
      * <p>The JSON data input to the execution.</p>
      */
-    inline void SetInput(Aws::String&& value) { m_inputHasBeenSet = true; m_input = value; }
+    inline void SetInput(Aws::String&& value) { m_inputHasBeenSet = true; m_input = std::move(value); }
 
     /**
      * <p>The JSON data input to the execution.</p>
@@ -66,12 +69,13 @@ namespace Model
     /**
      * <p>The JSON data input to the execution.</p>
      */
-    inline ExecutionStartedEventDetails& WithInput(Aws::String&& value) { SetInput(value); return *this;}
+    inline ExecutionStartedEventDetails& WithInput(Aws::String&& value) { SetInput(std::move(value)); return *this;}
 
     /**
      * <p>The JSON data input to the execution.</p>
      */
     inline ExecutionStartedEventDetails& WithInput(const char* value) { SetInput(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role used for executing AWS Lambda
@@ -89,7 +93,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the IAM role used for executing AWS Lambda
      * tasks.</p>
      */
-    inline void SetRoleArn(Aws::String&& value) { m_roleArnHasBeenSet = true; m_roleArn = value; }
+    inline void SetRoleArn(Aws::String&& value) { m_roleArnHasBeenSet = true; m_roleArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role used for executing AWS Lambda
@@ -107,7 +111,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the IAM role used for executing AWS Lambda
      * tasks.</p>
      */
-    inline ExecutionStartedEventDetails& WithRoleArn(Aws::String&& value) { SetRoleArn(value); return *this;}
+    inline ExecutionStartedEventDetails& WithRoleArn(Aws::String&& value) { SetRoleArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role used for executing AWS Lambda
@@ -116,8 +120,10 @@ namespace Model
     inline ExecutionStartedEventDetails& WithRoleArn(const char* value) { SetRoleArn(value); return *this;}
 
   private:
+
     Aws::String m_input;
     bool m_inputHasBeenSet;
+
     Aws::String m_roleArn;
     bool m_roleArnHasBeenSet;
   };

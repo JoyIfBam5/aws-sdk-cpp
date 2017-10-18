@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codebuild/CodeBuild_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,89 +46,78 @@ namespace Model
     LogsLocation& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p>The name of the Amazon CloudWatch Logs group for the associated build
-     * logs.</p>
+     * <p>The name of the Amazon CloudWatch Logs group for the build logs.</p>
      */
     inline const Aws::String& GetGroupName() const{ return m_groupName; }
 
     /**
-     * <p>The name of the Amazon CloudWatch Logs group for the associated build
-     * logs.</p>
+     * <p>The name of the Amazon CloudWatch Logs group for the build logs.</p>
      */
     inline void SetGroupName(const Aws::String& value) { m_groupNameHasBeenSet = true; m_groupName = value; }
 
     /**
-     * <p>The name of the Amazon CloudWatch Logs group for the associated build
-     * logs.</p>
+     * <p>The name of the Amazon CloudWatch Logs group for the build logs.</p>
      */
-    inline void SetGroupName(Aws::String&& value) { m_groupNameHasBeenSet = true; m_groupName = value; }
+    inline void SetGroupName(Aws::String&& value) { m_groupNameHasBeenSet = true; m_groupName = std::move(value); }
 
     /**
-     * <p>The name of the Amazon CloudWatch Logs group for the associated build
-     * logs.</p>
+     * <p>The name of the Amazon CloudWatch Logs group for the build logs.</p>
      */
     inline void SetGroupName(const char* value) { m_groupNameHasBeenSet = true; m_groupName.assign(value); }
 
     /**
-     * <p>The name of the Amazon CloudWatch Logs group for the associated build
-     * logs.</p>
+     * <p>The name of the Amazon CloudWatch Logs group for the build logs.</p>
      */
     inline LogsLocation& WithGroupName(const Aws::String& value) { SetGroupName(value); return *this;}
 
     /**
-     * <p>The name of the Amazon CloudWatch Logs group for the associated build
-     * logs.</p>
+     * <p>The name of the Amazon CloudWatch Logs group for the build logs.</p>
      */
-    inline LogsLocation& WithGroupName(Aws::String&& value) { SetGroupName(value); return *this;}
+    inline LogsLocation& WithGroupName(Aws::String&& value) { SetGroupName(std::move(value)); return *this;}
 
     /**
-     * <p>The name of the Amazon CloudWatch Logs group for the associated build
-     * logs.</p>
+     * <p>The name of the Amazon CloudWatch Logs group for the build logs.</p>
      */
     inline LogsLocation& WithGroupName(const char* value) { SetGroupName(value); return *this;}
 
+
     /**
-     * <p>The name of the Amazon CloudWatch Logs stream for the associated build
-     * logs.</p>
+     * <p>The name of the Amazon CloudWatch Logs stream for the build logs.</p>
      */
     inline const Aws::String& GetStreamName() const{ return m_streamName; }
 
     /**
-     * <p>The name of the Amazon CloudWatch Logs stream for the associated build
-     * logs.</p>
+     * <p>The name of the Amazon CloudWatch Logs stream for the build logs.</p>
      */
     inline void SetStreamName(const Aws::String& value) { m_streamNameHasBeenSet = true; m_streamName = value; }
 
     /**
-     * <p>The name of the Amazon CloudWatch Logs stream for the associated build
-     * logs.</p>
+     * <p>The name of the Amazon CloudWatch Logs stream for the build logs.</p>
      */
-    inline void SetStreamName(Aws::String&& value) { m_streamNameHasBeenSet = true; m_streamName = value; }
+    inline void SetStreamName(Aws::String&& value) { m_streamNameHasBeenSet = true; m_streamName = std::move(value); }
 
     /**
-     * <p>The name of the Amazon CloudWatch Logs stream for the associated build
-     * logs.</p>
+     * <p>The name of the Amazon CloudWatch Logs stream for the build logs.</p>
      */
     inline void SetStreamName(const char* value) { m_streamNameHasBeenSet = true; m_streamName.assign(value); }
 
     /**
-     * <p>The name of the Amazon CloudWatch Logs stream for the associated build
-     * logs.</p>
+     * <p>The name of the Amazon CloudWatch Logs stream for the build logs.</p>
      */
     inline LogsLocation& WithStreamName(const Aws::String& value) { SetStreamName(value); return *this;}
 
     /**
-     * <p>The name of the Amazon CloudWatch Logs stream for the associated build
-     * logs.</p>
+     * <p>The name of the Amazon CloudWatch Logs stream for the build logs.</p>
      */
-    inline LogsLocation& WithStreamName(Aws::String&& value) { SetStreamName(value); return *this;}
+    inline LogsLocation& WithStreamName(Aws::String&& value) { SetStreamName(std::move(value)); return *this;}
 
     /**
-     * <p>The name of the Amazon CloudWatch Logs stream for the associated build
-     * logs.</p>
+     * <p>The name of the Amazon CloudWatch Logs stream for the build logs.</p>
      */
     inline LogsLocation& WithStreamName(const char* value) { SetStreamName(value); return *this;}
+
 
     /**
      * <p>The URL to an individual build log in Amazon CloudWatch Logs.</p>
@@ -141,7 +132,7 @@ namespace Model
     /**
      * <p>The URL to an individual build log in Amazon CloudWatch Logs.</p>
      */
-    inline void SetDeepLink(Aws::String&& value) { m_deepLinkHasBeenSet = true; m_deepLink = value; }
+    inline void SetDeepLink(Aws::String&& value) { m_deepLinkHasBeenSet = true; m_deepLink = std::move(value); }
 
     /**
      * <p>The URL to an individual build log in Amazon CloudWatch Logs.</p>
@@ -156,7 +147,7 @@ namespace Model
     /**
      * <p>The URL to an individual build log in Amazon CloudWatch Logs.</p>
      */
-    inline LogsLocation& WithDeepLink(Aws::String&& value) { SetDeepLink(value); return *this;}
+    inline LogsLocation& WithDeepLink(Aws::String&& value) { SetDeepLink(std::move(value)); return *this;}
 
     /**
      * <p>The URL to an individual build log in Amazon CloudWatch Logs.</p>
@@ -164,10 +155,13 @@ namespace Model
     inline LogsLocation& WithDeepLink(const char* value) { SetDeepLink(value); return *this;}
 
   private:
+
     Aws::String m_groupName;
     bool m_groupNameHasBeenSet;
+
     Aws::String m_streamName;
     bool m_streamNameHasBeenSet;
+
     Aws::String m_deepLink;
     bool m_deepLinkHasBeenSet;
   };

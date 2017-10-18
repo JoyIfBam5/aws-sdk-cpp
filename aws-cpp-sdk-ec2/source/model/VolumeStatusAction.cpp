@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/VolumeStatusAction.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -32,16 +33,16 @@ namespace Model
 VolumeStatusAction::VolumeStatusAction() : 
     m_codeHasBeenSet(false),
     m_descriptionHasBeenSet(false),
-    m_eventTypeHasBeenSet(false),
-    m_eventIdHasBeenSet(false)
+    m_eventIdHasBeenSet(false),
+    m_eventTypeHasBeenSet(false)
 {
 }
 
 VolumeStatusAction::VolumeStatusAction(const XmlNode& xmlNode) : 
     m_codeHasBeenSet(false),
     m_descriptionHasBeenSet(false),
-    m_eventTypeHasBeenSet(false),
-    m_eventIdHasBeenSet(false)
+    m_eventIdHasBeenSet(false),
+    m_eventTypeHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -64,17 +65,17 @@ VolumeStatusAction& VolumeStatusAction::operator =(const XmlNode& xmlNode)
       m_description = StringUtils::Trim(descriptionNode.GetText().c_str());
       m_descriptionHasBeenSet = true;
     }
-    XmlNode eventTypeNode = resultNode.FirstChild("eventType");
-    if(!eventTypeNode.IsNull())
-    {
-      m_eventType = StringUtils::Trim(eventTypeNode.GetText().c_str());
-      m_eventTypeHasBeenSet = true;
-    }
     XmlNode eventIdNode = resultNode.FirstChild("eventId");
     if(!eventIdNode.IsNull())
     {
       m_eventId = StringUtils::Trim(eventIdNode.GetText().c_str());
       m_eventIdHasBeenSet = true;
+    }
+    XmlNode eventTypeNode = resultNode.FirstChild("eventType");
+    if(!eventTypeNode.IsNull())
+    {
+      m_eventType = StringUtils::Trim(eventTypeNode.GetText().c_str());
+      m_eventTypeHasBeenSet = true;
     }
   }
 
@@ -93,14 +94,14 @@ void VolumeStatusAction::OutputToStream(Aws::OStream& oStream, const char* locat
       oStream << location << index << locationValue << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
   }
 
-  if(m_eventTypeHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".EventType=" << StringUtils::URLEncode(m_eventType.c_str()) << "&";
-  }
-
   if(m_eventIdHasBeenSet)
   {
       oStream << location << index << locationValue << ".EventId=" << StringUtils::URLEncode(m_eventId.c_str()) << "&";
+  }
+
+  if(m_eventTypeHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".EventType=" << StringUtils::URLEncode(m_eventType.c_str()) << "&";
   }
 
 }
@@ -115,13 +116,13 @@ void VolumeStatusAction::OutputToStream(Aws::OStream& oStream, const char* locat
   {
       oStream << location << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
   }
-  if(m_eventTypeHasBeenSet)
-  {
-      oStream << location << ".EventType=" << StringUtils::URLEncode(m_eventType.c_str()) << "&";
-  }
   if(m_eventIdHasBeenSet)
   {
       oStream << location << ".EventId=" << StringUtils::URLEncode(m_eventId.c_str()) << "&";
+  }
+  if(m_eventTypeHasBeenSet)
+  {
+      oStream << location << ".EventType=" << StringUtils::URLEncode(m_eventType.c_str()) << "&";
   }
 }
 

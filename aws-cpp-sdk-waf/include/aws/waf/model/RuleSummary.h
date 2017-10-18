@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     RuleSummary(const Aws::Utils::Json::JsonValue& jsonValue);
     RuleSummary& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>A unique identifier for a <code>Rule</code>. You use <code>RuleId</code> to
@@ -75,7 +78,7 @@ namespace Model
      * <a>DeleteRule</a>).</p> <p> <code>RuleId</code> is returned by <a>CreateRule</a>
      * and by <a>ListRules</a>.</p>
      */
-    inline void SetRuleId(Aws::String&& value) { m_ruleIdHasBeenSet = true; m_ruleId = value; }
+    inline void SetRuleId(Aws::String&& value) { m_ruleIdHasBeenSet = true; m_ruleId = std::move(value); }
 
     /**
      * <p>A unique identifier for a <code>Rule</code>. You use <code>RuleId</code> to
@@ -108,7 +111,7 @@ namespace Model
      * <a>DeleteRule</a>).</p> <p> <code>RuleId</code> is returned by <a>CreateRule</a>
      * and by <a>ListRules</a>.</p>
      */
-    inline RuleSummary& WithRuleId(Aws::String&& value) { SetRuleId(value); return *this;}
+    inline RuleSummary& WithRuleId(Aws::String&& value) { SetRuleId(std::move(value)); return *this;}
 
     /**
      * <p>A unique identifier for a <code>Rule</code>. You use <code>RuleId</code> to
@@ -120,6 +123,7 @@ namespace Model
      * and by <a>ListRules</a>.</p>
      */
     inline RuleSummary& WithRuleId(const char* value) { SetRuleId(value); return *this;}
+
 
     /**
      * <p>A friendly name or description of the <a>Rule</a>. You can't change the name
@@ -137,7 +141,7 @@ namespace Model
      * <p>A friendly name or description of the <a>Rule</a>. You can't change the name
      * of a <code>Rule</code> after you create it.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>A friendly name or description of the <a>Rule</a>. You can't change the name
@@ -155,7 +159,7 @@ namespace Model
      * <p>A friendly name or description of the <a>Rule</a>. You can't change the name
      * of a <code>Rule</code> after you create it.</p>
      */
-    inline RuleSummary& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline RuleSummary& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>A friendly name or description of the <a>Rule</a>. You can't change the name
@@ -164,8 +168,10 @@ namespace Model
     inline RuleSummary& WithName(const char* value) { SetName(value); return *this;}
 
   private:
+
     Aws::String m_ruleId;
     bool m_ruleIdHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/autoscaling/AutoScaling_EXPORTS.h>
 #include <aws/autoscaling/AutoScalingRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -25,15 +27,24 @@ namespace Model
 {
 
   /**
-   * <p>Contains the parameters for ExecutePolicy.</p><p><h3>See Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/autoscaling-2011-01-01/ExecutePolicyType">AWS
-   * API Reference</a></p>
    */
   class AWS_AUTOSCALING_API ExecutePolicyRequest : public AutoScalingRequest
   {
   public:
     ExecutePolicyRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ExecutePolicy"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The name or Amazon Resource Name (ARN) of the Auto Scaling group.</p>
@@ -48,7 +59,7 @@ namespace Model
     /**
      * <p>The name or Amazon Resource Name (ARN) of the Auto Scaling group.</p>
      */
-    inline void SetAutoScalingGroupName(Aws::String&& value) { m_autoScalingGroupNameHasBeenSet = true; m_autoScalingGroupName = value; }
+    inline void SetAutoScalingGroupName(Aws::String&& value) { m_autoScalingGroupNameHasBeenSet = true; m_autoScalingGroupName = std::move(value); }
 
     /**
      * <p>The name or Amazon Resource Name (ARN) of the Auto Scaling group.</p>
@@ -63,12 +74,13 @@ namespace Model
     /**
      * <p>The name or Amazon Resource Name (ARN) of the Auto Scaling group.</p>
      */
-    inline ExecutePolicyRequest& WithAutoScalingGroupName(Aws::String&& value) { SetAutoScalingGroupName(value); return *this;}
+    inline ExecutePolicyRequest& WithAutoScalingGroupName(Aws::String&& value) { SetAutoScalingGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name or Amazon Resource Name (ARN) of the Auto Scaling group.</p>
      */
     inline ExecutePolicyRequest& WithAutoScalingGroupName(const char* value) { SetAutoScalingGroupName(value); return *this;}
+
 
     /**
      * <p>The name or ARN of the policy.</p>
@@ -83,7 +95,7 @@ namespace Model
     /**
      * <p>The name or ARN of the policy.</p>
      */
-    inline void SetPolicyName(Aws::String&& value) { m_policyNameHasBeenSet = true; m_policyName = value; }
+    inline void SetPolicyName(Aws::String&& value) { m_policyNameHasBeenSet = true; m_policyName = std::move(value); }
 
     /**
      * <p>The name or ARN of the policy.</p>
@@ -98,12 +110,13 @@ namespace Model
     /**
      * <p>The name or ARN of the policy.</p>
      */
-    inline ExecutePolicyRequest& WithPolicyName(Aws::String&& value) { SetPolicyName(value); return *this;}
+    inline ExecutePolicyRequest& WithPolicyName(Aws::String&& value) { SetPolicyName(std::move(value)); return *this;}
 
     /**
      * <p>The name or ARN of the policy.</p>
      */
     inline ExecutePolicyRequest& WithPolicyName(const char* value) { SetPolicyName(value); return *this;}
+
 
     /**
      * <p>If this parameter is true, Auto Scaling waits for the cooldown period to
@@ -137,6 +150,7 @@ namespace Model
      * Scaling Cooldowns</a> in the <i>Auto Scaling User Guide</i>.</p>
      */
     inline ExecutePolicyRequest& WithHonorCooldown(bool value) { SetHonorCooldown(value); return *this;}
+
 
     /**
      * <p>The metric value to compare to <code>BreachThreshold</code>. This enables you
@@ -174,6 +188,7 @@ namespace Model
      */
     inline ExecutePolicyRequest& WithMetricValue(double value) { SetMetricValue(value); return *this;}
 
+
     /**
      * <p>The breach threshold for the alarm.</p> <p>This parameter is required if the
      * policy type is <code>StepScaling</code> and not supported otherwise.</p>
@@ -193,14 +208,19 @@ namespace Model
     inline ExecutePolicyRequest& WithBreachThreshold(double value) { SetBreachThreshold(value); return *this;}
 
   private:
+
     Aws::String m_autoScalingGroupName;
     bool m_autoScalingGroupNameHasBeenSet;
+
     Aws::String m_policyName;
     bool m_policyNameHasBeenSet;
+
     bool m_honorCooldown;
     bool m_honorCooldownHasBeenSet;
+
     double m_metricValue;
     bool m_metricValueHasBeenSet;
+
     double m_breachThreshold;
     bool m_breachThresholdHasBeenSet;
   };

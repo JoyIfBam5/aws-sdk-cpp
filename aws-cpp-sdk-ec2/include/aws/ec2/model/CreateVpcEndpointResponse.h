@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
-#include <aws/ec2/model/VpcEndpoint.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <aws/ec2/model/VpcEndpoint.h>
 #include <aws/ec2/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,33 +45,9 @@ namespace Model
   {
   public:
     CreateVpcEndpointResponse();
-    CreateVpcEndpointResponse(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    CreateVpcEndpointResponse& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CreateVpcEndpointResponse(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CreateVpcEndpointResponse& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
 
-    /**
-     * <p>Information about the endpoint.</p>
-     */
-    inline const VpcEndpoint& GetVpcEndpoint() const{ return m_vpcEndpoint; }
-
-    /**
-     * <p>Information about the endpoint.</p>
-     */
-    inline void SetVpcEndpoint(const VpcEndpoint& value) { m_vpcEndpoint = value; }
-
-    /**
-     * <p>Information about the endpoint.</p>
-     */
-    inline void SetVpcEndpoint(VpcEndpoint&& value) { m_vpcEndpoint = value; }
-
-    /**
-     * <p>Information about the endpoint.</p>
-     */
-    inline CreateVpcEndpointResponse& WithVpcEndpoint(const VpcEndpoint& value) { SetVpcEndpoint(value); return *this;}
-
-    /**
-     * <p>Information about the endpoint.</p>
-     */
-    inline CreateVpcEndpointResponse& WithVpcEndpoint(VpcEndpoint&& value) { SetVpcEndpoint(value); return *this;}
 
     /**
      * <p>Unique, case-sensitive identifier you provide to ensure the idempotency of
@@ -87,7 +65,7 @@ namespace Model
      * <p>Unique, case-sensitive identifier you provide to ensure the idempotency of
      * the request.</p>
      */
-    inline void SetClientToken(Aws::String&& value) { m_clientToken = value; }
+    inline void SetClientToken(Aws::String&& value) { m_clientToken = std::move(value); }
 
     /**
      * <p>Unique, case-sensitive identifier you provide to ensure the idempotency of
@@ -105,13 +83,40 @@ namespace Model
      * <p>Unique, case-sensitive identifier you provide to ensure the idempotency of
      * the request.</p>
      */
-    inline CreateVpcEndpointResponse& WithClientToken(Aws::String&& value) { SetClientToken(value); return *this;}
+    inline CreateVpcEndpointResponse& WithClientToken(Aws::String&& value) { SetClientToken(std::move(value)); return *this;}
 
     /**
      * <p>Unique, case-sensitive identifier you provide to ensure the idempotency of
      * the request.</p>
      */
     inline CreateVpcEndpointResponse& WithClientToken(const char* value) { SetClientToken(value); return *this;}
+
+
+    /**
+     * <p>Information about the endpoint.</p>
+     */
+    inline const VpcEndpoint& GetVpcEndpoint() const{ return m_vpcEndpoint; }
+
+    /**
+     * <p>Information about the endpoint.</p>
+     */
+    inline void SetVpcEndpoint(const VpcEndpoint& value) { m_vpcEndpoint = value; }
+
+    /**
+     * <p>Information about the endpoint.</p>
+     */
+    inline void SetVpcEndpoint(VpcEndpoint&& value) { m_vpcEndpoint = std::move(value); }
+
+    /**
+     * <p>Information about the endpoint.</p>
+     */
+    inline CreateVpcEndpointResponse& WithVpcEndpoint(const VpcEndpoint& value) { SetVpcEndpoint(value); return *this;}
+
+    /**
+     * <p>Information about the endpoint.</p>
+     */
+    inline CreateVpcEndpointResponse& WithVpcEndpoint(VpcEndpoint&& value) { SetVpcEndpoint(std::move(value)); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -120,17 +125,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline CreateVpcEndpointResponse& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline CreateVpcEndpointResponse& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline CreateVpcEndpointResponse& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
-    VpcEndpoint m_vpcEndpoint;
+
     Aws::String m_clientToken;
+
+    VpcEndpoint m_vpcEndpoint;
+
     ResponseMetadata m_responseMetadata;
   };
 

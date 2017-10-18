@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 
 #include <aws/core/client/CoreErrors.h>
@@ -54,7 +55,7 @@ enum class DatabaseMigrationServiceErrors
   UNKNOWN = 100,
   ///////////////////////////////////////////////////////////////////////////////////////////
 
-  ACCESS_DENIED_FAULT= static_cast<int>(Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
+  ACCESS_DENIED_FAULT= static_cast<int>(Aws::Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
   INSUFFICIENT_RESOURCE_CAPACITY_FAULT,
   INVALID_CERTIFICATE_FAULT,
   INVALID_RESOURCE_STATE_FAULT,
@@ -66,11 +67,13 @@ enum class DatabaseMigrationServiceErrors
   RESOURCE_QUOTA_EXCEEDED_FAULT,
   STORAGE_QUOTA_EXCEEDED_FAULT,
   SUBNET_ALREADY_IN_USE,
+  S_N_S_INVALID_TOPIC_FAULT,
+  S_N_S_NO_AUTHORIZATION_FAULT,
   UPGRADE_DEPENDENCY_FAILURE_FAULT
 };
 namespace DatabaseMigrationServiceErrorMapper
 {
-  AWS_DATABASEMIGRATIONSERVICE_API Client::AWSError<Client::CoreErrors> GetErrorForName(const char* errorName);
+  AWS_DATABASEMIGRATIONSERVICE_API Aws::Client::AWSError<Aws::Client::CoreErrors> GetErrorForName(const char* errorName);
 }
 
 } // namespace DatabaseMigrationService

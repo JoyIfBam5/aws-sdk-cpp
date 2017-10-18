@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/glacier/Glacier_EXPORTS.h>
 #include <aws/glacier/GlacierRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -39,9 +41,17 @@ namespace Model
   {
   public:
     ListVaultsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListVaults"; }
+
     Aws::String SerializePayload() const override;
 
     void AddQueryStringParameters(Aws::Http::URI& uri) const override;
+
 
     /**
      * <p>The <code>AccountId</code> value is the AWS account ID. This value must match
@@ -71,7 +81,7 @@ namespace Model
      * the credentials used to sign the request. If you specify your account ID, do not
      * include any hyphens ('-') in the ID.</p>
      */
-    inline void SetAccountId(Aws::String&& value) { m_accountIdHasBeenSet = true; m_accountId = value; }
+    inline void SetAccountId(Aws::String&& value) { m_accountIdHasBeenSet = true; m_accountId = std::move(value); }
 
     /**
      * <p>The <code>AccountId</code> value is the AWS account ID. This value must match
@@ -101,7 +111,7 @@ namespace Model
      * the credentials used to sign the request. If you specify your account ID, do not
      * include any hyphens ('-') in the ID.</p>
      */
-    inline ListVaultsRequest& WithAccountId(Aws::String&& value) { SetAccountId(value); return *this;}
+    inline ListVaultsRequest& WithAccountId(Aws::String&& value) { SetAccountId(std::move(value)); return *this;}
 
     /**
      * <p>The <code>AccountId</code> value is the AWS account ID. This value must match
@@ -112,6 +122,7 @@ namespace Model
      * include any hyphens ('-') in the ID.</p>
      */
     inline ListVaultsRequest& WithAccountId(const char* value) { SetAccountId(value); return *this;}
+
 
     /**
      * <p>A string used for pagination. The marker specifies the vault ARN after which
@@ -129,7 +140,7 @@ namespace Model
      * <p>A string used for pagination. The marker specifies the vault ARN after which
      * the listing of vaults should begin.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p>A string used for pagination. The marker specifies the vault ARN after which
@@ -147,13 +158,14 @@ namespace Model
      * <p>A string used for pagination. The marker specifies the vault ARN after which
      * the listing of vaults should begin.</p>
      */
-    inline ListVaultsRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline ListVaultsRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>A string used for pagination. The marker specifies the vault ARN after which
      * the listing of vaults should begin.</p>
      */
     inline ListVaultsRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>The maximum number of vaults to be returned. The default limit is 1000. The
@@ -174,7 +186,7 @@ namespace Model
      * number of vaults returned might be fewer than the specified limit, but the
      * number of returned vaults never exceeds the limit.</p>
      */
-    inline void SetLimit(Aws::String&& value) { m_limitHasBeenSet = true; m_limit = value; }
+    inline void SetLimit(Aws::String&& value) { m_limitHasBeenSet = true; m_limit = std::move(value); }
 
     /**
      * <p>The maximum number of vaults to be returned. The default limit is 1000. The
@@ -195,7 +207,7 @@ namespace Model
      * number of vaults returned might be fewer than the specified limit, but the
      * number of returned vaults never exceeds the limit.</p>
      */
-    inline ListVaultsRequest& WithLimit(Aws::String&& value) { SetLimit(value); return *this;}
+    inline ListVaultsRequest& WithLimit(Aws::String&& value) { SetLimit(std::move(value)); return *this;}
 
     /**
      * <p>The maximum number of vaults to be returned. The default limit is 1000. The
@@ -205,10 +217,13 @@ namespace Model
     inline ListVaultsRequest& WithLimit(const char* value) { SetLimit(value); return *this;}
 
   private:
+
     Aws::String m_accountId;
     bool m_accountIdHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
+
     Aws::String m_limit;
     bool m_limitHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-identity/CognitoIdentity_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/cognito-identity/model/IdentityDescription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     ListIdentitiesResult();
-    ListIdentitiesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListIdentitiesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListIdentitiesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListIdentitiesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
      */
-    inline void SetIdentityPoolId(Aws::String&& value) { m_identityPoolId = value; }
+    inline void SetIdentityPoolId(Aws::String&& value) { m_identityPoolId = std::move(value); }
 
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
      */
-    inline ListIdentitiesResult& WithIdentityPoolId(Aws::String&& value) { SetIdentityPoolId(value); return *this;}
+    inline ListIdentitiesResult& WithIdentityPoolId(Aws::String&& value) { SetIdentityPoolId(std::move(value)); return *this;}
 
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
      */
     inline ListIdentitiesResult& WithIdentityPoolId(const char* value) { SetIdentityPoolId(value); return *this;}
+
 
     /**
      * <p>An object containing a set of identities and associated mappings.</p>
@@ -94,7 +98,7 @@ namespace Model
     /**
      * <p>An object containing a set of identities and associated mappings.</p>
      */
-    inline void SetIdentities(Aws::Vector<IdentityDescription>&& value) { m_identities = value; }
+    inline void SetIdentities(Aws::Vector<IdentityDescription>&& value) { m_identities = std::move(value); }
 
     /**
      * <p>An object containing a set of identities and associated mappings.</p>
@@ -104,7 +108,7 @@ namespace Model
     /**
      * <p>An object containing a set of identities and associated mappings.</p>
      */
-    inline ListIdentitiesResult& WithIdentities(Aws::Vector<IdentityDescription>&& value) { SetIdentities(value); return *this;}
+    inline ListIdentitiesResult& WithIdentities(Aws::Vector<IdentityDescription>&& value) { SetIdentities(std::move(value)); return *this;}
 
     /**
      * <p>An object containing a set of identities and associated mappings.</p>
@@ -114,7 +118,8 @@ namespace Model
     /**
      * <p>An object containing a set of identities and associated mappings.</p>
      */
-    inline ListIdentitiesResult& AddIdentities(IdentityDescription&& value) { m_identities.push_back(value); return *this; }
+    inline ListIdentitiesResult& AddIdentities(IdentityDescription&& value) { m_identities.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>A pagination token.</p>
@@ -129,7 +134,7 @@ namespace Model
     /**
      * <p>A pagination token.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>A pagination token.</p>
@@ -144,7 +149,7 @@ namespace Model
     /**
      * <p>A pagination token.</p>
      */
-    inline ListIdentitiesResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListIdentitiesResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>A pagination token.</p>
@@ -152,8 +157,11 @@ namespace Model
     inline ListIdentitiesResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::String m_identityPoolId;
+
     Aws::Vector<IdentityDescription> m_identities;
+
     Aws::String m_nextToken;
   };
 

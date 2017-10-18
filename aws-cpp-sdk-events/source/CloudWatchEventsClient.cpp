@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/core/utils/Outcome.h>
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
@@ -27,6 +28,7 @@
 #include <aws/events/CloudWatchEventsEndpoint.h>
 #include <aws/events/CloudWatchEventsErrorMarshaller.h>
 #include <aws/events/model/DeleteRuleRequest.h>
+#include <aws/events/model/DescribeEventBusRequest.h>
 #include <aws/events/model/DescribeRuleRequest.h>
 #include <aws/events/model/DisableRuleRequest.h>
 #include <aws/events/model/EnableRuleRequest.h>
@@ -34,8 +36,10 @@
 #include <aws/events/model/ListRulesRequest.h>
 #include <aws/events/model/ListTargetsByRuleRequest.h>
 #include <aws/events/model/PutEventsRequest.h>
+#include <aws/events/model/PutPermissionRequest.h>
 #include <aws/events/model/PutRuleRequest.h>
 #include <aws/events/model/PutTargetsRequest.h>
+#include <aws/events/model/RemovePermissionRequest.h>
 #include <aws/events/model/RemoveTargetsRequest.h>
 #include <aws/events/model/TestEventPatternRequest.h>
 
@@ -106,9 +110,10 @@ void CloudWatchEventsClient::init(const ClientConfiguration& config)
 DeleteRuleOutcome CloudWatchEventsClient::DeleteRule(const DeleteRuleRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DeleteRuleOutcome(NoResult());
@@ -137,12 +142,48 @@ void CloudWatchEventsClient::DeleteRuleAsyncHelper(const DeleteRuleRequest& requ
   handler(this, request, DeleteRule(request), context);
 }
 
+DescribeEventBusOutcome CloudWatchEventsClient::DescribeEventBus(const DescribeEventBusRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return DescribeEventBusOutcome(DescribeEventBusResult(outcome.GetResult()));
+  }
+  else
+  {
+    return DescribeEventBusOutcome(outcome.GetError());
+  }
+}
+
+DescribeEventBusOutcomeCallable CloudWatchEventsClient::DescribeEventBusCallable(const DescribeEventBusRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< DescribeEventBusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeEventBus(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void CloudWatchEventsClient::DescribeEventBusAsync(const DescribeEventBusRequest& request, const DescribeEventBusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->DescribeEventBusAsyncHelper( request, handler, context ); } );
+}
+
+void CloudWatchEventsClient::DescribeEventBusAsyncHelper(const DescribeEventBusRequest& request, const DescribeEventBusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, DescribeEventBus(request), context);
+}
+
 DescribeRuleOutcome CloudWatchEventsClient::DescribeRule(const DescribeRuleRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeRuleOutcome(DescribeRuleResult(outcome.GetResult()));
@@ -174,9 +215,10 @@ void CloudWatchEventsClient::DescribeRuleAsyncHelper(const DescribeRuleRequest& 
 DisableRuleOutcome CloudWatchEventsClient::DisableRule(const DisableRuleRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DisableRuleOutcome(NoResult());
@@ -208,9 +250,10 @@ void CloudWatchEventsClient::DisableRuleAsyncHelper(const DisableRuleRequest& re
 EnableRuleOutcome CloudWatchEventsClient::EnableRule(const EnableRuleRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return EnableRuleOutcome(NoResult());
@@ -242,9 +285,10 @@ void CloudWatchEventsClient::EnableRuleAsyncHelper(const EnableRuleRequest& requ
 ListRuleNamesByTargetOutcome CloudWatchEventsClient::ListRuleNamesByTarget(const ListRuleNamesByTargetRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ListRuleNamesByTargetOutcome(ListRuleNamesByTargetResult(outcome.GetResult()));
@@ -276,9 +320,10 @@ void CloudWatchEventsClient::ListRuleNamesByTargetAsyncHelper(const ListRuleName
 ListRulesOutcome CloudWatchEventsClient::ListRules(const ListRulesRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ListRulesOutcome(ListRulesResult(outcome.GetResult()));
@@ -310,9 +355,10 @@ void CloudWatchEventsClient::ListRulesAsyncHelper(const ListRulesRequest& reques
 ListTargetsByRuleOutcome CloudWatchEventsClient::ListTargetsByRule(const ListTargetsByRuleRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ListTargetsByRuleOutcome(ListTargetsByRuleResult(outcome.GetResult()));
@@ -344,9 +390,10 @@ void CloudWatchEventsClient::ListTargetsByRuleAsyncHelper(const ListTargetsByRul
 PutEventsOutcome CloudWatchEventsClient::PutEvents(const PutEventsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return PutEventsOutcome(PutEventsResult(outcome.GetResult()));
@@ -375,12 +422,48 @@ void CloudWatchEventsClient::PutEventsAsyncHelper(const PutEventsRequest& reques
   handler(this, request, PutEvents(request), context);
 }
 
+PutPermissionOutcome CloudWatchEventsClient::PutPermission(const PutPermissionRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return PutPermissionOutcome(NoResult());
+  }
+  else
+  {
+    return PutPermissionOutcome(outcome.GetError());
+  }
+}
+
+PutPermissionOutcomeCallable CloudWatchEventsClient::PutPermissionCallable(const PutPermissionRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< PutPermissionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutPermission(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void CloudWatchEventsClient::PutPermissionAsync(const PutPermissionRequest& request, const PutPermissionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->PutPermissionAsyncHelper( request, handler, context ); } );
+}
+
+void CloudWatchEventsClient::PutPermissionAsyncHelper(const PutPermissionRequest& request, const PutPermissionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, PutPermission(request), context);
+}
+
 PutRuleOutcome CloudWatchEventsClient::PutRule(const PutRuleRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return PutRuleOutcome(PutRuleResult(outcome.GetResult()));
@@ -412,9 +495,10 @@ void CloudWatchEventsClient::PutRuleAsyncHelper(const PutRuleRequest& request, c
 PutTargetsOutcome CloudWatchEventsClient::PutTargets(const PutTargetsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return PutTargetsOutcome(PutTargetsResult(outcome.GetResult()));
@@ -443,12 +527,48 @@ void CloudWatchEventsClient::PutTargetsAsyncHelper(const PutTargetsRequest& requ
   handler(this, request, PutTargets(request), context);
 }
 
+RemovePermissionOutcome CloudWatchEventsClient::RemovePermission(const RemovePermissionRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return RemovePermissionOutcome(NoResult());
+  }
+  else
+  {
+    return RemovePermissionOutcome(outcome.GetError());
+  }
+}
+
+RemovePermissionOutcomeCallable CloudWatchEventsClient::RemovePermissionCallable(const RemovePermissionRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< RemovePermissionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RemovePermission(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void CloudWatchEventsClient::RemovePermissionAsync(const RemovePermissionRequest& request, const RemovePermissionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->RemovePermissionAsyncHelper( request, handler, context ); } );
+}
+
+void CloudWatchEventsClient::RemovePermissionAsyncHelper(const RemovePermissionRequest& request, const RemovePermissionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, RemovePermission(request), context);
+}
+
 RemoveTargetsOutcome CloudWatchEventsClient::RemoveTargets(const RemoveTargetsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return RemoveTargetsOutcome(RemoveTargetsResult(outcome.GetResult()));
@@ -480,9 +600,10 @@ void CloudWatchEventsClient::RemoveTargetsAsyncHelper(const RemoveTargetsRequest
 TestEventPatternOutcome CloudWatchEventsClient::TestEventPattern(const TestEventPatternRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return TestEventPatternOutcome(TestEventPatternResult(outcome.GetResult()));

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lambda/Lambda_EXPORTS.h>
 #include <aws/core/utils/Array.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     FunctionCode(const Aws::Utils::Json::JsonValue& jsonValue);
     FunctionCode& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>The contents of your zip file containing your deployment package. If you are
@@ -72,7 +75,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role.html">Execution
      * Permissions</a> in the <i>AWS Lambda Developer Guide</i>. </p>
      */
-    inline void SetZipFile(Aws::Utils::ByteBuffer&& value) { m_zipFileHasBeenSet = true; m_zipFile = value; }
+    inline void SetZipFile(Aws::Utils::ByteBuffer&& value) { m_zipFileHasBeenSet = true; m_zipFile = std::move(value); }
 
     /**
      * <p>The contents of your zip file containing your deployment package. If you are
@@ -92,7 +95,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role.html">Execution
      * Permissions</a> in the <i>AWS Lambda Developer Guide</i>. </p>
      */
-    inline FunctionCode& WithZipFile(Aws::Utils::ByteBuffer&& value) { SetZipFile(value); return *this;}
+    inline FunctionCode& WithZipFile(Aws::Utils::ByteBuffer&& value) { SetZipFile(std::move(value)); return *this;}
+
 
     /**
      * <p>Amazon S3 bucket name where the .zip file containing your deployment package
@@ -113,7 +117,7 @@ namespace Model
      * is stored. This bucket must reside in the same AWS region where you are creating
      * the Lambda function.</p>
      */
-    inline void SetS3Bucket(Aws::String&& value) { m_s3BucketHasBeenSet = true; m_s3Bucket = value; }
+    inline void SetS3Bucket(Aws::String&& value) { m_s3BucketHasBeenSet = true; m_s3Bucket = std::move(value); }
 
     /**
      * <p>Amazon S3 bucket name where the .zip file containing your deployment package
@@ -134,7 +138,7 @@ namespace Model
      * is stored. This bucket must reside in the same AWS region where you are creating
      * the Lambda function.</p>
      */
-    inline FunctionCode& WithS3Bucket(Aws::String&& value) { SetS3Bucket(value); return *this;}
+    inline FunctionCode& WithS3Bucket(Aws::String&& value) { SetS3Bucket(std::move(value)); return *this;}
 
     /**
      * <p>Amazon S3 bucket name where the .zip file containing your deployment package
@@ -142,6 +146,7 @@ namespace Model
      * the Lambda function.</p>
      */
     inline FunctionCode& WithS3Bucket(const char* value) { SetS3Bucket(value); return *this;}
+
 
     /**
      * <p>The Amazon S3 object (the deployment package) key name you want to
@@ -159,7 +164,7 @@ namespace Model
      * <p>The Amazon S3 object (the deployment package) key name you want to
      * upload.</p>
      */
-    inline void SetS3Key(Aws::String&& value) { m_s3KeyHasBeenSet = true; m_s3Key = value; }
+    inline void SetS3Key(Aws::String&& value) { m_s3KeyHasBeenSet = true; m_s3Key = std::move(value); }
 
     /**
      * <p>The Amazon S3 object (the deployment package) key name you want to
@@ -177,13 +182,14 @@ namespace Model
      * <p>The Amazon S3 object (the deployment package) key name you want to
      * upload.</p>
      */
-    inline FunctionCode& WithS3Key(Aws::String&& value) { SetS3Key(value); return *this;}
+    inline FunctionCode& WithS3Key(Aws::String&& value) { SetS3Key(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon S3 object (the deployment package) key name you want to
      * upload.</p>
      */
     inline FunctionCode& WithS3Key(const char* value) { SetS3Key(value); return *this;}
+
 
     /**
      * <p>The Amazon S3 object (the deployment package) version you want to upload.</p>
@@ -198,7 +204,7 @@ namespace Model
     /**
      * <p>The Amazon S3 object (the deployment package) version you want to upload.</p>
      */
-    inline void SetS3ObjectVersion(Aws::String&& value) { m_s3ObjectVersionHasBeenSet = true; m_s3ObjectVersion = value; }
+    inline void SetS3ObjectVersion(Aws::String&& value) { m_s3ObjectVersionHasBeenSet = true; m_s3ObjectVersion = std::move(value); }
 
     /**
      * <p>The Amazon S3 object (the deployment package) version you want to upload.</p>
@@ -213,7 +219,7 @@ namespace Model
     /**
      * <p>The Amazon S3 object (the deployment package) version you want to upload.</p>
      */
-    inline FunctionCode& WithS3ObjectVersion(Aws::String&& value) { SetS3ObjectVersion(value); return *this;}
+    inline FunctionCode& WithS3ObjectVersion(Aws::String&& value) { SetS3ObjectVersion(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon S3 object (the deployment package) version you want to upload.</p>
@@ -221,12 +227,16 @@ namespace Model
     inline FunctionCode& WithS3ObjectVersion(const char* value) { SetS3ObjectVersion(value); return *this;}
 
   private:
+
     Aws::Utils::ByteBuffer m_zipFile;
     bool m_zipFileHasBeenSet;
+
     Aws::String m_s3Bucket;
     bool m_s3BucketHasBeenSet;
+
     Aws::String m_s3Key;
     bool m_s3KeyHasBeenSet;
+
     Aws::String m_s3ObjectVersion;
     bool m_s3ObjectVersionHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/ReservedInstanceReservationValue.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,14 +31,14 @@ namespace Model
 {
 
 ReservedInstanceReservationValue::ReservedInstanceReservationValue() : 
-    m_reservedInstanceIdHasBeenSet(false),
-    m_reservationValueHasBeenSet(false)
+    m_reservationValueHasBeenSet(false),
+    m_reservedInstanceIdHasBeenSet(false)
 {
 }
 
 ReservedInstanceReservationValue::ReservedInstanceReservationValue(const XmlNode& xmlNode) : 
-    m_reservedInstanceIdHasBeenSet(false),
-    m_reservationValueHasBeenSet(false)
+    m_reservationValueHasBeenSet(false),
+    m_reservedInstanceIdHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -48,17 +49,17 @@ ReservedInstanceReservationValue& ReservedInstanceReservationValue::operator =(c
 
   if(!resultNode.IsNull())
   {
-    XmlNode reservedInstanceIdNode = resultNode.FirstChild("reservedInstanceId");
-    if(!reservedInstanceIdNode.IsNull())
-    {
-      m_reservedInstanceId = StringUtils::Trim(reservedInstanceIdNode.GetText().c_str());
-      m_reservedInstanceIdHasBeenSet = true;
-    }
     XmlNode reservationValueNode = resultNode.FirstChild("reservationValue");
     if(!reservationValueNode.IsNull())
     {
       m_reservationValue = reservationValueNode;
       m_reservationValueHasBeenSet = true;
+    }
+    XmlNode reservedInstanceIdNode = resultNode.FirstChild("reservedInstanceId");
+    if(!reservedInstanceIdNode.IsNull())
+    {
+      m_reservedInstanceId = StringUtils::Trim(reservedInstanceIdNode.GetText().c_str());
+      m_reservedInstanceIdHasBeenSet = true;
     }
   }
 
@@ -67,11 +68,6 @@ ReservedInstanceReservationValue& ReservedInstanceReservationValue::operator =(c
 
 void ReservedInstanceReservationValue::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
-  if(m_reservedInstanceIdHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".ReservedInstanceId=" << StringUtils::URLEncode(m_reservedInstanceId.c_str()) << "&";
-  }
-
   if(m_reservationValueHasBeenSet)
   {
       Aws::StringStream reservationValueLocationAndMemberSs;
@@ -79,19 +75,24 @@ void ReservedInstanceReservationValue::OutputToStream(Aws::OStream& oStream, con
       m_reservationValue.OutputToStream(oStream, reservationValueLocationAndMemberSs.str().c_str());
   }
 
+  if(m_reservedInstanceIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".ReservedInstanceId=" << StringUtils::URLEncode(m_reservedInstanceId.c_str()) << "&";
+  }
+
 }
 
 void ReservedInstanceReservationValue::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
-  if(m_reservedInstanceIdHasBeenSet)
-  {
-      oStream << location << ".ReservedInstanceId=" << StringUtils::URLEncode(m_reservedInstanceId.c_str()) << "&";
-  }
   if(m_reservationValueHasBeenSet)
   {
       Aws::String reservationValueLocationAndMember(location);
       reservationValueLocationAndMember += ".ReservationValue";
       m_reservationValue.OutputToStream(oStream, reservationValueLocationAndMember.c_str());
+  }
+  if(m_reservedInstanceIdHasBeenSet)
+  {
+      oStream << location << ".ReservedInstanceId=" << StringUtils::URLEncode(m_reservedInstanceId.c_str()) << "&";
   }
 }
 

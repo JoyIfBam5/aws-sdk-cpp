@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/email/SESRequest.h>
 #include <aws/email/model/ConfigurationSet.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,7 +39,19 @@ namespace Model
   {
   public:
     CreateConfigurationSetRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateConfigurationSet"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>A data structure that contains the name of the configuration set.</p>
@@ -52,7 +66,7 @@ namespace Model
     /**
      * <p>A data structure that contains the name of the configuration set.</p>
      */
-    inline void SetConfigurationSet(ConfigurationSet&& value) { m_configurationSetHasBeenSet = true; m_configurationSet = value; }
+    inline void SetConfigurationSet(ConfigurationSet&& value) { m_configurationSetHasBeenSet = true; m_configurationSet = std::move(value); }
 
     /**
      * <p>A data structure that contains the name of the configuration set.</p>
@@ -62,9 +76,10 @@ namespace Model
     /**
      * <p>A data structure that contains the name of the configuration set.</p>
      */
-    inline CreateConfigurationSetRequest& WithConfigurationSet(ConfigurationSet&& value) { SetConfigurationSet(value); return *this;}
+    inline CreateConfigurationSetRequest& WithConfigurationSet(ConfigurationSet&& value) { SetConfigurationSet(std::move(value)); return *this;}
 
   private:
+
     ConfigurationSet m_configurationSet;
     bool m_configurationSetHasBeenSet;
   };

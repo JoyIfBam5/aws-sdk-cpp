@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworkscm/OpsWorksCM_EXPORTS.h>
 #include <aws/opsworkscm/model/NodeAssociationStatus.h>
+#include <aws/core/utils/memory/stl/AWSVector.h>
+#include <aws/opsworkscm/model/EngineAttribute.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,26 +40,101 @@ namespace Model
   {
   public:
     DescribeNodeAssociationStatusResult();
-    DescribeNodeAssociationStatusResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeNodeAssociationStatusResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeNodeAssociationStatusResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeNodeAssociationStatusResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
 
-    
+
+    /**
+     * <p>The status of the association or disassociation request. </p> <p
+     * class="title"> <b>Possible values:</b> </p> <ul> <li> <p> <code>SUCCESS</code>:
+     * The association or disassociation succeeded. </p> </li> <li> <p>
+     * <code>FAILED</code>: The association or disassociation failed. </p> </li> <li>
+     * <p> <code>IN_PROGRESS</code>: The association or disassociation is still in
+     * progress. </p> </li> </ul>
+     */
     inline const NodeAssociationStatus& GetNodeAssociationStatus() const{ return m_nodeAssociationStatus; }
 
-    
+    /**
+     * <p>The status of the association or disassociation request. </p> <p
+     * class="title"> <b>Possible values:</b> </p> <ul> <li> <p> <code>SUCCESS</code>:
+     * The association or disassociation succeeded. </p> </li> <li> <p>
+     * <code>FAILED</code>: The association or disassociation failed. </p> </li> <li>
+     * <p> <code>IN_PROGRESS</code>: The association or disassociation is still in
+     * progress. </p> </li> </ul>
+     */
     inline void SetNodeAssociationStatus(const NodeAssociationStatus& value) { m_nodeAssociationStatus = value; }
 
-    
-    inline void SetNodeAssociationStatus(NodeAssociationStatus&& value) { m_nodeAssociationStatus = value; }
+    /**
+     * <p>The status of the association or disassociation request. </p> <p
+     * class="title"> <b>Possible values:</b> </p> <ul> <li> <p> <code>SUCCESS</code>:
+     * The association or disassociation succeeded. </p> </li> <li> <p>
+     * <code>FAILED</code>: The association or disassociation failed. </p> </li> <li>
+     * <p> <code>IN_PROGRESS</code>: The association or disassociation is still in
+     * progress. </p> </li> </ul>
+     */
+    inline void SetNodeAssociationStatus(NodeAssociationStatus&& value) { m_nodeAssociationStatus = std::move(value); }
 
-    
+    /**
+     * <p>The status of the association or disassociation request. </p> <p
+     * class="title"> <b>Possible values:</b> </p> <ul> <li> <p> <code>SUCCESS</code>:
+     * The association or disassociation succeeded. </p> </li> <li> <p>
+     * <code>FAILED</code>: The association or disassociation failed. </p> </li> <li>
+     * <p> <code>IN_PROGRESS</code>: The association or disassociation is still in
+     * progress. </p> </li> </ul>
+     */
     inline DescribeNodeAssociationStatusResult& WithNodeAssociationStatus(const NodeAssociationStatus& value) { SetNodeAssociationStatus(value); return *this;}
 
-    
-    inline DescribeNodeAssociationStatusResult& WithNodeAssociationStatus(NodeAssociationStatus&& value) { SetNodeAssociationStatus(value); return *this;}
+    /**
+     * <p>The status of the association or disassociation request. </p> <p
+     * class="title"> <b>Possible values:</b> </p> <ul> <li> <p> <code>SUCCESS</code>:
+     * The association or disassociation succeeded. </p> </li> <li> <p>
+     * <code>FAILED</code>: The association or disassociation failed. </p> </li> <li>
+     * <p> <code>IN_PROGRESS</code>: The association or disassociation is still in
+     * progress. </p> </li> </ul>
+     */
+    inline DescribeNodeAssociationStatusResult& WithNodeAssociationStatus(NodeAssociationStatus&& value) { SetNodeAssociationStatus(std::move(value)); return *this;}
+
+
+    /**
+     * <p>Attributes specific to the node association. </p>
+     */
+    inline const Aws::Vector<EngineAttribute>& GetEngineAttributes() const{ return m_engineAttributes; }
+
+    /**
+     * <p>Attributes specific to the node association. </p>
+     */
+    inline void SetEngineAttributes(const Aws::Vector<EngineAttribute>& value) { m_engineAttributes = value; }
+
+    /**
+     * <p>Attributes specific to the node association. </p>
+     */
+    inline void SetEngineAttributes(Aws::Vector<EngineAttribute>&& value) { m_engineAttributes = std::move(value); }
+
+    /**
+     * <p>Attributes specific to the node association. </p>
+     */
+    inline DescribeNodeAssociationStatusResult& WithEngineAttributes(const Aws::Vector<EngineAttribute>& value) { SetEngineAttributes(value); return *this;}
+
+    /**
+     * <p>Attributes specific to the node association. </p>
+     */
+    inline DescribeNodeAssociationStatusResult& WithEngineAttributes(Aws::Vector<EngineAttribute>&& value) { SetEngineAttributes(std::move(value)); return *this;}
+
+    /**
+     * <p>Attributes specific to the node association. </p>
+     */
+    inline DescribeNodeAssociationStatusResult& AddEngineAttributes(const EngineAttribute& value) { m_engineAttributes.push_back(value); return *this; }
+
+    /**
+     * <p>Attributes specific to the node association. </p>
+     */
+    inline DescribeNodeAssociationStatusResult& AddEngineAttributes(EngineAttribute&& value) { m_engineAttributes.push_back(std::move(value)); return *this; }
 
   private:
+
     NodeAssociationStatus m_nodeAssociationStatus;
+
+    Aws::Vector<EngineAttribute> m_engineAttributes;
   };
 
 } // namespace Model

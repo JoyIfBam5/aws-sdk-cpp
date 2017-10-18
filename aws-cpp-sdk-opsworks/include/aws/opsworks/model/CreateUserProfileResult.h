@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     CreateUserProfileResult();
-    CreateUserProfileResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateUserProfileResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateUserProfileResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateUserProfileResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The user's IAM ARN.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The user's IAM ARN.</p>
      */
-    inline void SetIamUserArn(Aws::String&& value) { m_iamUserArn = value; }
+    inline void SetIamUserArn(Aws::String&& value) { m_iamUserArn = std::move(value); }
 
     /**
      * <p>The user's IAM ARN.</p>
@@ -73,7 +76,7 @@ namespace Model
     /**
      * <p>The user's IAM ARN.</p>
      */
-    inline CreateUserProfileResult& WithIamUserArn(Aws::String&& value) { SetIamUserArn(value); return *this;}
+    inline CreateUserProfileResult& WithIamUserArn(Aws::String&& value) { SetIamUserArn(std::move(value)); return *this;}
 
     /**
      * <p>The user's IAM ARN.</p>
@@ -81,6 +84,7 @@ namespace Model
     inline CreateUserProfileResult& WithIamUserArn(const char* value) { SetIamUserArn(value); return *this;}
 
   private:
+
     Aws::String m_iamUserArn;
   };
 

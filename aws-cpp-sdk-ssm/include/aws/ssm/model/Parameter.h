@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ssm/model/ParameterType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     Parameter& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the parameter.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The name of the parameter.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the parameter.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The name of the parameter.</p>
      */
-    inline Parameter& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline Parameter& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the parameter.</p>
      */
     inline Parameter& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The type of parameter. Valid values include the following: String, String
@@ -96,7 +100,7 @@ namespace Model
      * <p>The type of parameter. Valid values include the following: String, String
      * list, Secure string.</p>
      */
-    inline void SetType(ParameterType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(ParameterType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The type of parameter. Valid values include the following: String, String
@@ -108,7 +112,8 @@ namespace Model
      * <p>The type of parameter. Valid values include the following: String, String
      * list, Secure string.</p>
      */
-    inline Parameter& WithType(ParameterType&& value) { SetType(value); return *this;}
+    inline Parameter& WithType(ParameterType&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p>The parameter value.</p>
@@ -123,7 +128,7 @@ namespace Model
     /**
      * <p>The parameter value.</p>
      */
-    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = value; }
+    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = std::move(value); }
 
     /**
      * <p>The parameter value.</p>
@@ -138,7 +143,7 @@ namespace Model
     /**
      * <p>The parameter value.</p>
      */
-    inline Parameter& WithValue(Aws::String&& value) { SetValue(value); return *this;}
+    inline Parameter& WithValue(Aws::String&& value) { SetValue(std::move(value)); return *this;}
 
     /**
      * <p>The parameter value.</p>
@@ -146,10 +151,13 @@ namespace Model
     inline Parameter& WithValue(const char* value) { SetValue(value); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     ParameterType m_type;
     bool m_typeHasBeenSet;
+
     Aws::String m_value;
     bool m_valueHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/ec2/model/CurrencyCodeValues.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>Used for Reserved Instance Marketplace offerings. Specifies the limit price
      * on the total order (instanceCount * price).</p>
@@ -65,6 +68,7 @@ namespace Model
      */
     inline ReservedInstanceLimitPrice& WithAmount(double value) { SetAmount(value); return *this;}
 
+
     /**
      * <p>The currency in which the <code>limitPrice</code> amount is specified. At
      * this time, the only supported currency is <code>USD</code>.</p>
@@ -81,7 +85,7 @@ namespace Model
      * <p>The currency in which the <code>limitPrice</code> amount is specified. At
      * this time, the only supported currency is <code>USD</code>.</p>
      */
-    inline void SetCurrencyCode(CurrencyCodeValues&& value) { m_currencyCodeHasBeenSet = true; m_currencyCode = value; }
+    inline void SetCurrencyCode(CurrencyCodeValues&& value) { m_currencyCodeHasBeenSet = true; m_currencyCode = std::move(value); }
 
     /**
      * <p>The currency in which the <code>limitPrice</code> amount is specified. At
@@ -93,11 +97,13 @@ namespace Model
      * <p>The currency in which the <code>limitPrice</code> amount is specified. At
      * this time, the only supported currency is <code>USD</code>.</p>
      */
-    inline ReservedInstanceLimitPrice& WithCurrencyCode(CurrencyCodeValues&& value) { SetCurrencyCode(value); return *this;}
+    inline ReservedInstanceLimitPrice& WithCurrencyCode(CurrencyCodeValues&& value) { SetCurrencyCode(std::move(value)); return *this;}
 
   private:
+
     double m_amount;
     bool m_amountHasBeenSet;
+
     CurrencyCodeValues m_currencyCode;
     bool m_currencyCodeHasBeenSet;
   };

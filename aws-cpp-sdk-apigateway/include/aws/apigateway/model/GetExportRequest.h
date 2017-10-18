@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/apigateway/APIGatewayRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
+#include <utility>
 
 namespace Aws
 {
@@ -39,46 +41,55 @@ namespace Model
   {
   public:
     GetExportRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "GetExport"; }
+
     Aws::String SerializePayload() const override;
 
     void AddQueryStringParameters(Aws::Http::URI& uri) const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
 
+
     /**
-     * <p>The identifier of the <a>RestApi</a> to be exported.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline const Aws::String& GetRestApiId() const{ return m_restApiId; }
 
     /**
-     * <p>The identifier of the <a>RestApi</a> to be exported.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline void SetRestApiId(const Aws::String& value) { m_restApiIdHasBeenSet = true; m_restApiId = value; }
 
     /**
-     * <p>The identifier of the <a>RestApi</a> to be exported.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
-    inline void SetRestApiId(Aws::String&& value) { m_restApiIdHasBeenSet = true; m_restApiId = value; }
+    inline void SetRestApiId(Aws::String&& value) { m_restApiIdHasBeenSet = true; m_restApiId = std::move(value); }
 
     /**
-     * <p>The identifier of the <a>RestApi</a> to be exported.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline void SetRestApiId(const char* value) { m_restApiIdHasBeenSet = true; m_restApiId.assign(value); }
 
     /**
-     * <p>The identifier of the <a>RestApi</a> to be exported.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline GetExportRequest& WithRestApiId(const Aws::String& value) { SetRestApiId(value); return *this;}
 
     /**
-     * <p>The identifier of the <a>RestApi</a> to be exported.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
-    inline GetExportRequest& WithRestApiId(Aws::String&& value) { SetRestApiId(value); return *this;}
+    inline GetExportRequest& WithRestApiId(Aws::String&& value) { SetRestApiId(std::move(value)); return *this;}
 
     /**
-     * <p>The identifier of the <a>RestApi</a> to be exported.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline GetExportRequest& WithRestApiId(const char* value) { SetRestApiId(value); return *this;}
+
 
     /**
      * <p>The name of the <a>Stage</a> that will be exported.</p>
@@ -93,7 +104,7 @@ namespace Model
     /**
      * <p>The name of the <a>Stage</a> that will be exported.</p>
      */
-    inline void SetStageName(Aws::String&& value) { m_stageNameHasBeenSet = true; m_stageName = value; }
+    inline void SetStageName(Aws::String&& value) { m_stageNameHasBeenSet = true; m_stageName = std::move(value); }
 
     /**
      * <p>The name of the <a>Stage</a> that will be exported.</p>
@@ -108,12 +119,13 @@ namespace Model
     /**
      * <p>The name of the <a>Stage</a> that will be exported.</p>
      */
-    inline GetExportRequest& WithStageName(Aws::String&& value) { SetStageName(value); return *this;}
+    inline GetExportRequest& WithStageName(Aws::String&& value) { SetStageName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the <a>Stage</a> that will be exported.</p>
      */
     inline GetExportRequest& WithStageName(const char* value) { SetStageName(value); return *this;}
+
 
     /**
      * <p>The type of export. Currently only 'swagger' is supported.</p>
@@ -128,7 +140,7 @@ namespace Model
     /**
      * <p>The type of export. Currently only 'swagger' is supported.</p>
      */
-    inline void SetExportType(Aws::String&& value) { m_exportTypeHasBeenSet = true; m_exportType = value; }
+    inline void SetExportType(Aws::String&& value) { m_exportTypeHasBeenSet = true; m_exportType = std::move(value); }
 
     /**
      * <p>The type of export. Currently only 'swagger' is supported.</p>
@@ -143,12 +155,13 @@ namespace Model
     /**
      * <p>The type of export. Currently only 'swagger' is supported.</p>
      */
-    inline GetExportRequest& WithExportType(Aws::String&& value) { SetExportType(value); return *this;}
+    inline GetExportRequest& WithExportType(Aws::String&& value) { SetExportType(std::move(value)); return *this;}
 
     /**
      * <p>The type of export. Currently only 'swagger' is supported.</p>
      */
     inline GetExportRequest& WithExportType(const char* value) { SetExportType(value); return *this;}
+
 
     /**
      * <p>A key-value map of query string parameters that specify properties of the
@@ -184,7 +197,7 @@ namespace Model
      * will export the API with Postman extensions, allowing for import to the Postman
      * tool</p>
      */
-    inline void SetParameters(Aws::Map<Aws::String, Aws::String>&& value) { m_parametersHasBeenSet = true; m_parameters = value; }
+    inline void SetParameters(Aws::Map<Aws::String, Aws::String>&& value) { m_parametersHasBeenSet = true; m_parameters = std::move(value); }
 
     /**
      * <p>A key-value map of query string parameters that specify properties of the
@@ -208,7 +221,7 @@ namespace Model
      * will export the API with Postman extensions, allowing for import to the Postman
      * tool</p>
      */
-    inline GetExportRequest& WithParameters(Aws::Map<Aws::String, Aws::String>&& value) { SetParameters(value); return *this;}
+    inline GetExportRequest& WithParameters(Aws::Map<Aws::String, Aws::String>&& value) { SetParameters(std::move(value)); return *this;}
 
     /**
      * <p>A key-value map of query string parameters that specify properties of the
@@ -220,7 +233,7 @@ namespace Model
      * will export the API with Postman extensions, allowing for import to the Postman
      * tool</p>
      */
-    inline GetExportRequest& AddParameters(const Aws::String& key, const Aws::String& value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline GetExportRequest& AddParameters(const Aws::String& key, const Aws::String& value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, value); return *this; }
 
     /**
      * <p>A key-value map of query string parameters that specify properties of the
@@ -232,7 +245,7 @@ namespace Model
      * will export the API with Postman extensions, allowing for import to the Postman
      * tool</p>
      */
-    inline GetExportRequest& AddParameters(Aws::String&& key, const Aws::String& value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline GetExportRequest& AddParameters(Aws::String&& key, const Aws::String& value) { m_parametersHasBeenSet = true; m_parameters.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A key-value map of query string parameters that specify properties of the
@@ -244,7 +257,7 @@ namespace Model
      * will export the API with Postman extensions, allowing for import to the Postman
      * tool</p>
      */
-    inline GetExportRequest& AddParameters(const Aws::String& key, Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline GetExportRequest& AddParameters(const Aws::String& key, Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A key-value map of query string parameters that specify properties of the
@@ -256,7 +269,7 @@ namespace Model
      * will export the API with Postman extensions, allowing for import to the Postman
      * tool</p>
      */
-    inline GetExportRequest& AddParameters(Aws::String&& key, Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline GetExportRequest& AddParameters(Aws::String&& key, Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>A key-value map of query string parameters that specify properties of the
@@ -268,7 +281,7 @@ namespace Model
      * will export the API with Postman extensions, allowing for import to the Postman
      * tool</p>
      */
-    inline GetExportRequest& AddParameters(const char* key, Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline GetExportRequest& AddParameters(const char* key, Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A key-value map of query string parameters that specify properties of the
@@ -280,7 +293,7 @@ namespace Model
      * will export the API with Postman extensions, allowing for import to the Postman
      * tool</p>
      */
-    inline GetExportRequest& AddParameters(Aws::String&& key, const char* value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline GetExportRequest& AddParameters(Aws::String&& key, const char* value) { m_parametersHasBeenSet = true; m_parameters.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A key-value map of query string parameters that specify properties of the
@@ -292,7 +305,8 @@ namespace Model
      * will export the API with Postman extensions, allowing for import to the Postman
      * tool</p>
      */
-    inline GetExportRequest& AddParameters(const char* key, const char* value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline GetExportRequest& AddParameters(const char* key, const char* value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, value); return *this; }
+
 
     /**
      * <p>The content-type of the export, for example <code>application/json</code>.
@@ -316,7 +330,7 @@ namespace Model
      * supported for <code>exportType</code> of <code>swagger</code>. This should be
      * specified in the <code>Accept</code> header for direct API requests.</p>
      */
-    inline void SetAccepts(Aws::String&& value) { m_acceptsHasBeenSet = true; m_accepts = value; }
+    inline void SetAccepts(Aws::String&& value) { m_acceptsHasBeenSet = true; m_accepts = std::move(value); }
 
     /**
      * <p>The content-type of the export, for example <code>application/json</code>.
@@ -340,7 +354,7 @@ namespace Model
      * supported for <code>exportType</code> of <code>swagger</code>. This should be
      * specified in the <code>Accept</code> header for direct API requests.</p>
      */
-    inline GetExportRequest& WithAccepts(Aws::String&& value) { SetAccepts(value); return *this;}
+    inline GetExportRequest& WithAccepts(Aws::String&& value) { SetAccepts(std::move(value)); return *this;}
 
     /**
      * <p>The content-type of the export, for example <code>application/json</code>.
@@ -351,14 +365,19 @@ namespace Model
     inline GetExportRequest& WithAccepts(const char* value) { SetAccepts(value); return *this;}
 
   private:
+
     Aws::String m_restApiId;
     bool m_restApiIdHasBeenSet;
+
     Aws::String m_stageName;
     bool m_stageNameHasBeenSet;
+
     Aws::String m_exportType;
     bool m_exportTypeHasBeenSet;
+
     Aws::Map<Aws::String, Aws::String> m_parameters;
     bool m_parametersHasBeenSet;
+
     Aws::String m_accepts;
     bool m_acceptsHasBeenSet;
   };

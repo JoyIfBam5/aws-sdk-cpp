@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codedeploy/CodeDeploy_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/codedeploy/model/RevisionLocation.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,8 +37,8 @@ namespace CodeDeploy
 namespace Model
 {
   /**
-   * <p>Represents the output of a list application revisions
-   * operation.</p><p><h3>See Also:</h3>   <a
+   * <p>Represents the output of a ListApplicationRevisions operation.</p><p><h3>See
+   * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/ListApplicationRevisionsOutput">AWS
    * API Reference</a></p>
    */
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     ListApplicationRevisionsResult();
-    ListApplicationRevisionsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListApplicationRevisionsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListApplicationRevisionsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListApplicationRevisionsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A list of locations that contain the matching revisions.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>A list of locations that contain the matching revisions.</p>
      */
-    inline void SetRevisions(Aws::Vector<RevisionLocation>&& value) { m_revisions = value; }
+    inline void SetRevisions(Aws::Vector<RevisionLocation>&& value) { m_revisions = std::move(value); }
 
     /**
      * <p>A list of locations that contain the matching revisions.</p>
@@ -70,7 +73,7 @@ namespace Model
     /**
      * <p>A list of locations that contain the matching revisions.</p>
      */
-    inline ListApplicationRevisionsResult& WithRevisions(Aws::Vector<RevisionLocation>&& value) { SetRevisions(value); return *this;}
+    inline ListApplicationRevisionsResult& WithRevisions(Aws::Vector<RevisionLocation>&& value) { SetRevisions(std::move(value)); return *this;}
 
     /**
      * <p>A list of locations that contain the matching revisions.</p>
@@ -80,7 +83,8 @@ namespace Model
     /**
      * <p>A list of locations that contain the matching revisions.</p>
      */
-    inline ListApplicationRevisionsResult& AddRevisions(RevisionLocation&& value) { m_revisions.push_back(value); return *this; }
+    inline ListApplicationRevisionsResult& AddRevisions(RevisionLocation&& value) { m_revisions.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>If a large amount of information is returned, an identifier will also be
@@ -101,7 +105,7 @@ namespace Model
      * returned. It can be used in a subsequent list application revisions call to
      * return the next set of application revisions in the list.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>If a large amount of information is returned, an identifier will also be
@@ -122,7 +126,7 @@ namespace Model
      * returned. It can be used in a subsequent list application revisions call to
      * return the next set of application revisions in the list.</p>
      */
-    inline ListApplicationRevisionsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListApplicationRevisionsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>If a large amount of information is returned, an identifier will also be
@@ -132,7 +136,9 @@ namespace Model
     inline ListApplicationRevisionsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<RevisionLocation> m_revisions;
+
     Aws::String m_nextToken;
   };
 

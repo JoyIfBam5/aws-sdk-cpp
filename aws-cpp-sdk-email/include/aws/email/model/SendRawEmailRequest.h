@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/email/SESRequest.h>
@@ -19,6 +20,7 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/email/model/RawMessage.h>
 #include <aws/email/model/MessageTag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -39,7 +41,19 @@ namespace Model
   {
   public:
     SendRawEmailRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "SendRawEmail"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The identity's email address. If you do not provide a value for this
@@ -48,11 +62,11 @@ namespace Model
      * If the text must contain any other characters, then you must use MIME
      * encoded-word syntax (RFC 2047) instead of a literal string. MIME encoded-word
      * syntax uses the following form: <code>=?charset?encoding?encoded-text?=</code>.
-     * For more information, see <a href="http://tools.ietf.org/html/rfc2047">RFC
+     * For more information, see <a href="https://tools.ietf.org/html/rfc2047">RFC
      * 2047</a>. </p> <note> <p>If you specify the <code>Source</code> parameter and
      * have feedback forwarding enabled, then bounces and complaints will be sent to
-     * this email address. This takes precedence over any <i>Return-Path</i> header
-     * that you might include in the raw text of the message.</p> </note>
+     * this email address. This takes precedence over any Return-Path header that you
+     * might include in the raw text of the message.</p> </note>
      */
     inline const Aws::String& GetSource() const{ return m_source; }
 
@@ -63,11 +77,11 @@ namespace Model
      * If the text must contain any other characters, then you must use MIME
      * encoded-word syntax (RFC 2047) instead of a literal string. MIME encoded-word
      * syntax uses the following form: <code>=?charset?encoding?encoded-text?=</code>.
-     * For more information, see <a href="http://tools.ietf.org/html/rfc2047">RFC
+     * For more information, see <a href="https://tools.ietf.org/html/rfc2047">RFC
      * 2047</a>. </p> <note> <p>If you specify the <code>Source</code> parameter and
      * have feedback forwarding enabled, then bounces and complaints will be sent to
-     * this email address. This takes precedence over any <i>Return-Path</i> header
-     * that you might include in the raw text of the message.</p> </note>
+     * this email address. This takes precedence over any Return-Path header that you
+     * might include in the raw text of the message.</p> </note>
      */
     inline void SetSource(const Aws::String& value) { m_sourceHasBeenSet = true; m_source = value; }
 
@@ -78,13 +92,13 @@ namespace Model
      * If the text must contain any other characters, then you must use MIME
      * encoded-word syntax (RFC 2047) instead of a literal string. MIME encoded-word
      * syntax uses the following form: <code>=?charset?encoding?encoded-text?=</code>.
-     * For more information, see <a href="http://tools.ietf.org/html/rfc2047">RFC
+     * For more information, see <a href="https://tools.ietf.org/html/rfc2047">RFC
      * 2047</a>. </p> <note> <p>If you specify the <code>Source</code> parameter and
      * have feedback forwarding enabled, then bounces and complaints will be sent to
-     * this email address. This takes precedence over any <i>Return-Path</i> header
-     * that you might include in the raw text of the message.</p> </note>
+     * this email address. This takes precedence over any Return-Path header that you
+     * might include in the raw text of the message.</p> </note>
      */
-    inline void SetSource(Aws::String&& value) { m_sourceHasBeenSet = true; m_source = value; }
+    inline void SetSource(Aws::String&& value) { m_sourceHasBeenSet = true; m_source = std::move(value); }
 
     /**
      * <p>The identity's email address. If you do not provide a value for this
@@ -93,11 +107,11 @@ namespace Model
      * If the text must contain any other characters, then you must use MIME
      * encoded-word syntax (RFC 2047) instead of a literal string. MIME encoded-word
      * syntax uses the following form: <code>=?charset?encoding?encoded-text?=</code>.
-     * For more information, see <a href="http://tools.ietf.org/html/rfc2047">RFC
+     * For more information, see <a href="https://tools.ietf.org/html/rfc2047">RFC
      * 2047</a>. </p> <note> <p>If you specify the <code>Source</code> parameter and
      * have feedback forwarding enabled, then bounces and complaints will be sent to
-     * this email address. This takes precedence over any <i>Return-Path</i> header
-     * that you might include in the raw text of the message.</p> </note>
+     * this email address. This takes precedence over any Return-Path header that you
+     * might include in the raw text of the message.</p> </note>
      */
     inline void SetSource(const char* value) { m_sourceHasBeenSet = true; m_source.assign(value); }
 
@@ -108,11 +122,11 @@ namespace Model
      * If the text must contain any other characters, then you must use MIME
      * encoded-word syntax (RFC 2047) instead of a literal string. MIME encoded-word
      * syntax uses the following form: <code>=?charset?encoding?encoded-text?=</code>.
-     * For more information, see <a href="http://tools.ietf.org/html/rfc2047">RFC
+     * For more information, see <a href="https://tools.ietf.org/html/rfc2047">RFC
      * 2047</a>. </p> <note> <p>If you specify the <code>Source</code> parameter and
      * have feedback forwarding enabled, then bounces and complaints will be sent to
-     * this email address. This takes precedence over any <i>Return-Path</i> header
-     * that you might include in the raw text of the message.</p> </note>
+     * this email address. This takes precedence over any Return-Path header that you
+     * might include in the raw text of the message.</p> </note>
      */
     inline SendRawEmailRequest& WithSource(const Aws::String& value) { SetSource(value); return *this;}
 
@@ -123,13 +137,13 @@ namespace Model
      * If the text must contain any other characters, then you must use MIME
      * encoded-word syntax (RFC 2047) instead of a literal string. MIME encoded-word
      * syntax uses the following form: <code>=?charset?encoding?encoded-text?=</code>.
-     * For more information, see <a href="http://tools.ietf.org/html/rfc2047">RFC
+     * For more information, see <a href="https://tools.ietf.org/html/rfc2047">RFC
      * 2047</a>. </p> <note> <p>If you specify the <code>Source</code> parameter and
      * have feedback forwarding enabled, then bounces and complaints will be sent to
-     * this email address. This takes precedence over any <i>Return-Path</i> header
-     * that you might include in the raw text of the message.</p> </note>
+     * this email address. This takes precedence over any Return-Path header that you
+     * might include in the raw text of the message.</p> </note>
      */
-    inline SendRawEmailRequest& WithSource(Aws::String&& value) { SetSource(value); return *this;}
+    inline SendRawEmailRequest& WithSource(Aws::String&& value) { SetSource(std::move(value)); return *this;}
 
     /**
      * <p>The identity's email address. If you do not provide a value for this
@@ -138,13 +152,14 @@ namespace Model
      * If the text must contain any other characters, then you must use MIME
      * encoded-word syntax (RFC 2047) instead of a literal string. MIME encoded-word
      * syntax uses the following form: <code>=?charset?encoding?encoded-text?=</code>.
-     * For more information, see <a href="http://tools.ietf.org/html/rfc2047">RFC
+     * For more information, see <a href="https://tools.ietf.org/html/rfc2047">RFC
      * 2047</a>. </p> <note> <p>If you specify the <code>Source</code> parameter and
      * have feedback forwarding enabled, then bounces and complaints will be sent to
-     * this email address. This takes precedence over any <i>Return-Path</i> header
-     * that you might include in the raw text of the message.</p> </note>
+     * this email address. This takes precedence over any Return-Path header that you
+     * might include in the raw text of the message.</p> </note>
      */
     inline SendRawEmailRequest& WithSource(const char* value) { SetSource(value); return *this;}
+
 
     /**
      * <p>A list of destinations for the message, consisting of To:, CC:, and BCC:
@@ -162,7 +177,7 @@ namespace Model
      * <p>A list of destinations for the message, consisting of To:, CC:, and BCC:
      * addresses.</p>
      */
-    inline void SetDestinations(Aws::Vector<Aws::String>&& value) { m_destinationsHasBeenSet = true; m_destinations = value; }
+    inline void SetDestinations(Aws::Vector<Aws::String>&& value) { m_destinationsHasBeenSet = true; m_destinations = std::move(value); }
 
     /**
      * <p>A list of destinations for the message, consisting of To:, CC:, and BCC:
@@ -174,7 +189,7 @@ namespace Model
      * <p>A list of destinations for the message, consisting of To:, CC:, and BCC:
      * addresses.</p>
      */
-    inline SendRawEmailRequest& WithDestinations(Aws::Vector<Aws::String>&& value) { SetDestinations(value); return *this;}
+    inline SendRawEmailRequest& WithDestinations(Aws::Vector<Aws::String>&& value) { SetDestinations(std::move(value)); return *this;}
 
     /**
      * <p>A list of destinations for the message, consisting of To:, CC:, and BCC:
@@ -186,13 +201,14 @@ namespace Model
      * <p>A list of destinations for the message, consisting of To:, CC:, and BCC:
      * addresses.</p>
      */
-    inline SendRawEmailRequest& AddDestinations(Aws::String&& value) { m_destinationsHasBeenSet = true; m_destinations.push_back(value); return *this; }
+    inline SendRawEmailRequest& AddDestinations(Aws::String&& value) { m_destinationsHasBeenSet = true; m_destinations.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of destinations for the message, consisting of To:, CC:, and BCC:
      * addresses.</p>
      */
     inline SendRawEmailRequest& AddDestinations(const char* value) { m_destinationsHasBeenSet = true; m_destinations.push_back(value); return *this; }
+
 
     /**
      * <p>The raw text of the message. The client is responsible for ensuring the
@@ -203,7 +219,9 @@ namespace Model
      * supported by Amazon SES. For more information, go to the <a
      * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html">Amazon
      * SES Developer Guide</a>.</p> </li> <li> <p>Must be base64-encoded.</p> </li>
-     * </ul>
+     * <li> <p>Per <a href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC
+     * 5321</a>, the maximum length of each line of text, including the &lt;CRLF&gt;,
+     * must not exceed 1,000 characters.</p> </li> </ul>
      */
     inline const RawMessage& GetRawMessage() const{ return m_rawMessage; }
 
@@ -216,7 +234,9 @@ namespace Model
      * supported by Amazon SES. For more information, go to the <a
      * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html">Amazon
      * SES Developer Guide</a>.</p> </li> <li> <p>Must be base64-encoded.</p> </li>
-     * </ul>
+     * <li> <p>Per <a href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC
+     * 5321</a>, the maximum length of each line of text, including the &lt;CRLF&gt;,
+     * must not exceed 1,000 characters.</p> </li> </ul>
      */
     inline void SetRawMessage(const RawMessage& value) { m_rawMessageHasBeenSet = true; m_rawMessage = value; }
 
@@ -229,9 +249,11 @@ namespace Model
      * supported by Amazon SES. For more information, go to the <a
      * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html">Amazon
      * SES Developer Guide</a>.</p> </li> <li> <p>Must be base64-encoded.</p> </li>
-     * </ul>
+     * <li> <p>Per <a href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC
+     * 5321</a>, the maximum length of each line of text, including the &lt;CRLF&gt;,
+     * must not exceed 1,000 characters.</p> </li> </ul>
      */
-    inline void SetRawMessage(RawMessage&& value) { m_rawMessageHasBeenSet = true; m_rawMessage = value; }
+    inline void SetRawMessage(RawMessage&& value) { m_rawMessageHasBeenSet = true; m_rawMessage = std::move(value); }
 
     /**
      * <p>The raw text of the message. The client is responsible for ensuring the
@@ -242,7 +264,9 @@ namespace Model
      * supported by Amazon SES. For more information, go to the <a
      * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html">Amazon
      * SES Developer Guide</a>.</p> </li> <li> <p>Must be base64-encoded.</p> </li>
-     * </ul>
+     * <li> <p>Per <a href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC
+     * 5321</a>, the maximum length of each line of text, including the &lt;CRLF&gt;,
+     * must not exceed 1,000 characters.</p> </li> </ul>
      */
     inline SendRawEmailRequest& WithRawMessage(const RawMessage& value) { SetRawMessage(value); return *this;}
 
@@ -255,9 +279,12 @@ namespace Model
      * supported by Amazon SES. For more information, go to the <a
      * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html">Amazon
      * SES Developer Guide</a>.</p> </li> <li> <p>Must be base64-encoded.</p> </li>
-     * </ul>
+     * <li> <p>Per <a href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC
+     * 5321</a>, the maximum length of each line of text, including the &lt;CRLF&gt;,
+     * must not exceed 1,000 characters.</p> </li> </ul>
      */
-    inline SendRawEmailRequest& WithRawMessage(RawMessage&& value) { SetRawMessage(value); return *this;}
+    inline SendRawEmailRequest& WithRawMessage(RawMessage&& value) { SetRawMessage(std::move(value)); return *this;}
+
 
     /**
      * <p>This parameter is used only for sending authorization. It is the ARN of the
@@ -302,7 +329,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-delegate-sender-tasks-email.html">Amazon
      * SES Developer Guide</a>.</p> </note>
      */
-    inline void SetFromArn(Aws::String&& value) { m_fromArnHasBeenSet = true; m_fromArn = value; }
+    inline void SetFromArn(Aws::String&& value) { m_fromArnHasBeenSet = true; m_fromArn = std::move(value); }
 
     /**
      * <p>This parameter is used only for sending authorization. It is the ARN of the
@@ -347,7 +374,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-delegate-sender-tasks-email.html">Amazon
      * SES Developer Guide</a>.</p> </note>
      */
-    inline SendRawEmailRequest& WithFromArn(Aws::String&& value) { SetFromArn(value); return *this;}
+    inline SendRawEmailRequest& WithFromArn(Aws::String&& value) { SetFromArn(std::move(value)); return *this;}
 
     /**
      * <p>This parameter is used only for sending authorization. It is the ARN of the
@@ -363,6 +390,7 @@ namespace Model
      * SES Developer Guide</a>.</p> </note>
      */
     inline SendRawEmailRequest& WithFromArn(const char* value) { SetFromArn(value); return *this;}
+
 
     /**
      * <p>This parameter is used only for sending authorization. It is the ARN of the
@@ -425,7 +453,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-delegate-sender-tasks-email.html">Amazon
      * SES Developer Guide</a>.</p> </note>
      */
-    inline void SetSourceArn(Aws::String&& value) { m_sourceArnHasBeenSet = true; m_sourceArn = value; }
+    inline void SetSourceArn(Aws::String&& value) { m_sourceArnHasBeenSet = true; m_sourceArn = std::move(value); }
 
     /**
      * <p>This parameter is used only for sending authorization. It is the ARN of the
@@ -488,7 +516,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-delegate-sender-tasks-email.html">Amazon
      * SES Developer Guide</a>.</p> </note>
      */
-    inline SendRawEmailRequest& WithSourceArn(Aws::String&& value) { SetSourceArn(value); return *this;}
+    inline SendRawEmailRequest& WithSourceArn(Aws::String&& value) { SetSourceArn(std::move(value)); return *this;}
 
     /**
      * <p>This parameter is used only for sending authorization. It is the ARN of the
@@ -510,6 +538,7 @@ namespace Model
      * SES Developer Guide</a>.</p> </note>
      */
     inline SendRawEmailRequest& WithSourceArn(const char* value) { SetSourceArn(value); return *this;}
+
 
     /**
      * <p>This parameter is used only for sending authorization. It is the ARN of the
@@ -575,7 +604,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-delegate-sender-tasks-email.html">Amazon
      * SES Developer Guide</a>.</p> </note>
      */
-    inline void SetReturnPathArn(Aws::String&& value) { m_returnPathArnHasBeenSet = true; m_returnPathArn = value; }
+    inline void SetReturnPathArn(Aws::String&& value) { m_returnPathArnHasBeenSet = true; m_returnPathArn = std::move(value); }
 
     /**
      * <p>This parameter is used only for sending authorization. It is the ARN of the
@@ -641,7 +670,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-delegate-sender-tasks-email.html">Amazon
      * SES Developer Guide</a>.</p> </note>
      */
-    inline SendRawEmailRequest& WithReturnPathArn(Aws::String&& value) { SetReturnPathArn(value); return *this;}
+    inline SendRawEmailRequest& WithReturnPathArn(Aws::String&& value) { SetReturnPathArn(std::move(value)); return *this;}
 
     /**
      * <p>This parameter is used only for sending authorization. It is the ARN of the
@@ -665,6 +694,7 @@ namespace Model
      */
     inline SendRawEmailRequest& WithReturnPathArn(const char* value) { SetReturnPathArn(value); return *this;}
 
+
     /**
      * <p>A list of tags, in the form of name/value pairs, to apply to an email that
      * you send using <code>SendRawEmail</code>. Tags correspond to characteristics of
@@ -684,7 +714,7 @@ namespace Model
      * you send using <code>SendRawEmail</code>. Tags correspond to characteristics of
      * the email that you define, so that you can publish email sending events.</p>
      */
-    inline void SetTags(Aws::Vector<MessageTag>&& value) { m_tagsHasBeenSet = true; m_tags = value; }
+    inline void SetTags(Aws::Vector<MessageTag>&& value) { m_tagsHasBeenSet = true; m_tags = std::move(value); }
 
     /**
      * <p>A list of tags, in the form of name/value pairs, to apply to an email that
@@ -698,7 +728,7 @@ namespace Model
      * you send using <code>SendRawEmail</code>. Tags correspond to characteristics of
      * the email that you define, so that you can publish email sending events.</p>
      */
-    inline SendRawEmailRequest& WithTags(Aws::Vector<MessageTag>&& value) { SetTags(value); return *this;}
+    inline SendRawEmailRequest& WithTags(Aws::Vector<MessageTag>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
      * <p>A list of tags, in the form of name/value pairs, to apply to an email that
@@ -712,7 +742,8 @@ namespace Model
      * you send using <code>SendRawEmail</code>. Tags correspond to characteristics of
      * the email that you define, so that you can publish email sending events.</p>
      */
-    inline SendRawEmailRequest& AddTags(MessageTag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
+    inline SendRawEmailRequest& AddTags(MessageTag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The name of the configuration set to use when you send an email using
@@ -730,7 +761,7 @@ namespace Model
      * <p>The name of the configuration set to use when you send an email using
      * <code>SendRawEmail</code>.</p>
      */
-    inline void SetConfigurationSetName(Aws::String&& value) { m_configurationSetNameHasBeenSet = true; m_configurationSetName = value; }
+    inline void SetConfigurationSetName(Aws::String&& value) { m_configurationSetNameHasBeenSet = true; m_configurationSetName = std::move(value); }
 
     /**
      * <p>The name of the configuration set to use when you send an email using
@@ -748,7 +779,7 @@ namespace Model
      * <p>The name of the configuration set to use when you send an email using
      * <code>SendRawEmail</code>.</p>
      */
-    inline SendRawEmailRequest& WithConfigurationSetName(Aws::String&& value) { SetConfigurationSetName(value); return *this;}
+    inline SendRawEmailRequest& WithConfigurationSetName(Aws::String&& value) { SetConfigurationSetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the configuration set to use when you send an email using
@@ -757,20 +788,28 @@ namespace Model
     inline SendRawEmailRequest& WithConfigurationSetName(const char* value) { SetConfigurationSetName(value); return *this;}
 
   private:
+
     Aws::String m_source;
     bool m_sourceHasBeenSet;
+
     Aws::Vector<Aws::String> m_destinations;
     bool m_destinationsHasBeenSet;
+
     RawMessage m_rawMessage;
     bool m_rawMessageHasBeenSet;
+
     Aws::String m_fromArn;
     bool m_fromArnHasBeenSet;
+
     Aws::String m_sourceArn;
     bool m_sourceArnHasBeenSet;
+
     Aws::String m_returnPathArn;
     bool m_returnPathArnHasBeenSet;
+
     Aws::Vector<MessageTag> m_tags;
     bool m_tagsHasBeenSet;
+
     Aws::String m_configurationSetName;
     bool m_configurationSetNameHasBeenSet;
   };

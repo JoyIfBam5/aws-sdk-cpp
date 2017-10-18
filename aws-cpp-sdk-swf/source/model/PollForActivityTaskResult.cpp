@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/swf/model/PollForActivityTaskResult.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
+#include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/UnreferencedParam.h>
 
 #include <utility>
@@ -29,13 +31,13 @@ PollForActivityTaskResult::PollForActivityTaskResult() :
 {
 }
 
-PollForActivityTaskResult::PollForActivityTaskResult(const AmazonWebServiceResult<JsonValue>& result) : 
+PollForActivityTaskResult::PollForActivityTaskResult(const Aws::AmazonWebServiceResult<JsonValue>& result) : 
     m_startedEventId(0)
 {
   *this = result;
 }
 
-PollForActivityTaskResult& PollForActivityTaskResult::operator =(const AmazonWebServiceResult<JsonValue>& result)
+PollForActivityTaskResult& PollForActivityTaskResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
   const JsonValue& jsonValue = result.GetPayload();
   if(jsonValue.ValueExists("taskToken"))

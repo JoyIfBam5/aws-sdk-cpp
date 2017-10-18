@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,16 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kms/KMS_EXPORTS.h>
 #include <aws/kms/KMSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/kms/model/KeyUsageType.h>
 #include <aws/kms/model/OriginType.h>
+#include <aws/core/utils/memory/stl/AWSVector.h>
+#include <aws/kms/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -32,21 +36,29 @@ namespace Model
   {
   public:
     CreateKeyRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateKey"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
 
+
     /**
      * <p>The key policy to attach to the CMK.</p> <p>If you specify a policy and do
      * not set <code>BypassPolicyLockoutSafetyCheck</code> to true, the policy must
-     * meet the following criteria:</p> <ul> <li> <p>It must allow the principal making
-     * the <code>CreateKey</code> request to make a subsequent <a>PutKeyPolicy</a>
-     * request on the CMK. This reduces the likelihood that the CMK becomes
-     * unmanageable. For more information, refer to the scenario in the <a
+     * meet the following criteria:</p> <ul> <li> <p>It must allow the principal that
+     * is making the <code>CreateKey</code> request to make a subsequent
+     * <a>PutKeyPolicy</a> request on the CMK. This reduces the likelihood that the CMK
+     * becomes unmanageable. For more information, refer to the scenario in the <a
      * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam">Default
      * Key Policy</a> section in the <i>AWS Key Management Service Developer
-     * Guide</i>.</p> </li> <li> <p>The principal(s) specified in the key policy must
-     * exist and be visible to AWS KMS. When you create a new AWS principal (for
+     * Guide</i>.</p> </li> <li> <p>The principals that are specified in the key policy
+     * must exist and be visible to AWS KMS. When you create a new AWS principal (for
      * example, an IAM user or role), you might need to enforce a delay before
      * specifying the new principal in a key policy because the new principal might not
      * immediately be visible to AWS KMS. For more information, see <a
@@ -63,14 +75,14 @@ namespace Model
     /**
      * <p>The key policy to attach to the CMK.</p> <p>If you specify a policy and do
      * not set <code>BypassPolicyLockoutSafetyCheck</code> to true, the policy must
-     * meet the following criteria:</p> <ul> <li> <p>It must allow the principal making
-     * the <code>CreateKey</code> request to make a subsequent <a>PutKeyPolicy</a>
-     * request on the CMK. This reduces the likelihood that the CMK becomes
-     * unmanageable. For more information, refer to the scenario in the <a
+     * meet the following criteria:</p> <ul> <li> <p>It must allow the principal that
+     * is making the <code>CreateKey</code> request to make a subsequent
+     * <a>PutKeyPolicy</a> request on the CMK. This reduces the likelihood that the CMK
+     * becomes unmanageable. For more information, refer to the scenario in the <a
      * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam">Default
      * Key Policy</a> section in the <i>AWS Key Management Service Developer
-     * Guide</i>.</p> </li> <li> <p>The principal(s) specified in the key policy must
-     * exist and be visible to AWS KMS. When you create a new AWS principal (for
+     * Guide</i>.</p> </li> <li> <p>The principals that are specified in the key policy
+     * must exist and be visible to AWS KMS. When you create a new AWS principal (for
      * example, an IAM user or role), you might need to enforce a delay before
      * specifying the new principal in a key policy because the new principal might not
      * immediately be visible to AWS KMS. For more information, see <a
@@ -87,14 +99,14 @@ namespace Model
     /**
      * <p>The key policy to attach to the CMK.</p> <p>If you specify a policy and do
      * not set <code>BypassPolicyLockoutSafetyCheck</code> to true, the policy must
-     * meet the following criteria:</p> <ul> <li> <p>It must allow the principal making
-     * the <code>CreateKey</code> request to make a subsequent <a>PutKeyPolicy</a>
-     * request on the CMK. This reduces the likelihood that the CMK becomes
-     * unmanageable. For more information, refer to the scenario in the <a
+     * meet the following criteria:</p> <ul> <li> <p>It must allow the principal that
+     * is making the <code>CreateKey</code> request to make a subsequent
+     * <a>PutKeyPolicy</a> request on the CMK. This reduces the likelihood that the CMK
+     * becomes unmanageable. For more information, refer to the scenario in the <a
      * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam">Default
      * Key Policy</a> section in the <i>AWS Key Management Service Developer
-     * Guide</i>.</p> </li> <li> <p>The principal(s) specified in the key policy must
-     * exist and be visible to AWS KMS. When you create a new AWS principal (for
+     * Guide</i>.</p> </li> <li> <p>The principals that are specified in the key policy
+     * must exist and be visible to AWS KMS. When you create a new AWS principal (for
      * example, an IAM user or role), you might need to enforce a delay before
      * specifying the new principal in a key policy because the new principal might not
      * immediately be visible to AWS KMS. For more information, see <a
@@ -106,19 +118,19 @@ namespace Model
      * Key Policy</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>
      * <p>The policy size limit is 32 KiB (32768 bytes).</p>
      */
-    inline void SetPolicy(Aws::String&& value) { m_policyHasBeenSet = true; m_policy = value; }
+    inline void SetPolicy(Aws::String&& value) { m_policyHasBeenSet = true; m_policy = std::move(value); }
 
     /**
      * <p>The key policy to attach to the CMK.</p> <p>If you specify a policy and do
      * not set <code>BypassPolicyLockoutSafetyCheck</code> to true, the policy must
-     * meet the following criteria:</p> <ul> <li> <p>It must allow the principal making
-     * the <code>CreateKey</code> request to make a subsequent <a>PutKeyPolicy</a>
-     * request on the CMK. This reduces the likelihood that the CMK becomes
-     * unmanageable. For more information, refer to the scenario in the <a
+     * meet the following criteria:</p> <ul> <li> <p>It must allow the principal that
+     * is making the <code>CreateKey</code> request to make a subsequent
+     * <a>PutKeyPolicy</a> request on the CMK. This reduces the likelihood that the CMK
+     * becomes unmanageable. For more information, refer to the scenario in the <a
      * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam">Default
      * Key Policy</a> section in the <i>AWS Key Management Service Developer
-     * Guide</i>.</p> </li> <li> <p>The principal(s) specified in the key policy must
-     * exist and be visible to AWS KMS. When you create a new AWS principal (for
+     * Guide</i>.</p> </li> <li> <p>The principals that are specified in the key policy
+     * must exist and be visible to AWS KMS. When you create a new AWS principal (for
      * example, an IAM user or role), you might need to enforce a delay before
      * specifying the new principal in a key policy because the new principal might not
      * immediately be visible to AWS KMS. For more information, see <a
@@ -135,14 +147,14 @@ namespace Model
     /**
      * <p>The key policy to attach to the CMK.</p> <p>If you specify a policy and do
      * not set <code>BypassPolicyLockoutSafetyCheck</code> to true, the policy must
-     * meet the following criteria:</p> <ul> <li> <p>It must allow the principal making
-     * the <code>CreateKey</code> request to make a subsequent <a>PutKeyPolicy</a>
-     * request on the CMK. This reduces the likelihood that the CMK becomes
-     * unmanageable. For more information, refer to the scenario in the <a
+     * meet the following criteria:</p> <ul> <li> <p>It must allow the principal that
+     * is making the <code>CreateKey</code> request to make a subsequent
+     * <a>PutKeyPolicy</a> request on the CMK. This reduces the likelihood that the CMK
+     * becomes unmanageable. For more information, refer to the scenario in the <a
      * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam">Default
      * Key Policy</a> section in the <i>AWS Key Management Service Developer
-     * Guide</i>.</p> </li> <li> <p>The principal(s) specified in the key policy must
-     * exist and be visible to AWS KMS. When you create a new AWS principal (for
+     * Guide</i>.</p> </li> <li> <p>The principals that are specified in the key policy
+     * must exist and be visible to AWS KMS. When you create a new AWS principal (for
      * example, an IAM user or role), you might need to enforce a delay before
      * specifying the new principal in a key policy because the new principal might not
      * immediately be visible to AWS KMS. For more information, see <a
@@ -159,14 +171,14 @@ namespace Model
     /**
      * <p>The key policy to attach to the CMK.</p> <p>If you specify a policy and do
      * not set <code>BypassPolicyLockoutSafetyCheck</code> to true, the policy must
-     * meet the following criteria:</p> <ul> <li> <p>It must allow the principal making
-     * the <code>CreateKey</code> request to make a subsequent <a>PutKeyPolicy</a>
-     * request on the CMK. This reduces the likelihood that the CMK becomes
-     * unmanageable. For more information, refer to the scenario in the <a
+     * meet the following criteria:</p> <ul> <li> <p>It must allow the principal that
+     * is making the <code>CreateKey</code> request to make a subsequent
+     * <a>PutKeyPolicy</a> request on the CMK. This reduces the likelihood that the CMK
+     * becomes unmanageable. For more information, refer to the scenario in the <a
      * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam">Default
      * Key Policy</a> section in the <i>AWS Key Management Service Developer
-     * Guide</i>.</p> </li> <li> <p>The principal(s) specified in the key policy must
-     * exist and be visible to AWS KMS. When you create a new AWS principal (for
+     * Guide</i>.</p> </li> <li> <p>The principals that are specified in the key policy
+     * must exist and be visible to AWS KMS. When you create a new AWS principal (for
      * example, an IAM user or role), you might need to enforce a delay before
      * specifying the new principal in a key policy because the new principal might not
      * immediately be visible to AWS KMS. For more information, see <a
@@ -178,19 +190,19 @@ namespace Model
      * Key Policy</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>
      * <p>The policy size limit is 32 KiB (32768 bytes).</p>
      */
-    inline CreateKeyRequest& WithPolicy(Aws::String&& value) { SetPolicy(value); return *this;}
+    inline CreateKeyRequest& WithPolicy(Aws::String&& value) { SetPolicy(std::move(value)); return *this;}
 
     /**
      * <p>The key policy to attach to the CMK.</p> <p>If you specify a policy and do
      * not set <code>BypassPolicyLockoutSafetyCheck</code> to true, the policy must
-     * meet the following criteria:</p> <ul> <li> <p>It must allow the principal making
-     * the <code>CreateKey</code> request to make a subsequent <a>PutKeyPolicy</a>
-     * request on the CMK. This reduces the likelihood that the CMK becomes
-     * unmanageable. For more information, refer to the scenario in the <a
+     * meet the following criteria:</p> <ul> <li> <p>It must allow the principal that
+     * is making the <code>CreateKey</code> request to make a subsequent
+     * <a>PutKeyPolicy</a> request on the CMK. This reduces the likelihood that the CMK
+     * becomes unmanageable. For more information, refer to the scenario in the <a
      * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam">Default
      * Key Policy</a> section in the <i>AWS Key Management Service Developer
-     * Guide</i>.</p> </li> <li> <p>The principal(s) specified in the key policy must
-     * exist and be visible to AWS KMS. When you create a new AWS principal (for
+     * Guide</i>.</p> </li> <li> <p>The principals that are specified in the key policy
+     * must exist and be visible to AWS KMS. When you create a new AWS principal (for
      * example, an IAM user or role), you might need to enforce a delay before
      * specifying the new principal in a key policy because the new principal might not
      * immediately be visible to AWS KMS. For more information, see <a
@@ -203,6 +215,7 @@ namespace Model
      * <p>The policy size limit is 32 KiB (32768 bytes).</p>
      */
     inline CreateKeyRequest& WithPolicy(const char* value) { SetPolicy(value); return *this;}
+
 
     /**
      * <p>A description of the CMK.</p> <p>Use a description that helps you decide
@@ -220,7 +233,7 @@ namespace Model
      * <p>A description of the CMK.</p> <p>Use a description that helps you decide
      * whether the CMK is appropriate for a task.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>A description of the CMK.</p> <p>Use a description that helps you decide
@@ -238,13 +251,14 @@ namespace Model
      * <p>A description of the CMK.</p> <p>Use a description that helps you decide
      * whether the CMK is appropriate for a task.</p>
      */
-    inline CreateKeyRequest& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline CreateKeyRequest& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>A description of the CMK.</p> <p>Use a description that helps you decide
      * whether the CMK is appropriate for a task.</p>
      */
     inline CreateKeyRequest& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The intended use of the CMK.</p> <p>You can use CMKs only for symmetric
@@ -262,7 +276,7 @@ namespace Model
      * <p>The intended use of the CMK.</p> <p>You can use CMKs only for symmetric
      * encryption and decryption.</p>
      */
-    inline void SetKeyUsage(KeyUsageType&& value) { m_keyUsageHasBeenSet = true; m_keyUsage = value; }
+    inline void SetKeyUsage(KeyUsageType&& value) { m_keyUsageHasBeenSet = true; m_keyUsage = std::move(value); }
 
     /**
      * <p>The intended use of the CMK.</p> <p>You can use CMKs only for symmetric
@@ -274,7 +288,8 @@ namespace Model
      * <p>The intended use of the CMK.</p> <p>You can use CMKs only for symmetric
      * encryption and decryption.</p>
      */
-    inline CreateKeyRequest& WithKeyUsage(KeyUsageType&& value) { SetKeyUsage(value); return *this;}
+    inline CreateKeyRequest& WithKeyUsage(KeyUsageType&& value) { SetKeyUsage(std::move(value)); return *this;}
+
 
     /**
      * <p>The source of the CMK's key material.</p> <p>The default is
@@ -316,7 +331,7 @@ namespace Model
      * <p>The CMK's <code>Origin</code> is immutable and is set when the CMK is
      * created.</p>
      */
-    inline void SetOrigin(OriginType&& value) { m_originHasBeenSet = true; m_origin = value; }
+    inline void SetOrigin(OriginType&& value) { m_originHasBeenSet = true; m_origin = std::move(value); }
 
     /**
      * <p>The source of the CMK's key material.</p> <p>The default is
@@ -344,7 +359,8 @@ namespace Model
      * <p>The CMK's <code>Origin</code> is immutable and is set when the CMK is
      * created.</p>
      */
-    inline CreateKeyRequest& WithOrigin(OriginType&& value) { SetOrigin(value); return *this;}
+    inline CreateKeyRequest& WithOrigin(OriginType&& value) { SetOrigin(std::move(value)); return *this;}
+
 
     /**
      * <p>A flag to indicate whether to bypass the key policy lockout safety check.</p>
@@ -354,9 +370,9 @@ namespace Model
      * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam">Default
      * Key Policy</a> section in the <i>AWS Key Management Service Developer
      * Guide</i>.</p> </important> <p>Use this parameter only when you include a policy
-     * in the request and you intend to prevent the principal making the request from
-     * making a subsequent <a>PutKeyPolicy</a> request on the CMK.</p> <p>The default
-     * value is false.</p>
+     * in the request and you intend to prevent the principal that is making the
+     * request from making a subsequent <a>PutKeyPolicy</a> request on the CMK.</p>
+     * <p>The default value is false.</p>
      */
     inline bool GetBypassPolicyLockoutSafetyCheck() const{ return m_bypassPolicyLockoutSafetyCheck; }
 
@@ -368,9 +384,9 @@ namespace Model
      * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam">Default
      * Key Policy</a> section in the <i>AWS Key Management Service Developer
      * Guide</i>.</p> </important> <p>Use this parameter only when you include a policy
-     * in the request and you intend to prevent the principal making the request from
-     * making a subsequent <a>PutKeyPolicy</a> request on the CMK.</p> <p>The default
-     * value is false.</p>
+     * in the request and you intend to prevent the principal that is making the
+     * request from making a subsequent <a>PutKeyPolicy</a> request on the CMK.</p>
+     * <p>The default value is false.</p>
      */
     inline void SetBypassPolicyLockoutSafetyCheck(bool value) { m_bypassPolicyLockoutSafetyCheckHasBeenSet = true; m_bypassPolicyLockoutSafetyCheck = value; }
 
@@ -382,23 +398,95 @@ namespace Model
      * href="http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam">Default
      * Key Policy</a> section in the <i>AWS Key Management Service Developer
      * Guide</i>.</p> </important> <p>Use this parameter only when you include a policy
-     * in the request and you intend to prevent the principal making the request from
-     * making a subsequent <a>PutKeyPolicy</a> request on the CMK.</p> <p>The default
-     * value is false.</p>
+     * in the request and you intend to prevent the principal that is making the
+     * request from making a subsequent <a>PutKeyPolicy</a> request on the CMK.</p>
+     * <p>The default value is false.</p>
      */
     inline CreateKeyRequest& WithBypassPolicyLockoutSafetyCheck(bool value) { SetBypassPolicyLockoutSafetyCheck(value); return *this;}
 
+
+    /**
+     * <p>One or more tags. Each tag consists of a tag key and a tag value. Tag keys
+     * and tag values are both required, but tag values can be empty (null)
+     * strings.</p> <p>Use this parameter to tag the CMK when it is created.
+     * Alternately, you can omit this parameter and instead tag the CMK after it is
+     * created using <a>TagResource</a>.</p>
+     */
+    inline const Aws::Vector<Tag>& GetTags() const{ return m_tags; }
+
+    /**
+     * <p>One or more tags. Each tag consists of a tag key and a tag value. Tag keys
+     * and tag values are both required, but tag values can be empty (null)
+     * strings.</p> <p>Use this parameter to tag the CMK when it is created.
+     * Alternately, you can omit this parameter and instead tag the CMK after it is
+     * created using <a>TagResource</a>.</p>
+     */
+    inline void SetTags(const Aws::Vector<Tag>& value) { m_tagsHasBeenSet = true; m_tags = value; }
+
+    /**
+     * <p>One or more tags. Each tag consists of a tag key and a tag value. Tag keys
+     * and tag values are both required, but tag values can be empty (null)
+     * strings.</p> <p>Use this parameter to tag the CMK when it is created.
+     * Alternately, you can omit this parameter and instead tag the CMK after it is
+     * created using <a>TagResource</a>.</p>
+     */
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = std::move(value); }
+
+    /**
+     * <p>One or more tags. Each tag consists of a tag key and a tag value. Tag keys
+     * and tag values are both required, but tag values can be empty (null)
+     * strings.</p> <p>Use this parameter to tag the CMK when it is created.
+     * Alternately, you can omit this parameter and instead tag the CMK after it is
+     * created using <a>TagResource</a>.</p>
+     */
+    inline CreateKeyRequest& WithTags(const Aws::Vector<Tag>& value) { SetTags(value); return *this;}
+
+    /**
+     * <p>One or more tags. Each tag consists of a tag key and a tag value. Tag keys
+     * and tag values are both required, but tag values can be empty (null)
+     * strings.</p> <p>Use this parameter to tag the CMK when it is created.
+     * Alternately, you can omit this parameter and instead tag the CMK after it is
+     * created using <a>TagResource</a>.</p>
+     */
+    inline CreateKeyRequest& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
+
+    /**
+     * <p>One or more tags. Each tag consists of a tag key and a tag value. Tag keys
+     * and tag values are both required, but tag values can be empty (null)
+     * strings.</p> <p>Use this parameter to tag the CMK when it is created.
+     * Alternately, you can omit this parameter and instead tag the CMK after it is
+     * created using <a>TagResource</a>.</p>
+     */
+    inline CreateKeyRequest& AddTags(const Tag& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
+
+    /**
+     * <p>One or more tags. Each tag consists of a tag key and a tag value. Tag keys
+     * and tag values are both required, but tag values can be empty (null)
+     * strings.</p> <p>Use this parameter to tag the CMK when it is created.
+     * Alternately, you can omit this parameter and instead tag the CMK after it is
+     * created using <a>TagResource</a>.</p>
+     */
+    inline CreateKeyRequest& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(std::move(value)); return *this; }
+
   private:
+
     Aws::String m_policy;
     bool m_policyHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     KeyUsageType m_keyUsage;
     bool m_keyUsageHasBeenSet;
+
     OriginType m_origin;
     bool m_originHasBeenSet;
+
     bool m_bypassPolicyLockoutSafetyCheck;
     bool m_bypassPolicyLockoutSafetyCheckHasBeenSet;
+
+    Aws::Vector<Tag> m_tags;
+    bool m_tagsHasBeenSet;
   };
 
 } // namespace Model

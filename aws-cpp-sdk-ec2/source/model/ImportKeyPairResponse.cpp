@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/ImportKeyPairResponse.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
@@ -30,38 +31,39 @@ ImportKeyPairResponse::ImportKeyPairResponse()
 {
 }
 
-ImportKeyPairResponse::ImportKeyPairResponse(const AmazonWebServiceResult<XmlDocument>& result)
+ImportKeyPairResponse::ImportKeyPairResponse(const Aws::AmazonWebServiceResult<XmlDocument>& result)
 {
   *this = result;
 }
 
-ImportKeyPairResponse& ImportKeyPairResponse::operator =(const AmazonWebServiceResult<XmlDocument>& result)
+ImportKeyPairResponse& ImportKeyPairResponse::operator =(const Aws::AmazonWebServiceResult<XmlDocument>& result)
 {
   const XmlDocument& xmlDocument = result.GetPayload();
   XmlNode rootNode = xmlDocument.GetRootElement();
   XmlNode resultNode = rootNode;
-  if (rootNode.GetName() != "ImportKeyPairResponse")
+  if (!rootNode.IsNull() && (rootNode.GetName() != "ImportKeyPairResponse"))
   {
     resultNode = rootNode.FirstChild("ImportKeyPairResponse");
   }
 
   if(!resultNode.IsNull())
   {
-    XmlNode keyNameNode = resultNode.FirstChild("keyName");
-    if(!keyNameNode.IsNull())
-    {
-      m_keyName = StringUtils::Trim(keyNameNode.GetText().c_str());
-    }
     XmlNode keyFingerprintNode = resultNode.FirstChild("keyFingerprint");
     if(!keyFingerprintNode.IsNull())
     {
       m_keyFingerprint = StringUtils::Trim(keyFingerprintNode.GetText().c_str());
     }
+    XmlNode keyNameNode = resultNode.FirstChild("keyName");
+    if(!keyNameNode.IsNull())
+    {
+      m_keyName = StringUtils::Trim(keyNameNode.GetText().c_str());
+    }
   }
 
-  XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
-  m_responseMetadata = responseMetadataNode;
-  AWS_LOGSTREAM_DEBUG("Aws::EC2::Model::ImportKeyPairResponse", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
-
+  if (!rootNode.IsNull()) {
+    XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
+    m_responseMetadata = responseMetadataNode;
+    AWS_LOGSTREAM_DEBUG("Aws::EC2::Model::ImportKeyPairResponse", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
+  }
   return *this;
 }

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/model/SqlInjectionMatchSet.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     GetSqlInjectionMatchSetResult();
-    GetSqlInjectionMatchSetResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetSqlInjectionMatchSetResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetSqlInjectionMatchSetResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetSqlInjectionMatchSetResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the <a>SqlInjectionMatchSet</a> that you specified in the
@@ -82,7 +85,7 @@ namespace Model
      * </li> <li> <p> <a>FieldToMatch</a>: Contains <code>Data</code> and
      * <code>Type</code> </p> </li> </ul>
      */
-    inline void SetSqlInjectionMatchSet(SqlInjectionMatchSet&& value) { m_sqlInjectionMatchSet = value; }
+    inline void SetSqlInjectionMatchSet(SqlInjectionMatchSet&& value) { m_sqlInjectionMatchSet = std::move(value); }
 
     /**
      * <p>Information about the <a>SqlInjectionMatchSet</a> that you specified in the
@@ -108,9 +111,10 @@ namespace Model
      * </li> <li> <p> <a>FieldToMatch</a>: Contains <code>Data</code> and
      * <code>Type</code> </p> </li> </ul>
      */
-    inline GetSqlInjectionMatchSetResult& WithSqlInjectionMatchSet(SqlInjectionMatchSet&& value) { SetSqlInjectionMatchSet(value); return *this;}
+    inline GetSqlInjectionMatchSetResult& WithSqlInjectionMatchSet(SqlInjectionMatchSet&& value) { SetSqlInjectionMatchSet(std::move(value)); return *this;}
 
   private:
+
     SqlInjectionMatchSet m_sqlInjectionMatchSet;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudsearch/CloudSearch_EXPORTS.h>
 #include <aws/cloudsearch/CloudSearchRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -39,7 +41,19 @@ namespace Model
   {
   public:
     DescribeSuggestersRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeSuggesters"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The name of the domain you want to describe.</p>
@@ -54,7 +68,7 @@ namespace Model
     /**
      * <p>The name of the domain you want to describe.</p>
      */
-    inline void SetDomainName(Aws::String&& value) { m_domainNameHasBeenSet = true; m_domainName = value; }
+    inline void SetDomainName(Aws::String&& value) { m_domainNameHasBeenSet = true; m_domainName = std::move(value); }
 
     /**
      * <p>The name of the domain you want to describe.</p>
@@ -69,12 +83,13 @@ namespace Model
     /**
      * <p>The name of the domain you want to describe.</p>
      */
-    inline DescribeSuggestersRequest& WithDomainName(Aws::String&& value) { SetDomainName(value); return *this;}
+    inline DescribeSuggestersRequest& WithDomainName(Aws::String&& value) { SetDomainName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the domain you want to describe.</p>
      */
     inline DescribeSuggestersRequest& WithDomainName(const char* value) { SetDomainName(value); return *this;}
+
 
     /**
      * <p>The suggesters you want to describe.</p>
@@ -89,7 +104,7 @@ namespace Model
     /**
      * <p>The suggesters you want to describe.</p>
      */
-    inline void SetSuggesterNames(Aws::Vector<Aws::String>&& value) { m_suggesterNamesHasBeenSet = true; m_suggesterNames = value; }
+    inline void SetSuggesterNames(Aws::Vector<Aws::String>&& value) { m_suggesterNamesHasBeenSet = true; m_suggesterNames = std::move(value); }
 
     /**
      * <p>The suggesters you want to describe.</p>
@@ -99,7 +114,7 @@ namespace Model
     /**
      * <p>The suggesters you want to describe.</p>
      */
-    inline DescribeSuggestersRequest& WithSuggesterNames(Aws::Vector<Aws::String>&& value) { SetSuggesterNames(value); return *this;}
+    inline DescribeSuggestersRequest& WithSuggesterNames(Aws::Vector<Aws::String>&& value) { SetSuggesterNames(std::move(value)); return *this;}
 
     /**
      * <p>The suggesters you want to describe.</p>
@@ -109,12 +124,13 @@ namespace Model
     /**
      * <p>The suggesters you want to describe.</p>
      */
-    inline DescribeSuggestersRequest& AddSuggesterNames(Aws::String&& value) { m_suggesterNamesHasBeenSet = true; m_suggesterNames.push_back(value); return *this; }
+    inline DescribeSuggestersRequest& AddSuggesterNames(Aws::String&& value) { m_suggesterNamesHasBeenSet = true; m_suggesterNames.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The suggesters you want to describe.</p>
      */
     inline DescribeSuggestersRequest& AddSuggesterNames(const char* value) { m_suggesterNamesHasBeenSet = true; m_suggesterNames.push_back(value); return *this; }
+
 
     /**
      * <p>Whether to display the deployed configuration (<code>true</code>) or include
@@ -135,10 +151,13 @@ namespace Model
     inline DescribeSuggestersRequest& WithDeployed(bool value) { SetDeployed(value); return *this;}
 
   private:
+
     Aws::String m_domainName;
     bool m_domainNameHasBeenSet;
+
     Aws::Vector<Aws::String> m_suggesterNames;
     bool m_suggesterNamesHasBeenSet;
+
     bool m_deployed;
     bool m_deployedHasBeenSet;
   };

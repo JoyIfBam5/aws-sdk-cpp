@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/logs/CloudWatchLogs_EXPORTS.h>
 #include <aws/logs/CloudWatchLogsRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     PutDestinationPolicyRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "PutDestinationPolicy"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>A name for an existing destination.</p>
@@ -47,7 +57,7 @@ namespace Model
     /**
      * <p>A name for an existing destination.</p>
      */
-    inline void SetDestinationName(Aws::String&& value) { m_destinationNameHasBeenSet = true; m_destinationName = value; }
+    inline void SetDestinationName(Aws::String&& value) { m_destinationNameHasBeenSet = true; m_destinationName = std::move(value); }
 
     /**
      * <p>A name for an existing destination.</p>
@@ -62,12 +72,13 @@ namespace Model
     /**
      * <p>A name for an existing destination.</p>
      */
-    inline PutDestinationPolicyRequest& WithDestinationName(Aws::String&& value) { SetDestinationName(value); return *this;}
+    inline PutDestinationPolicyRequest& WithDestinationName(Aws::String&& value) { SetDestinationName(std::move(value)); return *this;}
 
     /**
      * <p>A name for an existing destination.</p>
      */
     inline PutDestinationPolicyRequest& WithDestinationName(const char* value) { SetDestinationName(value); return *this;}
+
 
     /**
      * <p>An IAM policy document that authorizes cross-account users to deliver their
@@ -85,7 +96,7 @@ namespace Model
      * <p>An IAM policy document that authorizes cross-account users to deliver their
      * log events to the associated destination.</p>
      */
-    inline void SetAccessPolicy(Aws::String&& value) { m_accessPolicyHasBeenSet = true; m_accessPolicy = value; }
+    inline void SetAccessPolicy(Aws::String&& value) { m_accessPolicyHasBeenSet = true; m_accessPolicy = std::move(value); }
 
     /**
      * <p>An IAM policy document that authorizes cross-account users to deliver their
@@ -103,7 +114,7 @@ namespace Model
      * <p>An IAM policy document that authorizes cross-account users to deliver their
      * log events to the associated destination.</p>
      */
-    inline PutDestinationPolicyRequest& WithAccessPolicy(Aws::String&& value) { SetAccessPolicy(value); return *this;}
+    inline PutDestinationPolicyRequest& WithAccessPolicy(Aws::String&& value) { SetAccessPolicy(std::move(value)); return *this;}
 
     /**
      * <p>An IAM policy document that authorizes cross-account users to deliver their
@@ -112,8 +123,10 @@ namespace Model
     inline PutDestinationPolicyRequest& WithAccessPolicy(const char* value) { SetAccessPolicy(value); return *this;}
 
   private:
+
     Aws::String m_destinationName;
     bool m_destinationNameHasBeenSet;
+
     Aws::String m_accessPolicy;
     bool m_accessPolicyHasBeenSet;
   };

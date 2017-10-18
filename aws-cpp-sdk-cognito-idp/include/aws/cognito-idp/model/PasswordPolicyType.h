@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 
@@ -42,6 +43,7 @@ namespace Model
     PasswordPolicyType& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The minimum length of the password policy that you have set. Cannot be less
      * than 6.</p>
@@ -59,6 +61,7 @@ namespace Model
      * than 6.</p>
      */
     inline PasswordPolicyType& WithMinimumLength(int value) { SetMinimumLength(value); return *this;}
+
 
     /**
      * <p>In the password policy that you have set, refers to whether you have required
@@ -78,6 +81,7 @@ namespace Model
      */
     inline PasswordPolicyType& WithRequireUppercase(bool value) { SetRequireUppercase(value); return *this;}
 
+
     /**
      * <p>In the password policy that you have set, refers to whether you have required
      * users to use at least one lowercase letter in their password.</p>
@@ -96,6 +100,7 @@ namespace Model
      */
     inline PasswordPolicyType& WithRequireLowercase(bool value) { SetRequireLowercase(value); return *this;}
 
+
     /**
      * <p>In the password policy that you have set, refers to whether you have required
      * users to use at least one number in their password.</p>
@@ -113,6 +118,7 @@ namespace Model
      * users to use at least one number in their password.</p>
      */
     inline PasswordPolicyType& WithRequireNumbers(bool value) { SetRequireNumbers(value); return *this;}
+
 
     /**
      * <p>In the password policy that you have set, refers to whether you have required
@@ -133,14 +139,19 @@ namespace Model
     inline PasswordPolicyType& WithRequireSymbols(bool value) { SetRequireSymbols(value); return *this;}
 
   private:
+
     int m_minimumLength;
     bool m_minimumLengthHasBeenSet;
+
     bool m_requireUppercase;
     bool m_requireUppercaseHasBeenSet;
+
     bool m_requireLowercase;
     bool m_requireLowercaseHasBeenSet;
+
     bool m_requireNumbers;
     bool m_requireNumbersHasBeenSet;
+
     bool m_requireSymbols;
     bool m_requireSymbolsHasBeenSet;
   };

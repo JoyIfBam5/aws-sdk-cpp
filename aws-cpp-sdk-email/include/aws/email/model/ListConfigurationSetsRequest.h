@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/email/SESRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,7 +39,19 @@ namespace Model
   {
   public:
     ListConfigurationSetsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListConfigurationSets"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>A token returned from a previous call to <code>ListConfigurationSets</code>
@@ -58,7 +72,7 @@ namespace Model
      * to indicate the position of the configuration set in the configuration set
      * list.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>A token returned from a previous call to <code>ListConfigurationSets</code>
@@ -79,7 +93,7 @@ namespace Model
      * to indicate the position of the configuration set in the configuration set
      * list.</p>
      */
-    inline ListConfigurationSetsRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListConfigurationSetsRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>A token returned from a previous call to <code>ListConfigurationSets</code>
@@ -87,6 +101,7 @@ namespace Model
      * list.</p>
      */
     inline ListConfigurationSetsRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     /**
      * <p>The number of configuration sets to return.</p>
@@ -104,8 +119,10 @@ namespace Model
     inline ListConfigurationSetsRequest& WithMaxItems(int value) { SetMaxItems(value); return *this;}
 
   private:
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
+
     int m_maxItems;
     bool m_maxItemsHasBeenSet;
   };

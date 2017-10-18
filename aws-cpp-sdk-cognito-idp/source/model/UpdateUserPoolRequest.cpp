@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/cognito-idp/model/UpdateUserPoolRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -29,6 +30,7 @@ UpdateUserPoolRequest::UpdateUserPoolRequest() :
     m_smsVerificationMessageHasBeenSet(false),
     m_emailVerificationMessageHasBeenSet(false),
     m_emailVerificationSubjectHasBeenSet(false),
+    m_verificationMessageTemplateHasBeenSet(false),
     m_smsAuthenticationMessageHasBeenSet(false),
     m_mfaConfiguration(UserPoolMfaType::NOT_SET),
     m_mfaConfigurationHasBeenSet(false),
@@ -91,6 +93,12 @@ Aws::String UpdateUserPoolRequest::SerializePayload() const
 
   }
 
+  if(m_verificationMessageTemplateHasBeenSet)
+  {
+   payload.WithObject("VerificationMessageTemplate", m_verificationMessageTemplate.Jsonize());
+
+  }
+
   if(m_smsAuthenticationMessageHasBeenSet)
   {
    payload.WithString("SmsAuthenticationMessage", m_smsAuthenticationMessage);
@@ -147,6 +155,7 @@ Aws::Http::HeaderValueCollection UpdateUserPoolRequest::GetRequestSpecificHeader
   return headers;
 
 }
+
 
 
 

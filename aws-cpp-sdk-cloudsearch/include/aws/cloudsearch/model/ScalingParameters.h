@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudsearch/CloudSearch_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/cloudsearch/model/PartitionInstanceType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The instance type that you want to preconfigure for your domain. For example,
      * <code>search.m1.small</code>.</p>
@@ -63,7 +66,7 @@ namespace Model
      * <p>The instance type that you want to preconfigure for your domain. For example,
      * <code>search.m1.small</code>.</p>
      */
-    inline void SetDesiredInstanceType(PartitionInstanceType&& value) { m_desiredInstanceTypeHasBeenSet = true; m_desiredInstanceType = value; }
+    inline void SetDesiredInstanceType(PartitionInstanceType&& value) { m_desiredInstanceTypeHasBeenSet = true; m_desiredInstanceType = std::move(value); }
 
     /**
      * <p>The instance type that you want to preconfigure for your domain. For example,
@@ -75,7 +78,8 @@ namespace Model
      * <p>The instance type that you want to preconfigure for your domain. For example,
      * <code>search.m1.small</code>.</p>
      */
-    inline ScalingParameters& WithDesiredInstanceType(PartitionInstanceType&& value) { SetDesiredInstanceType(value); return *this;}
+    inline ScalingParameters& WithDesiredInstanceType(PartitionInstanceType&& value) { SetDesiredInstanceType(std::move(value)); return *this;}
+
 
     /**
      * <p>The number of replicas you want to preconfigure for each index partition.</p>
@@ -91,6 +95,7 @@ namespace Model
      * <p>The number of replicas you want to preconfigure for each index partition.</p>
      */
     inline ScalingParameters& WithDesiredReplicationCount(int value) { SetDesiredReplicationCount(value); return *this;}
+
 
     /**
      * <p>The number of partitions you want to preconfigure for your domain. Only valid
@@ -111,10 +116,13 @@ namespace Model
     inline ScalingParameters& WithDesiredPartitionCount(int value) { SetDesiredPartitionCount(value); return *this;}
 
   private:
+
     PartitionInstanceType m_desiredInstanceType;
     bool m_desiredInstanceTypeHasBeenSet;
+
     int m_desiredReplicationCount;
     bool m_desiredReplicationCountHasBeenSet;
+
     int m_desiredPartitionCount;
     bool m_desiredPartitionCountHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/inspector/Inspector_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,54 +39,64 @@ namespace Model
   {
   public:
     ListRulesPackagesResult();
-    ListRulesPackagesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListRulesPackagesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListRulesPackagesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListRulesPackagesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>The list of ARNs specifying the rules packages returned by the action.</p>
+     * <p>The list of ARNs that specifies the rules packages returned by the
+     * action.</p>
      */
-    inline const Aws::Vector<Aws::String>& GetRulesPackageArnList() const{ return m_rulesPackageArnList; }
+    inline const Aws::Vector<Aws::String>& GetRulesPackageArns() const{ return m_rulesPackageArns; }
 
     /**
-     * <p>The list of ARNs specifying the rules packages returned by the action.</p>
+     * <p>The list of ARNs that specifies the rules packages returned by the
+     * action.</p>
      */
-    inline void SetRulesPackageArnList(const Aws::Vector<Aws::String>& value) { m_rulesPackageArnList = value; }
+    inline void SetRulesPackageArns(const Aws::Vector<Aws::String>& value) { m_rulesPackageArns = value; }
 
     /**
-     * <p>The list of ARNs specifying the rules packages returned by the action.</p>
+     * <p>The list of ARNs that specifies the rules packages returned by the
+     * action.</p>
      */
-    inline void SetRulesPackageArnList(Aws::Vector<Aws::String>&& value) { m_rulesPackageArnList = value; }
+    inline void SetRulesPackageArns(Aws::Vector<Aws::String>&& value) { m_rulesPackageArns = std::move(value); }
 
     /**
-     * <p>The list of ARNs specifying the rules packages returned by the action.</p>
+     * <p>The list of ARNs that specifies the rules packages returned by the
+     * action.</p>
      */
-    inline ListRulesPackagesResult& WithRulesPackageArnList(const Aws::Vector<Aws::String>& value) { SetRulesPackageArnList(value); return *this;}
+    inline ListRulesPackagesResult& WithRulesPackageArns(const Aws::Vector<Aws::String>& value) { SetRulesPackageArns(value); return *this;}
 
     /**
-     * <p>The list of ARNs specifying the rules packages returned by the action.</p>
+     * <p>The list of ARNs that specifies the rules packages returned by the
+     * action.</p>
      */
-    inline ListRulesPackagesResult& WithRulesPackageArnList(Aws::Vector<Aws::String>&& value) { SetRulesPackageArnList(value); return *this;}
+    inline ListRulesPackagesResult& WithRulesPackageArns(Aws::Vector<Aws::String>&& value) { SetRulesPackageArns(std::move(value)); return *this;}
 
     /**
-     * <p>The list of ARNs specifying the rules packages returned by the action.</p>
+     * <p>The list of ARNs that specifies the rules packages returned by the
+     * action.</p>
      */
-    inline ListRulesPackagesResult& AddRulesPackageArnList(const Aws::String& value) { m_rulesPackageArnList.push_back(value); return *this; }
+    inline ListRulesPackagesResult& AddRulesPackageArns(const Aws::String& value) { m_rulesPackageArns.push_back(value); return *this; }
 
     /**
-     * <p>The list of ARNs specifying the rules packages returned by the action.</p>
+     * <p>The list of ARNs that specifies the rules packages returned by the
+     * action.</p>
      */
-    inline ListRulesPackagesResult& AddRulesPackageArnList(Aws::String&& value) { m_rulesPackageArnList.push_back(value); return *this; }
+    inline ListRulesPackagesResult& AddRulesPackageArns(Aws::String&& value) { m_rulesPackageArns.push_back(std::move(value)); return *this; }
 
     /**
-     * <p>The list of ARNs specifying the rules packages returned by the action.</p>
+     * <p>The list of ARNs that specifies the rules packages returned by the
+     * action.</p>
      */
-    inline ListRulesPackagesResult& AddRulesPackageArnList(const char* value) { m_rulesPackageArnList.push_back(value); return *this; }
+    inline ListRulesPackagesResult& AddRulesPackageArns(const char* value) { m_rulesPackageArns.push_back(value); return *this; }
+
 
     /**
      * <p> When a response is generated, if there is more data to be listed, this
      * parameter is present in the response and contains the value to use for the
      * <b>nextToken</b> parameter in a subsequent pagination request. If there is no
-     * more data to be listed, this parameter is set to 'null'.</p>
+     * more data to be listed, this parameter is set to null.</p>
      */
     inline const Aws::String& GetNextToken() const{ return m_nextToken; }
 
@@ -92,7 +104,7 @@ namespace Model
      * <p> When a response is generated, if there is more data to be listed, this
      * parameter is present in the response and contains the value to use for the
      * <b>nextToken</b> parameter in a subsequent pagination request. If there is no
-     * more data to be listed, this parameter is set to 'null'.</p>
+     * more data to be listed, this parameter is set to null.</p>
      */
     inline void SetNextToken(const Aws::String& value) { m_nextToken = value; }
 
@@ -100,15 +112,15 @@ namespace Model
      * <p> When a response is generated, if there is more data to be listed, this
      * parameter is present in the response and contains the value to use for the
      * <b>nextToken</b> parameter in a subsequent pagination request. If there is no
-     * more data to be listed, this parameter is set to 'null'.</p>
+     * more data to be listed, this parameter is set to null.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p> When a response is generated, if there is more data to be listed, this
      * parameter is present in the response and contains the value to use for the
      * <b>nextToken</b> parameter in a subsequent pagination request. If there is no
-     * more data to be listed, this parameter is set to 'null'.</p>
+     * more data to be listed, this parameter is set to null.</p>
      */
     inline void SetNextToken(const char* value) { m_nextToken.assign(value); }
 
@@ -116,7 +128,7 @@ namespace Model
      * <p> When a response is generated, if there is more data to be listed, this
      * parameter is present in the response and contains the value to use for the
      * <b>nextToken</b> parameter in a subsequent pagination request. If there is no
-     * more data to be listed, this parameter is set to 'null'.</p>
+     * more data to be listed, this parameter is set to null.</p>
      */
     inline ListRulesPackagesResult& WithNextToken(const Aws::String& value) { SetNextToken(value); return *this;}
 
@@ -124,20 +136,22 @@ namespace Model
      * <p> When a response is generated, if there is more data to be listed, this
      * parameter is present in the response and contains the value to use for the
      * <b>nextToken</b> parameter in a subsequent pagination request. If there is no
-     * more data to be listed, this parameter is set to 'null'.</p>
+     * more data to be listed, this parameter is set to null.</p>
      */
-    inline ListRulesPackagesResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListRulesPackagesResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p> When a response is generated, if there is more data to be listed, this
      * parameter is present in the response and contains the value to use for the
      * <b>nextToken</b> parameter in a subsequent pagination request. If there is no
-     * more data to be listed, this parameter is set to 'null'.</p>
+     * more data to be listed, this parameter is set to null.</p>
      */
     inline ListRulesPackagesResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
-    Aws::Vector<Aws::String> m_rulesPackageArnList;
+
+    Aws::Vector<Aws::String> m_rulesPackageArns;
+
     Aws::String m_nextToken;
   };
 

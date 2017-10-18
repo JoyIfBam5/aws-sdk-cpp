@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/lambda/model/CreateFunctionResult.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
+#include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/UnreferencedParam.h>
 
 #include <utility>
@@ -32,7 +34,7 @@ CreateFunctionResult::CreateFunctionResult() :
 {
 }
 
-CreateFunctionResult::CreateFunctionResult(const AmazonWebServiceResult<JsonValue>& result) : 
+CreateFunctionResult::CreateFunctionResult(const Aws::AmazonWebServiceResult<JsonValue>& result) : 
     m_runtime(Runtime::NOT_SET),
     m_codeSize(0),
     m_timeout(0),
@@ -41,7 +43,7 @@ CreateFunctionResult::CreateFunctionResult(const AmazonWebServiceResult<JsonValu
   *this = result;
 }
 
-CreateFunctionResult& CreateFunctionResult::operator =(const AmazonWebServiceResult<JsonValue>& result)
+CreateFunctionResult& CreateFunctionResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
   const JsonValue& jsonValue = result.GetPayload();
   if(jsonValue.ValueExists("FunctionName"))
@@ -137,6 +139,18 @@ CreateFunctionResult& CreateFunctionResult::operator =(const AmazonWebServiceRes
   if(jsonValue.ValueExists("KMSKeyArn"))
   {
     m_kMSKeyArn = jsonValue.GetString("KMSKeyArn");
+
+  }
+
+  if(jsonValue.ValueExists("TracingConfig"))
+  {
+    m_tracingConfig = jsonValue.GetObject("TracingConfig");
+
+  }
+
+  if(jsonValue.ValueExists("MasterArn"))
+  {
+    m_masterArn = jsonValue.GetString("MasterArn");
 
   }
 

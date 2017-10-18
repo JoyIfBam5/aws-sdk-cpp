@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/lightsail/model/ResourceLocation.h>
 #include <aws/lightsail/model/ResourceType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     KeyPair& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The friendly name of the SSH key pair.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The friendly name of the SSH key pair.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The friendly name of the SSH key pair.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>The friendly name of the SSH key pair.</p>
      */
-    inline KeyPair& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline KeyPair& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The friendly name of the SSH key pair.</p>
      */
     inline KeyPair& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the key pair (e.g.,
@@ -97,7 +101,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the key pair (e.g.,
      * <code>arn:aws:lightsail:us-east-1:123456789101:KeyPair/05859e3d-331d-48ba-9034-12345EXAMPLE</code>).</p>
      */
-    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = value; }
+    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the key pair (e.g.,
@@ -115,13 +119,14 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the key pair (e.g.,
      * <code>arn:aws:lightsail:us-east-1:123456789101:KeyPair/05859e3d-331d-48ba-9034-12345EXAMPLE</code>).</p>
      */
-    inline KeyPair& WithArn(Aws::String&& value) { SetArn(value); return *this;}
+    inline KeyPair& WithArn(Aws::String&& value) { SetArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the key pair (e.g.,
      * <code>arn:aws:lightsail:us-east-1:123456789101:KeyPair/05859e3d-331d-48ba-9034-12345EXAMPLE</code>).</p>
      */
     inline KeyPair& WithArn(const char* value) { SetArn(value); return *this;}
+
 
     /**
      * <p>The support code. Include this code in your email to support when you have
@@ -142,7 +147,7 @@ namespace Model
      * questions about an instance or another resource in Lightsail. This code enables
      * our support team to look up your Lightsail information more easily.</p>
      */
-    inline void SetSupportCode(Aws::String&& value) { m_supportCodeHasBeenSet = true; m_supportCode = value; }
+    inline void SetSupportCode(Aws::String&& value) { m_supportCodeHasBeenSet = true; m_supportCode = std::move(value); }
 
     /**
      * <p>The support code. Include this code in your email to support when you have
@@ -163,7 +168,7 @@ namespace Model
      * questions about an instance or another resource in Lightsail. This code enables
      * our support team to look up your Lightsail information more easily.</p>
      */
-    inline KeyPair& WithSupportCode(Aws::String&& value) { SetSupportCode(value); return *this;}
+    inline KeyPair& WithSupportCode(Aws::String&& value) { SetSupportCode(std::move(value)); return *this;}
 
     /**
      * <p>The support code. Include this code in your email to support when you have
@@ -171,6 +176,7 @@ namespace Model
      * our support team to look up your Lightsail information more easily.</p>
      */
     inline KeyPair& WithSupportCode(const char* value) { SetSupportCode(value); return *this;}
+
 
     /**
      * <p>The timestamp when the key pair was created (e.g.,
@@ -188,7 +194,7 @@ namespace Model
      * <p>The timestamp when the key pair was created (e.g.,
      * <code>1479816991.349</code>).</p>
      */
-    inline void SetCreatedAt(Aws::Utils::DateTime&& value) { m_createdAtHasBeenSet = true; m_createdAt = value; }
+    inline void SetCreatedAt(Aws::Utils::DateTime&& value) { m_createdAtHasBeenSet = true; m_createdAt = std::move(value); }
 
     /**
      * <p>The timestamp when the key pair was created (e.g.,
@@ -200,7 +206,8 @@ namespace Model
      * <p>The timestamp when the key pair was created (e.g.,
      * <code>1479816991.349</code>).</p>
      */
-    inline KeyPair& WithCreatedAt(Aws::Utils::DateTime&& value) { SetCreatedAt(value); return *this;}
+    inline KeyPair& WithCreatedAt(Aws::Utils::DateTime&& value) { SetCreatedAt(std::move(value)); return *this;}
+
 
     /**
      * <p>The region name and Availability Zone where the key pair was created.</p>
@@ -215,7 +222,7 @@ namespace Model
     /**
      * <p>The region name and Availability Zone where the key pair was created.</p>
      */
-    inline void SetLocation(ResourceLocation&& value) { m_locationHasBeenSet = true; m_location = value; }
+    inline void SetLocation(ResourceLocation&& value) { m_locationHasBeenSet = true; m_location = std::move(value); }
 
     /**
      * <p>The region name and Availability Zone where the key pair was created.</p>
@@ -225,7 +232,8 @@ namespace Model
     /**
      * <p>The region name and Availability Zone where the key pair was created.</p>
      */
-    inline KeyPair& WithLocation(ResourceLocation&& value) { SetLocation(value); return *this;}
+    inline KeyPair& WithLocation(ResourceLocation&& value) { SetLocation(std::move(value)); return *this;}
+
 
     /**
      * <p>The resource type (usually <code>KeyPair</code>).</p>
@@ -240,7 +248,7 @@ namespace Model
     /**
      * <p>The resource type (usually <code>KeyPair</code>).</p>
      */
-    inline void SetResourceType(ResourceType&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = value; }
+    inline void SetResourceType(ResourceType&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = std::move(value); }
 
     /**
      * <p>The resource type (usually <code>KeyPair</code>).</p>
@@ -250,7 +258,8 @@ namespace Model
     /**
      * <p>The resource type (usually <code>KeyPair</code>).</p>
      */
-    inline KeyPair& WithResourceType(ResourceType&& value) { SetResourceType(value); return *this;}
+    inline KeyPair& WithResourceType(ResourceType&& value) { SetResourceType(std::move(value)); return *this;}
+
 
     /**
      * <p>The RSA fingerprint of the key pair.</p>
@@ -265,7 +274,7 @@ namespace Model
     /**
      * <p>The RSA fingerprint of the key pair.</p>
      */
-    inline void SetFingerprint(Aws::String&& value) { m_fingerprintHasBeenSet = true; m_fingerprint = value; }
+    inline void SetFingerprint(Aws::String&& value) { m_fingerprintHasBeenSet = true; m_fingerprint = std::move(value); }
 
     /**
      * <p>The RSA fingerprint of the key pair.</p>
@@ -280,7 +289,7 @@ namespace Model
     /**
      * <p>The RSA fingerprint of the key pair.</p>
      */
-    inline KeyPair& WithFingerprint(Aws::String&& value) { SetFingerprint(value); return *this;}
+    inline KeyPair& WithFingerprint(Aws::String&& value) { SetFingerprint(std::move(value)); return *this;}
 
     /**
      * <p>The RSA fingerprint of the key pair.</p>
@@ -288,18 +297,25 @@ namespace Model
     inline KeyPair& WithFingerprint(const char* value) { SetFingerprint(value); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_arn;
     bool m_arnHasBeenSet;
+
     Aws::String m_supportCode;
     bool m_supportCodeHasBeenSet;
+
     Aws::Utils::DateTime m_createdAt;
     bool m_createdAtHasBeenSet;
+
     ResourceLocation m_location;
     bool m_locationHasBeenSet;
+
     ResourceType m_resourceType;
     bool m_resourceTypeHasBeenSet;
+
     Aws::String m_fingerprint;
     bool m_fingerprintHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/lightsail/model/Region.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     GetRegionsResult();
-    GetRegionsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetRegionsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetRegionsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetRegionsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>An array of key-value pairs containing information about your get regions
@@ -56,7 +59,7 @@ namespace Model
      * <p>An array of key-value pairs containing information about your get regions
      * request.</p>
      */
-    inline void SetRegions(Aws::Vector<Region>&& value) { m_regions = value; }
+    inline void SetRegions(Aws::Vector<Region>&& value) { m_regions = std::move(value); }
 
     /**
      * <p>An array of key-value pairs containing information about your get regions
@@ -68,7 +71,7 @@ namespace Model
      * <p>An array of key-value pairs containing information about your get regions
      * request.</p>
      */
-    inline GetRegionsResult& WithRegions(Aws::Vector<Region>&& value) { SetRegions(value); return *this;}
+    inline GetRegionsResult& WithRegions(Aws::Vector<Region>&& value) { SetRegions(std::move(value)); return *this;}
 
     /**
      * <p>An array of key-value pairs containing information about your get regions
@@ -80,9 +83,10 @@ namespace Model
      * <p>An array of key-value pairs containing information about your get regions
      * request.</p>
      */
-    inline GetRegionsResult& AddRegions(Region&& value) { m_regions.push_back(value); return *this; }
+    inline GetRegionsResult& AddRegions(Region&& value) { m_regions.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<Region> m_regions;
   };
 

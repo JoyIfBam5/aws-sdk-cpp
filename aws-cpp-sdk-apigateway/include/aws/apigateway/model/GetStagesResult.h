@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/apigateway/model/Stage.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,45 +47,47 @@ namespace Model
   {
   public:
     GetStagesResult();
-    GetStagesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetStagesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetStagesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetStagesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>An individual <a>Stage</a> resource.</p>
+     * <p>The current page of elements from this collection.</p>
      */
     inline const Aws::Vector<Stage>& GetItem() const{ return m_item; }
 
     /**
-     * <p>An individual <a>Stage</a> resource.</p>
+     * <p>The current page of elements from this collection.</p>
      */
     inline void SetItem(const Aws::Vector<Stage>& value) { m_item = value; }
 
     /**
-     * <p>An individual <a>Stage</a> resource.</p>
+     * <p>The current page of elements from this collection.</p>
      */
-    inline void SetItem(Aws::Vector<Stage>&& value) { m_item = value; }
+    inline void SetItem(Aws::Vector<Stage>&& value) { m_item = std::move(value); }
 
     /**
-     * <p>An individual <a>Stage</a> resource.</p>
+     * <p>The current page of elements from this collection.</p>
      */
     inline GetStagesResult& WithItem(const Aws::Vector<Stage>& value) { SetItem(value); return *this;}
 
     /**
-     * <p>An individual <a>Stage</a> resource.</p>
+     * <p>The current page of elements from this collection.</p>
      */
-    inline GetStagesResult& WithItem(Aws::Vector<Stage>&& value) { SetItem(value); return *this;}
+    inline GetStagesResult& WithItem(Aws::Vector<Stage>&& value) { SetItem(std::move(value)); return *this;}
 
     /**
-     * <p>An individual <a>Stage</a> resource.</p>
+     * <p>The current page of elements from this collection.</p>
      */
     inline GetStagesResult& AddItem(const Stage& value) { m_item.push_back(value); return *this; }
 
     /**
-     * <p>An individual <a>Stage</a> resource.</p>
+     * <p>The current page of elements from this collection.</p>
      */
-    inline GetStagesResult& AddItem(Stage&& value) { m_item.push_back(value); return *this; }
+    inline GetStagesResult& AddItem(Stage&& value) { m_item.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<Stage> m_item;
   };
 

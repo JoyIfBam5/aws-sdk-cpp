@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/iam/IAMRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,7 +32,19 @@ namespace Model
   {
   public:
     CreateVirtualMFADeviceRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateVirtualMFADevice"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p> The path for the virtual MFA device. For more information about paths, see
@@ -72,7 +86,7 @@ namespace Model
      * from the ! (\u0021) thru the DEL character (\u007F), including most punctuation
      * characters, digits, and upper and lowercased letters.</p>
      */
-    inline void SetPath(Aws::String&& value) { m_pathHasBeenSet = true; m_path = value; }
+    inline void SetPath(Aws::String&& value) { m_pathHasBeenSet = true; m_path = std::move(value); }
 
     /**
      * <p> The path for the virtual MFA device. For more information about paths, see
@@ -114,7 +128,7 @@ namespace Model
      * from the ! (\u0021) thru the DEL character (\u007F), including most punctuation
      * characters, digits, and upper and lowercased letters.</p>
      */
-    inline CreateVirtualMFADeviceRequest& WithPath(Aws::String&& value) { SetPath(value); return *this;}
+    inline CreateVirtualMFADeviceRequest& WithPath(Aws::String&& value) { SetPath(std::move(value)); return *this;}
 
     /**
      * <p> The path for the virtual MFA device. For more information about paths, see
@@ -129,6 +143,7 @@ namespace Model
      * characters, digits, and upper and lowercased letters.</p>
      */
     inline CreateVirtualMFADeviceRequest& WithPath(const char* value) { SetPath(value); return *this;}
+
 
     /**
      * <p>The name of the virtual MFA device. Use with path to uniquely identify a
@@ -155,7 +170,7 @@ namespace Model
      * consisting of upper and lowercase alphanumeric characters with no spaces. You
      * can also include any of the following characters: =,.@-</p>
      */
-    inline void SetVirtualMFADeviceName(Aws::String&& value) { m_virtualMFADeviceNameHasBeenSet = true; m_virtualMFADeviceName = value; }
+    inline void SetVirtualMFADeviceName(Aws::String&& value) { m_virtualMFADeviceNameHasBeenSet = true; m_virtualMFADeviceName = std::move(value); }
 
     /**
      * <p>The name of the virtual MFA device. Use with path to uniquely identify a
@@ -182,7 +197,7 @@ namespace Model
      * consisting of upper and lowercase alphanumeric characters with no spaces. You
      * can also include any of the following characters: =,.@-</p>
      */
-    inline CreateVirtualMFADeviceRequest& WithVirtualMFADeviceName(Aws::String&& value) { SetVirtualMFADeviceName(value); return *this;}
+    inline CreateVirtualMFADeviceRequest& WithVirtualMFADeviceName(Aws::String&& value) { SetVirtualMFADeviceName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the virtual MFA device. Use with path to uniquely identify a
@@ -194,8 +209,10 @@ namespace Model
     inline CreateVirtualMFADeviceRequest& WithVirtualMFADeviceName(const char* value) { SetVirtualMFADeviceName(value); return *this;}
 
   private:
+
     Aws::String m_path;
     bool m_pathHasBeenSet;
+
     Aws::String m_virtualMFADeviceName;
     bool m_virtualMFADeviceNameHasBeenSet;
   };

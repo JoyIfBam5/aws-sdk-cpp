@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/ssm/SSMRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     DeregisterTaskFromMaintenanceWindowRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DeregisterTaskFromMaintenanceWindow"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The ID of the Maintenance Window the task should be removed from.</p>
@@ -47,7 +57,7 @@ namespace Model
     /**
      * <p>The ID of the Maintenance Window the task should be removed from.</p>
      */
-    inline void SetWindowId(Aws::String&& value) { m_windowIdHasBeenSet = true; m_windowId = value; }
+    inline void SetWindowId(Aws::String&& value) { m_windowIdHasBeenSet = true; m_windowId = std::move(value); }
 
     /**
      * <p>The ID of the Maintenance Window the task should be removed from.</p>
@@ -62,12 +72,13 @@ namespace Model
     /**
      * <p>The ID of the Maintenance Window the task should be removed from.</p>
      */
-    inline DeregisterTaskFromMaintenanceWindowRequest& WithWindowId(Aws::String&& value) { SetWindowId(value); return *this;}
+    inline DeregisterTaskFromMaintenanceWindowRequest& WithWindowId(Aws::String&& value) { SetWindowId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the Maintenance Window the task should be removed from.</p>
      */
     inline DeregisterTaskFromMaintenanceWindowRequest& WithWindowId(const char* value) { SetWindowId(value); return *this;}
+
 
     /**
      * <p>The ID of the task to remove from the Maintenance Window.</p>
@@ -82,7 +93,7 @@ namespace Model
     /**
      * <p>The ID of the task to remove from the Maintenance Window.</p>
      */
-    inline void SetWindowTaskId(Aws::String&& value) { m_windowTaskIdHasBeenSet = true; m_windowTaskId = value; }
+    inline void SetWindowTaskId(Aws::String&& value) { m_windowTaskIdHasBeenSet = true; m_windowTaskId = std::move(value); }
 
     /**
      * <p>The ID of the task to remove from the Maintenance Window.</p>
@@ -97,7 +108,7 @@ namespace Model
     /**
      * <p>The ID of the task to remove from the Maintenance Window.</p>
      */
-    inline DeregisterTaskFromMaintenanceWindowRequest& WithWindowTaskId(Aws::String&& value) { SetWindowTaskId(value); return *this;}
+    inline DeregisterTaskFromMaintenanceWindowRequest& WithWindowTaskId(Aws::String&& value) { SetWindowTaskId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the task to remove from the Maintenance Window.</p>
@@ -105,8 +116,10 @@ namespace Model
     inline DeregisterTaskFromMaintenanceWindowRequest& WithWindowTaskId(const char* value) { SetWindowTaskId(value); return *this;}
 
   private:
+
     Aws::String m_windowId;
     bool m_windowIdHasBeenSet;
+
     Aws::String m_windowTaskId;
     bool m_windowTaskIdHasBeenSet;
   };

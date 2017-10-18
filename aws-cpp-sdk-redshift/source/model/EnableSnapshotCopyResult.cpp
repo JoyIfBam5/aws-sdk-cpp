@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/redshift/model/EnableSnapshotCopyResult.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
@@ -30,17 +31,17 @@ EnableSnapshotCopyResult::EnableSnapshotCopyResult()
 {
 }
 
-EnableSnapshotCopyResult::EnableSnapshotCopyResult(const AmazonWebServiceResult<XmlDocument>& result)
+EnableSnapshotCopyResult::EnableSnapshotCopyResult(const Aws::AmazonWebServiceResult<XmlDocument>& result)
 {
   *this = result;
 }
 
-EnableSnapshotCopyResult& EnableSnapshotCopyResult::operator =(const AmazonWebServiceResult<XmlDocument>& result)
+EnableSnapshotCopyResult& EnableSnapshotCopyResult::operator =(const Aws::AmazonWebServiceResult<XmlDocument>& result)
 {
   const XmlDocument& xmlDocument = result.GetPayload();
   XmlNode rootNode = xmlDocument.GetRootElement();
   XmlNode resultNode = rootNode;
-  if (rootNode.GetName() != "EnableSnapshotCopyResult")
+  if (!rootNode.IsNull() && (rootNode.GetName() != "EnableSnapshotCopyResult"))
   {
     resultNode = rootNode.FirstChild("EnableSnapshotCopyResult");
   }
@@ -54,9 +55,10 @@ EnableSnapshotCopyResult& EnableSnapshotCopyResult::operator =(const AmazonWebSe
     }
   }
 
-  XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
-  m_responseMetadata = responseMetadataNode;
-  AWS_LOGSTREAM_DEBUG("Aws::Redshift::Model::EnableSnapshotCopyResult", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
-
+  if (!rootNode.IsNull()) {
+    XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
+    m_responseMetadata = responseMetadataNode;
+    AWS_LOGSTREAM_DEBUG("Aws::Redshift::Model::EnableSnapshotCopyResult", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
+  }
   return *this;
 }

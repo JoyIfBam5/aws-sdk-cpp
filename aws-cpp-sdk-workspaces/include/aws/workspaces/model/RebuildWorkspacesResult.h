@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/workspaces/WorkSpaces_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/workspaces/model/FailedWorkspaceChangeRequest.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     RebuildWorkspacesResult();
-    RebuildWorkspacesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    RebuildWorkspacesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    RebuildWorkspacesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    RebuildWorkspacesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>An array of structures representing any WorkSpaces that could not be
@@ -62,7 +65,7 @@ namespace Model
      * <p>An array of structures representing any WorkSpaces that could not be
      * rebuilt.</p>
      */
-    inline void SetFailedRequests(Aws::Vector<FailedWorkspaceChangeRequest>&& value) { m_failedRequests = value; }
+    inline void SetFailedRequests(Aws::Vector<FailedWorkspaceChangeRequest>&& value) { m_failedRequests = std::move(value); }
 
     /**
      * <p>An array of structures representing any WorkSpaces that could not be
@@ -74,7 +77,7 @@ namespace Model
      * <p>An array of structures representing any WorkSpaces that could not be
      * rebuilt.</p>
      */
-    inline RebuildWorkspacesResult& WithFailedRequests(Aws::Vector<FailedWorkspaceChangeRequest>&& value) { SetFailedRequests(value); return *this;}
+    inline RebuildWorkspacesResult& WithFailedRequests(Aws::Vector<FailedWorkspaceChangeRequest>&& value) { SetFailedRequests(std::move(value)); return *this;}
 
     /**
      * <p>An array of structures representing any WorkSpaces that could not be
@@ -86,9 +89,10 @@ namespace Model
      * <p>An array of structures representing any WorkSpaces that could not be
      * rebuilt.</p>
      */
-    inline RebuildWorkspacesResult& AddFailedRequests(FailedWorkspaceChangeRequest&& value) { m_failedRequests.push_back(value); return *this; }
+    inline RebuildWorkspacesResult& AddFailedRequests(FailedWorkspaceChangeRequest&& value) { m_failedRequests.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<FailedWorkspaceChangeRequest> m_failedRequests;
   };
 

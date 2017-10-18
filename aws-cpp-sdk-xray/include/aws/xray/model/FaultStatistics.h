@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/xray/XRay_EXPORTS.h>
 
@@ -43,6 +44,7 @@ namespace Model
     FaultStatistics& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The number of requests that failed with untracked 5xx Server Error status
      * codes.</p>
@@ -60,6 +62,7 @@ namespace Model
      * codes.</p>
      */
     inline FaultStatistics& WithOtherCount(long long value) { SetOtherCount(value); return *this;}
+
 
     /**
      * <p>The total number of requests that failed with a 5xx Server Error status
@@ -80,8 +83,10 @@ namespace Model
     inline FaultStatistics& WithTotalCount(long long value) { SetTotalCount(value); return *this;}
 
   private:
+
     long long m_otherCount;
     bool m_otherCountHasBeenSet;
+
     long long m_totalCount;
     bool m_totalCountHasBeenSet;
   };

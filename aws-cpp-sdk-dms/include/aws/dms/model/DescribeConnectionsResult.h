@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dms/DatabaseMigrationService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/dms/model/Connection.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     DescribeConnectionsResult();
-    DescribeConnectionsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeConnectionsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeConnectionsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeConnectionsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p> An optional pagination token provided by a previous request. If this
@@ -65,7 +68,7 @@ namespace Model
      * parameter is specified, the response includes only records beyond the marker, up
      * to the value specified by <code>MaxRecords</code>. </p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p> An optional pagination token provided by a previous request. If this
@@ -86,7 +89,7 @@ namespace Model
      * parameter is specified, the response includes only records beyond the marker, up
      * to the value specified by <code>MaxRecords</code>. </p>
      */
-    inline DescribeConnectionsResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeConnectionsResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p> An optional pagination token provided by a previous request. If this
@@ -94,6 +97,7 @@ namespace Model
      * to the value specified by <code>MaxRecords</code>. </p>
      */
     inline DescribeConnectionsResult& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>A description of the connections.</p>
@@ -108,7 +112,7 @@ namespace Model
     /**
      * <p>A description of the connections.</p>
      */
-    inline void SetConnections(Aws::Vector<Connection>&& value) { m_connections = value; }
+    inline void SetConnections(Aws::Vector<Connection>&& value) { m_connections = std::move(value); }
 
     /**
      * <p>A description of the connections.</p>
@@ -118,7 +122,7 @@ namespace Model
     /**
      * <p>A description of the connections.</p>
      */
-    inline DescribeConnectionsResult& WithConnections(Aws::Vector<Connection>&& value) { SetConnections(value); return *this;}
+    inline DescribeConnectionsResult& WithConnections(Aws::Vector<Connection>&& value) { SetConnections(std::move(value)); return *this;}
 
     /**
      * <p>A description of the connections.</p>
@@ -128,10 +132,12 @@ namespace Model
     /**
      * <p>A description of the connections.</p>
      */
-    inline DescribeConnectionsResult& AddConnections(Connection&& value) { m_connections.push_back(value); return *this; }
+    inline DescribeConnectionsResult& AddConnections(Connection&& value) { m_connections.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_marker;
+
     Aws::Vector<Connection> m_connections;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/core/utils/Outcome.h>
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
@@ -110,10 +111,11 @@ void ElasticTranscoderClient::init(const ClientConfiguration& config)
 CancelJobOutcome ElasticTranscoderClient::CancelJob(const CancelJobRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2012-09-25/jobs/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2012-09-25/jobs/";
   ss << request.GetId();
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_DELETE);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_DELETE, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return CancelJobOutcome(CancelJobResult(outcome.GetResult()));
@@ -145,9 +147,10 @@ void ElasticTranscoderClient::CancelJobAsyncHelper(const CancelJobRequest& reque
 CreateJobOutcome ElasticTranscoderClient::CreateJob(const CreateJobRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2012-09-25/jobs";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/2012-09-25/jobs";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return CreateJobOutcome(CreateJobResult(outcome.GetResult()));
@@ -179,9 +182,10 @@ void ElasticTranscoderClient::CreateJobAsyncHelper(const CreateJobRequest& reque
 CreatePipelineOutcome ElasticTranscoderClient::CreatePipeline(const CreatePipelineRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2012-09-25/pipelines";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/2012-09-25/pipelines";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return CreatePipelineOutcome(CreatePipelineResult(outcome.GetResult()));
@@ -213,9 +217,10 @@ void ElasticTranscoderClient::CreatePipelineAsyncHelper(const CreatePipelineRequ
 CreatePresetOutcome ElasticTranscoderClient::CreatePreset(const CreatePresetRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2012-09-25/presets";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/2012-09-25/presets";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return CreatePresetOutcome(CreatePresetResult(outcome.GetResult()));
@@ -247,10 +252,11 @@ void ElasticTranscoderClient::CreatePresetAsyncHelper(const CreatePresetRequest&
 DeletePipelineOutcome ElasticTranscoderClient::DeletePipeline(const DeletePipelineRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2012-09-25/pipelines/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2012-09-25/pipelines/";
   ss << request.GetId();
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_DELETE);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_DELETE, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DeletePipelineOutcome(DeletePipelineResult(outcome.GetResult()));
@@ -282,10 +288,11 @@ void ElasticTranscoderClient::DeletePipelineAsyncHelper(const DeletePipelineRequ
 DeletePresetOutcome ElasticTranscoderClient::DeletePreset(const DeletePresetRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2012-09-25/presets/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2012-09-25/presets/";
   ss << request.GetId();
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_DELETE);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_DELETE, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DeletePresetOutcome(DeletePresetResult(outcome.GetResult()));
@@ -317,10 +324,11 @@ void ElasticTranscoderClient::DeletePresetAsyncHelper(const DeletePresetRequest&
 ListJobsByPipelineOutcome ElasticTranscoderClient::ListJobsByPipeline(const ListJobsByPipelineRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2012-09-25/jobsByPipeline/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2012-09-25/jobsByPipeline/";
   ss << request.GetPipelineId();
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_GET);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ListJobsByPipelineOutcome(ListJobsByPipelineResult(outcome.GetResult()));
@@ -352,10 +360,11 @@ void ElasticTranscoderClient::ListJobsByPipelineAsyncHelper(const ListJobsByPipe
 ListJobsByStatusOutcome ElasticTranscoderClient::ListJobsByStatus(const ListJobsByStatusRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2012-09-25/jobsByStatus/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2012-09-25/jobsByStatus/";
   ss << request.GetStatus();
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_GET);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ListJobsByStatusOutcome(ListJobsByStatusResult(outcome.GetResult()));
@@ -387,9 +396,10 @@ void ElasticTranscoderClient::ListJobsByStatusAsyncHelper(const ListJobsByStatus
 ListPipelinesOutcome ElasticTranscoderClient::ListPipelines(const ListPipelinesRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2012-09-25/pipelines";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_GET);
+  Aws::Http::URI uri = m_uri;
+  ss << "/2012-09-25/pipelines";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ListPipelinesOutcome(ListPipelinesResult(outcome.GetResult()));
@@ -421,9 +431,10 @@ void ElasticTranscoderClient::ListPipelinesAsyncHelper(const ListPipelinesReques
 ListPresetsOutcome ElasticTranscoderClient::ListPresets(const ListPresetsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2012-09-25/presets";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_GET);
+  Aws::Http::URI uri = m_uri;
+  ss << "/2012-09-25/presets";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ListPresetsOutcome(ListPresetsResult(outcome.GetResult()));
@@ -455,10 +466,11 @@ void ElasticTranscoderClient::ListPresetsAsyncHelper(const ListPresetsRequest& r
 ReadJobOutcome ElasticTranscoderClient::ReadJob(const ReadJobRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2012-09-25/jobs/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2012-09-25/jobs/";
   ss << request.GetId();
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_GET);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ReadJobOutcome(ReadJobResult(outcome.GetResult()));
@@ -490,10 +502,11 @@ void ElasticTranscoderClient::ReadJobAsyncHelper(const ReadJobRequest& request, 
 ReadPipelineOutcome ElasticTranscoderClient::ReadPipeline(const ReadPipelineRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2012-09-25/pipelines/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2012-09-25/pipelines/";
   ss << request.GetId();
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_GET);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ReadPipelineOutcome(ReadPipelineResult(outcome.GetResult()));
@@ -525,10 +538,11 @@ void ElasticTranscoderClient::ReadPipelineAsyncHelper(const ReadPipelineRequest&
 ReadPresetOutcome ElasticTranscoderClient::ReadPreset(const ReadPresetRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2012-09-25/presets/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2012-09-25/presets/";
   ss << request.GetId();
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_GET);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ReadPresetOutcome(ReadPresetResult(outcome.GetResult()));
@@ -560,10 +574,11 @@ void ElasticTranscoderClient::ReadPresetAsyncHelper(const ReadPresetRequest& req
 UpdatePipelineOutcome ElasticTranscoderClient::UpdatePipeline(const UpdatePipelineRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2012-09-25/pipelines/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2012-09-25/pipelines/";
   ss << request.GetId();
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_PUT);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_PUT, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return UpdatePipelineOutcome(UpdatePipelineResult(outcome.GetResult()));
@@ -595,11 +610,12 @@ void ElasticTranscoderClient::UpdatePipelineAsyncHelper(const UpdatePipelineRequ
 UpdatePipelineNotificationsOutcome ElasticTranscoderClient::UpdatePipelineNotifications(const UpdatePipelineNotificationsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2012-09-25/pipelines/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2012-09-25/pipelines/";
   ss << request.GetId();
   ss << "/notifications";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return UpdatePipelineNotificationsOutcome(UpdatePipelineNotificationsResult(outcome.GetResult()));
@@ -631,11 +647,12 @@ void ElasticTranscoderClient::UpdatePipelineNotificationsAsyncHelper(const Updat
 UpdatePipelineStatusOutcome ElasticTranscoderClient::UpdatePipelineStatus(const UpdatePipelineStatusRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2012-09-25/pipelines/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2012-09-25/pipelines/";
   ss << request.GetId();
   ss << "/status";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return UpdatePipelineStatusOutcome(UpdatePipelineStatusResult(outcome.GetResult()));

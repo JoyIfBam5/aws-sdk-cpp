@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/elasticbeanstalk/model/TerminateEnvironmentResult.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
@@ -34,7 +35,7 @@ TerminateEnvironmentResult::TerminateEnvironmentResult() :
 {
 }
 
-TerminateEnvironmentResult::TerminateEnvironmentResult(const AmazonWebServiceResult<XmlDocument>& result) : 
+TerminateEnvironmentResult::TerminateEnvironmentResult(const Aws::AmazonWebServiceResult<XmlDocument>& result) : 
     m_status(EnvironmentStatus::NOT_SET),
     m_abortableOperationInProgress(false),
     m_health(EnvironmentHealth::NOT_SET),
@@ -43,12 +44,12 @@ TerminateEnvironmentResult::TerminateEnvironmentResult(const AmazonWebServiceRes
   *this = result;
 }
 
-TerminateEnvironmentResult& TerminateEnvironmentResult::operator =(const AmazonWebServiceResult<XmlDocument>& result)
+TerminateEnvironmentResult& TerminateEnvironmentResult::operator =(const Aws::AmazonWebServiceResult<XmlDocument>& result)
 {
   const XmlDocument& xmlDocument = result.GetPayload();
   XmlNode rootNode = xmlDocument.GetRootElement();
   XmlNode resultNode = rootNode;
-  if (rootNode.GetName() != "TerminateEnvironmentResult")
+  if (!rootNode.IsNull() && (rootNode.GetName() != "TerminateEnvironmentResult"))
   {
     resultNode = rootNode.FirstChild("TerminateEnvironmentResult");
   }
@@ -79,6 +80,11 @@ TerminateEnvironmentResult& TerminateEnvironmentResult::operator =(const AmazonW
     if(!solutionStackNameNode.IsNull())
     {
       m_solutionStackName = StringUtils::Trim(solutionStackNameNode.GetText().c_str());
+    }
+    XmlNode platformArnNode = resultNode.FirstChild("PlatformArn");
+    if(!platformArnNode.IsNull())
+    {
+      m_platformArn = StringUtils::Trim(platformArnNode.GetText().c_str());
     }
     XmlNode templateNameNode = resultNode.FirstChild("TemplateName");
     if(!templateNameNode.IsNull())
@@ -151,11 +157,17 @@ TerminateEnvironmentResult& TerminateEnvironmentResult::operator =(const AmazonW
       }
 
     }
+    XmlNode environmentArnNode = resultNode.FirstChild("EnvironmentArn");
+    if(!environmentArnNode.IsNull())
+    {
+      m_environmentArn = StringUtils::Trim(environmentArnNode.GetText().c_str());
+    }
   }
 
-  XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
-  m_responseMetadata = responseMetadataNode;
-  AWS_LOGSTREAM_DEBUG("Aws::ElasticBeanstalk::Model::TerminateEnvironmentResult", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
-
+  if (!rootNode.IsNull()) {
+    XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
+    m_responseMetadata = responseMetadataNode;
+    AWS_LOGSTREAM_DEBUG("Aws::ElasticBeanstalk::Model::TerminateEnvironmentResult", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
+  }
   return *this;
 }

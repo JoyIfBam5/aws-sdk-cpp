@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/cognito-idp/model/CodeDeliveryDetailsType.h>
+#include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +45,9 @@ namespace Model
   {
   public:
     SignUpResult();
-    SignUpResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    SignUpResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    SignUpResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    SignUpResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A response from the server indicating that a user registration has been
@@ -63,6 +67,7 @@ namespace Model
      */
     inline SignUpResult& WithUserConfirmed(bool value) { SetUserConfirmed(value); return *this;}
 
+
     /**
      * <p>The code delivery details returned by the server response to the user
      * registration request.</p>
@@ -79,7 +84,7 @@ namespace Model
      * <p>The code delivery details returned by the server response to the user
      * registration request.</p>
      */
-    inline void SetCodeDeliveryDetails(CodeDeliveryDetailsType&& value) { m_codeDeliveryDetails = value; }
+    inline void SetCodeDeliveryDetails(CodeDeliveryDetailsType&& value) { m_codeDeliveryDetails = std::move(value); }
 
     /**
      * <p>The code delivery details returned by the server response to the user
@@ -91,11 +96,58 @@ namespace Model
      * <p>The code delivery details returned by the server response to the user
      * registration request.</p>
      */
-    inline SignUpResult& WithCodeDeliveryDetails(CodeDeliveryDetailsType&& value) { SetCodeDeliveryDetails(value); return *this;}
+    inline SignUpResult& WithCodeDeliveryDetails(CodeDeliveryDetailsType&& value) { SetCodeDeliveryDetails(std::move(value)); return *this;}
+
+
+    /**
+     * <p>The UUID of the authenticated user. This is not the same as
+     * <code>username</code>.</p>
+     */
+    inline const Aws::String& GetUserSub() const{ return m_userSub; }
+
+    /**
+     * <p>The UUID of the authenticated user. This is not the same as
+     * <code>username</code>.</p>
+     */
+    inline void SetUserSub(const Aws::String& value) { m_userSub = value; }
+
+    /**
+     * <p>The UUID of the authenticated user. This is not the same as
+     * <code>username</code>.</p>
+     */
+    inline void SetUserSub(Aws::String&& value) { m_userSub = std::move(value); }
+
+    /**
+     * <p>The UUID of the authenticated user. This is not the same as
+     * <code>username</code>.</p>
+     */
+    inline void SetUserSub(const char* value) { m_userSub.assign(value); }
+
+    /**
+     * <p>The UUID of the authenticated user. This is not the same as
+     * <code>username</code>.</p>
+     */
+    inline SignUpResult& WithUserSub(const Aws::String& value) { SetUserSub(value); return *this;}
+
+    /**
+     * <p>The UUID of the authenticated user. This is not the same as
+     * <code>username</code>.</p>
+     */
+    inline SignUpResult& WithUserSub(Aws::String&& value) { SetUserSub(std::move(value)); return *this;}
+
+    /**
+     * <p>The UUID of the authenticated user. This is not the same as
+     * <code>username</code>.</p>
+     */
+    inline SignUpResult& WithUserSub(const char* value) { SetUserSub(value); return *this;}
 
   private:
+
     bool m_userConfirmed;
+
     CodeDeliveryDetailsType m_codeDeliveryDetails;
+
+    Aws::String m_userSub;
   };
 
 } // namespace Model

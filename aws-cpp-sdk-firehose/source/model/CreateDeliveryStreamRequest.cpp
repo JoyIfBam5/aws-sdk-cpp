@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/firehose/model/CreateDeliveryStreamRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -23,6 +24,9 @@ using namespace Aws::Utils;
 
 CreateDeliveryStreamRequest::CreateDeliveryStreamRequest() : 
     m_deliveryStreamNameHasBeenSet(false),
+    m_deliveryStreamType(DeliveryStreamType::NOT_SET),
+    m_deliveryStreamTypeHasBeenSet(false),
+    m_kinesisStreamSourceConfigurationHasBeenSet(false),
     m_extendedS3DestinationConfigurationHasBeenSet(false),
     m_redshiftDestinationConfigurationHasBeenSet(false),
     m_elasticsearchDestinationConfigurationHasBeenSet(false)
@@ -36,6 +40,17 @@ Aws::String CreateDeliveryStreamRequest::SerializePayload() const
   if(m_deliveryStreamNameHasBeenSet)
   {
    payload.WithString("DeliveryStreamName", m_deliveryStreamName);
+
+  }
+
+  if(m_deliveryStreamTypeHasBeenSet)
+  {
+   payload.WithString("DeliveryStreamType", DeliveryStreamTypeMapper::GetNameForDeliveryStreamType(m_deliveryStreamType));
+  }
+
+  if(m_kinesisStreamSourceConfigurationHasBeenSet)
+  {
+   payload.WithObject("KinesisStreamSourceConfiguration", m_kinesisStreamSourceConfiguration.Jsonize());
 
   }
 
@@ -67,6 +82,7 @@ Aws::Http::HeaderValueCollection CreateDeliveryStreamRequest::GetRequestSpecific
   return headers;
 
 }
+
 
 
 

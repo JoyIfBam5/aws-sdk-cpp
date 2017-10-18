@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/email/model/ReceiptRuleSetMetadata.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/email/model/ResponseMetadata.h>
 #include <aws/email/model/ReceiptRule.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,8 +47,9 @@ namespace Model
   {
   public:
     DescribeActiveReceiptRuleSetResult();
-    DescribeActiveReceiptRuleSetResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeActiveReceiptRuleSetResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeActiveReceiptRuleSetResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeActiveReceiptRuleSetResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>The metadata for the currently active receipt rule set. The metadata consists
@@ -64,7 +67,7 @@ namespace Model
      * <p>The metadata for the currently active receipt rule set. The metadata consists
      * of the rule set name and a timestamp of when the rule set was created.</p>
      */
-    inline void SetMetadata(ReceiptRuleSetMetadata&& value) { m_metadata = value; }
+    inline void SetMetadata(ReceiptRuleSetMetadata&& value) { m_metadata = std::move(value); }
 
     /**
      * <p>The metadata for the currently active receipt rule set. The metadata consists
@@ -76,7 +79,8 @@ namespace Model
      * <p>The metadata for the currently active receipt rule set. The metadata consists
      * of the rule set name and a timestamp of when the rule set was created.</p>
      */
-    inline DescribeActiveReceiptRuleSetResult& WithMetadata(ReceiptRuleSetMetadata&& value) { SetMetadata(value); return *this;}
+    inline DescribeActiveReceiptRuleSetResult& WithMetadata(ReceiptRuleSetMetadata&& value) { SetMetadata(std::move(value)); return *this;}
+
 
     /**
      * <p>The receipt rules that belong to the active rule set.</p>
@@ -91,7 +95,7 @@ namespace Model
     /**
      * <p>The receipt rules that belong to the active rule set.</p>
      */
-    inline void SetRules(Aws::Vector<ReceiptRule>&& value) { m_rules = value; }
+    inline void SetRules(Aws::Vector<ReceiptRule>&& value) { m_rules = std::move(value); }
 
     /**
      * <p>The receipt rules that belong to the active rule set.</p>
@@ -101,7 +105,7 @@ namespace Model
     /**
      * <p>The receipt rules that belong to the active rule set.</p>
      */
-    inline DescribeActiveReceiptRuleSetResult& WithRules(Aws::Vector<ReceiptRule>&& value) { SetRules(value); return *this;}
+    inline DescribeActiveReceiptRuleSetResult& WithRules(Aws::Vector<ReceiptRule>&& value) { SetRules(std::move(value)); return *this;}
 
     /**
      * <p>The receipt rules that belong to the active rule set.</p>
@@ -111,7 +115,8 @@ namespace Model
     /**
      * <p>The receipt rules that belong to the active rule set.</p>
      */
-    inline DescribeActiveReceiptRuleSetResult& AddRules(ReceiptRule&& value) { m_rules.push_back(value); return *this; }
+    inline DescribeActiveReceiptRuleSetResult& AddRules(ReceiptRule&& value) { m_rules.push_back(std::move(value)); return *this; }
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -120,17 +125,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeActiveReceiptRuleSetResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeActiveReceiptRuleSetResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeActiveReceiptRuleSetResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     ReceiptRuleSetMetadata m_metadata;
+
     Aws::Vector<ReceiptRule> m_rules;
+
     ResponseMetadata m_responseMetadata;
   };
 

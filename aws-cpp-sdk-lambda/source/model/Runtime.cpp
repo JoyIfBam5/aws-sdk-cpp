@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/lambda/model/Runtime.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -31,8 +32,10 @@ namespace Aws
 
         static const int nodejs_HASH = HashingUtils::HashString("nodejs");
         static const int nodejs4_3_HASH = HashingUtils::HashString("nodejs4.3");
+        static const int nodejs6_10_HASH = HashingUtils::HashString("nodejs6.10");
         static const int java8_HASH = HashingUtils::HashString("java8");
         static const int python2_7_HASH = HashingUtils::HashString("python2.7");
+        static const int python3_6_HASH = HashingUtils::HashString("python3.6");
         static const int dotnetcore1_0_HASH = HashingUtils::HashString("dotnetcore1.0");
         static const int nodejs4_3_edge_HASH = HashingUtils::HashString("nodejs4.3-edge");
 
@@ -48,6 +51,10 @@ namespace Aws
           {
             return Runtime::nodejs4_3;
           }
+          else if (hashCode == nodejs6_10_HASH)
+          {
+            return Runtime::nodejs6_10;
+          }
           else if (hashCode == java8_HASH)
           {
             return Runtime::java8;
@@ -55,6 +62,10 @@ namespace Aws
           else if (hashCode == python2_7_HASH)
           {
             return Runtime::python2_7;
+          }
+          else if (hashCode == python3_6_HASH)
+          {
+            return Runtime::python3_6;
           }
           else if (hashCode == dotnetcore1_0_HASH)
           {
@@ -82,10 +93,14 @@ namespace Aws
             return "nodejs";
           case Runtime::nodejs4_3:
             return "nodejs4.3";
+          case Runtime::nodejs6_10:
+            return "nodejs6.10";
           case Runtime::java8:
             return "java8";
           case Runtime::python2_7:
             return "python2.7";
+          case Runtime::python3_6:
+            return "python3.6";
           case Runtime::dotnetcore1_0:
             return "dotnetcore1.0";
           case Runtime::nodejs4_3_edge:

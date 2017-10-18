@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53/Route53_EXPORTS.h>
 #include <aws/route53/model/DelegationSet.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     CreateReusableDelegationSetResult();
-    CreateReusableDelegationSetResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    CreateReusableDelegationSetResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CreateReusableDelegationSetResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CreateReusableDelegationSetResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>A complex type that contains name server information.</p>
@@ -53,7 +56,7 @@ namespace Model
     /**
      * <p>A complex type that contains name server information.</p>
      */
-    inline void SetDelegationSet(DelegationSet&& value) { m_delegationSet = value; }
+    inline void SetDelegationSet(DelegationSet&& value) { m_delegationSet = std::move(value); }
 
     /**
      * <p>A complex type that contains name server information.</p>
@@ -63,7 +66,8 @@ namespace Model
     /**
      * <p>A complex type that contains name server information.</p>
      */
-    inline CreateReusableDelegationSetResult& WithDelegationSet(DelegationSet&& value) { SetDelegationSet(value); return *this;}
+    inline CreateReusableDelegationSetResult& WithDelegationSet(DelegationSet&& value) { SetDelegationSet(std::move(value)); return *this;}
+
 
     /**
      * <p>The unique URL representing the new reusable delegation set.</p>
@@ -78,7 +82,7 @@ namespace Model
     /**
      * <p>The unique URL representing the new reusable delegation set.</p>
      */
-    inline void SetLocation(Aws::String&& value) { m_location = value; }
+    inline void SetLocation(Aws::String&& value) { m_location = std::move(value); }
 
     /**
      * <p>The unique URL representing the new reusable delegation set.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The unique URL representing the new reusable delegation set.</p>
      */
-    inline CreateReusableDelegationSetResult& WithLocation(Aws::String&& value) { SetLocation(value); return *this;}
+    inline CreateReusableDelegationSetResult& WithLocation(Aws::String&& value) { SetLocation(std::move(value)); return *this;}
 
     /**
      * <p>The unique URL representing the new reusable delegation set.</p>
@@ -101,7 +105,9 @@ namespace Model
     inline CreateReusableDelegationSetResult& WithLocation(const char* value) { SetLocation(value); return *this;}
 
   private:
+
     DelegationSet m_delegationSet;
+
     Aws::String m_location;
   };
 

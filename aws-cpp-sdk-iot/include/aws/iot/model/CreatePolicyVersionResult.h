@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     CreatePolicyVersionResult();
-    CreatePolicyVersionResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreatePolicyVersionResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreatePolicyVersionResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreatePolicyVersionResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The policy ARN.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The policy ARN.</p>
      */
-    inline void SetPolicyArn(Aws::String&& value) { m_policyArn = value; }
+    inline void SetPolicyArn(Aws::String&& value) { m_policyArn = std::move(value); }
 
     /**
      * <p>The policy ARN.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The policy ARN.</p>
      */
-    inline CreatePolicyVersionResult& WithPolicyArn(Aws::String&& value) { SetPolicyArn(value); return *this;}
+    inline CreatePolicyVersionResult& WithPolicyArn(Aws::String&& value) { SetPolicyArn(std::move(value)); return *this;}
 
     /**
      * <p>The policy ARN.</p>
      */
     inline CreatePolicyVersionResult& WithPolicyArn(const char* value) { SetPolicyArn(value); return *this;}
+
 
     /**
      * <p>The JSON document that describes the policy.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The JSON document that describes the policy.</p>
      */
-    inline void SetPolicyDocument(Aws::String&& value) { m_policyDocument = value; }
+    inline void SetPolicyDocument(Aws::String&& value) { m_policyDocument = std::move(value); }
 
     /**
      * <p>The JSON document that describes the policy.</p>
@@ -108,12 +112,13 @@ namespace Model
     /**
      * <p>The JSON document that describes the policy.</p>
      */
-    inline CreatePolicyVersionResult& WithPolicyDocument(Aws::String&& value) { SetPolicyDocument(value); return *this;}
+    inline CreatePolicyVersionResult& WithPolicyDocument(Aws::String&& value) { SetPolicyDocument(std::move(value)); return *this;}
 
     /**
      * <p>The JSON document that describes the policy.</p>
      */
     inline CreatePolicyVersionResult& WithPolicyDocument(const char* value) { SetPolicyDocument(value); return *this;}
+
 
     /**
      * <p>The policy version ID.</p>
@@ -128,7 +133,7 @@ namespace Model
     /**
      * <p>The policy version ID.</p>
      */
-    inline void SetPolicyVersionId(Aws::String&& value) { m_policyVersionId = value; }
+    inline void SetPolicyVersionId(Aws::String&& value) { m_policyVersionId = std::move(value); }
 
     /**
      * <p>The policy version ID.</p>
@@ -143,12 +148,13 @@ namespace Model
     /**
      * <p>The policy version ID.</p>
      */
-    inline CreatePolicyVersionResult& WithPolicyVersionId(Aws::String&& value) { SetPolicyVersionId(value); return *this;}
+    inline CreatePolicyVersionResult& WithPolicyVersionId(Aws::String&& value) { SetPolicyVersionId(std::move(value)); return *this;}
 
     /**
      * <p>The policy version ID.</p>
      */
     inline CreatePolicyVersionResult& WithPolicyVersionId(const char* value) { SetPolicyVersionId(value); return *this;}
+
 
     /**
      * <p>Specifies whether the policy version is the default.</p>
@@ -166,9 +172,13 @@ namespace Model
     inline CreatePolicyVersionResult& WithIsDefaultVersion(bool value) { SetIsDefaultVersion(value); return *this;}
 
   private:
+
     Aws::String m_policyArn;
+
     Aws::String m_policyDocument;
+
     Aws::String m_policyVersionId;
+
     bool m_isDefaultVersion;
   };
 

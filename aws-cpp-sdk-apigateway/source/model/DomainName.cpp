@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/apigateway/model/DomainName.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -30,6 +31,7 @@ namespace Model
 DomainName::DomainName() : 
     m_domainNameHasBeenSet(false),
     m_certificateNameHasBeenSet(false),
+    m_certificateArnHasBeenSet(false),
     m_certificateUploadDateHasBeenSet(false),
     m_distributionDomainNameHasBeenSet(false)
 {
@@ -38,6 +40,7 @@ DomainName::DomainName() :
 DomainName::DomainName(const JsonValue& jsonValue) : 
     m_domainNameHasBeenSet(false),
     m_certificateNameHasBeenSet(false),
+    m_certificateArnHasBeenSet(false),
     m_certificateUploadDateHasBeenSet(false),
     m_distributionDomainNameHasBeenSet(false)
 {
@@ -58,6 +61,13 @@ DomainName& DomainName::operator =(const JsonValue& jsonValue)
     m_certificateName = jsonValue.GetString("certificateName");
 
     m_certificateNameHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("certificateArn"))
+  {
+    m_certificateArn = jsonValue.GetString("certificateArn");
+
+    m_certificateArnHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("certificateUploadDate"))
@@ -90,6 +100,12 @@ JsonValue DomainName::Jsonize() const
   if(m_certificateNameHasBeenSet)
   {
    payload.WithString("certificateName", m_certificateName);
+
+  }
+
+  if(m_certificateArnHasBeenSet)
+  {
+   payload.WithString("certificateArn", m_certificateArn);
 
   }
 

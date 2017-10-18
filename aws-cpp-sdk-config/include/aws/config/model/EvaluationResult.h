@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/config/ConfigService_EXPORTS.h>
 #include <aws/config/model/EvaluationResultIdentifier.h>
 #include <aws/config/model/ComplianceType.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     EvaluationResult& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Uniquely identifies the evaluation result.</p>
      */
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>Uniquely identifies the evaluation result.</p>
      */
-    inline void SetEvaluationResultIdentifier(EvaluationResultIdentifier&& value) { m_evaluationResultIdentifierHasBeenSet = true; m_evaluationResultIdentifier = value; }
+    inline void SetEvaluationResultIdentifier(EvaluationResultIdentifier&& value) { m_evaluationResultIdentifierHasBeenSet = true; m_evaluationResultIdentifier = std::move(value); }
 
     /**
      * <p>Uniquely identifies the evaluation result.</p>
@@ -71,7 +74,8 @@ namespace Model
     /**
      * <p>Uniquely identifies the evaluation result.</p>
      */
-    inline EvaluationResult& WithEvaluationResultIdentifier(EvaluationResultIdentifier&& value) { SetEvaluationResultIdentifier(value); return *this;}
+    inline EvaluationResult& WithEvaluationResultIdentifier(EvaluationResultIdentifier&& value) { SetEvaluationResultIdentifier(std::move(value)); return *this;}
+
 
     /**
      * <p>Indicates whether the AWS resource complies with the AWS Config rule that
@@ -101,7 +105,7 @@ namespace Model
      * <code>INSUFFICIENT_DATA</code> value for the <code>EvaluationResult</code> data
      * type.</p>
      */
-    inline void SetComplianceType(ComplianceType&& value) { m_complianceTypeHasBeenSet = true; m_complianceType = value; }
+    inline void SetComplianceType(ComplianceType&& value) { m_complianceTypeHasBeenSet = true; m_complianceType = std::move(value); }
 
     /**
      * <p>Indicates whether the AWS resource complies with the AWS Config rule that
@@ -121,7 +125,8 @@ namespace Model
      * <code>INSUFFICIENT_DATA</code> value for the <code>EvaluationResult</code> data
      * type.</p>
      */
-    inline EvaluationResult& WithComplianceType(ComplianceType&& value) { SetComplianceType(value); return *this;}
+    inline EvaluationResult& WithComplianceType(ComplianceType&& value) { SetComplianceType(std::move(value)); return *this;}
+
 
     /**
      * <p>The time when AWS Config recorded the evaluation result.</p>
@@ -136,7 +141,7 @@ namespace Model
     /**
      * <p>The time when AWS Config recorded the evaluation result.</p>
      */
-    inline void SetResultRecordedTime(Aws::Utils::DateTime&& value) { m_resultRecordedTimeHasBeenSet = true; m_resultRecordedTime = value; }
+    inline void SetResultRecordedTime(Aws::Utils::DateTime&& value) { m_resultRecordedTimeHasBeenSet = true; m_resultRecordedTime = std::move(value); }
 
     /**
      * <p>The time when AWS Config recorded the evaluation result.</p>
@@ -146,7 +151,8 @@ namespace Model
     /**
      * <p>The time when AWS Config recorded the evaluation result.</p>
      */
-    inline EvaluationResult& WithResultRecordedTime(Aws::Utils::DateTime&& value) { SetResultRecordedTime(value); return *this;}
+    inline EvaluationResult& WithResultRecordedTime(Aws::Utils::DateTime&& value) { SetResultRecordedTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The time when the AWS Config rule evaluated the AWS resource.</p>
@@ -161,7 +167,7 @@ namespace Model
     /**
      * <p>The time when the AWS Config rule evaluated the AWS resource.</p>
      */
-    inline void SetConfigRuleInvokedTime(Aws::Utils::DateTime&& value) { m_configRuleInvokedTimeHasBeenSet = true; m_configRuleInvokedTime = value; }
+    inline void SetConfigRuleInvokedTime(Aws::Utils::DateTime&& value) { m_configRuleInvokedTimeHasBeenSet = true; m_configRuleInvokedTime = std::move(value); }
 
     /**
      * <p>The time when the AWS Config rule evaluated the AWS resource.</p>
@@ -171,7 +177,8 @@ namespace Model
     /**
      * <p>The time when the AWS Config rule evaluated the AWS resource.</p>
      */
-    inline EvaluationResult& WithConfigRuleInvokedTime(Aws::Utils::DateTime&& value) { SetConfigRuleInvokedTime(value); return *this;}
+    inline EvaluationResult& WithConfigRuleInvokedTime(Aws::Utils::DateTime&& value) { SetConfigRuleInvokedTime(std::move(value)); return *this;}
+
 
     /**
      * <p>Supplementary information about how the evaluation determined the
@@ -189,7 +196,7 @@ namespace Model
      * <p>Supplementary information about how the evaluation determined the
      * compliance.</p>
      */
-    inline void SetAnnotation(Aws::String&& value) { m_annotationHasBeenSet = true; m_annotation = value; }
+    inline void SetAnnotation(Aws::String&& value) { m_annotationHasBeenSet = true; m_annotation = std::move(value); }
 
     /**
      * <p>Supplementary information about how the evaluation determined the
@@ -207,13 +214,14 @@ namespace Model
      * <p>Supplementary information about how the evaluation determined the
      * compliance.</p>
      */
-    inline EvaluationResult& WithAnnotation(Aws::String&& value) { SetAnnotation(value); return *this;}
+    inline EvaluationResult& WithAnnotation(Aws::String&& value) { SetAnnotation(std::move(value)); return *this;}
 
     /**
      * <p>Supplementary information about how the evaluation determined the
      * compliance.</p>
      */
     inline EvaluationResult& WithAnnotation(const char* value) { SetAnnotation(value); return *this;}
+
 
     /**
      * <p>An encrypted token that associates an evaluation with an AWS Config rule. The
@@ -234,7 +242,7 @@ namespace Model
      * token identifies the rule, the AWS resource being evaluated, and the event that
      * triggered the evaluation.</p>
      */
-    inline void SetResultToken(Aws::String&& value) { m_resultTokenHasBeenSet = true; m_resultToken = value; }
+    inline void SetResultToken(Aws::String&& value) { m_resultTokenHasBeenSet = true; m_resultToken = std::move(value); }
 
     /**
      * <p>An encrypted token that associates an evaluation with an AWS Config rule. The
@@ -255,7 +263,7 @@ namespace Model
      * token identifies the rule, the AWS resource being evaluated, and the event that
      * triggered the evaluation.</p>
      */
-    inline EvaluationResult& WithResultToken(Aws::String&& value) { SetResultToken(value); return *this;}
+    inline EvaluationResult& WithResultToken(Aws::String&& value) { SetResultToken(std::move(value)); return *this;}
 
     /**
      * <p>An encrypted token that associates an evaluation with an AWS Config rule. The
@@ -265,16 +273,22 @@ namespace Model
     inline EvaluationResult& WithResultToken(const char* value) { SetResultToken(value); return *this;}
 
   private:
+
     EvaluationResultIdentifier m_evaluationResultIdentifier;
     bool m_evaluationResultIdentifierHasBeenSet;
+
     ComplianceType m_complianceType;
     bool m_complianceTypeHasBeenSet;
+
     Aws::Utils::DateTime m_resultRecordedTime;
     bool m_resultRecordedTimeHasBeenSet;
+
     Aws::Utils::DateTime m_configRuleInvokedTime;
     bool m_configRuleInvokedTimeHasBeenSet;
+
     Aws::String m_annotation;
     bool m_annotationHasBeenSet;
+
     Aws::String m_resultToken;
     bool m_resultTokenHasBeenSet;
   };

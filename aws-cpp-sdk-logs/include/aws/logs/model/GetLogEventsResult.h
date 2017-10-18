@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/logs/CloudWatchLogs_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/logs/model/OutputLogEvent.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     GetLogEventsResult();
-    GetLogEventsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetLogEventsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetLogEventsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetLogEventsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The events.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>The events.</p>
      */
-    inline void SetEvents(Aws::Vector<OutputLogEvent>&& value) { m_events = value; }
+    inline void SetEvents(Aws::Vector<OutputLogEvent>&& value) { m_events = std::move(value); }
 
     /**
      * <p>The events.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>The events.</p>
      */
-    inline GetLogEventsResult& WithEvents(Aws::Vector<OutputLogEvent>&& value) { SetEvents(value); return *this;}
+    inline GetLogEventsResult& WithEvents(Aws::Vector<OutputLogEvent>&& value) { SetEvents(std::move(value)); return *this;}
 
     /**
      * <p>The events.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>The events.</p>
      */
-    inline GetLogEventsResult& AddEvents(OutputLogEvent&& value) { m_events.push_back(value); return *this; }
+    inline GetLogEventsResult& AddEvents(OutputLogEvent&& value) { m_events.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The token for the next set of items in the forward direction. The token
@@ -92,7 +96,7 @@ namespace Model
      * <p>The token for the next set of items in the forward direction. The token
      * expires after 24 hours.</p>
      */
-    inline void SetNextForwardToken(Aws::String&& value) { m_nextForwardToken = value; }
+    inline void SetNextForwardToken(Aws::String&& value) { m_nextForwardToken = std::move(value); }
 
     /**
      * <p>The token for the next set of items in the forward direction. The token
@@ -110,13 +114,14 @@ namespace Model
      * <p>The token for the next set of items in the forward direction. The token
      * expires after 24 hours.</p>
      */
-    inline GetLogEventsResult& WithNextForwardToken(Aws::String&& value) { SetNextForwardToken(value); return *this;}
+    inline GetLogEventsResult& WithNextForwardToken(Aws::String&& value) { SetNextForwardToken(std::move(value)); return *this;}
 
     /**
      * <p>The token for the next set of items in the forward direction. The token
      * expires after 24 hours.</p>
      */
     inline GetLogEventsResult& WithNextForwardToken(const char* value) { SetNextForwardToken(value); return *this;}
+
 
     /**
      * <p>The token for the next set of items in the backward direction. The token
@@ -134,7 +139,7 @@ namespace Model
      * <p>The token for the next set of items in the backward direction. The token
      * expires after 24 hours.</p>
      */
-    inline void SetNextBackwardToken(Aws::String&& value) { m_nextBackwardToken = value; }
+    inline void SetNextBackwardToken(Aws::String&& value) { m_nextBackwardToken = std::move(value); }
 
     /**
      * <p>The token for the next set of items in the backward direction. The token
@@ -152,7 +157,7 @@ namespace Model
      * <p>The token for the next set of items in the backward direction. The token
      * expires after 24 hours.</p>
      */
-    inline GetLogEventsResult& WithNextBackwardToken(Aws::String&& value) { SetNextBackwardToken(value); return *this;}
+    inline GetLogEventsResult& WithNextBackwardToken(Aws::String&& value) { SetNextBackwardToken(std::move(value)); return *this;}
 
     /**
      * <p>The token for the next set of items in the backward direction. The token
@@ -161,8 +166,11 @@ namespace Model
     inline GetLogEventsResult& WithNextBackwardToken(const char* value) { SetNextBackwardToken(value); return *this;}
 
   private:
+
     Aws::Vector<OutputLogEvent> m_events;
+
     Aws::String m_nextForwardToken;
+
     Aws::String m_nextBackwardToken;
   };
 

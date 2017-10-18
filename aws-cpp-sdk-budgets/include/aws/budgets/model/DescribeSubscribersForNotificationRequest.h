@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/budgets/Budgets_EXPORTS.h>
 #include <aws/budgets/BudgetsRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/budgets/model/Notification.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     DescribeSubscribersForNotificationRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeSubscribersForNotification"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     
     inline const Aws::String& GetAccountId() const{ return m_accountId; }
@@ -45,7 +55,7 @@ namespace Model
     inline void SetAccountId(const Aws::String& value) { m_accountIdHasBeenSet = true; m_accountId = value; }
 
     
-    inline void SetAccountId(Aws::String&& value) { m_accountIdHasBeenSet = true; m_accountId = value; }
+    inline void SetAccountId(Aws::String&& value) { m_accountIdHasBeenSet = true; m_accountId = std::move(value); }
 
     
     inline void SetAccountId(const char* value) { m_accountIdHasBeenSet = true; m_accountId.assign(value); }
@@ -54,10 +64,11 @@ namespace Model
     inline DescribeSubscribersForNotificationRequest& WithAccountId(const Aws::String& value) { SetAccountId(value); return *this;}
 
     
-    inline DescribeSubscribersForNotificationRequest& WithAccountId(Aws::String&& value) { SetAccountId(value); return *this;}
+    inline DescribeSubscribersForNotificationRequest& WithAccountId(Aws::String&& value) { SetAccountId(std::move(value)); return *this;}
 
     
     inline DescribeSubscribersForNotificationRequest& WithAccountId(const char* value) { SetAccountId(value); return *this;}
+
 
     
     inline const Aws::String& GetBudgetName() const{ return m_budgetName; }
@@ -66,7 +77,7 @@ namespace Model
     inline void SetBudgetName(const Aws::String& value) { m_budgetNameHasBeenSet = true; m_budgetName = value; }
 
     
-    inline void SetBudgetName(Aws::String&& value) { m_budgetNameHasBeenSet = true; m_budgetName = value; }
+    inline void SetBudgetName(Aws::String&& value) { m_budgetNameHasBeenSet = true; m_budgetName = std::move(value); }
 
     
     inline void SetBudgetName(const char* value) { m_budgetNameHasBeenSet = true; m_budgetName.assign(value); }
@@ -75,10 +86,11 @@ namespace Model
     inline DescribeSubscribersForNotificationRequest& WithBudgetName(const Aws::String& value) { SetBudgetName(value); return *this;}
 
     
-    inline DescribeSubscribersForNotificationRequest& WithBudgetName(Aws::String&& value) { SetBudgetName(value); return *this;}
+    inline DescribeSubscribersForNotificationRequest& WithBudgetName(Aws::String&& value) { SetBudgetName(std::move(value)); return *this;}
 
     
     inline DescribeSubscribersForNotificationRequest& WithBudgetName(const char* value) { SetBudgetName(value); return *this;}
+
 
     
     inline const Notification& GetNotification() const{ return m_notification; }
@@ -87,13 +99,14 @@ namespace Model
     inline void SetNotification(const Notification& value) { m_notificationHasBeenSet = true; m_notification = value; }
 
     
-    inline void SetNotification(Notification&& value) { m_notificationHasBeenSet = true; m_notification = value; }
+    inline void SetNotification(Notification&& value) { m_notificationHasBeenSet = true; m_notification = std::move(value); }
 
     
     inline DescribeSubscribersForNotificationRequest& WithNotification(const Notification& value) { SetNotification(value); return *this;}
 
     
-    inline DescribeSubscribersForNotificationRequest& WithNotification(Notification&& value) { SetNotification(value); return *this;}
+    inline DescribeSubscribersForNotificationRequest& WithNotification(Notification&& value) { SetNotification(std::move(value)); return *this;}
+
 
     
     inline int GetMaxResults() const{ return m_maxResults; }
@@ -104,6 +117,7 @@ namespace Model
     
     inline DescribeSubscribersForNotificationRequest& WithMaxResults(int value) { SetMaxResults(value); return *this;}
 
+
     
     inline const Aws::String& GetNextToken() const{ return m_nextToken; }
 
@@ -111,7 +125,7 @@ namespace Model
     inline void SetNextToken(const Aws::String& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
 
     
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     
     inline void SetNextToken(const char* value) { m_nextTokenHasBeenSet = true; m_nextToken.assign(value); }
@@ -120,20 +134,25 @@ namespace Model
     inline DescribeSubscribersForNotificationRequest& WithNextToken(const Aws::String& value) { SetNextToken(value); return *this;}
 
     
-    inline DescribeSubscribersForNotificationRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeSubscribersForNotificationRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     
     inline DescribeSubscribersForNotificationRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::String m_accountId;
     bool m_accountIdHasBeenSet;
+
     Aws::String m_budgetName;
     bool m_budgetNameHasBeenSet;
+
     Notification m_notification;
     bool m_notificationHasBeenSet;
+
     int m_maxResults;
     bool m_maxResultsHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
   };

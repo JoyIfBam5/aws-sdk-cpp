@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/elasticmapreduce/model/ClusterStateChangeReasonCode.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     ClusterStateChangeReason& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The programmatic code for the state change reason.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The programmatic code for the state change reason.</p>
      */
-    inline void SetCode(ClusterStateChangeReasonCode&& value) { m_codeHasBeenSet = true; m_code = value; }
+    inline void SetCode(ClusterStateChangeReasonCode&& value) { m_codeHasBeenSet = true; m_code = std::move(value); }
 
     /**
      * <p>The programmatic code for the state change reason.</p>
@@ -68,7 +71,8 @@ namespace Model
     /**
      * <p>The programmatic code for the state change reason.</p>
      */
-    inline ClusterStateChangeReason& WithCode(ClusterStateChangeReasonCode&& value) { SetCode(value); return *this;}
+    inline ClusterStateChangeReason& WithCode(ClusterStateChangeReasonCode&& value) { SetCode(std::move(value)); return *this;}
+
 
     /**
      * <p>The descriptive message for the state change reason.</p>
@@ -83,7 +87,7 @@ namespace Model
     /**
      * <p>The descriptive message for the state change reason.</p>
      */
-    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = value; }
+    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = std::move(value); }
 
     /**
      * <p>The descriptive message for the state change reason.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>The descriptive message for the state change reason.</p>
      */
-    inline ClusterStateChangeReason& WithMessage(Aws::String&& value) { SetMessage(value); return *this;}
+    inline ClusterStateChangeReason& WithMessage(Aws::String&& value) { SetMessage(std::move(value)); return *this;}
 
     /**
      * <p>The descriptive message for the state change reason.</p>
@@ -106,8 +110,10 @@ namespace Model
     inline ClusterStateChangeReason& WithMessage(const char* value) { SetMessage(value); return *this;}
 
   private:
+
     ClusterStateChangeReasonCode m_code;
     bool m_codeHasBeenSet;
+
     Aws::String m_message;
     bool m_messageHasBeenSet;
   };

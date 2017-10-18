@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ssm/model/PatchBaselineIdentity.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -30,6 +31,8 @@ namespace Model
 PatchBaselineIdentity::PatchBaselineIdentity() : 
     m_baselineIdHasBeenSet(false),
     m_baselineNameHasBeenSet(false),
+    m_operatingSystem(OperatingSystem::NOT_SET),
+    m_operatingSystemHasBeenSet(false),
     m_baselineDescriptionHasBeenSet(false),
     m_defaultBaseline(false),
     m_defaultBaselineHasBeenSet(false)
@@ -39,6 +42,8 @@ PatchBaselineIdentity::PatchBaselineIdentity() :
 PatchBaselineIdentity::PatchBaselineIdentity(const JsonValue& jsonValue) : 
     m_baselineIdHasBeenSet(false),
     m_baselineNameHasBeenSet(false),
+    m_operatingSystem(OperatingSystem::NOT_SET),
+    m_operatingSystemHasBeenSet(false),
     m_baselineDescriptionHasBeenSet(false),
     m_defaultBaseline(false),
     m_defaultBaselineHasBeenSet(false)
@@ -60,6 +65,13 @@ PatchBaselineIdentity& PatchBaselineIdentity::operator =(const JsonValue& jsonVa
     m_baselineName = jsonValue.GetString("BaselineName");
 
     m_baselineNameHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("OperatingSystem"))
+  {
+    m_operatingSystem = OperatingSystemMapper::GetOperatingSystemForName(jsonValue.GetString("OperatingSystem"));
+
+    m_operatingSystemHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("BaselineDescription"))
@@ -93,6 +105,11 @@ JsonValue PatchBaselineIdentity::Jsonize() const
   {
    payload.WithString("BaselineName", m_baselineName);
 
+  }
+
+  if(m_operatingSystemHasBeenSet)
+  {
+   payload.WithString("OperatingSystem", OperatingSystemMapper::GetNameForOperatingSystem(m_operatingSystem));
   }
 
   if(m_baselineDescriptionHasBeenSet)

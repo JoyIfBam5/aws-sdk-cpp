@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticloadbalancing/ElasticLoadBalancing_EXPORTS.h>
 #include <aws/elasticloadbalancing/ElasticLoadBalancingErrors.h>
@@ -34,6 +35,7 @@
 #include <aws/elasticloadbalancing/model/DeleteLoadBalancerListenersResult.h>
 #include <aws/elasticloadbalancing/model/DeleteLoadBalancerPolicyResult.h>
 #include <aws/elasticloadbalancing/model/DeregisterInstancesFromLoadBalancerResult.h>
+#include <aws/elasticloadbalancing/model/DescribeAccountLimitsResult.h>
 #include <aws/elasticloadbalancing/model/DescribeInstanceHealthResult.h>
 #include <aws/elasticloadbalancing/model/DescribeLoadBalancerAttributesResult.h>
 #include <aws/elasticloadbalancing/model/DescribeLoadBalancerPoliciesResult.h>
@@ -107,6 +109,7 @@ namespace Model
         class DeleteLoadBalancerListenersRequest;
         class DeleteLoadBalancerPolicyRequest;
         class DeregisterInstancesFromLoadBalancerRequest;
+        class DescribeAccountLimitsRequest;
         class DescribeInstanceHealthRequest;
         class DescribeLoadBalancerAttributesRequest;
         class DescribeLoadBalancerPoliciesRequest;
@@ -136,6 +139,7 @@ namespace Model
         typedef Aws::Utils::Outcome<DeleteLoadBalancerListenersResult, Aws::Client::AWSError<ElasticLoadBalancingErrors>> DeleteLoadBalancerListenersOutcome;
         typedef Aws::Utils::Outcome<DeleteLoadBalancerPolicyResult, Aws::Client::AWSError<ElasticLoadBalancingErrors>> DeleteLoadBalancerPolicyOutcome;
         typedef Aws::Utils::Outcome<DeregisterInstancesFromLoadBalancerResult, Aws::Client::AWSError<ElasticLoadBalancingErrors>> DeregisterInstancesFromLoadBalancerOutcome;
+        typedef Aws::Utils::Outcome<DescribeAccountLimitsResult, Aws::Client::AWSError<ElasticLoadBalancingErrors>> DescribeAccountLimitsOutcome;
         typedef Aws::Utils::Outcome<DescribeInstanceHealthResult, Aws::Client::AWSError<ElasticLoadBalancingErrors>> DescribeInstanceHealthOutcome;
         typedef Aws::Utils::Outcome<DescribeLoadBalancerAttributesResult, Aws::Client::AWSError<ElasticLoadBalancingErrors>> DescribeLoadBalancerAttributesOutcome;
         typedef Aws::Utils::Outcome<DescribeLoadBalancerPoliciesResult, Aws::Client::AWSError<ElasticLoadBalancingErrors>> DescribeLoadBalancerPoliciesOutcome;
@@ -165,6 +169,7 @@ namespace Model
         typedef std::future<DeleteLoadBalancerListenersOutcome> DeleteLoadBalancerListenersOutcomeCallable;
         typedef std::future<DeleteLoadBalancerPolicyOutcome> DeleteLoadBalancerPolicyOutcomeCallable;
         typedef std::future<DeregisterInstancesFromLoadBalancerOutcome> DeregisterInstancesFromLoadBalancerOutcomeCallable;
+        typedef std::future<DescribeAccountLimitsOutcome> DescribeAccountLimitsOutcomeCallable;
         typedef std::future<DescribeInstanceHealthOutcome> DescribeInstanceHealthOutcomeCallable;
         typedef std::future<DescribeLoadBalancerAttributesOutcome> DescribeLoadBalancerAttributesOutcomeCallable;
         typedef std::future<DescribeLoadBalancerPoliciesOutcome> DescribeLoadBalancerPoliciesOutcomeCallable;
@@ -197,6 +202,7 @@ namespace Model
     typedef std::function<void(const ElasticLoadBalancingClient*, const Model::DeleteLoadBalancerListenersRequest&, const Model::DeleteLoadBalancerListenersOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteLoadBalancerListenersResponseReceivedHandler;
     typedef std::function<void(const ElasticLoadBalancingClient*, const Model::DeleteLoadBalancerPolicyRequest&, const Model::DeleteLoadBalancerPolicyOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteLoadBalancerPolicyResponseReceivedHandler;
     typedef std::function<void(const ElasticLoadBalancingClient*, const Model::DeregisterInstancesFromLoadBalancerRequest&, const Model::DeregisterInstancesFromLoadBalancerOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeregisterInstancesFromLoadBalancerResponseReceivedHandler;
+    typedef std::function<void(const ElasticLoadBalancingClient*, const Model::DescribeAccountLimitsRequest&, const Model::DescribeAccountLimitsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeAccountLimitsResponseReceivedHandler;
     typedef std::function<void(const ElasticLoadBalancingClient*, const Model::DescribeInstanceHealthRequest&, const Model::DescribeInstanceHealthOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeInstanceHealthResponseReceivedHandler;
     typedef std::function<void(const ElasticLoadBalancingClient*, const Model::DescribeLoadBalancerAttributesRequest&, const Model::DescribeLoadBalancerAttributesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeLoadBalancerAttributesResponseReceivedHandler;
     typedef std::function<void(const ElasticLoadBalancingClient*, const Model::DescribeLoadBalancerPoliciesRequest&, const Model::DescribeLoadBalancerPoliciesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeLoadBalancerPoliciesResponseReceivedHandler;
@@ -222,21 +228,23 @@ namespace Model
    * specifying one or more listeners, which are configured with a protocol and port
    * number for connections from clients to the load balancer and a protocol and port
    * number for connections from the load balancer to the instances.</p> <p>Elastic
-   * Load Balancing supports two types of load balancers: Classic load balancers and
-   * Application load balancers (new). A Classic load balancer makes routing and load
+   * Load Balancing supports two types of load balancers: Classic Load Balancers and
+   * Application Load Balancers (new). A Classic Load Balancer makes routing and load
    * balancing decisions either at the transport layer (TCP/SSL) or the application
    * layer (HTTP/HTTPS), and supports either EC2-Classic or a VPC. An Application
-   * load balancer makes routing and load balancing decisions at the application
+   * Load Balancer makes routing and load balancing decisions at the application
    * layer (HTTP/HTTPS), supports path-based routing, and can route requests to one
    * or more ports on each EC2 instance or container instance in your virtual private
-   * cloud (VPC). For more information, see the .</p> <p>This reference covers the
-   * 2012-06-01 API, which supports Classic load balancers. The 2015-12-01 API
-   * supports Application load balancers.</p> <p>To get started, create a load
-   * balancer with one or more listeners using <a>CreateLoadBalancer</a>. Register
-   * your instances with the load balancer using
-   * <a>RegisterInstancesWithLoadBalancer</a>.</p> <p>All Elastic Load Balancing
-   * operations are <i>idempotent</i>, which means that they complete at most one
-   * time. If you repeat an operation, it succeeds with a 200 OK response code.</p>
+   * cloud (VPC). For more information, see the <a
+   * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html">Elastic
+   * Load Balancing User Guide</a>.</p> <p>This reference covers the 2012-06-01 API,
+   * which supports Classic Load Balancers. The 2015-12-01 API supports Application
+   * Load Balancers.</p> <p>To get started, create a load balancer with one or more
+   * listeners using <a>CreateLoadBalancer</a>. Register your instances with the load
+   * balancer using <a>RegisterInstancesWithLoadBalancer</a>.</p> <p>All Elastic Load
+   * Balancing operations are <i>idempotent</i>, which means that they complete at
+   * most one time. If you repeat an operation, it succeeds with a 200 OK response
+   * code.</p>
    */
   class AWS_ELASTICLOADBALANCING_API ElasticLoadBalancingClient : public Aws::Client::AWSXMLClient
   {
@@ -247,27 +255,30 @@ namespace Model
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        ElasticLoadBalancingClient(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        ElasticLoadBalancingClient(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        ElasticLoadBalancingClient(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        ElasticLoadBalancingClient(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        ElasticLoadBalancingClient(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        ElasticLoadBalancingClient(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
         virtual ~ElasticLoadBalancingClient();
+
+        inline virtual const char* GetServiceClientName() const override { return "elasticloadbalancing"; }
+
 
        /**
         * Converts any request object to a presigned URL with the GET method, using region for the signer and a timeout of 15 minutes.
         */
-        Aws::String ConvertRequestToPresignedUrl(const AmazonSerializableWebServiceRequest& requestToConvert, const char* region) const;
+        Aws::String ConvertRequestToPresignedUrl(const Aws::AmazonSerializableWebServiceRequest& requestToConvert, const char* region) const;
 
 
         /**
@@ -276,7 +287,7 @@ namespace Model
          * value. If a tag with the same key is already associated with the load balancer,
          * <code>AddTags</code> updates its value.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/add-remove-tags.html">Tag
-         * Your Classic Load Balancer</a> in the <i>Classic Load Balancers
+         * Your Classic Load Balancer</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/AddTags">AWS
          * API Reference</a></p>
@@ -289,7 +300,7 @@ namespace Model
          * value. If a tag with the same key is already associated with the load balancer,
          * <code>AddTags</code> updates its value.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/add-remove-tags.html">Tag
-         * Your Classic Load Balancer</a> in the <i>Classic Load Balancers
+         * Your Classic Load Balancer</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/AddTags">AWS
          * API Reference</a></p>
@@ -304,7 +315,7 @@ namespace Model
          * value. If a tag with the same key is already associated with the load balancer,
          * <code>AddTags</code> updates its value.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/add-remove-tags.html">Tag
-         * Your Classic Load Balancer</a> in the <i>Classic Load Balancers
+         * Your Classic Load Balancer</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/AddTags">AWS
          * API Reference</a></p>
@@ -318,7 +329,7 @@ namespace Model
          * private cloud (VPC). The specified security groups override the previously
          * associated security groups.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-groups.html#elb-vpc-security-groups">Security
-         * Groups for Load Balancers in a VPC</a> in the <i>Classic Load Balancers
+         * Groups for Load Balancers in a VPC</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ApplySecurityGroupsToLoadBalancer">AWS
          * API Reference</a></p>
@@ -330,7 +341,7 @@ namespace Model
          * private cloud (VPC). The specified security groups override the previously
          * associated security groups.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-groups.html#elb-vpc-security-groups">Security
-         * Groups for Load Balancers in a VPC</a> in the <i>Classic Load Balancers
+         * Groups for Load Balancers in a VPC</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ApplySecurityGroupsToLoadBalancer">AWS
          * API Reference</a></p>
@@ -344,7 +355,7 @@ namespace Model
          * private cloud (VPC). The specified security groups override the previously
          * associated security groups.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-groups.html#elb-vpc-security-groups">Security
-         * Groups for Load Balancers in a VPC</a> in the <i>Classic Load Balancers
+         * Groups for Load Balancers in a VPC</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ApplySecurityGroupsToLoadBalancer">AWS
          * API Reference</a></p>
@@ -359,7 +370,7 @@ namespace Model
          * registered subnets. For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-manage-subnets.html">Add
          * or Remove Subnets for Your Load Balancer in a VPC</a> in the <i>Classic Load
-         * Balancers Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * Balancer Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/AttachLoadBalancerToSubnets">AWS
          * API Reference</a></p>
          */
@@ -371,7 +382,7 @@ namespace Model
          * registered subnets. For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-manage-subnets.html">Add
          * or Remove Subnets for Your Load Balancer in a VPC</a> in the <i>Classic Load
-         * Balancers Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * Balancer Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/AttachLoadBalancerToSubnets">AWS
          * API Reference</a></p>
          *
@@ -385,7 +396,7 @@ namespace Model
          * registered subnets. For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-manage-subnets.html">Add
          * or Remove Subnets for Your Load Balancer in a VPC</a> in the <i>Classic Load
-         * Balancers Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * Balancer Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/AttachLoadBalancerToSubnets">AWS
          * API Reference</a></p>
          *
@@ -397,7 +408,7 @@ namespace Model
          * <p>Specifies the health check settings to use when evaluating the health state
          * of your EC2 instances.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-healthchecks.html">Configure
-         * Health Checks for Your Load Balancer</a> in the <i>Classic Load Balancers
+         * Health Checks for Your Load Balancer</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ConfigureHealthCheck">AWS
          * API Reference</a></p>
@@ -408,7 +419,7 @@ namespace Model
          * <p>Specifies the health check settings to use when evaluating the health state
          * of your EC2 instances.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-healthchecks.html">Configure
-         * Health Checks for Your Load Balancer</a> in the <i>Classic Load Balancers
+         * Health Checks for Your Load Balancer</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ConfigureHealthCheck">AWS
          * API Reference</a></p>
@@ -421,7 +432,7 @@ namespace Model
          * <p>Specifies the health check settings to use when evaluating the health state
          * of your EC2 instances.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-healthchecks.html">Configure
-         * Health Checks for Your Load Balancer</a> in the <i>Classic Load Balancers
+         * Health Checks for Your Load Balancer</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ConfigureHealthCheck">AWS
          * API Reference</a></p>
@@ -442,7 +453,7 @@ namespace Model
          * explicitly removed or expires, the session stops being sticky until a new
          * application cookie is issued.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-application">Application-Controlled
-         * Session Stickiness</a> in the <i>Classic Load Balancers Guide</i>.</p><p><h3>See
+         * Session Stickiness</a> in the <i>Classic Load Balancer Guide</i>.</p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateAppCookieStickinessPolicy">AWS
          * API Reference</a></p>
@@ -461,7 +472,7 @@ namespace Model
          * explicitly removed or expires, the session stops being sticky until a new
          * application cookie is issued.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-application">Application-Controlled
-         * Session Stickiness</a> in the <i>Classic Load Balancers Guide</i>.</p><p><h3>See
+         * Session Stickiness</a> in the <i>Classic Load Balancer Guide</i>.</p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateAppCookieStickinessPolicy">AWS
          * API Reference</a></p>
@@ -482,7 +493,7 @@ namespace Model
          * explicitly removed or expires, the session stops being sticky until a new
          * application cookie is issued.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-application">Application-Controlled
-         * Session Stickiness</a> in the <i>Classic Load Balancers Guide</i>.</p><p><h3>See
+         * Session Stickiness</a> in the <i>Classic Load Balancer Guide</i>.</p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateAppCookieStickinessPolicy">AWS
          * API Reference</a></p>
@@ -505,7 +516,7 @@ namespace Model
          * of the cookie is based on the cookie expiration time, which is specified in the
          * policy configuration.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-duration">Duration-Based
-         * Session Stickiness</a> in the <i>Classic Load Balancers Guide</i>.</p><p><h3>See
+         * Session Stickiness</a> in the <i>Classic Load Balancer Guide</i>.</p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLBCookieStickinessPolicy">AWS
          * API Reference</a></p>
@@ -526,7 +537,7 @@ namespace Model
          * of the cookie is based on the cookie expiration time, which is specified in the
          * policy configuration.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-duration">Duration-Based
-         * Session Stickiness</a> in the <i>Classic Load Balancers Guide</i>.</p><p><h3>See
+         * Session Stickiness</a> in the <i>Classic Load Balancer Guide</i>.</p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLBCookieStickinessPolicy">AWS
          * API Reference</a></p>
@@ -549,7 +560,7 @@ namespace Model
          * of the cookie is based on the cookie expiration time, which is specified in the
          * policy configuration.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-duration">Duration-Based
-         * Session Stickiness</a> in the <i>Classic Load Balancers Guide</i>.</p><p><h3>See
+         * Session Stickiness</a> in the <i>Classic Load Balancer Guide</i>.</p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLBCookieStickinessPolicy">AWS
          * API Reference</a></p>
@@ -559,7 +570,7 @@ namespace Model
         virtual void CreateLBCookieStickinessPolicyAsync(const Model::CreateLBCookieStickinessPolicyRequest& request, const CreateLBCookieStickinessPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Creates a Classic load balancer.</p> <p>You can add listeners, security
+         * <p>Creates a Classic Load Balancer.</p> <p>You can add listeners, security
          * groups, subnets, and tags when you create your load balancer, or you can add
          * them later using <a>CreateLoadBalancerListeners</a>,
          * <a>ApplySecurityGroupsToLoadBalancer</a>, <a>AttachLoadBalancerToSubnets</a>,
@@ -569,7 +580,7 @@ namespace Model
          * load balancers per region per account. You can request an increase for the
          * number of load balancers for your account. For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-limits.html">Limits
-         * for Your Classic Load Balancer</a> in the <i>Classic Load Balancers
+         * for Your Classic Load Balancer</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLoadBalancer">AWS
          * API Reference</a></p>
@@ -577,7 +588,7 @@ namespace Model
         virtual Model::CreateLoadBalancerOutcome CreateLoadBalancer(const Model::CreateLoadBalancerRequest& request) const;
 
         /**
-         * <p>Creates a Classic load balancer.</p> <p>You can add listeners, security
+         * <p>Creates a Classic Load Balancer.</p> <p>You can add listeners, security
          * groups, subnets, and tags when you create your load balancer, or you can add
          * them later using <a>CreateLoadBalancerListeners</a>,
          * <a>ApplySecurityGroupsToLoadBalancer</a>, <a>AttachLoadBalancerToSubnets</a>,
@@ -587,7 +598,7 @@ namespace Model
          * load balancers per region per account. You can request an increase for the
          * number of load balancers for your account. For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-limits.html">Limits
-         * for Your Classic Load Balancer</a> in the <i>Classic Load Balancers
+         * for Your Classic Load Balancer</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLoadBalancer">AWS
          * API Reference</a></p>
@@ -597,7 +608,7 @@ namespace Model
         virtual Model::CreateLoadBalancerOutcomeCallable CreateLoadBalancerCallable(const Model::CreateLoadBalancerRequest& request) const;
 
         /**
-         * <p>Creates a Classic load balancer.</p> <p>You can add listeners, security
+         * <p>Creates a Classic Load Balancer.</p> <p>You can add listeners, security
          * groups, subnets, and tags when you create your load balancer, or you can add
          * them later using <a>CreateLoadBalancerListeners</a>,
          * <a>ApplySecurityGroupsToLoadBalancer</a>, <a>AttachLoadBalancerToSubnets</a>,
@@ -607,7 +618,7 @@ namespace Model
          * load balancers per region per account. You can request an increase for the
          * number of load balancers for your account. For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-limits.html">Limits
-         * for Your Classic Load Balancer</a> in the <i>Classic Load Balancers
+         * for Your Classic Load Balancer</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLoadBalancer">AWS
          * API Reference</a></p>
@@ -622,7 +633,7 @@ namespace Model
          * properties of the new listener must match the properties of the existing
          * listener.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-listener-config.html">Listeners
-         * for Your Classic Load Balancer</a> in the <i>Classic Load Balancers
+         * for Your Classic Load Balancer</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLoadBalancerListeners">AWS
          * API Reference</a></p>
@@ -635,7 +646,7 @@ namespace Model
          * properties of the new listener must match the properties of the existing
          * listener.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-listener-config.html">Listeners
-         * for Your Classic Load Balancer</a> in the <i>Classic Load Balancers
+         * for Your Classic Load Balancer</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLoadBalancerListeners">AWS
          * API Reference</a></p>
@@ -650,7 +661,7 @@ namespace Model
          * properties of the new listener must match the properties of the existing
          * listener.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-listener-config.html">Listeners
-         * for Your Classic Load Balancer</a> in the <i>Classic Load Balancers
+         * for Your Classic Load Balancer</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLoadBalancerListeners">AWS
          * API Reference</a></p>
@@ -799,7 +810,7 @@ namespace Model
          * instance is deregistered from the load balancer.</p> <p>For more information,
          * see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html">Register
-         * or De-Register EC2 Instances</a> in the <i>Classic Load Balancers
+         * or De-Register EC2 Instances</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DeregisterInstancesFromLoadBalancer">AWS
          * API Reference</a></p>
@@ -813,7 +824,7 @@ namespace Model
          * instance is deregistered from the load balancer.</p> <p>For more information,
          * see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html">Register
-         * or De-Register EC2 Instances</a> in the <i>Classic Load Balancers
+         * or De-Register EC2 Instances</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DeregisterInstancesFromLoadBalancer">AWS
          * API Reference</a></p>
@@ -829,7 +840,7 @@ namespace Model
          * instance is deregistered from the load balancer.</p> <p>For more information,
          * see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html">Register
-         * or De-Register EC2 Instances</a> in the <i>Classic Load Balancers
+         * or De-Register EC2 Instances</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DeregisterInstancesFromLoadBalancer">AWS
          * API Reference</a></p>
@@ -837,6 +848,43 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void DeregisterInstancesFromLoadBalancerAsync(const Model::DeregisterInstancesFromLoadBalancerRequest& request, const DeregisterInstancesFromLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Describes the current Elastic Load Balancing resource limits for your AWS
+         * account.</p> <p>For more information, see <a
+         * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-limits.html">Limits
+         * for Your Classic Load Balancer</a> in the <i>Classic Load Balancer
+         * Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeAccountLimits">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::DescribeAccountLimitsOutcome DescribeAccountLimits(const Model::DescribeAccountLimitsRequest& request) const;
+
+        /**
+         * <p>Describes the current Elastic Load Balancing resource limits for your AWS
+         * account.</p> <p>For more information, see <a
+         * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-limits.html">Limits
+         * for Your Classic Load Balancer</a> in the <i>Classic Load Balancer
+         * Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeAccountLimits">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::DescribeAccountLimitsOutcomeCallable DescribeAccountLimitsCallable(const Model::DescribeAccountLimitsRequest& request) const;
+
+        /**
+         * <p>Describes the current Elastic Load Balancing resource limits for your AWS
+         * account.</p> <p>For more information, see <a
+         * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-limits.html">Limits
+         * for Your Classic Load Balancer</a> in the <i>Classic Load Balancer
+         * Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeAccountLimits">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void DescribeAccountLimitsAsync(const Model::DescribeAccountLimitsRequest& request, const DescribeAccountLimitsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Describes the state of the specified instances with respect to the specified
@@ -1103,7 +1151,7 @@ namespace Model
          * balancer attempts to equally balance the traffic among its remaining
          * Availability Zones.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html">Add
-         * or Remove Availability Zones</a> in the <i>Classic Load Balancers
+         * or Remove Availability Zones</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DisableAvailabilityZonesForLoadBalancer">AWS
          * API Reference</a></p>
@@ -1119,7 +1167,7 @@ namespace Model
          * balancer attempts to equally balance the traffic among its remaining
          * Availability Zones.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html">Add
-         * or Remove Availability Zones</a> in the <i>Classic Load Balancers
+         * or Remove Availability Zones</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DisableAvailabilityZonesForLoadBalancer">AWS
          * API Reference</a></p>
@@ -1137,7 +1185,7 @@ namespace Model
          * balancer attempts to equally balance the traffic among its remaining
          * Availability Zones.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html">Add
-         * or Remove Availability Zones</a> in the <i>Classic Load Balancers
+         * or Remove Availability Zones</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DisableAvailabilityZonesForLoadBalancer">AWS
          * API Reference</a></p>
@@ -1152,7 +1200,7 @@ namespace Model
          * requests across all its registered Availability Zones that contain
          * instances.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html">Add
-         * or Remove Availability Zones</a> in the <i>Classic Load Balancers
+         * or Remove Availability Zones</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/EnableAvailabilityZonesForLoadBalancer">AWS
          * API Reference</a></p>
@@ -1165,7 +1213,7 @@ namespace Model
          * requests across all its registered Availability Zones that contain
          * instances.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html">Add
-         * or Remove Availability Zones</a> in the <i>Classic Load Balancers
+         * or Remove Availability Zones</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/EnableAvailabilityZonesForLoadBalancer">AWS
          * API Reference</a></p>
@@ -1180,7 +1228,7 @@ namespace Model
          * requests across all its registered Availability Zones that contain
          * instances.</p> <p>For more information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html">Add
-         * or Remove Availability Zones</a> in the <i>Classic Load Balancers
+         * or Remove Availability Zones</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/EnableAvailabilityZonesForLoadBalancer">AWS
          * API Reference</a></p>
@@ -1196,7 +1244,7 @@ namespace Model
          * either enabling or disabling them. Or, you can modify the load balancer
          * attribute <code>ConnectionSettings</code> by specifying an idle connection
          * timeout value for your load balancer.</p> <p>For more information, see the
-         * following in the <i>Classic Load Balancers Guide</i>:</p> <ul> <li> <p> <a
+         * following in the <i>Classic Load Balancer Guide</i>:</p> <ul> <li> <p> <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-crosszone-lb.html">Cross-Zone
          * Load Balancing</a> </p> </li> <li> <p> <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/config-conn-drain.html">Connection
@@ -1217,7 +1265,7 @@ namespace Model
          * either enabling or disabling them. Or, you can modify the load balancer
          * attribute <code>ConnectionSettings</code> by specifying an idle connection
          * timeout value for your load balancer.</p> <p>For more information, see the
-         * following in the <i>Classic Load Balancers Guide</i>:</p> <ul> <li> <p> <a
+         * following in the <i>Classic Load Balancer Guide</i>:</p> <ul> <li> <p> <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-crosszone-lb.html">Cross-Zone
          * Load Balancing</a> </p> </li> <li> <p> <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/config-conn-drain.html">Connection
@@ -1240,7 +1288,7 @@ namespace Model
          * either enabling or disabling them. Or, you can modify the load balancer
          * attribute <code>ConnectionSettings</code> by specifying an idle connection
          * timeout value for your load balancer.</p> <p>For more information, see the
-         * following in the <i>Classic Load Balancers Guide</i>:</p> <ul> <li> <p> <a
+         * following in the <i>Classic Load Balancer Guide</i>:</p> <ul> <li> <p> <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-crosszone-lb.html">Cross-Zone
          * Load Balancing</a> </p> </li> <li> <p> <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/config-conn-drain.html">Connection
@@ -1275,7 +1323,7 @@ namespace Model
          * balancer, use <a>DeregisterInstancesFromLoadBalancer</a>.</p> <p>For more
          * information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html">Register
-         * or De-Register EC2 Instances</a> in the <i>Classic Load Balancers
+         * or De-Register EC2 Instances</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/RegisterInstancesWithLoadBalancer">AWS
          * API Reference</a></p>
@@ -1301,7 +1349,7 @@ namespace Model
          * balancer, use <a>DeregisterInstancesFromLoadBalancer</a>.</p> <p>For more
          * information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html">Register
-         * or De-Register EC2 Instances</a> in the <i>Classic Load Balancers
+         * or De-Register EC2 Instances</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/RegisterInstancesWithLoadBalancer">AWS
          * API Reference</a></p>
@@ -1329,7 +1377,7 @@ namespace Model
          * balancer, use <a>DeregisterInstancesFromLoadBalancer</a>.</p> <p>For more
          * information, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html">Register
-         * or De-Register EC2 Instances</a> in the <i>Classic Load Balancers
+         * or De-Register EC2 Instances</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/RegisterInstancesWithLoadBalancer">AWS
          * API Reference</a></p>
@@ -1372,7 +1420,7 @@ namespace Model
          * used on the same load balancer and port.</p> <p>For more information about
          * updating your SSL certificate, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-update-ssl-cert.html">Replace
-         * the SSL Certificate for Your Load Balancer</a> in the <i>Classic Load Balancers
+         * the SSL Certificate for Your Load Balancer</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerListenerSSLCertificate">AWS
          * API Reference</a></p>
@@ -1385,7 +1433,7 @@ namespace Model
          * used on the same load balancer and port.</p> <p>For more information about
          * updating your SSL certificate, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-update-ssl-cert.html">Replace
-         * the SSL Certificate for Your Load Balancer</a> in the <i>Classic Load Balancers
+         * the SSL Certificate for Your Load Balancer</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerListenerSSLCertificate">AWS
          * API Reference</a></p>
@@ -1400,7 +1448,7 @@ namespace Model
          * used on the same load balancer and port.</p> <p>For more information about
          * updating your SSL certificate, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-update-ssl-cert.html">Replace
-         * the SSL Certificate for Your Load Balancer</a> in the <i>Classic Load Balancers
+         * the SSL Certificate for Your Load Balancer</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerListenerSSLCertificate">AWS
          * API Reference</a></p>
@@ -1421,10 +1469,10 @@ namespace Model
          * the EC2 instance.</p> <p>For more information about enabling back-end instance
          * authentication, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-create-https-ssl-load-balancer.html#configure_backendauth_clt">Configure
-         * Back-end Instance Authentication</a> in the <i>Classic Load Balancers Guide</i>.
+         * Back-end Instance Authentication</a> in the <i>Classic Load Balancer Guide</i>.
          * For more information about Proxy Protocol, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html">Configure
-         * Proxy Protocol Support</a> in the <i>Classic Load Balancers
+         * Proxy Protocol Support</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerPoliciesForBackendServer">AWS
          * API Reference</a></p>
@@ -1443,10 +1491,10 @@ namespace Model
          * the EC2 instance.</p> <p>For more information about enabling back-end instance
          * authentication, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-create-https-ssl-load-balancer.html#configure_backendauth_clt">Configure
-         * Back-end Instance Authentication</a> in the <i>Classic Load Balancers Guide</i>.
+         * Back-end Instance Authentication</a> in the <i>Classic Load Balancer Guide</i>.
          * For more information about Proxy Protocol, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html">Configure
-         * Proxy Protocol Support</a> in the <i>Classic Load Balancers
+         * Proxy Protocol Support</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerPoliciesForBackendServer">AWS
          * API Reference</a></p>
@@ -1467,10 +1515,10 @@ namespace Model
          * the EC2 instance.</p> <p>For more information about enabling back-end instance
          * authentication, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-create-https-ssl-load-balancer.html#configure_backendauth_clt">Configure
-         * Back-end Instance Authentication</a> in the <i>Classic Load Balancers Guide</i>.
+         * Back-end Instance Authentication</a> in the <i>Classic Load Balancer Guide</i>.
          * For more information about Proxy Protocol, see <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html">Configure
-         * Proxy Protocol Support</a> in the <i>Classic Load Balancers
+         * Proxy Protocol Support</a> in the <i>Classic Load Balancer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerPoliciesForBackendServer">AWS
          * API Reference</a></p>
@@ -1489,7 +1537,7 @@ namespace Model
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-duration">Duration-Based
          * Session Stickiness</a>, and <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-application">Application-Controlled
-         * Session Stickiness</a> in the <i>Classic Load Balancers Guide</i>.</p><p><h3>See
+         * Session Stickiness</a> in the <i>Classic Load Balancer Guide</i>.</p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerPoliciesOfListener">AWS
          * API Reference</a></p>
@@ -1506,7 +1554,7 @@ namespace Model
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-duration">Duration-Based
          * Session Stickiness</a>, and <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-application">Application-Controlled
-         * Session Stickiness</a> in the <i>Classic Load Balancers Guide</i>.</p><p><h3>See
+         * Session Stickiness</a> in the <i>Classic Load Balancer Guide</i>.</p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerPoliciesOfListener">AWS
          * API Reference</a></p>
@@ -1525,7 +1573,7 @@ namespace Model
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-duration">Duration-Based
          * Session Stickiness</a>, and <a
          * href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-application">Application-Controlled
-         * Session Stickiness</a> in the <i>Classic Load Balancers Guide</i>.</p><p><h3>See
+         * Session Stickiness</a> in the <i>Classic Load Balancer Guide</i>.</p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerPoliciesOfListener">AWS
          * API Reference</a></p>
@@ -1536,7 +1584,7 @@ namespace Model
 
 
   private:
-    void init(const Client::ClientConfiguration& clientConfiguration);
+    void init(const Aws::Client::ClientConfiguration& clientConfiguration);
 
         /**Async helpers**/
         void AddTagsAsyncHelper(const Model::AddTagsRequest& request, const AddTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -1552,6 +1600,7 @@ namespace Model
         void DeleteLoadBalancerListenersAsyncHelper(const Model::DeleteLoadBalancerListenersRequest& request, const DeleteLoadBalancerListenersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteLoadBalancerPolicyAsyncHelper(const Model::DeleteLoadBalancerPolicyRequest& request, const DeleteLoadBalancerPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeregisterInstancesFromLoadBalancerAsyncHelper(const Model::DeregisterInstancesFromLoadBalancerRequest& request, const DeregisterInstancesFromLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void DescribeAccountLimitsAsyncHelper(const Model::DescribeAccountLimitsRequest& request, const DescribeAccountLimitsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeInstanceHealthAsyncHelper(const Model::DescribeInstanceHealthRequest& request, const DescribeInstanceHealthResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeLoadBalancerAttributesAsyncHelper(const Model::DescribeLoadBalancerAttributesRequest& request, const DescribeLoadBalancerAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeLoadBalancerPoliciesAsyncHelper(const Model::DescribeLoadBalancerPoliciesRequest& request, const DescribeLoadBalancerPoliciesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -1569,7 +1618,7 @@ namespace Model
         void SetLoadBalancerPoliciesOfListenerAsyncHelper(const Model::SetLoadBalancerPoliciesOfListenerRequest& request, const SetLoadBalancerPoliciesOfListenerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
     Aws::String m_uri;
-    std::shared_ptr<Utils::Threading::Executor> m_executor;
+    std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;
   };
 
 } // namespace ElasticLoadBalancing

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ssm/model/DocumentType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,43 +39,45 @@ namespace Model
   {
   public:
     GetDocumentResult();
-    GetDocumentResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetDocumentResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDocumentResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDocumentResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>The name of the SSM document.</p>
+     * <p>The name of the Systems Manager document.</p>
      */
     inline const Aws::String& GetName() const{ return m_name; }
 
     /**
-     * <p>The name of the SSM document.</p>
+     * <p>The name of the Systems Manager document.</p>
      */
     inline void SetName(const Aws::String& value) { m_name = value; }
 
     /**
-     * <p>The name of the SSM document.</p>
+     * <p>The name of the Systems Manager document.</p>
      */
-    inline void SetName(Aws::String&& value) { m_name = value; }
+    inline void SetName(Aws::String&& value) { m_name = std::move(value); }
 
     /**
-     * <p>The name of the SSM document.</p>
+     * <p>The name of the Systems Manager document.</p>
      */
     inline void SetName(const char* value) { m_name.assign(value); }
 
     /**
-     * <p>The name of the SSM document.</p>
+     * <p>The name of the Systems Manager document.</p>
      */
     inline GetDocumentResult& WithName(const Aws::String& value) { SetName(value); return *this;}
 
     /**
-     * <p>The name of the SSM document.</p>
+     * <p>The name of the Systems Manager document.</p>
      */
-    inline GetDocumentResult& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline GetDocumentResult& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
-     * <p>The name of the SSM document.</p>
+     * <p>The name of the Systems Manager document.</p>
      */
     inline GetDocumentResult& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The document version.</p>
@@ -88,7 +92,7 @@ namespace Model
     /**
      * <p>The document version.</p>
      */
-    inline void SetDocumentVersion(Aws::String&& value) { m_documentVersion = value; }
+    inline void SetDocumentVersion(Aws::String&& value) { m_documentVersion = std::move(value); }
 
     /**
      * <p>The document version.</p>
@@ -103,47 +107,49 @@ namespace Model
     /**
      * <p>The document version.</p>
      */
-    inline GetDocumentResult& WithDocumentVersion(Aws::String&& value) { SetDocumentVersion(value); return *this;}
+    inline GetDocumentResult& WithDocumentVersion(Aws::String&& value) { SetDocumentVersion(std::move(value)); return *this;}
 
     /**
      * <p>The document version.</p>
      */
     inline GetDocumentResult& WithDocumentVersion(const char* value) { SetDocumentVersion(value); return *this;}
 
+
     /**
-     * <p>The contents of the SSM document.</p>
+     * <p>The contents of the Systems Manager document.</p>
      */
     inline const Aws::String& GetContent() const{ return m_content; }
 
     /**
-     * <p>The contents of the SSM document.</p>
+     * <p>The contents of the Systems Manager document.</p>
      */
     inline void SetContent(const Aws::String& value) { m_content = value; }
 
     /**
-     * <p>The contents of the SSM document.</p>
+     * <p>The contents of the Systems Manager document.</p>
      */
-    inline void SetContent(Aws::String&& value) { m_content = value; }
+    inline void SetContent(Aws::String&& value) { m_content = std::move(value); }
 
     /**
-     * <p>The contents of the SSM document.</p>
+     * <p>The contents of the Systems Manager document.</p>
      */
     inline void SetContent(const char* value) { m_content.assign(value); }
 
     /**
-     * <p>The contents of the SSM document.</p>
+     * <p>The contents of the Systems Manager document.</p>
      */
     inline GetDocumentResult& WithContent(const Aws::String& value) { SetContent(value); return *this;}
 
     /**
-     * <p>The contents of the SSM document.</p>
+     * <p>The contents of the Systems Manager document.</p>
      */
-    inline GetDocumentResult& WithContent(Aws::String&& value) { SetContent(value); return *this;}
+    inline GetDocumentResult& WithContent(Aws::String&& value) { SetContent(std::move(value)); return *this;}
 
     /**
-     * <p>The contents of the SSM document.</p>
+     * <p>The contents of the Systems Manager document.</p>
      */
     inline GetDocumentResult& WithContent(const char* value) { SetContent(value); return *this;}
+
 
     /**
      * <p>The document type.</p>
@@ -158,7 +164,7 @@ namespace Model
     /**
      * <p>The document type.</p>
      */
-    inline void SetDocumentType(DocumentType&& value) { m_documentType = value; }
+    inline void SetDocumentType(DocumentType&& value) { m_documentType = std::move(value); }
 
     /**
      * <p>The document type.</p>
@@ -168,12 +174,16 @@ namespace Model
     /**
      * <p>The document type.</p>
      */
-    inline GetDocumentResult& WithDocumentType(DocumentType&& value) { SetDocumentType(value); return *this;}
+    inline GetDocumentResult& WithDocumentType(DocumentType&& value) { SetDocumentType(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_name;
+
     Aws::String m_documentVersion;
+
     Aws::String m_content;
+
     DocumentType m_documentType;
   };
 

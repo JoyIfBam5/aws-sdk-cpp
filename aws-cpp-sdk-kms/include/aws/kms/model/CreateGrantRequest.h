@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kms/KMS_EXPORTS.h>
 #include <aws/kms/KMSRequest.h>
@@ -19,6 +20,7 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/kms/model/GrantConstraints.h>
 #include <aws/kms/model/GrantOperation.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,9 +35,17 @@ namespace Model
   {
   public:
     CreateGrantRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateGrant"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The unique identifier for the customer master key (CMK) that the grant
@@ -65,7 +75,7 @@ namespace Model
      * arn:aws:kms:us-west-2:123456789012:key/12345678-1234-1234-1234-123456789012</p>
      * </li> </ul>
      */
-    inline void SetKeyId(Aws::String&& value) { m_keyIdHasBeenSet = true; m_keyId = value; }
+    inline void SetKeyId(Aws::String&& value) { m_keyIdHasBeenSet = true; m_keyId = std::move(value); }
 
     /**
      * <p>The unique identifier for the customer master key (CMK) that the grant
@@ -95,7 +105,7 @@ namespace Model
      * arn:aws:kms:us-west-2:123456789012:key/12345678-1234-1234-1234-123456789012</p>
      * </li> </ul>
      */
-    inline CreateGrantRequest& WithKeyId(Aws::String&& value) { SetKeyId(value); return *this;}
+    inline CreateGrantRequest& WithKeyId(Aws::String&& value) { SetKeyId(std::move(value)); return *this;}
 
     /**
      * <p>The unique identifier for the customer master key (CMK) that the grant
@@ -107,13 +117,14 @@ namespace Model
      */
     inline CreateGrantRequest& WithKeyId(const char* value) { SetKeyId(value); return *this;}
 
+
     /**
      * <p>The principal that is given permission to perform the operations that the
      * grant permits.</p> <p>To specify the principal, use the <a
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
      * Resource Name (ARN)</a> of an AWS principal. Valid AWS principals include AWS
-     * accounts (root), IAM users, federated users, and assumed role users. For
-     * examples of the ARN syntax to use for specifying a principal, see <a
+     * accounts (root), IAM users, IAM roles, federated users, and assumed role users.
+     * For examples of the ARN syntax to use for specifying a principal, see <a
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam">AWS
      * Identity and Access Management (IAM)</a> in the Example ARNs section of the
      * <i>AWS General Reference</i>.</p>
@@ -125,8 +136,8 @@ namespace Model
      * grant permits.</p> <p>To specify the principal, use the <a
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
      * Resource Name (ARN)</a> of an AWS principal. Valid AWS principals include AWS
-     * accounts (root), IAM users, federated users, and assumed role users. For
-     * examples of the ARN syntax to use for specifying a principal, see <a
+     * accounts (root), IAM users, IAM roles, federated users, and assumed role users.
+     * For examples of the ARN syntax to use for specifying a principal, see <a
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam">AWS
      * Identity and Access Management (IAM)</a> in the Example ARNs section of the
      * <i>AWS General Reference</i>.</p>
@@ -138,21 +149,21 @@ namespace Model
      * grant permits.</p> <p>To specify the principal, use the <a
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
      * Resource Name (ARN)</a> of an AWS principal. Valid AWS principals include AWS
-     * accounts (root), IAM users, federated users, and assumed role users. For
-     * examples of the ARN syntax to use for specifying a principal, see <a
+     * accounts (root), IAM users, IAM roles, federated users, and assumed role users.
+     * For examples of the ARN syntax to use for specifying a principal, see <a
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam">AWS
      * Identity and Access Management (IAM)</a> in the Example ARNs section of the
      * <i>AWS General Reference</i>.</p>
      */
-    inline void SetGranteePrincipal(Aws::String&& value) { m_granteePrincipalHasBeenSet = true; m_granteePrincipal = value; }
+    inline void SetGranteePrincipal(Aws::String&& value) { m_granteePrincipalHasBeenSet = true; m_granteePrincipal = std::move(value); }
 
     /**
      * <p>The principal that is given permission to perform the operations that the
      * grant permits.</p> <p>To specify the principal, use the <a
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
      * Resource Name (ARN)</a> of an AWS principal. Valid AWS principals include AWS
-     * accounts (root), IAM users, federated users, and assumed role users. For
-     * examples of the ARN syntax to use for specifying a principal, see <a
+     * accounts (root), IAM users, IAM roles, federated users, and assumed role users.
+     * For examples of the ARN syntax to use for specifying a principal, see <a
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam">AWS
      * Identity and Access Management (IAM)</a> in the Example ARNs section of the
      * <i>AWS General Reference</i>.</p>
@@ -164,8 +175,8 @@ namespace Model
      * grant permits.</p> <p>To specify the principal, use the <a
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
      * Resource Name (ARN)</a> of an AWS principal. Valid AWS principals include AWS
-     * accounts (root), IAM users, federated users, and assumed role users. For
-     * examples of the ARN syntax to use for specifying a principal, see <a
+     * accounts (root), IAM users, IAM roles, federated users, and assumed role users.
+     * For examples of the ARN syntax to use for specifying a principal, see <a
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam">AWS
      * Identity and Access Management (IAM)</a> in the Example ARNs section of the
      * <i>AWS General Reference</i>.</p>
@@ -177,26 +188,27 @@ namespace Model
      * grant permits.</p> <p>To specify the principal, use the <a
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
      * Resource Name (ARN)</a> of an AWS principal. Valid AWS principals include AWS
-     * accounts (root), IAM users, federated users, and assumed role users. For
-     * examples of the ARN syntax to use for specifying a principal, see <a
+     * accounts (root), IAM users, IAM roles, federated users, and assumed role users.
+     * For examples of the ARN syntax to use for specifying a principal, see <a
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam">AWS
      * Identity and Access Management (IAM)</a> in the Example ARNs section of the
      * <i>AWS General Reference</i>.</p>
      */
-    inline CreateGrantRequest& WithGranteePrincipal(Aws::String&& value) { SetGranteePrincipal(value); return *this;}
+    inline CreateGrantRequest& WithGranteePrincipal(Aws::String&& value) { SetGranteePrincipal(std::move(value)); return *this;}
 
     /**
      * <p>The principal that is given permission to perform the operations that the
      * grant permits.</p> <p>To specify the principal, use the <a
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
      * Resource Name (ARN)</a> of an AWS principal. Valid AWS principals include AWS
-     * accounts (root), IAM users, federated users, and assumed role users. For
-     * examples of the ARN syntax to use for specifying a principal, see <a
+     * accounts (root), IAM users, IAM roles, federated users, and assumed role users.
+     * For examples of the ARN syntax to use for specifying a principal, see <a
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam">AWS
      * Identity and Access Management (IAM)</a> in the Example ARNs section of the
      * <i>AWS General Reference</i>.</p>
      */
     inline CreateGrantRequest& WithGranteePrincipal(const char* value) { SetGranteePrincipal(value); return *this;}
+
 
     /**
      * <p>The principal that is given permission to retire the grant by using
@@ -235,7 +247,7 @@ namespace Model
      * Identity and Access Management (IAM)</a> in the Example ARNs section of the
      * <i>AWS General Reference</i>.</p>
      */
-    inline void SetRetiringPrincipal(Aws::String&& value) { m_retiringPrincipalHasBeenSet = true; m_retiringPrincipal = value; }
+    inline void SetRetiringPrincipal(Aws::String&& value) { m_retiringPrincipalHasBeenSet = true; m_retiringPrincipal = std::move(value); }
 
     /**
      * <p>The principal that is given permission to retire the grant by using
@@ -274,7 +286,7 @@ namespace Model
      * Identity and Access Management (IAM)</a> in the Example ARNs section of the
      * <i>AWS General Reference</i>.</p>
      */
-    inline CreateGrantRequest& WithRetiringPrincipal(Aws::String&& value) { SetRetiringPrincipal(value); return *this;}
+    inline CreateGrantRequest& WithRetiringPrincipal(Aws::String&& value) { SetRetiringPrincipal(std::move(value)); return *this;}
 
     /**
      * <p>The principal that is given permission to retire the grant by using
@@ -289,6 +301,7 @@ namespace Model
      */
     inline CreateGrantRequest& WithRetiringPrincipal(const char* value) { SetRetiringPrincipal(value); return *this;}
 
+
     /**
      * <p>A list of operations that the grant permits.</p>
      */
@@ -302,7 +315,7 @@ namespace Model
     /**
      * <p>A list of operations that the grant permits.</p>
      */
-    inline void SetOperations(Aws::Vector<GrantOperation>&& value) { m_operationsHasBeenSet = true; m_operations = value; }
+    inline void SetOperations(Aws::Vector<GrantOperation>&& value) { m_operationsHasBeenSet = true; m_operations = std::move(value); }
 
     /**
      * <p>A list of operations that the grant permits.</p>
@@ -312,7 +325,7 @@ namespace Model
     /**
      * <p>A list of operations that the grant permits.</p>
      */
-    inline CreateGrantRequest& WithOperations(Aws::Vector<GrantOperation>&& value) { SetOperations(value); return *this;}
+    inline CreateGrantRequest& WithOperations(Aws::Vector<GrantOperation>&& value) { SetOperations(std::move(value)); return *this;}
 
     /**
      * <p>A list of operations that the grant permits.</p>
@@ -322,57 +335,54 @@ namespace Model
     /**
      * <p>A list of operations that the grant permits.</p>
      */
-    inline CreateGrantRequest& AddOperations(GrantOperation&& value) { m_operationsHasBeenSet = true; m_operations.push_back(value); return *this; }
+    inline CreateGrantRequest& AddOperations(GrantOperation&& value) { m_operationsHasBeenSet = true; m_operations.push_back(std::move(value)); return *this; }
+
 
     /**
-     * <p>The conditions under which the operations permitted by the grant are
-     * allowed.</p> <p>You can use this value to allow the operations permitted by the
-     * grant only when a specified encryption context is present. For more information,
-     * see <a
+     * <p>A structure that you can use to allow certain operations in the grant only
+     * when the desired encryption context is present. For more information about
+     * encryption context, see <a
      * href="http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html">Encryption
      * Context</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>
      */
     inline const GrantConstraints& GetConstraints() const{ return m_constraints; }
 
     /**
-     * <p>The conditions under which the operations permitted by the grant are
-     * allowed.</p> <p>You can use this value to allow the operations permitted by the
-     * grant only when a specified encryption context is present. For more information,
-     * see <a
+     * <p>A structure that you can use to allow certain operations in the grant only
+     * when the desired encryption context is present. For more information about
+     * encryption context, see <a
      * href="http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html">Encryption
      * Context</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>
      */
     inline void SetConstraints(const GrantConstraints& value) { m_constraintsHasBeenSet = true; m_constraints = value; }
 
     /**
-     * <p>The conditions under which the operations permitted by the grant are
-     * allowed.</p> <p>You can use this value to allow the operations permitted by the
-     * grant only when a specified encryption context is present. For more information,
-     * see <a
+     * <p>A structure that you can use to allow certain operations in the grant only
+     * when the desired encryption context is present. For more information about
+     * encryption context, see <a
      * href="http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html">Encryption
      * Context</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>
      */
-    inline void SetConstraints(GrantConstraints&& value) { m_constraintsHasBeenSet = true; m_constraints = value; }
+    inline void SetConstraints(GrantConstraints&& value) { m_constraintsHasBeenSet = true; m_constraints = std::move(value); }
 
     /**
-     * <p>The conditions under which the operations permitted by the grant are
-     * allowed.</p> <p>You can use this value to allow the operations permitted by the
-     * grant only when a specified encryption context is present. For more information,
-     * see <a
+     * <p>A structure that you can use to allow certain operations in the grant only
+     * when the desired encryption context is present. For more information about
+     * encryption context, see <a
      * href="http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html">Encryption
      * Context</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>
      */
     inline CreateGrantRequest& WithConstraints(const GrantConstraints& value) { SetConstraints(value); return *this;}
 
     /**
-     * <p>The conditions under which the operations permitted by the grant are
-     * allowed.</p> <p>You can use this value to allow the operations permitted by the
-     * grant only when a specified encryption context is present. For more information,
-     * see <a
+     * <p>A structure that you can use to allow certain operations in the grant only
+     * when the desired encryption context is present. For more information about
+     * encryption context, see <a
      * href="http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html">Encryption
      * Context</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>
      */
-    inline CreateGrantRequest& WithConstraints(GrantConstraints&& value) { SetConstraints(value); return *this;}
+    inline CreateGrantRequest& WithConstraints(GrantConstraints&& value) { SetConstraints(std::move(value)); return *this;}
+
 
     /**
      * <p>A list of grant tokens.</p> <p>For more information, see <a
@@ -393,7 +403,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token">Grant
      * Tokens</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>
      */
-    inline void SetGrantTokens(Aws::Vector<Aws::String>&& value) { m_grantTokensHasBeenSet = true; m_grantTokens = value; }
+    inline void SetGrantTokens(Aws::Vector<Aws::String>&& value) { m_grantTokensHasBeenSet = true; m_grantTokens = std::move(value); }
 
     /**
      * <p>A list of grant tokens.</p> <p>For more information, see <a
@@ -407,7 +417,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token">Grant
      * Tokens</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>
      */
-    inline CreateGrantRequest& WithGrantTokens(Aws::Vector<Aws::String>&& value) { SetGrantTokens(value); return *this;}
+    inline CreateGrantRequest& WithGrantTokens(Aws::Vector<Aws::String>&& value) { SetGrantTokens(std::move(value)); return *this;}
 
     /**
      * <p>A list of grant tokens.</p> <p>For more information, see <a
@@ -421,7 +431,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token">Grant
      * Tokens</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>
      */
-    inline CreateGrantRequest& AddGrantTokens(Aws::String&& value) { m_grantTokensHasBeenSet = true; m_grantTokens.push_back(value); return *this; }
+    inline CreateGrantRequest& AddGrantTokens(Aws::String&& value) { m_grantTokensHasBeenSet = true; m_grantTokens.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of grant tokens.</p> <p>For more information, see <a
@@ -429,6 +439,7 @@ namespace Model
      * Tokens</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>
      */
     inline CreateGrantRequest& AddGrantTokens(const char* value) { m_grantTokensHasBeenSet = true; m_grantTokens.push_back(value); return *this; }
+
 
     /**
      * <p>A friendly name for identifying the grant. Use this value to prevent
@@ -473,7 +484,7 @@ namespace Model
      * <code>CreateGrant</code> request, even when a duplicate <code>GrantId</code> is
      * returned. All grant tokens obtained in this way can be used interchangeably.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>A friendly name for identifying the grant. Use this value to prevent
@@ -518,7 +529,7 @@ namespace Model
      * <code>CreateGrant</code> request, even when a duplicate <code>GrantId</code> is
      * returned. All grant tokens obtained in this way can be used interchangeably.</p>
      */
-    inline CreateGrantRequest& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline CreateGrantRequest& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>A friendly name for identifying the grant. Use this value to prevent
@@ -536,18 +547,25 @@ namespace Model
     inline CreateGrantRequest& WithName(const char* value) { SetName(value); return *this;}
 
   private:
+
     Aws::String m_keyId;
     bool m_keyIdHasBeenSet;
+
     Aws::String m_granteePrincipal;
     bool m_granteePrincipalHasBeenSet;
+
     Aws::String m_retiringPrincipal;
     bool m_retiringPrincipalHasBeenSet;
+
     Aws::Vector<GrantOperation> m_operations;
     bool m_operationsHasBeenSet;
+
     GrantConstraints m_constraints;
     bool m_constraintsHasBeenSet;
+
     Aws::Vector<Aws::String> m_grantTokens;
     bool m_grantTokensHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
   };

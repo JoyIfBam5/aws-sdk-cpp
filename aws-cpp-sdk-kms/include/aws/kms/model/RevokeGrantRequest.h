@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kms/KMS_EXPORTS.h>
 #include <aws/kms/KMSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     RevokeGrantRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "RevokeGrant"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>A unique identifier for the customer master key associated with the grant.
@@ -62,7 +72,7 @@ namespace Model
      * </li> <li> <p>Globally Unique Key ID Example -
      * 12345678-1234-1234-1234-123456789012</p> </li> </ul>
      */
-    inline void SetKeyId(Aws::String&& value) { m_keyIdHasBeenSet = true; m_keyId = value; }
+    inline void SetKeyId(Aws::String&& value) { m_keyIdHasBeenSet = true; m_keyId = std::move(value); }
 
     /**
      * <p>A unique identifier for the customer master key associated with the grant.
@@ -92,7 +102,7 @@ namespace Model
      * </li> <li> <p>Globally Unique Key ID Example -
      * 12345678-1234-1234-1234-123456789012</p> </li> </ul>
      */
-    inline RevokeGrantRequest& WithKeyId(Aws::String&& value) { SetKeyId(value); return *this;}
+    inline RevokeGrantRequest& WithKeyId(Aws::String&& value) { SetKeyId(std::move(value)); return *this;}
 
     /**
      * <p>A unique identifier for the customer master key associated with the grant.
@@ -103,6 +113,7 @@ namespace Model
      * 12345678-1234-1234-1234-123456789012</p> </li> </ul>
      */
     inline RevokeGrantRequest& WithKeyId(const char* value) { SetKeyId(value); return *this;}
+
 
     /**
      * <p>Identifier of the grant to be revoked.</p>
@@ -117,7 +128,7 @@ namespace Model
     /**
      * <p>Identifier of the grant to be revoked.</p>
      */
-    inline void SetGrantId(Aws::String&& value) { m_grantIdHasBeenSet = true; m_grantId = value; }
+    inline void SetGrantId(Aws::String&& value) { m_grantIdHasBeenSet = true; m_grantId = std::move(value); }
 
     /**
      * <p>Identifier of the grant to be revoked.</p>
@@ -132,7 +143,7 @@ namespace Model
     /**
      * <p>Identifier of the grant to be revoked.</p>
      */
-    inline RevokeGrantRequest& WithGrantId(Aws::String&& value) { SetGrantId(value); return *this;}
+    inline RevokeGrantRequest& WithGrantId(Aws::String&& value) { SetGrantId(std::move(value)); return *this;}
 
     /**
      * <p>Identifier of the grant to be revoked.</p>
@@ -140,8 +151,10 @@ namespace Model
     inline RevokeGrantRequest& WithGrantId(const char* value) { SetGrantId(value); return *this;}
 
   private:
+
     Aws::String m_keyId;
     bool m_keyIdHasBeenSet;
+
     Aws::String m_grantId;
     bool m_grantIdHasBeenSet;
   };

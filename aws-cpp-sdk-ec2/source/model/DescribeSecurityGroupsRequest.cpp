@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/DescribeSecurityGroupsRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -20,11 +21,11 @@ using namespace Aws::EC2::Model;
 using namespace Aws::Utils;
 
 DescribeSecurityGroupsRequest::DescribeSecurityGroupsRequest() : 
-    m_dryRun(false),
-    m_dryRunHasBeenSet(false),
-    m_groupNamesHasBeenSet(false),
+    m_filtersHasBeenSet(false),
     m_groupIdsHasBeenSet(false),
-    m_filtersHasBeenSet(false)
+    m_groupNamesHasBeenSet(false),
+    m_dryRun(false),
+    m_dryRunHasBeenSet(false)
 {
 }
 
@@ -32,19 +33,13 @@ Aws::String DescribeSecurityGroupsRequest::SerializePayload() const
 {
   Aws::StringStream ss;
   ss << "Action=DescribeSecurityGroups&";
-  if(m_dryRunHasBeenSet)
+  if(m_filtersHasBeenSet)
   {
-    ss << "DryRun=" << std::boolalpha << m_dryRun << "&";
-  }
-
-  if(m_groupNamesHasBeenSet)
-  {
-    unsigned groupNamesCount = 1;
-    for(auto& item : m_groupNames)
+    unsigned filtersCount = 1;
+    for(auto& item : m_filters)
     {
-      ss << "GroupName." << groupNamesCount << "="
-          << StringUtils::URLEncode(item.c_str()) << "&";
-      groupNamesCount++;
+      item.OutputToStream(ss, "Filter.", filtersCount, "");
+      filtersCount++;
     }
   }
 
@@ -59,17 +54,28 @@ Aws::String DescribeSecurityGroupsRequest::SerializePayload() const
     }
   }
 
-  if(m_filtersHasBeenSet)
+  if(m_groupNamesHasBeenSet)
   {
-    unsigned filtersCount = 1;
-    for(auto& item : m_filters)
+    unsigned groupNamesCount = 1;
+    for(auto& item : m_groupNames)
     {
-      item.OutputToStream(ss, "Filter.", filtersCount, "");
-      filtersCount++;
+      ss << "GroupName." << groupNamesCount << "="
+          << StringUtils::URLEncode(item.c_str()) << "&";
+      groupNamesCount++;
     }
+  }
+
+  if(m_dryRunHasBeenSet)
+  {
+    ss << "DryRun=" << std::boolalpha << m_dryRun << "&";
   }
 
   ss << "Version=2016-11-15";
   return ss.str();
 }
 
+
+void  DescribeSecurityGroupsRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

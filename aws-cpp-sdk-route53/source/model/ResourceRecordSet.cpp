@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/route53/model/ResourceRecordSet.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -41,6 +42,8 @@ ResourceRecordSet::ResourceRecordSet() :
     m_geoLocationHasBeenSet(false),
     m_failover(ResourceRecordSetFailover::NOT_SET),
     m_failoverHasBeenSet(false),
+    m_multiValueAnswer(false),
+    m_multiValueAnswerHasBeenSet(false),
     m_tTL(0),
     m_tTLHasBeenSet(false),
     m_resourceRecordsHasBeenSet(false),
@@ -62,6 +65,8 @@ ResourceRecordSet::ResourceRecordSet(const XmlNode& xmlNode) :
     m_geoLocationHasBeenSet(false),
     m_failover(ResourceRecordSetFailover::NOT_SET),
     m_failoverHasBeenSet(false),
+    m_multiValueAnswer(false),
+    m_multiValueAnswerHasBeenSet(false),
     m_tTL(0),
     m_tTLHasBeenSet(false),
     m_resourceRecordsHasBeenSet(false),
@@ -119,6 +124,12 @@ ResourceRecordSet& ResourceRecordSet::operator =(const XmlNode& xmlNode)
     {
       m_failover = ResourceRecordSetFailoverMapper::GetResourceRecordSetFailoverForName(StringUtils::Trim(failoverNode.GetText().c_str()).c_str());
       m_failoverHasBeenSet = true;
+    }
+    XmlNode multiValueAnswerNode = resultNode.FirstChild("MultiValueAnswer");
+    if(!multiValueAnswerNode.IsNull())
+    {
+      m_multiValueAnswer = StringUtils::ConvertToBool(StringUtils::Trim(multiValueAnswerNode.GetText().c_str()).c_str());
+      m_multiValueAnswerHasBeenSet = true;
     }
     XmlNode tTLNode = resultNode.FirstChild("TTL");
     if(!tTLNode.IsNull())
@@ -185,9 +196,9 @@ void ResourceRecordSet::AddToNode(XmlNode& parentNode) const
   if(m_weightHasBeenSet)
   {
    XmlNode weightNode = parentNode.CreateChildElement("Weight");
-  ss << m_weight;
+   ss << m_weight;
    weightNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_regionHasBeenSet)
@@ -208,12 +219,20 @@ void ResourceRecordSet::AddToNode(XmlNode& parentNode) const
    failoverNode.SetText(ResourceRecordSetFailoverMapper::GetNameForResourceRecordSetFailover(m_failover));
   }
 
+  if(m_multiValueAnswerHasBeenSet)
+  {
+   XmlNode multiValueAnswerNode = parentNode.CreateChildElement("MultiValueAnswer");
+   ss << std::boolalpha << m_multiValueAnswer;
+   multiValueAnswerNode.SetText(ss.str());
+   ss.str("");
+  }
+
   if(m_tTLHasBeenSet)
   {
    XmlNode tTLNode = parentNode.CreateChildElement("TTL");
-  ss << m_tTL;
+   ss << m_tTL;
    tTLNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_resourceRecordsHasBeenSet)

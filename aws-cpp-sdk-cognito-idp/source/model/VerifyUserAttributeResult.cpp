@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/cognito-idp/model/VerifyUserAttributeResult.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
+#include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/UnreferencedParam.h>
 
 #include <utility>
@@ -28,12 +30,12 @@ VerifyUserAttributeResult::VerifyUserAttributeResult()
 {
 }
 
-VerifyUserAttributeResult::VerifyUserAttributeResult(const AmazonWebServiceResult<JsonValue>& result)
+VerifyUserAttributeResult::VerifyUserAttributeResult(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
   *this = result;
 }
 
-VerifyUserAttributeResult& VerifyUserAttributeResult::operator =(const AmazonWebServiceResult<JsonValue>& result)
+VerifyUserAttributeResult& VerifyUserAttributeResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
   AWS_UNREFERENCED_PARAM(result);
 

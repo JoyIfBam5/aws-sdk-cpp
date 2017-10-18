@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudtrail/CloudTrail_EXPORTS.h>
 #include <aws/cloudtrail/CloudTrailRequest.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     DescribeTrailsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeTrails"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>Specifies a list of trail names, trail ARNs, or both, of the trails to
@@ -87,7 +97,7 @@ namespace Model
      * only to the current region. To return information about a trail in another
      * region, you must specify its trail ARN.</p> </note>
      */
-    inline void SetTrailNameList(Aws::Vector<Aws::String>&& value) { m_trailNameListHasBeenSet = true; m_trailNameList = value; }
+    inline void SetTrailNameList(Aws::Vector<Aws::String>&& value) { m_trailNameListHasBeenSet = true; m_trailNameList = std::move(value); }
 
     /**
      * <p>Specifies a list of trail names, trail ARNs, or both, of the trails to
@@ -121,7 +131,7 @@ namespace Model
      * only to the current region. To return information about a trail in another
      * region, you must specify its trail ARN.</p> </note>
      */
-    inline DescribeTrailsRequest& WithTrailNameList(Aws::Vector<Aws::String>&& value) { SetTrailNameList(value); return *this;}
+    inline DescribeTrailsRequest& WithTrailNameList(Aws::Vector<Aws::String>&& value) { SetTrailNameList(std::move(value)); return *this;}
 
     /**
      * <p>Specifies a list of trail names, trail ARNs, or both, of the trails to
@@ -155,7 +165,7 @@ namespace Model
      * only to the current region. To return information about a trail in another
      * region, you must specify its trail ARN.</p> </note>
      */
-    inline DescribeTrailsRequest& AddTrailNameList(Aws::String&& value) { m_trailNameListHasBeenSet = true; m_trailNameList.push_back(value); return *this; }
+    inline DescribeTrailsRequest& AddTrailNameList(Aws::String&& value) { m_trailNameListHasBeenSet = true; m_trailNameList.push_back(std::move(value)); return *this; }
 
     /**
      * <p>Specifies a list of trail names, trail ARNs, or both, of the trails to
@@ -173,6 +183,7 @@ namespace Model
      * region, you must specify its trail ARN.</p> </note>
      */
     inline DescribeTrailsRequest& AddTrailNameList(const char* value) { m_trailNameListHasBeenSet = true; m_trailNameList.push_back(value); return *this; }
+
 
     /**
      * <p>Specifies whether to include shadow trails in the response. A shadow trail is
@@ -196,8 +207,10 @@ namespace Model
     inline DescribeTrailsRequest& WithIncludeShadowTrails(bool value) { SetIncludeShadowTrails(value); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_trailNameList;
     bool m_trailNameListHasBeenSet;
+
     bool m_includeShadowTrails;
     bool m_includeShadowTrailsHasBeenSet;
   };

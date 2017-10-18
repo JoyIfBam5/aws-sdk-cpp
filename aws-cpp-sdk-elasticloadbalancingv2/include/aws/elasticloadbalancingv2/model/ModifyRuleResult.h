@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticloadbalancingv2/ElasticLoadBalancingv2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticloadbalancingv2/model/ResponseMetadata.h>
 #include <aws/elasticloadbalancingv2/model/Rule.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,17 +36,13 @@ namespace ElasticLoadBalancingv2
 {
 namespace Model
 {
-  /**
-   * <p>Contains the output of ModifyRules.</p><p><h3>See Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/ModifyRuleOutput">AWS
-   * API Reference</a></p>
-   */
   class AWS_ELASTICLOADBALANCINGV2_API ModifyRuleResult
   {
   public:
     ModifyRuleResult();
-    ModifyRuleResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    ModifyRuleResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ModifyRuleResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ModifyRuleResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>Information about the rule.</p>
@@ -59,7 +57,7 @@ namespace Model
     /**
      * <p>Information about the rule.</p>
      */
-    inline void SetRules(Aws::Vector<Rule>&& value) { m_rules = value; }
+    inline void SetRules(Aws::Vector<Rule>&& value) { m_rules = std::move(value); }
 
     /**
      * <p>Information about the rule.</p>
@@ -69,7 +67,7 @@ namespace Model
     /**
      * <p>Information about the rule.</p>
      */
-    inline ModifyRuleResult& WithRules(Aws::Vector<Rule>&& value) { SetRules(value); return *this;}
+    inline ModifyRuleResult& WithRules(Aws::Vector<Rule>&& value) { SetRules(std::move(value)); return *this;}
 
     /**
      * <p>Information about the rule.</p>
@@ -79,7 +77,8 @@ namespace Model
     /**
      * <p>Information about the rule.</p>
      */
-    inline ModifyRuleResult& AddRules(Rule&& value) { m_rules.push_back(value); return *this; }
+    inline ModifyRuleResult& AddRules(Rule&& value) { m_rules.push_back(std::move(value)); return *this; }
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -88,16 +87,18 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline ModifyRuleResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline ModifyRuleResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline ModifyRuleResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<Rule> m_rules;
+
     ResponseMetadata m_responseMetadata;
   };
 

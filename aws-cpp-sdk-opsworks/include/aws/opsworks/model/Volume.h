@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     Volume& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The volume ID.</p>
      */
@@ -56,7 +59,7 @@ namespace Model
     /**
      * <p>The volume ID.</p>
      */
-    inline void SetVolumeId(Aws::String&& value) { m_volumeIdHasBeenSet = true; m_volumeId = value; }
+    inline void SetVolumeId(Aws::String&& value) { m_volumeIdHasBeenSet = true; m_volumeId = std::move(value); }
 
     /**
      * <p>The volume ID.</p>
@@ -71,12 +74,13 @@ namespace Model
     /**
      * <p>The volume ID.</p>
      */
-    inline Volume& WithVolumeId(Aws::String&& value) { SetVolumeId(value); return *this;}
+    inline Volume& WithVolumeId(Aws::String&& value) { SetVolumeId(std::move(value)); return *this;}
 
     /**
      * <p>The volume ID.</p>
      */
     inline Volume& WithVolumeId(const char* value) { SetVolumeId(value); return *this;}
+
 
     /**
      * <p>The Amazon EC2 volume ID.</p>
@@ -91,7 +95,7 @@ namespace Model
     /**
      * <p>The Amazon EC2 volume ID.</p>
      */
-    inline void SetEc2VolumeId(Aws::String&& value) { m_ec2VolumeIdHasBeenSet = true; m_ec2VolumeId = value; }
+    inline void SetEc2VolumeId(Aws::String&& value) { m_ec2VolumeIdHasBeenSet = true; m_ec2VolumeId = std::move(value); }
 
     /**
      * <p>The Amazon EC2 volume ID.</p>
@@ -106,12 +110,13 @@ namespace Model
     /**
      * <p>The Amazon EC2 volume ID.</p>
      */
-    inline Volume& WithEc2VolumeId(Aws::String&& value) { SetEc2VolumeId(value); return *this;}
+    inline Volume& WithEc2VolumeId(Aws::String&& value) { SetEc2VolumeId(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon EC2 volume ID.</p>
      */
     inline Volume& WithEc2VolumeId(const char* value) { SetEc2VolumeId(value); return *this;}
+
 
     /**
      * <p>The volume name.</p>
@@ -126,7 +131,7 @@ namespace Model
     /**
      * <p>The volume name.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The volume name.</p>
@@ -141,12 +146,13 @@ namespace Model
     /**
      * <p>The volume name.</p>
      */
-    inline Volume& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline Volume& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The volume name.</p>
      */
     inline Volume& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The RAID array ID.</p>
@@ -161,7 +167,7 @@ namespace Model
     /**
      * <p>The RAID array ID.</p>
      */
-    inline void SetRaidArrayId(Aws::String&& value) { m_raidArrayIdHasBeenSet = true; m_raidArrayId = value; }
+    inline void SetRaidArrayId(Aws::String&& value) { m_raidArrayIdHasBeenSet = true; m_raidArrayId = std::move(value); }
 
     /**
      * <p>The RAID array ID.</p>
@@ -176,12 +182,13 @@ namespace Model
     /**
      * <p>The RAID array ID.</p>
      */
-    inline Volume& WithRaidArrayId(Aws::String&& value) { SetRaidArrayId(value); return *this;}
+    inline Volume& WithRaidArrayId(Aws::String&& value) { SetRaidArrayId(std::move(value)); return *this;}
 
     /**
      * <p>The RAID array ID.</p>
      */
     inline Volume& WithRaidArrayId(const char* value) { SetRaidArrayId(value); return *this;}
+
 
     /**
      * <p>The instance ID.</p>
@@ -196,7 +203,7 @@ namespace Model
     /**
      * <p>The instance ID.</p>
      */
-    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = value; }
+    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = std::move(value); }
 
     /**
      * <p>The instance ID.</p>
@@ -211,12 +218,13 @@ namespace Model
     /**
      * <p>The instance ID.</p>
      */
-    inline Volume& WithInstanceId(Aws::String&& value) { SetInstanceId(value); return *this;}
+    inline Volume& WithInstanceId(Aws::String&& value) { SetInstanceId(std::move(value)); return *this;}
 
     /**
      * <p>The instance ID.</p>
      */
     inline Volume& WithInstanceId(const char* value) { SetInstanceId(value); return *this;}
+
 
     /**
      * <p>The value returned by <a
@@ -234,7 +242,7 @@ namespace Model
      * <p>The value returned by <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeVolumes.html">DescribeVolumes</a>.</p>
      */
-    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The value returned by <a
@@ -252,13 +260,14 @@ namespace Model
      * <p>The value returned by <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeVolumes.html">DescribeVolumes</a>.</p>
      */
-    inline Volume& WithStatus(Aws::String&& value) { SetStatus(value); return *this;}
+    inline Volume& WithStatus(Aws::String&& value) { SetStatus(std::move(value)); return *this;}
 
     /**
      * <p>The value returned by <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeVolumes.html">DescribeVolumes</a>.</p>
      */
     inline Volume& WithStatus(const char* value) { SetStatus(value); return *this;}
+
 
     /**
      * <p>The volume size.</p>
@@ -275,6 +284,7 @@ namespace Model
      */
     inline Volume& WithSize(int value) { SetSize(value); return *this;}
 
+
     /**
      * <p>The device name.</p>
      */
@@ -288,7 +298,7 @@ namespace Model
     /**
      * <p>The device name.</p>
      */
-    inline void SetDevice(Aws::String&& value) { m_deviceHasBeenSet = true; m_device = value; }
+    inline void SetDevice(Aws::String&& value) { m_deviceHasBeenSet = true; m_device = std::move(value); }
 
     /**
      * <p>The device name.</p>
@@ -303,12 +313,13 @@ namespace Model
     /**
      * <p>The device name.</p>
      */
-    inline Volume& WithDevice(Aws::String&& value) { SetDevice(value); return *this;}
+    inline Volume& WithDevice(Aws::String&& value) { SetDevice(std::move(value)); return *this;}
 
     /**
      * <p>The device name.</p>
      */
     inline Volume& WithDevice(const char* value) { SetDevice(value); return *this;}
+
 
     /**
      * <p>The volume mount point. For example, "/mnt/disk1".</p>
@@ -323,7 +334,7 @@ namespace Model
     /**
      * <p>The volume mount point. For example, "/mnt/disk1".</p>
      */
-    inline void SetMountPoint(Aws::String&& value) { m_mountPointHasBeenSet = true; m_mountPoint = value; }
+    inline void SetMountPoint(Aws::String&& value) { m_mountPointHasBeenSet = true; m_mountPoint = std::move(value); }
 
     /**
      * <p>The volume mount point. For example, "/mnt/disk1".</p>
@@ -338,12 +349,13 @@ namespace Model
     /**
      * <p>The volume mount point. For example, "/mnt/disk1".</p>
      */
-    inline Volume& WithMountPoint(Aws::String&& value) { SetMountPoint(value); return *this;}
+    inline Volume& WithMountPoint(Aws::String&& value) { SetMountPoint(std::move(value)); return *this;}
 
     /**
      * <p>The volume mount point. For example, "/mnt/disk1".</p>
      */
     inline Volume& WithMountPoint(const char* value) { SetMountPoint(value); return *this;}
+
 
     /**
      * <p>The AWS region. For more information about AWS regions, see <a
@@ -364,7 +376,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html">Regions and
      * Endpoints</a>.</p>
      */
-    inline void SetRegion(Aws::String&& value) { m_regionHasBeenSet = true; m_region = value; }
+    inline void SetRegion(Aws::String&& value) { m_regionHasBeenSet = true; m_region = std::move(value); }
 
     /**
      * <p>The AWS region. For more information about AWS regions, see <a
@@ -385,7 +397,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html">Regions and
      * Endpoints</a>.</p>
      */
-    inline Volume& WithRegion(Aws::String&& value) { SetRegion(value); return *this;}
+    inline Volume& WithRegion(Aws::String&& value) { SetRegion(std::move(value)); return *this;}
 
     /**
      * <p>The AWS region. For more information about AWS regions, see <a
@@ -393,6 +405,7 @@ namespace Model
      * Endpoints</a>.</p>
      */
     inline Volume& WithRegion(const char* value) { SetRegion(value); return *this;}
+
 
     /**
      * <p>The volume Availability Zone. For more information, see <a
@@ -413,7 +426,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html">Regions and
      * Endpoints</a>.</p>
      */
-    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = value; }
+    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = std::move(value); }
 
     /**
      * <p>The volume Availability Zone. For more information, see <a
@@ -434,7 +447,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html">Regions and
      * Endpoints</a>.</p>
      */
-    inline Volume& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(value); return *this;}
+    inline Volume& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(std::move(value)); return *this;}
 
     /**
      * <p>The volume Availability Zone. For more information, see <a
@@ -442,6 +455,7 @@ namespace Model
      * Endpoints</a>.</p>
      */
     inline Volume& WithAvailabilityZone(const char* value) { SetAvailabilityZone(value); return *this;}
+
 
     /**
      * <p>The volume type, standard or PIOPS.</p>
@@ -456,7 +470,7 @@ namespace Model
     /**
      * <p>The volume type, standard or PIOPS.</p>
      */
-    inline void SetVolumeType(Aws::String&& value) { m_volumeTypeHasBeenSet = true; m_volumeType = value; }
+    inline void SetVolumeType(Aws::String&& value) { m_volumeTypeHasBeenSet = true; m_volumeType = std::move(value); }
 
     /**
      * <p>The volume type, standard or PIOPS.</p>
@@ -471,12 +485,13 @@ namespace Model
     /**
      * <p>The volume type, standard or PIOPS.</p>
      */
-    inline Volume& WithVolumeType(Aws::String&& value) { SetVolumeType(value); return *this;}
+    inline Volume& WithVolumeType(Aws::String&& value) { SetVolumeType(std::move(value)); return *this;}
 
     /**
      * <p>The volume type, standard or PIOPS.</p>
      */
     inline Volume& WithVolumeType(const char* value) { SetVolumeType(value); return *this;}
+
 
     /**
      * <p>For PIOPS volumes, the IOPS per disk.</p>
@@ -494,30 +509,43 @@ namespace Model
     inline Volume& WithIops(int value) { SetIops(value); return *this;}
 
   private:
+
     Aws::String m_volumeId;
     bool m_volumeIdHasBeenSet;
+
     Aws::String m_ec2VolumeId;
     bool m_ec2VolumeIdHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_raidArrayId;
     bool m_raidArrayIdHasBeenSet;
+
     Aws::String m_instanceId;
     bool m_instanceIdHasBeenSet;
+
     Aws::String m_status;
     bool m_statusHasBeenSet;
+
     int m_size;
     bool m_sizeHasBeenSet;
+
     Aws::String m_device;
     bool m_deviceHasBeenSet;
+
     Aws::String m_mountPoint;
     bool m_mountPointHasBeenSet;
+
     Aws::String m_region;
     bool m_regionHasBeenSet;
+
     Aws::String m_availabilityZone;
     bool m_availabilityZoneHasBeenSet;
+
     Aws::String m_volumeType;
     bool m_volumeTypeHasBeenSet;
+
     int m_iops;
     bool m_iopsHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/rds/model/RestoreDBClusterToPointInTimeRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -21,6 +22,7 @@ using namespace Aws::Utils;
 
 RestoreDBClusterToPointInTimeRequest::RestoreDBClusterToPointInTimeRequest() : 
     m_dBClusterIdentifierHasBeenSet(false),
+    m_restoreTypeHasBeenSet(false),
     m_sourceDBClusterIdentifierHasBeenSet(false),
     m_restoreToTimeHasBeenSet(false),
     m_useLatestRestorableTime(false),
@@ -31,7 +33,9 @@ RestoreDBClusterToPointInTimeRequest::RestoreDBClusterToPointInTimeRequest() :
     m_optionGroupNameHasBeenSet(false),
     m_vpcSecurityGroupIdsHasBeenSet(false),
     m_tagsHasBeenSet(false),
-    m_kmsKeyIdHasBeenSet(false)
+    m_kmsKeyIdHasBeenSet(false),
+    m_enableIAMDatabaseAuthentication(false),
+    m_enableIAMDatabaseAuthenticationHasBeenSet(false)
 {
 }
 
@@ -42,6 +46,11 @@ Aws::String RestoreDBClusterToPointInTimeRequest::SerializePayload() const
   if(m_dBClusterIdentifierHasBeenSet)
   {
     ss << "DBClusterIdentifier=" << StringUtils::URLEncode(m_dBClusterIdentifier.c_str()) << "&";
+  }
+
+  if(m_restoreTypeHasBeenSet)
+  {
+    ss << "RestoreType=" << StringUtils::URLEncode(m_restoreType.c_str()) << "&";
   }
 
   if(m_sourceDBClusterIdentifierHasBeenSet)
@@ -100,7 +109,17 @@ Aws::String RestoreDBClusterToPointInTimeRequest::SerializePayload() const
     ss << "KmsKeyId=" << StringUtils::URLEncode(m_kmsKeyId.c_str()) << "&";
   }
 
+  if(m_enableIAMDatabaseAuthenticationHasBeenSet)
+  {
+    ss << "EnableIAMDatabaseAuthentication=" << std::boolalpha << m_enableIAMDatabaseAuthentication << "&";
+  }
+
   ss << "Version=2014-10-31";
   return ss.str();
 }
 
+
+void  RestoreDBClusterToPointInTimeRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

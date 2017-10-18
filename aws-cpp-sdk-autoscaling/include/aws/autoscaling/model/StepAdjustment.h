@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/autoscaling/AutoScaling_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -61,6 +62,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The lower bound for the difference between the alarm threshold and the
      * CloudWatch metric. If the metric value is above the breach threshold, the lower
@@ -90,6 +92,7 @@ namespace Model
      * infinity.</p>
      */
     inline StepAdjustment& WithMetricIntervalLowerBound(double value) { SetMetricIntervalLowerBound(value); return *this;}
+
 
     /**
      * <p>The upper bound for the difference between the alarm threshold and the
@@ -121,6 +124,7 @@ namespace Model
      */
     inline StepAdjustment& WithMetricIntervalUpperBound(double value) { SetMetricIntervalUpperBound(value); return *this;}
 
+
     /**
      * <p>The amount by which to scale, based on the specified adjustment type. A
      * positive value adds to the current capacity while a negative number removes from
@@ -143,10 +147,13 @@ namespace Model
     inline StepAdjustment& WithScalingAdjustment(int value) { SetScalingAdjustment(value); return *this;}
 
   private:
+
     double m_metricIntervalLowerBound;
     bool m_metricIntervalLowerBoundHasBeenSet;
+
     double m_metricIntervalUpperBound;
     bool m_metricIntervalUpperBoundHasBeenSet;
+
     int m_scalingAdjustment;
     bool m_scalingAdjustmentHasBeenSet;
   };

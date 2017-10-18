@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/cognito-idp/CognitoIdentityProviderRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/cognito-idp/model/MFAOptionType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,9 +38,17 @@ namespace Model
   {
   public:
     AdminSetUserSettingsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "AdminSetUserSettings"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The user pool ID for the user pool where you want to set the user's settings,
@@ -56,7 +66,7 @@ namespace Model
      * <p>The user pool ID for the user pool where you want to set the user's settings,
      * such as MFA options.</p>
      */
-    inline void SetUserPoolId(Aws::String&& value) { m_userPoolIdHasBeenSet = true; m_userPoolId = value; }
+    inline void SetUserPoolId(Aws::String&& value) { m_userPoolIdHasBeenSet = true; m_userPoolId = std::move(value); }
 
     /**
      * <p>The user pool ID for the user pool where you want to set the user's settings,
@@ -74,13 +84,14 @@ namespace Model
      * <p>The user pool ID for the user pool where you want to set the user's settings,
      * such as MFA options.</p>
      */
-    inline AdminSetUserSettingsRequest& WithUserPoolId(Aws::String&& value) { SetUserPoolId(value); return *this;}
+    inline AdminSetUserSettingsRequest& WithUserPoolId(Aws::String&& value) { SetUserPoolId(std::move(value)); return *this;}
 
     /**
      * <p>The user pool ID for the user pool where you want to set the user's settings,
      * such as MFA options.</p>
      */
     inline AdminSetUserSettingsRequest& WithUserPoolId(const char* value) { SetUserPoolId(value); return *this;}
+
 
     /**
      * <p>The user name of the user for whom you wish to set user settings.</p>
@@ -95,7 +106,7 @@ namespace Model
     /**
      * <p>The user name of the user for whom you wish to set user settings.</p>
      */
-    inline void SetUsername(Aws::String&& value) { m_usernameHasBeenSet = true; m_username = value; }
+    inline void SetUsername(Aws::String&& value) { m_usernameHasBeenSet = true; m_username = std::move(value); }
 
     /**
      * <p>The user name of the user for whom you wish to set user settings.</p>
@@ -110,12 +121,13 @@ namespace Model
     /**
      * <p>The user name of the user for whom you wish to set user settings.</p>
      */
-    inline AdminSetUserSettingsRequest& WithUsername(Aws::String&& value) { SetUsername(value); return *this;}
+    inline AdminSetUserSettingsRequest& WithUsername(Aws::String&& value) { SetUsername(std::move(value)); return *this;}
 
     /**
      * <p>The user name of the user for whom you wish to set user settings.</p>
      */
     inline AdminSetUserSettingsRequest& WithUsername(const char* value) { SetUsername(value); return *this;}
+
 
     /**
      * <p>Specifies the options for MFA (e.g., email or phone number).</p>
@@ -130,7 +142,7 @@ namespace Model
     /**
      * <p>Specifies the options for MFA (e.g., email or phone number).</p>
      */
-    inline void SetMFAOptions(Aws::Vector<MFAOptionType>&& value) { m_mFAOptionsHasBeenSet = true; m_mFAOptions = value; }
+    inline void SetMFAOptions(Aws::Vector<MFAOptionType>&& value) { m_mFAOptionsHasBeenSet = true; m_mFAOptions = std::move(value); }
 
     /**
      * <p>Specifies the options for MFA (e.g., email or phone number).</p>
@@ -140,7 +152,7 @@ namespace Model
     /**
      * <p>Specifies the options for MFA (e.g., email or phone number).</p>
      */
-    inline AdminSetUserSettingsRequest& WithMFAOptions(Aws::Vector<MFAOptionType>&& value) { SetMFAOptions(value); return *this;}
+    inline AdminSetUserSettingsRequest& WithMFAOptions(Aws::Vector<MFAOptionType>&& value) { SetMFAOptions(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the options for MFA (e.g., email or phone number).</p>
@@ -150,13 +162,16 @@ namespace Model
     /**
      * <p>Specifies the options for MFA (e.g., email or phone number).</p>
      */
-    inline AdminSetUserSettingsRequest& AddMFAOptions(MFAOptionType&& value) { m_mFAOptionsHasBeenSet = true; m_mFAOptions.push_back(value); return *this; }
+    inline AdminSetUserSettingsRequest& AddMFAOptions(MFAOptionType&& value) { m_mFAOptionsHasBeenSet = true; m_mFAOptions.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_userPoolId;
     bool m_userPoolIdHasBeenSet;
+
     Aws::String m_username;
     bool m_usernameHasBeenSet;
+
     Aws::Vector<MFAOptionType> m_mFAOptions;
     bool m_mFAOptionsHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -20,6 +21,7 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/redshift/model/AccountWithRestoreAccess.h>
 #include <aws/redshift/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,6 +52,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The snapshot identifier that is provided in the request.</p>
      */
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>The snapshot identifier that is provided in the request.</p>
      */
-    inline void SetSnapshotIdentifier(Aws::String&& value) { m_snapshotIdentifierHasBeenSet = true; m_snapshotIdentifier = value; }
+    inline void SetSnapshotIdentifier(Aws::String&& value) { m_snapshotIdentifierHasBeenSet = true; m_snapshotIdentifier = std::move(value); }
 
     /**
      * <p>The snapshot identifier that is provided in the request.</p>
@@ -78,12 +81,13 @@ namespace Model
     /**
      * <p>The snapshot identifier that is provided in the request.</p>
      */
-    inline Snapshot& WithSnapshotIdentifier(Aws::String&& value) { SetSnapshotIdentifier(value); return *this;}
+    inline Snapshot& WithSnapshotIdentifier(Aws::String&& value) { SetSnapshotIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The snapshot identifier that is provided in the request.</p>
      */
     inline Snapshot& WithSnapshotIdentifier(const char* value) { SetSnapshotIdentifier(value); return *this;}
+
 
     /**
      * <p>The identifier of the cluster for which the snapshot was taken.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>The identifier of the cluster for which the snapshot was taken.</p>
      */
-    inline void SetClusterIdentifier(Aws::String&& value) { m_clusterIdentifierHasBeenSet = true; m_clusterIdentifier = value; }
+    inline void SetClusterIdentifier(Aws::String&& value) { m_clusterIdentifierHasBeenSet = true; m_clusterIdentifier = std::move(value); }
 
     /**
      * <p>The identifier of the cluster for which the snapshot was taken.</p>
@@ -113,12 +117,13 @@ namespace Model
     /**
      * <p>The identifier of the cluster for which the snapshot was taken.</p>
      */
-    inline Snapshot& WithClusterIdentifier(Aws::String&& value) { SetClusterIdentifier(value); return *this;}
+    inline Snapshot& WithClusterIdentifier(Aws::String&& value) { SetClusterIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the cluster for which the snapshot was taken.</p>
      */
     inline Snapshot& WithClusterIdentifier(const char* value) { SetClusterIdentifier(value); return *this;}
+
 
     /**
      * <p>The time (UTC) when Amazon Redshift began the snapshot. A snapshot contains a
@@ -136,7 +141,7 @@ namespace Model
      * <p>The time (UTC) when Amazon Redshift began the snapshot. A snapshot contains a
      * copy of the cluster data as of this exact time.</p>
      */
-    inline void SetSnapshotCreateTime(Aws::Utils::DateTime&& value) { m_snapshotCreateTimeHasBeenSet = true; m_snapshotCreateTime = value; }
+    inline void SetSnapshotCreateTime(Aws::Utils::DateTime&& value) { m_snapshotCreateTimeHasBeenSet = true; m_snapshotCreateTime = std::move(value); }
 
     /**
      * <p>The time (UTC) when Amazon Redshift began the snapshot. A snapshot contains a
@@ -148,7 +153,8 @@ namespace Model
      * <p>The time (UTC) when Amazon Redshift began the snapshot. A snapshot contains a
      * copy of the cluster data as of this exact time.</p>
      */
-    inline Snapshot& WithSnapshotCreateTime(Aws::Utils::DateTime&& value) { SetSnapshotCreateTime(value); return *this;}
+    inline Snapshot& WithSnapshotCreateTime(Aws::Utils::DateTime&& value) { SetSnapshotCreateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The snapshot status. The value of the status depends on the API operation
@@ -178,7 +184,7 @@ namespace Model
      * "final snapshot", or "failed".</p> </li> <li> <p> <a>DeleteClusterSnapshot</a>
      * returns status as "deleted".</p> </li> </ul>
      */
-    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The snapshot status. The value of the status depends on the API operation
@@ -208,7 +214,7 @@ namespace Model
      * "final snapshot", or "failed".</p> </li> <li> <p> <a>DeleteClusterSnapshot</a>
      * returns status as "deleted".</p> </li> </ul>
      */
-    inline Snapshot& WithStatus(Aws::String&& value) { SetStatus(value); return *this;}
+    inline Snapshot& WithStatus(Aws::String&& value) { SetStatus(std::move(value)); return *this;}
 
     /**
      * <p>The snapshot status. The value of the status depends on the API operation
@@ -219,6 +225,7 @@ namespace Model
      * returns status as "deleted".</p> </li> </ul>
      */
     inline Snapshot& WithStatus(const char* value) { SetStatus(value); return *this;}
+
 
     /**
      * <p>The port that the cluster is listening on.</p>
@@ -235,6 +242,7 @@ namespace Model
      */
     inline Snapshot& WithPort(int value) { SetPort(value); return *this;}
 
+
     /**
      * <p>The Availability Zone in which the cluster was created.</p>
      */
@@ -248,7 +256,7 @@ namespace Model
     /**
      * <p>The Availability Zone in which the cluster was created.</p>
      */
-    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = value; }
+    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = std::move(value); }
 
     /**
      * <p>The Availability Zone in which the cluster was created.</p>
@@ -263,12 +271,13 @@ namespace Model
     /**
      * <p>The Availability Zone in which the cluster was created.</p>
      */
-    inline Snapshot& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(value); return *this;}
+    inline Snapshot& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(std::move(value)); return *this;}
 
     /**
      * <p>The Availability Zone in which the cluster was created.</p>
      */
     inline Snapshot& WithAvailabilityZone(const char* value) { SetAvailabilityZone(value); return *this;}
+
 
     /**
      * <p>The time (UTC) when the cluster was originally created.</p>
@@ -283,7 +292,7 @@ namespace Model
     /**
      * <p>The time (UTC) when the cluster was originally created.</p>
      */
-    inline void SetClusterCreateTime(Aws::Utils::DateTime&& value) { m_clusterCreateTimeHasBeenSet = true; m_clusterCreateTime = value; }
+    inline void SetClusterCreateTime(Aws::Utils::DateTime&& value) { m_clusterCreateTimeHasBeenSet = true; m_clusterCreateTime = std::move(value); }
 
     /**
      * <p>The time (UTC) when the cluster was originally created.</p>
@@ -293,7 +302,8 @@ namespace Model
     /**
      * <p>The time (UTC) when the cluster was originally created.</p>
      */
-    inline Snapshot& WithClusterCreateTime(Aws::Utils::DateTime&& value) { SetClusterCreateTime(value); return *this;}
+    inline Snapshot& WithClusterCreateTime(Aws::Utils::DateTime&& value) { SetClusterCreateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The master user name for the cluster.</p>
@@ -308,7 +318,7 @@ namespace Model
     /**
      * <p>The master user name for the cluster.</p>
      */
-    inline void SetMasterUsername(Aws::String&& value) { m_masterUsernameHasBeenSet = true; m_masterUsername = value; }
+    inline void SetMasterUsername(Aws::String&& value) { m_masterUsernameHasBeenSet = true; m_masterUsername = std::move(value); }
 
     /**
      * <p>The master user name for the cluster.</p>
@@ -323,12 +333,13 @@ namespace Model
     /**
      * <p>The master user name for the cluster.</p>
      */
-    inline Snapshot& WithMasterUsername(Aws::String&& value) { SetMasterUsername(value); return *this;}
+    inline Snapshot& WithMasterUsername(Aws::String&& value) { SetMasterUsername(std::move(value)); return *this;}
 
     /**
      * <p>The master user name for the cluster.</p>
      */
     inline Snapshot& WithMasterUsername(const char* value) { SetMasterUsername(value); return *this;}
+
 
     /**
      * <p>The version ID of the Amazon Redshift engine that is running on the
@@ -346,7 +357,7 @@ namespace Model
      * <p>The version ID of the Amazon Redshift engine that is running on the
      * cluster.</p>
      */
-    inline void SetClusterVersion(Aws::String&& value) { m_clusterVersionHasBeenSet = true; m_clusterVersion = value; }
+    inline void SetClusterVersion(Aws::String&& value) { m_clusterVersionHasBeenSet = true; m_clusterVersion = std::move(value); }
 
     /**
      * <p>The version ID of the Amazon Redshift engine that is running on the
@@ -364,13 +375,14 @@ namespace Model
      * <p>The version ID of the Amazon Redshift engine that is running on the
      * cluster.</p>
      */
-    inline Snapshot& WithClusterVersion(Aws::String&& value) { SetClusterVersion(value); return *this;}
+    inline Snapshot& WithClusterVersion(Aws::String&& value) { SetClusterVersion(std::move(value)); return *this;}
 
     /**
      * <p>The version ID of the Amazon Redshift engine that is running on the
      * cluster.</p>
      */
     inline Snapshot& WithClusterVersion(const char* value) { SetClusterVersion(value); return *this;}
+
 
     /**
      * <p>The snapshot type. Snapshots created using <a>CreateClusterSnapshot</a> and
@@ -388,7 +400,7 @@ namespace Model
      * <p>The snapshot type. Snapshots created using <a>CreateClusterSnapshot</a> and
      * <a>CopyClusterSnapshot</a> will be of type "manual". </p>
      */
-    inline void SetSnapshotType(Aws::String&& value) { m_snapshotTypeHasBeenSet = true; m_snapshotType = value; }
+    inline void SetSnapshotType(Aws::String&& value) { m_snapshotTypeHasBeenSet = true; m_snapshotType = std::move(value); }
 
     /**
      * <p>The snapshot type. Snapshots created using <a>CreateClusterSnapshot</a> and
@@ -406,13 +418,14 @@ namespace Model
      * <p>The snapshot type. Snapshots created using <a>CreateClusterSnapshot</a> and
      * <a>CopyClusterSnapshot</a> will be of type "manual". </p>
      */
-    inline Snapshot& WithSnapshotType(Aws::String&& value) { SetSnapshotType(value); return *this;}
+    inline Snapshot& WithSnapshotType(Aws::String&& value) { SetSnapshotType(std::move(value)); return *this;}
 
     /**
      * <p>The snapshot type. Snapshots created using <a>CreateClusterSnapshot</a> and
      * <a>CopyClusterSnapshot</a> will be of type "manual". </p>
      */
     inline Snapshot& WithSnapshotType(const char* value) { SetSnapshotType(value); return *this;}
+
 
     /**
      * <p>The node type of the nodes in the cluster.</p>
@@ -427,7 +440,7 @@ namespace Model
     /**
      * <p>The node type of the nodes in the cluster.</p>
      */
-    inline void SetNodeType(Aws::String&& value) { m_nodeTypeHasBeenSet = true; m_nodeType = value; }
+    inline void SetNodeType(Aws::String&& value) { m_nodeTypeHasBeenSet = true; m_nodeType = std::move(value); }
 
     /**
      * <p>The node type of the nodes in the cluster.</p>
@@ -442,12 +455,13 @@ namespace Model
     /**
      * <p>The node type of the nodes in the cluster.</p>
      */
-    inline Snapshot& WithNodeType(Aws::String&& value) { SetNodeType(value); return *this;}
+    inline Snapshot& WithNodeType(Aws::String&& value) { SetNodeType(std::move(value)); return *this;}
 
     /**
      * <p>The node type of the nodes in the cluster.</p>
      */
     inline Snapshot& WithNodeType(const char* value) { SetNodeType(value); return *this;}
+
 
     /**
      * <p>The number of nodes in the cluster.</p>
@@ -464,6 +478,7 @@ namespace Model
      */
     inline Snapshot& WithNumberOfNodes(int value) { SetNumberOfNodes(value); return *this;}
 
+
     /**
      * <p>The name of the database that was created when the cluster was created.</p>
      */
@@ -477,7 +492,7 @@ namespace Model
     /**
      * <p>The name of the database that was created when the cluster was created.</p>
      */
-    inline void SetDBName(Aws::String&& value) { m_dBNameHasBeenSet = true; m_dBName = value; }
+    inline void SetDBName(Aws::String&& value) { m_dBNameHasBeenSet = true; m_dBName = std::move(value); }
 
     /**
      * <p>The name of the database that was created when the cluster was created.</p>
@@ -492,12 +507,13 @@ namespace Model
     /**
      * <p>The name of the database that was created when the cluster was created.</p>
      */
-    inline Snapshot& WithDBName(Aws::String&& value) { SetDBName(value); return *this;}
+    inline Snapshot& WithDBName(Aws::String&& value) { SetDBName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the database that was created when the cluster was created.</p>
      */
     inline Snapshot& WithDBName(const char* value) { SetDBName(value); return *this;}
+
 
     /**
      * <p>The VPC identifier of the cluster if the snapshot is from a cluster in a VPC.
@@ -515,7 +531,7 @@ namespace Model
      * <p>The VPC identifier of the cluster if the snapshot is from a cluster in a VPC.
      * Otherwise, this field is not in the output.</p>
      */
-    inline void SetVpcId(Aws::String&& value) { m_vpcIdHasBeenSet = true; m_vpcId = value; }
+    inline void SetVpcId(Aws::String&& value) { m_vpcIdHasBeenSet = true; m_vpcId = std::move(value); }
 
     /**
      * <p>The VPC identifier of the cluster if the snapshot is from a cluster in a VPC.
@@ -533,13 +549,14 @@ namespace Model
      * <p>The VPC identifier of the cluster if the snapshot is from a cluster in a VPC.
      * Otherwise, this field is not in the output.</p>
      */
-    inline Snapshot& WithVpcId(Aws::String&& value) { SetVpcId(value); return *this;}
+    inline Snapshot& WithVpcId(Aws::String&& value) { SetVpcId(std::move(value)); return *this;}
 
     /**
      * <p>The VPC identifier of the cluster if the snapshot is from a cluster in a VPC.
      * Otherwise, this field is not in the output.</p>
      */
     inline Snapshot& WithVpcId(const char* value) { SetVpcId(value); return *this;}
+
 
     /**
      * <p>If <code>true</code>, the data in the snapshot is encrypted at rest.</p>
@@ -555,6 +572,7 @@ namespace Model
      * <p>If <code>true</code>, the data in the snapshot is encrypted at rest.</p>
      */
     inline Snapshot& WithEncrypted(bool value) { SetEncrypted(value); return *this;}
+
 
     /**
      * <p>The AWS Key Management Service (KMS) key ID of the encryption key that was
@@ -572,7 +590,7 @@ namespace Model
      * <p>The AWS Key Management Service (KMS) key ID of the encryption key that was
      * used to encrypt data in the cluster from which the snapshot was taken.</p>
      */
-    inline void SetKmsKeyId(Aws::String&& value) { m_kmsKeyIdHasBeenSet = true; m_kmsKeyId = value; }
+    inline void SetKmsKeyId(Aws::String&& value) { m_kmsKeyIdHasBeenSet = true; m_kmsKeyId = std::move(value); }
 
     /**
      * <p>The AWS Key Management Service (KMS) key ID of the encryption key that was
@@ -590,13 +608,14 @@ namespace Model
      * <p>The AWS Key Management Service (KMS) key ID of the encryption key that was
      * used to encrypt data in the cluster from which the snapshot was taken.</p>
      */
-    inline Snapshot& WithKmsKeyId(Aws::String&& value) { SetKmsKeyId(value); return *this;}
+    inline Snapshot& WithKmsKeyId(Aws::String&& value) { SetKmsKeyId(std::move(value)); return *this;}
 
     /**
      * <p>The AWS Key Management Service (KMS) key ID of the encryption key that was
      * used to encrypt data in the cluster from which the snapshot was taken.</p>
      */
     inline Snapshot& WithKmsKeyId(const char* value) { SetKmsKeyId(value); return *this;}
+
 
     /**
      * <p>A boolean that indicates whether the snapshot data is encrypted using the HSM
@@ -619,6 +638,7 @@ namespace Model
      */
     inline Snapshot& WithEncryptedWithHSM(bool value) { SetEncryptedWithHSM(value); return *this;}
 
+
     /**
      * <p>A list of the AWS customer accounts authorized to restore the snapshot.
      * Returns <code>null</code> if no accounts are authorized. Visible only to the
@@ -638,7 +658,7 @@ namespace Model
      * Returns <code>null</code> if no accounts are authorized. Visible only to the
      * snapshot owner. </p>
      */
-    inline void SetAccountsWithRestoreAccess(Aws::Vector<AccountWithRestoreAccess>&& value) { m_accountsWithRestoreAccessHasBeenSet = true; m_accountsWithRestoreAccess = value; }
+    inline void SetAccountsWithRestoreAccess(Aws::Vector<AccountWithRestoreAccess>&& value) { m_accountsWithRestoreAccessHasBeenSet = true; m_accountsWithRestoreAccess = std::move(value); }
 
     /**
      * <p>A list of the AWS customer accounts authorized to restore the snapshot.
@@ -652,7 +672,7 @@ namespace Model
      * Returns <code>null</code> if no accounts are authorized. Visible only to the
      * snapshot owner. </p>
      */
-    inline Snapshot& WithAccountsWithRestoreAccess(Aws::Vector<AccountWithRestoreAccess>&& value) { SetAccountsWithRestoreAccess(value); return *this;}
+    inline Snapshot& WithAccountsWithRestoreAccess(Aws::Vector<AccountWithRestoreAccess>&& value) { SetAccountsWithRestoreAccess(std::move(value)); return *this;}
 
     /**
      * <p>A list of the AWS customer accounts authorized to restore the snapshot.
@@ -666,7 +686,8 @@ namespace Model
      * Returns <code>null</code> if no accounts are authorized. Visible only to the
      * snapshot owner. </p>
      */
-    inline Snapshot& AddAccountsWithRestoreAccess(AccountWithRestoreAccess&& value) { m_accountsWithRestoreAccessHasBeenSet = true; m_accountsWithRestoreAccess.push_back(value); return *this; }
+    inline Snapshot& AddAccountsWithRestoreAccess(AccountWithRestoreAccess&& value) { m_accountsWithRestoreAccessHasBeenSet = true; m_accountsWithRestoreAccess.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>For manual snapshots, the AWS customer account used to create or copy the
@@ -687,7 +708,7 @@ namespace Model
      * snapshot. For automatic snapshots, the owner of the cluster. The owner can
      * perform all snapshot actions, such as sharing a manual snapshot.</p>
      */
-    inline void SetOwnerAccount(Aws::String&& value) { m_ownerAccountHasBeenSet = true; m_ownerAccount = value; }
+    inline void SetOwnerAccount(Aws::String&& value) { m_ownerAccountHasBeenSet = true; m_ownerAccount = std::move(value); }
 
     /**
      * <p>For manual snapshots, the AWS customer account used to create or copy the
@@ -708,7 +729,7 @@ namespace Model
      * snapshot. For automatic snapshots, the owner of the cluster. The owner can
      * perform all snapshot actions, such as sharing a manual snapshot.</p>
      */
-    inline Snapshot& WithOwnerAccount(Aws::String&& value) { SetOwnerAccount(value); return *this;}
+    inline Snapshot& WithOwnerAccount(Aws::String&& value) { SetOwnerAccount(std::move(value)); return *this;}
 
     /**
      * <p>For manual snapshots, the AWS customer account used to create or copy the
@@ -716,6 +737,7 @@ namespace Model
      * perform all snapshot actions, such as sharing a manual snapshot.</p>
      */
     inline Snapshot& WithOwnerAccount(const char* value) { SetOwnerAccount(value); return *this;}
+
 
     /**
      * <p>The size of the complete set of backup data that would be used to restore the
@@ -735,6 +757,7 @@ namespace Model
      */
     inline Snapshot& WithTotalBackupSizeInMegaBytes(double value) { SetTotalBackupSizeInMegaBytes(value); return *this;}
 
+
     /**
      * <p>The size of the incremental backup.</p>
      */
@@ -749,6 +772,7 @@ namespace Model
      * <p>The size of the incremental backup.</p>
      */
     inline Snapshot& WithActualIncrementalBackupSizeInMegaBytes(double value) { SetActualIncrementalBackupSizeInMegaBytes(value); return *this;}
+
 
     /**
      * <p>The number of megabytes that have been transferred to the snapshot
@@ -768,6 +792,7 @@ namespace Model
      */
     inline Snapshot& WithBackupProgressInMegaBytes(double value) { SetBackupProgressInMegaBytes(value); return *this;}
 
+
     /**
      * <p>The number of megabytes per second being transferred to the snapshot backup.
      * Returns <code>0</code> for a completed backup. </p>
@@ -785,6 +810,7 @@ namespace Model
      * Returns <code>0</code> for a completed backup. </p>
      */
     inline Snapshot& WithCurrentBackupRateInMegaBytesPerSecond(double value) { SetCurrentBackupRateInMegaBytesPerSecond(value); return *this;}
+
 
     /**
      * <p>The estimate of the time remaining before the snapshot backup will complete.
@@ -804,6 +830,7 @@ namespace Model
      */
     inline Snapshot& WithEstimatedSecondsToCompletion(long long value) { SetEstimatedSecondsToCompletion(value); return *this;}
 
+
     /**
      * <p>The amount of time an in-progress snapshot backup has been running, or the
      * amount of time it took a completed backup to finish.</p>
@@ -822,6 +849,7 @@ namespace Model
      */
     inline Snapshot& WithElapsedTimeInSeconds(long long value) { SetElapsedTimeInSeconds(value); return *this;}
 
+
     /**
      * <p>The source region from which the snapshot was copied.</p>
      */
@@ -835,7 +863,7 @@ namespace Model
     /**
      * <p>The source region from which the snapshot was copied.</p>
      */
-    inline void SetSourceRegion(Aws::String&& value) { m_sourceRegionHasBeenSet = true; m_sourceRegion = value; }
+    inline void SetSourceRegion(Aws::String&& value) { m_sourceRegionHasBeenSet = true; m_sourceRegion = std::move(value); }
 
     /**
      * <p>The source region from which the snapshot was copied.</p>
@@ -850,12 +878,13 @@ namespace Model
     /**
      * <p>The source region from which the snapshot was copied.</p>
      */
-    inline Snapshot& WithSourceRegion(Aws::String&& value) { SetSourceRegion(value); return *this;}
+    inline Snapshot& WithSourceRegion(Aws::String&& value) { SetSourceRegion(std::move(value)); return *this;}
 
     /**
      * <p>The source region from which the snapshot was copied.</p>
      */
     inline Snapshot& WithSourceRegion(const char* value) { SetSourceRegion(value); return *this;}
+
 
     /**
      * <p>The list of tags for the cluster snapshot.</p>
@@ -870,7 +899,7 @@ namespace Model
     /**
      * <p>The list of tags for the cluster snapshot.</p>
      */
-    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = std::move(value); }
 
     /**
      * <p>The list of tags for the cluster snapshot.</p>
@@ -880,7 +909,7 @@ namespace Model
     /**
      * <p>The list of tags for the cluster snapshot.</p>
      */
-    inline Snapshot& WithTags(Aws::Vector<Tag>&& value) { SetTags(value); return *this;}
+    inline Snapshot& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
      * <p>The list of tags for the cluster snapshot.</p>
@@ -890,7 +919,8 @@ namespace Model
     /**
      * <p>The list of tags for the cluster snapshot.</p>
      */
-    inline Snapshot& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
+    inline Snapshot& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The list of node types that this cluster snapshot is able to restore
@@ -908,7 +938,7 @@ namespace Model
      * <p>The list of node types that this cluster snapshot is able to restore
      * into.</p>
      */
-    inline void SetRestorableNodeTypes(Aws::Vector<Aws::String>&& value) { m_restorableNodeTypesHasBeenSet = true; m_restorableNodeTypes = value; }
+    inline void SetRestorableNodeTypes(Aws::Vector<Aws::String>&& value) { m_restorableNodeTypesHasBeenSet = true; m_restorableNodeTypes = std::move(value); }
 
     /**
      * <p>The list of node types that this cluster snapshot is able to restore
@@ -920,7 +950,7 @@ namespace Model
      * <p>The list of node types that this cluster snapshot is able to restore
      * into.</p>
      */
-    inline Snapshot& WithRestorableNodeTypes(Aws::Vector<Aws::String>&& value) { SetRestorableNodeTypes(value); return *this;}
+    inline Snapshot& WithRestorableNodeTypes(Aws::Vector<Aws::String>&& value) { SetRestorableNodeTypes(std::move(value)); return *this;}
 
     /**
      * <p>The list of node types that this cluster snapshot is able to restore
@@ -932,13 +962,14 @@ namespace Model
      * <p>The list of node types that this cluster snapshot is able to restore
      * into.</p>
      */
-    inline Snapshot& AddRestorableNodeTypes(Aws::String&& value) { m_restorableNodeTypesHasBeenSet = true; m_restorableNodeTypes.push_back(value); return *this; }
+    inline Snapshot& AddRestorableNodeTypes(Aws::String&& value) { m_restorableNodeTypesHasBeenSet = true; m_restorableNodeTypes.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The list of node types that this cluster snapshot is able to restore
      * into.</p>
      */
     inline Snapshot& AddRestorableNodeTypes(const char* value) { m_restorableNodeTypesHasBeenSet = true; m_restorableNodeTypes.push_back(value); return *this; }
+
 
     /**
      * <p>An option that specifies whether to create the cluster with enhanced VPC
@@ -974,62 +1005,91 @@ namespace Model
     inline Snapshot& WithEnhancedVpcRouting(bool value) { SetEnhancedVpcRouting(value); return *this;}
 
   private:
+
     Aws::String m_snapshotIdentifier;
     bool m_snapshotIdentifierHasBeenSet;
+
     Aws::String m_clusterIdentifier;
     bool m_clusterIdentifierHasBeenSet;
+
     Aws::Utils::DateTime m_snapshotCreateTime;
     bool m_snapshotCreateTimeHasBeenSet;
+
     Aws::String m_status;
     bool m_statusHasBeenSet;
+
     int m_port;
     bool m_portHasBeenSet;
+
     Aws::String m_availabilityZone;
     bool m_availabilityZoneHasBeenSet;
+
     Aws::Utils::DateTime m_clusterCreateTime;
     bool m_clusterCreateTimeHasBeenSet;
+
     Aws::String m_masterUsername;
     bool m_masterUsernameHasBeenSet;
+
     Aws::String m_clusterVersion;
     bool m_clusterVersionHasBeenSet;
+
     Aws::String m_snapshotType;
     bool m_snapshotTypeHasBeenSet;
+
     Aws::String m_nodeType;
     bool m_nodeTypeHasBeenSet;
+
     int m_numberOfNodes;
     bool m_numberOfNodesHasBeenSet;
+
     Aws::String m_dBName;
     bool m_dBNameHasBeenSet;
+
     Aws::String m_vpcId;
     bool m_vpcIdHasBeenSet;
+
     bool m_encrypted;
     bool m_encryptedHasBeenSet;
+
     Aws::String m_kmsKeyId;
     bool m_kmsKeyIdHasBeenSet;
+
     bool m_encryptedWithHSM;
     bool m_encryptedWithHSMHasBeenSet;
+
     Aws::Vector<AccountWithRestoreAccess> m_accountsWithRestoreAccess;
     bool m_accountsWithRestoreAccessHasBeenSet;
+
     Aws::String m_ownerAccount;
     bool m_ownerAccountHasBeenSet;
+
     double m_totalBackupSizeInMegaBytes;
     bool m_totalBackupSizeInMegaBytesHasBeenSet;
+
     double m_actualIncrementalBackupSizeInMegaBytes;
     bool m_actualIncrementalBackupSizeInMegaBytesHasBeenSet;
+
     double m_backupProgressInMegaBytes;
     bool m_backupProgressInMegaBytesHasBeenSet;
+
     double m_currentBackupRateInMegaBytesPerSecond;
     bool m_currentBackupRateInMegaBytesPerSecondHasBeenSet;
+
     long long m_estimatedSecondsToCompletion;
     bool m_estimatedSecondsToCompletionHasBeenSet;
+
     long long m_elapsedTimeInSeconds;
     bool m_elapsedTimeInSecondsHasBeenSet;
+
     Aws::String m_sourceRegion;
     bool m_sourceRegionHasBeenSet;
+
     Aws::Vector<Tag> m_tags;
     bool m_tagsHasBeenSet;
+
     Aws::Vector<Aws::String> m_restorableNodeTypes;
     bool m_restorableNodeTypesHasBeenSet;
+
     bool m_enhancedVpcRouting;
     bool m_enhancedVpcRoutingHasBeenSet;
   };

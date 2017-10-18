@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/xray/XRay_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/xray/model/Segment.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     Trace& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The unique identifier for the request that generated the trace's segments and
      * subsegments.</p>
@@ -62,7 +65,7 @@ namespace Model
      * <p>The unique identifier for the request that generated the trace's segments and
      * subsegments.</p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>The unique identifier for the request that generated the trace's segments and
@@ -80,13 +83,14 @@ namespace Model
      * <p>The unique identifier for the request that generated the trace's segments and
      * subsegments.</p>
      */
-    inline Trace& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline Trace& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The unique identifier for the request that generated the trace's segments and
      * subsegments.</p>
      */
     inline Trace& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>The length of time in seconds between the start time of the root segment and
@@ -106,6 +110,7 @@ namespace Model
      */
     inline Trace& WithDuration(double value) { SetDuration(value); return *this;}
 
+
     /**
      * <p>Segment documents for the segments and subsegments that comprise the
      * trace.</p>
@@ -122,7 +127,7 @@ namespace Model
      * <p>Segment documents for the segments and subsegments that comprise the
      * trace.</p>
      */
-    inline void SetSegments(Aws::Vector<Segment>&& value) { m_segmentsHasBeenSet = true; m_segments = value; }
+    inline void SetSegments(Aws::Vector<Segment>&& value) { m_segmentsHasBeenSet = true; m_segments = std::move(value); }
 
     /**
      * <p>Segment documents for the segments and subsegments that comprise the
@@ -134,7 +139,7 @@ namespace Model
      * <p>Segment documents for the segments and subsegments that comprise the
      * trace.</p>
      */
-    inline Trace& WithSegments(Aws::Vector<Segment>&& value) { SetSegments(value); return *this;}
+    inline Trace& WithSegments(Aws::Vector<Segment>&& value) { SetSegments(std::move(value)); return *this;}
 
     /**
      * <p>Segment documents for the segments and subsegments that comprise the
@@ -146,13 +151,16 @@ namespace Model
      * <p>Segment documents for the segments and subsegments that comprise the
      * trace.</p>
      */
-    inline Trace& AddSegments(Segment&& value) { m_segmentsHasBeenSet = true; m_segments.push_back(value); return *this; }
+    inline Trace& AddSegments(Segment&& value) { m_segmentsHasBeenSet = true; m_segments.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     double m_duration;
     bool m_durationHasBeenSet;
+
     Aws::Vector<Segment> m_segments;
     bool m_segmentsHasBeenSet;
   };

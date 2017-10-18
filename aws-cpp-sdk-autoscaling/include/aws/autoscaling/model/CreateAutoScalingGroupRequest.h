@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,15 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/autoscaling/AutoScaling_EXPORTS.h>
 #include <aws/autoscaling/AutoScalingRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <aws/autoscaling/model/LifecycleHookSpecification.h>
 #include <aws/autoscaling/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -27,16 +30,24 @@ namespace Model
 {
 
   /**
-   * <p>Contains the parameters for CreateAutoScalingGroup.</p><p><h3>See Also:</h3> 
-   * <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/autoscaling-2011-01-01/CreateAutoScalingGroupType">AWS
-   * API Reference</a></p>
    */
   class AWS_AUTOSCALING_API CreateAutoScalingGroupRequest : public AutoScalingRequest
   {
   public:
     CreateAutoScalingGroupRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateAutoScalingGroup"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The name of the group. This name must be unique within the scope of your AWS
@@ -54,7 +65,7 @@ namespace Model
      * <p>The name of the group. This name must be unique within the scope of your AWS
      * account.</p>
      */
-    inline void SetAutoScalingGroupName(Aws::String&& value) { m_autoScalingGroupNameHasBeenSet = true; m_autoScalingGroupName = value; }
+    inline void SetAutoScalingGroupName(Aws::String&& value) { m_autoScalingGroupNameHasBeenSet = true; m_autoScalingGroupName = std::move(value); }
 
     /**
      * <p>The name of the group. This name must be unique within the scope of your AWS
@@ -72,13 +83,14 @@ namespace Model
      * <p>The name of the group. This name must be unique within the scope of your AWS
      * account.</p>
      */
-    inline CreateAutoScalingGroupRequest& WithAutoScalingGroupName(Aws::String&& value) { SetAutoScalingGroupName(value); return *this;}
+    inline CreateAutoScalingGroupRequest& WithAutoScalingGroupName(Aws::String&& value) { SetAutoScalingGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the group. This name must be unique within the scope of your AWS
      * account.</p>
      */
     inline CreateAutoScalingGroupRequest& WithAutoScalingGroupName(const char* value) { SetAutoScalingGroupName(value); return *this;}
+
 
     /**
      * <p>The name of the launch configuration. Alternatively, specify an EC2 instance
@@ -96,7 +108,7 @@ namespace Model
      * <p>The name of the launch configuration. Alternatively, specify an EC2 instance
      * instead of a launch configuration.</p>
      */
-    inline void SetLaunchConfigurationName(Aws::String&& value) { m_launchConfigurationNameHasBeenSet = true; m_launchConfigurationName = value; }
+    inline void SetLaunchConfigurationName(Aws::String&& value) { m_launchConfigurationNameHasBeenSet = true; m_launchConfigurationName = std::move(value); }
 
     /**
      * <p>The name of the launch configuration. Alternatively, specify an EC2 instance
@@ -114,13 +126,14 @@ namespace Model
      * <p>The name of the launch configuration. Alternatively, specify an EC2 instance
      * instead of a launch configuration.</p>
      */
-    inline CreateAutoScalingGroupRequest& WithLaunchConfigurationName(Aws::String&& value) { SetLaunchConfigurationName(value); return *this;}
+    inline CreateAutoScalingGroupRequest& WithLaunchConfigurationName(Aws::String&& value) { SetLaunchConfigurationName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the launch configuration. Alternatively, specify an EC2 instance
      * instead of a launch configuration.</p>
      */
     inline CreateAutoScalingGroupRequest& WithLaunchConfigurationName(const char* value) { SetLaunchConfigurationName(value); return *this;}
+
 
     /**
      * <p>The ID of the instance used to create a launch configuration for the group.
@@ -159,7 +172,7 @@ namespace Model
      * an Auto Scaling Group Using an EC2 Instance</a> in the <i>Auto Scaling User
      * Guide</i>.</p>
      */
-    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = value; }
+    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = std::move(value); }
 
     /**
      * <p>The ID of the instance used to create a launch configuration for the group.
@@ -198,7 +211,7 @@ namespace Model
      * an Auto Scaling Group Using an EC2 Instance</a> in the <i>Auto Scaling User
      * Guide</i>.</p>
      */
-    inline CreateAutoScalingGroupRequest& WithInstanceId(Aws::String&& value) { SetInstanceId(value); return *this;}
+    inline CreateAutoScalingGroupRequest& WithInstanceId(Aws::String&& value) { SetInstanceId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the instance used to create a launch configuration for the group.
@@ -212,6 +225,7 @@ namespace Model
      * Guide</i>.</p>
      */
     inline CreateAutoScalingGroupRequest& WithInstanceId(const char* value) { SetInstanceId(value); return *this;}
+
 
     /**
      * <p>The minimum size of the group.</p>
@@ -228,6 +242,7 @@ namespace Model
      */
     inline CreateAutoScalingGroupRequest& WithMinSize(int value) { SetMinSize(value); return *this;}
 
+
     /**
      * <p>The maximum size of the group.</p>
      */
@@ -243,26 +258,31 @@ namespace Model
      */
     inline CreateAutoScalingGroupRequest& WithMaxSize(int value) { SetMaxSize(value); return *this;}
 
+
     /**
      * <p>The number of EC2 instances that should be running in the group. This number
      * must be greater than or equal to the minimum size of the group and less than or
-     * equal to the maximum size of the group.</p>
+     * equal to the maximum size of the group. If you do not specify a desired
+     * capacity, the default is the minimum size of the group.</p>
      */
     inline int GetDesiredCapacity() const{ return m_desiredCapacity; }
 
     /**
      * <p>The number of EC2 instances that should be running in the group. This number
      * must be greater than or equal to the minimum size of the group and less than or
-     * equal to the maximum size of the group.</p>
+     * equal to the maximum size of the group. If you do not specify a desired
+     * capacity, the default is the minimum size of the group.</p>
      */
     inline void SetDesiredCapacity(int value) { m_desiredCapacityHasBeenSet = true; m_desiredCapacity = value; }
 
     /**
      * <p>The number of EC2 instances that should be running in the group. This number
      * must be greater than or equal to the minimum size of the group and less than or
-     * equal to the maximum size of the group.</p>
+     * equal to the maximum size of the group. If you do not specify a desired
+     * capacity, the default is the minimum size of the group.</p>
      */
     inline CreateAutoScalingGroupRequest& WithDesiredCapacity(int value) { SetDesiredCapacity(value); return *this;}
+
 
     /**
      * <p>The amount of time, in seconds, after a scaling activity completes before
@@ -291,6 +311,7 @@ namespace Model
      */
     inline CreateAutoScalingGroupRequest& WithDefaultCooldown(int value) { SetDefaultCooldown(value); return *this;}
 
+
     /**
      * <p>One or more Availability Zones for the group. This parameter is optional if
      * you specify one or more subnets.</p>
@@ -307,7 +328,7 @@ namespace Model
      * <p>One or more Availability Zones for the group. This parameter is optional if
      * you specify one or more subnets.</p>
      */
-    inline void SetAvailabilityZones(Aws::Vector<Aws::String>&& value) { m_availabilityZonesHasBeenSet = true; m_availabilityZones = value; }
+    inline void SetAvailabilityZones(Aws::Vector<Aws::String>&& value) { m_availabilityZonesHasBeenSet = true; m_availabilityZones = std::move(value); }
 
     /**
      * <p>One or more Availability Zones for the group. This parameter is optional if
@@ -319,7 +340,7 @@ namespace Model
      * <p>One or more Availability Zones for the group. This parameter is optional if
      * you specify one or more subnets.</p>
      */
-    inline CreateAutoScalingGroupRequest& WithAvailabilityZones(Aws::Vector<Aws::String>&& value) { SetAvailabilityZones(value); return *this;}
+    inline CreateAutoScalingGroupRequest& WithAvailabilityZones(Aws::Vector<Aws::String>&& value) { SetAvailabilityZones(std::move(value)); return *this;}
 
     /**
      * <p>One or more Availability Zones for the group. This parameter is optional if
@@ -331,7 +352,7 @@ namespace Model
      * <p>One or more Availability Zones for the group. This parameter is optional if
      * you specify one or more subnets.</p>
      */
-    inline CreateAutoScalingGroupRequest& AddAvailabilityZones(Aws::String&& value) { m_availabilityZonesHasBeenSet = true; m_availabilityZones.push_back(value); return *this; }
+    inline CreateAutoScalingGroupRequest& AddAvailabilityZones(Aws::String&& value) { m_availabilityZonesHasBeenSet = true; m_availabilityZones.push_back(std::move(value)); return *this; }
 
     /**
      * <p>One or more Availability Zones for the group. This parameter is optional if
@@ -339,8 +360,9 @@ namespace Model
      */
     inline CreateAutoScalingGroupRequest& AddAvailabilityZones(const char* value) { m_availabilityZonesHasBeenSet = true; m_availabilityZones.push_back(value); return *this; }
 
+
     /**
-     * <p>One or more Classic load balancers. To specify an Application load balancer,
+     * <p>One or more Classic Load Balancers. To specify an Application Load Balancer,
      * use <code>TargetGroupARNs</code> instead.</p> <p>For more information, see <a
      * href="http://docs.aws.amazon.com/autoscaling/latest/userguide/create-asg-from-instance.html">Using
      * a Load Balancer With an Auto Scaling Group</a> in the <i>Auto Scaling User
@@ -349,7 +371,7 @@ namespace Model
     inline const Aws::Vector<Aws::String>& GetLoadBalancerNames() const{ return m_loadBalancerNames; }
 
     /**
-     * <p>One or more Classic load balancers. To specify an Application load balancer,
+     * <p>One or more Classic Load Balancers. To specify an Application Load Balancer,
      * use <code>TargetGroupARNs</code> instead.</p> <p>For more information, see <a
      * href="http://docs.aws.amazon.com/autoscaling/latest/userguide/create-asg-from-instance.html">Using
      * a Load Balancer With an Auto Scaling Group</a> in the <i>Auto Scaling User
@@ -358,16 +380,16 @@ namespace Model
     inline void SetLoadBalancerNames(const Aws::Vector<Aws::String>& value) { m_loadBalancerNamesHasBeenSet = true; m_loadBalancerNames = value; }
 
     /**
-     * <p>One or more Classic load balancers. To specify an Application load balancer,
+     * <p>One or more Classic Load Balancers. To specify an Application Load Balancer,
      * use <code>TargetGroupARNs</code> instead.</p> <p>For more information, see <a
      * href="http://docs.aws.amazon.com/autoscaling/latest/userguide/create-asg-from-instance.html">Using
      * a Load Balancer With an Auto Scaling Group</a> in the <i>Auto Scaling User
      * Guide</i>.</p>
      */
-    inline void SetLoadBalancerNames(Aws::Vector<Aws::String>&& value) { m_loadBalancerNamesHasBeenSet = true; m_loadBalancerNames = value; }
+    inline void SetLoadBalancerNames(Aws::Vector<Aws::String>&& value) { m_loadBalancerNamesHasBeenSet = true; m_loadBalancerNames = std::move(value); }
 
     /**
-     * <p>One or more Classic load balancers. To specify an Application load balancer,
+     * <p>One or more Classic Load Balancers. To specify an Application Load Balancer,
      * use <code>TargetGroupARNs</code> instead.</p> <p>For more information, see <a
      * href="http://docs.aws.amazon.com/autoscaling/latest/userguide/create-asg-from-instance.html">Using
      * a Load Balancer With an Auto Scaling Group</a> in the <i>Auto Scaling User
@@ -376,16 +398,16 @@ namespace Model
     inline CreateAutoScalingGroupRequest& WithLoadBalancerNames(const Aws::Vector<Aws::String>& value) { SetLoadBalancerNames(value); return *this;}
 
     /**
-     * <p>One or more Classic load balancers. To specify an Application load balancer,
+     * <p>One or more Classic Load Balancers. To specify an Application Load Balancer,
      * use <code>TargetGroupARNs</code> instead.</p> <p>For more information, see <a
      * href="http://docs.aws.amazon.com/autoscaling/latest/userguide/create-asg-from-instance.html">Using
      * a Load Balancer With an Auto Scaling Group</a> in the <i>Auto Scaling User
      * Guide</i>.</p>
      */
-    inline CreateAutoScalingGroupRequest& WithLoadBalancerNames(Aws::Vector<Aws::String>&& value) { SetLoadBalancerNames(value); return *this;}
+    inline CreateAutoScalingGroupRequest& WithLoadBalancerNames(Aws::Vector<Aws::String>&& value) { SetLoadBalancerNames(std::move(value)); return *this;}
 
     /**
-     * <p>One or more Classic load balancers. To specify an Application load balancer,
+     * <p>One or more Classic Load Balancers. To specify an Application Load Balancer,
      * use <code>TargetGroupARNs</code> instead.</p> <p>For more information, see <a
      * href="http://docs.aws.amazon.com/autoscaling/latest/userguide/create-asg-from-instance.html">Using
      * a Load Balancer With an Auto Scaling Group</a> in the <i>Auto Scaling User
@@ -394,22 +416,23 @@ namespace Model
     inline CreateAutoScalingGroupRequest& AddLoadBalancerNames(const Aws::String& value) { m_loadBalancerNamesHasBeenSet = true; m_loadBalancerNames.push_back(value); return *this; }
 
     /**
-     * <p>One or more Classic load balancers. To specify an Application load balancer,
+     * <p>One or more Classic Load Balancers. To specify an Application Load Balancer,
      * use <code>TargetGroupARNs</code> instead.</p> <p>For more information, see <a
      * href="http://docs.aws.amazon.com/autoscaling/latest/userguide/create-asg-from-instance.html">Using
      * a Load Balancer With an Auto Scaling Group</a> in the <i>Auto Scaling User
      * Guide</i>.</p>
      */
-    inline CreateAutoScalingGroupRequest& AddLoadBalancerNames(Aws::String&& value) { m_loadBalancerNamesHasBeenSet = true; m_loadBalancerNames.push_back(value); return *this; }
+    inline CreateAutoScalingGroupRequest& AddLoadBalancerNames(Aws::String&& value) { m_loadBalancerNamesHasBeenSet = true; m_loadBalancerNames.push_back(std::move(value)); return *this; }
 
     /**
-     * <p>One or more Classic load balancers. To specify an Application load balancer,
+     * <p>One or more Classic Load Balancers. To specify an Application Load Balancer,
      * use <code>TargetGroupARNs</code> instead.</p> <p>For more information, see <a
      * href="http://docs.aws.amazon.com/autoscaling/latest/userguide/create-asg-from-instance.html">Using
      * a Load Balancer With an Auto Scaling Group</a> in the <i>Auto Scaling User
      * Guide</i>.</p>
      */
     inline CreateAutoScalingGroupRequest& AddLoadBalancerNames(const char* value) { m_loadBalancerNamesHasBeenSet = true; m_loadBalancerNames.push_back(value); return *this; }
+
 
     /**
      * <p>The Amazon Resource Names (ARN) of the target groups.</p>
@@ -424,7 +447,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Names (ARN) of the target groups.</p>
      */
-    inline void SetTargetGroupARNs(Aws::Vector<Aws::String>&& value) { m_targetGroupARNsHasBeenSet = true; m_targetGroupARNs = value; }
+    inline void SetTargetGroupARNs(Aws::Vector<Aws::String>&& value) { m_targetGroupARNsHasBeenSet = true; m_targetGroupARNs = std::move(value); }
 
     /**
      * <p>The Amazon Resource Names (ARN) of the target groups.</p>
@@ -434,7 +457,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Names (ARN) of the target groups.</p>
      */
-    inline CreateAutoScalingGroupRequest& WithTargetGroupARNs(Aws::Vector<Aws::String>&& value) { SetTargetGroupARNs(value); return *this;}
+    inline CreateAutoScalingGroupRequest& WithTargetGroupARNs(Aws::Vector<Aws::String>&& value) { SetTargetGroupARNs(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Names (ARN) of the target groups.</p>
@@ -444,12 +467,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Names (ARN) of the target groups.</p>
      */
-    inline CreateAutoScalingGroupRequest& AddTargetGroupARNs(Aws::String&& value) { m_targetGroupARNsHasBeenSet = true; m_targetGroupARNs.push_back(value); return *this; }
+    inline CreateAutoScalingGroupRequest& AddTargetGroupARNs(Aws::String&& value) { m_targetGroupARNsHasBeenSet = true; m_targetGroupARNs.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The Amazon Resource Names (ARN) of the target groups.</p>
      */
     inline CreateAutoScalingGroupRequest& AddTargetGroupARNs(const char* value) { m_targetGroupARNsHasBeenSet = true; m_targetGroupARNs.push_back(value); return *this; }
+
 
     /**
      * <p>The service to use for the health checks. The valid values are
@@ -479,7 +503,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html">Health
      * Checks</a> in the <i>Auto Scaling User Guide</i>.</p>
      */
-    inline void SetHealthCheckType(Aws::String&& value) { m_healthCheckTypeHasBeenSet = true; m_healthCheckType = value; }
+    inline void SetHealthCheckType(Aws::String&& value) { m_healthCheckTypeHasBeenSet = true; m_healthCheckType = std::move(value); }
 
     /**
      * <p>The service to use for the health checks. The valid values are
@@ -509,7 +533,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html">Health
      * Checks</a> in the <i>Auto Scaling User Guide</i>.</p>
      */
-    inline CreateAutoScalingGroupRequest& WithHealthCheckType(Aws::String&& value) { SetHealthCheckType(value); return *this;}
+    inline CreateAutoScalingGroupRequest& WithHealthCheckType(Aws::String&& value) { SetHealthCheckType(std::move(value)); return *this;}
 
     /**
      * <p>The service to use for the health checks. The valid values are
@@ -520,6 +544,7 @@ namespace Model
      * Checks</a> in the <i>Auto Scaling User Guide</i>.</p>
      */
     inline CreateAutoScalingGroupRequest& WithHealthCheckType(const char* value) { SetHealthCheckType(value); return *this;}
+
 
     /**
      * <p>The amount of time, in seconds, that Auto Scaling waits before checking the
@@ -554,6 +579,7 @@ namespace Model
      */
     inline CreateAutoScalingGroupRequest& WithHealthCheckGracePeriod(int value) { SetHealthCheckGracePeriod(value); return *this;}
 
+
     /**
      * <p>The name of the placement group into which you'll launch your instances, if
      * any. For more information, see <a
@@ -576,7 +602,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
      * Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
      */
-    inline void SetPlacementGroup(Aws::String&& value) { m_placementGroupHasBeenSet = true; m_placementGroup = value; }
+    inline void SetPlacementGroup(Aws::String&& value) { m_placementGroupHasBeenSet = true; m_placementGroup = std::move(value); }
 
     /**
      * <p>The name of the placement group into which you'll launch your instances, if
@@ -600,7 +626,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
      * Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
      */
-    inline CreateAutoScalingGroupRequest& WithPlacementGroup(Aws::String&& value) { SetPlacementGroup(value); return *this;}
+    inline CreateAutoScalingGroupRequest& WithPlacementGroup(Aws::String&& value) { SetPlacementGroup(std::move(value)); return *this;}
 
     /**
      * <p>The name of the placement group into which you'll launch your instances, if
@@ -609,6 +635,7 @@ namespace Model
      * Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
      */
     inline CreateAutoScalingGroupRequest& WithPlacementGroup(const char* value) { SetPlacementGroup(value); return *this;}
+
 
     /**
      * <p>A comma-separated list of subnet identifiers for your virtual private cloud
@@ -638,7 +665,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html">Launching
      * Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling User Guide</i>.</p>
      */
-    inline void SetVPCZoneIdentifier(Aws::String&& value) { m_vPCZoneIdentifierHasBeenSet = true; m_vPCZoneIdentifier = value; }
+    inline void SetVPCZoneIdentifier(Aws::String&& value) { m_vPCZoneIdentifierHasBeenSet = true; m_vPCZoneIdentifier = std::move(value); }
 
     /**
      * <p>A comma-separated list of subnet identifiers for your virtual private cloud
@@ -668,7 +695,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/autoscaling/latest/userguide/asg-in-vpc.html">Launching
      * Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling User Guide</i>.</p>
      */
-    inline CreateAutoScalingGroupRequest& WithVPCZoneIdentifier(Aws::String&& value) { SetVPCZoneIdentifier(value); return *this;}
+    inline CreateAutoScalingGroupRequest& WithVPCZoneIdentifier(Aws::String&& value) { SetVPCZoneIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>A comma-separated list of subnet identifiers for your virtual private cloud
@@ -679,6 +706,7 @@ namespace Model
      * Auto Scaling Instances in a VPC</a> in the <i>Auto Scaling User Guide</i>.</p>
      */
     inline CreateAutoScalingGroupRequest& WithVPCZoneIdentifier(const char* value) { SetVPCZoneIdentifier(value); return *this;}
+
 
     /**
      * <p>One or more termination policies used to select the instance to terminate.
@@ -708,7 +736,7 @@ namespace Model
      * Which Instances Auto Scaling Terminates During Scale In</a> in the <i>Auto
      * Scaling User Guide</i>.</p>
      */
-    inline void SetTerminationPolicies(Aws::Vector<Aws::String>&& value) { m_terminationPoliciesHasBeenSet = true; m_terminationPolicies = value; }
+    inline void SetTerminationPolicies(Aws::Vector<Aws::String>&& value) { m_terminationPoliciesHasBeenSet = true; m_terminationPolicies = std::move(value); }
 
     /**
      * <p>One or more termination policies used to select the instance to terminate.
@@ -728,7 +756,7 @@ namespace Model
      * Which Instances Auto Scaling Terminates During Scale In</a> in the <i>Auto
      * Scaling User Guide</i>.</p>
      */
-    inline CreateAutoScalingGroupRequest& WithTerminationPolicies(Aws::Vector<Aws::String>&& value) { SetTerminationPolicies(value); return *this;}
+    inline CreateAutoScalingGroupRequest& WithTerminationPolicies(Aws::Vector<Aws::String>&& value) { SetTerminationPolicies(std::move(value)); return *this;}
 
     /**
      * <p>One or more termination policies used to select the instance to terminate.
@@ -748,7 +776,7 @@ namespace Model
      * Which Instances Auto Scaling Terminates During Scale In</a> in the <i>Auto
      * Scaling User Guide</i>.</p>
      */
-    inline CreateAutoScalingGroupRequest& AddTerminationPolicies(Aws::String&& value) { m_terminationPoliciesHasBeenSet = true; m_terminationPolicies.push_back(value); return *this; }
+    inline CreateAutoScalingGroupRequest& AddTerminationPolicies(Aws::String&& value) { m_terminationPoliciesHasBeenSet = true; m_terminationPolicies.push_back(std::move(value)); return *this; }
 
     /**
      * <p>One or more termination policies used to select the instance to terminate.
@@ -759,6 +787,7 @@ namespace Model
      * Scaling User Guide</i>.</p>
      */
     inline CreateAutoScalingGroupRequest& AddTerminationPolicies(const char* value) { m_terminationPoliciesHasBeenSet = true; m_terminationPolicies.push_back(value); return *this; }
+
 
     /**
      * <p>Indicates whether newly launched instances are protected from termination by
@@ -777,6 +806,43 @@ namespace Model
      * Auto Scaling when scaling in.</p>
      */
     inline CreateAutoScalingGroupRequest& WithNewInstancesProtectedFromScaleIn(bool value) { SetNewInstancesProtectedFromScaleIn(value); return *this;}
+
+
+    /**
+     * <p>One or more lifecycle hooks.</p>
+     */
+    inline const Aws::Vector<LifecycleHookSpecification>& GetLifecycleHookSpecificationList() const{ return m_lifecycleHookSpecificationList; }
+
+    /**
+     * <p>One or more lifecycle hooks.</p>
+     */
+    inline void SetLifecycleHookSpecificationList(const Aws::Vector<LifecycleHookSpecification>& value) { m_lifecycleHookSpecificationListHasBeenSet = true; m_lifecycleHookSpecificationList = value; }
+
+    /**
+     * <p>One or more lifecycle hooks.</p>
+     */
+    inline void SetLifecycleHookSpecificationList(Aws::Vector<LifecycleHookSpecification>&& value) { m_lifecycleHookSpecificationListHasBeenSet = true; m_lifecycleHookSpecificationList = std::move(value); }
+
+    /**
+     * <p>One or more lifecycle hooks.</p>
+     */
+    inline CreateAutoScalingGroupRequest& WithLifecycleHookSpecificationList(const Aws::Vector<LifecycleHookSpecification>& value) { SetLifecycleHookSpecificationList(value); return *this;}
+
+    /**
+     * <p>One or more lifecycle hooks.</p>
+     */
+    inline CreateAutoScalingGroupRequest& WithLifecycleHookSpecificationList(Aws::Vector<LifecycleHookSpecification>&& value) { SetLifecycleHookSpecificationList(std::move(value)); return *this;}
+
+    /**
+     * <p>One or more lifecycle hooks.</p>
+     */
+    inline CreateAutoScalingGroupRequest& AddLifecycleHookSpecificationList(const LifecycleHookSpecification& value) { m_lifecycleHookSpecificationListHasBeenSet = true; m_lifecycleHookSpecificationList.push_back(value); return *this; }
+
+    /**
+     * <p>One or more lifecycle hooks.</p>
+     */
+    inline CreateAutoScalingGroupRequest& AddLifecycleHookSpecificationList(LifecycleHookSpecification&& value) { m_lifecycleHookSpecificationListHasBeenSet = true; m_lifecycleHookSpecificationList.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>One or more tags.</p> <p>For more information, see <a
@@ -797,7 +863,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/autoscaling/latest/userguide/autoscaling-tagging.html">Tagging
      * Auto Scaling Groups and Instances</a> in the <i>Auto Scaling User Guide</i>.</p>
      */
-    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = std::move(value); }
 
     /**
      * <p>One or more tags.</p> <p>For more information, see <a
@@ -811,7 +877,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/autoscaling/latest/userguide/autoscaling-tagging.html">Tagging
      * Auto Scaling Groups and Instances</a> in the <i>Auto Scaling User Guide</i>.</p>
      */
-    inline CreateAutoScalingGroupRequest& WithTags(Aws::Vector<Tag>&& value) { SetTags(value); return *this;}
+    inline CreateAutoScalingGroupRequest& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
      * <p>One or more tags.</p> <p>For more information, see <a
@@ -825,41 +891,61 @@ namespace Model
      * href="http://docs.aws.amazon.com/autoscaling/latest/userguide/autoscaling-tagging.html">Tagging
      * Auto Scaling Groups and Instances</a> in the <i>Auto Scaling User Guide</i>.</p>
      */
-    inline CreateAutoScalingGroupRequest& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
+    inline CreateAutoScalingGroupRequest& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_autoScalingGroupName;
     bool m_autoScalingGroupNameHasBeenSet;
+
     Aws::String m_launchConfigurationName;
     bool m_launchConfigurationNameHasBeenSet;
+
     Aws::String m_instanceId;
     bool m_instanceIdHasBeenSet;
+
     int m_minSize;
     bool m_minSizeHasBeenSet;
+
     int m_maxSize;
     bool m_maxSizeHasBeenSet;
+
     int m_desiredCapacity;
     bool m_desiredCapacityHasBeenSet;
+
     int m_defaultCooldown;
     bool m_defaultCooldownHasBeenSet;
+
     Aws::Vector<Aws::String> m_availabilityZones;
     bool m_availabilityZonesHasBeenSet;
+
     Aws::Vector<Aws::String> m_loadBalancerNames;
     bool m_loadBalancerNamesHasBeenSet;
+
     Aws::Vector<Aws::String> m_targetGroupARNs;
     bool m_targetGroupARNsHasBeenSet;
+
     Aws::String m_healthCheckType;
     bool m_healthCheckTypeHasBeenSet;
+
     int m_healthCheckGracePeriod;
     bool m_healthCheckGracePeriodHasBeenSet;
+
     Aws::String m_placementGroup;
     bool m_placementGroupHasBeenSet;
+
     Aws::String m_vPCZoneIdentifier;
     bool m_vPCZoneIdentifierHasBeenSet;
+
     Aws::Vector<Aws::String> m_terminationPolicies;
     bool m_terminationPoliciesHasBeenSet;
+
     bool m_newInstancesProtectedFromScaleIn;
     bool m_newInstancesProtectedFromScaleInHasBeenSet;
+
+    Aws::Vector<LifecycleHookSpecification> m_lifecycleHookSpecificationList;
+    bool m_lifecycleHookSpecificationListHasBeenSet;
+
     Aws::Vector<Tag> m_tags;
     bool m_tagsHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/HostProperties.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,24 +31,24 @@ namespace Model
 {
 
 HostProperties::HostProperties() : 
-    m_sockets(0),
-    m_socketsHasBeenSet(false),
     m_cores(0),
     m_coresHasBeenSet(false),
+    m_instanceTypeHasBeenSet(false),
+    m_sockets(0),
+    m_socketsHasBeenSet(false),
     m_totalVCpus(0),
-    m_totalVCpusHasBeenSet(false),
-    m_instanceTypeHasBeenSet(false)
+    m_totalVCpusHasBeenSet(false)
 {
 }
 
 HostProperties::HostProperties(const XmlNode& xmlNode) : 
-    m_sockets(0),
-    m_socketsHasBeenSet(false),
     m_cores(0),
     m_coresHasBeenSet(false),
+    m_instanceTypeHasBeenSet(false),
+    m_sockets(0),
+    m_socketsHasBeenSet(false),
     m_totalVCpus(0),
-    m_totalVCpusHasBeenSet(false),
-    m_instanceTypeHasBeenSet(false)
+    m_totalVCpusHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -58,29 +59,29 @@ HostProperties& HostProperties::operator =(const XmlNode& xmlNode)
 
   if(!resultNode.IsNull())
   {
-    XmlNode socketsNode = resultNode.FirstChild("sockets");
-    if(!socketsNode.IsNull())
-    {
-      m_sockets = StringUtils::ConvertToInt32(StringUtils::Trim(socketsNode.GetText().c_str()).c_str());
-      m_socketsHasBeenSet = true;
-    }
     XmlNode coresNode = resultNode.FirstChild("cores");
     if(!coresNode.IsNull())
     {
       m_cores = StringUtils::ConvertToInt32(StringUtils::Trim(coresNode.GetText().c_str()).c_str());
       m_coresHasBeenSet = true;
     }
-    XmlNode totalVCpusNode = resultNode.FirstChild("totalVCpus");
-    if(!totalVCpusNode.IsNull())
-    {
-      m_totalVCpus = StringUtils::ConvertToInt32(StringUtils::Trim(totalVCpusNode.GetText().c_str()).c_str());
-      m_totalVCpusHasBeenSet = true;
-    }
     XmlNode instanceTypeNode = resultNode.FirstChild("instanceType");
     if(!instanceTypeNode.IsNull())
     {
       m_instanceType = StringUtils::Trim(instanceTypeNode.GetText().c_str());
       m_instanceTypeHasBeenSet = true;
+    }
+    XmlNode socketsNode = resultNode.FirstChild("sockets");
+    if(!socketsNode.IsNull())
+    {
+      m_sockets = StringUtils::ConvertToInt32(StringUtils::Trim(socketsNode.GetText().c_str()).c_str());
+      m_socketsHasBeenSet = true;
+    }
+    XmlNode totalVCpusNode = resultNode.FirstChild("totalVCpus");
+    if(!totalVCpusNode.IsNull())
+    {
+      m_totalVCpus = StringUtils::ConvertToInt32(StringUtils::Trim(totalVCpusNode.GetText().c_str()).c_str());
+      m_totalVCpusHasBeenSet = true;
     }
   }
 
@@ -89,19 +90,9 @@ HostProperties& HostProperties::operator =(const XmlNode& xmlNode)
 
 void HostProperties::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
-  if(m_socketsHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".Sockets=" << m_sockets << "&";
-  }
-
   if(m_coresHasBeenSet)
   {
       oStream << location << index << locationValue << ".Cores=" << m_cores << "&";
-  }
-
-  if(m_totalVCpusHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".TotalVCpus=" << m_totalVCpus << "&";
   }
 
   if(m_instanceTypeHasBeenSet)
@@ -109,25 +100,35 @@ void HostProperties::OutputToStream(Aws::OStream& oStream, const char* location,
       oStream << location << index << locationValue << ".InstanceType=" << StringUtils::URLEncode(m_instanceType.c_str()) << "&";
   }
 
+  if(m_socketsHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".Sockets=" << m_sockets << "&";
+  }
+
+  if(m_totalVCpusHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".TotalVCpus=" << m_totalVCpus << "&";
+  }
+
 }
 
 void HostProperties::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
-  if(m_socketsHasBeenSet)
-  {
-      oStream << location << ".Sockets=" << m_sockets << "&";
-  }
   if(m_coresHasBeenSet)
   {
       oStream << location << ".Cores=" << m_cores << "&";
   }
-  if(m_totalVCpusHasBeenSet)
-  {
-      oStream << location << ".TotalVCpus=" << m_totalVCpus << "&";
-  }
   if(m_instanceTypeHasBeenSet)
   {
       oStream << location << ".InstanceType=" << StringUtils::URLEncode(m_instanceType.c_str()) << "&";
+  }
+  if(m_socketsHasBeenSet)
+  {
+      oStream << location << ".Sockets=" << m_sockets << "&";
+  }
+  if(m_totalVCpusHasBeenSet)
+  {
+      oStream << location << ".TotalVCpus=" << m_totalVCpus << "&";
   }
 }
 

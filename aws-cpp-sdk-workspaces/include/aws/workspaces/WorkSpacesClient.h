@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/workspaces/WorkSpaces_EXPORTS.h>
 #include <aws/workspaces/WorkSpacesErrors.h>
@@ -155,22 +156,25 @@ namespace Model
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        WorkSpacesClient(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        WorkSpacesClient(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        WorkSpacesClient(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        WorkSpacesClient(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        WorkSpacesClient(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        WorkSpacesClient(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
         virtual ~WorkSpacesClient();
+
+        inline virtual const char* GetServiceClientName() const override { return "workspaces"; }
+
 
         /**
          * <p>Creates tags for a WorkSpace.</p><p><h3>See Also:</h3>   <a
@@ -439,7 +443,7 @@ namespace Model
         virtual void DescribeWorkspacesConnectionStatusAsync(const Model::DescribeWorkspacesConnectionStatusRequest& request, const DescribeWorkspacesConnectionStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Modifies the WorkSpace properties, including the RunningMode and AutoStop
+         * <p>Modifies the WorkSpace properties, including the running mode and AutoStop
          * time.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ModifyWorkspaceProperties">AWS
          * API Reference</a></p>
@@ -447,7 +451,7 @@ namespace Model
         virtual Model::ModifyWorkspacePropertiesOutcome ModifyWorkspaceProperties(const Model::ModifyWorkspacePropertiesRequest& request) const;
 
         /**
-         * <p>Modifies the WorkSpace properties, including the RunningMode and AutoStop
+         * <p>Modifies the WorkSpace properties, including the running mode and AutoStop
          * time.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ModifyWorkspaceProperties">AWS
          * API Reference</a></p>
@@ -457,7 +461,7 @@ namespace Model
         virtual Model::ModifyWorkspacePropertiesOutcomeCallable ModifyWorkspacePropertiesCallable(const Model::ModifyWorkspacePropertiesRequest& request) const;
 
         /**
-         * <p>Modifies the WorkSpace properties, including the RunningMode and AutoStop
+         * <p>Modifies the WorkSpace properties, including the running mode and AutoStop
          * time.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ModifyWorkspaceProperties">AWS
          * API Reference</a></p>
@@ -565,18 +569,16 @@ namespace Model
         virtual void RebuildWorkspacesAsync(const Model::RebuildWorkspacesRequest& request, const RebuildWorkspacesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Starts the specified WorkSpaces. The API only works with WorkSpaces that have
-         * RunningMode configured as AutoStop and the State set to “STOPPED.”</p><p><h3>See
-         * Also:</h3>   <a
+         * <p>Starts the specified WorkSpaces. The WorkSpaces must have a running mode of
+         * AutoStop and a state of STOPPED.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/StartWorkspaces">AWS
          * API Reference</a></p>
          */
         virtual Model::StartWorkspacesOutcome StartWorkspaces(const Model::StartWorkspacesRequest& request) const;
 
         /**
-         * <p>Starts the specified WorkSpaces. The API only works with WorkSpaces that have
-         * RunningMode configured as AutoStop and the State set to “STOPPED.”</p><p><h3>See
-         * Also:</h3>   <a
+         * <p>Starts the specified WorkSpaces. The WorkSpaces must have a running mode of
+         * AutoStop and a state of STOPPED.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/StartWorkspaces">AWS
          * API Reference</a></p>
          *
@@ -585,9 +587,8 @@ namespace Model
         virtual Model::StartWorkspacesOutcomeCallable StartWorkspacesCallable(const Model::StartWorkspacesRequest& request) const;
 
         /**
-         * <p>Starts the specified WorkSpaces. The API only works with WorkSpaces that have
-         * RunningMode configured as AutoStop and the State set to “STOPPED.”</p><p><h3>See
-         * Also:</h3>   <a
+         * <p>Starts the specified WorkSpaces. The WorkSpaces must have a running mode of
+         * AutoStop and a state of STOPPED.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/StartWorkspaces">AWS
          * API Reference</a></p>
          *
@@ -596,18 +597,18 @@ namespace Model
         virtual void StartWorkspacesAsync(const Model::StartWorkspacesRequest& request, const StartWorkspacesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p> Stops the specified WorkSpaces. The API only works with WorkSpaces that have
-         * RunningMode configured as AutoStop and the State set to AVAILABLE, IMPAIRED,
-         * UNHEALTHY, or ERROR.</p><p><h3>See Also:</h3>   <a
+         * <p> Stops the specified WorkSpaces. The WorkSpaces must have a running mode of
+         * AutoStop and a state of AVAILABLE, IMPAIRED, UNHEALTHY, or ERROR.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/StopWorkspaces">AWS
          * API Reference</a></p>
          */
         virtual Model::StopWorkspacesOutcome StopWorkspaces(const Model::StopWorkspacesRequest& request) const;
 
         /**
-         * <p> Stops the specified WorkSpaces. The API only works with WorkSpaces that have
-         * RunningMode configured as AutoStop and the State set to AVAILABLE, IMPAIRED,
-         * UNHEALTHY, or ERROR.</p><p><h3>See Also:</h3>   <a
+         * <p> Stops the specified WorkSpaces. The WorkSpaces must have a running mode of
+         * AutoStop and a state of AVAILABLE, IMPAIRED, UNHEALTHY, or ERROR.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/StopWorkspaces">AWS
          * API Reference</a></p>
          *
@@ -616,9 +617,9 @@ namespace Model
         virtual Model::StopWorkspacesOutcomeCallable StopWorkspacesCallable(const Model::StopWorkspacesRequest& request) const;
 
         /**
-         * <p> Stops the specified WorkSpaces. The API only works with WorkSpaces that have
-         * RunningMode configured as AutoStop and the State set to AVAILABLE, IMPAIRED,
-         * UNHEALTHY, or ERROR.</p><p><h3>See Also:</h3>   <a
+         * <p> Stops the specified WorkSpaces. The WorkSpaces must have a running mode of
+         * AutoStop and a state of AVAILABLE, IMPAIRED, UNHEALTHY, or ERROR.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/StopWorkspaces">AWS
          * API Reference</a></p>
          *
@@ -671,7 +672,7 @@ namespace Model
 
 
     private:
-      void init(const Client::ClientConfiguration& clientConfiguration);
+      void init(const Aws::Client::ClientConfiguration& clientConfiguration);
 
         /**Async helpers**/
         void CreateTagsAsyncHelper(const Model::CreateTagsRequest& request, const CreateTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -690,7 +691,7 @@ namespace Model
         void TerminateWorkspacesAsyncHelper(const Model::TerminateWorkspacesRequest& request, const TerminateWorkspacesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
       Aws::String m_uri;
-      std::shared_ptr<Utils::Threading::Executor> m_executor;
+      std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;
   };
 
 } // namespace WorkSpaces

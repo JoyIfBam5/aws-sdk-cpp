@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/CreateSnapshotResponse.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
@@ -27,41 +28,71 @@ using namespace Aws::Utils;
 using namespace Aws;
 
 CreateSnapshotResponse::CreateSnapshotResponse() : 
+    m_encrypted(false),
     m_state(SnapshotState::NOT_SET),
-    m_volumeSize(0),
-    m_encrypted(false)
+    m_volumeSize(0)
 {
 }
 
-CreateSnapshotResponse::CreateSnapshotResponse(const AmazonWebServiceResult<XmlDocument>& result) : 
+CreateSnapshotResponse::CreateSnapshotResponse(const Aws::AmazonWebServiceResult<XmlDocument>& result) : 
+    m_encrypted(false),
     m_state(SnapshotState::NOT_SET),
-    m_volumeSize(0),
-    m_encrypted(false)
+    m_volumeSize(0)
 {
   *this = result;
 }
 
-CreateSnapshotResponse& CreateSnapshotResponse::operator =(const AmazonWebServiceResult<XmlDocument>& result)
+CreateSnapshotResponse& CreateSnapshotResponse::operator =(const Aws::AmazonWebServiceResult<XmlDocument>& result)
 {
   const XmlDocument& xmlDocument = result.GetPayload();
   XmlNode rootNode = xmlDocument.GetRootElement();
   XmlNode resultNode = rootNode;
-  if (rootNode.GetName() != "CreateSnapshotResponse")
+  if (!rootNode.IsNull() && (rootNode.GetName() != "CreateSnapshotResponse"))
   {
     resultNode = rootNode.FirstChild("CreateSnapshotResponse");
   }
 
   if(!resultNode.IsNull())
   {
+    XmlNode dataEncryptionKeyIdNode = resultNode.FirstChild("dataEncryptionKeyId");
+    if(!dataEncryptionKeyIdNode.IsNull())
+    {
+      m_dataEncryptionKeyId = StringUtils::Trim(dataEncryptionKeyIdNode.GetText().c_str());
+    }
+    XmlNode descriptionNode = resultNode.FirstChild("description");
+    if(!descriptionNode.IsNull())
+    {
+      m_description = StringUtils::Trim(descriptionNode.GetText().c_str());
+    }
+    XmlNode encryptedNode = resultNode.FirstChild("encrypted");
+    if(!encryptedNode.IsNull())
+    {
+      m_encrypted = StringUtils::ConvertToBool(StringUtils::Trim(encryptedNode.GetText().c_str()).c_str());
+    }
+    XmlNode kmsKeyIdNode = resultNode.FirstChild("kmsKeyId");
+    if(!kmsKeyIdNode.IsNull())
+    {
+      m_kmsKeyId = StringUtils::Trim(kmsKeyIdNode.GetText().c_str());
+    }
+    XmlNode ownerIdNode = resultNode.FirstChild("ownerId");
+    if(!ownerIdNode.IsNull())
+    {
+      m_ownerId = StringUtils::Trim(ownerIdNode.GetText().c_str());
+    }
+    XmlNode progressNode = resultNode.FirstChild("progress");
+    if(!progressNode.IsNull())
+    {
+      m_progress = StringUtils::Trim(progressNode.GetText().c_str());
+    }
     XmlNode snapshotIdNode = resultNode.FirstChild("snapshotId");
     if(!snapshotIdNode.IsNull())
     {
       m_snapshotId = StringUtils::Trim(snapshotIdNode.GetText().c_str());
     }
-    XmlNode volumeIdNode = resultNode.FirstChild("volumeId");
-    if(!volumeIdNode.IsNull())
+    XmlNode startTimeNode = resultNode.FirstChild("startTime");
+    if(!startTimeNode.IsNull())
     {
-      m_volumeId = StringUtils::Trim(volumeIdNode.GetText().c_str());
+      m_startTime = DateTime(StringUtils::Trim(startTimeNode.GetText().c_str()).c_str(), DateFormat::ISO_8601);
     }
     XmlNode stateNode = resultNode.FirstChild("status");
     if(!stateNode.IsNull())
@@ -73,25 +104,10 @@ CreateSnapshotResponse& CreateSnapshotResponse::operator =(const AmazonWebServic
     {
       m_stateMessage = StringUtils::Trim(stateMessageNode.GetText().c_str());
     }
-    XmlNode startTimeNode = resultNode.FirstChild("startTime");
-    if(!startTimeNode.IsNull())
+    XmlNode volumeIdNode = resultNode.FirstChild("volumeId");
+    if(!volumeIdNode.IsNull())
     {
-      m_startTime = DateTime(StringUtils::Trim(startTimeNode.GetText().c_str()).c_str(), DateFormat::ISO_8601);
-    }
-    XmlNode progressNode = resultNode.FirstChild("progress");
-    if(!progressNode.IsNull())
-    {
-      m_progress = StringUtils::Trim(progressNode.GetText().c_str());
-    }
-    XmlNode ownerIdNode = resultNode.FirstChild("ownerId");
-    if(!ownerIdNode.IsNull())
-    {
-      m_ownerId = StringUtils::Trim(ownerIdNode.GetText().c_str());
-    }
-    XmlNode descriptionNode = resultNode.FirstChild("description");
-    if(!descriptionNode.IsNull())
-    {
-      m_description = StringUtils::Trim(descriptionNode.GetText().c_str());
+      m_volumeId = StringUtils::Trim(volumeIdNode.GetText().c_str());
     }
     XmlNode volumeSizeNode = resultNode.FirstChild("volumeSize");
     if(!volumeSizeNode.IsNull())
@@ -114,26 +130,12 @@ CreateSnapshotResponse& CreateSnapshotResponse::operator =(const AmazonWebServic
       }
 
     }
-    XmlNode encryptedNode = resultNode.FirstChild("encrypted");
-    if(!encryptedNode.IsNull())
-    {
-      m_encrypted = StringUtils::ConvertToBool(StringUtils::Trim(encryptedNode.GetText().c_str()).c_str());
-    }
-    XmlNode kmsKeyIdNode = resultNode.FirstChild("kmsKeyId");
-    if(!kmsKeyIdNode.IsNull())
-    {
-      m_kmsKeyId = StringUtils::Trim(kmsKeyIdNode.GetText().c_str());
-    }
-    XmlNode dataEncryptionKeyIdNode = resultNode.FirstChild("dataEncryptionKeyId");
-    if(!dataEncryptionKeyIdNode.IsNull())
-    {
-      m_dataEncryptionKeyId = StringUtils::Trim(dataEncryptionKeyIdNode.GetText().c_str());
-    }
   }
 
-  XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
-  m_responseMetadata = responseMetadataNode;
-  AWS_LOGSTREAM_DEBUG("Aws::EC2::Model::CreateSnapshotResponse", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
-
+  if (!rootNode.IsNull()) {
+    XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
+    m_responseMetadata = responseMetadataNode;
+    AWS_LOGSTREAM_DEBUG("Aws::EC2::Model::CreateSnapshotResponse", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
+  }
   return *this;
 }

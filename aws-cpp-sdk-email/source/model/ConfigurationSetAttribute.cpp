@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/email/model/ConfigurationSetAttribute.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -30,6 +31,7 @@ namespace Aws
       {
 
         static const int eventDestinations_HASH = HashingUtils::HashString("eventDestinations");
+        static const int trackingOptions_HASH = HashingUtils::HashString("trackingOptions");
 
 
         ConfigurationSetAttribute GetConfigurationSetAttributeForName(const Aws::String& name)
@@ -38,6 +40,10 @@ namespace Aws
           if (hashCode == eventDestinations_HASH)
           {
             return ConfigurationSetAttribute::eventDestinations;
+          }
+          else if (hashCode == trackingOptions_HASH)
+          {
+            return ConfigurationSetAttribute::trackingOptions;
           }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
@@ -55,6 +61,8 @@ namespace Aws
           {
           case ConfigurationSetAttribute::eventDestinations:
             return "eventDestinations";
+          case ConfigurationSetAttribute::trackingOptions:
+            return "trackingOptions";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

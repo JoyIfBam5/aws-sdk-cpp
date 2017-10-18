@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/cloudfront/model/DefaultCacheBehavior.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -45,7 +46,8 @@ DefaultCacheBehavior::DefaultCacheBehavior() :
     m_maxTTL(0),
     m_maxTTLHasBeenSet(false),
     m_compress(false),
-    m_compressHasBeenSet(false)
+    m_compressHasBeenSet(false),
+    m_lambdaFunctionAssociationsHasBeenSet(false)
 {
 }
 
@@ -65,7 +67,8 @@ DefaultCacheBehavior::DefaultCacheBehavior(const XmlNode& xmlNode) :
     m_maxTTL(0),
     m_maxTTLHasBeenSet(false),
     m_compress(false),
-    m_compressHasBeenSet(false)
+    m_compressHasBeenSet(false),
+    m_lambdaFunctionAssociationsHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -136,6 +139,12 @@ DefaultCacheBehavior& DefaultCacheBehavior::operator =(const XmlNode& xmlNode)
       m_compress = StringUtils::ConvertToBool(StringUtils::Trim(compressNode.GetText().c_str()).c_str());
       m_compressHasBeenSet = true;
     }
+    XmlNode lambdaFunctionAssociationsNode = resultNode.FirstChild("LambdaFunctionAssociations");
+    if(!lambdaFunctionAssociationsNode.IsNull())
+    {
+      m_lambdaFunctionAssociations = lambdaFunctionAssociationsNode;
+      m_lambdaFunctionAssociationsHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -171,9 +180,9 @@ void DefaultCacheBehavior::AddToNode(XmlNode& parentNode) const
   if(m_minTTLHasBeenSet)
   {
    XmlNode minTTLNode = parentNode.CreateChildElement("MinTTL");
-  ss << m_minTTL;
+   ss << m_minTTL;
    minTTLNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_allowedMethodsHasBeenSet)
@@ -185,33 +194,39 @@ void DefaultCacheBehavior::AddToNode(XmlNode& parentNode) const
   if(m_smoothStreamingHasBeenSet)
   {
    XmlNode smoothStreamingNode = parentNode.CreateChildElement("SmoothStreaming");
-  ss << m_smoothStreaming;
+   ss << std::boolalpha << m_smoothStreaming;
    smoothStreamingNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_defaultTTLHasBeenSet)
   {
    XmlNode defaultTTLNode = parentNode.CreateChildElement("DefaultTTL");
-  ss << m_defaultTTL;
+   ss << m_defaultTTL;
    defaultTTLNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_maxTTLHasBeenSet)
   {
    XmlNode maxTTLNode = parentNode.CreateChildElement("MaxTTL");
-  ss << m_maxTTL;
+   ss << m_maxTTL;
    maxTTLNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_compressHasBeenSet)
   {
    XmlNode compressNode = parentNode.CreateChildElement("Compress");
-  ss << m_compress;
+   ss << std::boolalpha << m_compress;
    compressNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
+  }
+
+  if(m_lambdaFunctionAssociationsHasBeenSet)
+  {
+   XmlNode lambdaFunctionAssociationsNode = parentNode.CreateChildElement("LambdaFunctionAssociations");
+   m_lambdaFunctionAssociations.AddToNode(lambdaFunctionAssociationsNode);
   }
 
 }

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/storagegateway/StorageGateway_EXPORTS.h>
 #include <aws/storagegateway/StorageGatewayRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,9 +35,17 @@ namespace Model
   {
   public:
     ListFileSharesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListFileShares"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The Amazon resource Name (ARN) of the gateway whose file shares you want to
@@ -56,7 +66,7 @@ namespace Model
      * list. If this field is not present, all file shares under your account are
      * listed.</p>
      */
-    inline void SetGatewayARN(Aws::String&& value) { m_gatewayARNHasBeenSet = true; m_gatewayARN = value; }
+    inline void SetGatewayARN(Aws::String&& value) { m_gatewayARNHasBeenSet = true; m_gatewayARN = std::move(value); }
 
     /**
      * <p>The Amazon resource Name (ARN) of the gateway whose file shares you want to
@@ -77,7 +87,7 @@ namespace Model
      * list. If this field is not present, all file shares under your account are
      * listed.</p>
      */
-    inline ListFileSharesRequest& WithGatewayARN(Aws::String&& value) { SetGatewayARN(value); return *this;}
+    inline ListFileSharesRequest& WithGatewayARN(Aws::String&& value) { SetGatewayARN(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon resource Name (ARN) of the gateway whose file shares you want to
@@ -85,6 +95,7 @@ namespace Model
      * listed.</p>
      */
     inline ListFileSharesRequest& WithGatewayARN(const char* value) { SetGatewayARN(value); return *this;}
+
 
     /**
      * <p>The maximum number of file shares to return in the response. The value must
@@ -103,6 +114,7 @@ namespace Model
      * be an integer with a value greater than zero. Optional.</p>
      */
     inline ListFileSharesRequest& WithLimit(int value) { SetLimit(value); return *this;}
+
 
     /**
      * <p>Opaque pagination token returned from a previous ListFileShares operation. If
@@ -123,7 +135,7 @@ namespace Model
      * present, <code>Marker</code> specifies where to continue the list from after a
      * previous call to ListFileShares. Optional.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p>Opaque pagination token returned from a previous ListFileShares operation. If
@@ -144,7 +156,7 @@ namespace Model
      * present, <code>Marker</code> specifies where to continue the list from after a
      * previous call to ListFileShares. Optional.</p>
      */
-    inline ListFileSharesRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline ListFileSharesRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>Opaque pagination token returned from a previous ListFileShares operation. If
@@ -154,10 +166,13 @@ namespace Model
     inline ListFileSharesRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
 
   private:
+
     Aws::String m_gatewayARN;
     bool m_gatewayARNHasBeenSet;
+
     int m_limit;
     bool m_limitHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
   };

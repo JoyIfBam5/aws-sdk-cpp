@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ssm/model/CreateMaintenanceWindowRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -23,6 +24,7 @@ using namespace Aws::Utils;
 
 CreateMaintenanceWindowRequest::CreateMaintenanceWindowRequest() : 
     m_nameHasBeenSet(false),
+    m_descriptionHasBeenSet(false),
     m_scheduleHasBeenSet(false),
     m_duration(0),
     m_durationHasBeenSet(false),
@@ -42,6 +44,12 @@ Aws::String CreateMaintenanceWindowRequest::SerializePayload() const
   if(m_nameHasBeenSet)
   {
    payload.WithString("Name", m_name);
+
+  }
+
+  if(m_descriptionHasBeenSet)
+  {
+   payload.WithString("Description", m_description);
 
   }
 
@@ -85,6 +93,7 @@ Aws::Http::HeaderValueCollection CreateMaintenanceWindowRequest::GetRequestSpeci
   return headers;
 
 }
+
 
 
 

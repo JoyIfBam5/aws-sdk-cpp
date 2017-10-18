@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@
 #include <thread>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/utils/crypto/Factories.h>
-
+#include <aws/core/http/URI.h>
 
 using namespace Aws;
 using namespace Aws::Client;
@@ -50,9 +50,26 @@ static const int SUCCESS_RESPONSE_MIN = 200;
 static const int SUCCESS_RESPONSE_MAX = 299;
 
 static const char* AWS_CLIENT_LOG_TAG = "AWSClient";
-static const std::chrono::minutes FOUR_MINUTES = std::chrono::minutes(4); 
+//4 Minutes
+static const std::chrono::milliseconds TIME_DIFF_MAX = std::chrono::minutes(4); 
+//-4 Minutes
+static const std::chrono::milliseconds TIME_DIFF_MIN = std::chrono::minutes(-4);
 
 std::atomic<int> AWSClient::s_refCount(0);
+
+static CoreErrors GuessBodylessErrorType(Aws::Http::HttpResponseCode responseCode)
+{
+    switch (responseCode)
+    {
+    case HttpResponseCode::FORBIDDEN:
+    case HttpResponseCode::UNAUTHORIZED:
+        return CoreErrors::ACCESS_DENIED;
+    case HttpResponseCode::NOT_FOUND:
+        return CoreErrors::RESOURCE_NOT_FOUND;
+    default:
+        return CoreErrors::UNKNOWN;
+    }    
+}
 
 void AWSClient::InitializeGlobalStatics()
 {
@@ -96,7 +113,26 @@ AWSClient::AWSClient(const Aws::Client::ClientConfiguration& configuration,
     const std::shared_ptr<Aws::Client::AWSAuthSigner>& signer,
     const std::shared_ptr<AWSErrorMarshaller>& errorMarshaller) :
     m_httpClient(CreateHttpClient(configuration)),
-    m_signer(signer),
+    m_errorMarshaller(errorMarshaller),
+    m_retryStrategy(configuration.retryStrategy),
+    m_writeRateLimiter(configuration.writeRateLimiter),
+    m_readRateLimiter(configuration.readRateLimiter),
+    m_userAgent(configuration.userAgent),
+    m_hash(Aws::Utils::Crypto::CreateMD5Implementation())
+{
+    if (signer) 
+    {
+        m_signerMap.emplace(signer->GetName(), signer);
+    }
+    m_signerMap.emplace(Aws::Auth::NULL_SIGNER, Aws::MakeShared<Aws::Client::AWSNullSigner>(AWS_CLIENT_LOG_TAG));
+    InitializeGlobalStatics();
+}
+
+AWSClient::AWSClient(const Aws::Client::ClientConfiguration& configuration,
+    const Aws::Map<Aws::String, std::shared_ptr<Aws::Client::AWSAuthSigner>>& signerMap,
+    const std::shared_ptr<AWSErrorMarshaller>& errorMarshaller) :
+    m_httpClient(CreateHttpClient(configuration)),
+    m_signerMap(signerMap),
     m_errorMarshaller(errorMarshaller),
     m_retryStrategy(configuration.retryStrategy),
     m_writeRateLimiter(configuration.writeRateLimiter),
@@ -106,6 +142,7 @@ AWSClient::AWSClient(const Aws::Client::ClientConfiguration& configuration,
 {
     InitializeGlobalStatics();
 }
+
 
 AWSClient::~AWSClient()
 {
@@ -122,69 +159,86 @@ void AWSClient::EnableRequestProcessing()
     m_httpClient->EnableRequestProcessing();
 }
 
-HttpResponseOutcome AWSClient::AttemptExhaustively(const Aws::String& uri,
+Aws::Client::AWSAuthSigner* AWSClient::GetSignerByName(const char* name) const
+{
+    auto iter = m_signerMap.find(name);
+    if (iter == m_signerMap.end()) 
+    {
+        AWS_LOGSTREAM_ERROR(AWS_CLIENT_LOG_TAG, "Request's signer: '" << name << "' is not found in the signer's map.");
+        assert(false);
+        return nullptr;
+    }
+    else
+    {
+        return iter->second.get();
+    }
+}
+
+HttpResponseOutcome AWSClient::AttemptExhaustively(const Aws::Http::URI& uri,
     const Aws::AmazonWebServiceRequest& request,
-    HttpMethod method) const
+    HttpMethod method,
+    const char* signerName) const
 {
     for (long retries = 0;; retries++)
     {
-        HttpResponseOutcome outcome = AttemptOneRequest(uri, request, method);
-        if (outcome.IsSuccess() || !m_retryStrategy->ShouldRetry(outcome.GetError(), retries))
+        HttpResponseOutcome outcome = AttemptOneRequest(uri, request, method, signerName);
+        if (outcome.IsSuccess())
         {
-            AWS_LOGSTREAM_TRACE(AWS_CLIENT_LOG_TAG, "Request was either successful, or we are now out of retries.");
+            AWS_LOGSTREAM_TRACE(AWS_CLIENT_LOG_TAG, "Request successful returning.");
             return outcome;
         }
-        else if(!m_httpClient->IsRequestProcessingEnabled())
+        else if (!m_httpClient->IsRequestProcessingEnabled())
         {
             AWS_LOGSTREAM_TRACE(AWS_CLIENT_LOG_TAG, "Request was cancelled externally.");
             return outcome;
         }
         else
         {
-            auto errorType = outcome.GetError().GetErrorType();
-            //detect clock skew and try to correct.
-            if (errorType == CoreErrors::REQUEST_TIME_TOO_SKEWED || errorType == CoreErrors::REQUEST_EXPIRED 
-                || errorType == CoreErrors::INVALID_SIGNATURE || errorType == CoreErrors::SIGNATURE_DOES_NOT_MATCH)
+            long sleepMillis = m_retryStrategy->CalculateDelayBeforeNextRetry(outcome.GetError(), retries);
+            auto signer = GetSignerByName(signerName);
+
+            //detect clock skew and try to correct.            
+            AWS_LOGSTREAM_WARN(AWS_CLIENT_LOG_TAG, "If the signature check failed. This could be because of a time skew. Attempting to adjust the signer.");
+            const Http::HeaderValueCollection& headers = outcome.GetError().GetResponseHeaders();
+            auto awsDateHeaderIter = headers.find(StringUtils::ToLower(Http::AWS_DATE_HEADER));
+            auto dateHeaderIter = headers.find(StringUtils::ToLower(Http::DATE_HEADER));
+
+            DateTime serverTime;
+            if (awsDateHeaderIter != headers.end())
             {
-                AWS_LOGSTREAM_WARN(AWS_CLIENT_LOG_TAG, "Signature check failed. This could be because of a time skew. Attempting to adjust the signer.");
-                const Http::HeaderValueCollection& headers = outcome.GetError().GetResponseHeaders();
-                auto awsDateHeaderIter = headers.find(StringUtils::ToLower(Http::AWS_DATE_HEADER));
-                auto dateHeaderIter = headers.find(StringUtils::ToLower(Http::DATE_HEADER));
-
-                DateTime serverTime;
-                if (awsDateHeaderIter != headers.end())
-                {
-                    serverTime = DateTime(awsDateHeaderIter->second.c_str(), DateFormat::RFC822);
-                }
-                else if (dateHeaderIter != headers.end())
-                {
-                    serverTime = DateTime(dateHeaderIter->second.c_str(), DateFormat::RFC822);
-                }
-                else
-                {
-                    AWS_LOGSTREAM_ERROR(AWS_CLIENT_LOG_TAG, "Clock Skew detected, but a date header was not found in the response.");
-                    return outcome;
-                }
-
-                AWS_LOGSTREAM_DEBUG(AWS_CLIENT_LOG_TAG, "Server time is " << serverTime.ToGmtString(DateFormat::RFC822) << ", while client time is " << DateTime::Now().ToGmtString(DateFormat::RFC822));
-                auto diff = DateTime::Diff(serverTime, m_signer->GetSigningTimestamp());
-                //only try again if clock skew was the cause of the error.
-                if(diff >= FOUR_MINUTES)
-                {
-                    AWS_LOGSTREAM_INFO(AWS_CLIENT_LOG_TAG, "Computed time difference as " << diff.count() << " milliseconds. This is more than 4 minutes. Adjusting signer with the skew.");
-                    m_signer->SetClockSkew(diff);
-                    auto newError = AWSError<CoreErrors>(
-                        outcome.GetError().GetErrorType(), outcome.GetError().GetExceptionName(), outcome.GetError().GetMessage(), true);
-                    newError.SetResponseHeaders(outcome.GetError().GetResponseHeaders());
-                    outcome = newError;
-                }
-                else
-                {
-                    return outcome;
-                }
+                serverTime = DateTime(awsDateHeaderIter->second.c_str(), DateFormat::AutoDetect);
+            }
+            else if (dateHeaderIter != headers.end())
+            {
+                serverTime = DateTime(dateHeaderIter->second.c_str(), DateFormat::AutoDetect);
             }
 
-            long sleepMillis = m_retryStrategy->CalculateDelayBeforeNextRetry(outcome.GetError(), retries);
+            const auto signingTimestamp = signer->GetSigningTimestamp();
+            if (!serverTime.WasParseSuccessful() || serverTime == DateTime())
+            {
+               AWS_LOGSTREAM_DEBUG(AWS_CLIENT_LOG_TAG, "Date header was not found in the response, can't attempt to detect clock skew");
+               serverTime = signingTimestamp;
+            }
+
+            AWS_LOGSTREAM_DEBUG(AWS_CLIENT_LOG_TAG, "Server time is " << serverTime.ToGmtString(DateFormat::RFC822) << ", while client time is " << DateTime::Now().ToGmtString(DateFormat::RFC822));
+            auto diff = DateTime::Diff(serverTime, signingTimestamp);
+            //only try again if clock skew was the cause of the error.
+            if(diff >= TIME_DIFF_MAX || diff <= TIME_DIFF_MIN)
+            {
+                diff = DateTime::Diff(serverTime, DateTime::Now());
+                AWS_LOGSTREAM_INFO(AWS_CLIENT_LOG_TAG, "Computed time difference as " << diff.count() << " milliseconds. Adjusting signer with the skew.");
+                signer->SetClockSkew(diff);
+                auto newError = AWSError<CoreErrors>(
+                        outcome.GetError().GetErrorType(), outcome.GetError().GetExceptionName(), outcome.GetError().GetMessage(), true);
+                newError.SetResponseHeaders(outcome.GetError().GetResponseHeaders());
+                newError.SetResponseCode(outcome.GetError().GetResponseCode());
+                outcome = newError;
+                //don't sleep at all if clock skew was the problem.
+                sleepMillis = 0;
+            }
+
+            if (!m_retryStrategy->ShouldRetry(outcome.GetError(), retries)) return outcome;
+
             AWS_LOGSTREAM_WARN(AWS_CLIENT_LOG_TAG, "Request failed, now waiting " << sleepMillis << " ms before attempting again.");
             if(request.GetBody())
             {
@@ -202,11 +256,11 @@ HttpResponseOutcome AWSClient::AttemptExhaustively(const Aws::String& uri,
     }
 }
 
-HttpResponseOutcome AWSClient::AttemptExhaustively(const Aws::String& uri, HttpMethod method) const
+HttpResponseOutcome AWSClient::AttemptExhaustively(const Aws::Http::URI& uri, HttpMethod method, const char* signerName, const char* requestName) const
 {
     for (long retries = 0;; retries++)
     {
-        HttpResponseOutcome outcome = AttemptOneRequest(uri, method);
+        HttpResponseOutcome outcome = AttemptOneRequest(uri, method, signerName, requestName);
         if (outcome.IsSuccess() || !m_retryStrategy->ShouldRetry(outcome.GetError(), retries))
         {
             return outcome;
@@ -228,68 +282,85 @@ static bool DoesResponseGenerateError(const std::shared_ptr<HttpResponse>& respo
 
 }
 
-
-HttpResponseOutcome AWSClient::AttemptOneRequest(const Aws::String& uri,
+HttpResponseOutcome AWSClient::AttemptOneRequest(const Aws::Http::URI& uri,
     const Aws::AmazonWebServiceRequest& request,
-    HttpMethod method) const
+    HttpMethod method,
+    const char* signerName) const
 {
     std::shared_ptr<HttpRequest> httpRequest(CreateHttpRequest(uri, method, request.GetResponseStreamFactory()));
     BuildHttpRequest(request, httpRequest);
-
-    if (!m_signer->SignRequest(*httpRequest))
+    auto signer = GetSignerByName(signerName);
+    if (!signer->SignRequest(*httpRequest, request.SignBody()))
     {
-        AWS_LOG_ERROR(AWS_CLIENT_LOG_TAG, "Request signing failed. Returning error.");
+        AWS_LOGSTREAM_ERROR(AWS_CLIENT_LOG_TAG, "Request signing failed. Returning error.");
         return HttpResponseOutcome(); // TODO: make a real error when error revamp reaches branch (SIGNING_ERROR)
     }
 
-    AWS_LOG_DEBUG(AWS_CLIENT_LOG_TAG, "Request Successfully signed");
+    AWS_LOGSTREAM_DEBUG(AWS_CLIENT_LOG_TAG, "Request Successfully signed");
     std::shared_ptr<HttpResponse> httpResponse(
         m_httpClient->MakeRequest(*httpRequest, m_readRateLimiter.get(), m_writeRateLimiter.get()));
 
     if (DoesResponseGenerateError(httpResponse))
     {
-        AWS_LOG_DEBUG(AWS_CLIENT_LOG_TAG, "Request returned error. Attempting to generate appropriate error codes from response");
+        AWS_LOGSTREAM_DEBUG(AWS_CLIENT_LOG_TAG, "Request returned error. Attempting to generate appropriate error codes from response");
         return HttpResponseOutcome(BuildAWSError(httpResponse));
     }
 
-    AWS_LOG_DEBUG(AWS_CLIENT_LOG_TAG, "Request returned successful response.");
+    AWS_LOGSTREAM_DEBUG(AWS_CLIENT_LOG_TAG, "Request returned successful response.");
 
     return HttpResponseOutcome(httpResponse);
 }
 
-HttpResponseOutcome AWSClient::AttemptOneRequest(const Aws::String& uri, HttpMethod method) const
+HttpResponseOutcome AWSClient::AttemptOneRequest(const Aws::Http::URI& uri, HttpMethod method, const char* signerName, const char* requestName) const
 {
+    AWS_UNREFERENCED_PARAM(requestName);
+
     std::shared_ptr<HttpRequest> httpRequest(CreateHttpRequest(uri, method, Aws::Utils::Stream::DefaultResponseStreamFactoryMethod));
-    
-    if (!m_signer->SignRequest(*httpRequest))
+    auto signer = GetSignerByName(signerName);
+    if (!signer->SignRequest(*httpRequest))
     {
-        AWS_LOG_ERROR(AWS_CLIENT_LOG_TAG, "Request signing failed. Returning error.");
+        AWS_LOGSTREAM_ERROR(AWS_CLIENT_LOG_TAG, "Request signing failed. Returning error.");
         return HttpResponseOutcome(); // TODO: make a real error when error revamp reaches branch (SIGNING_ERROR)
     }
 
     //user agent and headers like that shouldn't be signed for the sake of compatibility with proxies which MAY mutate that header.
     AddCommonHeaders(*httpRequest);
 
-    AWS_LOG_DEBUG(AWS_CLIENT_LOG_TAG, "Request Successfully signed");
+    AWS_LOGSTREAM_DEBUG(AWS_CLIENT_LOG_TAG, "Request Successfully signed");
     std::shared_ptr<HttpResponse> httpResponse(
         m_httpClient->MakeRequest(*httpRequest, m_readRateLimiter.get(), m_writeRateLimiter.get()));
 
     if (DoesResponseGenerateError(httpResponse))
     {
-        AWS_LOG_DEBUG(AWS_CLIENT_LOG_TAG, "Request returned error. Attempting to generate appropriate error codes from response");
+        AWS_LOGSTREAM_DEBUG(AWS_CLIENT_LOG_TAG, "Request returned error. Attempting to generate appropriate error codes from response");
         return HttpResponseOutcome(BuildAWSError(httpResponse));
     }
 
-    AWS_LOG_DEBUG(AWS_CLIENT_LOG_TAG, "Request returned successful response.");
+    AWS_LOGSTREAM_DEBUG(AWS_CLIENT_LOG_TAG, "Request returned successful response.");
 
     return HttpResponseOutcome(httpResponse);
 }
 
-StreamOutcome AWSClient::MakeRequestWithUnparsedResponse(const Aws::String& uri,
+StreamOutcome AWSClient::MakeRequestWithUnparsedResponse(const Aws::Http::URI& uri,
     const Aws::AmazonWebServiceRequest& request,
-    Http::HttpMethod method) const
+    Http::HttpMethod method,
+    const char* signerName) const
 {
-    HttpResponseOutcome httpResponseOutcome = AttemptExhaustively(uri, request, method);
+    HttpResponseOutcome httpResponseOutcome = AttemptExhaustively(uri, request, method, signerName);
+    if (httpResponseOutcome.IsSuccess())
+    {
+        return StreamOutcome(AmazonWebServiceResult<Stream::ResponseStream>(
+            httpResponseOutcome.GetResult()->SwapResponseStreamOwnership(),
+            httpResponseOutcome.GetResult()->GetHeaders(), httpResponseOutcome.GetResult()->GetResponseCode()));
+    }
+
+    return StreamOutcome(httpResponseOutcome.GetError());
+}
+
+StreamOutcome AWSClient::MakeRequestWithUnparsedResponse(const Aws::Http::URI& uri, Http::HttpMethod method, 
+        const char* signerName, const char* requestName) const
+{
+    HttpResponseOutcome httpResponseOutcome = AttemptExhaustively(uri, method, signerName, requestName);
     if (httpResponseOutcome.IsSuccess())
     {
         return StreamOutcome(AmazonWebServiceResult<Stream::ResponseStream>(
@@ -322,7 +393,7 @@ void AWSClient::AddContentBodyToRequest(const std::shared_ptr<Aws::Http::HttpReq
     //forbiden by the spec. If we start getting weird errors related to this, make sure it isn't caused by this removal.
     if (!body)
     {
-        AWS_LOG_TRACE(AWS_CLIENT_LOG_TAG, "No content body, content-length headers");
+        AWS_LOGSTREAM_TRACE(AWS_CLIENT_LOG_TAG, "No content body, content-length headers");
 
         if(httpRequest->GetMethod() == HttpMethod::HTTP_POST || httpRequest->GetMethod() == HttpMethod::HTTP_PUT)
         {        
@@ -338,7 +409,7 @@ void AWSClient::AddContentBodyToRequest(const std::shared_ptr<Aws::Http::HttpReq
     //has a content-length header set and we don't want to seek the stream just to find this information.
     if (body && !httpRequest->HasHeader(Http::CONTENT_LENGTH_HEADER))
     {
-        AWS_LOG_TRACE(AWS_CLIENT_LOG_TAG, "Found body, but content-length has not been set, attempting to compute content-length");
+        AWS_LOGSTREAM_TRACE(AWS_CLIENT_LOG_TAG, "Found body, but content-length has not been set, attempting to compute content-length");
         body->seekg(0, body->end);
         auto streamSize = body->tellg();
         body->seekg(0, body->beg);
@@ -350,7 +421,7 @@ void AWSClient::AddContentBodyToRequest(const std::shared_ptr<Aws::Http::HttpReq
     if (needsContentMd5 && body && !httpRequest->HasHeader(Http::CONTENT_MD5_HEADER))
     {
         AWS_LOGSTREAM_TRACE(AWS_CLIENT_LOG_TAG, "Found body, and content-md5 needs to be set" <<
-           ", attempting to compute content-md5");
+            ", attempting to compute content-md5");
 
         //changing the internal state of the hash computation is not a logical state
         //change as far as constness goes for this class. Due to the platform specificness
@@ -358,7 +429,7 @@ void AWSClient::AddContentBodyToRequest(const std::shared_ptr<Aws::Http::HttpReq
         //state on some platforms such as windows (but that isn't a concern of this class.
         auto md5HashResult = const_cast<AWSClient*>(this)->m_hash->Calculate(*body);
         body->clear();
-        if(md5HashResult.IsSuccess())
+        if (md5HashResult.IsSuccess())
         {
             httpRequest->SetHeaderValue(Http::CONTENT_MD5_HEADER, HashingUtils::Base64Encode(md5HashResult.GetResult()));
         }
@@ -388,7 +459,20 @@ void AWSClient::AddCommonHeaders(HttpRequest& httpRequest) const
 Aws::String AWSClient::GeneratePresignedUrl(URI& uri, HttpMethod method, long long expirationInSeconds)
 {
     std::shared_ptr<HttpRequest> request = CreateHttpRequest(uri, method, Aws::Utils::Stream::DefaultResponseStreamFactoryMethod);
-    if (m_signer->PresignRequest(*request, expirationInSeconds))
+    auto signer = GetSignerByName(Aws::Auth::SIGV4_SIGNER);
+    if (signer->PresignRequest(*request, expirationInSeconds))
+    {
+        return request->GetURIString();
+    }
+
+    return "";
+}
+
+Aws::String AWSClient::GeneratePresignedUrl(Aws::Http::URI& uri, Aws::Http::HttpMethod method, const char* region, const char* serviceName, long long expirationInSeconds) const
+{
+    std::shared_ptr<HttpRequest> request = CreateHttpRequest(uri, method, Aws::Utils::Stream::DefaultResponseStreamFactoryMethod);
+    auto signer = GetSignerByName(Aws::Auth::SIGV4_SIGNER);
+    if (signer->PresignRequest(*request, region, serviceName, expirationInSeconds))
     {
         return request->GetURIString();
     }
@@ -399,13 +483,71 @@ Aws::String AWSClient::GeneratePresignedUrl(URI& uri, HttpMethod method, long lo
 Aws::String AWSClient::GeneratePresignedUrl(URI& uri, HttpMethod method, const char* region, long long expirationInSeconds) const
 {
     std::shared_ptr<HttpRequest> request = CreateHttpRequest(uri, method, Aws::Utils::Stream::DefaultResponseStreamFactoryMethod);
-    if (m_signer->PresignRequest(*request, region, expirationInSeconds))
+    auto signer = GetSignerByName(Aws::Auth::SIGV4_SIGNER);
+    if (signer->PresignRequest(*request, region, expirationInSeconds))
     {
         return request->GetURIString();
     }
 
     return "";
 }
+
+Aws::String AWSClient::GeneratePresignedUrl(const Aws::AmazonWebServiceRequest& request, Aws::Http::URI& uri, Aws::Http::HttpMethod method, const char* region,
+    const Aws::Http::QueryStringParameterCollection& extraParams, long long expirationInSeconds) const
+{
+    std::shared_ptr<HttpRequest> httpRequest =
+        ConvertToRequestForPresigning(request, uri, method, extraParams);
+    auto signer = GetSignerByName(Aws::Auth::SIGV4_SIGNER);
+    if (signer->PresignRequest(*httpRequest, region, expirationInSeconds))
+    {
+        return httpRequest->GetURIString();
+    }
+
+    return "";
+}
+
+Aws::String AWSClient::GeneratePresignedUrl(const Aws::AmazonWebServiceRequest& request, Aws::Http::URI& uri, Aws::Http::HttpMethod method, const char* region, const char* serviceName,
+const Aws::Http::QueryStringParameterCollection& extraParams, long long expirationInSeconds) const
+{
+    std::shared_ptr<HttpRequest> httpRequest =
+        ConvertToRequestForPresigning(request, uri, method, extraParams);
+    auto signer = GetSignerByName(Aws::Auth::SIGV4_SIGNER);
+    if (signer->PresignRequest(*httpRequest, region, serviceName, expirationInSeconds))
+    {
+        return httpRequest->GetURIString();
+    }
+
+    return "";
+}
+
+Aws::String AWSClient::GeneratePresignedUrl(const Aws::AmazonWebServiceRequest& request, Aws::Http::URI& uri, Aws::Http::HttpMethod method,
+    const Aws::Http::QueryStringParameterCollection& extraParams, long long expirationInSeconds) const
+{
+    std::shared_ptr<HttpRequest> httpRequest =
+        ConvertToRequestForPresigning(request, uri, method, extraParams);
+    auto signer = GetSignerByName(Aws::Auth::SIGV4_SIGNER);
+    if (signer->PresignRequest(*httpRequest, expirationInSeconds))
+    {
+        return httpRequest->GetURIString();
+    }
+
+    return "";
+}
+
+std::shared_ptr<Aws::Http::HttpRequest> AWSClient::ConvertToRequestForPresigning(const Aws::AmazonWebServiceRequest& request, Aws::Http::URI& uri,
+    Aws::Http::HttpMethod method, const Aws::Http::QueryStringParameterCollection& extraParams) const
+{
+    request.PutToPresignedUrl(uri);
+    std::shared_ptr<HttpRequest> httpRequest = CreateHttpRequest(uri, method, Aws::Utils::Stream::DefaultResponseStreamFactoryMethod);
+    
+    for (auto& param : extraParams)
+    {
+        httpRequest->AddQueryStringParameter(param.first.c_str(), param.second);
+    }
+
+    return httpRequest;
+}
+
 
 ////////////////////////////////////////////////////////////////////////////
 AWSJsonClient::AWSJsonClient(const Aws::Client::ClientConfiguration& configuration,
@@ -415,11 +557,20 @@ AWSJsonClient::AWSJsonClient(const Aws::Client::ClientConfiguration& configurati
 {
 }
 
-JsonOutcome AWSJsonClient::MakeRequest(const Aws::String& uri,
-    const Aws::AmazonWebServiceRequest& request,
-    Http::HttpMethod method) const
+AWSJsonClient::AWSJsonClient(const Aws::Client::ClientConfiguration& configuration,
+    const Aws::Map<Aws::String, std::shared_ptr<Aws::Client::AWSAuthSigner>>& signerMap,
+    const std::shared_ptr<AWSErrorMarshaller>& errorMarshaller) :
+    BASECLASS(configuration, signerMap, errorMarshaller)
 {
-    HttpResponseOutcome httpOutcome(BASECLASS::AttemptExhaustively(uri, request, method));
+}
+
+
+JsonOutcome AWSJsonClient::MakeRequest(const Aws::Http::URI& uri,
+    const Aws::AmazonWebServiceRequest& request,
+    Http::HttpMethod method,
+    const char* signerName) const
+{
+    HttpResponseOutcome httpOutcome(BASECLASS::AttemptExhaustively(uri, request, method, signerName));
     if (!httpOutcome.IsSuccess())
     {
         return JsonOutcome(httpOutcome.GetError());
@@ -435,10 +586,12 @@ JsonOutcome AWSJsonClient::MakeRequest(const Aws::String& uri,
         return JsonOutcome(AmazonWebServiceResult<JsonValue>(JsonValue(), httpOutcome.GetResult()->GetHeaders()));
 }
 
-JsonOutcome AWSJsonClient::MakeRequest(const Aws::String& uri,
-    Http::HttpMethod method) const
+JsonOutcome AWSJsonClient::MakeRequest(const Aws::Http::URI& uri,
+    Http::HttpMethod method,
+    const char* signerName,
+    const char* requestName) const
 {
-    HttpResponseOutcome httpOutcome(BASECLASS::AttemptExhaustively(uri, method));
+    HttpResponseOutcome httpOutcome(BASECLASS::AttemptExhaustively(uri, method, signerName, requestName));
     if (!httpOutcome.IsSuccess())
     {
         return JsonOutcome(httpOutcome.GetError());
@@ -461,10 +614,14 @@ JsonOutcome AWSJsonClient::MakeRequest(const Aws::String& uri,
     return JsonOutcome(AmazonWebServiceResult<JsonValue>(JsonValue(), httpOutcome.GetResult()->GetHeaders()));
 }
 
-const char* MESSAGE_LOWER_CASE = "message";
-const char* MESSAGE_CAMEL_CASE = "Message";
-const char* ERROR_TYPE_HEADER = "x-amzn-ErrorType";
-const char* TYPE = "__type";
+
+static bool isRetryableHttpResponseCode(HttpResponseCode responseCode)
+{
+    return
+        responseCode == HttpResponseCode::INTERNAL_SERVER_ERROR ||
+        responseCode == HttpResponseCode::SERVICE_UNAVAILABLE ||
+        responseCode == HttpResponseCode::GATEWAY_TIMEOUT;
+}
 
 AWSError<CoreErrors> AWSJsonClient::BuildAWSError(
     const std::shared_ptr<Aws::Http::HttpResponse>& httpResponse) const
@@ -478,43 +635,28 @@ AWSError<CoreErrors> AWSJsonClient::BuildAWSError(
     
     else if (!httpResponse->GetResponseBody() || httpResponse->GetResponseBody().tellp() < 1)
     {
+        auto responseCode = httpResponse->GetResponseCode();
+        auto errorCode = GuessBodylessErrorType(responseCode);
+
         Aws::StringStream ss;
-        ss << "No response body.  Response code: " << static_cast< uint32_t >( httpResponse->GetResponseCode() );
-        AWS_LOG_ERROR(AWS_CLIENT_LOG_TAG, ss.str().c_str());
-        error = AWSError<CoreErrors>(CoreErrors::UNKNOWN, "", ss.str(), false);        
+        ss << "No response body. Response code: " << static_cast< uint32_t >(responseCode);
+        AWS_LOGSTREAM_ERROR(AWS_CLIENT_LOG_TAG, ss.str().c_str());
+        error = AWSError<CoreErrors>(errorCode, "", ss.str(),
+            isRetryableHttpResponseCode(responseCode));
     }
     else
     {
         assert(httpResponse->GetResponseCode() != HttpResponseCode::OK);
-
-        //this is stupid, but gcc doesn't pick up the covariant on the dereference so we have to give it a little hint.
-        JsonValue exceptionPayload(httpResponse->GetResponseBody());
-        AWS_LOGSTREAM_TRACE(AWS_CLIENT_LOG_TAG, "Error response is " << exceptionPayload.WriteReadable());
-
-        Aws::String message(exceptionPayload.ValueExists(MESSAGE_CAMEL_CASE) ? exceptionPayload.GetString(MESSAGE_CAMEL_CASE) :
-            exceptionPayload.ValueExists(MESSAGE_LOWER_CASE) ? exceptionPayload.GetString(MESSAGE_LOWER_CASE) : "");
-
-        if (httpResponse->HasHeader(ERROR_TYPE_HEADER))
-        {
-            error = GetErrorMarshaller()->Marshall(httpResponse->GetHeader(ERROR_TYPE_HEADER), message);            
-        }
-        else if (exceptionPayload.ValueExists(TYPE))
-        {
-            error = GetErrorMarshaller()->Marshall(exceptionPayload.GetString(TYPE), message);            
-        }
-        else
-        {
-            error = AWSError<CoreErrors>(CoreErrors::UNKNOWN, "", message, false);
-        }
+        error = GetErrorMarshaller()->Marshall(*httpResponse);
     }
 
     error.SetResponseHeaders(httpResponse->GetHeaders());
+    error.SetResponseCode(httpResponse->GetResponseCode());
 
     return error;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
-
 AWSXMLClient::AWSXMLClient(const Aws::Client::ClientConfiguration& configuration,
     const std::shared_ptr<Aws::Client::AWSAuthSigner>& signer,
     const std::shared_ptr<AWSErrorMarshaller>& errorMarshaller) :
@@ -522,11 +664,19 @@ AWSXMLClient::AWSXMLClient(const Aws::Client::ClientConfiguration& configuration
 {
 }
 
-XmlOutcome AWSXMLClient::MakeRequest(const Aws::String& uri,
-    const Aws::AmazonWebServiceRequest& request,
-    Http::HttpMethod method) const
+AWSXMLClient::AWSXMLClient(const Aws::Client::ClientConfiguration& configuration,
+    const Aws::Map<Aws::String, std::shared_ptr<Aws::Client::AWSAuthSigner>>& signerMap,
+    const std::shared_ptr<AWSErrorMarshaller>& errorMarshaller) :
+    BASECLASS(configuration, signerMap, errorMarshaller)
 {
-    HttpResponseOutcome httpOutcome(BASECLASS::AttemptExhaustively(uri, request, method));
+}
+
+XmlOutcome AWSXMLClient::MakeRequest(const Aws::Http::URI& uri,
+    const Aws::AmazonWebServiceRequest& request,
+    Http::HttpMethod method,
+    const char* signerName) const
+{
+    HttpResponseOutcome httpOutcome(BASECLASS::AttemptExhaustively(uri, request, method, signerName));
     if (!httpOutcome.IsSuccess())
     {
         return XmlOutcome(httpOutcome.GetError());
@@ -538,7 +688,7 @@ XmlOutcome AWSXMLClient::MakeRequest(const Aws::String& uri,
 
         if (!xmlDoc.WasParseSuccessful())
         {
-            AWS_LOG_ERROR(AWS_CLIENT_LOG_TAG, "Xml parsing for error failed with message %s", xmlDoc.GetErrorMessage().c_str());
+            AWS_LOGSTREAM_ERROR(AWS_CLIENT_LOG_TAG, "Xml parsing for error failed with message " << xmlDoc.GetErrorMessage().c_str());
             return AWSError<CoreErrors>(CoreErrors::UNKNOWN, "Xml Parse Error", xmlDoc.GetErrorMessage(), false);
         }
 
@@ -549,10 +699,12 @@ XmlOutcome AWSXMLClient::MakeRequest(const Aws::String& uri,
     return XmlOutcome(AmazonWebServiceResult<XmlDocument>(XmlDocument(), httpOutcome.GetResult()->GetHeaders()));
 }
 
-XmlOutcome AWSXMLClient::MakeRequest(const Aws::String& uri,
-    Http::HttpMethod method) const
+XmlOutcome AWSXMLClient::MakeRequest(const Aws::Http::URI& uri,
+    Http::HttpMethod method,
+    const char* signerName,
+    const char* requestName) const
 {
-    HttpResponseOutcome httpOutcome(BASECLASS::AttemptExhaustively(uri, method));
+    HttpResponseOutcome httpOutcome(BASECLASS::AttemptExhaustively(uri, method, signerName, requestName));
     if (!httpOutcome.IsSuccess())
     {
         return XmlOutcome(httpOutcome.GetError());
@@ -579,10 +731,14 @@ AWSError<CoreErrors> AWSXMLClient::BuildAWSError(const std::shared_ptr<Http::Htt
 
     if (httpResponse->GetResponseBody().tellp() < 1)
     {
+        auto responseCode = httpResponse->GetResponseCode();
+        auto errorCode = GuessBodylessErrorType(responseCode);
+
         Aws::StringStream ss;
-        ss << "No response body.  Response code: " << static_cast< uint32_t >( httpResponse->GetResponseCode() );
-        AWS_LOG_ERROR(AWS_CLIENT_LOG_TAG, ss.str().c_str());
-        error = AWSError<CoreErrors>(CoreErrors::UNKNOWN, "", ss.str(), false);
+        ss << "No response body. Response code: " << static_cast< uint32_t >(responseCode);
+        AWS_LOGSTREAM_ERROR(AWS_CLIENT_LOG_TAG, ss.str().c_str());
+        error = AWSError<CoreErrors>(errorCode, "", ss.str(),
+            isRetryableHttpResponseCode(responseCode));
     }
     else
     {
@@ -596,49 +752,10 @@ AWSError<CoreErrors> AWSXMLClient::BuildAWSError(const std::shared_ptr<Http::Htt
             httpResponse->GetResponseBody().seekg(0);
         }
 
-        XmlDocument doc = XmlDocument::CreateFromXmlStream(httpResponse->GetResponseBody());
-        AWS_LOGSTREAM_TRACE(AWS_CLIENT_LOG_TAG, "Error response is " << doc.ConvertToString());
-        bool errorParsed = false;
-        if (doc.WasParseSuccessful())
-        {
-            XmlNode errorNode = doc.GetRootElement();
-            if (errorNode.GetName() != "Error")
-            {
-                errorNode = doc.GetRootElement().FirstChild("Error");
-            }
-            if (errorNode.IsNull())
-            {
-                errorNode = doc.GetRootElement().FirstChild("Errors");
-                if(!errorNode.IsNull())
-                {
-                    errorNode = errorNode.FirstChild("Error");
-                }
-            }
-
-            if (!errorNode.IsNull())
-            {
-                XmlNode codeNode = errorNode.FirstChild("Code");
-                XmlNode messageNode = errorNode.FirstChild("Message");
-
-                if (!codeNode.IsNull())
-                {
-                    error = GetErrorMarshaller()->Marshall(StringUtils::Trim(codeNode.GetText().c_str()),
-                        StringUtils::Trim(messageNode.GetText().c_str()));
-                    errorParsed = true;
-                }
-            }
-        }
-
-        if(!errorParsed)
-        {
-            // An error occurred attempting to parse the httpResponse as an XML stream, so we're just
-            // going to dump the XML parsing error and the http response code as a string
-            Aws::StringStream ss;
-            ss << "Unable to generate a proper httpResponse from the response stream.   Response code: " << static_cast< uint32_t >( httpResponse->GetResponseCode() );
-            error = GetErrorMarshaller()->Marshall(StringUtils::Trim(doc.GetErrorMessage().c_str()), ss.str().c_str());
-        }
+        error = GetErrorMarshaller()->Marshall(*httpResponse);
     }
 
     error.SetResponseHeaders(httpResponse->GetHeaders());
+    error.SetResponseCode(httpResponse->GetResponseCode());
     return error;
 }

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lambda/Lambda_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     VpcConfigResponse& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>A list of subnet IDs associated with the Lambda function.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>A list of subnet IDs associated with the Lambda function.</p>
      */
-    inline void SetSubnetIds(Aws::Vector<Aws::String>&& value) { m_subnetIdsHasBeenSet = true; m_subnetIds = value; }
+    inline void SetSubnetIds(Aws::Vector<Aws::String>&& value) { m_subnetIdsHasBeenSet = true; m_subnetIds = std::move(value); }
 
     /**
      * <p>A list of subnet IDs associated with the Lambda function.</p>
@@ -68,7 +71,7 @@ namespace Model
     /**
      * <p>A list of subnet IDs associated with the Lambda function.</p>
      */
-    inline VpcConfigResponse& WithSubnetIds(Aws::Vector<Aws::String>&& value) { SetSubnetIds(value); return *this;}
+    inline VpcConfigResponse& WithSubnetIds(Aws::Vector<Aws::String>&& value) { SetSubnetIds(std::move(value)); return *this;}
 
     /**
      * <p>A list of subnet IDs associated with the Lambda function.</p>
@@ -78,12 +81,13 @@ namespace Model
     /**
      * <p>A list of subnet IDs associated with the Lambda function.</p>
      */
-    inline VpcConfigResponse& AddSubnetIds(Aws::String&& value) { m_subnetIdsHasBeenSet = true; m_subnetIds.push_back(value); return *this; }
+    inline VpcConfigResponse& AddSubnetIds(Aws::String&& value) { m_subnetIdsHasBeenSet = true; m_subnetIds.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of subnet IDs associated with the Lambda function.</p>
      */
     inline VpcConfigResponse& AddSubnetIds(const char* value) { m_subnetIdsHasBeenSet = true; m_subnetIds.push_back(value); return *this; }
+
 
     /**
      * <p>A list of security group IDs associated with the Lambda function.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>A list of security group IDs associated with the Lambda function.</p>
      */
-    inline void SetSecurityGroupIds(Aws::Vector<Aws::String>&& value) { m_securityGroupIdsHasBeenSet = true; m_securityGroupIds = value; }
+    inline void SetSecurityGroupIds(Aws::Vector<Aws::String>&& value) { m_securityGroupIdsHasBeenSet = true; m_securityGroupIds = std::move(value); }
 
     /**
      * <p>A list of security group IDs associated with the Lambda function.</p>
@@ -108,7 +112,7 @@ namespace Model
     /**
      * <p>A list of security group IDs associated with the Lambda function.</p>
      */
-    inline VpcConfigResponse& WithSecurityGroupIds(Aws::Vector<Aws::String>&& value) { SetSecurityGroupIds(value); return *this;}
+    inline VpcConfigResponse& WithSecurityGroupIds(Aws::Vector<Aws::String>&& value) { SetSecurityGroupIds(std::move(value)); return *this;}
 
     /**
      * <p>A list of security group IDs associated with the Lambda function.</p>
@@ -118,12 +122,13 @@ namespace Model
     /**
      * <p>A list of security group IDs associated with the Lambda function.</p>
      */
-    inline VpcConfigResponse& AddSecurityGroupIds(Aws::String&& value) { m_securityGroupIdsHasBeenSet = true; m_securityGroupIds.push_back(value); return *this; }
+    inline VpcConfigResponse& AddSecurityGroupIds(Aws::String&& value) { m_securityGroupIdsHasBeenSet = true; m_securityGroupIds.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of security group IDs associated with the Lambda function.</p>
      */
     inline VpcConfigResponse& AddSecurityGroupIds(const char* value) { m_securityGroupIdsHasBeenSet = true; m_securityGroupIds.push_back(value); return *this; }
+
 
     /**
      * <p>The VPC ID associated with you Lambda function.</p>
@@ -138,7 +143,7 @@ namespace Model
     /**
      * <p>The VPC ID associated with you Lambda function.</p>
      */
-    inline void SetVpcId(Aws::String&& value) { m_vpcIdHasBeenSet = true; m_vpcId = value; }
+    inline void SetVpcId(Aws::String&& value) { m_vpcIdHasBeenSet = true; m_vpcId = std::move(value); }
 
     /**
      * <p>The VPC ID associated with you Lambda function.</p>
@@ -153,7 +158,7 @@ namespace Model
     /**
      * <p>The VPC ID associated with you Lambda function.</p>
      */
-    inline VpcConfigResponse& WithVpcId(Aws::String&& value) { SetVpcId(value); return *this;}
+    inline VpcConfigResponse& WithVpcId(Aws::String&& value) { SetVpcId(std::move(value)); return *this;}
 
     /**
      * <p>The VPC ID associated with you Lambda function.</p>
@@ -161,10 +166,13 @@ namespace Model
     inline VpcConfigResponse& WithVpcId(const char* value) { SetVpcId(value); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_subnetIds;
     bool m_subnetIdsHasBeenSet;
+
     Aws::Vector<Aws::String> m_securityGroupIds;
     bool m_securityGroupIdsHasBeenSet;
+
     Aws::String m_vpcId;
     bool m_vpcIdHasBeenSet;
   };

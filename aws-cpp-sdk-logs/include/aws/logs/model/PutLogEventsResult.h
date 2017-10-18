@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/logs/CloudWatchLogs_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/logs/model/RejectedLogEventsInfo.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     PutLogEventsResult();
-    PutLogEventsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    PutLogEventsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PutLogEventsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PutLogEventsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The next sequence token.</p>
@@ -53,7 +56,7 @@ namespace Model
     /**
      * <p>The next sequence token.</p>
      */
-    inline void SetNextSequenceToken(Aws::String&& value) { m_nextSequenceToken = value; }
+    inline void SetNextSequenceToken(Aws::String&& value) { m_nextSequenceToken = std::move(value); }
 
     /**
      * <p>The next sequence token.</p>
@@ -68,12 +71,13 @@ namespace Model
     /**
      * <p>The next sequence token.</p>
      */
-    inline PutLogEventsResult& WithNextSequenceToken(Aws::String&& value) { SetNextSequenceToken(value); return *this;}
+    inline PutLogEventsResult& WithNextSequenceToken(Aws::String&& value) { SetNextSequenceToken(std::move(value)); return *this;}
 
     /**
      * <p>The next sequence token.</p>
      */
     inline PutLogEventsResult& WithNextSequenceToken(const char* value) { SetNextSequenceToken(value); return *this;}
+
 
     /**
      * <p>The rejected events.</p>
@@ -88,7 +92,7 @@ namespace Model
     /**
      * <p>The rejected events.</p>
      */
-    inline void SetRejectedLogEventsInfo(RejectedLogEventsInfo&& value) { m_rejectedLogEventsInfo = value; }
+    inline void SetRejectedLogEventsInfo(RejectedLogEventsInfo&& value) { m_rejectedLogEventsInfo = std::move(value); }
 
     /**
      * <p>The rejected events.</p>
@@ -98,10 +102,12 @@ namespace Model
     /**
      * <p>The rejected events.</p>
      */
-    inline PutLogEventsResult& WithRejectedLogEventsInfo(RejectedLogEventsInfo&& value) { SetRejectedLogEventsInfo(value); return *this;}
+    inline PutLogEventsResult& WithRejectedLogEventsInfo(RejectedLogEventsInfo&& value) { SetRejectedLogEventsInfo(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_nextSequenceToken;
+
     RejectedLogEventsInfo m_rejectedLogEventsInfo;
   };
 

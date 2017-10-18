@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rekognition/Rekognition_EXPORTS.h>
 #include <aws/rekognition/model/GenderType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     Gender& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Gender of the face.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>Gender of the face.</p>
      */
-    inline void SetValue(GenderType&& value) { m_valueHasBeenSet = true; m_value = value; }
+    inline void SetValue(GenderType&& value) { m_valueHasBeenSet = true; m_value = std::move(value); }
 
     /**
      * <p>Gender of the face.</p>
@@ -67,7 +70,8 @@ namespace Model
     /**
      * <p>Gender of the face.</p>
      */
-    inline Gender& WithValue(GenderType&& value) { SetValue(value); return *this;}
+    inline Gender& WithValue(GenderType&& value) { SetValue(std::move(value)); return *this;}
+
 
     /**
      * <p>Level of confidence in the determination.</p>
@@ -85,8 +89,10 @@ namespace Model
     inline Gender& WithConfidence(double value) { SetConfidence(value); return *this;}
 
   private:
+
     GenderType m_value;
     bool m_valueHasBeenSet;
+
     double m_confidence;
     bool m_confidenceHasBeenSet;
   };

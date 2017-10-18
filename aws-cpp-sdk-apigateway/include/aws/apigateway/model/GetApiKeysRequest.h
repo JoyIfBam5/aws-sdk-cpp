@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/apigateway/APIGatewayRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,66 +40,69 @@ namespace Model
   {
   public:
     GetApiKeysRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "GetApiKeys"; }
+
     Aws::String SerializePayload() const override;
 
     void AddQueryStringParameters(Aws::Http::URI& uri) const override;
 
+
     /**
-     * <p>The position of the current <a>ApiKeys</a> resource to get information
-     * about.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
     inline const Aws::String& GetPosition() const{ return m_position; }
 
     /**
-     * <p>The position of the current <a>ApiKeys</a> resource to get information
-     * about.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
     inline void SetPosition(const Aws::String& value) { m_positionHasBeenSet = true; m_position = value; }
 
     /**
-     * <p>The position of the current <a>ApiKeys</a> resource to get information
-     * about.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
-    inline void SetPosition(Aws::String&& value) { m_positionHasBeenSet = true; m_position = value; }
+    inline void SetPosition(Aws::String&& value) { m_positionHasBeenSet = true; m_position = std::move(value); }
 
     /**
-     * <p>The position of the current <a>ApiKeys</a> resource to get information
-     * about.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
     inline void SetPosition(const char* value) { m_positionHasBeenSet = true; m_position.assign(value); }
 
     /**
-     * <p>The position of the current <a>ApiKeys</a> resource to get information
-     * about.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
     inline GetApiKeysRequest& WithPosition(const Aws::String& value) { SetPosition(value); return *this;}
 
     /**
-     * <p>The position of the current <a>ApiKeys</a> resource to get information
-     * about.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
-    inline GetApiKeysRequest& WithPosition(Aws::String&& value) { SetPosition(value); return *this;}
+    inline GetApiKeysRequest& WithPosition(Aws::String&& value) { SetPosition(std::move(value)); return *this;}
 
     /**
-     * <p>The position of the current <a>ApiKeys</a> resource to get information
-     * about.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
     inline GetApiKeysRequest& WithPosition(const char* value) { SetPosition(value); return *this;}
 
+
     /**
-     * <p>The maximum number of <a>ApiKeys</a> to get information about.</p>
+     * <p>The maximum number of returned results per page.</p>
      */
     inline int GetLimit() const{ return m_limit; }
 
     /**
-     * <p>The maximum number of <a>ApiKeys</a> to get information about.</p>
+     * <p>The maximum number of returned results per page.</p>
      */
     inline void SetLimit(int value) { m_limitHasBeenSet = true; m_limit = value; }
 
     /**
-     * <p>The maximum number of <a>ApiKeys</a> to get information about.</p>
+     * <p>The maximum number of returned results per page.</p>
      */
     inline GetApiKeysRequest& WithLimit(int value) { SetLimit(value); return *this;}
+
 
     /**
      * <p>The name of queried API keys.</p>
@@ -112,7 +117,7 @@ namespace Model
     /**
      * <p>The name of queried API keys.</p>
      */
-    inline void SetNameQuery(Aws::String&& value) { m_nameQueryHasBeenSet = true; m_nameQuery = value; }
+    inline void SetNameQuery(Aws::String&& value) { m_nameQueryHasBeenSet = true; m_nameQuery = std::move(value); }
 
     /**
      * <p>The name of queried API keys.</p>
@@ -127,12 +132,13 @@ namespace Model
     /**
      * <p>The name of queried API keys.</p>
      */
-    inline GetApiKeysRequest& WithNameQuery(Aws::String&& value) { SetNameQuery(value); return *this;}
+    inline GetApiKeysRequest& WithNameQuery(Aws::String&& value) { SetNameQuery(std::move(value)); return *this;}
 
     /**
      * <p>The name of queried API keys.</p>
      */
     inline GetApiKeysRequest& WithNameQuery(const char* value) { SetNameQuery(value); return *this;}
+
 
     /**
      * <p>The identifier of a customer in AWS Marketplace or an external system, such
@@ -150,7 +156,7 @@ namespace Model
      * <p>The identifier of a customer in AWS Marketplace or an external system, such
      * as a developer portal.</p>
      */
-    inline void SetCustomerId(Aws::String&& value) { m_customerIdHasBeenSet = true; m_customerId = value; }
+    inline void SetCustomerId(Aws::String&& value) { m_customerIdHasBeenSet = true; m_customerId = std::move(value); }
 
     /**
      * <p>The identifier of a customer in AWS Marketplace or an external system, such
@@ -168,13 +174,14 @@ namespace Model
      * <p>The identifier of a customer in AWS Marketplace or an external system, such
      * as a developer portal.</p>
      */
-    inline GetApiKeysRequest& WithCustomerId(Aws::String&& value) { SetCustomerId(value); return *this;}
+    inline GetApiKeysRequest& WithCustomerId(Aws::String&& value) { SetCustomerId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of a customer in AWS Marketplace or an external system, such
      * as a developer portal.</p>
      */
     inline GetApiKeysRequest& WithCustomerId(const char* value) { SetCustomerId(value); return *this;}
+
 
     /**
      * <p>A boolean flag to specify whether (<code>true</code>) or not
@@ -195,14 +202,19 @@ namespace Model
     inline GetApiKeysRequest& WithIncludeValues(bool value) { SetIncludeValues(value); return *this;}
 
   private:
+
     Aws::String m_position;
     bool m_positionHasBeenSet;
+
     int m_limit;
     bool m_limitHasBeenSet;
+
     Aws::String m_nameQuery;
     bool m_nameQueryHasBeenSet;
+
     Aws::String m_customerId;
     bool m_customerIdHasBeenSet;
+
     bool m_includeValues;
     bool m_includeValuesHasBeenSet;
   };

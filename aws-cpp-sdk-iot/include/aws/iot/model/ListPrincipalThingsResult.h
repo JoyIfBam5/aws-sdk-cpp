@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     ListPrincipalThingsResult();
-    ListPrincipalThingsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListPrincipalThingsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListPrincipalThingsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListPrincipalThingsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The things.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The things.</p>
      */
-    inline void SetThings(Aws::Vector<Aws::String>&& value) { m_things = value; }
+    inline void SetThings(Aws::Vector<Aws::String>&& value) { m_things = std::move(value); }
 
     /**
      * <p>The things.</p>
@@ -69,7 +72,7 @@ namespace Model
     /**
      * <p>The things.</p>
      */
-    inline ListPrincipalThingsResult& WithThings(Aws::Vector<Aws::String>&& value) { SetThings(value); return *this;}
+    inline ListPrincipalThingsResult& WithThings(Aws::Vector<Aws::String>&& value) { SetThings(std::move(value)); return *this;}
 
     /**
      * <p>The things.</p>
@@ -79,12 +82,13 @@ namespace Model
     /**
      * <p>The things.</p>
      */
-    inline ListPrincipalThingsResult& AddThings(Aws::String&& value) { m_things.push_back(value); return *this; }
+    inline ListPrincipalThingsResult& AddThings(Aws::String&& value) { m_things.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The things.</p>
      */
     inline ListPrincipalThingsResult& AddThings(const char* value) { m_things.push_back(value); return *this; }
+
 
     /**
      * <p>The token for the next set of results, or <b>null</b> if there are no
@@ -102,7 +106,7 @@ namespace Model
      * <p>The token for the next set of results, or <b>null</b> if there are no
      * additional results.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The token for the next set of results, or <b>null</b> if there are no
@@ -120,7 +124,7 @@ namespace Model
      * <p>The token for the next set of results, or <b>null</b> if there are no
      * additional results.</p>
      */
-    inline ListPrincipalThingsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListPrincipalThingsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The token for the next set of results, or <b>null</b> if there are no
@@ -129,7 +133,9 @@ namespace Model
     inline ListPrincipalThingsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_things;
+
     Aws::String m_nextToken;
   };
 

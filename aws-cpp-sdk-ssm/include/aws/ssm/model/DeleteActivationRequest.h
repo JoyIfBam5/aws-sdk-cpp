@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/ssm/SSMRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     DeleteActivationRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DeleteActivation"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The ID of the activation that you want to delete.</p>
@@ -47,7 +57,7 @@ namespace Model
     /**
      * <p>The ID of the activation that you want to delete.</p>
      */
-    inline void SetActivationId(Aws::String&& value) { m_activationIdHasBeenSet = true; m_activationId = value; }
+    inline void SetActivationId(Aws::String&& value) { m_activationIdHasBeenSet = true; m_activationId = std::move(value); }
 
     /**
      * <p>The ID of the activation that you want to delete.</p>
@@ -62,7 +72,7 @@ namespace Model
     /**
      * <p>The ID of the activation that you want to delete.</p>
      */
-    inline DeleteActivationRequest& WithActivationId(Aws::String&& value) { SetActivationId(value); return *this;}
+    inline DeleteActivationRequest& WithActivationId(Aws::String&& value) { SetActivationId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the activation that you want to delete.</p>
@@ -70,6 +80,7 @@ namespace Model
     inline DeleteActivationRequest& WithActivationId(const char* value) { SetActivationId(value); return *this;}
 
   private:
+
     Aws::String m_activationId;
     bool m_activationIdHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/firehose/Firehose_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/firehose/model/PutRecordBatchResponseEntry.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     PutRecordBatchResult();
-    PutRecordBatchResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    PutRecordBatchResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PutRecordBatchResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PutRecordBatchResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The number of records that might have failed processing.</p>
@@ -54,6 +57,7 @@ namespace Model
      * <p>The number of records that might have failed processing.</p>
      */
     inline PutRecordBatchResult& WithFailedPutCount(int value) { SetFailedPutCount(value); return *this;}
+
 
     /**
      * <p>The results array. For each record, the index of the response element is the
@@ -71,7 +75,7 @@ namespace Model
      * <p>The results array. For each record, the index of the response element is the
      * same as the index used in the request array.</p>
      */
-    inline void SetRequestResponses(Aws::Vector<PutRecordBatchResponseEntry>&& value) { m_requestResponses = value; }
+    inline void SetRequestResponses(Aws::Vector<PutRecordBatchResponseEntry>&& value) { m_requestResponses = std::move(value); }
 
     /**
      * <p>The results array. For each record, the index of the response element is the
@@ -83,7 +87,7 @@ namespace Model
      * <p>The results array. For each record, the index of the response element is the
      * same as the index used in the request array.</p>
      */
-    inline PutRecordBatchResult& WithRequestResponses(Aws::Vector<PutRecordBatchResponseEntry>&& value) { SetRequestResponses(value); return *this;}
+    inline PutRecordBatchResult& WithRequestResponses(Aws::Vector<PutRecordBatchResponseEntry>&& value) { SetRequestResponses(std::move(value)); return *this;}
 
     /**
      * <p>The results array. For each record, the index of the response element is the
@@ -95,10 +99,12 @@ namespace Model
      * <p>The results array. For each record, the index of the response element is the
      * same as the index used in the request array.</p>
      */
-    inline PutRecordBatchResult& AddRequestResponses(PutRecordBatchResponseEntry&& value) { m_requestResponses.push_back(value); return *this; }
+    inline PutRecordBatchResult& AddRequestResponses(PutRecordBatchResponseEntry&& value) { m_requestResponses.push_back(std::move(value)); return *this; }
 
   private:
+
     int m_failedPutCount;
+
     Aws::Vector<PutRecordBatchResponseEntry> m_requestResponses;
   };
 

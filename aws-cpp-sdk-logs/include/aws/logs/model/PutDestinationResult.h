@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/logs/CloudWatchLogs_EXPORTS.h>
 #include <aws/logs/model/Destination.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     PutDestinationResult();
-    PutDestinationResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    PutDestinationResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PutDestinationResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PutDestinationResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The destination.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The destination.</p>
      */
-    inline void SetDestination(Destination&& value) { m_destination = value; }
+    inline void SetDestination(Destination&& value) { m_destination = std::move(value); }
 
     /**
      * <p>The destination.</p>
@@ -62,9 +65,10 @@ namespace Model
     /**
      * <p>The destination.</p>
      */
-    inline PutDestinationResult& WithDestination(Destination&& value) { SetDestination(value); return *this;}
+    inline PutDestinationResult& WithDestination(Destination&& value) { SetDestination(std::move(value)); return *this;}
 
   private:
+
     Destination m_destination;
   };
 

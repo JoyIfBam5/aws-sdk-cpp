@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dynamodb/DynamoDB_EXPORTS.h>
 #include <aws/dynamodb/DynamoDBRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     ListTagsOfResourceRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListTagsOfResource"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The Amazon DynamoDB resource with tags to be listed. This value is an Amazon
@@ -50,7 +60,7 @@ namespace Model
      * <p>The Amazon DynamoDB resource with tags to be listed. This value is an Amazon
      * Resource Name (ARN).</p>
      */
-    inline void SetResourceArn(Aws::String&& value) { m_resourceArnHasBeenSet = true; m_resourceArn = value; }
+    inline void SetResourceArn(Aws::String&& value) { m_resourceArnHasBeenSet = true; m_resourceArn = std::move(value); }
 
     /**
      * <p>The Amazon DynamoDB resource with tags to be listed. This value is an Amazon
@@ -68,13 +78,14 @@ namespace Model
      * <p>The Amazon DynamoDB resource with tags to be listed. This value is an Amazon
      * Resource Name (ARN).</p>
      */
-    inline ListTagsOfResourceRequest& WithResourceArn(Aws::String&& value) { SetResourceArn(value); return *this;}
+    inline ListTagsOfResourceRequest& WithResourceArn(Aws::String&& value) { SetResourceArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon DynamoDB resource with tags to be listed. This value is an Amazon
      * Resource Name (ARN).</p>
      */
     inline ListTagsOfResourceRequest& WithResourceArn(const char* value) { SetResourceArn(value); return *this;}
+
 
     /**
      * <p>An optional string that, if supplied, must be copied from the output of a
@@ -95,7 +106,7 @@ namespace Model
      * previous call to ListTagOfResource. When provided in this manner, this API
      * fetches the next page of results.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>An optional string that, if supplied, must be copied from the output of a
@@ -116,7 +127,7 @@ namespace Model
      * previous call to ListTagOfResource. When provided in this manner, this API
      * fetches the next page of results.</p>
      */
-    inline ListTagsOfResourceRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListTagsOfResourceRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>An optional string that, if supplied, must be copied from the output of a
@@ -126,8 +137,10 @@ namespace Model
     inline ListTagsOfResourceRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::String m_resourceArn;
     bool m_resourceArnHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
   };

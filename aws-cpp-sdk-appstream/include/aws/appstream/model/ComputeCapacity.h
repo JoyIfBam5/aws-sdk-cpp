@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/appstream/AppStream_EXPORTS.h>
 
@@ -30,7 +31,7 @@ namespace Model
 {
 
   /**
-   * <p>The capacity configuration for the fleet.</p><p><h3>See Also:</h3>   <a
+   * <p>Describes the capacity for a fleet.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ComputeCapacity">AWS
    * API Reference</a></p>
    */
@@ -41,6 +42,7 @@ namespace Model
     ComputeCapacity(const Aws::Utils::Json::JsonValue& jsonValue);
     ComputeCapacity& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>The desired number of streaming instances.</p>
@@ -58,6 +60,7 @@ namespace Model
     inline ComputeCapacity& WithDesiredInstances(int value) { SetDesiredInstances(value); return *this;}
 
   private:
+
     int m_desiredInstances;
     bool m_desiredInstancesHasBeenSet;
   };

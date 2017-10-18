@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 
 #include <aws/core/client/CoreErrors.h>
@@ -54,10 +55,11 @@ enum class DirectoryServiceErrors
   UNKNOWN = 100,
   ///////////////////////////////////////////////////////////////////////////////////////////
 
-  AUTHENTICATION_FAILED= static_cast<int>(Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
+  AUTHENTICATION_FAILED= static_cast<int>(Aws::Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
   CLIENT,
   DIRECTORY_LIMIT_EXCEEDED,
   DIRECTORY_UNAVAILABLE,
+  DOMAIN_CONTROLLER_LIMIT_EXCEEDED,
   ENTITY_ALREADY_EXISTS,
   ENTITY_DOES_NOT_EXIST,
   INSUFFICIENT_PERMISSIONS,
@@ -71,7 +73,7 @@ enum class DirectoryServiceErrors
 };
 namespace DirectoryServiceErrorMapper
 {
-  AWS_DIRECTORYSERVICE_API Client::AWSError<Client::CoreErrors> GetErrorForName(const char* errorName);
+  AWS_DIRECTORYSERVICE_API Aws::Client::AWSError<Aws::Client::CoreErrors> GetErrorForName(const char* errorName);
 }
 
 } // namespace DirectoryService

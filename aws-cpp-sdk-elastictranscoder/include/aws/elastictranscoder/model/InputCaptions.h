@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elastictranscoder/ElasticTranscoder_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elastictranscoder/model/CaptionSource.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     InputCaptions(const Aws::Utils::Json::JsonValue& jsonValue);
     InputCaptions& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>A policy that determines how Elastic Transcoder handles the existence of
@@ -97,7 +100,7 @@ namespace Model
      * you specify in <code>CaptionSources</code>.</p> </li> </ul> <p>
      * <code>MergePolicy</code> cannot be null.</p>
      */
-    inline void SetMergePolicy(Aws::String&& value) { m_mergePolicyHasBeenSet = true; m_mergePolicy = value; }
+    inline void SetMergePolicy(Aws::String&& value) { m_mergePolicyHasBeenSet = true; m_mergePolicy = std::move(value); }
 
     /**
      * <p>A policy that determines how Elastic Transcoder handles the existence of
@@ -151,7 +154,7 @@ namespace Model
      * you specify in <code>CaptionSources</code>.</p> </li> </ul> <p>
      * <code>MergePolicy</code> cannot be null.</p>
      */
-    inline InputCaptions& WithMergePolicy(Aws::String&& value) { SetMergePolicy(value); return *this;}
+    inline InputCaptions& WithMergePolicy(Aws::String&& value) { SetMergePolicy(std::move(value)); return *this;}
 
     /**
      * <p>A policy that determines how Elastic Transcoder handles the existence of
@@ -170,6 +173,7 @@ namespace Model
      * <code>MergePolicy</code> cannot be null.</p>
      */
     inline InputCaptions& WithMergePolicy(const char* value) { SetMergePolicy(value); return *this;}
+
 
     /**
      * <p>Source files for the input sidecar captions used during the transcoding
@@ -190,7 +194,7 @@ namespace Model
      * process. To omit all sidecar captions, leave <code>CaptionSources</code>
      * blank.</p>
      */
-    inline void SetCaptionSources(Aws::Vector<CaptionSource>&& value) { m_captionSourcesHasBeenSet = true; m_captionSources = value; }
+    inline void SetCaptionSources(Aws::Vector<CaptionSource>&& value) { m_captionSourcesHasBeenSet = true; m_captionSources = std::move(value); }
 
     /**
      * <p>Source files for the input sidecar captions used during the transcoding
@@ -204,7 +208,7 @@ namespace Model
      * process. To omit all sidecar captions, leave <code>CaptionSources</code>
      * blank.</p>
      */
-    inline InputCaptions& WithCaptionSources(Aws::Vector<CaptionSource>&& value) { SetCaptionSources(value); return *this;}
+    inline InputCaptions& WithCaptionSources(Aws::Vector<CaptionSource>&& value) { SetCaptionSources(std::move(value)); return *this;}
 
     /**
      * <p>Source files for the input sidecar captions used during the transcoding
@@ -218,11 +222,13 @@ namespace Model
      * process. To omit all sidecar captions, leave <code>CaptionSources</code>
      * blank.</p>
      */
-    inline InputCaptions& AddCaptionSources(CaptionSource&& value) { m_captionSourcesHasBeenSet = true; m_captionSources.push_back(value); return *this; }
+    inline InputCaptions& AddCaptionSources(CaptionSource&& value) { m_captionSourcesHasBeenSet = true; m_captionSources.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_mergePolicy;
     bool m_mergePolicyHasBeenSet;
+
     Aws::Vector<CaptionSource> m_captionSources;
     bool m_captionSourcesHasBeenSet;
   };

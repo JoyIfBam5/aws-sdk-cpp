@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/opsworkscm/model/CreateServerRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -22,6 +23,8 @@ using namespace Aws::Utils::Json;
 using namespace Aws::Utils;
 
 CreateServerRequest::CreateServerRequest() : 
+    m_associatePublicIpAddress(false),
+    m_associatePublicIpAddressHasBeenSet(false),
     m_disableAutomatedBackup(false),
     m_disableAutomatedBackupHasBeenSet(false),
     m_engineHasBeenSet(false),
@@ -46,6 +49,12 @@ CreateServerRequest::CreateServerRequest() :
 Aws::String CreateServerRequest::SerializePayload() const
 {
   JsonValue payload;
+
+  if(m_associatePublicIpAddressHasBeenSet)
+  {
+   payload.WithBool("AssociatePublicIpAddress", m_associatePublicIpAddress);
+
+  }
 
   if(m_disableAutomatedBackupHasBeenSet)
   {
@@ -168,6 +177,7 @@ Aws::Http::HeaderValueCollection CreateServerRequest::GetRequestSpecificHeaders(
   return headers;
 
 }
+
 
 
 

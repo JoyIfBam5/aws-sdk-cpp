@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworkscm/OpsWorksCM_EXPORTS.h>
 #include <aws/opsworkscm/model/Server.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     CreateServerResult();
-    CreateServerResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateServerResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateServerResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateServerResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The server that is created by the request. </p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The server that is created by the request. </p>
      */
-    inline void SetServer(Server&& value) { m_server = value; }
+    inline void SetServer(Server&& value) { m_server = std::move(value); }
 
     /**
      * <p>The server that is created by the request. </p>
@@ -62,9 +65,10 @@ namespace Model
     /**
      * <p>The server that is created by the request. </p>
      */
-    inline CreateServerResult& WithServer(Server&& value) { SetServer(value); return *this;}
+    inline CreateServerResult& WithServer(Server&& value) { SetServer(std::move(value)); return *this;}
 
   private:
+
     Server m_server;
   };
 

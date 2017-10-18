@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dynamodb/DynamoDB_EXPORTS.h>
 #include <aws/dynamodb/model/StreamViewType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     StreamSpecification& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Indicates whether DynamoDB Streams is enabled (true) or disabled (false) on
      * the table.</p>
@@ -61,6 +64,7 @@ namespace Model
      * the table.</p>
      */
     inline StreamSpecification& WithStreamEnabled(bool value) { SetStreamEnabled(value); return *this;}
+
 
     /**
      * <p> When an item in the table is modified, <code>StreamViewType</code>
@@ -102,7 +106,7 @@ namespace Model
      * <code>NEW_AND_OLD_IMAGES</code> - Both the new and the old item images of the
      * item are written to the stream.</p> </li> </ul>
      */
-    inline void SetStreamViewType(StreamViewType&& value) { m_streamViewTypeHasBeenSet = true; m_streamViewType = value; }
+    inline void SetStreamViewType(StreamViewType&& value) { m_streamViewTypeHasBeenSet = true; m_streamViewType = std::move(value); }
 
     /**
      * <p> When an item in the table is modified, <code>StreamViewType</code>
@@ -130,11 +134,13 @@ namespace Model
      * <code>NEW_AND_OLD_IMAGES</code> - Both the new and the old item images of the
      * item are written to the stream.</p> </li> </ul>
      */
-    inline StreamSpecification& WithStreamViewType(StreamViewType&& value) { SetStreamViewType(value); return *this;}
+    inline StreamSpecification& WithStreamViewType(StreamViewType&& value) { SetStreamViewType(std::move(value)); return *this;}
 
   private:
+
     bool m_streamEnabled;
     bool m_streamEnabledHasBeenSet;
+
     StreamViewType m_streamViewType;
     bool m_streamViewTypeHasBeenSet;
   };

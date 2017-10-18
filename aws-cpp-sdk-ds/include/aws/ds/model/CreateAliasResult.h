@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ds/DirectoryService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     CreateAliasResult();
-    CreateAliasResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateAliasResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateAliasResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateAliasResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The identifier of the directory.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The identifier of the directory.</p>
      */
-    inline void SetDirectoryId(Aws::String&& value) { m_directoryId = value; }
+    inline void SetDirectoryId(Aws::String&& value) { m_directoryId = std::move(value); }
 
     /**
      * <p>The identifier of the directory.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The identifier of the directory.</p>
      */
-    inline CreateAliasResult& WithDirectoryId(Aws::String&& value) { SetDirectoryId(value); return *this;}
+    inline CreateAliasResult& WithDirectoryId(Aws::String&& value) { SetDirectoryId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the directory.</p>
      */
     inline CreateAliasResult& WithDirectoryId(const char* value) { SetDirectoryId(value); return *this;}
+
 
     /**
      * <p>The alias for the directory.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The alias for the directory.</p>
      */
-    inline void SetAlias(Aws::String&& value) { m_alias = value; }
+    inline void SetAlias(Aws::String&& value) { m_alias = std::move(value); }
 
     /**
      * <p>The alias for the directory.</p>
@@ -108,7 +112,7 @@ namespace Model
     /**
      * <p>The alias for the directory.</p>
      */
-    inline CreateAliasResult& WithAlias(Aws::String&& value) { SetAlias(value); return *this;}
+    inline CreateAliasResult& WithAlias(Aws::String&& value) { SetAlias(std::move(value)); return *this;}
 
     /**
      * <p>The alias for the directory.</p>
@@ -116,7 +120,9 @@ namespace Model
     inline CreateAliasResult& WithAlias(const char* value) { SetAlias(value); return *this;}
 
   private:
+
     Aws::String m_directoryId;
+
     Aws::String m_alias;
   };
 

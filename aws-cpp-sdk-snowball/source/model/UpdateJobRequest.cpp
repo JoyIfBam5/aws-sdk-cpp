@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/snowball/model/UpdateJobRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -31,7 +32,8 @@ UpdateJobRequest::UpdateJobRequest() :
     m_shippingOptionHasBeenSet(false),
     m_descriptionHasBeenSet(false),
     m_snowballCapacityPreference(SnowballCapacity::NOT_SET),
-    m_snowballCapacityPreferenceHasBeenSet(false)
+    m_snowballCapacityPreferenceHasBeenSet(false),
+    m_forwardingAddressIdHasBeenSet(false)
 {
 }
 
@@ -85,6 +87,12 @@ Aws::String UpdateJobRequest::SerializePayload() const
    payload.WithString("SnowballCapacityPreference", SnowballCapacityMapper::GetNameForSnowballCapacity(m_snowballCapacityPreference));
   }
 
+  if(m_forwardingAddressIdHasBeenSet)
+  {
+   payload.WithString("ForwardingAddressId", m_forwardingAddressId);
+
+  }
+
   return payload.WriteReadable();
 }
 
@@ -95,6 +103,7 @@ Aws::Http::HeaderValueCollection UpdateJobRequest::GetRequestSpecificHeaders() c
   return headers;
 
 }
+
 
 
 

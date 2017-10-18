@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/redshift/RedshiftRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,7 +37,19 @@ namespace Model
   {
   public:
     DescribeClusterSnapshotsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeClusterSnapshots"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The identifier of the cluster for which information about snapshots is
@@ -53,7 +67,7 @@ namespace Model
      * <p>The identifier of the cluster for which information about snapshots is
      * requested.</p>
      */
-    inline void SetClusterIdentifier(Aws::String&& value) { m_clusterIdentifierHasBeenSet = true; m_clusterIdentifier = value; }
+    inline void SetClusterIdentifier(Aws::String&& value) { m_clusterIdentifierHasBeenSet = true; m_clusterIdentifier = std::move(value); }
 
     /**
      * <p>The identifier of the cluster for which information about snapshots is
@@ -71,13 +85,14 @@ namespace Model
      * <p>The identifier of the cluster for which information about snapshots is
      * requested.</p>
      */
-    inline DescribeClusterSnapshotsRequest& WithClusterIdentifier(Aws::String&& value) { SetClusterIdentifier(value); return *this;}
+    inline DescribeClusterSnapshotsRequest& WithClusterIdentifier(Aws::String&& value) { SetClusterIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the cluster for which information about snapshots is
      * requested.</p>
      */
     inline DescribeClusterSnapshotsRequest& WithClusterIdentifier(const char* value) { SetClusterIdentifier(value); return *this;}
+
 
     /**
      * <p>The snapshot identifier of the snapshot about which to return
@@ -95,7 +110,7 @@ namespace Model
      * <p>The snapshot identifier of the snapshot about which to return
      * information.</p>
      */
-    inline void SetSnapshotIdentifier(Aws::String&& value) { m_snapshotIdentifierHasBeenSet = true; m_snapshotIdentifier = value; }
+    inline void SetSnapshotIdentifier(Aws::String&& value) { m_snapshotIdentifierHasBeenSet = true; m_snapshotIdentifier = std::move(value); }
 
     /**
      * <p>The snapshot identifier of the snapshot about which to return
@@ -113,13 +128,14 @@ namespace Model
      * <p>The snapshot identifier of the snapshot about which to return
      * information.</p>
      */
-    inline DescribeClusterSnapshotsRequest& WithSnapshotIdentifier(Aws::String&& value) { SetSnapshotIdentifier(value); return *this;}
+    inline DescribeClusterSnapshotsRequest& WithSnapshotIdentifier(Aws::String&& value) { SetSnapshotIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The snapshot identifier of the snapshot about which to return
      * information.</p>
      */
     inline DescribeClusterSnapshotsRequest& WithSnapshotIdentifier(const char* value) { SetSnapshotIdentifier(value); return *this;}
+
 
     /**
      * <p>The type of snapshots for which you are requesting information. By default,
@@ -140,7 +156,7 @@ namespace Model
      * snapshots of all types are returned.</p> <p>Valid Values: <code>automated</code>
      * | <code>manual</code> </p>
      */
-    inline void SetSnapshotType(Aws::String&& value) { m_snapshotTypeHasBeenSet = true; m_snapshotType = value; }
+    inline void SetSnapshotType(Aws::String&& value) { m_snapshotTypeHasBeenSet = true; m_snapshotType = std::move(value); }
 
     /**
      * <p>The type of snapshots for which you are requesting information. By default,
@@ -161,7 +177,7 @@ namespace Model
      * snapshots of all types are returned.</p> <p>Valid Values: <code>automated</code>
      * | <code>manual</code> </p>
      */
-    inline DescribeClusterSnapshotsRequest& WithSnapshotType(Aws::String&& value) { SetSnapshotType(value); return *this;}
+    inline DescribeClusterSnapshotsRequest& WithSnapshotType(Aws::String&& value) { SetSnapshotType(std::move(value)); return *this;}
 
     /**
      * <p>The type of snapshots for which you are requesting information. By default,
@@ -169,6 +185,7 @@ namespace Model
      * | <code>manual</code> </p>
      */
     inline DescribeClusterSnapshotsRequest& WithSnapshotType(const char* value) { SetSnapshotType(value); return *this;}
+
 
     /**
      * <p>A value that requests only snapshots created at or after the specified time.
@@ -192,7 +209,7 @@ namespace Model
      * 8601, go to the <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO8601
      * Wikipedia page.</a> </p> <p>Example: <code>2012-07-16T18:00:00Z</code> </p>
      */
-    inline void SetStartTime(Aws::Utils::DateTime&& value) { m_startTimeHasBeenSet = true; m_startTime = value; }
+    inline void SetStartTime(Aws::Utils::DateTime&& value) { m_startTimeHasBeenSet = true; m_startTime = std::move(value); }
 
     /**
      * <p>A value that requests only snapshots created at or after the specified time.
@@ -208,7 +225,8 @@ namespace Model
      * 8601, go to the <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO8601
      * Wikipedia page.</a> </p> <p>Example: <code>2012-07-16T18:00:00Z</code> </p>
      */
-    inline DescribeClusterSnapshotsRequest& WithStartTime(Aws::Utils::DateTime&& value) { SetStartTime(value); return *this;}
+    inline DescribeClusterSnapshotsRequest& WithStartTime(Aws::Utils::DateTime&& value) { SetStartTime(std::move(value)); return *this;}
+
 
     /**
      * <p>A time value that requests only snapshots created at or before the specified
@@ -232,7 +250,7 @@ namespace Model
      * ISO 8601, go to the <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO8601
      * Wikipedia page.</a> </p> <p>Example: <code>2012-07-16T18:00:00Z</code> </p>
      */
-    inline void SetEndTime(Aws::Utils::DateTime&& value) { m_endTimeHasBeenSet = true; m_endTime = value; }
+    inline void SetEndTime(Aws::Utils::DateTime&& value) { m_endTimeHasBeenSet = true; m_endTime = std::move(value); }
 
     /**
      * <p>A time value that requests only snapshots created at or before the specified
@@ -248,7 +266,8 @@ namespace Model
      * ISO 8601, go to the <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO8601
      * Wikipedia page.</a> </p> <p>Example: <code>2012-07-16T18:00:00Z</code> </p>
      */
-    inline DescribeClusterSnapshotsRequest& WithEndTime(Aws::Utils::DateTime&& value) { SetEndTime(value); return *this;}
+    inline DescribeClusterSnapshotsRequest& WithEndTime(Aws::Utils::DateTime&& value) { SetEndTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The maximum number of response records to return in each call. If the number
@@ -280,6 +299,7 @@ namespace Model
      */
     inline DescribeClusterSnapshotsRequest& WithMaxRecords(int value) { SetMaxRecords(value); return *this;}
 
+
     /**
      * <p>An optional parameter that specifies the starting point to return a set of
      * response records. When the results of a <a>DescribeClusterSnapshots</a> request
@@ -308,7 +328,7 @@ namespace Model
      * response records by providing the returned marker value in the
      * <code>Marker</code> parameter and retrying the request. </p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p>An optional parameter that specifies the starting point to return a set of
@@ -338,7 +358,7 @@ namespace Model
      * response records by providing the returned marker value in the
      * <code>Marker</code> parameter and retrying the request. </p>
      */
-    inline DescribeClusterSnapshotsRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeClusterSnapshotsRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>An optional parameter that specifies the starting point to return a set of
@@ -349,6 +369,7 @@ namespace Model
      * <code>Marker</code> parameter and retrying the request. </p>
      */
     inline DescribeClusterSnapshotsRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>The AWS customer account used to create or copy the snapshot. Use this field
@@ -372,7 +393,7 @@ namespace Model
      * snapshots you own, either specify your AWS customer account, or do not specify
      * the parameter.</p>
      */
-    inline void SetOwnerAccount(Aws::String&& value) { m_ownerAccountHasBeenSet = true; m_ownerAccount = value; }
+    inline void SetOwnerAccount(Aws::String&& value) { m_ownerAccountHasBeenSet = true; m_ownerAccount = std::move(value); }
 
     /**
      * <p>The AWS customer account used to create or copy the snapshot. Use this field
@@ -396,7 +417,7 @@ namespace Model
      * snapshots you own, either specify your AWS customer account, or do not specify
      * the parameter.</p>
      */
-    inline DescribeClusterSnapshotsRequest& WithOwnerAccount(Aws::String&& value) { SetOwnerAccount(value); return *this;}
+    inline DescribeClusterSnapshotsRequest& WithOwnerAccount(Aws::String&& value) { SetOwnerAccount(std::move(value)); return *this;}
 
     /**
      * <p>The AWS customer account used to create or copy the snapshot. Use this field
@@ -405,6 +426,7 @@ namespace Model
      * the parameter.</p>
      */
     inline DescribeClusterSnapshotsRequest& WithOwnerAccount(const char* value) { SetOwnerAccount(value); return *this;}
+
 
     /**
      * <p>A tag key or keys for which you want to return all matching cluster snapshots
@@ -434,7 +456,7 @@ namespace Model
      * Amazon Redshift returns a response with the snapshots that have either or both
      * of these tag keys associated with them.</p>
      */
-    inline void SetTagKeys(Aws::Vector<Aws::String>&& value) { m_tagKeysHasBeenSet = true; m_tagKeys = value; }
+    inline void SetTagKeys(Aws::Vector<Aws::String>&& value) { m_tagKeysHasBeenSet = true; m_tagKeys = std::move(value); }
 
     /**
      * <p>A tag key or keys for which you want to return all matching cluster snapshots
@@ -454,7 +476,7 @@ namespace Model
      * Amazon Redshift returns a response with the snapshots that have either or both
      * of these tag keys associated with them.</p>
      */
-    inline DescribeClusterSnapshotsRequest& WithTagKeys(Aws::Vector<Aws::String>&& value) { SetTagKeys(value); return *this;}
+    inline DescribeClusterSnapshotsRequest& WithTagKeys(Aws::Vector<Aws::String>&& value) { SetTagKeys(std::move(value)); return *this;}
 
     /**
      * <p>A tag key or keys for which you want to return all matching cluster snapshots
@@ -474,7 +496,7 @@ namespace Model
      * Amazon Redshift returns a response with the snapshots that have either or both
      * of these tag keys associated with them.</p>
      */
-    inline DescribeClusterSnapshotsRequest& AddTagKeys(Aws::String&& value) { m_tagKeysHasBeenSet = true; m_tagKeys.push_back(value); return *this; }
+    inline DescribeClusterSnapshotsRequest& AddTagKeys(Aws::String&& value) { m_tagKeysHasBeenSet = true; m_tagKeys.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A tag key or keys for which you want to return all matching cluster snapshots
@@ -485,6 +507,7 @@ namespace Model
      * of these tag keys associated with them.</p>
      */
     inline DescribeClusterSnapshotsRequest& AddTagKeys(const char* value) { m_tagKeysHasBeenSet = true; m_tagKeys.push_back(value); return *this; }
+
 
     /**
      * <p>A tag value or values for which you want to return all matching cluster
@@ -514,7 +537,7 @@ namespace Model
      * values in the request, Amazon Redshift returns a response with the snapshots
      * that have either or both of these tag values associated with them.</p>
      */
-    inline void SetTagValues(Aws::Vector<Aws::String>&& value) { m_tagValuesHasBeenSet = true; m_tagValues = value; }
+    inline void SetTagValues(Aws::Vector<Aws::String>&& value) { m_tagValuesHasBeenSet = true; m_tagValues = std::move(value); }
 
     /**
      * <p>A tag value or values for which you want to return all matching cluster
@@ -534,7 +557,7 @@ namespace Model
      * values in the request, Amazon Redshift returns a response with the snapshots
      * that have either or both of these tag values associated with them.</p>
      */
-    inline DescribeClusterSnapshotsRequest& WithTagValues(Aws::Vector<Aws::String>&& value) { SetTagValues(value); return *this;}
+    inline DescribeClusterSnapshotsRequest& WithTagValues(Aws::Vector<Aws::String>&& value) { SetTagValues(std::move(value)); return *this;}
 
     /**
      * <p>A tag value or values for which you want to return all matching cluster
@@ -554,7 +577,7 @@ namespace Model
      * values in the request, Amazon Redshift returns a response with the snapshots
      * that have either or both of these tag values associated with them.</p>
      */
-    inline DescribeClusterSnapshotsRequest& AddTagValues(Aws::String&& value) { m_tagValuesHasBeenSet = true; m_tagValues.push_back(value); return *this; }
+    inline DescribeClusterSnapshotsRequest& AddTagValues(Aws::String&& value) { m_tagValuesHasBeenSet = true; m_tagValues.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A tag value or values for which you want to return all matching cluster
@@ -567,24 +590,34 @@ namespace Model
     inline DescribeClusterSnapshotsRequest& AddTagValues(const char* value) { m_tagValuesHasBeenSet = true; m_tagValues.push_back(value); return *this; }
 
   private:
+
     Aws::String m_clusterIdentifier;
     bool m_clusterIdentifierHasBeenSet;
+
     Aws::String m_snapshotIdentifier;
     bool m_snapshotIdentifierHasBeenSet;
+
     Aws::String m_snapshotType;
     bool m_snapshotTypeHasBeenSet;
+
     Aws::Utils::DateTime m_startTime;
     bool m_startTimeHasBeenSet;
+
     Aws::Utils::DateTime m_endTime;
     bool m_endTimeHasBeenSet;
+
     int m_maxRecords;
     bool m_maxRecordsHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
+
     Aws::String m_ownerAccount;
     bool m_ownerAccountHasBeenSet;
+
     Aws::Vector<Aws::String> m_tagKeys;
     bool m_tagKeysHasBeenSet;
+
     Aws::Vector<Aws::String> m_tagValues;
     bool m_tagValuesHasBeenSet;
   };

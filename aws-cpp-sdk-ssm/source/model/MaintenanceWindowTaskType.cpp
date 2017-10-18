@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ssm/model/MaintenanceWindowTaskType.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -30,6 +31,9 @@ namespace Aws
       {
 
         static const int RUN_COMMAND_HASH = HashingUtils::HashString("RUN_COMMAND");
+        static const int AUTOMATION_HASH = HashingUtils::HashString("AUTOMATION");
+        static const int STEP_FUNCTIONS_HASH = HashingUtils::HashString("STEP_FUNCTIONS");
+        static const int LAMBDA_HASH = HashingUtils::HashString("LAMBDA");
 
 
         MaintenanceWindowTaskType GetMaintenanceWindowTaskTypeForName(const Aws::String& name)
@@ -38,6 +42,18 @@ namespace Aws
           if (hashCode == RUN_COMMAND_HASH)
           {
             return MaintenanceWindowTaskType::RUN_COMMAND;
+          }
+          else if (hashCode == AUTOMATION_HASH)
+          {
+            return MaintenanceWindowTaskType::AUTOMATION;
+          }
+          else if (hashCode == STEP_FUNCTIONS_HASH)
+          {
+            return MaintenanceWindowTaskType::STEP_FUNCTIONS;
+          }
+          else if (hashCode == LAMBDA_HASH)
+          {
+            return MaintenanceWindowTaskType::LAMBDA;
           }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
@@ -55,6 +71,12 @@ namespace Aws
           {
           case MaintenanceWindowTaskType::RUN_COMMAND:
             return "RUN_COMMAND";
+          case MaintenanceWindowTaskType::AUTOMATION:
+            return "AUTOMATION";
+          case MaintenanceWindowTaskType::STEP_FUNCTIONS:
+            return "STEP_FUNCTIONS";
+          case MaintenanceWindowTaskType::LAMBDA:
+            return "LAMBDA";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

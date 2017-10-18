@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     ServiceEvent& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ID string of the event.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The ID string of the event.</p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>The ID string of the event.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The ID string of the event.</p>
      */
-    inline ServiceEvent& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline ServiceEvent& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The ID string of the event.</p>
      */
     inline ServiceEvent& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>The Unix timestamp for when the event was triggered.</p>
@@ -92,7 +96,7 @@ namespace Model
     /**
      * <p>The Unix timestamp for when the event was triggered.</p>
      */
-    inline void SetCreatedAt(Aws::Utils::DateTime&& value) { m_createdAtHasBeenSet = true; m_createdAt = value; }
+    inline void SetCreatedAt(Aws::Utils::DateTime&& value) { m_createdAtHasBeenSet = true; m_createdAt = std::move(value); }
 
     /**
      * <p>The Unix timestamp for when the event was triggered.</p>
@@ -102,7 +106,8 @@ namespace Model
     /**
      * <p>The Unix timestamp for when the event was triggered.</p>
      */
-    inline ServiceEvent& WithCreatedAt(Aws::Utils::DateTime&& value) { SetCreatedAt(value); return *this;}
+    inline ServiceEvent& WithCreatedAt(Aws::Utils::DateTime&& value) { SetCreatedAt(std::move(value)); return *this;}
+
 
     /**
      * <p>The event message.</p>
@@ -117,7 +122,7 @@ namespace Model
     /**
      * <p>The event message.</p>
      */
-    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = value; }
+    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = std::move(value); }
 
     /**
      * <p>The event message.</p>
@@ -132,7 +137,7 @@ namespace Model
     /**
      * <p>The event message.</p>
      */
-    inline ServiceEvent& WithMessage(Aws::String&& value) { SetMessage(value); return *this;}
+    inline ServiceEvent& WithMessage(Aws::String&& value) { SetMessage(std::move(value)); return *this;}
 
     /**
      * <p>The event message.</p>
@@ -140,10 +145,13 @@ namespace Model
     inline ServiceEvent& WithMessage(const char* value) { SetMessage(value); return *this;}
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     Aws::Utils::DateTime m_createdAt;
     bool m_createdAtHasBeenSet;
+
     Aws::String m_message;
     bool m_messageHasBeenSet;
   };

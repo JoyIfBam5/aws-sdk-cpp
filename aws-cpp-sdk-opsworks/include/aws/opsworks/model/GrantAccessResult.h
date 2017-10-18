@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/opsworks/model/TemporaryCredential.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     GrantAccessResult();
-    GrantAccessResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GrantAccessResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GrantAccessResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GrantAccessResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A <code>TemporaryCredential</code> object that contains the data needed to
@@ -64,7 +67,7 @@ namespace Model
      * log in to the instance by RDP clients, such as the Microsoft Remote Desktop
      * Connection.</p>
      */
-    inline void SetTemporaryCredential(TemporaryCredential&& value) { m_temporaryCredential = value; }
+    inline void SetTemporaryCredential(TemporaryCredential&& value) { m_temporaryCredential = std::move(value); }
 
     /**
      * <p>A <code>TemporaryCredential</code> object that contains the data needed to
@@ -78,9 +81,10 @@ namespace Model
      * log in to the instance by RDP clients, such as the Microsoft Remote Desktop
      * Connection.</p>
      */
-    inline GrantAccessResult& WithTemporaryCredential(TemporaryCredential&& value) { SetTemporaryCredential(value); return *this;}
+    inline GrantAccessResult& WithTemporaryCredential(TemporaryCredential&& value) { SetTemporaryCredential(std::move(value)); return *this;}
 
   private:
+
     TemporaryCredential m_temporaryCredential;
   };
 

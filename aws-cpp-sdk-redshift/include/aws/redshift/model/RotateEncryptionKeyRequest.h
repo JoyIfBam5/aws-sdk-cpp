@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/redshift/RedshiftRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,19 @@ namespace Model
   {
   public:
     RotateEncryptionKeyRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "RotateEncryptionKey"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The unique identifier of the cluster that you want to rotate the encryption
@@ -54,7 +68,7 @@ namespace Model
      * keys for.</p> <p>Constraints: Must be the name of valid cluster that has
      * encryption enabled.</p>
      */
-    inline void SetClusterIdentifier(Aws::String&& value) { m_clusterIdentifierHasBeenSet = true; m_clusterIdentifier = value; }
+    inline void SetClusterIdentifier(Aws::String&& value) { m_clusterIdentifierHasBeenSet = true; m_clusterIdentifier = std::move(value); }
 
     /**
      * <p>The unique identifier of the cluster that you want to rotate the encryption
@@ -75,7 +89,7 @@ namespace Model
      * keys for.</p> <p>Constraints: Must be the name of valid cluster that has
      * encryption enabled.</p>
      */
-    inline RotateEncryptionKeyRequest& WithClusterIdentifier(Aws::String&& value) { SetClusterIdentifier(value); return *this;}
+    inline RotateEncryptionKeyRequest& WithClusterIdentifier(Aws::String&& value) { SetClusterIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The unique identifier of the cluster that you want to rotate the encryption
@@ -85,6 +99,7 @@ namespace Model
     inline RotateEncryptionKeyRequest& WithClusterIdentifier(const char* value) { SetClusterIdentifier(value); return *this;}
 
   private:
+
     Aws::String m_clusterIdentifier;
     bool m_clusterIdentifierHasBeenSet;
   };

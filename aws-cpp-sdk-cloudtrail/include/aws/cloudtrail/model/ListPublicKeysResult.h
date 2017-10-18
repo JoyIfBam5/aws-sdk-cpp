@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudtrail/CloudTrail_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/cloudtrail/model/PublicKey.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     ListPublicKeysResult();
-    ListPublicKeysResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListPublicKeysResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListPublicKeysResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListPublicKeysResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Contains an array of PublicKey objects.</p> <note> <p>The returned public
@@ -63,7 +66,7 @@ namespace Model
      * <p>Contains an array of PublicKey objects.</p> <note> <p>The returned public
      * keys may have validity time ranges that overlap.</p> </note>
      */
-    inline void SetPublicKeyList(Aws::Vector<PublicKey>&& value) { m_publicKeyList = value; }
+    inline void SetPublicKeyList(Aws::Vector<PublicKey>&& value) { m_publicKeyList = std::move(value); }
 
     /**
      * <p>Contains an array of PublicKey objects.</p> <note> <p>The returned public
@@ -75,7 +78,7 @@ namespace Model
      * <p>Contains an array of PublicKey objects.</p> <note> <p>The returned public
      * keys may have validity time ranges that overlap.</p> </note>
      */
-    inline ListPublicKeysResult& WithPublicKeyList(Aws::Vector<PublicKey>&& value) { SetPublicKeyList(value); return *this;}
+    inline ListPublicKeysResult& WithPublicKeyList(Aws::Vector<PublicKey>&& value) { SetPublicKeyList(std::move(value)); return *this;}
 
     /**
      * <p>Contains an array of PublicKey objects.</p> <note> <p>The returned public
@@ -87,7 +90,8 @@ namespace Model
      * <p>Contains an array of PublicKey objects.</p> <note> <p>The returned public
      * keys may have validity time ranges that overlap.</p> </note>
      */
-    inline ListPublicKeysResult& AddPublicKeyList(PublicKey&& value) { m_publicKeyList.push_back(value); return *this; }
+    inline ListPublicKeysResult& AddPublicKeyList(PublicKey&& value) { m_publicKeyList.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Reserved for future use.</p>
@@ -102,7 +106,7 @@ namespace Model
     /**
      * <p>Reserved for future use.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>Reserved for future use.</p>
@@ -117,7 +121,7 @@ namespace Model
     /**
      * <p>Reserved for future use.</p>
      */
-    inline ListPublicKeysResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListPublicKeysResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>Reserved for future use.</p>
@@ -125,7 +129,9 @@ namespace Model
     inline ListPublicKeysResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<PublicKey> m_publicKeyList;
+
     Aws::String m_nextToken;
   };
 

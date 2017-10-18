@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/core/utils/Outcome.h>
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
@@ -28,11 +29,13 @@
 #include <aws/dms/DatabaseMigrationServiceErrorMarshaller.h>
 #include <aws/dms/model/AddTagsToResourceRequest.h>
 #include <aws/dms/model/CreateEndpointRequest.h>
+#include <aws/dms/model/CreateEventSubscriptionRequest.h>
 #include <aws/dms/model/CreateReplicationInstanceRequest.h>
 #include <aws/dms/model/CreateReplicationSubnetGroupRequest.h>
 #include <aws/dms/model/CreateReplicationTaskRequest.h>
 #include <aws/dms/model/DeleteCertificateRequest.h>
 #include <aws/dms/model/DeleteEndpointRequest.h>
+#include <aws/dms/model/DeleteEventSubscriptionRequest.h>
 #include <aws/dms/model/DeleteReplicationInstanceRequest.h>
 #include <aws/dms/model/DeleteReplicationSubnetGroupRequest.h>
 #include <aws/dms/model/DeleteReplicationTaskRequest.h>
@@ -41,6 +44,9 @@
 #include <aws/dms/model/DescribeConnectionsRequest.h>
 #include <aws/dms/model/DescribeEndpointTypesRequest.h>
 #include <aws/dms/model/DescribeEndpointsRequest.h>
+#include <aws/dms/model/DescribeEventCategoriesRequest.h>
+#include <aws/dms/model/DescribeEventSubscriptionsRequest.h>
+#include <aws/dms/model/DescribeEventsRequest.h>
 #include <aws/dms/model/DescribeOrderableReplicationInstancesRequest.h>
 #include <aws/dms/model/DescribeRefreshSchemasStatusRequest.h>
 #include <aws/dms/model/DescribeReplicationInstancesRequest.h>
@@ -51,10 +57,12 @@
 #include <aws/dms/model/ImportCertificateRequest.h>
 #include <aws/dms/model/ListTagsForResourceRequest.h>
 #include <aws/dms/model/ModifyEndpointRequest.h>
+#include <aws/dms/model/ModifyEventSubscriptionRequest.h>
 #include <aws/dms/model/ModifyReplicationInstanceRequest.h>
 #include <aws/dms/model/ModifyReplicationSubnetGroupRequest.h>
 #include <aws/dms/model/ModifyReplicationTaskRequest.h>
 #include <aws/dms/model/RefreshSchemasRequest.h>
+#include <aws/dms/model/ReloadTablesRequest.h>
 #include <aws/dms/model/RemoveTagsFromResourceRequest.h>
 #include <aws/dms/model/StartReplicationTaskRequest.h>
 #include <aws/dms/model/StopReplicationTaskRequest.h>
@@ -127,9 +135,10 @@ void DatabaseMigrationServiceClient::init(const ClientConfiguration& config)
 AddTagsToResourceOutcome DatabaseMigrationServiceClient::AddTagsToResource(const AddTagsToResourceRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return AddTagsToResourceOutcome(AddTagsToResourceResult(outcome.GetResult()));
@@ -161,9 +170,10 @@ void DatabaseMigrationServiceClient::AddTagsToResourceAsyncHelper(const AddTagsT
 CreateEndpointOutcome DatabaseMigrationServiceClient::CreateEndpoint(const CreateEndpointRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return CreateEndpointOutcome(CreateEndpointResult(outcome.GetResult()));
@@ -192,12 +202,48 @@ void DatabaseMigrationServiceClient::CreateEndpointAsyncHelper(const CreateEndpo
   handler(this, request, CreateEndpoint(request), context);
 }
 
+CreateEventSubscriptionOutcome DatabaseMigrationServiceClient::CreateEventSubscription(const CreateEventSubscriptionRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return CreateEventSubscriptionOutcome(CreateEventSubscriptionResult(outcome.GetResult()));
+  }
+  else
+  {
+    return CreateEventSubscriptionOutcome(outcome.GetError());
+  }
+}
+
+CreateEventSubscriptionOutcomeCallable DatabaseMigrationServiceClient::CreateEventSubscriptionCallable(const CreateEventSubscriptionRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< CreateEventSubscriptionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateEventSubscription(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void DatabaseMigrationServiceClient::CreateEventSubscriptionAsync(const CreateEventSubscriptionRequest& request, const CreateEventSubscriptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->CreateEventSubscriptionAsyncHelper( request, handler, context ); } );
+}
+
+void DatabaseMigrationServiceClient::CreateEventSubscriptionAsyncHelper(const CreateEventSubscriptionRequest& request, const CreateEventSubscriptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, CreateEventSubscription(request), context);
+}
+
 CreateReplicationInstanceOutcome DatabaseMigrationServiceClient::CreateReplicationInstance(const CreateReplicationInstanceRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return CreateReplicationInstanceOutcome(CreateReplicationInstanceResult(outcome.GetResult()));
@@ -229,9 +275,10 @@ void DatabaseMigrationServiceClient::CreateReplicationInstanceAsyncHelper(const 
 CreateReplicationSubnetGroupOutcome DatabaseMigrationServiceClient::CreateReplicationSubnetGroup(const CreateReplicationSubnetGroupRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return CreateReplicationSubnetGroupOutcome(CreateReplicationSubnetGroupResult(outcome.GetResult()));
@@ -263,9 +310,10 @@ void DatabaseMigrationServiceClient::CreateReplicationSubnetGroupAsyncHelper(con
 CreateReplicationTaskOutcome DatabaseMigrationServiceClient::CreateReplicationTask(const CreateReplicationTaskRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return CreateReplicationTaskOutcome(CreateReplicationTaskResult(outcome.GetResult()));
@@ -297,9 +345,10 @@ void DatabaseMigrationServiceClient::CreateReplicationTaskAsyncHelper(const Crea
 DeleteCertificateOutcome DatabaseMigrationServiceClient::DeleteCertificate(const DeleteCertificateRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DeleteCertificateOutcome(DeleteCertificateResult(outcome.GetResult()));
@@ -331,9 +380,10 @@ void DatabaseMigrationServiceClient::DeleteCertificateAsyncHelper(const DeleteCe
 DeleteEndpointOutcome DatabaseMigrationServiceClient::DeleteEndpoint(const DeleteEndpointRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DeleteEndpointOutcome(DeleteEndpointResult(outcome.GetResult()));
@@ -362,12 +412,48 @@ void DatabaseMigrationServiceClient::DeleteEndpointAsyncHelper(const DeleteEndpo
   handler(this, request, DeleteEndpoint(request), context);
 }
 
+DeleteEventSubscriptionOutcome DatabaseMigrationServiceClient::DeleteEventSubscription(const DeleteEventSubscriptionRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return DeleteEventSubscriptionOutcome(DeleteEventSubscriptionResult(outcome.GetResult()));
+  }
+  else
+  {
+    return DeleteEventSubscriptionOutcome(outcome.GetError());
+  }
+}
+
+DeleteEventSubscriptionOutcomeCallable DatabaseMigrationServiceClient::DeleteEventSubscriptionCallable(const DeleteEventSubscriptionRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< DeleteEventSubscriptionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteEventSubscription(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void DatabaseMigrationServiceClient::DeleteEventSubscriptionAsync(const DeleteEventSubscriptionRequest& request, const DeleteEventSubscriptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->DeleteEventSubscriptionAsyncHelper( request, handler, context ); } );
+}
+
+void DatabaseMigrationServiceClient::DeleteEventSubscriptionAsyncHelper(const DeleteEventSubscriptionRequest& request, const DeleteEventSubscriptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, DeleteEventSubscription(request), context);
+}
+
 DeleteReplicationInstanceOutcome DatabaseMigrationServiceClient::DeleteReplicationInstance(const DeleteReplicationInstanceRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DeleteReplicationInstanceOutcome(DeleteReplicationInstanceResult(outcome.GetResult()));
@@ -399,9 +485,10 @@ void DatabaseMigrationServiceClient::DeleteReplicationInstanceAsyncHelper(const 
 DeleteReplicationSubnetGroupOutcome DatabaseMigrationServiceClient::DeleteReplicationSubnetGroup(const DeleteReplicationSubnetGroupRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DeleteReplicationSubnetGroupOutcome(DeleteReplicationSubnetGroupResult(outcome.GetResult()));
@@ -433,9 +520,10 @@ void DatabaseMigrationServiceClient::DeleteReplicationSubnetGroupAsyncHelper(con
 DeleteReplicationTaskOutcome DatabaseMigrationServiceClient::DeleteReplicationTask(const DeleteReplicationTaskRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DeleteReplicationTaskOutcome(DeleteReplicationTaskResult(outcome.GetResult()));
@@ -467,9 +555,10 @@ void DatabaseMigrationServiceClient::DeleteReplicationTaskAsyncHelper(const Dele
 DescribeAccountAttributesOutcome DatabaseMigrationServiceClient::DescribeAccountAttributes(const DescribeAccountAttributesRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeAccountAttributesOutcome(DescribeAccountAttributesResult(outcome.GetResult()));
@@ -501,9 +590,10 @@ void DatabaseMigrationServiceClient::DescribeAccountAttributesAsyncHelper(const 
 DescribeCertificatesOutcome DatabaseMigrationServiceClient::DescribeCertificates(const DescribeCertificatesRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeCertificatesOutcome(DescribeCertificatesResult(outcome.GetResult()));
@@ -535,9 +625,10 @@ void DatabaseMigrationServiceClient::DescribeCertificatesAsyncHelper(const Descr
 DescribeConnectionsOutcome DatabaseMigrationServiceClient::DescribeConnections(const DescribeConnectionsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeConnectionsOutcome(DescribeConnectionsResult(outcome.GetResult()));
@@ -569,9 +660,10 @@ void DatabaseMigrationServiceClient::DescribeConnectionsAsyncHelper(const Descri
 DescribeEndpointTypesOutcome DatabaseMigrationServiceClient::DescribeEndpointTypes(const DescribeEndpointTypesRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeEndpointTypesOutcome(DescribeEndpointTypesResult(outcome.GetResult()));
@@ -603,9 +695,10 @@ void DatabaseMigrationServiceClient::DescribeEndpointTypesAsyncHelper(const Desc
 DescribeEndpointsOutcome DatabaseMigrationServiceClient::DescribeEndpoints(const DescribeEndpointsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeEndpointsOutcome(DescribeEndpointsResult(outcome.GetResult()));
@@ -634,12 +727,118 @@ void DatabaseMigrationServiceClient::DescribeEndpointsAsyncHelper(const Describe
   handler(this, request, DescribeEndpoints(request), context);
 }
 
+DescribeEventCategoriesOutcome DatabaseMigrationServiceClient::DescribeEventCategories(const DescribeEventCategoriesRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return DescribeEventCategoriesOutcome(DescribeEventCategoriesResult(outcome.GetResult()));
+  }
+  else
+  {
+    return DescribeEventCategoriesOutcome(outcome.GetError());
+  }
+}
+
+DescribeEventCategoriesOutcomeCallable DatabaseMigrationServiceClient::DescribeEventCategoriesCallable(const DescribeEventCategoriesRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< DescribeEventCategoriesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeEventCategories(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void DatabaseMigrationServiceClient::DescribeEventCategoriesAsync(const DescribeEventCategoriesRequest& request, const DescribeEventCategoriesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->DescribeEventCategoriesAsyncHelper( request, handler, context ); } );
+}
+
+void DatabaseMigrationServiceClient::DescribeEventCategoriesAsyncHelper(const DescribeEventCategoriesRequest& request, const DescribeEventCategoriesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, DescribeEventCategories(request), context);
+}
+
+DescribeEventSubscriptionsOutcome DatabaseMigrationServiceClient::DescribeEventSubscriptions(const DescribeEventSubscriptionsRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return DescribeEventSubscriptionsOutcome(DescribeEventSubscriptionsResult(outcome.GetResult()));
+  }
+  else
+  {
+    return DescribeEventSubscriptionsOutcome(outcome.GetError());
+  }
+}
+
+DescribeEventSubscriptionsOutcomeCallable DatabaseMigrationServiceClient::DescribeEventSubscriptionsCallable(const DescribeEventSubscriptionsRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< DescribeEventSubscriptionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeEventSubscriptions(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void DatabaseMigrationServiceClient::DescribeEventSubscriptionsAsync(const DescribeEventSubscriptionsRequest& request, const DescribeEventSubscriptionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->DescribeEventSubscriptionsAsyncHelper( request, handler, context ); } );
+}
+
+void DatabaseMigrationServiceClient::DescribeEventSubscriptionsAsyncHelper(const DescribeEventSubscriptionsRequest& request, const DescribeEventSubscriptionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, DescribeEventSubscriptions(request), context);
+}
+
+DescribeEventsOutcome DatabaseMigrationServiceClient::DescribeEvents(const DescribeEventsRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return DescribeEventsOutcome(DescribeEventsResult(outcome.GetResult()));
+  }
+  else
+  {
+    return DescribeEventsOutcome(outcome.GetError());
+  }
+}
+
+DescribeEventsOutcomeCallable DatabaseMigrationServiceClient::DescribeEventsCallable(const DescribeEventsRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< DescribeEventsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeEvents(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void DatabaseMigrationServiceClient::DescribeEventsAsync(const DescribeEventsRequest& request, const DescribeEventsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->DescribeEventsAsyncHelper( request, handler, context ); } );
+}
+
+void DatabaseMigrationServiceClient::DescribeEventsAsyncHelper(const DescribeEventsRequest& request, const DescribeEventsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, DescribeEvents(request), context);
+}
+
 DescribeOrderableReplicationInstancesOutcome DatabaseMigrationServiceClient::DescribeOrderableReplicationInstances(const DescribeOrderableReplicationInstancesRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeOrderableReplicationInstancesOutcome(DescribeOrderableReplicationInstancesResult(outcome.GetResult()));
@@ -671,9 +870,10 @@ void DatabaseMigrationServiceClient::DescribeOrderableReplicationInstancesAsyncH
 DescribeRefreshSchemasStatusOutcome DatabaseMigrationServiceClient::DescribeRefreshSchemasStatus(const DescribeRefreshSchemasStatusRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeRefreshSchemasStatusOutcome(DescribeRefreshSchemasStatusResult(outcome.GetResult()));
@@ -705,9 +905,10 @@ void DatabaseMigrationServiceClient::DescribeRefreshSchemasStatusAsyncHelper(con
 DescribeReplicationInstancesOutcome DatabaseMigrationServiceClient::DescribeReplicationInstances(const DescribeReplicationInstancesRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeReplicationInstancesOutcome(DescribeReplicationInstancesResult(outcome.GetResult()));
@@ -739,9 +940,10 @@ void DatabaseMigrationServiceClient::DescribeReplicationInstancesAsyncHelper(con
 DescribeReplicationSubnetGroupsOutcome DatabaseMigrationServiceClient::DescribeReplicationSubnetGroups(const DescribeReplicationSubnetGroupsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeReplicationSubnetGroupsOutcome(DescribeReplicationSubnetGroupsResult(outcome.GetResult()));
@@ -773,9 +975,10 @@ void DatabaseMigrationServiceClient::DescribeReplicationSubnetGroupsAsyncHelper(
 DescribeReplicationTasksOutcome DatabaseMigrationServiceClient::DescribeReplicationTasks(const DescribeReplicationTasksRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeReplicationTasksOutcome(DescribeReplicationTasksResult(outcome.GetResult()));
@@ -807,9 +1010,10 @@ void DatabaseMigrationServiceClient::DescribeReplicationTasksAsyncHelper(const D
 DescribeSchemasOutcome DatabaseMigrationServiceClient::DescribeSchemas(const DescribeSchemasRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeSchemasOutcome(DescribeSchemasResult(outcome.GetResult()));
@@ -841,9 +1045,10 @@ void DatabaseMigrationServiceClient::DescribeSchemasAsyncHelper(const DescribeSc
 DescribeTableStatisticsOutcome DatabaseMigrationServiceClient::DescribeTableStatistics(const DescribeTableStatisticsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeTableStatisticsOutcome(DescribeTableStatisticsResult(outcome.GetResult()));
@@ -875,9 +1080,10 @@ void DatabaseMigrationServiceClient::DescribeTableStatisticsAsyncHelper(const De
 ImportCertificateOutcome DatabaseMigrationServiceClient::ImportCertificate(const ImportCertificateRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ImportCertificateOutcome(ImportCertificateResult(outcome.GetResult()));
@@ -909,9 +1115,10 @@ void DatabaseMigrationServiceClient::ImportCertificateAsyncHelper(const ImportCe
 ListTagsForResourceOutcome DatabaseMigrationServiceClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ListTagsForResourceOutcome(ListTagsForResourceResult(outcome.GetResult()));
@@ -943,9 +1150,10 @@ void DatabaseMigrationServiceClient::ListTagsForResourceAsyncHelper(const ListTa
 ModifyEndpointOutcome DatabaseMigrationServiceClient::ModifyEndpoint(const ModifyEndpointRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ModifyEndpointOutcome(ModifyEndpointResult(outcome.GetResult()));
@@ -974,12 +1182,48 @@ void DatabaseMigrationServiceClient::ModifyEndpointAsyncHelper(const ModifyEndpo
   handler(this, request, ModifyEndpoint(request), context);
 }
 
+ModifyEventSubscriptionOutcome DatabaseMigrationServiceClient::ModifyEventSubscription(const ModifyEventSubscriptionRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return ModifyEventSubscriptionOutcome(ModifyEventSubscriptionResult(outcome.GetResult()));
+  }
+  else
+  {
+    return ModifyEventSubscriptionOutcome(outcome.GetError());
+  }
+}
+
+ModifyEventSubscriptionOutcomeCallable DatabaseMigrationServiceClient::ModifyEventSubscriptionCallable(const ModifyEventSubscriptionRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< ModifyEventSubscriptionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ModifyEventSubscription(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void DatabaseMigrationServiceClient::ModifyEventSubscriptionAsync(const ModifyEventSubscriptionRequest& request, const ModifyEventSubscriptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->ModifyEventSubscriptionAsyncHelper( request, handler, context ); } );
+}
+
+void DatabaseMigrationServiceClient::ModifyEventSubscriptionAsyncHelper(const ModifyEventSubscriptionRequest& request, const ModifyEventSubscriptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, ModifyEventSubscription(request), context);
+}
+
 ModifyReplicationInstanceOutcome DatabaseMigrationServiceClient::ModifyReplicationInstance(const ModifyReplicationInstanceRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ModifyReplicationInstanceOutcome(ModifyReplicationInstanceResult(outcome.GetResult()));
@@ -1011,9 +1255,10 @@ void DatabaseMigrationServiceClient::ModifyReplicationInstanceAsyncHelper(const 
 ModifyReplicationSubnetGroupOutcome DatabaseMigrationServiceClient::ModifyReplicationSubnetGroup(const ModifyReplicationSubnetGroupRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ModifyReplicationSubnetGroupOutcome(ModifyReplicationSubnetGroupResult(outcome.GetResult()));
@@ -1045,9 +1290,10 @@ void DatabaseMigrationServiceClient::ModifyReplicationSubnetGroupAsyncHelper(con
 ModifyReplicationTaskOutcome DatabaseMigrationServiceClient::ModifyReplicationTask(const ModifyReplicationTaskRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ModifyReplicationTaskOutcome(ModifyReplicationTaskResult(outcome.GetResult()));
@@ -1079,9 +1325,10 @@ void DatabaseMigrationServiceClient::ModifyReplicationTaskAsyncHelper(const Modi
 RefreshSchemasOutcome DatabaseMigrationServiceClient::RefreshSchemas(const RefreshSchemasRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return RefreshSchemasOutcome(RefreshSchemasResult(outcome.GetResult()));
@@ -1110,12 +1357,48 @@ void DatabaseMigrationServiceClient::RefreshSchemasAsyncHelper(const RefreshSche
   handler(this, request, RefreshSchemas(request), context);
 }
 
+ReloadTablesOutcome DatabaseMigrationServiceClient::ReloadTables(const ReloadTablesRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return ReloadTablesOutcome(ReloadTablesResult(outcome.GetResult()));
+  }
+  else
+  {
+    return ReloadTablesOutcome(outcome.GetError());
+  }
+}
+
+ReloadTablesOutcomeCallable DatabaseMigrationServiceClient::ReloadTablesCallable(const ReloadTablesRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< ReloadTablesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ReloadTables(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void DatabaseMigrationServiceClient::ReloadTablesAsync(const ReloadTablesRequest& request, const ReloadTablesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->ReloadTablesAsyncHelper( request, handler, context ); } );
+}
+
+void DatabaseMigrationServiceClient::ReloadTablesAsyncHelper(const ReloadTablesRequest& request, const ReloadTablesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, ReloadTables(request), context);
+}
+
 RemoveTagsFromResourceOutcome DatabaseMigrationServiceClient::RemoveTagsFromResource(const RemoveTagsFromResourceRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return RemoveTagsFromResourceOutcome(RemoveTagsFromResourceResult(outcome.GetResult()));
@@ -1147,9 +1430,10 @@ void DatabaseMigrationServiceClient::RemoveTagsFromResourceAsyncHelper(const Rem
 StartReplicationTaskOutcome DatabaseMigrationServiceClient::StartReplicationTask(const StartReplicationTaskRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return StartReplicationTaskOutcome(StartReplicationTaskResult(outcome.GetResult()));
@@ -1181,9 +1465,10 @@ void DatabaseMigrationServiceClient::StartReplicationTaskAsyncHelper(const Start
 StopReplicationTaskOutcome DatabaseMigrationServiceClient::StopReplicationTask(const StopReplicationTaskRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return StopReplicationTaskOutcome(StopReplicationTaskResult(outcome.GetResult()));
@@ -1215,9 +1500,10 @@ void DatabaseMigrationServiceClient::StopReplicationTaskAsyncHelper(const StopRe
 TestConnectionOutcome DatabaseMigrationServiceClient::TestConnection(const TestConnectionRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return TestConnectionOutcome(TestConnectionResult(outcome.GetResult()));

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/RunInstancesResponse.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
@@ -30,38 +31,23 @@ RunInstancesResponse::RunInstancesResponse()
 {
 }
 
-RunInstancesResponse::RunInstancesResponse(const AmazonWebServiceResult<XmlDocument>& result)
+RunInstancesResponse::RunInstancesResponse(const Aws::AmazonWebServiceResult<XmlDocument>& result)
 {
   *this = result;
 }
 
-RunInstancesResponse& RunInstancesResponse::operator =(const AmazonWebServiceResult<XmlDocument>& result)
+RunInstancesResponse& RunInstancesResponse::operator =(const Aws::AmazonWebServiceResult<XmlDocument>& result)
 {
   const XmlDocument& xmlDocument = result.GetPayload();
   XmlNode rootNode = xmlDocument.GetRootElement();
   XmlNode resultNode = rootNode;
-  if (rootNode.GetName() != "RunInstancesResponse")
+  if (!rootNode.IsNull() && (rootNode.GetName() != "RunInstancesResponse"))
   {
     resultNode = rootNode.FirstChild("RunInstancesResponse");
   }
 
   if(!resultNode.IsNull())
   {
-    XmlNode reservationIdNode = resultNode.FirstChild("reservationId");
-    if(!reservationIdNode.IsNull())
-    {
-      m_reservationId = StringUtils::Trim(reservationIdNode.GetText().c_str());
-    }
-    XmlNode ownerIdNode = resultNode.FirstChild("ownerId");
-    if(!ownerIdNode.IsNull())
-    {
-      m_ownerId = StringUtils::Trim(ownerIdNode.GetText().c_str());
-    }
-    XmlNode requesterIdNode = resultNode.FirstChild("requesterId");
-    if(!requesterIdNode.IsNull())
-    {
-      m_requesterId = StringUtils::Trim(requesterIdNode.GetText().c_str());
-    }
     XmlNode groupsNode = resultNode.FirstChild("groupSet");
     if(!groupsNode.IsNull())
     {
@@ -84,11 +70,27 @@ RunInstancesResponse& RunInstancesResponse::operator =(const AmazonWebServiceRes
       }
 
     }
+    XmlNode ownerIdNode = resultNode.FirstChild("ownerId");
+    if(!ownerIdNode.IsNull())
+    {
+      m_ownerId = StringUtils::Trim(ownerIdNode.GetText().c_str());
+    }
+    XmlNode requesterIdNode = resultNode.FirstChild("requesterId");
+    if(!requesterIdNode.IsNull())
+    {
+      m_requesterId = StringUtils::Trim(requesterIdNode.GetText().c_str());
+    }
+    XmlNode reservationIdNode = resultNode.FirstChild("reservationId");
+    if(!reservationIdNode.IsNull())
+    {
+      m_reservationId = StringUtils::Trim(reservationIdNode.GetText().c_str());
+    }
   }
 
-  XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
-  m_responseMetadata = responseMetadataNode;
-  AWS_LOGSTREAM_DEBUG("Aws::EC2::Model::RunInstancesResponse", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
-
+  if (!rootNode.IsNull()) {
+    XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
+    m_responseMetadata = responseMetadataNode;
+    AWS_LOGSTREAM_DEBUG("Aws::EC2::Model::RunInstancesResponse", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
+  }
   return *this;
 }

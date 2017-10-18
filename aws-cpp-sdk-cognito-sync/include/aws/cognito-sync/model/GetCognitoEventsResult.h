@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-sync/CognitoSync_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     GetCognitoEventsResult();
-    GetCognitoEventsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetCognitoEventsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetCognitoEventsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetCognitoEventsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The Cognito Events returned from the GetCognitoEvents request</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The Cognito Events returned from the GetCognitoEvents request</p>
      */
-    inline void SetEvents(Aws::Map<Aws::String, Aws::String>&& value) { m_events = value; }
+    inline void SetEvents(Aws::Map<Aws::String, Aws::String>&& value) { m_events = std::move(value); }
 
     /**
      * <p>The Cognito Events returned from the GetCognitoEvents request</p>
@@ -68,44 +71,45 @@ namespace Model
     /**
      * <p>The Cognito Events returned from the GetCognitoEvents request</p>
      */
-    inline GetCognitoEventsResult& WithEvents(Aws::Map<Aws::String, Aws::String>&& value) { SetEvents(value); return *this;}
+    inline GetCognitoEventsResult& WithEvents(Aws::Map<Aws::String, Aws::String>&& value) { SetEvents(std::move(value)); return *this;}
 
     /**
      * <p>The Cognito Events returned from the GetCognitoEvents request</p>
      */
-    inline GetCognitoEventsResult& AddEvents(const Aws::String& key, const Aws::String& value) { m_events[key] = value; return *this; }
+    inline GetCognitoEventsResult& AddEvents(const Aws::String& key, const Aws::String& value) { m_events.emplace(key, value); return *this; }
 
     /**
      * <p>The Cognito Events returned from the GetCognitoEvents request</p>
      */
-    inline GetCognitoEventsResult& AddEvents(Aws::String&& key, const Aws::String& value) { m_events[key] = value; return *this; }
+    inline GetCognitoEventsResult& AddEvents(Aws::String&& key, const Aws::String& value) { m_events.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The Cognito Events returned from the GetCognitoEvents request</p>
      */
-    inline GetCognitoEventsResult& AddEvents(const Aws::String& key, Aws::String&& value) { m_events[key] = value; return *this; }
+    inline GetCognitoEventsResult& AddEvents(const Aws::String& key, Aws::String&& value) { m_events.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The Cognito Events returned from the GetCognitoEvents request</p>
      */
-    inline GetCognitoEventsResult& AddEvents(Aws::String&& key, Aws::String&& value) { m_events[key] = value; return *this; }
+    inline GetCognitoEventsResult& AddEvents(Aws::String&& key, Aws::String&& value) { m_events.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>The Cognito Events returned from the GetCognitoEvents request</p>
      */
-    inline GetCognitoEventsResult& AddEvents(const char* key, Aws::String&& value) { m_events[key] = value; return *this; }
+    inline GetCognitoEventsResult& AddEvents(const char* key, Aws::String&& value) { m_events.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The Cognito Events returned from the GetCognitoEvents request</p>
      */
-    inline GetCognitoEventsResult& AddEvents(Aws::String&& key, const char* value) { m_events[key] = value; return *this; }
+    inline GetCognitoEventsResult& AddEvents(Aws::String&& key, const char* value) { m_events.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The Cognito Events returned from the GetCognitoEvents request</p>
      */
-    inline GetCognitoEventsResult& AddEvents(const char* key, const char* value) { m_events[key] = value; return *this; }
+    inline GetCognitoEventsResult& AddEvents(const char* key, const char* value) { m_events.emplace(key, value); return *this; }
 
   private:
+
     Aws::Map<Aws::String, Aws::String> m_events;
   };
 

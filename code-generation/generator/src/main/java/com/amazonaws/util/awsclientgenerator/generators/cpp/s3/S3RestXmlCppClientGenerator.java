@@ -1,5 +1,5 @@
 /*
-* Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.amazonaws.util.awsclientgenerator.generators.cpp.s3;
 import com.amazonaws.util.awsclientgenerator.domainmodels.SdkFileEntry;
 import com.amazonaws.util.awsclientgenerator.domainmodels.codegeneration.ServiceModel;
 import com.amazonaws.util.awsclientgenerator.domainmodels.codegeneration.Shape;
+import com.amazonaws.util.awsclientgenerator.domainmodels.codegeneration.ShapeMember;
 import com.amazonaws.util.awsclientgenerator.domainmodels.codegeneration.cpp.CppViewHelper;
 import com.amazonaws.util.awsclientgenerator.generators.cpp.RestXmlCppClientGenerator;
 import org.apache.velocity.Template;
@@ -32,6 +33,7 @@ import java.util.Set;
 public class S3RestXmlCppClientGenerator  extends RestXmlCppClientGenerator {
 
     private static Set<String> opsThatNeedMd5 = new HashSet<>();
+    private static Set<String> opsThatDoNotSupportVirtualAddressing = new HashSet<>();
 
     static {
         opsThatNeedMd5.add("DeleteObjects");
@@ -40,6 +42,9 @@ public class S3RestXmlCppClientGenerator  extends RestXmlCppClientGenerator {
         opsThatNeedMd5.add("PutBucketLifecycleConfiguration");
         opsThatNeedMd5.add("PutBucketPolicy");
         opsThatNeedMd5.add("PutBucketTagging");
+
+        opsThatDoNotSupportVirtualAddressing.add("CreateBucket");
+        opsThatDoNotSupportVirtualAddressing.add("ListBuckets");
     }
 
     public S3RestXmlCppClientGenerator() throws Exception {
@@ -48,6 +53,9 @@ public class S3RestXmlCppClientGenerator  extends RestXmlCppClientGenerator {
 
     @Override
     public SdkFileEntry[] generateSourceFiles(ServiceModel serviceModel) throws Exception {
+		
+        // Add ID2 and RequestId to GetObjectResult
+        hackGetObjectOutputResponse(serviceModel);
 
         //if an operation should precompute md5, make sure it is added here.
         serviceModel.getOperations().values().stream()
@@ -59,8 +67,67 @@ public class S3RestXmlCppClientGenerator  extends RestXmlCppClientGenerator {
         serviceModel.getShapes().entrySet().stream().filter(shapeEntry -> shapeEntry.getKey().toLowerCase().equals("contentlength") || shapeEntry.getKey().toLowerCase().equals("size"))
                 .forEach(shapeEntry -> shapeEntry.getValue().setType("long"));
 
+        serviceModel.getOperations().values().stream()
+                .filter(operationEntry ->
+                        !opsThatDoNotSupportVirtualAddressing.contains(operationEntry.getName()))
+                .forEach(operationEntry -> operationEntry.setVirtualAddressAllowed(true));
+
+        serviceModel.getOperations().values().stream()
+                .filter(operationEntry ->
+                        !opsThatDoNotSupportVirtualAddressing.contains(operationEntry.getName()))
+                .forEach(operationEntry -> operationEntry.setVirtualAddressMemberName("Bucket"));
+
+        Shape locationConstraints = serviceModel.getShapes().get("BucketLocationConstraint");
+
+        if(locationConstraints != null) {
+            if(!locationConstraints.getEnumValues().contains("us-east-2")) {
+                locationConstraints.getEnumValues().add("us-east-2");
+            }
+        }
+
         return super.generateSourceFiles(serviceModel);
     }
+
+    protected void hackGetObjectOutputResponse(ServiceModel serviceModel) {
+        Shape getObjectResult  = serviceModel.getShapes().get("GetObjectResult");
+        if (getObjectResult == null) return;
+
+        Shape id2 = new Shape();
+        id2.setName("ObjectId2");
+        id2.setType("string");
+        if (serviceModel.getShapes().get("ObjectId2") == null) {
+            serviceModel.getShapes().put("ObjectId2", id2);
+        } else {
+            id2 = serviceModel.getShapes().get("ObjectId2");
+        }
+
+        Shape requestId = new Shape();
+        requestId.setName("ObjectRequestId");
+        requestId.setType("string");
+        if (serviceModel.getShapes().get("ObjectRequestId") == null) {
+            serviceModel.getShapes().put("ObjectRequestId", requestId);
+        } else {
+            requestId = serviceModel.getShapes().get("ObjectRequestId");
+        }
+
+        ShapeMember id2ShapeMember = new ShapeMember();
+        id2ShapeMember.setShape(id2);
+        id2ShapeMember.setLocation("header");
+        id2ShapeMember.setLocationName("x-amz-id-2");
+
+        ShapeMember requestIdShapeMember = new ShapeMember();
+        requestIdShapeMember.setShape(requestId);
+        requestIdShapeMember.setLocation("header");
+        requestIdShapeMember.setLocationName("x-amz-request-id");
+
+
+        if (getObjectResult.getMembers().get("Id2") == null) {
+            getObjectResult.getMembers().put("Id2", id2ShapeMember);
+        }
+        if (getObjectResult.getMembers().get("RequestId") == null) {
+            getObjectResult.getMembers().put("RequestId", requestIdShapeMember);
+        }
+	}
 
     @Override
     protected SdkFileEntry generateClientHeaderFile(final ServiceModel serviceModel) throws Exception {
@@ -110,6 +177,8 @@ public class S3RestXmlCppClientGenerator  extends RestXmlCppClientGenerator {
         endpoints.put("ap-southeast-2", "s3-ap-southeast-2.amazonaws.com");
         endpoints.put("ap-northeast-1", "s3-ap-northeast-1.amazonaws.com");
         endpoints.put("sa-east-1", "s3-sa-east-1.amazonaws.com");
+        endpoints.put("us-gov-west-1", "s3-us-gov-west-1.amazonaws.com");
+        endpoints.put("fips-us-gov-west-1", "s3-fips-us-gov-west-1.amazonaws.com");
 
         return endpoints;
     }

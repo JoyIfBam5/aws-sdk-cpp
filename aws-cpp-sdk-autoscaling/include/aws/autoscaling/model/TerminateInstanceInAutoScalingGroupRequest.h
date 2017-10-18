@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/autoscaling/AutoScaling_EXPORTS.h>
 #include <aws/autoscaling/AutoScalingRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -25,16 +27,24 @@ namespace Model
 {
 
   /**
-   * <p>Contains the parameters for
-   * TerminateInstanceInAutoScalingGroup.</p><p><h3>See Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/autoscaling-2011-01-01/TerminateInstanceInAutoScalingGroupType">AWS
-   * API Reference</a></p>
    */
   class AWS_AUTOSCALING_API TerminateInstanceInAutoScalingGroupRequest : public AutoScalingRequest
   {
   public:
     TerminateInstanceInAutoScalingGroupRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "TerminateInstanceInAutoScalingGroup"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The ID of the instance.</p>
@@ -49,7 +59,7 @@ namespace Model
     /**
      * <p>The ID of the instance.</p>
      */
-    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = value; }
+    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = std::move(value); }
 
     /**
      * <p>The ID of the instance.</p>
@@ -64,12 +74,13 @@ namespace Model
     /**
      * <p>The ID of the instance.</p>
      */
-    inline TerminateInstanceInAutoScalingGroupRequest& WithInstanceId(Aws::String&& value) { SetInstanceId(value); return *this;}
+    inline TerminateInstanceInAutoScalingGroupRequest& WithInstanceId(Aws::String&& value) { SetInstanceId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the instance.</p>
      */
     inline TerminateInstanceInAutoScalingGroupRequest& WithInstanceId(const char* value) { SetInstanceId(value); return *this;}
+
 
     /**
      * <p>If <code>true</code>, terminating the instance also decrements the size of
@@ -90,8 +101,10 @@ namespace Model
     inline TerminateInstanceInAutoScalingGroupRequest& WithShouldDecrementDesiredCapacity(bool value) { SetShouldDecrementDesiredCapacity(value); return *this;}
 
   private:
+
     Aws::String m_instanceId;
     bool m_instanceIdHasBeenSet;
+
     bool m_shouldDecrementDesiredCapacity;
     bool m_shouldDecrementDesiredCapacityHasBeenSet;
   };

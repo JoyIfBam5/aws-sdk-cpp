@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codedeploy/CodeDeploy_EXPORTS.h>
 #include <aws/codedeploy/model/ApplicationInfo.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,8 +35,8 @@ namespace CodeDeploy
 namespace Model
 {
   /**
-   * <p>Represents the output of a get application operation.</p><p><h3>See
-   * Also:</h3>   <a
+   * <p>Represents the output of a GetApplication operation.</p><p><h3>See Also:</h3>
+   * <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/GetApplicationOutput">AWS
    * API Reference</a></p>
    */
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     GetApplicationResult();
-    GetApplicationResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetApplicationResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetApplicationResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetApplicationResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the application.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>Information about the application.</p>
      */
-    inline void SetApplication(ApplicationInfo&& value) { m_application = value; }
+    inline void SetApplication(ApplicationInfo&& value) { m_application = std::move(value); }
 
     /**
      * <p>Information about the application.</p>
@@ -68,9 +71,10 @@ namespace Model
     /**
      * <p>Information about the application.</p>
      */
-    inline GetApplicationResult& WithApplication(ApplicationInfo&& value) { SetApplication(value); return *this;}
+    inline GetApplicationResult& WithApplication(ApplicationInfo&& value) { SetApplication(std::move(value)); return *this;}
 
   private:
+
     ApplicationInfo m_application;
   };
 

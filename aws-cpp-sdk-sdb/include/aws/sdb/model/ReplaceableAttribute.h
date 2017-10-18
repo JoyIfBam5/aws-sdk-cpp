@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/sdb/SimpleDB_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * The name of the replaceable attribute.
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * The name of the replaceable attribute.
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * The name of the replaceable attribute.
@@ -74,12 +77,13 @@ namespace Model
     /**
      * The name of the replaceable attribute.
      */
-    inline ReplaceableAttribute& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline ReplaceableAttribute& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * The name of the replaceable attribute.
      */
     inline ReplaceableAttribute& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * The value of the replaceable attribute.
@@ -94,7 +98,7 @@ namespace Model
     /**
      * The value of the replaceable attribute.
      */
-    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = value; }
+    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = std::move(value); }
 
     /**
      * The value of the replaceable attribute.
@@ -109,12 +113,13 @@ namespace Model
     /**
      * The value of the replaceable attribute.
      */
-    inline ReplaceableAttribute& WithValue(Aws::String&& value) { SetValue(value); return *this;}
+    inline ReplaceableAttribute& WithValue(Aws::String&& value) { SetValue(std::move(value)); return *this;}
 
     /**
      * The value of the replaceable attribute.
      */
     inline ReplaceableAttribute& WithValue(const char* value) { SetValue(value); return *this;}
+
 
     /**
      * A flag specifying whether or not to replace the attribute/value pair or to add a
@@ -135,10 +140,13 @@ namespace Model
     inline ReplaceableAttribute& WithReplace(bool value) { SetReplace(value); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_value;
     bool m_valueHasBeenSet;
+
     bool m_replace;
     bool m_replaceHasBeenSet;
   };

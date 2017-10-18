@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/snowball/Snowball_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -22,6 +23,7 @@
 #include <aws/snowball/model/JobResource.h>
 #include <aws/snowball/model/ShippingOption.h>
 #include <aws/snowball/model/Notification.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,6 +52,7 @@ namespace Model
     ClusterMetadata& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The automatically generated ID for a cluster.</p>
      */
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>The automatically generated ID for a cluster.</p>
      */
-    inline void SetClusterId(Aws::String&& value) { m_clusterIdHasBeenSet = true; m_clusterId = value; }
+    inline void SetClusterId(Aws::String&& value) { m_clusterIdHasBeenSet = true; m_clusterId = std::move(value); }
 
     /**
      * <p>The automatically generated ID for a cluster.</p>
@@ -78,12 +81,13 @@ namespace Model
     /**
      * <p>The automatically generated ID for a cluster.</p>
      */
-    inline ClusterMetadata& WithClusterId(Aws::String&& value) { SetClusterId(value); return *this;}
+    inline ClusterMetadata& WithClusterId(Aws::String&& value) { SetClusterId(std::move(value)); return *this;}
 
     /**
      * <p>The automatically generated ID for a cluster.</p>
      */
     inline ClusterMetadata& WithClusterId(const char* value) { SetClusterId(value); return *this;}
+
 
     /**
      * <p>The optional description of the cluster.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>The optional description of the cluster.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The optional description of the cluster.</p>
@@ -113,12 +117,13 @@ namespace Model
     /**
      * <p>The optional description of the cluster.</p>
      */
-    inline ClusterMetadata& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline ClusterMetadata& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The optional description of the cluster.</p>
      */
     inline ClusterMetadata& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The <code>KmsKeyARN</code> Amazon Resource Name (ARN) associated with this
@@ -142,7 +147,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html">CreateKey</a>
      * API action in AWS Key Management Service (AWS KMS).</p>
      */
-    inline void SetKmsKeyARN(Aws::String&& value) { m_kmsKeyARNHasBeenSet = true; m_kmsKeyARN = value; }
+    inline void SetKmsKeyARN(Aws::String&& value) { m_kmsKeyARNHasBeenSet = true; m_kmsKeyARN = std::move(value); }
 
     /**
      * <p>The <code>KmsKeyARN</code> Amazon Resource Name (ARN) associated with this
@@ -166,7 +171,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html">CreateKey</a>
      * API action in AWS Key Management Service (AWS KMS).</p>
      */
-    inline ClusterMetadata& WithKmsKeyARN(Aws::String&& value) { SetKmsKeyARN(value); return *this;}
+    inline ClusterMetadata& WithKmsKeyARN(Aws::String&& value) { SetKmsKeyARN(std::move(value)); return *this;}
 
     /**
      * <p>The <code>KmsKeyARN</code> Amazon Resource Name (ARN) associated with this
@@ -175,6 +180,7 @@ namespace Model
      * API action in AWS Key Management Service (AWS KMS).</p>
      */
     inline ClusterMetadata& WithKmsKeyARN(const char* value) { SetKmsKeyARN(value); return *this;}
+
 
     /**
      * <p>The role ARN associated with this cluster. This ARN was created using the <a
@@ -195,7 +201,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a>
      * API action in AWS Identity and Access Management (IAM).</p>
      */
-    inline void SetRoleARN(Aws::String&& value) { m_roleARNHasBeenSet = true; m_roleARN = value; }
+    inline void SetRoleARN(Aws::String&& value) { m_roleARNHasBeenSet = true; m_roleARN = std::move(value); }
 
     /**
      * <p>The role ARN associated with this cluster. This ARN was created using the <a
@@ -216,7 +222,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html">CreateRole</a>
      * API action in AWS Identity and Access Management (IAM).</p>
      */
-    inline ClusterMetadata& WithRoleARN(Aws::String&& value) { SetRoleARN(value); return *this;}
+    inline ClusterMetadata& WithRoleARN(Aws::String&& value) { SetRoleARN(std::move(value)); return *this;}
 
     /**
      * <p>The role ARN associated with this cluster. This ARN was created using the <a
@@ -224,6 +230,7 @@ namespace Model
      * API action in AWS Identity and Access Management (IAM).</p>
      */
     inline ClusterMetadata& WithRoleARN(const char* value) { SetRoleARN(value); return *this;}
+
 
     /**
      * <p>The current status of the cluster.</p>
@@ -238,7 +245,7 @@ namespace Model
     /**
      * <p>The current status of the cluster.</p>
      */
-    inline void SetClusterState(ClusterState&& value) { m_clusterStateHasBeenSet = true; m_clusterState = value; }
+    inline void SetClusterState(ClusterState&& value) { m_clusterStateHasBeenSet = true; m_clusterState = std::move(value); }
 
     /**
      * <p>The current status of the cluster.</p>
@@ -248,7 +255,8 @@ namespace Model
     /**
      * <p>The current status of the cluster.</p>
      */
-    inline ClusterMetadata& WithClusterState(ClusterState&& value) { SetClusterState(value); return *this;}
+    inline ClusterMetadata& WithClusterState(ClusterState&& value) { SetClusterState(std::move(value)); return *this;}
+
 
     /**
      * <p>The type of job for this cluster. Currently, the only job type supported for
@@ -266,7 +274,7 @@ namespace Model
      * <p>The type of job for this cluster. Currently, the only job type supported for
      * clusters is <code>LOCAL_USE</code>.</p>
      */
-    inline void SetJobType(JobType&& value) { m_jobTypeHasBeenSet = true; m_jobType = value; }
+    inline void SetJobType(JobType&& value) { m_jobTypeHasBeenSet = true; m_jobType = std::move(value); }
 
     /**
      * <p>The type of job for this cluster. Currently, the only job type supported for
@@ -278,7 +286,8 @@ namespace Model
      * <p>The type of job for this cluster. Currently, the only job type supported for
      * clusters is <code>LOCAL_USE</code>.</p>
      */
-    inline ClusterMetadata& WithJobType(JobType&& value) { SetJobType(value); return *this;}
+    inline ClusterMetadata& WithJobType(JobType&& value) { SetJobType(std::move(value)); return *this;}
+
 
     /**
      * <p>The type of AWS Snowball appliance to use for this cluster. Currently, the
@@ -296,7 +305,7 @@ namespace Model
      * <p>The type of AWS Snowball appliance to use for this cluster. Currently, the
      * only supported appliance type for cluster jobs is <code>EDGE</code>.</p>
      */
-    inline void SetSnowballType(SnowballType&& value) { m_snowballTypeHasBeenSet = true; m_snowballType = value; }
+    inline void SetSnowballType(SnowballType&& value) { m_snowballTypeHasBeenSet = true; m_snowballType = std::move(value); }
 
     /**
      * <p>The type of AWS Snowball appliance to use for this cluster. Currently, the
@@ -308,7 +317,8 @@ namespace Model
      * <p>The type of AWS Snowball appliance to use for this cluster. Currently, the
      * only supported appliance type for cluster jobs is <code>EDGE</code>.</p>
      */
-    inline ClusterMetadata& WithSnowballType(SnowballType&& value) { SetSnowballType(value); return *this;}
+    inline ClusterMetadata& WithSnowballType(SnowballType&& value) { SetSnowballType(std::move(value)); return *this;}
+
 
     /**
      * <p>The creation date for this cluster.</p>
@@ -323,7 +333,7 @@ namespace Model
     /**
      * <p>The creation date for this cluster.</p>
      */
-    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDateHasBeenSet = true; m_creationDate = value; }
+    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDateHasBeenSet = true; m_creationDate = std::move(value); }
 
     /**
      * <p>The creation date for this cluster.</p>
@@ -333,7 +343,8 @@ namespace Model
     /**
      * <p>The creation date for this cluster.</p>
      */
-    inline ClusterMetadata& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(value); return *this;}
+    inline ClusterMetadata& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(std::move(value)); return *this;}
+
 
     /**
      * <p>The arrays of <a>JobResource</a> objects that can include updated
@@ -351,7 +362,7 @@ namespace Model
      * <p>The arrays of <a>JobResource</a> objects that can include updated
      * <a>S3Resource</a> objects or <a>LambdaResource</a> objects.</p>
      */
-    inline void SetResources(JobResource&& value) { m_resourcesHasBeenSet = true; m_resources = value; }
+    inline void SetResources(JobResource&& value) { m_resourcesHasBeenSet = true; m_resources = std::move(value); }
 
     /**
      * <p>The arrays of <a>JobResource</a> objects that can include updated
@@ -363,7 +374,8 @@ namespace Model
      * <p>The arrays of <a>JobResource</a> objects that can include updated
      * <a>S3Resource</a> objects or <a>LambdaResource</a> objects.</p>
      */
-    inline ClusterMetadata& WithResources(JobResource&& value) { SetResources(value); return *this;}
+    inline ClusterMetadata& WithResources(JobResource&& value) { SetResources(std::move(value)); return *this;}
+
 
     /**
      * <p>The automatically generated ID for a specific address.</p>
@@ -378,7 +390,7 @@ namespace Model
     /**
      * <p>The automatically generated ID for a specific address.</p>
      */
-    inline void SetAddressId(Aws::String&& value) { m_addressIdHasBeenSet = true; m_addressId = value; }
+    inline void SetAddressId(Aws::String&& value) { m_addressIdHasBeenSet = true; m_addressId = std::move(value); }
 
     /**
      * <p>The automatically generated ID for a specific address.</p>
@@ -393,12 +405,13 @@ namespace Model
     /**
      * <p>The automatically generated ID for a specific address.</p>
      */
-    inline ClusterMetadata& WithAddressId(Aws::String&& value) { SetAddressId(value); return *this;}
+    inline ClusterMetadata& WithAddressId(Aws::String&& value) { SetAddressId(std::move(value)); return *this;}
 
     /**
      * <p>The automatically generated ID for a specific address.</p>
      */
     inline ClusterMetadata& WithAddressId(const char* value) { SetAddressId(value); return *this;}
+
 
     /**
      * <p>The shipping speed for each node in this cluster. This speed doesn't dictate
@@ -446,7 +459,7 @@ namespace Model
      * the US, you have access to one-day shipping and two-day shipping.</p> </li>
      * </ul>
      */
-    inline void SetShippingOption(ShippingOption&& value) { m_shippingOptionHasBeenSet = true; m_shippingOption = value; }
+    inline void SetShippingOption(ShippingOption&& value) { m_shippingOptionHasBeenSet = true; m_shippingOption = std::move(value); }
 
     /**
      * <p>The shipping speed for each node in this cluster. This speed doesn't dictate
@@ -478,7 +491,8 @@ namespace Model
      * the US, you have access to one-day shipping and two-day shipping.</p> </li>
      * </ul>
      */
-    inline ClusterMetadata& WithShippingOption(ShippingOption&& value) { SetShippingOption(value); return *this;}
+    inline ClusterMetadata& WithShippingOption(ShippingOption&& value) { SetShippingOption(std::move(value)); return *this;}
+
 
     /**
      * <p>The Amazon Simple Notification Service (Amazon SNS) notification settings for
@@ -496,7 +510,7 @@ namespace Model
      * <p>The Amazon Simple Notification Service (Amazon SNS) notification settings for
      * this cluster.</p>
      */
-    inline void SetNotification(Notification&& value) { m_notificationHasBeenSet = true; m_notification = value; }
+    inline void SetNotification(Notification&& value) { m_notificationHasBeenSet = true; m_notification = std::move(value); }
 
     /**
      * <p>The Amazon Simple Notification Service (Amazon SNS) notification settings for
@@ -508,33 +522,91 @@ namespace Model
      * <p>The Amazon Simple Notification Service (Amazon SNS) notification settings for
      * this cluster.</p>
      */
-    inline ClusterMetadata& WithNotification(Notification&& value) { SetNotification(value); return *this;}
+    inline ClusterMetadata& WithNotification(Notification&& value) { SetNotification(std::move(value)); return *this;}
+
+
+    /**
+     * <p>The ID of the address that you want a cluster shipped to, after it will be
+     * shipped to its primary address. This field is not supported in most regions.</p>
+     */
+    inline const Aws::String& GetForwardingAddressId() const{ return m_forwardingAddressId; }
+
+    /**
+     * <p>The ID of the address that you want a cluster shipped to, after it will be
+     * shipped to its primary address. This field is not supported in most regions.</p>
+     */
+    inline void SetForwardingAddressId(const Aws::String& value) { m_forwardingAddressIdHasBeenSet = true; m_forwardingAddressId = value; }
+
+    /**
+     * <p>The ID of the address that you want a cluster shipped to, after it will be
+     * shipped to its primary address. This field is not supported in most regions.</p>
+     */
+    inline void SetForwardingAddressId(Aws::String&& value) { m_forwardingAddressIdHasBeenSet = true; m_forwardingAddressId = std::move(value); }
+
+    /**
+     * <p>The ID of the address that you want a cluster shipped to, after it will be
+     * shipped to its primary address. This field is not supported in most regions.</p>
+     */
+    inline void SetForwardingAddressId(const char* value) { m_forwardingAddressIdHasBeenSet = true; m_forwardingAddressId.assign(value); }
+
+    /**
+     * <p>The ID of the address that you want a cluster shipped to, after it will be
+     * shipped to its primary address. This field is not supported in most regions.</p>
+     */
+    inline ClusterMetadata& WithForwardingAddressId(const Aws::String& value) { SetForwardingAddressId(value); return *this;}
+
+    /**
+     * <p>The ID of the address that you want a cluster shipped to, after it will be
+     * shipped to its primary address. This field is not supported in most regions.</p>
+     */
+    inline ClusterMetadata& WithForwardingAddressId(Aws::String&& value) { SetForwardingAddressId(std::move(value)); return *this;}
+
+    /**
+     * <p>The ID of the address that you want a cluster shipped to, after it will be
+     * shipped to its primary address. This field is not supported in most regions.</p>
+     */
+    inline ClusterMetadata& WithForwardingAddressId(const char* value) { SetForwardingAddressId(value); return *this;}
 
   private:
+
     Aws::String m_clusterId;
     bool m_clusterIdHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     Aws::String m_kmsKeyARN;
     bool m_kmsKeyARNHasBeenSet;
+
     Aws::String m_roleARN;
     bool m_roleARNHasBeenSet;
+
     ClusterState m_clusterState;
     bool m_clusterStateHasBeenSet;
+
     JobType m_jobType;
     bool m_jobTypeHasBeenSet;
+
     SnowballType m_snowballType;
     bool m_snowballTypeHasBeenSet;
+
     Aws::Utils::DateTime m_creationDate;
     bool m_creationDateHasBeenSet;
+
     JobResource m_resources;
     bool m_resourcesHasBeenSet;
+
     Aws::String m_addressId;
     bool m_addressIdHasBeenSet;
+
     ShippingOption m_shippingOption;
     bool m_shippingOptionHasBeenSet;
+
     Notification m_notification;
     bool m_notificationHasBeenSet;
+
+    Aws::String m_forwardingAddressId;
+    bool m_forwardingAddressIdHasBeenSet;
   };
 
 } // namespace Model

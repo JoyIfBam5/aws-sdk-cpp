@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,40 +47,42 @@ namespace Model
     WorkflowTypeFilter& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p><b>Required.</b> Name of the workflow type.</p>
+     * <p> Name of the workflow type.</p>
      */
     inline const Aws::String& GetName() const{ return m_name; }
 
     /**
-     * <p><b>Required.</b> Name of the workflow type.</p>
+     * <p> Name of the workflow type.</p>
      */
     inline void SetName(const Aws::String& value) { m_nameHasBeenSet = true; m_name = value; }
 
     /**
-     * <p><b>Required.</b> Name of the workflow type.</p>
+     * <p> Name of the workflow type.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
-     * <p><b>Required.</b> Name of the workflow type.</p>
+     * <p> Name of the workflow type.</p>
      */
     inline void SetName(const char* value) { m_nameHasBeenSet = true; m_name.assign(value); }
 
     /**
-     * <p><b>Required.</b> Name of the workflow type.</p>
+     * <p> Name of the workflow type.</p>
      */
     inline WorkflowTypeFilter& WithName(const Aws::String& value) { SetName(value); return *this;}
 
     /**
-     * <p><b>Required.</b> Name of the workflow type.</p>
+     * <p> Name of the workflow type.</p>
      */
-    inline WorkflowTypeFilter& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline WorkflowTypeFilter& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
-     * <p><b>Required.</b> Name of the workflow type.</p>
+     * <p> Name of the workflow type.</p>
      */
     inline WorkflowTypeFilter& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>Version of the workflow type.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>Version of the workflow type.</p>
      */
-    inline void SetVersion(Aws::String&& value) { m_versionHasBeenSet = true; m_version = value; }
+    inline void SetVersion(Aws::String&& value) { m_versionHasBeenSet = true; m_version = std::move(value); }
 
     /**
      * <p>Version of the workflow type.</p>
@@ -108,7 +112,7 @@ namespace Model
     /**
      * <p>Version of the workflow type.</p>
      */
-    inline WorkflowTypeFilter& WithVersion(Aws::String&& value) { SetVersion(value); return *this;}
+    inline WorkflowTypeFilter& WithVersion(Aws::String&& value) { SetVersion(std::move(value)); return *this;}
 
     /**
      * <p>Version of the workflow type.</p>
@@ -116,8 +120,10 @@ namespace Model
     inline WorkflowTypeFilter& WithVersion(const char* value) { SetVersion(value); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_version;
     bool m_versionHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/autoscaling/model/DescribeAccountLimitsResult.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
@@ -34,7 +35,7 @@ DescribeAccountLimitsResult::DescribeAccountLimitsResult() :
 {
 }
 
-DescribeAccountLimitsResult::DescribeAccountLimitsResult(const AmazonWebServiceResult<XmlDocument>& result) : 
+DescribeAccountLimitsResult::DescribeAccountLimitsResult(const Aws::AmazonWebServiceResult<XmlDocument>& result) : 
     m_maxNumberOfAutoScalingGroups(0),
     m_maxNumberOfLaunchConfigurations(0),
     m_numberOfAutoScalingGroups(0),
@@ -43,12 +44,12 @@ DescribeAccountLimitsResult::DescribeAccountLimitsResult(const AmazonWebServiceR
   *this = result;
 }
 
-DescribeAccountLimitsResult& DescribeAccountLimitsResult::operator =(const AmazonWebServiceResult<XmlDocument>& result)
+DescribeAccountLimitsResult& DescribeAccountLimitsResult::operator =(const Aws::AmazonWebServiceResult<XmlDocument>& result)
 {
   const XmlDocument& xmlDocument = result.GetPayload();
   XmlNode rootNode = xmlDocument.GetRootElement();
   XmlNode resultNode = rootNode;
-  if (rootNode.GetName() != "DescribeAccountLimitsResult")
+  if (!rootNode.IsNull() && (rootNode.GetName() != "DescribeAccountLimitsResult"))
   {
     resultNode = rootNode.FirstChild("DescribeAccountLimitsResult");
   }
@@ -77,9 +78,10 @@ DescribeAccountLimitsResult& DescribeAccountLimitsResult::operator =(const Amazo
     }
   }
 
-  XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
-  m_responseMetadata = responseMetadataNode;
-  AWS_LOGSTREAM_DEBUG("Aws::AutoScaling::Model::DescribeAccountLimitsResult", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
-
+  if (!rootNode.IsNull()) {
+    XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
+    m_responseMetadata = responseMetadataNode;
+    AWS_LOGSTREAM_DEBUG("Aws::AutoScaling::Model::DescribeAccountLimitsResult", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
+  }
   return *this;
 }

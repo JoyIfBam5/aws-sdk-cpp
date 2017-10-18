@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesisanalytics/KinesisAnalytics_EXPORTS.h>
 #include <aws/kinesisanalytics/model/RecordFormatType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     DestinationSchema& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Specifies the format of the records on the output stream.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>Specifies the format of the records on the output stream.</p>
      */
-    inline void SetRecordFormatType(RecordFormatType&& value) { m_recordFormatTypeHasBeenSet = true; m_recordFormatType = value; }
+    inline void SetRecordFormatType(RecordFormatType&& value) { m_recordFormatTypeHasBeenSet = true; m_recordFormatType = std::move(value); }
 
     /**
      * <p>Specifies the format of the records on the output stream.</p>
@@ -69,9 +72,10 @@ namespace Model
     /**
      * <p>Specifies the format of the records on the output stream.</p>
      */
-    inline DestinationSchema& WithRecordFormatType(RecordFormatType&& value) { SetRecordFormatType(value); return *this;}
+    inline DestinationSchema& WithRecordFormatType(RecordFormatType&& value) { SetRecordFormatType(std::move(value)); return *this;}
 
   private:
+
     RecordFormatType m_recordFormatType;
     bool m_recordFormatTypeHasBeenSet;
   };

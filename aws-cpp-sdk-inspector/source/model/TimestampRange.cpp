@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/inspector/model/TimestampRange.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -28,32 +29,32 @@ namespace Model
 {
 
 TimestampRange::TimestampRange() : 
-    m_minimumHasBeenSet(false),
-    m_maximumHasBeenSet(false)
+    m_beginDateHasBeenSet(false),
+    m_endDateHasBeenSet(false)
 {
 }
 
 TimestampRange::TimestampRange(const JsonValue& jsonValue) : 
-    m_minimumHasBeenSet(false),
-    m_maximumHasBeenSet(false)
+    m_beginDateHasBeenSet(false),
+    m_endDateHasBeenSet(false)
 {
   *this = jsonValue;
 }
 
 TimestampRange& TimestampRange::operator =(const JsonValue& jsonValue)
 {
-  if(jsonValue.ValueExists("minimum"))
+  if(jsonValue.ValueExists("beginDate"))
   {
-    m_minimum = jsonValue.GetDouble("minimum");
+    m_beginDate = jsonValue.GetDouble("beginDate");
 
-    m_minimumHasBeenSet = true;
+    m_beginDateHasBeenSet = true;
   }
 
-  if(jsonValue.ValueExists("maximum"))
+  if(jsonValue.ValueExists("endDate"))
   {
-    m_maximum = jsonValue.GetDouble("maximum");
+    m_endDate = jsonValue.GetDouble("endDate");
 
-    m_maximumHasBeenSet = true;
+    m_endDateHasBeenSet = true;
   }
 
   return *this;
@@ -63,14 +64,14 @@ JsonValue TimestampRange::Jsonize() const
 {
   JsonValue payload;
 
-  if(m_minimumHasBeenSet)
+  if(m_beginDateHasBeenSet)
   {
-   payload.WithDouble("minimum", m_minimum.SecondsWithMSPrecision());
+   payload.WithDouble("beginDate", m_beginDate.SecondsWithMSPrecision());
   }
 
-  if(m_maximumHasBeenSet)
+  if(m_endDateHasBeenSet)
   {
-   payload.WithDouble("maximum", m_maximum.SecondsWithMSPrecision());
+   payload.WithDouble("endDate", m_endDate.SecondsWithMSPrecision());
   }
 
   return payload;

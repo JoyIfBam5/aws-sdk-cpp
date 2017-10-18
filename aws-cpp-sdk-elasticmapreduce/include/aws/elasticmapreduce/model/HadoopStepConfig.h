@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     HadoopStepConfig& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The path to the JAR file that runs during the step.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The path to the JAR file that runs during the step.</p>
      */
-    inline void SetJar(Aws::String&& value) { m_jarHasBeenSet = true; m_jar = value; }
+    inline void SetJar(Aws::String&& value) { m_jarHasBeenSet = true; m_jar = std::move(value); }
 
     /**
      * <p>The path to the JAR file that runs during the step.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The path to the JAR file that runs during the step.</p>
      */
-    inline HadoopStepConfig& WithJar(Aws::String&& value) { SetJar(value); return *this;}
+    inline HadoopStepConfig& WithJar(Aws::String&& value) { SetJar(std::move(value)); return *this;}
 
     /**
      * <p>The path to the JAR file that runs during the step.</p>
      */
     inline HadoopStepConfig& WithJar(const char* value) { SetJar(value); return *this;}
+
 
     /**
      * <p>The list of Java properties that are set when the step runs. You can use
@@ -98,7 +102,7 @@ namespace Model
      * <p>The list of Java properties that are set when the step runs. You can use
      * these properties to pass key value pairs to your main function.</p>
      */
-    inline void SetProperties(Aws::Map<Aws::String, Aws::String>&& value) { m_propertiesHasBeenSet = true; m_properties = value; }
+    inline void SetProperties(Aws::Map<Aws::String, Aws::String>&& value) { m_propertiesHasBeenSet = true; m_properties = std::move(value); }
 
     /**
      * <p>The list of Java properties that are set when the step runs. You can use
@@ -110,49 +114,50 @@ namespace Model
      * <p>The list of Java properties that are set when the step runs. You can use
      * these properties to pass key value pairs to your main function.</p>
      */
-    inline HadoopStepConfig& WithProperties(Aws::Map<Aws::String, Aws::String>&& value) { SetProperties(value); return *this;}
+    inline HadoopStepConfig& WithProperties(Aws::Map<Aws::String, Aws::String>&& value) { SetProperties(std::move(value)); return *this;}
 
     /**
      * <p>The list of Java properties that are set when the step runs. You can use
      * these properties to pass key value pairs to your main function.</p>
      */
-    inline HadoopStepConfig& AddProperties(const Aws::String& key, const Aws::String& value) { m_propertiesHasBeenSet = true; m_properties[key] = value; return *this; }
+    inline HadoopStepConfig& AddProperties(const Aws::String& key, const Aws::String& value) { m_propertiesHasBeenSet = true; m_properties.emplace(key, value); return *this; }
 
     /**
      * <p>The list of Java properties that are set when the step runs. You can use
      * these properties to pass key value pairs to your main function.</p>
      */
-    inline HadoopStepConfig& AddProperties(Aws::String&& key, const Aws::String& value) { m_propertiesHasBeenSet = true; m_properties[key] = value; return *this; }
+    inline HadoopStepConfig& AddProperties(Aws::String&& key, const Aws::String& value) { m_propertiesHasBeenSet = true; m_properties.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The list of Java properties that are set when the step runs. You can use
      * these properties to pass key value pairs to your main function.</p>
      */
-    inline HadoopStepConfig& AddProperties(const Aws::String& key, Aws::String&& value) { m_propertiesHasBeenSet = true; m_properties[key] = value; return *this; }
+    inline HadoopStepConfig& AddProperties(const Aws::String& key, Aws::String&& value) { m_propertiesHasBeenSet = true; m_properties.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The list of Java properties that are set when the step runs. You can use
      * these properties to pass key value pairs to your main function.</p>
      */
-    inline HadoopStepConfig& AddProperties(Aws::String&& key, Aws::String&& value) { m_propertiesHasBeenSet = true; m_properties[key] = value; return *this; }
+    inline HadoopStepConfig& AddProperties(Aws::String&& key, Aws::String&& value) { m_propertiesHasBeenSet = true; m_properties.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>The list of Java properties that are set when the step runs. You can use
      * these properties to pass key value pairs to your main function.</p>
      */
-    inline HadoopStepConfig& AddProperties(const char* key, Aws::String&& value) { m_propertiesHasBeenSet = true; m_properties[key] = value; return *this; }
+    inline HadoopStepConfig& AddProperties(const char* key, Aws::String&& value) { m_propertiesHasBeenSet = true; m_properties.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The list of Java properties that are set when the step runs. You can use
      * these properties to pass key value pairs to your main function.</p>
      */
-    inline HadoopStepConfig& AddProperties(Aws::String&& key, const char* value) { m_propertiesHasBeenSet = true; m_properties[key] = value; return *this; }
+    inline HadoopStepConfig& AddProperties(Aws::String&& key, const char* value) { m_propertiesHasBeenSet = true; m_properties.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The list of Java properties that are set when the step runs. You can use
      * these properties to pass key value pairs to your main function.</p>
      */
-    inline HadoopStepConfig& AddProperties(const char* key, const char* value) { m_propertiesHasBeenSet = true; m_properties[key] = value; return *this; }
+    inline HadoopStepConfig& AddProperties(const char* key, const char* value) { m_propertiesHasBeenSet = true; m_properties.emplace(key, value); return *this; }
+
 
     /**
      * <p>The name of the main class in the specified Java file. If not specified, the
@@ -170,7 +175,7 @@ namespace Model
      * <p>The name of the main class in the specified Java file. If not specified, the
      * JAR file should specify a main class in its manifest file.</p>
      */
-    inline void SetMainClass(Aws::String&& value) { m_mainClassHasBeenSet = true; m_mainClass = value; }
+    inline void SetMainClass(Aws::String&& value) { m_mainClassHasBeenSet = true; m_mainClass = std::move(value); }
 
     /**
      * <p>The name of the main class in the specified Java file. If not specified, the
@@ -188,13 +193,14 @@ namespace Model
      * <p>The name of the main class in the specified Java file. If not specified, the
      * JAR file should specify a main class in its manifest file.</p>
      */
-    inline HadoopStepConfig& WithMainClass(Aws::String&& value) { SetMainClass(value); return *this;}
+    inline HadoopStepConfig& WithMainClass(Aws::String&& value) { SetMainClass(std::move(value)); return *this;}
 
     /**
      * <p>The name of the main class in the specified Java file. If not specified, the
      * JAR file should specify a main class in its manifest file.</p>
      */
     inline HadoopStepConfig& WithMainClass(const char* value) { SetMainClass(value); return *this;}
+
 
     /**
      * <p>The list of command line arguments to pass to the JAR file's main function
@@ -212,7 +218,7 @@ namespace Model
      * <p>The list of command line arguments to pass to the JAR file's main function
      * for execution.</p>
      */
-    inline void SetArgs(Aws::Vector<Aws::String>&& value) { m_argsHasBeenSet = true; m_args = value; }
+    inline void SetArgs(Aws::Vector<Aws::String>&& value) { m_argsHasBeenSet = true; m_args = std::move(value); }
 
     /**
      * <p>The list of command line arguments to pass to the JAR file's main function
@@ -224,7 +230,7 @@ namespace Model
      * <p>The list of command line arguments to pass to the JAR file's main function
      * for execution.</p>
      */
-    inline HadoopStepConfig& WithArgs(Aws::Vector<Aws::String>&& value) { SetArgs(value); return *this;}
+    inline HadoopStepConfig& WithArgs(Aws::Vector<Aws::String>&& value) { SetArgs(std::move(value)); return *this;}
 
     /**
      * <p>The list of command line arguments to pass to the JAR file's main function
@@ -236,7 +242,7 @@ namespace Model
      * <p>The list of command line arguments to pass to the JAR file's main function
      * for execution.</p>
      */
-    inline HadoopStepConfig& AddArgs(Aws::String&& value) { m_argsHasBeenSet = true; m_args.push_back(value); return *this; }
+    inline HadoopStepConfig& AddArgs(Aws::String&& value) { m_argsHasBeenSet = true; m_args.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The list of command line arguments to pass to the JAR file's main function
@@ -245,12 +251,16 @@ namespace Model
     inline HadoopStepConfig& AddArgs(const char* value) { m_argsHasBeenSet = true; m_args.push_back(value); return *this; }
 
   private:
+
     Aws::String m_jar;
     bool m_jarHasBeenSet;
+
     Aws::Map<Aws::String, Aws::String> m_properties;
     bool m_propertiesHasBeenSet;
+
     Aws::String m_mainClass;
     bool m_mainClassHasBeenSet;
+
     Aws::Vector<Aws::String> m_args;
     bool m_argsHasBeenSet;
   };

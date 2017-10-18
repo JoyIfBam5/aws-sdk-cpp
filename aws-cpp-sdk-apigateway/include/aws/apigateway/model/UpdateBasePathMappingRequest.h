@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/apigateway/APIGatewayRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/apigateway/model/PatchOperation.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,7 +38,15 @@ namespace Model
   {
   public:
     UpdateBasePathMappingRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateBasePathMapping"; }
+
     Aws::String SerializePayload() const override;
+
 
     /**
      * <p>The domain name of the <a>BasePathMapping</a> resource to change.</p>
@@ -51,7 +61,7 @@ namespace Model
     /**
      * <p>The domain name of the <a>BasePathMapping</a> resource to change.</p>
      */
-    inline void SetDomainName(Aws::String&& value) { m_domainNameHasBeenSet = true; m_domainName = value; }
+    inline void SetDomainName(Aws::String&& value) { m_domainNameHasBeenSet = true; m_domainName = std::move(value); }
 
     /**
      * <p>The domain name of the <a>BasePathMapping</a> resource to change.</p>
@@ -66,12 +76,13 @@ namespace Model
     /**
      * <p>The domain name of the <a>BasePathMapping</a> resource to change.</p>
      */
-    inline UpdateBasePathMappingRequest& WithDomainName(Aws::String&& value) { SetDomainName(value); return *this;}
+    inline UpdateBasePathMappingRequest& WithDomainName(Aws::String&& value) { SetDomainName(std::move(value)); return *this;}
 
     /**
      * <p>The domain name of the <a>BasePathMapping</a> resource to change.</p>
      */
     inline UpdateBasePathMappingRequest& WithDomainName(const char* value) { SetDomainName(value); return *this;}
+
 
     /**
      * <p>The base path of the <a>BasePathMapping</a> resource to change.</p>
@@ -86,7 +97,7 @@ namespace Model
     /**
      * <p>The base path of the <a>BasePathMapping</a> resource to change.</p>
      */
-    inline void SetBasePath(Aws::String&& value) { m_basePathHasBeenSet = true; m_basePath = value; }
+    inline void SetBasePath(Aws::String&& value) { m_basePathHasBeenSet = true; m_basePath = std::move(value); }
 
     /**
      * <p>The base path of the <a>BasePathMapping</a> resource to change.</p>
@@ -101,12 +112,13 @@ namespace Model
     /**
      * <p>The base path of the <a>BasePathMapping</a> resource to change.</p>
      */
-    inline UpdateBasePathMappingRequest& WithBasePath(Aws::String&& value) { SetBasePath(value); return *this;}
+    inline UpdateBasePathMappingRequest& WithBasePath(Aws::String&& value) { SetBasePath(std::move(value)); return *this;}
 
     /**
      * <p>The base path of the <a>BasePathMapping</a> resource to change.</p>
      */
     inline UpdateBasePathMappingRequest& WithBasePath(const char* value) { SetBasePath(value); return *this;}
+
 
     /**
      * <p>A list of update operations to be applied to the specified resource and in
@@ -124,7 +136,7 @@ namespace Model
      * <p>A list of update operations to be applied to the specified resource and in
      * the order specified in this list.</p>
      */
-    inline void SetPatchOperations(Aws::Vector<PatchOperation>&& value) { m_patchOperationsHasBeenSet = true; m_patchOperations = value; }
+    inline void SetPatchOperations(Aws::Vector<PatchOperation>&& value) { m_patchOperationsHasBeenSet = true; m_patchOperations = std::move(value); }
 
     /**
      * <p>A list of update operations to be applied to the specified resource and in
@@ -136,7 +148,7 @@ namespace Model
      * <p>A list of update operations to be applied to the specified resource and in
      * the order specified in this list.</p>
      */
-    inline UpdateBasePathMappingRequest& WithPatchOperations(Aws::Vector<PatchOperation>&& value) { SetPatchOperations(value); return *this;}
+    inline UpdateBasePathMappingRequest& WithPatchOperations(Aws::Vector<PatchOperation>&& value) { SetPatchOperations(std::move(value)); return *this;}
 
     /**
      * <p>A list of update operations to be applied to the specified resource and in
@@ -148,13 +160,16 @@ namespace Model
      * <p>A list of update operations to be applied to the specified resource and in
      * the order specified in this list.</p>
      */
-    inline UpdateBasePathMappingRequest& AddPatchOperations(PatchOperation&& value) { m_patchOperationsHasBeenSet = true; m_patchOperations.push_back(value); return *this; }
+    inline UpdateBasePathMappingRequest& AddPatchOperations(PatchOperation&& value) { m_patchOperationsHasBeenSet = true; m_patchOperations.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_domainName;
     bool m_domainNameHasBeenSet;
+
     Aws::String m_basePath;
     bool m_basePathHasBeenSet;
+
     Aws::Vector<PatchOperation> m_patchOperations;
     bool m_patchOperationsHasBeenSet;
   };

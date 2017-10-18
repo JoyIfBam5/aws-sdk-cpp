@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 #include <aws/swf/model/WorkflowExecution.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,7 +33,7 @@ namespace Model
 {
 
   /**
-   * <p> Provides details of the <code>ExternalWorkflowExecutionSignaled</code>
+   * <p>Provides the details of the <code>ExternalWorkflowExecutionSignaled</code>
    * event.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/swf-2012-01-25/ExternalWorkflowExecutionSignaledEventAttributes">AWS
    * API Reference</a></p>
@@ -44,30 +46,32 @@ namespace Model
     ExternalWorkflowExecutionSignaledEventAttributes& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p> The external workflow execution that the signal was delivered to.</p>
+     * <p>The external workflow execution that the signal was delivered to.</p>
      */
     inline const WorkflowExecution& GetWorkflowExecution() const{ return m_workflowExecution; }
 
     /**
-     * <p> The external workflow execution that the signal was delivered to.</p>
+     * <p>The external workflow execution that the signal was delivered to.</p>
      */
     inline void SetWorkflowExecution(const WorkflowExecution& value) { m_workflowExecutionHasBeenSet = true; m_workflowExecution = value; }
 
     /**
-     * <p> The external workflow execution that the signal was delivered to.</p>
+     * <p>The external workflow execution that the signal was delivered to.</p>
      */
-    inline void SetWorkflowExecution(WorkflowExecution&& value) { m_workflowExecutionHasBeenSet = true; m_workflowExecution = value; }
+    inline void SetWorkflowExecution(WorkflowExecution&& value) { m_workflowExecutionHasBeenSet = true; m_workflowExecution = std::move(value); }
 
     /**
-     * <p> The external workflow execution that the signal was delivered to.</p>
+     * <p>The external workflow execution that the signal was delivered to.</p>
      */
     inline ExternalWorkflowExecutionSignaledEventAttributes& WithWorkflowExecution(const WorkflowExecution& value) { SetWorkflowExecution(value); return *this;}
 
     /**
-     * <p> The external workflow execution that the signal was delivered to.</p>
+     * <p>The external workflow execution that the signal was delivered to.</p>
      */
-    inline ExternalWorkflowExecutionSignaledEventAttributes& WithWorkflowExecution(WorkflowExecution&& value) { SetWorkflowExecution(value); return *this;}
+    inline ExternalWorkflowExecutionSignaledEventAttributes& WithWorkflowExecution(WorkflowExecution&& value) { SetWorkflowExecution(std::move(value)); return *this;}
+
 
     /**
      * <p>The ID of the <code>SignalExternalWorkflowExecutionInitiated</code> event
@@ -94,8 +98,10 @@ namespace Model
     inline ExternalWorkflowExecutionSignaledEventAttributes& WithInitiatedEventId(long long value) { SetInitiatedEventId(value); return *this;}
 
   private:
+
     WorkflowExecution m_workflowExecution;
     bool m_workflowExecutionHasBeenSet;
+
     long long m_initiatedEventId;
     bool m_initiatedEventIdHasBeenSet;
   };

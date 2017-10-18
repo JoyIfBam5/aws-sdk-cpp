@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticache/ElastiCache_EXPORTS.h>
 #include <aws/elasticache/ElastiCacheRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticache/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,7 +38,19 @@ namespace Model
   {
   public:
     AddTagsToResourceRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "AddTagsToResource"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The Amazon Resource Name (ARN) of the resource to which the tags are to be
@@ -69,7 +83,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
      * Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
      */
-    inline void SetResourceName(Aws::String&& value) { m_resourceNameHasBeenSet = true; m_resourceName = value; }
+    inline void SetResourceName(Aws::String&& value) { m_resourceNameHasBeenSet = true; m_resourceName = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the resource to which the tags are to be
@@ -102,7 +116,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
      * Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
      */
-    inline AddTagsToResourceRequest& WithResourceName(Aws::String&& value) { SetResourceName(value); return *this;}
+    inline AddTagsToResourceRequest& WithResourceName(Aws::String&& value) { SetResourceName(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the resource to which the tags are to be
@@ -114,6 +128,7 @@ namespace Model
      * Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
      */
     inline AddTagsToResourceRequest& WithResourceName(const char* value) { SetResourceName(value); return *this;}
+
 
     /**
      * <p>A list of cost allocation tags to be added to this resource. A tag is a
@@ -131,7 +146,7 @@ namespace Model
      * <p>A list of cost allocation tags to be added to this resource. A tag is a
      * key-value pair. A tag key must be accompanied by a tag value.</p>
      */
-    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = std::move(value); }
 
     /**
      * <p>A list of cost allocation tags to be added to this resource. A tag is a
@@ -143,7 +158,7 @@ namespace Model
      * <p>A list of cost allocation tags to be added to this resource. A tag is a
      * key-value pair. A tag key must be accompanied by a tag value.</p>
      */
-    inline AddTagsToResourceRequest& WithTags(Aws::Vector<Tag>&& value) { SetTags(value); return *this;}
+    inline AddTagsToResourceRequest& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
      * <p>A list of cost allocation tags to be added to this resource. A tag is a
@@ -155,11 +170,13 @@ namespace Model
      * <p>A list of cost allocation tags to be added to this resource. A tag is a
      * key-value pair. A tag key must be accompanied by a tag value.</p>
      */
-    inline AddTagsToResourceRequest& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
+    inline AddTagsToResourceRequest& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_resourceName;
     bool m_resourceNameHasBeenSet;
+
     Aws::Vector<Tag> m_tags;
     bool m_tagsHasBeenSet;
   };

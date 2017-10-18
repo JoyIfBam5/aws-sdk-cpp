@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   *
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -35,16 +35,16 @@ class User32Directory : public Directory
 public:
     User32Directory(const Aws::String& path, const Aws::String& relativePath) : Directory(path, relativePath), m_find(INVALID_HANDLE_VALUE), m_lastError(0)
     {
-        WIN32_FIND_DATAA ffd;
+        WIN32_FIND_DATAW ffd;
         AWS_LOGSTREAM_TRACE(FILE_SYSTEM_UTILS_LOG_TAG, "Entering directory " << m_directoryEntry.path);
 
-        m_find = FindFirstFileA(m_directoryEntry.path.c_str(), &ffd);
+        m_find = FindFirstFileW(Aws::Utils::StringUtils::ToWString(m_directoryEntry.path.c_str()).c_str(), &ffd);
         if (m_find != INVALID_HANDLE_VALUE)
         {
             m_directoryEntry = ParseFileInfo(ffd, false);
             FindClose(m_find);
             auto seachPath = Join(m_directoryEntry.path, "*");
-            m_find = FindFirstFileA(seachPath.c_str(), &m_ffd);
+            m_find = FindFirstFileW(Aws::Utils::StringUtils::ToWString(seachPath.c_str()).c_str(), &m_ffd);
         }
         else
         {
@@ -60,6 +60,8 @@ public:
         }
     }
 
+	operator bool() const override { return m_directoryEntry.operator bool() && m_find != INVALID_HANDLE_VALUE; }
+
     DirectoryEntry Next() override
     {
         assert(m_find != INVALID_HANDLE_VALUE);
@@ -72,7 +74,7 @@ public:
             //the first entry will already be loaded by the time we get here.
             entry = ParseFileInfo(m_ffd, true);
 
-            Aws::String fileName = m_ffd.cFileName;
+            Aws::String fileName = Aws::Utils::StringUtils::FromWString(m_ffd.cFileName);
             if (fileName != ".." && fileName != ".")
             {
                 AWS_LOGSTREAM_TRACE(FILE_SYSTEM_UTILS_LOG_TAG, "Found entry " << entry.path);
@@ -84,7 +86,7 @@ public:
                 AWS_LOGSTREAM_TRACE(FILE_SYSTEM_UTILS_LOG_TAG, "Skipping . or .. entries.");
             }
 
-            if(!FindNextFileA(m_find, &m_ffd))
+            if(!FindNextFileW(m_find, &m_ffd))
             {
                 m_lastError = GetLastError();
                 AWS_LOGSTREAM_ERROR(FILE_SYSTEM_UTILS_LOG_TAG, "Could not fetch next entry from " << m_directoryEntry.path << " with error code " << m_lastError);
@@ -96,7 +98,7 @@ public:
     }
 
 private:
-    DirectoryEntry ParseFileInfo(WIN32_FIND_DATAA& ffd, bool computePath)
+    DirectoryEntry ParseFileInfo(WIN32_FIND_DATAW& ffd, bool computePath)
     {
         DirectoryEntry entry;
         LARGE_INTEGER fileSize;
@@ -115,8 +117,8 @@ private:
 
         if(computePath)
         {
-            entry.path = Join(m_directoryEntry.path, ffd.cFileName);
-            entry.relativePath = m_directoryEntry.relativePath.empty() ? ffd.cFileName : Join(m_directoryEntry.relativePath, ffd.cFileName);
+            entry.path = Join(m_directoryEntry.path, Aws::Utils::StringUtils::FromWString(ffd.cFileName));
+            entry.relativePath = m_directoryEntry.relativePath.empty() ? Aws::Utils::StringUtils::FromWString(ffd.cFileName) : Join(m_directoryEntry.relativePath, Aws::Utils::StringUtils::FromWString(ffd.cFileName));
         }
         else
         {
@@ -128,7 +130,7 @@ private:
     }
 
     HANDLE m_find;
-    WIN32_FIND_DATAA m_ffd;
+    WIN32_FIND_DATAW m_ffd;
     DWORD m_lastError;
 };
 
@@ -141,16 +143,16 @@ Aws::String GetHomeDirectory()
     AWS_LOGSTREAM_DEBUG(FILE_SYSTEM_UTILS_LOG_TAG, "Environment value for variable " << HOME_DIR_ENV_VAR << " is " << homeDir);
     if(homeDir.empty())
     {
-        AWS_LOG_WARN(FILE_SYSTEM_UTILS_LOG_TAG, "Home dir not stored in environment, trying to fetch manually from the OS.");
+        AWS_LOGSTREAM_WARN(FILE_SYSTEM_UTILS_LOG_TAG, "Home dir not stored in environment, trying to fetch manually from the OS.");
         HANDLE hToken;
     
         if (OpenProcessToken(GetCurrentProcess(), TOKEN_READ, &hToken))
         {
             DWORD len = MAX_PATH;
-            CHAR path[MAX_PATH];
-            if (GetUserProfileDirectoryA(hToken, path, &len))
+            WCHAR path[MAX_PATH];
+            if (GetUserProfileDirectoryW(hToken, path, &len))
             {                
-                homeDir = path;
+                homeDir = Aws::Utils::StringUtils::FromWString(path);
             }
             CloseHandle(hToken);
         }        
@@ -171,11 +173,33 @@ Aws::String GetHomeDirectory()
     return retVal;
 }
 
+Aws::String GetExecutableDirectory()
+{
+    static const unsigned long long bufferSize = 256;
+    WCHAR buffer[bufferSize];
+
+    memset(buffer, 0, sizeof(buffer));
+
+    if (GetModuleFileNameW(nullptr, buffer, static_cast<DWORD>(sizeof(buffer))))
+    {
+        Aws::String bufferStr(Aws::Utils::StringUtils::FromWString(buffer));
+        auto fileNameStart = bufferStr.find_last_of(PATH_DELIM);
+        if (fileNameStart != std::string::npos)
+        {
+            bufferStr = bufferStr.substr(0, fileNameStart);
+        }
+
+        return bufferStr;
+    }
+
+    return "";
+}
+
 bool CreateDirectoryIfNotExists(const char* path)
 {
     AWS_LOGSTREAM_INFO(FILE_SYSTEM_UTILS_LOG_TAG, "Creating directory " << path);
 
-    if (CreateDirectoryA(path, nullptr))
+    if (CreateDirectoryW(Aws::Utils::StringUtils::ToWString(path).c_str(), nullptr))
     {
         AWS_LOGSTREAM_DEBUG(FILE_SYSTEM_UTILS_LOG_TAG, "Creation of directory " << path << " succeeded.")
         return true;
@@ -192,7 +216,7 @@ bool RemoveFileIfExists(const char* path)
 {
     AWS_LOGSTREAM_INFO(FILE_SYSTEM_UTILS_LOG_TAG, "Deleting file: " << path);
 
-    if(DeleteFileA(path))
+    if (DeleteFileW(Aws::Utils::StringUtils::ToWString(path).c_str()))
     {
         AWS_LOGSTREAM_DEBUG(FILE_SYSTEM_UTILS_LOG_TAG, "Successfully deleted file: " << path);
         return true;
@@ -209,7 +233,7 @@ bool RelocateFileOrDirectory(const char* from, const char* to)
 {
     AWS_LOGSTREAM_INFO(FILE_SYSTEM_UTILS_LOG_TAG, "Moving file at " << from << " to " << to);
 
-    if(MoveFileA(from, to))
+    if(MoveFileW(Aws::Utils::StringUtils::ToWString(from).c_str(), Aws::Utils::StringUtils::ToWString(to).c_str()))
     {
         AWS_LOGSTREAM_DEBUG(FILE_SYSTEM_UTILS_LOG_TAG,  "The moving operation of file at " << from << " to " << to << " Succeeded.");
         return true;
@@ -226,7 +250,7 @@ bool RemoveDirectoryIfExists(const char* path)
 {
     AWS_LOGSTREAM_INFO(FILE_SYSTEM_UTILS_LOG_TAG, "Removing directory at " << path);
 
-    if(RemoveDirectoryA(path))
+    if(RemoveDirectoryW(Aws::Utils::StringUtils::ToWString(path).c_str()))
     {
         AWS_LOGSTREAM_DEBUG(FILE_SYSTEM_UTILS_LOG_TAG,  "The remove operation of file at " << path << " Succeeded.");
         return true;

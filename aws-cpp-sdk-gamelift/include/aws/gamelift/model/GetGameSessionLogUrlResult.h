@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/gamelift/GameLift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     GetGameSessionLogUrlResult();
-    GetGameSessionLogUrlResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetGameSessionLogUrlResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetGameSessionLogUrlResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetGameSessionLogUrlResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Location of the requested game session logs, available for download.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>Location of the requested game session logs, available for download.</p>
      */
-    inline void SetPreSignedUrl(Aws::String&& value) { m_preSignedUrl = value; }
+    inline void SetPreSignedUrl(Aws::String&& value) { m_preSignedUrl = std::move(value); }
 
     /**
      * <p>Location of the requested game session logs, available for download.</p>
@@ -73,7 +76,7 @@ namespace Model
     /**
      * <p>Location of the requested game session logs, available for download.</p>
      */
-    inline GetGameSessionLogUrlResult& WithPreSignedUrl(Aws::String&& value) { SetPreSignedUrl(value); return *this;}
+    inline GetGameSessionLogUrlResult& WithPreSignedUrl(Aws::String&& value) { SetPreSignedUrl(std::move(value)); return *this;}
 
     /**
      * <p>Location of the requested game session logs, available for download.</p>
@@ -81,6 +84,7 @@ namespace Model
     inline GetGameSessionLogUrlResult& WithPreSignedUrl(const char* value) { SetPreSignedUrl(value); return *this;}
 
   private:
+
     Aws::String m_preSignedUrl;
   };
 

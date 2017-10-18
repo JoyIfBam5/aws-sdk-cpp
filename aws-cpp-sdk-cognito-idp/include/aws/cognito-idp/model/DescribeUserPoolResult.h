@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/cognito-idp/model/UserPoolType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     DescribeUserPoolResult();
-    DescribeUserPoolResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeUserPoolResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeUserPoolResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeUserPoolResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The container of metadata returned by the server to describe the pool.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The container of metadata returned by the server to describe the pool.</p>
      */
-    inline void SetUserPool(UserPoolType&& value) { m_userPool = value; }
+    inline void SetUserPool(UserPoolType&& value) { m_userPool = std::move(value); }
 
     /**
      * <p>The container of metadata returned by the server to describe the pool.</p>
@@ -68,9 +71,10 @@ namespace Model
     /**
      * <p>The container of metadata returned by the server to describe the pool.</p>
      */
-    inline DescribeUserPoolResult& WithUserPool(UserPoolType&& value) { SetUserPool(value); return *this;}
+    inline DescribeUserPoolResult& WithUserPool(UserPoolType&& value) { SetUserPool(std::move(value)); return *this;}
 
   private:
+
     UserPoolType m_userPool;
   };
 

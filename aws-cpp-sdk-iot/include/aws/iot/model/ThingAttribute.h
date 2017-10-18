@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     ThingAttribute& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the thing.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The name of the thing.</p>
      */
-    inline void SetThingName(Aws::String&& value) { m_thingNameHasBeenSet = true; m_thingName = value; }
+    inline void SetThingName(Aws::String&& value) { m_thingNameHasBeenSet = true; m_thingName = std::move(value); }
 
     /**
      * <p>The name of the thing.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The name of the thing.</p>
      */
-    inline ThingAttribute& WithThingName(Aws::String&& value) { SetThingName(value); return *this;}
+    inline ThingAttribute& WithThingName(Aws::String&& value) { SetThingName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the thing.</p>
      */
     inline ThingAttribute& WithThingName(const char* value) { SetThingName(value); return *this;}
+
 
     /**
      * <p>The name of the thing type, if the thing has been associated with a type.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The name of the thing type, if the thing has been associated with a type.</p>
      */
-    inline void SetThingTypeName(Aws::String&& value) { m_thingTypeNameHasBeenSet = true; m_thingTypeName = value; }
+    inline void SetThingTypeName(Aws::String&& value) { m_thingTypeNameHasBeenSet = true; m_thingTypeName = std::move(value); }
 
     /**
      * <p>The name of the thing type, if the thing has been associated with a type.</p>
@@ -108,12 +112,13 @@ namespace Model
     /**
      * <p>The name of the thing type, if the thing has been associated with a type.</p>
      */
-    inline ThingAttribute& WithThingTypeName(Aws::String&& value) { SetThingTypeName(value); return *this;}
+    inline ThingAttribute& WithThingTypeName(Aws::String&& value) { SetThingTypeName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the thing type, if the thing has been associated with a type.</p>
      */
     inline ThingAttribute& WithThingTypeName(const char* value) { SetThingTypeName(value); return *this;}
+
 
     /**
      * <p>A list of thing attributes which are name-value pairs.</p>
@@ -128,7 +133,7 @@ namespace Model
     /**
      * <p>A list of thing attributes which are name-value pairs.</p>
      */
-    inline void SetAttributes(Aws::Map<Aws::String, Aws::String>&& value) { m_attributesHasBeenSet = true; m_attributes = value; }
+    inline void SetAttributes(Aws::Map<Aws::String, Aws::String>&& value) { m_attributesHasBeenSet = true; m_attributes = std::move(value); }
 
     /**
      * <p>A list of thing attributes which are name-value pairs.</p>
@@ -138,42 +143,43 @@ namespace Model
     /**
      * <p>A list of thing attributes which are name-value pairs.</p>
      */
-    inline ThingAttribute& WithAttributes(Aws::Map<Aws::String, Aws::String>&& value) { SetAttributes(value); return *this;}
+    inline ThingAttribute& WithAttributes(Aws::Map<Aws::String, Aws::String>&& value) { SetAttributes(std::move(value)); return *this;}
 
     /**
      * <p>A list of thing attributes which are name-value pairs.</p>
      */
-    inline ThingAttribute& AddAttributes(const Aws::String& key, const Aws::String& value) { m_attributesHasBeenSet = true; m_attributes[key] = value; return *this; }
+    inline ThingAttribute& AddAttributes(const Aws::String& key, const Aws::String& value) { m_attributesHasBeenSet = true; m_attributes.emplace(key, value); return *this; }
 
     /**
      * <p>A list of thing attributes which are name-value pairs.</p>
      */
-    inline ThingAttribute& AddAttributes(Aws::String&& key, const Aws::String& value) { m_attributesHasBeenSet = true; m_attributes[key] = value; return *this; }
+    inline ThingAttribute& AddAttributes(Aws::String&& key, const Aws::String& value) { m_attributesHasBeenSet = true; m_attributes.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A list of thing attributes which are name-value pairs.</p>
      */
-    inline ThingAttribute& AddAttributes(const Aws::String& key, Aws::String&& value) { m_attributesHasBeenSet = true; m_attributes[key] = value; return *this; }
+    inline ThingAttribute& AddAttributes(const Aws::String& key, Aws::String&& value) { m_attributesHasBeenSet = true; m_attributes.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A list of thing attributes which are name-value pairs.</p>
      */
-    inline ThingAttribute& AddAttributes(Aws::String&& key, Aws::String&& value) { m_attributesHasBeenSet = true; m_attributes[key] = value; return *this; }
+    inline ThingAttribute& AddAttributes(Aws::String&& key, Aws::String&& value) { m_attributesHasBeenSet = true; m_attributes.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>A list of thing attributes which are name-value pairs.</p>
      */
-    inline ThingAttribute& AddAttributes(const char* key, Aws::String&& value) { m_attributesHasBeenSet = true; m_attributes[key] = value; return *this; }
+    inline ThingAttribute& AddAttributes(const char* key, Aws::String&& value) { m_attributesHasBeenSet = true; m_attributes.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A list of thing attributes which are name-value pairs.</p>
      */
-    inline ThingAttribute& AddAttributes(Aws::String&& key, const char* value) { m_attributesHasBeenSet = true; m_attributes[key] = value; return *this; }
+    inline ThingAttribute& AddAttributes(Aws::String&& key, const char* value) { m_attributesHasBeenSet = true; m_attributes.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A list of thing attributes which are name-value pairs.</p>
      */
-    inline ThingAttribute& AddAttributes(const char* key, const char* value) { m_attributesHasBeenSet = true; m_attributes[key] = value; return *this; }
+    inline ThingAttribute& AddAttributes(const char* key, const char* value) { m_attributesHasBeenSet = true; m_attributes.emplace(key, value); return *this; }
+
 
     /**
      * <p>The version of the thing record in the registry.</p>
@@ -191,12 +197,16 @@ namespace Model
     inline ThingAttribute& WithVersion(long long value) { SetVersion(value); return *this;}
 
   private:
+
     Aws::String m_thingName;
     bool m_thingNameHasBeenSet;
+
     Aws::String m_thingTypeName;
     bool m_thingTypeNameHasBeenSet;
+
     Aws::Map<Aws::String, Aws::String> m_attributes;
     bool m_attributesHasBeenSet;
+
     long long m_version;
     bool m_versionHasBeenSet;
   };

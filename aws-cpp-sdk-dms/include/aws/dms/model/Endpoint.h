@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,16 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dms/DatabaseMigrationService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/dms/model/ReplicationEndpointTypeValue.h>
 #include <aws/dms/model/DmsSslModeValue.h>
+#include <aws/dms/model/DynamoDbSettings.h>
+#include <aws/dms/model/S3Settings.h>
+#include <aws/dms/model/MongoDbSettings.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +50,7 @@ namespace Model
     Endpoint& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The database endpoint identifier. Identifiers must begin with a letter; must
      * contain only ASCII letters, digits, and hyphens; and must not end with a hyphen
@@ -64,7 +70,7 @@ namespace Model
      * contain only ASCII letters, digits, and hyphens; and must not end with a hyphen
      * or contain two consecutive hyphens.</p>
      */
-    inline void SetEndpointIdentifier(Aws::String&& value) { m_endpointIdentifierHasBeenSet = true; m_endpointIdentifier = value; }
+    inline void SetEndpointIdentifier(Aws::String&& value) { m_endpointIdentifierHasBeenSet = true; m_endpointIdentifier = std::move(value); }
 
     /**
      * <p>The database endpoint identifier. Identifiers must begin with a letter; must
@@ -85,7 +91,7 @@ namespace Model
      * contain only ASCII letters, digits, and hyphens; and must not end with a hyphen
      * or contain two consecutive hyphens.</p>
      */
-    inline Endpoint& WithEndpointIdentifier(Aws::String&& value) { SetEndpointIdentifier(value); return *this;}
+    inline Endpoint& WithEndpointIdentifier(Aws::String&& value) { SetEndpointIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The database endpoint identifier. Identifiers must begin with a letter; must
@@ -93,6 +99,7 @@ namespace Model
      * or contain two consecutive hyphens.</p>
      */
     inline Endpoint& WithEndpointIdentifier(const char* value) { SetEndpointIdentifier(value); return *this;}
+
 
     /**
      * <p>The type of endpoint.</p>
@@ -107,7 +114,7 @@ namespace Model
     /**
      * <p>The type of endpoint.</p>
      */
-    inline void SetEndpointType(ReplicationEndpointTypeValue&& value) { m_endpointTypeHasBeenSet = true; m_endpointType = value; }
+    inline void SetEndpointType(ReplicationEndpointTypeValue&& value) { m_endpointTypeHasBeenSet = true; m_endpointType = std::move(value); }
 
     /**
      * <p>The type of endpoint.</p>
@@ -117,49 +124,58 @@ namespace Model
     /**
      * <p>The type of endpoint.</p>
      */
-    inline Endpoint& WithEndpointType(ReplicationEndpointTypeValue&& value) { SetEndpointType(value); return *this;}
+    inline Endpoint& WithEndpointType(ReplicationEndpointTypeValue&& value) { SetEndpointType(std::move(value)); return *this;}
+
 
     /**
-     * <p>The database engine name. Valid values include MYSQL, ORACLE, POSTGRES,
-     * MARIADB, AURORA, REDSHIFT, SYBASE, and SQLSERVER.</p>
+     * <p>The database engine name. Valid values, depending on the EndPointType,
+     * include MYSQL, ORACLE, POSTGRES, MARIADB, AURORA, REDSHIFT, S3, SYBASE,
+     * DYNAMODB, MONGODB, and SQLSERVER.</p>
      */
     inline const Aws::String& GetEngineName() const{ return m_engineName; }
 
     /**
-     * <p>The database engine name. Valid values include MYSQL, ORACLE, POSTGRES,
-     * MARIADB, AURORA, REDSHIFT, SYBASE, and SQLSERVER.</p>
+     * <p>The database engine name. Valid values, depending on the EndPointType,
+     * include MYSQL, ORACLE, POSTGRES, MARIADB, AURORA, REDSHIFT, S3, SYBASE,
+     * DYNAMODB, MONGODB, and SQLSERVER.</p>
      */
     inline void SetEngineName(const Aws::String& value) { m_engineNameHasBeenSet = true; m_engineName = value; }
 
     /**
-     * <p>The database engine name. Valid values include MYSQL, ORACLE, POSTGRES,
-     * MARIADB, AURORA, REDSHIFT, SYBASE, and SQLSERVER.</p>
+     * <p>The database engine name. Valid values, depending on the EndPointType,
+     * include MYSQL, ORACLE, POSTGRES, MARIADB, AURORA, REDSHIFT, S3, SYBASE,
+     * DYNAMODB, MONGODB, and SQLSERVER.</p>
      */
-    inline void SetEngineName(Aws::String&& value) { m_engineNameHasBeenSet = true; m_engineName = value; }
+    inline void SetEngineName(Aws::String&& value) { m_engineNameHasBeenSet = true; m_engineName = std::move(value); }
 
     /**
-     * <p>The database engine name. Valid values include MYSQL, ORACLE, POSTGRES,
-     * MARIADB, AURORA, REDSHIFT, SYBASE, and SQLSERVER.</p>
+     * <p>The database engine name. Valid values, depending on the EndPointType,
+     * include MYSQL, ORACLE, POSTGRES, MARIADB, AURORA, REDSHIFT, S3, SYBASE,
+     * DYNAMODB, MONGODB, and SQLSERVER.</p>
      */
     inline void SetEngineName(const char* value) { m_engineNameHasBeenSet = true; m_engineName.assign(value); }
 
     /**
-     * <p>The database engine name. Valid values include MYSQL, ORACLE, POSTGRES,
-     * MARIADB, AURORA, REDSHIFT, SYBASE, and SQLSERVER.</p>
+     * <p>The database engine name. Valid values, depending on the EndPointType,
+     * include MYSQL, ORACLE, POSTGRES, MARIADB, AURORA, REDSHIFT, S3, SYBASE,
+     * DYNAMODB, MONGODB, and SQLSERVER.</p>
      */
     inline Endpoint& WithEngineName(const Aws::String& value) { SetEngineName(value); return *this;}
 
     /**
-     * <p>The database engine name. Valid values include MYSQL, ORACLE, POSTGRES,
-     * MARIADB, AURORA, REDSHIFT, SYBASE, and SQLSERVER.</p>
+     * <p>The database engine name. Valid values, depending on the EndPointType,
+     * include MYSQL, ORACLE, POSTGRES, MARIADB, AURORA, REDSHIFT, S3, SYBASE,
+     * DYNAMODB, MONGODB, and SQLSERVER.</p>
      */
-    inline Endpoint& WithEngineName(Aws::String&& value) { SetEngineName(value); return *this;}
+    inline Endpoint& WithEngineName(Aws::String&& value) { SetEngineName(std::move(value)); return *this;}
 
     /**
-     * <p>The database engine name. Valid values include MYSQL, ORACLE, POSTGRES,
-     * MARIADB, AURORA, REDSHIFT, SYBASE, and SQLSERVER.</p>
+     * <p>The database engine name. Valid values, depending on the EndPointType,
+     * include MYSQL, ORACLE, POSTGRES, MARIADB, AURORA, REDSHIFT, S3, SYBASE,
+     * DYNAMODB, MONGODB, and SQLSERVER.</p>
      */
     inline Endpoint& WithEngineName(const char* value) { SetEngineName(value); return *this;}
+
 
     /**
      * <p>The user name used to connect to the endpoint.</p>
@@ -174,7 +190,7 @@ namespace Model
     /**
      * <p>The user name used to connect to the endpoint.</p>
      */
-    inline void SetUsername(Aws::String&& value) { m_usernameHasBeenSet = true; m_username = value; }
+    inline void SetUsername(Aws::String&& value) { m_usernameHasBeenSet = true; m_username = std::move(value); }
 
     /**
      * <p>The user name used to connect to the endpoint.</p>
@@ -189,12 +205,13 @@ namespace Model
     /**
      * <p>The user name used to connect to the endpoint.</p>
      */
-    inline Endpoint& WithUsername(Aws::String&& value) { SetUsername(value); return *this;}
+    inline Endpoint& WithUsername(Aws::String&& value) { SetUsername(std::move(value)); return *this;}
 
     /**
      * <p>The user name used to connect to the endpoint.</p>
      */
     inline Endpoint& WithUsername(const char* value) { SetUsername(value); return *this;}
+
 
     /**
      * <p>The name of the server at the endpoint.</p>
@@ -209,7 +226,7 @@ namespace Model
     /**
      * <p>The name of the server at the endpoint.</p>
      */
-    inline void SetServerName(Aws::String&& value) { m_serverNameHasBeenSet = true; m_serverName = value; }
+    inline void SetServerName(Aws::String&& value) { m_serverNameHasBeenSet = true; m_serverName = std::move(value); }
 
     /**
      * <p>The name of the server at the endpoint.</p>
@@ -224,12 +241,13 @@ namespace Model
     /**
      * <p>The name of the server at the endpoint.</p>
      */
-    inline Endpoint& WithServerName(Aws::String&& value) { SetServerName(value); return *this;}
+    inline Endpoint& WithServerName(Aws::String&& value) { SetServerName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the server at the endpoint.</p>
      */
     inline Endpoint& WithServerName(const char* value) { SetServerName(value); return *this;}
+
 
     /**
      * <p>The port value used to access the endpoint.</p>
@@ -246,6 +264,7 @@ namespace Model
      */
     inline Endpoint& WithPort(int value) { SetPort(value); return *this;}
 
+
     /**
      * <p>The name of the database at the endpoint.</p>
      */
@@ -259,7 +278,7 @@ namespace Model
     /**
      * <p>The name of the database at the endpoint.</p>
      */
-    inline void SetDatabaseName(Aws::String&& value) { m_databaseNameHasBeenSet = true; m_databaseName = value; }
+    inline void SetDatabaseName(Aws::String&& value) { m_databaseNameHasBeenSet = true; m_databaseName = std::move(value); }
 
     /**
      * <p>The name of the database at the endpoint.</p>
@@ -274,12 +293,13 @@ namespace Model
     /**
      * <p>The name of the database at the endpoint.</p>
      */
-    inline Endpoint& WithDatabaseName(Aws::String&& value) { SetDatabaseName(value); return *this;}
+    inline Endpoint& WithDatabaseName(Aws::String&& value) { SetDatabaseName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the database at the endpoint.</p>
      */
     inline Endpoint& WithDatabaseName(const char* value) { SetDatabaseName(value); return *this;}
+
 
     /**
      * <p>Additional connection attributes used to connect to the endpoint.</p>
@@ -294,7 +314,7 @@ namespace Model
     /**
      * <p>Additional connection attributes used to connect to the endpoint.</p>
      */
-    inline void SetExtraConnectionAttributes(Aws::String&& value) { m_extraConnectionAttributesHasBeenSet = true; m_extraConnectionAttributes = value; }
+    inline void SetExtraConnectionAttributes(Aws::String&& value) { m_extraConnectionAttributesHasBeenSet = true; m_extraConnectionAttributes = std::move(value); }
 
     /**
      * <p>Additional connection attributes used to connect to the endpoint.</p>
@@ -309,12 +329,13 @@ namespace Model
     /**
      * <p>Additional connection attributes used to connect to the endpoint.</p>
      */
-    inline Endpoint& WithExtraConnectionAttributes(Aws::String&& value) { SetExtraConnectionAttributes(value); return *this;}
+    inline Endpoint& WithExtraConnectionAttributes(Aws::String&& value) { SetExtraConnectionAttributes(std::move(value)); return *this;}
 
     /**
      * <p>Additional connection attributes used to connect to the endpoint.</p>
      */
     inline Endpoint& WithExtraConnectionAttributes(const char* value) { SetExtraConnectionAttributes(value); return *this;}
+
 
     /**
      * <p>The status of the endpoint.</p>
@@ -329,7 +350,7 @@ namespace Model
     /**
      * <p>The status of the endpoint.</p>
      */
-    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The status of the endpoint.</p>
@@ -344,12 +365,13 @@ namespace Model
     /**
      * <p>The status of the endpoint.</p>
      */
-    inline Endpoint& WithStatus(Aws::String&& value) { SetStatus(value); return *this;}
+    inline Endpoint& WithStatus(Aws::String&& value) { SetStatus(std::move(value)); return *this;}
 
     /**
      * <p>The status of the endpoint.</p>
      */
     inline Endpoint& WithStatus(const char* value) { SetStatus(value); return *this;}
+
 
     /**
      * <p>The KMS key identifier that will be used to encrypt the connection
@@ -376,7 +398,7 @@ namespace Model
      * key for your AWS account. Your AWS account has a different default encryption
      * key for each AWS region.</p>
      */
-    inline void SetKmsKeyId(Aws::String&& value) { m_kmsKeyIdHasBeenSet = true; m_kmsKeyId = value; }
+    inline void SetKmsKeyId(Aws::String&& value) { m_kmsKeyIdHasBeenSet = true; m_kmsKeyId = std::move(value); }
 
     /**
      * <p>The KMS key identifier that will be used to encrypt the connection
@@ -403,7 +425,7 @@ namespace Model
      * key for your AWS account. Your AWS account has a different default encryption
      * key for each AWS region.</p>
      */
-    inline Endpoint& WithKmsKeyId(Aws::String&& value) { SetKmsKeyId(value); return *this;}
+    inline Endpoint& WithKmsKeyId(Aws::String&& value) { SetKmsKeyId(std::move(value)); return *this;}
 
     /**
      * <p>The KMS key identifier that will be used to encrypt the connection
@@ -413,6 +435,7 @@ namespace Model
      * key for each AWS region.</p>
      */
     inline Endpoint& WithKmsKeyId(const char* value) { SetKmsKeyId(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) string that uniquely identifies the
@@ -430,7 +453,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) string that uniquely identifies the
      * endpoint.</p>
      */
-    inline void SetEndpointArn(Aws::String&& value) { m_endpointArnHasBeenSet = true; m_endpointArn = value; }
+    inline void SetEndpointArn(Aws::String&& value) { m_endpointArnHasBeenSet = true; m_endpointArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) string that uniquely identifies the
@@ -448,13 +471,14 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) string that uniquely identifies the
      * endpoint.</p>
      */
-    inline Endpoint& WithEndpointArn(Aws::String&& value) { SetEndpointArn(value); return *this;}
+    inline Endpoint& WithEndpointArn(Aws::String&& value) { SetEndpointArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) string that uniquely identifies the
      * endpoint.</p>
      */
     inline Endpoint& WithEndpointArn(const char* value) { SetEndpointArn(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) used for SSL connection to the endpoint.</p>
@@ -469,7 +493,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) used for SSL connection to the endpoint.</p>
      */
-    inline void SetCertificateArn(Aws::String&& value) { m_certificateArnHasBeenSet = true; m_certificateArn = value; }
+    inline void SetCertificateArn(Aws::String&& value) { m_certificateArnHasBeenSet = true; m_certificateArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) used for SSL connection to the endpoint.</p>
@@ -484,12 +508,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) used for SSL connection to the endpoint.</p>
      */
-    inline Endpoint& WithCertificateArn(Aws::String&& value) { SetCertificateArn(value); return *this;}
+    inline Endpoint& WithCertificateArn(Aws::String&& value) { SetCertificateArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) used for SSL connection to the endpoint.</p>
      */
     inline Endpoint& WithCertificateArn(const char* value) { SetCertificateArn(value); return *this;}
+
 
     /**
      * <p>The SSL mode used to connect to the endpoint.</p> <p>SSL mode can be one of
@@ -510,7 +535,7 @@ namespace Model
      * four values: none, require, verify-ca, verify-full. </p> <p>The default value is
      * none.</p>
      */
-    inline void SetSslMode(DmsSslModeValue&& value) { m_sslModeHasBeenSet = true; m_sslMode = value; }
+    inline void SetSslMode(DmsSslModeValue&& value) { m_sslModeHasBeenSet = true; m_sslMode = std::move(value); }
 
     /**
      * <p>The SSL mode used to connect to the endpoint.</p> <p>SSL mode can be one of
@@ -524,35 +549,203 @@ namespace Model
      * four values: none, require, verify-ca, verify-full. </p> <p>The default value is
      * none.</p>
      */
-    inline Endpoint& WithSslMode(DmsSslModeValue&& value) { SetSslMode(value); return *this;}
+    inline Endpoint& WithSslMode(DmsSslModeValue&& value) { SetSslMode(std::move(value)); return *this;}
+
+
+    /**
+     * <p> Value returned by a call to CreateEndpoint that can be used for
+     * cross-account validation. Use it on a subsequent call to CreateEndpoint to
+     * create the endpoint with a cross-account. </p>
+     */
+    inline const Aws::String& GetExternalId() const{ return m_externalId; }
+
+    /**
+     * <p> Value returned by a call to CreateEndpoint that can be used for
+     * cross-account validation. Use it on a subsequent call to CreateEndpoint to
+     * create the endpoint with a cross-account. </p>
+     */
+    inline void SetExternalId(const Aws::String& value) { m_externalIdHasBeenSet = true; m_externalId = value; }
+
+    /**
+     * <p> Value returned by a call to CreateEndpoint that can be used for
+     * cross-account validation. Use it on a subsequent call to CreateEndpoint to
+     * create the endpoint with a cross-account. </p>
+     */
+    inline void SetExternalId(Aws::String&& value) { m_externalIdHasBeenSet = true; m_externalId = std::move(value); }
+
+    /**
+     * <p> Value returned by a call to CreateEndpoint that can be used for
+     * cross-account validation. Use it on a subsequent call to CreateEndpoint to
+     * create the endpoint with a cross-account. </p>
+     */
+    inline void SetExternalId(const char* value) { m_externalIdHasBeenSet = true; m_externalId.assign(value); }
+
+    /**
+     * <p> Value returned by a call to CreateEndpoint that can be used for
+     * cross-account validation. Use it on a subsequent call to CreateEndpoint to
+     * create the endpoint with a cross-account. </p>
+     */
+    inline Endpoint& WithExternalId(const Aws::String& value) { SetExternalId(value); return *this;}
+
+    /**
+     * <p> Value returned by a call to CreateEndpoint that can be used for
+     * cross-account validation. Use it on a subsequent call to CreateEndpoint to
+     * create the endpoint with a cross-account. </p>
+     */
+    inline Endpoint& WithExternalId(Aws::String&& value) { SetExternalId(std::move(value)); return *this;}
+
+    /**
+     * <p> Value returned by a call to CreateEndpoint that can be used for
+     * cross-account validation. Use it on a subsequent call to CreateEndpoint to
+     * create the endpoint with a cross-account. </p>
+     */
+    inline Endpoint& WithExternalId(const char* value) { SetExternalId(value); return *this;}
+
+
+    /**
+     * <p>The settings for the target DynamoDB database. For more information, see the
+     * <code>DynamoDBSettings</code> structure.</p>
+     */
+    inline const DynamoDbSettings& GetDynamoDbSettings() const{ return m_dynamoDbSettings; }
+
+    /**
+     * <p>The settings for the target DynamoDB database. For more information, see the
+     * <code>DynamoDBSettings</code> structure.</p>
+     */
+    inline void SetDynamoDbSettings(const DynamoDbSettings& value) { m_dynamoDbSettingsHasBeenSet = true; m_dynamoDbSettings = value; }
+
+    /**
+     * <p>The settings for the target DynamoDB database. For more information, see the
+     * <code>DynamoDBSettings</code> structure.</p>
+     */
+    inline void SetDynamoDbSettings(DynamoDbSettings&& value) { m_dynamoDbSettingsHasBeenSet = true; m_dynamoDbSettings = std::move(value); }
+
+    /**
+     * <p>The settings for the target DynamoDB database. For more information, see the
+     * <code>DynamoDBSettings</code> structure.</p>
+     */
+    inline Endpoint& WithDynamoDbSettings(const DynamoDbSettings& value) { SetDynamoDbSettings(value); return *this;}
+
+    /**
+     * <p>The settings for the target DynamoDB database. For more information, see the
+     * <code>DynamoDBSettings</code> structure.</p>
+     */
+    inline Endpoint& WithDynamoDbSettings(DynamoDbSettings&& value) { SetDynamoDbSettings(std::move(value)); return *this;}
+
+
+    /**
+     * <p>The settings for the S3 target endpoint. For more information, see the
+     * <code>S3Settings</code> structure.</p>
+     */
+    inline const S3Settings& GetS3Settings() const{ return m_s3Settings; }
+
+    /**
+     * <p>The settings for the S3 target endpoint. For more information, see the
+     * <code>S3Settings</code> structure.</p>
+     */
+    inline void SetS3Settings(const S3Settings& value) { m_s3SettingsHasBeenSet = true; m_s3Settings = value; }
+
+    /**
+     * <p>The settings for the S3 target endpoint. For more information, see the
+     * <code>S3Settings</code> structure.</p>
+     */
+    inline void SetS3Settings(S3Settings&& value) { m_s3SettingsHasBeenSet = true; m_s3Settings = std::move(value); }
+
+    /**
+     * <p>The settings for the S3 target endpoint. For more information, see the
+     * <code>S3Settings</code> structure.</p>
+     */
+    inline Endpoint& WithS3Settings(const S3Settings& value) { SetS3Settings(value); return *this;}
+
+    /**
+     * <p>The settings for the S3 target endpoint. For more information, see the
+     * <code>S3Settings</code> structure.</p>
+     */
+    inline Endpoint& WithS3Settings(S3Settings&& value) { SetS3Settings(std::move(value)); return *this;}
+
+
+    /**
+     * <p>The settings for the MongoDB source endpoint. For more information, see the
+     * <code>MongoDbSettings</code> structure.</p>
+     */
+    inline const MongoDbSettings& GetMongoDbSettings() const{ return m_mongoDbSettings; }
+
+    /**
+     * <p>The settings for the MongoDB source endpoint. For more information, see the
+     * <code>MongoDbSettings</code> structure.</p>
+     */
+    inline void SetMongoDbSettings(const MongoDbSettings& value) { m_mongoDbSettingsHasBeenSet = true; m_mongoDbSettings = value; }
+
+    /**
+     * <p>The settings for the MongoDB source endpoint. For more information, see the
+     * <code>MongoDbSettings</code> structure.</p>
+     */
+    inline void SetMongoDbSettings(MongoDbSettings&& value) { m_mongoDbSettingsHasBeenSet = true; m_mongoDbSettings = std::move(value); }
+
+    /**
+     * <p>The settings for the MongoDB source endpoint. For more information, see the
+     * <code>MongoDbSettings</code> structure.</p>
+     */
+    inline Endpoint& WithMongoDbSettings(const MongoDbSettings& value) { SetMongoDbSettings(value); return *this;}
+
+    /**
+     * <p>The settings for the MongoDB source endpoint. For more information, see the
+     * <code>MongoDbSettings</code> structure.</p>
+     */
+    inline Endpoint& WithMongoDbSettings(MongoDbSettings&& value) { SetMongoDbSettings(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_endpointIdentifier;
     bool m_endpointIdentifierHasBeenSet;
+
     ReplicationEndpointTypeValue m_endpointType;
     bool m_endpointTypeHasBeenSet;
+
     Aws::String m_engineName;
     bool m_engineNameHasBeenSet;
+
     Aws::String m_username;
     bool m_usernameHasBeenSet;
+
     Aws::String m_serverName;
     bool m_serverNameHasBeenSet;
+
     int m_port;
     bool m_portHasBeenSet;
+
     Aws::String m_databaseName;
     bool m_databaseNameHasBeenSet;
+
     Aws::String m_extraConnectionAttributes;
     bool m_extraConnectionAttributesHasBeenSet;
+
     Aws::String m_status;
     bool m_statusHasBeenSet;
+
     Aws::String m_kmsKeyId;
     bool m_kmsKeyIdHasBeenSet;
+
     Aws::String m_endpointArn;
     bool m_endpointArnHasBeenSet;
+
     Aws::String m_certificateArn;
     bool m_certificateArnHasBeenSet;
+
     DmsSslModeValue m_sslMode;
     bool m_sslModeHasBeenSet;
+
+    Aws::String m_externalId;
+    bool m_externalIdHasBeenSet;
+
+    DynamoDbSettings m_dynamoDbSettings;
+    bool m_dynamoDbSettingsHasBeenSet;
+
+    S3Settings m_s3Settings;
+    bool m_s3SettingsHasBeenSet;
+
+    MongoDbSettings m_mongoDbSettings;
+    bool m_mongoDbSettingsHasBeenSet;
   };
 
 } // namespace Model

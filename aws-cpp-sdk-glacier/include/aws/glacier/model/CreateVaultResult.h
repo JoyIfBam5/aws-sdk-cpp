@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/glacier/Glacier_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     CreateVaultResult();
-    CreateVaultResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateVaultResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateVaultResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateVaultResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The URI of the vault that was created.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The URI of the vault that was created.</p>
      */
-    inline void SetLocation(Aws::String&& value) { m_location = value; }
+    inline void SetLocation(Aws::String&& value) { m_location = std::move(value); }
 
     /**
      * <p>The URI of the vault that was created.</p>
@@ -73,7 +76,7 @@ namespace Model
     /**
      * <p>The URI of the vault that was created.</p>
      */
-    inline CreateVaultResult& WithLocation(Aws::String&& value) { SetLocation(value); return *this;}
+    inline CreateVaultResult& WithLocation(Aws::String&& value) { SetLocation(std::move(value)); return *this;}
 
     /**
      * <p>The URI of the vault that was created.</p>
@@ -81,6 +84,7 @@ namespace Model
     inline CreateVaultResult& WithLocation(const char* value) { SetLocation(value); return *this;}
 
   private:
+
     Aws::String m_location;
   };
 

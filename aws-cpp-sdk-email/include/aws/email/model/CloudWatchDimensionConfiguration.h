@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/email/model/DimensionValueSource.h>
+#include <utility>
 
 namespace Aws
 {
@@ -51,6 +53,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of an Amazon CloudWatch dimension associated with an email sending
      * metric. The name must:</p> <ul> <li> <p>Contain only ASCII letters (a-z, A-Z),
@@ -73,7 +76,7 @@ namespace Model
      * numbers (0-9), underscores (_), or dashes (-).</p> </li> <li> <p>Contain less
      * than 256 characters.</p> </li> </ul>
      */
-    inline void SetDimensionName(Aws::String&& value) { m_dimensionNameHasBeenSet = true; m_dimensionName = value; }
+    inline void SetDimensionName(Aws::String&& value) { m_dimensionNameHasBeenSet = true; m_dimensionName = std::move(value); }
 
     /**
      * <p>The name of an Amazon CloudWatch dimension associated with an email sending
@@ -97,7 +100,7 @@ namespace Model
      * numbers (0-9), underscores (_), or dashes (-).</p> </li> <li> <p>Contain less
      * than 256 characters.</p> </li> </ul>
      */
-    inline CloudWatchDimensionConfiguration& WithDimensionName(Aws::String&& value) { SetDimensionName(value); return *this;}
+    inline CloudWatchDimensionConfiguration& WithDimensionName(Aws::String&& value) { SetDimensionName(std::move(value)); return *this;}
 
     /**
      * <p>The name of an Amazon CloudWatch dimension associated with an email sending
@@ -106,6 +109,7 @@ namespace Model
      * than 256 characters.</p> </li> </ul>
      */
     inline CloudWatchDimensionConfiguration& WithDimensionName(const char* value) { SetDimensionName(value); return *this;}
+
 
     /**
      * <p>The place where Amazon SES finds the value of a dimension to publish to
@@ -135,7 +139,7 @@ namespace Model
      * <code>messageTag</code>. If you want Amazon SES to use your own email headers,
      * choose <code>emailHeader</code>.</p>
      */
-    inline void SetDimensionValueSource(DimensionValueSource&& value) { m_dimensionValueSourceHasBeenSet = true; m_dimensionValueSource = value; }
+    inline void SetDimensionValueSource(DimensionValueSource&& value) { m_dimensionValueSourceHasBeenSet = true; m_dimensionValueSource = std::move(value); }
 
     /**
      * <p>The place where Amazon SES finds the value of a dimension to publish to
@@ -155,7 +159,8 @@ namespace Model
      * <code>messageTag</code>. If you want Amazon SES to use your own email headers,
      * choose <code>emailHeader</code>.</p>
      */
-    inline CloudWatchDimensionConfiguration& WithDimensionValueSource(DimensionValueSource&& value) { SetDimensionValueSource(value); return *this;}
+    inline CloudWatchDimensionConfiguration& WithDimensionValueSource(DimensionValueSource&& value) { SetDimensionValueSource(std::move(value)); return *this;}
+
 
     /**
      * <p>The default value of the dimension that is published to Amazon CloudWatch if
@@ -182,7 +187,7 @@ namespace Model
      * numbers (0-9), underscores (_), or dashes (-).</p> </li> <li> <p>Contain less
      * than 256 characters.</p> </li> </ul>
      */
-    inline void SetDefaultDimensionValue(Aws::String&& value) { m_defaultDimensionValueHasBeenSet = true; m_defaultDimensionValue = value; }
+    inline void SetDefaultDimensionValue(Aws::String&& value) { m_defaultDimensionValueHasBeenSet = true; m_defaultDimensionValue = std::move(value); }
 
     /**
      * <p>The default value of the dimension that is published to Amazon CloudWatch if
@@ -209,7 +214,7 @@ namespace Model
      * numbers (0-9), underscores (_), or dashes (-).</p> </li> <li> <p>Contain less
      * than 256 characters.</p> </li> </ul>
      */
-    inline CloudWatchDimensionConfiguration& WithDefaultDimensionValue(Aws::String&& value) { SetDefaultDimensionValue(value); return *this;}
+    inline CloudWatchDimensionConfiguration& WithDefaultDimensionValue(Aws::String&& value) { SetDefaultDimensionValue(std::move(value)); return *this;}
 
     /**
      * <p>The default value of the dimension that is published to Amazon CloudWatch if
@@ -221,10 +226,13 @@ namespace Model
     inline CloudWatchDimensionConfiguration& WithDefaultDimensionValue(const char* value) { SetDefaultDimensionValue(value); return *this;}
 
   private:
+
     Aws::String m_dimensionName;
     bool m_dimensionNameHasBeenSet;
+
     DimensionValueSource m_dimensionValueSource;
     bool m_dimensionValueSourceHasBeenSet;
+
     Aws::String m_defaultDimensionValue;
     bool m_defaultDimensionValueHasBeenSet;
   };

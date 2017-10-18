@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/appstream/AppStream_EXPORTS.h>
 
@@ -30,7 +31,7 @@ namespace Model
 {
 
   /**
-   * <p>The capacity information for the fleet.</p><p><h3>See Also:</h3>   <a
+   * <p>Describes the capacity status for a fleet.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ComputeCapacityStatus">AWS
    * API Reference</a></p>
    */
@@ -41,6 +42,7 @@ namespace Model
     ComputeCapacityStatus(const Aws::Utils::Json::JsonValue& jsonValue);
     ComputeCapacityStatus& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>The desired number of streaming instances.</p>
@@ -57,6 +59,7 @@ namespace Model
      */
     inline ComputeCapacityStatus& WithDesired(int value) { SetDesired(value); return *this;}
 
+
     /**
      * <p>The total number of simultaneous streaming instances that are running.</p>
      */
@@ -72,20 +75,22 @@ namespace Model
      */
     inline ComputeCapacityStatus& WithRunning(int value) { SetRunning(value); return *this;}
 
+
     /**
-     * <p>The number of instances that are being used for streaming.</p>
+     * <p>The number of instances in use for streaming.</p>
      */
     inline int GetInUse() const{ return m_inUse; }
 
     /**
-     * <p>The number of instances that are being used for streaming.</p>
+     * <p>The number of instances in use for streaming.</p>
      */
     inline void SetInUse(int value) { m_inUseHasBeenSet = true; m_inUse = value; }
 
     /**
-     * <p>The number of instances that are being used for streaming.</p>
+     * <p>The number of instances in use for streaming.</p>
      */
     inline ComputeCapacityStatus& WithInUse(int value) { SetInUse(value); return *this;}
+
 
     /**
      * <p>The number of currently available instances that can be used to stream
@@ -106,12 +111,16 @@ namespace Model
     inline ComputeCapacityStatus& WithAvailable(int value) { SetAvailable(value); return *this;}
 
   private:
+
     int m_desired;
     bool m_desiredHasBeenSet;
+
     int m_running;
     bool m_runningHasBeenSet;
+
     int m_inUse;
     bool m_inUseHasBeenSet;
+
     int m_available;
     bool m_availableHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dynamodb/DynamoDB_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     ListTablesResult();
-    ListTablesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListTablesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListTablesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListTablesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The names of the tables associated with the current account at the current
@@ -71,7 +74,7 @@ namespace Model
      * value as the <code>ExclusiveStartTableName</code> parameter in a subsequent
      * <code>ListTables</code> request and obtain the next page of results.</p>
      */
-    inline void SetTableNames(Aws::Vector<Aws::String>&& value) { m_tableNames = value; }
+    inline void SetTableNames(Aws::Vector<Aws::String>&& value) { m_tableNames = std::move(value); }
 
     /**
      * <p>The names of the tables associated with the current account at the current
@@ -89,7 +92,7 @@ namespace Model
      * value as the <code>ExclusiveStartTableName</code> parameter in a subsequent
      * <code>ListTables</code> request and obtain the next page of results.</p>
      */
-    inline ListTablesResult& WithTableNames(Aws::Vector<Aws::String>&& value) { SetTableNames(value); return *this;}
+    inline ListTablesResult& WithTableNames(Aws::Vector<Aws::String>&& value) { SetTableNames(std::move(value)); return *this;}
 
     /**
      * <p>The names of the tables associated with the current account at the current
@@ -107,7 +110,7 @@ namespace Model
      * value as the <code>ExclusiveStartTableName</code> parameter in a subsequent
      * <code>ListTables</code> request and obtain the next page of results.</p>
      */
-    inline ListTablesResult& AddTableNames(Aws::String&& value) { m_tableNames.push_back(value); return *this; }
+    inline ListTablesResult& AddTableNames(Aws::String&& value) { m_tableNames.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The names of the tables associated with the current account at the current
@@ -117,6 +120,7 @@ namespace Model
      * <code>ListTables</code> request and obtain the next page of results.</p>
      */
     inline ListTablesResult& AddTableNames(const char* value) { m_tableNames.push_back(value); return *this; }
+
 
     /**
      * <p>The name of the last table in the current page of results. Use this value as
@@ -143,7 +147,7 @@ namespace Model
      * receive a <code>LastEvaluatedTableName</code> value in the response, this means
      * that there are no more table names to be retrieved.</p>
      */
-    inline void SetLastEvaluatedTableName(Aws::String&& value) { m_lastEvaluatedTableName = value; }
+    inline void SetLastEvaluatedTableName(Aws::String&& value) { m_lastEvaluatedTableName = std::move(value); }
 
     /**
      * <p>The name of the last table in the current page of results. Use this value as
@@ -170,7 +174,7 @@ namespace Model
      * receive a <code>LastEvaluatedTableName</code> value in the response, this means
      * that there are no more table names to be retrieved.</p>
      */
-    inline ListTablesResult& WithLastEvaluatedTableName(Aws::String&& value) { SetLastEvaluatedTableName(value); return *this;}
+    inline ListTablesResult& WithLastEvaluatedTableName(Aws::String&& value) { SetLastEvaluatedTableName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the last table in the current page of results. Use this value as
@@ -182,7 +186,9 @@ namespace Model
     inline ListTablesResult& WithLastEvaluatedTableName(const char* value) { SetLastEvaluatedTableName(value); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_tableNames;
+
     Aws::String m_lastEvaluatedTableName;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53/Route53_EXPORTS.h>
 #include <aws/route53/model/GeoLocationDetails.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     GetGeoLocationResult();
-    GetGeoLocationResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    GetGeoLocationResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    GetGeoLocationResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    GetGeoLocationResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>A complex type that contains the codes and full continent, country, and
@@ -61,7 +64,7 @@ namespace Model
      * <p>A complex type that contains the codes and full continent, country, and
      * subdivision names for the specified geolocation code.</p>
      */
-    inline void SetGeoLocationDetails(GeoLocationDetails&& value) { m_geoLocationDetails = value; }
+    inline void SetGeoLocationDetails(GeoLocationDetails&& value) { m_geoLocationDetails = std::move(value); }
 
     /**
      * <p>A complex type that contains the codes and full continent, country, and
@@ -73,9 +76,10 @@ namespace Model
      * <p>A complex type that contains the codes and full continent, country, and
      * subdivision names for the specified geolocation code.</p>
      */
-    inline GetGeoLocationResult& WithGeoLocationDetails(GeoLocationDetails&& value) { SetGeoLocationDetails(value); return *this;}
+    inline GetGeoLocationResult& WithGeoLocationDetails(GeoLocationDetails&& value) { SetGeoLocationDetails(std::move(value)); return *this;}
 
   private:
+
     GeoLocationDetails m_geoLocationDetails;
   };
 

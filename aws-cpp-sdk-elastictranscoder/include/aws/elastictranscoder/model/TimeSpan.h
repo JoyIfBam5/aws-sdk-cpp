@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elastictranscoder/ElasticTranscoder_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     TimeSpan& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The place in the input file where you want a clip to start. The format can be
      * either HH:mm:ss.SSS (maximum value: 23:59:59.999; SSS is thousandths of a
@@ -66,7 +69,7 @@ namespace Model
      * second) or sssss.SSS (maximum value: 86399.999). If you don't specify a value,
      * Elastic Transcoder starts at the beginning of the input file.</p>
      */
-    inline void SetStartTime(Aws::String&& value) { m_startTimeHasBeenSet = true; m_startTime = value; }
+    inline void SetStartTime(Aws::String&& value) { m_startTimeHasBeenSet = true; m_startTime = std::move(value); }
 
     /**
      * <p>The place in the input file where you want a clip to start. The format can be
@@ -90,7 +93,7 @@ namespace Model
      * second) or sssss.SSS (maximum value: 86399.999). If you don't specify a value,
      * Elastic Transcoder starts at the beginning of the input file.</p>
      */
-    inline TimeSpan& WithStartTime(Aws::String&& value) { SetStartTime(value); return *this;}
+    inline TimeSpan& WithStartTime(Aws::String&& value) { SetStartTime(std::move(value)); return *this;}
 
     /**
      * <p>The place in the input file where you want a clip to start. The format can be
@@ -99,6 +102,7 @@ namespace Model
      * Elastic Transcoder starts at the beginning of the input file.</p>
      */
     inline TimeSpan& WithStartTime(const char* value) { SetStartTime(value); return *this;}
+
 
     /**
      * <p>The duration of the clip. The format can be either HH:mm:ss.SSS (maximum
@@ -128,7 +132,7 @@ namespace Model
      * longer than the duration of the input file, Elastic Transcoder transcodes the
      * file and returns a warning message.</p>
      */
-    inline void SetDuration(Aws::String&& value) { m_durationHasBeenSet = true; m_duration = value; }
+    inline void SetDuration(Aws::String&& value) { m_durationHasBeenSet = true; m_duration = std::move(value); }
 
     /**
      * <p>The duration of the clip. The format can be either HH:mm:ss.SSS (maximum
@@ -158,7 +162,7 @@ namespace Model
      * longer than the duration of the input file, Elastic Transcoder transcodes the
      * file and returns a warning message.</p>
      */
-    inline TimeSpan& WithDuration(Aws::String&& value) { SetDuration(value); return *this;}
+    inline TimeSpan& WithDuration(Aws::String&& value) { SetDuration(std::move(value)); return *this;}
 
     /**
      * <p>The duration of the clip. The format can be either HH:mm:ss.SSS (maximum
@@ -171,8 +175,10 @@ namespace Model
     inline TimeSpan& WithDuration(const char* value) { SetDuration(value); return *this;}
 
   private:
+
     Aws::String m_startTime;
     bool m_startTimeHasBeenSet;
+
     Aws::String m_duration;
     bool m_durationHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 #include <aws/swf/model/WorkflowType.h>
 #include <aws/swf/model/RegistrationStatus.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     WorkflowTypeInfo& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The workflow type this information is about.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The workflow type this information is about.</p>
      */
-    inline void SetWorkflowType(WorkflowType&& value) { m_workflowTypeHasBeenSet = true; m_workflowType = value; }
+    inline void SetWorkflowType(WorkflowType&& value) { m_workflowTypeHasBeenSet = true; m_workflowType = std::move(value); }
 
     /**
      * <p>The workflow type this information is about.</p>
@@ -69,7 +72,8 @@ namespace Model
     /**
      * <p>The workflow type this information is about.</p>
      */
-    inline WorkflowTypeInfo& WithWorkflowType(WorkflowType&& value) { SetWorkflowType(value); return *this;}
+    inline WorkflowTypeInfo& WithWorkflowType(WorkflowType&& value) { SetWorkflowType(std::move(value)); return *this;}
+
 
     /**
      * <p>The current status of the workflow type.</p>
@@ -84,7 +88,7 @@ namespace Model
     /**
      * <p>The current status of the workflow type.</p>
      */
-    inline void SetStatus(RegistrationStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(RegistrationStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The current status of the workflow type.</p>
@@ -94,7 +98,8 @@ namespace Model
     /**
      * <p>The current status of the workflow type.</p>
      */
-    inline WorkflowTypeInfo& WithStatus(RegistrationStatus&& value) { SetStatus(value); return *this;}
+    inline WorkflowTypeInfo& WithStatus(RegistrationStatus&& value) { SetStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The description of the type registered through
@@ -112,7 +117,7 @@ namespace Model
      * <p>The description of the type registered through
      * <a>RegisterWorkflowType</a>.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The description of the type registered through
@@ -130,13 +135,14 @@ namespace Model
      * <p>The description of the type registered through
      * <a>RegisterWorkflowType</a>.</p>
      */
-    inline WorkflowTypeInfo& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline WorkflowTypeInfo& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description of the type registered through
      * <a>RegisterWorkflowType</a>.</p>
      */
     inline WorkflowTypeInfo& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The date when this type was registered.</p>
@@ -151,7 +157,7 @@ namespace Model
     /**
      * <p>The date when this type was registered.</p>
      */
-    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDateHasBeenSet = true; m_creationDate = value; }
+    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDateHasBeenSet = true; m_creationDate = std::move(value); }
 
     /**
      * <p>The date when this type was registered.</p>
@@ -161,7 +167,8 @@ namespace Model
     /**
      * <p>The date when this type was registered.</p>
      */
-    inline WorkflowTypeInfo& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(value); return *this;}
+    inline WorkflowTypeInfo& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(std::move(value)); return *this;}
+
 
     /**
      * <p>If the type is in deprecated state, then it is set to the date when the type
@@ -179,7 +186,7 @@ namespace Model
      * <p>If the type is in deprecated state, then it is set to the date when the type
      * was deprecated.</p>
      */
-    inline void SetDeprecationDate(Aws::Utils::DateTime&& value) { m_deprecationDateHasBeenSet = true; m_deprecationDate = value; }
+    inline void SetDeprecationDate(Aws::Utils::DateTime&& value) { m_deprecationDateHasBeenSet = true; m_deprecationDate = std::move(value); }
 
     /**
      * <p>If the type is in deprecated state, then it is set to the date when the type
@@ -191,17 +198,22 @@ namespace Model
      * <p>If the type is in deprecated state, then it is set to the date when the type
      * was deprecated.</p>
      */
-    inline WorkflowTypeInfo& WithDeprecationDate(Aws::Utils::DateTime&& value) { SetDeprecationDate(value); return *this;}
+    inline WorkflowTypeInfo& WithDeprecationDate(Aws::Utils::DateTime&& value) { SetDeprecationDate(std::move(value)); return *this;}
 
   private:
+
     WorkflowType m_workflowType;
     bool m_workflowTypeHasBeenSet;
+
     RegistrationStatus m_status;
     bool m_statusHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     Aws::Utils::DateTime m_creationDate;
     bool m_creationDateHasBeenSet;
+
     Aws::Utils::DateTime m_deprecationDate;
     bool m_deprecationDateHasBeenSet;
   };

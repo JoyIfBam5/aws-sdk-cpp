@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/servicecatalog/ServiceCatalogRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 #include <aws/core/utils/UUID.h>
 
 namespace Aws
@@ -31,107 +33,117 @@ namespace Model
   {
   public:
     TerminateProvisionedProductRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "TerminateProvisionedProduct"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
 
+
     /**
-     * <p>The name of the ProvisionedProduct object to terminate. You must specify
-     * either <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>,
-     * but not both.</p>
+     * <p>The name of the ProvisionedProduct object to terminate. Specify either
+     * <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>, but
+     * not both.</p>
      */
     inline const Aws::String& GetProvisionedProductName() const{ return m_provisionedProductName; }
 
     /**
-     * <p>The name of the ProvisionedProduct object to terminate. You must specify
-     * either <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>,
-     * but not both.</p>
+     * <p>The name of the ProvisionedProduct object to terminate. Specify either
+     * <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>, but
+     * not both.</p>
      */
     inline void SetProvisionedProductName(const Aws::String& value) { m_provisionedProductNameHasBeenSet = true; m_provisionedProductName = value; }
 
     /**
-     * <p>The name of the ProvisionedProduct object to terminate. You must specify
-     * either <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>,
-     * but not both.</p>
+     * <p>The name of the ProvisionedProduct object to terminate. Specify either
+     * <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>, but
+     * not both.</p>
      */
-    inline void SetProvisionedProductName(Aws::String&& value) { m_provisionedProductNameHasBeenSet = true; m_provisionedProductName = value; }
+    inline void SetProvisionedProductName(Aws::String&& value) { m_provisionedProductNameHasBeenSet = true; m_provisionedProductName = std::move(value); }
 
     /**
-     * <p>The name of the ProvisionedProduct object to terminate. You must specify
-     * either <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>,
-     * but not both.</p>
+     * <p>The name of the ProvisionedProduct object to terminate. Specify either
+     * <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>, but
+     * not both.</p>
      */
     inline void SetProvisionedProductName(const char* value) { m_provisionedProductNameHasBeenSet = true; m_provisionedProductName.assign(value); }
 
     /**
-     * <p>The name of the ProvisionedProduct object to terminate. You must specify
-     * either <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>,
-     * but not both.</p>
+     * <p>The name of the ProvisionedProduct object to terminate. Specify either
+     * <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>, but
+     * not both.</p>
      */
     inline TerminateProvisionedProductRequest& WithProvisionedProductName(const Aws::String& value) { SetProvisionedProductName(value); return *this;}
 
     /**
-     * <p>The name of the ProvisionedProduct object to terminate. You must specify
-     * either <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>,
-     * but not both.</p>
+     * <p>The name of the ProvisionedProduct object to terminate. Specify either
+     * <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>, but
+     * not both.</p>
      */
-    inline TerminateProvisionedProductRequest& WithProvisionedProductName(Aws::String&& value) { SetProvisionedProductName(value); return *this;}
+    inline TerminateProvisionedProductRequest& WithProvisionedProductName(Aws::String&& value) { SetProvisionedProductName(std::move(value)); return *this;}
 
     /**
-     * <p>The name of the ProvisionedProduct object to terminate. You must specify
-     * either <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>,
-     * but not both.</p>
+     * <p>The name of the ProvisionedProduct object to terminate. Specify either
+     * <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>, but
+     * not both.</p>
      */
     inline TerminateProvisionedProductRequest& WithProvisionedProductName(const char* value) { SetProvisionedProductName(value); return *this;}
 
+
     /**
-     * <p>The identifier of the ProvisionedProduct object to terminate. You must
-     * specify either <code>ProvisionedProductName</code> or
-     * <code>ProvisionedProductId</code>, but not both.</p>
+     * <p>The identifier of the ProvisionedProduct object to terminate. Specify either
+     * <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>, but
+     * not both.</p>
      */
     inline const Aws::String& GetProvisionedProductId() const{ return m_provisionedProductId; }
 
     /**
-     * <p>The identifier of the ProvisionedProduct object to terminate. You must
-     * specify either <code>ProvisionedProductName</code> or
-     * <code>ProvisionedProductId</code>, but not both.</p>
+     * <p>The identifier of the ProvisionedProduct object to terminate. Specify either
+     * <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>, but
+     * not both.</p>
      */
     inline void SetProvisionedProductId(const Aws::String& value) { m_provisionedProductIdHasBeenSet = true; m_provisionedProductId = value; }
 
     /**
-     * <p>The identifier of the ProvisionedProduct object to terminate. You must
-     * specify either <code>ProvisionedProductName</code> or
-     * <code>ProvisionedProductId</code>, but not both.</p>
+     * <p>The identifier of the ProvisionedProduct object to terminate. Specify either
+     * <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>, but
+     * not both.</p>
      */
-    inline void SetProvisionedProductId(Aws::String&& value) { m_provisionedProductIdHasBeenSet = true; m_provisionedProductId = value; }
+    inline void SetProvisionedProductId(Aws::String&& value) { m_provisionedProductIdHasBeenSet = true; m_provisionedProductId = std::move(value); }
 
     /**
-     * <p>The identifier of the ProvisionedProduct object to terminate. You must
-     * specify either <code>ProvisionedProductName</code> or
-     * <code>ProvisionedProductId</code>, but not both.</p>
+     * <p>The identifier of the ProvisionedProduct object to terminate. Specify either
+     * <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>, but
+     * not both.</p>
      */
     inline void SetProvisionedProductId(const char* value) { m_provisionedProductIdHasBeenSet = true; m_provisionedProductId.assign(value); }
 
     /**
-     * <p>The identifier of the ProvisionedProduct object to terminate. You must
-     * specify either <code>ProvisionedProductName</code> or
-     * <code>ProvisionedProductId</code>, but not both.</p>
+     * <p>The identifier of the ProvisionedProduct object to terminate. Specify either
+     * <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>, but
+     * not both.</p>
      */
     inline TerminateProvisionedProductRequest& WithProvisionedProductId(const Aws::String& value) { SetProvisionedProductId(value); return *this;}
 
     /**
-     * <p>The identifier of the ProvisionedProduct object to terminate. You must
-     * specify either <code>ProvisionedProductName</code> or
-     * <code>ProvisionedProductId</code>, but not both.</p>
+     * <p>The identifier of the ProvisionedProduct object to terminate. Specify either
+     * <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>, but
+     * not both.</p>
      */
-    inline TerminateProvisionedProductRequest& WithProvisionedProductId(Aws::String&& value) { SetProvisionedProductId(value); return *this;}
+    inline TerminateProvisionedProductRequest& WithProvisionedProductId(Aws::String&& value) { SetProvisionedProductId(std::move(value)); return *this;}
 
     /**
-     * <p>The identifier of the ProvisionedProduct object to terminate. You must
-     * specify either <code>ProvisionedProductName</code> or
-     * <code>ProvisionedProductId</code>, but not both.</p>
+     * <p>The identifier of the ProvisionedProduct object to terminate. Specify either
+     * <code>ProvisionedProductName</code> or <code>ProvisionedProductId</code>, but
+     * not both.</p>
      */
     inline TerminateProvisionedProductRequest& WithProvisionedProductId(const char* value) { SetProvisionedProductId(value); return *this;}
+
 
     /**
      * <p>An idempotency token that uniquely identifies the termination request. This
@@ -158,7 +170,7 @@ namespace Model
      * object always return <b>ResourceNotFound</b> regardless of the value of
      * <code>TerminateToken</code>.</p>
      */
-    inline void SetTerminateToken(Aws::String&& value) { m_terminateTokenHasBeenSet = true; m_terminateToken = value; }
+    inline void SetTerminateToken(Aws::String&& value) { m_terminateTokenHasBeenSet = true; m_terminateToken = std::move(value); }
 
     /**
      * <p>An idempotency token that uniquely identifies the termination request. This
@@ -185,7 +197,7 @@ namespace Model
      * object always return <b>ResourceNotFound</b> regardless of the value of
      * <code>TerminateToken</code>.</p>
      */
-    inline TerminateProvisionedProductRequest& WithTerminateToken(Aws::String&& value) { SetTerminateToken(value); return *this;}
+    inline TerminateProvisionedProductRequest& WithTerminateToken(Aws::String&& value) { SetTerminateToken(std::move(value)); return *this;}
 
     /**
      * <p>An idempotency token that uniquely identifies the termination request. This
@@ -195,6 +207,7 @@ namespace Model
      * <code>TerminateToken</code>.</p>
      */
     inline TerminateProvisionedProductRequest& WithTerminateToken(const char* value) { SetTerminateToken(value); return *this;}
+
 
     /**
      * <p>If set to true, AWS Service Catalog stops managing the specified
@@ -214,64 +227,70 @@ namespace Model
      */
     inline TerminateProvisionedProductRequest& WithIgnoreErrors(bool value) { SetIgnoreErrors(value); return *this;}
 
+
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline const Aws::String& GetAcceptLanguage() const{ return m_acceptLanguage; }
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline void SetAcceptLanguage(const Aws::String& value) { m_acceptLanguageHasBeenSet = true; m_acceptLanguage = value; }
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
-    inline void SetAcceptLanguage(Aws::String&& value) { m_acceptLanguageHasBeenSet = true; m_acceptLanguage = value; }
+    inline void SetAcceptLanguage(Aws::String&& value) { m_acceptLanguageHasBeenSet = true; m_acceptLanguage = std::move(value); }
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline void SetAcceptLanguage(const char* value) { m_acceptLanguageHasBeenSet = true; m_acceptLanguage.assign(value); }
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline TerminateProvisionedProductRequest& WithAcceptLanguage(const Aws::String& value) { SetAcceptLanguage(value); return *this;}
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
-    inline TerminateProvisionedProductRequest& WithAcceptLanguage(Aws::String&& value) { SetAcceptLanguage(value); return *this;}
+    inline TerminateProvisionedProductRequest& WithAcceptLanguage(Aws::String&& value) { SetAcceptLanguage(std::move(value)); return *this;}
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline TerminateProvisionedProductRequest& WithAcceptLanguage(const char* value) { SetAcceptLanguage(value); return *this;}
 
   private:
+
     Aws::String m_provisionedProductName;
     bool m_provisionedProductNameHasBeenSet;
+
     Aws::String m_provisionedProductId;
     bool m_provisionedProductIdHasBeenSet;
+
     Aws::String m_terminateToken;
     bool m_terminateTokenHasBeenSet;
+
     bool m_ignoreErrors;
     bool m_ignoreErrorsHasBeenSet;
+
     Aws::String m_acceptLanguage;
     bool m_acceptLanguageHasBeenSet;
   };

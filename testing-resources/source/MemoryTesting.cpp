@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -40,11 +40,11 @@ void* BaseTestMemorySystem::AllocateMemory(std::size_t blockSize, std::size_t al
     AWS_UNREFERENCED_PARAM(allocationTag);
 
     ++m_currentOutstandingAllocations;
-    m_maxOutstandingAllocations = std::max(m_maxOutstandingAllocations, m_currentOutstandingAllocations);
+    m_maxOutstandingAllocations = (std::max)(m_maxOutstandingAllocations, m_currentOutstandingAllocations);
     ++m_totalAllocations;
             
     m_currentBytesAllocated += blockSize;
-    m_maxBytesAllocated = std::max(m_maxBytesAllocated, m_currentBytesAllocated);
+    m_maxBytesAllocated = (std::max)(m_maxBytesAllocated, m_currentBytesAllocated);
     m_totalBytesAllocated += blockSize;
 
     char* rawMemory = reinterpret_cast<char*>(malloc(blockSize + sizeof(std::size_t)));

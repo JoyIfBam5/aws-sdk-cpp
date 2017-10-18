@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/servicecatalog/ServiceCatalogErrors.h>
@@ -23,26 +24,33 @@
 #include <aws/servicecatalog/model/AcceptPortfolioShareResult.h>
 #include <aws/servicecatalog/model/AssociatePrincipalWithPortfolioResult.h>
 #include <aws/servicecatalog/model/AssociateProductWithPortfolioResult.h>
+#include <aws/servicecatalog/model/AssociateTagOptionWithResourceResult.h>
+#include <aws/servicecatalog/model/CopyProductResult.h>
 #include <aws/servicecatalog/model/CreateConstraintResult.h>
 #include <aws/servicecatalog/model/CreatePortfolioResult.h>
 #include <aws/servicecatalog/model/CreatePortfolioShareResult.h>
 #include <aws/servicecatalog/model/CreateProductResult.h>
 #include <aws/servicecatalog/model/CreateProvisioningArtifactResult.h>
+#include <aws/servicecatalog/model/CreateTagOptionResult.h>
 #include <aws/servicecatalog/model/DeleteConstraintResult.h>
 #include <aws/servicecatalog/model/DeletePortfolioResult.h>
 #include <aws/servicecatalog/model/DeletePortfolioShareResult.h>
 #include <aws/servicecatalog/model/DeleteProductResult.h>
 #include <aws/servicecatalog/model/DeleteProvisioningArtifactResult.h>
 #include <aws/servicecatalog/model/DescribeConstraintResult.h>
+#include <aws/servicecatalog/model/DescribeCopyProductStatusResult.h>
 #include <aws/servicecatalog/model/DescribePortfolioResult.h>
 #include <aws/servicecatalog/model/DescribeProductResult.h>
 #include <aws/servicecatalog/model/DescribeProductAsAdminResult.h>
 #include <aws/servicecatalog/model/DescribeProductViewResult.h>
+#include <aws/servicecatalog/model/DescribeProvisionedProductResult.h>
 #include <aws/servicecatalog/model/DescribeProvisioningArtifactResult.h>
 #include <aws/servicecatalog/model/DescribeProvisioningParametersResult.h>
 #include <aws/servicecatalog/model/DescribeRecordResult.h>
+#include <aws/servicecatalog/model/DescribeTagOptionResult.h>
 #include <aws/servicecatalog/model/DisassociatePrincipalFromPortfolioResult.h>
 #include <aws/servicecatalog/model/DisassociateProductFromPortfolioResult.h>
+#include <aws/servicecatalog/model/DisassociateTagOptionFromResourceResult.h>
 #include <aws/servicecatalog/model/ListAcceptedPortfolioSharesResult.h>
 #include <aws/servicecatalog/model/ListConstraintsForPortfolioResult.h>
 #include <aws/servicecatalog/model/ListLaunchPathsResult.h>
@@ -52,6 +60,8 @@
 #include <aws/servicecatalog/model/ListPrincipalsForPortfolioResult.h>
 #include <aws/servicecatalog/model/ListProvisioningArtifactsResult.h>
 #include <aws/servicecatalog/model/ListRecordHistoryResult.h>
+#include <aws/servicecatalog/model/ListResourcesForTagOptionResult.h>
+#include <aws/servicecatalog/model/ListTagOptionsResult.h>
 #include <aws/servicecatalog/model/ProvisionProductResult.h>
 #include <aws/servicecatalog/model/RejectPortfolioShareResult.h>
 #include <aws/servicecatalog/model/ScanProvisionedProductsResult.h>
@@ -63,6 +73,7 @@
 #include <aws/servicecatalog/model/UpdateProductResult.h>
 #include <aws/servicecatalog/model/UpdateProvisionedProductResult.h>
 #include <aws/servicecatalog/model/UpdateProvisioningArtifactResult.h>
+#include <aws/servicecatalog/model/UpdateTagOptionResult.h>
 #include <aws/core/client/AsyncCallerContext.h>
 #include <aws/core/http/HttpTypes.h>
 #include <future>
@@ -111,26 +122,33 @@ namespace Model
         class AcceptPortfolioShareRequest;
         class AssociatePrincipalWithPortfolioRequest;
         class AssociateProductWithPortfolioRequest;
+        class AssociateTagOptionWithResourceRequest;
+        class CopyProductRequest;
         class CreateConstraintRequest;
         class CreatePortfolioRequest;
         class CreatePortfolioShareRequest;
         class CreateProductRequest;
         class CreateProvisioningArtifactRequest;
+        class CreateTagOptionRequest;
         class DeleteConstraintRequest;
         class DeletePortfolioRequest;
         class DeletePortfolioShareRequest;
         class DeleteProductRequest;
         class DeleteProvisioningArtifactRequest;
         class DescribeConstraintRequest;
+        class DescribeCopyProductStatusRequest;
         class DescribePortfolioRequest;
         class DescribeProductRequest;
         class DescribeProductAsAdminRequest;
         class DescribeProductViewRequest;
+        class DescribeProvisionedProductRequest;
         class DescribeProvisioningArtifactRequest;
         class DescribeProvisioningParametersRequest;
         class DescribeRecordRequest;
+        class DescribeTagOptionRequest;
         class DisassociatePrincipalFromPortfolioRequest;
         class DisassociateProductFromPortfolioRequest;
+        class DisassociateTagOptionFromResourceRequest;
         class ListAcceptedPortfolioSharesRequest;
         class ListConstraintsForPortfolioRequest;
         class ListLaunchPathsRequest;
@@ -140,6 +158,8 @@ namespace Model
         class ListPrincipalsForPortfolioRequest;
         class ListProvisioningArtifactsRequest;
         class ListRecordHistoryRequest;
+        class ListResourcesForTagOptionRequest;
+        class ListTagOptionsRequest;
         class ProvisionProductRequest;
         class RejectPortfolioShareRequest;
         class ScanProvisionedProductsRequest;
@@ -151,30 +171,38 @@ namespace Model
         class UpdateProductRequest;
         class UpdateProvisionedProductRequest;
         class UpdateProvisioningArtifactRequest;
+        class UpdateTagOptionRequest;
 
         typedef Aws::Utils::Outcome<AcceptPortfolioShareResult, Aws::Client::AWSError<ServiceCatalogErrors>> AcceptPortfolioShareOutcome;
         typedef Aws::Utils::Outcome<AssociatePrincipalWithPortfolioResult, Aws::Client::AWSError<ServiceCatalogErrors>> AssociatePrincipalWithPortfolioOutcome;
         typedef Aws::Utils::Outcome<AssociateProductWithPortfolioResult, Aws::Client::AWSError<ServiceCatalogErrors>> AssociateProductWithPortfolioOutcome;
+        typedef Aws::Utils::Outcome<AssociateTagOptionWithResourceResult, Aws::Client::AWSError<ServiceCatalogErrors>> AssociateTagOptionWithResourceOutcome;
+        typedef Aws::Utils::Outcome<CopyProductResult, Aws::Client::AWSError<ServiceCatalogErrors>> CopyProductOutcome;
         typedef Aws::Utils::Outcome<CreateConstraintResult, Aws::Client::AWSError<ServiceCatalogErrors>> CreateConstraintOutcome;
         typedef Aws::Utils::Outcome<CreatePortfolioResult, Aws::Client::AWSError<ServiceCatalogErrors>> CreatePortfolioOutcome;
         typedef Aws::Utils::Outcome<CreatePortfolioShareResult, Aws::Client::AWSError<ServiceCatalogErrors>> CreatePortfolioShareOutcome;
         typedef Aws::Utils::Outcome<CreateProductResult, Aws::Client::AWSError<ServiceCatalogErrors>> CreateProductOutcome;
         typedef Aws::Utils::Outcome<CreateProvisioningArtifactResult, Aws::Client::AWSError<ServiceCatalogErrors>> CreateProvisioningArtifactOutcome;
+        typedef Aws::Utils::Outcome<CreateTagOptionResult, Aws::Client::AWSError<ServiceCatalogErrors>> CreateTagOptionOutcome;
         typedef Aws::Utils::Outcome<DeleteConstraintResult, Aws::Client::AWSError<ServiceCatalogErrors>> DeleteConstraintOutcome;
         typedef Aws::Utils::Outcome<DeletePortfolioResult, Aws::Client::AWSError<ServiceCatalogErrors>> DeletePortfolioOutcome;
         typedef Aws::Utils::Outcome<DeletePortfolioShareResult, Aws::Client::AWSError<ServiceCatalogErrors>> DeletePortfolioShareOutcome;
         typedef Aws::Utils::Outcome<DeleteProductResult, Aws::Client::AWSError<ServiceCatalogErrors>> DeleteProductOutcome;
         typedef Aws::Utils::Outcome<DeleteProvisioningArtifactResult, Aws::Client::AWSError<ServiceCatalogErrors>> DeleteProvisioningArtifactOutcome;
         typedef Aws::Utils::Outcome<DescribeConstraintResult, Aws::Client::AWSError<ServiceCatalogErrors>> DescribeConstraintOutcome;
+        typedef Aws::Utils::Outcome<DescribeCopyProductStatusResult, Aws::Client::AWSError<ServiceCatalogErrors>> DescribeCopyProductStatusOutcome;
         typedef Aws::Utils::Outcome<DescribePortfolioResult, Aws::Client::AWSError<ServiceCatalogErrors>> DescribePortfolioOutcome;
         typedef Aws::Utils::Outcome<DescribeProductResult, Aws::Client::AWSError<ServiceCatalogErrors>> DescribeProductOutcome;
         typedef Aws::Utils::Outcome<DescribeProductAsAdminResult, Aws::Client::AWSError<ServiceCatalogErrors>> DescribeProductAsAdminOutcome;
         typedef Aws::Utils::Outcome<DescribeProductViewResult, Aws::Client::AWSError<ServiceCatalogErrors>> DescribeProductViewOutcome;
+        typedef Aws::Utils::Outcome<DescribeProvisionedProductResult, Aws::Client::AWSError<ServiceCatalogErrors>> DescribeProvisionedProductOutcome;
         typedef Aws::Utils::Outcome<DescribeProvisioningArtifactResult, Aws::Client::AWSError<ServiceCatalogErrors>> DescribeProvisioningArtifactOutcome;
         typedef Aws::Utils::Outcome<DescribeProvisioningParametersResult, Aws::Client::AWSError<ServiceCatalogErrors>> DescribeProvisioningParametersOutcome;
         typedef Aws::Utils::Outcome<DescribeRecordResult, Aws::Client::AWSError<ServiceCatalogErrors>> DescribeRecordOutcome;
+        typedef Aws::Utils::Outcome<DescribeTagOptionResult, Aws::Client::AWSError<ServiceCatalogErrors>> DescribeTagOptionOutcome;
         typedef Aws::Utils::Outcome<DisassociatePrincipalFromPortfolioResult, Aws::Client::AWSError<ServiceCatalogErrors>> DisassociatePrincipalFromPortfolioOutcome;
         typedef Aws::Utils::Outcome<DisassociateProductFromPortfolioResult, Aws::Client::AWSError<ServiceCatalogErrors>> DisassociateProductFromPortfolioOutcome;
+        typedef Aws::Utils::Outcome<DisassociateTagOptionFromResourceResult, Aws::Client::AWSError<ServiceCatalogErrors>> DisassociateTagOptionFromResourceOutcome;
         typedef Aws::Utils::Outcome<ListAcceptedPortfolioSharesResult, Aws::Client::AWSError<ServiceCatalogErrors>> ListAcceptedPortfolioSharesOutcome;
         typedef Aws::Utils::Outcome<ListConstraintsForPortfolioResult, Aws::Client::AWSError<ServiceCatalogErrors>> ListConstraintsForPortfolioOutcome;
         typedef Aws::Utils::Outcome<ListLaunchPathsResult, Aws::Client::AWSError<ServiceCatalogErrors>> ListLaunchPathsOutcome;
@@ -184,6 +212,8 @@ namespace Model
         typedef Aws::Utils::Outcome<ListPrincipalsForPortfolioResult, Aws::Client::AWSError<ServiceCatalogErrors>> ListPrincipalsForPortfolioOutcome;
         typedef Aws::Utils::Outcome<ListProvisioningArtifactsResult, Aws::Client::AWSError<ServiceCatalogErrors>> ListProvisioningArtifactsOutcome;
         typedef Aws::Utils::Outcome<ListRecordHistoryResult, Aws::Client::AWSError<ServiceCatalogErrors>> ListRecordHistoryOutcome;
+        typedef Aws::Utils::Outcome<ListResourcesForTagOptionResult, Aws::Client::AWSError<ServiceCatalogErrors>> ListResourcesForTagOptionOutcome;
+        typedef Aws::Utils::Outcome<ListTagOptionsResult, Aws::Client::AWSError<ServiceCatalogErrors>> ListTagOptionsOutcome;
         typedef Aws::Utils::Outcome<ProvisionProductResult, Aws::Client::AWSError<ServiceCatalogErrors>> ProvisionProductOutcome;
         typedef Aws::Utils::Outcome<RejectPortfolioShareResult, Aws::Client::AWSError<ServiceCatalogErrors>> RejectPortfolioShareOutcome;
         typedef Aws::Utils::Outcome<ScanProvisionedProductsResult, Aws::Client::AWSError<ServiceCatalogErrors>> ScanProvisionedProductsOutcome;
@@ -195,30 +225,38 @@ namespace Model
         typedef Aws::Utils::Outcome<UpdateProductResult, Aws::Client::AWSError<ServiceCatalogErrors>> UpdateProductOutcome;
         typedef Aws::Utils::Outcome<UpdateProvisionedProductResult, Aws::Client::AWSError<ServiceCatalogErrors>> UpdateProvisionedProductOutcome;
         typedef Aws::Utils::Outcome<UpdateProvisioningArtifactResult, Aws::Client::AWSError<ServiceCatalogErrors>> UpdateProvisioningArtifactOutcome;
+        typedef Aws::Utils::Outcome<UpdateTagOptionResult, Aws::Client::AWSError<ServiceCatalogErrors>> UpdateTagOptionOutcome;
 
         typedef std::future<AcceptPortfolioShareOutcome> AcceptPortfolioShareOutcomeCallable;
         typedef std::future<AssociatePrincipalWithPortfolioOutcome> AssociatePrincipalWithPortfolioOutcomeCallable;
         typedef std::future<AssociateProductWithPortfolioOutcome> AssociateProductWithPortfolioOutcomeCallable;
+        typedef std::future<AssociateTagOptionWithResourceOutcome> AssociateTagOptionWithResourceOutcomeCallable;
+        typedef std::future<CopyProductOutcome> CopyProductOutcomeCallable;
         typedef std::future<CreateConstraintOutcome> CreateConstraintOutcomeCallable;
         typedef std::future<CreatePortfolioOutcome> CreatePortfolioOutcomeCallable;
         typedef std::future<CreatePortfolioShareOutcome> CreatePortfolioShareOutcomeCallable;
         typedef std::future<CreateProductOutcome> CreateProductOutcomeCallable;
         typedef std::future<CreateProvisioningArtifactOutcome> CreateProvisioningArtifactOutcomeCallable;
+        typedef std::future<CreateTagOptionOutcome> CreateTagOptionOutcomeCallable;
         typedef std::future<DeleteConstraintOutcome> DeleteConstraintOutcomeCallable;
         typedef std::future<DeletePortfolioOutcome> DeletePortfolioOutcomeCallable;
         typedef std::future<DeletePortfolioShareOutcome> DeletePortfolioShareOutcomeCallable;
         typedef std::future<DeleteProductOutcome> DeleteProductOutcomeCallable;
         typedef std::future<DeleteProvisioningArtifactOutcome> DeleteProvisioningArtifactOutcomeCallable;
         typedef std::future<DescribeConstraintOutcome> DescribeConstraintOutcomeCallable;
+        typedef std::future<DescribeCopyProductStatusOutcome> DescribeCopyProductStatusOutcomeCallable;
         typedef std::future<DescribePortfolioOutcome> DescribePortfolioOutcomeCallable;
         typedef std::future<DescribeProductOutcome> DescribeProductOutcomeCallable;
         typedef std::future<DescribeProductAsAdminOutcome> DescribeProductAsAdminOutcomeCallable;
         typedef std::future<DescribeProductViewOutcome> DescribeProductViewOutcomeCallable;
+        typedef std::future<DescribeProvisionedProductOutcome> DescribeProvisionedProductOutcomeCallable;
         typedef std::future<DescribeProvisioningArtifactOutcome> DescribeProvisioningArtifactOutcomeCallable;
         typedef std::future<DescribeProvisioningParametersOutcome> DescribeProvisioningParametersOutcomeCallable;
         typedef std::future<DescribeRecordOutcome> DescribeRecordOutcomeCallable;
+        typedef std::future<DescribeTagOptionOutcome> DescribeTagOptionOutcomeCallable;
         typedef std::future<DisassociatePrincipalFromPortfolioOutcome> DisassociatePrincipalFromPortfolioOutcomeCallable;
         typedef std::future<DisassociateProductFromPortfolioOutcome> DisassociateProductFromPortfolioOutcomeCallable;
+        typedef std::future<DisassociateTagOptionFromResourceOutcome> DisassociateTagOptionFromResourceOutcomeCallable;
         typedef std::future<ListAcceptedPortfolioSharesOutcome> ListAcceptedPortfolioSharesOutcomeCallable;
         typedef std::future<ListConstraintsForPortfolioOutcome> ListConstraintsForPortfolioOutcomeCallable;
         typedef std::future<ListLaunchPathsOutcome> ListLaunchPathsOutcomeCallable;
@@ -228,6 +266,8 @@ namespace Model
         typedef std::future<ListPrincipalsForPortfolioOutcome> ListPrincipalsForPortfolioOutcomeCallable;
         typedef std::future<ListProvisioningArtifactsOutcome> ListProvisioningArtifactsOutcomeCallable;
         typedef std::future<ListRecordHistoryOutcome> ListRecordHistoryOutcomeCallable;
+        typedef std::future<ListResourcesForTagOptionOutcome> ListResourcesForTagOptionOutcomeCallable;
+        typedef std::future<ListTagOptionsOutcome> ListTagOptionsOutcomeCallable;
         typedef std::future<ProvisionProductOutcome> ProvisionProductOutcomeCallable;
         typedef std::future<RejectPortfolioShareOutcome> RejectPortfolioShareOutcomeCallable;
         typedef std::future<ScanProvisionedProductsOutcome> ScanProvisionedProductsOutcomeCallable;
@@ -239,6 +279,7 @@ namespace Model
         typedef std::future<UpdateProductOutcome> UpdateProductOutcomeCallable;
         typedef std::future<UpdateProvisionedProductOutcome> UpdateProvisionedProductOutcomeCallable;
         typedef std::future<UpdateProvisioningArtifactOutcome> UpdateProvisioningArtifactOutcomeCallable;
+        typedef std::future<UpdateTagOptionOutcome> UpdateTagOptionOutcomeCallable;
 } // namespace Model
 
   class ServiceCatalogClient;
@@ -246,26 +287,33 @@ namespace Model
     typedef std::function<void(const ServiceCatalogClient*, const Model::AcceptPortfolioShareRequest&, const Model::AcceptPortfolioShareOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > AcceptPortfolioShareResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::AssociatePrincipalWithPortfolioRequest&, const Model::AssociatePrincipalWithPortfolioOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > AssociatePrincipalWithPortfolioResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::AssociateProductWithPortfolioRequest&, const Model::AssociateProductWithPortfolioOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > AssociateProductWithPortfolioResponseReceivedHandler;
+    typedef std::function<void(const ServiceCatalogClient*, const Model::AssociateTagOptionWithResourceRequest&, const Model::AssociateTagOptionWithResourceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > AssociateTagOptionWithResourceResponseReceivedHandler;
+    typedef std::function<void(const ServiceCatalogClient*, const Model::CopyProductRequest&, const Model::CopyProductOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CopyProductResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::CreateConstraintRequest&, const Model::CreateConstraintOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateConstraintResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::CreatePortfolioRequest&, const Model::CreatePortfolioOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreatePortfolioResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::CreatePortfolioShareRequest&, const Model::CreatePortfolioShareOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreatePortfolioShareResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::CreateProductRequest&, const Model::CreateProductOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateProductResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::CreateProvisioningArtifactRequest&, const Model::CreateProvisioningArtifactOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateProvisioningArtifactResponseReceivedHandler;
+    typedef std::function<void(const ServiceCatalogClient*, const Model::CreateTagOptionRequest&, const Model::CreateTagOptionOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateTagOptionResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::DeleteConstraintRequest&, const Model::DeleteConstraintOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteConstraintResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::DeletePortfolioRequest&, const Model::DeletePortfolioOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeletePortfolioResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::DeletePortfolioShareRequest&, const Model::DeletePortfolioShareOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeletePortfolioShareResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::DeleteProductRequest&, const Model::DeleteProductOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteProductResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::DeleteProvisioningArtifactRequest&, const Model::DeleteProvisioningArtifactOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteProvisioningArtifactResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::DescribeConstraintRequest&, const Model::DescribeConstraintOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeConstraintResponseReceivedHandler;
+    typedef std::function<void(const ServiceCatalogClient*, const Model::DescribeCopyProductStatusRequest&, const Model::DescribeCopyProductStatusOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeCopyProductStatusResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::DescribePortfolioRequest&, const Model::DescribePortfolioOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribePortfolioResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::DescribeProductRequest&, const Model::DescribeProductOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeProductResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::DescribeProductAsAdminRequest&, const Model::DescribeProductAsAdminOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeProductAsAdminResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::DescribeProductViewRequest&, const Model::DescribeProductViewOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeProductViewResponseReceivedHandler;
+    typedef std::function<void(const ServiceCatalogClient*, const Model::DescribeProvisionedProductRequest&, const Model::DescribeProvisionedProductOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeProvisionedProductResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::DescribeProvisioningArtifactRequest&, const Model::DescribeProvisioningArtifactOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeProvisioningArtifactResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::DescribeProvisioningParametersRequest&, const Model::DescribeProvisioningParametersOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeProvisioningParametersResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::DescribeRecordRequest&, const Model::DescribeRecordOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeRecordResponseReceivedHandler;
+    typedef std::function<void(const ServiceCatalogClient*, const Model::DescribeTagOptionRequest&, const Model::DescribeTagOptionOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeTagOptionResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::DisassociatePrincipalFromPortfolioRequest&, const Model::DisassociatePrincipalFromPortfolioOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DisassociatePrincipalFromPortfolioResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::DisassociateProductFromPortfolioRequest&, const Model::DisassociateProductFromPortfolioOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DisassociateProductFromPortfolioResponseReceivedHandler;
+    typedef std::function<void(const ServiceCatalogClient*, const Model::DisassociateTagOptionFromResourceRequest&, const Model::DisassociateTagOptionFromResourceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DisassociateTagOptionFromResourceResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::ListAcceptedPortfolioSharesRequest&, const Model::ListAcceptedPortfolioSharesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListAcceptedPortfolioSharesResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::ListConstraintsForPortfolioRequest&, const Model::ListConstraintsForPortfolioOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListConstraintsForPortfolioResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::ListLaunchPathsRequest&, const Model::ListLaunchPathsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListLaunchPathsResponseReceivedHandler;
@@ -275,6 +323,8 @@ namespace Model
     typedef std::function<void(const ServiceCatalogClient*, const Model::ListPrincipalsForPortfolioRequest&, const Model::ListPrincipalsForPortfolioOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListPrincipalsForPortfolioResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::ListProvisioningArtifactsRequest&, const Model::ListProvisioningArtifactsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListProvisioningArtifactsResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::ListRecordHistoryRequest&, const Model::ListRecordHistoryOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListRecordHistoryResponseReceivedHandler;
+    typedef std::function<void(const ServiceCatalogClient*, const Model::ListResourcesForTagOptionRequest&, const Model::ListResourcesForTagOptionOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListResourcesForTagOptionResponseReceivedHandler;
+    typedef std::function<void(const ServiceCatalogClient*, const Model::ListTagOptionsRequest&, const Model::ListTagOptionsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListTagOptionsResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::ProvisionProductRequest&, const Model::ProvisionProductOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ProvisionProductResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::RejectPortfolioShareRequest&, const Model::RejectPortfolioShareOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > RejectPortfolioShareResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::ScanProvisionedProductsRequest&, const Model::ScanProvisionedProductsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ScanProvisionedProductsResponseReceivedHandler;
@@ -286,15 +336,16 @@ namespace Model
     typedef std::function<void(const ServiceCatalogClient*, const Model::UpdateProductRequest&, const Model::UpdateProductOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateProductResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::UpdateProvisionedProductRequest&, const Model::UpdateProvisionedProductOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateProvisionedProductResponseReceivedHandler;
     typedef std::function<void(const ServiceCatalogClient*, const Model::UpdateProvisioningArtifactRequest&, const Model::UpdateProvisioningArtifactOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateProvisioningArtifactResponseReceivedHandler;
+    typedef std::function<void(const ServiceCatalogClient*, const Model::UpdateTagOptionRequest&, const Model::UpdateTagOptionOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateTagOptionResponseReceivedHandler;
 
   /**
    * <fullname>AWS Service Catalog</fullname> <p> <b>Overview</b> </p> <p> <a
    * href="https://aws.amazon.com/servicecatalog/">AWS Service Catalog</a> allows
    * organizations to create and manage catalogs of IT services that are approved for
    * use on AWS. This documentation provides reference material for the AWS Service
-   * Catalog end user API. To get the most out of this documentation, you need to be
-   * familiar with the terminology discussed in <a
-   * href="http://docs.aws.amazon.com/servicecatalog/latest/userguide/what-is_concepts.html">AWS
+   * Catalog end user API. To get the most out of this documentation, be familiar
+   * with the terminology discussed in <a
+   * href="http://docs.aws.amazon.com/servicecatalog/latest/adminguide/what-is_concepts.html">AWS
    * Service Catalog Concepts</a>.</p> <p> <i>Additional Resources</i> </p> <ul> <li>
    * <p> <a
    * href="http://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html">AWS
@@ -311,22 +362,25 @@ namespace Model
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        ServiceCatalogClient(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        ServiceCatalogClient(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        ServiceCatalogClient(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        ServiceCatalogClient(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        ServiceCatalogClient(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        ServiceCatalogClient(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
         virtual ~ServiceCatalogClient();
+
+        inline virtual const char* GetServiceClientName() const override { return "servicecatalog"; }
+
 
         /**
          * <p>Accepts an offer to share a portfolio.</p><p><h3>See Also:</h3>   <a
@@ -407,14 +461,83 @@ namespace Model
         virtual void AssociateProductWithPortfolioAsync(const Model::AssociateProductWithPortfolioRequest& request, const AssociateProductWithPortfolioResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Creates a new constraint.</p><p><h3>See Also:</h3>   <a
+         * <p>Associate a TagOption identifier with a resource identifier.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateTagOptionWithResource">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::AssociateTagOptionWithResourceOutcome AssociateTagOptionWithResource(const Model::AssociateTagOptionWithResourceRequest& request) const;
+
+        /**
+         * <p>Associate a TagOption identifier with a resource identifier.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateTagOptionWithResource">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::AssociateTagOptionWithResourceOutcomeCallable AssociateTagOptionWithResourceCallable(const Model::AssociateTagOptionWithResourceRequest& request) const;
+
+        /**
+         * <p>Associate a TagOption identifier with a resource identifier.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateTagOptionWithResource">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void AssociateTagOptionWithResourceAsync(const Model::AssociateTagOptionWithResourceRequest& request, const AssociateTagOptionWithResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Copies the specified source product to the specified target product or a new
+         * product.</p> <p>You can copy the product to the same account or another account.
+         * You can copy the product to the same region or another region.</p> <p>This
+         * operation is performed asynchronously. To track the progress of the operation,
+         * use <a>DescribeCopyProductStatus</a>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CopyProduct">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::CopyProductOutcome CopyProduct(const Model::CopyProductRequest& request) const;
+
+        /**
+         * <p>Copies the specified source product to the specified target product or a new
+         * product.</p> <p>You can copy the product to the same account or another account.
+         * You can copy the product to the same region or another region.</p> <p>This
+         * operation is performed asynchronously. To track the progress of the operation,
+         * use <a>DescribeCopyProductStatus</a>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CopyProduct">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::CopyProductOutcomeCallable CopyProductCallable(const Model::CopyProductRequest& request) const;
+
+        /**
+         * <p>Copies the specified source product to the specified target product or a new
+         * product.</p> <p>You can copy the product to the same account or another account.
+         * You can copy the product to the same region or another region.</p> <p>This
+         * operation is performed asynchronously. To track the progress of the operation,
+         * use <a>DescribeCopyProductStatus</a>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CopyProduct">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void CopyProductAsync(const Model::CopyProductRequest& request, const CopyProductResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Creates a new constraint. For more information, see <a
+         * href="http://docs.aws.amazon.com/servicecatalog/latest/adminguide/constraints.html">Using
+         * Constraints</a>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateConstraint">AWS
          * API Reference</a></p>
          */
         virtual Model::CreateConstraintOutcome CreateConstraint(const Model::CreateConstraintRequest& request) const;
 
         /**
-         * <p>Creates a new constraint.</p><p><h3>See Also:</h3>   <a
+         * <p>Creates a new constraint. For more information, see <a
+         * href="http://docs.aws.amazon.com/servicecatalog/latest/adminguide/constraints.html">Using
+         * Constraints</a>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateConstraint">AWS
          * API Reference</a></p>
          *
@@ -423,7 +546,9 @@ namespace Model
         virtual Model::CreateConstraintOutcomeCallable CreateConstraintCallable(const Model::CreateConstraintRequest& request) const;
 
         /**
-         * <p>Creates a new constraint.</p><p><h3>See Also:</h3>   <a
+         * <p>Creates a new constraint. For more information, see <a
+         * href="http://docs.aws.amazon.com/servicecatalog/latest/adminguide/constraints.html">Using
+         * Constraints</a>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateConstraint">AWS
          * API Reference</a></p>
          *
@@ -508,7 +633,7 @@ namespace Model
 
         /**
          * <p>Create a new provisioning artifact for the specified product. This operation
-         * will not work with a product that has been shared with you.</p><p><h3>See
+         * does not work with a product that has been shared with you.</p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProvisioningArtifact">AWS
          * API Reference</a></p>
@@ -517,7 +642,7 @@ namespace Model
 
         /**
          * <p>Create a new provisioning artifact for the specified product. This operation
-         * will not work with a product that has been shared with you.</p><p><h3>See
+         * does not work with a product that has been shared with you.</p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProvisioningArtifact">AWS
          * API Reference</a></p>
@@ -528,7 +653,7 @@ namespace Model
 
         /**
          * <p>Create a new provisioning artifact for the specified product. This operation
-         * will not work with a product that has been shared with you.</p><p><h3>See
+         * does not work with a product that has been shared with you.</p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProvisioningArtifact">AWS
          * API Reference</a></p>
@@ -536,6 +661,31 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void CreateProvisioningArtifactAsync(const Model::CreateProvisioningArtifactRequest& request, const CreateProvisioningArtifactResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Create a new TagOption.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateTagOption">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::CreateTagOptionOutcome CreateTagOption(const Model::CreateTagOptionRequest& request) const;
+
+        /**
+         * <p>Create a new TagOption.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateTagOption">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::CreateTagOptionOutcomeCallable CreateTagOptionCallable(const Model::CreateTagOptionRequest& request) const;
+
+        /**
+         * <p>Create a new TagOption.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateTagOption">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void CreateTagOptionAsync(const Model::CreateTagOptionRequest& request, const CreateTagOptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Deletes the specified constraint.</p><p><h3>See Also:</h3>   <a
@@ -563,7 +713,7 @@ namespace Model
         virtual void DeleteConstraintAsync(const Model::DeleteConstraintRequest& request, const DeleteConstraintResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Deletes the specified portfolio. This operation will not work with a
+         * <p>Deletes the specified portfolio. This operation does not work with a
          * portfolio that has been shared with you or if it has products, users,
          * constraints, or shared accounts associated with it.</p><p><h3>See Also:</h3>  
          * <a
@@ -573,7 +723,7 @@ namespace Model
         virtual Model::DeletePortfolioOutcome DeletePortfolio(const Model::DeletePortfolioRequest& request) const;
 
         /**
-         * <p>Deletes the specified portfolio. This operation will not work with a
+         * <p>Deletes the specified portfolio. This operation does not work with a
          * portfolio that has been shared with you or if it has products, users,
          * constraints, or shared accounts associated with it.</p><p><h3>See Also:</h3>  
          * <a
@@ -585,7 +735,7 @@ namespace Model
         virtual Model::DeletePortfolioOutcomeCallable DeletePortfolioCallable(const Model::DeletePortfolioRequest& request) const;
 
         /**
-         * <p>Deletes the specified portfolio. This operation will not work with a
+         * <p>Deletes the specified portfolio. This operation does not work with a
          * portfolio that has been shared with you or if it has products, users,
          * constraints, or shared accounts associated with it.</p><p><h3>See Also:</h3>  
          * <a
@@ -622,7 +772,7 @@ namespace Model
         virtual void DeletePortfolioShareAsync(const Model::DeletePortfolioShareRequest& request, const DeletePortfolioShareResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Deletes the specified product. This operation will not work with a product
+         * <p>Deletes the specified product. This operation does not work with a product
          * that has been shared with you or is associated with a portfolio. </p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProduct">AWS
@@ -631,7 +781,7 @@ namespace Model
         virtual Model::DeleteProductOutcome DeleteProduct(const Model::DeleteProductRequest& request) const;
 
         /**
-         * <p>Deletes the specified product. This operation will not work with a product
+         * <p>Deletes the specified product. This operation does not work with a product
          * that has been shared with you or is associated with a portfolio. </p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProduct">AWS
@@ -642,7 +792,7 @@ namespace Model
         virtual Model::DeleteProductOutcomeCallable DeleteProductCallable(const Model::DeleteProductRequest& request) const;
 
         /**
-         * <p>Deletes the specified product. This operation will not work with a product
+         * <p>Deletes the specified product. This operation does not work with a product
          * that has been shared with you or is associated with a portfolio. </p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProduct">AWS
@@ -653,7 +803,7 @@ namespace Model
         virtual void DeleteProductAsync(const Model::DeleteProductRequest& request, const DeleteProductResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Deletes the specified provisioning artifact. This operation will not work on
+         * <p>Deletes the specified provisioning artifact. This operation does not work on
          * a provisioning artifact associated with a product that has been shared with you,
          * or on the last provisioning artifact associated with a product (a product must
          * have at least one provisioning artifact).</p><p><h3>See Also:</h3>   <a
@@ -663,7 +813,7 @@ namespace Model
         virtual Model::DeleteProvisioningArtifactOutcome DeleteProvisioningArtifact(const Model::DeleteProvisioningArtifactRequest& request) const;
 
         /**
-         * <p>Deletes the specified provisioning artifact. This operation will not work on
+         * <p>Deletes the specified provisioning artifact. This operation does not work on
          * a provisioning artifact associated with a product that has been shared with you,
          * or on the last provisioning artifact associated with a product (a product must
          * have at least one provisioning artifact).</p><p><h3>See Also:</h3>   <a
@@ -675,7 +825,7 @@ namespace Model
         virtual Model::DeleteProvisioningArtifactOutcomeCallable DeleteProvisioningArtifactCallable(const Model::DeleteProvisioningArtifactRequest& request) const;
 
         /**
-         * <p>Deletes the specified provisioning artifact. This operation will not work on
+         * <p>Deletes the specified provisioning artifact. This operation does not work on
          * a provisioning artifact associated with a product that has been shared with you,
          * or on the last provisioning artifact associated with a product (a product must
          * have at least one provisioning artifact).</p><p><h3>See Also:</h3>   <a
@@ -713,6 +863,34 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void DescribeConstraintAsync(const Model::DescribeConstraintRequest& request, const DescribeConstraintResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Describes the status of the specified copy product operation.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeCopyProductStatus">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::DescribeCopyProductStatusOutcome DescribeCopyProductStatus(const Model::DescribeCopyProductStatusRequest& request) const;
+
+        /**
+         * <p>Describes the status of the specified copy product operation.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeCopyProductStatus">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::DescribeCopyProductStatusOutcomeCallable DescribeCopyProductStatusCallable(const Model::DescribeCopyProductStatusRequest& request) const;
+
+        /**
+         * <p>Describes the status of the specified copy product operation.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeCopyProductStatus">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void DescribeCopyProductStatusAsync(const Model::DescribeCopyProductStatusRequest& request, const DescribeCopyProductStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Retrieves detailed information and any tags associated with the specified
@@ -839,6 +1017,34 @@ namespace Model
         virtual void DescribeProductViewAsync(const Model::DescribeProductViewRequest& request, const DescribeProductViewResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
+         * <p>Retrieve detailed information about the provisioned product.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisionedProduct">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::DescribeProvisionedProductOutcome DescribeProvisionedProduct(const Model::DescribeProvisionedProductRequest& request) const;
+
+        /**
+         * <p>Retrieve detailed information about the provisioned product.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisionedProduct">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::DescribeProvisionedProductOutcomeCallable DescribeProvisionedProductCallable(const Model::DescribeProvisionedProductRequest& request) const;
+
+        /**
+         * <p>Retrieve detailed information about the provisioned product.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisionedProduct">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void DescribeProvisionedProductAsync(const Model::DescribeProvisionedProductRequest& request, const DescribeProvisionedProductResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
          * <p>Retrieves detailed information about the specified provisioning
          * artifact.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningArtifact">AWS
@@ -870,7 +1076,17 @@ namespace Model
          * <p>Provides information about parameters required to provision a specified
          * product in a specified manner. Use this operation to obtain the list of
          * <code>ProvisioningArtifactParameters</code> parameters available to call the
-         * <a>ProvisionProduct</a> operation for the specified product.</p><p><h3>See
+         * <a>ProvisionProduct</a> operation for the specified product.</p> <p>If the
+         * output contains a TagOption key with an empty list of values, there is a
+         * TagOption conflict for that key. The end user cannot take action to fix the
+         * conflict, and launch is not blocked. In subsequent calls to the
+         * <code>ProvisionProduct</code> operation, do not include conflicted TagOption
+         * keys as tags. Calls to <code>ProvisionProduct</code> with empty TagOption values
+         * cause the error "Parameter validation failed: Missing required parameter in
+         * Tags[<i>N</i>]:<i>Value</i> ". Calls to <code>ProvisionProduct</code> with
+         * conflicted TagOption keys automatically tag the provisioned product with the
+         * conflicted keys with the value
+         * "<code>sc-tagoption-conflict-portfolioId-productId</code>".</p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningParameters">AWS
          * API Reference</a></p>
@@ -881,7 +1097,17 @@ namespace Model
          * <p>Provides information about parameters required to provision a specified
          * product in a specified manner. Use this operation to obtain the list of
          * <code>ProvisioningArtifactParameters</code> parameters available to call the
-         * <a>ProvisionProduct</a> operation for the specified product.</p><p><h3>See
+         * <a>ProvisionProduct</a> operation for the specified product.</p> <p>If the
+         * output contains a TagOption key with an empty list of values, there is a
+         * TagOption conflict for that key. The end user cannot take action to fix the
+         * conflict, and launch is not blocked. In subsequent calls to the
+         * <code>ProvisionProduct</code> operation, do not include conflicted TagOption
+         * keys as tags. Calls to <code>ProvisionProduct</code> with empty TagOption values
+         * cause the error "Parameter validation failed: Missing required parameter in
+         * Tags[<i>N</i>]:<i>Value</i> ". Calls to <code>ProvisionProduct</code> with
+         * conflicted TagOption keys automatically tag the provisioned product with the
+         * conflicted keys with the value
+         * "<code>sc-tagoption-conflict-portfolioId-productId</code>".</p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningParameters">AWS
          * API Reference</a></p>
@@ -894,7 +1120,17 @@ namespace Model
          * <p>Provides information about parameters required to provision a specified
          * product in a specified manner. Use this operation to obtain the list of
          * <code>ProvisioningArtifactParameters</code> parameters available to call the
-         * <a>ProvisionProduct</a> operation for the specified product.</p><p><h3>See
+         * <a>ProvisionProduct</a> operation for the specified product.</p> <p>If the
+         * output contains a TagOption key with an empty list of values, there is a
+         * TagOption conflict for that key. The end user cannot take action to fix the
+         * conflict, and launch is not blocked. In subsequent calls to the
+         * <code>ProvisionProduct</code> operation, do not include conflicted TagOption
+         * keys as tags. Calls to <code>ProvisionProduct</code> with empty TagOption values
+         * cause the error "Parameter validation failed: Missing required parameter in
+         * Tags[<i>N</i>]:<i>Value</i> ". Calls to <code>ProvisionProduct</code> with
+         * conflicted TagOption keys automatically tag the provisioned product with the
+         * conflicted keys with the value
+         * "<code>sc-tagoption-conflict-portfolioId-productId</code>".</p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningParameters">AWS
          * API Reference</a></p>
@@ -936,6 +1172,31 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void DescribeRecordAsync(const Model::DescribeRecordRequest& request, const DescribeRecordResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Describes a TagOption.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeTagOption">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::DescribeTagOptionOutcome DescribeTagOption(const Model::DescribeTagOptionRequest& request) const;
+
+        /**
+         * <p>Describes a TagOption.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeTagOption">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::DescribeTagOptionOutcomeCallable DescribeTagOptionCallable(const Model::DescribeTagOptionRequest& request) const;
+
+        /**
+         * <p>Describes a TagOption.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeTagOption">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void DescribeTagOptionAsync(const Model::DescribeTagOptionRequest& request, const DescribeTagOptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Disassociates a previously associated principal ARN from a specified
@@ -992,6 +1253,31 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void DisassociateProductFromPortfolioAsync(const Model::DisassociateProductFromPortfolioRequest& request, const DisassociateProductFromPortfolioResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Disassociates a TagOption from a resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociateTagOptionFromResource">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::DisassociateTagOptionFromResourceOutcome DisassociateTagOptionFromResource(const Model::DisassociateTagOptionFromResourceRequest& request) const;
+
+        /**
+         * <p>Disassociates a TagOption from a resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociateTagOptionFromResource">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::DisassociateTagOptionFromResourceOutcomeCallable DisassociateTagOptionFromResourceCallable(const Model::DisassociateTagOptionFromResourceRequest& request) const;
+
+        /**
+         * <p>Disassociates a TagOption from a resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociateTagOptionFromResource">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void DisassociateTagOptionFromResourceAsync(const Model::DisassociateTagOptionFromResourceRequest& request, const DisassociateTagOptionFromResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Lists details of all portfolios for which sharing was accepted by this
@@ -1252,24 +1538,88 @@ namespace Model
         virtual void ListRecordHistoryAsync(const Model::ListRecordHistoryRequest& request, const ListRecordHistoryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Requests a <i>Provision</i> of a specified product. A
-         * <i>ProvisionedProduct</i> is a resourced instance for a product. For example,
-         * provisioning a CloudFormation-template-backed product results in launching a
-         * CloudFormation stack and all the underlying resources that come with it. </p>
-         * <p>You can check the status of this request using the <a>DescribeRecord</a>
-         * operation.</p><p><h3>See Also:</h3>   <a
+         * <p>Lists resources associated with a TagOption.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListResourcesForTagOption">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::ListResourcesForTagOptionOutcome ListResourcesForTagOption(const Model::ListResourcesForTagOptionRequest& request) const;
+
+        /**
+         * <p>Lists resources associated with a TagOption.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListResourcesForTagOption">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::ListResourcesForTagOptionOutcomeCallable ListResourcesForTagOptionCallable(const Model::ListResourcesForTagOptionRequest& request) const;
+
+        /**
+         * <p>Lists resources associated with a TagOption.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListResourcesForTagOption">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void ListResourcesForTagOptionAsync(const Model::ListResourcesForTagOptionRequest& request, const ListResourcesForTagOptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Lists detailed TagOptions information.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListTagOptions">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::ListTagOptionsOutcome ListTagOptions(const Model::ListTagOptionsRequest& request) const;
+
+        /**
+         * <p>Lists detailed TagOptions information.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListTagOptions">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::ListTagOptionsOutcomeCallable ListTagOptionsCallable(const Model::ListTagOptionsRequest& request) const;
+
+        /**
+         * <p>Lists detailed TagOptions information.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListTagOptions">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void ListTagOptionsAsync(const Model::ListTagOptionsRequest& request, const ListTagOptionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Requests a <i>provision</i> of a specified product. A <i>provisioned
+         * product</i> is a resourced instance for a product. For example, provisioning a
+         * CloudFormation-template-backed product results in launching a CloudFormation
+         * stack and all the underlying resources that come with it. </p> <p>You can check
+         * the status of this request using the <a>DescribeRecord</a> operation. The error
+         * "Parameter validation failed: Missing required parameter in
+         * Tags[<i>N</i>]:<i>Value</i>" indicates that your request contains a tag which
+         * has a tag key but no corresponding tag value (value is empty or null). Your call
+         * may have included values returned from a
+         * <code>DescribeProvisioningParameters</code> call that resulted in a TagOption
+         * key with an empty list. This happens when TagOption keys are in conflict. For
+         * more information, see <a>DescribeProvisioningParameters</a>.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisionProduct">AWS
          * API Reference</a></p>
          */
         virtual Model::ProvisionProductOutcome ProvisionProduct(const Model::ProvisionProductRequest& request) const;
 
         /**
-         * <p>Requests a <i>Provision</i> of a specified product. A
-         * <i>ProvisionedProduct</i> is a resourced instance for a product. For example,
-         * provisioning a CloudFormation-template-backed product results in launching a
-         * CloudFormation stack and all the underlying resources that come with it. </p>
-         * <p>You can check the status of this request using the <a>DescribeRecord</a>
-         * operation.</p><p><h3>See Also:</h3>   <a
+         * <p>Requests a <i>provision</i> of a specified product. A <i>provisioned
+         * product</i> is a resourced instance for a product. For example, provisioning a
+         * CloudFormation-template-backed product results in launching a CloudFormation
+         * stack and all the underlying resources that come with it. </p> <p>You can check
+         * the status of this request using the <a>DescribeRecord</a> operation. The error
+         * "Parameter validation failed: Missing required parameter in
+         * Tags[<i>N</i>]:<i>Value</i>" indicates that your request contains a tag which
+         * has a tag key but no corresponding tag value (value is empty or null). Your call
+         * may have included values returned from a
+         * <code>DescribeProvisioningParameters</code> call that resulted in a TagOption
+         * key with an empty list. This happens when TagOption keys are in conflict. For
+         * more information, see <a>DescribeProvisioningParameters</a>.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisionProduct">AWS
          * API Reference</a></p>
          *
@@ -1278,12 +1628,19 @@ namespace Model
         virtual Model::ProvisionProductOutcomeCallable ProvisionProductCallable(const Model::ProvisionProductRequest& request) const;
 
         /**
-         * <p>Requests a <i>Provision</i> of a specified product. A
-         * <i>ProvisionedProduct</i> is a resourced instance for a product. For example,
-         * provisioning a CloudFormation-template-backed product results in launching a
-         * CloudFormation stack and all the underlying resources that come with it. </p>
-         * <p>You can check the status of this request using the <a>DescribeRecord</a>
-         * operation.</p><p><h3>See Also:</h3>   <a
+         * <p>Requests a <i>provision</i> of a specified product. A <i>provisioned
+         * product</i> is a resourced instance for a product. For example, provisioning a
+         * CloudFormation-template-backed product results in launching a CloudFormation
+         * stack and all the underlying resources that come with it. </p> <p>You can check
+         * the status of this request using the <a>DescribeRecord</a> operation. The error
+         * "Parameter validation failed: Missing required parameter in
+         * Tags[<i>N</i>]:<i>Value</i>" indicates that your request contains a tag which
+         * has a tag key but no corresponding tag value (value is empty or null). Your call
+         * may have included values returned from a
+         * <code>DescribeProvisioningParameters</code> call that resulted in a TagOption
+         * key with an empty list. This happens when TagOption keys are in conflict. For
+         * more information, see <a>DescribeProvisioningParameters</a>.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisionProduct">AWS
          * API Reference</a></p>
          *
@@ -1478,7 +1835,7 @@ namespace Model
         virtual void UpdateConstraintAsync(const Model::UpdateConstraintRequest& request, const UpdateConstraintResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Updates the specified portfolio's details. This operation will not work with
+         * <p>Updates the specified portfolio's details. This operation does not work with
          * a product that has been shared with you.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdatePortfolio">AWS
          * API Reference</a></p>
@@ -1486,7 +1843,7 @@ namespace Model
         virtual Model::UpdatePortfolioOutcome UpdatePortfolio(const Model::UpdatePortfolioRequest& request) const;
 
         /**
-         * <p>Updates the specified portfolio's details. This operation will not work with
+         * <p>Updates the specified portfolio's details. This operation does not work with
          * a product that has been shared with you.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdatePortfolio">AWS
          * API Reference</a></p>
@@ -1496,7 +1853,7 @@ namespace Model
         virtual Model::UpdatePortfolioOutcomeCallable UpdatePortfolioCallable(const Model::UpdatePortfolioRequest& request) const;
 
         /**
-         * <p>Updates the specified portfolio's details. This operation will not work with
+         * <p>Updates the specified portfolio's details. This operation does not work with
          * a product that has been shared with you.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdatePortfolio">AWS
          * API Reference</a></p>
@@ -1571,7 +1928,7 @@ namespace Model
         virtual void UpdateProvisionedProductAsync(const Model::UpdateProvisionedProductRequest& request, const UpdateProvisionedProductResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Updates an existing provisioning artifact's information. This operation will
+         * <p>Updates an existing provisioning artifact's information. This operation does
          * not work on a provisioning artifact associated with a product that has been
          * shared with you.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisioningArtifact">AWS
@@ -1580,7 +1937,7 @@ namespace Model
         virtual Model::UpdateProvisioningArtifactOutcome UpdateProvisioningArtifact(const Model::UpdateProvisioningArtifactRequest& request) const;
 
         /**
-         * <p>Updates an existing provisioning artifact's information. This operation will
+         * <p>Updates an existing provisioning artifact's information. This operation does
          * not work on a provisioning artifact associated with a product that has been
          * shared with you.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisioningArtifact">AWS
@@ -1591,7 +1948,7 @@ namespace Model
         virtual Model::UpdateProvisioningArtifactOutcomeCallable UpdateProvisioningArtifactCallable(const Model::UpdateProvisioningArtifactRequest& request) const;
 
         /**
-         * <p>Updates an existing provisioning artifact's information. This operation will
+         * <p>Updates an existing provisioning artifact's information. This operation does
          * not work on a provisioning artifact associated with a product that has been
          * shared with you.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisioningArtifact">AWS
@@ -1601,34 +1958,66 @@ namespace Model
          */
         virtual void UpdateProvisioningArtifactAsync(const Model::UpdateProvisioningArtifactRequest& request, const UpdateProvisioningArtifactResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
+        /**
+         * <p>Updates an existing TagOption.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateTagOption">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::UpdateTagOptionOutcome UpdateTagOption(const Model::UpdateTagOptionRequest& request) const;
+
+        /**
+         * <p>Updates an existing TagOption.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateTagOption">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::UpdateTagOptionOutcomeCallable UpdateTagOptionCallable(const Model::UpdateTagOptionRequest& request) const;
+
+        /**
+         * <p>Updates an existing TagOption.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateTagOption">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void UpdateTagOptionAsync(const Model::UpdateTagOptionRequest& request, const UpdateTagOptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
 
     private:
-      void init(const Client::ClientConfiguration& clientConfiguration);
+      void init(const Aws::Client::ClientConfiguration& clientConfiguration);
 
         /**Async helpers**/
         void AcceptPortfolioShareAsyncHelper(const Model::AcceptPortfolioShareRequest& request, const AcceptPortfolioShareResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void AssociatePrincipalWithPortfolioAsyncHelper(const Model::AssociatePrincipalWithPortfolioRequest& request, const AssociatePrincipalWithPortfolioResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void AssociateProductWithPortfolioAsyncHelper(const Model::AssociateProductWithPortfolioRequest& request, const AssociateProductWithPortfolioResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void AssociateTagOptionWithResourceAsyncHelper(const Model::AssociateTagOptionWithResourceRequest& request, const AssociateTagOptionWithResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void CopyProductAsyncHelper(const Model::CopyProductRequest& request, const CopyProductResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void CreateConstraintAsyncHelper(const Model::CreateConstraintRequest& request, const CreateConstraintResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void CreatePortfolioAsyncHelper(const Model::CreatePortfolioRequest& request, const CreatePortfolioResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void CreatePortfolioShareAsyncHelper(const Model::CreatePortfolioShareRequest& request, const CreatePortfolioShareResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void CreateProductAsyncHelper(const Model::CreateProductRequest& request, const CreateProductResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void CreateProvisioningArtifactAsyncHelper(const Model::CreateProvisioningArtifactRequest& request, const CreateProvisioningArtifactResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void CreateTagOptionAsyncHelper(const Model::CreateTagOptionRequest& request, const CreateTagOptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteConstraintAsyncHelper(const Model::DeleteConstraintRequest& request, const DeleteConstraintResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeletePortfolioAsyncHelper(const Model::DeletePortfolioRequest& request, const DeletePortfolioResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeletePortfolioShareAsyncHelper(const Model::DeletePortfolioShareRequest& request, const DeletePortfolioShareResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteProductAsyncHelper(const Model::DeleteProductRequest& request, const DeleteProductResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteProvisioningArtifactAsyncHelper(const Model::DeleteProvisioningArtifactRequest& request, const DeleteProvisioningArtifactResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeConstraintAsyncHelper(const Model::DescribeConstraintRequest& request, const DescribeConstraintResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void DescribeCopyProductStatusAsyncHelper(const Model::DescribeCopyProductStatusRequest& request, const DescribeCopyProductStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribePortfolioAsyncHelper(const Model::DescribePortfolioRequest& request, const DescribePortfolioResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeProductAsyncHelper(const Model::DescribeProductRequest& request, const DescribeProductResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeProductAsAdminAsyncHelper(const Model::DescribeProductAsAdminRequest& request, const DescribeProductAsAdminResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeProductViewAsyncHelper(const Model::DescribeProductViewRequest& request, const DescribeProductViewResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void DescribeProvisionedProductAsyncHelper(const Model::DescribeProvisionedProductRequest& request, const DescribeProvisionedProductResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeProvisioningArtifactAsyncHelper(const Model::DescribeProvisioningArtifactRequest& request, const DescribeProvisioningArtifactResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeProvisioningParametersAsyncHelper(const Model::DescribeProvisioningParametersRequest& request, const DescribeProvisioningParametersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeRecordAsyncHelper(const Model::DescribeRecordRequest& request, const DescribeRecordResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void DescribeTagOptionAsyncHelper(const Model::DescribeTagOptionRequest& request, const DescribeTagOptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DisassociatePrincipalFromPortfolioAsyncHelper(const Model::DisassociatePrincipalFromPortfolioRequest& request, const DisassociatePrincipalFromPortfolioResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DisassociateProductFromPortfolioAsyncHelper(const Model::DisassociateProductFromPortfolioRequest& request, const DisassociateProductFromPortfolioResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void DisassociateTagOptionFromResourceAsyncHelper(const Model::DisassociateTagOptionFromResourceRequest& request, const DisassociateTagOptionFromResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListAcceptedPortfolioSharesAsyncHelper(const Model::ListAcceptedPortfolioSharesRequest& request, const ListAcceptedPortfolioSharesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListConstraintsForPortfolioAsyncHelper(const Model::ListConstraintsForPortfolioRequest& request, const ListConstraintsForPortfolioResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListLaunchPathsAsyncHelper(const Model::ListLaunchPathsRequest& request, const ListLaunchPathsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -1638,6 +2027,8 @@ namespace Model
         void ListPrincipalsForPortfolioAsyncHelper(const Model::ListPrincipalsForPortfolioRequest& request, const ListPrincipalsForPortfolioResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListProvisioningArtifactsAsyncHelper(const Model::ListProvisioningArtifactsRequest& request, const ListProvisioningArtifactsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListRecordHistoryAsyncHelper(const Model::ListRecordHistoryRequest& request, const ListRecordHistoryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void ListResourcesForTagOptionAsyncHelper(const Model::ListResourcesForTagOptionRequest& request, const ListResourcesForTagOptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void ListTagOptionsAsyncHelper(const Model::ListTagOptionsRequest& request, const ListTagOptionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ProvisionProductAsyncHelper(const Model::ProvisionProductRequest& request, const ProvisionProductResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void RejectPortfolioShareAsyncHelper(const Model::RejectPortfolioShareRequest& request, const RejectPortfolioShareResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ScanProvisionedProductsAsyncHelper(const Model::ScanProvisionedProductsRequest& request, const ScanProvisionedProductsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -1649,9 +2040,10 @@ namespace Model
         void UpdateProductAsyncHelper(const Model::UpdateProductRequest& request, const UpdateProductResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateProvisionedProductAsyncHelper(const Model::UpdateProvisionedProductRequest& request, const UpdateProvisionedProductResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateProvisioningArtifactAsyncHelper(const Model::UpdateProvisioningArtifactRequest& request, const UpdateProvisioningArtifactResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void UpdateTagOptionAsyncHelper(const Model::UpdateTagOptionRequest& request, const UpdateTagOptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
       Aws::String m_uri;
-      std::shared_ptr<Utils::Threading::Executor> m_executor;
+      std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;
   };
 
 } // namespace ServiceCatalog

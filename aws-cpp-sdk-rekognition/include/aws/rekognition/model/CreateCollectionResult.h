@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rekognition/Rekognition_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     CreateCollectionResult();
-    CreateCollectionResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateCollectionResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateCollectionResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateCollectionResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>HTTP status code indicating the result of the operation.</p>
@@ -53,6 +56,7 @@ namespace Model
      * <p>HTTP status code indicating the result of the operation.</p>
      */
     inline CreateCollectionResult& WithStatusCode(int value) { SetStatusCode(value); return *this;}
+
 
     /**
      * <p>Amazon Resource Name (ARN) of the collection. You can use this to manage
@@ -70,7 +74,7 @@ namespace Model
      * <p>Amazon Resource Name (ARN) of the collection. You can use this to manage
      * permissions on your resources. </p>
      */
-    inline void SetCollectionArn(Aws::String&& value) { m_collectionArn = value; }
+    inline void SetCollectionArn(Aws::String&& value) { m_collectionArn = std::move(value); }
 
     /**
      * <p>Amazon Resource Name (ARN) of the collection. You can use this to manage
@@ -88,7 +92,7 @@ namespace Model
      * <p>Amazon Resource Name (ARN) of the collection. You can use this to manage
      * permissions on your resources. </p>
      */
-    inline CreateCollectionResult& WithCollectionArn(Aws::String&& value) { SetCollectionArn(value); return *this;}
+    inline CreateCollectionResult& WithCollectionArn(Aws::String&& value) { SetCollectionArn(std::move(value)); return *this;}
 
     /**
      * <p>Amazon Resource Name (ARN) of the collection. You can use this to manage
@@ -97,7 +101,9 @@ namespace Model
     inline CreateCollectionResult& WithCollectionArn(const char* value) { SetCollectionArn(value); return *this;}
 
   private:
+
     int m_statusCode;
+
     Aws::String m_collectionArn;
   };
 

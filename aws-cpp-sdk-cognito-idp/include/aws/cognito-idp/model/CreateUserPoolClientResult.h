@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/cognito-idp/model/UserPoolClientType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     CreateUserPoolClientResult();
-    CreateUserPoolClientResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateUserPoolClientResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateUserPoolClientResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateUserPoolClientResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The user pool client that was just created.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The user pool client that was just created.</p>
      */
-    inline void SetUserPoolClient(UserPoolClientType&& value) { m_userPoolClient = value; }
+    inline void SetUserPoolClient(UserPoolClientType&& value) { m_userPoolClient = std::move(value); }
 
     /**
      * <p>The user pool client that was just created.</p>
@@ -68,9 +71,10 @@ namespace Model
     /**
      * <p>The user pool client that was just created.</p>
      */
-    inline CreateUserPoolClientResult& WithUserPoolClient(UserPoolClientType&& value) { SetUserPoolClient(value); return *this;}
+    inline CreateUserPoolClientResult& WithUserPoolClient(UserPoolClientType&& value) { SetUserPoolClient(std::move(value)); return *this;}
 
   private:
+
     UserPoolClientType m_userPoolClient;
   };
 

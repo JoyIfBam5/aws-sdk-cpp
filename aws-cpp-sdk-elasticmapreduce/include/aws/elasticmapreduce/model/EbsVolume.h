@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     EbsVolume& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The device name that is exposed to the instance, such as /dev/sdh.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The device name that is exposed to the instance, such as /dev/sdh.</p>
      */
-    inline void SetDevice(Aws::String&& value) { m_deviceHasBeenSet = true; m_device = value; }
+    inline void SetDevice(Aws::String&& value) { m_deviceHasBeenSet = true; m_device = std::move(value); }
 
     /**
      * <p>The device name that is exposed to the instance, such as /dev/sdh.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The device name that is exposed to the instance, such as /dev/sdh.</p>
      */
-    inline EbsVolume& WithDevice(Aws::String&& value) { SetDevice(value); return *this;}
+    inline EbsVolume& WithDevice(Aws::String&& value) { SetDevice(std::move(value)); return *this;}
 
     /**
      * <p>The device name that is exposed to the instance, such as /dev/sdh.</p>
      */
     inline EbsVolume& WithDevice(const char* value) { SetDevice(value); return *this;}
+
 
     /**
      * <p>The volume identifier of the EBS volume.</p>
@@ -92,7 +96,7 @@ namespace Model
     /**
      * <p>The volume identifier of the EBS volume.</p>
      */
-    inline void SetVolumeId(Aws::String&& value) { m_volumeIdHasBeenSet = true; m_volumeId = value; }
+    inline void SetVolumeId(Aws::String&& value) { m_volumeIdHasBeenSet = true; m_volumeId = std::move(value); }
 
     /**
      * <p>The volume identifier of the EBS volume.</p>
@@ -107,7 +111,7 @@ namespace Model
     /**
      * <p>The volume identifier of the EBS volume.</p>
      */
-    inline EbsVolume& WithVolumeId(Aws::String&& value) { SetVolumeId(value); return *this;}
+    inline EbsVolume& WithVolumeId(Aws::String&& value) { SetVolumeId(std::move(value)); return *this;}
 
     /**
      * <p>The volume identifier of the EBS volume.</p>
@@ -115,8 +119,10 @@ namespace Model
     inline EbsVolume& WithVolumeId(const char* value) { SetVolumeId(value); return *this;}
 
   private:
+
     Aws::String m_device;
     bool m_deviceHasBeenSet;
+
     Aws::String m_volumeId;
     bool m_volumeIdHasBeenSet;
   };

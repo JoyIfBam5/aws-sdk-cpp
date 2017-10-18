@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     TestInvokeAuthorizerResult();
-    TestInvokeAuthorizerResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    TestInvokeAuthorizerResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    TestInvokeAuthorizerResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    TestInvokeAuthorizerResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The HTTP status code that the client would have received. Value is 0 if the
@@ -65,6 +68,7 @@ namespace Model
      */
     inline TestInvokeAuthorizerResult& WithClientStatus(int value) { SetClientStatus(value); return *this;}
 
+
     /**
      * <p>The Amazon API Gateway execution log for the test authorizer request.</p>
      */
@@ -78,7 +82,7 @@ namespace Model
     /**
      * <p>The Amazon API Gateway execution log for the test authorizer request.</p>
      */
-    inline void SetLog(Aws::String&& value) { m_log = value; }
+    inline void SetLog(Aws::String&& value) { m_log = std::move(value); }
 
     /**
      * <p>The Amazon API Gateway execution log for the test authorizer request.</p>
@@ -93,12 +97,13 @@ namespace Model
     /**
      * <p>The Amazon API Gateway execution log for the test authorizer request.</p>
      */
-    inline TestInvokeAuthorizerResult& WithLog(Aws::String&& value) { SetLog(value); return *this;}
+    inline TestInvokeAuthorizerResult& WithLog(Aws::String&& value) { SetLog(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon API Gateway execution log for the test authorizer request.</p>
      */
     inline TestInvokeAuthorizerResult& WithLog(const char* value) { SetLog(value); return *this;}
+
 
     /**
      * <p>The execution latency of the test authorizer request.</p>
@@ -115,6 +120,7 @@ namespace Model
      */
     inline TestInvokeAuthorizerResult& WithLatency(long long value) { SetLatency(value); return *this;}
 
+
     /**
      * <p>The principal identity returned by the <a>Authorizer</a></p>
      */
@@ -128,7 +134,7 @@ namespace Model
     /**
      * <p>The principal identity returned by the <a>Authorizer</a></p>
      */
-    inline void SetPrincipalId(Aws::String&& value) { m_principalId = value; }
+    inline void SetPrincipalId(Aws::String&& value) { m_principalId = std::move(value); }
 
     /**
      * <p>The principal identity returned by the <a>Authorizer</a></p>
@@ -143,12 +149,13 @@ namespace Model
     /**
      * <p>The principal identity returned by the <a>Authorizer</a></p>
      */
-    inline TestInvokeAuthorizerResult& WithPrincipalId(Aws::String&& value) { SetPrincipalId(value); return *this;}
+    inline TestInvokeAuthorizerResult& WithPrincipalId(Aws::String&& value) { SetPrincipalId(std::move(value)); return *this;}
 
     /**
      * <p>The principal identity returned by the <a>Authorizer</a></p>
      */
     inline TestInvokeAuthorizerResult& WithPrincipalId(const char* value) { SetPrincipalId(value); return *this;}
+
 
     /**
      * <p>The JSON policy document returned by the <a>Authorizer</a></p>
@@ -163,7 +170,7 @@ namespace Model
     /**
      * <p>The JSON policy document returned by the <a>Authorizer</a></p>
      */
-    inline void SetPolicy(Aws::String&& value) { m_policy = value; }
+    inline void SetPolicy(Aws::String&& value) { m_policy = std::move(value); }
 
     /**
      * <p>The JSON policy document returned by the <a>Authorizer</a></p>
@@ -178,12 +185,13 @@ namespace Model
     /**
      * <p>The JSON policy document returned by the <a>Authorizer</a></p>
      */
-    inline TestInvokeAuthorizerResult& WithPolicy(Aws::String&& value) { SetPolicy(value); return *this;}
+    inline TestInvokeAuthorizerResult& WithPolicy(Aws::String&& value) { SetPolicy(std::move(value)); return *this;}
 
     /**
      * <p>The JSON policy document returned by the <a>Authorizer</a></p>
      */
     inline TestInvokeAuthorizerResult& WithPolicy(const char* value) { SetPolicy(value); return *this;}
+
 
     
     inline const Aws::Map<Aws::String, Aws::Vector<Aws::String>>& GetAuthorization() const{ return m_authorization; }
@@ -192,31 +200,32 @@ namespace Model
     inline void SetAuthorization(const Aws::Map<Aws::String, Aws::Vector<Aws::String>>& value) { m_authorization = value; }
 
     
-    inline void SetAuthorization(Aws::Map<Aws::String, Aws::Vector<Aws::String>>&& value) { m_authorization = value; }
+    inline void SetAuthorization(Aws::Map<Aws::String, Aws::Vector<Aws::String>>&& value) { m_authorization = std::move(value); }
 
     
     inline TestInvokeAuthorizerResult& WithAuthorization(const Aws::Map<Aws::String, Aws::Vector<Aws::String>>& value) { SetAuthorization(value); return *this;}
 
     
-    inline TestInvokeAuthorizerResult& WithAuthorization(Aws::Map<Aws::String, Aws::Vector<Aws::String>>&& value) { SetAuthorization(value); return *this;}
+    inline TestInvokeAuthorizerResult& WithAuthorization(Aws::Map<Aws::String, Aws::Vector<Aws::String>>&& value) { SetAuthorization(std::move(value)); return *this;}
 
     
-    inline TestInvokeAuthorizerResult& AddAuthorization(const Aws::String& key, const Aws::Vector<Aws::String>& value) { m_authorization[key] = value; return *this; }
+    inline TestInvokeAuthorizerResult& AddAuthorization(const Aws::String& key, const Aws::Vector<Aws::String>& value) { m_authorization.emplace(key, value); return *this; }
 
     
-    inline TestInvokeAuthorizerResult& AddAuthorization(Aws::String&& key, const Aws::Vector<Aws::String>& value) { m_authorization[key] = value; return *this; }
+    inline TestInvokeAuthorizerResult& AddAuthorization(Aws::String&& key, const Aws::Vector<Aws::String>& value) { m_authorization.emplace(std::move(key), value); return *this; }
 
     
-    inline TestInvokeAuthorizerResult& AddAuthorization(const Aws::String& key, Aws::Vector<Aws::String>&& value) { m_authorization[key] = value; return *this; }
+    inline TestInvokeAuthorizerResult& AddAuthorization(const Aws::String& key, Aws::Vector<Aws::String>&& value) { m_authorization.emplace(key, std::move(value)); return *this; }
 
     
-    inline TestInvokeAuthorizerResult& AddAuthorization(Aws::String&& key, Aws::Vector<Aws::String>&& value) { m_authorization[key] = value; return *this; }
+    inline TestInvokeAuthorizerResult& AddAuthorization(Aws::String&& key, Aws::Vector<Aws::String>&& value) { m_authorization.emplace(std::move(key), std::move(value)); return *this; }
 
     
-    inline TestInvokeAuthorizerResult& AddAuthorization(const char* key, Aws::Vector<Aws::String>&& value) { m_authorization[key] = value; return *this; }
+    inline TestInvokeAuthorizerResult& AddAuthorization(const char* key, Aws::Vector<Aws::String>&& value) { m_authorization.emplace(key, std::move(value)); return *this; }
 
     
-    inline TestInvokeAuthorizerResult& AddAuthorization(const char* key, const Aws::Vector<Aws::String>& value) { m_authorization[key] = value; return *this; }
+    inline TestInvokeAuthorizerResult& AddAuthorization(const char* key, const Aws::Vector<Aws::String>& value) { m_authorization.emplace(key, value); return *this; }
+
 
     /**
      * <p>The <a
@@ -240,7 +249,7 @@ namespace Model
      * identity claims</a>, with any supported custom attributes, returned from the
      * Cognito Your User Pool configured for the API.</p>
      */
-    inline void SetClaims(Aws::Map<Aws::String, Aws::String>&& value) { m_claims = value; }
+    inline void SetClaims(Aws::Map<Aws::String, Aws::String>&& value) { m_claims = std::move(value); }
 
     /**
      * <p>The <a
@@ -256,7 +265,7 @@ namespace Model
      * identity claims</a>, with any supported custom attributes, returned from the
      * Cognito Your User Pool configured for the API.</p>
      */
-    inline TestInvokeAuthorizerResult& WithClaims(Aws::Map<Aws::String, Aws::String>&& value) { SetClaims(value); return *this;}
+    inline TestInvokeAuthorizerResult& WithClaims(Aws::Map<Aws::String, Aws::String>&& value) { SetClaims(std::move(value)); return *this;}
 
     /**
      * <p>The <a
@@ -264,7 +273,7 @@ namespace Model
      * identity claims</a>, with any supported custom attributes, returned from the
      * Cognito Your User Pool configured for the API.</p>
      */
-    inline TestInvokeAuthorizerResult& AddClaims(const Aws::String& key, const Aws::String& value) { m_claims[key] = value; return *this; }
+    inline TestInvokeAuthorizerResult& AddClaims(const Aws::String& key, const Aws::String& value) { m_claims.emplace(key, value); return *this; }
 
     /**
      * <p>The <a
@@ -272,7 +281,7 @@ namespace Model
      * identity claims</a>, with any supported custom attributes, returned from the
      * Cognito Your User Pool configured for the API.</p>
      */
-    inline TestInvokeAuthorizerResult& AddClaims(Aws::String&& key, const Aws::String& value) { m_claims[key] = value; return *this; }
+    inline TestInvokeAuthorizerResult& AddClaims(Aws::String&& key, const Aws::String& value) { m_claims.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The <a
@@ -280,7 +289,7 @@ namespace Model
      * identity claims</a>, with any supported custom attributes, returned from the
      * Cognito Your User Pool configured for the API.</p>
      */
-    inline TestInvokeAuthorizerResult& AddClaims(const Aws::String& key, Aws::String&& value) { m_claims[key] = value; return *this; }
+    inline TestInvokeAuthorizerResult& AddClaims(const Aws::String& key, Aws::String&& value) { m_claims.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The <a
@@ -288,7 +297,7 @@ namespace Model
      * identity claims</a>, with any supported custom attributes, returned from the
      * Cognito Your User Pool configured for the API.</p>
      */
-    inline TestInvokeAuthorizerResult& AddClaims(Aws::String&& key, Aws::String&& value) { m_claims[key] = value; return *this; }
+    inline TestInvokeAuthorizerResult& AddClaims(Aws::String&& key, Aws::String&& value) { m_claims.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>The <a
@@ -296,7 +305,7 @@ namespace Model
      * identity claims</a>, with any supported custom attributes, returned from the
      * Cognito Your User Pool configured for the API.</p>
      */
-    inline TestInvokeAuthorizerResult& AddClaims(const char* key, Aws::String&& value) { m_claims[key] = value; return *this; }
+    inline TestInvokeAuthorizerResult& AddClaims(const char* key, Aws::String&& value) { m_claims.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The <a
@@ -304,7 +313,7 @@ namespace Model
      * identity claims</a>, with any supported custom attributes, returned from the
      * Cognito Your User Pool configured for the API.</p>
      */
-    inline TestInvokeAuthorizerResult& AddClaims(Aws::String&& key, const char* value) { m_claims[key] = value; return *this; }
+    inline TestInvokeAuthorizerResult& AddClaims(Aws::String&& key, const char* value) { m_claims.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The <a
@@ -312,15 +321,22 @@ namespace Model
      * identity claims</a>, with any supported custom attributes, returned from the
      * Cognito Your User Pool configured for the API.</p>
      */
-    inline TestInvokeAuthorizerResult& AddClaims(const char* key, const char* value) { m_claims[key] = value; return *this; }
+    inline TestInvokeAuthorizerResult& AddClaims(const char* key, const char* value) { m_claims.emplace(key, value); return *this; }
 
   private:
+
     int m_clientStatus;
+
     Aws::String m_log;
+
     long long m_latency;
+
     Aws::String m_principalId;
+
     Aws::String m_policy;
+
     Aws::Map<Aws::String, Aws::Vector<Aws::String>> m_authorization;
+
     Aws::Map<Aws::String, Aws::String> m_claims;
   };
 

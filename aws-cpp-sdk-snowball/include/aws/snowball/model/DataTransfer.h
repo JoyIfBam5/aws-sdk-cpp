@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/snowball/Snowball_EXPORTS.h>
 
@@ -45,6 +46,7 @@ namespace Model
     DataTransfer& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The number of bytes transferred between a Snowball and Amazon S3.</p>
      */
@@ -60,6 +62,7 @@ namespace Model
      */
     inline DataTransfer& WithBytesTransferred(long long value) { SetBytesTransferred(value); return *this;}
 
+
     /**
      * <p>The number of objects transferred between a Snowball and Amazon S3.</p>
      */
@@ -74,6 +77,7 @@ namespace Model
      * <p>The number of objects transferred between a Snowball and Amazon S3.</p>
      */
     inline DataTransfer& WithObjectsTransferred(long long value) { SetObjectsTransferred(value); return *this;}
+
 
     /**
      * <p>The total bytes of data for a transfer between a Snowball and Amazon S3. This
@@ -95,6 +99,7 @@ namespace Model
      * listed.</p>
      */
     inline DataTransfer& WithTotalBytes(long long value) { SetTotalBytes(value); return *this;}
+
 
     /**
      * <p>The total number of objects for a transfer between a Snowball and Amazon S3.
@@ -118,12 +123,16 @@ namespace Model
     inline DataTransfer& WithTotalObjects(long long value) { SetTotalObjects(value); return *this;}
 
   private:
+
     long long m_bytesTransferred;
     bool m_bytesTransferredHasBeenSet;
+
     long long m_objectsTransferred;
     bool m_objectsTransferredHasBeenSet;
+
     long long m_totalBytes;
     bool m_totalBytesHasBeenSet;
+
     long long m_totalObjects;
     bool m_totalObjectsHasBeenSet;
   };

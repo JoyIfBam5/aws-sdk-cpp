@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/servicecatalog/model/ProductViewFilterBy.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -32,6 +33,7 @@ namespace Aws
         static const int FullTextSearch_HASH = HashingUtils::HashString("FullTextSearch");
         static const int Owner_HASH = HashingUtils::HashString("Owner");
         static const int ProductType_HASH = HashingUtils::HashString("ProductType");
+        static const int SourceProductId_HASH = HashingUtils::HashString("SourceProductId");
 
 
         ProductViewFilterBy GetProductViewFilterByForName(const Aws::String& name)
@@ -48,6 +50,10 @@ namespace Aws
           else if (hashCode == ProductType_HASH)
           {
             return ProductViewFilterBy::ProductType;
+          }
+          else if (hashCode == SourceProductId_HASH)
+          {
+            return ProductViewFilterBy::SourceProductId;
           }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
@@ -69,6 +75,8 @@ namespace Aws
             return "Owner";
           case ProductViewFilterBy::ProductType:
             return "ProductType";
+          case ProductViewFilterBy::SourceProductId:
+            return "SourceProductId";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

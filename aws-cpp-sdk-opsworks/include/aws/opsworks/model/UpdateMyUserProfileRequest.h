@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/opsworks/OpsWorksRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     UpdateMyUserProfileRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateMyUserProfile"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The user's SSH public key.</p>
@@ -47,7 +57,7 @@ namespace Model
     /**
      * <p>The user's SSH public key.</p>
      */
-    inline void SetSshPublicKey(Aws::String&& value) { m_sshPublicKeyHasBeenSet = true; m_sshPublicKey = value; }
+    inline void SetSshPublicKey(Aws::String&& value) { m_sshPublicKeyHasBeenSet = true; m_sshPublicKey = std::move(value); }
 
     /**
      * <p>The user's SSH public key.</p>
@@ -62,7 +72,7 @@ namespace Model
     /**
      * <p>The user's SSH public key.</p>
      */
-    inline UpdateMyUserProfileRequest& WithSshPublicKey(Aws::String&& value) { SetSshPublicKey(value); return *this;}
+    inline UpdateMyUserProfileRequest& WithSshPublicKey(Aws::String&& value) { SetSshPublicKey(std::move(value)); return *this;}
 
     /**
      * <p>The user's SSH public key.</p>
@@ -70,6 +80,7 @@ namespace Model
     inline UpdateMyUserProfileRequest& WithSshPublicKey(const char* value) { SetSshPublicKey(value); return *this;}
 
   private:
+
     Aws::String m_sshPublicKey;
     bool m_sshPublicKeyHasBeenSet;
   };

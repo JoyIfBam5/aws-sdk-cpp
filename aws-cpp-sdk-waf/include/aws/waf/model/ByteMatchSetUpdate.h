@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/model/ChangeAction.h>
 #include <aws/waf/model/ByteMatchTuple.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     ByteMatchSetUpdate& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Specifies whether to insert or delete a <a>ByteMatchTuple</a>.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>Specifies whether to insert or delete a <a>ByteMatchTuple</a>.</p>
      */
-    inline void SetAction(ChangeAction&& value) { m_actionHasBeenSet = true; m_action = value; }
+    inline void SetAction(ChangeAction&& value) { m_actionHasBeenSet = true; m_action = std::move(value); }
 
     /**
      * <p>Specifies whether to insert or delete a <a>ByteMatchTuple</a>.</p>
@@ -69,7 +72,8 @@ namespace Model
     /**
      * <p>Specifies whether to insert or delete a <a>ByteMatchTuple</a>.</p>
      */
-    inline ByteMatchSetUpdate& WithAction(ChangeAction&& value) { SetAction(value); return *this;}
+    inline ByteMatchSetUpdate& WithAction(ChangeAction&& value) { SetAction(std::move(value)); return *this;}
+
 
     /**
      * <p>Information about the part of a web request that you want AWS WAF to inspect
@@ -99,7 +103,7 @@ namespace Model
      * <code>ByteMatchTuple</code> that you want to delete from the
      * <code>ByteMatchSet</code>.</p>
      */
-    inline void SetByteMatchTuple(ByteMatchTuple&& value) { m_byteMatchTupleHasBeenSet = true; m_byteMatchTuple = value; }
+    inline void SetByteMatchTuple(ByteMatchTuple&& value) { m_byteMatchTupleHasBeenSet = true; m_byteMatchTuple = std::move(value); }
 
     /**
      * <p>Information about the part of a web request that you want AWS WAF to inspect
@@ -119,11 +123,13 @@ namespace Model
      * <code>ByteMatchTuple</code> that you want to delete from the
      * <code>ByteMatchSet</code>.</p>
      */
-    inline ByteMatchSetUpdate& WithByteMatchTuple(ByteMatchTuple&& value) { SetByteMatchTuple(value); return *this;}
+    inline ByteMatchSetUpdate& WithByteMatchTuple(ByteMatchTuple&& value) { SetByteMatchTuple(std::move(value)); return *this;}
 
   private:
+
     ChangeAction m_action;
     bool m_actionHasBeenSet;
+
     ByteMatchTuple m_byteMatchTuple;
     bool m_byteMatchTupleHasBeenSet;
   };

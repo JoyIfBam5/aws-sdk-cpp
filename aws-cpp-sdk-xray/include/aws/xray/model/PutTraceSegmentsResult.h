@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/xray/XRay_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/xray/model/UnprocessedTraceSegment.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     PutTraceSegmentsResult();
-    PutTraceSegmentsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    PutTraceSegmentsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PutTraceSegmentsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PutTraceSegmentsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Segments that failed processing.</p>
@@ -53,7 +56,7 @@ namespace Model
     /**
      * <p>Segments that failed processing.</p>
      */
-    inline void SetUnprocessedTraceSegments(Aws::Vector<UnprocessedTraceSegment>&& value) { m_unprocessedTraceSegments = value; }
+    inline void SetUnprocessedTraceSegments(Aws::Vector<UnprocessedTraceSegment>&& value) { m_unprocessedTraceSegments = std::move(value); }
 
     /**
      * <p>Segments that failed processing.</p>
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>Segments that failed processing.</p>
      */
-    inline PutTraceSegmentsResult& WithUnprocessedTraceSegments(Aws::Vector<UnprocessedTraceSegment>&& value) { SetUnprocessedTraceSegments(value); return *this;}
+    inline PutTraceSegmentsResult& WithUnprocessedTraceSegments(Aws::Vector<UnprocessedTraceSegment>&& value) { SetUnprocessedTraceSegments(std::move(value)); return *this;}
 
     /**
      * <p>Segments that failed processing.</p>
@@ -73,9 +76,10 @@ namespace Model
     /**
      * <p>Segments that failed processing.</p>
      */
-    inline PutTraceSegmentsResult& AddUnprocessedTraceSegments(UnprocessedTraceSegment&& value) { m_unprocessedTraceSegments.push_back(value); return *this; }
+    inline PutTraceSegmentsResult& AddUnprocessedTraceSegments(UnprocessedTraceSegment&& value) { m_unprocessedTraceSegments.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<UnprocessedTraceSegment> m_unprocessedTraceSegments;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dms/DatabaseMigrationService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -20,6 +21,7 @@
 #include <aws/dms/model/ReplicationSubnetGroup.h>
 #include <aws/dms/model/ReplicationPendingModifiedValues.h>
 #include <aws/dms/model/VpcSecurityGroupMembership.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     ReplicationInstance& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The replication instance identifier. This parameter is stored as a lowercase
      * string.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63
@@ -73,7 +76,7 @@ namespace Model
      * letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
      * hyphens.</p> </li> </ul> <p>Example: <code>myrepinstance</code> </p>
      */
-    inline void SetReplicationInstanceIdentifier(Aws::String&& value) { m_replicationInstanceIdentifierHasBeenSet = true; m_replicationInstanceIdentifier = value; }
+    inline void SetReplicationInstanceIdentifier(Aws::String&& value) { m_replicationInstanceIdentifierHasBeenSet = true; m_replicationInstanceIdentifier = std::move(value); }
 
     /**
      * <p>The replication instance identifier. This parameter is stored as a lowercase
@@ -100,7 +103,7 @@ namespace Model
      * letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
      * hyphens.</p> </li> </ul> <p>Example: <code>myrepinstance</code> </p>
      */
-    inline ReplicationInstance& WithReplicationInstanceIdentifier(Aws::String&& value) { SetReplicationInstanceIdentifier(value); return *this;}
+    inline ReplicationInstance& WithReplicationInstanceIdentifier(Aws::String&& value) { SetReplicationInstanceIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The replication instance identifier. This parameter is stored as a lowercase
@@ -110,6 +113,7 @@ namespace Model
      * hyphens.</p> </li> </ul> <p>Example: <code>myrepinstance</code> </p>
      */
     inline ReplicationInstance& WithReplicationInstanceIdentifier(const char* value) { SetReplicationInstanceIdentifier(value); return *this;}
+
 
     /**
      * <p>The compute and memory capacity of the replication instance.</p> <p> Valid
@@ -130,7 +134,7 @@ namespace Model
      * Values: <code>dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large |
      * dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code> </p>
      */
-    inline void SetReplicationInstanceClass(Aws::String&& value) { m_replicationInstanceClassHasBeenSet = true; m_replicationInstanceClass = value; }
+    inline void SetReplicationInstanceClass(Aws::String&& value) { m_replicationInstanceClassHasBeenSet = true; m_replicationInstanceClass = std::move(value); }
 
     /**
      * <p>The compute and memory capacity of the replication instance.</p> <p> Valid
@@ -151,7 +155,7 @@ namespace Model
      * Values: <code>dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large |
      * dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code> </p>
      */
-    inline ReplicationInstance& WithReplicationInstanceClass(Aws::String&& value) { SetReplicationInstanceClass(value); return *this;}
+    inline ReplicationInstance& WithReplicationInstanceClass(Aws::String&& value) { SetReplicationInstanceClass(std::move(value)); return *this;}
 
     /**
      * <p>The compute and memory capacity of the replication instance.</p> <p> Valid
@@ -159,6 +163,7 @@ namespace Model
      * dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge </code> </p>
      */
     inline ReplicationInstance& WithReplicationInstanceClass(const char* value) { SetReplicationInstanceClass(value); return *this;}
+
 
     /**
      * <p>The status of the replication instance.</p>
@@ -173,7 +178,7 @@ namespace Model
     /**
      * <p>The status of the replication instance.</p>
      */
-    inline void SetReplicationInstanceStatus(Aws::String&& value) { m_replicationInstanceStatusHasBeenSet = true; m_replicationInstanceStatus = value; }
+    inline void SetReplicationInstanceStatus(Aws::String&& value) { m_replicationInstanceStatusHasBeenSet = true; m_replicationInstanceStatus = std::move(value); }
 
     /**
      * <p>The status of the replication instance.</p>
@@ -188,12 +193,13 @@ namespace Model
     /**
      * <p>The status of the replication instance.</p>
      */
-    inline ReplicationInstance& WithReplicationInstanceStatus(Aws::String&& value) { SetReplicationInstanceStatus(value); return *this;}
+    inline ReplicationInstance& WithReplicationInstanceStatus(Aws::String&& value) { SetReplicationInstanceStatus(std::move(value)); return *this;}
 
     /**
      * <p>The status of the replication instance.</p>
      */
     inline ReplicationInstance& WithReplicationInstanceStatus(const char* value) { SetReplicationInstanceStatus(value); return *this;}
+
 
     /**
      * <p>The amount of storage (in gigabytes) that is allocated for the replication
@@ -213,6 +219,7 @@ namespace Model
      */
     inline ReplicationInstance& WithAllocatedStorage(int value) { SetAllocatedStorage(value); return *this;}
 
+
     /**
      * <p>The time the replication instance was created.</p>
      */
@@ -226,7 +233,7 @@ namespace Model
     /**
      * <p>The time the replication instance was created.</p>
      */
-    inline void SetInstanceCreateTime(Aws::Utils::DateTime&& value) { m_instanceCreateTimeHasBeenSet = true; m_instanceCreateTime = value; }
+    inline void SetInstanceCreateTime(Aws::Utils::DateTime&& value) { m_instanceCreateTimeHasBeenSet = true; m_instanceCreateTime = std::move(value); }
 
     /**
      * <p>The time the replication instance was created.</p>
@@ -236,7 +243,8 @@ namespace Model
     /**
      * <p>The time the replication instance was created.</p>
      */
-    inline ReplicationInstance& WithInstanceCreateTime(Aws::Utils::DateTime&& value) { SetInstanceCreateTime(value); return *this;}
+    inline ReplicationInstance& WithInstanceCreateTime(Aws::Utils::DateTime&& value) { SetInstanceCreateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The VPC security group for the instance.</p>
@@ -251,7 +259,7 @@ namespace Model
     /**
      * <p>The VPC security group for the instance.</p>
      */
-    inline void SetVpcSecurityGroups(Aws::Vector<VpcSecurityGroupMembership>&& value) { m_vpcSecurityGroupsHasBeenSet = true; m_vpcSecurityGroups = value; }
+    inline void SetVpcSecurityGroups(Aws::Vector<VpcSecurityGroupMembership>&& value) { m_vpcSecurityGroupsHasBeenSet = true; m_vpcSecurityGroups = std::move(value); }
 
     /**
      * <p>The VPC security group for the instance.</p>
@@ -261,7 +269,7 @@ namespace Model
     /**
      * <p>The VPC security group for the instance.</p>
      */
-    inline ReplicationInstance& WithVpcSecurityGroups(Aws::Vector<VpcSecurityGroupMembership>&& value) { SetVpcSecurityGroups(value); return *this;}
+    inline ReplicationInstance& WithVpcSecurityGroups(Aws::Vector<VpcSecurityGroupMembership>&& value) { SetVpcSecurityGroups(std::move(value)); return *this;}
 
     /**
      * <p>The VPC security group for the instance.</p>
@@ -271,7 +279,8 @@ namespace Model
     /**
      * <p>The VPC security group for the instance.</p>
      */
-    inline ReplicationInstance& AddVpcSecurityGroups(VpcSecurityGroupMembership&& value) { m_vpcSecurityGroupsHasBeenSet = true; m_vpcSecurityGroups.push_back(value); return *this; }
+    inline ReplicationInstance& AddVpcSecurityGroups(VpcSecurityGroupMembership&& value) { m_vpcSecurityGroupsHasBeenSet = true; m_vpcSecurityGroups.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The Availability Zone for the instance.</p>
@@ -286,7 +295,7 @@ namespace Model
     /**
      * <p>The Availability Zone for the instance.</p>
      */
-    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = value; }
+    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = std::move(value); }
 
     /**
      * <p>The Availability Zone for the instance.</p>
@@ -301,12 +310,13 @@ namespace Model
     /**
      * <p>The Availability Zone for the instance.</p>
      */
-    inline ReplicationInstance& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(value); return *this;}
+    inline ReplicationInstance& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(std::move(value)); return *this;}
 
     /**
      * <p>The Availability Zone for the instance.</p>
      */
     inline ReplicationInstance& WithAvailabilityZone(const char* value) { SetAvailabilityZone(value); return *this;}
+
 
     /**
      * <p>The subnet group for the replication instance.</p>
@@ -321,7 +331,7 @@ namespace Model
     /**
      * <p>The subnet group for the replication instance.</p>
      */
-    inline void SetReplicationSubnetGroup(ReplicationSubnetGroup&& value) { m_replicationSubnetGroupHasBeenSet = true; m_replicationSubnetGroup = value; }
+    inline void SetReplicationSubnetGroup(ReplicationSubnetGroup&& value) { m_replicationSubnetGroupHasBeenSet = true; m_replicationSubnetGroup = std::move(value); }
 
     /**
      * <p>The subnet group for the replication instance.</p>
@@ -331,7 +341,8 @@ namespace Model
     /**
      * <p>The subnet group for the replication instance.</p>
      */
-    inline ReplicationInstance& WithReplicationSubnetGroup(ReplicationSubnetGroup&& value) { SetReplicationSubnetGroup(value); return *this;}
+    inline ReplicationInstance& WithReplicationSubnetGroup(ReplicationSubnetGroup&& value) { SetReplicationSubnetGroup(std::move(value)); return *this;}
+
 
     /**
      * <p>The maintenance window times for the replication instance.</p>
@@ -346,7 +357,7 @@ namespace Model
     /**
      * <p>The maintenance window times for the replication instance.</p>
      */
-    inline void SetPreferredMaintenanceWindow(Aws::String&& value) { m_preferredMaintenanceWindowHasBeenSet = true; m_preferredMaintenanceWindow = value; }
+    inline void SetPreferredMaintenanceWindow(Aws::String&& value) { m_preferredMaintenanceWindowHasBeenSet = true; m_preferredMaintenanceWindow = std::move(value); }
 
     /**
      * <p>The maintenance window times for the replication instance.</p>
@@ -361,12 +372,13 @@ namespace Model
     /**
      * <p>The maintenance window times for the replication instance.</p>
      */
-    inline ReplicationInstance& WithPreferredMaintenanceWindow(Aws::String&& value) { SetPreferredMaintenanceWindow(value); return *this;}
+    inline ReplicationInstance& WithPreferredMaintenanceWindow(Aws::String&& value) { SetPreferredMaintenanceWindow(std::move(value)); return *this;}
 
     /**
      * <p>The maintenance window times for the replication instance.</p>
      */
     inline ReplicationInstance& WithPreferredMaintenanceWindow(const char* value) { SetPreferredMaintenanceWindow(value); return *this;}
+
 
     /**
      * <p>The pending modification values.</p>
@@ -381,7 +393,7 @@ namespace Model
     /**
      * <p>The pending modification values.</p>
      */
-    inline void SetPendingModifiedValues(ReplicationPendingModifiedValues&& value) { m_pendingModifiedValuesHasBeenSet = true; m_pendingModifiedValues = value; }
+    inline void SetPendingModifiedValues(ReplicationPendingModifiedValues&& value) { m_pendingModifiedValuesHasBeenSet = true; m_pendingModifiedValues = std::move(value); }
 
     /**
      * <p>The pending modification values.</p>
@@ -391,7 +403,8 @@ namespace Model
     /**
      * <p>The pending modification values.</p>
      */
-    inline ReplicationInstance& WithPendingModifiedValues(ReplicationPendingModifiedValues&& value) { SetPendingModifiedValues(value); return *this;}
+    inline ReplicationInstance& WithPendingModifiedValues(ReplicationPendingModifiedValues&& value) { SetPendingModifiedValues(std::move(value)); return *this;}
+
 
     /**
      * <p> Specifies if the replication instance is a Multi-AZ deployment. You cannot
@@ -414,6 +427,7 @@ namespace Model
      */
     inline ReplicationInstance& WithMultiAZ(bool value) { SetMultiAZ(value); return *this;}
 
+
     /**
      * <p>The engine version number of the replication instance.</p>
      */
@@ -427,7 +441,7 @@ namespace Model
     /**
      * <p>The engine version number of the replication instance.</p>
      */
-    inline void SetEngineVersion(Aws::String&& value) { m_engineVersionHasBeenSet = true; m_engineVersion = value; }
+    inline void SetEngineVersion(Aws::String&& value) { m_engineVersionHasBeenSet = true; m_engineVersion = std::move(value); }
 
     /**
      * <p>The engine version number of the replication instance.</p>
@@ -442,12 +456,13 @@ namespace Model
     /**
      * <p>The engine version number of the replication instance.</p>
      */
-    inline ReplicationInstance& WithEngineVersion(Aws::String&& value) { SetEngineVersion(value); return *this;}
+    inline ReplicationInstance& WithEngineVersion(Aws::String&& value) { SetEngineVersion(std::move(value)); return *this;}
 
     /**
      * <p>The engine version number of the replication instance.</p>
      */
     inline ReplicationInstance& WithEngineVersion(const char* value) { SetEngineVersion(value); return *this;}
+
 
     /**
      * <p>Boolean value indicating if minor version upgrades will be automatically
@@ -466,6 +481,7 @@ namespace Model
      * applied to the instance.</p>
      */
     inline ReplicationInstance& WithAutoMinorVersionUpgrade(bool value) { SetAutoMinorVersionUpgrade(value); return *this;}
+
 
     /**
      * <p>The KMS key identifier that is used to encrypt the content on the replication
@@ -492,7 +508,7 @@ namespace Model
      * for your AWS account. Your AWS account has a different default encryption key
      * for each AWS region.</p>
      */
-    inline void SetKmsKeyId(Aws::String&& value) { m_kmsKeyIdHasBeenSet = true; m_kmsKeyId = value; }
+    inline void SetKmsKeyId(Aws::String&& value) { m_kmsKeyIdHasBeenSet = true; m_kmsKeyId = std::move(value); }
 
     /**
      * <p>The KMS key identifier that is used to encrypt the content on the replication
@@ -519,7 +535,7 @@ namespace Model
      * for your AWS account. Your AWS account has a different default encryption key
      * for each AWS region.</p>
      */
-    inline ReplicationInstance& WithKmsKeyId(Aws::String&& value) { SetKmsKeyId(value); return *this;}
+    inline ReplicationInstance& WithKmsKeyId(Aws::String&& value) { SetKmsKeyId(std::move(value)); return *this;}
 
     /**
      * <p>The KMS key identifier that is used to encrypt the content on the replication
@@ -529,6 +545,7 @@ namespace Model
      * for each AWS region.</p>
      */
     inline ReplicationInstance& WithKmsKeyId(const char* value) { SetKmsKeyId(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the replication instance.</p>
@@ -543,7 +560,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the replication instance.</p>
      */
-    inline void SetReplicationInstanceArn(Aws::String&& value) { m_replicationInstanceArnHasBeenSet = true; m_replicationInstanceArn = value; }
+    inline void SetReplicationInstanceArn(Aws::String&& value) { m_replicationInstanceArnHasBeenSet = true; m_replicationInstanceArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the replication instance.</p>
@@ -558,12 +575,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the replication instance.</p>
      */
-    inline ReplicationInstance& WithReplicationInstanceArn(Aws::String&& value) { SetReplicationInstanceArn(value); return *this;}
+    inline ReplicationInstance& WithReplicationInstanceArn(Aws::String&& value) { SetReplicationInstanceArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the replication instance.</p>
      */
     inline ReplicationInstance& WithReplicationInstanceArn(const char* value) { SetReplicationInstanceArn(value); return *this;}
+
 
     /**
      * <p>The public IP address of the replication instance.</p>
@@ -578,7 +596,7 @@ namespace Model
     /**
      * <p>The public IP address of the replication instance.</p>
      */
-    inline void SetReplicationInstancePublicIpAddresses(Aws::Vector<Aws::String>&& value) { m_replicationInstancePublicIpAddressesHasBeenSet = true; m_replicationInstancePublicIpAddresses = value; }
+    inline void SetReplicationInstancePublicIpAddresses(Aws::Vector<Aws::String>&& value) { m_replicationInstancePublicIpAddressesHasBeenSet = true; m_replicationInstancePublicIpAddresses = std::move(value); }
 
     /**
      * <p>The public IP address of the replication instance.</p>
@@ -588,7 +606,7 @@ namespace Model
     /**
      * <p>The public IP address of the replication instance.</p>
      */
-    inline ReplicationInstance& WithReplicationInstancePublicIpAddresses(Aws::Vector<Aws::String>&& value) { SetReplicationInstancePublicIpAddresses(value); return *this;}
+    inline ReplicationInstance& WithReplicationInstancePublicIpAddresses(Aws::Vector<Aws::String>&& value) { SetReplicationInstancePublicIpAddresses(std::move(value)); return *this;}
 
     /**
      * <p>The public IP address of the replication instance.</p>
@@ -598,12 +616,13 @@ namespace Model
     /**
      * <p>The public IP address of the replication instance.</p>
      */
-    inline ReplicationInstance& AddReplicationInstancePublicIpAddresses(Aws::String&& value) { m_replicationInstancePublicIpAddressesHasBeenSet = true; m_replicationInstancePublicIpAddresses.push_back(value); return *this; }
+    inline ReplicationInstance& AddReplicationInstancePublicIpAddresses(Aws::String&& value) { m_replicationInstancePublicIpAddressesHasBeenSet = true; m_replicationInstancePublicIpAddresses.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The public IP address of the replication instance.</p>
      */
     inline ReplicationInstance& AddReplicationInstancePublicIpAddresses(const char* value) { m_replicationInstancePublicIpAddressesHasBeenSet = true; m_replicationInstancePublicIpAddresses.push_back(value); return *this; }
+
 
     /**
      * <p>The private IP address of the replication instance.</p>
@@ -618,7 +637,7 @@ namespace Model
     /**
      * <p>The private IP address of the replication instance.</p>
      */
-    inline void SetReplicationInstancePrivateIpAddresses(Aws::Vector<Aws::String>&& value) { m_replicationInstancePrivateIpAddressesHasBeenSet = true; m_replicationInstancePrivateIpAddresses = value; }
+    inline void SetReplicationInstancePrivateIpAddresses(Aws::Vector<Aws::String>&& value) { m_replicationInstancePrivateIpAddressesHasBeenSet = true; m_replicationInstancePrivateIpAddresses = std::move(value); }
 
     /**
      * <p>The private IP address of the replication instance.</p>
@@ -628,7 +647,7 @@ namespace Model
     /**
      * <p>The private IP address of the replication instance.</p>
      */
-    inline ReplicationInstance& WithReplicationInstancePrivateIpAddresses(Aws::Vector<Aws::String>&& value) { SetReplicationInstancePrivateIpAddresses(value); return *this;}
+    inline ReplicationInstance& WithReplicationInstancePrivateIpAddresses(Aws::Vector<Aws::String>&& value) { SetReplicationInstancePrivateIpAddresses(std::move(value)); return *this;}
 
     /**
      * <p>The private IP address of the replication instance.</p>
@@ -638,12 +657,13 @@ namespace Model
     /**
      * <p>The private IP address of the replication instance.</p>
      */
-    inline ReplicationInstance& AddReplicationInstancePrivateIpAddresses(Aws::String&& value) { m_replicationInstancePrivateIpAddressesHasBeenSet = true; m_replicationInstancePrivateIpAddresses.push_back(value); return *this; }
+    inline ReplicationInstance& AddReplicationInstancePrivateIpAddresses(Aws::String&& value) { m_replicationInstancePrivateIpAddressesHasBeenSet = true; m_replicationInstancePrivateIpAddresses.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The private IP address of the replication instance.</p>
      */
     inline ReplicationInstance& AddReplicationInstancePrivateIpAddresses(const char* value) { m_replicationInstancePrivateIpAddressesHasBeenSet = true; m_replicationInstancePrivateIpAddresses.push_back(value); return *this; }
+
 
     /**
      * <p> Specifies the accessibility options for the replication instance. A value of
@@ -669,6 +689,7 @@ namespace Model
      */
     inline ReplicationInstance& WithPubliclyAccessible(bool value) { SetPubliclyAccessible(value); return *this;}
 
+
     /**
      * <p>The availability zone of the standby replication instance in a Multi-AZ
      * deployment.</p>
@@ -685,7 +706,7 @@ namespace Model
      * <p>The availability zone of the standby replication instance in a Multi-AZ
      * deployment.</p>
      */
-    inline void SetSecondaryAvailabilityZone(Aws::String&& value) { m_secondaryAvailabilityZoneHasBeenSet = true; m_secondaryAvailabilityZone = value; }
+    inline void SetSecondaryAvailabilityZone(Aws::String&& value) { m_secondaryAvailabilityZoneHasBeenSet = true; m_secondaryAvailabilityZone = std::move(value); }
 
     /**
      * <p>The availability zone of the standby replication instance in a Multi-AZ
@@ -703,7 +724,7 @@ namespace Model
      * <p>The availability zone of the standby replication instance in a Multi-AZ
      * deployment.</p>
      */
-    inline ReplicationInstance& WithSecondaryAvailabilityZone(Aws::String&& value) { SetSecondaryAvailabilityZone(value); return *this;}
+    inline ReplicationInstance& WithSecondaryAvailabilityZone(Aws::String&& value) { SetSecondaryAvailabilityZone(std::move(value)); return *this;}
 
     /**
      * <p>The availability zone of the standby replication instance in a Multi-AZ
@@ -712,42 +733,61 @@ namespace Model
     inline ReplicationInstance& WithSecondaryAvailabilityZone(const char* value) { SetSecondaryAvailabilityZone(value); return *this;}
 
   private:
+
     Aws::String m_replicationInstanceIdentifier;
     bool m_replicationInstanceIdentifierHasBeenSet;
+
     Aws::String m_replicationInstanceClass;
     bool m_replicationInstanceClassHasBeenSet;
+
     Aws::String m_replicationInstanceStatus;
     bool m_replicationInstanceStatusHasBeenSet;
+
     int m_allocatedStorage;
     bool m_allocatedStorageHasBeenSet;
+
     Aws::Utils::DateTime m_instanceCreateTime;
     bool m_instanceCreateTimeHasBeenSet;
+
     Aws::Vector<VpcSecurityGroupMembership> m_vpcSecurityGroups;
     bool m_vpcSecurityGroupsHasBeenSet;
+
     Aws::String m_availabilityZone;
     bool m_availabilityZoneHasBeenSet;
+
     ReplicationSubnetGroup m_replicationSubnetGroup;
     bool m_replicationSubnetGroupHasBeenSet;
+
     Aws::String m_preferredMaintenanceWindow;
     bool m_preferredMaintenanceWindowHasBeenSet;
+
     ReplicationPendingModifiedValues m_pendingModifiedValues;
     bool m_pendingModifiedValuesHasBeenSet;
+
     bool m_multiAZ;
     bool m_multiAZHasBeenSet;
+
     Aws::String m_engineVersion;
     bool m_engineVersionHasBeenSet;
+
     bool m_autoMinorVersionUpgrade;
     bool m_autoMinorVersionUpgradeHasBeenSet;
+
     Aws::String m_kmsKeyId;
     bool m_kmsKeyIdHasBeenSet;
+
     Aws::String m_replicationInstanceArn;
     bool m_replicationInstanceArnHasBeenSet;
+
     Aws::Vector<Aws::String> m_replicationInstancePublicIpAddresses;
     bool m_replicationInstancePublicIpAddressesHasBeenSet;
+
     Aws::Vector<Aws::String> m_replicationInstancePrivateIpAddresses;
     bool m_replicationInstancePrivateIpAddressesHasBeenSet;
+
     bool m_publiclyAccessible;
     bool m_publiclyAccessibleHasBeenSet;
+
     Aws::String m_secondaryAvailabilityZone;
     bool m_secondaryAvailabilityZoneHasBeenSet;
   };

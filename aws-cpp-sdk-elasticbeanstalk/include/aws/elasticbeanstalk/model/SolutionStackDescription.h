@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the solution stack.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The name of the solution stack.</p>
      */
-    inline void SetSolutionStackName(Aws::String&& value) { m_solutionStackNameHasBeenSet = true; m_solutionStackName = value; }
+    inline void SetSolutionStackName(Aws::String&& value) { m_solutionStackNameHasBeenSet = true; m_solutionStackName = std::move(value); }
 
     /**
      * <p>The name of the solution stack.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The name of the solution stack.</p>
      */
-    inline SolutionStackDescription& WithSolutionStackName(Aws::String&& value) { SetSolutionStackName(value); return *this;}
+    inline SolutionStackDescription& WithSolutionStackName(Aws::String&& value) { SetSolutionStackName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the solution stack.</p>
      */
     inline SolutionStackDescription& WithSolutionStackName(const char* value) { SetSolutionStackName(value); return *this;}
+
 
     /**
      * <p>The permitted file types allowed for a solution stack.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>The permitted file types allowed for a solution stack.</p>
      */
-    inline void SetPermittedFileTypes(Aws::Vector<Aws::String>&& value) { m_permittedFileTypesHasBeenSet = true; m_permittedFileTypes = value; }
+    inline void SetPermittedFileTypes(Aws::Vector<Aws::String>&& value) { m_permittedFileTypesHasBeenSet = true; m_permittedFileTypes = std::move(value); }
 
     /**
      * <p>The permitted file types allowed for a solution stack.</p>
@@ -105,7 +109,7 @@ namespace Model
     /**
      * <p>The permitted file types allowed for a solution stack.</p>
      */
-    inline SolutionStackDescription& WithPermittedFileTypes(Aws::Vector<Aws::String>&& value) { SetPermittedFileTypes(value); return *this;}
+    inline SolutionStackDescription& WithPermittedFileTypes(Aws::Vector<Aws::String>&& value) { SetPermittedFileTypes(std::move(value)); return *this;}
 
     /**
      * <p>The permitted file types allowed for a solution stack.</p>
@@ -115,7 +119,7 @@ namespace Model
     /**
      * <p>The permitted file types allowed for a solution stack.</p>
      */
-    inline SolutionStackDescription& AddPermittedFileTypes(Aws::String&& value) { m_permittedFileTypesHasBeenSet = true; m_permittedFileTypes.push_back(value); return *this; }
+    inline SolutionStackDescription& AddPermittedFileTypes(Aws::String&& value) { m_permittedFileTypesHasBeenSet = true; m_permittedFileTypes.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The permitted file types allowed for a solution stack.</p>
@@ -123,8 +127,10 @@ namespace Model
     inline SolutionStackDescription& AddPermittedFileTypes(const char* value) { m_permittedFileTypesHasBeenSet = true; m_permittedFileTypes.push_back(value); return *this; }
 
   private:
+
     Aws::String m_solutionStackName;
     bool m_solutionStackNameHasBeenSet;
+
     Aws::Vector<Aws::String> m_permittedFileTypes;
     bool m_permittedFileTypesHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/apigateway/model/GetModelsResult.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
+#include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/UnreferencedParam.h>
 
 #include <utility>
@@ -28,12 +30,12 @@ GetModelsResult::GetModelsResult()
 {
 }
 
-GetModelsResult::GetModelsResult(const AmazonWebServiceResult<JsonValue>& result)
+GetModelsResult::GetModelsResult(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
   *this = result;
 }
 
-GetModelsResult& GetModelsResult::operator =(const AmazonWebServiceResult<JsonValue>& result)
+GetModelsResult& GetModelsResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
   const JsonValue& jsonValue = result.GetPayload();
   if(jsonValue.ValueExists("position"))
@@ -42,12 +44,12 @@ GetModelsResult& GetModelsResult::operator =(const AmazonWebServiceResult<JsonVa
 
   }
 
-  if(jsonValue.ValueExists("items"))
+  if(jsonValue.ValueExists("item"))
   {
-    Array<JsonValue> itemsJsonList = jsonValue.GetArray("items");
-    for(unsigned itemsIndex = 0; itemsIndex < itemsJsonList.GetLength(); ++itemsIndex)
+    Array<JsonValue> itemJsonList = jsonValue.GetArray("item");
+    for(unsigned itemIndex = 0; itemIndex < itemJsonList.GetLength(); ++itemIndex)
     {
-      m_items.push_back(itemsJsonList[itemsIndex].AsObject());
+      m_items.push_back(itemJsonList[itemIndex].AsObject());
     }
   }
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The version number used by the cluster.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The version number used by the cluster.</p>
      */
-    inline void SetClusterVersion(Aws::String&& value) { m_clusterVersionHasBeenSet = true; m_clusterVersion = value; }
+    inline void SetClusterVersion(Aws::String&& value) { m_clusterVersionHasBeenSet = true; m_clusterVersion = std::move(value); }
 
     /**
      * <p>The version number used by the cluster.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The version number used by the cluster.</p>
      */
-    inline ClusterVersion& WithClusterVersion(Aws::String&& value) { SetClusterVersion(value); return *this;}
+    inline ClusterVersion& WithClusterVersion(Aws::String&& value) { SetClusterVersion(std::move(value)); return *this;}
 
     /**
      * <p>The version number used by the cluster.</p>
      */
     inline ClusterVersion& WithClusterVersion(const char* value) { SetClusterVersion(value); return *this;}
+
 
     /**
      * <p>The name of the cluster parameter group family for the cluster.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>The name of the cluster parameter group family for the cluster.</p>
      */
-    inline void SetClusterParameterGroupFamily(Aws::String&& value) { m_clusterParameterGroupFamilyHasBeenSet = true; m_clusterParameterGroupFamily = value; }
+    inline void SetClusterParameterGroupFamily(Aws::String&& value) { m_clusterParameterGroupFamilyHasBeenSet = true; m_clusterParameterGroupFamily = std::move(value); }
 
     /**
      * <p>The name of the cluster parameter group family for the cluster.</p>
@@ -110,12 +114,13 @@ namespace Model
     /**
      * <p>The name of the cluster parameter group family for the cluster.</p>
      */
-    inline ClusterVersion& WithClusterParameterGroupFamily(Aws::String&& value) { SetClusterParameterGroupFamily(value); return *this;}
+    inline ClusterVersion& WithClusterParameterGroupFamily(Aws::String&& value) { SetClusterParameterGroupFamily(std::move(value)); return *this;}
 
     /**
      * <p>The name of the cluster parameter group family for the cluster.</p>
      */
     inline ClusterVersion& WithClusterParameterGroupFamily(const char* value) { SetClusterParameterGroupFamily(value); return *this;}
+
 
     /**
      * <p>The description of the cluster version.</p>
@@ -130,7 +135,7 @@ namespace Model
     /**
      * <p>The description of the cluster version.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The description of the cluster version.</p>
@@ -145,7 +150,7 @@ namespace Model
     /**
      * <p>The description of the cluster version.</p>
      */
-    inline ClusterVersion& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline ClusterVersion& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description of the cluster version.</p>
@@ -153,10 +158,13 @@ namespace Model
     inline ClusterVersion& WithDescription(const char* value) { SetDescription(value); return *this;}
 
   private:
+
     Aws::String m_clusterVersion;
     bool m_clusterVersionHasBeenSet;
+
     Aws::String m_clusterParameterGroupFamily;
     bool m_clusterParameterGroupFamilyHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
   };

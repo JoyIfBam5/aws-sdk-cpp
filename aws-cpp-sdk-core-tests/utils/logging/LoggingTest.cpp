@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   * 
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 
 
 #include <aws/external/gtest.h>
-#include <aws/testing/MemoryTesting.h>
 
 #include <aws/core/utils/logging/DefaultLogSystem.h>
 #include <aws/core/utils/logging/LogMacros.h>
@@ -113,54 +112,30 @@ void DoLogTest(LogLevel logLevel, const char *testTag)
 
 TEST(LoggingTest, testFatalLogLevel)
 {
-    AWS_BEGIN_MEMORY_TEST(32, 10)
-
     DoLogTest(LogLevel::Fatal, "LoggingTest_testFatalLogLevel");
-
-    AWS_END_MEMORY_TEST
 }
 
 TEST(LoggingTest, testErrorLogLevel)
 {
-    AWS_BEGIN_MEMORY_TEST(32, 10)
-
     DoLogTest(LogLevel::Error, "LoggingTest_testErrorLogLevel");
-
-    AWS_END_MEMORY_TEST
 }
 
 TEST(LoggingTest, testWarnLogLevel)
 {
-    AWS_BEGIN_MEMORY_TEST(32, 10)
-
     DoLogTest(LogLevel::Warn, "LoggingTest_testWarnLogLevel");
-
-    AWS_END_MEMORY_TEST
 }
 
 TEST(LoggingTest, testInfoLogLevel)
 {
-    AWS_BEGIN_MEMORY_TEST(32, 10)
-
     DoLogTest(LogLevel::Info, "LoggingTest_testInfoLogLevel");
-
-    AWS_END_MEMORY_TEST
 }
 
 TEST(LoggingTest, testDebugLogLevel)
 {
-    AWS_BEGIN_MEMORY_TEST(32, 10)
-
     DoLogTest(LogLevel::Debug, "LoggingTest_testDebugLogLevel");
-
-    AWS_END_MEMORY_TEST
 }
 
 TEST(LoggingTest, testTraceLogLevel)
 {
-    AWS_BEGIN_MEMORY_TEST(32, 10)
-
-    DoLogTest(LogLevel::Trace, "LoggingTest_testTraceLogLevel");
-
-    AWS_END_MEMORY_TEST
+    DoLogTest(LogLevel::Trace, "LoggingTest_testTraceLogLevel");    
 }

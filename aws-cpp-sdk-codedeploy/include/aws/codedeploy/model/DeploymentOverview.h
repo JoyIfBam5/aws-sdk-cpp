@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codedeploy/CodeDeploy_EXPORTS.h>
 
@@ -43,6 +44,7 @@ namespace Model
     DeploymentOverview& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The number of instances in the deployment in a pending state.</p>
      */
@@ -58,6 +60,7 @@ namespace Model
      */
     inline DeploymentOverview& WithPending(long long value) { SetPending(value); return *this;}
 
+
     /**
      * <p>The number of instances in which the deployment is in progress.</p>
      */
@@ -72,6 +75,7 @@ namespace Model
      * <p>The number of instances in which the deployment is in progress.</p>
      */
     inline DeploymentOverview& WithInProgress(long long value) { SetInProgress(value); return *this;}
+
 
     /**
      * <p>The number of instances in the deployment to which revisions have been
@@ -91,6 +95,7 @@ namespace Model
      */
     inline DeploymentOverview& WithSucceeded(long long value) { SetSucceeded(value); return *this;}
 
+
     /**
      * <p>The number of instances in the deployment in a failed state.</p>
      */
@@ -105,6 +110,7 @@ namespace Model
      * <p>The number of instances in the deployment in a failed state.</p>
      */
     inline DeploymentOverview& WithFailed(long long value) { SetFailed(value); return *this;}
+
 
     /**
      * <p>The number of instances in the deployment in a skipped state.</p>
@@ -121,17 +127,44 @@ namespace Model
      */
     inline DeploymentOverview& WithSkipped(long long value) { SetSkipped(value); return *this;}
 
+
+    /**
+     * <p>The number of instances in a replacement environment ready to receive traffic
+     * in a blue/green deployment.</p>
+     */
+    inline long long GetReady() const{ return m_ready; }
+
+    /**
+     * <p>The number of instances in a replacement environment ready to receive traffic
+     * in a blue/green deployment.</p>
+     */
+    inline void SetReady(long long value) { m_readyHasBeenSet = true; m_ready = value; }
+
+    /**
+     * <p>The number of instances in a replacement environment ready to receive traffic
+     * in a blue/green deployment.</p>
+     */
+    inline DeploymentOverview& WithReady(long long value) { SetReady(value); return *this;}
+
   private:
+
     long long m_pending;
     bool m_pendingHasBeenSet;
+
     long long m_inProgress;
     bool m_inProgressHasBeenSet;
+
     long long m_succeeded;
     bool m_succeededHasBeenSet;
+
     long long m_failed;
     bool m_failedHasBeenSet;
+
     long long m_skipped;
     bool m_skippedHasBeenSet;
+
+    long long m_ready;
+    bool m_readyHasBeenSet;
   };
 
 } // namespace Model

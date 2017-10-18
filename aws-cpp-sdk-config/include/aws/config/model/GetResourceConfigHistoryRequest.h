@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/config/ConfigService_EXPORTS.h>
 #include <aws/config/ConfigServiceRequest.h>
@@ -19,6 +20,7 @@
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/config/model/ChronologicalOrder.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,9 +39,17 @@ namespace Model
   {
   public:
     GetResourceConfigHistoryRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "GetResourceConfigHistory"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The resource type.</p>
@@ -54,7 +64,7 @@ namespace Model
     /**
      * <p>The resource type.</p>
      */
-    inline void SetResourceType(ResourceType&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = value; }
+    inline void SetResourceType(ResourceType&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = std::move(value); }
 
     /**
      * <p>The resource type.</p>
@@ -64,7 +74,8 @@ namespace Model
     /**
      * <p>The resource type.</p>
      */
-    inline GetResourceConfigHistoryRequest& WithResourceType(ResourceType&& value) { SetResourceType(value); return *this;}
+    inline GetResourceConfigHistoryRequest& WithResourceType(ResourceType&& value) { SetResourceType(std::move(value)); return *this;}
+
 
     /**
      * <p>The ID of the resource (for example., <code>sg-xxxxxx</code>).</p>
@@ -79,7 +90,7 @@ namespace Model
     /**
      * <p>The ID of the resource (for example., <code>sg-xxxxxx</code>).</p>
      */
-    inline void SetResourceId(Aws::String&& value) { m_resourceIdHasBeenSet = true; m_resourceId = value; }
+    inline void SetResourceId(Aws::String&& value) { m_resourceIdHasBeenSet = true; m_resourceId = std::move(value); }
 
     /**
      * <p>The ID of the resource (for example., <code>sg-xxxxxx</code>).</p>
@@ -94,12 +105,13 @@ namespace Model
     /**
      * <p>The ID of the resource (for example., <code>sg-xxxxxx</code>).</p>
      */
-    inline GetResourceConfigHistoryRequest& WithResourceId(Aws::String&& value) { SetResourceId(value); return *this;}
+    inline GetResourceConfigHistoryRequest& WithResourceId(Aws::String&& value) { SetResourceId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the resource (for example., <code>sg-xxxxxx</code>).</p>
      */
     inline GetResourceConfigHistoryRequest& WithResourceId(const char* value) { SetResourceId(value); return *this;}
+
 
     /**
      * <p>The time stamp that indicates a later time. If not specified, current time is
@@ -117,7 +129,7 @@ namespace Model
      * <p>The time stamp that indicates a later time. If not specified, current time is
      * taken.</p>
      */
-    inline void SetLaterTime(Aws::Utils::DateTime&& value) { m_laterTimeHasBeenSet = true; m_laterTime = value; }
+    inline void SetLaterTime(Aws::Utils::DateTime&& value) { m_laterTimeHasBeenSet = true; m_laterTime = std::move(value); }
 
     /**
      * <p>The time stamp that indicates a later time. If not specified, current time is
@@ -129,7 +141,8 @@ namespace Model
      * <p>The time stamp that indicates a later time. If not specified, current time is
      * taken.</p>
      */
-    inline GetResourceConfigHistoryRequest& WithLaterTime(Aws::Utils::DateTime&& value) { SetLaterTime(value); return *this;}
+    inline GetResourceConfigHistoryRequest& WithLaterTime(Aws::Utils::DateTime&& value) { SetLaterTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The time stamp that indicates an earlier time. If not specified, the action
@@ -150,7 +163,7 @@ namespace Model
      * returns paginated results that contain configuration items that start from when
      * the first configuration item was recorded.</p>
      */
-    inline void SetEarlierTime(Aws::Utils::DateTime&& value) { m_earlierTimeHasBeenSet = true; m_earlierTime = value; }
+    inline void SetEarlierTime(Aws::Utils::DateTime&& value) { m_earlierTimeHasBeenSet = true; m_earlierTime = std::move(value); }
 
     /**
      * <p>The time stamp that indicates an earlier time. If not specified, the action
@@ -164,7 +177,8 @@ namespace Model
      * returns paginated results that contain configuration items that start from when
      * the first configuration item was recorded.</p>
      */
-    inline GetResourceConfigHistoryRequest& WithEarlierTime(Aws::Utils::DateTime&& value) { SetEarlierTime(value); return *this;}
+    inline GetResourceConfigHistoryRequest& WithEarlierTime(Aws::Utils::DateTime&& value) { SetEarlierTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The chronological order for configuration items listed. By default the
@@ -182,7 +196,7 @@ namespace Model
      * <p>The chronological order for configuration items listed. By default the
      * results are listed in reverse chronological order.</p>
      */
-    inline void SetChronologicalOrder(ChronologicalOrder&& value) { m_chronologicalOrderHasBeenSet = true; m_chronologicalOrder = value; }
+    inline void SetChronologicalOrder(ChronologicalOrder&& value) { m_chronologicalOrderHasBeenSet = true; m_chronologicalOrder = std::move(value); }
 
     /**
      * <p>The chronological order for configuration items listed. By default the
@@ -194,7 +208,8 @@ namespace Model
      * <p>The chronological order for configuration items listed. By default the
      * results are listed in reverse chronological order.</p>
      */
-    inline GetResourceConfigHistoryRequest& WithChronologicalOrder(ChronologicalOrder&& value) { SetChronologicalOrder(value); return *this;}
+    inline GetResourceConfigHistoryRequest& WithChronologicalOrder(ChronologicalOrder&& value) { SetChronologicalOrder(std::move(value)); return *this;}
+
 
     /**
      * <p>The maximum number of configuration items returned on each page. The default
@@ -217,6 +232,7 @@ namespace Model
      */
     inline GetResourceConfigHistoryRequest& WithLimit(int value) { SetLimit(value); return *this;}
 
+
     /**
      * <p>The <code>nextToken</code> string returned on a previous page that you use to
      * get the next page of results in a paginated response.</p>
@@ -233,7 +249,7 @@ namespace Model
      * <p>The <code>nextToken</code> string returned on a previous page that you use to
      * get the next page of results in a paginated response.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>The <code>nextToken</code> string returned on a previous page that you use to
@@ -251,7 +267,7 @@ namespace Model
      * <p>The <code>nextToken</code> string returned on a previous page that you use to
      * get the next page of results in a paginated response.</p>
      */
-    inline GetResourceConfigHistoryRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline GetResourceConfigHistoryRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The <code>nextToken</code> string returned on a previous page that you use to
@@ -260,18 +276,25 @@ namespace Model
     inline GetResourceConfigHistoryRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     ResourceType m_resourceType;
     bool m_resourceTypeHasBeenSet;
+
     Aws::String m_resourceId;
     bool m_resourceIdHasBeenSet;
+
     Aws::Utils::DateTime m_laterTime;
     bool m_laterTimeHasBeenSet;
+
     Aws::Utils::DateTime m_earlierTime;
     bool m_earlierTimeHasBeenSet;
+
     ChronologicalOrder m_chronologicalOrder;
     bool m_chronologicalOrderHasBeenSet;
+
     int m_limit;
     bool m_limitHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
   };

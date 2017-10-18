@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ds/DirectoryService_EXPORTS.h>
 #include <aws/ds/DirectoryServiceRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     ListSchemaExtensionsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListSchemaExtensions"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The identifier of the directory from which to retrieve the schema extension
@@ -50,7 +60,7 @@ namespace Model
      * <p>The identifier of the directory from which to retrieve the schema extension
      * information.</p>
      */
-    inline void SetDirectoryId(Aws::String&& value) { m_directoryIdHasBeenSet = true; m_directoryId = value; }
+    inline void SetDirectoryId(Aws::String&& value) { m_directoryIdHasBeenSet = true; m_directoryId = std::move(value); }
 
     /**
      * <p>The identifier of the directory from which to retrieve the schema extension
@@ -68,13 +78,14 @@ namespace Model
      * <p>The identifier of the directory from which to retrieve the schema extension
      * information.</p>
      */
-    inline ListSchemaExtensionsRequest& WithDirectoryId(Aws::String&& value) { SetDirectoryId(value); return *this;}
+    inline ListSchemaExtensionsRequest& WithDirectoryId(Aws::String&& value) { SetDirectoryId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the directory from which to retrieve the schema extension
      * information.</p>
      */
     inline ListSchemaExtensionsRequest& WithDirectoryId(const char* value) { SetDirectoryId(value); return *this;}
+
 
     /**
      * <p>The <code>ListSchemaExtensions.NextToken</code> value from a previous call to
@@ -92,7 +103,7 @@ namespace Model
      * <p>The <code>ListSchemaExtensions.NextToken</code> value from a previous call to
      * <code>ListSchemaExtensions</code>. Pass null if this is the first call.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>The <code>ListSchemaExtensions.NextToken</code> value from a previous call to
@@ -110,13 +121,14 @@ namespace Model
      * <p>The <code>ListSchemaExtensions.NextToken</code> value from a previous call to
      * <code>ListSchemaExtensions</code>. Pass null if this is the first call.</p>
      */
-    inline ListSchemaExtensionsRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListSchemaExtensionsRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The <code>ListSchemaExtensions.NextToken</code> value from a previous call to
      * <code>ListSchemaExtensions</code>. Pass null if this is the first call.</p>
      */
     inline ListSchemaExtensionsRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     /**
      * <p>The maximum number of items to return.</p>
@@ -134,10 +146,13 @@ namespace Model
     inline ListSchemaExtensionsRequest& WithLimit(int value) { SetLimit(value); return *this;}
 
   private:
+
     Aws::String m_directoryId;
     bool m_directoryIdHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
+
     int m_limit;
     bool m_limitHasBeenSet;
   };

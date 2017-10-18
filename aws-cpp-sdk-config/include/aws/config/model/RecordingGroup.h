@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/config/ConfigService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/config/model/ResourceType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -68,6 +70,7 @@ namespace Model
     RecordingGroup& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Specifies whether AWS Config records configuration changes for every
      * supported type of regional resource.</p> <p>If you set this option to
@@ -97,6 +100,7 @@ namespace Model
      * <code>resourceTypes</code>.</p>
      */
     inline RecordingGroup& WithAllSupported(bool value) { SetAllSupported(value); return *this;}
+
 
     /**
      * <p>Specifies whether AWS Config includes all supported types of global resources
@@ -136,6 +140,7 @@ namespace Model
      * customizing AWS Config in only one region to record global resources.</p>
      */
     inline RecordingGroup& WithIncludeGlobalResourceTypes(bool value) { SetIncludeGlobalResourceTypes(value); return *this;}
+
 
     /**
      * <p>A comma-separated list that specifies the types of AWS resources for which
@@ -183,7 +188,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources">Supported
      * AWS Resource Types</a>.</p>
      */
-    inline void SetResourceTypes(Aws::Vector<ResourceType>&& value) { m_resourceTypesHasBeenSet = true; m_resourceTypes = value; }
+    inline void SetResourceTypes(Aws::Vector<ResourceType>&& value) { m_resourceTypesHasBeenSet = true; m_resourceTypes = std::move(value); }
 
     /**
      * <p>A comma-separated list that specifies the types of AWS resources for which
@@ -215,7 +220,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources">Supported
      * AWS Resource Types</a>.</p>
      */
-    inline RecordingGroup& WithResourceTypes(Aws::Vector<ResourceType>&& value) { SetResourceTypes(value); return *this;}
+    inline RecordingGroup& WithResourceTypes(Aws::Vector<ResourceType>&& value) { SetResourceTypes(std::move(value)); return *this;}
 
     /**
      * <p>A comma-separated list that specifies the types of AWS resources for which
@@ -247,13 +252,16 @@ namespace Model
      * href="http://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources">Supported
      * AWS Resource Types</a>.</p>
      */
-    inline RecordingGroup& AddResourceTypes(ResourceType&& value) { m_resourceTypesHasBeenSet = true; m_resourceTypes.push_back(value); return *this; }
+    inline RecordingGroup& AddResourceTypes(ResourceType&& value) { m_resourceTypesHasBeenSet = true; m_resourceTypes.push_back(std::move(value)); return *this; }
 
   private:
+
     bool m_allSupported;
     bool m_allSupportedHasBeenSet;
+
     bool m_includeGlobalResourceTypes;
     bool m_includeGlobalResourceTypesHasBeenSet;
+
     Aws::Vector<ResourceType> m_resourceTypes;
     bool m_resourceTypesHasBeenSet;
   };

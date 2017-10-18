@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/acm/ACM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     ImportCertificateResult();
-    ImportCertificateResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ImportCertificateResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ImportCertificateResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ImportCertificateResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The <a
@@ -58,7 +61,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
      * Resource Name (ARN)</a> of the imported certificate.</p>
      */
-    inline void SetCertificateArn(Aws::String&& value) { m_certificateArn = value; }
+    inline void SetCertificateArn(Aws::String&& value) { m_certificateArn = std::move(value); }
 
     /**
      * <p>The <a
@@ -79,7 +82,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
      * Resource Name (ARN)</a> of the imported certificate.</p>
      */
-    inline ImportCertificateResult& WithCertificateArn(Aws::String&& value) { SetCertificateArn(value); return *this;}
+    inline ImportCertificateResult& WithCertificateArn(Aws::String&& value) { SetCertificateArn(std::move(value)); return *this;}
 
     /**
      * <p>The <a
@@ -89,6 +92,7 @@ namespace Model
     inline ImportCertificateResult& WithCertificateArn(const char* value) { SetCertificateArn(value); return *this;}
 
   private:
+
     Aws::String m_certificateArn;
   };
 

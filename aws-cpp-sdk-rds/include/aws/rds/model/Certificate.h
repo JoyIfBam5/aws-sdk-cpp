@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The unique key that identifies a certificate.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The unique key that identifies a certificate.</p>
      */
-    inline void SetCertificateIdentifier(Aws::String&& value) { m_certificateIdentifierHasBeenSet = true; m_certificateIdentifier = value; }
+    inline void SetCertificateIdentifier(Aws::String&& value) { m_certificateIdentifierHasBeenSet = true; m_certificateIdentifier = std::move(value); }
 
     /**
      * <p>The unique key that identifies a certificate.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The unique key that identifies a certificate.</p>
      */
-    inline Certificate& WithCertificateIdentifier(Aws::String&& value) { SetCertificateIdentifier(value); return *this;}
+    inline Certificate& WithCertificateIdentifier(Aws::String&& value) { SetCertificateIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The unique key that identifies a certificate.</p>
      */
     inline Certificate& WithCertificateIdentifier(const char* value) { SetCertificateIdentifier(value); return *this;}
+
 
     /**
      * <p>The type of the certificate.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>The type of the certificate.</p>
      */
-    inline void SetCertificateType(Aws::String&& value) { m_certificateTypeHasBeenSet = true; m_certificateType = value; }
+    inline void SetCertificateType(Aws::String&& value) { m_certificateTypeHasBeenSet = true; m_certificateType = std::move(value); }
 
     /**
      * <p>The type of the certificate.</p>
@@ -110,12 +114,13 @@ namespace Model
     /**
      * <p>The type of the certificate.</p>
      */
-    inline Certificate& WithCertificateType(Aws::String&& value) { SetCertificateType(value); return *this;}
+    inline Certificate& WithCertificateType(Aws::String&& value) { SetCertificateType(std::move(value)); return *this;}
 
     /**
      * <p>The type of the certificate.</p>
      */
     inline Certificate& WithCertificateType(const char* value) { SetCertificateType(value); return *this;}
+
 
     /**
      * <p>The thumbprint of the certificate.</p>
@@ -130,7 +135,7 @@ namespace Model
     /**
      * <p>The thumbprint of the certificate.</p>
      */
-    inline void SetThumbprint(Aws::String&& value) { m_thumbprintHasBeenSet = true; m_thumbprint = value; }
+    inline void SetThumbprint(Aws::String&& value) { m_thumbprintHasBeenSet = true; m_thumbprint = std::move(value); }
 
     /**
      * <p>The thumbprint of the certificate.</p>
@@ -145,12 +150,13 @@ namespace Model
     /**
      * <p>The thumbprint of the certificate.</p>
      */
-    inline Certificate& WithThumbprint(Aws::String&& value) { SetThumbprint(value); return *this;}
+    inline Certificate& WithThumbprint(Aws::String&& value) { SetThumbprint(std::move(value)); return *this;}
 
     /**
      * <p>The thumbprint of the certificate.</p>
      */
     inline Certificate& WithThumbprint(const char* value) { SetThumbprint(value); return *this;}
+
 
     /**
      * <p>The starting date from which the certificate is valid.</p>
@@ -165,7 +171,7 @@ namespace Model
     /**
      * <p>The starting date from which the certificate is valid.</p>
      */
-    inline void SetValidFrom(Aws::Utils::DateTime&& value) { m_validFromHasBeenSet = true; m_validFrom = value; }
+    inline void SetValidFrom(Aws::Utils::DateTime&& value) { m_validFromHasBeenSet = true; m_validFrom = std::move(value); }
 
     /**
      * <p>The starting date from which the certificate is valid.</p>
@@ -175,7 +181,8 @@ namespace Model
     /**
      * <p>The starting date from which the certificate is valid.</p>
      */
-    inline Certificate& WithValidFrom(Aws::Utils::DateTime&& value) { SetValidFrom(value); return *this;}
+    inline Certificate& WithValidFrom(Aws::Utils::DateTime&& value) { SetValidFrom(std::move(value)); return *this;}
+
 
     /**
      * <p>The final date that the certificate continues to be valid.</p>
@@ -190,7 +197,7 @@ namespace Model
     /**
      * <p>The final date that the certificate continues to be valid.</p>
      */
-    inline void SetValidTill(Aws::Utils::DateTime&& value) { m_validTillHasBeenSet = true; m_validTill = value; }
+    inline void SetValidTill(Aws::Utils::DateTime&& value) { m_validTillHasBeenSet = true; m_validTill = std::move(value); }
 
     /**
      * <p>The final date that the certificate continues to be valid.</p>
@@ -200,7 +207,8 @@ namespace Model
     /**
      * <p>The final date that the certificate continues to be valid.</p>
      */
-    inline Certificate& WithValidTill(Aws::Utils::DateTime&& value) { SetValidTill(value); return *this;}
+    inline Certificate& WithValidTill(Aws::Utils::DateTime&& value) { SetValidTill(std::move(value)); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) for the certificate.</p>
@@ -215,7 +223,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) for the certificate.</p>
      */
-    inline void SetCertificateArn(Aws::String&& value) { m_certificateArnHasBeenSet = true; m_certificateArn = value; }
+    inline void SetCertificateArn(Aws::String&& value) { m_certificateArnHasBeenSet = true; m_certificateArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) for the certificate.</p>
@@ -230,7 +238,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) for the certificate.</p>
      */
-    inline Certificate& WithCertificateArn(Aws::String&& value) { SetCertificateArn(value); return *this;}
+    inline Certificate& WithCertificateArn(Aws::String&& value) { SetCertificateArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) for the certificate.</p>
@@ -238,16 +246,22 @@ namespace Model
     inline Certificate& WithCertificateArn(const char* value) { SetCertificateArn(value); return *this;}
 
   private:
+
     Aws::String m_certificateIdentifier;
     bool m_certificateIdentifierHasBeenSet;
+
     Aws::String m_certificateType;
     bool m_certificateTypeHasBeenSet;
+
     Aws::String m_thumbprint;
     bool m_thumbprintHasBeenSet;
+
     Aws::Utils::DateTime m_validFrom;
     bool m_validFromHasBeenSet;
+
     Aws::Utils::DateTime m_validTill;
     bool m_validTillHasBeenSet;
+
     Aws::String m_certificateArn;
     bool m_certificateArnHasBeenSet;
   };

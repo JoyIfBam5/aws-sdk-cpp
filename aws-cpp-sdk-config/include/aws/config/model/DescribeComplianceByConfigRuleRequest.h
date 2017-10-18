@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/config/ConfigService_EXPORTS.h>
 #include <aws/config/ConfigServiceRequest.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/config/model/ComplianceType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,9 +37,17 @@ namespace Model
   {
   public:
     DescribeComplianceByConfigRuleRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeComplianceByConfigRule"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>Specify one or more AWS Config rule names to filter the results by rule.</p>
@@ -52,7 +62,7 @@ namespace Model
     /**
      * <p>Specify one or more AWS Config rule names to filter the results by rule.</p>
      */
-    inline void SetConfigRuleNames(Aws::Vector<Aws::String>&& value) { m_configRuleNamesHasBeenSet = true; m_configRuleNames = value; }
+    inline void SetConfigRuleNames(Aws::Vector<Aws::String>&& value) { m_configRuleNamesHasBeenSet = true; m_configRuleNames = std::move(value); }
 
     /**
      * <p>Specify one or more AWS Config rule names to filter the results by rule.</p>
@@ -62,7 +72,7 @@ namespace Model
     /**
      * <p>Specify one or more AWS Config rule names to filter the results by rule.</p>
      */
-    inline DescribeComplianceByConfigRuleRequest& WithConfigRuleNames(Aws::Vector<Aws::String>&& value) { SetConfigRuleNames(value); return *this;}
+    inline DescribeComplianceByConfigRuleRequest& WithConfigRuleNames(Aws::Vector<Aws::String>&& value) { SetConfigRuleNames(std::move(value)); return *this;}
 
     /**
      * <p>Specify one or more AWS Config rule names to filter the results by rule.</p>
@@ -72,12 +82,13 @@ namespace Model
     /**
      * <p>Specify one or more AWS Config rule names to filter the results by rule.</p>
      */
-    inline DescribeComplianceByConfigRuleRequest& AddConfigRuleNames(Aws::String&& value) { m_configRuleNamesHasBeenSet = true; m_configRuleNames.push_back(value); return *this; }
+    inline DescribeComplianceByConfigRuleRequest& AddConfigRuleNames(Aws::String&& value) { m_configRuleNamesHasBeenSet = true; m_configRuleNames.push_back(std::move(value)); return *this; }
 
     /**
      * <p>Specify one or more AWS Config rule names to filter the results by rule.</p>
      */
     inline DescribeComplianceByConfigRuleRequest& AddConfigRuleNames(const char* value) { m_configRuleNamesHasBeenSet = true; m_configRuleNames.push_back(value); return *this; }
+
 
     /**
      * <p>Filters the results by compliance.</p> <p>The allowed values are
@@ -98,7 +109,7 @@ namespace Model
      * <code>COMPLIANT</code>, <code>NON_COMPLIANT</code>, and
      * <code>INSUFFICIENT_DATA</code>.</p>
      */
-    inline void SetComplianceTypes(Aws::Vector<ComplianceType>&& value) { m_complianceTypesHasBeenSet = true; m_complianceTypes = value; }
+    inline void SetComplianceTypes(Aws::Vector<ComplianceType>&& value) { m_complianceTypesHasBeenSet = true; m_complianceTypes = std::move(value); }
 
     /**
      * <p>Filters the results by compliance.</p> <p>The allowed values are
@@ -112,7 +123,7 @@ namespace Model
      * <code>COMPLIANT</code>, <code>NON_COMPLIANT</code>, and
      * <code>INSUFFICIENT_DATA</code>.</p>
      */
-    inline DescribeComplianceByConfigRuleRequest& WithComplianceTypes(Aws::Vector<ComplianceType>&& value) { SetComplianceTypes(value); return *this;}
+    inline DescribeComplianceByConfigRuleRequest& WithComplianceTypes(Aws::Vector<ComplianceType>&& value) { SetComplianceTypes(std::move(value)); return *this;}
 
     /**
      * <p>Filters the results by compliance.</p> <p>The allowed values are
@@ -126,7 +137,8 @@ namespace Model
      * <code>COMPLIANT</code>, <code>NON_COMPLIANT</code>, and
      * <code>INSUFFICIENT_DATA</code>.</p>
      */
-    inline DescribeComplianceByConfigRuleRequest& AddComplianceTypes(ComplianceType&& value) { m_complianceTypesHasBeenSet = true; m_complianceTypes.push_back(value); return *this; }
+    inline DescribeComplianceByConfigRuleRequest& AddComplianceTypes(ComplianceType&& value) { m_complianceTypesHasBeenSet = true; m_complianceTypes.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The <code>NextToken</code> string returned on a previous page that you use to
@@ -144,7 +156,7 @@ namespace Model
      * <p>The <code>NextToken</code> string returned on a previous page that you use to
      * get the next page of results in a paginated response.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>The <code>NextToken</code> string returned on a previous page that you use to
@@ -162,7 +174,7 @@ namespace Model
      * <p>The <code>NextToken</code> string returned on a previous page that you use to
      * get the next page of results in a paginated response.</p>
      */
-    inline DescribeComplianceByConfigRuleRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeComplianceByConfigRuleRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The <code>NextToken</code> string returned on a previous page that you use to
@@ -171,10 +183,13 @@ namespace Model
     inline DescribeComplianceByConfigRuleRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_configRuleNames;
     bool m_configRuleNamesHasBeenSet;
+
     Aws::Vector<ComplianceType> m_complianceTypes;
     bool m_complianceTypesHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
   };

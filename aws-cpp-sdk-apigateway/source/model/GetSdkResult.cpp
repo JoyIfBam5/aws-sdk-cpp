@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/apigateway/model/GetSdkResult.h>
 #include <aws/core/AmazonWebServiceResult.h>
 #include <aws/core/utils/StringUtils.h>
@@ -50,12 +51,12 @@ GetSdkResult& GetSdkResult::operator=(GetSdkResult&& toMove)
    return *this;
 }
 
-GetSdkResult::GetSdkResult(AmazonWebServiceResult<ResponseStream>&& result)
+GetSdkResult::GetSdkResult(Aws::AmazonWebServiceResult<ResponseStream>&& result)
 {
   *this = std::move(result);
 }
 
-GetSdkResult& GetSdkResult::operator =(AmazonWebServiceResult<ResponseStream>&& result)
+GetSdkResult& GetSdkResult::operator =(Aws::AmazonWebServiceResult<ResponseStream>&& result)
 {
   m_body = result.TakeOwnershipOfPayload();
 

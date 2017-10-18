@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/cognito-idp/model/MessageTemplateType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,47 +46,56 @@ namespace Model
     AdminCreateUserConfigType& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p>Set to True if only the administrator is allowed to create user profiles. Set
-     * to False if users can sign themselves up via an app.</p>
+     * <p>Set to <code>True</code> if only the administrator is allowed to create user
+     * profiles. Set to <code>False</code> if users can sign themselves up via an
+     * app.</p>
      */
     inline bool GetAllowAdminCreateUserOnly() const{ return m_allowAdminCreateUserOnly; }
 
     /**
-     * <p>Set to True if only the administrator is allowed to create user profiles. Set
-     * to False if users can sign themselves up via an app.</p>
+     * <p>Set to <code>True</code> if only the administrator is allowed to create user
+     * profiles. Set to <code>False</code> if users can sign themselves up via an
+     * app.</p>
      */
     inline void SetAllowAdminCreateUserOnly(bool value) { m_allowAdminCreateUserOnlyHasBeenSet = true; m_allowAdminCreateUserOnly = value; }
 
     /**
-     * <p>Set to True if only the administrator is allowed to create user profiles. Set
-     * to False if users can sign themselves up via an app.</p>
+     * <p>Set to <code>True</code> if only the administrator is allowed to create user
+     * profiles. Set to <code>False</code> if users can sign themselves up via an
+     * app.</p>
      */
     inline AdminCreateUserConfigType& WithAllowAdminCreateUserOnly(bool value) { SetAllowAdminCreateUserOnly(value); return *this;}
+
 
     /**
      * <p>The user account expiration limit, in days, after which the account is no
      * longer usable. To reset the account after that time limit, you must call
-     * AdminCreateUser again, specifying "RESEND" for the MessageAction parameter. The
-     * default value for this paameter is 7.</p>
+     * <code>AdminCreateUser</code> again, specifying <code>"RESEND"</code> for the
+     * <code>MessageAction</code> parameter. The default value for this parameter is
+     * 7.</p>
      */
     inline int GetUnusedAccountValidityDays() const{ return m_unusedAccountValidityDays; }
 
     /**
      * <p>The user account expiration limit, in days, after which the account is no
      * longer usable. To reset the account after that time limit, you must call
-     * AdminCreateUser again, specifying "RESEND" for the MessageAction parameter. The
-     * default value for this paameter is 7.</p>
+     * <code>AdminCreateUser</code> again, specifying <code>"RESEND"</code> for the
+     * <code>MessageAction</code> parameter. The default value for this parameter is
+     * 7.</p>
      */
     inline void SetUnusedAccountValidityDays(int value) { m_unusedAccountValidityDaysHasBeenSet = true; m_unusedAccountValidityDays = value; }
 
     /**
      * <p>The user account expiration limit, in days, after which the account is no
      * longer usable. To reset the account after that time limit, you must call
-     * AdminCreateUser again, specifying "RESEND" for the MessageAction parameter. The
-     * default value for this paameter is 7.</p>
+     * <code>AdminCreateUser</code> again, specifying <code>"RESEND"</code> for the
+     * <code>MessageAction</code> parameter. The default value for this parameter is
+     * 7.</p>
      */
     inline AdminCreateUserConfigType& WithUnusedAccountValidityDays(int value) { SetUnusedAccountValidityDays(value); return *this;}
+
 
     /**
      * <p>The message template to be used for the welcome message to new users.</p>
@@ -99,7 +110,7 @@ namespace Model
     /**
      * <p>The message template to be used for the welcome message to new users.</p>
      */
-    inline void SetInviteMessageTemplate(MessageTemplateType&& value) { m_inviteMessageTemplateHasBeenSet = true; m_inviteMessageTemplate = value; }
+    inline void SetInviteMessageTemplate(MessageTemplateType&& value) { m_inviteMessageTemplateHasBeenSet = true; m_inviteMessageTemplate = std::move(value); }
 
     /**
      * <p>The message template to be used for the welcome message to new users.</p>
@@ -109,13 +120,16 @@ namespace Model
     /**
      * <p>The message template to be used for the welcome message to new users.</p>
      */
-    inline AdminCreateUserConfigType& WithInviteMessageTemplate(MessageTemplateType&& value) { SetInviteMessageTemplate(value); return *this;}
+    inline AdminCreateUserConfigType& WithInviteMessageTemplate(MessageTemplateType&& value) { SetInviteMessageTemplate(std::move(value)); return *this;}
 
   private:
+
     bool m_allowAdminCreateUserOnly;
     bool m_allowAdminCreateUserOnlyHasBeenSet;
+
     int m_unusedAccountValidityDays;
     bool m_unusedAccountValidityDaysHasBeenSet;
+
     MessageTemplateType m_inviteMessageTemplate;
     bool m_inviteMessageTemplateHasBeenSet;
   };

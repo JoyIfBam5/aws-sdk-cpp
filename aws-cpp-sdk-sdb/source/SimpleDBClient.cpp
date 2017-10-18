@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/core/utils/Outcome.h>
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
@@ -115,8 +116,10 @@ Aws::String SimpleDBClient::ConvertRequestToPresignedUrl(const AmazonSerializabl
 BatchDeleteAttributesOutcome SimpleDBClient::BatchDeleteAttributes(const BatchDeleteAttributesRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return BatchDeleteAttributesOutcome(NoResult());
@@ -148,8 +151,10 @@ void SimpleDBClient::BatchDeleteAttributesAsyncHelper(const BatchDeleteAttribute
 BatchPutAttributesOutcome SimpleDBClient::BatchPutAttributes(const BatchPutAttributesRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return BatchPutAttributesOutcome(NoResult());
@@ -181,8 +186,10 @@ void SimpleDBClient::BatchPutAttributesAsyncHelper(const BatchPutAttributesReque
 CreateDomainOutcome SimpleDBClient::CreateDomain(const CreateDomainRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return CreateDomainOutcome(NoResult());
@@ -214,8 +221,10 @@ void SimpleDBClient::CreateDomainAsyncHelper(const CreateDomainRequest& request,
 DeleteAttributesOutcome SimpleDBClient::DeleteAttributes(const DeleteAttributesRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return DeleteAttributesOutcome(NoResult());
@@ -247,8 +256,10 @@ void SimpleDBClient::DeleteAttributesAsyncHelper(const DeleteAttributesRequest& 
 DeleteDomainOutcome SimpleDBClient::DeleteDomain(const DeleteDomainRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return DeleteDomainOutcome(NoResult());
@@ -280,8 +291,10 @@ void SimpleDBClient::DeleteDomainAsyncHelper(const DeleteDomainRequest& request,
 DomainMetadataOutcome SimpleDBClient::DomainMetadata(const DomainMetadataRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return DomainMetadataOutcome(DomainMetadataResult(outcome.GetResult()));
@@ -313,8 +326,10 @@ void SimpleDBClient::DomainMetadataAsyncHelper(const DomainMetadataRequest& requ
 GetAttributesOutcome SimpleDBClient::GetAttributes(const GetAttributesRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return GetAttributesOutcome(GetAttributesResult(outcome.GetResult()));
@@ -346,8 +361,10 @@ void SimpleDBClient::GetAttributesAsyncHelper(const GetAttributesRequest& reques
 ListDomainsOutcome SimpleDBClient::ListDomains(const ListDomainsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return ListDomainsOutcome(ListDomainsResult(outcome.GetResult()));
@@ -379,8 +396,10 @@ void SimpleDBClient::ListDomainsAsyncHelper(const ListDomainsRequest& request, c
 PutAttributesOutcome SimpleDBClient::PutAttributes(const PutAttributesRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return PutAttributesOutcome(NoResult());
@@ -412,8 +431,10 @@ void SimpleDBClient::PutAttributesAsyncHelper(const PutAttributesRequest& reques
 SelectOutcome SimpleDBClient::Select(const SelectRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return SelectOutcome(SelectResult(outcome.GetResult()));

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/machinelearning/MachineLearning_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/machinelearning/model/TaggableResourceType.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/machinelearning/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     DescribeTagsResult();
-    DescribeTagsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeTagsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeTagsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeTagsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The ID of the tagged ML object.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The ID of the tagged ML object.</p>
      */
-    inline void SetResourceId(Aws::String&& value) { m_resourceId = value; }
+    inline void SetResourceId(Aws::String&& value) { m_resourceId = std::move(value); }
 
     /**
      * <p>The ID of the tagged ML object.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The ID of the tagged ML object.</p>
      */
-    inline DescribeTagsResult& WithResourceId(Aws::String&& value) { SetResourceId(value); return *this;}
+    inline DescribeTagsResult& WithResourceId(Aws::String&& value) { SetResourceId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the tagged ML object.</p>
      */
     inline DescribeTagsResult& WithResourceId(const char* value) { SetResourceId(value); return *this;}
+
 
     /**
      * <p>The type of the tagged ML object.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>The type of the tagged ML object.</p>
      */
-    inline void SetResourceType(TaggableResourceType&& value) { m_resourceType = value; }
+    inline void SetResourceType(TaggableResourceType&& value) { m_resourceType = std::move(value); }
 
     /**
      * <p>The type of the tagged ML object.</p>
@@ -105,7 +109,8 @@ namespace Model
     /**
      * <p>The type of the tagged ML object.</p>
      */
-    inline DescribeTagsResult& WithResourceType(TaggableResourceType&& value) { SetResourceType(value); return *this;}
+    inline DescribeTagsResult& WithResourceType(TaggableResourceType&& value) { SetResourceType(std::move(value)); return *this;}
+
 
     /**
      * <p>A list of tags associated with the ML object.</p>
@@ -120,7 +125,7 @@ namespace Model
     /**
      * <p>A list of tags associated with the ML object.</p>
      */
-    inline void SetTags(Aws::Vector<Tag>&& value) { m_tags = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tags = std::move(value); }
 
     /**
      * <p>A list of tags associated with the ML object.</p>
@@ -130,7 +135,7 @@ namespace Model
     /**
      * <p>A list of tags associated with the ML object.</p>
      */
-    inline DescribeTagsResult& WithTags(Aws::Vector<Tag>&& value) { SetTags(value); return *this;}
+    inline DescribeTagsResult& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
      * <p>A list of tags associated with the ML object.</p>
@@ -140,11 +145,14 @@ namespace Model
     /**
      * <p>A list of tags associated with the ML object.</p>
      */
-    inline DescribeTagsResult& AddTags(Tag&& value) { m_tags.push_back(value); return *this; }
+    inline DescribeTagsResult& AddTags(Tag&& value) { m_tags.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_resourceId;
+
     TaggableResourceType m_resourceType;
+
     Aws::Vector<Tag> m_tags;
   };
 

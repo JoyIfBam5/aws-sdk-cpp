@@ -1,5 +1,5 @@
 /*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -27,46 +27,56 @@ namespace Aws
     {
         Aws::String Join(const Aws::String& leftSegment, const Aws::String& rightSegment)
         {
-            Aws::StringStream ss;
-
-            if (!leftSegment.empty())
-            {
-                if (leftSegment.back() == PATH_DELIM)
-                {
-                    ss << leftSegment.substr(0, leftSegment.length() - 1);
-                }
-                else
-                {
-                    ss << leftSegment;
-                }
-            }
-
-            ss << PATH_DELIM;
-
-            if (!rightSegment.empty())
-            {
-                if (rightSegment.front() == PATH_DELIM)
-                {
-                    ss << rightSegment.substr(1);
-                }
-                else
-                {
-                    ss << rightSegment;
-                }
-            }
-
-            return ss.str();
+			return Join(PATH_DELIM, leftSegment, rightSegment);
         }
+
+		Aws::String Join(char delimiter, const Aws::String& leftSegment, const Aws::String& rightSegment)
+		{
+			Aws::StringStream ss;
+
+			if (!leftSegment.empty())
+			{
+				if (leftSegment.back() == delimiter)
+				{
+					ss << leftSegment.substr(0, leftSegment.length() - 1);
+				}
+				else
+				{
+					ss << leftSegment;
+				}
+			}
+
+			ss << delimiter;
+
+			if (!rightSegment.empty())
+			{
+				if (rightSegment.front() == delimiter)
+				{
+					ss << rightSegment.substr(1);
+				}
+				else
+				{
+					ss << rightSegment;
+				}
+			}
+
+			return ss.str();
+		}
 
         bool DeepCopyDirectory(const char* from, const char* to)
         {
+			if (!from || !to) return false;
+
             DirectoryTree fromDir(from);
+
+			if (!fromDir) return false;
 
             CreateDirectoryIfNotExists(to);
             DirectoryTree toDir(to);
-            bool success(true);
 
-            if(!from || !to) return false;
+			if (!toDir) return false;
+
+            bool success(true);            
 
             auto visitor = [to,&success](const DirectoryTree*, const DirectoryEntry& entry)
             {
@@ -140,16 +150,23 @@ namespace Aws
             auto trimmedPath = Utils::StringUtils::Trim(path.c_str());
             auto trimmedRelativePath = Utils::StringUtils::Trim(relativePath.c_str());
 
-            if (trimmedPath[trimmedPath.length() - 1] == PATH_DELIM)
+            if (!trimmedPath.empty() && trimmedPath[trimmedPath.length() - 1] == PATH_DELIM)
             {
                 m_directoryEntry.path = trimmedPath.substr(0, trimmedPath.length() - 1);
             }
             else
             {
                 m_directoryEntry.path = trimmedPath;
-            }     
-            
-            m_directoryEntry.relativePath = trimmedRelativePath;
+            }    
+
+			if (!trimmedRelativePath.empty() && trimmedRelativePath[trimmedRelativePath.length() - 1] == PATH_DELIM)
+			{
+				m_directoryEntry.relativePath = trimmedRelativePath.substr(0, trimmedRelativePath.length() - 1);
+			}
+			else
+			{
+				m_directoryEntry.relativePath = trimmedRelativePath;
+			}          
         }        
 
         Directory& Directory::Descend(const DirectoryEntry& directoryEntry)
@@ -158,6 +175,22 @@ namespace Aws
             auto openDir = OpenDirectory(directoryEntry.path, directoryEntry.relativePath);
             m_openDirectories.push_back(openDir);
             return *openDir;
+        }
+
+        Aws::Vector<Aws::String> Directory::GetAllFilePathsInDirectory(const Aws::String& path)
+        {
+            Aws::FileSystem::DirectoryTree tree(path);
+            Aws::Vector<Aws::String> filesVector;
+            auto visitor = [&](const Aws::FileSystem::DirectoryTree*, const Aws::FileSystem::DirectoryEntry& entry) 
+            { 
+                if (entry.fileType == Aws::FileSystem::FileType::File)
+                {
+                    filesVector.push_back(entry.path);
+                }
+                return true;
+            };
+            tree.TraverseBreadthFirst(visitor);
+            return filesVector;
         }
 
         DirectoryTree::DirectoryTree(const Aws::String& path)

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ec2/model/DiskImageDescription.h>
 #include <aws/ec2/model/DiskImageVolumeDescription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,43 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
+    /**
+     * <p>The Availability Zone where the resulting volume will reside.</p>
+     */
+    inline const Aws::String& GetAvailabilityZone() const{ return m_availabilityZone; }
+
+    /**
+     * <p>The Availability Zone where the resulting volume will reside.</p>
+     */
+    inline void SetAvailabilityZone(const Aws::String& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = value; }
+
+    /**
+     * <p>The Availability Zone where the resulting volume will reside.</p>
+     */
+    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = std::move(value); }
+
+    /**
+     * <p>The Availability Zone where the resulting volume will reside.</p>
+     */
+    inline void SetAvailabilityZone(const char* value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone.assign(value); }
+
+    /**
+     * <p>The Availability Zone where the resulting volume will reside.</p>
+     */
+    inline ImportVolumeTaskDetails& WithAvailabilityZone(const Aws::String& value) { SetAvailabilityZone(value); return *this;}
+
+    /**
+     * <p>The Availability Zone where the resulting volume will reside.</p>
+     */
+    inline ImportVolumeTaskDetails& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(std::move(value)); return *this;}
+
+    /**
+     * <p>The Availability Zone where the resulting volume will reside.</p>
+     */
+    inline ImportVolumeTaskDetails& WithAvailabilityZone(const char* value) { SetAvailabilityZone(value); return *this;}
+
+
     /**
      * <p>The number of bytes converted so far.</p>
      */
@@ -63,40 +102,6 @@ namespace Model
      */
     inline ImportVolumeTaskDetails& WithBytesConverted(long long value) { SetBytesConverted(value); return *this;}
 
-    /**
-     * <p>The Availability Zone where the resulting volume will reside.</p>
-     */
-    inline const Aws::String& GetAvailabilityZone() const{ return m_availabilityZone; }
-
-    /**
-     * <p>The Availability Zone where the resulting volume will reside.</p>
-     */
-    inline void SetAvailabilityZone(const Aws::String& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = value; }
-
-    /**
-     * <p>The Availability Zone where the resulting volume will reside.</p>
-     */
-    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = value; }
-
-    /**
-     * <p>The Availability Zone where the resulting volume will reside.</p>
-     */
-    inline void SetAvailabilityZone(const char* value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone.assign(value); }
-
-    /**
-     * <p>The Availability Zone where the resulting volume will reside.</p>
-     */
-    inline ImportVolumeTaskDetails& WithAvailabilityZone(const Aws::String& value) { SetAvailabilityZone(value); return *this;}
-
-    /**
-     * <p>The Availability Zone where the resulting volume will reside.</p>
-     */
-    inline ImportVolumeTaskDetails& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(value); return *this;}
-
-    /**
-     * <p>The Availability Zone where the resulting volume will reside.</p>
-     */
-    inline ImportVolumeTaskDetails& WithAvailabilityZone(const char* value) { SetAvailabilityZone(value); return *this;}
 
     /**
      * <p>The description you provided when starting the import volume task.</p>
@@ -111,7 +116,7 @@ namespace Model
     /**
      * <p>The description you provided when starting the import volume task.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The description you provided when starting the import volume task.</p>
@@ -126,12 +131,13 @@ namespace Model
     /**
      * <p>The description you provided when starting the import volume task.</p>
      */
-    inline ImportVolumeTaskDetails& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline ImportVolumeTaskDetails& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description you provided when starting the import volume task.</p>
      */
     inline ImportVolumeTaskDetails& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The image.</p>
@@ -146,7 +152,7 @@ namespace Model
     /**
      * <p>The image.</p>
      */
-    inline void SetImage(DiskImageDescription&& value) { m_imageHasBeenSet = true; m_image = value; }
+    inline void SetImage(DiskImageDescription&& value) { m_imageHasBeenSet = true; m_image = std::move(value); }
 
     /**
      * <p>The image.</p>
@@ -156,7 +162,8 @@ namespace Model
     /**
      * <p>The image.</p>
      */
-    inline ImportVolumeTaskDetails& WithImage(DiskImageDescription&& value) { SetImage(value); return *this;}
+    inline ImportVolumeTaskDetails& WithImage(DiskImageDescription&& value) { SetImage(std::move(value)); return *this;}
+
 
     /**
      * <p>The volume.</p>
@@ -171,7 +178,7 @@ namespace Model
     /**
      * <p>The volume.</p>
      */
-    inline void SetVolume(DiskImageVolumeDescription&& value) { m_volumeHasBeenSet = true; m_volume = value; }
+    inline void SetVolume(DiskImageVolumeDescription&& value) { m_volumeHasBeenSet = true; m_volume = std::move(value); }
 
     /**
      * <p>The volume.</p>
@@ -181,17 +188,22 @@ namespace Model
     /**
      * <p>The volume.</p>
      */
-    inline ImportVolumeTaskDetails& WithVolume(DiskImageVolumeDescription&& value) { SetVolume(value); return *this;}
+    inline ImportVolumeTaskDetails& WithVolume(DiskImageVolumeDescription&& value) { SetVolume(std::move(value)); return *this;}
 
   private:
-    long long m_bytesConverted;
-    bool m_bytesConvertedHasBeenSet;
+
     Aws::String m_availabilityZone;
     bool m_availabilityZoneHasBeenSet;
+
+    long long m_bytesConverted;
+    bool m_bytesConvertedHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     DiskImageDescription m_image;
     bool m_imageHasBeenSet;
+
     DiskImageVolumeDescription m_volume;
     bool m_volumeHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/appstream/model/UpdateFleetRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -31,10 +32,12 @@ UpdateFleetRequest::UpdateFleetRequest() :
     m_maxUserDurationInSecondsHasBeenSet(false),
     m_disconnectTimeoutInSeconds(0),
     m_disconnectTimeoutInSecondsHasBeenSet(false),
-    m_deleteVpcConfig(false),
-    m_deleteVpcConfigHasBeenSet(false),
     m_descriptionHasBeenSet(false),
-    m_displayNameHasBeenSet(false)
+    m_displayNameHasBeenSet(false),
+    m_enableDefaultInternetAccess(false),
+    m_enableDefaultInternetAccessHasBeenSet(false),
+    m_domainJoinInfoHasBeenSet(false),
+    m_attributesToDeleteHasBeenSet(false)
 {
 }
 
@@ -84,12 +87,6 @@ Aws::String UpdateFleetRequest::SerializePayload() const
 
   }
 
-  if(m_deleteVpcConfigHasBeenSet)
-  {
-   payload.WithBool("DeleteVpcConfig", m_deleteVpcConfig);
-
-  }
-
   if(m_descriptionHasBeenSet)
   {
    payload.WithString("Description", m_description);
@@ -99,6 +96,29 @@ Aws::String UpdateFleetRequest::SerializePayload() const
   if(m_displayNameHasBeenSet)
   {
    payload.WithString("DisplayName", m_displayName);
+
+  }
+
+  if(m_enableDefaultInternetAccessHasBeenSet)
+  {
+   payload.WithBool("EnableDefaultInternetAccess", m_enableDefaultInternetAccess);
+
+  }
+
+  if(m_domainJoinInfoHasBeenSet)
+  {
+   payload.WithObject("DomainJoinInfo", m_domainJoinInfo.Jsonize());
+
+  }
+
+  if(m_attributesToDeleteHasBeenSet)
+  {
+   Array<JsonValue> attributesToDeleteJsonList(m_attributesToDelete.size());
+   for(unsigned attributesToDeleteIndex = 0; attributesToDeleteIndex < attributesToDeleteJsonList.GetLength(); ++attributesToDeleteIndex)
+   {
+     attributesToDeleteJsonList[attributesToDeleteIndex].AsString(FleetAttributeMapper::GetNameForFleetAttribute(m_attributesToDelete[attributesToDeleteIndex]));
+   }
+   payload.WithArray("AttributesToDelete", std::move(attributesToDeleteJsonList));
 
   }
 
@@ -112,6 +132,7 @@ Aws::Http::HeaderValueCollection UpdateFleetRequest::GetRequestSpecificHeaders()
   return headers;
 
 }
+
 
 
 

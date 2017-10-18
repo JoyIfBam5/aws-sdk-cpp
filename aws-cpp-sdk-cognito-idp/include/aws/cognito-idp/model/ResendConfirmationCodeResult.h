@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/cognito-idp/model/CodeDeliveryDetailsType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     ResendConfirmationCodeResult();
-    ResendConfirmationCodeResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ResendConfirmationCodeResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ResendConfirmationCodeResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ResendConfirmationCodeResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The code delivery details returned by the server in response to the request
@@ -61,7 +64,7 @@ namespace Model
      * <p>The code delivery details returned by the server in response to the request
      * to resend the confirmation code.</p>
      */
-    inline void SetCodeDeliveryDetails(CodeDeliveryDetailsType&& value) { m_codeDeliveryDetails = value; }
+    inline void SetCodeDeliveryDetails(CodeDeliveryDetailsType&& value) { m_codeDeliveryDetails = std::move(value); }
 
     /**
      * <p>The code delivery details returned by the server in response to the request
@@ -73,9 +76,10 @@ namespace Model
      * <p>The code delivery details returned by the server in response to the request
      * to resend the confirmation code.</p>
      */
-    inline ResendConfirmationCodeResult& WithCodeDeliveryDetails(CodeDeliveryDetailsType&& value) { SetCodeDeliveryDetails(value); return *this;}
+    inline ResendConfirmationCodeResult& WithCodeDeliveryDetails(CodeDeliveryDetailsType&& value) { SetCodeDeliveryDetails(std::move(value)); return *this;}
 
   private:
+
     CodeDeliveryDetailsType m_codeDeliveryDetails;
   };
 

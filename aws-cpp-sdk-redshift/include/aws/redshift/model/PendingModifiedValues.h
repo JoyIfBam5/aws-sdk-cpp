@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The pending or in-progress change of the master user password for the
      * cluster.</p>
@@ -64,7 +67,7 @@ namespace Model
      * <p>The pending or in-progress change of the master user password for the
      * cluster.</p>
      */
-    inline void SetMasterUserPassword(Aws::String&& value) { m_masterUserPasswordHasBeenSet = true; m_masterUserPassword = value; }
+    inline void SetMasterUserPassword(Aws::String&& value) { m_masterUserPasswordHasBeenSet = true; m_masterUserPassword = std::move(value); }
 
     /**
      * <p>The pending or in-progress change of the master user password for the
@@ -82,13 +85,14 @@ namespace Model
      * <p>The pending or in-progress change of the master user password for the
      * cluster.</p>
      */
-    inline PendingModifiedValues& WithMasterUserPassword(Aws::String&& value) { SetMasterUserPassword(value); return *this;}
+    inline PendingModifiedValues& WithMasterUserPassword(Aws::String&& value) { SetMasterUserPassword(std::move(value)); return *this;}
 
     /**
      * <p>The pending or in-progress change of the master user password for the
      * cluster.</p>
      */
     inline PendingModifiedValues& WithMasterUserPassword(const char* value) { SetMasterUserPassword(value); return *this;}
+
 
     /**
      * <p>The pending or in-progress change of the cluster's node type.</p>
@@ -103,7 +107,7 @@ namespace Model
     /**
      * <p>The pending or in-progress change of the cluster's node type.</p>
      */
-    inline void SetNodeType(Aws::String&& value) { m_nodeTypeHasBeenSet = true; m_nodeType = value; }
+    inline void SetNodeType(Aws::String&& value) { m_nodeTypeHasBeenSet = true; m_nodeType = std::move(value); }
 
     /**
      * <p>The pending or in-progress change of the cluster's node type.</p>
@@ -118,12 +122,13 @@ namespace Model
     /**
      * <p>The pending or in-progress change of the cluster's node type.</p>
      */
-    inline PendingModifiedValues& WithNodeType(Aws::String&& value) { SetNodeType(value); return *this;}
+    inline PendingModifiedValues& WithNodeType(Aws::String&& value) { SetNodeType(std::move(value)); return *this;}
 
     /**
      * <p>The pending or in-progress change of the cluster's node type.</p>
      */
     inline PendingModifiedValues& WithNodeType(const char* value) { SetNodeType(value); return *this;}
+
 
     /**
      * <p>The pending or in-progress change of the number of nodes in the cluster.</p>
@@ -140,6 +145,7 @@ namespace Model
      */
     inline PendingModifiedValues& WithNumberOfNodes(int value) { SetNumberOfNodes(value); return *this;}
 
+
     /**
      * <p>The pending or in-progress change of the cluster type.</p>
      */
@@ -153,7 +159,7 @@ namespace Model
     /**
      * <p>The pending or in-progress change of the cluster type.</p>
      */
-    inline void SetClusterType(Aws::String&& value) { m_clusterTypeHasBeenSet = true; m_clusterType = value; }
+    inline void SetClusterType(Aws::String&& value) { m_clusterTypeHasBeenSet = true; m_clusterType = std::move(value); }
 
     /**
      * <p>The pending or in-progress change of the cluster type.</p>
@@ -168,12 +174,13 @@ namespace Model
     /**
      * <p>The pending or in-progress change of the cluster type.</p>
      */
-    inline PendingModifiedValues& WithClusterType(Aws::String&& value) { SetClusterType(value); return *this;}
+    inline PendingModifiedValues& WithClusterType(Aws::String&& value) { SetClusterType(std::move(value)); return *this;}
 
     /**
      * <p>The pending or in-progress change of the cluster type.</p>
      */
     inline PendingModifiedValues& WithClusterType(const char* value) { SetClusterType(value); return *this;}
+
 
     /**
      * <p>The pending or in-progress change of the service version.</p>
@@ -188,7 +195,7 @@ namespace Model
     /**
      * <p>The pending or in-progress change of the service version.</p>
      */
-    inline void SetClusterVersion(Aws::String&& value) { m_clusterVersionHasBeenSet = true; m_clusterVersion = value; }
+    inline void SetClusterVersion(Aws::String&& value) { m_clusterVersionHasBeenSet = true; m_clusterVersion = std::move(value); }
 
     /**
      * <p>The pending or in-progress change of the service version.</p>
@@ -203,12 +210,13 @@ namespace Model
     /**
      * <p>The pending or in-progress change of the service version.</p>
      */
-    inline PendingModifiedValues& WithClusterVersion(Aws::String&& value) { SetClusterVersion(value); return *this;}
+    inline PendingModifiedValues& WithClusterVersion(Aws::String&& value) { SetClusterVersion(std::move(value)); return *this;}
 
     /**
      * <p>The pending or in-progress change of the service version.</p>
      */
     inline PendingModifiedValues& WithClusterVersion(const char* value) { SetClusterVersion(value); return *this;}
+
 
     /**
      * <p>The pending or in-progress change of the automated snapshot retention
@@ -228,6 +236,7 @@ namespace Model
      */
     inline PendingModifiedValues& WithAutomatedSnapshotRetentionPeriod(int value) { SetAutomatedSnapshotRetentionPeriod(value); return *this;}
 
+
     /**
      * <p>The pending or in-progress change of the new identifier for the cluster.</p>
      */
@@ -241,7 +250,7 @@ namespace Model
     /**
      * <p>The pending or in-progress change of the new identifier for the cluster.</p>
      */
-    inline void SetClusterIdentifier(Aws::String&& value) { m_clusterIdentifierHasBeenSet = true; m_clusterIdentifier = value; }
+    inline void SetClusterIdentifier(Aws::String&& value) { m_clusterIdentifierHasBeenSet = true; m_clusterIdentifier = std::move(value); }
 
     /**
      * <p>The pending or in-progress change of the new identifier for the cluster.</p>
@@ -256,12 +265,13 @@ namespace Model
     /**
      * <p>The pending or in-progress change of the new identifier for the cluster.</p>
      */
-    inline PendingModifiedValues& WithClusterIdentifier(Aws::String&& value) { SetClusterIdentifier(value); return *this;}
+    inline PendingModifiedValues& WithClusterIdentifier(Aws::String&& value) { SetClusterIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The pending or in-progress change of the new identifier for the cluster.</p>
      */
     inline PendingModifiedValues& WithClusterIdentifier(const char* value) { SetClusterIdentifier(value); return *this;}
+
 
     /**
      * <p>The pending or in-progress change of the ability to connect to the cluster
@@ -280,6 +290,7 @@ namespace Model
      * from the public network.</p>
      */
     inline PendingModifiedValues& WithPubliclyAccessible(bool value) { SetPubliclyAccessible(value); return *this;}
+
 
     /**
      * <p>An option that specifies whether to create the cluster with enhanced VPC
@@ -315,22 +326,31 @@ namespace Model
     inline PendingModifiedValues& WithEnhancedVpcRouting(bool value) { SetEnhancedVpcRouting(value); return *this;}
 
   private:
+
     Aws::String m_masterUserPassword;
     bool m_masterUserPasswordHasBeenSet;
+
     Aws::String m_nodeType;
     bool m_nodeTypeHasBeenSet;
+
     int m_numberOfNodes;
     bool m_numberOfNodesHasBeenSet;
+
     Aws::String m_clusterType;
     bool m_clusterTypeHasBeenSet;
+
     Aws::String m_clusterVersion;
     bool m_clusterVersionHasBeenSet;
+
     int m_automatedSnapshotRetentionPeriod;
     bool m_automatedSnapshotRetentionPeriodHasBeenSet;
+
     Aws::String m_clusterIdentifier;
     bool m_clusterIdentifierHasBeenSet;
+
     bool m_publiclyAccessible;
     bool m_publiclyAccessibleHasBeenSet;
+
     bool m_enhancedVpcRouting;
     bool m_enhancedVpcRoutingHasBeenSet;
   };

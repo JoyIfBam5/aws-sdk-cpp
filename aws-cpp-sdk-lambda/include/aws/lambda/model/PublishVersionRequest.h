@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lambda/Lambda_EXPORTS.h>
 #include <aws/lambda/LambdaRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,15 @@ namespace Model
   {
   public:
     PublishVersionRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "PublishVersion"; }
+
     Aws::String SerializePayload() const override;
+
 
     /**
      * <p>The Lambda function name. You can specify a function name (for example,
@@ -42,8 +52,8 @@ namespace Model
      * <code>arn:aws:lambda:us-west-2:account-id:function:ThumbNail</code>). AWS Lambda
      * also allows you to specify a partial ARN (for example,
      * <code>account-id:Thumbnail</code>). Note that the length constraint applies only
-     * to the ARN. If you specify only the function name, it is limited to 64 character
-     * in length. </p>
+     * to the ARN. If you specify only the function name, it is limited to 64
+     * characters in length. </p>
      */
     inline const Aws::String& GetFunctionName() const{ return m_functionName; }
 
@@ -54,8 +64,8 @@ namespace Model
      * <code>arn:aws:lambda:us-west-2:account-id:function:ThumbNail</code>). AWS Lambda
      * also allows you to specify a partial ARN (for example,
      * <code>account-id:Thumbnail</code>). Note that the length constraint applies only
-     * to the ARN. If you specify only the function name, it is limited to 64 character
-     * in length. </p>
+     * to the ARN. If you specify only the function name, it is limited to 64
+     * characters in length. </p>
      */
     inline void SetFunctionName(const Aws::String& value) { m_functionNameHasBeenSet = true; m_functionName = value; }
 
@@ -66,10 +76,10 @@ namespace Model
      * <code>arn:aws:lambda:us-west-2:account-id:function:ThumbNail</code>). AWS Lambda
      * also allows you to specify a partial ARN (for example,
      * <code>account-id:Thumbnail</code>). Note that the length constraint applies only
-     * to the ARN. If you specify only the function name, it is limited to 64 character
-     * in length. </p>
+     * to the ARN. If you specify only the function name, it is limited to 64
+     * characters in length. </p>
      */
-    inline void SetFunctionName(Aws::String&& value) { m_functionNameHasBeenSet = true; m_functionName = value; }
+    inline void SetFunctionName(Aws::String&& value) { m_functionNameHasBeenSet = true; m_functionName = std::move(value); }
 
     /**
      * <p>The Lambda function name. You can specify a function name (for example,
@@ -78,8 +88,8 @@ namespace Model
      * <code>arn:aws:lambda:us-west-2:account-id:function:ThumbNail</code>). AWS Lambda
      * also allows you to specify a partial ARN (for example,
      * <code>account-id:Thumbnail</code>). Note that the length constraint applies only
-     * to the ARN. If you specify only the function name, it is limited to 64 character
-     * in length. </p>
+     * to the ARN. If you specify only the function name, it is limited to 64
+     * characters in length. </p>
      */
     inline void SetFunctionName(const char* value) { m_functionNameHasBeenSet = true; m_functionName.assign(value); }
 
@@ -90,8 +100,8 @@ namespace Model
      * <code>arn:aws:lambda:us-west-2:account-id:function:ThumbNail</code>). AWS Lambda
      * also allows you to specify a partial ARN (for example,
      * <code>account-id:Thumbnail</code>). Note that the length constraint applies only
-     * to the ARN. If you specify only the function name, it is limited to 64 character
-     * in length. </p>
+     * to the ARN. If you specify only the function name, it is limited to 64
+     * characters in length. </p>
      */
     inline PublishVersionRequest& WithFunctionName(const Aws::String& value) { SetFunctionName(value); return *this;}
 
@@ -102,10 +112,10 @@ namespace Model
      * <code>arn:aws:lambda:us-west-2:account-id:function:ThumbNail</code>). AWS Lambda
      * also allows you to specify a partial ARN (for example,
      * <code>account-id:Thumbnail</code>). Note that the length constraint applies only
-     * to the ARN. If you specify only the function name, it is limited to 64 character
-     * in length. </p>
+     * to the ARN. If you specify only the function name, it is limited to 64
+     * characters in length. </p>
      */
-    inline PublishVersionRequest& WithFunctionName(Aws::String&& value) { SetFunctionName(value); return *this;}
+    inline PublishVersionRequest& WithFunctionName(Aws::String&& value) { SetFunctionName(std::move(value)); return *this;}
 
     /**
      * <p>The Lambda function name. You can specify a function name (for example,
@@ -114,10 +124,11 @@ namespace Model
      * <code>arn:aws:lambda:us-west-2:account-id:function:ThumbNail</code>). AWS Lambda
      * also allows you to specify a partial ARN (for example,
      * <code>account-id:Thumbnail</code>). Note that the length constraint applies only
-     * to the ARN. If you specify only the function name, it is limited to 64 character
-     * in length. </p>
+     * to the ARN. If you specify only the function name, it is limited to 64
+     * characters in length. </p>
      */
     inline PublishVersionRequest& WithFunctionName(const char* value) { SetFunctionName(value); return *this;}
+
 
     /**
      * <p>The SHA256 hash of the deployment package you want to publish. This provides
@@ -138,7 +149,7 @@ namespace Model
      * validation on the code you are publishing. If you provide this parameter value
      * must match the SHA256 of the $LATEST version for the publication to succeed.</p>
      */
-    inline void SetCodeSha256(Aws::String&& value) { m_codeSha256HasBeenSet = true; m_codeSha256 = value; }
+    inline void SetCodeSha256(Aws::String&& value) { m_codeSha256HasBeenSet = true; m_codeSha256 = std::move(value); }
 
     /**
      * <p>The SHA256 hash of the deployment package you want to publish. This provides
@@ -159,7 +170,7 @@ namespace Model
      * validation on the code you are publishing. If you provide this parameter value
      * must match the SHA256 of the $LATEST version for the publication to succeed.</p>
      */
-    inline PublishVersionRequest& WithCodeSha256(Aws::String&& value) { SetCodeSha256(value); return *this;}
+    inline PublishVersionRequest& WithCodeSha256(Aws::String&& value) { SetCodeSha256(std::move(value)); return *this;}
 
     /**
      * <p>The SHA256 hash of the deployment package you want to publish. This provides
@@ -167,6 +178,7 @@ namespace Model
      * must match the SHA256 of the $LATEST version for the publication to succeed.</p>
      */
     inline PublishVersionRequest& WithCodeSha256(const char* value) { SetCodeSha256(value); return *this;}
+
 
     /**
      * <p>The description for the version you are publishing. If not provided, AWS
@@ -184,7 +196,7 @@ namespace Model
      * <p>The description for the version you are publishing. If not provided, AWS
      * Lambda copies the description from the $LATEST version.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The description for the version you are publishing. If not provided, AWS
@@ -202,7 +214,7 @@ namespace Model
      * <p>The description for the version you are publishing. If not provided, AWS
      * Lambda copies the description from the $LATEST version.</p>
      */
-    inline PublishVersionRequest& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline PublishVersionRequest& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description for the version you are publishing. If not provided, AWS
@@ -211,10 +223,13 @@ namespace Model
     inline PublishVersionRequest& WithDescription(const char* value) { SetDescription(value); return *this;}
 
   private:
+
     Aws::String m_functionName;
     bool m_functionNameHasBeenSet;
+
     Aws::String m_codeSha256;
     bool m_codeSha256HasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
   };

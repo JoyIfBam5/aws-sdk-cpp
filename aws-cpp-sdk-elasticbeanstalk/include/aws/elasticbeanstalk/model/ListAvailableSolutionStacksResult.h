@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticbeanstalk/model/ResponseMetadata.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/elasticbeanstalk/model/SolutionStackDescription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,8 +47,9 @@ namespace Model
   {
   public:
     ListAvailableSolutionStacksResult();
-    ListAvailableSolutionStacksResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    ListAvailableSolutionStacksResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ListAvailableSolutionStacksResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ListAvailableSolutionStacksResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>A list of available solution stacks.</p>
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>A list of available solution stacks.</p>
      */
-    inline void SetSolutionStacks(Aws::Vector<Aws::String>&& value) { m_solutionStacks = value; }
+    inline void SetSolutionStacks(Aws::Vector<Aws::String>&& value) { m_solutionStacks = std::move(value); }
 
     /**
      * <p>A list of available solution stacks.</p>
@@ -71,7 +74,7 @@ namespace Model
     /**
      * <p>A list of available solution stacks.</p>
      */
-    inline ListAvailableSolutionStacksResult& WithSolutionStacks(Aws::Vector<Aws::String>&& value) { SetSolutionStacks(value); return *this;}
+    inline ListAvailableSolutionStacksResult& WithSolutionStacks(Aws::Vector<Aws::String>&& value) { SetSolutionStacks(std::move(value)); return *this;}
 
     /**
      * <p>A list of available solution stacks.</p>
@@ -81,12 +84,13 @@ namespace Model
     /**
      * <p>A list of available solution stacks.</p>
      */
-    inline ListAvailableSolutionStacksResult& AddSolutionStacks(Aws::String&& value) { m_solutionStacks.push_back(value); return *this; }
+    inline ListAvailableSolutionStacksResult& AddSolutionStacks(Aws::String&& value) { m_solutionStacks.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of available solution stacks.</p>
      */
     inline ListAvailableSolutionStacksResult& AddSolutionStacks(const char* value) { m_solutionStacks.push_back(value); return *this; }
+
 
     /**
      * <p> A list of available solution stacks and their
@@ -104,7 +108,7 @@ namespace Model
      * <p> A list of available solution stacks and their
      * <a>SolutionStackDescription</a>. </p>
      */
-    inline void SetSolutionStackDetails(Aws::Vector<SolutionStackDescription>&& value) { m_solutionStackDetails = value; }
+    inline void SetSolutionStackDetails(Aws::Vector<SolutionStackDescription>&& value) { m_solutionStackDetails = std::move(value); }
 
     /**
      * <p> A list of available solution stacks and their
@@ -116,7 +120,7 @@ namespace Model
      * <p> A list of available solution stacks and their
      * <a>SolutionStackDescription</a>. </p>
      */
-    inline ListAvailableSolutionStacksResult& WithSolutionStackDetails(Aws::Vector<SolutionStackDescription>&& value) { SetSolutionStackDetails(value); return *this;}
+    inline ListAvailableSolutionStacksResult& WithSolutionStackDetails(Aws::Vector<SolutionStackDescription>&& value) { SetSolutionStackDetails(std::move(value)); return *this;}
 
     /**
      * <p> A list of available solution stacks and their
@@ -128,7 +132,8 @@ namespace Model
      * <p> A list of available solution stacks and their
      * <a>SolutionStackDescription</a>. </p>
      */
-    inline ListAvailableSolutionStacksResult& AddSolutionStackDetails(SolutionStackDescription&& value) { m_solutionStackDetails.push_back(value); return *this; }
+    inline ListAvailableSolutionStacksResult& AddSolutionStackDetails(SolutionStackDescription&& value) { m_solutionStackDetails.push_back(std::move(value)); return *this; }
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -137,17 +142,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline ListAvailableSolutionStacksResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline ListAvailableSolutionStacksResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline ListAvailableSolutionStacksResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_solutionStacks;
+
     Aws::Vector<SolutionStackDescription> m_solutionStackDetails;
+
     ResponseMetadata m_responseMetadata;
   };
 

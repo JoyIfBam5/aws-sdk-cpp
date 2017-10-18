@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ssm/model/InstanceAssociationStatusInfo.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -31,13 +32,15 @@ InstanceAssociationStatusInfo::InstanceAssociationStatusInfo() :
     m_associationIdHasBeenSet(false),
     m_nameHasBeenSet(false),
     m_documentVersionHasBeenSet(false),
+    m_associationVersionHasBeenSet(false),
     m_instanceIdHasBeenSet(false),
     m_executionDateHasBeenSet(false),
     m_statusHasBeenSet(false),
     m_detailedStatusHasBeenSet(false),
     m_executionSummaryHasBeenSet(false),
     m_errorCodeHasBeenSet(false),
-    m_outputUrlHasBeenSet(false)
+    m_outputUrlHasBeenSet(false),
+    m_associationNameHasBeenSet(false)
 {
 }
 
@@ -45,13 +48,15 @@ InstanceAssociationStatusInfo::InstanceAssociationStatusInfo(const JsonValue& js
     m_associationIdHasBeenSet(false),
     m_nameHasBeenSet(false),
     m_documentVersionHasBeenSet(false),
+    m_associationVersionHasBeenSet(false),
     m_instanceIdHasBeenSet(false),
     m_executionDateHasBeenSet(false),
     m_statusHasBeenSet(false),
     m_detailedStatusHasBeenSet(false),
     m_executionSummaryHasBeenSet(false),
     m_errorCodeHasBeenSet(false),
-    m_outputUrlHasBeenSet(false)
+    m_outputUrlHasBeenSet(false),
+    m_associationNameHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -77,6 +82,13 @@ InstanceAssociationStatusInfo& InstanceAssociationStatusInfo::operator =(const J
     m_documentVersion = jsonValue.GetString("DocumentVersion");
 
     m_documentVersionHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("AssociationVersion"))
+  {
+    m_associationVersion = jsonValue.GetString("AssociationVersion");
+
+    m_associationVersionHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("InstanceId"))
@@ -128,6 +140,13 @@ InstanceAssociationStatusInfo& InstanceAssociationStatusInfo::operator =(const J
     m_outputUrlHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("AssociationName"))
+  {
+    m_associationName = jsonValue.GetString("AssociationName");
+
+    m_associationNameHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -150,6 +169,12 @@ JsonValue InstanceAssociationStatusInfo::Jsonize() const
   if(m_documentVersionHasBeenSet)
   {
    payload.WithString("DocumentVersion", m_documentVersion);
+
+  }
+
+  if(m_associationVersionHasBeenSet)
+  {
+   payload.WithString("AssociationVersion", m_associationVersion);
 
   }
 
@@ -191,6 +216,12 @@ JsonValue InstanceAssociationStatusInfo::Jsonize() const
   if(m_outputUrlHasBeenSet)
   {
    payload.WithObject("OutputUrl", m_outputUrl.Jsonize());
+
+  }
+
+  if(m_associationNameHasBeenSet)
+  {
+   payload.WithString("AssociationName", m_associationName);
 
   }
 

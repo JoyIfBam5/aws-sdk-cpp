@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/directconnect/DirectConnect_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/directconnect/model/Location.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,8 +48,9 @@ namespace Model
   {
   public:
     DescribeLocationsResult();
-    DescribeLocationsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeLocationsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeLocationsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeLocationsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A list of colocation hubs where network providers have equipment. Most
@@ -65,7 +68,7 @@ namespace Model
      * <p>A list of colocation hubs where network providers have equipment. Most
      * regions have multiple locations available.</p>
      */
-    inline void SetLocations(Aws::Vector<Location>&& value) { m_locations = value; }
+    inline void SetLocations(Aws::Vector<Location>&& value) { m_locations = std::move(value); }
 
     /**
      * <p>A list of colocation hubs where network providers have equipment. Most
@@ -77,7 +80,7 @@ namespace Model
      * <p>A list of colocation hubs where network providers have equipment. Most
      * regions have multiple locations available.</p>
      */
-    inline DescribeLocationsResult& WithLocations(Aws::Vector<Location>&& value) { SetLocations(value); return *this;}
+    inline DescribeLocationsResult& WithLocations(Aws::Vector<Location>&& value) { SetLocations(std::move(value)); return *this;}
 
     /**
      * <p>A list of colocation hubs where network providers have equipment. Most
@@ -89,9 +92,10 @@ namespace Model
      * <p>A list of colocation hubs where network providers have equipment. Most
      * regions have multiple locations available.</p>
      */
-    inline DescribeLocationsResult& AddLocations(Location&& value) { m_locations.push_back(value); return *this; }
+    inline DescribeLocationsResult& AddLocations(Location&& value) { m_locations.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<Location> m_locations;
   };
 

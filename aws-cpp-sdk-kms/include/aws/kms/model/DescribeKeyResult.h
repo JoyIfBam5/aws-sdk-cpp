@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kms/KMS_EXPORTS.h>
 #include <aws/kms/model/KeyMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     DescribeKeyResult();
-    DescribeKeyResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeKeyResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeKeyResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeKeyResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Metadata associated with the key.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>Metadata associated with the key.</p>
      */
-    inline void SetKeyMetadata(KeyMetadata&& value) { m_keyMetadata = value; }
+    inline void SetKeyMetadata(KeyMetadata&& value) { m_keyMetadata = std::move(value); }
 
     /**
      * <p>Metadata associated with the key.</p>
@@ -62,9 +65,10 @@ namespace Model
     /**
      * <p>Metadata associated with the key.</p>
      */
-    inline DescribeKeyResult& WithKeyMetadata(KeyMetadata&& value) { SetKeyMetadata(value); return *this;}
+    inline DescribeKeyResult& WithKeyMetadata(KeyMetadata&& value) { SetKeyMetadata(std::move(value)); return *this;}
 
   private:
+
     KeyMetadata m_keyMetadata;
   };
 

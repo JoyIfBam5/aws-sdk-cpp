@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     Deployment& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ID of the deployment.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The ID of the deployment.</p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>The ID of the deployment.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The ID of the deployment.</p>
      */
-    inline Deployment& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline Deployment& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the deployment.</p>
      */
     inline Deployment& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>The status of the deployment. Valid values are <code>PRIMARY</code> (for the
@@ -104,7 +108,7 @@ namespace Model
      * deployment), and <code>INACTIVE</code> (for deployments that have been
      * completely replaced).</p>
      */
-    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The status of the deployment. Valid values are <code>PRIMARY</code> (for the
@@ -131,7 +135,7 @@ namespace Model
      * deployment), and <code>INACTIVE</code> (for deployments that have been
      * completely replaced).</p>
      */
-    inline Deployment& WithStatus(Aws::String&& value) { SetStatus(value); return *this;}
+    inline Deployment& WithStatus(Aws::String&& value) { SetStatus(std::move(value)); return *this;}
 
     /**
      * <p>The status of the deployment. Valid values are <code>PRIMARY</code> (for the
@@ -141,6 +145,7 @@ namespace Model
      * completely replaced).</p>
      */
     inline Deployment& WithStatus(const char* value) { SetStatus(value); return *this;}
+
 
     /**
      * <p>The most recent task definition that was specified for the service to
@@ -158,7 +163,7 @@ namespace Model
      * <p>The most recent task definition that was specified for the service to
      * use.</p>
      */
-    inline void SetTaskDefinition(Aws::String&& value) { m_taskDefinitionHasBeenSet = true; m_taskDefinition = value; }
+    inline void SetTaskDefinition(Aws::String&& value) { m_taskDefinitionHasBeenSet = true; m_taskDefinition = std::move(value); }
 
     /**
      * <p>The most recent task definition that was specified for the service to
@@ -176,13 +181,14 @@ namespace Model
      * <p>The most recent task definition that was specified for the service to
      * use.</p>
      */
-    inline Deployment& WithTaskDefinition(Aws::String&& value) { SetTaskDefinition(value); return *this;}
+    inline Deployment& WithTaskDefinition(Aws::String&& value) { SetTaskDefinition(std::move(value)); return *this;}
 
     /**
      * <p>The most recent task definition that was specified for the service to
      * use.</p>
      */
     inline Deployment& WithTaskDefinition(const char* value) { SetTaskDefinition(value); return *this;}
+
 
     /**
      * <p>The most recent desired count of tasks that was specified for the service to
@@ -202,6 +208,7 @@ namespace Model
      */
     inline Deployment& WithDesiredCount(int value) { SetDesiredCount(value); return *this;}
 
+
     /**
      * <p>The number of tasks in the deployment that are in the <code>PENDING</code>
      * status.</p>
@@ -219,6 +226,7 @@ namespace Model
      * status.</p>
      */
     inline Deployment& WithPendingCount(int value) { SetPendingCount(value); return *this;}
+
 
     /**
      * <p>The number of tasks in the deployment that are in the <code>RUNNING</code>
@@ -238,6 +246,7 @@ namespace Model
      */
     inline Deployment& WithRunningCount(int value) { SetRunningCount(value); return *this;}
 
+
     /**
      * <p>The Unix timestamp for when the service was created.</p>
      */
@@ -251,7 +260,7 @@ namespace Model
     /**
      * <p>The Unix timestamp for when the service was created.</p>
      */
-    inline void SetCreatedAt(Aws::Utils::DateTime&& value) { m_createdAtHasBeenSet = true; m_createdAt = value; }
+    inline void SetCreatedAt(Aws::Utils::DateTime&& value) { m_createdAtHasBeenSet = true; m_createdAt = std::move(value); }
 
     /**
      * <p>The Unix timestamp for when the service was created.</p>
@@ -261,7 +270,8 @@ namespace Model
     /**
      * <p>The Unix timestamp for when the service was created.</p>
      */
-    inline Deployment& WithCreatedAt(Aws::Utils::DateTime&& value) { SetCreatedAt(value); return *this;}
+    inline Deployment& WithCreatedAt(Aws::Utils::DateTime&& value) { SetCreatedAt(std::move(value)); return *this;}
+
 
     /**
      * <p>The Unix timestamp for when the service was last updated.</p>
@@ -276,7 +286,7 @@ namespace Model
     /**
      * <p>The Unix timestamp for when the service was last updated.</p>
      */
-    inline void SetUpdatedAt(Aws::Utils::DateTime&& value) { m_updatedAtHasBeenSet = true; m_updatedAt = value; }
+    inline void SetUpdatedAt(Aws::Utils::DateTime&& value) { m_updatedAtHasBeenSet = true; m_updatedAt = std::move(value); }
 
     /**
      * <p>The Unix timestamp for when the service was last updated.</p>
@@ -286,23 +296,31 @@ namespace Model
     /**
      * <p>The Unix timestamp for when the service was last updated.</p>
      */
-    inline Deployment& WithUpdatedAt(Aws::Utils::DateTime&& value) { SetUpdatedAt(value); return *this;}
+    inline Deployment& WithUpdatedAt(Aws::Utils::DateTime&& value) { SetUpdatedAt(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     Aws::String m_status;
     bool m_statusHasBeenSet;
+
     Aws::String m_taskDefinition;
     bool m_taskDefinitionHasBeenSet;
+
     int m_desiredCount;
     bool m_desiredCountHasBeenSet;
+
     int m_pendingCount;
     bool m_pendingCountHasBeenSet;
+
     int m_runningCount;
     bool m_runningCountHasBeenSet;
+
     Aws::Utils::DateTime m_createdAt;
     bool m_createdAtHasBeenSet;
+
     Aws::Utils::DateTime m_updatedAt;
     bool m_updatedAtHasBeenSet;
   };

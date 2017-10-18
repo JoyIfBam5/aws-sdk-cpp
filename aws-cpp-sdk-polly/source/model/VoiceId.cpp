@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/polly/model/VoiceId.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -47,6 +48,7 @@ namespace Aws
         static const int Justin_HASH = HashingUtils::HashString("Justin");
         static const int Kendra_HASH = HashingUtils::HashString("Kendra");
         static const int Kimberly_HASH = HashingUtils::HashString("Kimberly");
+        static const int Matthew_HASH = HashingUtils::HashString("Matthew");
         static const int Salli_HASH = HashingUtils::HashString("Salli");
         static const int Conchita_HASH = HashingUtils::HashString("Conchita");
         static const int Enrique_HASH = HashingUtils::HashString("Enrique");
@@ -76,6 +78,8 @@ namespace Aws
         static const int Tatyana_HASH = HashingUtils::HashString("Tatyana");
         static const int Astrid_HASH = HashingUtils::HashString("Astrid");
         static const int Filiz_HASH = HashingUtils::HashString("Filiz");
+        static const int Vicki_HASH = HashingUtils::HashString("Vicki");
+        static const int Takumi_HASH = HashingUtils::HashString("Takumi");
 
 
         VoiceId GetVoiceIdForName(const Aws::String& name)
@@ -152,6 +156,10 @@ namespace Aws
           else if (hashCode == Kimberly_HASH)
           {
             return VoiceId::Kimberly;
+          }
+          else if (hashCode == Matthew_HASH)
+          {
+            return VoiceId::Matthew;
           }
           else if (hashCode == Salli_HASH)
           {
@@ -269,6 +277,14 @@ namespace Aws
           {
             return VoiceId::Filiz;
           }
+          else if (hashCode == Vicki_HASH)
+          {
+            return VoiceId::Vicki;
+          }
+          else if (hashCode == Takumi_HASH)
+          {
+            return VoiceId::Takumi;
+          }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
           {
@@ -319,6 +335,8 @@ namespace Aws
             return "Kendra";
           case VoiceId::Kimberly:
             return "Kimberly";
+          case VoiceId::Matthew:
+            return "Matthew";
           case VoiceId::Salli:
             return "Salli";
           case VoiceId::Conchita:
@@ -377,6 +395,10 @@ namespace Aws
             return "Astrid";
           case VoiceId::Filiz:
             return "Filiz";
+          case VoiceId::Vicki:
+            return "Vicki";
+          case VoiceId::Takumi:
+            return "Takumi";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

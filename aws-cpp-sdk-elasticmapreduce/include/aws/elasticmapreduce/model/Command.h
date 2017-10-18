@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     Command& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the command.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The name of the command.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the command.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The name of the command.</p>
      */
-    inline Command& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline Command& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the command.</p>
      */
     inline Command& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The Amazon S3 location of the command script.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The Amazon S3 location of the command script.</p>
      */
-    inline void SetScriptPath(Aws::String&& value) { m_scriptPathHasBeenSet = true; m_scriptPath = value; }
+    inline void SetScriptPath(Aws::String&& value) { m_scriptPathHasBeenSet = true; m_scriptPath = std::move(value); }
 
     /**
      * <p>The Amazon S3 location of the command script.</p>
@@ -108,12 +112,13 @@ namespace Model
     /**
      * <p>The Amazon S3 location of the command script.</p>
      */
-    inline Command& WithScriptPath(Aws::String&& value) { SetScriptPath(value); return *this;}
+    inline Command& WithScriptPath(Aws::String&& value) { SetScriptPath(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon S3 location of the command script.</p>
      */
     inline Command& WithScriptPath(const char* value) { SetScriptPath(value); return *this;}
+
 
     /**
      * <p>Arguments for Amazon EMR to pass to the command for execution.</p>
@@ -128,7 +133,7 @@ namespace Model
     /**
      * <p>Arguments for Amazon EMR to pass to the command for execution.</p>
      */
-    inline void SetArgs(Aws::Vector<Aws::String>&& value) { m_argsHasBeenSet = true; m_args = value; }
+    inline void SetArgs(Aws::Vector<Aws::String>&& value) { m_argsHasBeenSet = true; m_args = std::move(value); }
 
     /**
      * <p>Arguments for Amazon EMR to pass to the command for execution.</p>
@@ -138,7 +143,7 @@ namespace Model
     /**
      * <p>Arguments for Amazon EMR to pass to the command for execution.</p>
      */
-    inline Command& WithArgs(Aws::Vector<Aws::String>&& value) { SetArgs(value); return *this;}
+    inline Command& WithArgs(Aws::Vector<Aws::String>&& value) { SetArgs(std::move(value)); return *this;}
 
     /**
      * <p>Arguments for Amazon EMR to pass to the command for execution.</p>
@@ -148,7 +153,7 @@ namespace Model
     /**
      * <p>Arguments for Amazon EMR to pass to the command for execution.</p>
      */
-    inline Command& AddArgs(Aws::String&& value) { m_argsHasBeenSet = true; m_args.push_back(value); return *this; }
+    inline Command& AddArgs(Aws::String&& value) { m_argsHasBeenSet = true; m_args.push_back(std::move(value)); return *this; }
 
     /**
      * <p>Arguments for Amazon EMR to pass to the command for execution.</p>
@@ -156,10 +161,13 @@ namespace Model
     inline Command& AddArgs(const char* value) { m_argsHasBeenSet = true; m_args.push_back(value); return *this; }
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_scriptPath;
     bool m_scriptPathHasBeenSet;
+
     Aws::Vector<Aws::String> m_args;
     bool m_argsHasBeenSet;
   };

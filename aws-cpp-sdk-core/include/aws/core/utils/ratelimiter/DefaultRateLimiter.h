@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   *
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -84,7 +84,7 @@ namespace Aws
                     m_accumulatorFraction = temp % m_replenishDenominator;
 
                     // the accumulator is capped based on the maximum rate
-                    m_accumulator = std::min(m_accumulator, m_maxRate);
+                    m_accumulator = (std::min)(m_accumulator, m_maxRate);
                     if (m_accumulator == m_maxRate)
                     {
                         m_accumulatorFraction = 0;
@@ -109,7 +109,11 @@ namespace Aws
                  */
                 virtual void ApplyAndPayForCost(int64_t cost) override
                 {
-                    std::this_thread::sleep_for(ApplyCost(cost));
+                    auto costInMilliseconds = ApplyCost(cost);
+                    if(costInMilliseconds.count() > 0)
+                    {
+                        std::this_thread::sleep_for(costInMilliseconds);
+                    }
                 }
 
                 /**
@@ -120,7 +124,7 @@ namespace Aws
                     std::lock_guard<std::recursive_mutex> lock(m_accumulatorLock);
 
                     // rate must always be positive
-                    rate = std::max(static_cast<int64_t>(1), rate);
+                    rate = (std::max)(static_cast<int64_t>(1), rate);
 
                     if (resetAccumulator)
                     {

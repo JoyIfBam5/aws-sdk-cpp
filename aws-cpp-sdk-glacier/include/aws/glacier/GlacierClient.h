@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/glacier/Glacier_EXPORTS.h>
 #include <aws/glacier/GlacierErrors.h>
@@ -121,16 +122,16 @@ namespace Model
         class UploadArchiveRequest;
         class UploadMultipartPartRequest;
 
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<GlacierErrors>> AbortMultipartUploadOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<GlacierErrors>> AbortVaultLockOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<GlacierErrors>> AddTagsToVaultOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<GlacierErrors>> AbortMultipartUploadOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<GlacierErrors>> AbortVaultLockOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<GlacierErrors>> AddTagsToVaultOutcome;
         typedef Aws::Utils::Outcome<CompleteMultipartUploadResult, Aws::Client::AWSError<GlacierErrors>> CompleteMultipartUploadOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<GlacierErrors>> CompleteVaultLockOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<GlacierErrors>> CompleteVaultLockOutcome;
         typedef Aws::Utils::Outcome<CreateVaultResult, Aws::Client::AWSError<GlacierErrors>> CreateVaultOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<GlacierErrors>> DeleteArchiveOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<GlacierErrors>> DeleteVaultOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<GlacierErrors>> DeleteVaultAccessPolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<GlacierErrors>> DeleteVaultNotificationsOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<GlacierErrors>> DeleteArchiveOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<GlacierErrors>> DeleteVaultOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<GlacierErrors>> DeleteVaultAccessPolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<GlacierErrors>> DeleteVaultNotificationsOutcome;
         typedef Aws::Utils::Outcome<DescribeJobResult, Aws::Client::AWSError<GlacierErrors>> DescribeJobOutcome;
         typedef Aws::Utils::Outcome<DescribeVaultResult, Aws::Client::AWSError<GlacierErrors>> DescribeVaultOutcome;
         typedef Aws::Utils::Outcome<GetDataRetrievalPolicyResult, Aws::Client::AWSError<GlacierErrors>> GetDataRetrievalPolicyOutcome;
@@ -148,10 +149,10 @@ namespace Model
         typedef Aws::Utils::Outcome<ListTagsForVaultResult, Aws::Client::AWSError<GlacierErrors>> ListTagsForVaultOutcome;
         typedef Aws::Utils::Outcome<ListVaultsResult, Aws::Client::AWSError<GlacierErrors>> ListVaultsOutcome;
         typedef Aws::Utils::Outcome<PurchaseProvisionedCapacityResult, Aws::Client::AWSError<GlacierErrors>> PurchaseProvisionedCapacityOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<GlacierErrors>> RemoveTagsFromVaultOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<GlacierErrors>> SetDataRetrievalPolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<GlacierErrors>> SetVaultAccessPolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<GlacierErrors>> SetVaultNotificationsOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<GlacierErrors>> RemoveTagsFromVaultOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<GlacierErrors>> SetDataRetrievalPolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<GlacierErrors>> SetVaultAccessPolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<GlacierErrors>> SetVaultNotificationsOutcome;
         typedef Aws::Utils::Outcome<UploadArchiveResult, Aws::Client::AWSError<GlacierErrors>> UploadArchiveOutcome;
         typedef Aws::Utils::Outcome<UploadMultipartPartResult, Aws::Client::AWSError<GlacierErrors>> UploadMultipartPartOutcome;
 
@@ -262,22 +263,25 @@ namespace Model
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        GlacierClient(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        GlacierClient(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        GlacierClient(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        GlacierClient(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        GlacierClient(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        GlacierClient(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
         virtual ~GlacierClient();
+
+        inline virtual const char* GetServiceClientName() const override { return "glacier"; }
+
 
         /**
          * <p>This operation aborts a multipart upload identified by the upload ID.</p>
@@ -3182,7 +3186,7 @@ namespace Model
 
 
     private:
-      void init(const Client::ClientConfiguration& clientConfiguration);
+      void init(const Aws::Client::ClientConfiguration& clientConfiguration);
 
         /**Async helpers**/
         void AbortMultipartUploadAsyncHelper(const Model::AbortMultipartUploadRequest& request, const AbortMultipartUploadResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -3220,7 +3224,7 @@ namespace Model
         void UploadMultipartPartAsyncHelper(const Model::UploadMultipartPartRequest& request, const UploadMultipartPartResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
       Aws::String m_uri;
-      std::shared_ptr<Utils::Threading::Executor> m_executor;
+      std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;
   };
 
 } // namespace Glacier

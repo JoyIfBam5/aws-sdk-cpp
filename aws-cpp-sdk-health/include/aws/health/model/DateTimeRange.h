@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/health/Health_EXPORTS.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -51,6 +53,7 @@ namespace Model
     DateTimeRange& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The starting date and time of a time range.</p>
      */
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>The starting date and time of a time range.</p>
      */
-    inline void SetFrom(Aws::Utils::DateTime&& value) { m_fromHasBeenSet = true; m_from = value; }
+    inline void SetFrom(Aws::Utils::DateTime&& value) { m_fromHasBeenSet = true; m_from = std::move(value); }
 
     /**
      * <p>The starting date and time of a time range.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>The starting date and time of a time range.</p>
      */
-    inline DateTimeRange& WithFrom(Aws::Utils::DateTime&& value) { SetFrom(value); return *this;}
+    inline DateTimeRange& WithFrom(Aws::Utils::DateTime&& value) { SetFrom(std::move(value)); return *this;}
+
 
     /**
      * <p>The ending date and time of a time range.</p>
@@ -89,7 +93,7 @@ namespace Model
     /**
      * <p>The ending date and time of a time range.</p>
      */
-    inline void SetTo(Aws::Utils::DateTime&& value) { m_toHasBeenSet = true; m_to = value; }
+    inline void SetTo(Aws::Utils::DateTime&& value) { m_toHasBeenSet = true; m_to = std::move(value); }
 
     /**
      * <p>The ending date and time of a time range.</p>
@@ -99,11 +103,13 @@ namespace Model
     /**
      * <p>The ending date and time of a time range.</p>
      */
-    inline DateTimeRange& WithTo(Aws::Utils::DateTime&& value) { SetTo(value); return *this;}
+    inline DateTimeRange& WithTo(Aws::Utils::DateTime&& value) { SetTo(std::move(value)); return *this;}
 
   private:
+
     Aws::Utils::DateTime m_from;
     bool m_fromHasBeenSet;
+
     Aws::Utils::DateTime m_to;
     bool m_toHasBeenSet;
   };

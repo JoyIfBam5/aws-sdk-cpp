@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-identity/CognitoIdentity_EXPORTS.h>
 #include <aws/cognito-identity/CognitoIdentityRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,9 +35,17 @@ namespace Model
   {
   public:
     ListIdentitiesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListIdentities"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
@@ -50,7 +60,7 @@ namespace Model
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
      */
-    inline void SetIdentityPoolId(Aws::String&& value) { m_identityPoolIdHasBeenSet = true; m_identityPoolId = value; }
+    inline void SetIdentityPoolId(Aws::String&& value) { m_identityPoolIdHasBeenSet = true; m_identityPoolId = std::move(value); }
 
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
@@ -65,12 +75,13 @@ namespace Model
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
      */
-    inline ListIdentitiesRequest& WithIdentityPoolId(Aws::String&& value) { SetIdentityPoolId(value); return *this;}
+    inline ListIdentitiesRequest& WithIdentityPoolId(Aws::String&& value) { SetIdentityPoolId(std::move(value)); return *this;}
 
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
      */
     inline ListIdentitiesRequest& WithIdentityPoolId(const char* value) { SetIdentityPoolId(value); return *this;}
+
 
     /**
      * <p>The maximum number of identities to return.</p>
@@ -87,6 +98,7 @@ namespace Model
      */
     inline ListIdentitiesRequest& WithMaxResults(int value) { SetMaxResults(value); return *this;}
 
+
     /**
      * <p>A pagination token.</p>
      */
@@ -100,7 +112,7 @@ namespace Model
     /**
      * <p>A pagination token.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>A pagination token.</p>
@@ -115,12 +127,13 @@ namespace Model
     /**
      * <p>A pagination token.</p>
      */
-    inline ListIdentitiesRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListIdentitiesRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>A pagination token.</p>
      */
     inline ListIdentitiesRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     /**
      * <p>An optional boolean parameter that allows you to hide disabled identities. If
@@ -144,12 +157,16 @@ namespace Model
     inline ListIdentitiesRequest& WithHideDisabled(bool value) { SetHideDisabled(value); return *this;}
 
   private:
+
     Aws::String m_identityPoolId;
     bool m_identityPoolIdHasBeenSet;
+
     int m_maxResults;
     bool m_maxResultsHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
+
     bool m_hideDisabled;
     bool m_hideDisabledHasBeenSet;
   };

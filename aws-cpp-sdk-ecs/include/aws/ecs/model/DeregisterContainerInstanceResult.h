@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/ecs/model/ContainerInstance.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     DeregisterContainerInstanceResult();
-    DeregisterContainerInstanceResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DeregisterContainerInstanceResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DeregisterContainerInstanceResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DeregisterContainerInstanceResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The container instance that was deregistered.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The container instance that was deregistered.</p>
      */
-    inline void SetContainerInstance(ContainerInstance&& value) { m_containerInstance = value; }
+    inline void SetContainerInstance(ContainerInstance&& value) { m_containerInstance = std::move(value); }
 
     /**
      * <p>The container instance that was deregistered.</p>
@@ -62,9 +65,10 @@ namespace Model
     /**
      * <p>The container instance that was deregistered.</p>
      */
-    inline DeregisterContainerInstanceResult& WithContainerInstance(ContainerInstance&& value) { SetContainerInstance(value); return *this;}
+    inline DeregisterContainerInstanceResult& WithContainerInstance(ContainerInstance&& value) { SetContainerInstance(std::move(value)); return *this;}
 
   private:
+
     ContainerInstance m_containerInstance;
   };
 

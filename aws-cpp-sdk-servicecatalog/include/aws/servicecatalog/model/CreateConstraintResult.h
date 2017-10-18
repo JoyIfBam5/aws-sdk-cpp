@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/servicecatalog/model/ConstraintDetail.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/servicecatalog/model/Status.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     CreateConstraintResult();
-    CreateConstraintResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateConstraintResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateConstraintResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateConstraintResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The resulting detailed constraint information.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>The resulting detailed constraint information.</p>
      */
-    inline void SetConstraintDetail(ConstraintDetail&& value) { m_constraintDetail = value; }
+    inline void SetConstraintDetail(ConstraintDetail&& value) { m_constraintDetail = std::move(value); }
 
     /**
      * <p>The resulting detailed constraint information.</p>
@@ -64,7 +67,8 @@ namespace Model
     /**
      * <p>The resulting detailed constraint information.</p>
      */
-    inline CreateConstraintResult& WithConstraintDetail(ConstraintDetail&& value) { SetConstraintDetail(value); return *this;}
+    inline CreateConstraintResult& WithConstraintDetail(ConstraintDetail&& value) { SetConstraintDetail(std::move(value)); return *this;}
+
 
     /**
      * <p>The resulting constraint parameters.</p>
@@ -79,7 +83,7 @@ namespace Model
     /**
      * <p>The resulting constraint parameters.</p>
      */
-    inline void SetConstraintParameters(Aws::String&& value) { m_constraintParameters = value; }
+    inline void SetConstraintParameters(Aws::String&& value) { m_constraintParameters = std::move(value); }
 
     /**
      * <p>The resulting constraint parameters.</p>
@@ -94,12 +98,13 @@ namespace Model
     /**
      * <p>The resulting constraint parameters.</p>
      */
-    inline CreateConstraintResult& WithConstraintParameters(Aws::String&& value) { SetConstraintParameters(value); return *this;}
+    inline CreateConstraintResult& WithConstraintParameters(Aws::String&& value) { SetConstraintParameters(std::move(value)); return *this;}
 
     /**
      * <p>The resulting constraint parameters.</p>
      */
     inline CreateConstraintResult& WithConstraintParameters(const char* value) { SetConstraintParameters(value); return *this;}
+
 
     /**
      * <p>The status of the current request.</p>
@@ -114,7 +119,7 @@ namespace Model
     /**
      * <p>The status of the current request.</p>
      */
-    inline void SetStatus(Status&& value) { m_status = value; }
+    inline void SetStatus(Status&& value) { m_status = std::move(value); }
 
     /**
      * <p>The status of the current request.</p>
@@ -124,11 +129,14 @@ namespace Model
     /**
      * <p>The status of the current request.</p>
      */
-    inline CreateConstraintResult& WithStatus(Status&& value) { SetStatus(value); return *this;}
+    inline CreateConstraintResult& WithStatus(Status&& value) { SetStatus(std::move(value)); return *this;}
 
   private:
+
     ConstraintDetail m_constraintDetail;
+
     Aws::String m_constraintParameters;
+
     Status m_status;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudsearch/CloudSearch_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +51,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * A value to use for the field if the field isn't specified for a document.
      */
@@ -62,7 +65,7 @@ namespace Model
     /**
      * A value to use for the field if the field isn't specified for a document.
      */
-    inline void SetDefaultValue(Aws::String&& value) { m_defaultValueHasBeenSet = true; m_defaultValue = value; }
+    inline void SetDefaultValue(Aws::String&& value) { m_defaultValueHasBeenSet = true; m_defaultValue = std::move(value); }
 
     /**
      * A value to use for the field if the field isn't specified for a document.
@@ -77,12 +80,13 @@ namespace Model
     /**
      * A value to use for the field if the field isn't specified for a document.
      */
-    inline LiteralArrayOptions& WithDefaultValue(Aws::String&& value) { SetDefaultValue(value); return *this;}
+    inline LiteralArrayOptions& WithDefaultValue(Aws::String&& value) { SetDefaultValue(std::move(value)); return *this;}
 
     /**
      * A value to use for the field if the field isn't specified for a document.
      */
     inline LiteralArrayOptions& WithDefaultValue(const char* value) { SetDefaultValue(value); return *this;}
+
 
     /**
      * <p>A list of source fields to map to the field. </p>
@@ -97,7 +101,7 @@ namespace Model
     /**
      * <p>A list of source fields to map to the field. </p>
      */
-    inline void SetSourceFields(Aws::String&& value) { m_sourceFieldsHasBeenSet = true; m_sourceFields = value; }
+    inline void SetSourceFields(Aws::String&& value) { m_sourceFieldsHasBeenSet = true; m_sourceFields = std::move(value); }
 
     /**
      * <p>A list of source fields to map to the field. </p>
@@ -112,12 +116,13 @@ namespace Model
     /**
      * <p>A list of source fields to map to the field. </p>
      */
-    inline LiteralArrayOptions& WithSourceFields(Aws::String&& value) { SetSourceFields(value); return *this;}
+    inline LiteralArrayOptions& WithSourceFields(Aws::String&& value) { SetSourceFields(std::move(value)); return *this;}
 
     /**
      * <p>A list of source fields to map to the field. </p>
      */
     inline LiteralArrayOptions& WithSourceFields(const char* value) { SetSourceFields(value); return *this;}
+
 
     /**
      * <p>Whether facet information can be returned for the field.</p>
@@ -134,6 +139,7 @@ namespace Model
      */
     inline LiteralArrayOptions& WithFacetEnabled(bool value) { SetFacetEnabled(value); return *this;}
 
+
     /**
      * <p>Whether the contents of the field are searchable.</p>
      */
@@ -148,6 +154,7 @@ namespace Model
      * <p>Whether the contents of the field are searchable.</p>
      */
     inline LiteralArrayOptions& WithSearchEnabled(bool value) { SetSearchEnabled(value); return *this;}
+
 
     /**
      * <p>Whether the contents of the field can be returned in the search results.</p>
@@ -165,14 +172,19 @@ namespace Model
     inline LiteralArrayOptions& WithReturnEnabled(bool value) { SetReturnEnabled(value); return *this;}
 
   private:
+
     Aws::String m_defaultValue;
     bool m_defaultValueHasBeenSet;
+
     Aws::String m_sourceFields;
     bool m_sourceFieldsHasBeenSet;
+
     bool m_facetEnabled;
     bool m_facetEnabledHasBeenSet;
+
     bool m_searchEnabled;
     bool m_searchEnabledHasBeenSet;
+
     bool m_returnEnabled;
     bool m_returnEnabledHasBeenSet;
   };

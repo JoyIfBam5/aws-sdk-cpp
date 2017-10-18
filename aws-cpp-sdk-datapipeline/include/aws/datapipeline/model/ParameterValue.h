@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/datapipeline/DataPipeline_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     ParameterValue& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ID of the parameter value.</p>
      */
@@ -56,7 +59,7 @@ namespace Model
     /**
      * <p>The ID of the parameter value.</p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>The ID of the parameter value.</p>
@@ -71,12 +74,13 @@ namespace Model
     /**
      * <p>The ID of the parameter value.</p>
      */
-    inline ParameterValue& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline ParameterValue& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the parameter value.</p>
      */
     inline ParameterValue& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>The field value, expressed as a String.</p>
@@ -91,7 +95,7 @@ namespace Model
     /**
      * <p>The field value, expressed as a String.</p>
      */
-    inline void SetStringValue(Aws::String&& value) { m_stringValueHasBeenSet = true; m_stringValue = value; }
+    inline void SetStringValue(Aws::String&& value) { m_stringValueHasBeenSet = true; m_stringValue = std::move(value); }
 
     /**
      * <p>The field value, expressed as a String.</p>
@@ -106,7 +110,7 @@ namespace Model
     /**
      * <p>The field value, expressed as a String.</p>
      */
-    inline ParameterValue& WithStringValue(Aws::String&& value) { SetStringValue(value); return *this;}
+    inline ParameterValue& WithStringValue(Aws::String&& value) { SetStringValue(std::move(value)); return *this;}
 
     /**
      * <p>The field value, expressed as a String.</p>
@@ -114,8 +118,10 @@ namespace Model
     inline ParameterValue& WithStringValue(const char* value) { SetStringValue(value); return *this;}
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     Aws::String m_stringValue;
     bool m_stringValueHasBeenSet;
   };

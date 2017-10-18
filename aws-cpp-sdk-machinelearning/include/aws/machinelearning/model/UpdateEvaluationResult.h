@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/machinelearning/MachineLearning_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     UpdateEvaluationResult();
-    UpdateEvaluationResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    UpdateEvaluationResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdateEvaluationResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdateEvaluationResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The ID assigned to the <code>Evaluation</code> during creation. This value
@@ -65,7 +68,7 @@ namespace Model
      * should be identical to the value of the <code>Evaluation</code> in the
      * request.</p>
      */
-    inline void SetEvaluationId(Aws::String&& value) { m_evaluationId = value; }
+    inline void SetEvaluationId(Aws::String&& value) { m_evaluationId = std::move(value); }
 
     /**
      * <p>The ID assigned to the <code>Evaluation</code> during creation. This value
@@ -86,7 +89,7 @@ namespace Model
      * should be identical to the value of the <code>Evaluation</code> in the
      * request.</p>
      */
-    inline UpdateEvaluationResult& WithEvaluationId(Aws::String&& value) { SetEvaluationId(value); return *this;}
+    inline UpdateEvaluationResult& WithEvaluationId(Aws::String&& value) { SetEvaluationId(std::move(value)); return *this;}
 
     /**
      * <p>The ID assigned to the <code>Evaluation</code> during creation. This value
@@ -96,6 +99,7 @@ namespace Model
     inline UpdateEvaluationResult& WithEvaluationId(const char* value) { SetEvaluationId(value); return *this;}
 
   private:
+
     Aws::String m_evaluationId;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/model/IPSetDescriptorType.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     IPSetDescriptor& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Specify <code>IPV4</code> or <code>IPV6</code>.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>Specify <code>IPV4</code> or <code>IPV6</code>.</p>
      */
-    inline void SetType(IPSetDescriptorType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(IPSetDescriptorType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>Specify <code>IPV4</code> or <code>IPV6</code>.</p>
@@ -69,7 +72,8 @@ namespace Model
     /**
      * <p>Specify <code>IPV4</code> or <code>IPV6</code>.</p>
      */
-    inline IPSetDescriptor& WithType(IPSetDescriptorType&& value) { SetType(value); return *this;}
+    inline IPSetDescriptor& WithType(IPSetDescriptorType&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p>Specify an IPv4 address by using CIDR notation. For example:</p> <ul> <li>
@@ -132,7 +136,7 @@ namespace Model
      * 1111:0000:0000:0000:ffff:ffff:ffff:ffff, specify
      * <code>1111:0000:0000:0000:0000:0000:0000:0000/64</code>.</p> </li> </ul>
      */
-    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = value; }
+    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = std::move(value); }
 
     /**
      * <p>Specify an IPv4 address by using CIDR notation. For example:</p> <ul> <li>
@@ -195,7 +199,7 @@ namespace Model
      * 1111:0000:0000:0000:ffff:ffff:ffff:ffff, specify
      * <code>1111:0000:0000:0000:0000:0000:0000:0000/64</code>.</p> </li> </ul>
      */
-    inline IPSetDescriptor& WithValue(Aws::String&& value) { SetValue(value); return *this;}
+    inline IPSetDescriptor& WithValue(Aws::String&& value) { SetValue(std::move(value)); return *this;}
 
     /**
      * <p>Specify an IPv4 address by using CIDR notation. For example:</p> <ul> <li>
@@ -219,8 +223,10 @@ namespace Model
     inline IPSetDescriptor& WithValue(const char* value) { SetValue(value); return *this;}
 
   private:
+
     IPSetDescriptorType m_type;
     bool m_typeHasBeenSet;
+
     Aws::String m_value;
     bool m_valueHasBeenSet;
   };

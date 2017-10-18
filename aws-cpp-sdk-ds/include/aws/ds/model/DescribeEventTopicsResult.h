@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ds/DirectoryService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/ds/model/EventTopic.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     DescribeEventTopicsResult();
-    DescribeEventTopicsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeEventTopicsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeEventTopicsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeEventTopicsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A list of SNS topic names that receive status messages from the specified
@@ -61,7 +64,7 @@ namespace Model
      * <p>A list of SNS topic names that receive status messages from the specified
      * Directory ID.</p>
      */
-    inline void SetEventTopics(Aws::Vector<EventTopic>&& value) { m_eventTopics = value; }
+    inline void SetEventTopics(Aws::Vector<EventTopic>&& value) { m_eventTopics = std::move(value); }
 
     /**
      * <p>A list of SNS topic names that receive status messages from the specified
@@ -73,7 +76,7 @@ namespace Model
      * <p>A list of SNS topic names that receive status messages from the specified
      * Directory ID.</p>
      */
-    inline DescribeEventTopicsResult& WithEventTopics(Aws::Vector<EventTopic>&& value) { SetEventTopics(value); return *this;}
+    inline DescribeEventTopicsResult& WithEventTopics(Aws::Vector<EventTopic>&& value) { SetEventTopics(std::move(value)); return *this;}
 
     /**
      * <p>A list of SNS topic names that receive status messages from the specified
@@ -85,9 +88,10 @@ namespace Model
      * <p>A list of SNS topic names that receive status messages from the specified
      * Directory ID.</p>
      */
-    inline DescribeEventTopicsResult& AddEventTopics(EventTopic&& value) { m_eventTopics.push_back(value); return *this; }
+    inline DescribeEventTopicsResult& AddEventTopics(EventTopic&& value) { m_eventTopics.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<EventTopic> m_eventTopics;
   };
 

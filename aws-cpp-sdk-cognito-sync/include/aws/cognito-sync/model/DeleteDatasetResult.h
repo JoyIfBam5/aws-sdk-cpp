@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-sync/CognitoSync_EXPORTS.h>
 #include <aws/cognito-sync/model/Dataset.h>
+#include <utility>
 
 namespace Aws
 {
@@ -41,8 +43,9 @@ namespace Model
   {
   public:
     DeleteDatasetResult();
-    DeleteDatasetResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DeleteDatasetResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DeleteDatasetResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DeleteDatasetResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * A collection of data for an identity pool. An identity pool can have multiple
@@ -69,7 +72,7 @@ namespace Model
      * automatically created if they don't exist. Data is synced by dataset, and a
      * dataset can hold up to 1MB of key-value pairs.
      */
-    inline void SetDataset(Dataset&& value) { m_dataset = value; }
+    inline void SetDataset(Dataset&& value) { m_dataset = std::move(value); }
 
     /**
      * A collection of data for an identity pool. An identity pool can have multiple
@@ -87,9 +90,10 @@ namespace Model
      * automatically created if they don't exist. Data is synced by dataset, and a
      * dataset can hold up to 1MB of key-value pairs.
      */
-    inline DeleteDatasetResult& WithDataset(Dataset&& value) { SetDataset(value); return *this;}
+    inline DeleteDatasetResult& WithDataset(Dataset&& value) { SetDataset(std::move(value)); return *this;}
 
   private:
+
     Dataset m_dataset;
   };
 

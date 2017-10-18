@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/states/SFN_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/states/model/ExecutionStatus.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -40,6 +42,7 @@ namespace Model
     ExecutionListItem& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the execution.</p>
      */
@@ -53,7 +56,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the execution.</p>
      */
-    inline void SetExecutionArn(Aws::String&& value) { m_executionArnHasBeenSet = true; m_executionArn = value; }
+    inline void SetExecutionArn(Aws::String&& value) { m_executionArnHasBeenSet = true; m_executionArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the execution.</p>
@@ -68,12 +71,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the execution.</p>
      */
-    inline ExecutionListItem& WithExecutionArn(Aws::String&& value) { SetExecutionArn(value); return *this;}
+    inline ExecutionListItem& WithExecutionArn(Aws::String&& value) { SetExecutionArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the execution.</p>
      */
     inline ExecutionListItem& WithExecutionArn(const char* value) { SetExecutionArn(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the executed state machine.</p>
@@ -88,7 +92,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the executed state machine.</p>
      */
-    inline void SetStateMachineArn(Aws::String&& value) { m_stateMachineArnHasBeenSet = true; m_stateMachineArn = value; }
+    inline void SetStateMachineArn(Aws::String&& value) { m_stateMachineArnHasBeenSet = true; m_stateMachineArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the executed state machine.</p>
@@ -103,12 +107,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the executed state machine.</p>
      */
-    inline ExecutionListItem& WithStateMachineArn(Aws::String&& value) { SetStateMachineArn(value); return *this;}
+    inline ExecutionListItem& WithStateMachineArn(Aws::String&& value) { SetStateMachineArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the executed state machine.</p>
      */
     inline ExecutionListItem& WithStateMachineArn(const char* value) { SetStateMachineArn(value); return *this;}
+
 
     /**
      * <p>The name of the execution.</p>
@@ -123,7 +128,7 @@ namespace Model
     /**
      * <p>The name of the execution.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the execution.</p>
@@ -138,12 +143,13 @@ namespace Model
     /**
      * <p>The name of the execution.</p>
      */
-    inline ExecutionListItem& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline ExecutionListItem& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the execution.</p>
      */
     inline ExecutionListItem& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The current status of the execution.</p>
@@ -158,7 +164,7 @@ namespace Model
     /**
      * <p>The current status of the execution.</p>
      */
-    inline void SetStatus(ExecutionStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(ExecutionStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The current status of the execution.</p>
@@ -168,7 +174,8 @@ namespace Model
     /**
      * <p>The current status of the execution.</p>
      */
-    inline ExecutionListItem& WithStatus(ExecutionStatus&& value) { SetStatus(value); return *this;}
+    inline ExecutionListItem& WithStatus(ExecutionStatus&& value) { SetStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The date the execution started.</p>
@@ -183,7 +190,7 @@ namespace Model
     /**
      * <p>The date the execution started.</p>
      */
-    inline void SetStartDate(Aws::Utils::DateTime&& value) { m_startDateHasBeenSet = true; m_startDate = value; }
+    inline void SetStartDate(Aws::Utils::DateTime&& value) { m_startDateHasBeenSet = true; m_startDate = std::move(value); }
 
     /**
      * <p>The date the execution started.</p>
@@ -193,7 +200,8 @@ namespace Model
     /**
      * <p>The date the execution started.</p>
      */
-    inline ExecutionListItem& WithStartDate(Aws::Utils::DateTime&& value) { SetStartDate(value); return *this;}
+    inline ExecutionListItem& WithStartDate(Aws::Utils::DateTime&& value) { SetStartDate(std::move(value)); return *this;}
+
 
     /**
      * <p>If the execution already ended, the date the execution stopped.</p>
@@ -208,7 +216,7 @@ namespace Model
     /**
      * <p>If the execution already ended, the date the execution stopped.</p>
      */
-    inline void SetStopDate(Aws::Utils::DateTime&& value) { m_stopDateHasBeenSet = true; m_stopDate = value; }
+    inline void SetStopDate(Aws::Utils::DateTime&& value) { m_stopDateHasBeenSet = true; m_stopDate = std::move(value); }
 
     /**
      * <p>If the execution already ended, the date the execution stopped.</p>
@@ -218,19 +226,25 @@ namespace Model
     /**
      * <p>If the execution already ended, the date the execution stopped.</p>
      */
-    inline ExecutionListItem& WithStopDate(Aws::Utils::DateTime&& value) { SetStopDate(value); return *this;}
+    inline ExecutionListItem& WithStopDate(Aws::Utils::DateTime&& value) { SetStopDate(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_executionArn;
     bool m_executionArnHasBeenSet;
+
     Aws::String m_stateMachineArn;
     bool m_stateMachineArnHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     ExecutionStatus m_status;
     bool m_statusHasBeenSet;
+
     Aws::Utils::DateTime m_startDate;
     bool m_startDateHasBeenSet;
+
     Aws::Utils::DateTime m_stopDate;
     bool m_stopDateHasBeenSet;
   };

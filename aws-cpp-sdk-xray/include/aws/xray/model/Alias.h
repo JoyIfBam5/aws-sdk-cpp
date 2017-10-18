@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/xray/XRay_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     Alias& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The canonical name of the alias.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The canonical name of the alias.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The canonical name of the alias.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The canonical name of the alias.</p>
      */
-    inline Alias& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline Alias& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The canonical name of the alias.</p>
      */
     inline Alias& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>A list of names for the alias, including the canonical name.</p>
@@ -92,7 +96,7 @@ namespace Model
     /**
      * <p>A list of names for the alias, including the canonical name.</p>
      */
-    inline void SetNames(Aws::Vector<Aws::String>&& value) { m_namesHasBeenSet = true; m_names = value; }
+    inline void SetNames(Aws::Vector<Aws::String>&& value) { m_namesHasBeenSet = true; m_names = std::move(value); }
 
     /**
      * <p>A list of names for the alias, including the canonical name.</p>
@@ -102,7 +106,7 @@ namespace Model
     /**
      * <p>A list of names for the alias, including the canonical name.</p>
      */
-    inline Alias& WithNames(Aws::Vector<Aws::String>&& value) { SetNames(value); return *this;}
+    inline Alias& WithNames(Aws::Vector<Aws::String>&& value) { SetNames(std::move(value)); return *this;}
 
     /**
      * <p>A list of names for the alias, including the canonical name.</p>
@@ -112,12 +116,13 @@ namespace Model
     /**
      * <p>A list of names for the alias, including the canonical name.</p>
      */
-    inline Alias& AddNames(Aws::String&& value) { m_namesHasBeenSet = true; m_names.push_back(value); return *this; }
+    inline Alias& AddNames(Aws::String&& value) { m_namesHasBeenSet = true; m_names.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of names for the alias, including the canonical name.</p>
      */
     inline Alias& AddNames(const char* value) { m_namesHasBeenSet = true; m_names.push_back(value); return *this; }
+
 
     /**
      * <p>The type of the alias.</p>
@@ -132,7 +137,7 @@ namespace Model
     /**
      * <p>The type of the alias.</p>
      */
-    inline void SetType(Aws::String&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(Aws::String&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The type of the alias.</p>
@@ -147,7 +152,7 @@ namespace Model
     /**
      * <p>The type of the alias.</p>
      */
-    inline Alias& WithType(Aws::String&& value) { SetType(value); return *this;}
+    inline Alias& WithType(Aws::String&& value) { SetType(std::move(value)); return *this;}
 
     /**
      * <p>The type of the alias.</p>
@@ -155,10 +160,13 @@ namespace Model
     inline Alias& WithType(const char* value) { SetType(value); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::Vector<Aws::String> m_names;
     bool m_namesHasBeenSet;
+
     Aws::String m_type;
     bool m_typeHasBeenSet;
   };

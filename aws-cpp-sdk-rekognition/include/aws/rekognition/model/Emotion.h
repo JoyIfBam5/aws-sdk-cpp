@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rekognition/Rekognition_EXPORTS.h>
 #include <aws/rekognition/model/EmotionName.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     Emotion& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Type of emotion detected.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>Type of emotion detected.</p>
      */
-    inline void SetType(EmotionName&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(EmotionName&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>Type of emotion detected.</p>
@@ -67,7 +70,8 @@ namespace Model
     /**
      * <p>Type of emotion detected.</p>
      */
-    inline Emotion& WithType(EmotionName&& value) { SetType(value); return *this;}
+    inline Emotion& WithType(EmotionName&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p>Level of confidence in the determination.</p>
@@ -85,8 +89,10 @@ namespace Model
     inline Emotion& WithConfidence(double value) { SetConfidence(value); return *this;}
 
   private:
+
     EmotionName m_type;
     bool m_typeHasBeenSet;
+
     double m_confidence;
     bool m_confidenceHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/machinelearning/MachineLearning_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     DeleteDataSourceResult();
-    DeleteDataSourceResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DeleteDataSourceResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DeleteDataSourceResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DeleteDataSourceResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A user-supplied ID that uniquely identifies the <code>DataSource</code>. This
@@ -64,7 +67,7 @@ namespace Model
      * value should be identical to the value of the <code>DataSourceID</code> in the
      * request.</p>
      */
-    inline void SetDataSourceId(Aws::String&& value) { m_dataSourceId = value; }
+    inline void SetDataSourceId(Aws::String&& value) { m_dataSourceId = std::move(value); }
 
     /**
      * <p>A user-supplied ID that uniquely identifies the <code>DataSource</code>. This
@@ -85,7 +88,7 @@ namespace Model
      * value should be identical to the value of the <code>DataSourceID</code> in the
      * request.</p>
      */
-    inline DeleteDataSourceResult& WithDataSourceId(Aws::String&& value) { SetDataSourceId(value); return *this;}
+    inline DeleteDataSourceResult& WithDataSourceId(Aws::String&& value) { SetDataSourceId(std::move(value)); return *this;}
 
     /**
      * <p>A user-supplied ID that uniquely identifies the <code>DataSource</code>. This
@@ -95,6 +98,7 @@ namespace Model
     inline DeleteDataSourceResult& WithDataSourceId(const char* value) { SetDataSourceId(value); return *this;}
 
   private:
+
     Aws::String m_dataSourceId;
   };
 

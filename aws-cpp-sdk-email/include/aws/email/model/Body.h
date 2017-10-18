@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/email/model/Content.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The content of the message, in text format. Use this for text-based email
      * clients, or clients on high-latency networks (such as mobile devices).</p>
@@ -64,7 +67,7 @@ namespace Model
      * <p>The content of the message, in text format. Use this for text-based email
      * clients, or clients on high-latency networks (such as mobile devices).</p>
      */
-    inline void SetText(Content&& value) { m_textHasBeenSet = true; m_text = value; }
+    inline void SetText(Content&& value) { m_textHasBeenSet = true; m_text = std::move(value); }
 
     /**
      * <p>The content of the message, in text format. Use this for text-based email
@@ -76,7 +79,8 @@ namespace Model
      * <p>The content of the message, in text format. Use this for text-based email
      * clients, or clients on high-latency networks (such as mobile devices).</p>
      */
-    inline Body& WithText(Content&& value) { SetText(value); return *this;}
+    inline Body& WithText(Content&& value) { SetText(std::move(value)); return *this;}
+
 
     /**
      * <p>The content of the message, in HTML format. Use this for email clients that
@@ -97,7 +101,7 @@ namespace Model
      * can process HTML. You can include clickable links, formatted text, and much more
      * in an HTML message.</p>
      */
-    inline void SetHtml(Content&& value) { m_htmlHasBeenSet = true; m_html = value; }
+    inline void SetHtml(Content&& value) { m_htmlHasBeenSet = true; m_html = std::move(value); }
 
     /**
      * <p>The content of the message, in HTML format. Use this for email clients that
@@ -111,11 +115,13 @@ namespace Model
      * can process HTML. You can include clickable links, formatted text, and much more
      * in an HTML message.</p>
      */
-    inline Body& WithHtml(Content&& value) { SetHtml(value); return *this;}
+    inline Body& WithHtml(Content&& value) { SetHtml(std::move(value)); return *this;}
 
   private:
+
     Content m_text;
     bool m_textHasBeenSet;
+
     Content m_html;
     bool m_htmlHasBeenSet;
   };

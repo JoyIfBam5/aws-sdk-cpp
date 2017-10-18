@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/servicecatalog/model/RecordDetail.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     UpdateProvisionedProductResult();
-    UpdateProvisionedProductResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    UpdateProvisionedProductResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdateProvisionedProductResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdateProvisionedProductResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The detailed result of the <a>UpdateProvisionedProduct</a> request,
@@ -61,7 +64,7 @@ namespace Model
      * pointer to the ProvisionedProduct object that the request is modifying, and a
      * list of any errors that the request encountered.</p>
      */
-    inline void SetRecordDetail(RecordDetail&& value) { m_recordDetail = value; }
+    inline void SetRecordDetail(RecordDetail&& value) { m_recordDetail = std::move(value); }
 
     /**
      * <p>The detailed result of the <a>UpdateProvisionedProduct</a> request,
@@ -77,9 +80,10 @@ namespace Model
      * pointer to the ProvisionedProduct object that the request is modifying, and a
      * list of any errors that the request encountered.</p>
      */
-    inline UpdateProvisionedProductResult& WithRecordDetail(RecordDetail&& value) { SetRecordDetail(value); return *this;}
+    inline UpdateProvisionedProductResult& WithRecordDetail(RecordDetail&& value) { SetRecordDetail(std::move(value)); return *this;}
 
   private:
+
     RecordDetail m_recordDetail;
   };
 

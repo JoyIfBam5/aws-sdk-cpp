@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -19,6 +20,7 @@
 #include <aws/apigateway/model/ThrottleSettings.h>
 #include <aws/apigateway/model/QuotaSettings.h>
 #include <aws/apigateway/model/ApiStage.h>
+#include <utility>
 
 namespace Aws
 {
@@ -51,8 +53,9 @@ namespace Model
   {
   public:
     UpdateUsagePlanResult();
-    UpdateUsagePlanResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    UpdateUsagePlanResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdateUsagePlanResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdateUsagePlanResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The identifier of a <a>UsagePlan</a> resource.</p>
@@ -67,7 +70,7 @@ namespace Model
     /**
      * <p>The identifier of a <a>UsagePlan</a> resource.</p>
      */
-    inline void SetId(Aws::String&& value) { m_id = value; }
+    inline void SetId(Aws::String&& value) { m_id = std::move(value); }
 
     /**
      * <p>The identifier of a <a>UsagePlan</a> resource.</p>
@@ -82,12 +85,13 @@ namespace Model
     /**
      * <p>The identifier of a <a>UsagePlan</a> resource.</p>
      */
-    inline UpdateUsagePlanResult& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline UpdateUsagePlanResult& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of a <a>UsagePlan</a> resource.</p>
      */
     inline UpdateUsagePlanResult& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>The name of a usage plan.</p>
@@ -102,7 +106,7 @@ namespace Model
     /**
      * <p>The name of a usage plan.</p>
      */
-    inline void SetName(Aws::String&& value) { m_name = value; }
+    inline void SetName(Aws::String&& value) { m_name = std::move(value); }
 
     /**
      * <p>The name of a usage plan.</p>
@@ -117,12 +121,13 @@ namespace Model
     /**
      * <p>The name of a usage plan.</p>
      */
-    inline UpdateUsagePlanResult& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline UpdateUsagePlanResult& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of a usage plan.</p>
      */
     inline UpdateUsagePlanResult& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The description of a usage plan.</p>
@@ -137,7 +142,7 @@ namespace Model
     /**
      * <p>The description of a usage plan.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_description = std::move(value); }
 
     /**
      * <p>The description of a usage plan.</p>
@@ -152,12 +157,13 @@ namespace Model
     /**
      * <p>The description of a usage plan.</p>
      */
-    inline UpdateUsagePlanResult& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline UpdateUsagePlanResult& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description of a usage plan.</p>
      */
     inline UpdateUsagePlanResult& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The associated API stages of a usage plan.</p>
@@ -172,7 +178,7 @@ namespace Model
     /**
      * <p>The associated API stages of a usage plan.</p>
      */
-    inline void SetApiStages(Aws::Vector<ApiStage>&& value) { m_apiStages = value; }
+    inline void SetApiStages(Aws::Vector<ApiStage>&& value) { m_apiStages = std::move(value); }
 
     /**
      * <p>The associated API stages of a usage plan.</p>
@@ -182,7 +188,7 @@ namespace Model
     /**
      * <p>The associated API stages of a usage plan.</p>
      */
-    inline UpdateUsagePlanResult& WithApiStages(Aws::Vector<ApiStage>&& value) { SetApiStages(value); return *this;}
+    inline UpdateUsagePlanResult& WithApiStages(Aws::Vector<ApiStage>&& value) { SetApiStages(std::move(value)); return *this;}
 
     /**
      * <p>The associated API stages of a usage plan.</p>
@@ -192,7 +198,8 @@ namespace Model
     /**
      * <p>The associated API stages of a usage plan.</p>
      */
-    inline UpdateUsagePlanResult& AddApiStages(ApiStage&& value) { m_apiStages.push_back(value); return *this; }
+    inline UpdateUsagePlanResult& AddApiStages(ApiStage&& value) { m_apiStages.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The request throttle limits of a usage plan.</p>
@@ -207,7 +214,7 @@ namespace Model
     /**
      * <p>The request throttle limits of a usage plan.</p>
      */
-    inline void SetThrottle(ThrottleSettings&& value) { m_throttle = value; }
+    inline void SetThrottle(ThrottleSettings&& value) { m_throttle = std::move(value); }
 
     /**
      * <p>The request throttle limits of a usage plan.</p>
@@ -217,7 +224,8 @@ namespace Model
     /**
      * <p>The request throttle limits of a usage plan.</p>
      */
-    inline UpdateUsagePlanResult& WithThrottle(ThrottleSettings&& value) { SetThrottle(value); return *this;}
+    inline UpdateUsagePlanResult& WithThrottle(ThrottleSettings&& value) { SetThrottle(std::move(value)); return *this;}
+
 
     /**
      * <p>The maximum number of permitted requests per a given unit time interval.</p>
@@ -232,7 +240,7 @@ namespace Model
     /**
      * <p>The maximum number of permitted requests per a given unit time interval.</p>
      */
-    inline void SetQuota(QuotaSettings&& value) { m_quota = value; }
+    inline void SetQuota(QuotaSettings&& value) { m_quota = std::move(value); }
 
     /**
      * <p>The maximum number of permitted requests per a given unit time interval.</p>
@@ -242,7 +250,8 @@ namespace Model
     /**
      * <p>The maximum number of permitted requests per a given unit time interval.</p>
      */
-    inline UpdateUsagePlanResult& WithQuota(QuotaSettings&& value) { SetQuota(value); return *this;}
+    inline UpdateUsagePlanResult& WithQuota(QuotaSettings&& value) { SetQuota(std::move(value)); return *this;}
+
 
     /**
      * <p>The AWS Markeplace product identifier to associate with the usage plan as a
@@ -260,7 +269,7 @@ namespace Model
      * <p>The AWS Markeplace product identifier to associate with the usage plan as a
      * SaaS product on AWS Marketplace.</p>
      */
-    inline void SetProductCode(Aws::String&& value) { m_productCode = value; }
+    inline void SetProductCode(Aws::String&& value) { m_productCode = std::move(value); }
 
     /**
      * <p>The AWS Markeplace product identifier to associate with the usage plan as a
@@ -278,7 +287,7 @@ namespace Model
      * <p>The AWS Markeplace product identifier to associate with the usage plan as a
      * SaaS product on AWS Marketplace.</p>
      */
-    inline UpdateUsagePlanResult& WithProductCode(Aws::String&& value) { SetProductCode(value); return *this;}
+    inline UpdateUsagePlanResult& WithProductCode(Aws::String&& value) { SetProductCode(std::move(value)); return *this;}
 
     /**
      * <p>The AWS Markeplace product identifier to associate with the usage plan as a
@@ -287,12 +296,19 @@ namespace Model
     inline UpdateUsagePlanResult& WithProductCode(const char* value) { SetProductCode(value); return *this;}
 
   private:
+
     Aws::String m_id;
+
     Aws::String m_name;
+
     Aws::String m_description;
+
     Aws::Vector<ApiStage> m_apiStages;
+
     ThrottleSettings m_throttle;
+
     QuotaSettings m_quota;
+
     Aws::String m_productCode;
   };
 

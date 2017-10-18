@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/model/MatchFieldType.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     FieldToMatch(const Aws::Utils::Json::JsonValue& jsonValue);
     FieldToMatch& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>The part of the web request that you want AWS WAF to search for a specified
@@ -118,7 +121,7 @@ namespace Model
      * can create a size constraint set. For more information, see
      * <a>CreateSizeConstraintSet</a>. </p> </li> </ul>
      */
-    inline void SetType(MatchFieldType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(MatchFieldType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The part of the web request that you want AWS WAF to search for a specified
@@ -168,7 +171,8 @@ namespace Model
      * can create a size constraint set. For more information, see
      * <a>CreateSizeConstraintSet</a>. </p> </li> </ul>
      */
-    inline FieldToMatch& WithType(MatchFieldType&& value) { SetType(value); return *this;}
+    inline FieldToMatch& WithType(MatchFieldType&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p>When the value of <code>Type</code> is <code>HEADER</code>, enter the name of
@@ -192,7 +196,7 @@ namespace Model
      * or <code>Referer</code>. If the value of <code>Type</code> is any other value,
      * omit <code>Data</code>.</p> <p>The name of the header is not case sensitive.</p>
      */
-    inline void SetData(Aws::String&& value) { m_dataHasBeenSet = true; m_data = value; }
+    inline void SetData(Aws::String&& value) { m_dataHasBeenSet = true; m_data = std::move(value); }
 
     /**
      * <p>When the value of <code>Type</code> is <code>HEADER</code>, enter the name of
@@ -216,7 +220,7 @@ namespace Model
      * or <code>Referer</code>. If the value of <code>Type</code> is any other value,
      * omit <code>Data</code>.</p> <p>The name of the header is not case sensitive.</p>
      */
-    inline FieldToMatch& WithData(Aws::String&& value) { SetData(value); return *this;}
+    inline FieldToMatch& WithData(Aws::String&& value) { SetData(std::move(value)); return *this;}
 
     /**
      * <p>When the value of <code>Type</code> is <code>HEADER</code>, enter the name of
@@ -227,8 +231,10 @@ namespace Model
     inline FieldToMatch& WithData(const char* value) { SetData(value); return *this;}
 
   private:
+
     MatchFieldType m_type;
     bool m_typeHasBeenSet;
+
     Aws::String m_data;
     bool m_dataHasBeenSet;
   };

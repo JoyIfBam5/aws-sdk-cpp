@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/model/ChangeAction.h>
 #include <aws/waf/model/SqlInjectionMatchTuple.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     SqlInjectionMatchSetUpdate& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Specify <code>INSERT</code> to add a <a>SqlInjectionMatchSetUpdate</a> to a
      * <a>SqlInjectionMatchSet</a>. Use <code>DELETE</code> to remove a
@@ -69,7 +72,7 @@ namespace Model
      * <code>SqlInjectionMatchSetUpdate</code> from a
      * <code>SqlInjectionMatchSet</code>.</p>
      */
-    inline void SetAction(ChangeAction&& value) { m_actionHasBeenSet = true; m_action = value; }
+    inline void SetAction(ChangeAction&& value) { m_actionHasBeenSet = true; m_action = std::move(value); }
 
     /**
      * <p>Specify <code>INSERT</code> to add a <a>SqlInjectionMatchSetUpdate</a> to a
@@ -85,7 +88,8 @@ namespace Model
      * <code>SqlInjectionMatchSetUpdate</code> from a
      * <code>SqlInjectionMatchSet</code>.</p>
      */
-    inline SqlInjectionMatchSetUpdate& WithAction(ChangeAction&& value) { SetAction(value); return *this;}
+    inline SqlInjectionMatchSetUpdate& WithAction(ChangeAction&& value) { SetAction(std::move(value)); return *this;}
+
 
     /**
      * <p>Specifies the part of a web request that you want AWS WAF to inspect for
@@ -106,7 +110,7 @@ namespace Model
      * snippets of malicious SQL code and, if you want AWS WAF to inspect a header, the
      * name of the header.</p>
      */
-    inline void SetSqlInjectionMatchTuple(SqlInjectionMatchTuple&& value) { m_sqlInjectionMatchTupleHasBeenSet = true; m_sqlInjectionMatchTuple = value; }
+    inline void SetSqlInjectionMatchTuple(SqlInjectionMatchTuple&& value) { m_sqlInjectionMatchTupleHasBeenSet = true; m_sqlInjectionMatchTuple = std::move(value); }
 
     /**
      * <p>Specifies the part of a web request that you want AWS WAF to inspect for
@@ -120,11 +124,13 @@ namespace Model
      * snippets of malicious SQL code and, if you want AWS WAF to inspect a header, the
      * name of the header.</p>
      */
-    inline SqlInjectionMatchSetUpdate& WithSqlInjectionMatchTuple(SqlInjectionMatchTuple&& value) { SetSqlInjectionMatchTuple(value); return *this;}
+    inline SqlInjectionMatchSetUpdate& WithSqlInjectionMatchTuple(SqlInjectionMatchTuple&& value) { SetSqlInjectionMatchTuple(std::move(value)); return *this;}
 
   private:
+
     ChangeAction m_action;
     bool m_actionHasBeenSet;
+
     SqlInjectionMatchTuple m_sqlInjectionMatchTuple;
     bool m_sqlInjectionMatchTupleHasBeenSet;
   };

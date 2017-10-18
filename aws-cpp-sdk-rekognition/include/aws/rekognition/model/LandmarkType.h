@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rekognition/Rekognition_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -25,31 +26,31 @@ namespace Model
   enum class LandmarkType
   {
     NOT_SET,
-    EYE_LEFT,
-    EYE_RIGHT,
-    NOSE,
-    MOUTH_LEFT,
-    MOUTH_RIGHT,
-    LEFT_EYEBROW_LEFT,
-    LEFT_EYEBROW_RIGHT,
-    LEFT_EYEBROW_UP,
-    RIGHT_EYEBROW_LEFT,
-    RIGHT_EYEBROW_RIGHT,
-    RIGHT_EYEBROW_UP,
-    LEFT_EYE_LEFT,
-    LEFT_EYE_RIGHT,
-    LEFT_EYE_UP,
-    LEFT_EYE_DOWN,
-    RIGHT_EYE_LEFT,
-    RIGHT_EYE_RIGHT,
-    RIGHT_EYE_UP,
-    RIGHT_EYE_DOWN,
-    NOSE_LEFT,
-    NOSE_RIGHT,
-    MOUTH_UP,
-    MOUTH_DOWN,
-    LEFT_PUPIL,
-    RIGHT_PUPIL
+    eyeLeft,
+    eyeRight,
+    nose,
+    mouthLeft,
+    mouthRight,
+    leftEyeBrowLeft,
+    leftEyeBrowRight,
+    leftEyeBrowUp,
+    rightEyeBrowLeft,
+    rightEyeBrowRight,
+    rightEyeBrowUp,
+    leftEyeLeft,
+    leftEyeRight,
+    leftEyeUp,
+    leftEyeDown,
+    rightEyeLeft,
+    rightEyeRight,
+    rightEyeUp,
+    rightEyeDown,
+    noseLeft,
+    noseRight,
+    mouthUp,
+    mouthDown,
+    leftPupil,
+    rightPupil
   };
 
 namespace LandmarkTypeMapper

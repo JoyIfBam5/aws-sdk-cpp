@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/application-autoscaling/ApplicationAutoScaling_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/application-autoscaling/model/ScalableTarget.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     DescribeScalableTargetsResult();
-    DescribeScalableTargetsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeScalableTargetsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeScalableTargetsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeScalableTargetsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The list of scalable targets that matches the request parameters.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>The list of scalable targets that matches the request parameters.</p>
      */
-    inline void SetScalableTargets(Aws::Vector<ScalableTarget>&& value) { m_scalableTargets = value; }
+    inline void SetScalableTargets(Aws::Vector<ScalableTarget>&& value) { m_scalableTargets = std::move(value); }
 
     /**
      * <p>The list of scalable targets that matches the request parameters.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>The list of scalable targets that matches the request parameters.</p>
      */
-    inline DescribeScalableTargetsResult& WithScalableTargets(Aws::Vector<ScalableTarget>&& value) { SetScalableTargets(value); return *this;}
+    inline DescribeScalableTargetsResult& WithScalableTargets(Aws::Vector<ScalableTarget>&& value) { SetScalableTargets(std::move(value)); return *this;}
 
     /**
      * <p>The list of scalable targets that matches the request parameters.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>The list of scalable targets that matches the request parameters.</p>
      */
-    inline DescribeScalableTargetsResult& AddScalableTargets(ScalableTarget&& value) { m_scalableTargets.push_back(value); return *this; }
+    inline DescribeScalableTargetsResult& AddScalableTargets(ScalableTarget&& value) { m_scalableTargets.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The token required to get the next set of results. This value is
@@ -92,7 +96,7 @@ namespace Model
      * <p>The token required to get the next set of results. This value is
      * <code>null</code> if there are no more results to return.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The token required to get the next set of results. This value is
@@ -110,7 +114,7 @@ namespace Model
      * <p>The token required to get the next set of results. This value is
      * <code>null</code> if there are no more results to return.</p>
      */
-    inline DescribeScalableTargetsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeScalableTargetsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The token required to get the next set of results. This value is
@@ -119,7 +123,9 @@ namespace Model
     inline DescribeScalableTargetsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<ScalableTarget> m_scalableTargets;
+
     Aws::String m_nextToken;
   };
 

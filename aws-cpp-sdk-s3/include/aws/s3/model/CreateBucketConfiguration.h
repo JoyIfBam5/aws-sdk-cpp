@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/s3/model/BucketLocationConstraint.h>
+#include <utility>
 
 namespace Aws
 {
@@ -39,6 +41,7 @@ namespace Model
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
 
+
     /**
      * Specifies the region where the bucket will be created. If you don't specify a
      * region, the bucket will be created in US Standard.
@@ -55,7 +58,7 @@ namespace Model
      * Specifies the region where the bucket will be created. If you don't specify a
      * region, the bucket will be created in US Standard.
      */
-    inline void SetLocationConstraint(BucketLocationConstraint&& value) { m_locationConstraintHasBeenSet = true; m_locationConstraint = value; }
+    inline void SetLocationConstraint(BucketLocationConstraint&& value) { m_locationConstraintHasBeenSet = true; m_locationConstraint = std::move(value); }
 
     /**
      * Specifies the region where the bucket will be created. If you don't specify a
@@ -67,9 +70,10 @@ namespace Model
      * Specifies the region where the bucket will be created. If you don't specify a
      * region, the bucket will be created in US Standard.
      */
-    inline CreateBucketConfiguration& WithLocationConstraint(BucketLocationConstraint&& value) { SetLocationConstraint(value); return *this;}
+    inline CreateBucketConfiguration& WithLocationConstraint(BucketLocationConstraint&& value) { SetLocationConstraint(std::move(value)); return *this;}
 
   private:
+
     BucketLocationConstraint m_locationConstraint;
     bool m_locationConstraintHasBeenSet;
   };

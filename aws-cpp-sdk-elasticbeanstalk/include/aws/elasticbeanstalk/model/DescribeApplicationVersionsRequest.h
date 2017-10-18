@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/elasticbeanstalk/ElasticBeanstalkRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,7 +36,19 @@ namespace Model
   {
   public:
     DescribeApplicationVersionsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeApplicationVersions"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>Specify an application name to show only application versions for that
@@ -52,7 +66,7 @@ namespace Model
      * <p>Specify an application name to show only application versions for that
      * application.</p>
      */
-    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = value; }
+    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = std::move(value); }
 
     /**
      * <p>Specify an application name to show only application versions for that
@@ -70,13 +84,14 @@ namespace Model
      * <p>Specify an application name to show only application versions for that
      * application.</p>
      */
-    inline DescribeApplicationVersionsRequest& WithApplicationName(Aws::String&& value) { SetApplicationName(value); return *this;}
+    inline DescribeApplicationVersionsRequest& WithApplicationName(Aws::String&& value) { SetApplicationName(std::move(value)); return *this;}
 
     /**
      * <p>Specify an application name to show only application versions for that
      * application.</p>
      */
     inline DescribeApplicationVersionsRequest& WithApplicationName(const char* value) { SetApplicationName(value); return *this;}
+
 
     /**
      * <p>Specify a version label to show a specific application version.</p>
@@ -91,7 +106,7 @@ namespace Model
     /**
      * <p>Specify a version label to show a specific application version.</p>
      */
-    inline void SetVersionLabels(Aws::Vector<Aws::String>&& value) { m_versionLabelsHasBeenSet = true; m_versionLabels = value; }
+    inline void SetVersionLabels(Aws::Vector<Aws::String>&& value) { m_versionLabelsHasBeenSet = true; m_versionLabels = std::move(value); }
 
     /**
      * <p>Specify a version label to show a specific application version.</p>
@@ -101,7 +116,7 @@ namespace Model
     /**
      * <p>Specify a version label to show a specific application version.</p>
      */
-    inline DescribeApplicationVersionsRequest& WithVersionLabels(Aws::Vector<Aws::String>&& value) { SetVersionLabels(value); return *this;}
+    inline DescribeApplicationVersionsRequest& WithVersionLabels(Aws::Vector<Aws::String>&& value) { SetVersionLabels(std::move(value)); return *this;}
 
     /**
      * <p>Specify a version label to show a specific application version.</p>
@@ -111,73 +126,103 @@ namespace Model
     /**
      * <p>Specify a version label to show a specific application version.</p>
      */
-    inline DescribeApplicationVersionsRequest& AddVersionLabels(Aws::String&& value) { m_versionLabelsHasBeenSet = true; m_versionLabels.push_back(value); return *this; }
+    inline DescribeApplicationVersionsRequest& AddVersionLabels(Aws::String&& value) { m_versionLabelsHasBeenSet = true; m_versionLabels.push_back(std::move(value)); return *this; }
 
     /**
      * <p>Specify a version label to show a specific application version.</p>
      */
     inline DescribeApplicationVersionsRequest& AddVersionLabels(const char* value) { m_versionLabelsHasBeenSet = true; m_versionLabels.push_back(value); return *this; }
 
+
     /**
-     * <p>Specify a maximum number of application versions to paginate in the
-     * request.</p>
+     * <p>For a paginated request. Specify a maximum number of application versions to
+     * include in each response.</p> <p>If no <code>MaxRecords</code> is specified, all
+     * available application versions are retrieved in a single response.</p>
      */
     inline int GetMaxRecords() const{ return m_maxRecords; }
 
     /**
-     * <p>Specify a maximum number of application versions to paginate in the
-     * request.</p>
+     * <p>For a paginated request. Specify a maximum number of application versions to
+     * include in each response.</p> <p>If no <code>MaxRecords</code> is specified, all
+     * available application versions are retrieved in a single response.</p>
      */
     inline void SetMaxRecords(int value) { m_maxRecordsHasBeenSet = true; m_maxRecords = value; }
 
     /**
-     * <p>Specify a maximum number of application versions to paginate in the
-     * request.</p>
+     * <p>For a paginated request. Specify a maximum number of application versions to
+     * include in each response.</p> <p>If no <code>MaxRecords</code> is specified, all
+     * available application versions are retrieved in a single response.</p>
      */
     inline DescribeApplicationVersionsRequest& WithMaxRecords(int value) { SetMaxRecords(value); return *this;}
 
+
     /**
-     * <p>Specify a next token to retrieve the next page in a paginated request.</p>
+     * <p>For a paginated request. Specify a token from a previous response page to
+     * retrieve the next response page. All other parameter values must be identical to
+     * the ones specified in the initial request.</p> <p>If no <code>NextToken</code>
+     * is specified, the first page is retrieved.</p>
      */
     inline const Aws::String& GetNextToken() const{ return m_nextToken; }
 
     /**
-     * <p>Specify a next token to retrieve the next page in a paginated request.</p>
+     * <p>For a paginated request. Specify a token from a previous response page to
+     * retrieve the next response page. All other parameter values must be identical to
+     * the ones specified in the initial request.</p> <p>If no <code>NextToken</code>
+     * is specified, the first page is retrieved.</p>
      */
     inline void SetNextToken(const Aws::String& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
 
     /**
-     * <p>Specify a next token to retrieve the next page in a paginated request.</p>
+     * <p>For a paginated request. Specify a token from a previous response page to
+     * retrieve the next response page. All other parameter values must be identical to
+     * the ones specified in the initial request.</p> <p>If no <code>NextToken</code>
+     * is specified, the first page is retrieved.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
-     * <p>Specify a next token to retrieve the next page in a paginated request.</p>
+     * <p>For a paginated request. Specify a token from a previous response page to
+     * retrieve the next response page. All other parameter values must be identical to
+     * the ones specified in the initial request.</p> <p>If no <code>NextToken</code>
+     * is specified, the first page is retrieved.</p>
      */
     inline void SetNextToken(const char* value) { m_nextTokenHasBeenSet = true; m_nextToken.assign(value); }
 
     /**
-     * <p>Specify a next token to retrieve the next page in a paginated request.</p>
+     * <p>For a paginated request. Specify a token from a previous response page to
+     * retrieve the next response page. All other parameter values must be identical to
+     * the ones specified in the initial request.</p> <p>If no <code>NextToken</code>
+     * is specified, the first page is retrieved.</p>
      */
     inline DescribeApplicationVersionsRequest& WithNextToken(const Aws::String& value) { SetNextToken(value); return *this;}
 
     /**
-     * <p>Specify a next token to retrieve the next page in a paginated request.</p>
+     * <p>For a paginated request. Specify a token from a previous response page to
+     * retrieve the next response page. All other parameter values must be identical to
+     * the ones specified in the initial request.</p> <p>If no <code>NextToken</code>
+     * is specified, the first page is retrieved.</p>
      */
-    inline DescribeApplicationVersionsRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeApplicationVersionsRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
-     * <p>Specify a next token to retrieve the next page in a paginated request.</p>
+     * <p>For a paginated request. Specify a token from a previous response page to
+     * retrieve the next response page. All other parameter values must be identical to
+     * the ones specified in the initial request.</p> <p>If no <code>NextToken</code>
+     * is specified, the first page is retrieved.</p>
      */
     inline DescribeApplicationVersionsRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::String m_applicationName;
     bool m_applicationNameHasBeenSet;
+
     Aws::Vector<Aws::String> m_versionLabels;
     bool m_versionLabelsHasBeenSet;
+
     int m_maxRecords;
     bool m_maxRecordsHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
   };

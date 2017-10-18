@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/cloudformation/model/CreateChangeSetResult.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
@@ -30,17 +31,17 @@ CreateChangeSetResult::CreateChangeSetResult()
 {
 }
 
-CreateChangeSetResult::CreateChangeSetResult(const AmazonWebServiceResult<XmlDocument>& result)
+CreateChangeSetResult::CreateChangeSetResult(const Aws::AmazonWebServiceResult<XmlDocument>& result)
 {
   *this = result;
 }
 
-CreateChangeSetResult& CreateChangeSetResult::operator =(const AmazonWebServiceResult<XmlDocument>& result)
+CreateChangeSetResult& CreateChangeSetResult::operator =(const Aws::AmazonWebServiceResult<XmlDocument>& result)
 {
   const XmlDocument& xmlDocument = result.GetPayload();
   XmlNode rootNode = xmlDocument.GetRootElement();
   XmlNode resultNode = rootNode;
-  if (rootNode.GetName() != "CreateChangeSetResult")
+  if (!rootNode.IsNull() && (rootNode.GetName() != "CreateChangeSetResult"))
   {
     resultNode = rootNode.FirstChild("CreateChangeSetResult");
   }
@@ -59,9 +60,10 @@ CreateChangeSetResult& CreateChangeSetResult::operator =(const AmazonWebServiceR
     }
   }
 
-  XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
-  m_responseMetadata = responseMetadataNode;
-  AWS_LOGSTREAM_DEBUG("Aws::CloudFormation::Model::CreateChangeSetResult", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
-
+  if (!rootNode.IsNull()) {
+    XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
+    m_responseMetadata = responseMetadataNode;
+    AWS_LOGSTREAM_DEBUG("Aws::CloudFormation::Model::CreateChangeSetResult", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
+  }
   return *this;
 }

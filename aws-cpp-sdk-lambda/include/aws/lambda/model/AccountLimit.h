@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lambda/Lambda_EXPORTS.h>
 
@@ -43,23 +44,25 @@ namespace Model
     AccountLimit& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p>Maximum size, in megabytes, of a code package you can upload per region. The
+     * <p>Maximum size, in bytes, of a code package you can upload per region. The
      * default size is 75 GB. </p>
      */
     inline long long GetTotalCodeSize() const{ return m_totalCodeSize; }
 
     /**
-     * <p>Maximum size, in megabytes, of a code package you can upload per region. The
+     * <p>Maximum size, in bytes, of a code package you can upload per region. The
      * default size is 75 GB. </p>
      */
     inline void SetTotalCodeSize(long long value) { m_totalCodeSizeHasBeenSet = true; m_totalCodeSize = value; }
 
     /**
-     * <p>Maximum size, in megabytes, of a code package you can upload per region. The
+     * <p>Maximum size, in bytes, of a code package you can upload per region. The
      * default size is 75 GB. </p>
      */
     inline AccountLimit& WithTotalCodeSize(long long value) { SetTotalCodeSize(value); return *this;}
+
 
     /**
      * <p>Size, in bytes, of code/dependencies that you can zip into a deployment
@@ -82,6 +85,7 @@ namespace Model
      */
     inline AccountLimit& WithCodeSizeUnzipped(long long value) { SetCodeSizeUnzipped(value); return *this;}
 
+
     /**
      * <p>Size, in bytes, of a single zipped code/dependencies package you can upload
      * for your Lambda function(.zip/.jar file). Try using Amazon S3 for uploading
@@ -102,6 +106,7 @@ namespace Model
      * larger files. Default limit is 50 MB.</p>
      */
     inline AccountLimit& WithCodeSizeZipped(long long value) { SetCodeSizeZipped(value); return *this;}
+
 
     /**
      * <p>Number of simultaneous executions of your function per region. For more
@@ -128,12 +133,16 @@ namespace Model
     inline AccountLimit& WithConcurrentExecutions(int value) { SetConcurrentExecutions(value); return *this;}
 
   private:
+
     long long m_totalCodeSize;
     bool m_totalCodeSizeHasBeenSet;
+
     long long m_codeSizeUnzipped;
     bool m_codeSizeUnzippedHasBeenSet;
+
     long long m_codeSizeZipped;
     bool m_codeSizeZippedHasBeenSet;
+
     int m_concurrentExecutions;
     bool m_concurrentExecutionsHasBeenSet;
   };

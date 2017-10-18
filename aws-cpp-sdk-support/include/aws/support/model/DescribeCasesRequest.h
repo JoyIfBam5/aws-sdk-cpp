@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/support/Support_EXPORTS.h>
 #include <aws/support/SupportRequest.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     DescribeCasesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeCases"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>A list of ID numbers of the support cases you want returned. The maximum
@@ -54,7 +64,7 @@ namespace Model
      * <p>A list of ID numbers of the support cases you want returned. The maximum
      * number of cases is 100.</p>
      */
-    inline void SetCaseIdList(Aws::Vector<Aws::String>&& value) { m_caseIdListHasBeenSet = true; m_caseIdList = value; }
+    inline void SetCaseIdList(Aws::Vector<Aws::String>&& value) { m_caseIdListHasBeenSet = true; m_caseIdList = std::move(value); }
 
     /**
      * <p>A list of ID numbers of the support cases you want returned. The maximum
@@ -66,7 +76,7 @@ namespace Model
      * <p>A list of ID numbers of the support cases you want returned. The maximum
      * number of cases is 100.</p>
      */
-    inline DescribeCasesRequest& WithCaseIdList(Aws::Vector<Aws::String>&& value) { SetCaseIdList(value); return *this;}
+    inline DescribeCasesRequest& WithCaseIdList(Aws::Vector<Aws::String>&& value) { SetCaseIdList(std::move(value)); return *this;}
 
     /**
      * <p>A list of ID numbers of the support cases you want returned. The maximum
@@ -78,13 +88,14 @@ namespace Model
      * <p>A list of ID numbers of the support cases you want returned. The maximum
      * number of cases is 100.</p>
      */
-    inline DescribeCasesRequest& AddCaseIdList(Aws::String&& value) { m_caseIdListHasBeenSet = true; m_caseIdList.push_back(value); return *this; }
+    inline DescribeCasesRequest& AddCaseIdList(Aws::String&& value) { m_caseIdListHasBeenSet = true; m_caseIdList.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of ID numbers of the support cases you want returned. The maximum
      * number of cases is 100.</p>
      */
     inline DescribeCasesRequest& AddCaseIdList(const char* value) { m_caseIdListHasBeenSet = true; m_caseIdList.push_back(value); return *this; }
+
 
     /**
      * <p>The ID displayed for a case in the AWS Support Center user interface.</p>
@@ -99,7 +110,7 @@ namespace Model
     /**
      * <p>The ID displayed for a case in the AWS Support Center user interface.</p>
      */
-    inline void SetDisplayId(Aws::String&& value) { m_displayIdHasBeenSet = true; m_displayId = value; }
+    inline void SetDisplayId(Aws::String&& value) { m_displayIdHasBeenSet = true; m_displayId = std::move(value); }
 
     /**
      * <p>The ID displayed for a case in the AWS Support Center user interface.</p>
@@ -114,12 +125,13 @@ namespace Model
     /**
      * <p>The ID displayed for a case in the AWS Support Center user interface.</p>
      */
-    inline DescribeCasesRequest& WithDisplayId(Aws::String&& value) { SetDisplayId(value); return *this;}
+    inline DescribeCasesRequest& WithDisplayId(Aws::String&& value) { SetDisplayId(std::move(value)); return *this;}
 
     /**
      * <p>The ID displayed for a case in the AWS Support Center user interface.</p>
      */
     inline DescribeCasesRequest& WithDisplayId(const char* value) { SetDisplayId(value); return *this;}
+
 
     /**
      * <p>The start date for a filtered date search on support case communications.
@@ -137,7 +149,7 @@ namespace Model
      * <p>The start date for a filtered date search on support case communications.
      * Case communications are available for 12 months after creation.</p>
      */
-    inline void SetAfterTime(Aws::String&& value) { m_afterTimeHasBeenSet = true; m_afterTime = value; }
+    inline void SetAfterTime(Aws::String&& value) { m_afterTimeHasBeenSet = true; m_afterTime = std::move(value); }
 
     /**
      * <p>The start date for a filtered date search on support case communications.
@@ -155,13 +167,14 @@ namespace Model
      * <p>The start date for a filtered date search on support case communications.
      * Case communications are available for 12 months after creation.</p>
      */
-    inline DescribeCasesRequest& WithAfterTime(Aws::String&& value) { SetAfterTime(value); return *this;}
+    inline DescribeCasesRequest& WithAfterTime(Aws::String&& value) { SetAfterTime(std::move(value)); return *this;}
 
     /**
      * <p>The start date for a filtered date search on support case communications.
      * Case communications are available for 12 months after creation.</p>
      */
     inline DescribeCasesRequest& WithAfterTime(const char* value) { SetAfterTime(value); return *this;}
+
 
     /**
      * <p>The end date for a filtered date search on support case communications. Case
@@ -179,7 +192,7 @@ namespace Model
      * <p>The end date for a filtered date search on support case communications. Case
      * communications are available for 12 months after creation.</p>
      */
-    inline void SetBeforeTime(Aws::String&& value) { m_beforeTimeHasBeenSet = true; m_beforeTime = value; }
+    inline void SetBeforeTime(Aws::String&& value) { m_beforeTimeHasBeenSet = true; m_beforeTime = std::move(value); }
 
     /**
      * <p>The end date for a filtered date search on support case communications. Case
@@ -197,13 +210,14 @@ namespace Model
      * <p>The end date for a filtered date search on support case communications. Case
      * communications are available for 12 months after creation.</p>
      */
-    inline DescribeCasesRequest& WithBeforeTime(Aws::String&& value) { SetBeforeTime(value); return *this;}
+    inline DescribeCasesRequest& WithBeforeTime(Aws::String&& value) { SetBeforeTime(std::move(value)); return *this;}
 
     /**
      * <p>The end date for a filtered date search on support case communications. Case
      * communications are available for 12 months after creation.</p>
      */
     inline DescribeCasesRequest& WithBeforeTime(const char* value) { SetBeforeTime(value); return *this;}
+
 
     /**
      * <p>Specifies whether resolved support cases should be included in the
@@ -223,6 +237,7 @@ namespace Model
      */
     inline DescribeCasesRequest& WithIncludeResolvedCases(bool value) { SetIncludeResolvedCases(value); return *this;}
 
+
     /**
      * <p>A resumption point for pagination.</p>
      */
@@ -236,7 +251,7 @@ namespace Model
     /**
      * <p>A resumption point for pagination.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>A resumption point for pagination.</p>
@@ -251,12 +266,13 @@ namespace Model
     /**
      * <p>A resumption point for pagination.</p>
      */
-    inline DescribeCasesRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeCasesRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>A resumption point for pagination.</p>
      */
     inline DescribeCasesRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     /**
      * <p>The maximum number of results to return before paginating.</p>
@@ -272,6 +288,7 @@ namespace Model
      * <p>The maximum number of results to return before paginating.</p>
      */
     inline DescribeCasesRequest& WithMaxResults(int value) { SetMaxResults(value); return *this;}
+
 
     /**
      * <p>The ISO 639-1 code for the language in which AWS provides support. AWS
@@ -292,7 +309,7 @@ namespace Model
      * Support currently supports English ("en") and Japanese ("ja"). Language
      * parameters must be passed explicitly for operations that take them.</p>
      */
-    inline void SetLanguage(Aws::String&& value) { m_languageHasBeenSet = true; m_language = value; }
+    inline void SetLanguage(Aws::String&& value) { m_languageHasBeenSet = true; m_language = std::move(value); }
 
     /**
      * <p>The ISO 639-1 code for the language in which AWS provides support. AWS
@@ -313,7 +330,7 @@ namespace Model
      * Support currently supports English ("en") and Japanese ("ja"). Language
      * parameters must be passed explicitly for operations that take them.</p>
      */
-    inline DescribeCasesRequest& WithLanguage(Aws::String&& value) { SetLanguage(value); return *this;}
+    inline DescribeCasesRequest& WithLanguage(Aws::String&& value) { SetLanguage(std::move(value)); return *this;}
 
     /**
      * <p>The ISO 639-1 code for the language in which AWS provides support. AWS
@@ -321,6 +338,7 @@ namespace Model
      * parameters must be passed explicitly for operations that take them.</p>
      */
     inline DescribeCasesRequest& WithLanguage(const char* value) { SetLanguage(value); return *this;}
+
 
     /**
      * <p>Specifies whether communications should be included in the
@@ -341,22 +359,31 @@ namespace Model
     inline DescribeCasesRequest& WithIncludeCommunications(bool value) { SetIncludeCommunications(value); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_caseIdList;
     bool m_caseIdListHasBeenSet;
+
     Aws::String m_displayId;
     bool m_displayIdHasBeenSet;
+
     Aws::String m_afterTime;
     bool m_afterTimeHasBeenSet;
+
     Aws::String m_beforeTime;
     bool m_beforeTimeHasBeenSet;
+
     bool m_includeResolvedCases;
     bool m_includeResolvedCasesHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
+
     int m_maxResults;
     bool m_maxResultsHasBeenSet;
+
     Aws::String m_language;
     bool m_languageHasBeenSet;
+
     bool m_includeCommunications;
     bool m_includeCommunicationsHasBeenSet;
   };

@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   *
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@
 #include <aws/core/utils/FileSystemUtils.h>
 #include <aws/core/utils/memory/stl/AWSSet.h>
 #include <aws/external/gtest.h>
-#include <aws/testing/MemoryTesting.h>
 
 #include <fstream>
 
@@ -109,7 +108,7 @@ public:
 
     void TearDown() override
     {
-        Aws::FileSystem::DeepDeleteDirectory(dir1.c_str());
+        EXPECT_TRUE(Aws::FileSystem::DeepDeleteDirectory(dir1.c_str()));
     }
 };
 
@@ -178,6 +177,8 @@ TEST_F(DirectoryTreeTest, TestDirectoryTreeEqualityOperator)
 {
     Aws::FileSystem::DirectoryTree tree(dir1);
 
+	ASSERT_TRUE(tree);
+
     Aws::String comparisonDirectory = Aws::FileSystem::Join(Aws::FileSystem::GetHomeDirectory(), "compDir");
     ASSERT_TRUE(Aws::FileSystem::DeepCopyDirectory(dir1.c_str(), comparisonDirectory.c_str()));
     EXPECT_TRUE(tree == comparisonDirectory);
@@ -222,6 +223,8 @@ TEST_F(DirectoryTreeTest, TestDirectoryTreeBreadthFirstTraversal)
 {
     Aws::FileSystem::DirectoryTree tree(dir1);
 
+	ASSERT_TRUE(tree);
+
     Aws::Set<Aws::String> paths({ dir2, file1, file2 });
 
     auto visitor = [&](const Aws::FileSystem::DirectoryTree*, const Aws::FileSystem::DirectoryEntry& entry) { paths.erase(entry.path); return true; };
@@ -229,4 +232,38 @@ TEST_F(DirectoryTreeTest, TestDirectoryTreeBreadthFirstTraversal)
     tree.TraverseBreadthFirst(visitor);
 
     ASSERT_TRUE(paths.empty());
+}
+
+TEST_F(DirectoryTreeTest, TestDirectoryTreeBreadthFirstTraversalGetAllFiles)
+{
+    Aws::Vector<Aws::String> filesVector = Aws::FileSystem::Directory::GetAllFilePathsInDirectory(dir1);
+    ASSERT_EQ(filesVector.size(), 2u);
+    ASSERT_STREQ(filesVector[0].c_str(), file1.c_str());
+    ASSERT_STREQ(filesVector[1].c_str(), file2.c_str());
+}
+
+TEST_F(DirectoryTreeTest, TestPathUtilsGetFileNameWithExt)
+{
+    ASSERT_STREQ(Aws::Utils::PathUtils::GetFileNameFromPathWithExt("").c_str(), "");
+    ASSERT_STREQ(Aws::Utils::PathUtils::GetFileNameFromPathWithExt(".").c_str(), ".");
+    ASSERT_STREQ(Aws::Utils::PathUtils::GetFileNameFromPathWithExt(Aws::FileSystem::Join("","")).c_str(), "");
+    ASSERT_STREQ(Aws::Utils::PathUtils::GetFileNameFromPathWithExt("file.ext").c_str(), "file.ext");
+    ASSERT_STREQ(Aws::Utils::PathUtils::GetFileNameFromPathWithExt(Aws::FileSystem::Join(Aws::FileSystem::Join("path", "to"), "file")).c_str(), "file");
+    ASSERT_STREQ(Aws::Utils::PathUtils::GetFileNameFromPathWithExt(Aws::FileSystem::Join(Aws::FileSystem::Join("path", "to"), "file.dll")).c_str(), "file.dll");
+    ASSERT_STREQ(Aws::Utils::PathUtils::GetFileNameFromPathWithExt(Aws::FileSystem::Join(Aws::FileSystem::Join("path", "to"), "file.dll.so")).c_str(), "file.dll.so");
+    ASSERT_STREQ(Aws::Utils::PathUtils::GetFileNameFromPathWithExt(Aws::FileSystem::Join(Aws::FileSystem::Join("path", "to.so"), "file.dll.so")).c_str(), "file.dll.so");
+    ASSERT_STREQ(Aws::Utils::PathUtils::GetFileNameFromPathWithExt(Aws::FileSystem::Join(Aws::FileSystem::Join(Aws::FileSystem::Join("path", "to"), "file.dll"), "")).c_str(), "");
+}
+
+TEST_F(DirectoryTreeTest, TestPathUtilsGetFileNameWithoutExt)
+{
+    ASSERT_STREQ(Aws::Utils::PathUtils::GetFileNameFromPathWithoutExt("").c_str(), "");
+    ASSERT_STREQ(Aws::Utils::PathUtils::GetFileNameFromPathWithoutExt(".").c_str(), "");
+    ASSERT_STREQ(Aws::Utils::PathUtils::GetFileNameFromPathWithoutExt(Aws::FileSystem::Join("", "")).c_str(), "");
+    ASSERT_STREQ(Aws::Utils::PathUtils::GetFileNameFromPathWithoutExt("file.ext").c_str(), "file");
+    ASSERT_STREQ(Aws::Utils::PathUtils::GetFileNameFromPathWithoutExt(Aws::FileSystem::Join(Aws::FileSystem::Join("path", "to"), "file")).c_str(), "file");
+    ASSERT_STREQ(Aws::Utils::PathUtils::GetFileNameFromPathWithoutExt(Aws::FileSystem::Join(Aws::FileSystem::Join("path", "to"), "file.dll")).c_str(), "file");
+    ASSERT_STREQ(Aws::Utils::PathUtils::GetFileNameFromPathWithoutExt(Aws::FileSystem::Join(Aws::FileSystem::Join("path", "to"), "file.dll.so")).c_str(), "file.dll");
+    ASSERT_STREQ(Aws::Utils::PathUtils::GetFileNameFromPathWithoutExt(Aws::FileSystem::Join(Aws::FileSystem::Join("path", "to.so"), "file.dll.so")).c_str(), "file.dll");
+    ASSERT_STREQ(Aws::Utils::PathUtils::GetFileNameFromPathWithoutExt(Aws::FileSystem::Join(Aws::FileSystem::Join(Aws::FileSystem::Join("path", "to"), "file.dll"), "")).c_str(), "");
 }

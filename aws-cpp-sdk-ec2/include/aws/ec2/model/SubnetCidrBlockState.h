@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/ec2/model/SubnetCidrBlockStateCode.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The state of a CIDR block.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The state of a CIDR block.</p>
      */
-    inline void SetState(SubnetCidrBlockStateCode&& value) { m_stateHasBeenSet = true; m_state = value; }
+    inline void SetState(SubnetCidrBlockStateCode&& value) { m_stateHasBeenSet = true; m_state = std::move(value); }
 
     /**
      * <p>The state of a CIDR block.</p>
@@ -70,7 +73,8 @@ namespace Model
     /**
      * <p>The state of a CIDR block.</p>
      */
-    inline SubnetCidrBlockState& WithState(SubnetCidrBlockStateCode&& value) { SetState(value); return *this;}
+    inline SubnetCidrBlockState& WithState(SubnetCidrBlockStateCode&& value) { SetState(std::move(value)); return *this;}
+
 
     /**
      * <p>A message about the status of the CIDR block, if applicable.</p>
@@ -85,7 +89,7 @@ namespace Model
     /**
      * <p>A message about the status of the CIDR block, if applicable.</p>
      */
-    inline void SetStatusMessage(Aws::String&& value) { m_statusMessageHasBeenSet = true; m_statusMessage = value; }
+    inline void SetStatusMessage(Aws::String&& value) { m_statusMessageHasBeenSet = true; m_statusMessage = std::move(value); }
 
     /**
      * <p>A message about the status of the CIDR block, if applicable.</p>
@@ -100,7 +104,7 @@ namespace Model
     /**
      * <p>A message about the status of the CIDR block, if applicable.</p>
      */
-    inline SubnetCidrBlockState& WithStatusMessage(Aws::String&& value) { SetStatusMessage(value); return *this;}
+    inline SubnetCidrBlockState& WithStatusMessage(Aws::String&& value) { SetStatusMessage(std::move(value)); return *this;}
 
     /**
      * <p>A message about the status of the CIDR block, if applicable.</p>
@@ -108,8 +112,10 @@ namespace Model
     inline SubnetCidrBlockState& WithStatusMessage(const char* value) { SetStatusMessage(value); return *this;}
 
   private:
+
     SubnetCidrBlockStateCode m_state;
     bool m_stateHasBeenSet;
+
     Aws::String m_statusMessage;
     bool m_statusMessageHasBeenSet;
   };

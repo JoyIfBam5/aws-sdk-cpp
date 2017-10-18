@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/InstanceNetworkInterfaceAssociation.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,16 +31,16 @@ namespace Model
 {
 
 InstanceNetworkInterfaceAssociation::InstanceNetworkInterfaceAssociation() : 
-    m_publicIpHasBeenSet(false),
+    m_ipOwnerIdHasBeenSet(false),
     m_publicDnsNameHasBeenSet(false),
-    m_ipOwnerIdHasBeenSet(false)
+    m_publicIpHasBeenSet(false)
 {
 }
 
 InstanceNetworkInterfaceAssociation::InstanceNetworkInterfaceAssociation(const XmlNode& xmlNode) : 
-    m_publicIpHasBeenSet(false),
+    m_ipOwnerIdHasBeenSet(false),
     m_publicDnsNameHasBeenSet(false),
-    m_ipOwnerIdHasBeenSet(false)
+    m_publicIpHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -50,11 +51,11 @@ InstanceNetworkInterfaceAssociation& InstanceNetworkInterfaceAssociation::operat
 
   if(!resultNode.IsNull())
   {
-    XmlNode publicIpNode = resultNode.FirstChild("publicIp");
-    if(!publicIpNode.IsNull())
+    XmlNode ipOwnerIdNode = resultNode.FirstChild("ipOwnerId");
+    if(!ipOwnerIdNode.IsNull())
     {
-      m_publicIp = StringUtils::Trim(publicIpNode.GetText().c_str());
-      m_publicIpHasBeenSet = true;
+      m_ipOwnerId = StringUtils::Trim(ipOwnerIdNode.GetText().c_str());
+      m_ipOwnerIdHasBeenSet = true;
     }
     XmlNode publicDnsNameNode = resultNode.FirstChild("publicDnsName");
     if(!publicDnsNameNode.IsNull())
@@ -62,11 +63,11 @@ InstanceNetworkInterfaceAssociation& InstanceNetworkInterfaceAssociation::operat
       m_publicDnsName = StringUtils::Trim(publicDnsNameNode.GetText().c_str());
       m_publicDnsNameHasBeenSet = true;
     }
-    XmlNode ipOwnerIdNode = resultNode.FirstChild("ipOwnerId");
-    if(!ipOwnerIdNode.IsNull())
+    XmlNode publicIpNode = resultNode.FirstChild("publicIp");
+    if(!publicIpNode.IsNull())
     {
-      m_ipOwnerId = StringUtils::Trim(ipOwnerIdNode.GetText().c_str());
-      m_ipOwnerIdHasBeenSet = true;
+      m_publicIp = StringUtils::Trim(publicIpNode.GetText().c_str());
+      m_publicIpHasBeenSet = true;
     }
   }
 
@@ -75,9 +76,9 @@ InstanceNetworkInterfaceAssociation& InstanceNetworkInterfaceAssociation::operat
 
 void InstanceNetworkInterfaceAssociation::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
-  if(m_publicIpHasBeenSet)
+  if(m_ipOwnerIdHasBeenSet)
   {
-      oStream << location << index << locationValue << ".PublicIp=" << StringUtils::URLEncode(m_publicIp.c_str()) << "&";
+      oStream << location << index << locationValue << ".IpOwnerId=" << StringUtils::URLEncode(m_ipOwnerId.c_str()) << "&";
   }
 
   if(m_publicDnsNameHasBeenSet)
@@ -85,26 +86,26 @@ void InstanceNetworkInterfaceAssociation::OutputToStream(Aws::OStream& oStream, 
       oStream << location << index << locationValue << ".PublicDnsName=" << StringUtils::URLEncode(m_publicDnsName.c_str()) << "&";
   }
 
-  if(m_ipOwnerIdHasBeenSet)
+  if(m_publicIpHasBeenSet)
   {
-      oStream << location << index << locationValue << ".IpOwnerId=" << StringUtils::URLEncode(m_ipOwnerId.c_str()) << "&";
+      oStream << location << index << locationValue << ".PublicIp=" << StringUtils::URLEncode(m_publicIp.c_str()) << "&";
   }
 
 }
 
 void InstanceNetworkInterfaceAssociation::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
-  if(m_publicIpHasBeenSet)
+  if(m_ipOwnerIdHasBeenSet)
   {
-      oStream << location << ".PublicIp=" << StringUtils::URLEncode(m_publicIp.c_str()) << "&";
+      oStream << location << ".IpOwnerId=" << StringUtils::URLEncode(m_ipOwnerId.c_str()) << "&";
   }
   if(m_publicDnsNameHasBeenSet)
   {
       oStream << location << ".PublicDnsName=" << StringUtils::URLEncode(m_publicDnsName.c_str()) << "&";
   }
-  if(m_ipOwnerIdHasBeenSet)
+  if(m_publicIpHasBeenSet)
   {
-      oStream << location << ".IpOwnerId=" << StringUtils::URLEncode(m_ipOwnerId.c_str()) << "&";
+      oStream << location << ".PublicIp=" << StringUtils::URLEncode(m_publicIp.c_str()) << "&";
   }
 }
 

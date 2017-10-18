@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53/Route53_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/route53/model/RRType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
 
+
     /**
      * <p>The ID that Amazon Route 53 assigned to the traffic policy when you created
      * it.</p>
@@ -63,7 +66,7 @@ namespace Model
      * <p>The ID that Amazon Route 53 assigned to the traffic policy when you created
      * it.</p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>The ID that Amazon Route 53 assigned to the traffic policy when you created
@@ -81,13 +84,14 @@ namespace Model
      * <p>The ID that Amazon Route 53 assigned to the traffic policy when you created
      * it.</p>
      */
-    inline TrafficPolicySummary& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline TrafficPolicySummary& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The ID that Amazon Route 53 assigned to the traffic policy when you created
      * it.</p>
      */
     inline TrafficPolicySummary& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>The name that you specified for the traffic policy when you created it.</p>
@@ -102,7 +106,7 @@ namespace Model
     /**
      * <p>The name that you specified for the traffic policy when you created it.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name that you specified for the traffic policy when you created it.</p>
@@ -117,12 +121,13 @@ namespace Model
     /**
      * <p>The name that you specified for the traffic policy when you created it.</p>
      */
-    inline TrafficPolicySummary& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline TrafficPolicySummary& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name that you specified for the traffic policy when you created it.</p>
      */
     inline TrafficPolicySummary& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The DNS type of the resource record sets that Amazon Route 53 creates when
@@ -140,7 +145,7 @@ namespace Model
      * <p>The DNS type of the resource record sets that Amazon Route 53 creates when
      * you use a traffic policy to create a traffic policy instance.</p>
      */
-    inline void SetType(RRType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(RRType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The DNS type of the resource record sets that Amazon Route 53 creates when
@@ -152,7 +157,8 @@ namespace Model
      * <p>The DNS type of the resource record sets that Amazon Route 53 creates when
      * you use a traffic policy to create a traffic policy instance.</p>
      */
-    inline TrafficPolicySummary& WithType(RRType&& value) { SetType(value); return *this;}
+    inline TrafficPolicySummary& WithType(RRType&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p>The version number of the latest version of the traffic policy.</p>
@@ -168,6 +174,7 @@ namespace Model
      * <p>The version number of the latest version of the traffic policy.</p>
      */
     inline TrafficPolicySummary& WithLatestVersion(int value) { SetLatestVersion(value); return *this;}
+
 
     /**
      * <p>The number of traffic policies that are associated with the current AWS
@@ -188,14 +195,19 @@ namespace Model
     inline TrafficPolicySummary& WithTrafficPolicyCount(int value) { SetTrafficPolicyCount(value); return *this;}
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     RRType m_type;
     bool m_typeHasBeenSet;
+
     int m_latestVersion;
     bool m_latestVersionHasBeenSet;
+
     int m_trafficPolicyCount;
     bool m_trafficPolicyCountHasBeenSet;
   };

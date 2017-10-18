@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/machinelearning/MachineLearning_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     RedshiftDatabase& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     
     inline const Aws::String& GetDatabaseName() const{ return m_databaseName; }
 
@@ -51,7 +54,7 @@ namespace Model
     inline void SetDatabaseName(const Aws::String& value) { m_databaseNameHasBeenSet = true; m_databaseName = value; }
 
     
-    inline void SetDatabaseName(Aws::String&& value) { m_databaseNameHasBeenSet = true; m_databaseName = value; }
+    inline void SetDatabaseName(Aws::String&& value) { m_databaseNameHasBeenSet = true; m_databaseName = std::move(value); }
 
     
     inline void SetDatabaseName(const char* value) { m_databaseNameHasBeenSet = true; m_databaseName.assign(value); }
@@ -60,10 +63,11 @@ namespace Model
     inline RedshiftDatabase& WithDatabaseName(const Aws::String& value) { SetDatabaseName(value); return *this;}
 
     
-    inline RedshiftDatabase& WithDatabaseName(Aws::String&& value) { SetDatabaseName(value); return *this;}
+    inline RedshiftDatabase& WithDatabaseName(Aws::String&& value) { SetDatabaseName(std::move(value)); return *this;}
 
     
     inline RedshiftDatabase& WithDatabaseName(const char* value) { SetDatabaseName(value); return *this;}
+
 
     
     inline const Aws::String& GetClusterIdentifier() const{ return m_clusterIdentifier; }
@@ -72,7 +76,7 @@ namespace Model
     inline void SetClusterIdentifier(const Aws::String& value) { m_clusterIdentifierHasBeenSet = true; m_clusterIdentifier = value; }
 
     
-    inline void SetClusterIdentifier(Aws::String&& value) { m_clusterIdentifierHasBeenSet = true; m_clusterIdentifier = value; }
+    inline void SetClusterIdentifier(Aws::String&& value) { m_clusterIdentifierHasBeenSet = true; m_clusterIdentifier = std::move(value); }
 
     
     inline void SetClusterIdentifier(const char* value) { m_clusterIdentifierHasBeenSet = true; m_clusterIdentifier.assign(value); }
@@ -81,14 +85,16 @@ namespace Model
     inline RedshiftDatabase& WithClusterIdentifier(const Aws::String& value) { SetClusterIdentifier(value); return *this;}
 
     
-    inline RedshiftDatabase& WithClusterIdentifier(Aws::String&& value) { SetClusterIdentifier(value); return *this;}
+    inline RedshiftDatabase& WithClusterIdentifier(Aws::String&& value) { SetClusterIdentifier(std::move(value)); return *this;}
 
     
     inline RedshiftDatabase& WithClusterIdentifier(const char* value) { SetClusterIdentifier(value); return *this;}
 
   private:
+
     Aws::String m_databaseName;
     bool m_databaseNameHasBeenSet;
+
     Aws::String m_clusterIdentifier;
     bool m_clusterIdentifierHasBeenSet;
   };

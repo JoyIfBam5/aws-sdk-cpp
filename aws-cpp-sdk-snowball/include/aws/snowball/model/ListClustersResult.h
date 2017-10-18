@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/snowball/Snowball_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/snowball/model/ClusterListEntry.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     ListClustersResult();
-    ListClustersResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListClustersResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListClustersResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListClustersResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Each <code>ClusterListEntry</code> object contains a cluster's state, a
@@ -57,7 +60,7 @@ namespace Model
      * <p>Each <code>ClusterListEntry</code> object contains a cluster's state, a
      * cluster's ID, and other important status information.</p>
      */
-    inline void SetClusterListEntries(Aws::Vector<ClusterListEntry>&& value) { m_clusterListEntries = value; }
+    inline void SetClusterListEntries(Aws::Vector<ClusterListEntry>&& value) { m_clusterListEntries = std::move(value); }
 
     /**
      * <p>Each <code>ClusterListEntry</code> object contains a cluster's state, a
@@ -69,7 +72,7 @@ namespace Model
      * <p>Each <code>ClusterListEntry</code> object contains a cluster's state, a
      * cluster's ID, and other important status information.</p>
      */
-    inline ListClustersResult& WithClusterListEntries(Aws::Vector<ClusterListEntry>&& value) { SetClusterListEntries(value); return *this;}
+    inline ListClustersResult& WithClusterListEntries(Aws::Vector<ClusterListEntry>&& value) { SetClusterListEntries(std::move(value)); return *this;}
 
     /**
      * <p>Each <code>ClusterListEntry</code> object contains a cluster's state, a
@@ -81,7 +84,8 @@ namespace Model
      * <p>Each <code>ClusterListEntry</code> object contains a cluster's state, a
      * cluster's ID, and other important status information.</p>
      */
-    inline ListClustersResult& AddClusterListEntries(ClusterListEntry&& value) { m_clusterListEntries.push_back(value); return *this; }
+    inline ListClustersResult& AddClusterListEntries(ClusterListEntry&& value) { m_clusterListEntries.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>HTTP requests are stateless. If you use the automatically generated
@@ -102,7 +106,7 @@ namespace Model
      * <code>NextToken</code> value in your next <code>ClusterListEntry</code> call,
      * your list of returned clusters will start from this point in the array.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>HTTP requests are stateless. If you use the automatically generated
@@ -123,7 +127,7 @@ namespace Model
      * <code>NextToken</code> value in your next <code>ClusterListEntry</code> call,
      * your list of returned clusters will start from this point in the array.</p>
      */
-    inline ListClustersResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListClustersResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>HTTP requests are stateless. If you use the automatically generated
@@ -133,7 +137,9 @@ namespace Model
     inline ListClustersResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<ClusterListEntry> m_clusterListEntries;
+
     Aws::String m_nextToken;
   };
 

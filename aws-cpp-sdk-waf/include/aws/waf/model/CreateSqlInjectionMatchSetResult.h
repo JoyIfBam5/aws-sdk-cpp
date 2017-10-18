@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/model/SqlInjectionMatchSet.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     CreateSqlInjectionMatchSetResult();
-    CreateSqlInjectionMatchSetResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateSqlInjectionMatchSetResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateSqlInjectionMatchSetResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateSqlInjectionMatchSetResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A <a>SqlInjectionMatchSet</a>.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>A <a>SqlInjectionMatchSet</a>.</p>
      */
-    inline void SetSqlInjectionMatchSet(SqlInjectionMatchSet&& value) { m_sqlInjectionMatchSet = value; }
+    inline void SetSqlInjectionMatchSet(SqlInjectionMatchSet&& value) { m_sqlInjectionMatchSet = std::move(value); }
 
     /**
      * <p>A <a>SqlInjectionMatchSet</a>.</p>
@@ -69,7 +72,8 @@ namespace Model
     /**
      * <p>A <a>SqlInjectionMatchSet</a>.</p>
      */
-    inline CreateSqlInjectionMatchSetResult& WithSqlInjectionMatchSet(SqlInjectionMatchSet&& value) { SetSqlInjectionMatchSet(value); return *this;}
+    inline CreateSqlInjectionMatchSetResult& WithSqlInjectionMatchSet(SqlInjectionMatchSet&& value) { SetSqlInjectionMatchSet(std::move(value)); return *this;}
+
 
     /**
      * <p>The <code>ChangeToken</code> that you used to submit the
@@ -93,7 +97,7 @@ namespace Model
      * query the status of the request. For more information, see
      * <a>GetChangeTokenStatus</a>.</p>
      */
-    inline void SetChangeToken(Aws::String&& value) { m_changeToken = value; }
+    inline void SetChangeToken(Aws::String&& value) { m_changeToken = std::move(value); }
 
     /**
      * <p>The <code>ChangeToken</code> that you used to submit the
@@ -117,7 +121,7 @@ namespace Model
      * query the status of the request. For more information, see
      * <a>GetChangeTokenStatus</a>.</p>
      */
-    inline CreateSqlInjectionMatchSetResult& WithChangeToken(Aws::String&& value) { SetChangeToken(value); return *this;}
+    inline CreateSqlInjectionMatchSetResult& WithChangeToken(Aws::String&& value) { SetChangeToken(std::move(value)); return *this;}
 
     /**
      * <p>The <code>ChangeToken</code> that you used to submit the
@@ -128,7 +132,9 @@ namespace Model
     inline CreateSqlInjectionMatchSetResult& WithChangeToken(const char* value) { SetChangeToken(value); return *this;}
 
   private:
+
     SqlInjectionMatchSet m_sqlInjectionMatchSet;
+
     Aws::String m_changeToken;
   };
 

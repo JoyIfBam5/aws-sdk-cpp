@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codebuild/CodeBuild_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     ListProjectsResult();
-    ListProjectsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListProjectsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListProjectsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListProjectsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>If there are more than 100 items in the list, only the first 100 items are
@@ -62,7 +65,7 @@ namespace Model
      * batch of items in the list, call this operation again, adding the next token to
      * the call.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>If there are more than 100 items in the list, only the first 100 items are
@@ -86,7 +89,7 @@ namespace Model
      * batch of items in the list, call this operation again, adding the next token to
      * the call.</p>
      */
-    inline ListProjectsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListProjectsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>If there are more than 100 items in the list, only the first 100 items are
@@ -95,6 +98,7 @@ namespace Model
      * the call.</p>
      */
     inline ListProjectsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     /**
      * <p>The list of build project names, with each build project name representing a
@@ -112,7 +116,7 @@ namespace Model
      * <p>The list of build project names, with each build project name representing a
      * single build project.</p>
      */
-    inline void SetProjects(Aws::Vector<Aws::String>&& value) { m_projects = value; }
+    inline void SetProjects(Aws::Vector<Aws::String>&& value) { m_projects = std::move(value); }
 
     /**
      * <p>The list of build project names, with each build project name representing a
@@ -124,7 +128,7 @@ namespace Model
      * <p>The list of build project names, with each build project name representing a
      * single build project.</p>
      */
-    inline ListProjectsResult& WithProjects(Aws::Vector<Aws::String>&& value) { SetProjects(value); return *this;}
+    inline ListProjectsResult& WithProjects(Aws::Vector<Aws::String>&& value) { SetProjects(std::move(value)); return *this;}
 
     /**
      * <p>The list of build project names, with each build project name representing a
@@ -136,7 +140,7 @@ namespace Model
      * <p>The list of build project names, with each build project name representing a
      * single build project.</p>
      */
-    inline ListProjectsResult& AddProjects(Aws::String&& value) { m_projects.push_back(value); return *this; }
+    inline ListProjectsResult& AddProjects(Aws::String&& value) { m_projects.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The list of build project names, with each build project name representing a
@@ -145,7 +149,9 @@ namespace Model
     inline ListProjectsResult& AddProjects(const char* value) { m_projects.push_back(value); return *this; }
 
   private:
+
     Aws::String m_nextToken;
+
     Aws::Vector<Aws::String> m_projects;
   };
 

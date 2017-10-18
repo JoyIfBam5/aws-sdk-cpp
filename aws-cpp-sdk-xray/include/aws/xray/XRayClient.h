@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/xray/XRay_EXPORTS.h>
 #include <aws/xray/XRayErrors.h>
@@ -115,22 +116,25 @@ namespace Model
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        XRayClient(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        XRayClient(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        XRayClient(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        XRayClient(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        XRayClient(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        XRayClient(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
         virtual ~XRayClient();
+
+        inline virtual const char* GetServiceClientName() const override { return "xray"; }
+
 
         /**
          * <p>Retrieves a list of traces specified by ID. Each trace is a collection of
@@ -237,7 +241,18 @@ namespace Model
         /**
          * <p>Retrieves IDs and metadata for traces available for a specified time frame
          * using an optional filter. To get the full traces, pass the trace IDs to
-         * <code>BatchGetTraces</code>.</p><p><h3>See Also:</h3>   <a
+         * <code>BatchGetTraces</code>.</p> <p>A filter expression can target traced
+         * requests that hit specific service nodes or edges, have errors, or come from a
+         * known user. For example, the following filter expression targets traces that
+         * pass through <code>api.example.com</code>:</p> <p>
+         * <code>service("api.example.com")</code> </p> <p>This filter expression finds
+         * traces that have an annotation named <code>account</code> with the value
+         * <code>12345</code>:</p> <p> <code>annotation.account = "12345"</code> </p>
+         * <p>For a full list of indexed fields and keywords that you can use in filter
+         * expressions, see <a
+         * href="http://docs.aws.amazon.com/xray/latest/devguide/xray-console-filters.html">Using
+         * Filter Expressions</a> in the <i>AWS X-Ray Developer Guide</i>.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetTraceSummaries">AWS
          * API Reference</a></p>
          */
@@ -246,7 +261,18 @@ namespace Model
         /**
          * <p>Retrieves IDs and metadata for traces available for a specified time frame
          * using an optional filter. To get the full traces, pass the trace IDs to
-         * <code>BatchGetTraces</code>.</p><p><h3>See Also:</h3>   <a
+         * <code>BatchGetTraces</code>.</p> <p>A filter expression can target traced
+         * requests that hit specific service nodes or edges, have errors, or come from a
+         * known user. For example, the following filter expression targets traces that
+         * pass through <code>api.example.com</code>:</p> <p>
+         * <code>service("api.example.com")</code> </p> <p>This filter expression finds
+         * traces that have an annotation named <code>account</code> with the value
+         * <code>12345</code>:</p> <p> <code>annotation.account = "12345"</code> </p>
+         * <p>For a full list of indexed fields and keywords that you can use in filter
+         * expressions, see <a
+         * href="http://docs.aws.amazon.com/xray/latest/devguide/xray-console-filters.html">Using
+         * Filter Expressions</a> in the <i>AWS X-Ray Developer Guide</i>.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetTraceSummaries">AWS
          * API Reference</a></p>
          *
@@ -257,7 +283,18 @@ namespace Model
         /**
          * <p>Retrieves IDs and metadata for traces available for a specified time frame
          * using an optional filter. To get the full traces, pass the trace IDs to
-         * <code>BatchGetTraces</code>.</p><p><h3>See Also:</h3>   <a
+         * <code>BatchGetTraces</code>.</p> <p>A filter expression can target traced
+         * requests that hit specific service nodes or edges, have errors, or come from a
+         * known user. For example, the following filter expression targets traces that
+         * pass through <code>api.example.com</code>:</p> <p>
+         * <code>service("api.example.com")</code> </p> <p>This filter expression finds
+         * traces that have an annotation named <code>account</code> with the value
+         * <code>12345</code>:</p> <p> <code>annotation.account = "12345"</code> </p>
+         * <p>For a full list of indexed fields and keywords that you can use in filter
+         * expressions, see <a
+         * href="http://docs.aws.amazon.com/xray/latest/devguide/xray-console-filters.html">Using
+         * Filter Expressions</a> in the <i>AWS X-Ray Developer Guide</i>.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetTraceSummaries">AWS
          * API Reference</a></p>
          *
@@ -297,7 +334,36 @@ namespace Model
          * <p>Uploads segment documents to AWS X-Ray. The X-Ray SDK generates segment
          * documents and sends them to the X-Ray daemon, which uploads them in batches. A
          * segment document can be a completed segment, an in-progress segment, or an array
-         * of subsegments.</p><p><h3>See Also:</h3>   <a
+         * of subsegments.</p> <p>Segments must include the following fields. For the full
+         * segment document schema, see <a
+         * href="http://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html">AWS
+         * X-Ray Segment Documents</a> in the <i>AWS X-Ray Developer Guide</i>.</p> <p
+         * class="title"> <b>Required Segment Document Fields</b> </p> <ul> <li> <p>
+         * <code>name</code> - The name of the service that handled the request.</p> </li>
+         * <li> <p> <code>id</code> - A 64-bit identifier for the segment, unique among
+         * segments in the same trace, in 16 hexadecimal digits.</p> </li> <li> <p>
+         * <code>trace_id</code> - A unique identifier that connects all segments and
+         * subsegments originating from a single client request.</p> </li> <li> <p>
+         * <code>start_time</code> - Time the segment or subsegment was created, in
+         * floating point seconds in epoch time, accurate to milliseconds. For example,
+         * <code>1480615200.010</code> or <code>1.480615200010E9</code>.</p> </li> <li> <p>
+         * <code>end_time</code> - Time the segment or subsegment was closed. For example,
+         * <code>1480615200.090</code> or <code>1.480615200090E9</code>. Specify either an
+         * <code>end_time</code> or <code>in_progress</code>.</p> </li> <li> <p>
+         * <code>in_progress</code> - Set to <code>true</code> instead of specifying an
+         * <code>end_time</code> to record that a segment has been started, but is not
+         * complete. Send an in progress segment when your application receives a request
+         * that will take a long time to serve, to trace the fact that the request was
+         * received. When the response is sent, send the complete segment to overwrite the
+         * in-progress segment.</p> </li> </ul> <p>A <code>trace_id</code> consists of
+         * three numbers separated by hyphens. For example,
+         * 1-58406520-a006649127e371903a2de979. This includes:</p> <p class="title">
+         * <b>Trace ID Format</b> </p> <ul> <li> <p>The version number, i.e.
+         * <code>1</code>.</p> </li> <li> <p>The time of the original request, in Unix
+         * epoch time, in 8 hexadecimal digits. For example, 10:00AM December 2nd, 2016 PST
+         * in epoch time is <code>1480615200</code> seconds, or <code>58406520</code> in
+         * hexadecimal.</p> </li> <li> <p>A 96-bit identifier for the trace, globally
+         * unique, in 24 hexadecimal digits.</p> </li> </ul><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/PutTraceSegments">AWS
          * API Reference</a></p>
          */
@@ -307,7 +373,36 @@ namespace Model
          * <p>Uploads segment documents to AWS X-Ray. The X-Ray SDK generates segment
          * documents and sends them to the X-Ray daemon, which uploads them in batches. A
          * segment document can be a completed segment, an in-progress segment, or an array
-         * of subsegments.</p><p><h3>See Also:</h3>   <a
+         * of subsegments.</p> <p>Segments must include the following fields. For the full
+         * segment document schema, see <a
+         * href="http://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html">AWS
+         * X-Ray Segment Documents</a> in the <i>AWS X-Ray Developer Guide</i>.</p> <p
+         * class="title"> <b>Required Segment Document Fields</b> </p> <ul> <li> <p>
+         * <code>name</code> - The name of the service that handled the request.</p> </li>
+         * <li> <p> <code>id</code> - A 64-bit identifier for the segment, unique among
+         * segments in the same trace, in 16 hexadecimal digits.</p> </li> <li> <p>
+         * <code>trace_id</code> - A unique identifier that connects all segments and
+         * subsegments originating from a single client request.</p> </li> <li> <p>
+         * <code>start_time</code> - Time the segment or subsegment was created, in
+         * floating point seconds in epoch time, accurate to milliseconds. For example,
+         * <code>1480615200.010</code> or <code>1.480615200010E9</code>.</p> </li> <li> <p>
+         * <code>end_time</code> - Time the segment or subsegment was closed. For example,
+         * <code>1480615200.090</code> or <code>1.480615200090E9</code>. Specify either an
+         * <code>end_time</code> or <code>in_progress</code>.</p> </li> <li> <p>
+         * <code>in_progress</code> - Set to <code>true</code> instead of specifying an
+         * <code>end_time</code> to record that a segment has been started, but is not
+         * complete. Send an in progress segment when your application receives a request
+         * that will take a long time to serve, to trace the fact that the request was
+         * received. When the response is sent, send the complete segment to overwrite the
+         * in-progress segment.</p> </li> </ul> <p>A <code>trace_id</code> consists of
+         * three numbers separated by hyphens. For example,
+         * 1-58406520-a006649127e371903a2de979. This includes:</p> <p class="title">
+         * <b>Trace ID Format</b> </p> <ul> <li> <p>The version number, i.e.
+         * <code>1</code>.</p> </li> <li> <p>The time of the original request, in Unix
+         * epoch time, in 8 hexadecimal digits. For example, 10:00AM December 2nd, 2016 PST
+         * in epoch time is <code>1480615200</code> seconds, or <code>58406520</code> in
+         * hexadecimal.</p> </li> <li> <p>A 96-bit identifier for the trace, globally
+         * unique, in 24 hexadecimal digits.</p> </li> </ul><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/PutTraceSegments">AWS
          * API Reference</a></p>
          *
@@ -319,7 +414,36 @@ namespace Model
          * <p>Uploads segment documents to AWS X-Ray. The X-Ray SDK generates segment
          * documents and sends them to the X-Ray daemon, which uploads them in batches. A
          * segment document can be a completed segment, an in-progress segment, or an array
-         * of subsegments.</p><p><h3>See Also:</h3>   <a
+         * of subsegments.</p> <p>Segments must include the following fields. For the full
+         * segment document schema, see <a
+         * href="http://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html">AWS
+         * X-Ray Segment Documents</a> in the <i>AWS X-Ray Developer Guide</i>.</p> <p
+         * class="title"> <b>Required Segment Document Fields</b> </p> <ul> <li> <p>
+         * <code>name</code> - The name of the service that handled the request.</p> </li>
+         * <li> <p> <code>id</code> - A 64-bit identifier for the segment, unique among
+         * segments in the same trace, in 16 hexadecimal digits.</p> </li> <li> <p>
+         * <code>trace_id</code> - A unique identifier that connects all segments and
+         * subsegments originating from a single client request.</p> </li> <li> <p>
+         * <code>start_time</code> - Time the segment or subsegment was created, in
+         * floating point seconds in epoch time, accurate to milliseconds. For example,
+         * <code>1480615200.010</code> or <code>1.480615200010E9</code>.</p> </li> <li> <p>
+         * <code>end_time</code> - Time the segment or subsegment was closed. For example,
+         * <code>1480615200.090</code> or <code>1.480615200090E9</code>. Specify either an
+         * <code>end_time</code> or <code>in_progress</code>.</p> </li> <li> <p>
+         * <code>in_progress</code> - Set to <code>true</code> instead of specifying an
+         * <code>end_time</code> to record that a segment has been started, but is not
+         * complete. Send an in progress segment when your application receives a request
+         * that will take a long time to serve, to trace the fact that the request was
+         * received. When the response is sent, send the complete segment to overwrite the
+         * in-progress segment.</p> </li> </ul> <p>A <code>trace_id</code> consists of
+         * three numbers separated by hyphens. For example,
+         * 1-58406520-a006649127e371903a2de979. This includes:</p> <p class="title">
+         * <b>Trace ID Format</b> </p> <ul> <li> <p>The version number, i.e.
+         * <code>1</code>.</p> </li> <li> <p>The time of the original request, in Unix
+         * epoch time, in 8 hexadecimal digits. For example, 10:00AM December 2nd, 2016 PST
+         * in epoch time is <code>1480615200</code> seconds, or <code>58406520</code> in
+         * hexadecimal.</p> </li> <li> <p>A 96-bit identifier for the trace, globally
+         * unique, in 24 hexadecimal digits.</p> </li> </ul><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/PutTraceSegments">AWS
          * API Reference</a></p>
          *
@@ -329,7 +453,7 @@ namespace Model
 
 
     private:
-      void init(const Client::ClientConfiguration& clientConfiguration);
+      void init(const Aws::Client::ClientConfiguration& clientConfiguration);
 
         /**Async helpers**/
         void BatchGetTracesAsyncHelper(const Model::BatchGetTracesRequest& request, const BatchGetTracesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -340,7 +464,7 @@ namespace Model
         void PutTraceSegmentsAsyncHelper(const Model::PutTraceSegmentsRequest& request, const PutTraceSegmentsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
       Aws::String m_uri;
-      std::shared_ptr<Utils::Threading::Executor> m_executor;
+      std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;
   };
 
 } // namespace XRay

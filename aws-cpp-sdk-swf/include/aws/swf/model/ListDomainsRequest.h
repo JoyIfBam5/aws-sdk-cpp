@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 #include <aws/swf/SWFRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/swf/model/RegistrationStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,9 +33,17 @@ namespace Model
   {
   public:
     ListDomainsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListDomains"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>If a <code>NextPageToken</code> was returned by a previous call, there are
@@ -60,7 +70,7 @@ namespace Model
      * arguments unchanged.</p> <p>The configured <code>maximumPageSize</code>
      * determines how many results can be returned in a single call.</p>
      */
-    inline void SetNextPageToken(Aws::String&& value) { m_nextPageTokenHasBeenSet = true; m_nextPageToken = value; }
+    inline void SetNextPageToken(Aws::String&& value) { m_nextPageTokenHasBeenSet = true; m_nextPageToken = std::move(value); }
 
     /**
      * <p>If a <code>NextPageToken</code> was returned by a previous call, there are
@@ -87,7 +97,7 @@ namespace Model
      * arguments unchanged.</p> <p>The configured <code>maximumPageSize</code>
      * determines how many results can be returned in a single call.</p>
      */
-    inline ListDomainsRequest& WithNextPageToken(Aws::String&& value) { SetNextPageToken(value); return *this;}
+    inline ListDomainsRequest& WithNextPageToken(Aws::String&& value) { SetNextPageToken(std::move(value)); return *this;}
 
     /**
      * <p>If a <code>NextPageToken</code> was returned by a previous call, there are
@@ -97,6 +107,7 @@ namespace Model
      * determines how many results can be returned in a single call.</p>
      */
     inline ListDomainsRequest& WithNextPageToken(const char* value) { SetNextPageToken(value); return *this;}
+
 
     /**
      * <p>Specifies the registration status of the domains to list.</p>
@@ -111,7 +122,7 @@ namespace Model
     /**
      * <p>Specifies the registration status of the domains to list.</p>
      */
-    inline void SetRegistrationStatus(RegistrationStatus&& value) { m_registrationStatusHasBeenSet = true; m_registrationStatus = value; }
+    inline void SetRegistrationStatus(RegistrationStatus&& value) { m_registrationStatusHasBeenSet = true; m_registrationStatus = std::move(value); }
 
     /**
      * <p>Specifies the registration status of the domains to list.</p>
@@ -121,10 +132,11 @@ namespace Model
     /**
      * <p>Specifies the registration status of the domains to list.</p>
      */
-    inline ListDomainsRequest& WithRegistrationStatus(RegistrationStatus&& value) { SetRegistrationStatus(value); return *this;}
+    inline ListDomainsRequest& WithRegistrationStatus(RegistrationStatus&& value) { SetRegistrationStatus(std::move(value)); return *this;}
+
 
     /**
-     * <p>The maximum number of results that will be returned per call.
+     * <p>The maximum number of results that are returned per call.
      * <code>nextPageToken</code> can be used to obtain futher pages of results. The
      * default is 1000, which is the maximum allowed page size. You can, however,
      * specify a page size <i>smaller</i> than the maximum.</p> <p>This is an upper
@@ -134,7 +146,7 @@ namespace Model
     inline int GetMaximumPageSize() const{ return m_maximumPageSize; }
 
     /**
-     * <p>The maximum number of results that will be returned per call.
+     * <p>The maximum number of results that are returned per call.
      * <code>nextPageToken</code> can be used to obtain futher pages of results. The
      * default is 1000, which is the maximum allowed page size. You can, however,
      * specify a page size <i>smaller</i> than the maximum.</p> <p>This is an upper
@@ -144,7 +156,7 @@ namespace Model
     inline void SetMaximumPageSize(int value) { m_maximumPageSizeHasBeenSet = true; m_maximumPageSize = value; }
 
     /**
-     * <p>The maximum number of results that will be returned per call.
+     * <p>The maximum number of results that are returned per call.
      * <code>nextPageToken</code> can be used to obtain futher pages of results. The
      * default is 1000, which is the maximum allowed page size. You can, however,
      * specify a page size <i>smaller</i> than the maximum.</p> <p>This is an upper
@@ -152,6 +164,7 @@ namespace Model
      * specified maximum.</p>
      */
     inline ListDomainsRequest& WithMaximumPageSize(int value) { SetMaximumPageSize(value); return *this;}
+
 
     /**
      * <p>When set to <code>true</code>, returns the results in reverse order. By
@@ -175,12 +188,16 @@ namespace Model
     inline ListDomainsRequest& WithReverseOrder(bool value) { SetReverseOrder(value); return *this;}
 
   private:
+
     Aws::String m_nextPageToken;
     bool m_nextPageTokenHasBeenSet;
+
     RegistrationStatus m_registrationStatus;
     bool m_registrationStatusHasBeenSet;
+
     int m_maximumPageSize;
     bool m_maximumPageSizeHasBeenSet;
+
     bool m_reverseOrder;
     bool m_reverseOrderHasBeenSet;
   };

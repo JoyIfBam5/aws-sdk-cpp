@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/storagegateway/StorageGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     DescribeSnapshotScheduleResult();
-    DescribeSnapshotScheduleResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeSnapshotScheduleResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeSnapshotScheduleResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeSnapshotScheduleResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     
     inline const Aws::String& GetVolumeARN() const{ return m_volumeARN; }
@@ -46,7 +49,7 @@ namespace Model
     inline void SetVolumeARN(const Aws::String& value) { m_volumeARN = value; }
 
     
-    inline void SetVolumeARN(Aws::String&& value) { m_volumeARN = value; }
+    inline void SetVolumeARN(Aws::String&& value) { m_volumeARN = std::move(value); }
 
     
     inline void SetVolumeARN(const char* value) { m_volumeARN.assign(value); }
@@ -55,10 +58,11 @@ namespace Model
     inline DescribeSnapshotScheduleResult& WithVolumeARN(const Aws::String& value) { SetVolumeARN(value); return *this;}
 
     
-    inline DescribeSnapshotScheduleResult& WithVolumeARN(Aws::String&& value) { SetVolumeARN(value); return *this;}
+    inline DescribeSnapshotScheduleResult& WithVolumeARN(Aws::String&& value) { SetVolumeARN(std::move(value)); return *this;}
 
     
     inline DescribeSnapshotScheduleResult& WithVolumeARN(const char* value) { SetVolumeARN(value); return *this;}
+
 
     
     inline int GetStartAt() const{ return m_startAt; }
@@ -69,6 +73,7 @@ namespace Model
     
     inline DescribeSnapshotScheduleResult& WithStartAt(int value) { SetStartAt(value); return *this;}
 
+
     
     inline int GetRecurrenceInHours() const{ return m_recurrenceInHours; }
 
@@ -78,6 +83,7 @@ namespace Model
     
     inline DescribeSnapshotScheduleResult& WithRecurrenceInHours(int value) { SetRecurrenceInHours(value); return *this;}
 
+
     
     inline const Aws::String& GetDescription() const{ return m_description; }
 
@@ -85,7 +91,7 @@ namespace Model
     inline void SetDescription(const Aws::String& value) { m_description = value; }
 
     
-    inline void SetDescription(Aws::String&& value) { m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_description = std::move(value); }
 
     
     inline void SetDescription(const char* value) { m_description.assign(value); }
@@ -94,10 +100,11 @@ namespace Model
     inline DescribeSnapshotScheduleResult& WithDescription(const Aws::String& value) { SetDescription(value); return *this;}
 
     
-    inline DescribeSnapshotScheduleResult& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline DescribeSnapshotScheduleResult& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     
     inline DescribeSnapshotScheduleResult& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     
     inline const Aws::String& GetTimezone() const{ return m_timezone; }
@@ -106,7 +113,7 @@ namespace Model
     inline void SetTimezone(const Aws::String& value) { m_timezone = value; }
 
     
-    inline void SetTimezone(Aws::String&& value) { m_timezone = value; }
+    inline void SetTimezone(Aws::String&& value) { m_timezone = std::move(value); }
 
     
     inline void SetTimezone(const char* value) { m_timezone.assign(value); }
@@ -115,16 +122,21 @@ namespace Model
     inline DescribeSnapshotScheduleResult& WithTimezone(const Aws::String& value) { SetTimezone(value); return *this;}
 
     
-    inline DescribeSnapshotScheduleResult& WithTimezone(Aws::String&& value) { SetTimezone(value); return *this;}
+    inline DescribeSnapshotScheduleResult& WithTimezone(Aws::String&& value) { SetTimezone(std::move(value)); return *this;}
 
     
     inline DescribeSnapshotScheduleResult& WithTimezone(const char* value) { SetTimezone(value); return *this;}
 
   private:
+
     Aws::String m_volumeARN;
+
     int m_startAt;
+
     int m_recurrenceInHours;
+
     Aws::String m_description;
+
     Aws::String m_timezone;
   };
 

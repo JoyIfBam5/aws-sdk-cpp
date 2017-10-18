@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/servicecatalog/model/LaunchPathSummary.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     ListLaunchPathsResult();
-    ListLaunchPathsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListLaunchPathsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListLaunchPathsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListLaunchPathsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>List of launch path information summaries for the specified
@@ -57,7 +60,7 @@ namespace Model
      * <p>List of launch path information summaries for the specified
      * <code>PageToken</code>.</p>
      */
-    inline void SetLaunchPathSummaries(Aws::Vector<LaunchPathSummary>&& value) { m_launchPathSummaries = value; }
+    inline void SetLaunchPathSummaries(Aws::Vector<LaunchPathSummary>&& value) { m_launchPathSummaries = std::move(value); }
 
     /**
      * <p>List of launch path information summaries for the specified
@@ -69,7 +72,7 @@ namespace Model
      * <p>List of launch path information summaries for the specified
      * <code>PageToken</code>.</p>
      */
-    inline ListLaunchPathsResult& WithLaunchPathSummaries(Aws::Vector<LaunchPathSummary>&& value) { SetLaunchPathSummaries(value); return *this;}
+    inline ListLaunchPathsResult& WithLaunchPathSummaries(Aws::Vector<LaunchPathSummary>&& value) { SetLaunchPathSummaries(std::move(value)); return *this;}
 
     /**
      * <p>List of launch path information summaries for the specified
@@ -81,7 +84,8 @@ namespace Model
      * <p>List of launch path information summaries for the specified
      * <code>PageToken</code>.</p>
      */
-    inline ListLaunchPathsResult& AddLaunchPathSummaries(LaunchPathSummary&& value) { m_launchPathSummaries.push_back(value); return *this; }
+    inline ListLaunchPathsResult& AddLaunchPathSummaries(LaunchPathSummary&& value) { m_launchPathSummaries.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The page token to use to retrieve the next page of results for this
@@ -99,7 +103,7 @@ namespace Model
      * <p>The page token to use to retrieve the next page of results for this
      * operation. If there are no more pages, this value is null.</p>
      */
-    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = value; }
+    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = std::move(value); }
 
     /**
      * <p>The page token to use to retrieve the next page of results for this
@@ -117,7 +121,7 @@ namespace Model
      * <p>The page token to use to retrieve the next page of results for this
      * operation. If there are no more pages, this value is null.</p>
      */
-    inline ListLaunchPathsResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(value); return *this;}
+    inline ListLaunchPathsResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(std::move(value)); return *this;}
 
     /**
      * <p>The page token to use to retrieve the next page of results for this
@@ -126,7 +130,9 @@ namespace Model
     inline ListLaunchPathsResult& WithNextPageToken(const char* value) { SetNextPageToken(value); return *this;}
 
   private:
+
     Aws::Vector<LaunchPathSummary> m_launchPathSummaries;
+
     Aws::String m_nextPageToken;
   };
 

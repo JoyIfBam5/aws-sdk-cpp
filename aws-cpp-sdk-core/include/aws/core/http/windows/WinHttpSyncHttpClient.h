@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   *
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -61,6 +61,11 @@ namespace Aws
             bool DoSendRequest(void* httpRequest) const override;
             bool DoReadData(void* hHttpRequest, char* body, uint64_t size, uint64_t& read) const override;
             void* GetClientModule() const override;
+
+            bool m_usingProxy;
+            bool m_verifySSL;
+            Aws::WString m_proxyUserName;
+            Aws::WString m_proxyPassword;
         };
 
     } // namespace Http

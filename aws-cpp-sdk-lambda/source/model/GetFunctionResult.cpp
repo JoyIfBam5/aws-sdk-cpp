@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/lambda/model/GetFunctionResult.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
+#include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/UnreferencedParam.h>
 
 #include <utility>
@@ -28,12 +30,12 @@ GetFunctionResult::GetFunctionResult()
 {
 }
 
-GetFunctionResult::GetFunctionResult(const AmazonWebServiceResult<JsonValue>& result)
+GetFunctionResult::GetFunctionResult(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
   *this = result;
 }
 
-GetFunctionResult& GetFunctionResult::operator =(const AmazonWebServiceResult<JsonValue>& result)
+GetFunctionResult& GetFunctionResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
   const JsonValue& jsonValue = result.GetPayload();
   if(jsonValue.ValueExists("Configuration"))
@@ -46,6 +48,15 @@ GetFunctionResult& GetFunctionResult::operator =(const AmazonWebServiceResult<Js
   {
     m_code = jsonValue.GetObject("Code");
 
+  }
+
+  if(jsonValue.ValueExists("Tags"))
+  {
+    Aws::Map<Aws::String, JsonValue> tagsJsonMap = jsonValue.GetObject("Tags").GetAllObjects();
+    for(auto& tagsItem : tagsJsonMap)
+    {
+      m_tags[tagsItem.first] = tagsItem.second.AsString();
+    }
   }
 
 

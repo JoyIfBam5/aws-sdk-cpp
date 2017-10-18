@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/email/SESRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/email/model/ReceiptRule.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,42 +39,55 @@ namespace Model
   {
   public:
     UpdateReceiptRuleRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateReceiptRule"; }
+
     Aws::String SerializePayload() const override;
 
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
+
     /**
-     * <p>The name of the receipt rule set to which the receipt rule belongs.</p>
+     * <p>The name of the receipt rule set that the receipt rule belongs to.</p>
      */
     inline const Aws::String& GetRuleSetName() const{ return m_ruleSetName; }
 
     /**
-     * <p>The name of the receipt rule set to which the receipt rule belongs.</p>
+     * <p>The name of the receipt rule set that the receipt rule belongs to.</p>
      */
     inline void SetRuleSetName(const Aws::String& value) { m_ruleSetNameHasBeenSet = true; m_ruleSetName = value; }
 
     /**
-     * <p>The name of the receipt rule set to which the receipt rule belongs.</p>
+     * <p>The name of the receipt rule set that the receipt rule belongs to.</p>
      */
-    inline void SetRuleSetName(Aws::String&& value) { m_ruleSetNameHasBeenSet = true; m_ruleSetName = value; }
+    inline void SetRuleSetName(Aws::String&& value) { m_ruleSetNameHasBeenSet = true; m_ruleSetName = std::move(value); }
 
     /**
-     * <p>The name of the receipt rule set to which the receipt rule belongs.</p>
+     * <p>The name of the receipt rule set that the receipt rule belongs to.</p>
      */
     inline void SetRuleSetName(const char* value) { m_ruleSetNameHasBeenSet = true; m_ruleSetName.assign(value); }
 
     /**
-     * <p>The name of the receipt rule set to which the receipt rule belongs.</p>
+     * <p>The name of the receipt rule set that the receipt rule belongs to.</p>
      */
     inline UpdateReceiptRuleRequest& WithRuleSetName(const Aws::String& value) { SetRuleSetName(value); return *this;}
 
     /**
-     * <p>The name of the receipt rule set to which the receipt rule belongs.</p>
+     * <p>The name of the receipt rule set that the receipt rule belongs to.</p>
      */
-    inline UpdateReceiptRuleRequest& WithRuleSetName(Aws::String&& value) { SetRuleSetName(value); return *this;}
+    inline UpdateReceiptRuleRequest& WithRuleSetName(Aws::String&& value) { SetRuleSetName(std::move(value)); return *this;}
 
     /**
-     * <p>The name of the receipt rule set to which the receipt rule belongs.</p>
+     * <p>The name of the receipt rule set that the receipt rule belongs to.</p>
      */
     inline UpdateReceiptRuleRequest& WithRuleSetName(const char* value) { SetRuleSetName(value); return *this;}
+
 
     /**
      * <p>A data structure that contains the updated receipt rule information.</p>
@@ -87,7 +102,7 @@ namespace Model
     /**
      * <p>A data structure that contains the updated receipt rule information.</p>
      */
-    inline void SetRule(ReceiptRule&& value) { m_ruleHasBeenSet = true; m_rule = value; }
+    inline void SetRule(ReceiptRule&& value) { m_ruleHasBeenSet = true; m_rule = std::move(value); }
 
     /**
      * <p>A data structure that contains the updated receipt rule information.</p>
@@ -97,11 +112,13 @@ namespace Model
     /**
      * <p>A data structure that contains the updated receipt rule information.</p>
      */
-    inline UpdateReceiptRuleRequest& WithRule(ReceiptRule&& value) { SetRule(value); return *this;}
+    inline UpdateReceiptRuleRequest& WithRule(ReceiptRule&& value) { SetRule(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_ruleSetName;
     bool m_ruleSetNameHasBeenSet;
+
     ReceiptRule m_rule;
     bool m_ruleHasBeenSet;
   };

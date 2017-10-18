@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codepipeline/CodePipeline_EXPORTS.h>
 #include <aws/codepipeline/model/ThirdPartyJobDetails.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,7 @@ namespace CodePipeline
 namespace Model
 {
   /**
-   * <p>Represents the output of a get third party job details action.</p><p><h3>See
+   * <p>Represents the output of a GetThirdPartyJobDetails action.</p><p><h3>See
    * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/GetThirdPartyJobDetailsOutput">AWS
    * API Reference</a></p>
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     GetThirdPartyJobDetailsResult();
-    GetThirdPartyJobDetailsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetThirdPartyJobDetailsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetThirdPartyJobDetailsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetThirdPartyJobDetailsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The details of the job, including any protected values defined for the
@@ -61,7 +64,7 @@ namespace Model
      * <p>The details of the job, including any protected values defined for the
      * job.</p>
      */
-    inline void SetJobDetails(ThirdPartyJobDetails&& value) { m_jobDetails = value; }
+    inline void SetJobDetails(ThirdPartyJobDetails&& value) { m_jobDetails = std::move(value); }
 
     /**
      * <p>The details of the job, including any protected values defined for the
@@ -73,9 +76,10 @@ namespace Model
      * <p>The details of the job, including any protected values defined for the
      * job.</p>
      */
-    inline GetThirdPartyJobDetailsResult& WithJobDetails(ThirdPartyJobDetails&& value) { SetJobDetails(value); return *this;}
+    inline GetThirdPartyJobDetailsResult& WithJobDetails(ThirdPartyJobDetails&& value) { SetJobDetails(std::move(value)); return *this;}
 
   private:
+
     ThirdPartyJobDetails m_jobDetails;
   };
 

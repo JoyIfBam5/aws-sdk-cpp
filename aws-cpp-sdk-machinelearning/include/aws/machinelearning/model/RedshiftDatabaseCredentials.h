@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/machinelearning/MachineLearning_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     RedshiftDatabaseCredentials& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     
     inline const Aws::String& GetUsername() const{ return m_username; }
 
@@ -51,7 +54,7 @@ namespace Model
     inline void SetUsername(const Aws::String& value) { m_usernameHasBeenSet = true; m_username = value; }
 
     
-    inline void SetUsername(Aws::String&& value) { m_usernameHasBeenSet = true; m_username = value; }
+    inline void SetUsername(Aws::String&& value) { m_usernameHasBeenSet = true; m_username = std::move(value); }
 
     
     inline void SetUsername(const char* value) { m_usernameHasBeenSet = true; m_username.assign(value); }
@@ -60,10 +63,11 @@ namespace Model
     inline RedshiftDatabaseCredentials& WithUsername(const Aws::String& value) { SetUsername(value); return *this;}
 
     
-    inline RedshiftDatabaseCredentials& WithUsername(Aws::String&& value) { SetUsername(value); return *this;}
+    inline RedshiftDatabaseCredentials& WithUsername(Aws::String&& value) { SetUsername(std::move(value)); return *this;}
 
     
     inline RedshiftDatabaseCredentials& WithUsername(const char* value) { SetUsername(value); return *this;}
+
 
     
     inline const Aws::String& GetPassword() const{ return m_password; }
@@ -72,7 +76,7 @@ namespace Model
     inline void SetPassword(const Aws::String& value) { m_passwordHasBeenSet = true; m_password = value; }
 
     
-    inline void SetPassword(Aws::String&& value) { m_passwordHasBeenSet = true; m_password = value; }
+    inline void SetPassword(Aws::String&& value) { m_passwordHasBeenSet = true; m_password = std::move(value); }
 
     
     inline void SetPassword(const char* value) { m_passwordHasBeenSet = true; m_password.assign(value); }
@@ -81,14 +85,16 @@ namespace Model
     inline RedshiftDatabaseCredentials& WithPassword(const Aws::String& value) { SetPassword(value); return *this;}
 
     
-    inline RedshiftDatabaseCredentials& WithPassword(Aws::String&& value) { SetPassword(value); return *this;}
+    inline RedshiftDatabaseCredentials& WithPassword(Aws::String&& value) { SetPassword(std::move(value)); return *this;}
 
     
     inline RedshiftDatabaseCredentials& WithPassword(const char* value) { SetPassword(value); return *this;}
 
   private:
+
     Aws::String m_username;
     bool m_usernameHasBeenSet;
+
     Aws::String m_password;
     bool m_passwordHasBeenSet;
   };

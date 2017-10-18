@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/rds/RDSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,19 @@ namespace Model
   {
   public:
     ApplyPendingMaintenanceActionRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ApplyPendingMaintenanceAction"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The RDS Amazon Resource Name (ARN) of the resource that the pending
@@ -57,7 +71,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing">
      * Constructing an RDS Amazon Resource Name (ARN)</a>.</p>
      */
-    inline void SetResourceIdentifier(Aws::String&& value) { m_resourceIdentifierHasBeenSet = true; m_resourceIdentifier = value; }
+    inline void SetResourceIdentifier(Aws::String&& value) { m_resourceIdentifierHasBeenSet = true; m_resourceIdentifier = std::move(value); }
 
     /**
      * <p>The RDS Amazon Resource Name (ARN) of the resource that the pending
@@ -81,7 +95,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing">
      * Constructing an RDS Amazon Resource Name (ARN)</a>.</p>
      */
-    inline ApplyPendingMaintenanceActionRequest& WithResourceIdentifier(Aws::String&& value) { SetResourceIdentifier(value); return *this;}
+    inline ApplyPendingMaintenanceActionRequest& WithResourceIdentifier(Aws::String&& value) { SetResourceIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The RDS Amazon Resource Name (ARN) of the resource that the pending
@@ -90,6 +104,7 @@ namespace Model
      * Constructing an RDS Amazon Resource Name (ARN)</a>.</p>
      */
     inline ApplyPendingMaintenanceActionRequest& WithResourceIdentifier(const char* value) { SetResourceIdentifier(value); return *this;}
+
 
     /**
      * <p>The pending maintenance action to apply to this resource.</p> <p>Valid
@@ -107,7 +122,7 @@ namespace Model
      * <p>The pending maintenance action to apply to this resource.</p> <p>Valid
      * values: <code>system-update</code>, <code>db-upgrade</code> </p>
      */
-    inline void SetApplyAction(Aws::String&& value) { m_applyActionHasBeenSet = true; m_applyAction = value; }
+    inline void SetApplyAction(Aws::String&& value) { m_applyActionHasBeenSet = true; m_applyAction = std::move(value); }
 
     /**
      * <p>The pending maintenance action to apply to this resource.</p> <p>Valid
@@ -125,13 +140,14 @@ namespace Model
      * <p>The pending maintenance action to apply to this resource.</p> <p>Valid
      * values: <code>system-update</code>, <code>db-upgrade</code> </p>
      */
-    inline ApplyPendingMaintenanceActionRequest& WithApplyAction(Aws::String&& value) { SetApplyAction(value); return *this;}
+    inline ApplyPendingMaintenanceActionRequest& WithApplyAction(Aws::String&& value) { SetApplyAction(std::move(value)); return *this;}
 
     /**
      * <p>The pending maintenance action to apply to this resource.</p> <p>Valid
      * values: <code>system-update</code>, <code>db-upgrade</code> </p>
      */
     inline ApplyPendingMaintenanceActionRequest& WithApplyAction(const char* value) { SetApplyAction(value); return *this;}
+
 
     /**
      * <p>A value that specifies the type of opt-in request, or undoes an opt-in
@@ -164,7 +180,7 @@ namespace Model
      * resource.</p> </li> <li> <p> <code>undo-opt-in</code> - Cancel any existing
      * <code>next-maintenance</code> opt-in requests.</p> </li> </ul>
      */
-    inline void SetOptInType(Aws::String&& value) { m_optInTypeHasBeenSet = true; m_optInType = value; }
+    inline void SetOptInType(Aws::String&& value) { m_optInTypeHasBeenSet = true; m_optInType = std::move(value); }
 
     /**
      * <p>A value that specifies the type of opt-in request, or undoes an opt-in
@@ -197,7 +213,7 @@ namespace Model
      * resource.</p> </li> <li> <p> <code>undo-opt-in</code> - Cancel any existing
      * <code>next-maintenance</code> opt-in requests.</p> </li> </ul>
      */
-    inline ApplyPendingMaintenanceActionRequest& WithOptInType(Aws::String&& value) { SetOptInType(value); return *this;}
+    inline ApplyPendingMaintenanceActionRequest& WithOptInType(Aws::String&& value) { SetOptInType(std::move(value)); return *this;}
 
     /**
      * <p>A value that specifies the type of opt-in request, or undoes an opt-in
@@ -211,10 +227,13 @@ namespace Model
     inline ApplyPendingMaintenanceActionRequest& WithOptInType(const char* value) { SetOptInType(value); return *this;}
 
   private:
+
     Aws::String m_resourceIdentifier;
     bool m_resourceIdentifierHasBeenSet;
+
     Aws::String m_applyAction;
     bool m_applyActionHasBeenSet;
+
     Aws::String m_optInType;
     bool m_optInTypeHasBeenSet;
   };

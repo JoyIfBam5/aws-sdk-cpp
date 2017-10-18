@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     XssMatchSetSummary(const Aws::Utils::Json::JsonValue& jsonValue);
     XssMatchSetSummary& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>A unique identifier for an <code>XssMatchSet</code>. You use
@@ -78,7 +81,7 @@ namespace Model
      * <a>DeleteXssMatchSet</a>).</p> <p> <code>XssMatchSetId</code> is returned by
      * <a>CreateXssMatchSet</a> and by <a>ListXssMatchSets</a>.</p>
      */
-    inline void SetXssMatchSetId(Aws::String&& value) { m_xssMatchSetIdHasBeenSet = true; m_xssMatchSetId = value; }
+    inline void SetXssMatchSetId(Aws::String&& value) { m_xssMatchSetIdHasBeenSet = true; m_xssMatchSetId = std::move(value); }
 
     /**
      * <p>A unique identifier for an <code>XssMatchSet</code>. You use
@@ -114,7 +117,7 @@ namespace Model
      * <a>DeleteXssMatchSet</a>).</p> <p> <code>XssMatchSetId</code> is returned by
      * <a>CreateXssMatchSet</a> and by <a>ListXssMatchSets</a>.</p>
      */
-    inline XssMatchSetSummary& WithXssMatchSetId(Aws::String&& value) { SetXssMatchSetId(value); return *this;}
+    inline XssMatchSetSummary& WithXssMatchSetId(Aws::String&& value) { SetXssMatchSetId(std::move(value)); return *this;}
 
     /**
      * <p>A unique identifier for an <code>XssMatchSet</code>. You use
@@ -127,6 +130,7 @@ namespace Model
      * <a>CreateXssMatchSet</a> and by <a>ListXssMatchSets</a>.</p>
      */
     inline XssMatchSetSummary& WithXssMatchSetId(const char* value) { SetXssMatchSetId(value); return *this;}
+
 
     /**
      * <p>The name of the <code>XssMatchSet</code>, if any, specified by
@@ -144,7 +148,7 @@ namespace Model
      * <p>The name of the <code>XssMatchSet</code>, if any, specified by
      * <code>Id</code>.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the <code>XssMatchSet</code>, if any, specified by
@@ -162,7 +166,7 @@ namespace Model
      * <p>The name of the <code>XssMatchSet</code>, if any, specified by
      * <code>Id</code>.</p>
      */
-    inline XssMatchSetSummary& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline XssMatchSetSummary& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the <code>XssMatchSet</code>, if any, specified by
@@ -171,8 +175,10 @@ namespace Model
     inline XssMatchSetSummary& WithName(const char* value) { SetName(value); return *this;}
 
   private:
+
     Aws::String m_xssMatchSetId;
     bool m_xssMatchSetIdHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/es/model/CreateElasticsearchDomainRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -28,7 +29,9 @@ CreateElasticsearchDomainRequest::CreateElasticsearchDomainRequest() :
     m_eBSOptionsHasBeenSet(false),
     m_accessPoliciesHasBeenSet(false),
     m_snapshotOptionsHasBeenSet(false),
-    m_advancedOptionsHasBeenSet(false)
+    m_vPCOptionsHasBeenSet(false),
+    m_advancedOptionsHasBeenSet(false),
+    m_logPublishingOptionsHasBeenSet(false)
 {
 }
 
@@ -72,6 +75,12 @@ Aws::String CreateElasticsearchDomainRequest::SerializePayload() const
 
   }
 
+  if(m_vPCOptionsHasBeenSet)
+  {
+   payload.WithObject("VPCOptions", m_vPCOptions.Jsonize());
+
+  }
+
   if(m_advancedOptionsHasBeenSet)
   {
    JsonValue advancedOptionsJsonMap;
@@ -83,8 +92,20 @@ Aws::String CreateElasticsearchDomainRequest::SerializePayload() const
 
   }
 
+  if(m_logPublishingOptionsHasBeenSet)
+  {
+   JsonValue logPublishingOptionsJsonMap;
+   for(auto& logPublishingOptionsItem : m_logPublishingOptions)
+   {
+     logPublishingOptionsJsonMap.WithObject(LogTypeMapper::GetNameForLogType(logPublishingOptionsItem.first), logPublishingOptionsItem.second.Jsonize());
+   }
+   payload.WithObject("LogPublishingOptions", std::move(logPublishingOptionsJsonMap));
+
+  }
+
   return payload.WriteReadable();
 }
+
 
 
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/cloudformation/model/StackSummary.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -38,7 +39,9 @@ StackSummary::StackSummary() :
     m_deletionTimeHasBeenSet(false),
     m_stackStatus(StackStatus::NOT_SET),
     m_stackStatusHasBeenSet(false),
-    m_stackStatusReasonHasBeenSet(false)
+    m_stackStatusReasonHasBeenSet(false),
+    m_parentIdHasBeenSet(false),
+    m_rootIdHasBeenSet(false)
 {
 }
 
@@ -51,7 +54,9 @@ StackSummary::StackSummary(const XmlNode& xmlNode) :
     m_deletionTimeHasBeenSet(false),
     m_stackStatus(StackStatus::NOT_SET),
     m_stackStatusHasBeenSet(false),
-    m_stackStatusReasonHasBeenSet(false)
+    m_stackStatusReasonHasBeenSet(false),
+    m_parentIdHasBeenSet(false),
+    m_rootIdHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -110,6 +115,18 @@ StackSummary& StackSummary::operator =(const XmlNode& xmlNode)
       m_stackStatusReason = StringUtils::Trim(stackStatusReasonNode.GetText().c_str());
       m_stackStatusReasonHasBeenSet = true;
     }
+    XmlNode parentIdNode = resultNode.FirstChild("ParentId");
+    if(!parentIdNode.IsNull())
+    {
+      m_parentId = StringUtils::Trim(parentIdNode.GetText().c_str());
+      m_parentIdHasBeenSet = true;
+    }
+    XmlNode rootIdNode = resultNode.FirstChild("RootId");
+    if(!rootIdNode.IsNull())
+    {
+      m_rootId = StringUtils::Trim(rootIdNode.GetText().c_str());
+      m_rootIdHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -157,6 +174,16 @@ void StackSummary::OutputToStream(Aws::OStream& oStream, const char* location, u
       oStream << location << index << locationValue << ".StackStatusReason=" << StringUtils::URLEncode(m_stackStatusReason.c_str()) << "&";
   }
 
+  if(m_parentIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".ParentId=" << StringUtils::URLEncode(m_parentId.c_str()) << "&";
+  }
+
+  if(m_rootIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".RootId=" << StringUtils::URLEncode(m_rootId.c_str()) << "&";
+  }
+
 }
 
 void StackSummary::OutputToStream(Aws::OStream& oStream, const char* location) const
@@ -192,6 +219,14 @@ void StackSummary::OutputToStream(Aws::OStream& oStream, const char* location) c
   if(m_stackStatusReasonHasBeenSet)
   {
       oStream << location << ".StackStatusReason=" << StringUtils::URLEncode(m_stackStatusReason.c_str()) << "&";
+  }
+  if(m_parentIdHasBeenSet)
+  {
+      oStream << location << ".ParentId=" << StringUtils::URLEncode(m_parentId.c_str()) << "&";
+  }
+  if(m_rootIdHasBeenSet)
+  {
+      oStream << location << ".RootId=" << StringUtils::URLEncode(m_rootId.c_str()) << "&";
   }
 }
 

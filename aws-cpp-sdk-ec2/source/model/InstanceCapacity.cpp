@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/InstanceCapacity.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,18 +31,18 @@ namespace Model
 {
 
 InstanceCapacity::InstanceCapacity() : 
-    m_instanceTypeHasBeenSet(false),
     m_availableCapacity(0),
     m_availableCapacityHasBeenSet(false),
+    m_instanceTypeHasBeenSet(false),
     m_totalCapacity(0),
     m_totalCapacityHasBeenSet(false)
 {
 }
 
 InstanceCapacity::InstanceCapacity(const XmlNode& xmlNode) : 
-    m_instanceTypeHasBeenSet(false),
     m_availableCapacity(0),
     m_availableCapacityHasBeenSet(false),
+    m_instanceTypeHasBeenSet(false),
     m_totalCapacity(0),
     m_totalCapacityHasBeenSet(false)
 {
@@ -54,17 +55,17 @@ InstanceCapacity& InstanceCapacity::operator =(const XmlNode& xmlNode)
 
   if(!resultNode.IsNull())
   {
-    XmlNode instanceTypeNode = resultNode.FirstChild("instanceType");
-    if(!instanceTypeNode.IsNull())
-    {
-      m_instanceType = StringUtils::Trim(instanceTypeNode.GetText().c_str());
-      m_instanceTypeHasBeenSet = true;
-    }
     XmlNode availableCapacityNode = resultNode.FirstChild("availableCapacity");
     if(!availableCapacityNode.IsNull())
     {
       m_availableCapacity = StringUtils::ConvertToInt32(StringUtils::Trim(availableCapacityNode.GetText().c_str()).c_str());
       m_availableCapacityHasBeenSet = true;
+    }
+    XmlNode instanceTypeNode = resultNode.FirstChild("instanceType");
+    if(!instanceTypeNode.IsNull())
+    {
+      m_instanceType = StringUtils::Trim(instanceTypeNode.GetText().c_str());
+      m_instanceTypeHasBeenSet = true;
     }
     XmlNode totalCapacityNode = resultNode.FirstChild("totalCapacity");
     if(!totalCapacityNode.IsNull())
@@ -79,14 +80,14 @@ InstanceCapacity& InstanceCapacity::operator =(const XmlNode& xmlNode)
 
 void InstanceCapacity::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
-  if(m_instanceTypeHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".InstanceType=" << StringUtils::URLEncode(m_instanceType.c_str()) << "&";
-  }
-
   if(m_availableCapacityHasBeenSet)
   {
       oStream << location << index << locationValue << ".AvailableCapacity=" << m_availableCapacity << "&";
+  }
+
+  if(m_instanceTypeHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".InstanceType=" << StringUtils::URLEncode(m_instanceType.c_str()) << "&";
   }
 
   if(m_totalCapacityHasBeenSet)
@@ -98,13 +99,13 @@ void InstanceCapacity::OutputToStream(Aws::OStream& oStream, const char* locatio
 
 void InstanceCapacity::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
-  if(m_instanceTypeHasBeenSet)
-  {
-      oStream << location << ".InstanceType=" << StringUtils::URLEncode(m_instanceType.c_str()) << "&";
-  }
   if(m_availableCapacityHasBeenSet)
   {
       oStream << location << ".AvailableCapacity=" << m_availableCapacity << "&";
+  }
+  if(m_instanceTypeHasBeenSet)
+  {
+      oStream << location << ".InstanceType=" << StringUtils::URLEncode(m_instanceType.c_str()) << "&";
   }
   if(m_totalCapacityHasBeenSet)
   {

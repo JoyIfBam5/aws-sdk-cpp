@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudsearch/CloudSearch_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +51,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * A value to use for the field if the field isn't specified for a document.
      */
@@ -62,7 +65,7 @@ namespace Model
     /**
      * A value to use for the field if the field isn't specified for a document.
      */
-    inline void SetDefaultValue(Aws::String&& value) { m_defaultValueHasBeenSet = true; m_defaultValue = value; }
+    inline void SetDefaultValue(Aws::String&& value) { m_defaultValueHasBeenSet = true; m_defaultValue = std::move(value); }
 
     /**
      * A value to use for the field if the field isn't specified for a document.
@@ -77,12 +80,13 @@ namespace Model
     /**
      * A value to use for the field if the field isn't specified for a document.
      */
-    inline LatLonOptions& WithDefaultValue(Aws::String&& value) { SetDefaultValue(value); return *this;}
+    inline LatLonOptions& WithDefaultValue(Aws::String&& value) { SetDefaultValue(std::move(value)); return *this;}
 
     /**
      * A value to use for the field if the field isn't specified for a document.
      */
     inline LatLonOptions& WithDefaultValue(const char* value) { SetDefaultValue(value); return *this;}
+
 
     
     inline const Aws::String& GetSourceField() const{ return m_sourceField; }
@@ -91,7 +95,7 @@ namespace Model
     inline void SetSourceField(const Aws::String& value) { m_sourceFieldHasBeenSet = true; m_sourceField = value; }
 
     
-    inline void SetSourceField(Aws::String&& value) { m_sourceFieldHasBeenSet = true; m_sourceField = value; }
+    inline void SetSourceField(Aws::String&& value) { m_sourceFieldHasBeenSet = true; m_sourceField = std::move(value); }
 
     
     inline void SetSourceField(const char* value) { m_sourceFieldHasBeenSet = true; m_sourceField.assign(value); }
@@ -100,10 +104,11 @@ namespace Model
     inline LatLonOptions& WithSourceField(const Aws::String& value) { SetSourceField(value); return *this;}
 
     
-    inline LatLonOptions& WithSourceField(Aws::String&& value) { SetSourceField(value); return *this;}
+    inline LatLonOptions& WithSourceField(Aws::String&& value) { SetSourceField(std::move(value)); return *this;}
 
     
     inline LatLonOptions& WithSourceField(const char* value) { SetSourceField(value); return *this;}
+
 
     /**
      * <p>Whether facet information can be returned for the field.</p>
@@ -120,6 +125,7 @@ namespace Model
      */
     inline LatLonOptions& WithFacetEnabled(bool value) { SetFacetEnabled(value); return *this;}
 
+
     /**
      * <p>Whether the contents of the field are searchable.</p>
      */
@@ -135,6 +141,7 @@ namespace Model
      */
     inline LatLonOptions& WithSearchEnabled(bool value) { SetSearchEnabled(value); return *this;}
 
+
     /**
      * <p>Whether the contents of the field can be returned in the search results.</p>
      */
@@ -149,6 +156,7 @@ namespace Model
      * <p>Whether the contents of the field can be returned in the search results.</p>
      */
     inline LatLonOptions& WithReturnEnabled(bool value) { SetReturnEnabled(value); return *this;}
+
 
     /**
      * <p>Whether the field can be used to sort the search results.</p>
@@ -166,16 +174,22 @@ namespace Model
     inline LatLonOptions& WithSortEnabled(bool value) { SetSortEnabled(value); return *this;}
 
   private:
+
     Aws::String m_defaultValue;
     bool m_defaultValueHasBeenSet;
+
     Aws::String m_sourceField;
     bool m_sourceFieldHasBeenSet;
+
     bool m_facetEnabled;
     bool m_facetEnabledHasBeenSet;
+
     bool m_searchEnabled;
     bool m_searchEnabledHasBeenSet;
+
     bool m_returnEnabled;
     bool m_returnEnabledHasBeenSet;
+
     bool m_sortEnabled;
     bool m_sortEnabledHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/lightsail/model/Disk.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     InstanceHardware& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The number of vCPUs the instance has.</p>
      */
@@ -59,6 +62,7 @@ namespace Model
      */
     inline InstanceHardware& WithCpuCount(int value) { SetCpuCount(value); return *this;}
 
+
     /**
      * <p>The disks attached to the instance.</p>
      */
@@ -72,7 +76,7 @@ namespace Model
     /**
      * <p>The disks attached to the instance.</p>
      */
-    inline void SetDisks(Aws::Vector<Disk>&& value) { m_disksHasBeenSet = true; m_disks = value; }
+    inline void SetDisks(Aws::Vector<Disk>&& value) { m_disksHasBeenSet = true; m_disks = std::move(value); }
 
     /**
      * <p>The disks attached to the instance.</p>
@@ -82,7 +86,7 @@ namespace Model
     /**
      * <p>The disks attached to the instance.</p>
      */
-    inline InstanceHardware& WithDisks(Aws::Vector<Disk>&& value) { SetDisks(value); return *this;}
+    inline InstanceHardware& WithDisks(Aws::Vector<Disk>&& value) { SetDisks(std::move(value)); return *this;}
 
     /**
      * <p>The disks attached to the instance.</p>
@@ -92,7 +96,8 @@ namespace Model
     /**
      * <p>The disks attached to the instance.</p>
      */
-    inline InstanceHardware& AddDisks(Disk&& value) { m_disksHasBeenSet = true; m_disks.push_back(value); return *this; }
+    inline InstanceHardware& AddDisks(Disk&& value) { m_disksHasBeenSet = true; m_disks.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The amount of RAM in GB on the instance (e.g., <code>1.0</code>).</p>
@@ -110,10 +115,13 @@ namespace Model
     inline InstanceHardware& WithRamSizeInGb(double value) { SetRamSizeInGb(value); return *this;}
 
   private:
+
     int m_cpuCount;
     bool m_cpuCountHasBeenSet;
+
     Aws::Vector<Disk> m_disks;
     bool m_disksHasBeenSet;
+
     double m_ramSizeInGb;
     bool m_ramSizeInGbHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     DocumentDefaultVersionDescription& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the document.</p>
      */
@@ -56,7 +59,7 @@ namespace Model
     /**
      * <p>The name of the document.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the document.</p>
@@ -71,12 +74,13 @@ namespace Model
     /**
      * <p>The name of the document.</p>
      */
-    inline DocumentDefaultVersionDescription& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline DocumentDefaultVersionDescription& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the document.</p>
      */
     inline DocumentDefaultVersionDescription& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The default version of the document.</p>
@@ -91,7 +95,7 @@ namespace Model
     /**
      * <p>The default version of the document.</p>
      */
-    inline void SetDefaultVersion(Aws::String&& value) { m_defaultVersionHasBeenSet = true; m_defaultVersion = value; }
+    inline void SetDefaultVersion(Aws::String&& value) { m_defaultVersionHasBeenSet = true; m_defaultVersion = std::move(value); }
 
     /**
      * <p>The default version of the document.</p>
@@ -106,7 +110,7 @@ namespace Model
     /**
      * <p>The default version of the document.</p>
      */
-    inline DocumentDefaultVersionDescription& WithDefaultVersion(Aws::String&& value) { SetDefaultVersion(value); return *this;}
+    inline DocumentDefaultVersionDescription& WithDefaultVersion(Aws::String&& value) { SetDefaultVersion(std::move(value)); return *this;}
 
     /**
      * <p>The default version of the document.</p>
@@ -114,8 +118,10 @@ namespace Model
     inline DocumentDefaultVersionDescription& WithDefaultVersion(const char* value) { SetDefaultVersion(value); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_defaultVersion;
     bool m_defaultVersionHasBeenSet;
   };

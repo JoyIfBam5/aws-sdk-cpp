@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/events/CloudWatchEvents_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/events/model/RuleState.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,123 +35,135 @@ namespace CloudWatchEvents
 {
 namespace Model
 {
-  /**
-   * <p>The result of the <a>DescribeRule</a> operation.</p><p><h3>See Also:</h3>  
-   * <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/DescribeRuleResponse">AWS
-   * API Reference</a></p>
-   */
   class AWS_CLOUDWATCHEVENTS_API DescribeRuleResult
   {
   public:
     DescribeRuleResult();
-    DescribeRuleResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeRuleResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeRuleResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeRuleResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>The rule's name.</p>
+     * <p>The name of the rule.</p>
      */
     inline const Aws::String& GetName() const{ return m_name; }
 
     /**
-     * <p>The rule's name.</p>
+     * <p>The name of the rule.</p>
      */
     inline void SetName(const Aws::String& value) { m_name = value; }
 
     /**
-     * <p>The rule's name.</p>
+     * <p>The name of the rule.</p>
      */
-    inline void SetName(Aws::String&& value) { m_name = value; }
+    inline void SetName(Aws::String&& value) { m_name = std::move(value); }
 
     /**
-     * <p>The rule's name.</p>
+     * <p>The name of the rule.</p>
      */
     inline void SetName(const char* value) { m_name.assign(value); }
 
     /**
-     * <p>The rule's name.</p>
+     * <p>The name of the rule.</p>
      */
     inline DescribeRuleResult& WithName(const Aws::String& value) { SetName(value); return *this;}
 
     /**
-     * <p>The rule's name.</p>
+     * <p>The name of the rule.</p>
      */
-    inline DescribeRuleResult& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline DescribeRuleResult& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
-     * <p>The rule's name.</p>
+     * <p>The name of the rule.</p>
      */
     inline DescribeRuleResult& WithName(const char* value) { SetName(value); return *this;}
 
+
     /**
-     * <p>The Amazon Resource Name (ARN) associated with the rule.</p>
+     * <p>The Amazon Resource Name (ARN) of the rule.</p>
      */
     inline const Aws::String& GetArn() const{ return m_arn; }
 
     /**
-     * <p>The Amazon Resource Name (ARN) associated with the rule.</p>
+     * <p>The Amazon Resource Name (ARN) of the rule.</p>
      */
     inline void SetArn(const Aws::String& value) { m_arn = value; }
 
     /**
-     * <p>The Amazon Resource Name (ARN) associated with the rule.</p>
+     * <p>The Amazon Resource Name (ARN) of the rule.</p>
      */
-    inline void SetArn(Aws::String&& value) { m_arn = value; }
+    inline void SetArn(Aws::String&& value) { m_arn = std::move(value); }
 
     /**
-     * <p>The Amazon Resource Name (ARN) associated with the rule.</p>
+     * <p>The Amazon Resource Name (ARN) of the rule.</p>
      */
     inline void SetArn(const char* value) { m_arn.assign(value); }
 
     /**
-     * <p>The Amazon Resource Name (ARN) associated with the rule.</p>
+     * <p>The Amazon Resource Name (ARN) of the rule.</p>
      */
     inline DescribeRuleResult& WithArn(const Aws::String& value) { SetArn(value); return *this;}
 
     /**
-     * <p>The Amazon Resource Name (ARN) associated with the rule.</p>
+     * <p>The Amazon Resource Name (ARN) of the rule.</p>
      */
-    inline DescribeRuleResult& WithArn(Aws::String&& value) { SetArn(value); return *this;}
+    inline DescribeRuleResult& WithArn(Aws::String&& value) { SetArn(std::move(value)); return *this;}
 
     /**
-     * <p>The Amazon Resource Name (ARN) associated with the rule.</p>
+     * <p>The Amazon Resource Name (ARN) of the rule.</p>
      */
     inline DescribeRuleResult& WithArn(const char* value) { SetArn(value); return *this;}
 
+
     /**
-     * <p>The event pattern.</p>
+     * <p>The event pattern. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html">Events
+     * and Event Patterns</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>
      */
     inline const Aws::String& GetEventPattern() const{ return m_eventPattern; }
 
     /**
-     * <p>The event pattern.</p>
+     * <p>The event pattern. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html">Events
+     * and Event Patterns</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>
      */
     inline void SetEventPattern(const Aws::String& value) { m_eventPattern = value; }
 
     /**
-     * <p>The event pattern.</p>
+     * <p>The event pattern. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html">Events
+     * and Event Patterns</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>
      */
-    inline void SetEventPattern(Aws::String&& value) { m_eventPattern = value; }
+    inline void SetEventPattern(Aws::String&& value) { m_eventPattern = std::move(value); }
 
     /**
-     * <p>The event pattern.</p>
+     * <p>The event pattern. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html">Events
+     * and Event Patterns</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>
      */
     inline void SetEventPattern(const char* value) { m_eventPattern.assign(value); }
 
     /**
-     * <p>The event pattern.</p>
+     * <p>The event pattern. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html">Events
+     * and Event Patterns</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>
      */
     inline DescribeRuleResult& WithEventPattern(const Aws::String& value) { SetEventPattern(value); return *this;}
 
     /**
-     * <p>The event pattern.</p>
+     * <p>The event pattern. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html">Events
+     * and Event Patterns</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>
      */
-    inline DescribeRuleResult& WithEventPattern(Aws::String&& value) { SetEventPattern(value); return *this;}
+    inline DescribeRuleResult& WithEventPattern(Aws::String&& value) { SetEventPattern(std::move(value)); return *this;}
 
     /**
-     * <p>The event pattern.</p>
+     * <p>The event pattern. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html">Events
+     * and Event Patterns</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>
      */
     inline DescribeRuleResult& WithEventPattern(const char* value) { SetEventPattern(value); return *this;}
+
 
     /**
      * <p>The scheduling expression. For example, "cron(0 20 * * ? *)", "rate(5
@@ -167,7 +181,7 @@ namespace Model
      * <p>The scheduling expression. For example, "cron(0 20 * * ? *)", "rate(5
      * minutes)".</p>
      */
-    inline void SetScheduleExpression(Aws::String&& value) { m_scheduleExpression = value; }
+    inline void SetScheduleExpression(Aws::String&& value) { m_scheduleExpression = std::move(value); }
 
     /**
      * <p>The scheduling expression. For example, "cron(0 20 * * ? *)", "rate(5
@@ -185,13 +199,14 @@ namespace Model
      * <p>The scheduling expression. For example, "cron(0 20 * * ? *)", "rate(5
      * minutes)".</p>
      */
-    inline DescribeRuleResult& WithScheduleExpression(Aws::String&& value) { SetScheduleExpression(value); return *this;}
+    inline DescribeRuleResult& WithScheduleExpression(Aws::String&& value) { SetScheduleExpression(std::move(value)); return *this;}
 
     /**
      * <p>The scheduling expression. For example, "cron(0 20 * * ? *)", "rate(5
      * minutes)".</p>
      */
     inline DescribeRuleResult& WithScheduleExpression(const char* value) { SetScheduleExpression(value); return *this;}
+
 
     /**
      * <p>Specifies whether the rule is enabled or disabled.</p>
@@ -206,7 +221,7 @@ namespace Model
     /**
      * <p>Specifies whether the rule is enabled or disabled.</p>
      */
-    inline void SetState(RuleState&& value) { m_state = value; }
+    inline void SetState(RuleState&& value) { m_state = std::move(value); }
 
     /**
      * <p>Specifies whether the rule is enabled or disabled.</p>
@@ -216,42 +231,44 @@ namespace Model
     /**
      * <p>Specifies whether the rule is enabled or disabled.</p>
      */
-    inline DescribeRuleResult& WithState(RuleState&& value) { SetState(value); return *this;}
+    inline DescribeRuleResult& WithState(RuleState&& value) { SetState(std::move(value)); return *this;}
+
 
     /**
-     * <p>The rule's description.</p>
+     * <p>The description of the rule.</p>
      */
     inline const Aws::String& GetDescription() const{ return m_description; }
 
     /**
-     * <p>The rule's description.</p>
+     * <p>The description of the rule.</p>
      */
     inline void SetDescription(const Aws::String& value) { m_description = value; }
 
     /**
-     * <p>The rule's description.</p>
+     * <p>The description of the rule.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_description = std::move(value); }
 
     /**
-     * <p>The rule's description.</p>
+     * <p>The description of the rule.</p>
      */
     inline void SetDescription(const char* value) { m_description.assign(value); }
 
     /**
-     * <p>The rule's description.</p>
+     * <p>The description of the rule.</p>
      */
     inline DescribeRuleResult& WithDescription(const Aws::String& value) { SetDescription(value); return *this;}
 
     /**
-     * <p>The rule's description.</p>
+     * <p>The description of the rule.</p>
      */
-    inline DescribeRuleResult& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline DescribeRuleResult& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
-     * <p>The rule's description.</p>
+     * <p>The description of the rule.</p>
      */
     inline DescribeRuleResult& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role associated with the rule.</p>
@@ -266,7 +283,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role associated with the rule.</p>
      */
-    inline void SetRoleArn(Aws::String&& value) { m_roleArn = value; }
+    inline void SetRoleArn(Aws::String&& value) { m_roleArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role associated with the rule.</p>
@@ -281,7 +298,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role associated with the rule.</p>
      */
-    inline DescribeRuleResult& WithRoleArn(Aws::String&& value) { SetRoleArn(value); return *this;}
+    inline DescribeRuleResult& WithRoleArn(Aws::String&& value) { SetRoleArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role associated with the rule.</p>
@@ -289,12 +306,19 @@ namespace Model
     inline DescribeRuleResult& WithRoleArn(const char* value) { SetRoleArn(value); return *this;}
 
   private:
+
     Aws::String m_name;
+
     Aws::String m_arn;
+
     Aws::String m_eventPattern;
+
     Aws::String m_scheduleExpression;
+
     RuleState m_state;
+
     Aws::String m_description;
+
     Aws::String m_roleArn;
   };
 

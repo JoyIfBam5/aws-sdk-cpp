@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecr/ECR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/ecr/model/AuthorizationData.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     GetAuthorizationTokenResult();
-    GetAuthorizationTokenResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetAuthorizationTokenResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetAuthorizationTokenResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetAuthorizationTokenResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A list of authorization token data objects that correspond to the
@@ -56,7 +59,7 @@ namespace Model
      * <p>A list of authorization token data objects that correspond to the
      * <code>registryIds</code> values in the request.</p>
      */
-    inline void SetAuthorizationData(Aws::Vector<AuthorizationData>&& value) { m_authorizationData = value; }
+    inline void SetAuthorizationData(Aws::Vector<AuthorizationData>&& value) { m_authorizationData = std::move(value); }
 
     /**
      * <p>A list of authorization token data objects that correspond to the
@@ -68,7 +71,7 @@ namespace Model
      * <p>A list of authorization token data objects that correspond to the
      * <code>registryIds</code> values in the request.</p>
      */
-    inline GetAuthorizationTokenResult& WithAuthorizationData(Aws::Vector<AuthorizationData>&& value) { SetAuthorizationData(value); return *this;}
+    inline GetAuthorizationTokenResult& WithAuthorizationData(Aws::Vector<AuthorizationData>&& value) { SetAuthorizationData(std::move(value)); return *this;}
 
     /**
      * <p>A list of authorization token data objects that correspond to the
@@ -80,9 +83,10 @@ namespace Model
      * <p>A list of authorization token data objects that correspond to the
      * <code>registryIds</code> values in the request.</p>
      */
-    inline GetAuthorizationTokenResult& AddAuthorizationData(AuthorizationData&& value) { m_authorizationData.push_back(value); return *this; }
+    inline GetAuthorizationTokenResult& AddAuthorizationData(AuthorizationData&& value) { m_authorizationData.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<AuthorizationData> m_authorizationData;
   };
 

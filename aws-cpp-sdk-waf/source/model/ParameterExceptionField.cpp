@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/waf/model/ParameterExceptionField.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -38,6 +39,11 @@ namespace Aws
         static const int BYTE_MATCH_TEXT_TRANSFORMATION_HASH = HashingUtils::HashString("BYTE_MATCH_TEXT_TRANSFORMATION");
         static const int BYTE_MATCH_POSITIONAL_CONSTRAINT_HASH = HashingUtils::HashString("BYTE_MATCH_POSITIONAL_CONSTRAINT");
         static const int SIZE_CONSTRAINT_COMPARISON_OPERATOR_HASH = HashingUtils::HashString("SIZE_CONSTRAINT_COMPARISON_OPERATOR");
+        static const int GEO_MATCH_LOCATION_TYPE_HASH = HashingUtils::HashString("GEO_MATCH_LOCATION_TYPE");
+        static const int GEO_MATCH_LOCATION_VALUE_HASH = HashingUtils::HashString("GEO_MATCH_LOCATION_VALUE");
+        static const int RATE_KEY_HASH = HashingUtils::HashString("RATE_KEY");
+        static const int RULE_TYPE_HASH = HashingUtils::HashString("RULE_TYPE");
+        static const int NEXT_MARKER_HASH = HashingUtils::HashString("NEXT_MARKER");
 
 
         ParameterExceptionField GetParameterExceptionFieldForName(const Aws::String& name)
@@ -79,6 +85,26 @@ namespace Aws
           {
             return ParameterExceptionField::SIZE_CONSTRAINT_COMPARISON_OPERATOR;
           }
+          else if (hashCode == GEO_MATCH_LOCATION_TYPE_HASH)
+          {
+            return ParameterExceptionField::GEO_MATCH_LOCATION_TYPE;
+          }
+          else if (hashCode == GEO_MATCH_LOCATION_VALUE_HASH)
+          {
+            return ParameterExceptionField::GEO_MATCH_LOCATION_VALUE;
+          }
+          else if (hashCode == RATE_KEY_HASH)
+          {
+            return ParameterExceptionField::RATE_KEY;
+          }
+          else if (hashCode == RULE_TYPE_HASH)
+          {
+            return ParameterExceptionField::RULE_TYPE;
+          }
+          else if (hashCode == NEXT_MARKER_HASH)
+          {
+            return ParameterExceptionField::NEXT_MARKER;
+          }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
           {
@@ -111,6 +137,16 @@ namespace Aws
             return "BYTE_MATCH_POSITIONAL_CONSTRAINT";
           case ParameterExceptionField::SIZE_CONSTRAINT_COMPARISON_OPERATOR:
             return "SIZE_CONSTRAINT_COMPARISON_OPERATOR";
+          case ParameterExceptionField::GEO_MATCH_LOCATION_TYPE:
+            return "GEO_MATCH_LOCATION_TYPE";
+          case ParameterExceptionField::GEO_MATCH_LOCATION_VALUE:
+            return "GEO_MATCH_LOCATION_VALUE";
+          case ParameterExceptionField::RATE_KEY:
+            return "RATE_KEY";
+          case ParameterExceptionField::RULE_TYPE:
+            return "RULE_TYPE";
+          case ParameterExceptionField::NEXT_MARKER:
+            return "NEXT_MARKER";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

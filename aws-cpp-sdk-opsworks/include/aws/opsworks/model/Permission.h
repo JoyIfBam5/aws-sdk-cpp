@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     Permission& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>A stack ID.</p>
      */
@@ -56,7 +59,7 @@ namespace Model
     /**
      * <p>A stack ID.</p>
      */
-    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = value; }
+    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = std::move(value); }
 
     /**
      * <p>A stack ID.</p>
@@ -71,12 +74,13 @@ namespace Model
     /**
      * <p>A stack ID.</p>
      */
-    inline Permission& WithStackId(Aws::String&& value) { SetStackId(value); return *this;}
+    inline Permission& WithStackId(Aws::String&& value) { SetStackId(std::move(value)); return *this;}
 
     /**
      * <p>A stack ID.</p>
      */
     inline Permission& WithStackId(const char* value) { SetStackId(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) for an AWS Identity and Access Management
@@ -100,7 +104,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html">Using
      * Identifiers</a>.</p>
      */
-    inline void SetIamUserArn(Aws::String&& value) { m_iamUserArnHasBeenSet = true; m_iamUserArn = value; }
+    inline void SetIamUserArn(Aws::String&& value) { m_iamUserArnHasBeenSet = true; m_iamUserArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) for an AWS Identity and Access Management
@@ -124,7 +128,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html">Using
      * Identifiers</a>.</p>
      */
-    inline Permission& WithIamUserArn(Aws::String&& value) { SetIamUserArn(value); return *this;}
+    inline Permission& WithIamUserArn(Aws::String&& value) { SetIamUserArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) for an AWS Identity and Access Management
@@ -133,6 +137,7 @@ namespace Model
      * Identifiers</a>.</p>
      */
     inline Permission& WithIamUserArn(const char* value) { SetIamUserArn(value); return *this;}
+
 
     /**
      * <p>Whether the user can use SSH.</p>
@@ -149,6 +154,7 @@ namespace Model
      */
     inline Permission& WithAllowSsh(bool value) { SetAllowSsh(value); return *this;}
 
+
     /**
      * <p>Whether the user can use <b>sudo</b>.</p>
      */
@@ -163,6 +169,7 @@ namespace Model
      * <p>Whether the user can use <b>sudo</b>.</p>
      */
     inline Permission& WithAllowSudo(bool value) { SetAllowSudo(value); return *this;}
+
 
     /**
      * <p>The user's permission level, which must be the following:</p> <ul> <li> <p>
@@ -195,7 +202,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
      * User Permissions</a> </p>
      */
-    inline void SetLevel(Aws::String&& value) { m_levelHasBeenSet = true; m_level = value; }
+    inline void SetLevel(Aws::String&& value) { m_levelHasBeenSet = true; m_level = std::move(value); }
 
     /**
      * <p>The user's permission level, which must be the following:</p> <ul> <li> <p>
@@ -228,7 +235,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
      * User Permissions</a> </p>
      */
-    inline Permission& WithLevel(Aws::String&& value) { SetLevel(value); return *this;}
+    inline Permission& WithLevel(Aws::String&& value) { SetLevel(std::move(value)); return *this;}
 
     /**
      * <p>The user's permission level, which must be the following:</p> <ul> <li> <p>
@@ -242,14 +249,19 @@ namespace Model
     inline Permission& WithLevel(const char* value) { SetLevel(value); return *this;}
 
   private:
+
     Aws::String m_stackId;
     bool m_stackIdHasBeenSet;
+
     Aws::String m_iamUserArn;
     bool m_iamUserArnHasBeenSet;
+
     bool m_allowSsh;
     bool m_allowSshHasBeenSet;
+
     bool m_allowSudo;
     bool m_allowSudoHasBeenSet;
+
     Aws::String m_level;
     bool m_levelHasBeenSet;
   };

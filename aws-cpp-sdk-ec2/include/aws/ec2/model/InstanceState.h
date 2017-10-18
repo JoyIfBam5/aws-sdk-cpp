@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/ec2/model/InstanceStateName.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
 
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
+
 
     /**
      * <p>The low byte represents the state. The high byte is an opaque internal value
@@ -79,6 +82,7 @@ namespace Model
      */
     inline InstanceState& WithCode(int value) { SetCode(value); return *this;}
 
+
     /**
      * <p>The current state of the instance.</p>
      */
@@ -92,7 +96,7 @@ namespace Model
     /**
      * <p>The current state of the instance.</p>
      */
-    inline void SetName(InstanceStateName&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(InstanceStateName&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The current state of the instance.</p>
@@ -102,11 +106,13 @@ namespace Model
     /**
      * <p>The current state of the instance.</p>
      */
-    inline InstanceState& WithName(InstanceStateName&& value) { SetName(value); return *this;}
+    inline InstanceState& WithName(InstanceStateName&& value) { SetName(std::move(value)); return *this;}
 
   private:
+
     int m_code;
     bool m_codeHasBeenSet;
+
     InstanceStateName m_name;
     bool m_nameHasBeenSet;
   };

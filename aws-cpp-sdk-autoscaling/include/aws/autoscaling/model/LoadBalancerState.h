@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/autoscaling/AutoScaling_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -32,7 +34,7 @@ namespace Model
 {
 
   /**
-   * <p>Describes the state of a Classic load balancer.</p> <p>If you specify a load
+   * <p>Describes the state of a Classic Load Balancer.</p> <p>If you specify a load
    * balancer when creating the Auto Scaling group, the state of the load balancer is
    * <code>InService</code>.</p> <p>If you attach a load balancer to an existing Auto
    * Scaling group, the initial state is <code>Adding</code>. The state transitions
@@ -54,6 +56,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the load balancer.</p>
      */
@@ -67,7 +70,7 @@ namespace Model
     /**
      * <p>The name of the load balancer.</p>
      */
-    inline void SetLoadBalancerName(Aws::String&& value) { m_loadBalancerNameHasBeenSet = true; m_loadBalancerName = value; }
+    inline void SetLoadBalancerName(Aws::String&& value) { m_loadBalancerNameHasBeenSet = true; m_loadBalancerName = std::move(value); }
 
     /**
      * <p>The name of the load balancer.</p>
@@ -82,12 +85,13 @@ namespace Model
     /**
      * <p>The name of the load balancer.</p>
      */
-    inline LoadBalancerState& WithLoadBalancerName(Aws::String&& value) { SetLoadBalancerName(value); return *this;}
+    inline LoadBalancerState& WithLoadBalancerName(Aws::String&& value) { SetLoadBalancerName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the load balancer.</p>
      */
     inline LoadBalancerState& WithLoadBalancerName(const char* value) { SetLoadBalancerName(value); return *this;}
+
 
     /**
      * <p>One of the following load balancer states:</p> <ul> <li> <p>
@@ -129,7 +133,7 @@ namespace Model
      * deregistering the instances.</p> </li> <li> <p> <code>Removed</code> - All
      * instances in the group are deregistered from the load balancer.</p> </li> </ul>
      */
-    inline void SetState(Aws::String&& value) { m_stateHasBeenSet = true; m_state = value; }
+    inline void SetState(Aws::String&& value) { m_stateHasBeenSet = true; m_state = std::move(value); }
 
     /**
      * <p>One of the following load balancer states:</p> <ul> <li> <p>
@@ -171,7 +175,7 @@ namespace Model
      * deregistering the instances.</p> </li> <li> <p> <code>Removed</code> - All
      * instances in the group are deregistered from the load balancer.</p> </li> </ul>
      */
-    inline LoadBalancerState& WithState(Aws::String&& value) { SetState(value); return *this;}
+    inline LoadBalancerState& WithState(Aws::String&& value) { SetState(std::move(value)); return *this;}
 
     /**
      * <p>One of the following load balancer states:</p> <ul> <li> <p>
@@ -188,8 +192,10 @@ namespace Model
     inline LoadBalancerState& WithState(const char* value) { SetState(value); return *this;}
 
   private:
+
     Aws::String m_loadBalancerName;
     bool m_loadBalancerNameHasBeenSet;
+
     Aws::String m_state;
     bool m_stateHasBeenSet;
   };

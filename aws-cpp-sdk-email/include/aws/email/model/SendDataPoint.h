@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>Time of the data point.</p>
      */
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>Time of the data point.</p>
      */
-    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = value; }
+    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = std::move(value); }
 
     /**
      * <p>Time of the data point.</p>
@@ -71,7 +74,8 @@ namespace Model
     /**
      * <p>Time of the data point.</p>
      */
-    inline SendDataPoint& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(value); return *this;}
+    inline SendDataPoint& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(std::move(value)); return *this;}
+
 
     /**
      * <p>Number of emails that have been sent.</p>
@@ -88,6 +92,7 @@ namespace Model
      */
     inline SendDataPoint& WithDeliveryAttempts(long long value) { SetDeliveryAttempts(value); return *this;}
 
+
     /**
      * <p>Number of emails that have bounced.</p>
      */
@@ -103,6 +108,7 @@ namespace Model
      */
     inline SendDataPoint& WithBounces(long long value) { SetBounces(value); return *this;}
 
+
     /**
      * <p>Number of unwanted emails that were rejected by recipients.</p>
      */
@@ -117,6 +123,7 @@ namespace Model
      * <p>Number of unwanted emails that were rejected by recipients.</p>
      */
     inline SendDataPoint& WithComplaints(long long value) { SetComplaints(value); return *this;}
+
 
     /**
      * <p>Number of emails rejected by Amazon SES.</p>
@@ -134,14 +141,19 @@ namespace Model
     inline SendDataPoint& WithRejects(long long value) { SetRejects(value); return *this;}
 
   private:
+
     Aws::Utils::DateTime m_timestamp;
     bool m_timestampHasBeenSet;
+
     long long m_deliveryAttempts;
     bool m_deliveryAttemptsHasBeenSet;
+
     long long m_bounces;
     bool m_bouncesHasBeenSet;
+
     long long m_complaints;
     bool m_complaintsHasBeenSet;
+
     long long m_rejects;
     bool m_rejectsHasBeenSet;
   };

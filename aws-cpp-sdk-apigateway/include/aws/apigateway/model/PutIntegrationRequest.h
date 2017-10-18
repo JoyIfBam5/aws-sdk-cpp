@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/apigateway/APIGatewayRequest.h>
@@ -20,6 +21,7 @@
 #include <aws/core/utils/memory/stl/AWSMap.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/apigateway/model/ContentHandlingStrategy.h>
+#include <utility>
 
 namespace Aws
 {
@@ -29,7 +31,7 @@ namespace Model
 {
 
   /**
-   * <p>Represents a put integration request.</p><p><h3>See Also:</h3>   <a
+   * <p>Sets up a method's integration.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/PutIntegrationRequest">AWS
    * API Reference</a></p>
    */
@@ -37,42 +39,51 @@ namespace Model
   {
   public:
     PutIntegrationRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "PutIntegration"; }
+
     Aws::String SerializePayload() const override;
 
+
     /**
-     * <p>Specifies a put integration request's API identifier.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline const Aws::String& GetRestApiId() const{ return m_restApiId; }
 
     /**
-     * <p>Specifies a put integration request's API identifier.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline void SetRestApiId(const Aws::String& value) { m_restApiIdHasBeenSet = true; m_restApiId = value; }
 
     /**
-     * <p>Specifies a put integration request's API identifier.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
-    inline void SetRestApiId(Aws::String&& value) { m_restApiIdHasBeenSet = true; m_restApiId = value; }
+    inline void SetRestApiId(Aws::String&& value) { m_restApiIdHasBeenSet = true; m_restApiId = std::move(value); }
 
     /**
-     * <p>Specifies a put integration request's API identifier.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline void SetRestApiId(const char* value) { m_restApiIdHasBeenSet = true; m_restApiId.assign(value); }
 
     /**
-     * <p>Specifies a put integration request's API identifier.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline PutIntegrationRequest& WithRestApiId(const Aws::String& value) { SetRestApiId(value); return *this;}
 
     /**
-     * <p>Specifies a put integration request's API identifier.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
-    inline PutIntegrationRequest& WithRestApiId(Aws::String&& value) { SetRestApiId(value); return *this;}
+    inline PutIntegrationRequest& WithRestApiId(Aws::String&& value) { SetRestApiId(std::move(value)); return *this;}
 
     /**
-     * <p>Specifies a put integration request's API identifier.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline PutIntegrationRequest& WithRestApiId(const char* value) { SetRestApiId(value); return *this;}
+
 
     /**
      * <p>Specifies a put integration request's resource ID.</p>
@@ -87,7 +98,7 @@ namespace Model
     /**
      * <p>Specifies a put integration request's resource ID.</p>
      */
-    inline void SetResourceId(Aws::String&& value) { m_resourceIdHasBeenSet = true; m_resourceId = value; }
+    inline void SetResourceId(Aws::String&& value) { m_resourceIdHasBeenSet = true; m_resourceId = std::move(value); }
 
     /**
      * <p>Specifies a put integration request's resource ID.</p>
@@ -102,12 +113,13 @@ namespace Model
     /**
      * <p>Specifies a put integration request's resource ID.</p>
      */
-    inline PutIntegrationRequest& WithResourceId(Aws::String&& value) { SetResourceId(value); return *this;}
+    inline PutIntegrationRequest& WithResourceId(Aws::String&& value) { SetResourceId(std::move(value)); return *this;}
 
     /**
      * <p>Specifies a put integration request's resource ID.</p>
      */
     inline PutIntegrationRequest& WithResourceId(const char* value) { SetResourceId(value); return *this;}
+
 
     /**
      * <p>Specifies a put integration request's HTTP method.</p>
@@ -122,7 +134,7 @@ namespace Model
     /**
      * <p>Specifies a put integration request's HTTP method.</p>
      */
-    inline void SetHttpMethod(Aws::String&& value) { m_httpMethodHasBeenSet = true; m_httpMethod = value; }
+    inline void SetHttpMethod(Aws::String&& value) { m_httpMethodHasBeenSet = true; m_httpMethod = std::move(value); }
 
     /**
      * <p>Specifies a put integration request's HTTP method.</p>
@@ -137,12 +149,13 @@ namespace Model
     /**
      * <p>Specifies a put integration request's HTTP method.</p>
      */
-    inline PutIntegrationRequest& WithHttpMethod(Aws::String&& value) { SetHttpMethod(value); return *this;}
+    inline PutIntegrationRequest& WithHttpMethod(Aws::String&& value) { SetHttpMethod(std::move(value)); return *this;}
 
     /**
      * <p>Specifies a put integration request's HTTP method.</p>
      */
     inline PutIntegrationRequest& WithHttpMethod(const char* value) { SetHttpMethod(value); return *this;}
+
 
     /**
      * <p>Specifies a put integration input's type.</p>
@@ -157,7 +170,7 @@ namespace Model
     /**
      * <p>Specifies a put integration input's type.</p>
      */
-    inline void SetType(IntegrationType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(IntegrationType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>Specifies a put integration input's type.</p>
@@ -167,7 +180,8 @@ namespace Model
     /**
      * <p>Specifies a put integration input's type.</p>
      */
-    inline PutIntegrationRequest& WithType(IntegrationType&& value) { SetType(value); return *this;}
+    inline PutIntegrationRequest& WithType(IntegrationType&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p>Specifies a put integration HTTP method. When the integration type is HTTP or
@@ -185,7 +199,7 @@ namespace Model
      * <p>Specifies a put integration HTTP method. When the integration type is HTTP or
      * AWS, this field is required.</p>
      */
-    inline void SetIntegrationHttpMethod(Aws::String&& value) { m_integrationHttpMethodHasBeenSet = true; m_integrationHttpMethod = value; }
+    inline void SetIntegrationHttpMethod(Aws::String&& value) { m_integrationHttpMethodHasBeenSet = true; m_integrationHttpMethod = std::move(value); }
 
     /**
      * <p>Specifies a put integration HTTP method. When the integration type is HTTP or
@@ -203,7 +217,7 @@ namespace Model
      * <p>Specifies a put integration HTTP method. When the integration type is HTTP or
      * AWS, this field is required.</p>
      */
-    inline PutIntegrationRequest& WithIntegrationHttpMethod(Aws::String&& value) { SetIntegrationHttpMethod(value); return *this;}
+    inline PutIntegrationRequest& WithIntegrationHttpMethod(Aws::String&& value) { SetIntegrationHttpMethod(std::move(value)); return *this;}
 
     /**
      * <p>Specifies a put integration HTTP method. When the integration type is HTTP or
@@ -211,68 +225,119 @@ namespace Model
      */
     inline PutIntegrationRequest& WithIntegrationHttpMethod(const char* value) { SetIntegrationHttpMethod(value); return *this;}
 
+
     /**
-     * <p>Specifies a put integration input's Uniform Resource Identifier (URI). When
-     * the integration type is HTTP or AWS, this field is required. For integration
-     * with Lambda as an AWS service proxy, this value is of the
-     * 'arn:aws:apigateway:&lt;region&gt;:lambda:path/2015-03-31/functions/&lt;functionArn&gt;/invocations'
-     * format.</p>
+     * <p>Specifies the integration's Uniform Resource Identifier (URI). For HTTP
+     * integrations, the URI must be a fully formed, encoded HTTP(S) URL according to
+     * the <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier"
+     * target="_blank">RFC-3986 specification</a>. For AWS integrations, the URI should
+     * be of the form
+     * <code>arn:aws:apigateway:{region}:{subdomain.service|service}:{path|action}/{service_api}</code>.
+     * <code>Region</code>, <code>subdomain</code> and <code>service</code> are used to
+     * determine the right endpoint. For AWS services that use the <code>Action=</code>
+     * query string parameter, <code>service_api</code> should be a valid action for
+     * the desired service. For RESTful AWS service APIs, <code>path</code> is used to
+     * indicate that the remaining substring in the URI should be treated as the path
+     * to the resource, including the initial <code>/</code>.</p>
      */
     inline const Aws::String& GetUri() const{ return m_uri; }
 
     /**
-     * <p>Specifies a put integration input's Uniform Resource Identifier (URI). When
-     * the integration type is HTTP or AWS, this field is required. For integration
-     * with Lambda as an AWS service proxy, this value is of the
-     * 'arn:aws:apigateway:&lt;region&gt;:lambda:path/2015-03-31/functions/&lt;functionArn&gt;/invocations'
-     * format.</p>
+     * <p>Specifies the integration's Uniform Resource Identifier (URI). For HTTP
+     * integrations, the URI must be a fully formed, encoded HTTP(S) URL according to
+     * the <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier"
+     * target="_blank">RFC-3986 specification</a>. For AWS integrations, the URI should
+     * be of the form
+     * <code>arn:aws:apigateway:{region}:{subdomain.service|service}:{path|action}/{service_api}</code>.
+     * <code>Region</code>, <code>subdomain</code> and <code>service</code> are used to
+     * determine the right endpoint. For AWS services that use the <code>Action=</code>
+     * query string parameter, <code>service_api</code> should be a valid action for
+     * the desired service. For RESTful AWS service APIs, <code>path</code> is used to
+     * indicate that the remaining substring in the URI should be treated as the path
+     * to the resource, including the initial <code>/</code>.</p>
      */
     inline void SetUri(const Aws::String& value) { m_uriHasBeenSet = true; m_uri = value; }
 
     /**
-     * <p>Specifies a put integration input's Uniform Resource Identifier (URI). When
-     * the integration type is HTTP or AWS, this field is required. For integration
-     * with Lambda as an AWS service proxy, this value is of the
-     * 'arn:aws:apigateway:&lt;region&gt;:lambda:path/2015-03-31/functions/&lt;functionArn&gt;/invocations'
-     * format.</p>
+     * <p>Specifies the integration's Uniform Resource Identifier (URI). For HTTP
+     * integrations, the URI must be a fully formed, encoded HTTP(S) URL according to
+     * the <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier"
+     * target="_blank">RFC-3986 specification</a>. For AWS integrations, the URI should
+     * be of the form
+     * <code>arn:aws:apigateway:{region}:{subdomain.service|service}:{path|action}/{service_api}</code>.
+     * <code>Region</code>, <code>subdomain</code> and <code>service</code> are used to
+     * determine the right endpoint. For AWS services that use the <code>Action=</code>
+     * query string parameter, <code>service_api</code> should be a valid action for
+     * the desired service. For RESTful AWS service APIs, <code>path</code> is used to
+     * indicate that the remaining substring in the URI should be treated as the path
+     * to the resource, including the initial <code>/</code>.</p>
      */
-    inline void SetUri(Aws::String&& value) { m_uriHasBeenSet = true; m_uri = value; }
+    inline void SetUri(Aws::String&& value) { m_uriHasBeenSet = true; m_uri = std::move(value); }
 
     /**
-     * <p>Specifies a put integration input's Uniform Resource Identifier (URI). When
-     * the integration type is HTTP or AWS, this field is required. For integration
-     * with Lambda as an AWS service proxy, this value is of the
-     * 'arn:aws:apigateway:&lt;region&gt;:lambda:path/2015-03-31/functions/&lt;functionArn&gt;/invocations'
-     * format.</p>
+     * <p>Specifies the integration's Uniform Resource Identifier (URI). For HTTP
+     * integrations, the URI must be a fully formed, encoded HTTP(S) URL according to
+     * the <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier"
+     * target="_blank">RFC-3986 specification</a>. For AWS integrations, the URI should
+     * be of the form
+     * <code>arn:aws:apigateway:{region}:{subdomain.service|service}:{path|action}/{service_api}</code>.
+     * <code>Region</code>, <code>subdomain</code> and <code>service</code> are used to
+     * determine the right endpoint. For AWS services that use the <code>Action=</code>
+     * query string parameter, <code>service_api</code> should be a valid action for
+     * the desired service. For RESTful AWS service APIs, <code>path</code> is used to
+     * indicate that the remaining substring in the URI should be treated as the path
+     * to the resource, including the initial <code>/</code>.</p>
      */
     inline void SetUri(const char* value) { m_uriHasBeenSet = true; m_uri.assign(value); }
 
     /**
-     * <p>Specifies a put integration input's Uniform Resource Identifier (URI). When
-     * the integration type is HTTP or AWS, this field is required. For integration
-     * with Lambda as an AWS service proxy, this value is of the
-     * 'arn:aws:apigateway:&lt;region&gt;:lambda:path/2015-03-31/functions/&lt;functionArn&gt;/invocations'
-     * format.</p>
+     * <p>Specifies the integration's Uniform Resource Identifier (URI). For HTTP
+     * integrations, the URI must be a fully formed, encoded HTTP(S) URL according to
+     * the <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier"
+     * target="_blank">RFC-3986 specification</a>. For AWS integrations, the URI should
+     * be of the form
+     * <code>arn:aws:apigateway:{region}:{subdomain.service|service}:{path|action}/{service_api}</code>.
+     * <code>Region</code>, <code>subdomain</code> and <code>service</code> are used to
+     * determine the right endpoint. For AWS services that use the <code>Action=</code>
+     * query string parameter, <code>service_api</code> should be a valid action for
+     * the desired service. For RESTful AWS service APIs, <code>path</code> is used to
+     * indicate that the remaining substring in the URI should be treated as the path
+     * to the resource, including the initial <code>/</code>.</p>
      */
     inline PutIntegrationRequest& WithUri(const Aws::String& value) { SetUri(value); return *this;}
 
     /**
-     * <p>Specifies a put integration input's Uniform Resource Identifier (URI). When
-     * the integration type is HTTP or AWS, this field is required. For integration
-     * with Lambda as an AWS service proxy, this value is of the
-     * 'arn:aws:apigateway:&lt;region&gt;:lambda:path/2015-03-31/functions/&lt;functionArn&gt;/invocations'
-     * format.</p>
+     * <p>Specifies the integration's Uniform Resource Identifier (URI). For HTTP
+     * integrations, the URI must be a fully formed, encoded HTTP(S) URL according to
+     * the <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier"
+     * target="_blank">RFC-3986 specification</a>. For AWS integrations, the URI should
+     * be of the form
+     * <code>arn:aws:apigateway:{region}:{subdomain.service|service}:{path|action}/{service_api}</code>.
+     * <code>Region</code>, <code>subdomain</code> and <code>service</code> are used to
+     * determine the right endpoint. For AWS services that use the <code>Action=</code>
+     * query string parameter, <code>service_api</code> should be a valid action for
+     * the desired service. For RESTful AWS service APIs, <code>path</code> is used to
+     * indicate that the remaining substring in the URI should be treated as the path
+     * to the resource, including the initial <code>/</code>.</p>
      */
-    inline PutIntegrationRequest& WithUri(Aws::String&& value) { SetUri(value); return *this;}
+    inline PutIntegrationRequest& WithUri(Aws::String&& value) { SetUri(std::move(value)); return *this;}
 
     /**
-     * <p>Specifies a put integration input's Uniform Resource Identifier (URI). When
-     * the integration type is HTTP or AWS, this field is required. For integration
-     * with Lambda as an AWS service proxy, this value is of the
-     * 'arn:aws:apigateway:&lt;region&gt;:lambda:path/2015-03-31/functions/&lt;functionArn&gt;/invocations'
-     * format.</p>
+     * <p>Specifies the integration's Uniform Resource Identifier (URI). For HTTP
+     * integrations, the URI must be a fully formed, encoded HTTP(S) URL according to
+     * the <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier"
+     * target="_blank">RFC-3986 specification</a>. For AWS integrations, the URI should
+     * be of the form
+     * <code>arn:aws:apigateway:{region}:{subdomain.service|service}:{path|action}/{service_api}</code>.
+     * <code>Region</code>, <code>subdomain</code> and <code>service</code> are used to
+     * determine the right endpoint. For AWS services that use the <code>Action=</code>
+     * query string parameter, <code>service_api</code> should be a valid action for
+     * the desired service. For RESTful AWS service APIs, <code>path</code> is used to
+     * indicate that the remaining substring in the URI should be treated as the path
+     * to the resource, including the initial <code>/</code>.</p>
      */
     inline PutIntegrationRequest& WithUri(const char* value) { SetUri(value); return *this;}
+
 
     /**
      * <p>Specifies whether credentials are required for a put integration.</p>
@@ -287,7 +352,7 @@ namespace Model
     /**
      * <p>Specifies whether credentials are required for a put integration.</p>
      */
-    inline void SetCredentials(Aws::String&& value) { m_credentialsHasBeenSet = true; m_credentials = value; }
+    inline void SetCredentials(Aws::String&& value) { m_credentialsHasBeenSet = true; m_credentials = std::move(value); }
 
     /**
      * <p>Specifies whether credentials are required for a put integration.</p>
@@ -302,12 +367,13 @@ namespace Model
     /**
      * <p>Specifies whether credentials are required for a put integration.</p>
      */
-    inline PutIntegrationRequest& WithCredentials(Aws::String&& value) { SetCredentials(value); return *this;}
+    inline PutIntegrationRequest& WithCredentials(Aws::String&& value) { SetCredentials(std::move(value)); return *this;}
 
     /**
      * <p>Specifies whether credentials are required for a put integration.</p>
      */
     inline PutIntegrationRequest& WithCredentials(const char* value) { SetCredentials(value); return *this;}
+
 
     /**
      * <p>A key-value map specifying request parameters that are passed from the method
@@ -343,7 +409,7 @@ namespace Model
      * <code>querystring</code>, <code>path</code>, or <code>header</code> and
      * <code>name</code> must be a valid and unique method request parameter name.</p>
      */
-    inline void SetRequestParameters(Aws::Map<Aws::String, Aws::String>&& value) { m_requestParametersHasBeenSet = true; m_requestParameters = value; }
+    inline void SetRequestParameters(Aws::Map<Aws::String, Aws::String>&& value) { m_requestParametersHasBeenSet = true; m_requestParameters = std::move(value); }
 
     /**
      * <p>A key-value map specifying request parameters that are passed from the method
@@ -367,7 +433,7 @@ namespace Model
      * <code>querystring</code>, <code>path</code>, or <code>header</code> and
      * <code>name</code> must be a valid and unique method request parameter name.</p>
      */
-    inline PutIntegrationRequest& WithRequestParameters(Aws::Map<Aws::String, Aws::String>&& value) { SetRequestParameters(value); return *this;}
+    inline PutIntegrationRequest& WithRequestParameters(Aws::Map<Aws::String, Aws::String>&& value) { SetRequestParameters(std::move(value)); return *this;}
 
     /**
      * <p>A key-value map specifying request parameters that are passed from the method
@@ -379,7 +445,7 @@ namespace Model
      * <code>querystring</code>, <code>path</code>, or <code>header</code> and
      * <code>name</code> must be a valid and unique method request parameter name.</p>
      */
-    inline PutIntegrationRequest& AddRequestParameters(const Aws::String& key, const Aws::String& value) { m_requestParametersHasBeenSet = true; m_requestParameters[key] = value; return *this; }
+    inline PutIntegrationRequest& AddRequestParameters(const Aws::String& key, const Aws::String& value) { m_requestParametersHasBeenSet = true; m_requestParameters.emplace(key, value); return *this; }
 
     /**
      * <p>A key-value map specifying request parameters that are passed from the method
@@ -391,7 +457,7 @@ namespace Model
      * <code>querystring</code>, <code>path</code>, or <code>header</code> and
      * <code>name</code> must be a valid and unique method request parameter name.</p>
      */
-    inline PutIntegrationRequest& AddRequestParameters(Aws::String&& key, const Aws::String& value) { m_requestParametersHasBeenSet = true; m_requestParameters[key] = value; return *this; }
+    inline PutIntegrationRequest& AddRequestParameters(Aws::String&& key, const Aws::String& value) { m_requestParametersHasBeenSet = true; m_requestParameters.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A key-value map specifying request parameters that are passed from the method
@@ -403,7 +469,7 @@ namespace Model
      * <code>querystring</code>, <code>path</code>, or <code>header</code> and
      * <code>name</code> must be a valid and unique method request parameter name.</p>
      */
-    inline PutIntegrationRequest& AddRequestParameters(const Aws::String& key, Aws::String&& value) { m_requestParametersHasBeenSet = true; m_requestParameters[key] = value; return *this; }
+    inline PutIntegrationRequest& AddRequestParameters(const Aws::String& key, Aws::String&& value) { m_requestParametersHasBeenSet = true; m_requestParameters.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A key-value map specifying request parameters that are passed from the method
@@ -415,7 +481,7 @@ namespace Model
      * <code>querystring</code>, <code>path</code>, or <code>header</code> and
      * <code>name</code> must be a valid and unique method request parameter name.</p>
      */
-    inline PutIntegrationRequest& AddRequestParameters(Aws::String&& key, Aws::String&& value) { m_requestParametersHasBeenSet = true; m_requestParameters[key] = value; return *this; }
+    inline PutIntegrationRequest& AddRequestParameters(Aws::String&& key, Aws::String&& value) { m_requestParametersHasBeenSet = true; m_requestParameters.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>A key-value map specifying request parameters that are passed from the method
@@ -427,7 +493,7 @@ namespace Model
      * <code>querystring</code>, <code>path</code>, or <code>header</code> and
      * <code>name</code> must be a valid and unique method request parameter name.</p>
      */
-    inline PutIntegrationRequest& AddRequestParameters(const char* key, Aws::String&& value) { m_requestParametersHasBeenSet = true; m_requestParameters[key] = value; return *this; }
+    inline PutIntegrationRequest& AddRequestParameters(const char* key, Aws::String&& value) { m_requestParametersHasBeenSet = true; m_requestParameters.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A key-value map specifying request parameters that are passed from the method
@@ -439,7 +505,7 @@ namespace Model
      * <code>querystring</code>, <code>path</code>, or <code>header</code> and
      * <code>name</code> must be a valid and unique method request parameter name.</p>
      */
-    inline PutIntegrationRequest& AddRequestParameters(Aws::String&& key, const char* value) { m_requestParametersHasBeenSet = true; m_requestParameters[key] = value; return *this; }
+    inline PutIntegrationRequest& AddRequestParameters(Aws::String&& key, const char* value) { m_requestParametersHasBeenSet = true; m_requestParameters.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A key-value map specifying request parameters that are passed from the method
@@ -451,7 +517,8 @@ namespace Model
      * <code>querystring</code>, <code>path</code>, or <code>header</code> and
      * <code>name</code> must be a valid and unique method request parameter name.</p>
      */
-    inline PutIntegrationRequest& AddRequestParameters(const char* key, const char* value) { m_requestParametersHasBeenSet = true; m_requestParameters[key] = value; return *this; }
+    inline PutIntegrationRequest& AddRequestParameters(const char* key, const char* value) { m_requestParametersHasBeenSet = true; m_requestParameters.emplace(key, value); return *this; }
+
 
     /**
      * <p>Represents a map of Velocity templates that are applied on the request
@@ -475,7 +542,7 @@ namespace Model
      * content type value is the key in this map, and the template (as a String) is the
      * value.</p>
      */
-    inline void SetRequestTemplates(Aws::Map<Aws::String, Aws::String>&& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates = value; }
+    inline void SetRequestTemplates(Aws::Map<Aws::String, Aws::String>&& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates = std::move(value); }
 
     /**
      * <p>Represents a map of Velocity templates that are applied on the request
@@ -491,7 +558,7 @@ namespace Model
      * content type value is the key in this map, and the template (as a String) is the
      * value.</p>
      */
-    inline PutIntegrationRequest& WithRequestTemplates(Aws::Map<Aws::String, Aws::String>&& value) { SetRequestTemplates(value); return *this;}
+    inline PutIntegrationRequest& WithRequestTemplates(Aws::Map<Aws::String, Aws::String>&& value) { SetRequestTemplates(std::move(value)); return *this;}
 
     /**
      * <p>Represents a map of Velocity templates that are applied on the request
@@ -499,7 +566,7 @@ namespace Model
      * content type value is the key in this map, and the template (as a String) is the
      * value.</p>
      */
-    inline PutIntegrationRequest& AddRequestTemplates(const Aws::String& key, const Aws::String& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates[key] = value; return *this; }
+    inline PutIntegrationRequest& AddRequestTemplates(const Aws::String& key, const Aws::String& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates.emplace(key, value); return *this; }
 
     /**
      * <p>Represents a map of Velocity templates that are applied on the request
@@ -507,7 +574,7 @@ namespace Model
      * content type value is the key in this map, and the template (as a String) is the
      * value.</p>
      */
-    inline PutIntegrationRequest& AddRequestTemplates(Aws::String&& key, const Aws::String& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates[key] = value; return *this; }
+    inline PutIntegrationRequest& AddRequestTemplates(Aws::String&& key, const Aws::String& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>Represents a map of Velocity templates that are applied on the request
@@ -515,7 +582,7 @@ namespace Model
      * content type value is the key in this map, and the template (as a String) is the
      * value.</p>
      */
-    inline PutIntegrationRequest& AddRequestTemplates(const Aws::String& key, Aws::String&& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates[key] = value; return *this; }
+    inline PutIntegrationRequest& AddRequestTemplates(const Aws::String& key, Aws::String&& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>Represents a map of Velocity templates that are applied on the request
@@ -523,7 +590,7 @@ namespace Model
      * content type value is the key in this map, and the template (as a String) is the
      * value.</p>
      */
-    inline PutIntegrationRequest& AddRequestTemplates(Aws::String&& key, Aws::String&& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates[key] = value; return *this; }
+    inline PutIntegrationRequest& AddRequestTemplates(Aws::String&& key, Aws::String&& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>Represents a map of Velocity templates that are applied on the request
@@ -531,7 +598,7 @@ namespace Model
      * content type value is the key in this map, and the template (as a String) is the
      * value.</p>
      */
-    inline PutIntegrationRequest& AddRequestTemplates(const char* key, Aws::String&& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates[key] = value; return *this; }
+    inline PutIntegrationRequest& AddRequestTemplates(const char* key, Aws::String&& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>Represents a map of Velocity templates that are applied on the request
@@ -539,7 +606,7 @@ namespace Model
      * content type value is the key in this map, and the template (as a String) is the
      * value.</p>
      */
-    inline PutIntegrationRequest& AddRequestTemplates(Aws::String&& key, const char* value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates[key] = value; return *this; }
+    inline PutIntegrationRequest& AddRequestTemplates(Aws::String&& key, const char* value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>Represents a map of Velocity templates that are applied on the request
@@ -547,7 +614,8 @@ namespace Model
      * content type value is the key in this map, and the template (as a String) is the
      * value.</p>
      */
-    inline PutIntegrationRequest& AddRequestTemplates(const char* key, const char* value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates[key] = value; return *this; }
+    inline PutIntegrationRequest& AddRequestTemplates(const char* key, const char* value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates.emplace(key, value); return *this; }
+
 
     /**
      * <p>Specifies the pass-through behavior for incoming requests based on the
@@ -598,7 +666,7 @@ namespace Model
      * content type defined, unmapped content types will be rejected with the same 415
      * response.</p></li> </ul>
      */
-    inline void SetPassthroughBehavior(Aws::String&& value) { m_passthroughBehaviorHasBeenSet = true; m_passthroughBehavior = value; }
+    inline void SetPassthroughBehavior(Aws::String&& value) { m_passthroughBehaviorHasBeenSet = true; m_passthroughBehavior = std::move(value); }
 
     /**
      * <p>Specifies the pass-through behavior for incoming requests based on the
@@ -649,7 +717,7 @@ namespace Model
      * content type defined, unmapped content types will be rejected with the same 415
      * response.</p></li> </ul>
      */
-    inline PutIntegrationRequest& WithPassthroughBehavior(Aws::String&& value) { SetPassthroughBehavior(value); return *this;}
+    inline PutIntegrationRequest& WithPassthroughBehavior(Aws::String&& value) { SetPassthroughBehavior(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the pass-through behavior for incoming requests based on the
@@ -668,6 +736,7 @@ namespace Model
      */
     inline PutIntegrationRequest& WithPassthroughBehavior(const char* value) { SetPassthroughBehavior(value); return *this;}
 
+
     /**
      * <p>Specifies a put integration input's cache namespace.</p>
      */
@@ -681,7 +750,7 @@ namespace Model
     /**
      * <p>Specifies a put integration input's cache namespace.</p>
      */
-    inline void SetCacheNamespace(Aws::String&& value) { m_cacheNamespaceHasBeenSet = true; m_cacheNamespace = value; }
+    inline void SetCacheNamespace(Aws::String&& value) { m_cacheNamespaceHasBeenSet = true; m_cacheNamespace = std::move(value); }
 
     /**
      * <p>Specifies a put integration input's cache namespace.</p>
@@ -696,12 +765,13 @@ namespace Model
     /**
      * <p>Specifies a put integration input's cache namespace.</p>
      */
-    inline PutIntegrationRequest& WithCacheNamespace(Aws::String&& value) { SetCacheNamespace(value); return *this;}
+    inline PutIntegrationRequest& WithCacheNamespace(Aws::String&& value) { SetCacheNamespace(std::move(value)); return *this;}
 
     /**
      * <p>Specifies a put integration input's cache namespace.</p>
      */
     inline PutIntegrationRequest& WithCacheNamespace(const char* value) { SetCacheNamespace(value); return *this;}
+
 
     /**
      * <p>Specifies a put integration input's cache key parameters.</p>
@@ -716,7 +786,7 @@ namespace Model
     /**
      * <p>Specifies a put integration input's cache key parameters.</p>
      */
-    inline void SetCacheKeyParameters(Aws::Vector<Aws::String>&& value) { m_cacheKeyParametersHasBeenSet = true; m_cacheKeyParameters = value; }
+    inline void SetCacheKeyParameters(Aws::Vector<Aws::String>&& value) { m_cacheKeyParametersHasBeenSet = true; m_cacheKeyParameters = std::move(value); }
 
     /**
      * <p>Specifies a put integration input's cache key parameters.</p>
@@ -726,7 +796,7 @@ namespace Model
     /**
      * <p>Specifies a put integration input's cache key parameters.</p>
      */
-    inline PutIntegrationRequest& WithCacheKeyParameters(Aws::Vector<Aws::String>&& value) { SetCacheKeyParameters(value); return *this;}
+    inline PutIntegrationRequest& WithCacheKeyParameters(Aws::Vector<Aws::String>&& value) { SetCacheKeyParameters(std::move(value)); return *this;}
 
     /**
      * <p>Specifies a put integration input's cache key parameters.</p>
@@ -736,12 +806,13 @@ namespace Model
     /**
      * <p>Specifies a put integration input's cache key parameters.</p>
      */
-    inline PutIntegrationRequest& AddCacheKeyParameters(Aws::String&& value) { m_cacheKeyParametersHasBeenSet = true; m_cacheKeyParameters.push_back(value); return *this; }
+    inline PutIntegrationRequest& AddCacheKeyParameters(Aws::String&& value) { m_cacheKeyParametersHasBeenSet = true; m_cacheKeyParameters.push_back(std::move(value)); return *this; }
 
     /**
      * <p>Specifies a put integration input's cache key parameters.</p>
      */
     inline PutIntegrationRequest& AddCacheKeyParameters(const char* value) { m_cacheKeyParametersHasBeenSet = true; m_cacheKeyParameters.push_back(value); return *this; }
+
 
     /**
      * <p>Specifies how to handle request payload content type conversions. Supported
@@ -783,7 +854,7 @@ namespace Model
      * <code>passthroughBehaviors</code> is configured to support payload
      * pass-through.</p>
      */
-    inline void SetContentHandling(ContentHandlingStrategy&& value) { m_contentHandlingHasBeenSet = true; m_contentHandling = value; }
+    inline void SetContentHandling(ContentHandlingStrategy&& value) { m_contentHandlingHasBeenSet = true; m_contentHandling = std::move(value); }
 
     /**
      * <p>Specifies how to handle request payload content type conversions. Supported
@@ -811,33 +882,46 @@ namespace Model
      * <code>passthroughBehaviors</code> is configured to support payload
      * pass-through.</p>
      */
-    inline PutIntegrationRequest& WithContentHandling(ContentHandlingStrategy&& value) { SetContentHandling(value); return *this;}
+    inline PutIntegrationRequest& WithContentHandling(ContentHandlingStrategy&& value) { SetContentHandling(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_restApiId;
     bool m_restApiIdHasBeenSet;
+
     Aws::String m_resourceId;
     bool m_resourceIdHasBeenSet;
+
     Aws::String m_httpMethod;
     bool m_httpMethodHasBeenSet;
+
     IntegrationType m_type;
     bool m_typeHasBeenSet;
+
     Aws::String m_integrationHttpMethod;
     bool m_integrationHttpMethodHasBeenSet;
+
     Aws::String m_uri;
     bool m_uriHasBeenSet;
+
     Aws::String m_credentials;
     bool m_credentialsHasBeenSet;
+
     Aws::Map<Aws::String, Aws::String> m_requestParameters;
     bool m_requestParametersHasBeenSet;
+
     Aws::Map<Aws::String, Aws::String> m_requestTemplates;
     bool m_requestTemplatesHasBeenSet;
+
     Aws::String m_passthroughBehavior;
     bool m_passthroughBehaviorHasBeenSet;
+
     Aws::String m_cacheNamespace;
     bool m_cacheNamespaceHasBeenSet;
+
     Aws::Vector<Aws::String> m_cacheKeyParameters;
     bool m_cacheKeyParametersHasBeenSet;
+
     ContentHandlingStrategy m_contentHandling;
     bool m_contentHandlingHasBeenSet;
   };

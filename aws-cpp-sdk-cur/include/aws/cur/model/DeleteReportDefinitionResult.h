@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cur/CostandUsageReportService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -41,8 +43,9 @@ namespace Model
   {
   public:
     DeleteReportDefinitionResult();
-    DeleteReportDefinitionResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DeleteReportDefinitionResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DeleteReportDefinitionResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DeleteReportDefinitionResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     
     inline const Aws::String& GetResponseMessage() const{ return m_responseMessage; }
@@ -51,7 +54,7 @@ namespace Model
     inline void SetResponseMessage(const Aws::String& value) { m_responseMessage = value; }
 
     
-    inline void SetResponseMessage(Aws::String&& value) { m_responseMessage = value; }
+    inline void SetResponseMessage(Aws::String&& value) { m_responseMessage = std::move(value); }
 
     
     inline void SetResponseMessage(const char* value) { m_responseMessage.assign(value); }
@@ -60,12 +63,13 @@ namespace Model
     inline DeleteReportDefinitionResult& WithResponseMessage(const Aws::String& value) { SetResponseMessage(value); return *this;}
 
     
-    inline DeleteReportDefinitionResult& WithResponseMessage(Aws::String&& value) { SetResponseMessage(value); return *this;}
+    inline DeleteReportDefinitionResult& WithResponseMessage(Aws::String&& value) { SetResponseMessage(std::move(value)); return *this;}
 
     
     inline DeleteReportDefinitionResult& WithResponseMessage(const char* value) { SetResponseMessage(value); return *this;}
 
   private:
+
     Aws::String m_responseMessage;
   };
 

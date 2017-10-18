@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/lightsail/LightsailErrors.h>
@@ -61,6 +62,7 @@
 #include <aws/lightsail/model/IsVpcPeeredResult.h>
 #include <aws/lightsail/model/OpenInstancePublicPortsResult.h>
 #include <aws/lightsail/model/PeerVpcResult.h>
+#include <aws/lightsail/model/PutInstancePublicPortsResult.h>
 #include <aws/lightsail/model/RebootInstanceResult.h>
 #include <aws/lightsail/model/ReleaseStaticIpResult.h>
 #include <aws/lightsail/model/StartInstanceResult.h>
@@ -153,6 +155,7 @@ namespace Model
         class IsVpcPeeredRequest;
         class OpenInstancePublicPortsRequest;
         class PeerVpcRequest;
+        class PutInstancePublicPortsRequest;
         class RebootInstanceRequest;
         class ReleaseStaticIpRequest;
         class StartInstanceRequest;
@@ -201,6 +204,7 @@ namespace Model
         typedef Aws::Utils::Outcome<IsVpcPeeredResult, Aws::Client::AWSError<LightsailErrors>> IsVpcPeeredOutcome;
         typedef Aws::Utils::Outcome<OpenInstancePublicPortsResult, Aws::Client::AWSError<LightsailErrors>> OpenInstancePublicPortsOutcome;
         typedef Aws::Utils::Outcome<PeerVpcResult, Aws::Client::AWSError<LightsailErrors>> PeerVpcOutcome;
+        typedef Aws::Utils::Outcome<PutInstancePublicPortsResult, Aws::Client::AWSError<LightsailErrors>> PutInstancePublicPortsOutcome;
         typedef Aws::Utils::Outcome<RebootInstanceResult, Aws::Client::AWSError<LightsailErrors>> RebootInstanceOutcome;
         typedef Aws::Utils::Outcome<ReleaseStaticIpResult, Aws::Client::AWSError<LightsailErrors>> ReleaseStaticIpOutcome;
         typedef Aws::Utils::Outcome<StartInstanceResult, Aws::Client::AWSError<LightsailErrors>> StartInstanceOutcome;
@@ -249,6 +253,7 @@ namespace Model
         typedef std::future<IsVpcPeeredOutcome> IsVpcPeeredOutcomeCallable;
         typedef std::future<OpenInstancePublicPortsOutcome> OpenInstancePublicPortsOutcomeCallable;
         typedef std::future<PeerVpcOutcome> PeerVpcOutcomeCallable;
+        typedef std::future<PutInstancePublicPortsOutcome> PutInstancePublicPortsOutcomeCallable;
         typedef std::future<RebootInstanceOutcome> RebootInstanceOutcomeCallable;
         typedef std::future<ReleaseStaticIpOutcome> ReleaseStaticIpOutcomeCallable;
         typedef std::future<StartInstanceOutcome> StartInstanceOutcomeCallable;
@@ -300,6 +305,7 @@ namespace Model
     typedef std::function<void(const LightsailClient*, const Model::IsVpcPeeredRequest&, const Model::IsVpcPeeredOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > IsVpcPeeredResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::OpenInstancePublicPortsRequest&, const Model::OpenInstancePublicPortsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > OpenInstancePublicPortsResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::PeerVpcRequest&, const Model::PeerVpcOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > PeerVpcResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::PutInstancePublicPortsRequest&, const Model::PutInstancePublicPortsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > PutInstancePublicPortsResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::RebootInstanceRequest&, const Model::RebootInstanceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > RebootInstanceResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::ReleaseStaticIpRequest&, const Model::ReleaseStaticIpOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ReleaseStaticIpResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::StartInstanceRequest&, const Model::StartInstanceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > StartInstanceResponseReceivedHandler;
@@ -315,11 +321,11 @@ namespace Model
    * manage those Lightsail servers through the Lightsail console or by using the API
    * or command-line interface (CLI).</p> <p>For more information about Lightsail
    * concepts and tasks, see the <a
-   * href="http://lightsail.aws.amazon.com/ls/docs">Lightsail Dev Guide</a>.</p>
+   * href="https://lightsail.aws.amazon.com/ls/docs/all">Lightsail Dev Guide</a>.</p>
    * <p>To use the Lightsail API or the CLI, you will need to use AWS Identity and
    * Access Management (IAM) to generate access keys. For details about how to set
    * this up, see the <a
-   * href="http://lightsail.aws.amazon.com/ls/docs/how-to/articles/lightsail-how-to-set-up-access-keys-to-use-sdk-api-cli">Lightsail
+   * href="http://lightsail.aws.amazon.com/ls/docs/how-to/article/lightsail-how-to-set-up-access-keys-to-use-sdk-api-cli">Lightsail
    * Dev Guide</a>.</p>
    */
   class AWS_LIGHTSAIL_API LightsailClient : public Aws::Client::AWSJsonClient
@@ -331,22 +337,25 @@ namespace Model
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        LightsailClient(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        LightsailClient(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        LightsailClient(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        LightsailClient(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        LightsailClient(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        LightsailClient(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
         virtual ~LightsailClient();
+
+        inline virtual const char* GetServiceClientName() const override { return "lightsail"; }
+
 
         /**
          * <p>Allocates a static IP address.</p><p><h3>See Also:</h3>   <a
@@ -1316,16 +1325,18 @@ namespace Model
         virtual void GetOperationsForResourceAsync(const Model::GetOperationsForResourceRequest& request, const GetOperationsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Returns a list of all valid regions for Amazon Lightsail.</p><p><h3>See
-         * Also:</h3>   <a
+         * <p>Returns a list of all valid regions for Amazon Lightsail. Use the
+         * <code>include availability zones</code> parameter to also return the
+         * availability zones in a region.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRegions">AWS
          * API Reference</a></p>
          */
         virtual Model::GetRegionsOutcome GetRegions(const Model::GetRegionsRequest& request) const;
 
         /**
-         * <p>Returns a list of all valid regions for Amazon Lightsail.</p><p><h3>See
-         * Also:</h3>   <a
+         * <p>Returns a list of all valid regions for Amazon Lightsail. Use the
+         * <code>include availability zones</code> parameter to also return the
+         * availability zones in a region.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRegions">AWS
          * API Reference</a></p>
          *
@@ -1334,8 +1345,9 @@ namespace Model
         virtual Model::GetRegionsOutcomeCallable GetRegionsCallable(const Model::GetRegionsRequest& request) const;
 
         /**
-         * <p>Returns a list of all valid regions for Amazon Lightsail.</p><p><h3>See
-         * Also:</h3>   <a
+         * <p>Returns a list of all valid regions for Amazon Lightsail. Use the
+         * <code>include availability zones</code> parameter to also return the
+         * availability zones in a region.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRegions">AWS
          * API Reference</a></p>
          *
@@ -1509,6 +1521,37 @@ namespace Model
         virtual void PeerVpcAsync(const Model::PeerVpcRequest& request, const PeerVpcResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
+         * <p>Sets the specified open ports for an Amazon Lightsail instance, and closes
+         * all ports for every protocol not included in the current request.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/PutInstancePublicPorts">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::PutInstancePublicPortsOutcome PutInstancePublicPorts(const Model::PutInstancePublicPortsRequest& request) const;
+
+        /**
+         * <p>Sets the specified open ports for an Amazon Lightsail instance, and closes
+         * all ports for every protocol not included in the current request.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/PutInstancePublicPorts">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::PutInstancePublicPortsOutcomeCallable PutInstancePublicPortsCallable(const Model::PutInstancePublicPortsRequest& request) const;
+
+        /**
+         * <p>Sets the specified open ports for an Amazon Lightsail instance, and closes
+         * all ports for every protocol not included in the current request.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/PutInstancePublicPorts">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void PutInstancePublicPortsAsync(const Model::PutInstancePublicPortsRequest& request, const PutInstancePublicPortsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
          * <p>Restarts a specific instance. When your Amazon Lightsail instance is finished
          * rebooting, Lightsail assigns a new public IP address. To use the same IP address
          * after restarting, create a static IP address and attach it to the
@@ -1678,7 +1721,7 @@ namespace Model
 
 
     private:
-      void init(const Client::ClientConfiguration& clientConfiguration);
+      void init(const Aws::Client::ClientConfiguration& clientConfiguration);
 
         /**Async helpers**/
         void AllocateStaticIpAsyncHelper(const Model::AllocateStaticIpRequest& request, const AllocateStaticIpResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -1722,6 +1765,7 @@ namespace Model
         void IsVpcPeeredAsyncHelper(const Model::IsVpcPeeredRequest& request, const IsVpcPeeredResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void OpenInstancePublicPortsAsyncHelper(const Model::OpenInstancePublicPortsRequest& request, const OpenInstancePublicPortsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void PeerVpcAsyncHelper(const Model::PeerVpcRequest& request, const PeerVpcResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void PutInstancePublicPortsAsyncHelper(const Model::PutInstancePublicPortsRequest& request, const PutInstancePublicPortsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void RebootInstanceAsyncHelper(const Model::RebootInstanceRequest& request, const RebootInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ReleaseStaticIpAsyncHelper(const Model::ReleaseStaticIpRequest& request, const ReleaseStaticIpResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void StartInstanceAsyncHelper(const Model::StartInstanceRequest& request, const StartInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -1730,7 +1774,7 @@ namespace Model
         void UpdateDomainEntryAsyncHelper(const Model::UpdateDomainEntryRequest& request, const UpdateDomainEntryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
       Aws::String m_uri;
-      std::shared_ptr<Utils::Threading::Executor> m_executor;
+      std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;
   };
 
 } // namespace Lightsail

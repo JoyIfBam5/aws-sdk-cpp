@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/devicefarm/DeviceFarm_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     Project& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The project's ARN.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The project's ARN.</p>
      */
-    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = value; }
+    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = std::move(value); }
 
     /**
      * <p>The project's ARN.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The project's ARN.</p>
      */
-    inline Project& WithArn(Aws::String&& value) { SetArn(value); return *this;}
+    inline Project& WithArn(Aws::String&& value) { SetArn(std::move(value)); return *this;}
 
     /**
      * <p>The project's ARN.</p>
      */
     inline Project& WithArn(const char* value) { SetArn(value); return *this;}
+
 
     /**
      * <p>The project's name.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The project's name.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The project's name.</p>
@@ -108,12 +112,32 @@ namespace Model
     /**
      * <p>The project's name.</p>
      */
-    inline Project& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline Project& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The project's name.</p>
      */
     inline Project& WithName(const char* value) { SetName(value); return *this;}
+
+
+    /**
+     * <p>The default number of minutes (at the project level) a test run will execute
+     * before it times out. Default value is 60 minutes.</p>
+     */
+    inline int GetDefaultJobTimeoutMinutes() const{ return m_defaultJobTimeoutMinutes; }
+
+    /**
+     * <p>The default number of minutes (at the project level) a test run will execute
+     * before it times out. Default value is 60 minutes.</p>
+     */
+    inline void SetDefaultJobTimeoutMinutes(int value) { m_defaultJobTimeoutMinutesHasBeenSet = true; m_defaultJobTimeoutMinutes = value; }
+
+    /**
+     * <p>The default number of minutes (at the project level) a test run will execute
+     * before it times out. Default value is 60 minutes.</p>
+     */
+    inline Project& WithDefaultJobTimeoutMinutes(int value) { SetDefaultJobTimeoutMinutes(value); return *this;}
+
 
     /**
      * <p>When the project was created.</p>
@@ -128,7 +152,7 @@ namespace Model
     /**
      * <p>When the project was created.</p>
      */
-    inline void SetCreated(Aws::Utils::DateTime&& value) { m_createdHasBeenSet = true; m_created = value; }
+    inline void SetCreated(Aws::Utils::DateTime&& value) { m_createdHasBeenSet = true; m_created = std::move(value); }
 
     /**
      * <p>When the project was created.</p>
@@ -138,13 +162,19 @@ namespace Model
     /**
      * <p>When the project was created.</p>
      */
-    inline Project& WithCreated(Aws::Utils::DateTime&& value) { SetCreated(value); return *this;}
+    inline Project& WithCreated(Aws::Utils::DateTime&& value) { SetCreated(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_arn;
     bool m_arnHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
+    int m_defaultJobTimeoutMinutes;
+    bool m_defaultJobTimeoutMinutesHasBeenSet;
+
     Aws::Utils::DateTime m_created;
     bool m_createdHasBeenSet;
   };

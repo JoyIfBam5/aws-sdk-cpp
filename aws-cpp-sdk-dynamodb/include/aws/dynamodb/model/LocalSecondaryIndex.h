@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dynamodb/DynamoDB_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/dynamodb/model/Projection.h>
 #include <aws/dynamodb/model/KeySchemaElement.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     LocalSecondaryIndex& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the local secondary index. The name must be unique among all
      * other indexes on this table.</p>
@@ -63,7 +66,7 @@ namespace Model
      * <p>The name of the local secondary index. The name must be unique among all
      * other indexes on this table.</p>
      */
-    inline void SetIndexName(Aws::String&& value) { m_indexNameHasBeenSet = true; m_indexName = value; }
+    inline void SetIndexName(Aws::String&& value) { m_indexNameHasBeenSet = true; m_indexName = std::move(value); }
 
     /**
      * <p>The name of the local secondary index. The name must be unique among all
@@ -81,13 +84,14 @@ namespace Model
      * <p>The name of the local secondary index. The name must be unique among all
      * other indexes on this table.</p>
      */
-    inline LocalSecondaryIndex& WithIndexName(Aws::String&& value) { SetIndexName(value); return *this;}
+    inline LocalSecondaryIndex& WithIndexName(Aws::String&& value) { SetIndexName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the local secondary index. The name must be unique among all
      * other indexes on this table.</p>
      */
     inline LocalSecondaryIndex& WithIndexName(const char* value) { SetIndexName(value); return *this;}
+
 
     /**
      * <p>The complete key schema for the local secondary index, consisting of one or
@@ -129,7 +133,7 @@ namespace Model
      * DynamoDB stores items with the same partition key physically close together, in
      * sorted order by the sort key value.</p> </note>
      */
-    inline void SetKeySchema(Aws::Vector<KeySchemaElement>&& value) { m_keySchemaHasBeenSet = true; m_keySchema = value; }
+    inline void SetKeySchema(Aws::Vector<KeySchemaElement>&& value) { m_keySchemaHasBeenSet = true; m_keySchema = std::move(value); }
 
     /**
      * <p>The complete key schema for the local secondary index, consisting of one or
@@ -157,7 +161,7 @@ namespace Model
      * DynamoDB stores items with the same partition key physically close together, in
      * sorted order by the sort key value.</p> </note>
      */
-    inline LocalSecondaryIndex& WithKeySchema(Aws::Vector<KeySchemaElement>&& value) { SetKeySchema(value); return *this;}
+    inline LocalSecondaryIndex& WithKeySchema(Aws::Vector<KeySchemaElement>&& value) { SetKeySchema(std::move(value)); return *this;}
 
     /**
      * <p>The complete key schema for the local secondary index, consisting of one or
@@ -185,7 +189,8 @@ namespace Model
      * DynamoDB stores items with the same partition key physically close together, in
      * sorted order by the sort key value.</p> </note>
      */
-    inline LocalSecondaryIndex& AddKeySchema(KeySchemaElement&& value) { m_keySchemaHasBeenSet = true; m_keySchema.push_back(value); return *this; }
+    inline LocalSecondaryIndex& AddKeySchema(KeySchemaElement&& value) { m_keySchemaHasBeenSet = true; m_keySchema.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Represents attributes that are copied (projected) from the table into the
@@ -206,7 +211,7 @@ namespace Model
      * local secondary index. These are in addition to the primary key attributes and
      * index key attributes, which are automatically projected. </p>
      */
-    inline void SetProjection(Projection&& value) { m_projectionHasBeenSet = true; m_projection = value; }
+    inline void SetProjection(Projection&& value) { m_projectionHasBeenSet = true; m_projection = std::move(value); }
 
     /**
      * <p>Represents attributes that are copied (projected) from the table into the
@@ -220,13 +225,16 @@ namespace Model
      * local secondary index. These are in addition to the primary key attributes and
      * index key attributes, which are automatically projected. </p>
      */
-    inline LocalSecondaryIndex& WithProjection(Projection&& value) { SetProjection(value); return *this;}
+    inline LocalSecondaryIndex& WithProjection(Projection&& value) { SetProjection(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_indexName;
     bool m_indexNameHasBeenSet;
+
     Aws::Vector<KeySchemaElement> m_keySchema;
     bool m_keySchemaHasBeenSet;
+
     Projection m_projection;
     bool m_projectionHasBeenSet;
   };

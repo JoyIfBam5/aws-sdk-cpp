@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,13 +12,15 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
+#include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ec2/model/InstanceType.h>
 #include <aws/ec2/model/RIProductDescription.h>
-#include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,6 +52,43 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
+    /**
+     * <p>The Availability Zone.</p>
+     */
+    inline const Aws::String& GetAvailabilityZone() const{ return m_availabilityZone; }
+
+    /**
+     * <p>The Availability Zone.</p>
+     */
+    inline void SetAvailabilityZone(const Aws::String& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = value; }
+
+    /**
+     * <p>The Availability Zone.</p>
+     */
+    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = std::move(value); }
+
+    /**
+     * <p>The Availability Zone.</p>
+     */
+    inline void SetAvailabilityZone(const char* value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone.assign(value); }
+
+    /**
+     * <p>The Availability Zone.</p>
+     */
+    inline SpotPrice& WithAvailabilityZone(const Aws::String& value) { SetAvailabilityZone(value); return *this;}
+
+    /**
+     * <p>The Availability Zone.</p>
+     */
+    inline SpotPrice& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(std::move(value)); return *this;}
+
+    /**
+     * <p>The Availability Zone.</p>
+     */
+    inline SpotPrice& WithAvailabilityZone(const char* value) { SetAvailabilityZone(value); return *this;}
+
+
     /**
      * <p>The instance type. Note that T2 and HS1 instance types are not supported.</p>
      */
@@ -63,7 +102,7 @@ namespace Model
     /**
      * <p>The instance type. Note that T2 and HS1 instance types are not supported.</p>
      */
-    inline void SetInstanceType(InstanceType&& value) { m_instanceTypeHasBeenSet = true; m_instanceType = value; }
+    inline void SetInstanceType(InstanceType&& value) { m_instanceTypeHasBeenSet = true; m_instanceType = std::move(value); }
 
     /**
      * <p>The instance type. Note that T2 and HS1 instance types are not supported.</p>
@@ -73,7 +112,8 @@ namespace Model
     /**
      * <p>The instance type. Note that T2 and HS1 instance types are not supported.</p>
      */
-    inline SpotPrice& WithInstanceType(InstanceType&& value) { SetInstanceType(value); return *this;}
+    inline SpotPrice& WithInstanceType(InstanceType&& value) { SetInstanceType(std::move(value)); return *this;}
+
 
     /**
      * <p>A general description of the AMI.</p>
@@ -88,7 +128,7 @@ namespace Model
     /**
      * <p>A general description of the AMI.</p>
      */
-    inline void SetProductDescription(RIProductDescription&& value) { m_productDescriptionHasBeenSet = true; m_productDescription = value; }
+    inline void SetProductDescription(RIProductDescription&& value) { m_productDescriptionHasBeenSet = true; m_productDescription = std::move(value); }
 
     /**
      * <p>A general description of the AMI.</p>
@@ -98,7 +138,8 @@ namespace Model
     /**
      * <p>A general description of the AMI.</p>
      */
-    inline SpotPrice& WithProductDescription(RIProductDescription&& value) { SetProductDescription(value); return *this;}
+    inline SpotPrice& WithProductDescription(RIProductDescription&& value) { SetProductDescription(std::move(value)); return *this;}
+
 
     /**
      * <p>The maximum price (bid) that you are willing to pay for a Spot instance.</p>
@@ -113,7 +154,7 @@ namespace Model
     /**
      * <p>The maximum price (bid) that you are willing to pay for a Spot instance.</p>
      */
-    inline void SetSpotPrice(Aws::String&& value) { m_spotPriceHasBeenSet = true; m_spotPrice = value; }
+    inline void SetSpotPrice(Aws::String&& value) { m_spotPriceHasBeenSet = true; m_spotPrice = std::move(value); }
 
     /**
      * <p>The maximum price (bid) that you are willing to pay for a Spot instance.</p>
@@ -128,12 +169,13 @@ namespace Model
     /**
      * <p>The maximum price (bid) that you are willing to pay for a Spot instance.</p>
      */
-    inline SpotPrice& WithSpotPrice(Aws::String&& value) { SetSpotPrice(value); return *this;}
+    inline SpotPrice& WithSpotPrice(Aws::String&& value) { SetSpotPrice(std::move(value)); return *this;}
 
     /**
      * <p>The maximum price (bid) that you are willing to pay for a Spot instance.</p>
      */
     inline SpotPrice& WithSpotPrice(const char* value) { SetSpotPrice(value); return *this;}
+
 
     /**
      * <p>The date and time the request was created, in UTC format (for example,
@@ -151,7 +193,7 @@ namespace Model
      * <p>The date and time the request was created, in UTC format (for example,
      * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).</p>
      */
-    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = value; }
+    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = std::move(value); }
 
     /**
      * <p>The date and time the request was created, in UTC format (for example,
@@ -163,54 +205,24 @@ namespace Model
      * <p>The date and time the request was created, in UTC format (for example,
      * <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).</p>
      */
-    inline SpotPrice& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(value); return *this;}
-
-    /**
-     * <p>The Availability Zone.</p>
-     */
-    inline const Aws::String& GetAvailabilityZone() const{ return m_availabilityZone; }
-
-    /**
-     * <p>The Availability Zone.</p>
-     */
-    inline void SetAvailabilityZone(const Aws::String& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = value; }
-
-    /**
-     * <p>The Availability Zone.</p>
-     */
-    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = value; }
-
-    /**
-     * <p>The Availability Zone.</p>
-     */
-    inline void SetAvailabilityZone(const char* value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone.assign(value); }
-
-    /**
-     * <p>The Availability Zone.</p>
-     */
-    inline SpotPrice& WithAvailabilityZone(const Aws::String& value) { SetAvailabilityZone(value); return *this;}
-
-    /**
-     * <p>The Availability Zone.</p>
-     */
-    inline SpotPrice& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(value); return *this;}
-
-    /**
-     * <p>The Availability Zone.</p>
-     */
-    inline SpotPrice& WithAvailabilityZone(const char* value) { SetAvailabilityZone(value); return *this;}
+    inline SpotPrice& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(std::move(value)); return *this;}
 
   private:
-    InstanceType m_instanceType;
-    bool m_instanceTypeHasBeenSet;
-    RIProductDescription m_productDescription;
-    bool m_productDescriptionHasBeenSet;
-    Aws::String m_spotPrice;
-    bool m_spotPriceHasBeenSet;
-    Aws::Utils::DateTime m_timestamp;
-    bool m_timestampHasBeenSet;
+
     Aws::String m_availabilityZone;
     bool m_availabilityZoneHasBeenSet;
+
+    InstanceType m_instanceType;
+    bool m_instanceTypeHasBeenSet;
+
+    RIProductDescription m_productDescription;
+    bool m_productDescriptionHasBeenSet;
+
+    Aws::String m_spotPrice;
+    bool m_spotPriceHasBeenSet;
+
+    Aws::Utils::DateTime m_timestamp;
+    bool m_timestampHasBeenSet;
   };
 
 } // namespace Model

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudformation/CloudFormation_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/cloudformation/model/ResponseMetadata.h>
 #include <aws/cloudformation/model/StackSummary.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     ListStacksResult();
-    ListStacksResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    ListStacksResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ListStacksResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ListStacksResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>A list of <code>StackSummary</code> structures containing information about
@@ -63,7 +66,7 @@ namespace Model
      * <p>A list of <code>StackSummary</code> structures containing information about
      * the specified stacks.</p>
      */
-    inline void SetStackSummaries(Aws::Vector<StackSummary>&& value) { m_stackSummaries = value; }
+    inline void SetStackSummaries(Aws::Vector<StackSummary>&& value) { m_stackSummaries = std::move(value); }
 
     /**
      * <p>A list of <code>StackSummary</code> structures containing information about
@@ -75,7 +78,7 @@ namespace Model
      * <p>A list of <code>StackSummary</code> structures containing information about
      * the specified stacks.</p>
      */
-    inline ListStacksResult& WithStackSummaries(Aws::Vector<StackSummary>&& value) { SetStackSummaries(value); return *this;}
+    inline ListStacksResult& WithStackSummaries(Aws::Vector<StackSummary>&& value) { SetStackSummaries(std::move(value)); return *this;}
 
     /**
      * <p>A list of <code>StackSummary</code> structures containing information about
@@ -87,7 +90,8 @@ namespace Model
      * <p>A list of <code>StackSummary</code> structures containing information about
      * the specified stacks.</p>
      */
-    inline ListStacksResult& AddStackSummaries(StackSummary&& value) { m_stackSummaries.push_back(value); return *this; }
+    inline ListStacksResult& AddStackSummaries(StackSummary&& value) { m_stackSummaries.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>If the output exceeds 1 MB in size, a string that identifies the next page of
@@ -105,7 +109,7 @@ namespace Model
      * <p>If the output exceeds 1 MB in size, a string that identifies the next page of
      * stacks. If no additional page exists, this value is null.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>If the output exceeds 1 MB in size, a string that identifies the next page of
@@ -123,13 +127,14 @@ namespace Model
      * <p>If the output exceeds 1 MB in size, a string that identifies the next page of
      * stacks. If no additional page exists, this value is null.</p>
      */
-    inline ListStacksResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListStacksResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>If the output exceeds 1 MB in size, a string that identifies the next page of
      * stacks. If no additional page exists, this value is null.</p>
      */
     inline ListStacksResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -138,17 +143,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline ListStacksResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline ListStacksResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline ListStacksResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<StackSummary> m_stackSummaries;
+
     Aws::String m_nextToken;
+
     ResponseMetadata m_responseMetadata;
   };
 

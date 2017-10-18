@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +51,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the user, which can be used for signing in to the AWS Management
      * Console.</p>
@@ -65,7 +68,7 @@ namespace Model
      * <p>The name of the user, which can be used for signing in to the AWS Management
      * Console.</p>
      */
-    inline void SetUserName(Aws::String&& value) { m_userNameHasBeenSet = true; m_userName = value; }
+    inline void SetUserName(Aws::String&& value) { m_userNameHasBeenSet = true; m_userName = std::move(value); }
 
     /**
      * <p>The name of the user, which can be used for signing in to the AWS Management
@@ -83,13 +86,14 @@ namespace Model
      * <p>The name of the user, which can be used for signing in to the AWS Management
      * Console.</p>
      */
-    inline LoginProfile& WithUserName(Aws::String&& value) { SetUserName(value); return *this;}
+    inline LoginProfile& WithUserName(Aws::String&& value) { SetUserName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the user, which can be used for signing in to the AWS Management
      * Console.</p>
      */
     inline LoginProfile& WithUserName(const char* value) { SetUserName(value); return *this;}
+
 
     /**
      * <p>The date when the password for the user was created.</p>
@@ -104,7 +108,7 @@ namespace Model
     /**
      * <p>The date when the password for the user was created.</p>
      */
-    inline void SetCreateDate(Aws::Utils::DateTime&& value) { m_createDateHasBeenSet = true; m_createDate = value; }
+    inline void SetCreateDate(Aws::Utils::DateTime&& value) { m_createDateHasBeenSet = true; m_createDate = std::move(value); }
 
     /**
      * <p>The date when the password for the user was created.</p>
@@ -114,7 +118,8 @@ namespace Model
     /**
      * <p>The date when the password for the user was created.</p>
      */
-    inline LoginProfile& WithCreateDate(Aws::Utils::DateTime&& value) { SetCreateDate(value); return *this;}
+    inline LoginProfile& WithCreateDate(Aws::Utils::DateTime&& value) { SetCreateDate(std::move(value)); return *this;}
+
 
     /**
      * <p>Specifies whether the user is required to set a new password on next
@@ -135,10 +140,13 @@ namespace Model
     inline LoginProfile& WithPasswordResetRequired(bool value) { SetPasswordResetRequired(value); return *this;}
 
   private:
+
     Aws::String m_userName;
     bool m_userNameHasBeenSet;
+
     Aws::Utils::DateTime m_createDate;
     bool m_createDateHasBeenSet;
+
     bool m_passwordResetRequired;
     bool m_passwordResetRequiredHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53/Route53_EXPORTS.h>
 #include <aws/route53/model/TrafficPolicyInstance.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     UpdateTrafficPolicyInstanceResult();
-    UpdateTrafficPolicyInstanceResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    UpdateTrafficPolicyInstanceResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    UpdateTrafficPolicyInstanceResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    UpdateTrafficPolicyInstanceResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>A complex type that contains settings for the updated traffic policy
@@ -62,7 +65,7 @@ namespace Model
      * <p>A complex type that contains settings for the updated traffic policy
      * instance.</p>
      */
-    inline void SetTrafficPolicyInstance(TrafficPolicyInstance&& value) { m_trafficPolicyInstance = value; }
+    inline void SetTrafficPolicyInstance(TrafficPolicyInstance&& value) { m_trafficPolicyInstance = std::move(value); }
 
     /**
      * <p>A complex type that contains settings for the updated traffic policy
@@ -74,9 +77,10 @@ namespace Model
      * <p>A complex type that contains settings for the updated traffic policy
      * instance.</p>
      */
-    inline UpdateTrafficPolicyInstanceResult& WithTrafficPolicyInstance(TrafficPolicyInstance&& value) { SetTrafficPolicyInstance(value); return *this;}
+    inline UpdateTrafficPolicyInstanceResult& WithTrafficPolicyInstance(TrafficPolicyInstance&& value) { SetTrafficPolicyInstance(std::move(value)); return *this;}
 
   private:
+
     TrafficPolicyInstance m_trafficPolicyInstance;
   };
 

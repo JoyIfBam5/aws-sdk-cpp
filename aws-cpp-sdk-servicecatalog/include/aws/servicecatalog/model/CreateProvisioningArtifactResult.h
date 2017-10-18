@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/servicecatalog/model/ProvisioningArtifactDetail.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
 #include <aws/servicecatalog/model/Status.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -39,8 +41,9 @@ namespace Model
   {
   public:
     CreateProvisioningArtifactResult();
-    CreateProvisioningArtifactResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateProvisioningArtifactResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateProvisioningArtifactResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateProvisioningArtifactResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The resulting detailed provisioning artifact information.</p>
@@ -55,7 +58,7 @@ namespace Model
     /**
      * <p>The resulting detailed provisioning artifact information.</p>
      */
-    inline void SetProvisioningArtifactDetail(ProvisioningArtifactDetail&& value) { m_provisioningArtifactDetail = value; }
+    inline void SetProvisioningArtifactDetail(ProvisioningArtifactDetail&& value) { m_provisioningArtifactDetail = std::move(value); }
 
     /**
      * <p>The resulting detailed provisioning artifact information.</p>
@@ -65,67 +68,81 @@ namespace Model
     /**
      * <p>The resulting detailed provisioning artifact information.</p>
      */
-    inline CreateProvisioningArtifactResult& WithProvisioningArtifactDetail(ProvisioningArtifactDetail&& value) { SetProvisioningArtifactDetail(value); return *this;}
+    inline CreateProvisioningArtifactResult& WithProvisioningArtifactDetail(ProvisioningArtifactDetail&& value) { SetProvisioningArtifactDetail(std::move(value)); return *this;}
+
 
     /**
-     * <p>Additional information about the provisioning artifact create request.</p>
+     * <p>Additional information about the creation request for the provisioning
+     * artifact.</p>
      */
     inline const Aws::Map<Aws::String, Aws::String>& GetInfo() const{ return m_info; }
 
     /**
-     * <p>Additional information about the provisioning artifact create request.</p>
+     * <p>Additional information about the creation request for the provisioning
+     * artifact.</p>
      */
     inline void SetInfo(const Aws::Map<Aws::String, Aws::String>& value) { m_info = value; }
 
     /**
-     * <p>Additional information about the provisioning artifact create request.</p>
+     * <p>Additional information about the creation request for the provisioning
+     * artifact.</p>
      */
-    inline void SetInfo(Aws::Map<Aws::String, Aws::String>&& value) { m_info = value; }
+    inline void SetInfo(Aws::Map<Aws::String, Aws::String>&& value) { m_info = std::move(value); }
 
     /**
-     * <p>Additional information about the provisioning artifact create request.</p>
+     * <p>Additional information about the creation request for the provisioning
+     * artifact.</p>
      */
     inline CreateProvisioningArtifactResult& WithInfo(const Aws::Map<Aws::String, Aws::String>& value) { SetInfo(value); return *this;}
 
     /**
-     * <p>Additional information about the provisioning artifact create request.</p>
+     * <p>Additional information about the creation request for the provisioning
+     * artifact.</p>
      */
-    inline CreateProvisioningArtifactResult& WithInfo(Aws::Map<Aws::String, Aws::String>&& value) { SetInfo(value); return *this;}
+    inline CreateProvisioningArtifactResult& WithInfo(Aws::Map<Aws::String, Aws::String>&& value) { SetInfo(std::move(value)); return *this;}
 
     /**
-     * <p>Additional information about the provisioning artifact create request.</p>
+     * <p>Additional information about the creation request for the provisioning
+     * artifact.</p>
      */
-    inline CreateProvisioningArtifactResult& AddInfo(const Aws::String& key, const Aws::String& value) { m_info[key] = value; return *this; }
+    inline CreateProvisioningArtifactResult& AddInfo(const Aws::String& key, const Aws::String& value) { m_info.emplace(key, value); return *this; }
 
     /**
-     * <p>Additional information about the provisioning artifact create request.</p>
+     * <p>Additional information about the creation request for the provisioning
+     * artifact.</p>
      */
-    inline CreateProvisioningArtifactResult& AddInfo(Aws::String&& key, const Aws::String& value) { m_info[key] = value; return *this; }
+    inline CreateProvisioningArtifactResult& AddInfo(Aws::String&& key, const Aws::String& value) { m_info.emplace(std::move(key), value); return *this; }
 
     /**
-     * <p>Additional information about the provisioning artifact create request.</p>
+     * <p>Additional information about the creation request for the provisioning
+     * artifact.</p>
      */
-    inline CreateProvisioningArtifactResult& AddInfo(const Aws::String& key, Aws::String&& value) { m_info[key] = value; return *this; }
+    inline CreateProvisioningArtifactResult& AddInfo(const Aws::String& key, Aws::String&& value) { m_info.emplace(key, std::move(value)); return *this; }
 
     /**
-     * <p>Additional information about the provisioning artifact create request.</p>
+     * <p>Additional information about the creation request for the provisioning
+     * artifact.</p>
      */
-    inline CreateProvisioningArtifactResult& AddInfo(Aws::String&& key, Aws::String&& value) { m_info[key] = value; return *this; }
+    inline CreateProvisioningArtifactResult& AddInfo(Aws::String&& key, Aws::String&& value) { m_info.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
-     * <p>Additional information about the provisioning artifact create request.</p>
+     * <p>Additional information about the creation request for the provisioning
+     * artifact.</p>
      */
-    inline CreateProvisioningArtifactResult& AddInfo(const char* key, Aws::String&& value) { m_info[key] = value; return *this; }
+    inline CreateProvisioningArtifactResult& AddInfo(const char* key, Aws::String&& value) { m_info.emplace(key, std::move(value)); return *this; }
 
     /**
-     * <p>Additional information about the provisioning artifact create request.</p>
+     * <p>Additional information about the creation request for the provisioning
+     * artifact.</p>
      */
-    inline CreateProvisioningArtifactResult& AddInfo(Aws::String&& key, const char* value) { m_info[key] = value; return *this; }
+    inline CreateProvisioningArtifactResult& AddInfo(Aws::String&& key, const char* value) { m_info.emplace(std::move(key), value); return *this; }
 
     /**
-     * <p>Additional information about the provisioning artifact create request.</p>
+     * <p>Additional information about the creation request for the provisioning
+     * artifact.</p>
      */
-    inline CreateProvisioningArtifactResult& AddInfo(const char* key, const char* value) { m_info[key] = value; return *this; }
+    inline CreateProvisioningArtifactResult& AddInfo(const char* key, const char* value) { m_info.emplace(key, value); return *this; }
+
 
     /**
      * <p>The status of the current request.</p>
@@ -140,7 +157,7 @@ namespace Model
     /**
      * <p>The status of the current request.</p>
      */
-    inline void SetStatus(Status&& value) { m_status = value; }
+    inline void SetStatus(Status&& value) { m_status = std::move(value); }
 
     /**
      * <p>The status of the current request.</p>
@@ -150,11 +167,14 @@ namespace Model
     /**
      * <p>The status of the current request.</p>
      */
-    inline CreateProvisioningArtifactResult& WithStatus(Status&& value) { SetStatus(value); return *this;}
+    inline CreateProvisioningArtifactResult& WithStatus(Status&& value) { SetStatus(std::move(value)); return *this;}
 
   private:
+
     ProvisioningArtifactDetail m_provisioningArtifactDetail;
+
     Aws::Map<Aws::String, Aws::String> m_info;
+
     Status m_status;
   };
 

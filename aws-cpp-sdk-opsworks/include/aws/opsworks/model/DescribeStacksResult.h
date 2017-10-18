@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/opsworks/model/Stack.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     DescribeStacksResult();
-    DescribeStacksResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeStacksResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeStacksResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeStacksResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>An array of <code>Stack</code> objects that describe the stacks.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>An array of <code>Stack</code> objects that describe the stacks.</p>
      */
-    inline void SetStacks(Aws::Vector<Stack>&& value) { m_stacks = value; }
+    inline void SetStacks(Aws::Vector<Stack>&& value) { m_stacks = std::move(value); }
 
     /**
      * <p>An array of <code>Stack</code> objects that describe the stacks.</p>
@@ -69,7 +72,7 @@ namespace Model
     /**
      * <p>An array of <code>Stack</code> objects that describe the stacks.</p>
      */
-    inline DescribeStacksResult& WithStacks(Aws::Vector<Stack>&& value) { SetStacks(value); return *this;}
+    inline DescribeStacksResult& WithStacks(Aws::Vector<Stack>&& value) { SetStacks(std::move(value)); return *this;}
 
     /**
      * <p>An array of <code>Stack</code> objects that describe the stacks.</p>
@@ -79,9 +82,10 @@ namespace Model
     /**
      * <p>An array of <code>Stack</code> objects that describe the stacks.</p>
      */
-    inline DescribeStacksResult& AddStacks(Stack&& value) { m_stacks.push_back(value); return *this; }
+    inline DescribeStacksResult& AddStacks(Stack&& value) { m_stacks.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<Stack> m_stacks;
   };
 

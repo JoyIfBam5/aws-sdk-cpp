@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/datapipeline/DataPipeline_EXPORTS.h>
 #include <aws/datapipeline/model/OperatorType.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     Operator(const Aws::Utils::Json::JsonValue& jsonValue);
     Operator& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p> The logical operation to be performed: equal (<code>EQ</code>), equal
@@ -110,7 +113,7 @@ namespace Model
      * as symbols may be reserved by AWS Data Pipeline. User-defined fields that you
      * add to a pipeline should prefix their name with the string "my".</p>
      */
-    inline void SetType(OperatorType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(OperatorType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p> The logical operation to be performed: equal (<code>EQ</code>), equal
@@ -154,7 +157,8 @@ namespace Model
      * as symbols may be reserved by AWS Data Pipeline. User-defined fields that you
      * add to a pipeline should prefix their name with the string "my".</p>
      */
-    inline Operator& WithType(OperatorType&& value) { SetType(value); return *this;}
+    inline Operator& WithType(OperatorType&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p>The value that the actual field value will be compared with.</p>
@@ -169,7 +173,7 @@ namespace Model
     /**
      * <p>The value that the actual field value will be compared with.</p>
      */
-    inline void SetValues(Aws::Vector<Aws::String>&& value) { m_valuesHasBeenSet = true; m_values = value; }
+    inline void SetValues(Aws::Vector<Aws::String>&& value) { m_valuesHasBeenSet = true; m_values = std::move(value); }
 
     /**
      * <p>The value that the actual field value will be compared with.</p>
@@ -179,7 +183,7 @@ namespace Model
     /**
      * <p>The value that the actual field value will be compared with.</p>
      */
-    inline Operator& WithValues(Aws::Vector<Aws::String>&& value) { SetValues(value); return *this;}
+    inline Operator& WithValues(Aws::Vector<Aws::String>&& value) { SetValues(std::move(value)); return *this;}
 
     /**
      * <p>The value that the actual field value will be compared with.</p>
@@ -189,7 +193,7 @@ namespace Model
     /**
      * <p>The value that the actual field value will be compared with.</p>
      */
-    inline Operator& AddValues(Aws::String&& value) { m_valuesHasBeenSet = true; m_values.push_back(value); return *this; }
+    inline Operator& AddValues(Aws::String&& value) { m_valuesHasBeenSet = true; m_values.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The value that the actual field value will be compared with.</p>
@@ -197,8 +201,10 @@ namespace Model
     inline Operator& AddValues(const char* value) { m_valuesHasBeenSet = true; m_values.push_back(value); return *this; }
 
   private:
+
     OperatorType m_type;
     bool m_typeHasBeenSet;
+
     Aws::Vector<Aws::String> m_values;
     bool m_valuesHasBeenSet;
   };

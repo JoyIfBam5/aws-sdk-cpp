@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/dms/model/DescribeTableStatisticsRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -25,7 +26,8 @@ DescribeTableStatisticsRequest::DescribeTableStatisticsRequest() :
     m_replicationTaskArnHasBeenSet(false),
     m_maxRecords(0),
     m_maxRecordsHasBeenSet(false),
-    m_markerHasBeenSet(false)
+    m_markerHasBeenSet(false),
+    m_filtersHasBeenSet(false)
 {
 }
 
@@ -51,6 +53,17 @@ Aws::String DescribeTableStatisticsRequest::SerializePayload() const
 
   }
 
+  if(m_filtersHasBeenSet)
+  {
+   Array<JsonValue> filtersJsonList(m_filters.size());
+   for(unsigned filtersIndex = 0; filtersIndex < filtersJsonList.GetLength(); ++filtersIndex)
+   {
+     filtersJsonList[filtersIndex].AsObject(m_filters[filtersIndex].Jsonize());
+   }
+   payload.WithArray("Filters", std::move(filtersJsonList));
+
+  }
+
   return payload.WriteReadable();
 }
 
@@ -61,6 +74,7 @@ Aws::Http::HeaderValueCollection DescribeTableStatisticsRequest::GetRequestSpeci
   return headers;
 
 }
+
 
 
 

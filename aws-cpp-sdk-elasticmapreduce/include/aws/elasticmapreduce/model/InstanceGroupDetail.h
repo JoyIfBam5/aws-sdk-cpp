@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -19,6 +20,7 @@
 #include <aws/elasticmapreduce/model/InstanceRoleType.h>
 #include <aws/elasticmapreduce/model/InstanceGroupState.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     InstanceGroupDetail& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Unique identifier for the instance group.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>Unique identifier for the instance group.</p>
      */
-    inline void SetInstanceGroupId(Aws::String&& value) { m_instanceGroupIdHasBeenSet = true; m_instanceGroupId = value; }
+    inline void SetInstanceGroupId(Aws::String&& value) { m_instanceGroupIdHasBeenSet = true; m_instanceGroupId = std::move(value); }
 
     /**
      * <p>Unique identifier for the instance group.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>Unique identifier for the instance group.</p>
      */
-    inline InstanceGroupDetail& WithInstanceGroupId(Aws::String&& value) { SetInstanceGroupId(value); return *this;}
+    inline InstanceGroupDetail& WithInstanceGroupId(Aws::String&& value) { SetInstanceGroupId(std::move(value)); return *this;}
 
     /**
      * <p>Unique identifier for the instance group.</p>
      */
     inline InstanceGroupDetail& WithInstanceGroupId(const char* value) { SetInstanceGroupId(value); return *this;}
+
 
     /**
      * <p>Friendly name for the instance group.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>Friendly name for the instance group.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>Friendly name for the instance group.</p>
@@ -110,12 +114,13 @@ namespace Model
     /**
      * <p>Friendly name for the instance group.</p>
      */
-    inline InstanceGroupDetail& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline InstanceGroupDetail& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>Friendly name for the instance group.</p>
      */
     inline InstanceGroupDetail& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>Market type of the EC2 instances used to create a cluster node.</p>
@@ -130,7 +135,7 @@ namespace Model
     /**
      * <p>Market type of the EC2 instances used to create a cluster node.</p>
      */
-    inline void SetMarket(MarketType&& value) { m_marketHasBeenSet = true; m_market = value; }
+    inline void SetMarket(MarketType&& value) { m_marketHasBeenSet = true; m_market = std::move(value); }
 
     /**
      * <p>Market type of the EC2 instances used to create a cluster node.</p>
@@ -140,7 +145,8 @@ namespace Model
     /**
      * <p>Market type of the EC2 instances used to create a cluster node.</p>
      */
-    inline InstanceGroupDetail& WithMarket(MarketType&& value) { SetMarket(value); return *this;}
+    inline InstanceGroupDetail& WithMarket(MarketType&& value) { SetMarket(std::move(value)); return *this;}
+
 
     /**
      * <p>Instance group role in the cluster</p>
@@ -155,7 +161,7 @@ namespace Model
     /**
      * <p>Instance group role in the cluster</p>
      */
-    inline void SetInstanceRole(InstanceRoleType&& value) { m_instanceRoleHasBeenSet = true; m_instanceRole = value; }
+    inline void SetInstanceRole(InstanceRoleType&& value) { m_instanceRoleHasBeenSet = true; m_instanceRole = std::move(value); }
 
     /**
      * <p>Instance group role in the cluster</p>
@@ -165,7 +171,8 @@ namespace Model
     /**
      * <p>Instance group role in the cluster</p>
      */
-    inline InstanceGroupDetail& WithInstanceRole(InstanceRoleType&& value) { SetInstanceRole(value); return *this;}
+    inline InstanceGroupDetail& WithInstanceRole(InstanceRoleType&& value) { SetInstanceRole(std::move(value)); return *this;}
+
 
     /**
      * <p>Bid price for EC2 Instances when launching nodes as Spot Instances, expressed
@@ -183,7 +190,7 @@ namespace Model
      * <p>Bid price for EC2 Instances when launching nodes as Spot Instances, expressed
      * in USD.</p>
      */
-    inline void SetBidPrice(Aws::String&& value) { m_bidPriceHasBeenSet = true; m_bidPrice = value; }
+    inline void SetBidPrice(Aws::String&& value) { m_bidPriceHasBeenSet = true; m_bidPrice = std::move(value); }
 
     /**
      * <p>Bid price for EC2 Instances when launching nodes as Spot Instances, expressed
@@ -201,13 +208,14 @@ namespace Model
      * <p>Bid price for EC2 Instances when launching nodes as Spot Instances, expressed
      * in USD.</p>
      */
-    inline InstanceGroupDetail& WithBidPrice(Aws::String&& value) { SetBidPrice(value); return *this;}
+    inline InstanceGroupDetail& WithBidPrice(Aws::String&& value) { SetBidPrice(std::move(value)); return *this;}
 
     /**
      * <p>Bid price for EC2 Instances when launching nodes as Spot Instances, expressed
      * in USD.</p>
      */
     inline InstanceGroupDetail& WithBidPrice(const char* value) { SetBidPrice(value); return *this;}
+
 
     /**
      * <p>EC2 instance type.</p>
@@ -222,7 +230,7 @@ namespace Model
     /**
      * <p>EC2 instance type.</p>
      */
-    inline void SetInstanceType(Aws::String&& value) { m_instanceTypeHasBeenSet = true; m_instanceType = value; }
+    inline void SetInstanceType(Aws::String&& value) { m_instanceTypeHasBeenSet = true; m_instanceType = std::move(value); }
 
     /**
      * <p>EC2 instance type.</p>
@@ -237,12 +245,13 @@ namespace Model
     /**
      * <p>EC2 instance type.</p>
      */
-    inline InstanceGroupDetail& WithInstanceType(Aws::String&& value) { SetInstanceType(value); return *this;}
+    inline InstanceGroupDetail& WithInstanceType(Aws::String&& value) { SetInstanceType(std::move(value)); return *this;}
 
     /**
      * <p>EC2 instance type.</p>
      */
     inline InstanceGroupDetail& WithInstanceType(const char* value) { SetInstanceType(value); return *this;}
+
 
     /**
      * <p>Target number of instances to run in the instance group.</p>
@@ -259,6 +268,7 @@ namespace Model
      */
     inline InstanceGroupDetail& WithInstanceRequestCount(int value) { SetInstanceRequestCount(value); return *this;}
 
+
     /**
      * <p>Actual count of running instances.</p>
      */
@@ -273,6 +283,7 @@ namespace Model
      * <p>Actual count of running instances.</p>
      */
     inline InstanceGroupDetail& WithInstanceRunningCount(int value) { SetInstanceRunningCount(value); return *this;}
+
 
     /**
      * <p>State of instance group. The following values are deprecated: STARTING,
@@ -290,7 +301,7 @@ namespace Model
      * <p>State of instance group. The following values are deprecated: STARTING,
      * TERMINATED, and FAILED.</p>
      */
-    inline void SetState(InstanceGroupState&& value) { m_stateHasBeenSet = true; m_state = value; }
+    inline void SetState(InstanceGroupState&& value) { m_stateHasBeenSet = true; m_state = std::move(value); }
 
     /**
      * <p>State of instance group. The following values are deprecated: STARTING,
@@ -302,7 +313,8 @@ namespace Model
      * <p>State of instance group. The following values are deprecated: STARTING,
      * TERMINATED, and FAILED.</p>
      */
-    inline InstanceGroupDetail& WithState(InstanceGroupState&& value) { SetState(value); return *this;}
+    inline InstanceGroupDetail& WithState(InstanceGroupState&& value) { SetState(std::move(value)); return *this;}
+
 
     /**
      * <p>Details regarding the state of the instance group.</p>
@@ -317,7 +329,7 @@ namespace Model
     /**
      * <p>Details regarding the state of the instance group.</p>
      */
-    inline void SetLastStateChangeReason(Aws::String&& value) { m_lastStateChangeReasonHasBeenSet = true; m_lastStateChangeReason = value; }
+    inline void SetLastStateChangeReason(Aws::String&& value) { m_lastStateChangeReasonHasBeenSet = true; m_lastStateChangeReason = std::move(value); }
 
     /**
      * <p>Details regarding the state of the instance group.</p>
@@ -332,12 +344,13 @@ namespace Model
     /**
      * <p>Details regarding the state of the instance group.</p>
      */
-    inline InstanceGroupDetail& WithLastStateChangeReason(Aws::String&& value) { SetLastStateChangeReason(value); return *this;}
+    inline InstanceGroupDetail& WithLastStateChangeReason(Aws::String&& value) { SetLastStateChangeReason(std::move(value)); return *this;}
 
     /**
      * <p>Details regarding the state of the instance group.</p>
      */
     inline InstanceGroupDetail& WithLastStateChangeReason(const char* value) { SetLastStateChangeReason(value); return *this;}
+
 
     /**
      * <p>The date/time the instance group was created.</p>
@@ -352,7 +365,7 @@ namespace Model
     /**
      * <p>The date/time the instance group was created.</p>
      */
-    inline void SetCreationDateTime(Aws::Utils::DateTime&& value) { m_creationDateTimeHasBeenSet = true; m_creationDateTime = value; }
+    inline void SetCreationDateTime(Aws::Utils::DateTime&& value) { m_creationDateTimeHasBeenSet = true; m_creationDateTime = std::move(value); }
 
     /**
      * <p>The date/time the instance group was created.</p>
@@ -362,7 +375,8 @@ namespace Model
     /**
      * <p>The date/time the instance group was created.</p>
      */
-    inline InstanceGroupDetail& WithCreationDateTime(Aws::Utils::DateTime&& value) { SetCreationDateTime(value); return *this;}
+    inline InstanceGroupDetail& WithCreationDateTime(Aws::Utils::DateTime&& value) { SetCreationDateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The date/time the instance group was started.</p>
@@ -377,7 +391,7 @@ namespace Model
     /**
      * <p>The date/time the instance group was started.</p>
      */
-    inline void SetStartDateTime(Aws::Utils::DateTime&& value) { m_startDateTimeHasBeenSet = true; m_startDateTime = value; }
+    inline void SetStartDateTime(Aws::Utils::DateTime&& value) { m_startDateTimeHasBeenSet = true; m_startDateTime = std::move(value); }
 
     /**
      * <p>The date/time the instance group was started.</p>
@@ -387,7 +401,8 @@ namespace Model
     /**
      * <p>The date/time the instance group was started.</p>
      */
-    inline InstanceGroupDetail& WithStartDateTime(Aws::Utils::DateTime&& value) { SetStartDateTime(value); return *this;}
+    inline InstanceGroupDetail& WithStartDateTime(Aws::Utils::DateTime&& value) { SetStartDateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The date/time the instance group was available to the cluster.</p>
@@ -402,7 +417,7 @@ namespace Model
     /**
      * <p>The date/time the instance group was available to the cluster.</p>
      */
-    inline void SetReadyDateTime(Aws::Utils::DateTime&& value) { m_readyDateTimeHasBeenSet = true; m_readyDateTime = value; }
+    inline void SetReadyDateTime(Aws::Utils::DateTime&& value) { m_readyDateTimeHasBeenSet = true; m_readyDateTime = std::move(value); }
 
     /**
      * <p>The date/time the instance group was available to the cluster.</p>
@@ -412,7 +427,8 @@ namespace Model
     /**
      * <p>The date/time the instance group was available to the cluster.</p>
      */
-    inline InstanceGroupDetail& WithReadyDateTime(Aws::Utils::DateTime&& value) { SetReadyDateTime(value); return *this;}
+    inline InstanceGroupDetail& WithReadyDateTime(Aws::Utils::DateTime&& value) { SetReadyDateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The date/time the instance group was terminated.</p>
@@ -427,7 +443,7 @@ namespace Model
     /**
      * <p>The date/time the instance group was terminated.</p>
      */
-    inline void SetEndDateTime(Aws::Utils::DateTime&& value) { m_endDateTimeHasBeenSet = true; m_endDateTime = value; }
+    inline void SetEndDateTime(Aws::Utils::DateTime&& value) { m_endDateTimeHasBeenSet = true; m_endDateTime = std::move(value); }
 
     /**
      * <p>The date/time the instance group was terminated.</p>
@@ -437,35 +453,49 @@ namespace Model
     /**
      * <p>The date/time the instance group was terminated.</p>
      */
-    inline InstanceGroupDetail& WithEndDateTime(Aws::Utils::DateTime&& value) { SetEndDateTime(value); return *this;}
+    inline InstanceGroupDetail& WithEndDateTime(Aws::Utils::DateTime&& value) { SetEndDateTime(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_instanceGroupId;
     bool m_instanceGroupIdHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     MarketType m_market;
     bool m_marketHasBeenSet;
+
     InstanceRoleType m_instanceRole;
     bool m_instanceRoleHasBeenSet;
+
     Aws::String m_bidPrice;
     bool m_bidPriceHasBeenSet;
+
     Aws::String m_instanceType;
     bool m_instanceTypeHasBeenSet;
+
     int m_instanceRequestCount;
     bool m_instanceRequestCountHasBeenSet;
+
     int m_instanceRunningCount;
     bool m_instanceRunningCountHasBeenSet;
+
     InstanceGroupState m_state;
     bool m_stateHasBeenSet;
+
     Aws::String m_lastStateChangeReason;
     bool m_lastStateChangeReasonHasBeenSet;
+
     Aws::Utils::DateTime m_creationDateTime;
     bool m_creationDateTimeHasBeenSet;
+
     Aws::Utils::DateTime m_startDateTime;
     bool m_startDateTimeHasBeenSet;
+
     Aws::Utils::DateTime m_readyDateTime;
     bool m_readyDateTimeHasBeenSet;
+
     Aws::Utils::DateTime m_endDateTime;
     bool m_endDateTimeHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/application-autoscaling/ApplicationAutoScaling_EXPORTS.h>
 #include <aws/application-autoscaling/ApplicationAutoScalingRequest.h>
 #include <aws/application-autoscaling/model/ServiceNamespace.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/application-autoscaling/model/ScalableDimension.h>
+#include <utility>
 
 namespace Aws
 {
@@ -32,9 +34,17 @@ namespace Model
   {
   public:
     DescribeScalingActivitiesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeScalingActivities"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The namespace of the AWS service. For more information, see <a
@@ -55,7 +65,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces">AWS
      * Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>
      */
-    inline void SetServiceNamespace(ServiceNamespace&& value) { m_serviceNamespaceHasBeenSet = true; m_serviceNamespace = value; }
+    inline void SetServiceNamespace(ServiceNamespace&& value) { m_serviceNamespaceHasBeenSet = true; m_serviceNamespace = std::move(value); }
 
     /**
      * <p>The namespace of the AWS service. For more information, see <a
@@ -69,7 +79,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces">AWS
      * Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>
      */
-    inline DescribeScalingActivitiesRequest& WithServiceNamespace(ServiceNamespace&& value) { SetServiceNamespace(value); return *this;}
+    inline DescribeScalingActivitiesRequest& WithServiceNamespace(ServiceNamespace&& value) { SetServiceNamespace(std::move(value)); return *this;}
+
 
     /**
      * <p>The identifier of the resource associated with the scaling activity. This
@@ -83,7 +94,14 @@ namespace Model
      * <code>spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE</code>.</p>
      * </li> <li> <p>EMR cluster - The resource type is <code>instancegroup</code> and
      * the unique identifier is the cluster ID and instance group ID. Example:
-     * <code>instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0</code>.</p> </li> </ul>
+     * <code>instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0</code>.</p> </li> <li>
+     * <p>AppStream 2.0 fleet - The resource type is <code>fleet</code> and the unique
+     * identifier is the fleet name. Example: <code>fleet/sample-fleet</code>.</p>
+     * </li> <li> <p>DynamoDB table - The resource type is <code>table</code> and the
+     * unique identifier is the resource ID. Example: <code>table/my-table</code>.</p>
+     * </li> <li> <p>DynamoDB global secondary index - The resource type is
+     * <code>index</code> and the unique identifier is the resource ID. Example:
+     * <code>table/my-table/index/my-table-index</code>.</p> </li> </ul>
      */
     inline const Aws::String& GetResourceId() const{ return m_resourceId; }
 
@@ -99,7 +117,14 @@ namespace Model
      * <code>spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE</code>.</p>
      * </li> <li> <p>EMR cluster - The resource type is <code>instancegroup</code> and
      * the unique identifier is the cluster ID and instance group ID. Example:
-     * <code>instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0</code>.</p> </li> </ul>
+     * <code>instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0</code>.</p> </li> <li>
+     * <p>AppStream 2.0 fleet - The resource type is <code>fleet</code> and the unique
+     * identifier is the fleet name. Example: <code>fleet/sample-fleet</code>.</p>
+     * </li> <li> <p>DynamoDB table - The resource type is <code>table</code> and the
+     * unique identifier is the resource ID. Example: <code>table/my-table</code>.</p>
+     * </li> <li> <p>DynamoDB global secondary index - The resource type is
+     * <code>index</code> and the unique identifier is the resource ID. Example:
+     * <code>table/my-table/index/my-table-index</code>.</p> </li> </ul>
      */
     inline void SetResourceId(const Aws::String& value) { m_resourceIdHasBeenSet = true; m_resourceId = value; }
 
@@ -115,9 +140,16 @@ namespace Model
      * <code>spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE</code>.</p>
      * </li> <li> <p>EMR cluster - The resource type is <code>instancegroup</code> and
      * the unique identifier is the cluster ID and instance group ID. Example:
-     * <code>instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0</code>.</p> </li> </ul>
+     * <code>instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0</code>.</p> </li> <li>
+     * <p>AppStream 2.0 fleet - The resource type is <code>fleet</code> and the unique
+     * identifier is the fleet name. Example: <code>fleet/sample-fleet</code>.</p>
+     * </li> <li> <p>DynamoDB table - The resource type is <code>table</code> and the
+     * unique identifier is the resource ID. Example: <code>table/my-table</code>.</p>
+     * </li> <li> <p>DynamoDB global secondary index - The resource type is
+     * <code>index</code> and the unique identifier is the resource ID. Example:
+     * <code>table/my-table/index/my-table-index</code>.</p> </li> </ul>
      */
-    inline void SetResourceId(Aws::String&& value) { m_resourceIdHasBeenSet = true; m_resourceId = value; }
+    inline void SetResourceId(Aws::String&& value) { m_resourceIdHasBeenSet = true; m_resourceId = std::move(value); }
 
     /**
      * <p>The identifier of the resource associated with the scaling activity. This
@@ -131,7 +163,14 @@ namespace Model
      * <code>spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE</code>.</p>
      * </li> <li> <p>EMR cluster - The resource type is <code>instancegroup</code> and
      * the unique identifier is the cluster ID and instance group ID. Example:
-     * <code>instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0</code>.</p> </li> </ul>
+     * <code>instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0</code>.</p> </li> <li>
+     * <p>AppStream 2.0 fleet - The resource type is <code>fleet</code> and the unique
+     * identifier is the fleet name. Example: <code>fleet/sample-fleet</code>.</p>
+     * </li> <li> <p>DynamoDB table - The resource type is <code>table</code> and the
+     * unique identifier is the resource ID. Example: <code>table/my-table</code>.</p>
+     * </li> <li> <p>DynamoDB global secondary index - The resource type is
+     * <code>index</code> and the unique identifier is the resource ID. Example:
+     * <code>table/my-table/index/my-table-index</code>.</p> </li> </ul>
      */
     inline void SetResourceId(const char* value) { m_resourceIdHasBeenSet = true; m_resourceId.assign(value); }
 
@@ -147,7 +186,14 @@ namespace Model
      * <code>spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE</code>.</p>
      * </li> <li> <p>EMR cluster - The resource type is <code>instancegroup</code> and
      * the unique identifier is the cluster ID and instance group ID. Example:
-     * <code>instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0</code>.</p> </li> </ul>
+     * <code>instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0</code>.</p> </li> <li>
+     * <p>AppStream 2.0 fleet - The resource type is <code>fleet</code> and the unique
+     * identifier is the fleet name. Example: <code>fleet/sample-fleet</code>.</p>
+     * </li> <li> <p>DynamoDB table - The resource type is <code>table</code> and the
+     * unique identifier is the resource ID. Example: <code>table/my-table</code>.</p>
+     * </li> <li> <p>DynamoDB global secondary index - The resource type is
+     * <code>index</code> and the unique identifier is the resource ID. Example:
+     * <code>table/my-table/index/my-table-index</code>.</p> </li> </ul>
      */
     inline DescribeScalingActivitiesRequest& WithResourceId(const Aws::String& value) { SetResourceId(value); return *this;}
 
@@ -163,9 +209,16 @@ namespace Model
      * <code>spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE</code>.</p>
      * </li> <li> <p>EMR cluster - The resource type is <code>instancegroup</code> and
      * the unique identifier is the cluster ID and instance group ID. Example:
-     * <code>instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0</code>.</p> </li> </ul>
+     * <code>instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0</code>.</p> </li> <li>
+     * <p>AppStream 2.0 fleet - The resource type is <code>fleet</code> and the unique
+     * identifier is the fleet name. Example: <code>fleet/sample-fleet</code>.</p>
+     * </li> <li> <p>DynamoDB table - The resource type is <code>table</code> and the
+     * unique identifier is the resource ID. Example: <code>table/my-table</code>.</p>
+     * </li> <li> <p>DynamoDB global secondary index - The resource type is
+     * <code>index</code> and the unique identifier is the resource ID. Example:
+     * <code>table/my-table/index/my-table-index</code>.</p> </li> </ul>
      */
-    inline DescribeScalingActivitiesRequest& WithResourceId(Aws::String&& value) { SetResourceId(value); return *this;}
+    inline DescribeScalingActivitiesRequest& WithResourceId(Aws::String&& value) { SetResourceId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the resource associated with the scaling activity. This
@@ -179,9 +232,17 @@ namespace Model
      * <code>spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE</code>.</p>
      * </li> <li> <p>EMR cluster - The resource type is <code>instancegroup</code> and
      * the unique identifier is the cluster ID and instance group ID. Example:
-     * <code>instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0</code>.</p> </li> </ul>
+     * <code>instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0</code>.</p> </li> <li>
+     * <p>AppStream 2.0 fleet - The resource type is <code>fleet</code> and the unique
+     * identifier is the fleet name. Example: <code>fleet/sample-fleet</code>.</p>
+     * </li> <li> <p>DynamoDB table - The resource type is <code>table</code> and the
+     * unique identifier is the resource ID. Example: <code>table/my-table</code>.</p>
+     * </li> <li> <p>DynamoDB global secondary index - The resource type is
+     * <code>index</code> and the unique identifier is the resource ID. Example:
+     * <code>table/my-table/index/my-table-index</code>.</p> </li> </ul>
      */
     inline DescribeScalingActivitiesRequest& WithResourceId(const char* value) { SetResourceId(value); return *this;}
+
 
     /**
      * <p>The scalable dimension. This string consists of the service namespace,
@@ -191,7 +252,17 @@ namespace Model
      * service.</p> </li> <li> <p> <code>ec2:spot-fleet-request:TargetCapacity</code> -
      * The target capacity of a Spot fleet request.</p> </li> <li> <p>
      * <code>elasticmapreduce:instancegroup:InstanceCount</code> - The instance count
-     * of an EMR Instance Group.</p> </li> </ul>
+     * of an EMR Instance Group.</p> </li> <li> <p>
+     * <code>appstream:fleet:DesiredCapacity</code> - The desired capacity of an
+     * AppStream 2.0 fleet.</p> </li> <li> <p>
+     * <code>dynamodb:table:ReadCapacityUnits</code> - The provisioned read capacity
+     * for a DynamoDB table.</p> </li> <li> <p>
+     * <code>dynamodb:table:WriteCapacityUnits</code> - The provisioned write capacity
+     * for a DynamoDB table.</p> </li> <li> <p>
+     * <code>dynamodb:index:ReadCapacityUnits</code> - The provisioned read capacity
+     * for a DynamoDB global secondary index.</p> </li> <li> <p>
+     * <code>dynamodb:index:WriteCapacityUnits</code> - The provisioned write capacity
+     * for a DynamoDB global secondary index.</p> </li> </ul>
      */
     inline const ScalableDimension& GetScalableDimension() const{ return m_scalableDimension; }
 
@@ -203,7 +274,17 @@ namespace Model
      * service.</p> </li> <li> <p> <code>ec2:spot-fleet-request:TargetCapacity</code> -
      * The target capacity of a Spot fleet request.</p> </li> <li> <p>
      * <code>elasticmapreduce:instancegroup:InstanceCount</code> - The instance count
-     * of an EMR Instance Group.</p> </li> </ul>
+     * of an EMR Instance Group.</p> </li> <li> <p>
+     * <code>appstream:fleet:DesiredCapacity</code> - The desired capacity of an
+     * AppStream 2.0 fleet.</p> </li> <li> <p>
+     * <code>dynamodb:table:ReadCapacityUnits</code> - The provisioned read capacity
+     * for a DynamoDB table.</p> </li> <li> <p>
+     * <code>dynamodb:table:WriteCapacityUnits</code> - The provisioned write capacity
+     * for a DynamoDB table.</p> </li> <li> <p>
+     * <code>dynamodb:index:ReadCapacityUnits</code> - The provisioned read capacity
+     * for a DynamoDB global secondary index.</p> </li> <li> <p>
+     * <code>dynamodb:index:WriteCapacityUnits</code> - The provisioned write capacity
+     * for a DynamoDB global secondary index.</p> </li> </ul>
      */
     inline void SetScalableDimension(const ScalableDimension& value) { m_scalableDimensionHasBeenSet = true; m_scalableDimension = value; }
 
@@ -215,9 +296,19 @@ namespace Model
      * service.</p> </li> <li> <p> <code>ec2:spot-fleet-request:TargetCapacity</code> -
      * The target capacity of a Spot fleet request.</p> </li> <li> <p>
      * <code>elasticmapreduce:instancegroup:InstanceCount</code> - The instance count
-     * of an EMR Instance Group.</p> </li> </ul>
+     * of an EMR Instance Group.</p> </li> <li> <p>
+     * <code>appstream:fleet:DesiredCapacity</code> - The desired capacity of an
+     * AppStream 2.0 fleet.</p> </li> <li> <p>
+     * <code>dynamodb:table:ReadCapacityUnits</code> - The provisioned read capacity
+     * for a DynamoDB table.</p> </li> <li> <p>
+     * <code>dynamodb:table:WriteCapacityUnits</code> - The provisioned write capacity
+     * for a DynamoDB table.</p> </li> <li> <p>
+     * <code>dynamodb:index:ReadCapacityUnits</code> - The provisioned read capacity
+     * for a DynamoDB global secondary index.</p> </li> <li> <p>
+     * <code>dynamodb:index:WriteCapacityUnits</code> - The provisioned write capacity
+     * for a DynamoDB global secondary index.</p> </li> </ul>
      */
-    inline void SetScalableDimension(ScalableDimension&& value) { m_scalableDimensionHasBeenSet = true; m_scalableDimension = value; }
+    inline void SetScalableDimension(ScalableDimension&& value) { m_scalableDimensionHasBeenSet = true; m_scalableDimension = std::move(value); }
 
     /**
      * <p>The scalable dimension. This string consists of the service namespace,
@@ -227,7 +318,17 @@ namespace Model
      * service.</p> </li> <li> <p> <code>ec2:spot-fleet-request:TargetCapacity</code> -
      * The target capacity of a Spot fleet request.</p> </li> <li> <p>
      * <code>elasticmapreduce:instancegroup:InstanceCount</code> - The instance count
-     * of an EMR Instance Group.</p> </li> </ul>
+     * of an EMR Instance Group.</p> </li> <li> <p>
+     * <code>appstream:fleet:DesiredCapacity</code> - The desired capacity of an
+     * AppStream 2.0 fleet.</p> </li> <li> <p>
+     * <code>dynamodb:table:ReadCapacityUnits</code> - The provisioned read capacity
+     * for a DynamoDB table.</p> </li> <li> <p>
+     * <code>dynamodb:table:WriteCapacityUnits</code> - The provisioned write capacity
+     * for a DynamoDB table.</p> </li> <li> <p>
+     * <code>dynamodb:index:ReadCapacityUnits</code> - The provisioned read capacity
+     * for a DynamoDB global secondary index.</p> </li> <li> <p>
+     * <code>dynamodb:index:WriteCapacityUnits</code> - The provisioned write capacity
+     * for a DynamoDB global secondary index.</p> </li> </ul>
      */
     inline DescribeScalingActivitiesRequest& WithScalableDimension(const ScalableDimension& value) { SetScalableDimension(value); return *this;}
 
@@ -239,9 +340,20 @@ namespace Model
      * service.</p> </li> <li> <p> <code>ec2:spot-fleet-request:TargetCapacity</code> -
      * The target capacity of a Spot fleet request.</p> </li> <li> <p>
      * <code>elasticmapreduce:instancegroup:InstanceCount</code> - The instance count
-     * of an EMR Instance Group.</p> </li> </ul>
+     * of an EMR Instance Group.</p> </li> <li> <p>
+     * <code>appstream:fleet:DesiredCapacity</code> - The desired capacity of an
+     * AppStream 2.0 fleet.</p> </li> <li> <p>
+     * <code>dynamodb:table:ReadCapacityUnits</code> - The provisioned read capacity
+     * for a DynamoDB table.</p> </li> <li> <p>
+     * <code>dynamodb:table:WriteCapacityUnits</code> - The provisioned write capacity
+     * for a DynamoDB table.</p> </li> <li> <p>
+     * <code>dynamodb:index:ReadCapacityUnits</code> - The provisioned read capacity
+     * for a DynamoDB global secondary index.</p> </li> <li> <p>
+     * <code>dynamodb:index:WriteCapacityUnits</code> - The provisioned write capacity
+     * for a DynamoDB global secondary index.</p> </li> </ul>
      */
-    inline DescribeScalingActivitiesRequest& WithScalableDimension(ScalableDimension&& value) { SetScalableDimension(value); return *this;}
+    inline DescribeScalingActivitiesRequest& WithScalableDimension(ScalableDimension&& value) { SetScalableDimension(std::move(value)); return *this;}
+
 
     /**
      * <p>The maximum number of scalable target results. This value can be between 1
@@ -276,6 +388,7 @@ namespace Model
      */
     inline DescribeScalingActivitiesRequest& WithMaxResults(int value) { SetMaxResults(value); return *this;}
 
+
     /**
      * <p>The token for the next set of results.</p>
      */
@@ -289,7 +402,7 @@ namespace Model
     /**
      * <p>The token for the next set of results.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>The token for the next set of results.</p>
@@ -304,7 +417,7 @@ namespace Model
     /**
      * <p>The token for the next set of results.</p>
      */
-    inline DescribeScalingActivitiesRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeScalingActivitiesRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The token for the next set of results.</p>
@@ -312,14 +425,19 @@ namespace Model
     inline DescribeScalingActivitiesRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     ServiceNamespace m_serviceNamespace;
     bool m_serviceNamespaceHasBeenSet;
+
     Aws::String m_resourceId;
     bool m_resourceIdHasBeenSet;
+
     ScalableDimension m_scalableDimension;
     bool m_scalableDimensionHasBeenSet;
+
     int m_maxResults;
     bool m_maxResultsHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
   };

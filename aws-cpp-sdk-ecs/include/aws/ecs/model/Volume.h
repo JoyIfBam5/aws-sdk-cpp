@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ecs/model/HostVolumeProperties.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     Volume& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the volume. Up to 255 letters (uppercase and lowercase), numbers,
      * hyphens, and underscores are allowed. This name is referenced in the
@@ -66,7 +69,7 @@ namespace Model
      * <code>sourceVolume</code> parameter of container definition
      * <code>mountPoints</code>.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the volume. Up to 255 letters (uppercase and lowercase), numbers,
@@ -90,7 +93,7 @@ namespace Model
      * <code>sourceVolume</code> parameter of container definition
      * <code>mountPoints</code>.</p>
      */
-    inline Volume& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline Volume& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the volume. Up to 255 letters (uppercase and lowercase), numbers,
@@ -99,6 +102,7 @@ namespace Model
      * <code>mountPoints</code>.</p>
      */
     inline Volume& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The contents of the <code>host</code> parameter determine whether your data
@@ -125,7 +129,7 @@ namespace Model
      * data volume, but the data is not guaranteed to persist after the containers
      * associated with it stop running.</p>
      */
-    inline void SetHost(HostVolumeProperties&& value) { m_hostHasBeenSet = true; m_host = value; }
+    inline void SetHost(HostVolumeProperties&& value) { m_hostHasBeenSet = true; m_host = std::move(value); }
 
     /**
      * <p>The contents of the <code>host</code> parameter determine whether your data
@@ -143,11 +147,13 @@ namespace Model
      * data volume, but the data is not guaranteed to persist after the containers
      * associated with it stop running.</p>
      */
-    inline Volume& WithHost(HostVolumeProperties&& value) { SetHost(value); return *this;}
+    inline Volume& WithHost(HostVolumeProperties&& value) { SetHost(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     HostVolumeProperties m_host;
     bool m_hostHasBeenSet;
   };

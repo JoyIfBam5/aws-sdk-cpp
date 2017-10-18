@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/health/Health_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     EntityAggregate& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The unique identifier for the event. Format:
      * <code>arn:aws:health:<i>event-region</i>::event/<i>EVENT_TYPE_PLUS_ID</i>
@@ -66,7 +69,7 @@ namespace Model
      * </code>. Example:
      * <code>arn:aws:health:us-east-1::event/AWS_EC2_MAINTENANCE_5331</code> </p>
      */
-    inline void SetEventArn(Aws::String&& value) { m_eventArnHasBeenSet = true; m_eventArn = value; }
+    inline void SetEventArn(Aws::String&& value) { m_eventArnHasBeenSet = true; m_eventArn = std::move(value); }
 
     /**
      * <p>The unique identifier for the event. Format:
@@ -90,7 +93,7 @@ namespace Model
      * </code>. Example:
      * <code>arn:aws:health:us-east-1::event/AWS_EC2_MAINTENANCE_5331</code> </p>
      */
-    inline EntityAggregate& WithEventArn(Aws::String&& value) { SetEventArn(value); return *this;}
+    inline EntityAggregate& WithEventArn(Aws::String&& value) { SetEventArn(std::move(value)); return *this;}
 
     /**
      * <p>The unique identifier for the event. Format:
@@ -99,6 +102,7 @@ namespace Model
      * <code>arn:aws:health:us-east-1::event/AWS_EC2_MAINTENANCE_5331</code> </p>
      */
     inline EntityAggregate& WithEventArn(const char* value) { SetEventArn(value); return *this;}
+
 
     /**
      * <p>The number entities that match the criteria for the specified events.</p>
@@ -116,8 +120,10 @@ namespace Model
     inline EntityAggregate& WithCount(int value) { SetCount(value); return *this;}
 
   private:
+
     Aws::String m_eventArn;
     bool m_eventArnHasBeenSet;
+
     int m_count;
     bool m_countHasBeenSet;
   };

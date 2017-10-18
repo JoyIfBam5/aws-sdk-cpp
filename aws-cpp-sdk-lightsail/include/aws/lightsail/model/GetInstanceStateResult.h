@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/lightsail/model/InstanceState.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     GetInstanceStateResult();
-    GetInstanceStateResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetInstanceStateResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetInstanceStateResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetInstanceStateResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The state of the instance.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The state of the instance.</p>
      */
-    inline void SetState(InstanceState&& value) { m_state = value; }
+    inline void SetState(InstanceState&& value) { m_state = std::move(value); }
 
     /**
      * <p>The state of the instance.</p>
@@ -62,9 +65,10 @@ namespace Model
     /**
      * <p>The state of the instance.</p>
      */
-    inline GetInstanceStateResult& WithState(InstanceState&& value) { SetState(value); return *this;}
+    inline GetInstanceStateResult& WithState(InstanceState&& value) { SetState(std::move(value)); return *this;}
 
   private:
+
     InstanceState m_state;
   };
 

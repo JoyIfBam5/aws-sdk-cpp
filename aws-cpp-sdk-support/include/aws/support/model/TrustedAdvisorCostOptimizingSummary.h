@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/support/Support_EXPORTS.h>
 
@@ -43,6 +44,7 @@ namespace Model
     TrustedAdvisorCostOptimizingSummary& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The estimated monthly savings that might be realized if the recommended
      * actions are taken.</p>
@@ -60,6 +62,7 @@ namespace Model
      * actions are taken.</p>
      */
     inline TrustedAdvisorCostOptimizingSummary& WithEstimatedMonthlySavings(double value) { SetEstimatedMonthlySavings(value); return *this;}
+
 
     /**
      * <p>The estimated percentage of savings that might be realized if the recommended
@@ -80,8 +83,10 @@ namespace Model
     inline TrustedAdvisorCostOptimizingSummary& WithEstimatedPercentMonthlySavings(double value) { SetEstimatedPercentMonthlySavings(value); return *this;}
 
   private:
+
     double m_estimatedMonthlySavings;
     bool m_estimatedMonthlySavingsHasBeenSet;
+
     double m_estimatedPercentMonthlySavings;
     bool m_estimatedPercentMonthlySavingsHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/rds/RDSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/rds/model/Filter.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,7 +37,19 @@ namespace Model
   {
   public:
     DescribeReservedDBInstancesOfferingsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeReservedDBInstancesOfferings"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The offering identifier filter value. Specify this parameter to show only the
@@ -56,7 +70,7 @@ namespace Model
      * available offering that matches the specified reservation identifier.</p>
      * <p>Example: <code>438012d3-4052-4cc7-b2e3-8d3372e0e706</code> </p>
      */
-    inline void SetReservedDBInstancesOfferingId(Aws::String&& value) { m_reservedDBInstancesOfferingIdHasBeenSet = true; m_reservedDBInstancesOfferingId = value; }
+    inline void SetReservedDBInstancesOfferingId(Aws::String&& value) { m_reservedDBInstancesOfferingIdHasBeenSet = true; m_reservedDBInstancesOfferingId = std::move(value); }
 
     /**
      * <p>The offering identifier filter value. Specify this parameter to show only the
@@ -77,7 +91,7 @@ namespace Model
      * available offering that matches the specified reservation identifier.</p>
      * <p>Example: <code>438012d3-4052-4cc7-b2e3-8d3372e0e706</code> </p>
      */
-    inline DescribeReservedDBInstancesOfferingsRequest& WithReservedDBInstancesOfferingId(Aws::String&& value) { SetReservedDBInstancesOfferingId(value); return *this;}
+    inline DescribeReservedDBInstancesOfferingsRequest& WithReservedDBInstancesOfferingId(Aws::String&& value) { SetReservedDBInstancesOfferingId(std::move(value)); return *this;}
 
     /**
      * <p>The offering identifier filter value. Specify this parameter to show only the
@@ -85,6 +99,7 @@ namespace Model
      * <p>Example: <code>438012d3-4052-4cc7-b2e3-8d3372e0e706</code> </p>
      */
     inline DescribeReservedDBInstancesOfferingsRequest& WithReservedDBInstancesOfferingId(const char* value) { SetReservedDBInstancesOfferingId(value); return *this;}
+
 
     /**
      * <p>The DB instance class filter value. Specify this parameter to show only the
@@ -102,7 +117,7 @@ namespace Model
      * <p>The DB instance class filter value. Specify this parameter to show only the
      * available offerings matching the specified DB instance class.</p>
      */
-    inline void SetDBInstanceClass(Aws::String&& value) { m_dBInstanceClassHasBeenSet = true; m_dBInstanceClass = value; }
+    inline void SetDBInstanceClass(Aws::String&& value) { m_dBInstanceClassHasBeenSet = true; m_dBInstanceClass = std::move(value); }
 
     /**
      * <p>The DB instance class filter value. Specify this parameter to show only the
@@ -120,13 +135,14 @@ namespace Model
      * <p>The DB instance class filter value. Specify this parameter to show only the
      * available offerings matching the specified DB instance class.</p>
      */
-    inline DescribeReservedDBInstancesOfferingsRequest& WithDBInstanceClass(Aws::String&& value) { SetDBInstanceClass(value); return *this;}
+    inline DescribeReservedDBInstancesOfferingsRequest& WithDBInstanceClass(Aws::String&& value) { SetDBInstanceClass(std::move(value)); return *this;}
 
     /**
      * <p>The DB instance class filter value. Specify this parameter to show only the
      * available offerings matching the specified DB instance class.</p>
      */
     inline DescribeReservedDBInstancesOfferingsRequest& WithDBInstanceClass(const char* value) { SetDBInstanceClass(value); return *this;}
+
 
     /**
      * <p>Duration filter value, specified in years or seconds. Specify this parameter
@@ -147,7 +163,7 @@ namespace Model
      * to show only reservations for this duration.</p> <p>Valid Values: <code>1 | 3 |
      * 31536000 | 94608000</code> </p>
      */
-    inline void SetDuration(Aws::String&& value) { m_durationHasBeenSet = true; m_duration = value; }
+    inline void SetDuration(Aws::String&& value) { m_durationHasBeenSet = true; m_duration = std::move(value); }
 
     /**
      * <p>Duration filter value, specified in years or seconds. Specify this parameter
@@ -168,7 +184,7 @@ namespace Model
      * to show only reservations for this duration.</p> <p>Valid Values: <code>1 | 3 |
      * 31536000 | 94608000</code> </p>
      */
-    inline DescribeReservedDBInstancesOfferingsRequest& WithDuration(Aws::String&& value) { SetDuration(value); return *this;}
+    inline DescribeReservedDBInstancesOfferingsRequest& WithDuration(Aws::String&& value) { SetDuration(std::move(value)); return *this;}
 
     /**
      * <p>Duration filter value, specified in years or seconds. Specify this parameter
@@ -176,6 +192,7 @@ namespace Model
      * 31536000 | 94608000</code> </p>
      */
     inline DescribeReservedDBInstancesOfferingsRequest& WithDuration(const char* value) { SetDuration(value); return *this;}
+
 
     /**
      * <p>Product description filter value. Specify this parameter to show only the
@@ -193,7 +210,7 @@ namespace Model
      * <p>Product description filter value. Specify this parameter to show only the
      * available offerings matching the specified product description.</p>
      */
-    inline void SetProductDescription(Aws::String&& value) { m_productDescriptionHasBeenSet = true; m_productDescription = value; }
+    inline void SetProductDescription(Aws::String&& value) { m_productDescriptionHasBeenSet = true; m_productDescription = std::move(value); }
 
     /**
      * <p>Product description filter value. Specify this parameter to show only the
@@ -211,13 +228,14 @@ namespace Model
      * <p>Product description filter value. Specify this parameter to show only the
      * available offerings matching the specified product description.</p>
      */
-    inline DescribeReservedDBInstancesOfferingsRequest& WithProductDescription(Aws::String&& value) { SetProductDescription(value); return *this;}
+    inline DescribeReservedDBInstancesOfferingsRequest& WithProductDescription(Aws::String&& value) { SetProductDescription(std::move(value)); return *this;}
 
     /**
      * <p>Product description filter value. Specify this parameter to show only the
      * available offerings matching the specified product description.</p>
      */
     inline DescribeReservedDBInstancesOfferingsRequest& WithProductDescription(const char* value) { SetProductDescription(value); return *this;}
+
 
     /**
      * <p>The offering type filter value. Specify this parameter to show only the
@@ -238,7 +256,7 @@ namespace Model
      * available offerings matching the specified offering type.</p> <p>Valid Values:
      * <code>"Partial Upfront" | "All Upfront" | "No Upfront" </code> </p>
      */
-    inline void SetOfferingType(Aws::String&& value) { m_offeringTypeHasBeenSet = true; m_offeringType = value; }
+    inline void SetOfferingType(Aws::String&& value) { m_offeringTypeHasBeenSet = true; m_offeringType = std::move(value); }
 
     /**
      * <p>The offering type filter value. Specify this parameter to show only the
@@ -259,7 +277,7 @@ namespace Model
      * available offerings matching the specified offering type.</p> <p>Valid Values:
      * <code>"Partial Upfront" | "All Upfront" | "No Upfront" </code> </p>
      */
-    inline DescribeReservedDBInstancesOfferingsRequest& WithOfferingType(Aws::String&& value) { SetOfferingType(value); return *this;}
+    inline DescribeReservedDBInstancesOfferingsRequest& WithOfferingType(Aws::String&& value) { SetOfferingType(std::move(value)); return *this;}
 
     /**
      * <p>The offering type filter value. Specify this parameter to show only the
@@ -267,6 +285,7 @@ namespace Model
      * <code>"Partial Upfront" | "All Upfront" | "No Upfront" </code> </p>
      */
     inline DescribeReservedDBInstancesOfferingsRequest& WithOfferingType(const char* value) { SetOfferingType(value); return *this;}
+
 
     /**
      * <p>The Multi-AZ filter value. Specify this parameter to show only the available
@@ -286,6 +305,7 @@ namespace Model
      */
     inline DescribeReservedDBInstancesOfferingsRequest& WithMultiAZ(bool value) { SetMultiAZ(value); return *this;}
 
+
     /**
      * <p>This parameter is not currently supported.</p>
      */
@@ -299,7 +319,7 @@ namespace Model
     /**
      * <p>This parameter is not currently supported.</p>
      */
-    inline void SetFilters(Aws::Vector<Filter>&& value) { m_filtersHasBeenSet = true; m_filters = value; }
+    inline void SetFilters(Aws::Vector<Filter>&& value) { m_filtersHasBeenSet = true; m_filters = std::move(value); }
 
     /**
      * <p>This parameter is not currently supported.</p>
@@ -309,7 +329,7 @@ namespace Model
     /**
      * <p>This parameter is not currently supported.</p>
      */
-    inline DescribeReservedDBInstancesOfferingsRequest& WithFilters(Aws::Vector<Filter>&& value) { SetFilters(value); return *this;}
+    inline DescribeReservedDBInstancesOfferingsRequest& WithFilters(Aws::Vector<Filter>&& value) { SetFilters(std::move(value)); return *this;}
 
     /**
      * <p>This parameter is not currently supported.</p>
@@ -319,7 +339,8 @@ namespace Model
     /**
      * <p>This parameter is not currently supported.</p>
      */
-    inline DescribeReservedDBInstancesOfferingsRequest& AddFilters(Filter&& value) { m_filtersHasBeenSet = true; m_filters.push_back(value); return *this; }
+    inline DescribeReservedDBInstancesOfferingsRequest& AddFilters(Filter&& value) { m_filtersHasBeenSet = true; m_filters.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p> The maximum number of records to include in the response. If more than the
@@ -345,6 +366,7 @@ namespace Model
      */
     inline DescribeReservedDBInstancesOfferingsRequest& WithMaxRecords(int value) { SetMaxRecords(value); return *this;}
 
+
     /**
      * <p> An optional pagination token provided by a previous request. If this
      * parameter is specified, the response includes only records beyond the marker, up
@@ -364,7 +386,7 @@ namespace Model
      * parameter is specified, the response includes only records beyond the marker, up
      * to the value specified by <code>MaxRecords</code>. </p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p> An optional pagination token provided by a previous request. If this
@@ -385,7 +407,7 @@ namespace Model
      * parameter is specified, the response includes only records beyond the marker, up
      * to the value specified by <code>MaxRecords</code>. </p>
      */
-    inline DescribeReservedDBInstancesOfferingsRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeReservedDBInstancesOfferingsRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p> An optional pagination token provided by a previous request. If this
@@ -395,22 +417,31 @@ namespace Model
     inline DescribeReservedDBInstancesOfferingsRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
 
   private:
+
     Aws::String m_reservedDBInstancesOfferingId;
     bool m_reservedDBInstancesOfferingIdHasBeenSet;
+
     Aws::String m_dBInstanceClass;
     bool m_dBInstanceClassHasBeenSet;
+
     Aws::String m_duration;
     bool m_durationHasBeenSet;
+
     Aws::String m_productDescription;
     bool m_productDescriptionHasBeenSet;
+
     Aws::String m_offeringType;
     bool m_offeringTypeHasBeenSet;
+
     bool m_multiAZ;
     bool m_multiAZHasBeenSet;
+
     Aws::Vector<Filter> m_filters;
     bool m_filtersHasBeenSet;
+
     int m_maxRecords;
     bool m_maxRecordsHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
   };

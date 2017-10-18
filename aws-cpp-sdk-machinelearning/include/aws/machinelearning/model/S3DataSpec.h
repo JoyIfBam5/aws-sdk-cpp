@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/machinelearning/MachineLearning_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     S3DataSpec& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The location of the data file(s) used by a <code>DataSource</code>. The URI
      * specifies a data file or an Amazon Simple Storage Service (Amazon S3) directory
@@ -63,7 +66,7 @@ namespace Model
      * specifies a data file or an Amazon Simple Storage Service (Amazon S3) directory
      * or bucket containing data files.</p>
      */
-    inline void SetDataLocationS3(Aws::String&& value) { m_dataLocationS3HasBeenSet = true; m_dataLocationS3 = value; }
+    inline void SetDataLocationS3(Aws::String&& value) { m_dataLocationS3HasBeenSet = true; m_dataLocationS3 = std::move(value); }
 
     /**
      * <p>The location of the data file(s) used by a <code>DataSource</code>. The URI
@@ -84,7 +87,7 @@ namespace Model
      * specifies a data file or an Amazon Simple Storage Service (Amazon S3) directory
      * or bucket containing data files.</p>
      */
-    inline S3DataSpec& WithDataLocationS3(Aws::String&& value) { SetDataLocationS3(value); return *this;}
+    inline S3DataSpec& WithDataLocationS3(Aws::String&& value) { SetDataLocationS3(std::move(value)); return *this;}
 
     /**
      * <p>The location of the data file(s) used by a <code>DataSource</code>. The URI
@@ -92,6 +95,7 @@ namespace Model
      * or bucket containing data files.</p>
      */
     inline S3DataSpec& WithDataLocationS3(const char* value) { SetDataLocationS3(value); return *this;}
+
 
     /**
      * <p>A JSON string that represents the splitting and rearrangement processing to
@@ -280,7 +284,7 @@ namespace Model
      * "strategy":"random", "randomSeed"="s3://my_s3_path/bucket/file.csv",
      * "complement":"true"}}</code></p> </li> </ul>
      */
-    inline void SetDataRearrangement(Aws::String&& value) { m_dataRearrangementHasBeenSet = true; m_dataRearrangement = value; }
+    inline void SetDataRearrangement(Aws::String&& value) { m_dataRearrangementHasBeenSet = true; m_dataRearrangement = std::move(value); }
 
     /**
      * <p>A JSON string that represents the splitting and rearrangement processing to
@@ -469,7 +473,7 @@ namespace Model
      * "strategy":"random", "randomSeed"="s3://my_s3_path/bucket/file.csv",
      * "complement":"true"}}</code></p> </li> </ul>
      */
-    inline S3DataSpec& WithDataRearrangement(Aws::String&& value) { SetDataRearrangement(value); return *this;}
+    inline S3DataSpec& WithDataRearrangement(Aws::String&& value) { SetDataRearrangement(std::move(value)); return *this;}
 
     /**
      * <p>A JSON string that represents the splitting and rearrangement processing to
@@ -533,6 +537,7 @@ namespace Model
      * "complement":"true"}}</code></p> </li> </ul>
      */
     inline S3DataSpec& WithDataRearrangement(const char* value) { SetDataRearrangement(value); return *this;}
+
 
     /**
      * <p> A JSON string that represents the schema for an Amazon S3
@@ -601,7 +606,7 @@ namespace Model
      * "WEIGHTED_STRING_SEQUENCE" } ],</p> <p> "excludedVariableNames": [ "F6" ] } </p>
      * <?oxy_insert_end>
      */
-    inline void SetDataSchema(Aws::String&& value) { m_dataSchemaHasBeenSet = true; m_dataSchema = value; }
+    inline void SetDataSchema(Aws::String&& value) { m_dataSchemaHasBeenSet = true; m_dataSchema = std::move(value); }
 
     /**
      * <p> A JSON string that represents the schema for an Amazon S3
@@ -670,7 +675,7 @@ namespace Model
      * "WEIGHTED_STRING_SEQUENCE" } ],</p> <p> "excludedVariableNames": [ "F6" ] } </p>
      * <?oxy_insert_end>
      */
-    inline S3DataSpec& WithDataSchema(Aws::String&& value) { SetDataSchema(value); return *this;}
+    inline S3DataSpec& WithDataSchema(Aws::String&& value) { SetDataSchema(std::move(value)); return *this;}
 
     /**
      * <p> A JSON string that represents the schema for an Amazon S3
@@ -695,6 +700,7 @@ namespace Model
      */
     inline S3DataSpec& WithDataSchema(const char* value) { SetDataSchema(value); return *this;}
 
+
     /**
      * <p>Describes the schema location in Amazon S3. You must provide either the
      * <code>DataSchema</code> or the <code>DataSchemaLocationS3</code>.</p>
@@ -711,7 +717,7 @@ namespace Model
      * <p>Describes the schema location in Amazon S3. You must provide either the
      * <code>DataSchema</code> or the <code>DataSchemaLocationS3</code>.</p>
      */
-    inline void SetDataSchemaLocationS3(Aws::String&& value) { m_dataSchemaLocationS3HasBeenSet = true; m_dataSchemaLocationS3 = value; }
+    inline void SetDataSchemaLocationS3(Aws::String&& value) { m_dataSchemaLocationS3HasBeenSet = true; m_dataSchemaLocationS3 = std::move(value); }
 
     /**
      * <p>Describes the schema location in Amazon S3. You must provide either the
@@ -729,7 +735,7 @@ namespace Model
      * <p>Describes the schema location in Amazon S3. You must provide either the
      * <code>DataSchema</code> or the <code>DataSchemaLocationS3</code>.</p>
      */
-    inline S3DataSpec& WithDataSchemaLocationS3(Aws::String&& value) { SetDataSchemaLocationS3(value); return *this;}
+    inline S3DataSpec& WithDataSchemaLocationS3(Aws::String&& value) { SetDataSchemaLocationS3(std::move(value)); return *this;}
 
     /**
      * <p>Describes the schema location in Amazon S3. You must provide either the
@@ -738,12 +744,16 @@ namespace Model
     inline S3DataSpec& WithDataSchemaLocationS3(const char* value) { SetDataSchemaLocationS3(value); return *this;}
 
   private:
+
     Aws::String m_dataLocationS3;
     bool m_dataLocationS3HasBeenSet;
+
     Aws::String m_dataRearrangement;
     bool m_dataRearrangementHasBeenSet;
+
     Aws::String m_dataSchema;
     bool m_dataSchemaHasBeenSet;
+
     Aws::String m_dataSchemaLocationS3;
     bool m_dataSchemaLocationS3HasBeenSet;
   };

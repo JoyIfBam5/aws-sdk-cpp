@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/apigateway/model/SdkConfigurationProperty.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     GetSdkTypeResult();
-    GetSdkTypeResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetSdkTypeResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetSdkTypeResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetSdkTypeResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The identifier of an <a>SdkType</a> instance.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The identifier of an <a>SdkType</a> instance.</p>
      */
-    inline void SetId(Aws::String&& value) { m_id = value; }
+    inline void SetId(Aws::String&& value) { m_id = std::move(value); }
 
     /**
      * <p>The identifier of an <a>SdkType</a> instance.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>The identifier of an <a>SdkType</a> instance.</p>
      */
-    inline GetSdkTypeResult& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline GetSdkTypeResult& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of an <a>SdkType</a> instance.</p>
      */
     inline GetSdkTypeResult& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>The user-friendly name of an <a>SdkType</a> instance.</p>
@@ -94,7 +98,7 @@ namespace Model
     /**
      * <p>The user-friendly name of an <a>SdkType</a> instance.</p>
      */
-    inline void SetFriendlyName(Aws::String&& value) { m_friendlyName = value; }
+    inline void SetFriendlyName(Aws::String&& value) { m_friendlyName = std::move(value); }
 
     /**
      * <p>The user-friendly name of an <a>SdkType</a> instance.</p>
@@ -109,12 +113,13 @@ namespace Model
     /**
      * <p>The user-friendly name of an <a>SdkType</a> instance.</p>
      */
-    inline GetSdkTypeResult& WithFriendlyName(Aws::String&& value) { SetFriendlyName(value); return *this;}
+    inline GetSdkTypeResult& WithFriendlyName(Aws::String&& value) { SetFriendlyName(std::move(value)); return *this;}
 
     /**
      * <p>The user-friendly name of an <a>SdkType</a> instance.</p>
      */
     inline GetSdkTypeResult& WithFriendlyName(const char* value) { SetFriendlyName(value); return *this;}
+
 
     /**
      * <p>The description of an <a>SdkType</a>.</p>
@@ -129,7 +134,7 @@ namespace Model
     /**
      * <p>The description of an <a>SdkType</a>.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_description = std::move(value); }
 
     /**
      * <p>The description of an <a>SdkType</a>.</p>
@@ -144,12 +149,13 @@ namespace Model
     /**
      * <p>The description of an <a>SdkType</a>.</p>
      */
-    inline GetSdkTypeResult& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline GetSdkTypeResult& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description of an <a>SdkType</a>.</p>
      */
     inline GetSdkTypeResult& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>A list of configuration properties of an <a>SdkType</a>.</p>
@@ -164,7 +170,7 @@ namespace Model
     /**
      * <p>A list of configuration properties of an <a>SdkType</a>.</p>
      */
-    inline void SetConfigurationProperties(Aws::Vector<SdkConfigurationProperty>&& value) { m_configurationProperties = value; }
+    inline void SetConfigurationProperties(Aws::Vector<SdkConfigurationProperty>&& value) { m_configurationProperties = std::move(value); }
 
     /**
      * <p>A list of configuration properties of an <a>SdkType</a>.</p>
@@ -174,7 +180,7 @@ namespace Model
     /**
      * <p>A list of configuration properties of an <a>SdkType</a>.</p>
      */
-    inline GetSdkTypeResult& WithConfigurationProperties(Aws::Vector<SdkConfigurationProperty>&& value) { SetConfigurationProperties(value); return *this;}
+    inline GetSdkTypeResult& WithConfigurationProperties(Aws::Vector<SdkConfigurationProperty>&& value) { SetConfigurationProperties(std::move(value)); return *this;}
 
     /**
      * <p>A list of configuration properties of an <a>SdkType</a>.</p>
@@ -184,12 +190,16 @@ namespace Model
     /**
      * <p>A list of configuration properties of an <a>SdkType</a>.</p>
      */
-    inline GetSdkTypeResult& AddConfigurationProperties(SdkConfigurationProperty&& value) { m_configurationProperties.push_back(value); return *this; }
+    inline GetSdkTypeResult& AddConfigurationProperties(SdkConfigurationProperty&& value) { m_configurationProperties.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_id;
+
     Aws::String m_friendlyName;
+
     Aws::String m_description;
+
     Aws::Vector<SdkConfigurationProperty> m_configurationProperties;
   };
 

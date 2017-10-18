@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/rds/model/Parameter.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +51,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>Specifies the name of the DB parameter group family that the engine default
      * parameters apply to.</p>
@@ -65,7 +68,7 @@ namespace Model
      * <p>Specifies the name of the DB parameter group family that the engine default
      * parameters apply to.</p>
      */
-    inline void SetDBParameterGroupFamily(Aws::String&& value) { m_dBParameterGroupFamilyHasBeenSet = true; m_dBParameterGroupFamily = value; }
+    inline void SetDBParameterGroupFamily(Aws::String&& value) { m_dBParameterGroupFamilyHasBeenSet = true; m_dBParameterGroupFamily = std::move(value); }
 
     /**
      * <p>Specifies the name of the DB parameter group family that the engine default
@@ -83,13 +86,14 @@ namespace Model
      * <p>Specifies the name of the DB parameter group family that the engine default
      * parameters apply to.</p>
      */
-    inline EngineDefaults& WithDBParameterGroupFamily(Aws::String&& value) { SetDBParameterGroupFamily(value); return *this;}
+    inline EngineDefaults& WithDBParameterGroupFamily(Aws::String&& value) { SetDBParameterGroupFamily(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the name of the DB parameter group family that the engine default
      * parameters apply to.</p>
      */
     inline EngineDefaults& WithDBParameterGroupFamily(const char* value) { SetDBParameterGroupFamily(value); return *this;}
+
 
     /**
      * <p> An optional pagination token provided by a previous EngineDefaults request.
@@ -110,7 +114,7 @@ namespace Model
      * If this parameter is specified, the response includes only records beyond the
      * marker, up to the value specified by <code>MaxRecords</code> . </p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p> An optional pagination token provided by a previous EngineDefaults request.
@@ -131,7 +135,7 @@ namespace Model
      * If this parameter is specified, the response includes only records beyond the
      * marker, up to the value specified by <code>MaxRecords</code> . </p>
      */
-    inline EngineDefaults& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline EngineDefaults& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p> An optional pagination token provided by a previous EngineDefaults request.
@@ -139,6 +143,7 @@ namespace Model
      * marker, up to the value specified by <code>MaxRecords</code> . </p>
      */
     inline EngineDefaults& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>Contains a list of engine default parameters.</p>
@@ -153,7 +158,7 @@ namespace Model
     /**
      * <p>Contains a list of engine default parameters.</p>
      */
-    inline void SetParameters(Aws::Vector<Parameter>&& value) { m_parametersHasBeenSet = true; m_parameters = value; }
+    inline void SetParameters(Aws::Vector<Parameter>&& value) { m_parametersHasBeenSet = true; m_parameters = std::move(value); }
 
     /**
      * <p>Contains a list of engine default parameters.</p>
@@ -163,7 +168,7 @@ namespace Model
     /**
      * <p>Contains a list of engine default parameters.</p>
      */
-    inline EngineDefaults& WithParameters(Aws::Vector<Parameter>&& value) { SetParameters(value); return *this;}
+    inline EngineDefaults& WithParameters(Aws::Vector<Parameter>&& value) { SetParameters(std::move(value)); return *this;}
 
     /**
      * <p>Contains a list of engine default parameters.</p>
@@ -173,13 +178,16 @@ namespace Model
     /**
      * <p>Contains a list of engine default parameters.</p>
      */
-    inline EngineDefaults& AddParameters(Parameter&& value) { m_parametersHasBeenSet = true; m_parameters.push_back(value); return *this; }
+    inline EngineDefaults& AddParameters(Parameter&& value) { m_parametersHasBeenSet = true; m_parameters.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_dBParameterGroupFamily;
     bool m_dBParameterGroupFamilyHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
+
     Aws::Vector<Parameter> m_parameters;
     bool m_parametersHasBeenSet;
   };

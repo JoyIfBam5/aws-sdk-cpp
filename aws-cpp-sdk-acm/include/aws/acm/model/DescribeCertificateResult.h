@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/acm/ACM_EXPORTS.h>
 #include <aws/acm/model/CertificateDetail.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,40 +38,37 @@ namespace Model
   {
   public:
     DescribeCertificateResult();
-    DescribeCertificateResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeCertificateResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeCertificateResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeCertificateResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>Contains a <a>CertificateDetail</a> structure that lists the fields of an ACM
-     * Certificate.</p>
+     * <p>Metadata about an ACM certificate.</p>
      */
     inline const CertificateDetail& GetCertificate() const{ return m_certificate; }
 
     /**
-     * <p>Contains a <a>CertificateDetail</a> structure that lists the fields of an ACM
-     * Certificate.</p>
+     * <p>Metadata about an ACM certificate.</p>
      */
     inline void SetCertificate(const CertificateDetail& value) { m_certificate = value; }
 
     /**
-     * <p>Contains a <a>CertificateDetail</a> structure that lists the fields of an ACM
-     * Certificate.</p>
+     * <p>Metadata about an ACM certificate.</p>
      */
-    inline void SetCertificate(CertificateDetail&& value) { m_certificate = value; }
+    inline void SetCertificate(CertificateDetail&& value) { m_certificate = std::move(value); }
 
     /**
-     * <p>Contains a <a>CertificateDetail</a> structure that lists the fields of an ACM
-     * Certificate.</p>
+     * <p>Metadata about an ACM certificate.</p>
      */
     inline DescribeCertificateResult& WithCertificate(const CertificateDetail& value) { SetCertificate(value); return *this;}
 
     /**
-     * <p>Contains a <a>CertificateDetail</a> structure that lists the fields of an ACM
-     * Certificate.</p>
+     * <p>Metadata about an ACM certificate.</p>
      */
-    inline DescribeCertificateResult& WithCertificate(CertificateDetail&& value) { SetCertificate(value); return *this;}
+    inline DescribeCertificateResult& WithCertificate(CertificateDetail&& value) { SetCertificate(std::move(value)); return *this;}
 
   private:
+
     CertificateDetail m_certificate;
   };
 

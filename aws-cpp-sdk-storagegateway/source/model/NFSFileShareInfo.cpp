@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/storagegateway/model/NFSFileShareInfo.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -39,7 +40,11 @@ NFSFileShareInfo::NFSFileShareInfo() :
     m_pathHasBeenSet(false),
     m_roleHasBeenSet(false),
     m_locationARNHasBeenSet(false),
-    m_defaultStorageClassHasBeenSet(false)
+    m_defaultStorageClassHasBeenSet(false),
+    m_clientListHasBeenSet(false),
+    m_squashHasBeenSet(false),
+    m_readOnly(false),
+    m_readOnlyHasBeenSet(false)
 {
 }
 
@@ -55,7 +60,11 @@ NFSFileShareInfo::NFSFileShareInfo(const JsonValue& jsonValue) :
     m_pathHasBeenSet(false),
     m_roleHasBeenSet(false),
     m_locationARNHasBeenSet(false),
-    m_defaultStorageClassHasBeenSet(false)
+    m_defaultStorageClassHasBeenSet(false),
+    m_clientListHasBeenSet(false),
+    m_squashHasBeenSet(false),
+    m_readOnly(false),
+    m_readOnlyHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -139,6 +148,30 @@ NFSFileShareInfo& NFSFileShareInfo::operator =(const JsonValue& jsonValue)
     m_defaultStorageClassHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("ClientList"))
+  {
+    Array<JsonValue> clientListJsonList = jsonValue.GetArray("ClientList");
+    for(unsigned clientListIndex = 0; clientListIndex < clientListJsonList.GetLength(); ++clientListIndex)
+    {
+      m_clientList.push_back(clientListJsonList[clientListIndex].AsString());
+    }
+    m_clientListHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("Squash"))
+  {
+    m_squash = jsonValue.GetString("Squash");
+
+    m_squashHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("ReadOnly"))
+  {
+    m_readOnly = jsonValue.GetBool("ReadOnly");
+
+    m_readOnlyHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -209,6 +242,29 @@ JsonValue NFSFileShareInfo::Jsonize() const
   if(m_defaultStorageClassHasBeenSet)
   {
    payload.WithString("DefaultStorageClass", m_defaultStorageClass);
+
+  }
+
+  if(m_clientListHasBeenSet)
+  {
+   Array<JsonValue> clientListJsonList(m_clientList.size());
+   for(unsigned clientListIndex = 0; clientListIndex < clientListJsonList.GetLength(); ++clientListIndex)
+   {
+     clientListJsonList[clientListIndex].AsString(m_clientList[clientListIndex]);
+   }
+   payload.WithArray("ClientList", std::move(clientListJsonList));
+
+  }
+
+  if(m_squashHasBeenSet)
+  {
+   payload.WithString("Squash", m_squash);
+
+  }
+
+  if(m_readOnlyHasBeenSet)
+  {
+   payload.WithBool("ReadOnly", m_readOnly);
 
   }
 

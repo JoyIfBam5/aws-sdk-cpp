@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/autoscaling/model/CreateAutoScalingGroupRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -42,6 +43,7 @@ CreateAutoScalingGroupRequest::CreateAutoScalingGroupRequest() :
     m_terminationPoliciesHasBeenSet(false),
     m_newInstancesProtectedFromScaleIn(false),
     m_newInstancesProtectedFromScaleInHasBeenSet(false),
+    m_lifecycleHookSpecificationListHasBeenSet(false),
     m_tagsHasBeenSet(false)
 {
 }
@@ -154,6 +156,16 @@ Aws::String CreateAutoScalingGroupRequest::SerializePayload() const
     ss << "NewInstancesProtectedFromScaleIn=" << std::boolalpha << m_newInstancesProtectedFromScaleIn << "&";
   }
 
+  if(m_lifecycleHookSpecificationListHasBeenSet)
+  {
+    unsigned lifecycleHookSpecificationListCount = 1;
+    for(auto& item : m_lifecycleHookSpecificationList)
+    {
+      item.OutputToStream(ss, "LifecycleHookSpecificationList.member.", lifecycleHookSpecificationListCount, "");
+      lifecycleHookSpecificationListCount++;
+    }
+  }
+
   if(m_tagsHasBeenSet)
   {
     unsigned tagsCount = 1;
@@ -168,3 +180,8 @@ Aws::String CreateAutoScalingGroupRequest::SerializePayload() const
   return ss.str();
 }
 
+
+void  CreateAutoScalingGroupRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

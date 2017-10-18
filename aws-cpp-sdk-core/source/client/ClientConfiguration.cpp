@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   * 
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -45,6 +45,7 @@ ClientConfiguration::ClientConfiguration() :
     requestTimeoutMs(3000), 
     connectTimeoutMs(1000),
     retryStrategy(Aws::MakeShared<DefaultRetryStrategy>(CLIENT_CONFIGURATION_ALLOCATION_TAG)),
+    proxyScheme(Aws::Http::Scheme::HTTP),
     proxyPort(0),
     executor(Aws::MakeShared<Aws::Utils::Threading::DefaultExecutor>(CLIENT_CONFIGURATION_ALLOCATION_TAG)),
     verifySSL(true),

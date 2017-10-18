@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codecommit/CodeCommit_EXPORTS.h>
 #include <aws/codecommit/CodeCommitRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     UpdateDefaultBranchRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateDefaultBranch"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The name of the repository to set or change the default branch for.</p>
@@ -51,7 +61,7 @@ namespace Model
     /**
      * <p>The name of the repository to set or change the default branch for.</p>
      */
-    inline void SetRepositoryName(Aws::String&& value) { m_repositoryNameHasBeenSet = true; m_repositoryName = value; }
+    inline void SetRepositoryName(Aws::String&& value) { m_repositoryNameHasBeenSet = true; m_repositoryName = std::move(value); }
 
     /**
      * <p>The name of the repository to set or change the default branch for.</p>
@@ -66,12 +76,13 @@ namespace Model
     /**
      * <p>The name of the repository to set or change the default branch for.</p>
      */
-    inline UpdateDefaultBranchRequest& WithRepositoryName(Aws::String&& value) { SetRepositoryName(value); return *this;}
+    inline UpdateDefaultBranchRequest& WithRepositoryName(Aws::String&& value) { SetRepositoryName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the repository to set or change the default branch for.</p>
      */
     inline UpdateDefaultBranchRequest& WithRepositoryName(const char* value) { SetRepositoryName(value); return *this;}
+
 
     /**
      * <p>The name of the branch to set as the default.</p>
@@ -86,7 +97,7 @@ namespace Model
     /**
      * <p>The name of the branch to set as the default.</p>
      */
-    inline void SetDefaultBranchName(Aws::String&& value) { m_defaultBranchNameHasBeenSet = true; m_defaultBranchName = value; }
+    inline void SetDefaultBranchName(Aws::String&& value) { m_defaultBranchNameHasBeenSet = true; m_defaultBranchName = std::move(value); }
 
     /**
      * <p>The name of the branch to set as the default.</p>
@@ -101,7 +112,7 @@ namespace Model
     /**
      * <p>The name of the branch to set as the default.</p>
      */
-    inline UpdateDefaultBranchRequest& WithDefaultBranchName(Aws::String&& value) { SetDefaultBranchName(value); return *this;}
+    inline UpdateDefaultBranchRequest& WithDefaultBranchName(Aws::String&& value) { SetDefaultBranchName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the branch to set as the default.</p>
@@ -109,8 +120,10 @@ namespace Model
     inline UpdateDefaultBranchRequest& WithDefaultBranchName(const char* value) { SetDefaultBranchName(value); return *this;}
 
   private:
+
     Aws::String m_repositoryName;
     bool m_repositoryNameHasBeenSet;
+
     Aws::String m_defaultBranchName;
     bool m_defaultBranchNameHasBeenSet;
   };

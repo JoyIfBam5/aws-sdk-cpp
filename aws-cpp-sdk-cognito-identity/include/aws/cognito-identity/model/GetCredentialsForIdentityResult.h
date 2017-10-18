@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-identity/CognitoIdentity_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/cognito-identity/model/Credentials.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     GetCredentialsForIdentityResult();
-    GetCredentialsForIdentityResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetCredentialsForIdentityResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetCredentialsForIdentityResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetCredentialsForIdentityResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A unique identifier in the format REGION:GUID.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>A unique identifier in the format REGION:GUID.</p>
      */
-    inline void SetIdentityId(Aws::String&& value) { m_identityId = value; }
+    inline void SetIdentityId(Aws::String&& value) { m_identityId = std::move(value); }
 
     /**
      * <p>A unique identifier in the format REGION:GUID.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>A unique identifier in the format REGION:GUID.</p>
      */
-    inline GetCredentialsForIdentityResult& WithIdentityId(Aws::String&& value) { SetIdentityId(value); return *this;}
+    inline GetCredentialsForIdentityResult& WithIdentityId(Aws::String&& value) { SetIdentityId(std::move(value)); return *this;}
 
     /**
      * <p>A unique identifier in the format REGION:GUID.</p>
      */
     inline GetCredentialsForIdentityResult& WithIdentityId(const char* value) { SetIdentityId(value); return *this;}
+
 
     /**
      * <p>Credentials for the provided identity ID.</p>
@@ -94,7 +98,7 @@ namespace Model
     /**
      * <p>Credentials for the provided identity ID.</p>
      */
-    inline void SetCredentials(Credentials&& value) { m_credentials = value; }
+    inline void SetCredentials(Credentials&& value) { m_credentials = std::move(value); }
 
     /**
      * <p>Credentials for the provided identity ID.</p>
@@ -104,10 +108,12 @@ namespace Model
     /**
      * <p>Credentials for the provided identity ID.</p>
      */
-    inline GetCredentialsForIdentityResult& WithCredentials(Credentials&& value) { SetCredentials(value); return *this;}
+    inline GetCredentialsForIdentityResult& WithCredentials(Credentials&& value) { SetCredentials(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_identityId;
+
     Credentials m_credentials;
   };
 

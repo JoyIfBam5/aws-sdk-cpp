@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/iam/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     GetSAMLProviderResult();
-    GetSAMLProviderResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    GetSAMLProviderResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    GetSAMLProviderResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    GetSAMLProviderResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>The XML metadata document that includes information about an identity
@@ -63,7 +66,7 @@ namespace Model
      * <p>The XML metadata document that includes information about an identity
      * provider.</p>
      */
-    inline void SetSAMLMetadataDocument(Aws::String&& value) { m_sAMLMetadataDocument = value; }
+    inline void SetSAMLMetadataDocument(Aws::String&& value) { m_sAMLMetadataDocument = std::move(value); }
 
     /**
      * <p>The XML metadata document that includes information about an identity
@@ -81,13 +84,14 @@ namespace Model
      * <p>The XML metadata document that includes information about an identity
      * provider.</p>
      */
-    inline GetSAMLProviderResult& WithSAMLMetadataDocument(Aws::String&& value) { SetSAMLMetadataDocument(value); return *this;}
+    inline GetSAMLProviderResult& WithSAMLMetadataDocument(Aws::String&& value) { SetSAMLMetadataDocument(std::move(value)); return *this;}
 
     /**
      * <p>The XML metadata document that includes information about an identity
      * provider.</p>
      */
     inline GetSAMLProviderResult& WithSAMLMetadataDocument(const char* value) { SetSAMLMetadataDocument(value); return *this;}
+
 
     /**
      * <p>The date and time when the SAML provider was created.</p>
@@ -102,7 +106,7 @@ namespace Model
     /**
      * <p>The date and time when the SAML provider was created.</p>
      */
-    inline void SetCreateDate(Aws::Utils::DateTime&& value) { m_createDate = value; }
+    inline void SetCreateDate(Aws::Utils::DateTime&& value) { m_createDate = std::move(value); }
 
     /**
      * <p>The date and time when the SAML provider was created.</p>
@@ -112,7 +116,8 @@ namespace Model
     /**
      * <p>The date and time when the SAML provider was created.</p>
      */
-    inline GetSAMLProviderResult& WithCreateDate(Aws::Utils::DateTime&& value) { SetCreateDate(value); return *this;}
+    inline GetSAMLProviderResult& WithCreateDate(Aws::Utils::DateTime&& value) { SetCreateDate(std::move(value)); return *this;}
+
 
     /**
      * <p>The expiration date and time for the SAML provider.</p>
@@ -127,7 +132,7 @@ namespace Model
     /**
      * <p>The expiration date and time for the SAML provider.</p>
      */
-    inline void SetValidUntil(Aws::Utils::DateTime&& value) { m_validUntil = value; }
+    inline void SetValidUntil(Aws::Utils::DateTime&& value) { m_validUntil = std::move(value); }
 
     /**
      * <p>The expiration date and time for the SAML provider.</p>
@@ -137,7 +142,8 @@ namespace Model
     /**
      * <p>The expiration date and time for the SAML provider.</p>
      */
-    inline GetSAMLProviderResult& WithValidUntil(Aws::Utils::DateTime&& value) { SetValidUntil(value); return *this;}
+    inline GetSAMLProviderResult& WithValidUntil(Aws::Utils::DateTime&& value) { SetValidUntil(std::move(value)); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -146,18 +152,22 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline GetSAMLProviderResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline GetSAMLProviderResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline GetSAMLProviderResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_sAMLMetadataDocument;
+
     Aws::Utils::DateTime m_createDate;
+
     Aws::Utils::DateTime m_validUntil;
+
     ResponseMetadata m_responseMetadata;
   };
 

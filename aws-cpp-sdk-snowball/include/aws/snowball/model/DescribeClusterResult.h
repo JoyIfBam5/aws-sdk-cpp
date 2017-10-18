@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/snowball/Snowball_EXPORTS.h>
 #include <aws/snowball/model/ClusterMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     DescribeClusterResult();
-    DescribeClusterResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeClusterResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeClusterResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeClusterResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about a specific cluster, including shipping information, cluster
@@ -55,7 +58,7 @@ namespace Model
      * <p>Information about a specific cluster, including shipping information, cluster
      * status, and other important metadata.</p>
      */
-    inline void SetClusterMetadata(ClusterMetadata&& value) { m_clusterMetadata = value; }
+    inline void SetClusterMetadata(ClusterMetadata&& value) { m_clusterMetadata = std::move(value); }
 
     /**
      * <p>Information about a specific cluster, including shipping information, cluster
@@ -67,9 +70,10 @@ namespace Model
      * <p>Information about a specific cluster, including shipping information, cluster
      * status, and other important metadata.</p>
      */
-    inline DescribeClusterResult& WithClusterMetadata(ClusterMetadata&& value) { SetClusterMetadata(value); return *this;}
+    inline DescribeClusterResult& WithClusterMetadata(ClusterMetadata&& value) { SetClusterMetadata(std::move(value)); return *this;}
 
   private:
+
     ClusterMetadata m_clusterMetadata;
   };
 

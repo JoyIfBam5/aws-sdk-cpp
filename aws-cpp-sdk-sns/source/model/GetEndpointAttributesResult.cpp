@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/sns/model/GetEndpointAttributesResult.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
@@ -30,17 +31,17 @@ GetEndpointAttributesResult::GetEndpointAttributesResult()
 {
 }
 
-GetEndpointAttributesResult::GetEndpointAttributesResult(const AmazonWebServiceResult<XmlDocument>& result)
+GetEndpointAttributesResult::GetEndpointAttributesResult(const Aws::AmazonWebServiceResult<XmlDocument>& result)
 {
   *this = result;
 }
 
-GetEndpointAttributesResult& GetEndpointAttributesResult::operator =(const AmazonWebServiceResult<XmlDocument>& result)
+GetEndpointAttributesResult& GetEndpointAttributesResult::operator =(const Aws::AmazonWebServiceResult<XmlDocument>& result)
 {
   const XmlDocument& xmlDocument = result.GetPayload();
   XmlNode rootNode = xmlDocument.GetRootElement();
   XmlNode resultNode = rootNode;
-  if (rootNode.GetName() != "GetEndpointAttributesResult")
+  if (!rootNode.IsNull() && (rootNode.GetName() != "GetEndpointAttributesResult"))
   {
     resultNode = rootNode.FirstChild("GetEndpointAttributesResult");
   }
@@ -64,9 +65,10 @@ GetEndpointAttributesResult& GetEndpointAttributesResult::operator =(const Amazo
     }
   }
 
-  XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
-  m_responseMetadata = responseMetadataNode;
-  AWS_LOGSTREAM_DEBUG("Aws::SNS::Model::GetEndpointAttributesResult", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
-
+  if (!rootNode.IsNull()) {
+    XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
+    m_responseMetadata = responseMetadataNode;
+    AWS_LOGSTREAM_DEBUG("Aws::SNS::Model::GetEndpointAttributesResult", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
+  }
   return *this;
 }

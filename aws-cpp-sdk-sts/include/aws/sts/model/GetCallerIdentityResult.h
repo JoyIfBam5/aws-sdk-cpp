@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/sts/STS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/sts/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     GetCallerIdentityResult();
-    GetCallerIdentityResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    GetCallerIdentityResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    GetCallerIdentityResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    GetCallerIdentityResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>The unique identifier of the calling entity. The exact value depends on the
@@ -75,7 +78,7 @@ namespace Model
      * table</a> found on the <b>Policy Variables</b> reference page in the <i>IAM User
      * Guide</i>.</p>
      */
-    inline void SetUserId(Aws::String&& value) { m_userId = value; }
+    inline void SetUserId(Aws::String&& value) { m_userId = std::move(value); }
 
     /**
      * <p>The unique identifier of the calling entity. The exact value depends on the
@@ -105,7 +108,7 @@ namespace Model
      * table</a> found on the <b>Policy Variables</b> reference page in the <i>IAM User
      * Guide</i>.</p>
      */
-    inline GetCallerIdentityResult& WithUserId(Aws::String&& value) { SetUserId(value); return *this;}
+    inline GetCallerIdentityResult& WithUserId(Aws::String&& value) { SetUserId(std::move(value)); return *this;}
 
     /**
      * <p>The unique identifier of the calling entity. The exact value depends on the
@@ -116,6 +119,7 @@ namespace Model
      * Guide</i>.</p>
      */
     inline GetCallerIdentityResult& WithUserId(const char* value) { SetUserId(value); return *this;}
+
 
     /**
      * <p>The AWS account ID number of the account that owns or contains the calling
@@ -133,7 +137,7 @@ namespace Model
      * <p>The AWS account ID number of the account that owns or contains the calling
      * entity.</p>
      */
-    inline void SetAccount(Aws::String&& value) { m_account = value; }
+    inline void SetAccount(Aws::String&& value) { m_account = std::move(value); }
 
     /**
      * <p>The AWS account ID number of the account that owns or contains the calling
@@ -151,13 +155,14 @@ namespace Model
      * <p>The AWS account ID number of the account that owns or contains the calling
      * entity.</p>
      */
-    inline GetCallerIdentityResult& WithAccount(Aws::String&& value) { SetAccount(value); return *this;}
+    inline GetCallerIdentityResult& WithAccount(Aws::String&& value) { SetAccount(std::move(value)); return *this;}
 
     /**
      * <p>The AWS account ID number of the account that owns or contains the calling
      * entity.</p>
      */
     inline GetCallerIdentityResult& WithAccount(const char* value) { SetAccount(value); return *this;}
+
 
     /**
      * <p>The AWS ARN associated with the calling entity.</p>
@@ -172,7 +177,7 @@ namespace Model
     /**
      * <p>The AWS ARN associated with the calling entity.</p>
      */
-    inline void SetArn(Aws::String&& value) { m_arn = value; }
+    inline void SetArn(Aws::String&& value) { m_arn = std::move(value); }
 
     /**
      * <p>The AWS ARN associated with the calling entity.</p>
@@ -187,12 +192,13 @@ namespace Model
     /**
      * <p>The AWS ARN associated with the calling entity.</p>
      */
-    inline GetCallerIdentityResult& WithArn(Aws::String&& value) { SetArn(value); return *this;}
+    inline GetCallerIdentityResult& WithArn(Aws::String&& value) { SetArn(std::move(value)); return *this;}
 
     /**
      * <p>The AWS ARN associated with the calling entity.</p>
      */
     inline GetCallerIdentityResult& WithArn(const char* value) { SetArn(value); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -201,18 +207,22 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline GetCallerIdentityResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline GetCallerIdentityResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline GetCallerIdentityResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_userId;
+
     Aws::String m_account;
+
     Aws::String m_arn;
+
     ResponseMetadata m_responseMetadata;
   };
 

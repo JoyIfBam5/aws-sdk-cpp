@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudfront/CloudFront_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -32,18 +34,24 @@ namespace Model
 {
 
   /**
-   * A complex type that specifies the AWS accounts, if any, that you want to allow
-   * to create signed URLs for private content. If you want to require signed URLs in
-   * requests for objects in the target origin that match the PathPattern for this
-   * cache behavior, specify true for Enabled, and specify the applicable values for
-   * Quantity and Items. For more information, go to Using a Signed URL to Serve
-   * Private Content in the Amazon CloudFront Developer Guide. If you don't want to
-   * require signed URLs in requests for objects that match PathPattern, specify
-   * false for Enabled and 0 for Quantity. Omit Items. To add, change, or remove one
-   * or more trusted signers, change Enabled to true (if it's currently false),
-   * change Quantity as applicable, and specify all of the trusted signers that you
-   * want to include in the updated distribution.<p><h3>See Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/cloudfront-2016-01-28/TrustedSigners">AWS
+   * <p>A complex type that specifies the AWS accounts, if any, that you want to
+   * allow to create signed URLs for private content.</p> <p>If you want to require
+   * signed URLs in requests for objects in the target origin that match the
+   * <code>PathPattern</code> for this cache behavior, specify <code>true</code> for
+   * <code>Enabled</code>, and specify the applicable values for
+   * <code>Quantity</code> and <code>Items</code>. For more information, see <a
+   * href="http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html">Serving
+   * Private Content through CloudFront</a> in the <i>Amazon Amazon CloudFront
+   * Developer Guide</i>.</p> <p>If you don't want to require signed URLs in requests
+   * for objects that match <code>PathPattern</code>, specify <code>false</code> for
+   * <code>Enabled</code> and <code>0</code> for <code>Quantity</code>. Omit
+   * <code>Items</code>.</p> <p>To add, change, or remove one or more trusted
+   * signers, change <code>Enabled</code> to <code>true</code> (if it's currently
+   * <code>false</code>), change <code>Quantity</code> as applicable, and specify all
+   * of the trusted signers that you want to include in the updated distribution.</p>
+   * <p>For more information about updating the distribution configuration, see
+   * <a>DistributionConfig</a> .</p><p><h3>See Also:</h3>   <a
+   * href="http://docs.aws.amazon.com/goto/WebAPI/cloudfront-2017-03-25/TrustedSigners">AWS
    * API Reference</a></p>
    */
   class AWS_CLOUDFRONT_API TrustedSigners
@@ -55,92 +63,109 @@ namespace Model
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
 
+
     /**
-     * Specifies whether you want to require end users to use signed URLs to access the
-     * files specified by PathPattern and TargetOriginId.
+     * <p>Specifies whether you want to require viewers to use signed URLs to access
+     * the files specified by <code>PathPattern</code> and
+     * <code>TargetOriginId</code>.</p>
      */
     inline bool GetEnabled() const{ return m_enabled; }
 
     /**
-     * Specifies whether you want to require end users to use signed URLs to access the
-     * files specified by PathPattern and TargetOriginId.
+     * <p>Specifies whether you want to require viewers to use signed URLs to access
+     * the files specified by <code>PathPattern</code> and
+     * <code>TargetOriginId</code>.</p>
      */
     inline void SetEnabled(bool value) { m_enabledHasBeenSet = true; m_enabled = value; }
 
     /**
-     * Specifies whether you want to require end users to use signed URLs to access the
-     * files specified by PathPattern and TargetOriginId.
+     * <p>Specifies whether you want to require viewers to use signed URLs to access
+     * the files specified by <code>PathPattern</code> and
+     * <code>TargetOriginId</code>.</p>
      */
     inline TrustedSigners& WithEnabled(bool value) { SetEnabled(value); return *this;}
 
+
     /**
-     * The number of trusted signers for this cache behavior.
+     * <p>The number of trusted signers for this cache behavior.</p>
      */
     inline int GetQuantity() const{ return m_quantity; }
 
     /**
-     * The number of trusted signers for this cache behavior.
+     * <p>The number of trusted signers for this cache behavior.</p>
      */
     inline void SetQuantity(int value) { m_quantityHasBeenSet = true; m_quantity = value; }
 
     /**
-     * The number of trusted signers for this cache behavior.
+     * <p>The number of trusted signers for this cache behavior.</p>
      */
     inline TrustedSigners& WithQuantity(int value) { SetQuantity(value); return *this;}
 
+
     /**
-     * Optional: A complex type that contains trusted signers for this cache behavior.
-     * If Quantity is 0, you can omit Items.
+     * <p> <b>Optional</b>: A complex type that contains trusted signers for this cache
+     * behavior. If <code>Quantity</code> is <code>0</code>, you can omit
+     * <code>Items</code>.</p>
      */
     inline const Aws::Vector<Aws::String>& GetItems() const{ return m_items; }
 
     /**
-     * Optional: A complex type that contains trusted signers for this cache behavior.
-     * If Quantity is 0, you can omit Items.
+     * <p> <b>Optional</b>: A complex type that contains trusted signers for this cache
+     * behavior. If <code>Quantity</code> is <code>0</code>, you can omit
+     * <code>Items</code>.</p>
      */
     inline void SetItems(const Aws::Vector<Aws::String>& value) { m_itemsHasBeenSet = true; m_items = value; }
 
     /**
-     * Optional: A complex type that contains trusted signers for this cache behavior.
-     * If Quantity is 0, you can omit Items.
+     * <p> <b>Optional</b>: A complex type that contains trusted signers for this cache
+     * behavior. If <code>Quantity</code> is <code>0</code>, you can omit
+     * <code>Items</code>.</p>
      */
-    inline void SetItems(Aws::Vector<Aws::String>&& value) { m_itemsHasBeenSet = true; m_items = value; }
+    inline void SetItems(Aws::Vector<Aws::String>&& value) { m_itemsHasBeenSet = true; m_items = std::move(value); }
 
     /**
-     * Optional: A complex type that contains trusted signers for this cache behavior.
-     * If Quantity is 0, you can omit Items.
+     * <p> <b>Optional</b>: A complex type that contains trusted signers for this cache
+     * behavior. If <code>Quantity</code> is <code>0</code>, you can omit
+     * <code>Items</code>.</p>
      */
     inline TrustedSigners& WithItems(const Aws::Vector<Aws::String>& value) { SetItems(value); return *this;}
 
     /**
-     * Optional: A complex type that contains trusted signers for this cache behavior.
-     * If Quantity is 0, you can omit Items.
+     * <p> <b>Optional</b>: A complex type that contains trusted signers for this cache
+     * behavior. If <code>Quantity</code> is <code>0</code>, you can omit
+     * <code>Items</code>.</p>
      */
-    inline TrustedSigners& WithItems(Aws::Vector<Aws::String>&& value) { SetItems(value); return *this;}
+    inline TrustedSigners& WithItems(Aws::Vector<Aws::String>&& value) { SetItems(std::move(value)); return *this;}
 
     /**
-     * Optional: A complex type that contains trusted signers for this cache behavior.
-     * If Quantity is 0, you can omit Items.
+     * <p> <b>Optional</b>: A complex type that contains trusted signers for this cache
+     * behavior. If <code>Quantity</code> is <code>0</code>, you can omit
+     * <code>Items</code>.</p>
      */
     inline TrustedSigners& AddItems(const Aws::String& value) { m_itemsHasBeenSet = true; m_items.push_back(value); return *this; }
 
     /**
-     * Optional: A complex type that contains trusted signers for this cache behavior.
-     * If Quantity is 0, you can omit Items.
+     * <p> <b>Optional</b>: A complex type that contains trusted signers for this cache
+     * behavior. If <code>Quantity</code> is <code>0</code>, you can omit
+     * <code>Items</code>.</p>
      */
-    inline TrustedSigners& AddItems(Aws::String&& value) { m_itemsHasBeenSet = true; m_items.push_back(value); return *this; }
+    inline TrustedSigners& AddItems(Aws::String&& value) { m_itemsHasBeenSet = true; m_items.push_back(std::move(value)); return *this; }
 
     /**
-     * Optional: A complex type that contains trusted signers for this cache behavior.
-     * If Quantity is 0, you can omit Items.
+     * <p> <b>Optional</b>: A complex type that contains trusted signers for this cache
+     * behavior. If <code>Quantity</code> is <code>0</code>, you can omit
+     * <code>Items</code>.</p>
      */
     inline TrustedSigners& AddItems(const char* value) { m_itemsHasBeenSet = true; m_items.push_back(value); return *this; }
 
   private:
+
     bool m_enabled;
     bool m_enabledHasBeenSet;
+
     int m_quantity;
     bool m_quantityHasBeenSet;
+
     Aws::Vector<Aws::String> m_items;
     bool m_itemsHasBeenSet;
   };

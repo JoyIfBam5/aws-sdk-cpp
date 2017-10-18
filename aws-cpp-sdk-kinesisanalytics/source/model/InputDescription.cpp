@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/kinesisanalytics/model/InputDescription.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -31,6 +32,7 @@ InputDescription::InputDescription() :
     m_inputIdHasBeenSet(false),
     m_namePrefixHasBeenSet(false),
     m_inAppStreamNamesHasBeenSet(false),
+    m_inputProcessingConfigurationDescriptionHasBeenSet(false),
     m_kinesisStreamsInputDescriptionHasBeenSet(false),
     m_kinesisFirehoseInputDescriptionHasBeenSet(false),
     m_inputSchemaHasBeenSet(false),
@@ -43,6 +45,7 @@ InputDescription::InputDescription(const JsonValue& jsonValue) :
     m_inputIdHasBeenSet(false),
     m_namePrefixHasBeenSet(false),
     m_inAppStreamNamesHasBeenSet(false),
+    m_inputProcessingConfigurationDescriptionHasBeenSet(false),
     m_kinesisStreamsInputDescriptionHasBeenSet(false),
     m_kinesisFirehoseInputDescriptionHasBeenSet(false),
     m_inputSchemaHasBeenSet(false),
@@ -76,6 +79,13 @@ InputDescription& InputDescription::operator =(const JsonValue& jsonValue)
       m_inAppStreamNames.push_back(inAppStreamNamesJsonList[inAppStreamNamesIndex].AsString());
     }
     m_inAppStreamNamesHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("InputProcessingConfigurationDescription"))
+  {
+    m_inputProcessingConfigurationDescription = jsonValue.GetObject("InputProcessingConfigurationDescription");
+
+    m_inputProcessingConfigurationDescriptionHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("KinesisStreamsInputDescription"))
@@ -140,6 +150,12 @@ JsonValue InputDescription::Jsonize() const
      inAppStreamNamesJsonList[inAppStreamNamesIndex].AsString(m_inAppStreamNames[inAppStreamNamesIndex]);
    }
    payload.WithArray("InAppStreamNames", std::move(inAppStreamNamesJsonList));
+
+  }
+
+  if(m_inputProcessingConfigurationDescriptionHasBeenSet)
+  {
+   payload.WithObject("InputProcessingConfigurationDescription", m_inputProcessingConfigurationDescription.Jsonize());
 
   }
 

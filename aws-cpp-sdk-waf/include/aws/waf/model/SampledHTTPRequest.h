@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/model/HTTPRequest.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,6 +52,7 @@ namespace Model
     SampledHTTPRequest& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>A complex type that contains detailed information about the request.</p>
      */
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>A complex type that contains detailed information about the request.</p>
      */
-    inline void SetRequest(HTTPRequest&& value) { m_requestHasBeenSet = true; m_request = value; }
+    inline void SetRequest(HTTPRequest&& value) { m_requestHasBeenSet = true; m_request = std::move(value); }
 
     /**
      * <p>A complex type that contains detailed information about the request.</p>
@@ -73,7 +76,8 @@ namespace Model
     /**
      * <p>A complex type that contains detailed information about the request.</p>
      */
-    inline SampledHTTPRequest& WithRequest(HTTPRequest&& value) { SetRequest(value); return *this;}
+    inline SampledHTTPRequest& WithRequest(HTTPRequest&& value) { SetRequest(std::move(value)); return *this;}
+
 
     /**
      * <p>A value that indicates how one result in the response relates proportionally
@@ -99,6 +103,7 @@ namespace Model
      */
     inline SampledHTTPRequest& WithWeight(long long value) { SetWeight(value); return *this;}
 
+
     /**
      * <p>The time at which AWS WAF received the request from your AWS resource, in
      * Unix time format (in seconds).</p>
@@ -115,7 +120,7 @@ namespace Model
      * <p>The time at which AWS WAF received the request from your AWS resource, in
      * Unix time format (in seconds).</p>
      */
-    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = value; }
+    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = std::move(value); }
 
     /**
      * <p>The time at which AWS WAF received the request from your AWS resource, in
@@ -127,7 +132,8 @@ namespace Model
      * <p>The time at which AWS WAF received the request from your AWS resource, in
      * Unix time format (in seconds).</p>
      */
-    inline SampledHTTPRequest& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(value); return *this;}
+    inline SampledHTTPRequest& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(std::move(value)); return *this;}
+
 
     /**
      * <p>The action for the <code>Rule</code> that the request matched:
@@ -145,7 +151,7 @@ namespace Model
      * <p>The action for the <code>Rule</code> that the request matched:
      * <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.</p>
      */
-    inline void SetAction(Aws::String&& value) { m_actionHasBeenSet = true; m_action = value; }
+    inline void SetAction(Aws::String&& value) { m_actionHasBeenSet = true; m_action = std::move(value); }
 
     /**
      * <p>The action for the <code>Rule</code> that the request matched:
@@ -163,7 +169,7 @@ namespace Model
      * <p>The action for the <code>Rule</code> that the request matched:
      * <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.</p>
      */
-    inline SampledHTTPRequest& WithAction(Aws::String&& value) { SetAction(value); return *this;}
+    inline SampledHTTPRequest& WithAction(Aws::String&& value) { SetAction(std::move(value)); return *this;}
 
     /**
      * <p>The action for the <code>Rule</code> that the request matched:
@@ -172,12 +178,16 @@ namespace Model
     inline SampledHTTPRequest& WithAction(const char* value) { SetAction(value); return *this;}
 
   private:
+
     HTTPRequest m_request;
     bool m_requestHasBeenSet;
+
     long long m_weight;
     bool m_weightHasBeenSet;
+
     Aws::Utils::DateTime m_timestamp;
     bool m_timestampHasBeenSet;
+
     Aws::String m_action;
     bool m_actionHasBeenSet;
   };

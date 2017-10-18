@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudhsm/CloudHSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     CreateHapgResult();
-    CreateHapgResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateHapgResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateHapgResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateHapgResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The ARN of the high-availability partition group.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The ARN of the high-availability partition group.</p>
      */
-    inline void SetHapgArn(Aws::String&& value) { m_hapgArn = value; }
+    inline void SetHapgArn(Aws::String&& value) { m_hapgArn = std::move(value); }
 
     /**
      * <p>The ARN of the high-availability partition group.</p>
@@ -73,7 +76,7 @@ namespace Model
     /**
      * <p>The ARN of the high-availability partition group.</p>
      */
-    inline CreateHapgResult& WithHapgArn(Aws::String&& value) { SetHapgArn(value); return *this;}
+    inline CreateHapgResult& WithHapgArn(Aws::String&& value) { SetHapgArn(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of the high-availability partition group.</p>
@@ -81,6 +84,7 @@ namespace Model
     inline CreateHapgResult& WithHapgArn(const char* value) { SetHapgArn(value); return *this;}
 
   private:
+
     Aws::String m_hapgArn;
   };
 

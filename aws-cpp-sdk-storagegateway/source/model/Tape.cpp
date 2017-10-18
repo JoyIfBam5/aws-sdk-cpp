@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/storagegateway/model/Tape.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -36,7 +37,9 @@ Tape::Tape() :
     m_tapeStatusHasBeenSet(false),
     m_vTLDeviceHasBeenSet(false),
     m_progress(0.0),
-    m_progressHasBeenSet(false)
+    m_progressHasBeenSet(false),
+    m_tapeUsedInBytes(0),
+    m_tapeUsedInBytesHasBeenSet(false)
 {
 }
 
@@ -49,7 +52,9 @@ Tape::Tape(const JsonValue& jsonValue) :
     m_tapeStatusHasBeenSet(false),
     m_vTLDeviceHasBeenSet(false),
     m_progress(0.0),
-    m_progressHasBeenSet(false)
+    m_progressHasBeenSet(false),
+    m_tapeUsedInBytes(0),
+    m_tapeUsedInBytesHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -105,6 +110,13 @@ Tape& Tape::operator =(const JsonValue& jsonValue)
     m_progressHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("TapeUsedInBytes"))
+  {
+    m_tapeUsedInBytes = jsonValue.GetInt64("TapeUsedInBytes");
+
+    m_tapeUsedInBytesHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -150,6 +162,12 @@ JsonValue Tape::Jsonize() const
   if(m_progressHasBeenSet)
   {
    payload.WithDouble("Progress", m_progress);
+
+  }
+
+  if(m_tapeUsedInBytesHasBeenSet)
+  {
+   payload.WithInt64("TapeUsedInBytes", m_tapeUsedInBytes);
 
   }
 

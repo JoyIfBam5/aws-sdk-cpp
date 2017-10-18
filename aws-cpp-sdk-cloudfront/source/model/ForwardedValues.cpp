@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/cloudfront/model/ForwardedValues.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -33,7 +34,8 @@ ForwardedValues::ForwardedValues() :
     m_queryString(false),
     m_queryStringHasBeenSet(false),
     m_cookiesHasBeenSet(false),
-    m_headersHasBeenSet(false)
+    m_headersHasBeenSet(false),
+    m_queryStringCacheKeysHasBeenSet(false)
 {
 }
 
@@ -41,7 +43,8 @@ ForwardedValues::ForwardedValues(const XmlNode& xmlNode) :
     m_queryString(false),
     m_queryStringHasBeenSet(false),
     m_cookiesHasBeenSet(false),
-    m_headersHasBeenSet(false)
+    m_headersHasBeenSet(false),
+    m_queryStringCacheKeysHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -70,6 +73,12 @@ ForwardedValues& ForwardedValues::operator =(const XmlNode& xmlNode)
       m_headers = headersNode;
       m_headersHasBeenSet = true;
     }
+    XmlNode queryStringCacheKeysNode = resultNode.FirstChild("QueryStringCacheKeys");
+    if(!queryStringCacheKeysNode.IsNull())
+    {
+      m_queryStringCacheKeys = queryStringCacheKeysNode;
+      m_queryStringCacheKeysHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -81,9 +90,9 @@ void ForwardedValues::AddToNode(XmlNode& parentNode) const
   if(m_queryStringHasBeenSet)
   {
    XmlNode queryStringNode = parentNode.CreateChildElement("QueryString");
-  ss << m_queryString;
+   ss << std::boolalpha << m_queryString;
    queryStringNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_cookiesHasBeenSet)
@@ -96,6 +105,12 @@ void ForwardedValues::AddToNode(XmlNode& parentNode) const
   {
    XmlNode headersNode = parentNode.CreateChildElement("Headers");
    m_headers.AddToNode(headersNode);
+  }
+
+  if(m_queryStringCacheKeysHasBeenSet)
+  {
+   XmlNode queryStringCacheKeysNode = parentNode.CreateChildElement("QueryStringCacheKeys");
+   m_queryStringCacheKeys.AddToNode(queryStringCacheKeysNode);
   }
 
 }

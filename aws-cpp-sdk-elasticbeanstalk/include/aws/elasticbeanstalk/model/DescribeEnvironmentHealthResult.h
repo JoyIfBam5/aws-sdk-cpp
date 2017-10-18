@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -21,6 +22,7 @@
 #include <aws/elasticbeanstalk/model/InstanceHealthSummary.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/elasticbeanstalk/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,8 +50,9 @@ namespace Model
   {
   public:
     DescribeEnvironmentHealthResult();
-    DescribeEnvironmentHealthResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeEnvironmentHealthResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeEnvironmentHealthResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeEnvironmentHealthResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>The environment's name.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>The environment's name.</p>
      */
-    inline void SetEnvironmentName(Aws::String&& value) { m_environmentName = value; }
+    inline void SetEnvironmentName(Aws::String&& value) { m_environmentName = std::move(value); }
 
     /**
      * <p>The environment's name.</p>
@@ -79,12 +82,13 @@ namespace Model
     /**
      * <p>The environment's name.</p>
      */
-    inline DescribeEnvironmentHealthResult& WithEnvironmentName(Aws::String&& value) { SetEnvironmentName(value); return *this;}
+    inline DescribeEnvironmentHealthResult& WithEnvironmentName(Aws::String&& value) { SetEnvironmentName(std::move(value)); return *this;}
 
     /**
      * <p>The environment's name.</p>
      */
     inline DescribeEnvironmentHealthResult& WithEnvironmentName(const char* value) { SetEnvironmentName(value); return *this;}
+
 
     /**
      * <p>The <a
@@ -105,7 +109,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html">health
      * status</a> of the environment. For example, <code>Ok</code>.</p>
      */
-    inline void SetHealthStatus(Aws::String&& value) { m_healthStatus = value; }
+    inline void SetHealthStatus(Aws::String&& value) { m_healthStatus = std::move(value); }
 
     /**
      * <p>The <a
@@ -126,7 +130,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html">health
      * status</a> of the environment. For example, <code>Ok</code>.</p>
      */
-    inline DescribeEnvironmentHealthResult& WithHealthStatus(Aws::String&& value) { SetHealthStatus(value); return *this;}
+    inline DescribeEnvironmentHealthResult& WithHealthStatus(Aws::String&& value) { SetHealthStatus(std::move(value)); return *this;}
 
     /**
      * <p>The <a
@@ -134,6 +138,7 @@ namespace Model
      * status</a> of the environment. For example, <code>Ok</code>.</p>
      */
     inline DescribeEnvironmentHealthResult& WithHealthStatus(const char* value) { SetHealthStatus(value); return *this;}
+
 
     /**
      * <p>The environment's operational status. <code>Ready</code>,
@@ -154,7 +159,7 @@ namespace Model
      * <code>Launching</code>, <code>Updating</code>, <code>Terminating</code>, or
      * <code>Terminated</code>.</p>
      */
-    inline void SetStatus(EnvironmentHealth&& value) { m_status = value; }
+    inline void SetStatus(EnvironmentHealth&& value) { m_status = std::move(value); }
 
     /**
      * <p>The environment's operational status. <code>Ready</code>,
@@ -168,7 +173,8 @@ namespace Model
      * <code>Launching</code>, <code>Updating</code>, <code>Terminating</code>, or
      * <code>Terminated</code>.</p>
      */
-    inline DescribeEnvironmentHealthResult& WithStatus(EnvironmentHealth&& value) { SetStatus(value); return *this;}
+    inline DescribeEnvironmentHealthResult& WithStatus(EnvironmentHealth&& value) { SetStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The <a
@@ -189,7 +195,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html">health
      * color</a> of the environment.</p>
      */
-    inline void SetColor(Aws::String&& value) { m_color = value; }
+    inline void SetColor(Aws::String&& value) { m_color = std::move(value); }
 
     /**
      * <p>The <a
@@ -210,7 +216,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html">health
      * color</a> of the environment.</p>
      */
-    inline DescribeEnvironmentHealthResult& WithColor(Aws::String&& value) { SetColor(value); return *this;}
+    inline DescribeEnvironmentHealthResult& WithColor(Aws::String&& value) { SetColor(std::move(value)); return *this;}
 
     /**
      * <p>The <a
@@ -218,6 +224,7 @@ namespace Model
      * color</a> of the environment.</p>
      */
     inline DescribeEnvironmentHealthResult& WithColor(const char* value) { SetColor(value); return *this;}
+
 
     /**
      * <p>Descriptions of the data that contributed to the environment's current health
@@ -235,7 +242,7 @@ namespace Model
      * <p>Descriptions of the data that contributed to the environment's current health
      * status.</p>
      */
-    inline void SetCauses(Aws::Vector<Aws::String>&& value) { m_causes = value; }
+    inline void SetCauses(Aws::Vector<Aws::String>&& value) { m_causes = std::move(value); }
 
     /**
      * <p>Descriptions of the data that contributed to the environment's current health
@@ -247,7 +254,7 @@ namespace Model
      * <p>Descriptions of the data that contributed to the environment's current health
      * status.</p>
      */
-    inline DescribeEnvironmentHealthResult& WithCauses(Aws::Vector<Aws::String>&& value) { SetCauses(value); return *this;}
+    inline DescribeEnvironmentHealthResult& WithCauses(Aws::Vector<Aws::String>&& value) { SetCauses(std::move(value)); return *this;}
 
     /**
      * <p>Descriptions of the data that contributed to the environment's current health
@@ -259,13 +266,14 @@ namespace Model
      * <p>Descriptions of the data that contributed to the environment's current health
      * status.</p>
      */
-    inline DescribeEnvironmentHealthResult& AddCauses(Aws::String&& value) { m_causes.push_back(value); return *this; }
+    inline DescribeEnvironmentHealthResult& AddCauses(Aws::String&& value) { m_causes.push_back(std::move(value)); return *this; }
 
     /**
      * <p>Descriptions of the data that contributed to the environment's current health
      * status.</p>
      */
     inline DescribeEnvironmentHealthResult& AddCauses(const char* value) { m_causes.push_back(value); return *this; }
+
 
     /**
      * <p>Application request metrics for the environment.</p>
@@ -280,7 +288,7 @@ namespace Model
     /**
      * <p>Application request metrics for the environment.</p>
      */
-    inline void SetApplicationMetrics(ApplicationMetrics&& value) { m_applicationMetrics = value; }
+    inline void SetApplicationMetrics(ApplicationMetrics&& value) { m_applicationMetrics = std::move(value); }
 
     /**
      * <p>Application request metrics for the environment.</p>
@@ -290,7 +298,8 @@ namespace Model
     /**
      * <p>Application request metrics for the environment.</p>
      */
-    inline DescribeEnvironmentHealthResult& WithApplicationMetrics(ApplicationMetrics&& value) { SetApplicationMetrics(value); return *this;}
+    inline DescribeEnvironmentHealthResult& WithApplicationMetrics(ApplicationMetrics&& value) { SetApplicationMetrics(std::move(value)); return *this;}
+
 
     /**
      * <p>Summary health information for the instances in the environment.</p>
@@ -305,7 +314,7 @@ namespace Model
     /**
      * <p>Summary health information for the instances in the environment.</p>
      */
-    inline void SetInstancesHealth(InstanceHealthSummary&& value) { m_instancesHealth = value; }
+    inline void SetInstancesHealth(InstanceHealthSummary&& value) { m_instancesHealth = std::move(value); }
 
     /**
      * <p>Summary health information for the instances in the environment.</p>
@@ -315,7 +324,8 @@ namespace Model
     /**
      * <p>Summary health information for the instances in the environment.</p>
      */
-    inline DescribeEnvironmentHealthResult& WithInstancesHealth(InstanceHealthSummary&& value) { SetInstancesHealth(value); return *this;}
+    inline DescribeEnvironmentHealthResult& WithInstancesHealth(InstanceHealthSummary&& value) { SetInstancesHealth(std::move(value)); return *this;}
+
 
     /**
      * <p>The date and time that the health information was retrieved.</p>
@@ -330,7 +340,7 @@ namespace Model
     /**
      * <p>The date and time that the health information was retrieved.</p>
      */
-    inline void SetRefreshedAt(Aws::Utils::DateTime&& value) { m_refreshedAt = value; }
+    inline void SetRefreshedAt(Aws::Utils::DateTime&& value) { m_refreshedAt = std::move(value); }
 
     /**
      * <p>The date and time that the health information was retrieved.</p>
@@ -340,7 +350,8 @@ namespace Model
     /**
      * <p>The date and time that the health information was retrieved.</p>
      */
-    inline DescribeEnvironmentHealthResult& WithRefreshedAt(Aws::Utils::DateTime&& value) { SetRefreshedAt(value); return *this;}
+    inline DescribeEnvironmentHealthResult& WithRefreshedAt(Aws::Utils::DateTime&& value) { SetRefreshedAt(std::move(value)); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -349,23 +360,32 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeEnvironmentHealthResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeEnvironmentHealthResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeEnvironmentHealthResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_environmentName;
+
     Aws::String m_healthStatus;
+
     EnvironmentHealth m_status;
+
     Aws::String m_color;
+
     Aws::Vector<Aws::String> m_causes;
+
     ApplicationMetrics m_applicationMetrics;
+
     InstanceHealthSummary m_instancesHealth;
+
     Aws::Utils::DateTime m_refreshedAt;
+
     ResponseMetadata m_responseMetadata;
   };
 

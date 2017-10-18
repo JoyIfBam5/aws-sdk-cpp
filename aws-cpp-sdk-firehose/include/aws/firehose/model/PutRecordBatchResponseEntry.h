@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/firehose/Firehose_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     PutRecordBatchResponseEntry& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ID of the record.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The ID of the record.</p>
      */
-    inline void SetRecordId(Aws::String&& value) { m_recordIdHasBeenSet = true; m_recordId = value; }
+    inline void SetRecordId(Aws::String&& value) { m_recordIdHasBeenSet = true; m_recordId = std::move(value); }
 
     /**
      * <p>The ID of the record.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The ID of the record.</p>
      */
-    inline PutRecordBatchResponseEntry& WithRecordId(Aws::String&& value) { SetRecordId(value); return *this;}
+    inline PutRecordBatchResponseEntry& WithRecordId(Aws::String&& value) { SetRecordId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the record.</p>
      */
     inline PutRecordBatchResponseEntry& WithRecordId(const char* value) { SetRecordId(value); return *this;}
+
 
     /**
      * <p>The error code for an individual record result.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>The error code for an individual record result.</p>
      */
-    inline void SetErrorCode(Aws::String&& value) { m_errorCodeHasBeenSet = true; m_errorCode = value; }
+    inline void SetErrorCode(Aws::String&& value) { m_errorCodeHasBeenSet = true; m_errorCode = std::move(value); }
 
     /**
      * <p>The error code for an individual record result.</p>
@@ -110,12 +114,13 @@ namespace Model
     /**
      * <p>The error code for an individual record result.</p>
      */
-    inline PutRecordBatchResponseEntry& WithErrorCode(Aws::String&& value) { SetErrorCode(value); return *this;}
+    inline PutRecordBatchResponseEntry& WithErrorCode(Aws::String&& value) { SetErrorCode(std::move(value)); return *this;}
 
     /**
      * <p>The error code for an individual record result.</p>
      */
     inline PutRecordBatchResponseEntry& WithErrorCode(const char* value) { SetErrorCode(value); return *this;}
+
 
     /**
      * <p>The error message for an individual record result.</p>
@@ -130,7 +135,7 @@ namespace Model
     /**
      * <p>The error message for an individual record result.</p>
      */
-    inline void SetErrorMessage(Aws::String&& value) { m_errorMessageHasBeenSet = true; m_errorMessage = value; }
+    inline void SetErrorMessage(Aws::String&& value) { m_errorMessageHasBeenSet = true; m_errorMessage = std::move(value); }
 
     /**
      * <p>The error message for an individual record result.</p>
@@ -145,7 +150,7 @@ namespace Model
     /**
      * <p>The error message for an individual record result.</p>
      */
-    inline PutRecordBatchResponseEntry& WithErrorMessage(Aws::String&& value) { SetErrorMessage(value); return *this;}
+    inline PutRecordBatchResponseEntry& WithErrorMessage(Aws::String&& value) { SetErrorMessage(std::move(value)); return *this;}
 
     /**
      * <p>The error message for an individual record result.</p>
@@ -153,10 +158,13 @@ namespace Model
     inline PutRecordBatchResponseEntry& WithErrorMessage(const char* value) { SetErrorMessage(value); return *this;}
 
   private:
+
     Aws::String m_recordId;
     bool m_recordIdHasBeenSet;
+
     Aws::String m_errorCode;
     bool m_errorCodeHasBeenSet;
+
     Aws::String m_errorMessage;
     bool m_errorMessageHasBeenSet;
   };

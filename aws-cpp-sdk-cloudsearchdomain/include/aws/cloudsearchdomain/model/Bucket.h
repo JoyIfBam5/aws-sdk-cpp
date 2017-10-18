@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudsearchdomain/CloudSearchDomain_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     Bucket& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The facet value being counted.</p>
      */
@@ -56,7 +59,7 @@ namespace Model
     /**
      * <p>The facet value being counted.</p>
      */
-    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = value; }
+    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = std::move(value); }
 
     /**
      * <p>The facet value being counted.</p>
@@ -71,12 +74,13 @@ namespace Model
     /**
      * <p>The facet value being counted.</p>
      */
-    inline Bucket& WithValue(Aws::String&& value) { SetValue(value); return *this;}
+    inline Bucket& WithValue(Aws::String&& value) { SetValue(std::move(value)); return *this;}
 
     /**
      * <p>The facet value being counted.</p>
      */
     inline Bucket& WithValue(const char* value) { SetValue(value); return *this;}
+
 
     /**
      * <p>The number of hits that contain the facet value in the specified facet
@@ -97,8 +101,10 @@ namespace Model
     inline Bucket& WithCount(long long value) { SetCount(value); return *this;}
 
   private:
+
     Aws::String m_value;
     bool m_valueHasBeenSet;
+
     long long m_count;
     bool m_countHasBeenSet;
   };

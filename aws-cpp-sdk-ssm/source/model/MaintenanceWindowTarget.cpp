@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ssm/model/MaintenanceWindowTarget.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -33,7 +34,9 @@ MaintenanceWindowTarget::MaintenanceWindowTarget() :
     m_resourceType(MaintenanceWindowResourceType::NOT_SET),
     m_resourceTypeHasBeenSet(false),
     m_targetsHasBeenSet(false),
-    m_ownerInformationHasBeenSet(false)
+    m_ownerInformationHasBeenSet(false),
+    m_nameHasBeenSet(false),
+    m_descriptionHasBeenSet(false)
 {
 }
 
@@ -43,7 +46,9 @@ MaintenanceWindowTarget::MaintenanceWindowTarget(const JsonValue& jsonValue) :
     m_resourceType(MaintenanceWindowResourceType::NOT_SET),
     m_resourceTypeHasBeenSet(false),
     m_targetsHasBeenSet(false),
-    m_ownerInformationHasBeenSet(false)
+    m_ownerInformationHasBeenSet(false),
+    m_nameHasBeenSet(false),
+    m_descriptionHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -88,6 +93,20 @@ MaintenanceWindowTarget& MaintenanceWindowTarget::operator =(const JsonValue& js
     m_ownerInformationHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("Name"))
+  {
+    m_name = jsonValue.GetString("Name");
+
+    m_nameHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("Description"))
+  {
+    m_description = jsonValue.GetString("Description");
+
+    m_descriptionHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -126,6 +145,18 @@ JsonValue MaintenanceWindowTarget::Jsonize() const
   if(m_ownerInformationHasBeenSet)
   {
    payload.WithString("OwnerInformation", m_ownerInformation);
+
+  }
+
+  if(m_nameHasBeenSet)
+  {
+   payload.WithString("Name", m_name);
+
+  }
+
+  if(m_descriptionHasBeenSet)
+  {
+   payload.WithString("Description", m_description);
 
   }
 

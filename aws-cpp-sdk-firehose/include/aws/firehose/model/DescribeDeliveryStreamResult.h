@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/firehose/Firehose_EXPORTS.h>
 #include <aws/firehose/model/DeliveryStreamDescription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     DescribeDeliveryStreamResult();
-    DescribeDeliveryStreamResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeDeliveryStreamResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeDeliveryStreamResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeDeliveryStreamResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the delivery stream.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>Information about the delivery stream.</p>
      */
-    inline void SetDeliveryStreamDescription(DeliveryStreamDescription&& value) { m_deliveryStreamDescription = value; }
+    inline void SetDeliveryStreamDescription(DeliveryStreamDescription&& value) { m_deliveryStreamDescription = std::move(value); }
 
     /**
      * <p>Information about the delivery stream.</p>
@@ -62,9 +65,10 @@ namespace Model
     /**
      * <p>Information about the delivery stream.</p>
      */
-    inline DescribeDeliveryStreamResult& WithDeliveryStreamDescription(DeliveryStreamDescription&& value) { SetDeliveryStreamDescription(value); return *this;}
+    inline DescribeDeliveryStreamResult& WithDeliveryStreamDescription(DeliveryStreamDescription&& value) { SetDeliveryStreamDescription(std::move(value)); return *this;}
 
   private:
+
     DeliveryStreamDescription m_deliveryStreamDescription;
   };
 

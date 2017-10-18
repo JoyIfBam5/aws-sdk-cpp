@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codedeploy/CodeDeploy_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/codedeploy/model/InstanceSummary.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,7 +37,7 @@ namespace CodeDeploy
 namespace Model
 {
   /**
-   * <p>Represents the output of a batch get deployment instance
+   * <p>Represents the output of a BatchGetDeploymentInstances
    * operation.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/BatchGetDeploymentInstancesOutput">AWS
    * API Reference</a></p>
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     BatchGetDeploymentInstancesResult();
-    BatchGetDeploymentInstancesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    BatchGetDeploymentInstancesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    BatchGetDeploymentInstancesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    BatchGetDeploymentInstancesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the instance.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>Information about the instance.</p>
      */
-    inline void SetInstancesSummary(Aws::Vector<InstanceSummary>&& value) { m_instancesSummary = value; }
+    inline void SetInstancesSummary(Aws::Vector<InstanceSummary>&& value) { m_instancesSummary = std::move(value); }
 
     /**
      * <p>Information about the instance.</p>
@@ -70,7 +73,7 @@ namespace Model
     /**
      * <p>Information about the instance.</p>
      */
-    inline BatchGetDeploymentInstancesResult& WithInstancesSummary(Aws::Vector<InstanceSummary>&& value) { SetInstancesSummary(value); return *this;}
+    inline BatchGetDeploymentInstancesResult& WithInstancesSummary(Aws::Vector<InstanceSummary>&& value) { SetInstancesSummary(std::move(value)); return *this;}
 
     /**
      * <p>Information about the instance.</p>
@@ -80,7 +83,8 @@ namespace Model
     /**
      * <p>Information about the instance.</p>
      */
-    inline BatchGetDeploymentInstancesResult& AddInstancesSummary(InstanceSummary&& value) { m_instancesSummary.push_back(value); return *this; }
+    inline BatchGetDeploymentInstancesResult& AddInstancesSummary(InstanceSummary&& value) { m_instancesSummary.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Information about errors that may have occurred during the API call.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>Information about errors that may have occurred during the API call.</p>
      */
-    inline void SetErrorMessage(Aws::String&& value) { m_errorMessage = value; }
+    inline void SetErrorMessage(Aws::String&& value) { m_errorMessage = std::move(value); }
 
     /**
      * <p>Information about errors that may have occurred during the API call.</p>
@@ -110,7 +114,7 @@ namespace Model
     /**
      * <p>Information about errors that may have occurred during the API call.</p>
      */
-    inline BatchGetDeploymentInstancesResult& WithErrorMessage(Aws::String&& value) { SetErrorMessage(value); return *this;}
+    inline BatchGetDeploymentInstancesResult& WithErrorMessage(Aws::String&& value) { SetErrorMessage(std::move(value)); return *this;}
 
     /**
      * <p>Information about errors that may have occurred during the API call.</p>
@@ -118,7 +122,9 @@ namespace Model
     inline BatchGetDeploymentInstancesResult& WithErrorMessage(const char* value) { SetErrorMessage(value); return *this;}
 
   private:
+
     Aws::Vector<InstanceSummary> m_instancesSummary;
+
     Aws::String m_errorMessage;
   };
 

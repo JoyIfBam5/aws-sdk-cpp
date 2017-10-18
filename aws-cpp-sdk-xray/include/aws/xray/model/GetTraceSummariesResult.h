@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/xray/XRay_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/xray/model/TraceSummary.h>
+#include <utility>
 
 namespace Aws
 {
@@ -39,8 +41,9 @@ namespace Model
   {
   public:
     GetTraceSummariesResult();
-    GetTraceSummariesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetTraceSummariesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetTraceSummariesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetTraceSummariesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Trace IDs and metadata for traces that were found in the specified time
@@ -58,7 +61,7 @@ namespace Model
      * <p>Trace IDs and metadata for traces that were found in the specified time
      * frame.</p>
      */
-    inline void SetTraceSummaries(Aws::Vector<TraceSummary>&& value) { m_traceSummaries = value; }
+    inline void SetTraceSummaries(Aws::Vector<TraceSummary>&& value) { m_traceSummaries = std::move(value); }
 
     /**
      * <p>Trace IDs and metadata for traces that were found in the specified time
@@ -70,7 +73,7 @@ namespace Model
      * <p>Trace IDs and metadata for traces that were found in the specified time
      * frame.</p>
      */
-    inline GetTraceSummariesResult& WithTraceSummaries(Aws::Vector<TraceSummary>&& value) { SetTraceSummaries(value); return *this;}
+    inline GetTraceSummariesResult& WithTraceSummaries(Aws::Vector<TraceSummary>&& value) { SetTraceSummaries(std::move(value)); return *this;}
 
     /**
      * <p>Trace IDs and metadata for traces that were found in the specified time
@@ -82,7 +85,8 @@ namespace Model
      * <p>Trace IDs and metadata for traces that were found in the specified time
      * frame.</p>
      */
-    inline GetTraceSummariesResult& AddTraceSummaries(TraceSummary&& value) { m_traceSummaries.push_back(value); return *this; }
+    inline GetTraceSummariesResult& AddTraceSummaries(TraceSummary&& value) { m_traceSummaries.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The start time of this page of results.</p>
@@ -97,7 +101,7 @@ namespace Model
     /**
      * <p>The start time of this page of results.</p>
      */
-    inline void SetApproximateTime(Aws::Utils::DateTime&& value) { m_approximateTime = value; }
+    inline void SetApproximateTime(Aws::Utils::DateTime&& value) { m_approximateTime = std::move(value); }
 
     /**
      * <p>The start time of this page of results.</p>
@@ -107,7 +111,8 @@ namespace Model
     /**
      * <p>The start time of this page of results.</p>
      */
-    inline GetTraceSummariesResult& WithApproximateTime(Aws::Utils::DateTime&& value) { SetApproximateTime(value); return *this;}
+    inline GetTraceSummariesResult& WithApproximateTime(Aws::Utils::DateTime&& value) { SetApproximateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The number of traces that were processed to get this set of summaries.</p>
@@ -123,6 +128,7 @@ namespace Model
      * <p>The number of traces that were processed to get this set of summaries.</p>
      */
     inline GetTraceSummariesResult& WithTracesProcessedCount(long long value) { SetTracesProcessedCount(value); return *this;}
+
 
     /**
      * <p>If the requested time frame contained more than one page of results, you can
@@ -143,7 +149,7 @@ namespace Model
      * use this token to retrieve the next page. The first page contains the most most
      * recent results, closest to the end of the time frame.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>If the requested time frame contained more than one page of results, you can
@@ -164,7 +170,7 @@ namespace Model
      * use this token to retrieve the next page. The first page contains the most most
      * recent results, closest to the end of the time frame.</p>
      */
-    inline GetTraceSummariesResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline GetTraceSummariesResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>If the requested time frame contained more than one page of results, you can
@@ -174,9 +180,13 @@ namespace Model
     inline GetTraceSummariesResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<TraceSummary> m_traceSummaries;
+
     Aws::Utils::DateTime m_approximateTime;
+
     long long m_tracesProcessedCount;
+
     Aws::String m_nextToken;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/firehose/Firehose_EXPORTS.h>
 
@@ -43,6 +44,7 @@ namespace Model
     ElasticsearchBufferingHints& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Buffer incoming data for the specified period of time, in seconds, before
      * delivering it to the destination. The default value is 300 (5 minutes).</p>
@@ -60,6 +62,7 @@ namespace Model
      * delivering it to the destination. The default value is 300 (5 minutes).</p>
      */
     inline ElasticsearchBufferingHints& WithIntervalInSeconds(int value) { SetIntervalInSeconds(value); return *this;}
+
 
     /**
      * <p>Buffer incoming data to the specified size, in MBs, before delivering it to
@@ -89,8 +92,10 @@ namespace Model
     inline ElasticsearchBufferingHints& WithSizeInMBs(int value) { SetSizeInMBs(value); return *this;}
 
   private:
+
     int m_intervalInSeconds;
     bool m_intervalInSecondsHasBeenSet;
+
     int m_sizeInMBs;
     bool m_sizeInMBsHasBeenSet;
   };

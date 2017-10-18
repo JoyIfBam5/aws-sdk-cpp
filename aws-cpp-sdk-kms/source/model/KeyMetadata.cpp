@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/kms/model/KeyMetadata.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -44,7 +45,9 @@ KeyMetadata::KeyMetadata() :
     m_origin(OriginType::NOT_SET),
     m_originHasBeenSet(false),
     m_expirationModel(ExpirationModelType::NOT_SET),
-    m_expirationModelHasBeenSet(false)
+    m_expirationModelHasBeenSet(false),
+    m_keyManager(KeyManagerType::NOT_SET),
+    m_keyManagerHasBeenSet(false)
 {
 }
 
@@ -65,7 +68,9 @@ KeyMetadata::KeyMetadata(const JsonValue& jsonValue) :
     m_origin(OriginType::NOT_SET),
     m_originHasBeenSet(false),
     m_expirationModel(ExpirationModelType::NOT_SET),
-    m_expirationModelHasBeenSet(false)
+    m_expirationModelHasBeenSet(false),
+    m_keyManager(KeyManagerType::NOT_SET),
+    m_keyManagerHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -156,6 +161,13 @@ KeyMetadata& KeyMetadata::operator =(const JsonValue& jsonValue)
     m_expirationModelHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("KeyManager"))
+  {
+    m_keyManager = KeyManagerTypeMapper::GetKeyManagerTypeForName(jsonValue.GetString("KeyManager"));
+
+    m_keyManagerHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -226,6 +238,11 @@ JsonValue KeyMetadata::Jsonize() const
   if(m_expirationModelHasBeenSet)
   {
    payload.WithString("ExpirationModel", ExpirationModelTypeMapper::GetNameForExpirationModelType(m_expirationModel));
+  }
+
+  if(m_keyManagerHasBeenSet)
+  {
+   payload.WithString("KeyManager", KeyManagerTypeMapper::GetNameForKeyManagerType(m_keyManager));
   }
 
   return payload;

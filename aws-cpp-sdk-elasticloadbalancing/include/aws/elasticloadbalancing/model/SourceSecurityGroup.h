@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticloadbalancing/ElasticLoadBalancing_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The owner of the security group.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The owner of the security group.</p>
      */
-    inline void SetOwnerAlias(Aws::String&& value) { m_ownerAliasHasBeenSet = true; m_ownerAlias = value; }
+    inline void SetOwnerAlias(Aws::String&& value) { m_ownerAliasHasBeenSet = true; m_ownerAlias = std::move(value); }
 
     /**
      * <p>The owner of the security group.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>The owner of the security group.</p>
      */
-    inline SourceSecurityGroup& WithOwnerAlias(Aws::String&& value) { SetOwnerAlias(value); return *this;}
+    inline SourceSecurityGroup& WithOwnerAlias(Aws::String&& value) { SetOwnerAlias(std::move(value)); return *this;}
 
     /**
      * <p>The owner of the security group.</p>
      */
     inline SourceSecurityGroup& WithOwnerAlias(const char* value) { SetOwnerAlias(value); return *this;}
+
 
     /**
      * <p>The name of the security group.</p>
@@ -94,7 +98,7 @@ namespace Model
     /**
      * <p>The name of the security group.</p>
      */
-    inline void SetGroupName(Aws::String&& value) { m_groupNameHasBeenSet = true; m_groupName = value; }
+    inline void SetGroupName(Aws::String&& value) { m_groupNameHasBeenSet = true; m_groupName = std::move(value); }
 
     /**
      * <p>The name of the security group.</p>
@@ -109,7 +113,7 @@ namespace Model
     /**
      * <p>The name of the security group.</p>
      */
-    inline SourceSecurityGroup& WithGroupName(Aws::String&& value) { SetGroupName(value); return *this;}
+    inline SourceSecurityGroup& WithGroupName(Aws::String&& value) { SetGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the security group.</p>
@@ -117,8 +121,10 @@ namespace Model
     inline SourceSecurityGroup& WithGroupName(const char* value) { SetGroupName(value); return *this;}
 
   private:
+
     Aws::String m_ownerAlias;
     bool m_ownerAliasHasBeenSet;
+
     Aws::String m_groupName;
     bool m_groupNameHasBeenSet;
   };

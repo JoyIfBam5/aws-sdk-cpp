@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ds/DirectoryService_EXPORTS.h>
 #include <aws/ds/DirectoryServiceRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,9 +33,17 @@ namespace Model
   {
   public:
     RemoveTagsFromResourceRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "RemoveTagsFromResource"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>Identifier (ID) of the directory from which to remove the tag.</p>
@@ -48,7 +58,7 @@ namespace Model
     /**
      * <p>Identifier (ID) of the directory from which to remove the tag.</p>
      */
-    inline void SetResourceId(Aws::String&& value) { m_resourceIdHasBeenSet = true; m_resourceId = value; }
+    inline void SetResourceId(Aws::String&& value) { m_resourceIdHasBeenSet = true; m_resourceId = std::move(value); }
 
     /**
      * <p>Identifier (ID) of the directory from which to remove the tag.</p>
@@ -63,12 +73,13 @@ namespace Model
     /**
      * <p>Identifier (ID) of the directory from which to remove the tag.</p>
      */
-    inline RemoveTagsFromResourceRequest& WithResourceId(Aws::String&& value) { SetResourceId(value); return *this;}
+    inline RemoveTagsFromResourceRequest& WithResourceId(Aws::String&& value) { SetResourceId(std::move(value)); return *this;}
 
     /**
      * <p>Identifier (ID) of the directory from which to remove the tag.</p>
      */
     inline RemoveTagsFromResourceRequest& WithResourceId(const char* value) { SetResourceId(value); return *this;}
+
 
     /**
      * <p>The tag key (name) of the tag to be removed.</p>
@@ -83,7 +94,7 @@ namespace Model
     /**
      * <p>The tag key (name) of the tag to be removed.</p>
      */
-    inline void SetTagKeys(Aws::Vector<Aws::String>&& value) { m_tagKeysHasBeenSet = true; m_tagKeys = value; }
+    inline void SetTagKeys(Aws::Vector<Aws::String>&& value) { m_tagKeysHasBeenSet = true; m_tagKeys = std::move(value); }
 
     /**
      * <p>The tag key (name) of the tag to be removed.</p>
@@ -93,7 +104,7 @@ namespace Model
     /**
      * <p>The tag key (name) of the tag to be removed.</p>
      */
-    inline RemoveTagsFromResourceRequest& WithTagKeys(Aws::Vector<Aws::String>&& value) { SetTagKeys(value); return *this;}
+    inline RemoveTagsFromResourceRequest& WithTagKeys(Aws::Vector<Aws::String>&& value) { SetTagKeys(std::move(value)); return *this;}
 
     /**
      * <p>The tag key (name) of the tag to be removed.</p>
@@ -103,7 +114,7 @@ namespace Model
     /**
      * <p>The tag key (name) of the tag to be removed.</p>
      */
-    inline RemoveTagsFromResourceRequest& AddTagKeys(Aws::String&& value) { m_tagKeysHasBeenSet = true; m_tagKeys.push_back(value); return *this; }
+    inline RemoveTagsFromResourceRequest& AddTagKeys(Aws::String&& value) { m_tagKeysHasBeenSet = true; m_tagKeys.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The tag key (name) of the tag to be removed.</p>
@@ -111,8 +122,10 @@ namespace Model
     inline RemoveTagsFromResourceRequest& AddTagKeys(const char* value) { m_tagKeysHasBeenSet = true; m_tagKeys.push_back(value); return *this; }
 
   private:
+
     Aws::String m_resourceId;
     bool m_resourceIdHasBeenSet;
+
     Aws::Vector<Aws::String> m_tagKeys;
     bool m_tagKeysHasBeenSet;
   };

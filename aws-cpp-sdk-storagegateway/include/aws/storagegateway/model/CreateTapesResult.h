@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/storagegateway/StorageGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     CreateTapesResult();
-    CreateTapesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateTapesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateTapesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateTapesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A list of unique Amazon Resource Names (ARNs) that represents the virtual
@@ -61,7 +64,7 @@ namespace Model
      * <p>A list of unique Amazon Resource Names (ARNs) that represents the virtual
      * tapes that were created.</p>
      */
-    inline void SetTapeARNs(Aws::Vector<Aws::String>&& value) { m_tapeARNs = value; }
+    inline void SetTapeARNs(Aws::Vector<Aws::String>&& value) { m_tapeARNs = std::move(value); }
 
     /**
      * <p>A list of unique Amazon Resource Names (ARNs) that represents the virtual
@@ -73,7 +76,7 @@ namespace Model
      * <p>A list of unique Amazon Resource Names (ARNs) that represents the virtual
      * tapes that were created.</p>
      */
-    inline CreateTapesResult& WithTapeARNs(Aws::Vector<Aws::String>&& value) { SetTapeARNs(value); return *this;}
+    inline CreateTapesResult& WithTapeARNs(Aws::Vector<Aws::String>&& value) { SetTapeARNs(std::move(value)); return *this;}
 
     /**
      * <p>A list of unique Amazon Resource Names (ARNs) that represents the virtual
@@ -85,7 +88,7 @@ namespace Model
      * <p>A list of unique Amazon Resource Names (ARNs) that represents the virtual
      * tapes that were created.</p>
      */
-    inline CreateTapesResult& AddTapeARNs(Aws::String&& value) { m_tapeARNs.push_back(value); return *this; }
+    inline CreateTapesResult& AddTapeARNs(Aws::String&& value) { m_tapeARNs.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of unique Amazon Resource Names (ARNs) that represents the virtual
@@ -94,6 +97,7 @@ namespace Model
     inline CreateTapesResult& AddTapeARNs(const char* value) { m_tapeARNs.push_back(value); return *this; }
 
   private:
+
     Aws::Vector<Aws::String> m_tapeARNs;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codepipeline/CodePipeline_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     ThirdPartyJob& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The clientToken portion of the clientId and clientToken pair used to verify
      * that the calling entity is allowed access to the job and its details.</p>
@@ -61,7 +64,7 @@ namespace Model
      * <p>The clientToken portion of the clientId and clientToken pair used to verify
      * that the calling entity is allowed access to the job and its details.</p>
      */
-    inline void SetClientId(Aws::String&& value) { m_clientIdHasBeenSet = true; m_clientId = value; }
+    inline void SetClientId(Aws::String&& value) { m_clientIdHasBeenSet = true; m_clientId = std::move(value); }
 
     /**
      * <p>The clientToken portion of the clientId and clientToken pair used to verify
@@ -79,13 +82,14 @@ namespace Model
      * <p>The clientToken portion of the clientId and clientToken pair used to verify
      * that the calling entity is allowed access to the job and its details.</p>
      */
-    inline ThirdPartyJob& WithClientId(Aws::String&& value) { SetClientId(value); return *this;}
+    inline ThirdPartyJob& WithClientId(Aws::String&& value) { SetClientId(std::move(value)); return *this;}
 
     /**
      * <p>The clientToken portion of the clientId and clientToken pair used to verify
      * that the calling entity is allowed access to the job and its details.</p>
      */
     inline ThirdPartyJob& WithClientId(const char* value) { SetClientId(value); return *this;}
+
 
     /**
      * <p>The identifier used to identify the job in AWS CodePipeline.</p>
@@ -100,7 +104,7 @@ namespace Model
     /**
      * <p>The identifier used to identify the job in AWS CodePipeline.</p>
      */
-    inline void SetJobId(Aws::String&& value) { m_jobIdHasBeenSet = true; m_jobId = value; }
+    inline void SetJobId(Aws::String&& value) { m_jobIdHasBeenSet = true; m_jobId = std::move(value); }
 
     /**
      * <p>The identifier used to identify the job in AWS CodePipeline.</p>
@@ -115,7 +119,7 @@ namespace Model
     /**
      * <p>The identifier used to identify the job in AWS CodePipeline.</p>
      */
-    inline ThirdPartyJob& WithJobId(Aws::String&& value) { SetJobId(value); return *this;}
+    inline ThirdPartyJob& WithJobId(Aws::String&& value) { SetJobId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier used to identify the job in AWS CodePipeline.</p>
@@ -123,8 +127,10 @@ namespace Model
     inline ThirdPartyJob& WithJobId(const char* value) { SetJobId(value); return *this;}
 
   private:
+
     Aws::String m_clientId;
     bool m_clientIdHasBeenSet;
+
     Aws::String m_jobId;
     bool m_jobIdHasBeenSet;
   };

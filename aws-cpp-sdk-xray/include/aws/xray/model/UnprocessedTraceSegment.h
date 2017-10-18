@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/xray/XRay_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     UnprocessedTraceSegment& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The segment's ID.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The segment's ID.</p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>The segment's ID.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The segment's ID.</p>
      */
-    inline UnprocessedTraceSegment& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline UnprocessedTraceSegment& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The segment's ID.</p>
      */
     inline UnprocessedTraceSegment& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>The error that caused processing to fail.</p>
@@ -92,7 +96,7 @@ namespace Model
     /**
      * <p>The error that caused processing to fail.</p>
      */
-    inline void SetErrorCode(Aws::String&& value) { m_errorCodeHasBeenSet = true; m_errorCode = value; }
+    inline void SetErrorCode(Aws::String&& value) { m_errorCodeHasBeenSet = true; m_errorCode = std::move(value); }
 
     /**
      * <p>The error that caused processing to fail.</p>
@@ -107,12 +111,13 @@ namespace Model
     /**
      * <p>The error that caused processing to fail.</p>
      */
-    inline UnprocessedTraceSegment& WithErrorCode(Aws::String&& value) { SetErrorCode(value); return *this;}
+    inline UnprocessedTraceSegment& WithErrorCode(Aws::String&& value) { SetErrorCode(std::move(value)); return *this;}
 
     /**
      * <p>The error that caused processing to fail.</p>
      */
     inline UnprocessedTraceSegment& WithErrorCode(const char* value) { SetErrorCode(value); return *this;}
+
 
     /**
      * <p>The error message.</p>
@@ -127,7 +132,7 @@ namespace Model
     /**
      * <p>The error message.</p>
      */
-    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = value; }
+    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = std::move(value); }
 
     /**
      * <p>The error message.</p>
@@ -142,7 +147,7 @@ namespace Model
     /**
      * <p>The error message.</p>
      */
-    inline UnprocessedTraceSegment& WithMessage(Aws::String&& value) { SetMessage(value); return *this;}
+    inline UnprocessedTraceSegment& WithMessage(Aws::String&& value) { SetMessage(std::move(value)); return *this;}
 
     /**
      * <p>The error message.</p>
@@ -150,10 +155,13 @@ namespace Model
     inline UnprocessedTraceSegment& WithMessage(const char* value) { SetMessage(value); return *this;}
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     Aws::String m_errorCode;
     bool m_errorCodeHasBeenSet;
+
     Aws::String m_message;
     bool m_messageHasBeenSet;
   };

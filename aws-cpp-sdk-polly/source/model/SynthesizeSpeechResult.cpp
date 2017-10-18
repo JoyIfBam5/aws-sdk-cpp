@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/polly/model/SynthesizeSpeechResult.h>
 #include <aws/core/AmazonWebServiceResult.h>
 #include <aws/core/utils/StringUtils.h>
@@ -51,13 +52,13 @@ SynthesizeSpeechResult& SynthesizeSpeechResult::operator=(SynthesizeSpeechResult
    return *this;
 }
 
-SynthesizeSpeechResult::SynthesizeSpeechResult(AmazonWebServiceResult<ResponseStream>&& result) : 
+SynthesizeSpeechResult::SynthesizeSpeechResult(Aws::AmazonWebServiceResult<ResponseStream>&& result) : 
     m_requestCharacters(0)
 {
   *this = std::move(result);
 }
 
-SynthesizeSpeechResult& SynthesizeSpeechResult::operator =(AmazonWebServiceResult<ResponseStream>&& result)
+SynthesizeSpeechResult& SynthesizeSpeechResult::operator =(Aws::AmazonWebServiceResult<ResponseStream>&& result)
 {
   m_audioStream = result.TakeOwnershipOfPayload();
 

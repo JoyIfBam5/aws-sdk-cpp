@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/elasticbeanstalk/ElasticBeanstalkRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,7 +36,19 @@ namespace Model
   {
   public:
     DescribeEnvironmentResourcesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeEnvironmentResources"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The ID of the environment to retrieve AWS resource usage data.</p> <p>
@@ -58,7 +72,7 @@ namespace Model
      * do not specify either, AWS Elastic Beanstalk returns
      * <code>MissingRequiredParameter</code> error. </p>
      */
-    inline void SetEnvironmentId(Aws::String&& value) { m_environmentIdHasBeenSet = true; m_environmentId = value; }
+    inline void SetEnvironmentId(Aws::String&& value) { m_environmentIdHasBeenSet = true; m_environmentId = std::move(value); }
 
     /**
      * <p>The ID of the environment to retrieve AWS resource usage data.</p> <p>
@@ -82,7 +96,7 @@ namespace Model
      * do not specify either, AWS Elastic Beanstalk returns
      * <code>MissingRequiredParameter</code> error. </p>
      */
-    inline DescribeEnvironmentResourcesRequest& WithEnvironmentId(Aws::String&& value) { SetEnvironmentId(value); return *this;}
+    inline DescribeEnvironmentResourcesRequest& WithEnvironmentId(Aws::String&& value) { SetEnvironmentId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the environment to retrieve AWS resource usage data.</p> <p>
@@ -91,6 +105,7 @@ namespace Model
      * <code>MissingRequiredParameter</code> error. </p>
      */
     inline DescribeEnvironmentResourcesRequest& WithEnvironmentId(const char* value) { SetEnvironmentId(value); return *this;}
+
 
     /**
      * <p>The name of the environment to retrieve AWS resource usage data.</p> <p>
@@ -114,7 +129,7 @@ namespace Model
      * not specify either, AWS Elastic Beanstalk returns
      * <code>MissingRequiredParameter</code> error. </p>
      */
-    inline void SetEnvironmentName(Aws::String&& value) { m_environmentNameHasBeenSet = true; m_environmentName = value; }
+    inline void SetEnvironmentName(Aws::String&& value) { m_environmentNameHasBeenSet = true; m_environmentName = std::move(value); }
 
     /**
      * <p>The name of the environment to retrieve AWS resource usage data.</p> <p>
@@ -138,7 +153,7 @@ namespace Model
      * not specify either, AWS Elastic Beanstalk returns
      * <code>MissingRequiredParameter</code> error. </p>
      */
-    inline DescribeEnvironmentResourcesRequest& WithEnvironmentName(Aws::String&& value) { SetEnvironmentName(value); return *this;}
+    inline DescribeEnvironmentResourcesRequest& WithEnvironmentName(Aws::String&& value) { SetEnvironmentName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the environment to retrieve AWS resource usage data.</p> <p>
@@ -149,8 +164,10 @@ namespace Model
     inline DescribeEnvironmentResourcesRequest& WithEnvironmentName(const char* value) { SetEnvironmentName(value); return *this;}
 
   private:
+
     Aws::String m_environmentId;
     bool m_environmentIdHasBeenSet;
+
     Aws::String m_environmentName;
     bool m_environmentNameHasBeenSet;
   };

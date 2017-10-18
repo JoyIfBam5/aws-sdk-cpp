@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   * 
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -15,8 +15,6 @@
 
 #include <aws/core/http/curl/CurlHandleContainer.h>
 #include <aws/core/utils/logging/LogMacros.h>
-
-#undef min
 
 #include <algorithm>
 
@@ -35,26 +33,26 @@ CurlHandleContainer::CurlHandleContainer(unsigned maxSize, long requestTimeout, 
 
 CurlHandleContainer::~CurlHandleContainer()
 {
-    AWS_LOG_INFO(CURL_HANDLE_CONTAINER_TAG, "Cleaning up CurlHandleContainer.");
+    AWS_LOGSTREAM_INFO(CURL_HANDLE_CONTAINER_TAG, "Cleaning up CurlHandleContainer.");
     for (CURL* handle : m_handleContainer.ShutdownAndWait(m_poolSize))
     {
-        AWS_LOG_DEBUG(CURL_HANDLE_CONTAINER_TAG, "Cleaning up %p.", handle);
+        AWS_LOGSTREAM_DEBUG(CURL_HANDLE_CONTAINER_TAG, "Cleaning up " << handle);
         curl_easy_cleanup(handle);
     }
 }
 
 CURL* CurlHandleContainer::AcquireCurlHandle()
 {
-    AWS_LOG_DEBUG(CURL_HANDLE_CONTAINER_TAG, "Attempting to acquire curl connection.");
+    AWS_LOGSTREAM_DEBUG(CURL_HANDLE_CONTAINER_TAG, "Attempting to acquire curl connection.");
 
     if(!m_handleContainer.HasResourcesAvailable())
     {
-        AWS_LOG_DEBUG(CURL_HANDLE_CONTAINER_TAG, "No current connections available in pool. Attempting to create new connections.");
+        AWS_LOGSTREAM_DEBUG(CURL_HANDLE_CONTAINER_TAG, "No current connections available in pool. Attempting to create new connections.");
         CheckAndGrowPool();
     }
 
     CURL* handle = m_handleContainer.Acquire();
-    AWS_LOG_INFO(CURL_HANDLE_CONTAINER_TAG, "Connection has been released. Continuing.");
+    AWS_LOGSTREAM_INFO(CURL_HANDLE_CONTAINER_TAG, "Connection has been released. Continuing.");
     AWS_LOGSTREAM_DEBUG(CURL_HANDLE_CONTAINER_TAG, "Returning connection handle " << handle);
     return handle;
 }
@@ -67,16 +65,17 @@ void CurlHandleContainer::ReleaseCurlHandle(CURL* handle)
         SetDefaultOptionsOnHandle(handle);
         AWS_LOGSTREAM_DEBUG(CURL_HANDLE_CONTAINER_TAG, "Releasing curl handle " << handle);
         m_handleContainer.Release(handle);
-        AWS_LOG_DEBUG(CURL_HANDLE_CONTAINER_TAG, "Notified waiting threads.");
+        AWS_LOGSTREAM_DEBUG(CURL_HANDLE_CONTAINER_TAG, "Notified waiting threads.");
     }
 }
 
 bool CurlHandleContainer::CheckAndGrowPool()
 {
+    std::lock_guard<std::mutex> locker(m_containerLock);
     if (m_poolSize < m_maxPoolSize)
     {
         unsigned multiplier = m_poolSize > 0 ? m_poolSize : 1;
-        unsigned amountToAdd = std::min(multiplier * 2, m_maxPoolSize - m_poolSize);
+        unsigned amountToAdd = (std::min)(multiplier * 2, m_maxPoolSize - m_poolSize);
         AWS_LOGSTREAM_DEBUG(CURL_HANDLE_CONTAINER_TAG, "attempting to grow pool size by " << amountToAdd);
 
         unsigned actuallyAdded = 0;
@@ -92,27 +91,30 @@ bool CurlHandleContainer::CheckAndGrowPool()
             }
             else
             {
-                AWS_LOG_ERROR(CURL_HANDLE_CONTAINER_TAG, "curl_easy_init failed to allocate. Will continue retrying until amount to add has exhausted.");
+                AWS_LOGSTREAM_ERROR(CURL_HANDLE_CONTAINER_TAG, "curl_easy_init failed to allocate.");
+                break;
             }
         }
 
-        AWS_LOGSTREAM_INFO(CURL_HANDLE_CONTAINER_TAG, "Pool successfully grown by " << actuallyAdded);
+        AWS_LOGSTREAM_INFO(CURL_HANDLE_CONTAINER_TAG, "Pool grown by " << actuallyAdded);
         m_poolSize += actuallyAdded;
 
         return actuallyAdded > 0;
     }
 
-    AWS_LOG_INFO(CURL_HANDLE_CONTAINER_TAG, "Pool cannot be grown any further, already at max size.");
+    AWS_LOGSTREAM_INFO(CURL_HANDLE_CONTAINER_TAG, "Pool cannot be grown any further, already at max size.");
 
     return false;
 }
 
-void CurlHandleContainer::SetDefaultOptionsOnHandle(void* handle)
+void CurlHandleContainer::SetDefaultOptionsOnHandle(CURL* handle)
 {
     //for timeouts to work in a multi-threaded context,
     //always turn signals off. This also forces dns queries to
     //not be included in the timeout calculations.
     curl_easy_setopt(handle, CURLOPT_NOSIGNAL, 1L);
-    curl_easy_setopt(handle, CURLOPT_TIMEOUT_MS, m_requestTimeout);
+    curl_easy_setopt(handle, CURLOPT_TIMEOUT_MS, 0L);
     curl_easy_setopt(handle, CURLOPT_CONNECTTIMEOUT_MS, m_connectTimeout);
+    curl_easy_setopt(handle, CURLOPT_LOW_SPEED_LIMIT, 1L);
+    curl_easy_setopt(handle, CURLOPT_LOW_SPEED_TIME, m_requestTimeout / 1000);
 }

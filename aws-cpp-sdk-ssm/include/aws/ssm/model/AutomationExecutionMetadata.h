@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -19,6 +20,7 @@
 #include <aws/core/utils/DateTime.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     AutomationExecutionMetadata& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The execution ID.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The execution ID.</p>
      */
-    inline void SetAutomationExecutionId(Aws::String&& value) { m_automationExecutionIdHasBeenSet = true; m_automationExecutionId = value; }
+    inline void SetAutomationExecutionId(Aws::String&& value) { m_automationExecutionIdHasBeenSet = true; m_automationExecutionId = std::move(value); }
 
     /**
      * <p>The execution ID.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The execution ID.</p>
      */
-    inline AutomationExecutionMetadata& WithAutomationExecutionId(Aws::String&& value) { SetAutomationExecutionId(value); return *this;}
+    inline AutomationExecutionMetadata& WithAutomationExecutionId(Aws::String&& value) { SetAutomationExecutionId(std::move(value)); return *this;}
 
     /**
      * <p>The execution ID.</p>
      */
     inline AutomationExecutionMetadata& WithAutomationExecutionId(const char* value) { SetAutomationExecutionId(value); return *this;}
+
 
     /**
      * <p>The name of the Automation document used during execution.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>The name of the Automation document used during execution.</p>
      */
-    inline void SetDocumentName(Aws::String&& value) { m_documentNameHasBeenSet = true; m_documentName = value; }
+    inline void SetDocumentName(Aws::String&& value) { m_documentNameHasBeenSet = true; m_documentName = std::move(value); }
 
     /**
      * <p>The name of the Automation document used during execution.</p>
@@ -110,12 +114,13 @@ namespace Model
     /**
      * <p>The name of the Automation document used during execution.</p>
      */
-    inline AutomationExecutionMetadata& WithDocumentName(Aws::String&& value) { SetDocumentName(value); return *this;}
+    inline AutomationExecutionMetadata& WithDocumentName(Aws::String&& value) { SetDocumentName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the Automation document used during execution.</p>
      */
     inline AutomationExecutionMetadata& WithDocumentName(const char* value) { SetDocumentName(value); return *this;}
+
 
     /**
      * <p>The document version used during the execution.</p>
@@ -130,7 +135,7 @@ namespace Model
     /**
      * <p>The document version used during the execution.</p>
      */
-    inline void SetDocumentVersion(Aws::String&& value) { m_documentVersionHasBeenSet = true; m_documentVersion = value; }
+    inline void SetDocumentVersion(Aws::String&& value) { m_documentVersionHasBeenSet = true; m_documentVersion = std::move(value); }
 
     /**
      * <p>The document version used during the execution.</p>
@@ -145,12 +150,13 @@ namespace Model
     /**
      * <p>The document version used during the execution.</p>
      */
-    inline AutomationExecutionMetadata& WithDocumentVersion(Aws::String&& value) { SetDocumentVersion(value); return *this;}
+    inline AutomationExecutionMetadata& WithDocumentVersion(Aws::String&& value) { SetDocumentVersion(std::move(value)); return *this;}
 
     /**
      * <p>The document version used during the execution.</p>
      */
     inline AutomationExecutionMetadata& WithDocumentVersion(const char* value) { SetDocumentVersion(value); return *this;}
+
 
     /**
      * <p>The status of the execution. Valid values include: Running, Succeeded,
@@ -168,7 +174,7 @@ namespace Model
      * <p>The status of the execution. Valid values include: Running, Succeeded,
      * Failed, Timed out, or Cancelled.</p>
      */
-    inline void SetAutomationExecutionStatus(AutomationExecutionStatus&& value) { m_automationExecutionStatusHasBeenSet = true; m_automationExecutionStatus = value; }
+    inline void SetAutomationExecutionStatus(AutomationExecutionStatus&& value) { m_automationExecutionStatusHasBeenSet = true; m_automationExecutionStatus = std::move(value); }
 
     /**
      * <p>The status of the execution. Valid values include: Running, Succeeded,
@@ -180,7 +186,8 @@ namespace Model
      * <p>The status of the execution. Valid values include: Running, Succeeded,
      * Failed, Timed out, or Cancelled.</p>
      */
-    inline AutomationExecutionMetadata& WithAutomationExecutionStatus(AutomationExecutionStatus&& value) { SetAutomationExecutionStatus(value); return *this;}
+    inline AutomationExecutionMetadata& WithAutomationExecutionStatus(AutomationExecutionStatus&& value) { SetAutomationExecutionStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The time the execution started.&gt;</p>
@@ -195,7 +202,7 @@ namespace Model
     /**
      * <p>The time the execution started.&gt;</p>
      */
-    inline void SetExecutionStartTime(Aws::Utils::DateTime&& value) { m_executionStartTimeHasBeenSet = true; m_executionStartTime = value; }
+    inline void SetExecutionStartTime(Aws::Utils::DateTime&& value) { m_executionStartTimeHasBeenSet = true; m_executionStartTime = std::move(value); }
 
     /**
      * <p>The time the execution started.&gt;</p>
@@ -205,7 +212,8 @@ namespace Model
     /**
      * <p>The time the execution started.&gt;</p>
      */
-    inline AutomationExecutionMetadata& WithExecutionStartTime(Aws::Utils::DateTime&& value) { SetExecutionStartTime(value); return *this;}
+    inline AutomationExecutionMetadata& WithExecutionStartTime(Aws::Utils::DateTime&& value) { SetExecutionStartTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The time the execution finished. This is not populated if the execution is
@@ -223,7 +231,7 @@ namespace Model
      * <p>The time the execution finished. This is not populated if the execution is
      * still in progress.</p>
      */
-    inline void SetExecutionEndTime(Aws::Utils::DateTime&& value) { m_executionEndTimeHasBeenSet = true; m_executionEndTime = value; }
+    inline void SetExecutionEndTime(Aws::Utils::DateTime&& value) { m_executionEndTimeHasBeenSet = true; m_executionEndTime = std::move(value); }
 
     /**
      * <p>The time the execution finished. This is not populated if the execution is
@@ -235,7 +243,8 @@ namespace Model
      * <p>The time the execution finished. This is not populated if the execution is
      * still in progress.</p>
      */
-    inline AutomationExecutionMetadata& WithExecutionEndTime(Aws::Utils::DateTime&& value) { SetExecutionEndTime(value); return *this;}
+    inline AutomationExecutionMetadata& WithExecutionEndTime(Aws::Utils::DateTime&& value) { SetExecutionEndTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The IAM role ARN of the user who executed the Automation.</p>
@@ -250,7 +259,7 @@ namespace Model
     /**
      * <p>The IAM role ARN of the user who executed the Automation.</p>
      */
-    inline void SetExecutedBy(Aws::String&& value) { m_executedByHasBeenSet = true; m_executedBy = value; }
+    inline void SetExecutedBy(Aws::String&& value) { m_executedByHasBeenSet = true; m_executedBy = std::move(value); }
 
     /**
      * <p>The IAM role ARN of the user who executed the Automation.</p>
@@ -265,12 +274,13 @@ namespace Model
     /**
      * <p>The IAM role ARN of the user who executed the Automation.</p>
      */
-    inline AutomationExecutionMetadata& WithExecutedBy(Aws::String&& value) { SetExecutedBy(value); return *this;}
+    inline AutomationExecutionMetadata& WithExecutedBy(Aws::String&& value) { SetExecutedBy(std::move(value)); return *this;}
 
     /**
      * <p>The IAM role ARN of the user who executed the Automation.</p>
      */
     inline AutomationExecutionMetadata& WithExecutedBy(const char* value) { SetExecutedBy(value); return *this;}
+
 
     /**
      * <p>An Amazon S3 bucket where execution information is stored.</p>
@@ -285,7 +295,7 @@ namespace Model
     /**
      * <p>An Amazon S3 bucket where execution information is stored.</p>
      */
-    inline void SetLogFile(Aws::String&& value) { m_logFileHasBeenSet = true; m_logFile = value; }
+    inline void SetLogFile(Aws::String&& value) { m_logFileHasBeenSet = true; m_logFile = std::move(value); }
 
     /**
      * <p>An Amazon S3 bucket where execution information is stored.</p>
@@ -300,12 +310,13 @@ namespace Model
     /**
      * <p>An Amazon S3 bucket where execution information is stored.</p>
      */
-    inline AutomationExecutionMetadata& WithLogFile(Aws::String&& value) { SetLogFile(value); return *this;}
+    inline AutomationExecutionMetadata& WithLogFile(Aws::String&& value) { SetLogFile(std::move(value)); return *this;}
 
     /**
      * <p>An Amazon S3 bucket where execution information is stored.</p>
      */
     inline AutomationExecutionMetadata& WithLogFile(const char* value) { SetLogFile(value); return *this;}
+
 
     /**
      * <p>The list of execution outputs as defined in the Automation document.</p>
@@ -320,7 +331,7 @@ namespace Model
     /**
      * <p>The list of execution outputs as defined in the Automation document.</p>
      */
-    inline void SetOutputs(Aws::Map<Aws::String, Aws::Vector<Aws::String>>&& value) { m_outputsHasBeenSet = true; m_outputs = value; }
+    inline void SetOutputs(Aws::Map<Aws::String, Aws::Vector<Aws::String>>&& value) { m_outputsHasBeenSet = true; m_outputs = std::move(value); }
 
     /**
      * <p>The list of execution outputs as defined in the Automation document.</p>
@@ -330,55 +341,64 @@ namespace Model
     /**
      * <p>The list of execution outputs as defined in the Automation document.</p>
      */
-    inline AutomationExecutionMetadata& WithOutputs(Aws::Map<Aws::String, Aws::Vector<Aws::String>>&& value) { SetOutputs(value); return *this;}
+    inline AutomationExecutionMetadata& WithOutputs(Aws::Map<Aws::String, Aws::Vector<Aws::String>>&& value) { SetOutputs(std::move(value)); return *this;}
 
     /**
      * <p>The list of execution outputs as defined in the Automation document.</p>
      */
-    inline AutomationExecutionMetadata& AddOutputs(const Aws::String& key, const Aws::Vector<Aws::String>& value) { m_outputsHasBeenSet = true; m_outputs[key] = value; return *this; }
+    inline AutomationExecutionMetadata& AddOutputs(const Aws::String& key, const Aws::Vector<Aws::String>& value) { m_outputsHasBeenSet = true; m_outputs.emplace(key, value); return *this; }
 
     /**
      * <p>The list of execution outputs as defined in the Automation document.</p>
      */
-    inline AutomationExecutionMetadata& AddOutputs(Aws::String&& key, const Aws::Vector<Aws::String>& value) { m_outputsHasBeenSet = true; m_outputs[key] = value; return *this; }
+    inline AutomationExecutionMetadata& AddOutputs(Aws::String&& key, const Aws::Vector<Aws::String>& value) { m_outputsHasBeenSet = true; m_outputs.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The list of execution outputs as defined in the Automation document.</p>
      */
-    inline AutomationExecutionMetadata& AddOutputs(const Aws::String& key, Aws::Vector<Aws::String>&& value) { m_outputsHasBeenSet = true; m_outputs[key] = value; return *this; }
+    inline AutomationExecutionMetadata& AddOutputs(const Aws::String& key, Aws::Vector<Aws::String>&& value) { m_outputsHasBeenSet = true; m_outputs.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The list of execution outputs as defined in the Automation document.</p>
      */
-    inline AutomationExecutionMetadata& AddOutputs(Aws::String&& key, Aws::Vector<Aws::String>&& value) { m_outputsHasBeenSet = true; m_outputs[key] = value; return *this; }
+    inline AutomationExecutionMetadata& AddOutputs(Aws::String&& key, Aws::Vector<Aws::String>&& value) { m_outputsHasBeenSet = true; m_outputs.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>The list of execution outputs as defined in the Automation document.</p>
      */
-    inline AutomationExecutionMetadata& AddOutputs(const char* key, Aws::Vector<Aws::String>&& value) { m_outputsHasBeenSet = true; m_outputs[key] = value; return *this; }
+    inline AutomationExecutionMetadata& AddOutputs(const char* key, Aws::Vector<Aws::String>&& value) { m_outputsHasBeenSet = true; m_outputs.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The list of execution outputs as defined in the Automation document.</p>
      */
-    inline AutomationExecutionMetadata& AddOutputs(const char* key, const Aws::Vector<Aws::String>& value) { m_outputsHasBeenSet = true; m_outputs[key] = value; return *this; }
+    inline AutomationExecutionMetadata& AddOutputs(const char* key, const Aws::Vector<Aws::String>& value) { m_outputsHasBeenSet = true; m_outputs.emplace(key, value); return *this; }
 
   private:
+
     Aws::String m_automationExecutionId;
     bool m_automationExecutionIdHasBeenSet;
+
     Aws::String m_documentName;
     bool m_documentNameHasBeenSet;
+
     Aws::String m_documentVersion;
     bool m_documentVersionHasBeenSet;
+
     AutomationExecutionStatus m_automationExecutionStatus;
     bool m_automationExecutionStatusHasBeenSet;
+
     Aws::Utils::DateTime m_executionStartTime;
     bool m_executionStartTimeHasBeenSet;
+
     Aws::Utils::DateTime m_executionEndTime;
     bool m_executionEndTimeHasBeenSet;
+
     Aws::String m_executedBy;
     bool m_executedByHasBeenSet;
+
     Aws::String m_logFile;
     bool m_logFileHasBeenSet;
+
     Aws::Map<Aws::String, Aws::Vector<Aws::String>> m_outputs;
     bool m_outputsHasBeenSet;
   };

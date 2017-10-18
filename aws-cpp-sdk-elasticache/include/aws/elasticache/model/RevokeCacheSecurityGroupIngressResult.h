@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticache/ElastiCache_EXPORTS.h>
 #include <aws/elasticache/model/CacheSecurityGroup.h>
 #include <aws/elasticache/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     RevokeCacheSecurityGroupIngressResult();
-    RevokeCacheSecurityGroupIngressResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    RevokeCacheSecurityGroupIngressResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    RevokeCacheSecurityGroupIngressResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    RevokeCacheSecurityGroupIngressResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     
     inline const CacheSecurityGroup& GetCacheSecurityGroup() const{ return m_cacheSecurityGroup; }
@@ -47,13 +50,14 @@ namespace Model
     inline void SetCacheSecurityGroup(const CacheSecurityGroup& value) { m_cacheSecurityGroup = value; }
 
     
-    inline void SetCacheSecurityGroup(CacheSecurityGroup&& value) { m_cacheSecurityGroup = value; }
+    inline void SetCacheSecurityGroup(CacheSecurityGroup&& value) { m_cacheSecurityGroup = std::move(value); }
 
     
     inline RevokeCacheSecurityGroupIngressResult& WithCacheSecurityGroup(const CacheSecurityGroup& value) { SetCacheSecurityGroup(value); return *this;}
 
     
-    inline RevokeCacheSecurityGroupIngressResult& WithCacheSecurityGroup(CacheSecurityGroup&& value) { SetCacheSecurityGroup(value); return *this;}
+    inline RevokeCacheSecurityGroupIngressResult& WithCacheSecurityGroup(CacheSecurityGroup&& value) { SetCacheSecurityGroup(std::move(value)); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -62,16 +66,18 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline RevokeCacheSecurityGroupIngressResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline RevokeCacheSecurityGroupIngressResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline RevokeCacheSecurityGroupIngressResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     CacheSecurityGroup m_cacheSecurityGroup;
+
     ResponseMetadata m_responseMetadata;
   };
 

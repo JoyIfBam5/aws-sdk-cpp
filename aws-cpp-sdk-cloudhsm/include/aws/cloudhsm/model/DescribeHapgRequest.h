@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudhsm/CloudHSM_EXPORTS.h>
 #include <aws/cloudhsm/CloudHSMRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     DescribeHapgRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeHapg"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The ARN of the high-availability partition group to describe.</p>
@@ -51,7 +61,7 @@ namespace Model
     /**
      * <p>The ARN of the high-availability partition group to describe.</p>
      */
-    inline void SetHapgArn(Aws::String&& value) { m_hapgArnHasBeenSet = true; m_hapgArn = value; }
+    inline void SetHapgArn(Aws::String&& value) { m_hapgArnHasBeenSet = true; m_hapgArn = std::move(value); }
 
     /**
      * <p>The ARN of the high-availability partition group to describe.</p>
@@ -66,7 +76,7 @@ namespace Model
     /**
      * <p>The ARN of the high-availability partition group to describe.</p>
      */
-    inline DescribeHapgRequest& WithHapgArn(Aws::String&& value) { SetHapgArn(value); return *this;}
+    inline DescribeHapgRequest& WithHapgArn(Aws::String&& value) { SetHapgArn(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of the high-availability partition group to describe.</p>
@@ -74,6 +84,7 @@ namespace Model
     inline DescribeHapgRequest& WithHapgArn(const char* value) { SetHapgArn(value); return *this;}
 
   private:
+
     Aws::String m_hapgArn;
     bool m_hapgArnHasBeenSet;
   };

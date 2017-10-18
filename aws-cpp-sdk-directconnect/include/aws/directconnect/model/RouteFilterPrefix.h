@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/directconnect/DirectConnect_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     RouteFilterPrefix& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>CIDR notation for the advertised route. Multiple routes are separated by
      * commas.</p> <p>IPv6 CIDRs must be at least a /64 or shorter</p> <p>Example:
@@ -63,7 +66,7 @@ namespace Model
      * commas.</p> <p>IPv6 CIDRs must be at least a /64 or shorter</p> <p>Example:
      * 10.10.10.0/24,10.10.11.0/24,2001:db8::/64</p>
      */
-    inline void SetCidr(Aws::String&& value) { m_cidrHasBeenSet = true; m_cidr = value; }
+    inline void SetCidr(Aws::String&& value) { m_cidrHasBeenSet = true; m_cidr = std::move(value); }
 
     /**
      * <p>CIDR notation for the advertised route. Multiple routes are separated by
@@ -84,7 +87,7 @@ namespace Model
      * commas.</p> <p>IPv6 CIDRs must be at least a /64 or shorter</p> <p>Example:
      * 10.10.10.0/24,10.10.11.0/24,2001:db8::/64</p>
      */
-    inline RouteFilterPrefix& WithCidr(Aws::String&& value) { SetCidr(value); return *this;}
+    inline RouteFilterPrefix& WithCidr(Aws::String&& value) { SetCidr(std::move(value)); return *this;}
 
     /**
      * <p>CIDR notation for the advertised route. Multiple routes are separated by
@@ -94,6 +97,7 @@ namespace Model
     inline RouteFilterPrefix& WithCidr(const char* value) { SetCidr(value); return *this;}
 
   private:
+
     Aws::String m_cidr;
     bool m_cidrHasBeenSet;
   };

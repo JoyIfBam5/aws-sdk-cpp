@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 
 #include <aws/core/client/CoreErrors.h>
@@ -54,8 +55,9 @@ enum class ElastiCacheErrors
   UNKNOWN = 100,
   ///////////////////////////////////////////////////////////////////////////////////////////
 
-  AUTHORIZATION_ALREADY_EXISTS_FAULT= static_cast<int>(Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
+  AUTHORIZATION_ALREADY_EXISTS_FAULT= static_cast<int>(Aws::Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
   AUTHORIZATION_NOT_FOUND_FAULT,
+  A_P_I_CALL_RATE_FOR_CUSTOMER_EXCEEDED_FAULT,
   CACHE_CLUSTER_ALREADY_EXISTS_FAULT,
   CACHE_CLUSTER_NOT_FOUND_FAULT,
   CACHE_PARAMETER_GROUP_ALREADY_EXISTS_FAULT,
@@ -80,6 +82,7 @@ enum class ElastiCacheErrors
   INVALID_SUBNET,
   INVALID_V_P_C_NETWORK_STATE_FAULT,
   NODE_GROUPS_PER_REPLICATION_GROUP_QUOTA_EXCEEDED_FAULT,
+  NODE_GROUP_NOT_FOUND_FAULT,
   NODE_QUOTA_FOR_CLUSTER_EXCEEDED_FAULT,
   NODE_QUOTA_FOR_CUSTOMER_EXCEEDED_FAULT,
   REPLICATION_GROUP_ALREADY_EXISTS_FAULT,
@@ -94,11 +97,12 @@ enum class ElastiCacheErrors
   SNAPSHOT_QUOTA_EXCEEDED_FAULT,
   SUBNET_IN_USE,
   TAG_NOT_FOUND_FAULT,
-  TAG_QUOTA_PER_RESOURCE_EXCEEDED
+  TAG_QUOTA_PER_RESOURCE_EXCEEDED,
+  TEST_FAILOVER_NOT_AVAILABLE_FAULT
 };
 namespace ElastiCacheErrorMapper
 {
-  AWS_ELASTICACHE_API Client::AWSError<Client::CoreErrors> GetErrorForName(const char* errorName);
+  AWS_ELASTICACHE_API Aws::Client::AWSError<Aws::Client::CoreErrors> GetErrorForName(const char* errorName);
 }
 
 } // namespace ElastiCache

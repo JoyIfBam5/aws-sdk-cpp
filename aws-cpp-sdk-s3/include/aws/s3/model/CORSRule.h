@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -40,6 +42,7 @@ namespace Model
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
 
+
     /**
      * Specifies which headers are allowed in a pre-flight OPTIONS request.
      */
@@ -53,7 +56,7 @@ namespace Model
     /**
      * Specifies which headers are allowed in a pre-flight OPTIONS request.
      */
-    inline void SetAllowedHeaders(Aws::Vector<Aws::String>&& value) { m_allowedHeadersHasBeenSet = true; m_allowedHeaders = value; }
+    inline void SetAllowedHeaders(Aws::Vector<Aws::String>&& value) { m_allowedHeadersHasBeenSet = true; m_allowedHeaders = std::move(value); }
 
     /**
      * Specifies which headers are allowed in a pre-flight OPTIONS request.
@@ -63,7 +66,7 @@ namespace Model
     /**
      * Specifies which headers are allowed in a pre-flight OPTIONS request.
      */
-    inline CORSRule& WithAllowedHeaders(Aws::Vector<Aws::String>&& value) { SetAllowedHeaders(value); return *this;}
+    inline CORSRule& WithAllowedHeaders(Aws::Vector<Aws::String>&& value) { SetAllowedHeaders(std::move(value)); return *this;}
 
     /**
      * Specifies which headers are allowed in a pre-flight OPTIONS request.
@@ -73,12 +76,13 @@ namespace Model
     /**
      * Specifies which headers are allowed in a pre-flight OPTIONS request.
      */
-    inline CORSRule& AddAllowedHeaders(Aws::String&& value) { m_allowedHeadersHasBeenSet = true; m_allowedHeaders.push_back(value); return *this; }
+    inline CORSRule& AddAllowedHeaders(Aws::String&& value) { m_allowedHeadersHasBeenSet = true; m_allowedHeaders.push_back(std::move(value)); return *this; }
 
     /**
      * Specifies which headers are allowed in a pre-flight OPTIONS request.
      */
     inline CORSRule& AddAllowedHeaders(const char* value) { m_allowedHeadersHasBeenSet = true; m_allowedHeaders.push_back(value); return *this; }
+
 
     /**
      * Identifies HTTP methods that the domain/origin specified in the rule is allowed
@@ -96,7 +100,7 @@ namespace Model
      * Identifies HTTP methods that the domain/origin specified in the rule is allowed
      * to execute.
      */
-    inline void SetAllowedMethods(Aws::Vector<Aws::String>&& value) { m_allowedMethodsHasBeenSet = true; m_allowedMethods = value; }
+    inline void SetAllowedMethods(Aws::Vector<Aws::String>&& value) { m_allowedMethodsHasBeenSet = true; m_allowedMethods = std::move(value); }
 
     /**
      * Identifies HTTP methods that the domain/origin specified in the rule is allowed
@@ -108,7 +112,7 @@ namespace Model
      * Identifies HTTP methods that the domain/origin specified in the rule is allowed
      * to execute.
      */
-    inline CORSRule& WithAllowedMethods(Aws::Vector<Aws::String>&& value) { SetAllowedMethods(value); return *this;}
+    inline CORSRule& WithAllowedMethods(Aws::Vector<Aws::String>&& value) { SetAllowedMethods(std::move(value)); return *this;}
 
     /**
      * Identifies HTTP methods that the domain/origin specified in the rule is allowed
@@ -120,13 +124,14 @@ namespace Model
      * Identifies HTTP methods that the domain/origin specified in the rule is allowed
      * to execute.
      */
-    inline CORSRule& AddAllowedMethods(Aws::String&& value) { m_allowedMethodsHasBeenSet = true; m_allowedMethods.push_back(value); return *this; }
+    inline CORSRule& AddAllowedMethods(Aws::String&& value) { m_allowedMethodsHasBeenSet = true; m_allowedMethods.push_back(std::move(value)); return *this; }
 
     /**
      * Identifies HTTP methods that the domain/origin specified in the rule is allowed
      * to execute.
      */
     inline CORSRule& AddAllowedMethods(const char* value) { m_allowedMethodsHasBeenSet = true; m_allowedMethods.push_back(value); return *this; }
+
 
     /**
      * One or more origins you want customers to be able to access the bucket from.
@@ -141,7 +146,7 @@ namespace Model
     /**
      * One or more origins you want customers to be able to access the bucket from.
      */
-    inline void SetAllowedOrigins(Aws::Vector<Aws::String>&& value) { m_allowedOriginsHasBeenSet = true; m_allowedOrigins = value; }
+    inline void SetAllowedOrigins(Aws::Vector<Aws::String>&& value) { m_allowedOriginsHasBeenSet = true; m_allowedOrigins = std::move(value); }
 
     /**
      * One or more origins you want customers to be able to access the bucket from.
@@ -151,7 +156,7 @@ namespace Model
     /**
      * One or more origins you want customers to be able to access the bucket from.
      */
-    inline CORSRule& WithAllowedOrigins(Aws::Vector<Aws::String>&& value) { SetAllowedOrigins(value); return *this;}
+    inline CORSRule& WithAllowedOrigins(Aws::Vector<Aws::String>&& value) { SetAllowedOrigins(std::move(value)); return *this;}
 
     /**
      * One or more origins you want customers to be able to access the bucket from.
@@ -161,12 +166,13 @@ namespace Model
     /**
      * One or more origins you want customers to be able to access the bucket from.
      */
-    inline CORSRule& AddAllowedOrigins(Aws::String&& value) { m_allowedOriginsHasBeenSet = true; m_allowedOrigins.push_back(value); return *this; }
+    inline CORSRule& AddAllowedOrigins(Aws::String&& value) { m_allowedOriginsHasBeenSet = true; m_allowedOrigins.push_back(std::move(value)); return *this; }
 
     /**
      * One or more origins you want customers to be able to access the bucket from.
      */
     inline CORSRule& AddAllowedOrigins(const char* value) { m_allowedOriginsHasBeenSet = true; m_allowedOrigins.push_back(value); return *this; }
+
 
     /**
      * One or more headers in the response that you want customers to be able to access
@@ -184,7 +190,7 @@ namespace Model
      * One or more headers in the response that you want customers to be able to access
      * from their applications (for example, from a JavaScript XMLHttpRequest object).
      */
-    inline void SetExposeHeaders(Aws::Vector<Aws::String>&& value) { m_exposeHeadersHasBeenSet = true; m_exposeHeaders = value; }
+    inline void SetExposeHeaders(Aws::Vector<Aws::String>&& value) { m_exposeHeadersHasBeenSet = true; m_exposeHeaders = std::move(value); }
 
     /**
      * One or more headers in the response that you want customers to be able to access
@@ -196,7 +202,7 @@ namespace Model
      * One or more headers in the response that you want customers to be able to access
      * from their applications (for example, from a JavaScript XMLHttpRequest object).
      */
-    inline CORSRule& WithExposeHeaders(Aws::Vector<Aws::String>&& value) { SetExposeHeaders(value); return *this;}
+    inline CORSRule& WithExposeHeaders(Aws::Vector<Aws::String>&& value) { SetExposeHeaders(std::move(value)); return *this;}
 
     /**
      * One or more headers in the response that you want customers to be able to access
@@ -208,13 +214,14 @@ namespace Model
      * One or more headers in the response that you want customers to be able to access
      * from their applications (for example, from a JavaScript XMLHttpRequest object).
      */
-    inline CORSRule& AddExposeHeaders(Aws::String&& value) { m_exposeHeadersHasBeenSet = true; m_exposeHeaders.push_back(value); return *this; }
+    inline CORSRule& AddExposeHeaders(Aws::String&& value) { m_exposeHeadersHasBeenSet = true; m_exposeHeaders.push_back(std::move(value)); return *this; }
 
     /**
      * One or more headers in the response that you want customers to be able to access
      * from their applications (for example, from a JavaScript XMLHttpRequest object).
      */
     inline CORSRule& AddExposeHeaders(const char* value) { m_exposeHeadersHasBeenSet = true; m_exposeHeaders.push_back(value); return *this; }
+
 
     /**
      * The time in seconds that your browser is to cache the preflight response for the
@@ -235,14 +242,19 @@ namespace Model
     inline CORSRule& WithMaxAgeSeconds(int value) { SetMaxAgeSeconds(value); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_allowedHeaders;
     bool m_allowedHeadersHasBeenSet;
+
     Aws::Vector<Aws::String> m_allowedMethods;
     bool m_allowedMethodsHasBeenSet;
+
     Aws::Vector<Aws::String> m_allowedOrigins;
     bool m_allowedOriginsHasBeenSet;
+
     Aws::Vector<Aws::String> m_exposeHeaders;
     bool m_exposeHeadersHasBeenSet;
+
     int m_maxAgeSeconds;
     bool m_maxAgeSecondsHasBeenSet;
   };

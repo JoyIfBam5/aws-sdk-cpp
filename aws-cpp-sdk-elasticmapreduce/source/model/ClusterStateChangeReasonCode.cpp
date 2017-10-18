@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/elasticmapreduce/model/ClusterStateChangeReasonCode.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -32,6 +33,7 @@ namespace Aws
         static const int INTERNAL_ERROR_HASH = HashingUtils::HashString("INTERNAL_ERROR");
         static const int VALIDATION_ERROR_HASH = HashingUtils::HashString("VALIDATION_ERROR");
         static const int INSTANCE_FAILURE_HASH = HashingUtils::HashString("INSTANCE_FAILURE");
+        static const int INSTANCE_FLEET_TIMEOUT_HASH = HashingUtils::HashString("INSTANCE_FLEET_TIMEOUT");
         static const int BOOTSTRAP_FAILURE_HASH = HashingUtils::HashString("BOOTSTRAP_FAILURE");
         static const int USER_REQUEST_HASH = HashingUtils::HashString("USER_REQUEST");
         static const int STEP_FAILURE_HASH = HashingUtils::HashString("STEP_FAILURE");
@@ -52,6 +54,10 @@ namespace Aws
           else if (hashCode == INSTANCE_FAILURE_HASH)
           {
             return ClusterStateChangeReasonCode::INSTANCE_FAILURE;
+          }
+          else if (hashCode == INSTANCE_FLEET_TIMEOUT_HASH)
+          {
+            return ClusterStateChangeReasonCode::INSTANCE_FLEET_TIMEOUT;
           }
           else if (hashCode == BOOTSTRAP_FAILURE_HASH)
           {
@@ -89,6 +95,8 @@ namespace Aws
             return "VALIDATION_ERROR";
           case ClusterStateChangeReasonCode::INSTANCE_FAILURE:
             return "INSTANCE_FAILURE";
+          case ClusterStateChangeReasonCode::INSTANCE_FLEET_TIMEOUT:
+            return "INSTANCE_FLEET_TIMEOUT";
           case ClusterStateChangeReasonCode::BOOTSTRAP_FAILURE:
             return "BOOTSTRAP_FAILURE";
           case ClusterStateChangeReasonCode::USER_REQUEST:

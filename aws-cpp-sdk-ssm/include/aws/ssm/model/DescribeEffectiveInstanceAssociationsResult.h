@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ssm/model/InstanceAssociation.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     DescribeEffectiveInstanceAssociationsResult();
-    DescribeEffectiveInstanceAssociationsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeEffectiveInstanceAssociationsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeEffectiveInstanceAssociationsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeEffectiveInstanceAssociationsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The associations for the requested instance.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>The associations for the requested instance.</p>
      */
-    inline void SetAssociations(Aws::Vector<InstanceAssociation>&& value) { m_associations = value; }
+    inline void SetAssociations(Aws::Vector<InstanceAssociation>&& value) { m_associations = std::move(value); }
 
     /**
      * <p>The associations for the requested instance.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>The associations for the requested instance.</p>
      */
-    inline DescribeEffectiveInstanceAssociationsResult& WithAssociations(Aws::Vector<InstanceAssociation>&& value) { SetAssociations(value); return *this;}
+    inline DescribeEffectiveInstanceAssociationsResult& WithAssociations(Aws::Vector<InstanceAssociation>&& value) { SetAssociations(std::move(value)); return *this;}
 
     /**
      * <p>The associations for the requested instance.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>The associations for the requested instance.</p>
      */
-    inline DescribeEffectiveInstanceAssociationsResult& AddAssociations(InstanceAssociation&& value) { m_associations.push_back(value); return *this; }
+    inline DescribeEffectiveInstanceAssociationsResult& AddAssociations(InstanceAssociation&& value) { m_associations.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
@@ -92,7 +96,7 @@ namespace Model
      * <p>The token to use when requesting the next set of items. If there are no
      * additional items to return, the string is empty.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
@@ -110,7 +114,7 @@ namespace Model
      * <p>The token to use when requesting the next set of items. If there are no
      * additional items to return, the string is empty.</p>
      */
-    inline DescribeEffectiveInstanceAssociationsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeEffectiveInstanceAssociationsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
@@ -119,7 +123,9 @@ namespace Model
     inline DescribeEffectiveInstanceAssociationsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<InstanceAssociation> m_associations;
+
     Aws::String m_nextToken;
   };
 

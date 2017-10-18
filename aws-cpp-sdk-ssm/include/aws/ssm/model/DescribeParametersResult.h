@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ssm/model/ParameterMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     DescribeParametersResult();
-    DescribeParametersResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeParametersResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeParametersResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeParametersResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Parameters returned by the request.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>Parameters returned by the request.</p>
      */
-    inline void SetParameters(Aws::Vector<ParameterMetadata>&& value) { m_parameters = value; }
+    inline void SetParameters(Aws::Vector<ParameterMetadata>&& value) { m_parameters = std::move(value); }
 
     /**
      * <p>Parameters returned by the request.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>Parameters returned by the request.</p>
      */
-    inline DescribeParametersResult& WithParameters(Aws::Vector<ParameterMetadata>&& value) { SetParameters(value); return *this;}
+    inline DescribeParametersResult& WithParameters(Aws::Vector<ParameterMetadata>&& value) { SetParameters(std::move(value)); return *this;}
 
     /**
      * <p>Parameters returned by the request.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>Parameters returned by the request.</p>
      */
-    inline DescribeParametersResult& AddParameters(ParameterMetadata&& value) { m_parameters.push_back(value); return *this; }
+    inline DescribeParametersResult& AddParameters(ParameterMetadata&& value) { m_parameters.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
@@ -92,7 +96,7 @@ namespace Model
      * <p>The token to use when requesting the next set of items. If there are no
      * additional items to return, the string is empty.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
@@ -110,7 +114,7 @@ namespace Model
      * <p>The token to use when requesting the next set of items. If there are no
      * additional items to return, the string is empty.</p>
      */
-    inline DescribeParametersResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeParametersResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
@@ -119,7 +123,9 @@ namespace Model
     inline DescribeParametersResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<ParameterMetadata> m_parameters;
+
     Aws::String m_nextToken;
   };
 

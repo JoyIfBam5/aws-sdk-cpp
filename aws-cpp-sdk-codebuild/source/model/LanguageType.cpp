@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/codebuild/model/LanguageType.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -36,6 +37,7 @@ namespace Aws
         static const int GOLANG_HASH = HashingUtils::HashString("GOLANG");
         static const int DOCKER_HASH = HashingUtils::HashString("DOCKER");
         static const int ANDROID__HASH = HashingUtils::HashString("ANDROID");
+        static const int DOTNET_HASH = HashingUtils::HashString("DOTNET");
         static const int BASE_HASH = HashingUtils::HashString("BASE");
 
 
@@ -70,6 +72,10 @@ namespace Aws
           {
             return LanguageType::ANDROID_;
           }
+          else if (hashCode == DOTNET_HASH)
+          {
+            return LanguageType::DOTNET;
+          }
           else if (hashCode == BASE_HASH)
           {
             return LanguageType::BASE;
@@ -102,6 +108,8 @@ namespace Aws
             return "DOCKER";
           case LanguageType::ANDROID_:
             return "ANDROID";
+          case LanguageType::DOTNET:
+            return "DOTNET";
           case LanguageType::BASE:
             return "BASE";
           default:

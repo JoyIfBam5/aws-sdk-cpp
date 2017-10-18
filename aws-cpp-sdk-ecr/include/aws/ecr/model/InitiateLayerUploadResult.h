@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecr/ECR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     InitiateLayerUploadResult();
-    InitiateLayerUploadResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    InitiateLayerUploadResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    InitiateLayerUploadResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    InitiateLayerUploadResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The upload ID for the layer upload. This parameter is passed to further
@@ -55,7 +58,7 @@ namespace Model
      * <p>The upload ID for the layer upload. This parameter is passed to further
      * <a>UploadLayerPart</a> and <a>CompleteLayerUpload</a> operations.</p>
      */
-    inline void SetUploadId(Aws::String&& value) { m_uploadId = value; }
+    inline void SetUploadId(Aws::String&& value) { m_uploadId = std::move(value); }
 
     /**
      * <p>The upload ID for the layer upload. This parameter is passed to further
@@ -73,13 +76,14 @@ namespace Model
      * <p>The upload ID for the layer upload. This parameter is passed to further
      * <a>UploadLayerPart</a> and <a>CompleteLayerUpload</a> operations.</p>
      */
-    inline InitiateLayerUploadResult& WithUploadId(Aws::String&& value) { SetUploadId(value); return *this;}
+    inline InitiateLayerUploadResult& WithUploadId(Aws::String&& value) { SetUploadId(std::move(value)); return *this;}
 
     /**
      * <p>The upload ID for the layer upload. This parameter is passed to further
      * <a>UploadLayerPart</a> and <a>CompleteLayerUpload</a> operations.</p>
      */
     inline InitiateLayerUploadResult& WithUploadId(const char* value) { SetUploadId(value); return *this;}
+
 
     /**
      * <p>The size, in bytes, that Amazon ECR expects future layer part uploads to
@@ -100,7 +104,9 @@ namespace Model
     inline InitiateLayerUploadResult& WithPartSize(long long value) { SetPartSize(value); return *this;}
 
   private:
+
     Aws::String m_uploadId;
+
     long long m_partSize;
   };
 

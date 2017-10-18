@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codebuild/CodeBuild_EXPORTS.h>
 #include <aws/codebuild/CodeBuildErrors.h>
@@ -20,10 +21,13 @@
 #include <aws/core/client/AWSClient.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/json/JsonSerializer.h>
+#include <aws/codebuild/model/BatchDeleteBuildsResult.h>
 #include <aws/codebuild/model/BatchGetBuildsResult.h>
 #include <aws/codebuild/model/BatchGetProjectsResult.h>
 #include <aws/codebuild/model/CreateProjectResult.h>
+#include <aws/codebuild/model/CreateWebhookResult.h>
 #include <aws/codebuild/model/DeleteProjectResult.h>
+#include <aws/codebuild/model/DeleteWebhookResult.h>
 #include <aws/codebuild/model/ListBuildsResult.h>
 #include <aws/codebuild/model/ListBuildsForProjectResult.h>
 #include <aws/codebuild/model/ListCuratedEnvironmentImagesResult.h>
@@ -76,10 +80,13 @@ namespace CodeBuild
 
 namespace Model
 {
+        class BatchDeleteBuildsRequest;
         class BatchGetBuildsRequest;
         class BatchGetProjectsRequest;
         class CreateProjectRequest;
+        class CreateWebhookRequest;
         class DeleteProjectRequest;
+        class DeleteWebhookRequest;
         class ListBuildsRequest;
         class ListBuildsForProjectRequest;
         class ListCuratedEnvironmentImagesRequest;
@@ -88,10 +95,13 @@ namespace Model
         class StopBuildRequest;
         class UpdateProjectRequest;
 
+        typedef Aws::Utils::Outcome<BatchDeleteBuildsResult, Aws::Client::AWSError<CodeBuildErrors>> BatchDeleteBuildsOutcome;
         typedef Aws::Utils::Outcome<BatchGetBuildsResult, Aws::Client::AWSError<CodeBuildErrors>> BatchGetBuildsOutcome;
         typedef Aws::Utils::Outcome<BatchGetProjectsResult, Aws::Client::AWSError<CodeBuildErrors>> BatchGetProjectsOutcome;
         typedef Aws::Utils::Outcome<CreateProjectResult, Aws::Client::AWSError<CodeBuildErrors>> CreateProjectOutcome;
+        typedef Aws::Utils::Outcome<CreateWebhookResult, Aws::Client::AWSError<CodeBuildErrors>> CreateWebhookOutcome;
         typedef Aws::Utils::Outcome<DeleteProjectResult, Aws::Client::AWSError<CodeBuildErrors>> DeleteProjectOutcome;
+        typedef Aws::Utils::Outcome<DeleteWebhookResult, Aws::Client::AWSError<CodeBuildErrors>> DeleteWebhookOutcome;
         typedef Aws::Utils::Outcome<ListBuildsResult, Aws::Client::AWSError<CodeBuildErrors>> ListBuildsOutcome;
         typedef Aws::Utils::Outcome<ListBuildsForProjectResult, Aws::Client::AWSError<CodeBuildErrors>> ListBuildsForProjectOutcome;
         typedef Aws::Utils::Outcome<ListCuratedEnvironmentImagesResult, Aws::Client::AWSError<CodeBuildErrors>> ListCuratedEnvironmentImagesOutcome;
@@ -100,10 +110,13 @@ namespace Model
         typedef Aws::Utils::Outcome<StopBuildResult, Aws::Client::AWSError<CodeBuildErrors>> StopBuildOutcome;
         typedef Aws::Utils::Outcome<UpdateProjectResult, Aws::Client::AWSError<CodeBuildErrors>> UpdateProjectOutcome;
 
+        typedef std::future<BatchDeleteBuildsOutcome> BatchDeleteBuildsOutcomeCallable;
         typedef std::future<BatchGetBuildsOutcome> BatchGetBuildsOutcomeCallable;
         typedef std::future<BatchGetProjectsOutcome> BatchGetProjectsOutcomeCallable;
         typedef std::future<CreateProjectOutcome> CreateProjectOutcomeCallable;
+        typedef std::future<CreateWebhookOutcome> CreateWebhookOutcomeCallable;
         typedef std::future<DeleteProjectOutcome> DeleteProjectOutcomeCallable;
+        typedef std::future<DeleteWebhookOutcome> DeleteWebhookOutcomeCallable;
         typedef std::future<ListBuildsOutcome> ListBuildsOutcomeCallable;
         typedef std::future<ListBuildsForProjectOutcome> ListBuildsForProjectOutcomeCallable;
         typedef std::future<ListCuratedEnvironmentImagesOutcome> ListCuratedEnvironmentImagesOutcomeCallable;
@@ -115,10 +128,13 @@ namespace Model
 
   class CodeBuildClient;
 
+    typedef std::function<void(const CodeBuildClient*, const Model::BatchDeleteBuildsRequest&, const Model::BatchDeleteBuildsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > BatchDeleteBuildsResponseReceivedHandler;
     typedef std::function<void(const CodeBuildClient*, const Model::BatchGetBuildsRequest&, const Model::BatchGetBuildsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > BatchGetBuildsResponseReceivedHandler;
     typedef std::function<void(const CodeBuildClient*, const Model::BatchGetProjectsRequest&, const Model::BatchGetProjectsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > BatchGetProjectsResponseReceivedHandler;
     typedef std::function<void(const CodeBuildClient*, const Model::CreateProjectRequest&, const Model::CreateProjectOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateProjectResponseReceivedHandler;
+    typedef std::function<void(const CodeBuildClient*, const Model::CreateWebhookRequest&, const Model::CreateWebhookOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateWebhookResponseReceivedHandler;
     typedef std::function<void(const CodeBuildClient*, const Model::DeleteProjectRequest&, const Model::DeleteProjectOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteProjectResponseReceivedHandler;
+    typedef std::function<void(const CodeBuildClient*, const Model::DeleteWebhookRequest&, const Model::DeleteWebhookOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteWebhookResponseReceivedHandler;
     typedef std::function<void(const CodeBuildClient*, const Model::ListBuildsRequest&, const Model::ListBuildsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListBuildsResponseReceivedHandler;
     typedef std::function<void(const CodeBuildClient*, const Model::ListBuildsForProjectRequest&, const Model::ListBuildsForProjectOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListBuildsForProjectResponseReceivedHandler;
     typedef std::function<void(const CodeBuildClient*, const Model::ListCuratedEnvironmentImagesRequest&, const Model::ListCuratedEnvironmentImagesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListCuratedEnvironmentImagesResponseReceivedHandler;
@@ -128,32 +144,40 @@ namespace Model
     typedef std::function<void(const CodeBuildClient*, const Model::UpdateProjectRequest&, const Model::UpdateProjectOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateProjectResponseReceivedHandler;
 
   /**
-   * <fullname>AWS CodeBuild</fullname> <p>AWS CodeBuild is a fully-managed build
+   * <fullname>AWS CodeBuild</fullname> <p>AWS CodeBuild is a fully managed build
    * service in the cloud. AWS CodeBuild compiles your source code, runs unit tests,
    * and produces artifacts that are ready to deploy. AWS CodeBuild eliminates the
    * need to provision, manage, and scale your own build servers. It provides
    * prepackaged build environments for the most popular programming languages and
-   * build tools such as Apach Maven, Gradle, and more. You can also fully customize
-   * build environments in AWS CodeBuild to use your own build tools. AWS CodeBuild
-   * scales automatically to meet peak build requests, and you pay only for the build
-   * time you consume. For more information about AWS CodeBuild, see the <i>AWS
-   * CodeBuild User Guide</i>.</p> <p>AWS CodeBuild supports these operations:</p>
-   * <ul> <li> <p> <code>BatchGetProjects</code>: Gets information about one or more
-   * build projects. A <i>build project</i> defines how AWS CodeBuild will run a
-   * build. This includes information such as where to get the source code to build,
-   * the build environment to use, the build commands to run, and where to store the
-   * build output. A <i>build environment</i> represents a combination of operating
-   * system, programming language runtime, and tools that AWS CodeBuild will use to
-   * run a build. Also, you can add tags to build projects to help manage your
-   * resources and costs.</p> </li> <li> <p> <code>CreateProject</code>: Creates a
-   * build project.</p> </li> <li> <p> <code>DeleteProject</code>: Deletes a build
-   * project.</p> </li> <li> <p> <code>ListProjects</code>: Gets a list of build
-   * project names, with each build project name representing a single build
-   * project.</p> </li> <li> <p> <code>UpdateProject</code>: Changes the settings of
-   * an existing build project.</p> </li> <li> <p> <code>BatchGetBuilds</code>: Gets
-   * information about one or more builds.</p> </li> <li> <p>
-   * <code>ListBuilds</code>: Gets a list of build IDs, with each build ID
-   * representing a single build.</p> </li> <li> <p>
+   * build tools, such as Apache Maven, Gradle, and more. You can also fully
+   * customize build environments in AWS CodeBuild to use your own build tools. AWS
+   * CodeBuild scales automatically to meet peak build requests, and you pay only for
+   * the build time you consume. For more information about AWS CodeBuild, see the
+   * <i>AWS CodeBuild User Guide</i>.</p> <p>AWS CodeBuild supports these
+   * operations:</p> <ul> <li> <p> <code>BatchDeleteBuilds</code>: Deletes one or
+   * more builds.</p> </li> <li> <p> <code>BatchGetProjects</code>: Gets information
+   * about one or more build projects. A <i>build project</i> defines how AWS
+   * CodeBuild will run a build. This includes information such as where to get the
+   * source code to build, the build environment to use, the build commands to run,
+   * and where to store the build output. A <i>build environment</i> represents a
+   * combination of operating system, programming language runtime, and tools that
+   * AWS CodeBuild will use to run a build. Also, you can add tags to build projects
+   * to help manage your resources and costs.</p> </li> <li> <p>
+   * <code>CreateProject</code>: Creates a build project.</p> </li> <li> <p>
+   * <code>CreateWebhook</code>: For an existing AWS CodeBuild build project that has
+   * its source code stored in a GitHub repository, enables AWS CodeBuild to begin
+   * automatically rebuilding the source code every time a code change is pushed to
+   * the repository.</p> </li> <li> <p> <code>DeleteProject</code>: Deletes a build
+   * project.</p> </li> <li> <p> <code>DeleteWebhook</code>: For an existing AWS
+   * CodeBuild build project that has its source code stored in a GitHub repository,
+   * stops AWS CodeBuild from automatically rebuilding the source code every time a
+   * code change is pushed to the repository.</p> </li> <li> <p>
+   * <code>ListProjects</code>: Gets a list of build project names, with each build
+   * project name representing a single build project.</p> </li> <li> <p>
+   * <code>UpdateProject</code>: Changes the settings of an existing build
+   * project.</p> </li> <li> <p> <code>BatchGetBuilds</code>: Gets information about
+   * one or more builds.</p> </li> <li> <p> <code>ListBuilds</code>: Gets a list of
+   * build IDs, with each build ID representing a single build.</p> </li> <li> <p>
    * <code>ListBuildsForProject</code>: Gets a list of build IDs for the specified
    * build project, with each build ID representing a single build.</p> </li> <li>
    * <p> <code>StartBuild</code>: Starts running a build.</p> </li> <li> <p>
@@ -170,32 +194,60 @@ namespace Model
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        CodeBuildClient(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        CodeBuildClient(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        CodeBuildClient(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        CodeBuildClient(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        CodeBuildClient(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        CodeBuildClient(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
         virtual ~CodeBuildClient();
 
+        inline virtual const char* GetServiceClientName() const override { return "codebuild"; }
+
+
         /**
-         * <p>Gets information about one or more builds.</p><p><h3>See Also:</h3>   <a
+         * <p>Deletes one or more builds.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/BatchDeleteBuilds">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::BatchDeleteBuildsOutcome BatchDeleteBuilds(const Model::BatchDeleteBuildsRequest& request) const;
+
+        /**
+         * <p>Deletes one or more builds.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/BatchDeleteBuilds">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::BatchDeleteBuildsOutcomeCallable BatchDeleteBuildsCallable(const Model::BatchDeleteBuildsRequest& request) const;
+
+        /**
+         * <p>Deletes one or more builds.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/BatchDeleteBuilds">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void BatchDeleteBuildsAsync(const Model::BatchDeleteBuildsRequest& request, const BatchDeleteBuildsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Gets information about builds.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/BatchGetBuilds">AWS
          * API Reference</a></p>
          */
         virtual Model::BatchGetBuildsOutcome BatchGetBuilds(const Model::BatchGetBuildsRequest& request) const;
 
         /**
-         * <p>Gets information about one or more builds.</p><p><h3>See Also:</h3>   <a
+         * <p>Gets information about builds.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/BatchGetBuilds">AWS
          * API Reference</a></p>
          *
@@ -204,7 +256,7 @@ namespace Model
         virtual Model::BatchGetBuildsOutcomeCallable BatchGetBuildsCallable(const Model::BatchGetBuildsRequest& request) const;
 
         /**
-         * <p>Gets information about one or more builds.</p><p><h3>See Also:</h3>   <a
+         * <p>Gets information about builds.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/BatchGetBuilds">AWS
          * API Reference</a></p>
          *
@@ -213,16 +265,14 @@ namespace Model
         virtual void BatchGetBuildsAsync(const Model::BatchGetBuildsRequest& request, const BatchGetBuildsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Gets information about one or more build projects.</p><p><h3>See Also:</h3>  
-         * <a
+         * <p>Gets information about build projects.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/BatchGetProjects">AWS
          * API Reference</a></p>
          */
         virtual Model::BatchGetProjectsOutcome BatchGetProjects(const Model::BatchGetProjectsRequest& request) const;
 
         /**
-         * <p>Gets information about one or more build projects.</p><p><h3>See Also:</h3>  
-         * <a
+         * <p>Gets information about build projects.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/BatchGetProjects">AWS
          * API Reference</a></p>
          *
@@ -231,8 +281,7 @@ namespace Model
         virtual Model::BatchGetProjectsOutcomeCallable BatchGetProjectsCallable(const Model::BatchGetProjectsRequest& request) const;
 
         /**
-         * <p>Gets information about one or more build projects.</p><p><h3>See Also:</h3>  
-         * <a
+         * <p>Gets information about build projects.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/BatchGetProjects">AWS
          * API Reference</a></p>
          *
@@ -266,6 +315,64 @@ namespace Model
         virtual void CreateProjectAsync(const Model::CreateProjectRequest& request, const CreateProjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
+         * <p>For an existing AWS CodeBuild build project that has its source code stored
+         * in a GitHub repository, enables AWS CodeBuild to begin automatically rebuilding
+         * the source code every time a code change is pushed to the repository.</p>
+         * <important> <p>If you enable webhooks for an AWS CodeBuild project, and the
+         * project is used as a build step in AWS CodePipeline, then two identical builds
+         * will be created for each commit. One build is triggered through webhooks, and
+         * one through AWS CodePipeline. Because billing is on a per-build basis, you will
+         * be billed for both builds. Therefore, if you are using AWS CodePipeline, we
+         * recommend that you disable webhooks in CodeBuild. In the AWS CodeBuild console,
+         * clear the Webhook box. For more information, see step 9 in <a
+         * href="http://docs.aws.amazon.com/codebuild/latest/userguide/change-project.html#change-project-console">Change
+         * a Build Project’s Settings</a>.</p> </important><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/CreateWebhook">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::CreateWebhookOutcome CreateWebhook(const Model::CreateWebhookRequest& request) const;
+
+        /**
+         * <p>For an existing AWS CodeBuild build project that has its source code stored
+         * in a GitHub repository, enables AWS CodeBuild to begin automatically rebuilding
+         * the source code every time a code change is pushed to the repository.</p>
+         * <important> <p>If you enable webhooks for an AWS CodeBuild project, and the
+         * project is used as a build step in AWS CodePipeline, then two identical builds
+         * will be created for each commit. One build is triggered through webhooks, and
+         * one through AWS CodePipeline. Because billing is on a per-build basis, you will
+         * be billed for both builds. Therefore, if you are using AWS CodePipeline, we
+         * recommend that you disable webhooks in CodeBuild. In the AWS CodeBuild console,
+         * clear the Webhook box. For more information, see step 9 in <a
+         * href="http://docs.aws.amazon.com/codebuild/latest/userguide/change-project.html#change-project-console">Change
+         * a Build Project’s Settings</a>.</p> </important><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/CreateWebhook">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::CreateWebhookOutcomeCallable CreateWebhookCallable(const Model::CreateWebhookRequest& request) const;
+
+        /**
+         * <p>For an existing AWS CodeBuild build project that has its source code stored
+         * in a GitHub repository, enables AWS CodeBuild to begin automatically rebuilding
+         * the source code every time a code change is pushed to the repository.</p>
+         * <important> <p>If you enable webhooks for an AWS CodeBuild project, and the
+         * project is used as a build step in AWS CodePipeline, then two identical builds
+         * will be created for each commit. One build is triggered through webhooks, and
+         * one through AWS CodePipeline. Because billing is on a per-build basis, you will
+         * be billed for both builds. Therefore, if you are using AWS CodePipeline, we
+         * recommend that you disable webhooks in CodeBuild. In the AWS CodeBuild console,
+         * clear the Webhook box. For more information, see step 9 in <a
+         * href="http://docs.aws.amazon.com/codebuild/latest/userguide/change-project.html#change-project-console">Change
+         * a Build Project’s Settings</a>.</p> </important><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/CreateWebhook">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void CreateWebhookAsync(const Model::CreateWebhookRequest& request, const CreateWebhookResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
          * <p>Deletes a build project.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/DeleteProject">AWS
          * API Reference</a></p>
@@ -289,6 +396,40 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void DeleteProjectAsync(const Model::DeleteProjectRequest& request, const DeleteProjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>For an existing AWS CodeBuild build project that has its source code stored
+         * in a GitHub repository, stops AWS CodeBuild from automatically rebuilding the
+         * source code every time a code change is pushed to the repository.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/DeleteWebhook">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::DeleteWebhookOutcome DeleteWebhook(const Model::DeleteWebhookRequest& request) const;
+
+        /**
+         * <p>For an existing AWS CodeBuild build project that has its source code stored
+         * in a GitHub repository, stops AWS CodeBuild from automatically rebuilding the
+         * source code every time a code change is pushed to the repository.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/DeleteWebhook">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::DeleteWebhookOutcomeCallable DeleteWebhookCallable(const Model::DeleteWebhookRequest& request) const;
+
+        /**
+         * <p>For an existing AWS CodeBuild build project that has its source code stored
+         * in a GitHub repository, stops AWS CodeBuild from automatically rebuilding the
+         * source code every time a code change is pushed to the repository.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/DeleteWebhook">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void DeleteWebhookAsync(const Model::DeleteWebhookRequest& request, const DeleteWebhookResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Gets a list of build IDs, with each build ID representing a single
@@ -428,16 +569,14 @@ namespace Model
         virtual void StartBuildAsync(const Model::StartBuildRequest& request, const StartBuildResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Attempts to stop running a build.</p> <note> <p>Completed builds cannot be
-         * stopped.</p> </note><p><h3>See Also:</h3>   <a
+         * <p>Attempts to stop running a build.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/StopBuild">AWS
          * API Reference</a></p>
          */
         virtual Model::StopBuildOutcome StopBuild(const Model::StopBuildRequest& request) const;
 
         /**
-         * <p>Attempts to stop running a build.</p> <note> <p>Completed builds cannot be
-         * stopped.</p> </note><p><h3>See Also:</h3>   <a
+         * <p>Attempts to stop running a build.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/StopBuild">AWS
          * API Reference</a></p>
          *
@@ -446,8 +585,7 @@ namespace Model
         virtual Model::StopBuildOutcomeCallable StopBuildCallable(const Model::StopBuildRequest& request) const;
 
         /**
-         * <p>Attempts to stop running a build.</p> <note> <p>Completed builds cannot be
-         * stopped.</p> </note><p><h3>See Also:</h3>   <a
+         * <p>Attempts to stop running a build.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/StopBuild">AWS
          * API Reference</a></p>
          *
@@ -456,16 +594,14 @@ namespace Model
         virtual void StopBuildAsync(const Model::StopBuildRequest& request, const StopBuildResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Changes the settings of an existing build project.</p><p><h3>See Also:</h3>  
-         * <a
+         * <p>Changes the settings of a build project.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/UpdateProject">AWS
          * API Reference</a></p>
          */
         virtual Model::UpdateProjectOutcome UpdateProject(const Model::UpdateProjectRequest& request) const;
 
         /**
-         * <p>Changes the settings of an existing build project.</p><p><h3>See Also:</h3>  
-         * <a
+         * <p>Changes the settings of a build project.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/UpdateProject">AWS
          * API Reference</a></p>
          *
@@ -474,8 +610,7 @@ namespace Model
         virtual Model::UpdateProjectOutcomeCallable UpdateProjectCallable(const Model::UpdateProjectRequest& request) const;
 
         /**
-         * <p>Changes the settings of an existing build project.</p><p><h3>See Also:</h3>  
-         * <a
+         * <p>Changes the settings of a build project.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/UpdateProject">AWS
          * API Reference</a></p>
          *
@@ -485,13 +620,16 @@ namespace Model
 
 
     private:
-      void init(const Client::ClientConfiguration& clientConfiguration);
+      void init(const Aws::Client::ClientConfiguration& clientConfiguration);
 
         /**Async helpers**/
+        void BatchDeleteBuildsAsyncHelper(const Model::BatchDeleteBuildsRequest& request, const BatchDeleteBuildsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void BatchGetBuildsAsyncHelper(const Model::BatchGetBuildsRequest& request, const BatchGetBuildsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void BatchGetProjectsAsyncHelper(const Model::BatchGetProjectsRequest& request, const BatchGetProjectsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void CreateProjectAsyncHelper(const Model::CreateProjectRequest& request, const CreateProjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void CreateWebhookAsyncHelper(const Model::CreateWebhookRequest& request, const CreateWebhookResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteProjectAsyncHelper(const Model::DeleteProjectRequest& request, const DeleteProjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void DeleteWebhookAsyncHelper(const Model::DeleteWebhookRequest& request, const DeleteWebhookResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListBuildsAsyncHelper(const Model::ListBuildsRequest& request, const ListBuildsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListBuildsForProjectAsyncHelper(const Model::ListBuildsForProjectRequest& request, const ListBuildsForProjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListCuratedEnvironmentImagesAsyncHelper(const Model::ListCuratedEnvironmentImagesRequest& request, const ListCuratedEnvironmentImagesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -501,7 +639,7 @@ namespace Model
         void UpdateProjectAsyncHelper(const Model::UpdateProjectRequest& request, const UpdateProjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
       Aws::String m_uri;
-      std::shared_ptr<Utils::Threading::Executor> m_executor;
+      std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;
   };
 
 } // namespace CodeBuild

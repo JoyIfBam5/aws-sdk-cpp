@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/states/SFN_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,6 +40,7 @@ namespace Model
     LambdaFunctionScheduledEventDetails& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The Amazon Resource Name (ARN) of the scheduled lambda function.</p>
      */
@@ -51,7 +54,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the scheduled lambda function.</p>
      */
-    inline void SetResource(Aws::String&& value) { m_resourceHasBeenSet = true; m_resource = value; }
+    inline void SetResource(Aws::String&& value) { m_resourceHasBeenSet = true; m_resource = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the scheduled lambda function.</p>
@@ -66,12 +69,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the scheduled lambda function.</p>
      */
-    inline LambdaFunctionScheduledEventDetails& WithResource(Aws::String&& value) { SetResource(value); return *this;}
+    inline LambdaFunctionScheduledEventDetails& WithResource(Aws::String&& value) { SetResource(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the scheduled lambda function.</p>
      */
     inline LambdaFunctionScheduledEventDetails& WithResource(const char* value) { SetResource(value); return *this;}
+
 
     /**
      * <p>The JSON data input to the lambda function.</p>
@@ -86,7 +90,7 @@ namespace Model
     /**
      * <p>The JSON data input to the lambda function.</p>
      */
-    inline void SetInput(Aws::String&& value) { m_inputHasBeenSet = true; m_input = value; }
+    inline void SetInput(Aws::String&& value) { m_inputHasBeenSet = true; m_input = std::move(value); }
 
     /**
      * <p>The JSON data input to the lambda function.</p>
@@ -101,12 +105,13 @@ namespace Model
     /**
      * <p>The JSON data input to the lambda function.</p>
      */
-    inline LambdaFunctionScheduledEventDetails& WithInput(Aws::String&& value) { SetInput(value); return *this;}
+    inline LambdaFunctionScheduledEventDetails& WithInput(Aws::String&& value) { SetInput(std::move(value)); return *this;}
 
     /**
      * <p>The JSON data input to the lambda function.</p>
      */
     inline LambdaFunctionScheduledEventDetails& WithInput(const char* value) { SetInput(value); return *this;}
+
 
     /**
      * <p>The maximum allowed duration of the lambda function.</p>
@@ -124,10 +129,13 @@ namespace Model
     inline LambdaFunctionScheduledEventDetails& WithTimeoutInSeconds(long long value) { SetTimeoutInSeconds(value); return *this;}
 
   private:
+
     Aws::String m_resource;
     bool m_resourceHasBeenSet;
+
     Aws::String m_input;
     bool m_inputHasBeenSet;
+
     long long m_timeoutInSeconds;
     bool m_timeoutInSecondsHasBeenSet;
   };

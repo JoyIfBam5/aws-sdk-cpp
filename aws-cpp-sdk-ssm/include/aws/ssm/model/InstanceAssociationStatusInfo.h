@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/ssm/model/InstanceAssociationOutputUrl.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     InstanceAssociationStatusInfo& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The association ID.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The association ID.</p>
      */
-    inline void SetAssociationId(Aws::String&& value) { m_associationIdHasBeenSet = true; m_associationId = value; }
+    inline void SetAssociationId(Aws::String&& value) { m_associationIdHasBeenSet = true; m_associationId = std::move(value); }
 
     /**
      * <p>The association ID.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>The association ID.</p>
      */
-    inline InstanceAssociationStatusInfo& WithAssociationId(Aws::String&& value) { SetAssociationId(value); return *this;}
+    inline InstanceAssociationStatusInfo& WithAssociationId(Aws::String&& value) { SetAssociationId(std::move(value)); return *this;}
 
     /**
      * <p>The association ID.</p>
      */
     inline InstanceAssociationStatusInfo& WithAssociationId(const char* value) { SetAssociationId(value); return *this;}
+
 
     /**
      * <p>The name of the association.</p>
@@ -94,7 +98,7 @@ namespace Model
     /**
      * <p>The name of the association.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the association.</p>
@@ -109,12 +113,13 @@ namespace Model
     /**
      * <p>The name of the association.</p>
      */
-    inline InstanceAssociationStatusInfo& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline InstanceAssociationStatusInfo& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the association.</p>
      */
     inline InstanceAssociationStatusInfo& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The association document verions.</p>
@@ -129,7 +134,7 @@ namespace Model
     /**
      * <p>The association document verions.</p>
      */
-    inline void SetDocumentVersion(Aws::String&& value) { m_documentVersionHasBeenSet = true; m_documentVersion = value; }
+    inline void SetDocumentVersion(Aws::String&& value) { m_documentVersionHasBeenSet = true; m_documentVersion = std::move(value); }
 
     /**
      * <p>The association document verions.</p>
@@ -144,12 +149,49 @@ namespace Model
     /**
      * <p>The association document verions.</p>
      */
-    inline InstanceAssociationStatusInfo& WithDocumentVersion(Aws::String&& value) { SetDocumentVersion(value); return *this;}
+    inline InstanceAssociationStatusInfo& WithDocumentVersion(Aws::String&& value) { SetDocumentVersion(std::move(value)); return *this;}
 
     /**
      * <p>The association document verions.</p>
      */
     inline InstanceAssociationStatusInfo& WithDocumentVersion(const char* value) { SetDocumentVersion(value); return *this;}
+
+
+    /**
+     * <p>The version of the association applied to the instance.</p>
+     */
+    inline const Aws::String& GetAssociationVersion() const{ return m_associationVersion; }
+
+    /**
+     * <p>The version of the association applied to the instance.</p>
+     */
+    inline void SetAssociationVersion(const Aws::String& value) { m_associationVersionHasBeenSet = true; m_associationVersion = value; }
+
+    /**
+     * <p>The version of the association applied to the instance.</p>
+     */
+    inline void SetAssociationVersion(Aws::String&& value) { m_associationVersionHasBeenSet = true; m_associationVersion = std::move(value); }
+
+    /**
+     * <p>The version of the association applied to the instance.</p>
+     */
+    inline void SetAssociationVersion(const char* value) { m_associationVersionHasBeenSet = true; m_associationVersion.assign(value); }
+
+    /**
+     * <p>The version of the association applied to the instance.</p>
+     */
+    inline InstanceAssociationStatusInfo& WithAssociationVersion(const Aws::String& value) { SetAssociationVersion(value); return *this;}
+
+    /**
+     * <p>The version of the association applied to the instance.</p>
+     */
+    inline InstanceAssociationStatusInfo& WithAssociationVersion(Aws::String&& value) { SetAssociationVersion(std::move(value)); return *this;}
+
+    /**
+     * <p>The version of the association applied to the instance.</p>
+     */
+    inline InstanceAssociationStatusInfo& WithAssociationVersion(const char* value) { SetAssociationVersion(value); return *this;}
+
 
     /**
      * <p>The instance ID where the association was created.</p>
@@ -164,7 +206,7 @@ namespace Model
     /**
      * <p>The instance ID where the association was created.</p>
      */
-    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = value; }
+    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = std::move(value); }
 
     /**
      * <p>The instance ID where the association was created.</p>
@@ -179,12 +221,13 @@ namespace Model
     /**
      * <p>The instance ID where the association was created.</p>
      */
-    inline InstanceAssociationStatusInfo& WithInstanceId(Aws::String&& value) { SetInstanceId(value); return *this;}
+    inline InstanceAssociationStatusInfo& WithInstanceId(Aws::String&& value) { SetInstanceId(std::move(value)); return *this;}
 
     /**
      * <p>The instance ID where the association was created.</p>
      */
     inline InstanceAssociationStatusInfo& WithInstanceId(const char* value) { SetInstanceId(value); return *this;}
+
 
     /**
      * <p>The date the instance association executed. </p>
@@ -199,7 +242,7 @@ namespace Model
     /**
      * <p>The date the instance association executed. </p>
      */
-    inline void SetExecutionDate(Aws::Utils::DateTime&& value) { m_executionDateHasBeenSet = true; m_executionDate = value; }
+    inline void SetExecutionDate(Aws::Utils::DateTime&& value) { m_executionDateHasBeenSet = true; m_executionDate = std::move(value); }
 
     /**
      * <p>The date the instance association executed. </p>
@@ -209,7 +252,8 @@ namespace Model
     /**
      * <p>The date the instance association executed. </p>
      */
-    inline InstanceAssociationStatusInfo& WithExecutionDate(Aws::Utils::DateTime&& value) { SetExecutionDate(value); return *this;}
+    inline InstanceAssociationStatusInfo& WithExecutionDate(Aws::Utils::DateTime&& value) { SetExecutionDate(std::move(value)); return *this;}
+
 
     /**
      * <p>Status information about the instance association.</p>
@@ -224,7 +268,7 @@ namespace Model
     /**
      * <p>Status information about the instance association.</p>
      */
-    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>Status information about the instance association.</p>
@@ -239,12 +283,13 @@ namespace Model
     /**
      * <p>Status information about the instance association.</p>
      */
-    inline InstanceAssociationStatusInfo& WithStatus(Aws::String&& value) { SetStatus(value); return *this;}
+    inline InstanceAssociationStatusInfo& WithStatus(Aws::String&& value) { SetStatus(std::move(value)); return *this;}
 
     /**
      * <p>Status information about the instance association.</p>
      */
     inline InstanceAssociationStatusInfo& WithStatus(const char* value) { SetStatus(value); return *this;}
+
 
     /**
      * <p>Detailed status information about the instance association.</p>
@@ -259,7 +304,7 @@ namespace Model
     /**
      * <p>Detailed status information about the instance association.</p>
      */
-    inline void SetDetailedStatus(Aws::String&& value) { m_detailedStatusHasBeenSet = true; m_detailedStatus = value; }
+    inline void SetDetailedStatus(Aws::String&& value) { m_detailedStatusHasBeenSet = true; m_detailedStatus = std::move(value); }
 
     /**
      * <p>Detailed status information about the instance association.</p>
@@ -274,12 +319,13 @@ namespace Model
     /**
      * <p>Detailed status information about the instance association.</p>
      */
-    inline InstanceAssociationStatusInfo& WithDetailedStatus(Aws::String&& value) { SetDetailedStatus(value); return *this;}
+    inline InstanceAssociationStatusInfo& WithDetailedStatus(Aws::String&& value) { SetDetailedStatus(std::move(value)); return *this;}
 
     /**
      * <p>Detailed status information about the instance association.</p>
      */
     inline InstanceAssociationStatusInfo& WithDetailedStatus(const char* value) { SetDetailedStatus(value); return *this;}
+
 
     /**
      * <p>Summary information about association execution.</p>
@@ -294,7 +340,7 @@ namespace Model
     /**
      * <p>Summary information about association execution.</p>
      */
-    inline void SetExecutionSummary(Aws::String&& value) { m_executionSummaryHasBeenSet = true; m_executionSummary = value; }
+    inline void SetExecutionSummary(Aws::String&& value) { m_executionSummaryHasBeenSet = true; m_executionSummary = std::move(value); }
 
     /**
      * <p>Summary information about association execution.</p>
@@ -309,12 +355,13 @@ namespace Model
     /**
      * <p>Summary information about association execution.</p>
      */
-    inline InstanceAssociationStatusInfo& WithExecutionSummary(Aws::String&& value) { SetExecutionSummary(value); return *this;}
+    inline InstanceAssociationStatusInfo& WithExecutionSummary(Aws::String&& value) { SetExecutionSummary(std::move(value)); return *this;}
 
     /**
      * <p>Summary information about association execution.</p>
      */
     inline InstanceAssociationStatusInfo& WithExecutionSummary(const char* value) { SetExecutionSummary(value); return *this;}
+
 
     /**
      * <p>An error code returned by the request to create the association.</p>
@@ -329,7 +376,7 @@ namespace Model
     /**
      * <p>An error code returned by the request to create the association.</p>
      */
-    inline void SetErrorCode(Aws::String&& value) { m_errorCodeHasBeenSet = true; m_errorCode = value; }
+    inline void SetErrorCode(Aws::String&& value) { m_errorCodeHasBeenSet = true; m_errorCode = std::move(value); }
 
     /**
      * <p>An error code returned by the request to create the association.</p>
@@ -344,12 +391,13 @@ namespace Model
     /**
      * <p>An error code returned by the request to create the association.</p>
      */
-    inline InstanceAssociationStatusInfo& WithErrorCode(Aws::String&& value) { SetErrorCode(value); return *this;}
+    inline InstanceAssociationStatusInfo& WithErrorCode(Aws::String&& value) { SetErrorCode(std::move(value)); return *this;}
 
     /**
      * <p>An error code returned by the request to create the association.</p>
      */
     inline InstanceAssociationStatusInfo& WithErrorCode(const char* value) { SetErrorCode(value); return *this;}
+
 
     /**
      * <p>A URL for an Amazon S3 bucket where you want to store the results of this
@@ -367,7 +415,7 @@ namespace Model
      * <p>A URL for an Amazon S3 bucket where you want to store the results of this
      * request.</p>
      */
-    inline void SetOutputUrl(InstanceAssociationOutputUrl&& value) { m_outputUrlHasBeenSet = true; m_outputUrl = value; }
+    inline void SetOutputUrl(InstanceAssociationOutputUrl&& value) { m_outputUrlHasBeenSet = true; m_outputUrl = std::move(value); }
 
     /**
      * <p>A URL for an Amazon S3 bucket where you want to store the results of this
@@ -379,29 +427,81 @@ namespace Model
      * <p>A URL for an Amazon S3 bucket where you want to store the results of this
      * request.</p>
      */
-    inline InstanceAssociationStatusInfo& WithOutputUrl(InstanceAssociationOutputUrl&& value) { SetOutputUrl(value); return *this;}
+    inline InstanceAssociationStatusInfo& WithOutputUrl(InstanceAssociationOutputUrl&& value) { SetOutputUrl(std::move(value)); return *this;}
+
+
+    /**
+     * <p>The name of the association applied to the instance.</p>
+     */
+    inline const Aws::String& GetAssociationName() const{ return m_associationName; }
+
+    /**
+     * <p>The name of the association applied to the instance.</p>
+     */
+    inline void SetAssociationName(const Aws::String& value) { m_associationNameHasBeenSet = true; m_associationName = value; }
+
+    /**
+     * <p>The name of the association applied to the instance.</p>
+     */
+    inline void SetAssociationName(Aws::String&& value) { m_associationNameHasBeenSet = true; m_associationName = std::move(value); }
+
+    /**
+     * <p>The name of the association applied to the instance.</p>
+     */
+    inline void SetAssociationName(const char* value) { m_associationNameHasBeenSet = true; m_associationName.assign(value); }
+
+    /**
+     * <p>The name of the association applied to the instance.</p>
+     */
+    inline InstanceAssociationStatusInfo& WithAssociationName(const Aws::String& value) { SetAssociationName(value); return *this;}
+
+    /**
+     * <p>The name of the association applied to the instance.</p>
+     */
+    inline InstanceAssociationStatusInfo& WithAssociationName(Aws::String&& value) { SetAssociationName(std::move(value)); return *this;}
+
+    /**
+     * <p>The name of the association applied to the instance.</p>
+     */
+    inline InstanceAssociationStatusInfo& WithAssociationName(const char* value) { SetAssociationName(value); return *this;}
 
   private:
+
     Aws::String m_associationId;
     bool m_associationIdHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_documentVersion;
     bool m_documentVersionHasBeenSet;
+
+    Aws::String m_associationVersion;
+    bool m_associationVersionHasBeenSet;
+
     Aws::String m_instanceId;
     bool m_instanceIdHasBeenSet;
+
     Aws::Utils::DateTime m_executionDate;
     bool m_executionDateHasBeenSet;
+
     Aws::String m_status;
     bool m_statusHasBeenSet;
+
     Aws::String m_detailedStatus;
     bool m_detailedStatusHasBeenSet;
+
     Aws::String m_executionSummary;
     bool m_executionSummaryHasBeenSet;
+
     Aws::String m_errorCode;
     bool m_errorCodeHasBeenSet;
+
     InstanceAssociationOutputUrl m_outputUrl;
     bool m_outputUrlHasBeenSet;
+
+    Aws::String m_associationName;
+    bool m_associationNameHasBeenSet;
   };
 
 } // namespace Model

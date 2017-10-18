@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kms/KMS_EXPORTS.h>
 #include <aws/core/utils/Array.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,35 +38,37 @@ namespace Model
   {
   public:
     GenerateRandomResult();
-    GenerateRandomResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GenerateRandomResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GenerateRandomResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GenerateRandomResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>The unpredictable byte string.</p>
+     * <p>The random byte string.</p>
      */
     inline const Aws::Utils::ByteBuffer& GetPlaintext() const{ return m_plaintext; }
 
     /**
-     * <p>The unpredictable byte string.</p>
+     * <p>The random byte string.</p>
      */
     inline void SetPlaintext(const Aws::Utils::ByteBuffer& value) { m_plaintext = value; }
 
     /**
-     * <p>The unpredictable byte string.</p>
+     * <p>The random byte string.</p>
      */
-    inline void SetPlaintext(Aws::Utils::ByteBuffer&& value) { m_plaintext = value; }
+    inline void SetPlaintext(Aws::Utils::ByteBuffer&& value) { m_plaintext = std::move(value); }
 
     /**
-     * <p>The unpredictable byte string.</p>
+     * <p>The random byte string.</p>
      */
     inline GenerateRandomResult& WithPlaintext(const Aws::Utils::ByteBuffer& value) { SetPlaintext(value); return *this;}
 
     /**
-     * <p>The unpredictable byte string.</p>
+     * <p>The random byte string.</p>
      */
-    inline GenerateRandomResult& WithPlaintext(Aws::Utils::ByteBuffer&& value) { SetPlaintext(value); return *this;}
+    inline GenerateRandomResult& WithPlaintext(Aws::Utils::ByteBuffer&& value) { SetPlaintext(std::move(value)); return *this;}
 
   private:
+
     Aws::Utils::ByteBuffer m_plaintext;
   };
 

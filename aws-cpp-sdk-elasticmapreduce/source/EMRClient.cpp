@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/core/utils/Outcome.h>
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
@@ -26,6 +27,7 @@
 #include <aws/elasticmapreduce/EMRClient.h>
 #include <aws/elasticmapreduce/EMREndpoint.h>
 #include <aws/elasticmapreduce/EMRErrorMarshaller.h>
+#include <aws/elasticmapreduce/model/AddInstanceFleetRequest.h>
 #include <aws/elasticmapreduce/model/AddInstanceGroupsRequest.h>
 #include <aws/elasticmapreduce/model/AddJobFlowStepsRequest.h>
 #include <aws/elasticmapreduce/model/AddTagsRequest.h>
@@ -37,10 +39,12 @@
 #include <aws/elasticmapreduce/model/DescribeStepRequest.h>
 #include <aws/elasticmapreduce/model/ListBootstrapActionsRequest.h>
 #include <aws/elasticmapreduce/model/ListClustersRequest.h>
+#include <aws/elasticmapreduce/model/ListInstanceFleetsRequest.h>
 #include <aws/elasticmapreduce/model/ListInstanceGroupsRequest.h>
 #include <aws/elasticmapreduce/model/ListInstancesRequest.h>
 #include <aws/elasticmapreduce/model/ListSecurityConfigurationsRequest.h>
 #include <aws/elasticmapreduce/model/ListStepsRequest.h>
+#include <aws/elasticmapreduce/model/ModifyInstanceFleetRequest.h>
 #include <aws/elasticmapreduce/model/ModifyInstanceGroupsRequest.h>
 #include <aws/elasticmapreduce/model/PutAutoScalingPolicyRequest.h>
 #include <aws/elasticmapreduce/model/RemoveAutoScalingPolicyRequest.h>
@@ -114,12 +118,48 @@ void EMRClient::init(const ClientConfiguration& config)
   m_uri = ss.str();
 }
 
+AddInstanceFleetOutcome EMRClient::AddInstanceFleet(const AddInstanceFleetRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return AddInstanceFleetOutcome(AddInstanceFleetResult(outcome.GetResult()));
+  }
+  else
+  {
+    return AddInstanceFleetOutcome(outcome.GetError());
+  }
+}
+
+AddInstanceFleetOutcomeCallable EMRClient::AddInstanceFleetCallable(const AddInstanceFleetRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< AddInstanceFleetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddInstanceFleet(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void EMRClient::AddInstanceFleetAsync(const AddInstanceFleetRequest& request, const AddInstanceFleetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->AddInstanceFleetAsyncHelper( request, handler, context ); } );
+}
+
+void EMRClient::AddInstanceFleetAsyncHelper(const AddInstanceFleetRequest& request, const AddInstanceFleetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, AddInstanceFleet(request), context);
+}
+
 AddInstanceGroupsOutcome EMRClient::AddInstanceGroups(const AddInstanceGroupsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return AddInstanceGroupsOutcome(AddInstanceGroupsResult(outcome.GetResult()));
@@ -151,9 +191,10 @@ void EMRClient::AddInstanceGroupsAsyncHelper(const AddInstanceGroupsRequest& req
 AddJobFlowStepsOutcome EMRClient::AddJobFlowSteps(const AddJobFlowStepsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return AddJobFlowStepsOutcome(AddJobFlowStepsResult(outcome.GetResult()));
@@ -185,9 +226,10 @@ void EMRClient::AddJobFlowStepsAsyncHelper(const AddJobFlowStepsRequest& request
 AddTagsOutcome EMRClient::AddTags(const AddTagsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return AddTagsOutcome(AddTagsResult(outcome.GetResult()));
@@ -219,9 +261,10 @@ void EMRClient::AddTagsAsyncHelper(const AddTagsRequest& request, const AddTagsR
 CancelStepsOutcome EMRClient::CancelSteps(const CancelStepsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return CancelStepsOutcome(CancelStepsResult(outcome.GetResult()));
@@ -253,9 +296,10 @@ void EMRClient::CancelStepsAsyncHelper(const CancelStepsRequest& request, const 
 CreateSecurityConfigurationOutcome EMRClient::CreateSecurityConfiguration(const CreateSecurityConfigurationRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return CreateSecurityConfigurationOutcome(CreateSecurityConfigurationResult(outcome.GetResult()));
@@ -287,9 +331,10 @@ void EMRClient::CreateSecurityConfigurationAsyncHelper(const CreateSecurityConfi
 DeleteSecurityConfigurationOutcome EMRClient::DeleteSecurityConfiguration(const DeleteSecurityConfigurationRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DeleteSecurityConfigurationOutcome(DeleteSecurityConfigurationResult(outcome.GetResult()));
@@ -321,9 +366,10 @@ void EMRClient::DeleteSecurityConfigurationAsyncHelper(const DeleteSecurityConfi
 DescribeClusterOutcome EMRClient::DescribeCluster(const DescribeClusterRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeClusterOutcome(DescribeClusterResult(outcome.GetResult()));
@@ -355,9 +401,10 @@ void EMRClient::DescribeClusterAsyncHelper(const DescribeClusterRequest& request
 DescribeSecurityConfigurationOutcome EMRClient::DescribeSecurityConfiguration(const DescribeSecurityConfigurationRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeSecurityConfigurationOutcome(DescribeSecurityConfigurationResult(outcome.GetResult()));
@@ -389,9 +436,10 @@ void EMRClient::DescribeSecurityConfigurationAsyncHelper(const DescribeSecurityC
 DescribeStepOutcome EMRClient::DescribeStep(const DescribeStepRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeStepOutcome(DescribeStepResult(outcome.GetResult()));
@@ -423,9 +471,10 @@ void EMRClient::DescribeStepAsyncHelper(const DescribeStepRequest& request, cons
 ListBootstrapActionsOutcome EMRClient::ListBootstrapActions(const ListBootstrapActionsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ListBootstrapActionsOutcome(ListBootstrapActionsResult(outcome.GetResult()));
@@ -457,9 +506,10 @@ void EMRClient::ListBootstrapActionsAsyncHelper(const ListBootstrapActionsReques
 ListClustersOutcome EMRClient::ListClusters(const ListClustersRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ListClustersOutcome(ListClustersResult(outcome.GetResult()));
@@ -488,12 +538,48 @@ void EMRClient::ListClustersAsyncHelper(const ListClustersRequest& request, cons
   handler(this, request, ListClusters(request), context);
 }
 
+ListInstanceFleetsOutcome EMRClient::ListInstanceFleets(const ListInstanceFleetsRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return ListInstanceFleetsOutcome(ListInstanceFleetsResult(outcome.GetResult()));
+  }
+  else
+  {
+    return ListInstanceFleetsOutcome(outcome.GetError());
+  }
+}
+
+ListInstanceFleetsOutcomeCallable EMRClient::ListInstanceFleetsCallable(const ListInstanceFleetsRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< ListInstanceFleetsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListInstanceFleets(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void EMRClient::ListInstanceFleetsAsync(const ListInstanceFleetsRequest& request, const ListInstanceFleetsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->ListInstanceFleetsAsyncHelper( request, handler, context ); } );
+}
+
+void EMRClient::ListInstanceFleetsAsyncHelper(const ListInstanceFleetsRequest& request, const ListInstanceFleetsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, ListInstanceFleets(request), context);
+}
+
 ListInstanceGroupsOutcome EMRClient::ListInstanceGroups(const ListInstanceGroupsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ListInstanceGroupsOutcome(ListInstanceGroupsResult(outcome.GetResult()));
@@ -525,9 +611,10 @@ void EMRClient::ListInstanceGroupsAsyncHelper(const ListInstanceGroupsRequest& r
 ListInstancesOutcome EMRClient::ListInstances(const ListInstancesRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ListInstancesOutcome(ListInstancesResult(outcome.GetResult()));
@@ -559,9 +646,10 @@ void EMRClient::ListInstancesAsyncHelper(const ListInstancesRequest& request, co
 ListSecurityConfigurationsOutcome EMRClient::ListSecurityConfigurations(const ListSecurityConfigurationsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ListSecurityConfigurationsOutcome(ListSecurityConfigurationsResult(outcome.GetResult()));
@@ -593,9 +681,10 @@ void EMRClient::ListSecurityConfigurationsAsyncHelper(const ListSecurityConfigur
 ListStepsOutcome EMRClient::ListSteps(const ListStepsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ListStepsOutcome(ListStepsResult(outcome.GetResult()));
@@ -624,12 +713,48 @@ void EMRClient::ListStepsAsyncHelper(const ListStepsRequest& request, const List
   handler(this, request, ListSteps(request), context);
 }
 
+ModifyInstanceFleetOutcome EMRClient::ModifyInstanceFleet(const ModifyInstanceFleetRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return ModifyInstanceFleetOutcome(NoResult());
+  }
+  else
+  {
+    return ModifyInstanceFleetOutcome(outcome.GetError());
+  }
+}
+
+ModifyInstanceFleetOutcomeCallable EMRClient::ModifyInstanceFleetCallable(const ModifyInstanceFleetRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< ModifyInstanceFleetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ModifyInstanceFleet(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void EMRClient::ModifyInstanceFleetAsync(const ModifyInstanceFleetRequest& request, const ModifyInstanceFleetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->ModifyInstanceFleetAsyncHelper( request, handler, context ); } );
+}
+
+void EMRClient::ModifyInstanceFleetAsyncHelper(const ModifyInstanceFleetRequest& request, const ModifyInstanceFleetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, ModifyInstanceFleet(request), context);
+}
+
 ModifyInstanceGroupsOutcome EMRClient::ModifyInstanceGroups(const ModifyInstanceGroupsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ModifyInstanceGroupsOutcome(NoResult());
@@ -661,9 +786,10 @@ void EMRClient::ModifyInstanceGroupsAsyncHelper(const ModifyInstanceGroupsReques
 PutAutoScalingPolicyOutcome EMRClient::PutAutoScalingPolicy(const PutAutoScalingPolicyRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return PutAutoScalingPolicyOutcome(PutAutoScalingPolicyResult(outcome.GetResult()));
@@ -695,9 +821,10 @@ void EMRClient::PutAutoScalingPolicyAsyncHelper(const PutAutoScalingPolicyReques
 RemoveAutoScalingPolicyOutcome EMRClient::RemoveAutoScalingPolicy(const RemoveAutoScalingPolicyRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return RemoveAutoScalingPolicyOutcome(RemoveAutoScalingPolicyResult(outcome.GetResult()));
@@ -729,9 +856,10 @@ void EMRClient::RemoveAutoScalingPolicyAsyncHelper(const RemoveAutoScalingPolicy
 RemoveTagsOutcome EMRClient::RemoveTags(const RemoveTagsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return RemoveTagsOutcome(RemoveTagsResult(outcome.GetResult()));
@@ -763,9 +891,10 @@ void EMRClient::RemoveTagsAsyncHelper(const RemoveTagsRequest& request, const Re
 RunJobFlowOutcome EMRClient::RunJobFlow(const RunJobFlowRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return RunJobFlowOutcome(RunJobFlowResult(outcome.GetResult()));
@@ -797,9 +926,10 @@ void EMRClient::RunJobFlowAsyncHelper(const RunJobFlowRequest& request, const Ru
 SetTerminationProtectionOutcome EMRClient::SetTerminationProtection(const SetTerminationProtectionRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return SetTerminationProtectionOutcome(NoResult());
@@ -831,9 +961,10 @@ void EMRClient::SetTerminationProtectionAsyncHelper(const SetTerminationProtecti
 SetVisibleToAllUsersOutcome EMRClient::SetVisibleToAllUsers(const SetVisibleToAllUsersRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return SetVisibleToAllUsersOutcome(NoResult());
@@ -865,9 +996,10 @@ void EMRClient::SetVisibleToAllUsersAsyncHelper(const SetVisibleToAllUsersReques
 TerminateJobFlowsOutcome EMRClient::TerminateJobFlows(const TerminateJobFlowsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return TerminateJobFlowsOutcome(NoResult());

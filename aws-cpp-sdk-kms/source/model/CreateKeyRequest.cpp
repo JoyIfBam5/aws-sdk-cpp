@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/kms/model/CreateKeyRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -29,7 +30,8 @@ CreateKeyRequest::CreateKeyRequest() :
     m_origin(OriginType::NOT_SET),
     m_originHasBeenSet(false),
     m_bypassPolicyLockoutSafetyCheck(false),
-    m_bypassPolicyLockoutSafetyCheckHasBeenSet(false)
+    m_bypassPolicyLockoutSafetyCheckHasBeenSet(false),
+    m_tagsHasBeenSet(false)
 {
 }
 
@@ -65,6 +67,17 @@ Aws::String CreateKeyRequest::SerializePayload() const
 
   }
 
+  if(m_tagsHasBeenSet)
+  {
+   Array<JsonValue> tagsJsonList(m_tags.size());
+   for(unsigned tagsIndex = 0; tagsIndex < tagsJsonList.GetLength(); ++tagsIndex)
+   {
+     tagsJsonList[tagsIndex].AsObject(m_tags[tagsIndex].Jsonize());
+   }
+   payload.WithArray("Tags", std::move(tagsJsonList));
+
+  }
+
   return payload.WriteReadable();
 }
 
@@ -75,6 +88,7 @@ Aws::Http::HeaderValueCollection CreateKeyRequest::GetRequestSpecificHeaders() c
   return headers;
 
 }
+
 
 
 

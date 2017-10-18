@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/model/ByteMatchSet.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     CreateByteMatchSetResult();
-    CreateByteMatchSetResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateByteMatchSetResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateByteMatchSetResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateByteMatchSetResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A <a>ByteMatchSet</a> that contains no <code>ByteMatchTuple</code>
@@ -56,7 +59,7 @@ namespace Model
      * <p>A <a>ByteMatchSet</a> that contains no <code>ByteMatchTuple</code>
      * objects.</p>
      */
-    inline void SetByteMatchSet(ByteMatchSet&& value) { m_byteMatchSet = value; }
+    inline void SetByteMatchSet(ByteMatchSet&& value) { m_byteMatchSet = std::move(value); }
 
     /**
      * <p>A <a>ByteMatchSet</a> that contains no <code>ByteMatchTuple</code>
@@ -68,7 +71,8 @@ namespace Model
      * <p>A <a>ByteMatchSet</a> that contains no <code>ByteMatchTuple</code>
      * objects.</p>
      */
-    inline CreateByteMatchSetResult& WithByteMatchSet(ByteMatchSet&& value) { SetByteMatchSet(value); return *this;}
+    inline CreateByteMatchSetResult& WithByteMatchSet(ByteMatchSet&& value) { SetByteMatchSet(std::move(value)); return *this;}
+
 
     /**
      * <p>The <code>ChangeToken</code> that you used to submit the
@@ -92,7 +96,7 @@ namespace Model
      * the status of the request. For more information, see
      * <a>GetChangeTokenStatus</a>.</p>
      */
-    inline void SetChangeToken(Aws::String&& value) { m_changeToken = value; }
+    inline void SetChangeToken(Aws::String&& value) { m_changeToken = std::move(value); }
 
     /**
      * <p>The <code>ChangeToken</code> that you used to submit the
@@ -116,7 +120,7 @@ namespace Model
      * the status of the request. For more information, see
      * <a>GetChangeTokenStatus</a>.</p>
      */
-    inline CreateByteMatchSetResult& WithChangeToken(Aws::String&& value) { SetChangeToken(value); return *this;}
+    inline CreateByteMatchSetResult& WithChangeToken(Aws::String&& value) { SetChangeToken(std::move(value)); return *this;}
 
     /**
      * <p>The <code>ChangeToken</code> that you used to submit the
@@ -127,7 +131,9 @@ namespace Model
     inline CreateByteMatchSetResult& WithChangeToken(const char* value) { SetChangeToken(value); return *this;}
 
   private:
+
     ByteMatchSet m_byteMatchSet;
+
     Aws::String m_changeToken;
   };
 

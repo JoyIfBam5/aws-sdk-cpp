@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elastictranscoder/ElasticTranscoder_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -19,6 +20,7 @@
 #include <aws/elastictranscoder/model/TimeSpan.h>
 #include <aws/elastictranscoder/model/InputCaptions.h>
 #include <aws/elastictranscoder/model/DetectedProperties.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     JobInput(const Aws::Utils::Json::JsonValue& jsonValue);
     JobInput& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p> The name of the file to transcode. Elsewhere in the body of the JSON block
@@ -79,7 +82,7 @@ namespace Model
      * If the file isn't in the specified bucket, Elastic Transcoder returns an
      * error.</p>
      */
-    inline void SetKey(Aws::String&& value) { m_keyHasBeenSet = true; m_key = value; }
+    inline void SetKey(Aws::String&& value) { m_keyHasBeenSet = true; m_key = std::move(value); }
 
     /**
      * <p> The name of the file to transcode. Elsewhere in the body of the JSON block
@@ -112,7 +115,7 @@ namespace Model
      * If the file isn't in the specified bucket, Elastic Transcoder returns an
      * error.</p>
      */
-    inline JobInput& WithKey(Aws::String&& value) { SetKey(value); return *this;}
+    inline JobInput& WithKey(Aws::String&& value) { SetKey(std::move(value)); return *this;}
 
     /**
      * <p> The name of the file to transcode. Elsewhere in the body of the JSON block
@@ -124,6 +127,7 @@ namespace Model
      * error.</p>
      */
     inline JobInput& WithKey(const char* value) { SetKey(value); return *this;}
+
 
     /**
      * <p>The frame rate of the input file. If you want Elastic Transcoder to
@@ -159,7 +163,7 @@ namespace Model
      * <code>auto</code>, Elastic Transcoder disables automatic detection of the frame
      * rate.</p>
      */
-    inline void SetFrameRate(Aws::String&& value) { m_frameRateHasBeenSet = true; m_frameRate = value; }
+    inline void SetFrameRate(Aws::String&& value) { m_frameRateHasBeenSet = true; m_frameRate = std::move(value); }
 
     /**
      * <p>The frame rate of the input file. If you want Elastic Transcoder to
@@ -195,7 +199,7 @@ namespace Model
      * <code>auto</code>, Elastic Transcoder disables automatic detection of the frame
      * rate.</p>
      */
-    inline JobInput& WithFrameRate(Aws::String&& value) { SetFrameRate(value); return *this;}
+    inline JobInput& WithFrameRate(Aws::String&& value) { SetFrameRate(std::move(value)); return *this;}
 
     /**
      * <p>The frame rate of the input file. If you want Elastic Transcoder to
@@ -208,6 +212,7 @@ namespace Model
      * rate.</p>
      */
     inline JobInput& WithFrameRate(const char* value) { SetFrameRate(value); return *this;}
+
 
     /**
      * <p>This value must be <code>auto</code>, which causes Elastic Transcoder to
@@ -225,7 +230,7 @@ namespace Model
      * <p>This value must be <code>auto</code>, which causes Elastic Transcoder to
      * automatically detect the resolution of the input file.</p>
      */
-    inline void SetResolution(Aws::String&& value) { m_resolutionHasBeenSet = true; m_resolution = value; }
+    inline void SetResolution(Aws::String&& value) { m_resolutionHasBeenSet = true; m_resolution = std::move(value); }
 
     /**
      * <p>This value must be <code>auto</code>, which causes Elastic Transcoder to
@@ -243,13 +248,14 @@ namespace Model
      * <p>This value must be <code>auto</code>, which causes Elastic Transcoder to
      * automatically detect the resolution of the input file.</p>
      */
-    inline JobInput& WithResolution(Aws::String&& value) { SetResolution(value); return *this;}
+    inline JobInput& WithResolution(Aws::String&& value) { SetResolution(std::move(value)); return *this;}
 
     /**
      * <p>This value must be <code>auto</code>, which causes Elastic Transcoder to
      * automatically detect the resolution of the input file.</p>
      */
     inline JobInput& WithResolution(const char* value) { SetResolution(value); return *this;}
+
 
     /**
      * <p> The aspect ratio of the input file. If you want Elastic Transcoder to
@@ -282,7 +288,7 @@ namespace Model
      * <code>auto</code>, Elastic Transcoder disables automatic detection of the aspect
      * ratio. </p>
      */
-    inline void SetAspectRatio(Aws::String&& value) { m_aspectRatioHasBeenSet = true; m_aspectRatio = value; }
+    inline void SetAspectRatio(Aws::String&& value) { m_aspectRatioHasBeenSet = true; m_aspectRatio = std::move(value); }
 
     /**
      * <p> The aspect ratio of the input file. If you want Elastic Transcoder to
@@ -315,7 +321,7 @@ namespace Model
      * <code>auto</code>, Elastic Transcoder disables automatic detection of the aspect
      * ratio. </p>
      */
-    inline JobInput& WithAspectRatio(Aws::String&& value) { SetAspectRatio(value); return *this;}
+    inline JobInput& WithAspectRatio(Aws::String&& value) { SetAspectRatio(std::move(value)); return *this;}
 
     /**
      * <p> The aspect ratio of the input file. If you want Elastic Transcoder to
@@ -327,6 +333,7 @@ namespace Model
      * ratio. </p>
      */
     inline JobInput& WithAspectRatio(const char* value) { SetAspectRatio(value); return *this;}
+
 
     /**
      * <p>Whether the input file is interlaced. If you want Elastic Transcoder to
@@ -356,7 +363,7 @@ namespace Model
      * </p> <p>If you specify a value other than <code>auto</code>, Elastic Transcoder
      * disables automatic detection of interlacing.</p>
      */
-    inline void SetInterlaced(Aws::String&& value) { m_interlacedHasBeenSet = true; m_interlaced = value; }
+    inline void SetInterlaced(Aws::String&& value) { m_interlacedHasBeenSet = true; m_interlaced = std::move(value); }
 
     /**
      * <p>Whether the input file is interlaced. If you want Elastic Transcoder to
@@ -386,7 +393,7 @@ namespace Model
      * </p> <p>If you specify a value other than <code>auto</code>, Elastic Transcoder
      * disables automatic detection of interlacing.</p>
      */
-    inline JobInput& WithInterlaced(Aws::String&& value) { SetInterlaced(value); return *this;}
+    inline JobInput& WithInterlaced(Aws::String&& value) { SetInterlaced(std::move(value)); return *this;}
 
     /**
      * <p>Whether the input file is interlaced. If you want Elastic Transcoder to
@@ -397,6 +404,7 @@ namespace Model
      * disables automatic detection of interlacing.</p>
      */
     inline JobInput& WithInterlaced(const char* value) { SetInterlaced(value); return *this;}
+
 
     /**
      * <p>The container type for the input file. If you want Elastic Transcoder to
@@ -435,7 +443,7 @@ namespace Model
      * <code>mxf</code>, <code>ogg</code>, <code>vob</code>, <code>wav</code>,
      * <code>webm</code> </p>
      */
-    inline void SetContainer(Aws::String&& value) { m_containerHasBeenSet = true; m_container = value; }
+    inline void SetContainer(Aws::String&& value) { m_containerHasBeenSet = true; m_container = std::move(value); }
 
     /**
      * <p>The container type for the input file. If you want Elastic Transcoder to
@@ -474,7 +482,7 @@ namespace Model
      * <code>mxf</code>, <code>ogg</code>, <code>vob</code>, <code>wav</code>,
      * <code>webm</code> </p>
      */
-    inline JobInput& WithContainer(Aws::String&& value) { SetContainer(value); return *this;}
+    inline JobInput& WithContainer(Aws::String&& value) { SetContainer(std::move(value)); return *this;}
 
     /**
      * <p>The container type for the input file. If you want Elastic Transcoder to
@@ -488,6 +496,7 @@ namespace Model
      * <code>webm</code> </p>
      */
     inline JobInput& WithContainer(const char* value) { SetContainer(value); return *this;}
+
 
     /**
      * <p>The encryption settings, if any, that are used for decrypting your input
@@ -508,7 +517,7 @@ namespace Model
      * files. If your input file is encrypted, you must specify the mode that Elastic
      * Transcoder uses to decrypt your file.</p>
      */
-    inline void SetEncryption(Encryption&& value) { m_encryptionHasBeenSet = true; m_encryption = value; }
+    inline void SetEncryption(Encryption&& value) { m_encryptionHasBeenSet = true; m_encryption = std::move(value); }
 
     /**
      * <p>The encryption settings, if any, that are used for decrypting your input
@@ -522,7 +531,8 @@ namespace Model
      * files. If your input file is encrypted, you must specify the mode that Elastic
      * Transcoder uses to decrypt your file.</p>
      */
-    inline JobInput& WithEncryption(Encryption&& value) { SetEncryption(value); return *this;}
+    inline JobInput& WithEncryption(Encryption&& value) { SetEncryption(std::move(value)); return *this;}
+
 
     /**
      * <p>Settings for clipping an input. Each input can have different clip
@@ -540,7 +550,7 @@ namespace Model
      * <p>Settings for clipping an input. Each input can have different clip
      * settings.</p>
      */
-    inline void SetTimeSpan(TimeSpan&& value) { m_timeSpanHasBeenSet = true; m_timeSpan = value; }
+    inline void SetTimeSpan(TimeSpan&& value) { m_timeSpanHasBeenSet = true; m_timeSpan = std::move(value); }
 
     /**
      * <p>Settings for clipping an input. Each input can have different clip
@@ -552,7 +562,8 @@ namespace Model
      * <p>Settings for clipping an input. Each input can have different clip
      * settings.</p>
      */
-    inline JobInput& WithTimeSpan(TimeSpan&& value) { SetTimeSpan(value); return *this;}
+    inline JobInput& WithTimeSpan(TimeSpan&& value) { SetTimeSpan(std::move(value)); return *this;}
+
 
     /**
      * <p>You can configure Elastic Transcoder to transcode captions, or subtitles,
@@ -657,7 +668,7 @@ namespace Model
      * files, see the Extensible Metadata Platform and Sidecar file Wikipedia
      * pages.</p>
      */
-    inline void SetInputCaptions(InputCaptions&& value) { m_inputCaptionsHasBeenSet = true; m_inputCaptions = value; }
+    inline void SetInputCaptions(InputCaptions&& value) { m_inputCaptionsHasBeenSet = true; m_inputCaptions = std::move(value); }
 
     /**
      * <p>You can configure Elastic Transcoder to transcode captions, or subtitles,
@@ -727,7 +738,8 @@ namespace Model
      * files, see the Extensible Metadata Platform and Sidecar file Wikipedia
      * pages.</p>
      */
-    inline JobInput& WithInputCaptions(InputCaptions&& value) { SetInputCaptions(value); return *this;}
+    inline JobInput& WithInputCaptions(InputCaptions&& value) { SetInputCaptions(std::move(value)); return *this;}
+
 
     /**
      * <p>The detected properties of the input file.</p>
@@ -742,7 +754,7 @@ namespace Model
     /**
      * <p>The detected properties of the input file.</p>
      */
-    inline void SetDetectedProperties(DetectedProperties&& value) { m_detectedPropertiesHasBeenSet = true; m_detectedProperties = value; }
+    inline void SetDetectedProperties(DetectedProperties&& value) { m_detectedPropertiesHasBeenSet = true; m_detectedProperties = std::move(value); }
 
     /**
      * <p>The detected properties of the input file.</p>
@@ -752,27 +764,37 @@ namespace Model
     /**
      * <p>The detected properties of the input file.</p>
      */
-    inline JobInput& WithDetectedProperties(DetectedProperties&& value) { SetDetectedProperties(value); return *this;}
+    inline JobInput& WithDetectedProperties(DetectedProperties&& value) { SetDetectedProperties(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_key;
     bool m_keyHasBeenSet;
+
     Aws::String m_frameRate;
     bool m_frameRateHasBeenSet;
+
     Aws::String m_resolution;
     bool m_resolutionHasBeenSet;
+
     Aws::String m_aspectRatio;
     bool m_aspectRatioHasBeenSet;
+
     Aws::String m_interlaced;
     bool m_interlacedHasBeenSet;
+
     Aws::String m_container;
     bool m_containerHasBeenSet;
+
     Encryption m_encryption;
     bool m_encryptionHasBeenSet;
+
     TimeSpan m_timeSpan;
     bool m_timeSpanHasBeenSet;
+
     InputCaptions m_inputCaptions;
     bool m_inputCaptionsHasBeenSet;
+
     DetectedProperties m_detectedProperties;
     bool m_detectedPropertiesHasBeenSet;
   };

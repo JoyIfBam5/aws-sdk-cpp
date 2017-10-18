@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/ec2/EC2Request.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ec2/model/ReservedInstanceLimitPrice.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,7 +37,71 @@ namespace Model
   {
   public:
     PurchaseReservedInstancesOfferingRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "PurchaseReservedInstancesOffering"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
+
+    /**
+     * <p>The number of Reserved Instances to purchase.</p>
+     */
+    inline int GetInstanceCount() const{ return m_instanceCount; }
+
+    /**
+     * <p>The number of Reserved Instances to purchase.</p>
+     */
+    inline void SetInstanceCount(int value) { m_instanceCountHasBeenSet = true; m_instanceCount = value; }
+
+    /**
+     * <p>The number of Reserved Instances to purchase.</p>
+     */
+    inline PurchaseReservedInstancesOfferingRequest& WithInstanceCount(int value) { SetInstanceCount(value); return *this;}
+
+
+    /**
+     * <p>The ID of the Reserved Instance offering to purchase.</p>
+     */
+    inline const Aws::String& GetReservedInstancesOfferingId() const{ return m_reservedInstancesOfferingId; }
+
+    /**
+     * <p>The ID of the Reserved Instance offering to purchase.</p>
+     */
+    inline void SetReservedInstancesOfferingId(const Aws::String& value) { m_reservedInstancesOfferingIdHasBeenSet = true; m_reservedInstancesOfferingId = value; }
+
+    /**
+     * <p>The ID of the Reserved Instance offering to purchase.</p>
+     */
+    inline void SetReservedInstancesOfferingId(Aws::String&& value) { m_reservedInstancesOfferingIdHasBeenSet = true; m_reservedInstancesOfferingId = std::move(value); }
+
+    /**
+     * <p>The ID of the Reserved Instance offering to purchase.</p>
+     */
+    inline void SetReservedInstancesOfferingId(const char* value) { m_reservedInstancesOfferingIdHasBeenSet = true; m_reservedInstancesOfferingId.assign(value); }
+
+    /**
+     * <p>The ID of the Reserved Instance offering to purchase.</p>
+     */
+    inline PurchaseReservedInstancesOfferingRequest& WithReservedInstancesOfferingId(const Aws::String& value) { SetReservedInstancesOfferingId(value); return *this;}
+
+    /**
+     * <p>The ID of the Reserved Instance offering to purchase.</p>
+     */
+    inline PurchaseReservedInstancesOfferingRequest& WithReservedInstancesOfferingId(Aws::String&& value) { SetReservedInstancesOfferingId(std::move(value)); return *this;}
+
+    /**
+     * <p>The ID of the Reserved Instance offering to purchase.</p>
+     */
+    inline PurchaseReservedInstancesOfferingRequest& WithReservedInstancesOfferingId(const char* value) { SetReservedInstancesOfferingId(value); return *this;}
+
 
     /**
      * <p>Checks whether you have the required permissions for the action, without
@@ -61,55 +127,6 @@ namespace Model
      */
     inline PurchaseReservedInstancesOfferingRequest& WithDryRun(bool value) { SetDryRun(value); return *this;}
 
-    /**
-     * <p>The ID of the Reserved Instance offering to purchase.</p>
-     */
-    inline const Aws::String& GetReservedInstancesOfferingId() const{ return m_reservedInstancesOfferingId; }
-
-    /**
-     * <p>The ID of the Reserved Instance offering to purchase.</p>
-     */
-    inline void SetReservedInstancesOfferingId(const Aws::String& value) { m_reservedInstancesOfferingIdHasBeenSet = true; m_reservedInstancesOfferingId = value; }
-
-    /**
-     * <p>The ID of the Reserved Instance offering to purchase.</p>
-     */
-    inline void SetReservedInstancesOfferingId(Aws::String&& value) { m_reservedInstancesOfferingIdHasBeenSet = true; m_reservedInstancesOfferingId = value; }
-
-    /**
-     * <p>The ID of the Reserved Instance offering to purchase.</p>
-     */
-    inline void SetReservedInstancesOfferingId(const char* value) { m_reservedInstancesOfferingIdHasBeenSet = true; m_reservedInstancesOfferingId.assign(value); }
-
-    /**
-     * <p>The ID of the Reserved Instance offering to purchase.</p>
-     */
-    inline PurchaseReservedInstancesOfferingRequest& WithReservedInstancesOfferingId(const Aws::String& value) { SetReservedInstancesOfferingId(value); return *this;}
-
-    /**
-     * <p>The ID of the Reserved Instance offering to purchase.</p>
-     */
-    inline PurchaseReservedInstancesOfferingRequest& WithReservedInstancesOfferingId(Aws::String&& value) { SetReservedInstancesOfferingId(value); return *this;}
-
-    /**
-     * <p>The ID of the Reserved Instance offering to purchase.</p>
-     */
-    inline PurchaseReservedInstancesOfferingRequest& WithReservedInstancesOfferingId(const char* value) { SetReservedInstancesOfferingId(value); return *this;}
-
-    /**
-     * <p>The number of Reserved Instances to purchase.</p>
-     */
-    inline int GetInstanceCount() const{ return m_instanceCount; }
-
-    /**
-     * <p>The number of Reserved Instances to purchase.</p>
-     */
-    inline void SetInstanceCount(int value) { m_instanceCountHasBeenSet = true; m_instanceCount = value; }
-
-    /**
-     * <p>The number of Reserved Instances to purchase.</p>
-     */
-    inline PurchaseReservedInstancesOfferingRequest& WithInstanceCount(int value) { SetInstanceCount(value); return *this;}
 
     /**
      * <p>Specified for Reserved Instance Marketplace offerings to limit the total
@@ -130,7 +147,7 @@ namespace Model
      * order and ensure that the Reserved Instances are not purchased at unexpected
      * prices.</p>
      */
-    inline void SetLimitPrice(ReservedInstanceLimitPrice&& value) { m_limitPriceHasBeenSet = true; m_limitPrice = value; }
+    inline void SetLimitPrice(ReservedInstanceLimitPrice&& value) { m_limitPriceHasBeenSet = true; m_limitPrice = std::move(value); }
 
     /**
      * <p>Specified for Reserved Instance Marketplace offerings to limit the total
@@ -144,15 +161,19 @@ namespace Model
      * order and ensure that the Reserved Instances are not purchased at unexpected
      * prices.</p>
      */
-    inline PurchaseReservedInstancesOfferingRequest& WithLimitPrice(ReservedInstanceLimitPrice&& value) { SetLimitPrice(value); return *this;}
+    inline PurchaseReservedInstancesOfferingRequest& WithLimitPrice(ReservedInstanceLimitPrice&& value) { SetLimitPrice(std::move(value)); return *this;}
 
   private:
-    bool m_dryRun;
-    bool m_dryRunHasBeenSet;
-    Aws::String m_reservedInstancesOfferingId;
-    bool m_reservedInstancesOfferingIdHasBeenSet;
+
     int m_instanceCount;
     bool m_instanceCountHasBeenSet;
+
+    Aws::String m_reservedInstancesOfferingId;
+    bool m_reservedInstancesOfferingIdHasBeenSet;
+
+    bool m_dryRun;
+    bool m_dryRunHasBeenSet;
+
     ReservedInstanceLimitPrice m_limitPrice;
     bool m_limitPriceHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/elasticloadbalancingv2/model/ProtocolEnum.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -31,6 +32,7 @@ namespace Aws
 
         static const int HTTP_HASH = HashingUtils::HashString("HTTP");
         static const int HTTPS_HASH = HashingUtils::HashString("HTTPS");
+        static const int TCP_HASH = HashingUtils::HashString("TCP");
 
 
         ProtocolEnum GetProtocolEnumForName(const Aws::String& name)
@@ -43,6 +45,10 @@ namespace Aws
           else if (hashCode == HTTPS_HASH)
           {
             return ProtocolEnum::HTTPS;
+          }
+          else if (hashCode == TCP_HASH)
+          {
+            return ProtocolEnum::TCP;
           }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
@@ -62,6 +68,8 @@ namespace Aws
             return "HTTP";
           case ProtocolEnum::HTTPS:
             return "HTTPS";
+          case ProtocolEnum::TCP:
+            return "TCP";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

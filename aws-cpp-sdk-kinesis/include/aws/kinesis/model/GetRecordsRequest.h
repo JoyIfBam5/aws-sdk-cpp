@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesis/Kinesis_EXPORTS.h>
 #include <aws/kinesis/KinesisRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,9 +35,17 @@ namespace Model
   {
   public:
     GetRecordsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "GetRecords"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The position in the shard from which you want to start sequentially reading
@@ -56,7 +66,7 @@ namespace Model
      * data records. A shard iterator specifies this position using the sequence number
      * of a data record in the shard.</p>
      */
-    inline void SetShardIterator(Aws::String&& value) { m_shardIteratorHasBeenSet = true; m_shardIterator = value; }
+    inline void SetShardIterator(Aws::String&& value) { m_shardIteratorHasBeenSet = true; m_shardIterator = std::move(value); }
 
     /**
      * <p>The position in the shard from which you want to start sequentially reading
@@ -77,7 +87,7 @@ namespace Model
      * data records. A shard iterator specifies this position using the sequence number
      * of a data record in the shard.</p>
      */
-    inline GetRecordsRequest& WithShardIterator(Aws::String&& value) { SetShardIterator(value); return *this;}
+    inline GetRecordsRequest& WithShardIterator(Aws::String&& value) { SetShardIterator(std::move(value)); return *this;}
 
     /**
      * <p>The position in the shard from which you want to start sequentially reading
@@ -85,6 +95,7 @@ namespace Model
      * of a data record in the shard.</p>
      */
     inline GetRecordsRequest& WithShardIterator(const char* value) { SetShardIterator(value); return *this;}
+
 
     /**
      * <p>The maximum number of records to return. Specify a value of up to 10,000. If
@@ -108,8 +119,10 @@ namespace Model
     inline GetRecordsRequest& WithLimit(int value) { SetLimit(value); return *this;}
 
   private:
+
     Aws::String m_shardIterator;
     bool m_shardIteratorHasBeenSet;
+
     int m_limit;
     bool m_limitHasBeenSet;
   };

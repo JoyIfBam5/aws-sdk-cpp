@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticfilesystem/EFS_EXPORTS.h>
 #include <aws/elasticfilesystem/EFSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,9 +39,17 @@ namespace Model
   {
   public:
     DescribeTagsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeTags"; }
+
     Aws::String SerializePayload() const override;
 
     void AddQueryStringParameters(Aws::Http::URI& uri) const override;
+
 
     /**
      * <p>(Optional) Maximum number of file system tags to return in the response. It
@@ -58,6 +68,7 @@ namespace Model
      * must be an integer with a value greater than zero.</p>
      */
     inline DescribeTagsRequest& WithMaxItems(int value) { SetMaxItems(value); return *this;}
+
 
     /**
      * <p>(Optional) Opaque pagination token returned from a previous
@@ -78,7 +89,7 @@ namespace Model
      * <code>DescribeTags</code> operation (String). If present, it specifies to
      * continue the list from where the previous call left off.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p>(Optional) Opaque pagination token returned from a previous
@@ -99,7 +110,7 @@ namespace Model
      * <code>DescribeTags</code> operation (String). If present, it specifies to
      * continue the list from where the previous call left off.</p>
      */
-    inline DescribeTagsRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeTagsRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>(Optional) Opaque pagination token returned from a previous
@@ -107,6 +118,7 @@ namespace Model
      * continue the list from where the previous call left off.</p>
      */
     inline DescribeTagsRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>ID of the file system whose tag set you want to retrieve.</p>
@@ -121,7 +133,7 @@ namespace Model
     /**
      * <p>ID of the file system whose tag set you want to retrieve.</p>
      */
-    inline void SetFileSystemId(Aws::String&& value) { m_fileSystemIdHasBeenSet = true; m_fileSystemId = value; }
+    inline void SetFileSystemId(Aws::String&& value) { m_fileSystemIdHasBeenSet = true; m_fileSystemId = std::move(value); }
 
     /**
      * <p>ID of the file system whose tag set you want to retrieve.</p>
@@ -136,7 +148,7 @@ namespace Model
     /**
      * <p>ID of the file system whose tag set you want to retrieve.</p>
      */
-    inline DescribeTagsRequest& WithFileSystemId(Aws::String&& value) { SetFileSystemId(value); return *this;}
+    inline DescribeTagsRequest& WithFileSystemId(Aws::String&& value) { SetFileSystemId(std::move(value)); return *this;}
 
     /**
      * <p>ID of the file system whose tag set you want to retrieve.</p>
@@ -144,10 +156,13 @@ namespace Model
     inline DescribeTagsRequest& WithFileSystemId(const char* value) { SetFileSystemId(value); return *this;}
 
   private:
+
     int m_maxItems;
     bool m_maxItemsHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
+
     Aws::String m_fileSystemId;
     bool m_fileSystemIdHasBeenSet;
   };

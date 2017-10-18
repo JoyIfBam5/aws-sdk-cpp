@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/model/FieldToMatch.h>
 #include <aws/waf/model/TextTransformation.h>
 #include <aws/waf/model/ComparisonOperator.h>
+#include <utility>
 
 namespace Aws
 {
@@ -51,6 +53,7 @@ namespace Model
     SizeConstraint& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Specifies where in a web request to look for the size constraint.</p>
      */
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>Specifies where in a web request to look for the size constraint.</p>
      */
-    inline void SetFieldToMatch(FieldToMatch&& value) { m_fieldToMatchHasBeenSet = true; m_fieldToMatch = value; }
+    inline void SetFieldToMatch(FieldToMatch&& value) { m_fieldToMatchHasBeenSet = true; m_fieldToMatch = std::move(value); }
 
     /**
      * <p>Specifies where in a web request to look for the size constraint.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>Specifies where in a web request to look for the size constraint.</p>
      */
-    inline SizeConstraint& WithFieldToMatch(FieldToMatch&& value) { SetFieldToMatch(value); return *this;}
+    inline SizeConstraint& WithFieldToMatch(FieldToMatch&& value) { SetFieldToMatch(std::move(value)); return *this;}
+
 
     /**
      * <p>Text transformations eliminate some of the unusual formatting that attackers
@@ -194,7 +198,7 @@ namespace Model
      * letters (A-Z) to lowercase (a-z).</p> <p> <b>URL_DECODE</b> </p> <p>Use this
      * option to decode a URL-encoded value.</p>
      */
-    inline void SetTextTransformation(TextTransformation&& value) { m_textTransformationHasBeenSet = true; m_textTransformation = value; }
+    inline void SetTextTransformation(TextTransformation&& value) { m_textTransformationHasBeenSet = true; m_textTransformation = std::move(value); }
 
     /**
      * <p>Text transformations eliminate some of the unusual formatting that attackers
@@ -274,7 +278,8 @@ namespace Model
      * letters (A-Z) to lowercase (a-z).</p> <p> <b>URL_DECODE</b> </p> <p>Use this
      * option to decode a URL-encoded value.</p>
      */
-    inline SizeConstraint& WithTextTransformation(TextTransformation&& value) { SetTextTransformation(value); return *this;}
+    inline SizeConstraint& WithTextTransformation(TextTransformation&& value) { SetTextTransformation(std::move(value)); return *this;}
+
 
     /**
      * <p>The type of comparison you want AWS WAF to perform. AWS WAF uses this in
@@ -334,7 +339,7 @@ namespace Model
      * <code>Size</code> is strictly greater than the size of the
      * <code>FieldToMatch</code> </p>
      */
-    inline void SetComparisonOperator(ComparisonOperator&& value) { m_comparisonOperatorHasBeenSet = true; m_comparisonOperator = value; }
+    inline void SetComparisonOperator(ComparisonOperator&& value) { m_comparisonOperatorHasBeenSet = true; m_comparisonOperator = std::move(value); }
 
     /**
      * <p>The type of comparison you want AWS WAF to perform. AWS WAF uses this in
@@ -374,7 +379,8 @@ namespace Model
      * <code>Size</code> is strictly greater than the size of the
      * <code>FieldToMatch</code> </p>
      */
-    inline SizeConstraint& WithComparisonOperator(ComparisonOperator&& value) { SetComparisonOperator(value); return *this;}
+    inline SizeConstraint& WithComparisonOperator(ComparisonOperator&& value) { SetComparisonOperator(std::move(value)); return *this;}
+
 
     /**
      * <p>The size in bytes that you want AWS WAF to compare against the size of the
@@ -416,12 +422,16 @@ namespace Model
     inline SizeConstraint& WithSize(long long value) { SetSize(value); return *this;}
 
   private:
+
     FieldToMatch m_fieldToMatch;
     bool m_fieldToMatchHasBeenSet;
+
     TextTransformation m_textTransformation;
     bool m_textTransformationHasBeenSet;
+
     ComparisonOperator m_comparisonOperator;
     bool m_comparisonOperatorHasBeenSet;
+
     long long m_size;
     bool m_sizeHasBeenSet;
   };

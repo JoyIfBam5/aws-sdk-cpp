@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/config/ConfigService_EXPORTS.h>
 #include <aws/config/model/MaximumExecutionFrequency.h>
+#include <utility>
 
 namespace Aws
 {
@@ -74,6 +76,7 @@ namespace Model
     ConfigSnapshotDeliveryProperties& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The frequency with which AWS Config delivers configuration snapshots.</p>
      */
@@ -87,7 +90,7 @@ namespace Model
     /**
      * <p>The frequency with which AWS Config delivers configuration snapshots.</p>
      */
-    inline void SetDeliveryFrequency(MaximumExecutionFrequency&& value) { m_deliveryFrequencyHasBeenSet = true; m_deliveryFrequency = value; }
+    inline void SetDeliveryFrequency(MaximumExecutionFrequency&& value) { m_deliveryFrequencyHasBeenSet = true; m_deliveryFrequency = std::move(value); }
 
     /**
      * <p>The frequency with which AWS Config delivers configuration snapshots.</p>
@@ -97,9 +100,10 @@ namespace Model
     /**
      * <p>The frequency with which AWS Config delivers configuration snapshots.</p>
      */
-    inline ConfigSnapshotDeliveryProperties& WithDeliveryFrequency(MaximumExecutionFrequency&& value) { SetDeliveryFrequency(value); return *this;}
+    inline ConfigSnapshotDeliveryProperties& WithDeliveryFrequency(MaximumExecutionFrequency&& value) { SetDeliveryFrequency(std::move(value)); return *this;}
 
   private:
+
     MaximumExecutionFrequency m_deliveryFrequency;
     bool m_deliveryFrequencyHasBeenSet;
   };

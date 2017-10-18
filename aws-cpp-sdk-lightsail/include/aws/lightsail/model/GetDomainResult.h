@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/lightsail/model/Domain.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     GetDomainResult();
-    GetDomainResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetDomainResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDomainResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDomainResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>An array of key-value pairs containing information about your get domain
@@ -55,7 +58,7 @@ namespace Model
      * <p>An array of key-value pairs containing information about your get domain
      * request.</p>
      */
-    inline void SetDomain(Domain&& value) { m_domain = value; }
+    inline void SetDomain(Domain&& value) { m_domain = std::move(value); }
 
     /**
      * <p>An array of key-value pairs containing information about your get domain
@@ -67,9 +70,10 @@ namespace Model
      * <p>An array of key-value pairs containing information about your get domain
      * request.</p>
      */
-    inline GetDomainResult& WithDomain(Domain&& value) { SetDomain(value); return *this;}
+    inline GetDomainResult& WithDomain(Domain&& value) { SetDomain(std::move(value)); return *this;}
 
   private:
+
     Domain m_domain;
   };
 

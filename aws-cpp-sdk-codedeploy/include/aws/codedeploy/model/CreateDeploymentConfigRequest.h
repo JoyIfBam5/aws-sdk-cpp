@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codedeploy/CodeDeploy_EXPORTS.h>
 #include <aws/codedeploy/CodeDeployRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/codedeploy/model/MinimumHealthyHosts.h>
+#include <utility>
 
 namespace Aws
 {
@@ -26,8 +28,8 @@ namespace Model
 {
 
   /**
-   * <p>Represents the input of a create deployment configuration
-   * operation.</p><p><h3>See Also:</h3>   <a
+   * <p>Represents the input of a CreateDeploymentConfig operation.</p><p><h3>See
+   * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/CreateDeploymentConfigInput">AWS
    * API Reference</a></p>
    */
@@ -35,9 +37,17 @@ namespace Model
   {
   public:
     CreateDeploymentConfigRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateDeploymentConfig"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The name of the deployment configuration to create.</p>
@@ -52,7 +62,7 @@ namespace Model
     /**
      * <p>The name of the deployment configuration to create.</p>
      */
-    inline void SetDeploymentConfigName(Aws::String&& value) { m_deploymentConfigNameHasBeenSet = true; m_deploymentConfigName = value; }
+    inline void SetDeploymentConfigName(Aws::String&& value) { m_deploymentConfigNameHasBeenSet = true; m_deploymentConfigName = std::move(value); }
 
     /**
      * <p>The name of the deployment configuration to create.</p>
@@ -67,12 +77,13 @@ namespace Model
     /**
      * <p>The name of the deployment configuration to create.</p>
      */
-    inline CreateDeploymentConfigRequest& WithDeploymentConfigName(Aws::String&& value) { SetDeploymentConfigName(value); return *this;}
+    inline CreateDeploymentConfigRequest& WithDeploymentConfigName(Aws::String&& value) { SetDeploymentConfigName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the deployment configuration to create.</p>
      */
     inline CreateDeploymentConfigRequest& WithDeploymentConfigName(const char* value) { SetDeploymentConfigName(value); return *this;}
+
 
     /**
      * <p>The minimum number of healthy instances that should be available at any time
@@ -120,7 +131,7 @@ namespace Model
      * minimum of 95% healthy instance, specify a type of FLEET_PERCENT and a value of
      * 95.</p>
      */
-    inline void SetMinimumHealthyHosts(MinimumHealthyHosts&& value) { m_minimumHealthyHostsHasBeenSet = true; m_minimumHealthyHosts = value; }
+    inline void SetMinimumHealthyHosts(MinimumHealthyHosts&& value) { m_minimumHealthyHostsHasBeenSet = true; m_minimumHealthyHosts = std::move(value); }
 
     /**
      * <p>The minimum number of healthy instances that should be available at any time
@@ -152,11 +163,13 @@ namespace Model
      * minimum of 95% healthy instance, specify a type of FLEET_PERCENT and a value of
      * 95.</p>
      */
-    inline CreateDeploymentConfigRequest& WithMinimumHealthyHosts(MinimumHealthyHosts&& value) { SetMinimumHealthyHosts(value); return *this;}
+    inline CreateDeploymentConfigRequest& WithMinimumHealthyHosts(MinimumHealthyHosts&& value) { SetMinimumHealthyHosts(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_deploymentConfigName;
     bool m_deploymentConfigNameHasBeenSet;
+
     MinimumHealthyHosts m_minimumHealthyHosts;
     bool m_minimumHealthyHostsHasBeenSet;
   };

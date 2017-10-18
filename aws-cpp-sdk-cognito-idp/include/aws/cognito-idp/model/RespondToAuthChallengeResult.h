@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/cognito-idp/model/ChallengeNameType.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
 #include <aws/cognito-idp/model/AuthenticationResultType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,128 +47,184 @@ namespace Model
   {
   public:
     RespondToAuthChallengeResult();
-    RespondToAuthChallengeResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    RespondToAuthChallengeResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    RespondToAuthChallengeResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    RespondToAuthChallengeResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>The challenge name.</p>
+     * <p>The challenge name. For more information, see <a
+     * href="API_InitiateAuth.html">InitiateAuth</a>.</p>
      */
     inline const ChallengeNameType& GetChallengeName() const{ return m_challengeName; }
 
     /**
-     * <p>The challenge name.</p>
+     * <p>The challenge name. For more information, see <a
+     * href="API_InitiateAuth.html">InitiateAuth</a>.</p>
      */
     inline void SetChallengeName(const ChallengeNameType& value) { m_challengeName = value; }
 
     /**
-     * <p>The challenge name.</p>
+     * <p>The challenge name. For more information, see <a
+     * href="API_InitiateAuth.html">InitiateAuth</a>.</p>
      */
-    inline void SetChallengeName(ChallengeNameType&& value) { m_challengeName = value; }
+    inline void SetChallengeName(ChallengeNameType&& value) { m_challengeName = std::move(value); }
 
     /**
-     * <p>The challenge name.</p>
+     * <p>The challenge name. For more information, see <a
+     * href="API_InitiateAuth.html">InitiateAuth</a>.</p>
      */
     inline RespondToAuthChallengeResult& WithChallengeName(const ChallengeNameType& value) { SetChallengeName(value); return *this;}
 
     /**
-     * <p>The challenge name.</p>
+     * <p>The challenge name. For more information, see <a
+     * href="API_InitiateAuth.html">InitiateAuth</a>.</p>
      */
-    inline RespondToAuthChallengeResult& WithChallengeName(ChallengeNameType&& value) { SetChallengeName(value); return *this;}
+    inline RespondToAuthChallengeResult& WithChallengeName(ChallengeNameType&& value) { SetChallengeName(std::move(value)); return *this;}
+
 
     /**
-     * <p>The session.</p>
+     * <p>The session which should be passed both ways in challenge-response calls to
+     * the service. If the <a href="API_InitiateAuth.html">InitiateAuth</a> or <a
+     * href="API_RespondToAuthChallenge.html">RespondToAuthChallenge</a> API call
+     * determines that the caller needs to go through another challenge, they return a
+     * session with other challenge parameters. This session should be passed as it is
+     * to the next <code>RespondToAuthChallenge</code> API call.</p>
      */
     inline const Aws::String& GetSession() const{ return m_session; }
 
     /**
-     * <p>The session.</p>
+     * <p>The session which should be passed both ways in challenge-response calls to
+     * the service. If the <a href="API_InitiateAuth.html">InitiateAuth</a> or <a
+     * href="API_RespondToAuthChallenge.html">RespondToAuthChallenge</a> API call
+     * determines that the caller needs to go through another challenge, they return a
+     * session with other challenge parameters. This session should be passed as it is
+     * to the next <code>RespondToAuthChallenge</code> API call.</p>
      */
     inline void SetSession(const Aws::String& value) { m_session = value; }
 
     /**
-     * <p>The session.</p>
+     * <p>The session which should be passed both ways in challenge-response calls to
+     * the service. If the <a href="API_InitiateAuth.html">InitiateAuth</a> or <a
+     * href="API_RespondToAuthChallenge.html">RespondToAuthChallenge</a> API call
+     * determines that the caller needs to go through another challenge, they return a
+     * session with other challenge parameters. This session should be passed as it is
+     * to the next <code>RespondToAuthChallenge</code> API call.</p>
      */
-    inline void SetSession(Aws::String&& value) { m_session = value; }
+    inline void SetSession(Aws::String&& value) { m_session = std::move(value); }
 
     /**
-     * <p>The session.</p>
+     * <p>The session which should be passed both ways in challenge-response calls to
+     * the service. If the <a href="API_InitiateAuth.html">InitiateAuth</a> or <a
+     * href="API_RespondToAuthChallenge.html">RespondToAuthChallenge</a> API call
+     * determines that the caller needs to go through another challenge, they return a
+     * session with other challenge parameters. This session should be passed as it is
+     * to the next <code>RespondToAuthChallenge</code> API call.</p>
      */
     inline void SetSession(const char* value) { m_session.assign(value); }
 
     /**
-     * <p>The session.</p>
+     * <p>The session which should be passed both ways in challenge-response calls to
+     * the service. If the <a href="API_InitiateAuth.html">InitiateAuth</a> or <a
+     * href="API_RespondToAuthChallenge.html">RespondToAuthChallenge</a> API call
+     * determines that the caller needs to go through another challenge, they return a
+     * session with other challenge parameters. This session should be passed as it is
+     * to the next <code>RespondToAuthChallenge</code> API call.</p>
      */
     inline RespondToAuthChallengeResult& WithSession(const Aws::String& value) { SetSession(value); return *this;}
 
     /**
-     * <p>The session.</p>
+     * <p>The session which should be passed both ways in challenge-response calls to
+     * the service. If the <a href="API_InitiateAuth.html">InitiateAuth</a> or <a
+     * href="API_RespondToAuthChallenge.html">RespondToAuthChallenge</a> API call
+     * determines that the caller needs to go through another challenge, they return a
+     * session with other challenge parameters. This session should be passed as it is
+     * to the next <code>RespondToAuthChallenge</code> API call.</p>
      */
-    inline RespondToAuthChallengeResult& WithSession(Aws::String&& value) { SetSession(value); return *this;}
+    inline RespondToAuthChallengeResult& WithSession(Aws::String&& value) { SetSession(std::move(value)); return *this;}
 
     /**
-     * <p>The session.</p>
+     * <p>The session which should be passed both ways in challenge-response calls to
+     * the service. If the <a href="API_InitiateAuth.html">InitiateAuth</a> or <a
+     * href="API_RespondToAuthChallenge.html">RespondToAuthChallenge</a> API call
+     * determines that the caller needs to go through another challenge, they return a
+     * session with other challenge parameters. This session should be passed as it is
+     * to the next <code>RespondToAuthChallenge</code> API call.</p>
      */
     inline RespondToAuthChallengeResult& WithSession(const char* value) { SetSession(value); return *this;}
 
+
     /**
-     * <p>The challenge parameters.</p>
+     * <p>The challenge parameters. For more information, see <a
+     * href="API_InitiateAuth.html">InitiateAuth</a>.</p>
      */
     inline const Aws::Map<Aws::String, Aws::String>& GetChallengeParameters() const{ return m_challengeParameters; }
 
     /**
-     * <p>The challenge parameters.</p>
+     * <p>The challenge parameters. For more information, see <a
+     * href="API_InitiateAuth.html">InitiateAuth</a>.</p>
      */
     inline void SetChallengeParameters(const Aws::Map<Aws::String, Aws::String>& value) { m_challengeParameters = value; }
 
     /**
-     * <p>The challenge parameters.</p>
+     * <p>The challenge parameters. For more information, see <a
+     * href="API_InitiateAuth.html">InitiateAuth</a>.</p>
      */
-    inline void SetChallengeParameters(Aws::Map<Aws::String, Aws::String>&& value) { m_challengeParameters = value; }
+    inline void SetChallengeParameters(Aws::Map<Aws::String, Aws::String>&& value) { m_challengeParameters = std::move(value); }
 
     /**
-     * <p>The challenge parameters.</p>
+     * <p>The challenge parameters. For more information, see <a
+     * href="API_InitiateAuth.html">InitiateAuth</a>.</p>
      */
     inline RespondToAuthChallengeResult& WithChallengeParameters(const Aws::Map<Aws::String, Aws::String>& value) { SetChallengeParameters(value); return *this;}
 
     /**
-     * <p>The challenge parameters.</p>
+     * <p>The challenge parameters. For more information, see <a
+     * href="API_InitiateAuth.html">InitiateAuth</a>.</p>
      */
-    inline RespondToAuthChallengeResult& WithChallengeParameters(Aws::Map<Aws::String, Aws::String>&& value) { SetChallengeParameters(value); return *this;}
+    inline RespondToAuthChallengeResult& WithChallengeParameters(Aws::Map<Aws::String, Aws::String>&& value) { SetChallengeParameters(std::move(value)); return *this;}
 
     /**
-     * <p>The challenge parameters.</p>
+     * <p>The challenge parameters. For more information, see <a
+     * href="API_InitiateAuth.html">InitiateAuth</a>.</p>
      */
-    inline RespondToAuthChallengeResult& AddChallengeParameters(const Aws::String& key, const Aws::String& value) { m_challengeParameters[key] = value; return *this; }
+    inline RespondToAuthChallengeResult& AddChallengeParameters(const Aws::String& key, const Aws::String& value) { m_challengeParameters.emplace(key, value); return *this; }
 
     /**
-     * <p>The challenge parameters.</p>
+     * <p>The challenge parameters. For more information, see <a
+     * href="API_InitiateAuth.html">InitiateAuth</a>.</p>
      */
-    inline RespondToAuthChallengeResult& AddChallengeParameters(Aws::String&& key, const Aws::String& value) { m_challengeParameters[key] = value; return *this; }
+    inline RespondToAuthChallengeResult& AddChallengeParameters(Aws::String&& key, const Aws::String& value) { m_challengeParameters.emplace(std::move(key), value); return *this; }
 
     /**
-     * <p>The challenge parameters.</p>
+     * <p>The challenge parameters. For more information, see <a
+     * href="API_InitiateAuth.html">InitiateAuth</a>.</p>
      */
-    inline RespondToAuthChallengeResult& AddChallengeParameters(const Aws::String& key, Aws::String&& value) { m_challengeParameters[key] = value; return *this; }
+    inline RespondToAuthChallengeResult& AddChallengeParameters(const Aws::String& key, Aws::String&& value) { m_challengeParameters.emplace(key, std::move(value)); return *this; }
 
     /**
-     * <p>The challenge parameters.</p>
+     * <p>The challenge parameters. For more information, see <a
+     * href="API_InitiateAuth.html">InitiateAuth</a>.</p>
      */
-    inline RespondToAuthChallengeResult& AddChallengeParameters(Aws::String&& key, Aws::String&& value) { m_challengeParameters[key] = value; return *this; }
+    inline RespondToAuthChallengeResult& AddChallengeParameters(Aws::String&& key, Aws::String&& value) { m_challengeParameters.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
-     * <p>The challenge parameters.</p>
+     * <p>The challenge parameters. For more information, see <a
+     * href="API_InitiateAuth.html">InitiateAuth</a>.</p>
      */
-    inline RespondToAuthChallengeResult& AddChallengeParameters(const char* key, Aws::String&& value) { m_challengeParameters[key] = value; return *this; }
+    inline RespondToAuthChallengeResult& AddChallengeParameters(const char* key, Aws::String&& value) { m_challengeParameters.emplace(key, std::move(value)); return *this; }
 
     /**
-     * <p>The challenge parameters.</p>
+     * <p>The challenge parameters. For more information, see <a
+     * href="API_InitiateAuth.html">InitiateAuth</a>.</p>
      */
-    inline RespondToAuthChallengeResult& AddChallengeParameters(Aws::String&& key, const char* value) { m_challengeParameters[key] = value; return *this; }
+    inline RespondToAuthChallengeResult& AddChallengeParameters(Aws::String&& key, const char* value) { m_challengeParameters.emplace(std::move(key), value); return *this; }
 
     /**
-     * <p>The challenge parameters.</p>
+     * <p>The challenge parameters. For more information, see <a
+     * href="API_InitiateAuth.html">InitiateAuth</a>.</p>
      */
-    inline RespondToAuthChallengeResult& AddChallengeParameters(const char* key, const char* value) { m_challengeParameters[key] = value; return *this; }
+    inline RespondToAuthChallengeResult& AddChallengeParameters(const char* key, const char* value) { m_challengeParameters.emplace(key, value); return *this; }
+
 
     /**
      * <p>The result returned by the server in response to the request to respond to
@@ -184,7 +242,7 @@ namespace Model
      * <p>The result returned by the server in response to the request to respond to
      * the authentication challenge.</p>
      */
-    inline void SetAuthenticationResult(AuthenticationResultType&& value) { m_authenticationResult = value; }
+    inline void SetAuthenticationResult(AuthenticationResultType&& value) { m_authenticationResult = std::move(value); }
 
     /**
      * <p>The result returned by the server in response to the request to respond to
@@ -196,12 +254,16 @@ namespace Model
      * <p>The result returned by the server in response to the request to respond to
      * the authentication challenge.</p>
      */
-    inline RespondToAuthChallengeResult& WithAuthenticationResult(AuthenticationResultType&& value) { SetAuthenticationResult(value); return *this;}
+    inline RespondToAuthChallengeResult& WithAuthenticationResult(AuthenticationResultType&& value) { SetAuthenticationResult(std::move(value)); return *this;}
 
   private:
+
     ChallengeNameType m_challengeName;
+
     Aws::String m_session;
+
     Aws::Map<Aws::String, Aws::String> m_challengeParameters;
+
     AuthenticationResultType m_authenticationResult;
   };
 

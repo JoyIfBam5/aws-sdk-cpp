@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,6 +52,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The textual data of the content.</p>
      */
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>The textual data of the content.</p>
      */
-    inline void SetData(Aws::String&& value) { m_dataHasBeenSet = true; m_data = value; }
+    inline void SetData(Aws::String&& value) { m_dataHasBeenSet = true; m_data = std::move(value); }
 
     /**
      * <p>The textual data of the content.</p>
@@ -78,12 +81,13 @@ namespace Model
     /**
      * <p>The textual data of the content.</p>
      */
-    inline Content& WithData(Aws::String&& value) { SetData(value); return *this;}
+    inline Content& WithData(Aws::String&& value) { SetData(std::move(value)); return *this;}
 
     /**
      * <p>The textual data of the content.</p>
      */
     inline Content& WithData(const char* value) { SetData(value); return *this;}
+
 
     /**
      * <p>The character set of the content.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>The character set of the content.</p>
      */
-    inline void SetCharset(Aws::String&& value) { m_charsetHasBeenSet = true; m_charset = value; }
+    inline void SetCharset(Aws::String&& value) { m_charsetHasBeenSet = true; m_charset = std::move(value); }
 
     /**
      * <p>The character set of the content.</p>
@@ -113,7 +117,7 @@ namespace Model
     /**
      * <p>The character set of the content.</p>
      */
-    inline Content& WithCharset(Aws::String&& value) { SetCharset(value); return *this;}
+    inline Content& WithCharset(Aws::String&& value) { SetCharset(std::move(value)); return *this;}
 
     /**
      * <p>The character set of the content.</p>
@@ -121,8 +125,10 @@ namespace Model
     inline Content& WithCharset(const char* value) { SetCharset(value); return *this;}
 
   private:
+
     Aws::String m_data;
     bool m_dataHasBeenSet;
+
     Aws::String m_charset;
     bool m_charsetHasBeenSet;
   };

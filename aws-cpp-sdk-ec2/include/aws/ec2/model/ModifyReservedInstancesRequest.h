@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/ec2/EC2Request.h>
-#include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ec2/model/ReservedInstancesConfiguration.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,7 +38,60 @@ namespace Model
   {
   public:
     ModifyReservedInstancesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ModifyReservedInstances"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
+
+    /**
+     * <p>The IDs of the Reserved Instances to modify.</p>
+     */
+    inline const Aws::Vector<Aws::String>& GetReservedInstancesIds() const{ return m_reservedInstancesIds; }
+
+    /**
+     * <p>The IDs of the Reserved Instances to modify.</p>
+     */
+    inline void SetReservedInstancesIds(const Aws::Vector<Aws::String>& value) { m_reservedInstancesIdsHasBeenSet = true; m_reservedInstancesIds = value; }
+
+    /**
+     * <p>The IDs of the Reserved Instances to modify.</p>
+     */
+    inline void SetReservedInstancesIds(Aws::Vector<Aws::String>&& value) { m_reservedInstancesIdsHasBeenSet = true; m_reservedInstancesIds = std::move(value); }
+
+    /**
+     * <p>The IDs of the Reserved Instances to modify.</p>
+     */
+    inline ModifyReservedInstancesRequest& WithReservedInstancesIds(const Aws::Vector<Aws::String>& value) { SetReservedInstancesIds(value); return *this;}
+
+    /**
+     * <p>The IDs of the Reserved Instances to modify.</p>
+     */
+    inline ModifyReservedInstancesRequest& WithReservedInstancesIds(Aws::Vector<Aws::String>&& value) { SetReservedInstancesIds(std::move(value)); return *this;}
+
+    /**
+     * <p>The IDs of the Reserved Instances to modify.</p>
+     */
+    inline ModifyReservedInstancesRequest& AddReservedInstancesIds(const Aws::String& value) { m_reservedInstancesIdsHasBeenSet = true; m_reservedInstancesIds.push_back(value); return *this; }
+
+    /**
+     * <p>The IDs of the Reserved Instances to modify.</p>
+     */
+    inline ModifyReservedInstancesRequest& AddReservedInstancesIds(Aws::String&& value) { m_reservedInstancesIdsHasBeenSet = true; m_reservedInstancesIds.push_back(std::move(value)); return *this; }
+
+    /**
+     * <p>The IDs of the Reserved Instances to modify.</p>
+     */
+    inline ModifyReservedInstancesRequest& AddReservedInstancesIds(const char* value) { m_reservedInstancesIdsHasBeenSet = true; m_reservedInstancesIds.push_back(value); return *this; }
+
 
     /**
      * <p>A unique, case-sensitive token you provide to ensure idempotency of your
@@ -60,7 +115,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
      * Idempotency</a>.</p>
      */
-    inline void SetClientToken(Aws::String&& value) { m_clientTokenHasBeenSet = true; m_clientToken = value; }
+    inline void SetClientToken(Aws::String&& value) { m_clientTokenHasBeenSet = true; m_clientToken = std::move(value); }
 
     /**
      * <p>A unique, case-sensitive token you provide to ensure idempotency of your
@@ -84,7 +139,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
      * Idempotency</a>.</p>
      */
-    inline ModifyReservedInstancesRequest& WithClientToken(Aws::String&& value) { SetClientToken(value); return *this;}
+    inline ModifyReservedInstancesRequest& WithClientToken(Aws::String&& value) { SetClientToken(std::move(value)); return *this;}
 
     /**
      * <p>A unique, case-sensitive token you provide to ensure idempotency of your
@@ -94,45 +149,6 @@ namespace Model
      */
     inline ModifyReservedInstancesRequest& WithClientToken(const char* value) { SetClientToken(value); return *this;}
 
-    /**
-     * <p>The IDs of the Reserved Instances to modify.</p>
-     */
-    inline const Aws::Vector<Aws::String>& GetReservedInstancesIds() const{ return m_reservedInstancesIds; }
-
-    /**
-     * <p>The IDs of the Reserved Instances to modify.</p>
-     */
-    inline void SetReservedInstancesIds(const Aws::Vector<Aws::String>& value) { m_reservedInstancesIdsHasBeenSet = true; m_reservedInstancesIds = value; }
-
-    /**
-     * <p>The IDs of the Reserved Instances to modify.</p>
-     */
-    inline void SetReservedInstancesIds(Aws::Vector<Aws::String>&& value) { m_reservedInstancesIdsHasBeenSet = true; m_reservedInstancesIds = value; }
-
-    /**
-     * <p>The IDs of the Reserved Instances to modify.</p>
-     */
-    inline ModifyReservedInstancesRequest& WithReservedInstancesIds(const Aws::Vector<Aws::String>& value) { SetReservedInstancesIds(value); return *this;}
-
-    /**
-     * <p>The IDs of the Reserved Instances to modify.</p>
-     */
-    inline ModifyReservedInstancesRequest& WithReservedInstancesIds(Aws::Vector<Aws::String>&& value) { SetReservedInstancesIds(value); return *this;}
-
-    /**
-     * <p>The IDs of the Reserved Instances to modify.</p>
-     */
-    inline ModifyReservedInstancesRequest& AddReservedInstancesIds(const Aws::String& value) { m_reservedInstancesIdsHasBeenSet = true; m_reservedInstancesIds.push_back(value); return *this; }
-
-    /**
-     * <p>The IDs of the Reserved Instances to modify.</p>
-     */
-    inline ModifyReservedInstancesRequest& AddReservedInstancesIds(Aws::String&& value) { m_reservedInstancesIdsHasBeenSet = true; m_reservedInstancesIds.push_back(value); return *this; }
-
-    /**
-     * <p>The IDs of the Reserved Instances to modify.</p>
-     */
-    inline ModifyReservedInstancesRequest& AddReservedInstancesIds(const char* value) { m_reservedInstancesIdsHasBeenSet = true; m_reservedInstancesIds.push_back(value); return *this; }
 
     /**
      * <p>The configuration settings for the Reserved Instances to modify.</p>
@@ -147,7 +163,7 @@ namespace Model
     /**
      * <p>The configuration settings for the Reserved Instances to modify.</p>
      */
-    inline void SetTargetConfigurations(Aws::Vector<ReservedInstancesConfiguration>&& value) { m_targetConfigurationsHasBeenSet = true; m_targetConfigurations = value; }
+    inline void SetTargetConfigurations(Aws::Vector<ReservedInstancesConfiguration>&& value) { m_targetConfigurationsHasBeenSet = true; m_targetConfigurations = std::move(value); }
 
     /**
      * <p>The configuration settings for the Reserved Instances to modify.</p>
@@ -157,7 +173,7 @@ namespace Model
     /**
      * <p>The configuration settings for the Reserved Instances to modify.</p>
      */
-    inline ModifyReservedInstancesRequest& WithTargetConfigurations(Aws::Vector<ReservedInstancesConfiguration>&& value) { SetTargetConfigurations(value); return *this;}
+    inline ModifyReservedInstancesRequest& WithTargetConfigurations(Aws::Vector<ReservedInstancesConfiguration>&& value) { SetTargetConfigurations(std::move(value)); return *this;}
 
     /**
      * <p>The configuration settings for the Reserved Instances to modify.</p>
@@ -167,13 +183,16 @@ namespace Model
     /**
      * <p>The configuration settings for the Reserved Instances to modify.</p>
      */
-    inline ModifyReservedInstancesRequest& AddTargetConfigurations(ReservedInstancesConfiguration&& value) { m_targetConfigurationsHasBeenSet = true; m_targetConfigurations.push_back(value); return *this; }
+    inline ModifyReservedInstancesRequest& AddTargetConfigurations(ReservedInstancesConfiguration&& value) { m_targetConfigurationsHasBeenSet = true; m_targetConfigurations.push_back(std::move(value)); return *this; }
 
   private:
-    Aws::String m_clientToken;
-    bool m_clientTokenHasBeenSet;
+
     Aws::Vector<Aws::String> m_reservedInstancesIds;
     bool m_reservedInstancesIdsHasBeenSet;
+
+    Aws::String m_clientToken;
+    bool m_clientTokenHasBeenSet;
+
     Aws::Vector<ReservedInstancesConfiguration> m_targetConfigurations;
     bool m_targetConfigurationsHasBeenSet;
   };

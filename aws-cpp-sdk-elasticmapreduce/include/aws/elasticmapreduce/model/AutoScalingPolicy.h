@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/elasticmapreduce/model/ScalingConstraints.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticmapreduce/model/ScalingRule.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +51,7 @@ namespace Model
     AutoScalingPolicy& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The upper and lower EC2 instance limits for an automatic scaling policy.
      * Automatic scaling activity will not cause an instance group to grow above or
@@ -68,7 +71,7 @@ namespace Model
      * Automatic scaling activity will not cause an instance group to grow above or
      * below these limits.</p>
      */
-    inline void SetConstraints(ScalingConstraints&& value) { m_constraintsHasBeenSet = true; m_constraints = value; }
+    inline void SetConstraints(ScalingConstraints&& value) { m_constraintsHasBeenSet = true; m_constraints = std::move(value); }
 
     /**
      * <p>The upper and lower EC2 instance limits for an automatic scaling policy.
@@ -82,7 +85,8 @@ namespace Model
      * Automatic scaling activity will not cause an instance group to grow above or
      * below these limits.</p>
      */
-    inline AutoScalingPolicy& WithConstraints(ScalingConstraints&& value) { SetConstraints(value); return *this;}
+    inline AutoScalingPolicy& WithConstraints(ScalingConstraints&& value) { SetConstraints(std::move(value)); return *this;}
+
 
     /**
      * <p>The scale-in and scale-out rules that comprise the automatic scaling
@@ -100,7 +104,7 @@ namespace Model
      * <p>The scale-in and scale-out rules that comprise the automatic scaling
      * policy.</p>
      */
-    inline void SetRules(Aws::Vector<ScalingRule>&& value) { m_rulesHasBeenSet = true; m_rules = value; }
+    inline void SetRules(Aws::Vector<ScalingRule>&& value) { m_rulesHasBeenSet = true; m_rules = std::move(value); }
 
     /**
      * <p>The scale-in and scale-out rules that comprise the automatic scaling
@@ -112,7 +116,7 @@ namespace Model
      * <p>The scale-in and scale-out rules that comprise the automatic scaling
      * policy.</p>
      */
-    inline AutoScalingPolicy& WithRules(Aws::Vector<ScalingRule>&& value) { SetRules(value); return *this;}
+    inline AutoScalingPolicy& WithRules(Aws::Vector<ScalingRule>&& value) { SetRules(std::move(value)); return *this;}
 
     /**
      * <p>The scale-in and scale-out rules that comprise the automatic scaling
@@ -124,11 +128,13 @@ namespace Model
      * <p>The scale-in and scale-out rules that comprise the automatic scaling
      * policy.</p>
      */
-    inline AutoScalingPolicy& AddRules(ScalingRule&& value) { m_rulesHasBeenSet = true; m_rules.push_back(value); return *this; }
+    inline AutoScalingPolicy& AddRules(ScalingRule&& value) { m_rulesHasBeenSet = true; m_rules.push_back(std::move(value)); return *this; }
 
   private:
+
     ScalingConstraints m_constraints;
     bool m_constraintsHasBeenSet;
+
     Aws::Vector<ScalingRule> m_rules;
     bool m_rulesHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/appstream/AppStream_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,57 +35,54 @@ namespace AppStream
 {
 namespace Model
 {
-  /**
-   * <p>The response from a successful operation.</p><p><h3>See Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ListAssociatedStacksResult">AWS
-   * API Reference</a></p>
-   */
   class AWS_APPSTREAM_API ListAssociatedStacksResult
   {
   public:
     ListAssociatedStacksResult();
-    ListAssociatedStacksResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListAssociatedStacksResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListAssociatedStacksResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListAssociatedStacksResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>The names of associated stacks.</p>
+     * <p>The names of the stacks.</p>
      */
     inline const Aws::Vector<Aws::String>& GetNames() const{ return m_names; }
 
     /**
-     * <p>The names of associated stacks.</p>
+     * <p>The names of the stacks.</p>
      */
     inline void SetNames(const Aws::Vector<Aws::String>& value) { m_names = value; }
 
     /**
-     * <p>The names of associated stacks.</p>
+     * <p>The names of the stacks.</p>
      */
-    inline void SetNames(Aws::Vector<Aws::String>&& value) { m_names = value; }
+    inline void SetNames(Aws::Vector<Aws::String>&& value) { m_names = std::move(value); }
 
     /**
-     * <p>The names of associated stacks.</p>
+     * <p>The names of the stacks.</p>
      */
     inline ListAssociatedStacksResult& WithNames(const Aws::Vector<Aws::String>& value) { SetNames(value); return *this;}
 
     /**
-     * <p>The names of associated stacks.</p>
+     * <p>The names of the stacks.</p>
      */
-    inline ListAssociatedStacksResult& WithNames(Aws::Vector<Aws::String>&& value) { SetNames(value); return *this;}
+    inline ListAssociatedStacksResult& WithNames(Aws::Vector<Aws::String>&& value) { SetNames(std::move(value)); return *this;}
 
     /**
-     * <p>The names of associated stacks.</p>
+     * <p>The names of the stacks.</p>
      */
     inline ListAssociatedStacksResult& AddNames(const Aws::String& value) { m_names.push_back(value); return *this; }
 
     /**
-     * <p>The names of associated stacks.</p>
+     * <p>The names of the stacks.</p>
      */
-    inline ListAssociatedStacksResult& AddNames(Aws::String&& value) { m_names.push_back(value); return *this; }
+    inline ListAssociatedStacksResult& AddNames(Aws::String&& value) { m_names.push_back(std::move(value)); return *this; }
 
     /**
-     * <p>The names of associated stacks.</p>
+     * <p>The names of the stacks.</p>
      */
     inline ListAssociatedStacksResult& AddNames(const char* value) { m_names.push_back(value); return *this; }
+
 
     /**
      * <p>The pagination token to use to retrieve the next page of results for this
@@ -101,7 +100,7 @@ namespace Model
      * <p>The pagination token to use to retrieve the next page of results for this
      * operation. If there are no more pages, this value is null.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The pagination token to use to retrieve the next page of results for this
@@ -119,7 +118,7 @@ namespace Model
      * <p>The pagination token to use to retrieve the next page of results for this
      * operation. If there are no more pages, this value is null.</p>
      */
-    inline ListAssociatedStacksResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListAssociatedStacksResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The pagination token to use to retrieve the next page of results for this
@@ -128,7 +127,9 @@ namespace Model
     inline ListAssociatedStacksResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_names;
+
     Aws::String m_nextToken;
   };
 

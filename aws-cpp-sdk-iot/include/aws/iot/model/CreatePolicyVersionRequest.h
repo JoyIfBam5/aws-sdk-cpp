@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/iot/IoTRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,9 +40,17 @@ namespace Model
   {
   public:
     CreatePolicyVersionRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreatePolicyVersion"; }
+
     Aws::String SerializePayload() const override;
 
     void AddQueryStringParameters(Aws::Http::URI& uri) const override;
+
 
     /**
      * <p>The policy name.</p>
@@ -55,7 +65,7 @@ namespace Model
     /**
      * <p>The policy name.</p>
      */
-    inline void SetPolicyName(Aws::String&& value) { m_policyNameHasBeenSet = true; m_policyName = value; }
+    inline void SetPolicyName(Aws::String&& value) { m_policyNameHasBeenSet = true; m_policyName = std::move(value); }
 
     /**
      * <p>The policy name.</p>
@@ -70,12 +80,13 @@ namespace Model
     /**
      * <p>The policy name.</p>
      */
-    inline CreatePolicyVersionRequest& WithPolicyName(Aws::String&& value) { SetPolicyName(value); return *this;}
+    inline CreatePolicyVersionRequest& WithPolicyName(Aws::String&& value) { SetPolicyName(std::move(value)); return *this;}
 
     /**
      * <p>The policy name.</p>
      */
     inline CreatePolicyVersionRequest& WithPolicyName(const char* value) { SetPolicyName(value); return *this;}
+
 
     /**
      * <p>The JSON document that describes the policy. Minimum length of 1. Maximum
@@ -93,7 +104,7 @@ namespace Model
      * <p>The JSON document that describes the policy. Minimum length of 1. Maximum
      * length of 2048, excluding whitespaces</p>
      */
-    inline void SetPolicyDocument(Aws::String&& value) { m_policyDocumentHasBeenSet = true; m_policyDocument = value; }
+    inline void SetPolicyDocument(Aws::String&& value) { m_policyDocumentHasBeenSet = true; m_policyDocument = std::move(value); }
 
     /**
      * <p>The JSON document that describes the policy. Minimum length of 1. Maximum
@@ -111,13 +122,14 @@ namespace Model
      * <p>The JSON document that describes the policy. Minimum length of 1. Maximum
      * length of 2048, excluding whitespaces</p>
      */
-    inline CreatePolicyVersionRequest& WithPolicyDocument(Aws::String&& value) { SetPolicyDocument(value); return *this;}
+    inline CreatePolicyVersionRequest& WithPolicyDocument(Aws::String&& value) { SetPolicyDocument(std::move(value)); return *this;}
 
     /**
      * <p>The JSON document that describes the policy. Minimum length of 1. Maximum
      * length of 2048, excluding whitespaces</p>
      */
     inline CreatePolicyVersionRequest& WithPolicyDocument(const char* value) { SetPolicyDocument(value); return *this;}
+
 
     /**
      * <p>Specifies whether the policy version is set as the default. When this
@@ -144,10 +156,13 @@ namespace Model
     inline CreatePolicyVersionRequest& WithSetAsDefault(bool value) { SetSetAsDefault(value); return *this;}
 
   private:
+
     Aws::String m_policyName;
     bool m_policyNameHasBeenSet;
+
     Aws::String m_policyDocument;
     bool m_policyDocumentHasBeenSet;
+
     bool m_setAsDefault;
     bool m_setAsDefaultHasBeenSet;
   };

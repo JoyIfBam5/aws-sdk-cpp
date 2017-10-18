@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/rds/RDSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/rds/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,7 +37,19 @@ namespace Model
   {
   public:
     CopyOptionGroupRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CopyOptionGroup"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The identifier or ARN for the source option group. For information about
@@ -43,9 +57,9 @@ namespace Model
      * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing">
      * Constructing an RDS Amazon Resource Name (ARN)</a>. </p> <p>Constraints:</p>
      * <ul> <li> <p>Must specify a valid option group.</p> </li> <li> <p>If the source
-     * option group is in the same region as the copy, specify a valid option group
+     * option group is in the same AWS Region as the copy, specify a valid option group
      * identifier, for example <code>my-option-group</code>, or a valid ARN.</p> </li>
-     * <li> <p>If the source option group is in a different region than the copy,
+     * <li> <p>If the source option group is in a different AWS Region than the copy,
      * specify a valid option group ARN, for example
      * <code>arn:aws:rds:us-west-2:123456789012:og:special-options</code>.</p> </li>
      * </ul>
@@ -58,9 +72,9 @@ namespace Model
      * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing">
      * Constructing an RDS Amazon Resource Name (ARN)</a>. </p> <p>Constraints:</p>
      * <ul> <li> <p>Must specify a valid option group.</p> </li> <li> <p>If the source
-     * option group is in the same region as the copy, specify a valid option group
+     * option group is in the same AWS Region as the copy, specify a valid option group
      * identifier, for example <code>my-option-group</code>, or a valid ARN.</p> </li>
-     * <li> <p>If the source option group is in a different region than the copy,
+     * <li> <p>If the source option group is in a different AWS Region than the copy,
      * specify a valid option group ARN, for example
      * <code>arn:aws:rds:us-west-2:123456789012:og:special-options</code>.</p> </li>
      * </ul>
@@ -73,14 +87,14 @@ namespace Model
      * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing">
      * Constructing an RDS Amazon Resource Name (ARN)</a>. </p> <p>Constraints:</p>
      * <ul> <li> <p>Must specify a valid option group.</p> </li> <li> <p>If the source
-     * option group is in the same region as the copy, specify a valid option group
+     * option group is in the same AWS Region as the copy, specify a valid option group
      * identifier, for example <code>my-option-group</code>, or a valid ARN.</p> </li>
-     * <li> <p>If the source option group is in a different region than the copy,
+     * <li> <p>If the source option group is in a different AWS Region than the copy,
      * specify a valid option group ARN, for example
      * <code>arn:aws:rds:us-west-2:123456789012:og:special-options</code>.</p> </li>
      * </ul>
      */
-    inline void SetSourceOptionGroupIdentifier(Aws::String&& value) { m_sourceOptionGroupIdentifierHasBeenSet = true; m_sourceOptionGroupIdentifier = value; }
+    inline void SetSourceOptionGroupIdentifier(Aws::String&& value) { m_sourceOptionGroupIdentifierHasBeenSet = true; m_sourceOptionGroupIdentifier = std::move(value); }
 
     /**
      * <p>The identifier or ARN for the source option group. For information about
@@ -88,9 +102,9 @@ namespace Model
      * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing">
      * Constructing an RDS Amazon Resource Name (ARN)</a>. </p> <p>Constraints:</p>
      * <ul> <li> <p>Must specify a valid option group.</p> </li> <li> <p>If the source
-     * option group is in the same region as the copy, specify a valid option group
+     * option group is in the same AWS Region as the copy, specify a valid option group
      * identifier, for example <code>my-option-group</code>, or a valid ARN.</p> </li>
-     * <li> <p>If the source option group is in a different region than the copy,
+     * <li> <p>If the source option group is in a different AWS Region than the copy,
      * specify a valid option group ARN, for example
      * <code>arn:aws:rds:us-west-2:123456789012:og:special-options</code>.</p> </li>
      * </ul>
@@ -103,9 +117,9 @@ namespace Model
      * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing">
      * Constructing an RDS Amazon Resource Name (ARN)</a>. </p> <p>Constraints:</p>
      * <ul> <li> <p>Must specify a valid option group.</p> </li> <li> <p>If the source
-     * option group is in the same region as the copy, specify a valid option group
+     * option group is in the same AWS Region as the copy, specify a valid option group
      * identifier, for example <code>my-option-group</code>, or a valid ARN.</p> </li>
-     * <li> <p>If the source option group is in a different region than the copy,
+     * <li> <p>If the source option group is in a different AWS Region than the copy,
      * specify a valid option group ARN, for example
      * <code>arn:aws:rds:us-west-2:123456789012:og:special-options</code>.</p> </li>
      * </ul>
@@ -118,14 +132,14 @@ namespace Model
      * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing">
      * Constructing an RDS Amazon Resource Name (ARN)</a>. </p> <p>Constraints:</p>
      * <ul> <li> <p>Must specify a valid option group.</p> </li> <li> <p>If the source
-     * option group is in the same region as the copy, specify a valid option group
+     * option group is in the same AWS Region as the copy, specify a valid option group
      * identifier, for example <code>my-option-group</code>, or a valid ARN.</p> </li>
-     * <li> <p>If the source option group is in a different region than the copy,
+     * <li> <p>If the source option group is in a different AWS Region than the copy,
      * specify a valid option group ARN, for example
      * <code>arn:aws:rds:us-west-2:123456789012:og:special-options</code>.</p> </li>
      * </ul>
      */
-    inline CopyOptionGroupRequest& WithSourceOptionGroupIdentifier(Aws::String&& value) { SetSourceOptionGroupIdentifier(value); return *this;}
+    inline CopyOptionGroupRequest& WithSourceOptionGroupIdentifier(Aws::String&& value) { SetSourceOptionGroupIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The identifier or ARN for the source option group. For information about
@@ -133,19 +147,20 @@ namespace Model
      * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing">
      * Constructing an RDS Amazon Resource Name (ARN)</a>. </p> <p>Constraints:</p>
      * <ul> <li> <p>Must specify a valid option group.</p> </li> <li> <p>If the source
-     * option group is in the same region as the copy, specify a valid option group
+     * option group is in the same AWS Region as the copy, specify a valid option group
      * identifier, for example <code>my-option-group</code>, or a valid ARN.</p> </li>
-     * <li> <p>If the source option group is in a different region than the copy,
+     * <li> <p>If the source option group is in a different AWS Region than the copy,
      * specify a valid option group ARN, for example
      * <code>arn:aws:rds:us-west-2:123456789012:og:special-options</code>.</p> </li>
      * </ul>
      */
     inline CopyOptionGroupRequest& WithSourceOptionGroupIdentifier(const char* value) { SetSourceOptionGroupIdentifier(value); return *this;}
 
+
     /**
      * <p>The identifier for the copied option group.</p> <p>Constraints:</p> <ul> <li>
      * <p>Cannot be null, empty, or blank</p> </li> <li> <p>Must contain from 1 to 255
-     * alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a
+     * letters, numbers, or hyphens</p> </li> <li> <p>First character must be a
      * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
      * hyphens</p> </li> </ul> <p>Example: <code>my-option-group</code> </p>
      */
@@ -154,7 +169,7 @@ namespace Model
     /**
      * <p>The identifier for the copied option group.</p> <p>Constraints:</p> <ul> <li>
      * <p>Cannot be null, empty, or blank</p> </li> <li> <p>Must contain from 1 to 255
-     * alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a
+     * letters, numbers, or hyphens</p> </li> <li> <p>First character must be a
      * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
      * hyphens</p> </li> </ul> <p>Example: <code>my-option-group</code> </p>
      */
@@ -163,16 +178,16 @@ namespace Model
     /**
      * <p>The identifier for the copied option group.</p> <p>Constraints:</p> <ul> <li>
      * <p>Cannot be null, empty, or blank</p> </li> <li> <p>Must contain from 1 to 255
-     * alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a
+     * letters, numbers, or hyphens</p> </li> <li> <p>First character must be a
      * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
      * hyphens</p> </li> </ul> <p>Example: <code>my-option-group</code> </p>
      */
-    inline void SetTargetOptionGroupIdentifier(Aws::String&& value) { m_targetOptionGroupIdentifierHasBeenSet = true; m_targetOptionGroupIdentifier = value; }
+    inline void SetTargetOptionGroupIdentifier(Aws::String&& value) { m_targetOptionGroupIdentifierHasBeenSet = true; m_targetOptionGroupIdentifier = std::move(value); }
 
     /**
      * <p>The identifier for the copied option group.</p> <p>Constraints:</p> <ul> <li>
      * <p>Cannot be null, empty, or blank</p> </li> <li> <p>Must contain from 1 to 255
-     * alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a
+     * letters, numbers, or hyphens</p> </li> <li> <p>First character must be a
      * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
      * hyphens</p> </li> </ul> <p>Example: <code>my-option-group</code> </p>
      */
@@ -181,7 +196,7 @@ namespace Model
     /**
      * <p>The identifier for the copied option group.</p> <p>Constraints:</p> <ul> <li>
      * <p>Cannot be null, empty, or blank</p> </li> <li> <p>Must contain from 1 to 255
-     * alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a
+     * letters, numbers, or hyphens</p> </li> <li> <p>First character must be a
      * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
      * hyphens</p> </li> </ul> <p>Example: <code>my-option-group</code> </p>
      */
@@ -190,20 +205,21 @@ namespace Model
     /**
      * <p>The identifier for the copied option group.</p> <p>Constraints:</p> <ul> <li>
      * <p>Cannot be null, empty, or blank</p> </li> <li> <p>Must contain from 1 to 255
-     * alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a
+     * letters, numbers, or hyphens</p> </li> <li> <p>First character must be a
      * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
      * hyphens</p> </li> </ul> <p>Example: <code>my-option-group</code> </p>
      */
-    inline CopyOptionGroupRequest& WithTargetOptionGroupIdentifier(Aws::String&& value) { SetTargetOptionGroupIdentifier(value); return *this;}
+    inline CopyOptionGroupRequest& WithTargetOptionGroupIdentifier(Aws::String&& value) { SetTargetOptionGroupIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The identifier for the copied option group.</p> <p>Constraints:</p> <ul> <li>
      * <p>Cannot be null, empty, or blank</p> </li> <li> <p>Must contain from 1 to 255
-     * alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a
+     * letters, numbers, or hyphens</p> </li> <li> <p>First character must be a
      * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
      * hyphens</p> </li> </ul> <p>Example: <code>my-option-group</code> </p>
      */
     inline CopyOptionGroupRequest& WithTargetOptionGroupIdentifier(const char* value) { SetTargetOptionGroupIdentifier(value); return *this;}
+
 
     /**
      * <p>The description for the copied option group.</p>
@@ -218,7 +234,7 @@ namespace Model
     /**
      * <p>The description for the copied option group.</p>
      */
-    inline void SetTargetOptionGroupDescription(Aws::String&& value) { m_targetOptionGroupDescriptionHasBeenSet = true; m_targetOptionGroupDescription = value; }
+    inline void SetTargetOptionGroupDescription(Aws::String&& value) { m_targetOptionGroupDescriptionHasBeenSet = true; m_targetOptionGroupDescription = std::move(value); }
 
     /**
      * <p>The description for the copied option group.</p>
@@ -233,12 +249,13 @@ namespace Model
     /**
      * <p>The description for the copied option group.</p>
      */
-    inline CopyOptionGroupRequest& WithTargetOptionGroupDescription(Aws::String&& value) { SetTargetOptionGroupDescription(value); return *this;}
+    inline CopyOptionGroupRequest& WithTargetOptionGroupDescription(Aws::String&& value) { SetTargetOptionGroupDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description for the copied option group.</p>
      */
     inline CopyOptionGroupRequest& WithTargetOptionGroupDescription(const char* value) { SetTargetOptionGroupDescription(value); return *this;}
+
 
     
     inline const Aws::Vector<Tag>& GetTags() const{ return m_tags; }
@@ -247,27 +264,31 @@ namespace Model
     inline void SetTags(const Aws::Vector<Tag>& value) { m_tagsHasBeenSet = true; m_tags = value; }
 
     
-    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = std::move(value); }
 
     
     inline CopyOptionGroupRequest& WithTags(const Aws::Vector<Tag>& value) { SetTags(value); return *this;}
 
     
-    inline CopyOptionGroupRequest& WithTags(Aws::Vector<Tag>&& value) { SetTags(value); return *this;}
+    inline CopyOptionGroupRequest& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     
     inline CopyOptionGroupRequest& AddTags(const Tag& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
 
     
-    inline CopyOptionGroupRequest& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
+    inline CopyOptionGroupRequest& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_sourceOptionGroupIdentifier;
     bool m_sourceOptionGroupIdentifierHasBeenSet;
+
     Aws::String m_targetOptionGroupIdentifier;
     bool m_targetOptionGroupIdentifierHasBeenSet;
+
     Aws::String m_targetOptionGroupDescription;
     bool m_targetOptionGroupDescriptionHasBeenSet;
+
     Aws::Vector<Tag> m_tags;
     bool m_tagsHasBeenSet;
   };

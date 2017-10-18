@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/monitoring/CloudWatch_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -23,6 +24,7 @@
 #include <aws/monitoring/model/StandardUnit.h>
 #include <aws/monitoring/model/ComparisonOperator.h>
 #include <aws/monitoring/model/Dimension.h>
+#include <utility>
 
 namespace Aws
 {
@@ -53,6 +55,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the alarm.</p>
      */
@@ -66,7 +69,7 @@ namespace Model
     /**
      * <p>The name of the alarm.</p>
      */
-    inline void SetAlarmName(Aws::String&& value) { m_alarmNameHasBeenSet = true; m_alarmName = value; }
+    inline void SetAlarmName(Aws::String&& value) { m_alarmNameHasBeenSet = true; m_alarmName = std::move(value); }
 
     /**
      * <p>The name of the alarm.</p>
@@ -81,12 +84,13 @@ namespace Model
     /**
      * <p>The name of the alarm.</p>
      */
-    inline MetricAlarm& WithAlarmName(Aws::String&& value) { SetAlarmName(value); return *this;}
+    inline MetricAlarm& WithAlarmName(Aws::String&& value) { SetAlarmName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the alarm.</p>
      */
     inline MetricAlarm& WithAlarmName(const char* value) { SetAlarmName(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the alarm.</p>
@@ -101,7 +105,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the alarm.</p>
      */
-    inline void SetAlarmArn(Aws::String&& value) { m_alarmArnHasBeenSet = true; m_alarmArn = value; }
+    inline void SetAlarmArn(Aws::String&& value) { m_alarmArnHasBeenSet = true; m_alarmArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the alarm.</p>
@@ -116,12 +120,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the alarm.</p>
      */
-    inline MetricAlarm& WithAlarmArn(Aws::String&& value) { SetAlarmArn(value); return *this;}
+    inline MetricAlarm& WithAlarmArn(Aws::String&& value) { SetAlarmArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the alarm.</p>
      */
     inline MetricAlarm& WithAlarmArn(const char* value) { SetAlarmArn(value); return *this;}
+
 
     /**
      * <p>The description of the alarm.</p>
@@ -136,7 +141,7 @@ namespace Model
     /**
      * <p>The description of the alarm.</p>
      */
-    inline void SetAlarmDescription(Aws::String&& value) { m_alarmDescriptionHasBeenSet = true; m_alarmDescription = value; }
+    inline void SetAlarmDescription(Aws::String&& value) { m_alarmDescriptionHasBeenSet = true; m_alarmDescription = std::move(value); }
 
     /**
      * <p>The description of the alarm.</p>
@@ -151,12 +156,13 @@ namespace Model
     /**
      * <p>The description of the alarm.</p>
      */
-    inline MetricAlarm& WithAlarmDescription(Aws::String&& value) { SetAlarmDescription(value); return *this;}
+    inline MetricAlarm& WithAlarmDescription(Aws::String&& value) { SetAlarmDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description of the alarm.</p>
      */
     inline MetricAlarm& WithAlarmDescription(const char* value) { SetAlarmDescription(value); return *this;}
+
 
     /**
      * <p>The time stamp of the last update to the alarm configuration.</p>
@@ -171,7 +177,7 @@ namespace Model
     /**
      * <p>The time stamp of the last update to the alarm configuration.</p>
      */
-    inline void SetAlarmConfigurationUpdatedTimestamp(Aws::Utils::DateTime&& value) { m_alarmConfigurationUpdatedTimestampHasBeenSet = true; m_alarmConfigurationUpdatedTimestamp = value; }
+    inline void SetAlarmConfigurationUpdatedTimestamp(Aws::Utils::DateTime&& value) { m_alarmConfigurationUpdatedTimestampHasBeenSet = true; m_alarmConfigurationUpdatedTimestamp = std::move(value); }
 
     /**
      * <p>The time stamp of the last update to the alarm configuration.</p>
@@ -181,7 +187,8 @@ namespace Model
     /**
      * <p>The time stamp of the last update to the alarm configuration.</p>
      */
-    inline MetricAlarm& WithAlarmConfigurationUpdatedTimestamp(Aws::Utils::DateTime&& value) { SetAlarmConfigurationUpdatedTimestamp(value); return *this;}
+    inline MetricAlarm& WithAlarmConfigurationUpdatedTimestamp(Aws::Utils::DateTime&& value) { SetAlarmConfigurationUpdatedTimestamp(std::move(value)); return *this;}
+
 
     /**
      * <p>Indicates whether actions should be executed during any changes to the alarm
@@ -200,6 +207,7 @@ namespace Model
      * state.</p>
      */
     inline MetricAlarm& WithActionsEnabled(bool value) { SetActionsEnabled(value); return *this;}
+
 
     /**
      * <p>The actions to execute when this alarm transitions to the <code>OK</code>
@@ -220,7 +228,7 @@ namespace Model
      * state from any other state. Each action is specified as an Amazon Resource Name
      * (ARN).</p>
      */
-    inline void SetOKActions(Aws::Vector<Aws::String>&& value) { m_oKActionsHasBeenSet = true; m_oKActions = value; }
+    inline void SetOKActions(Aws::Vector<Aws::String>&& value) { m_oKActionsHasBeenSet = true; m_oKActions = std::move(value); }
 
     /**
      * <p>The actions to execute when this alarm transitions to the <code>OK</code>
@@ -234,7 +242,7 @@ namespace Model
      * state from any other state. Each action is specified as an Amazon Resource Name
      * (ARN).</p>
      */
-    inline MetricAlarm& WithOKActions(Aws::Vector<Aws::String>&& value) { SetOKActions(value); return *this;}
+    inline MetricAlarm& WithOKActions(Aws::Vector<Aws::String>&& value) { SetOKActions(std::move(value)); return *this;}
 
     /**
      * <p>The actions to execute when this alarm transitions to the <code>OK</code>
@@ -248,7 +256,7 @@ namespace Model
      * state from any other state. Each action is specified as an Amazon Resource Name
      * (ARN).</p>
      */
-    inline MetricAlarm& AddOKActions(Aws::String&& value) { m_oKActionsHasBeenSet = true; m_oKActions.push_back(value); return *this; }
+    inline MetricAlarm& AddOKActions(Aws::String&& value) { m_oKActionsHasBeenSet = true; m_oKActions.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The actions to execute when this alarm transitions to the <code>OK</code>
@@ -256,6 +264,7 @@ namespace Model
      * (ARN).</p>
      */
     inline MetricAlarm& AddOKActions(const char* value) { m_oKActionsHasBeenSet = true; m_oKActions.push_back(value); return *this; }
+
 
     /**
      * <p>The actions to execute when this alarm transitions to the <code>ALARM</code>
@@ -276,7 +285,7 @@ namespace Model
      * state from any other state. Each action is specified as an Amazon Resource Name
      * (ARN).</p>
      */
-    inline void SetAlarmActions(Aws::Vector<Aws::String>&& value) { m_alarmActionsHasBeenSet = true; m_alarmActions = value; }
+    inline void SetAlarmActions(Aws::Vector<Aws::String>&& value) { m_alarmActionsHasBeenSet = true; m_alarmActions = std::move(value); }
 
     /**
      * <p>The actions to execute when this alarm transitions to the <code>ALARM</code>
@@ -290,7 +299,7 @@ namespace Model
      * state from any other state. Each action is specified as an Amazon Resource Name
      * (ARN).</p>
      */
-    inline MetricAlarm& WithAlarmActions(Aws::Vector<Aws::String>&& value) { SetAlarmActions(value); return *this;}
+    inline MetricAlarm& WithAlarmActions(Aws::Vector<Aws::String>&& value) { SetAlarmActions(std::move(value)); return *this;}
 
     /**
      * <p>The actions to execute when this alarm transitions to the <code>ALARM</code>
@@ -304,7 +313,7 @@ namespace Model
      * state from any other state. Each action is specified as an Amazon Resource Name
      * (ARN).</p>
      */
-    inline MetricAlarm& AddAlarmActions(Aws::String&& value) { m_alarmActionsHasBeenSet = true; m_alarmActions.push_back(value); return *this; }
+    inline MetricAlarm& AddAlarmActions(Aws::String&& value) { m_alarmActionsHasBeenSet = true; m_alarmActions.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The actions to execute when this alarm transitions to the <code>ALARM</code>
@@ -312,6 +321,7 @@ namespace Model
      * (ARN).</p>
      */
     inline MetricAlarm& AddAlarmActions(const char* value) { m_alarmActionsHasBeenSet = true; m_alarmActions.push_back(value); return *this; }
+
 
     /**
      * <p>The actions to execute when this alarm transitions to the
@@ -332,7 +342,7 @@ namespace Model
      * <code>INSUFFICIENT_DATA</code> state from any other state. Each action is
      * specified as an Amazon Resource Name (ARN).</p>
      */
-    inline void SetInsufficientDataActions(Aws::Vector<Aws::String>&& value) { m_insufficientDataActionsHasBeenSet = true; m_insufficientDataActions = value; }
+    inline void SetInsufficientDataActions(Aws::Vector<Aws::String>&& value) { m_insufficientDataActionsHasBeenSet = true; m_insufficientDataActions = std::move(value); }
 
     /**
      * <p>The actions to execute when this alarm transitions to the
@@ -346,7 +356,7 @@ namespace Model
      * <code>INSUFFICIENT_DATA</code> state from any other state. Each action is
      * specified as an Amazon Resource Name (ARN).</p>
      */
-    inline MetricAlarm& WithInsufficientDataActions(Aws::Vector<Aws::String>&& value) { SetInsufficientDataActions(value); return *this;}
+    inline MetricAlarm& WithInsufficientDataActions(Aws::Vector<Aws::String>&& value) { SetInsufficientDataActions(std::move(value)); return *this;}
 
     /**
      * <p>The actions to execute when this alarm transitions to the
@@ -360,7 +370,7 @@ namespace Model
      * <code>INSUFFICIENT_DATA</code> state from any other state. Each action is
      * specified as an Amazon Resource Name (ARN).</p>
      */
-    inline MetricAlarm& AddInsufficientDataActions(Aws::String&& value) { m_insufficientDataActionsHasBeenSet = true; m_insufficientDataActions.push_back(value); return *this; }
+    inline MetricAlarm& AddInsufficientDataActions(Aws::String&& value) { m_insufficientDataActionsHasBeenSet = true; m_insufficientDataActions.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The actions to execute when this alarm transitions to the
@@ -368,6 +378,7 @@ namespace Model
      * specified as an Amazon Resource Name (ARN).</p>
      */
     inline MetricAlarm& AddInsufficientDataActions(const char* value) { m_insufficientDataActionsHasBeenSet = true; m_insufficientDataActions.push_back(value); return *this; }
+
 
     /**
      * <p>The state value for the alarm.</p>
@@ -382,7 +393,7 @@ namespace Model
     /**
      * <p>The state value for the alarm.</p>
      */
-    inline void SetStateValue(StateValue&& value) { m_stateValueHasBeenSet = true; m_stateValue = value; }
+    inline void SetStateValue(StateValue&& value) { m_stateValueHasBeenSet = true; m_stateValue = std::move(value); }
 
     /**
      * <p>The state value for the alarm.</p>
@@ -392,7 +403,8 @@ namespace Model
     /**
      * <p>The state value for the alarm.</p>
      */
-    inline MetricAlarm& WithStateValue(StateValue&& value) { SetStateValue(value); return *this;}
+    inline MetricAlarm& WithStateValue(StateValue&& value) { SetStateValue(std::move(value)); return *this;}
+
 
     /**
      * <p>An explanation for the alarm state, in text format.</p>
@@ -407,7 +419,7 @@ namespace Model
     /**
      * <p>An explanation for the alarm state, in text format.</p>
      */
-    inline void SetStateReason(Aws::String&& value) { m_stateReasonHasBeenSet = true; m_stateReason = value; }
+    inline void SetStateReason(Aws::String&& value) { m_stateReasonHasBeenSet = true; m_stateReason = std::move(value); }
 
     /**
      * <p>An explanation for the alarm state, in text format.</p>
@@ -422,12 +434,13 @@ namespace Model
     /**
      * <p>An explanation for the alarm state, in text format.</p>
      */
-    inline MetricAlarm& WithStateReason(Aws::String&& value) { SetStateReason(value); return *this;}
+    inline MetricAlarm& WithStateReason(Aws::String&& value) { SetStateReason(std::move(value)); return *this;}
 
     /**
      * <p>An explanation for the alarm state, in text format.</p>
      */
     inline MetricAlarm& WithStateReason(const char* value) { SetStateReason(value); return *this;}
+
 
     /**
      * <p>An explanation for the alarm state, in JSON format.</p>
@@ -442,7 +455,7 @@ namespace Model
     /**
      * <p>An explanation for the alarm state, in JSON format.</p>
      */
-    inline void SetStateReasonData(Aws::String&& value) { m_stateReasonDataHasBeenSet = true; m_stateReasonData = value; }
+    inline void SetStateReasonData(Aws::String&& value) { m_stateReasonDataHasBeenSet = true; m_stateReasonData = std::move(value); }
 
     /**
      * <p>An explanation for the alarm state, in JSON format.</p>
@@ -457,12 +470,13 @@ namespace Model
     /**
      * <p>An explanation for the alarm state, in JSON format.</p>
      */
-    inline MetricAlarm& WithStateReasonData(Aws::String&& value) { SetStateReasonData(value); return *this;}
+    inline MetricAlarm& WithStateReasonData(Aws::String&& value) { SetStateReasonData(std::move(value)); return *this;}
 
     /**
      * <p>An explanation for the alarm state, in JSON format.</p>
      */
     inline MetricAlarm& WithStateReasonData(const char* value) { SetStateReasonData(value); return *this;}
+
 
     /**
      * <p>The time stamp of the last update to the alarm state.</p>
@@ -477,7 +491,7 @@ namespace Model
     /**
      * <p>The time stamp of the last update to the alarm state.</p>
      */
-    inline void SetStateUpdatedTimestamp(Aws::Utils::DateTime&& value) { m_stateUpdatedTimestampHasBeenSet = true; m_stateUpdatedTimestamp = value; }
+    inline void SetStateUpdatedTimestamp(Aws::Utils::DateTime&& value) { m_stateUpdatedTimestampHasBeenSet = true; m_stateUpdatedTimestamp = std::move(value); }
 
     /**
      * <p>The time stamp of the last update to the alarm state.</p>
@@ -487,7 +501,8 @@ namespace Model
     /**
      * <p>The time stamp of the last update to the alarm state.</p>
      */
-    inline MetricAlarm& WithStateUpdatedTimestamp(Aws::Utils::DateTime&& value) { SetStateUpdatedTimestamp(value); return *this;}
+    inline MetricAlarm& WithStateUpdatedTimestamp(Aws::Utils::DateTime&& value) { SetStateUpdatedTimestamp(std::move(value)); return *this;}
+
 
     /**
      * <p>The name of the metric associated with the alarm.</p>
@@ -502,7 +517,7 @@ namespace Model
     /**
      * <p>The name of the metric associated with the alarm.</p>
      */
-    inline void SetMetricName(Aws::String&& value) { m_metricNameHasBeenSet = true; m_metricName = value; }
+    inline void SetMetricName(Aws::String&& value) { m_metricNameHasBeenSet = true; m_metricName = std::move(value); }
 
     /**
      * <p>The name of the metric associated with the alarm.</p>
@@ -517,12 +532,13 @@ namespace Model
     /**
      * <p>The name of the metric associated with the alarm.</p>
      */
-    inline MetricAlarm& WithMetricName(Aws::String&& value) { SetMetricName(value); return *this;}
+    inline MetricAlarm& WithMetricName(Aws::String&& value) { SetMetricName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the metric associated with the alarm.</p>
      */
     inline MetricAlarm& WithMetricName(const char* value) { SetMetricName(value); return *this;}
+
 
     /**
      * <p>The namespace of the metric associated with the alarm.</p>
@@ -537,7 +553,7 @@ namespace Model
     /**
      * <p>The namespace of the metric associated with the alarm.</p>
      */
-    inline void SetNamespace(Aws::String&& value) { m_namespaceHasBeenSet = true; m_namespace = value; }
+    inline void SetNamespace(Aws::String&& value) { m_namespaceHasBeenSet = true; m_namespace = std::move(value); }
 
     /**
      * <p>The namespace of the metric associated with the alarm.</p>
@@ -552,12 +568,13 @@ namespace Model
     /**
      * <p>The namespace of the metric associated with the alarm.</p>
      */
-    inline MetricAlarm& WithNamespace(Aws::String&& value) { SetNamespace(value); return *this;}
+    inline MetricAlarm& WithNamespace(Aws::String&& value) { SetNamespace(std::move(value)); return *this;}
 
     /**
      * <p>The namespace of the metric associated with the alarm.</p>
      */
     inline MetricAlarm& WithNamespace(const char* value) { SetNamespace(value); return *this;}
+
 
     /**
      * <p>The statistic for the metric associated with the alarm, other than
@@ -575,7 +592,7 @@ namespace Model
      * <p>The statistic for the metric associated with the alarm, other than
      * percentile. For percentile statistics, use <code>ExtendedStatistic</code>.</p>
      */
-    inline void SetStatistic(Statistic&& value) { m_statisticHasBeenSet = true; m_statistic = value; }
+    inline void SetStatistic(Statistic&& value) { m_statisticHasBeenSet = true; m_statistic = std::move(value); }
 
     /**
      * <p>The statistic for the metric associated with the alarm, other than
@@ -587,7 +604,8 @@ namespace Model
      * <p>The statistic for the metric associated with the alarm, other than
      * percentile. For percentile statistics, use <code>ExtendedStatistic</code>.</p>
      */
-    inline MetricAlarm& WithStatistic(Statistic&& value) { SetStatistic(value); return *this;}
+    inline MetricAlarm& WithStatistic(Statistic&& value) { SetStatistic(std::move(value)); return *this;}
+
 
     /**
      * <p>The percentile statistic for the metric associated with the alarm. Specify a
@@ -605,7 +623,7 @@ namespace Model
      * <p>The percentile statistic for the metric associated with the alarm. Specify a
      * value between p0.0 and p100.</p>
      */
-    inline void SetExtendedStatistic(Aws::String&& value) { m_extendedStatisticHasBeenSet = true; m_extendedStatistic = value; }
+    inline void SetExtendedStatistic(Aws::String&& value) { m_extendedStatisticHasBeenSet = true; m_extendedStatistic = std::move(value); }
 
     /**
      * <p>The percentile statistic for the metric associated with the alarm. Specify a
@@ -623,13 +641,14 @@ namespace Model
      * <p>The percentile statistic for the metric associated with the alarm. Specify a
      * value between p0.0 and p100.</p>
      */
-    inline MetricAlarm& WithExtendedStatistic(Aws::String&& value) { SetExtendedStatistic(value); return *this;}
+    inline MetricAlarm& WithExtendedStatistic(Aws::String&& value) { SetExtendedStatistic(std::move(value)); return *this;}
 
     /**
      * <p>The percentile statistic for the metric associated with the alarm. Specify a
      * value between p0.0 and p100.</p>
      */
     inline MetricAlarm& WithExtendedStatistic(const char* value) { SetExtendedStatistic(value); return *this;}
+
 
     /**
      * <p>The dimensions for the metric associated with the alarm.</p>
@@ -644,7 +663,7 @@ namespace Model
     /**
      * <p>The dimensions for the metric associated with the alarm.</p>
      */
-    inline void SetDimensions(Aws::Vector<Dimension>&& value) { m_dimensionsHasBeenSet = true; m_dimensions = value; }
+    inline void SetDimensions(Aws::Vector<Dimension>&& value) { m_dimensionsHasBeenSet = true; m_dimensions = std::move(value); }
 
     /**
      * <p>The dimensions for the metric associated with the alarm.</p>
@@ -654,7 +673,7 @@ namespace Model
     /**
      * <p>The dimensions for the metric associated with the alarm.</p>
      */
-    inline MetricAlarm& WithDimensions(Aws::Vector<Dimension>&& value) { SetDimensions(value); return *this;}
+    inline MetricAlarm& WithDimensions(Aws::Vector<Dimension>&& value) { SetDimensions(std::move(value)); return *this;}
 
     /**
      * <p>The dimensions for the metric associated with the alarm.</p>
@@ -664,7 +683,8 @@ namespace Model
     /**
      * <p>The dimensions for the metric associated with the alarm.</p>
      */
-    inline MetricAlarm& AddDimensions(Dimension&& value) { m_dimensionsHasBeenSet = true; m_dimensions.push_back(value); return *this; }
+    inline MetricAlarm& AddDimensions(Dimension&& value) { m_dimensionsHasBeenSet = true; m_dimensions.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The period, in seconds, over which the statistic is applied.</p>
@@ -681,6 +701,7 @@ namespace Model
      */
     inline MetricAlarm& WithPeriod(int value) { SetPeriod(value); return *this;}
 
+
     /**
      * <p>The unit of the metric associated with the alarm.</p>
      */
@@ -694,7 +715,7 @@ namespace Model
     /**
      * <p>The unit of the metric associated with the alarm.</p>
      */
-    inline void SetUnit(StandardUnit&& value) { m_unitHasBeenSet = true; m_unit = value; }
+    inline void SetUnit(StandardUnit&& value) { m_unitHasBeenSet = true; m_unit = std::move(value); }
 
     /**
      * <p>The unit of the metric associated with the alarm.</p>
@@ -704,7 +725,8 @@ namespace Model
     /**
      * <p>The unit of the metric associated with the alarm.</p>
      */
-    inline MetricAlarm& WithUnit(StandardUnit&& value) { SetUnit(value); return *this;}
+    inline MetricAlarm& WithUnit(StandardUnit&& value) { SetUnit(std::move(value)); return *this;}
+
 
     /**
      * <p>The number of periods over which data is compared to the specified
@@ -724,6 +746,7 @@ namespace Model
      */
     inline MetricAlarm& WithEvaluationPeriods(int value) { SetEvaluationPeriods(value); return *this;}
 
+
     /**
      * <p>The value to compare with the specified statistic.</p>
      */
@@ -738,6 +761,7 @@ namespace Model
      * <p>The value to compare with the specified statistic.</p>
      */
     inline MetricAlarm& WithThreshold(double value) { SetThreshold(value); return *this;}
+
 
     /**
      * <p>The arithmetic operation to use when comparing the specified statistic and
@@ -755,7 +779,7 @@ namespace Model
      * <p>The arithmetic operation to use when comparing the specified statistic and
      * threshold. The specified statistic value is used as the first operand.</p>
      */
-    inline void SetComparisonOperator(ComparisonOperator&& value) { m_comparisonOperatorHasBeenSet = true; m_comparisonOperator = value; }
+    inline void SetComparisonOperator(ComparisonOperator&& value) { m_comparisonOperatorHasBeenSet = true; m_comparisonOperator = std::move(value); }
 
     /**
      * <p>The arithmetic operation to use when comparing the specified statistic and
@@ -767,53 +791,188 @@ namespace Model
      * <p>The arithmetic operation to use when comparing the specified statistic and
      * threshold. The specified statistic value is used as the first operand.</p>
      */
-    inline MetricAlarm& WithComparisonOperator(ComparisonOperator&& value) { SetComparisonOperator(value); return *this;}
+    inline MetricAlarm& WithComparisonOperator(ComparisonOperator&& value) { SetComparisonOperator(std::move(value)); return *this;}
+
+
+    /**
+     * <p>Sets how this alarm is to handle missing data points. If this parameter is
+     * omitted, the default behavior of <code>missing</code> is used.</p>
+     */
+    inline const Aws::String& GetTreatMissingData() const{ return m_treatMissingData; }
+
+    /**
+     * <p>Sets how this alarm is to handle missing data points. If this parameter is
+     * omitted, the default behavior of <code>missing</code> is used.</p>
+     */
+    inline void SetTreatMissingData(const Aws::String& value) { m_treatMissingDataHasBeenSet = true; m_treatMissingData = value; }
+
+    /**
+     * <p>Sets how this alarm is to handle missing data points. If this parameter is
+     * omitted, the default behavior of <code>missing</code> is used.</p>
+     */
+    inline void SetTreatMissingData(Aws::String&& value) { m_treatMissingDataHasBeenSet = true; m_treatMissingData = std::move(value); }
+
+    /**
+     * <p>Sets how this alarm is to handle missing data points. If this parameter is
+     * omitted, the default behavior of <code>missing</code> is used.</p>
+     */
+    inline void SetTreatMissingData(const char* value) { m_treatMissingDataHasBeenSet = true; m_treatMissingData.assign(value); }
+
+    /**
+     * <p>Sets how this alarm is to handle missing data points. If this parameter is
+     * omitted, the default behavior of <code>missing</code> is used.</p>
+     */
+    inline MetricAlarm& WithTreatMissingData(const Aws::String& value) { SetTreatMissingData(value); return *this;}
+
+    /**
+     * <p>Sets how this alarm is to handle missing data points. If this parameter is
+     * omitted, the default behavior of <code>missing</code> is used.</p>
+     */
+    inline MetricAlarm& WithTreatMissingData(Aws::String&& value) { SetTreatMissingData(std::move(value)); return *this;}
+
+    /**
+     * <p>Sets how this alarm is to handle missing data points. If this parameter is
+     * omitted, the default behavior of <code>missing</code> is used.</p>
+     */
+    inline MetricAlarm& WithTreatMissingData(const char* value) { SetTreatMissingData(value); return *this;}
+
+
+    /**
+     * <p>Used only for alarms based on percentiles. If <code>ignore</code>, the alarm
+     * state does not change during periods with too few data points to be
+     * statistically significant. If <code>evaluate</code> or this parameter is not
+     * used, the alarm is always evaluated and possibly changes state no matter how
+     * many data points are available.</p>
+     */
+    inline const Aws::String& GetEvaluateLowSampleCountPercentile() const{ return m_evaluateLowSampleCountPercentile; }
+
+    /**
+     * <p>Used only for alarms based on percentiles. If <code>ignore</code>, the alarm
+     * state does not change during periods with too few data points to be
+     * statistically significant. If <code>evaluate</code> or this parameter is not
+     * used, the alarm is always evaluated and possibly changes state no matter how
+     * many data points are available.</p>
+     */
+    inline void SetEvaluateLowSampleCountPercentile(const Aws::String& value) { m_evaluateLowSampleCountPercentileHasBeenSet = true; m_evaluateLowSampleCountPercentile = value; }
+
+    /**
+     * <p>Used only for alarms based on percentiles. If <code>ignore</code>, the alarm
+     * state does not change during periods with too few data points to be
+     * statistically significant. If <code>evaluate</code> or this parameter is not
+     * used, the alarm is always evaluated and possibly changes state no matter how
+     * many data points are available.</p>
+     */
+    inline void SetEvaluateLowSampleCountPercentile(Aws::String&& value) { m_evaluateLowSampleCountPercentileHasBeenSet = true; m_evaluateLowSampleCountPercentile = std::move(value); }
+
+    /**
+     * <p>Used only for alarms based on percentiles. If <code>ignore</code>, the alarm
+     * state does not change during periods with too few data points to be
+     * statistically significant. If <code>evaluate</code> or this parameter is not
+     * used, the alarm is always evaluated and possibly changes state no matter how
+     * many data points are available.</p>
+     */
+    inline void SetEvaluateLowSampleCountPercentile(const char* value) { m_evaluateLowSampleCountPercentileHasBeenSet = true; m_evaluateLowSampleCountPercentile.assign(value); }
+
+    /**
+     * <p>Used only for alarms based on percentiles. If <code>ignore</code>, the alarm
+     * state does not change during periods with too few data points to be
+     * statistically significant. If <code>evaluate</code> or this parameter is not
+     * used, the alarm is always evaluated and possibly changes state no matter how
+     * many data points are available.</p>
+     */
+    inline MetricAlarm& WithEvaluateLowSampleCountPercentile(const Aws::String& value) { SetEvaluateLowSampleCountPercentile(value); return *this;}
+
+    /**
+     * <p>Used only for alarms based on percentiles. If <code>ignore</code>, the alarm
+     * state does not change during periods with too few data points to be
+     * statistically significant. If <code>evaluate</code> or this parameter is not
+     * used, the alarm is always evaluated and possibly changes state no matter how
+     * many data points are available.</p>
+     */
+    inline MetricAlarm& WithEvaluateLowSampleCountPercentile(Aws::String&& value) { SetEvaluateLowSampleCountPercentile(std::move(value)); return *this;}
+
+    /**
+     * <p>Used only for alarms based on percentiles. If <code>ignore</code>, the alarm
+     * state does not change during periods with too few data points to be
+     * statistically significant. If <code>evaluate</code> or this parameter is not
+     * used, the alarm is always evaluated and possibly changes state no matter how
+     * many data points are available.</p>
+     */
+    inline MetricAlarm& WithEvaluateLowSampleCountPercentile(const char* value) { SetEvaluateLowSampleCountPercentile(value); return *this;}
 
   private:
+
     Aws::String m_alarmName;
     bool m_alarmNameHasBeenSet;
+
     Aws::String m_alarmArn;
     bool m_alarmArnHasBeenSet;
+
     Aws::String m_alarmDescription;
     bool m_alarmDescriptionHasBeenSet;
+
     Aws::Utils::DateTime m_alarmConfigurationUpdatedTimestamp;
     bool m_alarmConfigurationUpdatedTimestampHasBeenSet;
+
     bool m_actionsEnabled;
     bool m_actionsEnabledHasBeenSet;
+
     Aws::Vector<Aws::String> m_oKActions;
     bool m_oKActionsHasBeenSet;
+
     Aws::Vector<Aws::String> m_alarmActions;
     bool m_alarmActionsHasBeenSet;
+
     Aws::Vector<Aws::String> m_insufficientDataActions;
     bool m_insufficientDataActionsHasBeenSet;
+
     StateValue m_stateValue;
     bool m_stateValueHasBeenSet;
+
     Aws::String m_stateReason;
     bool m_stateReasonHasBeenSet;
+
     Aws::String m_stateReasonData;
     bool m_stateReasonDataHasBeenSet;
+
     Aws::Utils::DateTime m_stateUpdatedTimestamp;
     bool m_stateUpdatedTimestampHasBeenSet;
+
     Aws::String m_metricName;
     bool m_metricNameHasBeenSet;
+
     Aws::String m_namespace;
     bool m_namespaceHasBeenSet;
+
     Statistic m_statistic;
     bool m_statisticHasBeenSet;
+
     Aws::String m_extendedStatistic;
     bool m_extendedStatisticHasBeenSet;
+
     Aws::Vector<Dimension> m_dimensions;
     bool m_dimensionsHasBeenSet;
+
     int m_period;
     bool m_periodHasBeenSet;
+
     StandardUnit m_unit;
     bool m_unitHasBeenSet;
+
     int m_evaluationPeriods;
     bool m_evaluationPeriodsHasBeenSet;
+
     double m_threshold;
     bool m_thresholdHasBeenSet;
+
     ComparisonOperator m_comparisonOperator;
     bool m_comparisonOperatorHasBeenSet;
+
+    Aws::String m_treatMissingData;
+    bool m_treatMissingDataHasBeenSet;
+
+    Aws::String m_evaluateLowSampleCountPercentile;
+    bool m_evaluateLowSampleCountPercentileHasBeenSet;
   };
 
 } // namespace Model

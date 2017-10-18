@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/iam/IAMRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/iam/model/StatusType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,7 +33,19 @@ namespace Model
   {
   public:
     UpdateSigningCertificateRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateSigningCertificate"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The name of the IAM user the signing certificate belongs to.</p> <p>This
@@ -58,7 +72,7 @@ namespace Model
      * alphanumeric characters with no spaces. You can also include any of the
      * following characters: =,.@-</p>
      */
-    inline void SetUserName(Aws::String&& value) { m_userNameHasBeenSet = true; m_userName = value; }
+    inline void SetUserName(Aws::String&& value) { m_userNameHasBeenSet = true; m_userName = std::move(value); }
 
     /**
      * <p>The name of the IAM user the signing certificate belongs to.</p> <p>This
@@ -85,7 +99,7 @@ namespace Model
      * alphanumeric characters with no spaces. You can also include any of the
      * following characters: =,.@-</p>
      */
-    inline UpdateSigningCertificateRequest& WithUserName(Aws::String&& value) { SetUserName(value); return *this;}
+    inline UpdateSigningCertificateRequest& WithUserName(Aws::String&& value) { SetUserName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the IAM user the signing certificate belongs to.</p> <p>This
@@ -95,6 +109,7 @@ namespace Model
      * following characters: =,.@-</p>
      */
     inline UpdateSigningCertificateRequest& WithUserName(const char* value) { SetUserName(value); return *this;}
+
 
     /**
      * <p>The ID of the signing certificate you want to update.</p> <p>This parameter
@@ -118,7 +133,7 @@ namespace Model
      * string of characters that can consist of any upper or lowercased letter or
      * digit.</p>
      */
-    inline void SetCertificateId(Aws::String&& value) { m_certificateIdHasBeenSet = true; m_certificateId = value; }
+    inline void SetCertificateId(Aws::String&& value) { m_certificateIdHasBeenSet = true; m_certificateId = std::move(value); }
 
     /**
      * <p>The ID of the signing certificate you want to update.</p> <p>This parameter
@@ -142,7 +157,7 @@ namespace Model
      * string of characters that can consist of any upper or lowercased letter or
      * digit.</p>
      */
-    inline UpdateSigningCertificateRequest& WithCertificateId(Aws::String&& value) { SetCertificateId(value); return *this;}
+    inline UpdateSigningCertificateRequest& WithCertificateId(Aws::String&& value) { SetCertificateId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the signing certificate you want to update.</p> <p>This parameter
@@ -151,6 +166,7 @@ namespace Model
      * digit.</p>
      */
     inline UpdateSigningCertificateRequest& WithCertificateId(const char* value) { SetCertificateId(value); return *this;}
+
 
     /**
      * <p> The status you want to assign to the certificate. <code>Active</code> means
@@ -171,7 +187,7 @@ namespace Model
      * the certificate can be used for API calls to AWS, while <code>Inactive</code>
      * means the certificate cannot be used.</p>
      */
-    inline void SetStatus(StatusType&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(StatusType&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p> The status you want to assign to the certificate. <code>Active</code> means
@@ -185,13 +201,16 @@ namespace Model
      * the certificate can be used for API calls to AWS, while <code>Inactive</code>
      * means the certificate cannot be used.</p>
      */
-    inline UpdateSigningCertificateRequest& WithStatus(StatusType&& value) { SetStatus(value); return *this;}
+    inline UpdateSigningCertificateRequest& WithStatus(StatusType&& value) { SetStatus(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_userName;
     bool m_userNameHasBeenSet;
+
     Aws::String m_certificateId;
     bool m_certificateIdHasBeenSet;
+
     StatusType m_status;
     bool m_statusHasBeenSet;
   };

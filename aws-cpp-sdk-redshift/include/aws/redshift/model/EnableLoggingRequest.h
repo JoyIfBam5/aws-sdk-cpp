@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/redshift/RedshiftRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,19 @@ namespace Model
   {
   public:
     EnableLoggingRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "EnableLogging"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The identifier of the cluster on which logging is to be started.</p>
@@ -51,7 +65,7 @@ namespace Model
      * <p>The identifier of the cluster on which logging is to be started.</p>
      * <p>Example: <code>examplecluster</code> </p>
      */
-    inline void SetClusterIdentifier(Aws::String&& value) { m_clusterIdentifierHasBeenSet = true; m_clusterIdentifier = value; }
+    inline void SetClusterIdentifier(Aws::String&& value) { m_clusterIdentifierHasBeenSet = true; m_clusterIdentifier = std::move(value); }
 
     /**
      * <p>The identifier of the cluster on which logging is to be started.</p>
@@ -69,13 +83,14 @@ namespace Model
      * <p>The identifier of the cluster on which logging is to be started.</p>
      * <p>Example: <code>examplecluster</code> </p>
      */
-    inline EnableLoggingRequest& WithClusterIdentifier(Aws::String&& value) { SetClusterIdentifier(value); return *this;}
+    inline EnableLoggingRequest& WithClusterIdentifier(Aws::String&& value) { SetClusterIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the cluster on which logging is to be started.</p>
      * <p>Example: <code>examplecluster</code> </p>
      */
     inline EnableLoggingRequest& WithClusterIdentifier(const char* value) { SetClusterIdentifier(value); return *this;}
+
 
     /**
      * <p>The name of an existing S3 bucket where the log files are to be stored.</p>
@@ -99,7 +114,7 @@ namespace Model
      * </li> <li> <p>The cluster must have read bucket and put object permissions</p>
      * </li> </ul>
      */
-    inline void SetBucketName(Aws::String&& value) { m_bucketNameHasBeenSet = true; m_bucketName = value; }
+    inline void SetBucketName(Aws::String&& value) { m_bucketNameHasBeenSet = true; m_bucketName = std::move(value); }
 
     /**
      * <p>The name of an existing S3 bucket where the log files are to be stored.</p>
@@ -123,7 +138,7 @@ namespace Model
      * </li> <li> <p>The cluster must have read bucket and put object permissions</p>
      * </li> </ul>
      */
-    inline EnableLoggingRequest& WithBucketName(Aws::String&& value) { SetBucketName(value); return *this;}
+    inline EnableLoggingRequest& WithBucketName(Aws::String&& value) { SetBucketName(std::move(value)); return *this;}
 
     /**
      * <p>The name of an existing S3 bucket where the log files are to be stored.</p>
@@ -132,6 +147,7 @@ namespace Model
      * </li> </ul>
      */
     inline EnableLoggingRequest& WithBucketName(const char* value) { SetBucketName(value); return *this;}
+
 
     /**
      * <p>The prefix applied to the log file names.</p> <p>Constraints:</p> <ul> <li>
@@ -161,7 +177,7 @@ namespace Model
      * x20</p> </li> <li> <p>x22</p> </li> <li> <p>x27</p> </li> <li> <p>x5c</p> </li>
      * <li> <p>x7f or larger</p> </li> </ul> </li> </ul>
      */
-    inline void SetS3KeyPrefix(Aws::String&& value) { m_s3KeyPrefixHasBeenSet = true; m_s3KeyPrefix = value; }
+    inline void SetS3KeyPrefix(Aws::String&& value) { m_s3KeyPrefixHasBeenSet = true; m_s3KeyPrefix = std::move(value); }
 
     /**
      * <p>The prefix applied to the log file names.</p> <p>Constraints:</p> <ul> <li>
@@ -191,7 +207,7 @@ namespace Model
      * x20</p> </li> <li> <p>x22</p> </li> <li> <p>x27</p> </li> <li> <p>x5c</p> </li>
      * <li> <p>x7f or larger</p> </li> </ul> </li> </ul>
      */
-    inline EnableLoggingRequest& WithS3KeyPrefix(Aws::String&& value) { SetS3KeyPrefix(value); return *this;}
+    inline EnableLoggingRequest& WithS3KeyPrefix(Aws::String&& value) { SetS3KeyPrefix(std::move(value)); return *this;}
 
     /**
      * <p>The prefix applied to the log file names.</p> <p>Constraints:</p> <ul> <li>
@@ -204,10 +220,13 @@ namespace Model
     inline EnableLoggingRequest& WithS3KeyPrefix(const char* value) { SetS3KeyPrefix(value); return *this;}
 
   private:
+
     Aws::String m_clusterIdentifier;
     bool m_clusterIdentifierHasBeenSet;
+
     Aws::String m_bucketName;
     bool m_bucketNameHasBeenSet;
+
     Aws::String m_s3KeyPrefix;
     bool m_s3KeyPrefixHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codepipeline/CodePipeline_EXPORTS.h>
 #include <aws/codepipeline/model/ActionTypeId.h>
@@ -19,6 +20,7 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/codepipeline/model/ArtifactDetails.h>
 #include <aws/codepipeline/model/ActionConfigurationProperty.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,20 +50,32 @@ namespace Model
     ActionType& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
-    
+
+    /**
+     * <p>Represents information about an action type.</p>
+     */
     inline const ActionTypeId& GetId() const{ return m_id; }
 
-    
+    /**
+     * <p>Represents information about an action type.</p>
+     */
     inline void SetId(const ActionTypeId& value) { m_idHasBeenSet = true; m_id = value; }
 
-    
-    inline void SetId(ActionTypeId&& value) { m_idHasBeenSet = true; m_id = value; }
+    /**
+     * <p>Represents information about an action type.</p>
+     */
+    inline void SetId(ActionTypeId&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
-    
+    /**
+     * <p>Represents information about an action type.</p>
+     */
     inline ActionType& WithId(const ActionTypeId& value) { SetId(value); return *this;}
 
-    
-    inline ActionType& WithId(ActionTypeId&& value) { SetId(value); return *this;}
+    /**
+     * <p>Represents information about an action type.</p>
+     */
+    inline ActionType& WithId(ActionTypeId&& value) { SetId(std::move(value)); return *this;}
+
 
     /**
      * <p>The settings for the action type.</p>
@@ -76,7 +90,7 @@ namespace Model
     /**
      * <p>The settings for the action type.</p>
      */
-    inline void SetSettings(ActionTypeSettings&& value) { m_settingsHasBeenSet = true; m_settings = value; }
+    inline void SetSettings(ActionTypeSettings&& value) { m_settingsHasBeenSet = true; m_settings = std::move(value); }
 
     /**
      * <p>The settings for the action type.</p>
@@ -86,7 +100,8 @@ namespace Model
     /**
      * <p>The settings for the action type.</p>
      */
-    inline ActionType& WithSettings(ActionTypeSettings&& value) { SetSettings(value); return *this;}
+    inline ActionType& WithSettings(ActionTypeSettings&& value) { SetSettings(std::move(value)); return *this;}
+
 
     /**
      * <p>The configuration properties for the action type.</p>
@@ -101,7 +116,7 @@ namespace Model
     /**
      * <p>The configuration properties for the action type.</p>
      */
-    inline void SetActionConfigurationProperties(Aws::Vector<ActionConfigurationProperty>&& value) { m_actionConfigurationPropertiesHasBeenSet = true; m_actionConfigurationProperties = value; }
+    inline void SetActionConfigurationProperties(Aws::Vector<ActionConfigurationProperty>&& value) { m_actionConfigurationPropertiesHasBeenSet = true; m_actionConfigurationProperties = std::move(value); }
 
     /**
      * <p>The configuration properties for the action type.</p>
@@ -111,7 +126,7 @@ namespace Model
     /**
      * <p>The configuration properties for the action type.</p>
      */
-    inline ActionType& WithActionConfigurationProperties(Aws::Vector<ActionConfigurationProperty>&& value) { SetActionConfigurationProperties(value); return *this;}
+    inline ActionType& WithActionConfigurationProperties(Aws::Vector<ActionConfigurationProperty>&& value) { SetActionConfigurationProperties(std::move(value)); return *this;}
 
     /**
      * <p>The configuration properties for the action type.</p>
@@ -121,7 +136,8 @@ namespace Model
     /**
      * <p>The configuration properties for the action type.</p>
      */
-    inline ActionType& AddActionConfigurationProperties(ActionConfigurationProperty&& value) { m_actionConfigurationPropertiesHasBeenSet = true; m_actionConfigurationProperties.push_back(value); return *this; }
+    inline ActionType& AddActionConfigurationProperties(ActionConfigurationProperty&& value) { m_actionConfigurationPropertiesHasBeenSet = true; m_actionConfigurationProperties.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The details of the input artifact for the action, such as its commit ID.</p>
@@ -136,7 +152,7 @@ namespace Model
     /**
      * <p>The details of the input artifact for the action, such as its commit ID.</p>
      */
-    inline void SetInputArtifactDetails(ArtifactDetails&& value) { m_inputArtifactDetailsHasBeenSet = true; m_inputArtifactDetails = value; }
+    inline void SetInputArtifactDetails(ArtifactDetails&& value) { m_inputArtifactDetailsHasBeenSet = true; m_inputArtifactDetails = std::move(value); }
 
     /**
      * <p>The details of the input artifact for the action, such as its commit ID.</p>
@@ -146,7 +162,8 @@ namespace Model
     /**
      * <p>The details of the input artifact for the action, such as its commit ID.</p>
      */
-    inline ActionType& WithInputArtifactDetails(ArtifactDetails&& value) { SetInputArtifactDetails(value); return *this;}
+    inline ActionType& WithInputArtifactDetails(ArtifactDetails&& value) { SetInputArtifactDetails(std::move(value)); return *this;}
+
 
     /**
      * <p>The details of the output artifact of the action, such as its commit ID.</p>
@@ -161,7 +178,7 @@ namespace Model
     /**
      * <p>The details of the output artifact of the action, such as its commit ID.</p>
      */
-    inline void SetOutputArtifactDetails(ArtifactDetails&& value) { m_outputArtifactDetailsHasBeenSet = true; m_outputArtifactDetails = value; }
+    inline void SetOutputArtifactDetails(ArtifactDetails&& value) { m_outputArtifactDetailsHasBeenSet = true; m_outputArtifactDetails = std::move(value); }
 
     /**
      * <p>The details of the output artifact of the action, such as its commit ID.</p>
@@ -171,17 +188,22 @@ namespace Model
     /**
      * <p>The details of the output artifact of the action, such as its commit ID.</p>
      */
-    inline ActionType& WithOutputArtifactDetails(ArtifactDetails&& value) { SetOutputArtifactDetails(value); return *this;}
+    inline ActionType& WithOutputArtifactDetails(ArtifactDetails&& value) { SetOutputArtifactDetails(std::move(value)); return *this;}
 
   private:
+
     ActionTypeId m_id;
     bool m_idHasBeenSet;
+
     ActionTypeSettings m_settings;
     bool m_settingsHasBeenSet;
+
     Aws::Vector<ActionConfigurationProperty> m_actionConfigurationProperties;
     bool m_actionConfigurationPropertiesHasBeenSet;
+
     ArtifactDetails m_inputArtifactDetails;
     bool m_inputArtifactDetailsHasBeenSet;
+
     ArtifactDetails m_outputArtifactDetails;
     bool m_outputArtifactDetailsHasBeenSet;
   };

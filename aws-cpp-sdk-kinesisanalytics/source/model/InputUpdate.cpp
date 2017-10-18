@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/kinesisanalytics/model/InputUpdate.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -30,6 +31,7 @@ namespace Model
 InputUpdate::InputUpdate() : 
     m_inputIdHasBeenSet(false),
     m_namePrefixUpdateHasBeenSet(false),
+    m_inputProcessingConfigurationUpdateHasBeenSet(false),
     m_kinesisStreamsInputUpdateHasBeenSet(false),
     m_kinesisFirehoseInputUpdateHasBeenSet(false),
     m_inputSchemaUpdateHasBeenSet(false),
@@ -40,6 +42,7 @@ InputUpdate::InputUpdate() :
 InputUpdate::InputUpdate(const JsonValue& jsonValue) : 
     m_inputIdHasBeenSet(false),
     m_namePrefixUpdateHasBeenSet(false),
+    m_inputProcessingConfigurationUpdateHasBeenSet(false),
     m_kinesisStreamsInputUpdateHasBeenSet(false),
     m_kinesisFirehoseInputUpdateHasBeenSet(false),
     m_inputSchemaUpdateHasBeenSet(false),
@@ -62,6 +65,13 @@ InputUpdate& InputUpdate::operator =(const JsonValue& jsonValue)
     m_namePrefixUpdate = jsonValue.GetString("NamePrefixUpdate");
 
     m_namePrefixUpdateHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("InputProcessingConfigurationUpdate"))
+  {
+    m_inputProcessingConfigurationUpdate = jsonValue.GetObject("InputProcessingConfigurationUpdate");
+
+    m_inputProcessingConfigurationUpdateHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("KinesisStreamsInputUpdate"))
@@ -108,6 +118,12 @@ JsonValue InputUpdate::Jsonize() const
   if(m_namePrefixUpdateHasBeenSet)
   {
    payload.WithString("NamePrefixUpdate", m_namePrefixUpdate);
+
+  }
+
+  if(m_inputProcessingConfigurationUpdateHasBeenSet)
+  {
+   payload.WithObject("InputProcessingConfigurationUpdate", m_inputProcessingConfigurationUpdate.Jsonize());
 
   }
 

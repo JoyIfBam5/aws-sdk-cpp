@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/email/SESRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,7 +39,19 @@ namespace Model
   {
   public:
     DeleteIdentityPolicyRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DeleteIdentityPolicy"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The identity that is associated with the policy that you want to delete. You
@@ -64,7 +78,7 @@ namespace Model
      * <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.</p> <p>To
      * successfully call this API, you must own the identity.</p>
      */
-    inline void SetIdentity(Aws::String&& value) { m_identityHasBeenSet = true; m_identity = value; }
+    inline void SetIdentity(Aws::String&& value) { m_identityHasBeenSet = true; m_identity = std::move(value); }
 
     /**
      * <p>The identity that is associated with the policy that you want to delete. You
@@ -91,7 +105,7 @@ namespace Model
      * <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.</p> <p>To
      * successfully call this API, you must own the identity.</p>
      */
-    inline DeleteIdentityPolicyRequest& WithIdentity(Aws::String&& value) { SetIdentity(value); return *this;}
+    inline DeleteIdentityPolicyRequest& WithIdentity(Aws::String&& value) { SetIdentity(std::move(value)); return *this;}
 
     /**
      * <p>The identity that is associated with the policy that you want to delete. You
@@ -101,6 +115,7 @@ namespace Model
      * successfully call this API, you must own the identity.</p>
      */
     inline DeleteIdentityPolicyRequest& WithIdentity(const char* value) { SetIdentity(value); return *this;}
+
 
     /**
      * <p>The name of the policy to be deleted.</p>
@@ -115,7 +130,7 @@ namespace Model
     /**
      * <p>The name of the policy to be deleted.</p>
      */
-    inline void SetPolicyName(Aws::String&& value) { m_policyNameHasBeenSet = true; m_policyName = value; }
+    inline void SetPolicyName(Aws::String&& value) { m_policyNameHasBeenSet = true; m_policyName = std::move(value); }
 
     /**
      * <p>The name of the policy to be deleted.</p>
@@ -130,7 +145,7 @@ namespace Model
     /**
      * <p>The name of the policy to be deleted.</p>
      */
-    inline DeleteIdentityPolicyRequest& WithPolicyName(Aws::String&& value) { SetPolicyName(value); return *this;}
+    inline DeleteIdentityPolicyRequest& WithPolicyName(Aws::String&& value) { SetPolicyName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the policy to be deleted.</p>
@@ -138,8 +153,10 @@ namespace Model
     inline DeleteIdentityPolicyRequest& WithPolicyName(const char* value) { SetPolicyName(value); return *this;}
 
   private:
+
     Aws::String m_identity;
     bool m_identityHasBeenSet;
+
     Aws::String m_policyName;
     bool m_policyNameHasBeenSet;
   };

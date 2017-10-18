@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/ec2/EC2Request.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,7 +37,19 @@ namespace Model
   {
   public:
     CancelSpotFleetRequestsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CancelSpotFleetRequests"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>Checks whether you have the required permissions for the action, without
@@ -61,6 +75,7 @@ namespace Model
      */
     inline CancelSpotFleetRequestsRequest& WithDryRun(bool value) { SetDryRun(value); return *this;}
 
+
     /**
      * <p>The IDs of the Spot fleet requests.</p>
      */
@@ -74,7 +89,7 @@ namespace Model
     /**
      * <p>The IDs of the Spot fleet requests.</p>
      */
-    inline void SetSpotFleetRequestIds(Aws::Vector<Aws::String>&& value) { m_spotFleetRequestIdsHasBeenSet = true; m_spotFleetRequestIds = value; }
+    inline void SetSpotFleetRequestIds(Aws::Vector<Aws::String>&& value) { m_spotFleetRequestIdsHasBeenSet = true; m_spotFleetRequestIds = std::move(value); }
 
     /**
      * <p>The IDs of the Spot fleet requests.</p>
@@ -84,7 +99,7 @@ namespace Model
     /**
      * <p>The IDs of the Spot fleet requests.</p>
      */
-    inline CancelSpotFleetRequestsRequest& WithSpotFleetRequestIds(Aws::Vector<Aws::String>&& value) { SetSpotFleetRequestIds(value); return *this;}
+    inline CancelSpotFleetRequestsRequest& WithSpotFleetRequestIds(Aws::Vector<Aws::String>&& value) { SetSpotFleetRequestIds(std::move(value)); return *this;}
 
     /**
      * <p>The IDs of the Spot fleet requests.</p>
@@ -94,12 +109,13 @@ namespace Model
     /**
      * <p>The IDs of the Spot fleet requests.</p>
      */
-    inline CancelSpotFleetRequestsRequest& AddSpotFleetRequestIds(Aws::String&& value) { m_spotFleetRequestIdsHasBeenSet = true; m_spotFleetRequestIds.push_back(value); return *this; }
+    inline CancelSpotFleetRequestsRequest& AddSpotFleetRequestIds(Aws::String&& value) { m_spotFleetRequestIdsHasBeenSet = true; m_spotFleetRequestIds.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The IDs of the Spot fleet requests.</p>
      */
     inline CancelSpotFleetRequestsRequest& AddSpotFleetRequestIds(const char* value) { m_spotFleetRequestIdsHasBeenSet = true; m_spotFleetRequestIds.push_back(value); return *this; }
+
 
     /**
      * <p>Indicates whether to terminate instances for a Spot fleet request if it is
@@ -120,10 +136,13 @@ namespace Model
     inline CancelSpotFleetRequestsRequest& WithTerminateInstances(bool value) { SetTerminateInstances(value); return *this;}
 
   private:
+
     bool m_dryRun;
     bool m_dryRunHasBeenSet;
+
     Aws::Vector<Aws::String> m_spotFleetRequestIds;
     bool m_spotFleetRequestIdsHasBeenSet;
+
     bool m_terminateInstances;
     bool m_terminateInstancesHasBeenSet;
   };

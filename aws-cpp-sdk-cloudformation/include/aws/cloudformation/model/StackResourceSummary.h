@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudformation/CloudFormation_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/cloudformation/model/ResourceStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +51,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The logical name of the resource specified in the template.</p>
      */
@@ -62,7 +65,7 @@ namespace Model
     /**
      * <p>The logical name of the resource specified in the template.</p>
      */
-    inline void SetLogicalResourceId(Aws::String&& value) { m_logicalResourceIdHasBeenSet = true; m_logicalResourceId = value; }
+    inline void SetLogicalResourceId(Aws::String&& value) { m_logicalResourceIdHasBeenSet = true; m_logicalResourceId = std::move(value); }
 
     /**
      * <p>The logical name of the resource specified in the template.</p>
@@ -77,12 +80,13 @@ namespace Model
     /**
      * <p>The logical name of the resource specified in the template.</p>
      */
-    inline StackResourceSummary& WithLogicalResourceId(Aws::String&& value) { SetLogicalResourceId(value); return *this;}
+    inline StackResourceSummary& WithLogicalResourceId(Aws::String&& value) { SetLogicalResourceId(std::move(value)); return *this;}
 
     /**
      * <p>The logical name of the resource specified in the template.</p>
      */
     inline StackResourceSummary& WithLogicalResourceId(const char* value) { SetLogicalResourceId(value); return *this;}
+
 
     /**
      * <p>The name or unique identifier that corresponds to a physical instance ID of
@@ -100,7 +104,7 @@ namespace Model
      * <p>The name or unique identifier that corresponds to a physical instance ID of
      * the resource.</p>
      */
-    inline void SetPhysicalResourceId(Aws::String&& value) { m_physicalResourceIdHasBeenSet = true; m_physicalResourceId = value; }
+    inline void SetPhysicalResourceId(Aws::String&& value) { m_physicalResourceIdHasBeenSet = true; m_physicalResourceId = std::move(value); }
 
     /**
      * <p>The name or unique identifier that corresponds to a physical instance ID of
@@ -118,13 +122,14 @@ namespace Model
      * <p>The name or unique identifier that corresponds to a physical instance ID of
      * the resource.</p>
      */
-    inline StackResourceSummary& WithPhysicalResourceId(Aws::String&& value) { SetPhysicalResourceId(value); return *this;}
+    inline StackResourceSummary& WithPhysicalResourceId(Aws::String&& value) { SetPhysicalResourceId(std::move(value)); return *this;}
 
     /**
      * <p>The name or unique identifier that corresponds to a physical instance ID of
      * the resource.</p>
      */
     inline StackResourceSummary& WithPhysicalResourceId(const char* value) { SetPhysicalResourceId(value); return *this;}
+
 
     /**
      * <p>Type of resource. (For more information, go to <a
@@ -145,7 +150,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">
      * AWS Resource Types Reference</a> in the AWS CloudFormation User Guide.)</p>
      */
-    inline void SetResourceType(Aws::String&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = value; }
+    inline void SetResourceType(Aws::String&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = std::move(value); }
 
     /**
      * <p>Type of resource. (For more information, go to <a
@@ -166,7 +171,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">
      * AWS Resource Types Reference</a> in the AWS CloudFormation User Guide.)</p>
      */
-    inline StackResourceSummary& WithResourceType(Aws::String&& value) { SetResourceType(value); return *this;}
+    inline StackResourceSummary& WithResourceType(Aws::String&& value) { SetResourceType(std::move(value)); return *this;}
 
     /**
      * <p>Type of resource. (For more information, go to <a
@@ -174,6 +179,7 @@ namespace Model
      * AWS Resource Types Reference</a> in the AWS CloudFormation User Guide.)</p>
      */
     inline StackResourceSummary& WithResourceType(const char* value) { SetResourceType(value); return *this;}
+
 
     /**
      * <p>Time the status was updated.</p>
@@ -188,7 +194,7 @@ namespace Model
     /**
      * <p>Time the status was updated.</p>
      */
-    inline void SetLastUpdatedTimestamp(Aws::Utils::DateTime&& value) { m_lastUpdatedTimestampHasBeenSet = true; m_lastUpdatedTimestamp = value; }
+    inline void SetLastUpdatedTimestamp(Aws::Utils::DateTime&& value) { m_lastUpdatedTimestampHasBeenSet = true; m_lastUpdatedTimestamp = std::move(value); }
 
     /**
      * <p>Time the status was updated.</p>
@@ -198,7 +204,8 @@ namespace Model
     /**
      * <p>Time the status was updated.</p>
      */
-    inline StackResourceSummary& WithLastUpdatedTimestamp(Aws::Utils::DateTime&& value) { SetLastUpdatedTimestamp(value); return *this;}
+    inline StackResourceSummary& WithLastUpdatedTimestamp(Aws::Utils::DateTime&& value) { SetLastUpdatedTimestamp(std::move(value)); return *this;}
+
 
     /**
      * <p>Current status of the resource.</p>
@@ -213,7 +220,7 @@ namespace Model
     /**
      * <p>Current status of the resource.</p>
      */
-    inline void SetResourceStatus(ResourceStatus&& value) { m_resourceStatusHasBeenSet = true; m_resourceStatus = value; }
+    inline void SetResourceStatus(ResourceStatus&& value) { m_resourceStatusHasBeenSet = true; m_resourceStatus = std::move(value); }
 
     /**
      * <p>Current status of the resource.</p>
@@ -223,7 +230,8 @@ namespace Model
     /**
      * <p>Current status of the resource.</p>
      */
-    inline StackResourceSummary& WithResourceStatus(ResourceStatus&& value) { SetResourceStatus(value); return *this;}
+    inline StackResourceSummary& WithResourceStatus(ResourceStatus&& value) { SetResourceStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>Success/failure message associated with the resource.</p>
@@ -238,7 +246,7 @@ namespace Model
     /**
      * <p>Success/failure message associated with the resource.</p>
      */
-    inline void SetResourceStatusReason(Aws::String&& value) { m_resourceStatusReasonHasBeenSet = true; m_resourceStatusReason = value; }
+    inline void SetResourceStatusReason(Aws::String&& value) { m_resourceStatusReasonHasBeenSet = true; m_resourceStatusReason = std::move(value); }
 
     /**
      * <p>Success/failure message associated with the resource.</p>
@@ -253,7 +261,7 @@ namespace Model
     /**
      * <p>Success/failure message associated with the resource.</p>
      */
-    inline StackResourceSummary& WithResourceStatusReason(Aws::String&& value) { SetResourceStatusReason(value); return *this;}
+    inline StackResourceSummary& WithResourceStatusReason(Aws::String&& value) { SetResourceStatusReason(std::move(value)); return *this;}
 
     /**
      * <p>Success/failure message associated with the resource.</p>
@@ -261,16 +269,22 @@ namespace Model
     inline StackResourceSummary& WithResourceStatusReason(const char* value) { SetResourceStatusReason(value); return *this;}
 
   private:
+
     Aws::String m_logicalResourceId;
     bool m_logicalResourceIdHasBeenSet;
+
     Aws::String m_physicalResourceId;
     bool m_physicalResourceIdHasBeenSet;
+
     Aws::String m_resourceType;
     bool m_resourceTypeHasBeenSet;
+
     Aws::Utils::DateTime m_lastUpdatedTimestamp;
     bool m_lastUpdatedTimestampHasBeenSet;
+
     ResourceStatus m_resourceStatus;
     bool m_resourceStatusHasBeenSet;
+
     Aws::String m_resourceStatusReason;
     bool m_resourceStatusReasonHasBeenSet;
   };

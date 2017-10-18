@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elastictranscoder/ElasticTranscoder_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     Thumbnails& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The format of thumbnails, if any. Valid values are <code>jpg</code> and
      * <code>png</code>. </p> <p>You specify whether you want Elastic Transcoder to
@@ -62,7 +65,7 @@ namespace Model
      * <code>png</code>. </p> <p>You specify whether you want Elastic Transcoder to
      * create thumbnails when you create a job.</p>
      */
-    inline void SetFormat(Aws::String&& value) { m_formatHasBeenSet = true; m_format = value; }
+    inline void SetFormat(Aws::String&& value) { m_formatHasBeenSet = true; m_format = std::move(value); }
 
     /**
      * <p>The format of thumbnails, if any. Valid values are <code>jpg</code> and
@@ -83,7 +86,7 @@ namespace Model
      * <code>png</code>. </p> <p>You specify whether you want Elastic Transcoder to
      * create thumbnails when you create a job.</p>
      */
-    inline Thumbnails& WithFormat(Aws::String&& value) { SetFormat(value); return *this;}
+    inline Thumbnails& WithFormat(Aws::String&& value) { SetFormat(std::move(value)); return *this;}
 
     /**
      * <p>The format of thumbnails, if any. Valid values are <code>jpg</code> and
@@ -91,6 +94,7 @@ namespace Model
      * create thumbnails when you create a job.</p>
      */
     inline Thumbnails& WithFormat(const char* value) { SetFormat(value); return *this;}
+
 
     /**
      * <p>The approximate number of seconds between thumbnails. Specify an integer
@@ -108,7 +112,7 @@ namespace Model
      * <p>The approximate number of seconds between thumbnails. Specify an integer
      * value.</p>
      */
-    inline void SetInterval(Aws::String&& value) { m_intervalHasBeenSet = true; m_interval = value; }
+    inline void SetInterval(Aws::String&& value) { m_intervalHasBeenSet = true; m_interval = std::move(value); }
 
     /**
      * <p>The approximate number of seconds between thumbnails. Specify an integer
@@ -126,13 +130,14 @@ namespace Model
      * <p>The approximate number of seconds between thumbnails. Specify an integer
      * value.</p>
      */
-    inline Thumbnails& WithInterval(Aws::String&& value) { SetInterval(value); return *this;}
+    inline Thumbnails& WithInterval(Aws::String&& value) { SetInterval(std::move(value)); return *this;}
 
     /**
      * <p>The approximate number of seconds between thumbnails. Specify an integer
      * value.</p>
      */
     inline Thumbnails& WithInterval(const char* value) { SetInterval(value); return *this;}
+
 
     /**
      * <important> <p>To better control resolution and aspect ratio of thumbnails, we
@@ -171,7 +176,7 @@ namespace Model
      * integers. The values cannot exceed the width and height that you specified in
      * the <code>Video:Resolution</code> object.</p>
      */
-    inline void SetResolution(Aws::String&& value) { m_resolutionHasBeenSet = true; m_resolution = value; }
+    inline void SetResolution(Aws::String&& value) { m_resolutionHasBeenSet = true; m_resolution = std::move(value); }
 
     /**
      * <important> <p>To better control resolution and aspect ratio of thumbnails, we
@@ -210,7 +215,7 @@ namespace Model
      * integers. The values cannot exceed the width and height that you specified in
      * the <code>Video:Resolution</code> object.</p>
      */
-    inline Thumbnails& WithResolution(Aws::String&& value) { SetResolution(value); return *this;}
+    inline Thumbnails& WithResolution(Aws::String&& value) { SetResolution(std::move(value)); return *this;}
 
     /**
      * <important> <p>To better control resolution and aspect ratio of thumbnails, we
@@ -224,6 +229,7 @@ namespace Model
      * the <code>Video:Resolution</code> object.</p>
      */
     inline Thumbnails& WithResolution(const char* value) { SetResolution(value); return *this;}
+
 
     /**
      * <important> <p>To better control resolution and aspect ratio of thumbnails, we
@@ -262,7 +268,7 @@ namespace Model
      * <p>If you specify <code>auto</code>, Elastic Transcoder tries to preserve the
      * aspect ratio of the video in the output file.</p>
      */
-    inline void SetAspectRatio(Aws::String&& value) { m_aspectRatioHasBeenSet = true; m_aspectRatio = value; }
+    inline void SetAspectRatio(Aws::String&& value) { m_aspectRatioHasBeenSet = true; m_aspectRatio = std::move(value); }
 
     /**
      * <important> <p>To better control resolution and aspect ratio of thumbnails, we
@@ -301,7 +307,7 @@ namespace Model
      * <p>If you specify <code>auto</code>, Elastic Transcoder tries to preserve the
      * aspect ratio of the video in the output file.</p>
      */
-    inline Thumbnails& WithAspectRatio(Aws::String&& value) { SetAspectRatio(value); return *this;}
+    inline Thumbnails& WithAspectRatio(Aws::String&& value) { SetAspectRatio(std::move(value)); return *this;}
 
     /**
      * <important> <p>To better control resolution and aspect ratio of thumbnails, we
@@ -315,6 +321,7 @@ namespace Model
      * aspect ratio of the video in the output file.</p>
      */
     inline Thumbnails& WithAspectRatio(const char* value) { SetAspectRatio(value); return *this;}
+
 
     /**
      * <p>The maximum width of thumbnails in pixels. If you specify auto, Elastic
@@ -335,7 +342,7 @@ namespace Model
      * Transcoder uses 1920 (Full HD) as the default value. If you specify a numeric
      * value, enter an even integer between 32 and 4096.</p>
      */
-    inline void SetMaxWidth(Aws::String&& value) { m_maxWidthHasBeenSet = true; m_maxWidth = value; }
+    inline void SetMaxWidth(Aws::String&& value) { m_maxWidthHasBeenSet = true; m_maxWidth = std::move(value); }
 
     /**
      * <p>The maximum width of thumbnails in pixels. If you specify auto, Elastic
@@ -356,7 +363,7 @@ namespace Model
      * Transcoder uses 1920 (Full HD) as the default value. If you specify a numeric
      * value, enter an even integer between 32 and 4096.</p>
      */
-    inline Thumbnails& WithMaxWidth(Aws::String&& value) { SetMaxWidth(value); return *this;}
+    inline Thumbnails& WithMaxWidth(Aws::String&& value) { SetMaxWidth(std::move(value)); return *this;}
 
     /**
      * <p>The maximum width of thumbnails in pixels. If you specify auto, Elastic
@@ -364,6 +371,7 @@ namespace Model
      * value, enter an even integer between 32 and 4096.</p>
      */
     inline Thumbnails& WithMaxWidth(const char* value) { SetMaxWidth(value); return *this;}
+
 
     /**
      * <p>The maximum height of thumbnails in pixels. If you specify auto, Elastic
@@ -384,7 +392,7 @@ namespace Model
      * Transcoder uses 1080 (Full HD) as the default value. If you specify a numeric
      * value, enter an even integer between 32 and 3072.</p>
      */
-    inline void SetMaxHeight(Aws::String&& value) { m_maxHeightHasBeenSet = true; m_maxHeight = value; }
+    inline void SetMaxHeight(Aws::String&& value) { m_maxHeightHasBeenSet = true; m_maxHeight = std::move(value); }
 
     /**
      * <p>The maximum height of thumbnails in pixels. If you specify auto, Elastic
@@ -405,7 +413,7 @@ namespace Model
      * Transcoder uses 1080 (Full HD) as the default value. If you specify a numeric
      * value, enter an even integer between 32 and 3072.</p>
      */
-    inline Thumbnails& WithMaxHeight(Aws::String&& value) { SetMaxHeight(value); return *this;}
+    inline Thumbnails& WithMaxHeight(Aws::String&& value) { SetMaxHeight(std::move(value)); return *this;}
 
     /**
      * <p>The maximum height of thumbnails in pixels. If you specify auto, Elastic
@@ -413,6 +421,7 @@ namespace Model
      * value, enter an even integer between 32 and 3072.</p>
      */
     inline Thumbnails& WithMaxHeight(const char* value) { SetMaxHeight(value); return *this;}
+
 
     /**
      * <p>Specify one of the following values to control scaling of thumbnails:</p>
@@ -499,7 +508,7 @@ namespace Model
      * without dropping below either value. If you specify this option, Elastic
      * Transcoder does not scale thumbnails up.</p> </li> </ul>
      */
-    inline void SetSizingPolicy(Aws::String&& value) { m_sizingPolicyHasBeenSet = true; m_sizingPolicy = value; }
+    inline void SetSizingPolicy(Aws::String&& value) { m_sizingPolicyHasBeenSet = true; m_sizingPolicy = std::move(value); }
 
     /**
      * <p>Specify one of the following values to control scaling of thumbnails:</p>
@@ -586,7 +595,7 @@ namespace Model
      * without dropping below either value. If you specify this option, Elastic
      * Transcoder does not scale thumbnails up.</p> </li> </ul>
      */
-    inline Thumbnails& WithSizingPolicy(Aws::String&& value) { SetSizingPolicy(value); return *this;}
+    inline Thumbnails& WithSizingPolicy(Aws::String&& value) { SetSizingPolicy(std::move(value)); return *this;}
 
     /**
      * <p>Specify one of the following values to control scaling of thumbnails:</p>
@@ -617,6 +626,7 @@ namespace Model
      */
     inline Thumbnails& WithSizingPolicy(const char* value) { SetSizingPolicy(value); return *this;}
 
+
     /**
      * <p>When you set <code>PaddingPolicy</code> to <code>Pad</code>, Elastic
      * Transcoder may add black bars to the top and bottom and/or left and right sides
@@ -642,7 +652,7 @@ namespace Model
      * specified for thumbnail <code>MaxWidth</code> and <code>MaxHeight</code>
      * settings.</p>
      */
-    inline void SetPaddingPolicy(Aws::String&& value) { m_paddingPolicyHasBeenSet = true; m_paddingPolicy = value; }
+    inline void SetPaddingPolicy(Aws::String&& value) { m_paddingPolicyHasBeenSet = true; m_paddingPolicy = std::move(value); }
 
     /**
      * <p>When you set <code>PaddingPolicy</code> to <code>Pad</code>, Elastic
@@ -669,7 +679,7 @@ namespace Model
      * specified for thumbnail <code>MaxWidth</code> and <code>MaxHeight</code>
      * settings.</p>
      */
-    inline Thumbnails& WithPaddingPolicy(Aws::String&& value) { SetPaddingPolicy(value); return *this;}
+    inline Thumbnails& WithPaddingPolicy(Aws::String&& value) { SetPaddingPolicy(std::move(value)); return *this;}
 
     /**
      * <p>When you set <code>PaddingPolicy</code> to <code>Pad</code>, Elastic
@@ -681,20 +691,28 @@ namespace Model
     inline Thumbnails& WithPaddingPolicy(const char* value) { SetPaddingPolicy(value); return *this;}
 
   private:
+
     Aws::String m_format;
     bool m_formatHasBeenSet;
+
     Aws::String m_interval;
     bool m_intervalHasBeenSet;
+
     Aws::String m_resolution;
     bool m_resolutionHasBeenSet;
+
     Aws::String m_aspectRatio;
     bool m_aspectRatioHasBeenSet;
+
     Aws::String m_maxWidth;
     bool m_maxWidthHasBeenSet;
+
     Aws::String m_maxHeight;
     bool m_maxHeightHasBeenSet;
+
     Aws::String m_sizingPolicy;
     bool m_sizingPolicyHasBeenSet;
+
     Aws::String m_paddingPolicy;
     bool m_paddingPolicyHasBeenSet;
   };

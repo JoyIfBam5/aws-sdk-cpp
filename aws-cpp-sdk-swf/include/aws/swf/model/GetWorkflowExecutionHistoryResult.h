@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/swf/model/HistoryEvent.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,8 +48,9 @@ namespace Model
   {
   public:
     GetWorkflowExecutionHistoryResult();
-    GetWorkflowExecutionHistoryResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetWorkflowExecutionHistoryResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetWorkflowExecutionHistoryResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetWorkflowExecutionHistoryResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The list of history events.</p>
@@ -62,7 +65,7 @@ namespace Model
     /**
      * <p>The list of history events.</p>
      */
-    inline void SetEvents(Aws::Vector<HistoryEvent>&& value) { m_events = value; }
+    inline void SetEvents(Aws::Vector<HistoryEvent>&& value) { m_events = std::move(value); }
 
     /**
      * <p>The list of history events.</p>
@@ -72,7 +75,7 @@ namespace Model
     /**
      * <p>The list of history events.</p>
      */
-    inline GetWorkflowExecutionHistoryResult& WithEvents(Aws::Vector<HistoryEvent>&& value) { SetEvents(value); return *this;}
+    inline GetWorkflowExecutionHistoryResult& WithEvents(Aws::Vector<HistoryEvent>&& value) { SetEvents(std::move(value)); return *this;}
 
     /**
      * <p>The list of history events.</p>
@@ -82,7 +85,8 @@ namespace Model
     /**
      * <p>The list of history events.</p>
      */
-    inline GetWorkflowExecutionHistoryResult& AddEvents(HistoryEvent&& value) { m_events.push_back(value); return *this; }
+    inline GetWorkflowExecutionHistoryResult& AddEvents(HistoryEvent&& value) { m_events.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>If a <code>NextPageToken</code> was returned by a previous call, there are
@@ -109,7 +113,7 @@ namespace Model
      * arguments unchanged.</p> <p>The configured <code>maximumPageSize</code>
      * determines how many results can be returned in a single call.</p>
      */
-    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = value; }
+    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = std::move(value); }
 
     /**
      * <p>If a <code>NextPageToken</code> was returned by a previous call, there are
@@ -136,7 +140,7 @@ namespace Model
      * arguments unchanged.</p> <p>The configured <code>maximumPageSize</code>
      * determines how many results can be returned in a single call.</p>
      */
-    inline GetWorkflowExecutionHistoryResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(value); return *this;}
+    inline GetWorkflowExecutionHistoryResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(std::move(value)); return *this;}
 
     /**
      * <p>If a <code>NextPageToken</code> was returned by a previous call, there are
@@ -148,7 +152,9 @@ namespace Model
     inline GetWorkflowExecutionHistoryResult& WithNextPageToken(const char* value) { SetNextPageToken(value); return *this;}
 
   private:
+
     Aws::Vector<HistoryEvent> m_events;
+
     Aws::String m_nextPageToken;
   };
 

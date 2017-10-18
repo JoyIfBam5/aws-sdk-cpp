@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kms/KMS_EXPORTS.h>
 #include <aws/core/utils/Array.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     EncryptResult();
-    EncryptResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    EncryptResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    EncryptResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    EncryptResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The encrypted plaintext. If you are using the CLI, the value is Base64
@@ -56,7 +59,7 @@ namespace Model
      * <p>The encrypted plaintext. If you are using the CLI, the value is Base64
      * encoded. Otherwise, it is not encoded.</p>
      */
-    inline void SetCiphertextBlob(Aws::Utils::ByteBuffer&& value) { m_ciphertextBlob = value; }
+    inline void SetCiphertextBlob(Aws::Utils::ByteBuffer&& value) { m_ciphertextBlob = std::move(value); }
 
     /**
      * <p>The encrypted plaintext. If you are using the CLI, the value is Base64
@@ -68,7 +71,8 @@ namespace Model
      * <p>The encrypted plaintext. If you are using the CLI, the value is Base64
      * encoded. Otherwise, it is not encoded.</p>
      */
-    inline EncryptResult& WithCiphertextBlob(Aws::Utils::ByteBuffer&& value) { SetCiphertextBlob(value); return *this;}
+    inline EncryptResult& WithCiphertextBlob(Aws::Utils::ByteBuffer&& value) { SetCiphertextBlob(std::move(value)); return *this;}
+
 
     /**
      * <p>The ID of the key used during encryption.</p>
@@ -83,7 +87,7 @@ namespace Model
     /**
      * <p>The ID of the key used during encryption.</p>
      */
-    inline void SetKeyId(Aws::String&& value) { m_keyId = value; }
+    inline void SetKeyId(Aws::String&& value) { m_keyId = std::move(value); }
 
     /**
      * <p>The ID of the key used during encryption.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>The ID of the key used during encryption.</p>
      */
-    inline EncryptResult& WithKeyId(Aws::String&& value) { SetKeyId(value); return *this;}
+    inline EncryptResult& WithKeyId(Aws::String&& value) { SetKeyId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the key used during encryption.</p>
@@ -106,7 +110,9 @@ namespace Model
     inline EncryptResult& WithKeyId(const char* value) { SetKeyId(value); return *this;}
 
   private:
+
     Aws::Utils::ByteBuffer m_ciphertextBlob;
+
     Aws::String m_keyId;
   };
 

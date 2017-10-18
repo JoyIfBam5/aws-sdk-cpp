@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role that is associated with the DB
      * cluster.</p>
@@ -63,7 +66,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the IAM role that is associated with the DB
      * cluster.</p>
      */
-    inline void SetRoleArn(Aws::String&& value) { m_roleArnHasBeenSet = true; m_roleArn = value; }
+    inline void SetRoleArn(Aws::String&& value) { m_roleArnHasBeenSet = true; m_roleArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role that is associated with the DB
@@ -81,13 +84,14 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the IAM role that is associated with the DB
      * cluster.</p>
      */
-    inline DBClusterRole& WithRoleArn(Aws::String&& value) { SetRoleArn(value); return *this;}
+    inline DBClusterRole& WithRoleArn(Aws::String&& value) { SetRoleArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role that is associated with the DB
      * cluster.</p>
      */
     inline DBClusterRole& WithRoleArn(const char* value) { SetRoleArn(value); return *this;}
+
 
     /**
      * <p>Describes the state of association between the IAM role and the DB cluster.
@@ -123,7 +127,7 @@ namespace Model
      * associated with the DB cluster, but the DB cluster is unable to assume the IAM
      * role in order to access other AWS services on your behalf.</p> </li> </ul>
      */
-    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>Describes the state of association between the IAM role and the DB cluster.
@@ -159,7 +163,7 @@ namespace Model
      * associated with the DB cluster, but the DB cluster is unable to assume the IAM
      * role in order to access other AWS services on your behalf.</p> </li> </ul>
      */
-    inline DBClusterRole& WithStatus(Aws::String&& value) { SetStatus(value); return *this;}
+    inline DBClusterRole& WithStatus(Aws::String&& value) { SetStatus(std::move(value)); return *this;}
 
     /**
      * <p>Describes the state of association between the IAM role and the DB cluster.
@@ -174,8 +178,10 @@ namespace Model
     inline DBClusterRole& WithStatus(const char* value) { SetStatus(value); return *this;}
 
   private:
+
     Aws::String m_roleArn;
     bool m_roleArnHasBeenSet;
+
     Aws::String m_status;
     bool m_statusHasBeenSet;
   };

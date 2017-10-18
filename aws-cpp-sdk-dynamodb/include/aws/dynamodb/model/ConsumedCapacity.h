@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dynamodb/DynamoDB_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/dynamodb/model/Capacity.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
+#include <utility>
 
 namespace Aws
 {
@@ -51,6 +53,7 @@ namespace Model
     ConsumedCapacity& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the table that was affected by the operation.</p>
      */
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>The name of the table that was affected by the operation.</p>
      */
-    inline void SetTableName(Aws::String&& value) { m_tableNameHasBeenSet = true; m_tableName = value; }
+    inline void SetTableName(Aws::String&& value) { m_tableNameHasBeenSet = true; m_tableName = std::move(value); }
 
     /**
      * <p>The name of the table that was affected by the operation.</p>
@@ -79,12 +82,13 @@ namespace Model
     /**
      * <p>The name of the table that was affected by the operation.</p>
      */
-    inline ConsumedCapacity& WithTableName(Aws::String&& value) { SetTableName(value); return *this;}
+    inline ConsumedCapacity& WithTableName(Aws::String&& value) { SetTableName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the table that was affected by the operation.</p>
      */
     inline ConsumedCapacity& WithTableName(const char* value) { SetTableName(value); return *this;}
+
 
     /**
      * <p>The total number of capacity units consumed by the operation.</p>
@@ -101,6 +105,7 @@ namespace Model
      */
     inline ConsumedCapacity& WithCapacityUnits(double value) { SetCapacityUnits(value); return *this;}
 
+
     /**
      * <p>The amount of throughput consumed on the table affected by the operation.</p>
      */
@@ -114,7 +119,7 @@ namespace Model
     /**
      * <p>The amount of throughput consumed on the table affected by the operation.</p>
      */
-    inline void SetTable(Capacity&& value) { m_tableHasBeenSet = true; m_table = value; }
+    inline void SetTable(Capacity&& value) { m_tableHasBeenSet = true; m_table = std::move(value); }
 
     /**
      * <p>The amount of throughput consumed on the table affected by the operation.</p>
@@ -124,7 +129,8 @@ namespace Model
     /**
      * <p>The amount of throughput consumed on the table affected by the operation.</p>
      */
-    inline ConsumedCapacity& WithTable(Capacity&& value) { SetTable(value); return *this;}
+    inline ConsumedCapacity& WithTable(Capacity&& value) { SetTable(std::move(value)); return *this;}
+
 
     /**
      * <p>The amount of throughput consumed on each local index affected by the
@@ -142,7 +148,7 @@ namespace Model
      * <p>The amount of throughput consumed on each local index affected by the
      * operation.</p>
      */
-    inline void SetLocalSecondaryIndexes(Aws::Map<Aws::String, Capacity>&& value) { m_localSecondaryIndexesHasBeenSet = true; m_localSecondaryIndexes = value; }
+    inline void SetLocalSecondaryIndexes(Aws::Map<Aws::String, Capacity>&& value) { m_localSecondaryIndexesHasBeenSet = true; m_localSecondaryIndexes = std::move(value); }
 
     /**
      * <p>The amount of throughput consumed on each local index affected by the
@@ -154,43 +160,44 @@ namespace Model
      * <p>The amount of throughput consumed on each local index affected by the
      * operation.</p>
      */
-    inline ConsumedCapacity& WithLocalSecondaryIndexes(Aws::Map<Aws::String, Capacity>&& value) { SetLocalSecondaryIndexes(value); return *this;}
+    inline ConsumedCapacity& WithLocalSecondaryIndexes(Aws::Map<Aws::String, Capacity>&& value) { SetLocalSecondaryIndexes(std::move(value)); return *this;}
 
     /**
      * <p>The amount of throughput consumed on each local index affected by the
      * operation.</p>
      */
-    inline ConsumedCapacity& AddLocalSecondaryIndexes(const Aws::String& key, const Capacity& value) { m_localSecondaryIndexesHasBeenSet = true; m_localSecondaryIndexes[key] = value; return *this; }
+    inline ConsumedCapacity& AddLocalSecondaryIndexes(const Aws::String& key, const Capacity& value) { m_localSecondaryIndexesHasBeenSet = true; m_localSecondaryIndexes.emplace(key, value); return *this; }
 
     /**
      * <p>The amount of throughput consumed on each local index affected by the
      * operation.</p>
      */
-    inline ConsumedCapacity& AddLocalSecondaryIndexes(Aws::String&& key, const Capacity& value) { m_localSecondaryIndexesHasBeenSet = true; m_localSecondaryIndexes[key] = value; return *this; }
+    inline ConsumedCapacity& AddLocalSecondaryIndexes(Aws::String&& key, const Capacity& value) { m_localSecondaryIndexesHasBeenSet = true; m_localSecondaryIndexes.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The amount of throughput consumed on each local index affected by the
      * operation.</p>
      */
-    inline ConsumedCapacity& AddLocalSecondaryIndexes(const Aws::String& key, Capacity&& value) { m_localSecondaryIndexesHasBeenSet = true; m_localSecondaryIndexes[key] = value; return *this; }
+    inline ConsumedCapacity& AddLocalSecondaryIndexes(const Aws::String& key, Capacity&& value) { m_localSecondaryIndexesHasBeenSet = true; m_localSecondaryIndexes.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The amount of throughput consumed on each local index affected by the
      * operation.</p>
      */
-    inline ConsumedCapacity& AddLocalSecondaryIndexes(Aws::String&& key, Capacity&& value) { m_localSecondaryIndexesHasBeenSet = true; m_localSecondaryIndexes[key] = value; return *this; }
+    inline ConsumedCapacity& AddLocalSecondaryIndexes(Aws::String&& key, Capacity&& value) { m_localSecondaryIndexesHasBeenSet = true; m_localSecondaryIndexes.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>The amount of throughput consumed on each local index affected by the
      * operation.</p>
      */
-    inline ConsumedCapacity& AddLocalSecondaryIndexes(const char* key, Capacity&& value) { m_localSecondaryIndexesHasBeenSet = true; m_localSecondaryIndexes[key] = value; return *this; }
+    inline ConsumedCapacity& AddLocalSecondaryIndexes(const char* key, Capacity&& value) { m_localSecondaryIndexesHasBeenSet = true; m_localSecondaryIndexes.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The amount of throughput consumed on each local index affected by the
      * operation.</p>
      */
-    inline ConsumedCapacity& AddLocalSecondaryIndexes(const char* key, const Capacity& value) { m_localSecondaryIndexesHasBeenSet = true; m_localSecondaryIndexes[key] = value; return *this; }
+    inline ConsumedCapacity& AddLocalSecondaryIndexes(const char* key, const Capacity& value) { m_localSecondaryIndexesHasBeenSet = true; m_localSecondaryIndexes.emplace(key, value); return *this; }
+
 
     /**
      * <p>The amount of throughput consumed on each global index affected by the
@@ -208,7 +215,7 @@ namespace Model
      * <p>The amount of throughput consumed on each global index affected by the
      * operation.</p>
      */
-    inline void SetGlobalSecondaryIndexes(Aws::Map<Aws::String, Capacity>&& value) { m_globalSecondaryIndexesHasBeenSet = true; m_globalSecondaryIndexes = value; }
+    inline void SetGlobalSecondaryIndexes(Aws::Map<Aws::String, Capacity>&& value) { m_globalSecondaryIndexesHasBeenSet = true; m_globalSecondaryIndexes = std::move(value); }
 
     /**
      * <p>The amount of throughput consumed on each global index affected by the
@@ -220,53 +227,58 @@ namespace Model
      * <p>The amount of throughput consumed on each global index affected by the
      * operation.</p>
      */
-    inline ConsumedCapacity& WithGlobalSecondaryIndexes(Aws::Map<Aws::String, Capacity>&& value) { SetGlobalSecondaryIndexes(value); return *this;}
+    inline ConsumedCapacity& WithGlobalSecondaryIndexes(Aws::Map<Aws::String, Capacity>&& value) { SetGlobalSecondaryIndexes(std::move(value)); return *this;}
 
     /**
      * <p>The amount of throughput consumed on each global index affected by the
      * operation.</p>
      */
-    inline ConsumedCapacity& AddGlobalSecondaryIndexes(const Aws::String& key, const Capacity& value) { m_globalSecondaryIndexesHasBeenSet = true; m_globalSecondaryIndexes[key] = value; return *this; }
+    inline ConsumedCapacity& AddGlobalSecondaryIndexes(const Aws::String& key, const Capacity& value) { m_globalSecondaryIndexesHasBeenSet = true; m_globalSecondaryIndexes.emplace(key, value); return *this; }
 
     /**
      * <p>The amount of throughput consumed on each global index affected by the
      * operation.</p>
      */
-    inline ConsumedCapacity& AddGlobalSecondaryIndexes(Aws::String&& key, const Capacity& value) { m_globalSecondaryIndexesHasBeenSet = true; m_globalSecondaryIndexes[key] = value; return *this; }
+    inline ConsumedCapacity& AddGlobalSecondaryIndexes(Aws::String&& key, const Capacity& value) { m_globalSecondaryIndexesHasBeenSet = true; m_globalSecondaryIndexes.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The amount of throughput consumed on each global index affected by the
      * operation.</p>
      */
-    inline ConsumedCapacity& AddGlobalSecondaryIndexes(const Aws::String& key, Capacity&& value) { m_globalSecondaryIndexesHasBeenSet = true; m_globalSecondaryIndexes[key] = value; return *this; }
+    inline ConsumedCapacity& AddGlobalSecondaryIndexes(const Aws::String& key, Capacity&& value) { m_globalSecondaryIndexesHasBeenSet = true; m_globalSecondaryIndexes.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The amount of throughput consumed on each global index affected by the
      * operation.</p>
      */
-    inline ConsumedCapacity& AddGlobalSecondaryIndexes(Aws::String&& key, Capacity&& value) { m_globalSecondaryIndexesHasBeenSet = true; m_globalSecondaryIndexes[key] = value; return *this; }
+    inline ConsumedCapacity& AddGlobalSecondaryIndexes(Aws::String&& key, Capacity&& value) { m_globalSecondaryIndexesHasBeenSet = true; m_globalSecondaryIndexes.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>The amount of throughput consumed on each global index affected by the
      * operation.</p>
      */
-    inline ConsumedCapacity& AddGlobalSecondaryIndexes(const char* key, Capacity&& value) { m_globalSecondaryIndexesHasBeenSet = true; m_globalSecondaryIndexes[key] = value; return *this; }
+    inline ConsumedCapacity& AddGlobalSecondaryIndexes(const char* key, Capacity&& value) { m_globalSecondaryIndexesHasBeenSet = true; m_globalSecondaryIndexes.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The amount of throughput consumed on each global index affected by the
      * operation.</p>
      */
-    inline ConsumedCapacity& AddGlobalSecondaryIndexes(const char* key, const Capacity& value) { m_globalSecondaryIndexesHasBeenSet = true; m_globalSecondaryIndexes[key] = value; return *this; }
+    inline ConsumedCapacity& AddGlobalSecondaryIndexes(const char* key, const Capacity& value) { m_globalSecondaryIndexesHasBeenSet = true; m_globalSecondaryIndexes.emplace(key, value); return *this; }
 
   private:
+
     Aws::String m_tableName;
     bool m_tableNameHasBeenSet;
+
     double m_capacityUnits;
     bool m_capacityUnitsHasBeenSet;
+
     Capacity m_table;
     bool m_tableHasBeenSet;
+
     Aws::Map<Aws::String, Capacity> m_localSecondaryIndexes;
     bool m_localSecondaryIndexesHasBeenSet;
+
     Aws::Map<Aws::String, Capacity> m_globalSecondaryIndexes;
     bool m_globalSecondaryIndexesHasBeenSet;
   };

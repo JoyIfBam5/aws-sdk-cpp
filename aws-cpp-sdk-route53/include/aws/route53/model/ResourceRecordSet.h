@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53/Route53_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -22,6 +23,7 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/route53/model/AliasTarget.h>
 #include <aws/route53/model/ResourceRecord.h>
+#include <utility>
 
 namespace Aws
 {
@@ -52,6 +54,7 @@ namespace Model
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
 
+
     /**
      * <p>The name of the domain you want to perform the action on.</p> <p>Enter a
      * fully qualified domain name, for example, <code>www.example.com</code>. You can
@@ -65,7 +68,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DomainNameFormat.html">DNS
      * Domain Name Format</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> <p>You
      * can use the asterisk (*) wildcard to replace the leftmost label in a domain
-     * name. For example, <code>*.example.com</code>. Note the following:</p> <ul> <li>
+     * name, for example, <code>*.example.com</code>. Note the following:</p> <ul> <li>
      * <p>The * must replace the entire label. For example, you can't specify
      * <code>*prod.example.com</code> or <code>prod*.example.com</code>.</p> </li> <li>
      * <p>The * can't replace any of the middle labels, for example,
@@ -94,7 +97,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DomainNameFormat.html">DNS
      * Domain Name Format</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> <p>You
      * can use the asterisk (*) wildcard to replace the leftmost label in a domain
-     * name. For example, <code>*.example.com</code>. Note the following:</p> <ul> <li>
+     * name, for example, <code>*.example.com</code>. Note the following:</p> <ul> <li>
      * <p>The * must replace the entire label. For example, you can't specify
      * <code>*prod.example.com</code> or <code>prod*.example.com</code>.</p> </li> <li>
      * <p>The * can't replace any of the middle labels, for example,
@@ -123,7 +126,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DomainNameFormat.html">DNS
      * Domain Name Format</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> <p>You
      * can use the asterisk (*) wildcard to replace the leftmost label in a domain
-     * name. For example, <code>*.example.com</code>. Note the following:</p> <ul> <li>
+     * name, for example, <code>*.example.com</code>. Note the following:</p> <ul> <li>
      * <p>The * must replace the entire label. For example, you can't specify
      * <code>*prod.example.com</code> or <code>prod*.example.com</code>.</p> </li> <li>
      * <p>The * can't replace any of the middle labels, for example,
@@ -137,7 +140,7 @@ namespace Model
      * must replace the entire label; for example, you can't specify
      * <code>prod*.example.com</code>.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the domain you want to perform the action on.</p> <p>Enter a
@@ -152,7 +155,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DomainNameFormat.html">DNS
      * Domain Name Format</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> <p>You
      * can use the asterisk (*) wildcard to replace the leftmost label in a domain
-     * name. For example, <code>*.example.com</code>. Note the following:</p> <ul> <li>
+     * name, for example, <code>*.example.com</code>. Note the following:</p> <ul> <li>
      * <p>The * must replace the entire label. For example, you can't specify
      * <code>*prod.example.com</code> or <code>prod*.example.com</code>.</p> </li> <li>
      * <p>The * can't replace any of the middle labels, for example,
@@ -181,7 +184,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DomainNameFormat.html">DNS
      * Domain Name Format</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> <p>You
      * can use the asterisk (*) wildcard to replace the leftmost label in a domain
-     * name. For example, <code>*.example.com</code>. Note the following:</p> <ul> <li>
+     * name, for example, <code>*.example.com</code>. Note the following:</p> <ul> <li>
      * <p>The * must replace the entire label. For example, you can't specify
      * <code>*prod.example.com</code> or <code>prod*.example.com</code>.</p> </li> <li>
      * <p>The * can't replace any of the middle labels, for example,
@@ -210,7 +213,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DomainNameFormat.html">DNS
      * Domain Name Format</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> <p>You
      * can use the asterisk (*) wildcard to replace the leftmost label in a domain
-     * name. For example, <code>*.example.com</code>. Note the following:</p> <ul> <li>
+     * name, for example, <code>*.example.com</code>. Note the following:</p> <ul> <li>
      * <p>The * must replace the entire label. For example, you can't specify
      * <code>*prod.example.com</code> or <code>prod*.example.com</code>.</p> </li> <li>
      * <p>The * can't replace any of the middle labels, for example,
@@ -224,7 +227,7 @@ namespace Model
      * must replace the entire label; for example, you can't specify
      * <code>prod*.example.com</code>.</p>
      */
-    inline ResourceRecordSet& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline ResourceRecordSet& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the domain you want to perform the action on.</p> <p>Enter a
@@ -239,7 +242,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DomainNameFormat.html">DNS
      * Domain Name Format</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> <p>You
      * can use the asterisk (*) wildcard to replace the leftmost label in a domain
-     * name. For example, <code>*.example.com</code>. Note the following:</p> <ul> <li>
+     * name, for example, <code>*.example.com</code>. Note the following:</p> <ul> <li>
      * <p>The * must replace the entire label. For example, you can't specify
      * <code>*prod.example.com</code> or <code>prod*.example.com</code>.</p> </li> <li>
      * <p>The * can't replace any of the middle labels, for example,
@@ -255,23 +258,27 @@ namespace Model
      */
     inline ResourceRecordSet& WithName(const char* value) { SetName(value); return *this;}
 
+
     /**
      * <p>The DNS record type. For information about different record types and how
      * data is encoded for them, see <a
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html">Supported
      * DNS Resource Record Types</a> in the <i>Amazon Route 53 Developer Guide</i>.</p>
      * <p>Valid values for basic resource record sets: <code>A</code> |
-     * <code>AAAA</code> | <code>CNAME</code> | <code>MX</code> | <code>NAPTR</code> |
-     * <code>NS</code> | <code>PTR</code> | <code>SOA</code> | <code>SPF</code> |
-     * <code>SRV</code> | <code>TXT</code> </p> <p>Values for weighted, latency,
-     * geolocation, and failover resource record sets: <code>A</code> |
-     * <code>AAAA</code> | <code>CNAME</code> | <code>MX</code> | <code>NAPTR</code> |
-     * <code>PTR</code> | <code>SPF</code> | <code>SRV</code> | <code>TXT</code>. When
-     * creating a group of weighted, latency, geolocation, or failover resource record
-     * sets, specify the same value for all of the resource record sets in the
-     * group.</p> <note> <p>SPF records were formerly used to verify the identity of
-     * the sender of email messages. However, we no longer recommend that you create
-     * resource record sets for which the value of <code>Type</code> is
+     * <code>AAAA</code> | <code>CAA</code> | <code>CNAME</code> | <code>MX</code> |
+     * <code>NAPTR</code> | <code>NS</code> | <code>PTR</code> | <code>SOA</code> |
+     * <code>SPF</code> | <code>SRV</code> | <code>TXT</code> </p> <p>Values for
+     * weighted, latency, geolocation, and failover resource record sets:
+     * <code>A</code> | <code>AAAA</code> | <code>CAA</code> | <code>CNAME</code> |
+     * <code>MX</code> | <code>NAPTR</code> | <code>PTR</code> | <code>SPF</code> |
+     * <code>SRV</code> | <code>TXT</code>. When creating a group of weighted, latency,
+     * geolocation, or failover resource record sets, specify the same value for all of
+     * the resource record sets in the group.</p> <p>Valid values for multivalue answer
+     * resource record sets: <code>A</code> | <code>AAAA</code> | <code>MX</code> |
+     * <code>NAPTR</code> | <code>PTR</code> | <code>SPF</code> | <code>SRV</code> |
+     * <code>TXT</code> </p> <note> <p>SPF records were formerly used to verify the
+     * identity of the sender of email messages. However, we no longer recommend that
+     * you create resource record sets for which the value of <code>Type</code> is
      * <code>SPF</code>. RFC 7208, <i>Sender Policy Framework (SPF) for Authorizing Use
      * of Domains in Email, Version 1</i>, has been updated to say, "...[I]ts existence
      * and mechanism defined in [RFC4408] have led to some interoperability issues.
@@ -286,9 +293,9 @@ namespace Model
      * has a regionalized subdomain</b>: <code>A</code> </p> </li> <li> <p> <b>ELB load
      * balancers:</b> <code>A</code> | <code>AAAA</code> </p> </li> <li> <p> <b>Amazon
      * S3 buckets:</b> <code>A</code> </p> </li> <li> <p> <b>Another resource record
-     * set in this hosted zone:</b> Specify the type of the resource record set for
-     * which you're creating the alias. Specify any value except <code>NS</code> or
-     * <code>SOA</code>.</p> </li> </ul>
+     * set in this hosted zone:</b> Specify the type of the resource record set that
+     * you're creating the alias for. All values are supported except <code>NS</code>
+     * and <code>SOA</code>.</p> </li> </ul>
      */
     inline const RRType& GetType() const{ return m_type; }
 
@@ -298,17 +305,20 @@ namespace Model
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html">Supported
      * DNS Resource Record Types</a> in the <i>Amazon Route 53 Developer Guide</i>.</p>
      * <p>Valid values for basic resource record sets: <code>A</code> |
-     * <code>AAAA</code> | <code>CNAME</code> | <code>MX</code> | <code>NAPTR</code> |
-     * <code>NS</code> | <code>PTR</code> | <code>SOA</code> | <code>SPF</code> |
-     * <code>SRV</code> | <code>TXT</code> </p> <p>Values for weighted, latency,
-     * geolocation, and failover resource record sets: <code>A</code> |
-     * <code>AAAA</code> | <code>CNAME</code> | <code>MX</code> | <code>NAPTR</code> |
-     * <code>PTR</code> | <code>SPF</code> | <code>SRV</code> | <code>TXT</code>. When
-     * creating a group of weighted, latency, geolocation, or failover resource record
-     * sets, specify the same value for all of the resource record sets in the
-     * group.</p> <note> <p>SPF records were formerly used to verify the identity of
-     * the sender of email messages. However, we no longer recommend that you create
-     * resource record sets for which the value of <code>Type</code> is
+     * <code>AAAA</code> | <code>CAA</code> | <code>CNAME</code> | <code>MX</code> |
+     * <code>NAPTR</code> | <code>NS</code> | <code>PTR</code> | <code>SOA</code> |
+     * <code>SPF</code> | <code>SRV</code> | <code>TXT</code> </p> <p>Values for
+     * weighted, latency, geolocation, and failover resource record sets:
+     * <code>A</code> | <code>AAAA</code> | <code>CAA</code> | <code>CNAME</code> |
+     * <code>MX</code> | <code>NAPTR</code> | <code>PTR</code> | <code>SPF</code> |
+     * <code>SRV</code> | <code>TXT</code>. When creating a group of weighted, latency,
+     * geolocation, or failover resource record sets, specify the same value for all of
+     * the resource record sets in the group.</p> <p>Valid values for multivalue answer
+     * resource record sets: <code>A</code> | <code>AAAA</code> | <code>MX</code> |
+     * <code>NAPTR</code> | <code>PTR</code> | <code>SPF</code> | <code>SRV</code> |
+     * <code>TXT</code> </p> <note> <p>SPF records were formerly used to verify the
+     * identity of the sender of email messages. However, we no longer recommend that
+     * you create resource record sets for which the value of <code>Type</code> is
      * <code>SPF</code>. RFC 7208, <i>Sender Policy Framework (SPF) for Authorizing Use
      * of Domains in Email, Version 1</i>, has been updated to say, "...[I]ts existence
      * and mechanism defined in [RFC4408] have led to some interoperability issues.
@@ -323,9 +333,9 @@ namespace Model
      * has a regionalized subdomain</b>: <code>A</code> </p> </li> <li> <p> <b>ELB load
      * balancers:</b> <code>A</code> | <code>AAAA</code> </p> </li> <li> <p> <b>Amazon
      * S3 buckets:</b> <code>A</code> </p> </li> <li> <p> <b>Another resource record
-     * set in this hosted zone:</b> Specify the type of the resource record set for
-     * which you're creating the alias. Specify any value except <code>NS</code> or
-     * <code>SOA</code>.</p> </li> </ul>
+     * set in this hosted zone:</b> Specify the type of the resource record set that
+     * you're creating the alias for. All values are supported except <code>NS</code>
+     * and <code>SOA</code>.</p> </li> </ul>
      */
     inline void SetType(const RRType& value) { m_typeHasBeenSet = true; m_type = value; }
 
@@ -335,17 +345,20 @@ namespace Model
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html">Supported
      * DNS Resource Record Types</a> in the <i>Amazon Route 53 Developer Guide</i>.</p>
      * <p>Valid values for basic resource record sets: <code>A</code> |
-     * <code>AAAA</code> | <code>CNAME</code> | <code>MX</code> | <code>NAPTR</code> |
-     * <code>NS</code> | <code>PTR</code> | <code>SOA</code> | <code>SPF</code> |
-     * <code>SRV</code> | <code>TXT</code> </p> <p>Values for weighted, latency,
-     * geolocation, and failover resource record sets: <code>A</code> |
-     * <code>AAAA</code> | <code>CNAME</code> | <code>MX</code> | <code>NAPTR</code> |
-     * <code>PTR</code> | <code>SPF</code> | <code>SRV</code> | <code>TXT</code>. When
-     * creating a group of weighted, latency, geolocation, or failover resource record
-     * sets, specify the same value for all of the resource record sets in the
-     * group.</p> <note> <p>SPF records were formerly used to verify the identity of
-     * the sender of email messages. However, we no longer recommend that you create
-     * resource record sets for which the value of <code>Type</code> is
+     * <code>AAAA</code> | <code>CAA</code> | <code>CNAME</code> | <code>MX</code> |
+     * <code>NAPTR</code> | <code>NS</code> | <code>PTR</code> | <code>SOA</code> |
+     * <code>SPF</code> | <code>SRV</code> | <code>TXT</code> </p> <p>Values for
+     * weighted, latency, geolocation, and failover resource record sets:
+     * <code>A</code> | <code>AAAA</code> | <code>CAA</code> | <code>CNAME</code> |
+     * <code>MX</code> | <code>NAPTR</code> | <code>PTR</code> | <code>SPF</code> |
+     * <code>SRV</code> | <code>TXT</code>. When creating a group of weighted, latency,
+     * geolocation, or failover resource record sets, specify the same value for all of
+     * the resource record sets in the group.</p> <p>Valid values for multivalue answer
+     * resource record sets: <code>A</code> | <code>AAAA</code> | <code>MX</code> |
+     * <code>NAPTR</code> | <code>PTR</code> | <code>SPF</code> | <code>SRV</code> |
+     * <code>TXT</code> </p> <note> <p>SPF records were formerly used to verify the
+     * identity of the sender of email messages. However, we no longer recommend that
+     * you create resource record sets for which the value of <code>Type</code> is
      * <code>SPF</code>. RFC 7208, <i>Sender Policy Framework (SPF) for Authorizing Use
      * of Domains in Email, Version 1</i>, has been updated to say, "...[I]ts existence
      * and mechanism defined in [RFC4408] have led to some interoperability issues.
@@ -360,11 +373,11 @@ namespace Model
      * has a regionalized subdomain</b>: <code>A</code> </p> </li> <li> <p> <b>ELB load
      * balancers:</b> <code>A</code> | <code>AAAA</code> </p> </li> <li> <p> <b>Amazon
      * S3 buckets:</b> <code>A</code> </p> </li> <li> <p> <b>Another resource record
-     * set in this hosted zone:</b> Specify the type of the resource record set for
-     * which you're creating the alias. Specify any value except <code>NS</code> or
-     * <code>SOA</code>.</p> </li> </ul>
+     * set in this hosted zone:</b> Specify the type of the resource record set that
+     * you're creating the alias for. All values are supported except <code>NS</code>
+     * and <code>SOA</code>.</p> </li> </ul>
      */
-    inline void SetType(RRType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(RRType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The DNS record type. For information about different record types and how
@@ -372,17 +385,20 @@ namespace Model
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html">Supported
      * DNS Resource Record Types</a> in the <i>Amazon Route 53 Developer Guide</i>.</p>
      * <p>Valid values for basic resource record sets: <code>A</code> |
-     * <code>AAAA</code> | <code>CNAME</code> | <code>MX</code> | <code>NAPTR</code> |
-     * <code>NS</code> | <code>PTR</code> | <code>SOA</code> | <code>SPF</code> |
-     * <code>SRV</code> | <code>TXT</code> </p> <p>Values for weighted, latency,
-     * geolocation, and failover resource record sets: <code>A</code> |
-     * <code>AAAA</code> | <code>CNAME</code> | <code>MX</code> | <code>NAPTR</code> |
-     * <code>PTR</code> | <code>SPF</code> | <code>SRV</code> | <code>TXT</code>. When
-     * creating a group of weighted, latency, geolocation, or failover resource record
-     * sets, specify the same value for all of the resource record sets in the
-     * group.</p> <note> <p>SPF records were formerly used to verify the identity of
-     * the sender of email messages. However, we no longer recommend that you create
-     * resource record sets for which the value of <code>Type</code> is
+     * <code>AAAA</code> | <code>CAA</code> | <code>CNAME</code> | <code>MX</code> |
+     * <code>NAPTR</code> | <code>NS</code> | <code>PTR</code> | <code>SOA</code> |
+     * <code>SPF</code> | <code>SRV</code> | <code>TXT</code> </p> <p>Values for
+     * weighted, latency, geolocation, and failover resource record sets:
+     * <code>A</code> | <code>AAAA</code> | <code>CAA</code> | <code>CNAME</code> |
+     * <code>MX</code> | <code>NAPTR</code> | <code>PTR</code> | <code>SPF</code> |
+     * <code>SRV</code> | <code>TXT</code>. When creating a group of weighted, latency,
+     * geolocation, or failover resource record sets, specify the same value for all of
+     * the resource record sets in the group.</p> <p>Valid values for multivalue answer
+     * resource record sets: <code>A</code> | <code>AAAA</code> | <code>MX</code> |
+     * <code>NAPTR</code> | <code>PTR</code> | <code>SPF</code> | <code>SRV</code> |
+     * <code>TXT</code> </p> <note> <p>SPF records were formerly used to verify the
+     * identity of the sender of email messages. However, we no longer recommend that
+     * you create resource record sets for which the value of <code>Type</code> is
      * <code>SPF</code>. RFC 7208, <i>Sender Policy Framework (SPF) for Authorizing Use
      * of Domains in Email, Version 1</i>, has been updated to say, "...[I]ts existence
      * and mechanism defined in [RFC4408] have led to some interoperability issues.
@@ -397,9 +413,9 @@ namespace Model
      * has a regionalized subdomain</b>: <code>A</code> </p> </li> <li> <p> <b>ELB load
      * balancers:</b> <code>A</code> | <code>AAAA</code> </p> </li> <li> <p> <b>Amazon
      * S3 buckets:</b> <code>A</code> </p> </li> <li> <p> <b>Another resource record
-     * set in this hosted zone:</b> Specify the type of the resource record set for
-     * which you're creating the alias. Specify any value except <code>NS</code> or
-     * <code>SOA</code>.</p> </li> </ul>
+     * set in this hosted zone:</b> Specify the type of the resource record set that
+     * you're creating the alias for. All values are supported except <code>NS</code>
+     * and <code>SOA</code>.</p> </li> </ul>
      */
     inline ResourceRecordSet& WithType(const RRType& value) { SetType(value); return *this;}
 
@@ -409,17 +425,20 @@ namespace Model
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html">Supported
      * DNS Resource Record Types</a> in the <i>Amazon Route 53 Developer Guide</i>.</p>
      * <p>Valid values for basic resource record sets: <code>A</code> |
-     * <code>AAAA</code> | <code>CNAME</code> | <code>MX</code> | <code>NAPTR</code> |
-     * <code>NS</code> | <code>PTR</code> | <code>SOA</code> | <code>SPF</code> |
-     * <code>SRV</code> | <code>TXT</code> </p> <p>Values for weighted, latency,
-     * geolocation, and failover resource record sets: <code>A</code> |
-     * <code>AAAA</code> | <code>CNAME</code> | <code>MX</code> | <code>NAPTR</code> |
-     * <code>PTR</code> | <code>SPF</code> | <code>SRV</code> | <code>TXT</code>. When
-     * creating a group of weighted, latency, geolocation, or failover resource record
-     * sets, specify the same value for all of the resource record sets in the
-     * group.</p> <note> <p>SPF records were formerly used to verify the identity of
-     * the sender of email messages. However, we no longer recommend that you create
-     * resource record sets for which the value of <code>Type</code> is
+     * <code>AAAA</code> | <code>CAA</code> | <code>CNAME</code> | <code>MX</code> |
+     * <code>NAPTR</code> | <code>NS</code> | <code>PTR</code> | <code>SOA</code> |
+     * <code>SPF</code> | <code>SRV</code> | <code>TXT</code> </p> <p>Values for
+     * weighted, latency, geolocation, and failover resource record sets:
+     * <code>A</code> | <code>AAAA</code> | <code>CAA</code> | <code>CNAME</code> |
+     * <code>MX</code> | <code>NAPTR</code> | <code>PTR</code> | <code>SPF</code> |
+     * <code>SRV</code> | <code>TXT</code>. When creating a group of weighted, latency,
+     * geolocation, or failover resource record sets, specify the same value for all of
+     * the resource record sets in the group.</p> <p>Valid values for multivalue answer
+     * resource record sets: <code>A</code> | <code>AAAA</code> | <code>MX</code> |
+     * <code>NAPTR</code> | <code>PTR</code> | <code>SPF</code> | <code>SRV</code> |
+     * <code>TXT</code> </p> <note> <p>SPF records were formerly used to verify the
+     * identity of the sender of email messages. However, we no longer recommend that
+     * you create resource record sets for which the value of <code>Type</code> is
      * <code>SPF</code>. RFC 7208, <i>Sender Policy Framework (SPF) for Authorizing Use
      * of Domains in Email, Version 1</i>, has been updated to say, "...[I]ts existence
      * and mechanism defined in [RFC4408] have led to some interoperability issues.
@@ -434,11 +453,12 @@ namespace Model
      * has a regionalized subdomain</b>: <code>A</code> </p> </li> <li> <p> <b>ELB load
      * balancers:</b> <code>A</code> | <code>AAAA</code> </p> </li> <li> <p> <b>Amazon
      * S3 buckets:</b> <code>A</code> </p> </li> <li> <p> <b>Another resource record
-     * set in this hosted zone:</b> Specify the type of the resource record set for
-     * which you're creating the alias. Specify any value except <code>NS</code> or
-     * <code>SOA</code>.</p> </li> </ul>
+     * set in this hosted zone:</b> Specify the type of the resource record set that
+     * you're creating the alias for. All values are supported except <code>NS</code>
+     * and <code>SOA</code>.</p> </li> </ul>
      */
-    inline ResourceRecordSet& WithType(RRType&& value) { SetType(value); return *this;}
+    inline ResourceRecordSet& WithType(RRType&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p> <i>Weighted, Latency, Geo, and Failover resource record sets only:</i> An
@@ -468,7 +488,7 @@ namespace Model
      * name and type. Omit <code>SetIdentifier</code> for any other types of record
      * sets.</p>
      */
-    inline void SetSetIdentifier(Aws::String&& value) { m_setIdentifierHasBeenSet = true; m_setIdentifier = value; }
+    inline void SetSetIdentifier(Aws::String&& value) { m_setIdentifierHasBeenSet = true; m_setIdentifier = std::move(value); }
 
     /**
      * <p> <i>Weighted, Latency, Geo, and Failover resource record sets only:</i> An
@@ -498,7 +518,7 @@ namespace Model
      * name and type. Omit <code>SetIdentifier</code> for any other types of record
      * sets.</p>
      */
-    inline ResourceRecordSet& WithSetIdentifier(Aws::String&& value) { SetSetIdentifier(value); return *this;}
+    inline ResourceRecordSet& WithSetIdentifier(Aws::String&& value) { SetSetIdentifier(std::move(value)); return *this;}
 
     /**
      * <p> <i>Weighted, Latency, Geo, and Failover resource record sets only:</i> An
@@ -509,6 +529,7 @@ namespace Model
      * sets.</p>
      */
     inline ResourceRecordSet& WithSetIdentifier(const char* value) { SetSetIdentifier(value); return *this;}
+
 
     /**
      * <p> <i>Weighted resource record sets only:</i> Among resource record sets that
@@ -600,9 +621,10 @@ namespace Model
      */
     inline ResourceRecordSet& WithWeight(long long value) { SetWeight(value); return *this;}
 
+
     /**
      * <p> <i>Latency-based resource record sets only:</i> The Amazon EC2 Region where
-     * the resource that is specified in this resource record set resides. The resource
+     * you created the resource that this resource record set refers to. The resource
      * typically is an AWS resource, such as an EC2 instance or an ELB load balancer,
      * and is referred to by an IP address or a DNS domain name, depending on the
      * record type.</p> <note> <p>Creating latency and latency alias resource record
@@ -614,19 +636,18 @@ namespace Model
      * with the selected resource record set.</p> <p>Note the following:</p> <ul> <li>
      * <p>You can only specify one <code>ResourceRecord</code> per latency resource
      * record set.</p> </li> <li> <p>You can only create one latency resource record
-     * set for each Amazon EC2 Region.</p> </li> <li> <p>You are not required to create
+     * set for each Amazon EC2 Region.</p> </li> <li> <p>You aren't required to create
      * latency resource record sets for all Amazon EC2 Regions. Amazon Route 53 will
-     * choose the region with the best latency from among the regions for which you
-     * create latency resource record sets.</p> </li> <li> <p>You can't create
-     * non-latency resource record sets that have the same values for the
-     * <code>Name</code> and <code>Type</code> elements as latency resource record
-     * sets.</p> </li> </ul>
+     * choose the region with the best latency from among the regions that you create
+     * latency resource record sets for.</p> </li> <li> <p>You can't create non-latency
+     * resource record sets that have the same values for the <code>Name</code> and
+     * <code>Type</code> elements as latency resource record sets.</p> </li> </ul>
      */
     inline const ResourceRecordSetRegion& GetRegion() const{ return m_region; }
 
     /**
      * <p> <i>Latency-based resource record sets only:</i> The Amazon EC2 Region where
-     * the resource that is specified in this resource record set resides. The resource
+     * you created the resource that this resource record set refers to. The resource
      * typically is an AWS resource, such as an EC2 instance or an ELB load balancer,
      * and is referred to by an IP address or a DNS domain name, depending on the
      * record type.</p> <note> <p>Creating latency and latency alias resource record
@@ -638,19 +659,18 @@ namespace Model
      * with the selected resource record set.</p> <p>Note the following:</p> <ul> <li>
      * <p>You can only specify one <code>ResourceRecord</code> per latency resource
      * record set.</p> </li> <li> <p>You can only create one latency resource record
-     * set for each Amazon EC2 Region.</p> </li> <li> <p>You are not required to create
+     * set for each Amazon EC2 Region.</p> </li> <li> <p>You aren't required to create
      * latency resource record sets for all Amazon EC2 Regions. Amazon Route 53 will
-     * choose the region with the best latency from among the regions for which you
-     * create latency resource record sets.</p> </li> <li> <p>You can't create
-     * non-latency resource record sets that have the same values for the
-     * <code>Name</code> and <code>Type</code> elements as latency resource record
-     * sets.</p> </li> </ul>
+     * choose the region with the best latency from among the regions that you create
+     * latency resource record sets for.</p> </li> <li> <p>You can't create non-latency
+     * resource record sets that have the same values for the <code>Name</code> and
+     * <code>Type</code> elements as latency resource record sets.</p> </li> </ul>
      */
     inline void SetRegion(const ResourceRecordSetRegion& value) { m_regionHasBeenSet = true; m_region = value; }
 
     /**
      * <p> <i>Latency-based resource record sets only:</i> The Amazon EC2 Region where
-     * the resource that is specified in this resource record set resides. The resource
+     * you created the resource that this resource record set refers to. The resource
      * typically is an AWS resource, such as an EC2 instance or an ELB load balancer,
      * and is referred to by an IP address or a DNS domain name, depending on the
      * record type.</p> <note> <p>Creating latency and latency alias resource record
@@ -662,19 +682,18 @@ namespace Model
      * with the selected resource record set.</p> <p>Note the following:</p> <ul> <li>
      * <p>You can only specify one <code>ResourceRecord</code> per latency resource
      * record set.</p> </li> <li> <p>You can only create one latency resource record
-     * set for each Amazon EC2 Region.</p> </li> <li> <p>You are not required to create
+     * set for each Amazon EC2 Region.</p> </li> <li> <p>You aren't required to create
      * latency resource record sets for all Amazon EC2 Regions. Amazon Route 53 will
-     * choose the region with the best latency from among the regions for which you
-     * create latency resource record sets.</p> </li> <li> <p>You can't create
-     * non-latency resource record sets that have the same values for the
-     * <code>Name</code> and <code>Type</code> elements as latency resource record
-     * sets.</p> </li> </ul>
+     * choose the region with the best latency from among the regions that you create
+     * latency resource record sets for.</p> </li> <li> <p>You can't create non-latency
+     * resource record sets that have the same values for the <code>Name</code> and
+     * <code>Type</code> elements as latency resource record sets.</p> </li> </ul>
      */
-    inline void SetRegion(ResourceRecordSetRegion&& value) { m_regionHasBeenSet = true; m_region = value; }
+    inline void SetRegion(ResourceRecordSetRegion&& value) { m_regionHasBeenSet = true; m_region = std::move(value); }
 
     /**
      * <p> <i>Latency-based resource record sets only:</i> The Amazon EC2 Region where
-     * the resource that is specified in this resource record set resides. The resource
+     * you created the resource that this resource record set refers to. The resource
      * typically is an AWS resource, such as an EC2 instance or an ELB load balancer,
      * and is referred to by an IP address or a DNS domain name, depending on the
      * record type.</p> <note> <p>Creating latency and latency alias resource record
@@ -686,19 +705,18 @@ namespace Model
      * with the selected resource record set.</p> <p>Note the following:</p> <ul> <li>
      * <p>You can only specify one <code>ResourceRecord</code> per latency resource
      * record set.</p> </li> <li> <p>You can only create one latency resource record
-     * set for each Amazon EC2 Region.</p> </li> <li> <p>You are not required to create
+     * set for each Amazon EC2 Region.</p> </li> <li> <p>You aren't required to create
      * latency resource record sets for all Amazon EC2 Regions. Amazon Route 53 will
-     * choose the region with the best latency from among the regions for which you
-     * create latency resource record sets.</p> </li> <li> <p>You can't create
-     * non-latency resource record sets that have the same values for the
-     * <code>Name</code> and <code>Type</code> elements as latency resource record
-     * sets.</p> </li> </ul>
+     * choose the region with the best latency from among the regions that you create
+     * latency resource record sets for.</p> </li> <li> <p>You can't create non-latency
+     * resource record sets that have the same values for the <code>Name</code> and
+     * <code>Type</code> elements as latency resource record sets.</p> </li> </ul>
      */
     inline ResourceRecordSet& WithRegion(const ResourceRecordSetRegion& value) { SetRegion(value); return *this;}
 
     /**
      * <p> <i>Latency-based resource record sets only:</i> The Amazon EC2 Region where
-     * the resource that is specified in this resource record set resides. The resource
+     * you created the resource that this resource record set refers to. The resource
      * typically is an AWS resource, such as an EC2 instance or an ELB load balancer,
      * and is referred to by an IP address or a DNS domain name, depending on the
      * record type.</p> <note> <p>Creating latency and latency alias resource record
@@ -710,15 +728,15 @@ namespace Model
      * with the selected resource record set.</p> <p>Note the following:</p> <ul> <li>
      * <p>You can only specify one <code>ResourceRecord</code> per latency resource
      * record set.</p> </li> <li> <p>You can only create one latency resource record
-     * set for each Amazon EC2 Region.</p> </li> <li> <p>You are not required to create
+     * set for each Amazon EC2 Region.</p> </li> <li> <p>You aren't required to create
      * latency resource record sets for all Amazon EC2 Regions. Amazon Route 53 will
-     * choose the region with the best latency from among the regions for which you
-     * create latency resource record sets.</p> </li> <li> <p>You can't create
-     * non-latency resource record sets that have the same values for the
-     * <code>Name</code> and <code>Type</code> elements as latency resource record
-     * sets.</p> </li> </ul>
+     * choose the region with the best latency from among the regions that you create
+     * latency resource record sets for.</p> </li> <li> <p>You can't create non-latency
+     * resource record sets that have the same values for the <code>Name</code> and
+     * <code>Type</code> elements as latency resource record sets.</p> </li> </ul>
      */
-    inline ResourceRecordSet& WithRegion(ResourceRecordSetRegion&& value) { SetRegion(value); return *this;}
+    inline ResourceRecordSet& WithRegion(ResourceRecordSetRegion&& value) { SetRegion(std::move(value)); return *this;}
+
 
     /**
      * <p> <i>Geo location resource record sets only:</i> A complex type that lets you
@@ -820,7 +838,7 @@ namespace Model
      * <code>Name</code> and <code>Type</code> elements as geolocation resource record
      * sets.</p>
      */
-    inline void SetGeoLocation(GeoLocation&& value) { m_geoLocationHasBeenSet = true; m_geoLocation = value; }
+    inline void SetGeoLocation(GeoLocation&& value) { m_geoLocationHasBeenSet = true; m_geoLocation = std::move(value); }
 
     /**
      * <p> <i>Geo location resource record sets only:</i> A complex type that lets you
@@ -888,7 +906,8 @@ namespace Model
      * <code>Name</code> and <code>Type</code> elements as geolocation resource record
      * sets.</p>
      */
-    inline ResourceRecordSet& WithGeoLocation(GeoLocation&& value) { SetGeoLocation(value); return *this;}
+    inline ResourceRecordSet& WithGeoLocation(GeoLocation&& value) { SetGeoLocation(std::move(value)); return *this;}
+
 
     /**
      * <p> <i>Failover resource record sets only:</i> To configure failover, you add
@@ -923,8 +942,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html">Amazon
      * Route 53 Health Checks and DNS Failover</a> </p> </li> <li> <p> <a
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-private-hosted-zones.html">Configuring
-     * Failover in a Private Hosted Zone</a> </p> </li> </ul> <p>Valid values:
-     * <code>PRIMARY</code> | <code>SECONDARY</code> </p>
+     * Failover in a Private Hosted Zone</a> </p> </li> </ul>
      */
     inline const ResourceRecordSetFailover& GetFailover() const{ return m_failover; }
 
@@ -961,8 +979,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html">Amazon
      * Route 53 Health Checks and DNS Failover</a> </p> </li> <li> <p> <a
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-private-hosted-zones.html">Configuring
-     * Failover in a Private Hosted Zone</a> </p> </li> </ul> <p>Valid values:
-     * <code>PRIMARY</code> | <code>SECONDARY</code> </p>
+     * Failover in a Private Hosted Zone</a> </p> </li> </ul>
      */
     inline void SetFailover(const ResourceRecordSetFailover& value) { m_failoverHasBeenSet = true; m_failover = value; }
 
@@ -999,10 +1016,9 @@ namespace Model
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html">Amazon
      * Route 53 Health Checks and DNS Failover</a> </p> </li> <li> <p> <a
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-private-hosted-zones.html">Configuring
-     * Failover in a Private Hosted Zone</a> </p> </li> </ul> <p>Valid values:
-     * <code>PRIMARY</code> | <code>SECONDARY</code> </p>
+     * Failover in a Private Hosted Zone</a> </p> </li> </ul>
      */
-    inline void SetFailover(ResourceRecordSetFailover&& value) { m_failoverHasBeenSet = true; m_failover = value; }
+    inline void SetFailover(ResourceRecordSetFailover&& value) { m_failoverHasBeenSet = true; m_failover = std::move(value); }
 
     /**
      * <p> <i>Failover resource record sets only:</i> To configure failover, you add
@@ -1037,8 +1053,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html">Amazon
      * Route 53 Health Checks and DNS Failover</a> </p> </li> <li> <p> <a
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-private-hosted-zones.html">Configuring
-     * Failover in a Private Hosted Zone</a> </p> </li> </ul> <p>Valid values:
-     * <code>PRIMARY</code> | <code>SECONDARY</code> </p>
+     * Failover in a Private Hosted Zone</a> </p> </li> </ul>
      */
     inline ResourceRecordSet& WithFailover(const ResourceRecordSetFailover& value) { SetFailover(value); return *this;}
 
@@ -1075,21 +1090,88 @@ namespace Model
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html">Amazon
      * Route 53 Health Checks and DNS Failover</a> </p> </li> <li> <p> <a
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-private-hosted-zones.html">Configuring
-     * Failover in a Private Hosted Zone</a> </p> </li> </ul> <p>Valid values:
-     * <code>PRIMARY</code> | <code>SECONDARY</code> </p>
+     * Failover in a Private Hosted Zone</a> </p> </li> </ul>
      */
-    inline ResourceRecordSet& WithFailover(ResourceRecordSetFailover&& value) { SetFailover(value); return *this;}
+    inline ResourceRecordSet& WithFailover(ResourceRecordSetFailover&& value) { SetFailover(std::move(value)); return *this;}
+
+
+    /**
+     * <p> <i>Multivalue answer resource record sets only</i>: To route traffic
+     * approximately randomly to multiple resources, such as web servers, create one
+     * multivalue answer record for each resource and specify <code>true</code> for
+     * <code>MultiValueAnswer</code>. Note the following:</p> <ul> <li> <p>If you
+     * associate a health check with a multivalue answer resource record set, Amazon
+     * Route 53 responds to DNS queries with the corresponding IP address only when the
+     * health check is healthy.</p> </li> <li> <p>If you don't associate a health check
+     * with a multivalue answer record, Amazon Route 53 always considers the record to
+     * be healthy.</p> </li> <li> <p>Amazon Route 53 responds to DNS queries with up to
+     * eight healthy records; if you have eight or fewer healthy records, Amazon Route
+     * 53 responds to all DNS queries with all the healthy records.</p> </li> <li>
+     * <p>If you have more than eight healthy records, Amazon Route 53 responds to
+     * different DNS resolvers with different combinations of healthy records.</p>
+     * </li> <li> <p>When all records are unhealthy, Amazon Route 53 responds to DNS
+     * queries with up to eight unhealthy records.</p> </li> <li> <p>If a resource
+     * becomes unavailable after a resolver caches a response, client software
+     * typically tries another of the IP addresses in the response.</p> </li> </ul>
+     * <p>You can't create multivalue answer alias records.</p>
+     */
+    inline bool GetMultiValueAnswer() const{ return m_multiValueAnswer; }
+
+    /**
+     * <p> <i>Multivalue answer resource record sets only</i>: To route traffic
+     * approximately randomly to multiple resources, such as web servers, create one
+     * multivalue answer record for each resource and specify <code>true</code> for
+     * <code>MultiValueAnswer</code>. Note the following:</p> <ul> <li> <p>If you
+     * associate a health check with a multivalue answer resource record set, Amazon
+     * Route 53 responds to DNS queries with the corresponding IP address only when the
+     * health check is healthy.</p> </li> <li> <p>If you don't associate a health check
+     * with a multivalue answer record, Amazon Route 53 always considers the record to
+     * be healthy.</p> </li> <li> <p>Amazon Route 53 responds to DNS queries with up to
+     * eight healthy records; if you have eight or fewer healthy records, Amazon Route
+     * 53 responds to all DNS queries with all the healthy records.</p> </li> <li>
+     * <p>If you have more than eight healthy records, Amazon Route 53 responds to
+     * different DNS resolvers with different combinations of healthy records.</p>
+     * </li> <li> <p>When all records are unhealthy, Amazon Route 53 responds to DNS
+     * queries with up to eight unhealthy records.</p> </li> <li> <p>If a resource
+     * becomes unavailable after a resolver caches a response, client software
+     * typically tries another of the IP addresses in the response.</p> </li> </ul>
+     * <p>You can't create multivalue answer alias records.</p>
+     */
+    inline void SetMultiValueAnswer(bool value) { m_multiValueAnswerHasBeenSet = true; m_multiValueAnswer = value; }
+
+    /**
+     * <p> <i>Multivalue answer resource record sets only</i>: To route traffic
+     * approximately randomly to multiple resources, such as web servers, create one
+     * multivalue answer record for each resource and specify <code>true</code> for
+     * <code>MultiValueAnswer</code>. Note the following:</p> <ul> <li> <p>If you
+     * associate a health check with a multivalue answer resource record set, Amazon
+     * Route 53 responds to DNS queries with the corresponding IP address only when the
+     * health check is healthy.</p> </li> <li> <p>If you don't associate a health check
+     * with a multivalue answer record, Amazon Route 53 always considers the record to
+     * be healthy.</p> </li> <li> <p>Amazon Route 53 responds to DNS queries with up to
+     * eight healthy records; if you have eight or fewer healthy records, Amazon Route
+     * 53 responds to all DNS queries with all the healthy records.</p> </li> <li>
+     * <p>If you have more than eight healthy records, Amazon Route 53 responds to
+     * different DNS resolvers with different combinations of healthy records.</p>
+     * </li> <li> <p>When all records are unhealthy, Amazon Route 53 responds to DNS
+     * queries with up to eight unhealthy records.</p> </li> <li> <p>If a resource
+     * becomes unavailable after a resolver caches a response, client software
+     * typically tries another of the IP addresses in the response.</p> </li> </ul>
+     * <p>You can't create multivalue answer alias records.</p>
+     */
+    inline ResourceRecordSet& WithMultiValueAnswer(bool value) { SetMultiValueAnswer(value); return *this;}
+
 
     /**
      * <p>The resource record cache time to live (TTL), in seconds. Note the
-     * following:</p> <ul> <li> <p>If you're creating an alias resource record set,
-     * omit <code>TTL</code>. Amazon Route 53 uses the value of <code>TTL</code> for
-     * the alias target. </p> </li> <li> <p>If you're associating this resource record
-     * set with a health check (if you're adding a <code>HealthCheckId</code> element),
-     * we recommend that you specify a <code>TTL</code> of 60 seconds or less so
-     * clients respond quickly to changes in health status.</p> </li> <li> <p>All of
-     * the resource record sets in a group of weighted, latency, geolocation, or
-     * failover resource record sets must have the same value for <code>TTL</code>.</p>
+     * following:</p> <ul> <li> <p>If you're creating or updating an alias resource
+     * record set, omit <code>TTL</code>. Amazon Route 53 uses the value of
+     * <code>TTL</code> for the alias target. </p> </li> <li> <p>If you're associating
+     * this resource record set with a health check (if you're adding a
+     * <code>HealthCheckId</code> element), we recommend that you specify a
+     * <code>TTL</code> of 60 seconds or less so clients respond quickly to changes in
+     * health status.</p> </li> <li> <p>All of the resource record sets in a group of
+     * weighted resource record sets must have the same value for <code>TTL</code>.</p>
      * </li> <li> <p>If a group of weighted resource record sets includes one or more
      * weighted alias resource record sets for which the alias target is an ELB load
      * balancer, we recommend that you specify a <code>TTL</code> of 60 seconds for all
@@ -1101,14 +1183,14 @@ namespace Model
 
     /**
      * <p>The resource record cache time to live (TTL), in seconds. Note the
-     * following:</p> <ul> <li> <p>If you're creating an alias resource record set,
-     * omit <code>TTL</code>. Amazon Route 53 uses the value of <code>TTL</code> for
-     * the alias target. </p> </li> <li> <p>If you're associating this resource record
-     * set with a health check (if you're adding a <code>HealthCheckId</code> element),
-     * we recommend that you specify a <code>TTL</code> of 60 seconds or less so
-     * clients respond quickly to changes in health status.</p> </li> <li> <p>All of
-     * the resource record sets in a group of weighted, latency, geolocation, or
-     * failover resource record sets must have the same value for <code>TTL</code>.</p>
+     * following:</p> <ul> <li> <p>If you're creating or updating an alias resource
+     * record set, omit <code>TTL</code>. Amazon Route 53 uses the value of
+     * <code>TTL</code> for the alias target. </p> </li> <li> <p>If you're associating
+     * this resource record set with a health check (if you're adding a
+     * <code>HealthCheckId</code> element), we recommend that you specify a
+     * <code>TTL</code> of 60 seconds or less so clients respond quickly to changes in
+     * health status.</p> </li> <li> <p>All of the resource record sets in a group of
+     * weighted resource record sets must have the same value for <code>TTL</code>.</p>
      * </li> <li> <p>If a group of weighted resource record sets includes one or more
      * weighted alias resource record sets for which the alias target is an ELB load
      * balancer, we recommend that you specify a <code>TTL</code> of 60 seconds for all
@@ -1120,14 +1202,14 @@ namespace Model
 
     /**
      * <p>The resource record cache time to live (TTL), in seconds. Note the
-     * following:</p> <ul> <li> <p>If you're creating an alias resource record set,
-     * omit <code>TTL</code>. Amazon Route 53 uses the value of <code>TTL</code> for
-     * the alias target. </p> </li> <li> <p>If you're associating this resource record
-     * set with a health check (if you're adding a <code>HealthCheckId</code> element),
-     * we recommend that you specify a <code>TTL</code> of 60 seconds or less so
-     * clients respond quickly to changes in health status.</p> </li> <li> <p>All of
-     * the resource record sets in a group of weighted, latency, geolocation, or
-     * failover resource record sets must have the same value for <code>TTL</code>.</p>
+     * following:</p> <ul> <li> <p>If you're creating or updating an alias resource
+     * record set, omit <code>TTL</code>. Amazon Route 53 uses the value of
+     * <code>TTL</code> for the alias target. </p> </li> <li> <p>If you're associating
+     * this resource record set with a health check (if you're adding a
+     * <code>HealthCheckId</code> element), we recommend that you specify a
+     * <code>TTL</code> of 60 seconds or less so clients respond quickly to changes in
+     * health status.</p> </li> <li> <p>All of the resource record sets in a group of
+     * weighted resource record sets must have the same value for <code>TTL</code>.</p>
      * </li> <li> <p>If a group of weighted resource record sets includes one or more
      * weighted alias resource record sets for which the alias target is an ELB load
      * balancer, we recommend that you specify a <code>TTL</code> of 60 seconds for all
@@ -1137,59 +1219,61 @@ namespace Model
      */
     inline ResourceRecordSet& WithTTL(long long value) { SetTTL(value); return *this;}
 
+
     /**
-     * <p>Information about the resource records to act upon.</p> <note> <p>If you are
+     * <p>Information about the resource records to act upon.</p> <note> <p>If you're
      * creating an alias resource record set, omit <code>ResourceRecords</code>.</p>
      * </note>
      */
     inline const Aws::Vector<ResourceRecord>& GetResourceRecords() const{ return m_resourceRecords; }
 
     /**
-     * <p>Information about the resource records to act upon.</p> <note> <p>If you are
+     * <p>Information about the resource records to act upon.</p> <note> <p>If you're
      * creating an alias resource record set, omit <code>ResourceRecords</code>.</p>
      * </note>
      */
     inline void SetResourceRecords(const Aws::Vector<ResourceRecord>& value) { m_resourceRecordsHasBeenSet = true; m_resourceRecords = value; }
 
     /**
-     * <p>Information about the resource records to act upon.</p> <note> <p>If you are
+     * <p>Information about the resource records to act upon.</p> <note> <p>If you're
      * creating an alias resource record set, omit <code>ResourceRecords</code>.</p>
      * </note>
      */
-    inline void SetResourceRecords(Aws::Vector<ResourceRecord>&& value) { m_resourceRecordsHasBeenSet = true; m_resourceRecords = value; }
+    inline void SetResourceRecords(Aws::Vector<ResourceRecord>&& value) { m_resourceRecordsHasBeenSet = true; m_resourceRecords = std::move(value); }
 
     /**
-     * <p>Information about the resource records to act upon.</p> <note> <p>If you are
+     * <p>Information about the resource records to act upon.</p> <note> <p>If you're
      * creating an alias resource record set, omit <code>ResourceRecords</code>.</p>
      * </note>
      */
     inline ResourceRecordSet& WithResourceRecords(const Aws::Vector<ResourceRecord>& value) { SetResourceRecords(value); return *this;}
 
     /**
-     * <p>Information about the resource records to act upon.</p> <note> <p>If you are
+     * <p>Information about the resource records to act upon.</p> <note> <p>If you're
      * creating an alias resource record set, omit <code>ResourceRecords</code>.</p>
      * </note>
      */
-    inline ResourceRecordSet& WithResourceRecords(Aws::Vector<ResourceRecord>&& value) { SetResourceRecords(value); return *this;}
+    inline ResourceRecordSet& WithResourceRecords(Aws::Vector<ResourceRecord>&& value) { SetResourceRecords(std::move(value)); return *this;}
 
     /**
-     * <p>Information about the resource records to act upon.</p> <note> <p>If you are
+     * <p>Information about the resource records to act upon.</p> <note> <p>If you're
      * creating an alias resource record set, omit <code>ResourceRecords</code>.</p>
      * </note>
      */
     inline ResourceRecordSet& AddResourceRecords(const ResourceRecord& value) { m_resourceRecordsHasBeenSet = true; m_resourceRecords.push_back(value); return *this; }
 
     /**
-     * <p>Information about the resource records to act upon.</p> <note> <p>If you are
+     * <p>Information about the resource records to act upon.</p> <note> <p>If you're
      * creating an alias resource record set, omit <code>ResourceRecords</code>.</p>
      * </note>
      */
-    inline ResourceRecordSet& AddResourceRecords(ResourceRecord&& value) { m_resourceRecordsHasBeenSet = true; m_resourceRecords.push_back(value); return *this; }
+    inline ResourceRecordSet& AddResourceRecords(ResourceRecord&& value) { m_resourceRecordsHasBeenSet = true; m_resourceRecords.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p> <i>Alias resource record sets only:</i> Information about the CloudFront
      * distribution, AWS Elastic Beanstalk environment, ELB load balancer, Amazon S3
-     * bucket, or Amazon Route 53 resource record set to which you are redirecting
+     * bucket, or Amazon Route 53 resource record set to which you're redirecting
      * queries. The AWS Elastic Beanstalk environment must have a regionalized
      * subdomain.</p> <p>If you're creating resource records sets for a private hosted
      * zone, note the following:</p> <ul> <li> <p>You can't create alias resource
@@ -1207,7 +1291,7 @@ namespace Model
     /**
      * <p> <i>Alias resource record sets only:</i> Information about the CloudFront
      * distribution, AWS Elastic Beanstalk environment, ELB load balancer, Amazon S3
-     * bucket, or Amazon Route 53 resource record set to which you are redirecting
+     * bucket, or Amazon Route 53 resource record set to which you're redirecting
      * queries. The AWS Elastic Beanstalk environment must have a regionalized
      * subdomain.</p> <p>If you're creating resource records sets for a private hosted
      * zone, note the following:</p> <ul> <li> <p>You can't create alias resource
@@ -1225,7 +1309,7 @@ namespace Model
     /**
      * <p> <i>Alias resource record sets only:</i> Information about the CloudFront
      * distribution, AWS Elastic Beanstalk environment, ELB load balancer, Amazon S3
-     * bucket, or Amazon Route 53 resource record set to which you are redirecting
+     * bucket, or Amazon Route 53 resource record set to which you're redirecting
      * queries. The AWS Elastic Beanstalk environment must have a regionalized
      * subdomain.</p> <p>If you're creating resource records sets for a private hosted
      * zone, note the following:</p> <ul> <li> <p>You can't create alias resource
@@ -1238,12 +1322,12 @@ namespace Model
      * Failover in a Private Hosted Zone</a> in the <i>Amazon Route 53 Developer
      * Guide</i>.</p> </li> </ul>
      */
-    inline void SetAliasTarget(AliasTarget&& value) { m_aliasTargetHasBeenSet = true; m_aliasTarget = value; }
+    inline void SetAliasTarget(AliasTarget&& value) { m_aliasTargetHasBeenSet = true; m_aliasTarget = std::move(value); }
 
     /**
      * <p> <i>Alias resource record sets only:</i> Information about the CloudFront
      * distribution, AWS Elastic Beanstalk environment, ELB load balancer, Amazon S3
-     * bucket, or Amazon Route 53 resource record set to which you are redirecting
+     * bucket, or Amazon Route 53 resource record set to which you're redirecting
      * queries. The AWS Elastic Beanstalk environment must have a regionalized
      * subdomain.</p> <p>If you're creating resource records sets for a private hosted
      * zone, note the following:</p> <ul> <li> <p>You can't create alias resource
@@ -1261,7 +1345,7 @@ namespace Model
     /**
      * <p> <i>Alias resource record sets only:</i> Information about the CloudFront
      * distribution, AWS Elastic Beanstalk environment, ELB load balancer, Amazon S3
-     * bucket, or Amazon Route 53 resource record set to which you are redirecting
+     * bucket, or Amazon Route 53 resource record set to which you're redirecting
      * queries. The AWS Elastic Beanstalk environment must have a regionalized
      * subdomain.</p> <p>If you're creating resource records sets for a private hosted
      * zone, note the following:</p> <ul> <li> <p>You can't create alias resource
@@ -1274,7 +1358,8 @@ namespace Model
      * Failover in a Private Hosted Zone</a> in the <i>Amazon Route 53 Developer
      * Guide</i>.</p> </li> </ul>
      */
-    inline ResourceRecordSet& WithAliasTarget(AliasTarget&& value) { SetAliasTarget(value); return *this;}
+    inline ResourceRecordSet& WithAliasTarget(AliasTarget&& value) { SetAliasTarget(std::move(value)); return *this;}
+
 
     /**
      * <p>If you want Amazon Route 53 to return this resource record set in response to
@@ -1285,25 +1370,27 @@ namespace Model
      * a request to the endpoint that is specified in the health check</p> </li> <li>
      * <p>By aggregating the status of a specified group of health checks (calculated
      * health checks)</p> </li> <li> <p>By determining the current state of a
-     * CloudWatch alarm (CloudWatch metric health checks)</p> </li> </ul> <p>For
-     * information about how Amazon Route 53 determines whether a health check is
-     * healthy, see <a>CreateHealthCheck</a>.</p> <p>The <code>HealthCheckId</code>
-     * element is only useful when Amazon Route 53 is choosing between two or more
-     * resource record sets to respond to a DNS query, and you want Amazon Route 53 to
-     * base the choice in part on the status of a health check. Configuring health
-     * checks only makes sense in the following configurations:</p> <ul> <li> <p>You're
-     * checking the health of the resource record sets in a weighted, latency,
-     * geolocation, or failover resource record set, and you specify health check IDs
-     * for all of the resource record sets. If the health check for one resource record
-     * set specifies an endpoint that is not healthy, Amazon Route 53 stops responding
-     * to queries using the value for that resource record set.</p> </li> <li> <p>You
-     * set <code>EvaluateTargetHealth</code> to true for the resource record sets in an
-     * alias, weighted alias, latency alias, geolocation alias, or failover alias
-     * resource record set, and you specify health check IDs for all of the resource
-     * record sets that are referenced by the alias resource record sets.</p> </li>
-     * </ul> <important> <p>Amazon Route 53 doesn't check the health of the endpoint
-     * specified in the resource record set, for example, the endpoint specified by the
-     * IP address in the <code>Value</code> element. When you add a
+     * CloudWatch alarm (CloudWatch metric health checks)</p> </li> </ul> <p>For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-determining-health-of-endpoints.html">How
+     * Amazon Route 53 Determines Whether an Endpoint Is Healthy</a>.</p> <p>The
+     * <code>HealthCheckId</code> element is only useful when Amazon Route 53 is
+     * choosing between two or more resource record sets to respond to a DNS query, and
+     * you want Amazon Route 53 to base the choice in part on the status of a health
+     * check. Configuring health checks only makes sense in the following
+     * configurations:</p> <ul> <li> <p>You're checking the health of the resource
+     * record sets in a group of weighted, latency, geolocation, or failover resource
+     * record sets, and you specify health check IDs for all of the resource record
+     * sets. If the health check for one resource record set specifies an endpoint that
+     * is not healthy, Amazon Route 53 stops responding to queries using the value for
+     * that resource record set.</p> </li> <li> <p>You set
+     * <code>EvaluateTargetHealth</code> to true for the resource record sets in a
+     * group of alias, weighted alias, latency alias, geolocation alias, or failover
+     * alias resource record sets, and you specify health check IDs for all of the
+     * resource record sets that are referenced by the alias resource record sets.</p>
+     * </li> </ul> <important> <p>Amazon Route 53 doesn't check the health of the
+     * endpoint specified in the resource record set, for example, the endpoint
+     * specified by the IP address in the <code>Value</code> element. When you add a
      * <code>HealthCheckId</code> element to a resource record set, Amazon Route 53
      * checks the health of the endpoint that you specified in the health check. </p>
      * </important> <p>For geolocation resource record sets, if an endpoint is
@@ -1320,7 +1407,7 @@ namespace Model
      * health check for each <code>HTTP</code> server that is serving content for
      * <code>www.example.com</code>. For the value of
      * <code>FullyQualifiedDomainName</code>, specify the domain name of the server
-     * (such as <code>us-east-1-www.example.com</code>), not the name of the resource
+     * (such as <code>us-east-2-www.example.com</code>), not the name of the resource
      * record sets (example.com).</p> <important> <p>n this configuration, if you
      * create a health check for which the value of
      * <code>FullyQualifiedDomainName</code> matches the name of the resource record
@@ -1344,25 +1431,27 @@ namespace Model
      * a request to the endpoint that is specified in the health check</p> </li> <li>
      * <p>By aggregating the status of a specified group of health checks (calculated
      * health checks)</p> </li> <li> <p>By determining the current state of a
-     * CloudWatch alarm (CloudWatch metric health checks)</p> </li> </ul> <p>For
-     * information about how Amazon Route 53 determines whether a health check is
-     * healthy, see <a>CreateHealthCheck</a>.</p> <p>The <code>HealthCheckId</code>
-     * element is only useful when Amazon Route 53 is choosing between two or more
-     * resource record sets to respond to a DNS query, and you want Amazon Route 53 to
-     * base the choice in part on the status of a health check. Configuring health
-     * checks only makes sense in the following configurations:</p> <ul> <li> <p>You're
-     * checking the health of the resource record sets in a weighted, latency,
-     * geolocation, or failover resource record set, and you specify health check IDs
-     * for all of the resource record sets. If the health check for one resource record
-     * set specifies an endpoint that is not healthy, Amazon Route 53 stops responding
-     * to queries using the value for that resource record set.</p> </li> <li> <p>You
-     * set <code>EvaluateTargetHealth</code> to true for the resource record sets in an
-     * alias, weighted alias, latency alias, geolocation alias, or failover alias
-     * resource record set, and you specify health check IDs for all of the resource
-     * record sets that are referenced by the alias resource record sets.</p> </li>
-     * </ul> <important> <p>Amazon Route 53 doesn't check the health of the endpoint
-     * specified in the resource record set, for example, the endpoint specified by the
-     * IP address in the <code>Value</code> element. When you add a
+     * CloudWatch alarm (CloudWatch metric health checks)</p> </li> </ul> <p>For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-determining-health-of-endpoints.html">How
+     * Amazon Route 53 Determines Whether an Endpoint Is Healthy</a>.</p> <p>The
+     * <code>HealthCheckId</code> element is only useful when Amazon Route 53 is
+     * choosing between two or more resource record sets to respond to a DNS query, and
+     * you want Amazon Route 53 to base the choice in part on the status of a health
+     * check. Configuring health checks only makes sense in the following
+     * configurations:</p> <ul> <li> <p>You're checking the health of the resource
+     * record sets in a group of weighted, latency, geolocation, or failover resource
+     * record sets, and you specify health check IDs for all of the resource record
+     * sets. If the health check for one resource record set specifies an endpoint that
+     * is not healthy, Amazon Route 53 stops responding to queries using the value for
+     * that resource record set.</p> </li> <li> <p>You set
+     * <code>EvaluateTargetHealth</code> to true for the resource record sets in a
+     * group of alias, weighted alias, latency alias, geolocation alias, or failover
+     * alias resource record sets, and you specify health check IDs for all of the
+     * resource record sets that are referenced by the alias resource record sets.</p>
+     * </li> </ul> <important> <p>Amazon Route 53 doesn't check the health of the
+     * endpoint specified in the resource record set, for example, the endpoint
+     * specified by the IP address in the <code>Value</code> element. When you add a
      * <code>HealthCheckId</code> element to a resource record set, Amazon Route 53
      * checks the health of the endpoint that you specified in the health check. </p>
      * </important> <p>For geolocation resource record sets, if an endpoint is
@@ -1379,7 +1468,7 @@ namespace Model
      * health check for each <code>HTTP</code> server that is serving content for
      * <code>www.example.com</code>. For the value of
      * <code>FullyQualifiedDomainName</code>, specify the domain name of the server
-     * (such as <code>us-east-1-www.example.com</code>), not the name of the resource
+     * (such as <code>us-east-2-www.example.com</code>), not the name of the resource
      * record sets (example.com).</p> <important> <p>n this configuration, if you
      * create a health check for which the value of
      * <code>FullyQualifiedDomainName</code> matches the name of the resource record
@@ -1403,25 +1492,27 @@ namespace Model
      * a request to the endpoint that is specified in the health check</p> </li> <li>
      * <p>By aggregating the status of a specified group of health checks (calculated
      * health checks)</p> </li> <li> <p>By determining the current state of a
-     * CloudWatch alarm (CloudWatch metric health checks)</p> </li> </ul> <p>For
-     * information about how Amazon Route 53 determines whether a health check is
-     * healthy, see <a>CreateHealthCheck</a>.</p> <p>The <code>HealthCheckId</code>
-     * element is only useful when Amazon Route 53 is choosing between two or more
-     * resource record sets to respond to a DNS query, and you want Amazon Route 53 to
-     * base the choice in part on the status of a health check. Configuring health
-     * checks only makes sense in the following configurations:</p> <ul> <li> <p>You're
-     * checking the health of the resource record sets in a weighted, latency,
-     * geolocation, or failover resource record set, and you specify health check IDs
-     * for all of the resource record sets. If the health check for one resource record
-     * set specifies an endpoint that is not healthy, Amazon Route 53 stops responding
-     * to queries using the value for that resource record set.</p> </li> <li> <p>You
-     * set <code>EvaluateTargetHealth</code> to true for the resource record sets in an
-     * alias, weighted alias, latency alias, geolocation alias, or failover alias
-     * resource record set, and you specify health check IDs for all of the resource
-     * record sets that are referenced by the alias resource record sets.</p> </li>
-     * </ul> <important> <p>Amazon Route 53 doesn't check the health of the endpoint
-     * specified in the resource record set, for example, the endpoint specified by the
-     * IP address in the <code>Value</code> element. When you add a
+     * CloudWatch alarm (CloudWatch metric health checks)</p> </li> </ul> <p>For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-determining-health-of-endpoints.html">How
+     * Amazon Route 53 Determines Whether an Endpoint Is Healthy</a>.</p> <p>The
+     * <code>HealthCheckId</code> element is only useful when Amazon Route 53 is
+     * choosing between two or more resource record sets to respond to a DNS query, and
+     * you want Amazon Route 53 to base the choice in part on the status of a health
+     * check. Configuring health checks only makes sense in the following
+     * configurations:</p> <ul> <li> <p>You're checking the health of the resource
+     * record sets in a group of weighted, latency, geolocation, or failover resource
+     * record sets, and you specify health check IDs for all of the resource record
+     * sets. If the health check for one resource record set specifies an endpoint that
+     * is not healthy, Amazon Route 53 stops responding to queries using the value for
+     * that resource record set.</p> </li> <li> <p>You set
+     * <code>EvaluateTargetHealth</code> to true for the resource record sets in a
+     * group of alias, weighted alias, latency alias, geolocation alias, or failover
+     * alias resource record sets, and you specify health check IDs for all of the
+     * resource record sets that are referenced by the alias resource record sets.</p>
+     * </li> </ul> <important> <p>Amazon Route 53 doesn't check the health of the
+     * endpoint specified in the resource record set, for example, the endpoint
+     * specified by the IP address in the <code>Value</code> element. When you add a
      * <code>HealthCheckId</code> element to a resource record set, Amazon Route 53
      * checks the health of the endpoint that you specified in the health check. </p>
      * </important> <p>For geolocation resource record sets, if an endpoint is
@@ -1438,7 +1529,7 @@ namespace Model
      * health check for each <code>HTTP</code> server that is serving content for
      * <code>www.example.com</code>. For the value of
      * <code>FullyQualifiedDomainName</code>, specify the domain name of the server
-     * (such as <code>us-east-1-www.example.com</code>), not the name of the resource
+     * (such as <code>us-east-2-www.example.com</code>), not the name of the resource
      * record sets (example.com).</p> <important> <p>n this configuration, if you
      * create a health check for which the value of
      * <code>FullyQualifiedDomainName</code> matches the name of the resource record
@@ -1451,7 +1542,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-private-hosted-zones.html">Configuring
      * Failover in a Private Hosted Zone</a> </p> </li> </ul>
      */
-    inline void SetHealthCheckId(Aws::String&& value) { m_healthCheckIdHasBeenSet = true; m_healthCheckId = value; }
+    inline void SetHealthCheckId(Aws::String&& value) { m_healthCheckIdHasBeenSet = true; m_healthCheckId = std::move(value); }
 
     /**
      * <p>If you want Amazon Route 53 to return this resource record set in response to
@@ -1462,25 +1553,27 @@ namespace Model
      * a request to the endpoint that is specified in the health check</p> </li> <li>
      * <p>By aggregating the status of a specified group of health checks (calculated
      * health checks)</p> </li> <li> <p>By determining the current state of a
-     * CloudWatch alarm (CloudWatch metric health checks)</p> </li> </ul> <p>For
-     * information about how Amazon Route 53 determines whether a health check is
-     * healthy, see <a>CreateHealthCheck</a>.</p> <p>The <code>HealthCheckId</code>
-     * element is only useful when Amazon Route 53 is choosing between two or more
-     * resource record sets to respond to a DNS query, and you want Amazon Route 53 to
-     * base the choice in part on the status of a health check. Configuring health
-     * checks only makes sense in the following configurations:</p> <ul> <li> <p>You're
-     * checking the health of the resource record sets in a weighted, latency,
-     * geolocation, or failover resource record set, and you specify health check IDs
-     * for all of the resource record sets. If the health check for one resource record
-     * set specifies an endpoint that is not healthy, Amazon Route 53 stops responding
-     * to queries using the value for that resource record set.</p> </li> <li> <p>You
-     * set <code>EvaluateTargetHealth</code> to true for the resource record sets in an
-     * alias, weighted alias, latency alias, geolocation alias, or failover alias
-     * resource record set, and you specify health check IDs for all of the resource
-     * record sets that are referenced by the alias resource record sets.</p> </li>
-     * </ul> <important> <p>Amazon Route 53 doesn't check the health of the endpoint
-     * specified in the resource record set, for example, the endpoint specified by the
-     * IP address in the <code>Value</code> element. When you add a
+     * CloudWatch alarm (CloudWatch metric health checks)</p> </li> </ul> <p>For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-determining-health-of-endpoints.html">How
+     * Amazon Route 53 Determines Whether an Endpoint Is Healthy</a>.</p> <p>The
+     * <code>HealthCheckId</code> element is only useful when Amazon Route 53 is
+     * choosing between two or more resource record sets to respond to a DNS query, and
+     * you want Amazon Route 53 to base the choice in part on the status of a health
+     * check. Configuring health checks only makes sense in the following
+     * configurations:</p> <ul> <li> <p>You're checking the health of the resource
+     * record sets in a group of weighted, latency, geolocation, or failover resource
+     * record sets, and you specify health check IDs for all of the resource record
+     * sets. If the health check for one resource record set specifies an endpoint that
+     * is not healthy, Amazon Route 53 stops responding to queries using the value for
+     * that resource record set.</p> </li> <li> <p>You set
+     * <code>EvaluateTargetHealth</code> to true for the resource record sets in a
+     * group of alias, weighted alias, latency alias, geolocation alias, or failover
+     * alias resource record sets, and you specify health check IDs for all of the
+     * resource record sets that are referenced by the alias resource record sets.</p>
+     * </li> </ul> <important> <p>Amazon Route 53 doesn't check the health of the
+     * endpoint specified in the resource record set, for example, the endpoint
+     * specified by the IP address in the <code>Value</code> element. When you add a
      * <code>HealthCheckId</code> element to a resource record set, Amazon Route 53
      * checks the health of the endpoint that you specified in the health check. </p>
      * </important> <p>For geolocation resource record sets, if an endpoint is
@@ -1497,7 +1590,7 @@ namespace Model
      * health check for each <code>HTTP</code> server that is serving content for
      * <code>www.example.com</code>. For the value of
      * <code>FullyQualifiedDomainName</code>, specify the domain name of the server
-     * (such as <code>us-east-1-www.example.com</code>), not the name of the resource
+     * (such as <code>us-east-2-www.example.com</code>), not the name of the resource
      * record sets (example.com).</p> <important> <p>n this configuration, if you
      * create a health check for which the value of
      * <code>FullyQualifiedDomainName</code> matches the name of the resource record
@@ -1521,25 +1614,27 @@ namespace Model
      * a request to the endpoint that is specified in the health check</p> </li> <li>
      * <p>By aggregating the status of a specified group of health checks (calculated
      * health checks)</p> </li> <li> <p>By determining the current state of a
-     * CloudWatch alarm (CloudWatch metric health checks)</p> </li> </ul> <p>For
-     * information about how Amazon Route 53 determines whether a health check is
-     * healthy, see <a>CreateHealthCheck</a>.</p> <p>The <code>HealthCheckId</code>
-     * element is only useful when Amazon Route 53 is choosing between two or more
-     * resource record sets to respond to a DNS query, and you want Amazon Route 53 to
-     * base the choice in part on the status of a health check. Configuring health
-     * checks only makes sense in the following configurations:</p> <ul> <li> <p>You're
-     * checking the health of the resource record sets in a weighted, latency,
-     * geolocation, or failover resource record set, and you specify health check IDs
-     * for all of the resource record sets. If the health check for one resource record
-     * set specifies an endpoint that is not healthy, Amazon Route 53 stops responding
-     * to queries using the value for that resource record set.</p> </li> <li> <p>You
-     * set <code>EvaluateTargetHealth</code> to true for the resource record sets in an
-     * alias, weighted alias, latency alias, geolocation alias, or failover alias
-     * resource record set, and you specify health check IDs for all of the resource
-     * record sets that are referenced by the alias resource record sets.</p> </li>
-     * </ul> <important> <p>Amazon Route 53 doesn't check the health of the endpoint
-     * specified in the resource record set, for example, the endpoint specified by the
-     * IP address in the <code>Value</code> element. When you add a
+     * CloudWatch alarm (CloudWatch metric health checks)</p> </li> </ul> <p>For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-determining-health-of-endpoints.html">How
+     * Amazon Route 53 Determines Whether an Endpoint Is Healthy</a>.</p> <p>The
+     * <code>HealthCheckId</code> element is only useful when Amazon Route 53 is
+     * choosing between two or more resource record sets to respond to a DNS query, and
+     * you want Amazon Route 53 to base the choice in part on the status of a health
+     * check. Configuring health checks only makes sense in the following
+     * configurations:</p> <ul> <li> <p>You're checking the health of the resource
+     * record sets in a group of weighted, latency, geolocation, or failover resource
+     * record sets, and you specify health check IDs for all of the resource record
+     * sets. If the health check for one resource record set specifies an endpoint that
+     * is not healthy, Amazon Route 53 stops responding to queries using the value for
+     * that resource record set.</p> </li> <li> <p>You set
+     * <code>EvaluateTargetHealth</code> to true for the resource record sets in a
+     * group of alias, weighted alias, latency alias, geolocation alias, or failover
+     * alias resource record sets, and you specify health check IDs for all of the
+     * resource record sets that are referenced by the alias resource record sets.</p>
+     * </li> </ul> <important> <p>Amazon Route 53 doesn't check the health of the
+     * endpoint specified in the resource record set, for example, the endpoint
+     * specified by the IP address in the <code>Value</code> element. When you add a
      * <code>HealthCheckId</code> element to a resource record set, Amazon Route 53
      * checks the health of the endpoint that you specified in the health check. </p>
      * </important> <p>For geolocation resource record sets, if an endpoint is
@@ -1556,7 +1651,7 @@ namespace Model
      * health check for each <code>HTTP</code> server that is serving content for
      * <code>www.example.com</code>. For the value of
      * <code>FullyQualifiedDomainName</code>, specify the domain name of the server
-     * (such as <code>us-east-1-www.example.com</code>), not the name of the resource
+     * (such as <code>us-east-2-www.example.com</code>), not the name of the resource
      * record sets (example.com).</p> <important> <p>n this configuration, if you
      * create a health check for which the value of
      * <code>FullyQualifiedDomainName</code> matches the name of the resource record
@@ -1580,25 +1675,27 @@ namespace Model
      * a request to the endpoint that is specified in the health check</p> </li> <li>
      * <p>By aggregating the status of a specified group of health checks (calculated
      * health checks)</p> </li> <li> <p>By determining the current state of a
-     * CloudWatch alarm (CloudWatch metric health checks)</p> </li> </ul> <p>For
-     * information about how Amazon Route 53 determines whether a health check is
-     * healthy, see <a>CreateHealthCheck</a>.</p> <p>The <code>HealthCheckId</code>
-     * element is only useful when Amazon Route 53 is choosing between two or more
-     * resource record sets to respond to a DNS query, and you want Amazon Route 53 to
-     * base the choice in part on the status of a health check. Configuring health
-     * checks only makes sense in the following configurations:</p> <ul> <li> <p>You're
-     * checking the health of the resource record sets in a weighted, latency,
-     * geolocation, or failover resource record set, and you specify health check IDs
-     * for all of the resource record sets. If the health check for one resource record
-     * set specifies an endpoint that is not healthy, Amazon Route 53 stops responding
-     * to queries using the value for that resource record set.</p> </li> <li> <p>You
-     * set <code>EvaluateTargetHealth</code> to true for the resource record sets in an
-     * alias, weighted alias, latency alias, geolocation alias, or failover alias
-     * resource record set, and you specify health check IDs for all of the resource
-     * record sets that are referenced by the alias resource record sets.</p> </li>
-     * </ul> <important> <p>Amazon Route 53 doesn't check the health of the endpoint
-     * specified in the resource record set, for example, the endpoint specified by the
-     * IP address in the <code>Value</code> element. When you add a
+     * CloudWatch alarm (CloudWatch metric health checks)</p> </li> </ul> <p>For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-determining-health-of-endpoints.html">How
+     * Amazon Route 53 Determines Whether an Endpoint Is Healthy</a>.</p> <p>The
+     * <code>HealthCheckId</code> element is only useful when Amazon Route 53 is
+     * choosing between two or more resource record sets to respond to a DNS query, and
+     * you want Amazon Route 53 to base the choice in part on the status of a health
+     * check. Configuring health checks only makes sense in the following
+     * configurations:</p> <ul> <li> <p>You're checking the health of the resource
+     * record sets in a group of weighted, latency, geolocation, or failover resource
+     * record sets, and you specify health check IDs for all of the resource record
+     * sets. If the health check for one resource record set specifies an endpoint that
+     * is not healthy, Amazon Route 53 stops responding to queries using the value for
+     * that resource record set.</p> </li> <li> <p>You set
+     * <code>EvaluateTargetHealth</code> to true for the resource record sets in a
+     * group of alias, weighted alias, latency alias, geolocation alias, or failover
+     * alias resource record sets, and you specify health check IDs for all of the
+     * resource record sets that are referenced by the alias resource record sets.</p>
+     * </li> </ul> <important> <p>Amazon Route 53 doesn't check the health of the
+     * endpoint specified in the resource record set, for example, the endpoint
+     * specified by the IP address in the <code>Value</code> element. When you add a
      * <code>HealthCheckId</code> element to a resource record set, Amazon Route 53
      * checks the health of the endpoint that you specified in the health check. </p>
      * </important> <p>For geolocation resource record sets, if an endpoint is
@@ -1615,7 +1712,7 @@ namespace Model
      * health check for each <code>HTTP</code> server that is serving content for
      * <code>www.example.com</code>. For the value of
      * <code>FullyQualifiedDomainName</code>, specify the domain name of the server
-     * (such as <code>us-east-1-www.example.com</code>), not the name of the resource
+     * (such as <code>us-east-2-www.example.com</code>), not the name of the resource
      * record sets (example.com).</p> <important> <p>n this configuration, if you
      * create a health check for which the value of
      * <code>FullyQualifiedDomainName</code> matches the name of the resource record
@@ -1628,7 +1725,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-private-hosted-zones.html">Configuring
      * Failover in a Private Hosted Zone</a> </p> </li> </ul>
      */
-    inline ResourceRecordSet& WithHealthCheckId(Aws::String&& value) { SetHealthCheckId(value); return *this;}
+    inline ResourceRecordSet& WithHealthCheckId(Aws::String&& value) { SetHealthCheckId(std::move(value)); return *this;}
 
     /**
      * <p>If you want Amazon Route 53 to return this resource record set in response to
@@ -1639,25 +1736,27 @@ namespace Model
      * a request to the endpoint that is specified in the health check</p> </li> <li>
      * <p>By aggregating the status of a specified group of health checks (calculated
      * health checks)</p> </li> <li> <p>By determining the current state of a
-     * CloudWatch alarm (CloudWatch metric health checks)</p> </li> </ul> <p>For
-     * information about how Amazon Route 53 determines whether a health check is
-     * healthy, see <a>CreateHealthCheck</a>.</p> <p>The <code>HealthCheckId</code>
-     * element is only useful when Amazon Route 53 is choosing between two or more
-     * resource record sets to respond to a DNS query, and you want Amazon Route 53 to
-     * base the choice in part on the status of a health check. Configuring health
-     * checks only makes sense in the following configurations:</p> <ul> <li> <p>You're
-     * checking the health of the resource record sets in a weighted, latency,
-     * geolocation, or failover resource record set, and you specify health check IDs
-     * for all of the resource record sets. If the health check for one resource record
-     * set specifies an endpoint that is not healthy, Amazon Route 53 stops responding
-     * to queries using the value for that resource record set.</p> </li> <li> <p>You
-     * set <code>EvaluateTargetHealth</code> to true for the resource record sets in an
-     * alias, weighted alias, latency alias, geolocation alias, or failover alias
-     * resource record set, and you specify health check IDs for all of the resource
-     * record sets that are referenced by the alias resource record sets.</p> </li>
-     * </ul> <important> <p>Amazon Route 53 doesn't check the health of the endpoint
-     * specified in the resource record set, for example, the endpoint specified by the
-     * IP address in the <code>Value</code> element. When you add a
+     * CloudWatch alarm (CloudWatch metric health checks)</p> </li> </ul> <p>For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-determining-health-of-endpoints.html">How
+     * Amazon Route 53 Determines Whether an Endpoint Is Healthy</a>.</p> <p>The
+     * <code>HealthCheckId</code> element is only useful when Amazon Route 53 is
+     * choosing between two or more resource record sets to respond to a DNS query, and
+     * you want Amazon Route 53 to base the choice in part on the status of a health
+     * check. Configuring health checks only makes sense in the following
+     * configurations:</p> <ul> <li> <p>You're checking the health of the resource
+     * record sets in a group of weighted, latency, geolocation, or failover resource
+     * record sets, and you specify health check IDs for all of the resource record
+     * sets. If the health check for one resource record set specifies an endpoint that
+     * is not healthy, Amazon Route 53 stops responding to queries using the value for
+     * that resource record set.</p> </li> <li> <p>You set
+     * <code>EvaluateTargetHealth</code> to true for the resource record sets in a
+     * group of alias, weighted alias, latency alias, geolocation alias, or failover
+     * alias resource record sets, and you specify health check IDs for all of the
+     * resource record sets that are referenced by the alias resource record sets.</p>
+     * </li> </ul> <important> <p>Amazon Route 53 doesn't check the health of the
+     * endpoint specified in the resource record set, for example, the endpoint
+     * specified by the IP address in the <code>Value</code> element. When you add a
      * <code>HealthCheckId</code> element to a resource record set, Amazon Route 53
      * checks the health of the endpoint that you specified in the health check. </p>
      * </important> <p>For geolocation resource record sets, if an endpoint is
@@ -1674,7 +1773,7 @@ namespace Model
      * health check for each <code>HTTP</code> server that is serving content for
      * <code>www.example.com</code>. For the value of
      * <code>FullyQualifiedDomainName</code>, specify the domain name of the server
-     * (such as <code>us-east-1-www.example.com</code>), not the name of the resource
+     * (such as <code>us-east-2-www.example.com</code>), not the name of the resource
      * record sets (example.com).</p> <important> <p>n this configuration, if you
      * create a health check for which the value of
      * <code>FullyQualifiedDomainName</code> matches the name of the resource record
@@ -1688,6 +1787,7 @@ namespace Model
      * Failover in a Private Hosted Zone</a> </p> </li> </ul>
      */
     inline ResourceRecordSet& WithHealthCheckId(const char* value) { SetHealthCheckId(value); return *this;}
+
 
     /**
      * <p>When you create a traffic policy instance, Amazon Route 53 automatically
@@ -1729,7 +1829,7 @@ namespace Model
      * continue to be charged for it even though it's no longer in use. </p>
      * </important>
      */
-    inline void SetTrafficPolicyInstanceId(Aws::String&& value) { m_trafficPolicyInstanceIdHasBeenSet = true; m_trafficPolicyInstanceId = value; }
+    inline void SetTrafficPolicyInstanceId(Aws::String&& value) { m_trafficPolicyInstanceIdHasBeenSet = true; m_trafficPolicyInstanceId = std::move(value); }
 
     /**
      * <p>When you create a traffic policy instance, Amazon Route 53 automatically
@@ -1771,7 +1871,7 @@ namespace Model
      * continue to be charged for it even though it's no longer in use. </p>
      * </important>
      */
-    inline ResourceRecordSet& WithTrafficPolicyInstanceId(Aws::String&& value) { SetTrafficPolicyInstanceId(value); return *this;}
+    inline ResourceRecordSet& WithTrafficPolicyInstanceId(Aws::String&& value) { SetTrafficPolicyInstanceId(std::move(value)); return *this;}
 
     /**
      * <p>When you create a traffic policy instance, Amazon Route 53 automatically
@@ -1788,28 +1888,43 @@ namespace Model
     inline ResourceRecordSet& WithTrafficPolicyInstanceId(const char* value) { SetTrafficPolicyInstanceId(value); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     RRType m_type;
     bool m_typeHasBeenSet;
+
     Aws::String m_setIdentifier;
     bool m_setIdentifierHasBeenSet;
+
     long long m_weight;
     bool m_weightHasBeenSet;
+
     ResourceRecordSetRegion m_region;
     bool m_regionHasBeenSet;
+
     GeoLocation m_geoLocation;
     bool m_geoLocationHasBeenSet;
+
     ResourceRecordSetFailover m_failover;
     bool m_failoverHasBeenSet;
+
+    bool m_multiValueAnswer;
+    bool m_multiValueAnswerHasBeenSet;
+
     long long m_tTL;
     bool m_tTLHasBeenSet;
+
     Aws::Vector<ResourceRecord> m_resourceRecords;
     bool m_resourceRecordsHasBeenSet;
+
     AliasTarget m_aliasTarget;
     bool m_aliasTargetHasBeenSet;
+
     Aws::String m_healthCheckId;
     bool m_healthCheckIdHasBeenSet;
+
     Aws::String m_trafficPolicyInstanceId;
     bool m_trafficPolicyInstanceIdHasBeenSet;
   };

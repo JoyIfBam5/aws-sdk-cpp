@@ -6,6 +6,7 @@
     "protocol":"query",
     "serviceAbbreviation":"Amazon RDS",
     "serviceFullName":"Amazon Relational Database Service",
+    "serviceId":"RDS",
     "signatureVersion":"v4",
     "uid":"rds-2014-09-01",
     "xmlNamespace":"http://rds.amazonaws.com/doc/2014-09-01/"
@@ -2275,7 +2276,7 @@
       "type":"structure",
       "members":{
       },
-      "documentation":"<p>The DB parameter group cannot be deleted because it is in use.</p>",
+      "documentation":"<p>The DB parameter group is in use or is in an invalid state. If you are attempting to delete the parameter group, you cannot delete it when the parameter group is in this state.</p>",
       "error":{
         "code":"InvalidDBParameterGroupState",
         "httpStatusCode":400,

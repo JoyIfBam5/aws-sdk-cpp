@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codedeploy/CodeDeploy_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     GitHubLocation& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The GitHub account and repository pair that stores a reference to the commit
      * that represents the bundled artifacts for the application revision. </p>
@@ -63,7 +66,7 @@ namespace Model
      * that represents the bundled artifacts for the application revision. </p>
      * <p>Specified as account/repository.</p>
      */
-    inline void SetRepository(Aws::String&& value) { m_repositoryHasBeenSet = true; m_repository = value; }
+    inline void SetRepository(Aws::String&& value) { m_repositoryHasBeenSet = true; m_repository = std::move(value); }
 
     /**
      * <p>The GitHub account and repository pair that stores a reference to the commit
@@ -84,7 +87,7 @@ namespace Model
      * that represents the bundled artifacts for the application revision. </p>
      * <p>Specified as account/repository.</p>
      */
-    inline GitHubLocation& WithRepository(Aws::String&& value) { SetRepository(value); return *this;}
+    inline GitHubLocation& WithRepository(Aws::String&& value) { SetRepository(std::move(value)); return *this;}
 
     /**
      * <p>The GitHub account and repository pair that stores a reference to the commit
@@ -92,6 +95,7 @@ namespace Model
      * <p>Specified as account/repository.</p>
      */
     inline GitHubLocation& WithRepository(const char* value) { SetRepository(value); return *this;}
+
 
     /**
      * <p>The SHA1 commit ID of the GitHub commit that represents the bundled artifacts
@@ -109,7 +113,7 @@ namespace Model
      * <p>The SHA1 commit ID of the GitHub commit that represents the bundled artifacts
      * for the application revision.</p>
      */
-    inline void SetCommitId(Aws::String&& value) { m_commitIdHasBeenSet = true; m_commitId = value; }
+    inline void SetCommitId(Aws::String&& value) { m_commitIdHasBeenSet = true; m_commitId = std::move(value); }
 
     /**
      * <p>The SHA1 commit ID of the GitHub commit that represents the bundled artifacts
@@ -127,7 +131,7 @@ namespace Model
      * <p>The SHA1 commit ID of the GitHub commit that represents the bundled artifacts
      * for the application revision.</p>
      */
-    inline GitHubLocation& WithCommitId(Aws::String&& value) { SetCommitId(value); return *this;}
+    inline GitHubLocation& WithCommitId(Aws::String&& value) { SetCommitId(std::move(value)); return *this;}
 
     /**
      * <p>The SHA1 commit ID of the GitHub commit that represents the bundled artifacts
@@ -136,8 +140,10 @@ namespace Model
     inline GitHubLocation& WithCommitId(const char* value) { SetCommitId(value); return *this;}
 
   private:
+
     Aws::String m_repository;
     bool m_repositoryHasBeenSet;
+
     Aws::String m_commitId;
     bool m_commitIdHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/apigateway/model/PutIntegrationRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -51,7 +52,7 @@ Aws::String PutIntegrationRequest::SerializePayload() const
 
   if(m_integrationHttpMethodHasBeenSet)
   {
-   payload.WithString("integrationHttpMethod", m_integrationHttpMethod);
+   payload.WithString("httpMethod", m_integrationHttpMethod);
 
   }
 
@@ -119,6 +120,7 @@ Aws::String PutIntegrationRequest::SerializePayload() const
 
   return payload.WriteReadable();
 }
+
 
 
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>the IDs of instances that are running on the Dedicated Host.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>the IDs of instances that are running on the Dedicated Host.</p>
      */
-    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = value; }
+    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = std::move(value); }
 
     /**
      * <p>the IDs of instances that are running on the Dedicated Host.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>the IDs of instances that are running on the Dedicated Host.</p>
      */
-    inline HostInstance& WithInstanceId(Aws::String&& value) { SetInstanceId(value); return *this;}
+    inline HostInstance& WithInstanceId(Aws::String&& value) { SetInstanceId(std::move(value)); return *this;}
 
     /**
      * <p>the IDs of instances that are running on the Dedicated Host.</p>
      */
     inline HostInstance& WithInstanceId(const char* value) { SetInstanceId(value); return *this;}
+
 
     /**
      * <p>The instance type size (for example, <code>m3.medium</code>) of the running
@@ -97,7 +101,7 @@ namespace Model
      * <p>The instance type size (for example, <code>m3.medium</code>) of the running
      * instance.</p>
      */
-    inline void SetInstanceType(Aws::String&& value) { m_instanceTypeHasBeenSet = true; m_instanceType = value; }
+    inline void SetInstanceType(Aws::String&& value) { m_instanceTypeHasBeenSet = true; m_instanceType = std::move(value); }
 
     /**
      * <p>The instance type size (for example, <code>m3.medium</code>) of the running
@@ -115,7 +119,7 @@ namespace Model
      * <p>The instance type size (for example, <code>m3.medium</code>) of the running
      * instance.</p>
      */
-    inline HostInstance& WithInstanceType(Aws::String&& value) { SetInstanceType(value); return *this;}
+    inline HostInstance& WithInstanceType(Aws::String&& value) { SetInstanceType(std::move(value)); return *this;}
 
     /**
      * <p>The instance type size (for example, <code>m3.medium</code>) of the running
@@ -124,8 +128,10 @@ namespace Model
     inline HostInstance& WithInstanceType(const char* value) { SetInstanceType(value); return *this;}
 
   private:
+
     Aws::String m_instanceId;
     bool m_instanceIdHasBeenSet;
+
     Aws::String m_instanceType;
     bool m_instanceTypeHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/ssm/SSMRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     UpdateMaintenanceWindowRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateMaintenanceWindow"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The ID of the Maintenance Window to update.</p>
@@ -47,7 +57,7 @@ namespace Model
     /**
      * <p>The ID of the Maintenance Window to update.</p>
      */
-    inline void SetWindowId(Aws::String&& value) { m_windowIdHasBeenSet = true; m_windowId = value; }
+    inline void SetWindowId(Aws::String&& value) { m_windowIdHasBeenSet = true; m_windowId = std::move(value); }
 
     /**
      * <p>The ID of the Maintenance Window to update.</p>
@@ -62,12 +72,13 @@ namespace Model
     /**
      * <p>The ID of the Maintenance Window to update.</p>
      */
-    inline UpdateMaintenanceWindowRequest& WithWindowId(Aws::String&& value) { SetWindowId(value); return *this;}
+    inline UpdateMaintenanceWindowRequest& WithWindowId(Aws::String&& value) { SetWindowId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the Maintenance Window to update.</p>
      */
     inline UpdateMaintenanceWindowRequest& WithWindowId(const char* value) { SetWindowId(value); return *this;}
+
 
     /**
      * <p>The name of the Maintenance Window.</p>
@@ -82,7 +93,7 @@ namespace Model
     /**
      * <p>The name of the Maintenance Window.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the Maintenance Window.</p>
@@ -97,12 +108,49 @@ namespace Model
     /**
      * <p>The name of the Maintenance Window.</p>
      */
-    inline UpdateMaintenanceWindowRequest& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline UpdateMaintenanceWindowRequest& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the Maintenance Window.</p>
      */
     inline UpdateMaintenanceWindowRequest& WithName(const char* value) { SetName(value); return *this;}
+
+
+    /**
+     * <p>An optional description for the update request.</p>
+     */
+    inline const Aws::String& GetDescription() const{ return m_description; }
+
+    /**
+     * <p>An optional description for the update request.</p>
+     */
+    inline void SetDescription(const Aws::String& value) { m_descriptionHasBeenSet = true; m_description = value; }
+
+    /**
+     * <p>An optional description for the update request.</p>
+     */
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
+
+    /**
+     * <p>An optional description for the update request.</p>
+     */
+    inline void SetDescription(const char* value) { m_descriptionHasBeenSet = true; m_description.assign(value); }
+
+    /**
+     * <p>An optional description for the update request.</p>
+     */
+    inline UpdateMaintenanceWindowRequest& WithDescription(const Aws::String& value) { SetDescription(value); return *this;}
+
+    /**
+     * <p>An optional description for the update request.</p>
+     */
+    inline UpdateMaintenanceWindowRequest& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
+
+    /**
+     * <p>An optional description for the update request.</p>
+     */
+    inline UpdateMaintenanceWindowRequest& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The schedule of the Maintenance Window in the form of a cron or rate
@@ -120,7 +168,7 @@ namespace Model
      * <p>The schedule of the Maintenance Window in the form of a cron or rate
      * expression.</p>
      */
-    inline void SetSchedule(Aws::String&& value) { m_scheduleHasBeenSet = true; m_schedule = value; }
+    inline void SetSchedule(Aws::String&& value) { m_scheduleHasBeenSet = true; m_schedule = std::move(value); }
 
     /**
      * <p>The schedule of the Maintenance Window in the form of a cron or rate
@@ -138,13 +186,14 @@ namespace Model
      * <p>The schedule of the Maintenance Window in the form of a cron or rate
      * expression.</p>
      */
-    inline UpdateMaintenanceWindowRequest& WithSchedule(Aws::String&& value) { SetSchedule(value); return *this;}
+    inline UpdateMaintenanceWindowRequest& WithSchedule(Aws::String&& value) { SetSchedule(std::move(value)); return *this;}
 
     /**
      * <p>The schedule of the Maintenance Window in the form of a cron or rate
      * expression.</p>
      */
     inline UpdateMaintenanceWindowRequest& WithSchedule(const char* value) { SetSchedule(value); return *this;}
+
 
     /**
      * <p>The duration of the Maintenance Window in hours.</p>
@@ -160,6 +209,7 @@ namespace Model
      * <p>The duration of the Maintenance Window in hours.</p>
      */
     inline UpdateMaintenanceWindowRequest& WithDuration(int value) { SetDuration(value); return *this;}
+
 
     /**
      * <p>The number of hours before the end of the Maintenance Window that Systems
@@ -179,6 +229,7 @@ namespace Model
      */
     inline UpdateMaintenanceWindowRequest& WithCutoff(int value) { SetCutoff(value); return *this;}
 
+
     /**
      * <p>Whether targets must be registered with the Maintenance Window before tasks
      * can be defined for those targets.</p>
@@ -197,6 +248,7 @@ namespace Model
      */
     inline UpdateMaintenanceWindowRequest& WithAllowUnassociatedTargets(bool value) { SetAllowUnassociatedTargets(value); return *this;}
 
+
     /**
      * <p>Whether the Maintenance Window is enabled.</p>
      */
@@ -212,21 +264,56 @@ namespace Model
      */
     inline UpdateMaintenanceWindowRequest& WithEnabled(bool value) { SetEnabled(value); return *this;}
 
+
+    /**
+     * <p>If True, then all fields that are required by the CreateMaintenanceWindow
+     * action are also required for this API request. Optional fields that are not
+     * specified are set to null. </p>
+     */
+    inline bool GetReplace() const{ return m_replace; }
+
+    /**
+     * <p>If True, then all fields that are required by the CreateMaintenanceWindow
+     * action are also required for this API request. Optional fields that are not
+     * specified are set to null. </p>
+     */
+    inline void SetReplace(bool value) { m_replaceHasBeenSet = true; m_replace = value; }
+
+    /**
+     * <p>If True, then all fields that are required by the CreateMaintenanceWindow
+     * action are also required for this API request. Optional fields that are not
+     * specified are set to null. </p>
+     */
+    inline UpdateMaintenanceWindowRequest& WithReplace(bool value) { SetReplace(value); return *this;}
+
   private:
+
     Aws::String m_windowId;
     bool m_windowIdHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
+    Aws::String m_description;
+    bool m_descriptionHasBeenSet;
+
     Aws::String m_schedule;
     bool m_scheduleHasBeenSet;
+
     int m_duration;
     bool m_durationHasBeenSet;
+
     int m_cutoff;
     bool m_cutoffHasBeenSet;
+
     bool m_allowUnassociatedTargets;
     bool m_allowUnassociatedTargetsHasBeenSet;
+
     bool m_enabled;
     bool m_enabledHasBeenSet;
+
+    bool m_replace;
+    bool m_replaceHasBeenSet;
   };
 
 } // namespace Model

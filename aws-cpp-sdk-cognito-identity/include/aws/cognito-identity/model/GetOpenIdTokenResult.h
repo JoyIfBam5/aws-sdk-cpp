@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-identity/CognitoIdentity_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     GetOpenIdTokenResult();
-    GetOpenIdTokenResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetOpenIdTokenResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetOpenIdTokenResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetOpenIdTokenResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A unique identifier in the format REGION:GUID. Note that the IdentityId
@@ -61,7 +64,7 @@ namespace Model
      * <p>A unique identifier in the format REGION:GUID. Note that the IdentityId
      * returned may not match the one passed on input.</p>
      */
-    inline void SetIdentityId(Aws::String&& value) { m_identityId = value; }
+    inline void SetIdentityId(Aws::String&& value) { m_identityId = std::move(value); }
 
     /**
      * <p>A unique identifier in the format REGION:GUID. Note that the IdentityId
@@ -79,13 +82,14 @@ namespace Model
      * <p>A unique identifier in the format REGION:GUID. Note that the IdentityId
      * returned may not match the one passed on input.</p>
      */
-    inline GetOpenIdTokenResult& WithIdentityId(Aws::String&& value) { SetIdentityId(value); return *this;}
+    inline GetOpenIdTokenResult& WithIdentityId(Aws::String&& value) { SetIdentityId(std::move(value)); return *this;}
 
     /**
      * <p>A unique identifier in the format REGION:GUID. Note that the IdentityId
      * returned may not match the one passed on input.</p>
      */
     inline GetOpenIdTokenResult& WithIdentityId(const char* value) { SetIdentityId(value); return *this;}
+
 
     /**
      * <p>An OpenID token, valid for 15 minutes.</p>
@@ -100,7 +104,7 @@ namespace Model
     /**
      * <p>An OpenID token, valid for 15 minutes.</p>
      */
-    inline void SetToken(Aws::String&& value) { m_token = value; }
+    inline void SetToken(Aws::String&& value) { m_token = std::move(value); }
 
     /**
      * <p>An OpenID token, valid for 15 minutes.</p>
@@ -115,7 +119,7 @@ namespace Model
     /**
      * <p>An OpenID token, valid for 15 minutes.</p>
      */
-    inline GetOpenIdTokenResult& WithToken(Aws::String&& value) { SetToken(value); return *this;}
+    inline GetOpenIdTokenResult& WithToken(Aws::String&& value) { SetToken(std::move(value)); return *this;}
 
     /**
      * <p>An OpenID token, valid for 15 minutes.</p>
@@ -123,7 +127,9 @@ namespace Model
     inline GetOpenIdTokenResult& WithToken(const char* value) { SetToken(value); return *this;}
 
   private:
+
     Aws::String m_identityId;
+
     Aws::String m_token;
   };
 

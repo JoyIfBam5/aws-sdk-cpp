@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworkscm/OpsWorksCM_EXPORTS.h>
 #include <aws/opsworkscm/model/Server.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     UpdateServerEngineAttributesResult();
-    UpdateServerEngineAttributesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    UpdateServerEngineAttributesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdateServerEngineAttributesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdateServerEngineAttributesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Contains the response to an <code>UpdateServerEngineAttributes</code>
@@ -55,7 +58,7 @@ namespace Model
      * <p>Contains the response to an <code>UpdateServerEngineAttributes</code>
      * request. </p>
      */
-    inline void SetServer(Server&& value) { m_server = value; }
+    inline void SetServer(Server&& value) { m_server = std::move(value); }
 
     /**
      * <p>Contains the response to an <code>UpdateServerEngineAttributes</code>
@@ -67,9 +70,10 @@ namespace Model
      * <p>Contains the response to an <code>UpdateServerEngineAttributes</code>
      * request. </p>
      */
-    inline UpdateServerEngineAttributesResult& WithServer(Server&& value) { SetServer(value); return *this;}
+    inline UpdateServerEngineAttributesResult& WithServer(Server&& value) { SetServer(std::move(value)); return *this;}
 
   private:
+
     Server m_server;
   };
 

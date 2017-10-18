@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/storagegateway/StorageGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -41,8 +43,9 @@ namespace Model
   {
   public:
     CreateSnapshotResult();
-    CreateSnapshotResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateSnapshotResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateSnapshotResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateSnapshotResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the volume of which the snapshot was
@@ -60,7 +63,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the volume of which the snapshot was
      * taken.</p>
      */
-    inline void SetVolumeARN(Aws::String&& value) { m_volumeARN = value; }
+    inline void SetVolumeARN(Aws::String&& value) { m_volumeARN = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the volume of which the snapshot was
@@ -78,13 +81,14 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the volume of which the snapshot was
      * taken.</p>
      */
-    inline CreateSnapshotResult& WithVolumeARN(Aws::String&& value) { SetVolumeARN(value); return *this;}
+    inline CreateSnapshotResult& WithVolumeARN(Aws::String&& value) { SetVolumeARN(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the volume of which the snapshot was
      * taken.</p>
      */
     inline CreateSnapshotResult& WithVolumeARN(const char* value) { SetVolumeARN(value); return *this;}
+
 
     /**
      * <p>The snapshot ID that is used to refer to the snapshot in future operations
@@ -108,7 +112,7 @@ namespace Model
      * <code>DescribeSnapshots</code>) or creating a volume from a snapshot
      * (<a>CreateStorediSCSIVolume</a>).</p>
      */
-    inline void SetSnapshotId(Aws::String&& value) { m_snapshotId = value; }
+    inline void SetSnapshotId(Aws::String&& value) { m_snapshotId = std::move(value); }
 
     /**
      * <p>The snapshot ID that is used to refer to the snapshot in future operations
@@ -132,7 +136,7 @@ namespace Model
      * <code>DescribeSnapshots</code>) or creating a volume from a snapshot
      * (<a>CreateStorediSCSIVolume</a>).</p>
      */
-    inline CreateSnapshotResult& WithSnapshotId(Aws::String&& value) { SetSnapshotId(value); return *this;}
+    inline CreateSnapshotResult& WithSnapshotId(Aws::String&& value) { SetSnapshotId(std::move(value)); return *this;}
 
     /**
      * <p>The snapshot ID that is used to refer to the snapshot in future operations
@@ -143,7 +147,9 @@ namespace Model
     inline CreateSnapshotResult& WithSnapshotId(const char* value) { SetSnapshotId(value); return *this;}
 
   private:
+
     Aws::String m_volumeARN;
+
     Aws::String m_snapshotId;
   };
 

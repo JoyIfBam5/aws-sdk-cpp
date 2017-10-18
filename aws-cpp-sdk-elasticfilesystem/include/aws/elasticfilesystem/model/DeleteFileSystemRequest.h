@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticfilesystem/EFS_EXPORTS.h>
 #include <aws/elasticfilesystem/EFSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,15 @@ namespace Model
   {
   public:
     DeleteFileSystemRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DeleteFileSystem"; }
+
     Aws::String SerializePayload() const override;
+
 
     /**
      * <p>ID of the file system you want to delete.</p>
@@ -48,7 +58,7 @@ namespace Model
     /**
      * <p>ID of the file system you want to delete.</p>
      */
-    inline void SetFileSystemId(Aws::String&& value) { m_fileSystemIdHasBeenSet = true; m_fileSystemId = value; }
+    inline void SetFileSystemId(Aws::String&& value) { m_fileSystemIdHasBeenSet = true; m_fileSystemId = std::move(value); }
 
     /**
      * <p>ID of the file system you want to delete.</p>
@@ -63,7 +73,7 @@ namespace Model
     /**
      * <p>ID of the file system you want to delete.</p>
      */
-    inline DeleteFileSystemRequest& WithFileSystemId(Aws::String&& value) { SetFileSystemId(value); return *this;}
+    inline DeleteFileSystemRequest& WithFileSystemId(Aws::String&& value) { SetFileSystemId(std::move(value)); return *this;}
 
     /**
      * <p>ID of the file system you want to delete.</p>
@@ -71,6 +81,7 @@ namespace Model
     inline DeleteFileSystemRequest& WithFileSystemId(const char* value) { SetFileSystemId(value); return *this;}
 
   private:
+
     Aws::String m_fileSystemId;
     bool m_fileSystemIdHasBeenSet;
   };

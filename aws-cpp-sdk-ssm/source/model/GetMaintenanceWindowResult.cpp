@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ssm/model/GetMaintenanceWindowResult.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
+#include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/UnreferencedParam.h>
 
 #include <utility>
@@ -32,7 +34,7 @@ GetMaintenanceWindowResult::GetMaintenanceWindowResult() :
 {
 }
 
-GetMaintenanceWindowResult::GetMaintenanceWindowResult(const AmazonWebServiceResult<JsonValue>& result) : 
+GetMaintenanceWindowResult::GetMaintenanceWindowResult(const Aws::AmazonWebServiceResult<JsonValue>& result) : 
     m_duration(0),
     m_cutoff(0),
     m_allowUnassociatedTargets(false),
@@ -41,7 +43,7 @@ GetMaintenanceWindowResult::GetMaintenanceWindowResult(const AmazonWebServiceRes
   *this = result;
 }
 
-GetMaintenanceWindowResult& GetMaintenanceWindowResult::operator =(const AmazonWebServiceResult<JsonValue>& result)
+GetMaintenanceWindowResult& GetMaintenanceWindowResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
   const JsonValue& jsonValue = result.GetPayload();
   if(jsonValue.ValueExists("WindowId"))
@@ -53,6 +55,12 @@ GetMaintenanceWindowResult& GetMaintenanceWindowResult::operator =(const AmazonW
   if(jsonValue.ValueExists("Name"))
   {
     m_name = jsonValue.GetString("Name");
+
+  }
+
+  if(jsonValue.ValueExists("Description"))
+  {
+    m_description = jsonValue.GetString("Description");
 
   }
 

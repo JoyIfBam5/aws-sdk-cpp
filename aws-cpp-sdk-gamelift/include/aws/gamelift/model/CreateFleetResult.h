@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/gamelift/GameLift_EXPORTS.h>
 #include <aws/gamelift/model/FleetAttributes.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     CreateFleetResult();
-    CreateFleetResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateFleetResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateFleetResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateFleetResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Properties for the newly created fleet.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>Properties for the newly created fleet.</p>
      */
-    inline void SetFleetAttributes(FleetAttributes&& value) { m_fleetAttributes = value; }
+    inline void SetFleetAttributes(FleetAttributes&& value) { m_fleetAttributes = std::move(value); }
 
     /**
      * <p>Properties for the newly created fleet.</p>
@@ -68,9 +71,10 @@ namespace Model
     /**
      * <p>Properties for the newly created fleet.</p>
      */
-    inline CreateFleetResult& WithFleetAttributes(FleetAttributes&& value) { SetFleetAttributes(value); return *this;}
+    inline CreateFleetResult& WithFleetAttributes(FleetAttributes&& value) { SetFleetAttributes(std::move(value)); return *this;}
 
   private:
+
     FleetAttributes m_fleetAttributes;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/CreateReservedInstancesListingRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -20,11 +21,11 @@ using namespace Aws::EC2::Model;
 using namespace Aws::Utils;
 
 CreateReservedInstancesListingRequest::CreateReservedInstancesListingRequest() : 
-    m_reservedInstancesIdHasBeenSet(false),
+    m_clientTokenHasBeenSet(false),
     m_instanceCount(0),
     m_instanceCountHasBeenSet(false),
     m_priceSchedulesHasBeenSet(false),
-    m_clientTokenHasBeenSet(false)
+    m_reservedInstancesIdHasBeenSet(false)
 {
 }
 
@@ -32,9 +33,9 @@ Aws::String CreateReservedInstancesListingRequest::SerializePayload() const
 {
   Aws::StringStream ss;
   ss << "Action=CreateReservedInstancesListing&";
-  if(m_reservedInstancesIdHasBeenSet)
+  if(m_clientTokenHasBeenSet)
   {
-    ss << "ReservedInstancesId=" << StringUtils::URLEncode(m_reservedInstancesId.c_str()) << "&";
+    ss << "ClientToken=" << StringUtils::URLEncode(m_clientToken.c_str()) << "&";
   }
 
   if(m_instanceCountHasBeenSet)
@@ -52,12 +53,17 @@ Aws::String CreateReservedInstancesListingRequest::SerializePayload() const
     }
   }
 
-  if(m_clientTokenHasBeenSet)
+  if(m_reservedInstancesIdHasBeenSet)
   {
-    ss << "ClientToken=" << StringUtils::URLEncode(m_clientToken.c_str()) << "&";
+    ss << "ReservedInstancesId=" << StringUtils::URLEncode(m_reservedInstancesId.c_str()) << "&";
   }
 
   ss << "Version=2016-11-15";
   return ss.str();
 }
 
+
+void  CreateReservedInstancesListingRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

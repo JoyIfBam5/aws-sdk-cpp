@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The IPv6 CIDR block.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The IPv6 CIDR block.</p>
      */
-    inline void SetIpv6CidrBlock(Aws::String&& value) { m_ipv6CidrBlockHasBeenSet = true; m_ipv6CidrBlock = value; }
+    inline void SetIpv6CidrBlock(Aws::String&& value) { m_ipv6CidrBlockHasBeenSet = true; m_ipv6CidrBlock = std::move(value); }
 
     /**
      * <p>The IPv6 CIDR block.</p>
@@ -74,7 +77,7 @@ namespace Model
     /**
      * <p>The IPv6 CIDR block.</p>
      */
-    inline Ipv6CidrBlock& WithIpv6CidrBlock(Aws::String&& value) { SetIpv6CidrBlock(value); return *this;}
+    inline Ipv6CidrBlock& WithIpv6CidrBlock(Aws::String&& value) { SetIpv6CidrBlock(std::move(value)); return *this;}
 
     /**
      * <p>The IPv6 CIDR block.</p>
@@ -82,6 +85,7 @@ namespace Model
     inline Ipv6CidrBlock& WithIpv6CidrBlock(const char* value) { SetIpv6CidrBlock(value); return *this;}
 
   private:
+
     Aws::String m_ipv6CidrBlock;
     bool m_ipv6CidrBlockHasBeenSet;
   };

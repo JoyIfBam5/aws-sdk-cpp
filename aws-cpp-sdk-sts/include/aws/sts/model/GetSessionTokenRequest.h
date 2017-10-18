@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/sts/STS_EXPORTS.h>
 #include <aws/sts/STSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,7 +32,19 @@ namespace Model
   {
   public:
     GetSessionTokenRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "GetSessionToken"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The duration, in seconds, that the credentials should remain valid.
@@ -62,6 +76,7 @@ namespace Model
      */
     inline GetSessionTokenRequest& WithDurationSeconds(int value) { SetDurationSeconds(value); return *this;}
 
+
     /**
      * <p>The identification number of the MFA device that is associated with the IAM
      * user who is making the <code>GetSessionToken</code> call. Specify this value if
@@ -70,10 +85,10 @@ namespace Model
      * an Amazon Resource Name (ARN) for a virtual device (such as
      * <code>arn:aws:iam::123456789012:mfa/user</code>). You can find the device for an
      * IAM user by going to the AWS Management Console and viewing the user's security
-     * credentials. </p> <p>The regex used to validate this parameter is a string of
+     * credentials. </p> <p>The regex used to validated this parameter is a string of
      * characters consisting of upper- and lower-case alphanumeric characters with no
      * spaces. You can also include underscores or any of the following characters:
-     * =,.@-</p>
+     * =,.@:/-</p>
      */
     inline const Aws::String& GetSerialNumber() const{ return m_serialNumber; }
 
@@ -85,10 +100,10 @@ namespace Model
      * an Amazon Resource Name (ARN) for a virtual device (such as
      * <code>arn:aws:iam::123456789012:mfa/user</code>). You can find the device for an
      * IAM user by going to the AWS Management Console and viewing the user's security
-     * credentials. </p> <p>The regex used to validate this parameter is a string of
+     * credentials. </p> <p>The regex used to validated this parameter is a string of
      * characters consisting of upper- and lower-case alphanumeric characters with no
      * spaces. You can also include underscores or any of the following characters:
-     * =,.@-</p>
+     * =,.@:/-</p>
      */
     inline void SetSerialNumber(const Aws::String& value) { m_serialNumberHasBeenSet = true; m_serialNumber = value; }
 
@@ -100,12 +115,12 @@ namespace Model
      * an Amazon Resource Name (ARN) for a virtual device (such as
      * <code>arn:aws:iam::123456789012:mfa/user</code>). You can find the device for an
      * IAM user by going to the AWS Management Console and viewing the user's security
-     * credentials. </p> <p>The regex used to validate this parameter is a string of
+     * credentials. </p> <p>The regex used to validated this parameter is a string of
      * characters consisting of upper- and lower-case alphanumeric characters with no
      * spaces. You can also include underscores or any of the following characters:
-     * =,.@-</p>
+     * =,.@:/-</p>
      */
-    inline void SetSerialNumber(Aws::String&& value) { m_serialNumberHasBeenSet = true; m_serialNumber = value; }
+    inline void SetSerialNumber(Aws::String&& value) { m_serialNumberHasBeenSet = true; m_serialNumber = std::move(value); }
 
     /**
      * <p>The identification number of the MFA device that is associated with the IAM
@@ -115,10 +130,10 @@ namespace Model
      * an Amazon Resource Name (ARN) for a virtual device (such as
      * <code>arn:aws:iam::123456789012:mfa/user</code>). You can find the device for an
      * IAM user by going to the AWS Management Console and viewing the user's security
-     * credentials. </p> <p>The regex used to validate this parameter is a string of
+     * credentials. </p> <p>The regex used to validated this parameter is a string of
      * characters consisting of upper- and lower-case alphanumeric characters with no
      * spaces. You can also include underscores or any of the following characters:
-     * =,.@-</p>
+     * =,.@:/-</p>
      */
     inline void SetSerialNumber(const char* value) { m_serialNumberHasBeenSet = true; m_serialNumber.assign(value); }
 
@@ -130,10 +145,10 @@ namespace Model
      * an Amazon Resource Name (ARN) for a virtual device (such as
      * <code>arn:aws:iam::123456789012:mfa/user</code>). You can find the device for an
      * IAM user by going to the AWS Management Console and viewing the user's security
-     * credentials. </p> <p>The regex used to validate this parameter is a string of
+     * credentials. </p> <p>The regex used to validated this parameter is a string of
      * characters consisting of upper- and lower-case alphanumeric characters with no
      * spaces. You can also include underscores or any of the following characters:
-     * =,.@-</p>
+     * =,.@:/-</p>
      */
     inline GetSessionTokenRequest& WithSerialNumber(const Aws::String& value) { SetSerialNumber(value); return *this;}
 
@@ -145,12 +160,12 @@ namespace Model
      * an Amazon Resource Name (ARN) for a virtual device (such as
      * <code>arn:aws:iam::123456789012:mfa/user</code>). You can find the device for an
      * IAM user by going to the AWS Management Console and viewing the user's security
-     * credentials. </p> <p>The regex used to validate this parameter is a string of
+     * credentials. </p> <p>The regex used to validated this parameter is a string of
      * characters consisting of upper- and lower-case alphanumeric characters with no
      * spaces. You can also include underscores or any of the following characters:
-     * =,.@-</p>
+     * =,.@:/-</p>
      */
-    inline GetSessionTokenRequest& WithSerialNumber(Aws::String&& value) { SetSerialNumber(value); return *this;}
+    inline GetSessionTokenRequest& WithSerialNumber(Aws::String&& value) { SetSerialNumber(std::move(value)); return *this;}
 
     /**
      * <p>The identification number of the MFA device that is associated with the IAM
@@ -160,12 +175,13 @@ namespace Model
      * an Amazon Resource Name (ARN) for a virtual device (such as
      * <code>arn:aws:iam::123456789012:mfa/user</code>). You can find the device for an
      * IAM user by going to the AWS Management Console and viewing the user's security
-     * credentials. </p> <p>The regex used to validate this parameter is a string of
+     * credentials. </p> <p>The regex used to validated this parameter is a string of
      * characters consisting of upper- and lower-case alphanumeric characters with no
      * spaces. You can also include underscores or any of the following characters:
-     * =,.@-</p>
+     * =,.@:/-</p>
      */
     inline GetSessionTokenRequest& WithSerialNumber(const char* value) { SetSerialNumber(value); return *this;}
+
 
     /**
      * <p>The value provided by the MFA device, if MFA is required. If any policy
@@ -198,7 +214,7 @@ namespace Model
      * <p>The format for this parameter, as described by its regex pattern, is a
      * sequence of six numeric digits.</p>
      */
-    inline void SetTokenCode(Aws::String&& value) { m_tokenCodeHasBeenSet = true; m_tokenCode = value; }
+    inline void SetTokenCode(Aws::String&& value) { m_tokenCodeHasBeenSet = true; m_tokenCode = std::move(value); }
 
     /**
      * <p>The value provided by the MFA device, if MFA is required. If any policy
@@ -231,7 +247,7 @@ namespace Model
      * <p>The format for this parameter, as described by its regex pattern, is a
      * sequence of six numeric digits.</p>
      */
-    inline GetSessionTokenRequest& WithTokenCode(Aws::String&& value) { SetTokenCode(value); return *this;}
+    inline GetSessionTokenRequest& WithTokenCode(Aws::String&& value) { SetTokenCode(std::move(value)); return *this;}
 
     /**
      * <p>The value provided by the MFA device, if MFA is required. If any policy
@@ -245,10 +261,13 @@ namespace Model
     inline GetSessionTokenRequest& WithTokenCode(const char* value) { SetTokenCode(value); return *this;}
 
   private:
+
     int m_durationSeconds;
     bool m_durationSecondsHasBeenSet;
+
     Aws::String m_serialNumber;
     bool m_serialNumberHasBeenSet;
+
     Aws::String m_tokenCode;
     bool m_tokenCodeHasBeenSet;
   };

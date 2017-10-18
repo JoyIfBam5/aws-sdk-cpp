@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/events/CloudWatchEvents_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,96 +35,101 @@ namespace CloudWatchEvents
 {
 namespace Model
 {
-  /**
-   * <p>The result of the <a>ListRuleNamesByTarget</a> operation.</p><p><h3>See
-   * Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/ListRuleNamesByTargetResponse">AWS
-   * API Reference</a></p>
-   */
   class AWS_CLOUDWATCHEVENTS_API ListRuleNamesByTargetResult
   {
   public:
     ListRuleNamesByTargetResult();
-    ListRuleNamesByTargetResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListRuleNamesByTargetResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListRuleNamesByTargetResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListRuleNamesByTargetResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>List of rules names that can invoke the given target.</p>
+     * <p>The names of the rules that can invoke the given target.</p>
      */
     inline const Aws::Vector<Aws::String>& GetRuleNames() const{ return m_ruleNames; }
 
     /**
-     * <p>List of rules names that can invoke the given target.</p>
+     * <p>The names of the rules that can invoke the given target.</p>
      */
     inline void SetRuleNames(const Aws::Vector<Aws::String>& value) { m_ruleNames = value; }
 
     /**
-     * <p>List of rules names that can invoke the given target.</p>
+     * <p>The names of the rules that can invoke the given target.</p>
      */
-    inline void SetRuleNames(Aws::Vector<Aws::String>&& value) { m_ruleNames = value; }
+    inline void SetRuleNames(Aws::Vector<Aws::String>&& value) { m_ruleNames = std::move(value); }
 
     /**
-     * <p>List of rules names that can invoke the given target.</p>
+     * <p>The names of the rules that can invoke the given target.</p>
      */
     inline ListRuleNamesByTargetResult& WithRuleNames(const Aws::Vector<Aws::String>& value) { SetRuleNames(value); return *this;}
 
     /**
-     * <p>List of rules names that can invoke the given target.</p>
+     * <p>The names of the rules that can invoke the given target.</p>
      */
-    inline ListRuleNamesByTargetResult& WithRuleNames(Aws::Vector<Aws::String>&& value) { SetRuleNames(value); return *this;}
+    inline ListRuleNamesByTargetResult& WithRuleNames(Aws::Vector<Aws::String>&& value) { SetRuleNames(std::move(value)); return *this;}
 
     /**
-     * <p>List of rules names that can invoke the given target.</p>
+     * <p>The names of the rules that can invoke the given target.</p>
      */
     inline ListRuleNamesByTargetResult& AddRuleNames(const Aws::String& value) { m_ruleNames.push_back(value); return *this; }
 
     /**
-     * <p>List of rules names that can invoke the given target.</p>
+     * <p>The names of the rules that can invoke the given target.</p>
      */
-    inline ListRuleNamesByTargetResult& AddRuleNames(Aws::String&& value) { m_ruleNames.push_back(value); return *this; }
+    inline ListRuleNamesByTargetResult& AddRuleNames(Aws::String&& value) { m_ruleNames.push_back(std::move(value)); return *this; }
 
     /**
-     * <p>List of rules names that can invoke the given target.</p>
+     * <p>The names of the rules that can invoke the given target.</p>
      */
     inline ListRuleNamesByTargetResult& AddRuleNames(const char* value) { m_ruleNames.push_back(value); return *this; }
 
+
     /**
-     * <p>Indicates that there are additional results to retrieve.</p>
+     * <p>Indicates whether there are additional results to retrieve. If there are no
+     * more results, the value is null.</p>
      */
     inline const Aws::String& GetNextToken() const{ return m_nextToken; }
 
     /**
-     * <p>Indicates that there are additional results to retrieve.</p>
+     * <p>Indicates whether there are additional results to retrieve. If there are no
+     * more results, the value is null.</p>
      */
     inline void SetNextToken(const Aws::String& value) { m_nextToken = value; }
 
     /**
-     * <p>Indicates that there are additional results to retrieve.</p>
+     * <p>Indicates whether there are additional results to retrieve. If there are no
+     * more results, the value is null.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
-     * <p>Indicates that there are additional results to retrieve.</p>
+     * <p>Indicates whether there are additional results to retrieve. If there are no
+     * more results, the value is null.</p>
      */
     inline void SetNextToken(const char* value) { m_nextToken.assign(value); }
 
     /**
-     * <p>Indicates that there are additional results to retrieve.</p>
+     * <p>Indicates whether there are additional results to retrieve. If there are no
+     * more results, the value is null.</p>
      */
     inline ListRuleNamesByTargetResult& WithNextToken(const Aws::String& value) { SetNextToken(value); return *this;}
 
     /**
-     * <p>Indicates that there are additional results to retrieve.</p>
+     * <p>Indicates whether there are additional results to retrieve. If there are no
+     * more results, the value is null.</p>
      */
-    inline ListRuleNamesByTargetResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListRuleNamesByTargetResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
-     * <p>Indicates that there are additional results to retrieve.</p>
+     * <p>Indicates whether there are additional results to retrieve. If there are no
+     * more results, the value is null.</p>
      */
     inline ListRuleNamesByTargetResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_ruleNames;
+
     Aws::String m_nextToken;
   };
 

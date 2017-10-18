@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
-#include <aws/ec2/model/TargetConfiguration.h>
 #include <aws/ec2/model/ReservationValue.h>
+#include <aws/ec2/model/TargetConfiguration.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,35 +50,6 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
-    /**
-     * <p>The configuration of the Convertible Reserved Instances that make up the
-     * exchange.</p>
-     */
-    inline const TargetConfiguration& GetTargetConfiguration() const{ return m_targetConfiguration; }
-
-    /**
-     * <p>The configuration of the Convertible Reserved Instances that make up the
-     * exchange.</p>
-     */
-    inline void SetTargetConfiguration(const TargetConfiguration& value) { m_targetConfigurationHasBeenSet = true; m_targetConfiguration = value; }
-
-    /**
-     * <p>The configuration of the Convertible Reserved Instances that make up the
-     * exchange.</p>
-     */
-    inline void SetTargetConfiguration(TargetConfiguration&& value) { m_targetConfigurationHasBeenSet = true; m_targetConfiguration = value; }
-
-    /**
-     * <p>The configuration of the Convertible Reserved Instances that make up the
-     * exchange.</p>
-     */
-    inline TargetReservationValue& WithTargetConfiguration(const TargetConfiguration& value) { SetTargetConfiguration(value); return *this;}
-
-    /**
-     * <p>The configuration of the Convertible Reserved Instances that make up the
-     * exchange.</p>
-     */
-    inline TargetReservationValue& WithTargetConfiguration(TargetConfiguration&& value) { SetTargetConfiguration(value); return *this;}
 
     /**
      * <p>The total value of the Convertible Reserved Instances that make up the
@@ -97,7 +70,7 @@ namespace Model
      * exchange. This is the sum of the list value, remaining upfront price, and
      * additional upfront cost of the exchange.</p>
      */
-    inline void SetReservationValue(ReservationValue&& value) { m_reservationValueHasBeenSet = true; m_reservationValue = value; }
+    inline void SetReservationValue(ReservationValue&& value) { m_reservationValueHasBeenSet = true; m_reservationValue = std::move(value); }
 
     /**
      * <p>The total value of the Convertible Reserved Instances that make up the
@@ -111,13 +84,46 @@ namespace Model
      * exchange. This is the sum of the list value, remaining upfront price, and
      * additional upfront cost of the exchange.</p>
      */
-    inline TargetReservationValue& WithReservationValue(ReservationValue&& value) { SetReservationValue(value); return *this;}
+    inline TargetReservationValue& WithReservationValue(ReservationValue&& value) { SetReservationValue(std::move(value)); return *this;}
+
+
+    /**
+     * <p>The configuration of the Convertible Reserved Instances that make up the
+     * exchange.</p>
+     */
+    inline const TargetConfiguration& GetTargetConfiguration() const{ return m_targetConfiguration; }
+
+    /**
+     * <p>The configuration of the Convertible Reserved Instances that make up the
+     * exchange.</p>
+     */
+    inline void SetTargetConfiguration(const TargetConfiguration& value) { m_targetConfigurationHasBeenSet = true; m_targetConfiguration = value; }
+
+    /**
+     * <p>The configuration of the Convertible Reserved Instances that make up the
+     * exchange.</p>
+     */
+    inline void SetTargetConfiguration(TargetConfiguration&& value) { m_targetConfigurationHasBeenSet = true; m_targetConfiguration = std::move(value); }
+
+    /**
+     * <p>The configuration of the Convertible Reserved Instances that make up the
+     * exchange.</p>
+     */
+    inline TargetReservationValue& WithTargetConfiguration(const TargetConfiguration& value) { SetTargetConfiguration(value); return *this;}
+
+    /**
+     * <p>The configuration of the Convertible Reserved Instances that make up the
+     * exchange.</p>
+     */
+    inline TargetReservationValue& WithTargetConfiguration(TargetConfiguration&& value) { SetTargetConfiguration(std::move(value)); return *this;}
 
   private:
-    TargetConfiguration m_targetConfiguration;
-    bool m_targetConfigurationHasBeenSet;
+
     ReservationValue m_reservationValue;
     bool m_reservationValueHasBeenSet;
+
+    TargetConfiguration m_targetConfiguration;
+    bool m_targetConfigurationHasBeenSet;
   };
 
 } // namespace Model

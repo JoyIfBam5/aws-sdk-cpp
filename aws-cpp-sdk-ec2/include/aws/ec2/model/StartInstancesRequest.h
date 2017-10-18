@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/ec2/EC2Request.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,7 +36,19 @@ namespace Model
   {
   public:
     StartInstancesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "StartInstances"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>One or more instance IDs.</p>
@@ -49,7 +63,7 @@ namespace Model
     /**
      * <p>One or more instance IDs.</p>
      */
-    inline void SetInstanceIds(Aws::Vector<Aws::String>&& value) { m_instanceIdsHasBeenSet = true; m_instanceIds = value; }
+    inline void SetInstanceIds(Aws::Vector<Aws::String>&& value) { m_instanceIdsHasBeenSet = true; m_instanceIds = std::move(value); }
 
     /**
      * <p>One or more instance IDs.</p>
@@ -59,7 +73,7 @@ namespace Model
     /**
      * <p>One or more instance IDs.</p>
      */
-    inline StartInstancesRequest& WithInstanceIds(Aws::Vector<Aws::String>&& value) { SetInstanceIds(value); return *this;}
+    inline StartInstancesRequest& WithInstanceIds(Aws::Vector<Aws::String>&& value) { SetInstanceIds(std::move(value)); return *this;}
 
     /**
      * <p>One or more instance IDs.</p>
@@ -69,12 +83,13 @@ namespace Model
     /**
      * <p>One or more instance IDs.</p>
      */
-    inline StartInstancesRequest& AddInstanceIds(Aws::String&& value) { m_instanceIdsHasBeenSet = true; m_instanceIds.push_back(value); return *this; }
+    inline StartInstancesRequest& AddInstanceIds(Aws::String&& value) { m_instanceIdsHasBeenSet = true; m_instanceIds.push_back(std::move(value)); return *this; }
 
     /**
      * <p>One or more instance IDs.</p>
      */
     inline StartInstancesRequest& AddInstanceIds(const char* value) { m_instanceIdsHasBeenSet = true; m_instanceIds.push_back(value); return *this; }
+
 
     /**
      * <p>Reserved.</p>
@@ -89,7 +104,7 @@ namespace Model
     /**
      * <p>Reserved.</p>
      */
-    inline void SetAdditionalInfo(Aws::String&& value) { m_additionalInfoHasBeenSet = true; m_additionalInfo = value; }
+    inline void SetAdditionalInfo(Aws::String&& value) { m_additionalInfoHasBeenSet = true; m_additionalInfo = std::move(value); }
 
     /**
      * <p>Reserved.</p>
@@ -104,12 +119,13 @@ namespace Model
     /**
      * <p>Reserved.</p>
      */
-    inline StartInstancesRequest& WithAdditionalInfo(Aws::String&& value) { SetAdditionalInfo(value); return *this;}
+    inline StartInstancesRequest& WithAdditionalInfo(Aws::String&& value) { SetAdditionalInfo(std::move(value)); return *this;}
 
     /**
      * <p>Reserved.</p>
      */
     inline StartInstancesRequest& WithAdditionalInfo(const char* value) { SetAdditionalInfo(value); return *this;}
+
 
     /**
      * <p>Checks whether you have the required permissions for the action, without
@@ -136,10 +152,13 @@ namespace Model
     inline StartInstancesRequest& WithDryRun(bool value) { SetDryRun(value); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_instanceIds;
     bool m_instanceIdsHasBeenSet;
+
     Aws::String m_additionalInfo;
     bool m_additionalInfoHasBeenSet;
+
     bool m_dryRun;
     bool m_dryRunHasBeenSet;
   };

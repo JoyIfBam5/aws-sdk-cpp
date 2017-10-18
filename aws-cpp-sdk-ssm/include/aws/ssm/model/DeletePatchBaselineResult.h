@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     DeletePatchBaselineResult();
-    DeletePatchBaselineResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DeletePatchBaselineResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DeletePatchBaselineResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DeletePatchBaselineResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The ID of the deleted patch baseline.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The ID of the deleted patch baseline.</p>
      */
-    inline void SetBaselineId(Aws::String&& value) { m_baselineId = value; }
+    inline void SetBaselineId(Aws::String&& value) { m_baselineId = std::move(value); }
 
     /**
      * <p>The ID of the deleted patch baseline.</p>
@@ -67,7 +70,7 @@ namespace Model
     /**
      * <p>The ID of the deleted patch baseline.</p>
      */
-    inline DeletePatchBaselineResult& WithBaselineId(Aws::String&& value) { SetBaselineId(value); return *this;}
+    inline DeletePatchBaselineResult& WithBaselineId(Aws::String&& value) { SetBaselineId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the deleted patch baseline.</p>
@@ -75,6 +78,7 @@ namespace Model
     inline DeletePatchBaselineResult& WithBaselineId(const char* value) { SetBaselineId(value); return *this;}
 
   private:
+
     Aws::String m_baselineId;
   };
 

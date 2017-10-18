@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudhsm/CloudHSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     DescribeLunaClientResult();
-    DescribeLunaClientResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeLunaClientResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeLunaClientResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeLunaClientResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The ARN of the client.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The ARN of the client.</p>
      */
-    inline void SetClientArn(Aws::String&& value) { m_clientArn = value; }
+    inline void SetClientArn(Aws::String&& value) { m_clientArn = std::move(value); }
 
     /**
      * <p>The ARN of the client.</p>
@@ -67,12 +70,13 @@ namespace Model
     /**
      * <p>The ARN of the client.</p>
      */
-    inline DescribeLunaClientResult& WithClientArn(Aws::String&& value) { SetClientArn(value); return *this;}
+    inline DescribeLunaClientResult& WithClientArn(Aws::String&& value) { SetClientArn(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of the client.</p>
      */
     inline DescribeLunaClientResult& WithClientArn(const char* value) { SetClientArn(value); return *this;}
+
 
     /**
      * <p>The certificate installed on the HSMs used by this client.</p>
@@ -87,7 +91,7 @@ namespace Model
     /**
      * <p>The certificate installed on the HSMs used by this client.</p>
      */
-    inline void SetCertificate(Aws::String&& value) { m_certificate = value; }
+    inline void SetCertificate(Aws::String&& value) { m_certificate = std::move(value); }
 
     /**
      * <p>The certificate installed on the HSMs used by this client.</p>
@@ -102,12 +106,13 @@ namespace Model
     /**
      * <p>The certificate installed on the HSMs used by this client.</p>
      */
-    inline DescribeLunaClientResult& WithCertificate(Aws::String&& value) { SetCertificate(value); return *this;}
+    inline DescribeLunaClientResult& WithCertificate(Aws::String&& value) { SetCertificate(std::move(value)); return *this;}
 
     /**
      * <p>The certificate installed on the HSMs used by this client.</p>
      */
     inline DescribeLunaClientResult& WithCertificate(const char* value) { SetCertificate(value); return *this;}
+
 
     /**
      * <p>The certificate fingerprint.</p>
@@ -122,7 +127,7 @@ namespace Model
     /**
      * <p>The certificate fingerprint.</p>
      */
-    inline void SetCertificateFingerprint(Aws::String&& value) { m_certificateFingerprint = value; }
+    inline void SetCertificateFingerprint(Aws::String&& value) { m_certificateFingerprint = std::move(value); }
 
     /**
      * <p>The certificate fingerprint.</p>
@@ -137,12 +142,13 @@ namespace Model
     /**
      * <p>The certificate fingerprint.</p>
      */
-    inline DescribeLunaClientResult& WithCertificateFingerprint(Aws::String&& value) { SetCertificateFingerprint(value); return *this;}
+    inline DescribeLunaClientResult& WithCertificateFingerprint(Aws::String&& value) { SetCertificateFingerprint(std::move(value)); return *this;}
 
     /**
      * <p>The certificate fingerprint.</p>
      */
     inline DescribeLunaClientResult& WithCertificateFingerprint(const char* value) { SetCertificateFingerprint(value); return *this;}
+
 
     /**
      * <p>The date and time the client was last modified.</p>
@@ -157,7 +163,7 @@ namespace Model
     /**
      * <p>The date and time the client was last modified.</p>
      */
-    inline void SetLastModifiedTimestamp(Aws::String&& value) { m_lastModifiedTimestamp = value; }
+    inline void SetLastModifiedTimestamp(Aws::String&& value) { m_lastModifiedTimestamp = std::move(value); }
 
     /**
      * <p>The date and time the client was last modified.</p>
@@ -172,12 +178,13 @@ namespace Model
     /**
      * <p>The date and time the client was last modified.</p>
      */
-    inline DescribeLunaClientResult& WithLastModifiedTimestamp(Aws::String&& value) { SetLastModifiedTimestamp(value); return *this;}
+    inline DescribeLunaClientResult& WithLastModifiedTimestamp(Aws::String&& value) { SetLastModifiedTimestamp(std::move(value)); return *this;}
 
     /**
      * <p>The date and time the client was last modified.</p>
      */
     inline DescribeLunaClientResult& WithLastModifiedTimestamp(const char* value) { SetLastModifiedTimestamp(value); return *this;}
+
 
     /**
      * <p>The label of the client.</p>
@@ -192,7 +199,7 @@ namespace Model
     /**
      * <p>The label of the client.</p>
      */
-    inline void SetLabel(Aws::String&& value) { m_label = value; }
+    inline void SetLabel(Aws::String&& value) { m_label = std::move(value); }
 
     /**
      * <p>The label of the client.</p>
@@ -207,7 +214,7 @@ namespace Model
     /**
      * <p>The label of the client.</p>
      */
-    inline DescribeLunaClientResult& WithLabel(Aws::String&& value) { SetLabel(value); return *this;}
+    inline DescribeLunaClientResult& WithLabel(Aws::String&& value) { SetLabel(std::move(value)); return *this;}
 
     /**
      * <p>The label of the client.</p>
@@ -215,10 +222,15 @@ namespace Model
     inline DescribeLunaClientResult& WithLabel(const char* value) { SetLabel(value); return *this;}
 
   private:
+
     Aws::String m_clientArn;
+
     Aws::String m_certificate;
+
     Aws::String m_certificateFingerprint;
+
     Aws::String m_lastModifiedTimestamp;
+
     Aws::String m_label;
   };
 

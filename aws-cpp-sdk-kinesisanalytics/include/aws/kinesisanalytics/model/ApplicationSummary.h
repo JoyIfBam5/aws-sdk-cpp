@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesisanalytics/KinesisAnalytics_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/kinesisanalytics/model/ApplicationStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     ApplicationSummary& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Name of the application.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>Name of the application.</p>
      */
-    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = value; }
+    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = std::move(value); }
 
     /**
      * <p>Name of the application.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>Name of the application.</p>
      */
-    inline ApplicationSummary& WithApplicationName(Aws::String&& value) { SetApplicationName(value); return *this;}
+    inline ApplicationSummary& WithApplicationName(Aws::String&& value) { SetApplicationName(std::move(value)); return *this;}
 
     /**
      * <p>Name of the application.</p>
      */
     inline ApplicationSummary& WithApplicationName(const char* value) { SetApplicationName(value); return *this;}
+
 
     /**
      * <p>ARN of the application.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>ARN of the application.</p>
      */
-    inline void SetApplicationARN(Aws::String&& value) { m_applicationARNHasBeenSet = true; m_applicationARN = value; }
+    inline void SetApplicationARN(Aws::String&& value) { m_applicationARNHasBeenSet = true; m_applicationARN = std::move(value); }
 
     /**
      * <p>ARN of the application.</p>
@@ -108,12 +112,13 @@ namespace Model
     /**
      * <p>ARN of the application.</p>
      */
-    inline ApplicationSummary& WithApplicationARN(Aws::String&& value) { SetApplicationARN(value); return *this;}
+    inline ApplicationSummary& WithApplicationARN(Aws::String&& value) { SetApplicationARN(std::move(value)); return *this;}
 
     /**
      * <p>ARN of the application.</p>
      */
     inline ApplicationSummary& WithApplicationARN(const char* value) { SetApplicationARN(value); return *this;}
+
 
     /**
      * <p>Status of the application.</p>
@@ -128,7 +133,7 @@ namespace Model
     /**
      * <p>Status of the application.</p>
      */
-    inline void SetApplicationStatus(ApplicationStatus&& value) { m_applicationStatusHasBeenSet = true; m_applicationStatus = value; }
+    inline void SetApplicationStatus(ApplicationStatus&& value) { m_applicationStatusHasBeenSet = true; m_applicationStatus = std::move(value); }
 
     /**
      * <p>Status of the application.</p>
@@ -138,13 +143,16 @@ namespace Model
     /**
      * <p>Status of the application.</p>
      */
-    inline ApplicationSummary& WithApplicationStatus(ApplicationStatus&& value) { SetApplicationStatus(value); return *this;}
+    inline ApplicationSummary& WithApplicationStatus(ApplicationStatus&& value) { SetApplicationStatus(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_applicationName;
     bool m_applicationNameHasBeenSet;
+
     Aws::String m_applicationARN;
     bool m_applicationARNHasBeenSet;
+
     ApplicationStatus m_applicationStatus;
     bool m_applicationStatusHasBeenSet;
   };

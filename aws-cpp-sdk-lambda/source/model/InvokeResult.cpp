@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/lambda/model/InvokeResult.h>
 #include <aws/core/AmazonWebServiceResult.h>
 #include <aws/core/utils/StringUtils.h>
@@ -53,13 +54,13 @@ InvokeResult& InvokeResult::operator=(InvokeResult&& toMove)
    return *this;
 }
 
-InvokeResult::InvokeResult(AmazonWebServiceResult<ResponseStream>&& result) : 
+InvokeResult::InvokeResult(Aws::AmazonWebServiceResult<ResponseStream>&& result) : 
     m_statusCode(0)
 {
   *this = std::move(result);
 }
 
-InvokeResult& InvokeResult::operator =(AmazonWebServiceResult<ResponseStream>&& result)
+InvokeResult& InvokeResult::operator =(Aws::AmazonWebServiceResult<ResponseStream>&& result)
 {
   m_payload = result.TakeOwnershipOfPayload();
 

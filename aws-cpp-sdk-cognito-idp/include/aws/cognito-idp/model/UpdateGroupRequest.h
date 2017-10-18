@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/cognito-idp/CognitoIdentityProviderRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     UpdateGroupRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateGroup"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The name of the group.</p>
@@ -47,7 +57,7 @@ namespace Model
     /**
      * <p>The name of the group.</p>
      */
-    inline void SetGroupName(Aws::String&& value) { m_groupNameHasBeenSet = true; m_groupName = value; }
+    inline void SetGroupName(Aws::String&& value) { m_groupNameHasBeenSet = true; m_groupName = std::move(value); }
 
     /**
      * <p>The name of the group.</p>
@@ -62,12 +72,13 @@ namespace Model
     /**
      * <p>The name of the group.</p>
      */
-    inline UpdateGroupRequest& WithGroupName(Aws::String&& value) { SetGroupName(value); return *this;}
+    inline UpdateGroupRequest& WithGroupName(Aws::String&& value) { SetGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the group.</p>
      */
     inline UpdateGroupRequest& WithGroupName(const char* value) { SetGroupName(value); return *this;}
+
 
     /**
      * <p>The user pool ID for the user pool.</p>
@@ -82,7 +93,7 @@ namespace Model
     /**
      * <p>The user pool ID for the user pool.</p>
      */
-    inline void SetUserPoolId(Aws::String&& value) { m_userPoolIdHasBeenSet = true; m_userPoolId = value; }
+    inline void SetUserPoolId(Aws::String&& value) { m_userPoolIdHasBeenSet = true; m_userPoolId = std::move(value); }
 
     /**
      * <p>The user pool ID for the user pool.</p>
@@ -97,12 +108,13 @@ namespace Model
     /**
      * <p>The user pool ID for the user pool.</p>
      */
-    inline UpdateGroupRequest& WithUserPoolId(Aws::String&& value) { SetUserPoolId(value); return *this;}
+    inline UpdateGroupRequest& WithUserPoolId(Aws::String&& value) { SetUserPoolId(std::move(value)); return *this;}
 
     /**
      * <p>The user pool ID for the user pool.</p>
      */
     inline UpdateGroupRequest& WithUserPoolId(const char* value) { SetUserPoolId(value); return *this;}
+
 
     /**
      * <p>A string containing the new description of the group.</p>
@@ -117,7 +129,7 @@ namespace Model
     /**
      * <p>A string containing the new description of the group.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>A string containing the new description of the group.</p>
@@ -132,12 +144,13 @@ namespace Model
     /**
      * <p>A string containing the new description of the group.</p>
      */
-    inline UpdateGroupRequest& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline UpdateGroupRequest& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>A string containing the new description of the group.</p>
      */
     inline UpdateGroupRequest& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The new role ARN for the group. This is used for setting the
@@ -158,7 +171,7 @@ namespace Model
      * <code>cognito:roles</code> and <code>cognito:preferred_role</code> claims in the
      * token.</p>
      */
-    inline void SetRoleArn(Aws::String&& value) { m_roleArnHasBeenSet = true; m_roleArn = value; }
+    inline void SetRoleArn(Aws::String&& value) { m_roleArnHasBeenSet = true; m_roleArn = std::move(value); }
 
     /**
      * <p>The new role ARN for the group. This is used for setting the
@@ -179,7 +192,7 @@ namespace Model
      * <code>cognito:roles</code> and <code>cognito:preferred_role</code> claims in the
      * token.</p>
      */
-    inline UpdateGroupRequest& WithRoleArn(Aws::String&& value) { SetRoleArn(value); return *this;}
+    inline UpdateGroupRequest& WithRoleArn(Aws::String&& value) { SetRoleArn(std::move(value)); return *this;}
 
     /**
      * <p>The new role ARN for the group. This is used for setting the
@@ -188,36 +201,39 @@ namespace Model
      */
     inline UpdateGroupRequest& WithRoleArn(const char* value) { SetRoleArn(value); return *this;}
 
+
     /**
      * <p>The new precedence value for the group. For more information about this
-     * parameter, see <a
-     * href="API_CreateGroupRequeste.html">CreateGroupRequest</a>.</p>
+     * parameter, see <a href="API_CreateGroup.html">CreateGroup</a>.</p>
      */
     inline int GetPrecedence() const{ return m_precedence; }
 
     /**
      * <p>The new precedence value for the group. For more information about this
-     * parameter, see <a
-     * href="API_CreateGroupRequeste.html">CreateGroupRequest</a>.</p>
+     * parameter, see <a href="API_CreateGroup.html">CreateGroup</a>.</p>
      */
     inline void SetPrecedence(int value) { m_precedenceHasBeenSet = true; m_precedence = value; }
 
     /**
      * <p>The new precedence value for the group. For more information about this
-     * parameter, see <a
-     * href="API_CreateGroupRequeste.html">CreateGroupRequest</a>.</p>
+     * parameter, see <a href="API_CreateGroup.html">CreateGroup</a>.</p>
      */
     inline UpdateGroupRequest& WithPrecedence(int value) { SetPrecedence(value); return *this;}
 
   private:
+
     Aws::String m_groupName;
     bool m_groupNameHasBeenSet;
+
     Aws::String m_userPoolId;
     bool m_userPoolIdHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     Aws::String m_roleArn;
     bool m_roleArnHasBeenSet;
+
     int m_precedence;
     bool m_precedenceHasBeenSet;
   };

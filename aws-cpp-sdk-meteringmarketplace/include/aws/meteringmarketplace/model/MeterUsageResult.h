@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/meteringmarketplace/MarketplaceMetering_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     MeterUsageResult();
-    MeterUsageResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    MeterUsageResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    MeterUsageResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    MeterUsageResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     
     inline const Aws::String& GetMeteringRecordId() const{ return m_meteringRecordId; }
@@ -46,7 +49,7 @@ namespace Model
     inline void SetMeteringRecordId(const Aws::String& value) { m_meteringRecordId = value; }
 
     
-    inline void SetMeteringRecordId(Aws::String&& value) { m_meteringRecordId = value; }
+    inline void SetMeteringRecordId(Aws::String&& value) { m_meteringRecordId = std::move(value); }
 
     
     inline void SetMeteringRecordId(const char* value) { m_meteringRecordId.assign(value); }
@@ -55,12 +58,13 @@ namespace Model
     inline MeterUsageResult& WithMeteringRecordId(const Aws::String& value) { SetMeteringRecordId(value); return *this;}
 
     
-    inline MeterUsageResult& WithMeteringRecordId(Aws::String&& value) { SetMeteringRecordId(value); return *this;}
+    inline MeterUsageResult& WithMeteringRecordId(Aws::String&& value) { SetMeteringRecordId(std::move(value)); return *this;}
 
     
     inline MeterUsageResult& WithMeteringRecordId(const char* value) { SetMeteringRecordId(value); return *this;}
 
   private:
+
     Aws::String m_meteringRecordId;
   };
 

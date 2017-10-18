@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lambda/Lambda_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -41,8 +43,9 @@ namespace Model
   {
   public:
     GetPolicyResult();
-    GetPolicyResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetPolicyResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetPolicyResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetPolicyResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The resource policy associated with the specified function. The response
@@ -63,7 +66,7 @@ namespace Model
      * returns the same as a string using a backslash ("\") as an escape character in
      * the JSON.</p>
      */
-    inline void SetPolicy(Aws::String&& value) { m_policy = value; }
+    inline void SetPolicy(Aws::String&& value) { m_policy = std::move(value); }
 
     /**
      * <p>The resource policy associated with the specified function. The response
@@ -84,7 +87,7 @@ namespace Model
      * returns the same as a string using a backslash ("\") as an escape character in
      * the JSON.</p>
      */
-    inline GetPolicyResult& WithPolicy(Aws::String&& value) { SetPolicy(value); return *this;}
+    inline GetPolicyResult& WithPolicy(Aws::String&& value) { SetPolicy(std::move(value)); return *this;}
 
     /**
      * <p>The resource policy associated with the specified function. The response
@@ -94,6 +97,7 @@ namespace Model
     inline GetPolicyResult& WithPolicy(const char* value) { SetPolicy(value); return *this;}
 
   private:
+
     Aws::String m_policy;
   };
 

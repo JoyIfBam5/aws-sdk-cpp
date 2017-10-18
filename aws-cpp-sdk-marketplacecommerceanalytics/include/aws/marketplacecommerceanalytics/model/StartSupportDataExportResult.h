@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/marketplacecommerceanalytics/MarketplaceCommerceAnalytics_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     StartSupportDataExportResult();
-    StartSupportDataExportResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    StartSupportDataExportResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    StartSupportDataExportResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    StartSupportDataExportResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * A unique identifier representing a specific request to the
@@ -64,7 +67,7 @@ namespace Model
      * StartSupportDataExport operation. This identifier can be used to correlate a
      * request with notifications from the SNS topic.
      */
-    inline void SetDataSetRequestId(Aws::String&& value) { m_dataSetRequestId = value; }
+    inline void SetDataSetRequestId(Aws::String&& value) { m_dataSetRequestId = std::move(value); }
 
     /**
      * A unique identifier representing a specific request to the
@@ -85,7 +88,7 @@ namespace Model
      * StartSupportDataExport operation. This identifier can be used to correlate a
      * request with notifications from the SNS topic.
      */
-    inline StartSupportDataExportResult& WithDataSetRequestId(Aws::String&& value) { SetDataSetRequestId(value); return *this;}
+    inline StartSupportDataExportResult& WithDataSetRequestId(Aws::String&& value) { SetDataSetRequestId(std::move(value)); return *this;}
 
     /**
      * A unique identifier representing a specific request to the
@@ -95,6 +98,7 @@ namespace Model
     inline StartSupportDataExportResult& WithDataSetRequestId(const char* value) { SetDataSetRequestId(value); return *this;}
 
   private:
+
     Aws::String m_dataSetRequestId;
   };
 

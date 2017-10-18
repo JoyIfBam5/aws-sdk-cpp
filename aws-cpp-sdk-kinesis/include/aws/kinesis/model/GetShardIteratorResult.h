@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesis/Kinesis_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     GetShardIteratorResult();
-    GetShardIteratorResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetShardIteratorResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetShardIteratorResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetShardIteratorResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The position in the shard from which to start reading data records
@@ -64,7 +67,7 @@ namespace Model
      * sequentially. A shard iterator specifies this position using the sequence number
      * of a data record in a shard.</p>
      */
-    inline void SetShardIterator(Aws::String&& value) { m_shardIterator = value; }
+    inline void SetShardIterator(Aws::String&& value) { m_shardIterator = std::move(value); }
 
     /**
      * <p>The position in the shard from which to start reading data records
@@ -85,7 +88,7 @@ namespace Model
      * sequentially. A shard iterator specifies this position using the sequence number
      * of a data record in a shard.</p>
      */
-    inline GetShardIteratorResult& WithShardIterator(Aws::String&& value) { SetShardIterator(value); return *this;}
+    inline GetShardIteratorResult& WithShardIterator(Aws::String&& value) { SetShardIterator(std::move(value)); return *this;}
 
     /**
      * <p>The position in the shard from which to start reading data records
@@ -95,6 +98,7 @@ namespace Model
     inline GetShardIteratorResult& WithShardIterator(const char* value) { SetShardIterator(value); return *this;}
 
   private:
+
     Aws::String m_shardIterator;
   };
 

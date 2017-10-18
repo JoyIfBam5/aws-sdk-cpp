@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/sns/SNS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/sns/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     CreatePlatformEndpointResult();
-    CreatePlatformEndpointResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    CreatePlatformEndpointResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CreatePlatformEndpointResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CreatePlatformEndpointResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>EndpointArn returned from CreateEndpoint action.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>EndpointArn returned from CreateEndpoint action.</p>
      */
-    inline void SetEndpointArn(Aws::String&& value) { m_endpointArn = value; }
+    inline void SetEndpointArn(Aws::String&& value) { m_endpointArn = std::move(value); }
 
     /**
      * <p>EndpointArn returned from CreateEndpoint action.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>EndpointArn returned from CreateEndpoint action.</p>
      */
-    inline CreatePlatformEndpointResult& WithEndpointArn(Aws::String&& value) { SetEndpointArn(value); return *this;}
+    inline CreatePlatformEndpointResult& WithEndpointArn(Aws::String&& value) { SetEndpointArn(std::move(value)); return *this;}
 
     /**
      * <p>EndpointArn returned from CreateEndpoint action.</p>
      */
     inline CreatePlatformEndpointResult& WithEndpointArn(const char* value) { SetEndpointArn(value); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -87,16 +91,18 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline CreatePlatformEndpointResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline CreatePlatformEndpointResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline CreatePlatformEndpointResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_endpointArn;
+
     ResponseMetadata m_responseMetadata;
   };
 

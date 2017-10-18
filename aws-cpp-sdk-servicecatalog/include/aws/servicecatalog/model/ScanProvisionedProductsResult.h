@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/servicecatalog/model/ProvisionedProductDetail.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     ScanProvisionedProductsResult();
-    ScanProvisionedProductsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ScanProvisionedProductsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ScanProvisionedProductsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ScanProvisionedProductsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A list of ProvisionedProduct detail objects.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>A list of ProvisionedProduct detail objects.</p>
      */
-    inline void SetProvisionedProducts(Aws::Vector<ProvisionedProductDetail>&& value) { m_provisionedProducts = value; }
+    inline void SetProvisionedProducts(Aws::Vector<ProvisionedProductDetail>&& value) { m_provisionedProducts = std::move(value); }
 
     /**
      * <p>A list of ProvisionedProduct detail objects.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>A list of ProvisionedProduct detail objects.</p>
      */
-    inline ScanProvisionedProductsResult& WithProvisionedProducts(Aws::Vector<ProvisionedProductDetail>&& value) { SetProvisionedProducts(value); return *this;}
+    inline ScanProvisionedProductsResult& WithProvisionedProducts(Aws::Vector<ProvisionedProductDetail>&& value) { SetProvisionedProducts(std::move(value)); return *this;}
 
     /**
      * <p>A list of ProvisionedProduct detail objects.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>A list of ProvisionedProduct detail objects.</p>
      */
-    inline ScanProvisionedProductsResult& AddProvisionedProducts(ProvisionedProductDetail&& value) { m_provisionedProducts.push_back(value); return *this; }
+    inline ScanProvisionedProductsResult& AddProvisionedProducts(ProvisionedProductDetail&& value) { m_provisionedProducts.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The page token to use to retrieve the next page of results for this
@@ -92,7 +96,7 @@ namespace Model
      * <p>The page token to use to retrieve the next page of results for this
      * operation. If there are no more pages, this value is null.</p>
      */
-    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = value; }
+    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = std::move(value); }
 
     /**
      * <p>The page token to use to retrieve the next page of results for this
@@ -110,7 +114,7 @@ namespace Model
      * <p>The page token to use to retrieve the next page of results for this
      * operation. If there are no more pages, this value is null.</p>
      */
-    inline ScanProvisionedProductsResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(value); return *this;}
+    inline ScanProvisionedProductsResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(std::move(value)); return *this;}
 
     /**
      * <p>The page token to use to retrieve the next page of results for this
@@ -119,7 +123,9 @@ namespace Model
     inline ScanProvisionedProductsResult& WithNextPageToken(const char* value) { SetNextPageToken(value); return *this;}
 
   private:
+
     Aws::Vector<ProvisionedProductDetail> m_provisionedProducts;
+
     Aws::String m_nextPageToken;
   };
 

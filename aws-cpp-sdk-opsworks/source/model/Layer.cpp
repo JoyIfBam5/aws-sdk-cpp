@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/opsworks/model/Layer.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -28,6 +29,7 @@ namespace Model
 {
 
 Layer::Layer() : 
+    m_arnHasBeenSet(false),
     m_stackIdHasBeenSet(false),
     m_layerIdHasBeenSet(false),
     m_type(LayerType::NOT_SET),
@@ -35,6 +37,7 @@ Layer::Layer() :
     m_nameHasBeenSet(false),
     m_shortnameHasBeenSet(false),
     m_attributesHasBeenSet(false),
+    m_cloudWatchLogsConfigurationHasBeenSet(false),
     m_customInstanceProfileArnHasBeenSet(false),
     m_customJsonHasBeenSet(false),
     m_customSecurityGroupIdsHasBeenSet(false),
@@ -59,6 +62,7 @@ Layer::Layer() :
 }
 
 Layer::Layer(const JsonValue& jsonValue) : 
+    m_arnHasBeenSet(false),
     m_stackIdHasBeenSet(false),
     m_layerIdHasBeenSet(false),
     m_type(LayerType::NOT_SET),
@@ -66,6 +70,7 @@ Layer::Layer(const JsonValue& jsonValue) :
     m_nameHasBeenSet(false),
     m_shortnameHasBeenSet(false),
     m_attributesHasBeenSet(false),
+    m_cloudWatchLogsConfigurationHasBeenSet(false),
     m_customInstanceProfileArnHasBeenSet(false),
     m_customJsonHasBeenSet(false),
     m_customSecurityGroupIdsHasBeenSet(false),
@@ -92,6 +97,13 @@ Layer::Layer(const JsonValue& jsonValue) :
 
 Layer& Layer::operator =(const JsonValue& jsonValue)
 {
+  if(jsonValue.ValueExists("Arn"))
+  {
+    m_arn = jsonValue.GetString("Arn");
+
+    m_arnHasBeenSet = true;
+  }
+
   if(jsonValue.ValueExists("StackId"))
   {
     m_stackId = jsonValue.GetString("StackId");
@@ -135,6 +147,13 @@ Layer& Layer::operator =(const JsonValue& jsonValue)
       m_attributes[LayerAttributesKeysMapper::GetLayerAttributesKeysForName(attributesItem.first)] = attributesItem.second.AsString();
     }
     m_attributesHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("CloudWatchLogsConfiguration"))
+  {
+    m_cloudWatchLogsConfiguration = jsonValue.GetObject("CloudWatchLogsConfiguration");
+
+    m_cloudWatchLogsConfigurationHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("CustomInstanceProfileArn"))
@@ -261,6 +280,12 @@ JsonValue Layer::Jsonize() const
 {
   JsonValue payload;
 
+  if(m_arnHasBeenSet)
+  {
+   payload.WithString("Arn", m_arn);
+
+  }
+
   if(m_stackIdHasBeenSet)
   {
    payload.WithString("StackId", m_stackId);
@@ -298,6 +323,12 @@ JsonValue Layer::Jsonize() const
      attributesJsonMap.WithString(LayerAttributesKeysMapper::GetNameForLayerAttributesKeys(attributesItem.first), attributesItem.second);
    }
    payload.WithObject("Attributes", std::move(attributesJsonMap));
+
+  }
+
+  if(m_cloudWatchLogsConfigurationHasBeenSet)
+  {
+   payload.WithObject("CloudWatchLogsConfiguration", m_cloudWatchLogsConfiguration.Jsonize());
 
   }
 

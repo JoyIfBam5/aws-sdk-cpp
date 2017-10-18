@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/states/SFN_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/states/model/StateMachineStatus.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     DescribeStateMachineResult();
-    DescribeStateMachineResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeStateMachineResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeStateMachineResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeStateMachineResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the state machine.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the state machine.</p>
      */
-    inline void SetStateMachineArn(Aws::String&& value) { m_stateMachineArn = value; }
+    inline void SetStateMachineArn(Aws::String&& value) { m_stateMachineArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the state machine.</p>
@@ -69,12 +72,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the state machine.</p>
      */
-    inline DescribeStateMachineResult& WithStateMachineArn(Aws::String&& value) { SetStateMachineArn(value); return *this;}
+    inline DescribeStateMachineResult& WithStateMachineArn(Aws::String&& value) { SetStateMachineArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the state machine.</p>
      */
     inline DescribeStateMachineResult& WithStateMachineArn(const char* value) { SetStateMachineArn(value); return *this;}
+
 
     /**
      * <p>The name of the state machine.</p>
@@ -89,7 +93,7 @@ namespace Model
     /**
      * <p>The name of the state machine.</p>
      */
-    inline void SetName(Aws::String&& value) { m_name = value; }
+    inline void SetName(Aws::String&& value) { m_name = std::move(value); }
 
     /**
      * <p>The name of the state machine.</p>
@@ -104,12 +108,13 @@ namespace Model
     /**
      * <p>The name of the state machine.</p>
      */
-    inline DescribeStateMachineResult& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline DescribeStateMachineResult& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the state machine.</p>
      */
     inline DescribeStateMachineResult& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The current status of the state machine.</p>
@@ -124,7 +129,7 @@ namespace Model
     /**
      * <p>The current status of the state machine.</p>
      */
-    inline void SetStatus(StateMachineStatus&& value) { m_status = value; }
+    inline void SetStatus(StateMachineStatus&& value) { m_status = std::move(value); }
 
     /**
      * <p>The current status of the state machine.</p>
@@ -134,7 +139,8 @@ namespace Model
     /**
      * <p>The current status of the state machine.</p>
      */
-    inline DescribeStateMachineResult& WithStatus(StateMachineStatus&& value) { SetStatus(value); return *this;}
+    inline DescribeStateMachineResult& WithStatus(StateMachineStatus&& value) { SetStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The Amazon States Language definition of the state machine.</p>
@@ -149,7 +155,7 @@ namespace Model
     /**
      * <p>The Amazon States Language definition of the state machine.</p>
      */
-    inline void SetDefinition(Aws::String&& value) { m_definition = value; }
+    inline void SetDefinition(Aws::String&& value) { m_definition = std::move(value); }
 
     /**
      * <p>The Amazon States Language definition of the state machine.</p>
@@ -164,12 +170,13 @@ namespace Model
     /**
      * <p>The Amazon States Language definition of the state machine.</p>
      */
-    inline DescribeStateMachineResult& WithDefinition(Aws::String&& value) { SetDefinition(value); return *this;}
+    inline DescribeStateMachineResult& WithDefinition(Aws::String&& value) { SetDefinition(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon States Language definition of the state machine.</p>
      */
     inline DescribeStateMachineResult& WithDefinition(const char* value) { SetDefinition(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role used for executing this state
@@ -187,7 +194,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the IAM role used for executing this state
      * machine.</p>
      */
-    inline void SetRoleArn(Aws::String&& value) { m_roleArn = value; }
+    inline void SetRoleArn(Aws::String&& value) { m_roleArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role used for executing this state
@@ -205,13 +212,14 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the IAM role used for executing this state
      * machine.</p>
      */
-    inline DescribeStateMachineResult& WithRoleArn(Aws::String&& value) { SetRoleArn(value); return *this;}
+    inline DescribeStateMachineResult& WithRoleArn(Aws::String&& value) { SetRoleArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role used for executing this state
      * machine.</p>
      */
     inline DescribeStateMachineResult& WithRoleArn(const char* value) { SetRoleArn(value); return *this;}
+
 
     /**
      * <p>The date the state machine was created.</p>
@@ -226,7 +234,7 @@ namespace Model
     /**
      * <p>The date the state machine was created.</p>
      */
-    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDate = value; }
+    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDate = std::move(value); }
 
     /**
      * <p>The date the state machine was created.</p>
@@ -236,14 +244,20 @@ namespace Model
     /**
      * <p>The date the state machine was created.</p>
      */
-    inline DescribeStateMachineResult& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(value); return *this;}
+    inline DescribeStateMachineResult& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_stateMachineArn;
+
     Aws::String m_name;
+
     StateMachineStatus m_status;
+
     Aws::String m_definition;
+
     Aws::String m_roleArn;
+
     Aws::Utils::DateTime m_creationDate;
   };
 

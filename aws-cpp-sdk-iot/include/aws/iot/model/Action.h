@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/iot/model/DynamoDBAction.h>
@@ -26,6 +27,8 @@
 #include <aws/iot/model/CloudwatchMetricAction.h>
 #include <aws/iot/model/CloudwatchAlarmAction.h>
 #include <aws/iot/model/ElasticsearchAction.h>
+#include <aws/iot/model/SalesforceAction.h>
+#include <utility>
 
 namespace Aws
 {
@@ -54,6 +57,7 @@ namespace Model
     Action& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Write to a DynamoDB table.</p>
      */
@@ -67,7 +71,7 @@ namespace Model
     /**
      * <p>Write to a DynamoDB table.</p>
      */
-    inline void SetDynamoDB(DynamoDBAction&& value) { m_dynamoDBHasBeenSet = true; m_dynamoDB = value; }
+    inline void SetDynamoDB(DynamoDBAction&& value) { m_dynamoDBHasBeenSet = true; m_dynamoDB = std::move(value); }
 
     /**
      * <p>Write to a DynamoDB table.</p>
@@ -77,7 +81,8 @@ namespace Model
     /**
      * <p>Write to a DynamoDB table.</p>
      */
-    inline Action& WithDynamoDB(DynamoDBAction&& value) { SetDynamoDB(value); return *this;}
+    inline Action& WithDynamoDB(DynamoDBAction&& value) { SetDynamoDB(std::move(value)); return *this;}
+
 
     /**
      * <p>Write to a DynamoDB table. This is a new version of the DynamoDB action. It
@@ -98,7 +103,7 @@ namespace Model
      * allows you to write each attribute in an MQTT message payload into a separate
      * DynamoDB column.</p>
      */
-    inline void SetDynamoDBv2(DynamoDBv2Action&& value) { m_dynamoDBv2HasBeenSet = true; m_dynamoDBv2 = value; }
+    inline void SetDynamoDBv2(DynamoDBv2Action&& value) { m_dynamoDBv2HasBeenSet = true; m_dynamoDBv2 = std::move(value); }
 
     /**
      * <p>Write to a DynamoDB table. This is a new version of the DynamoDB action. It
@@ -112,7 +117,8 @@ namespace Model
      * allows you to write each attribute in an MQTT message payload into a separate
      * DynamoDB column.</p>
      */
-    inline Action& WithDynamoDBv2(DynamoDBv2Action&& value) { SetDynamoDBv2(value); return *this;}
+    inline Action& WithDynamoDBv2(DynamoDBv2Action&& value) { SetDynamoDBv2(std::move(value)); return *this;}
+
 
     /**
      * <p>Invoke a Lambda function.</p>
@@ -127,7 +133,7 @@ namespace Model
     /**
      * <p>Invoke a Lambda function.</p>
      */
-    inline void SetLambda(LambdaAction&& value) { m_lambdaHasBeenSet = true; m_lambda = value; }
+    inline void SetLambda(LambdaAction&& value) { m_lambdaHasBeenSet = true; m_lambda = std::move(value); }
 
     /**
      * <p>Invoke a Lambda function.</p>
@@ -137,7 +143,8 @@ namespace Model
     /**
      * <p>Invoke a Lambda function.</p>
      */
-    inline Action& WithLambda(LambdaAction&& value) { SetLambda(value); return *this;}
+    inline Action& WithLambda(LambdaAction&& value) { SetLambda(std::move(value)); return *this;}
+
 
     /**
      * <p>Publish to an Amazon SNS topic.</p>
@@ -152,7 +159,7 @@ namespace Model
     /**
      * <p>Publish to an Amazon SNS topic.</p>
      */
-    inline void SetSns(SnsAction&& value) { m_snsHasBeenSet = true; m_sns = value; }
+    inline void SetSns(SnsAction&& value) { m_snsHasBeenSet = true; m_sns = std::move(value); }
 
     /**
      * <p>Publish to an Amazon SNS topic.</p>
@@ -162,7 +169,8 @@ namespace Model
     /**
      * <p>Publish to an Amazon SNS topic.</p>
      */
-    inline Action& WithSns(SnsAction&& value) { SetSns(value); return *this;}
+    inline Action& WithSns(SnsAction&& value) { SetSns(std::move(value)); return *this;}
+
 
     /**
      * <p>Publish to an Amazon SQS queue.</p>
@@ -177,7 +185,7 @@ namespace Model
     /**
      * <p>Publish to an Amazon SQS queue.</p>
      */
-    inline void SetSqs(SqsAction&& value) { m_sqsHasBeenSet = true; m_sqs = value; }
+    inline void SetSqs(SqsAction&& value) { m_sqsHasBeenSet = true; m_sqs = std::move(value); }
 
     /**
      * <p>Publish to an Amazon SQS queue.</p>
@@ -187,7 +195,8 @@ namespace Model
     /**
      * <p>Publish to an Amazon SQS queue.</p>
      */
-    inline Action& WithSqs(SqsAction&& value) { SetSqs(value); return *this;}
+    inline Action& WithSqs(SqsAction&& value) { SetSqs(std::move(value)); return *this;}
+
 
     /**
      * <p>Write data to an Amazon Kinesis stream.</p>
@@ -202,7 +211,7 @@ namespace Model
     /**
      * <p>Write data to an Amazon Kinesis stream.</p>
      */
-    inline void SetKinesis(KinesisAction&& value) { m_kinesisHasBeenSet = true; m_kinesis = value; }
+    inline void SetKinesis(KinesisAction&& value) { m_kinesisHasBeenSet = true; m_kinesis = std::move(value); }
 
     /**
      * <p>Write data to an Amazon Kinesis stream.</p>
@@ -212,7 +221,8 @@ namespace Model
     /**
      * <p>Write data to an Amazon Kinesis stream.</p>
      */
-    inline Action& WithKinesis(KinesisAction&& value) { SetKinesis(value); return *this;}
+    inline Action& WithKinesis(KinesisAction&& value) { SetKinesis(std::move(value)); return *this;}
+
 
     /**
      * <p>Publish to another MQTT topic.</p>
@@ -227,7 +237,7 @@ namespace Model
     /**
      * <p>Publish to another MQTT topic.</p>
      */
-    inline void SetRepublish(RepublishAction&& value) { m_republishHasBeenSet = true; m_republish = value; }
+    inline void SetRepublish(RepublishAction&& value) { m_republishHasBeenSet = true; m_republish = std::move(value); }
 
     /**
      * <p>Publish to another MQTT topic.</p>
@@ -237,7 +247,8 @@ namespace Model
     /**
      * <p>Publish to another MQTT topic.</p>
      */
-    inline Action& WithRepublish(RepublishAction&& value) { SetRepublish(value); return *this;}
+    inline Action& WithRepublish(RepublishAction&& value) { SetRepublish(std::move(value)); return *this;}
+
 
     /**
      * <p>Write to an Amazon S3 bucket.</p>
@@ -252,7 +263,7 @@ namespace Model
     /**
      * <p>Write to an Amazon S3 bucket.</p>
      */
-    inline void SetS3(S3Action&& value) { m_s3HasBeenSet = true; m_s3 = value; }
+    inline void SetS3(S3Action&& value) { m_s3HasBeenSet = true; m_s3 = std::move(value); }
 
     /**
      * <p>Write to an Amazon S3 bucket.</p>
@@ -262,7 +273,8 @@ namespace Model
     /**
      * <p>Write to an Amazon S3 bucket.</p>
      */
-    inline Action& WithS3(S3Action&& value) { SetS3(value); return *this;}
+    inline Action& WithS3(S3Action&& value) { SetS3(std::move(value)); return *this;}
+
 
     /**
      * <p>Write to an Amazon Kinesis Firehose stream.</p>
@@ -277,7 +289,7 @@ namespace Model
     /**
      * <p>Write to an Amazon Kinesis Firehose stream.</p>
      */
-    inline void SetFirehose(FirehoseAction&& value) { m_firehoseHasBeenSet = true; m_firehose = value; }
+    inline void SetFirehose(FirehoseAction&& value) { m_firehoseHasBeenSet = true; m_firehose = std::move(value); }
 
     /**
      * <p>Write to an Amazon Kinesis Firehose stream.</p>
@@ -287,7 +299,8 @@ namespace Model
     /**
      * <p>Write to an Amazon Kinesis Firehose stream.</p>
      */
-    inline Action& WithFirehose(FirehoseAction&& value) { SetFirehose(value); return *this;}
+    inline Action& WithFirehose(FirehoseAction&& value) { SetFirehose(std::move(value)); return *this;}
+
 
     /**
      * <p>Capture a CloudWatch metric.</p>
@@ -302,7 +315,7 @@ namespace Model
     /**
      * <p>Capture a CloudWatch metric.</p>
      */
-    inline void SetCloudwatchMetric(CloudwatchMetricAction&& value) { m_cloudwatchMetricHasBeenSet = true; m_cloudwatchMetric = value; }
+    inline void SetCloudwatchMetric(CloudwatchMetricAction&& value) { m_cloudwatchMetricHasBeenSet = true; m_cloudwatchMetric = std::move(value); }
 
     /**
      * <p>Capture a CloudWatch metric.</p>
@@ -312,7 +325,8 @@ namespace Model
     /**
      * <p>Capture a CloudWatch metric.</p>
      */
-    inline Action& WithCloudwatchMetric(CloudwatchMetricAction&& value) { SetCloudwatchMetric(value); return *this;}
+    inline Action& WithCloudwatchMetric(CloudwatchMetricAction&& value) { SetCloudwatchMetric(std::move(value)); return *this;}
+
 
     /**
      * <p>Change the state of a CloudWatch alarm.</p>
@@ -327,7 +341,7 @@ namespace Model
     /**
      * <p>Change the state of a CloudWatch alarm.</p>
      */
-    inline void SetCloudwatchAlarm(CloudwatchAlarmAction&& value) { m_cloudwatchAlarmHasBeenSet = true; m_cloudwatchAlarm = value; }
+    inline void SetCloudwatchAlarm(CloudwatchAlarmAction&& value) { m_cloudwatchAlarmHasBeenSet = true; m_cloudwatchAlarm = std::move(value); }
 
     /**
      * <p>Change the state of a CloudWatch alarm.</p>
@@ -337,7 +351,8 @@ namespace Model
     /**
      * <p>Change the state of a CloudWatch alarm.</p>
      */
-    inline Action& WithCloudwatchAlarm(CloudwatchAlarmAction&& value) { SetCloudwatchAlarm(value); return *this;}
+    inline Action& WithCloudwatchAlarm(CloudwatchAlarmAction&& value) { SetCloudwatchAlarm(std::move(value)); return *this;}
+
 
     /**
      * <p>Write data to an Amazon Elasticsearch Service domain.</p>
@@ -352,7 +367,7 @@ namespace Model
     /**
      * <p>Write data to an Amazon Elasticsearch Service domain.</p>
      */
-    inline void SetElasticsearch(ElasticsearchAction&& value) { m_elasticsearchHasBeenSet = true; m_elasticsearch = value; }
+    inline void SetElasticsearch(ElasticsearchAction&& value) { m_elasticsearchHasBeenSet = true; m_elasticsearch = std::move(value); }
 
     /**
      * <p>Write data to an Amazon Elasticsearch Service domain.</p>
@@ -362,33 +377,74 @@ namespace Model
     /**
      * <p>Write data to an Amazon Elasticsearch Service domain.</p>
      */
-    inline Action& WithElasticsearch(ElasticsearchAction&& value) { SetElasticsearch(value); return *this;}
+    inline Action& WithElasticsearch(ElasticsearchAction&& value) { SetElasticsearch(std::move(value)); return *this;}
+
+
+    /**
+     * <p>Send a message to a Salesforce IoT Cloud Input Stream.</p>
+     */
+    inline const SalesforceAction& GetSalesforce() const{ return m_salesforce; }
+
+    /**
+     * <p>Send a message to a Salesforce IoT Cloud Input Stream.</p>
+     */
+    inline void SetSalesforce(const SalesforceAction& value) { m_salesforceHasBeenSet = true; m_salesforce = value; }
+
+    /**
+     * <p>Send a message to a Salesforce IoT Cloud Input Stream.</p>
+     */
+    inline void SetSalesforce(SalesforceAction&& value) { m_salesforceHasBeenSet = true; m_salesforce = std::move(value); }
+
+    /**
+     * <p>Send a message to a Salesforce IoT Cloud Input Stream.</p>
+     */
+    inline Action& WithSalesforce(const SalesforceAction& value) { SetSalesforce(value); return *this;}
+
+    /**
+     * <p>Send a message to a Salesforce IoT Cloud Input Stream.</p>
+     */
+    inline Action& WithSalesforce(SalesforceAction&& value) { SetSalesforce(std::move(value)); return *this;}
 
   private:
+
     DynamoDBAction m_dynamoDB;
     bool m_dynamoDBHasBeenSet;
+
     DynamoDBv2Action m_dynamoDBv2;
     bool m_dynamoDBv2HasBeenSet;
+
     LambdaAction m_lambda;
     bool m_lambdaHasBeenSet;
+
     SnsAction m_sns;
     bool m_snsHasBeenSet;
+
     SqsAction m_sqs;
     bool m_sqsHasBeenSet;
+
     KinesisAction m_kinesis;
     bool m_kinesisHasBeenSet;
+
     RepublishAction m_republish;
     bool m_republishHasBeenSet;
+
     S3Action m_s3;
     bool m_s3HasBeenSet;
+
     FirehoseAction m_firehose;
     bool m_firehoseHasBeenSet;
+
     CloudwatchMetricAction m_cloudwatchMetric;
     bool m_cloudwatchMetricHasBeenSet;
+
     CloudwatchAlarmAction m_cloudwatchAlarm;
     bool m_cloudwatchAlarmHasBeenSet;
+
     ElasticsearchAction m_elasticsearch;
     bool m_elasticsearchHasBeenSet;
+
+    SalesforceAction m_salesforce;
+    bool m_salesforceHasBeenSet;
   };
 
 } // namespace Model

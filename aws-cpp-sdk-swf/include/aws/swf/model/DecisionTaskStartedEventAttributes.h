@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,8 +33,8 @@ namespace Model
 {
 
   /**
-   * <p>Provides details of the <code>DecisionTaskStarted</code> event.</p><p><h3>See
-   * Also:</h3>   <a
+   * <p>Provides the details of the <code>DecisionTaskStarted</code>
+   * event.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/swf-2012-01-25/DecisionTaskStartedEventAttributes">AWS
    * API Reference</a></p>
    */
@@ -43,6 +45,7 @@ namespace Model
     DecisionTaskStartedEventAttributes(const Aws::Utils::Json::JsonValue& jsonValue);
     DecisionTaskStartedEventAttributes& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>Identity of the decider making the request. This enables diagnostic tracing
@@ -60,7 +63,7 @@ namespace Model
      * <p>Identity of the decider making the request. This enables diagnostic tracing
      * when problems arise. The form of this identity is user defined.</p>
      */
-    inline void SetIdentity(Aws::String&& value) { m_identityHasBeenSet = true; m_identity = value; }
+    inline void SetIdentity(Aws::String&& value) { m_identityHasBeenSet = true; m_identity = std::move(value); }
 
     /**
      * <p>Identity of the decider making the request. This enables diagnostic tracing
@@ -78,13 +81,14 @@ namespace Model
      * <p>Identity of the decider making the request. This enables diagnostic tracing
      * when problems arise. The form of this identity is user defined.</p>
      */
-    inline DecisionTaskStartedEventAttributes& WithIdentity(Aws::String&& value) { SetIdentity(value); return *this;}
+    inline DecisionTaskStartedEventAttributes& WithIdentity(Aws::String&& value) { SetIdentity(std::move(value)); return *this;}
 
     /**
      * <p>Identity of the decider making the request. This enables diagnostic tracing
      * when problems arise. The form of this identity is user defined.</p>
      */
     inline DecisionTaskStartedEventAttributes& WithIdentity(const char* value) { SetIdentity(value); return *this;}
+
 
     /**
      * <p>The ID of the <code>DecisionTaskScheduled</code> event that was recorded when
@@ -108,8 +112,10 @@ namespace Model
     inline DecisionTaskStartedEventAttributes& WithScheduledEventId(long long value) { SetScheduledEventId(value); return *this;}
 
   private:
+
     Aws::String m_identity;
     bool m_identityHasBeenSet;
+
     long long m_scheduledEventId;
     bool m_scheduledEventIdHasBeenSet;
   };

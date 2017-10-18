@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/opsworks/OpsWorksRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,9 +33,17 @@ namespace Model
   {
   public:
     DescribeDeploymentsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeDeployments"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The stack ID. If you include this parameter, <code>DescribeDeployments</code>
@@ -51,7 +61,7 @@ namespace Model
      * <p>The stack ID. If you include this parameter, <code>DescribeDeployments</code>
      * returns a description of the commands associated with the specified stack.</p>
      */
-    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = value; }
+    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = std::move(value); }
 
     /**
      * <p>The stack ID. If you include this parameter, <code>DescribeDeployments</code>
@@ -69,13 +79,14 @@ namespace Model
      * <p>The stack ID. If you include this parameter, <code>DescribeDeployments</code>
      * returns a description of the commands associated with the specified stack.</p>
      */
-    inline DescribeDeploymentsRequest& WithStackId(Aws::String&& value) { SetStackId(value); return *this;}
+    inline DescribeDeploymentsRequest& WithStackId(Aws::String&& value) { SetStackId(std::move(value)); return *this;}
 
     /**
      * <p>The stack ID. If you include this parameter, <code>DescribeDeployments</code>
      * returns a description of the commands associated with the specified stack.</p>
      */
     inline DescribeDeploymentsRequest& WithStackId(const char* value) { SetStackId(value); return *this;}
+
 
     /**
      * <p>The app ID. If you include this parameter, <code>DescribeDeployments</code>
@@ -93,7 +104,7 @@ namespace Model
      * <p>The app ID. If you include this parameter, <code>DescribeDeployments</code>
      * returns a description of the commands associated with the specified app.</p>
      */
-    inline void SetAppId(Aws::String&& value) { m_appIdHasBeenSet = true; m_appId = value; }
+    inline void SetAppId(Aws::String&& value) { m_appIdHasBeenSet = true; m_appId = std::move(value); }
 
     /**
      * <p>The app ID. If you include this parameter, <code>DescribeDeployments</code>
@@ -111,13 +122,14 @@ namespace Model
      * <p>The app ID. If you include this parameter, <code>DescribeDeployments</code>
      * returns a description of the commands associated with the specified app.</p>
      */
-    inline DescribeDeploymentsRequest& WithAppId(Aws::String&& value) { SetAppId(value); return *this;}
+    inline DescribeDeploymentsRequest& WithAppId(Aws::String&& value) { SetAppId(std::move(value)); return *this;}
 
     /**
      * <p>The app ID. If you include this parameter, <code>DescribeDeployments</code>
      * returns a description of the commands associated with the specified app.</p>
      */
     inline DescribeDeploymentsRequest& WithAppId(const char* value) { SetAppId(value); return *this;}
+
 
     /**
      * <p>An array of deployment IDs to be described. If you include this parameter,
@@ -138,7 +150,7 @@ namespace Model
      * <code>DescribeDeployments</code> returns a description of the specified
      * deployments. Otherwise, it returns a description of every deployment.</p>
      */
-    inline void SetDeploymentIds(Aws::Vector<Aws::String>&& value) { m_deploymentIdsHasBeenSet = true; m_deploymentIds = value; }
+    inline void SetDeploymentIds(Aws::Vector<Aws::String>&& value) { m_deploymentIdsHasBeenSet = true; m_deploymentIds = std::move(value); }
 
     /**
      * <p>An array of deployment IDs to be described. If you include this parameter,
@@ -152,7 +164,7 @@ namespace Model
      * <code>DescribeDeployments</code> returns a description of the specified
      * deployments. Otherwise, it returns a description of every deployment.</p>
      */
-    inline DescribeDeploymentsRequest& WithDeploymentIds(Aws::Vector<Aws::String>&& value) { SetDeploymentIds(value); return *this;}
+    inline DescribeDeploymentsRequest& WithDeploymentIds(Aws::Vector<Aws::String>&& value) { SetDeploymentIds(std::move(value)); return *this;}
 
     /**
      * <p>An array of deployment IDs to be described. If you include this parameter,
@@ -166,7 +178,7 @@ namespace Model
      * <code>DescribeDeployments</code> returns a description of the specified
      * deployments. Otherwise, it returns a description of every deployment.</p>
      */
-    inline DescribeDeploymentsRequest& AddDeploymentIds(Aws::String&& value) { m_deploymentIdsHasBeenSet = true; m_deploymentIds.push_back(value); return *this; }
+    inline DescribeDeploymentsRequest& AddDeploymentIds(Aws::String&& value) { m_deploymentIdsHasBeenSet = true; m_deploymentIds.push_back(std::move(value)); return *this; }
 
     /**
      * <p>An array of deployment IDs to be described. If you include this parameter,
@@ -176,10 +188,13 @@ namespace Model
     inline DescribeDeploymentsRequest& AddDeploymentIds(const char* value) { m_deploymentIdsHasBeenSet = true; m_deploymentIds.push_back(value); return *this; }
 
   private:
+
     Aws::String m_stackId;
     bool m_stackIdHasBeenSet;
+
     Aws::String m_appId;
     bool m_appIdHasBeenSet;
+
     Aws::Vector<Aws::String> m_deploymentIds;
     bool m_deploymentIdsHasBeenSet;
   };

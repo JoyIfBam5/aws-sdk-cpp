@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/servicecatalog/ServiceCatalogRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/servicecatalog/model/Tag.h>
+#include <utility>
 #include <aws/core/utils/UUID.h>
 
 namespace Aws
@@ -33,58 +35,67 @@ namespace Model
   {
   public:
     CreatePortfolioRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreatePortfolio"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
 
+
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline const Aws::String& GetAcceptLanguage() const{ return m_acceptLanguage; }
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline void SetAcceptLanguage(const Aws::String& value) { m_acceptLanguageHasBeenSet = true; m_acceptLanguage = value; }
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
-    inline void SetAcceptLanguage(Aws::String&& value) { m_acceptLanguageHasBeenSet = true; m_acceptLanguage = value; }
+    inline void SetAcceptLanguage(Aws::String&& value) { m_acceptLanguageHasBeenSet = true; m_acceptLanguage = std::move(value); }
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline void SetAcceptLanguage(const char* value) { m_acceptLanguageHasBeenSet = true; m_acceptLanguage.assign(value); }
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline CreatePortfolioRequest& WithAcceptLanguage(const Aws::String& value) { SetAcceptLanguage(value); return *this;}
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
-    inline CreatePortfolioRequest& WithAcceptLanguage(Aws::String&& value) { SetAcceptLanguage(value); return *this;}
+    inline CreatePortfolioRequest& WithAcceptLanguage(Aws::String&& value) { SetAcceptLanguage(std::move(value)); return *this;}
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline CreatePortfolioRequest& WithAcceptLanguage(const char* value) { SetAcceptLanguage(value); return *this;}
+
 
     /**
      * <p>The name to use for display purposes.</p>
@@ -99,7 +110,7 @@ namespace Model
     /**
      * <p>The name to use for display purposes.</p>
      */
-    inline void SetDisplayName(Aws::String&& value) { m_displayNameHasBeenSet = true; m_displayName = value; }
+    inline void SetDisplayName(Aws::String&& value) { m_displayNameHasBeenSet = true; m_displayName = std::move(value); }
 
     /**
      * <p>The name to use for display purposes.</p>
@@ -114,12 +125,13 @@ namespace Model
     /**
      * <p>The name to use for display purposes.</p>
      */
-    inline CreatePortfolioRequest& WithDisplayName(Aws::String&& value) { SetDisplayName(value); return *this;}
+    inline CreatePortfolioRequest& WithDisplayName(Aws::String&& value) { SetDisplayName(std::move(value)); return *this;}
 
     /**
      * <p>The name to use for display purposes.</p>
      */
     inline CreatePortfolioRequest& WithDisplayName(const char* value) { SetDisplayName(value); return *this;}
+
 
     /**
      * <p>The text description of the portfolio.</p>
@@ -134,7 +146,7 @@ namespace Model
     /**
      * <p>The text description of the portfolio.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The text description of the portfolio.</p>
@@ -149,12 +161,13 @@ namespace Model
     /**
      * <p>The text description of the portfolio.</p>
      */
-    inline CreatePortfolioRequest& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline CreatePortfolioRequest& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The text description of the portfolio.</p>
      */
     inline CreatePortfolioRequest& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The name of the portfolio provider.</p>
@@ -169,7 +182,7 @@ namespace Model
     /**
      * <p>The name of the portfolio provider.</p>
      */
-    inline void SetProviderName(Aws::String&& value) { m_providerNameHasBeenSet = true; m_providerName = value; }
+    inline void SetProviderName(Aws::String&& value) { m_providerNameHasBeenSet = true; m_providerName = std::move(value); }
 
     /**
      * <p>The name of the portfolio provider.</p>
@@ -184,12 +197,13 @@ namespace Model
     /**
      * <p>The name of the portfolio provider.</p>
      */
-    inline CreatePortfolioRequest& WithProviderName(Aws::String&& value) { SetProviderName(value); return *this;}
+    inline CreatePortfolioRequest& WithProviderName(Aws::String&& value) { SetProviderName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the portfolio provider.</p>
      */
     inline CreatePortfolioRequest& WithProviderName(const char* value) { SetProviderName(value); return *this;}
+
 
     /**
      * <p>Tags to associate with the new portfolio.</p>
@@ -204,7 +218,7 @@ namespace Model
     /**
      * <p>Tags to associate with the new portfolio.</p>
      */
-    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = std::move(value); }
 
     /**
      * <p>Tags to associate with the new portfolio.</p>
@@ -214,7 +228,7 @@ namespace Model
     /**
      * <p>Tags to associate with the new portfolio.</p>
      */
-    inline CreatePortfolioRequest& WithTags(Aws::Vector<Tag>&& value) { SetTags(value); return *this;}
+    inline CreatePortfolioRequest& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
      * <p>Tags to associate with the new portfolio.</p>
@@ -224,68 +238,75 @@ namespace Model
     /**
      * <p>Tags to associate with the new portfolio.</p>
      */
-    inline CreatePortfolioRequest& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
+    inline CreatePortfolioRequest& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(std::move(value)); return *this; }
+
 
     /**
-     * <p>A token to disambiguate duplicate requests. You can create multiple resources
-     * using the same input in multiple requests, provided that you also specify a
-     * different idempotency token for each request.</p>
+     * <p>A token to disambiguate duplicate requests. You can use the same input in
+     * multiple requests, provided that you also specify a different idempotency token
+     * for each request.</p>
      */
     inline const Aws::String& GetIdempotencyToken() const{ return m_idempotencyToken; }
 
     /**
-     * <p>A token to disambiguate duplicate requests. You can create multiple resources
-     * using the same input in multiple requests, provided that you also specify a
-     * different idempotency token for each request.</p>
+     * <p>A token to disambiguate duplicate requests. You can use the same input in
+     * multiple requests, provided that you also specify a different idempotency token
+     * for each request.</p>
      */
     inline void SetIdempotencyToken(const Aws::String& value) { m_idempotencyTokenHasBeenSet = true; m_idempotencyToken = value; }
 
     /**
-     * <p>A token to disambiguate duplicate requests. You can create multiple resources
-     * using the same input in multiple requests, provided that you also specify a
-     * different idempotency token for each request.</p>
+     * <p>A token to disambiguate duplicate requests. You can use the same input in
+     * multiple requests, provided that you also specify a different idempotency token
+     * for each request.</p>
      */
-    inline void SetIdempotencyToken(Aws::String&& value) { m_idempotencyTokenHasBeenSet = true; m_idempotencyToken = value; }
+    inline void SetIdempotencyToken(Aws::String&& value) { m_idempotencyTokenHasBeenSet = true; m_idempotencyToken = std::move(value); }
 
     /**
-     * <p>A token to disambiguate duplicate requests. You can create multiple resources
-     * using the same input in multiple requests, provided that you also specify a
-     * different idempotency token for each request.</p>
+     * <p>A token to disambiguate duplicate requests. You can use the same input in
+     * multiple requests, provided that you also specify a different idempotency token
+     * for each request.</p>
      */
     inline void SetIdempotencyToken(const char* value) { m_idempotencyTokenHasBeenSet = true; m_idempotencyToken.assign(value); }
 
     /**
-     * <p>A token to disambiguate duplicate requests. You can create multiple resources
-     * using the same input in multiple requests, provided that you also specify a
-     * different idempotency token for each request.</p>
+     * <p>A token to disambiguate duplicate requests. You can use the same input in
+     * multiple requests, provided that you also specify a different idempotency token
+     * for each request.</p>
      */
     inline CreatePortfolioRequest& WithIdempotencyToken(const Aws::String& value) { SetIdempotencyToken(value); return *this;}
 
     /**
-     * <p>A token to disambiguate duplicate requests. You can create multiple resources
-     * using the same input in multiple requests, provided that you also specify a
-     * different idempotency token for each request.</p>
+     * <p>A token to disambiguate duplicate requests. You can use the same input in
+     * multiple requests, provided that you also specify a different idempotency token
+     * for each request.</p>
      */
-    inline CreatePortfolioRequest& WithIdempotencyToken(Aws::String&& value) { SetIdempotencyToken(value); return *this;}
+    inline CreatePortfolioRequest& WithIdempotencyToken(Aws::String&& value) { SetIdempotencyToken(std::move(value)); return *this;}
 
     /**
-     * <p>A token to disambiguate duplicate requests. You can create multiple resources
-     * using the same input in multiple requests, provided that you also specify a
-     * different idempotency token for each request.</p>
+     * <p>A token to disambiguate duplicate requests. You can use the same input in
+     * multiple requests, provided that you also specify a different idempotency token
+     * for each request.</p>
      */
     inline CreatePortfolioRequest& WithIdempotencyToken(const char* value) { SetIdempotencyToken(value); return *this;}
 
   private:
+
     Aws::String m_acceptLanguage;
     bool m_acceptLanguageHasBeenSet;
+
     Aws::String m_displayName;
     bool m_displayNameHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     Aws::String m_providerName;
     bool m_providerNameHasBeenSet;
+
     Aws::Vector<Tag> m_tags;
     bool m_tagsHasBeenSet;
+
     Aws::String m_idempotencyToken;
     bool m_idempotencyTokenHasBeenSet;
   };

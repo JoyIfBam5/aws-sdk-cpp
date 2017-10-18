@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/logs/CloudWatchLogs_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/logs/model/ExportTask.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     DescribeExportTasksResult();
-    DescribeExportTasksResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeExportTasksResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeExportTasksResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeExportTasksResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The export tasks.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>The export tasks.</p>
      */
-    inline void SetExportTasks(Aws::Vector<ExportTask>&& value) { m_exportTasks = value; }
+    inline void SetExportTasks(Aws::Vector<ExportTask>&& value) { m_exportTasks = std::move(value); }
 
     /**
      * <p>The export tasks.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>The export tasks.</p>
      */
-    inline DescribeExportTasksResult& WithExportTasks(Aws::Vector<ExportTask>&& value) { SetExportTasks(value); return *this;}
+    inline DescribeExportTasksResult& WithExportTasks(Aws::Vector<ExportTask>&& value) { SetExportTasks(std::move(value)); return *this;}
 
     /**
      * <p>The export tasks.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>The export tasks.</p>
      */
-    inline DescribeExportTasksResult& AddExportTasks(ExportTask&& value) { m_exportTasks.push_back(value); return *this; }
+    inline DescribeExportTasksResult& AddExportTasks(ExportTask&& value) { m_exportTasks.push_back(std::move(value)); return *this; }
+
 
     
     inline const Aws::String& GetNextToken() const{ return m_nextToken; }
@@ -83,7 +87,7 @@ namespace Model
     inline void SetNextToken(const Aws::String& value) { m_nextToken = value; }
 
     
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     
     inline void SetNextToken(const char* value) { m_nextToken.assign(value); }
@@ -92,13 +96,15 @@ namespace Model
     inline DescribeExportTasksResult& WithNextToken(const Aws::String& value) { SetNextToken(value); return *this;}
 
     
-    inline DescribeExportTasksResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeExportTasksResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     
     inline DescribeExportTasksResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<ExportTask> m_exportTasks;
+
     Aws::String m_nextToken;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/sts/STS_EXPORTS.h>
 #include <aws/sts/model/Credentials.h>
 #include <aws/sts/model/FederatedUser.h>
 #include <aws/sts/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,8 +47,9 @@ namespace Model
   {
   public:
     GetFederationTokenResult();
-    GetFederationTokenResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    GetFederationTokenResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    GetFederationTokenResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    GetFederationTokenResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>The temporary security credentials, which include an access key ID, a secret
@@ -76,7 +79,7 @@ namespace Model
      * size is less than 4096 bytes, but that can vary. Also, future updates to AWS
      * might require larger sizes.</p>
      */
-    inline void SetCredentials(Credentials&& value) { m_credentials = value; }
+    inline void SetCredentials(Credentials&& value) { m_credentials = std::move(value); }
 
     /**
      * <p>The temporary security credentials, which include an access key ID, a secret
@@ -96,7 +99,8 @@ namespace Model
      * size is less than 4096 bytes, but that can vary. Also, future updates to AWS
      * might require larger sizes.</p>
      */
-    inline GetFederationTokenResult& WithCredentials(Credentials&& value) { SetCredentials(value); return *this;}
+    inline GetFederationTokenResult& WithCredentials(Credentials&& value) { SetCredentials(std::move(value)); return *this;}
+
 
     /**
      * <p>Identifiers for the federated user associated with the credentials (such as
@@ -120,7 +124,7 @@ namespace Model
      * <code>123456789012:Bob</code>). You can use the federated user's ARN in your
      * resource-based policies, such as an Amazon S3 bucket policy. </p>
      */
-    inline void SetFederatedUser(FederatedUser&& value) { m_federatedUser = value; }
+    inline void SetFederatedUser(FederatedUser&& value) { m_federatedUser = std::move(value); }
 
     /**
      * <p>Identifiers for the federated user associated with the credentials (such as
@@ -136,7 +140,8 @@ namespace Model
      * <code>123456789012:Bob</code>). You can use the federated user's ARN in your
      * resource-based policies, such as an Amazon S3 bucket policy. </p>
      */
-    inline GetFederationTokenResult& WithFederatedUser(FederatedUser&& value) { SetFederatedUser(value); return *this;}
+    inline GetFederationTokenResult& WithFederatedUser(FederatedUser&& value) { SetFederatedUser(std::move(value)); return *this;}
+
 
     /**
      * <p>A percentage value indicating the size of the policy in packed form. The
@@ -159,6 +164,7 @@ namespace Model
      */
     inline GetFederationTokenResult& WithPackedPolicySize(int value) { SetPackedPolicySize(value); return *this;}
 
+
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
 
@@ -166,18 +172,22 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline GetFederationTokenResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline GetFederationTokenResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline GetFederationTokenResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Credentials m_credentials;
+
     FederatedUser m_federatedUser;
+
     int m_packedPolicySize;
+
     ResponseMetadata m_responseMetadata;
   };
 

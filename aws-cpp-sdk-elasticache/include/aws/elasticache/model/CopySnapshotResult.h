@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticache/ElastiCache_EXPORTS.h>
 #include <aws/elasticache/model/Snapshot.h>
 #include <aws/elasticache/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     CopySnapshotResult();
-    CopySnapshotResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    CopySnapshotResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CopySnapshotResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CopySnapshotResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     
     inline const Snapshot& GetSnapshot() const{ return m_snapshot; }
@@ -47,13 +50,14 @@ namespace Model
     inline void SetSnapshot(const Snapshot& value) { m_snapshot = value; }
 
     
-    inline void SetSnapshot(Snapshot&& value) { m_snapshot = value; }
+    inline void SetSnapshot(Snapshot&& value) { m_snapshot = std::move(value); }
 
     
     inline CopySnapshotResult& WithSnapshot(const Snapshot& value) { SetSnapshot(value); return *this;}
 
     
-    inline CopySnapshotResult& WithSnapshot(Snapshot&& value) { SetSnapshot(value); return *this;}
+    inline CopySnapshotResult& WithSnapshot(Snapshot&& value) { SetSnapshot(std::move(value)); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -62,16 +66,18 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline CopySnapshotResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline CopySnapshotResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline CopySnapshotResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Snapshot m_snapshot;
+
     ResponseMetadata m_responseMetadata;
   };
 

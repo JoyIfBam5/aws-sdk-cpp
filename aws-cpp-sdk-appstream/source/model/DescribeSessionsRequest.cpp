@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/appstream/model/DescribeSessionsRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -27,7 +28,9 @@ DescribeSessionsRequest::DescribeSessionsRequest() :
     m_userIdHasBeenSet(false),
     m_nextTokenHasBeenSet(false),
     m_limit(0),
-    m_limitHasBeenSet(false)
+    m_limitHasBeenSet(false),
+    m_authenticationType(AuthenticationType::NOT_SET),
+    m_authenticationTypeHasBeenSet(false)
 {
 }
 
@@ -65,6 +68,11 @@ Aws::String DescribeSessionsRequest::SerializePayload() const
 
   }
 
+  if(m_authenticationTypeHasBeenSet)
+  {
+   payload.WithString("AuthenticationType", AuthenticationTypeMapper::GetNameForAuthenticationType(m_authenticationType));
+  }
+
   return payload.WriteReadable();
 }
 
@@ -75,6 +83,7 @@ Aws::Http::HeaderValueCollection DescribeSessionsRequest::GetRequestSpecificHead
   return headers;
 
 }
+
 
 
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/sdb/SimpleDB_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/sdb/model/ResponseMetadata.h>
 #include <aws/sdb/model/Attribute.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     GetAttributesResult();
-    GetAttributesResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    GetAttributesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    GetAttributesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    GetAttributesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * The list of attributes returned by the operation.
@@ -54,7 +57,7 @@ namespace Model
     /**
      * The list of attributes returned by the operation.
      */
-    inline void SetAttributes(Aws::Vector<Attribute>&& value) { m_attributes = value; }
+    inline void SetAttributes(Aws::Vector<Attribute>&& value) { m_attributes = std::move(value); }
 
     /**
      * The list of attributes returned by the operation.
@@ -64,7 +67,7 @@ namespace Model
     /**
      * The list of attributes returned by the operation.
      */
-    inline GetAttributesResult& WithAttributes(Aws::Vector<Attribute>&& value) { SetAttributes(value); return *this;}
+    inline GetAttributesResult& WithAttributes(Aws::Vector<Attribute>&& value) { SetAttributes(std::move(value)); return *this;}
 
     /**
      * The list of attributes returned by the operation.
@@ -74,7 +77,8 @@ namespace Model
     /**
      * The list of attributes returned by the operation.
      */
-    inline GetAttributesResult& AddAttributes(Attribute&& value) { m_attributes.push_back(value); return *this; }
+    inline GetAttributesResult& AddAttributes(Attribute&& value) { m_attributes.push_back(std::move(value)); return *this; }
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -83,16 +87,18 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline GetAttributesResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline GetAttributesResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline GetAttributesResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<Attribute> m_attributes;
+
     ResponseMetadata m_responseMetadata;
   };
 

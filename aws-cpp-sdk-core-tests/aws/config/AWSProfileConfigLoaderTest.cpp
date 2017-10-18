@@ -1,5 +1,5 @@
 /*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 #include <aws/core/config/AWSProfileConfigLoader.h>
 #include <aws/core/utils/FileSystemUtils.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
-#include <aws/testing/mocks/aws/auth/MockEC2MetadataClient.h>
+#include <aws/testing/mocks/aws/auth/MockAWSHttpResourceClient.h>
 #include <fstream>
 
 using namespace Aws::Utils;

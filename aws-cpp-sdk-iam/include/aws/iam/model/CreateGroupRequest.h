@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/iam/IAMRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,7 +32,19 @@ namespace Model
   {
   public:
     CreateGroupRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateGroup"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p> The path to the group. For more information about paths, see <a
@@ -69,7 +83,7 @@ namespace Model
      * from the ! (\u0021) thru the DEL character (\u007F), including most punctuation
      * characters, digits, and upper and lowercased letters.</p>
      */
-    inline void SetPath(Aws::String&& value) { m_pathHasBeenSet = true; m_path = value; }
+    inline void SetPath(Aws::String&& value) { m_pathHasBeenSet = true; m_path = std::move(value); }
 
     /**
      * <p> The path to the group. For more information about paths, see <a
@@ -108,7 +122,7 @@ namespace Model
      * from the ! (\u0021) thru the DEL character (\u007F), including most punctuation
      * characters, digits, and upper and lowercased letters.</p>
      */
-    inline CreateGroupRequest& WithPath(Aws::String&& value) { SetPath(value); return *this;}
+    inline CreateGroupRequest& WithPath(Aws::String&& value) { SetPath(std::move(value)); return *this;}
 
     /**
      * <p> The path to the group. For more information about paths, see <a
@@ -122,6 +136,7 @@ namespace Model
      * characters, digits, and upper and lowercased letters.</p>
      */
     inline CreateGroupRequest& WithPath(const char* value) { SetPath(value); return *this;}
+
 
     /**
      * <p>The name of the group to create. Do not include the path in this value.</p>
@@ -154,7 +169,7 @@ namespace Model
      * unique within the account. Group names are not distinguished by case. For
      * example, you cannot create groups named both "ADMINS" and "admins".</p>
      */
-    inline void SetGroupName(Aws::String&& value) { m_groupNameHasBeenSet = true; m_groupName = value; }
+    inline void SetGroupName(Aws::String&& value) { m_groupNameHasBeenSet = true; m_groupName = std::move(value); }
 
     /**
      * <p>The name of the group to create. Do not include the path in this value.</p>
@@ -187,7 +202,7 @@ namespace Model
      * unique within the account. Group names are not distinguished by case. For
      * example, you cannot create groups named both "ADMINS" and "admins".</p>
      */
-    inline CreateGroupRequest& WithGroupName(Aws::String&& value) { SetGroupName(value); return *this;}
+    inline CreateGroupRequest& WithGroupName(Aws::String&& value) { SetGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the group to create. Do not include the path in this value.</p>
@@ -201,8 +216,10 @@ namespace Model
     inline CreateGroupRequest& WithGroupName(const char* value) { SetGroupName(value); return *this;}
 
   private:
+
     Aws::String m_path;
     bool m_pathHasBeenSet;
+
     Aws::String m_groupName;
     bool m_groupNameHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/CreateInstanceExportTaskRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -21,10 +22,10 @@ using namespace Aws::Utils;
 
 CreateInstanceExportTaskRequest::CreateInstanceExportTaskRequest() : 
     m_descriptionHasBeenSet(false),
+    m_exportToS3TaskHasBeenSet(false),
     m_instanceIdHasBeenSet(false),
     m_targetEnvironment(ExportEnvironment::NOT_SET),
-    m_targetEnvironmentHasBeenSet(false),
-    m_exportToS3TaskHasBeenSet(false)
+    m_targetEnvironmentHasBeenSet(false)
 {
 }
 
@@ -37,6 +38,11 @@ Aws::String CreateInstanceExportTaskRequest::SerializePayload() const
     ss << "Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
   }
 
+  if(m_exportToS3TaskHasBeenSet)
+  {
+    m_exportToS3Task.OutputToStream(ss, "ExportToS3");
+  }
+
   if(m_instanceIdHasBeenSet)
   {
     ss << "InstanceId=" << StringUtils::URLEncode(m_instanceId.c_str()) << "&";
@@ -47,12 +53,12 @@ Aws::String CreateInstanceExportTaskRequest::SerializePayload() const
     ss << "TargetEnvironment=" << ExportEnvironmentMapper::GetNameForExportEnvironment(m_targetEnvironment) << "&";
   }
 
-  if(m_exportToS3TaskHasBeenSet)
-  {
-    m_exportToS3Task.OutputToStream(ss, "ExportToS3");
-  }
-
   ss << "Version=2016-11-15";
   return ss.str();
 }
 
+
+void  CreateInstanceExportTaskRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dynamodb/DynamoDB_EXPORTS.h>
 #include <aws/dynamodb/model/AttributeValue.h>
 #include <aws/dynamodb/model/AttributeAction.h>
+#include <utility>
 
 namespace Aws
 {
@@ -52,6 +54,7 @@ namespace Model
     AttributeValueUpdate& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Represents the data for an attribute.</p> <p>Each attribute value is
      * described as a name-value pair. The name is the data type, and the value is the
@@ -77,7 +80,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html#HowItWorks.DataTypes">Data
      * TYpes</a> in the <i>Amazon DynamoDB Developer Guide</i>. </p>
      */
-    inline void SetValue(AttributeValue&& value) { m_valueHasBeenSet = true; m_value = value; }
+    inline void SetValue(AttributeValue&& value) { m_valueHasBeenSet = true; m_value = std::move(value); }
 
     /**
      * <p>Represents the data for an attribute.</p> <p>Each attribute value is
@@ -95,7 +98,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html#HowItWorks.DataTypes">Data
      * TYpes</a> in the <i>Amazon DynamoDB Developer Guide</i>. </p>
      */
-    inline AttributeValueUpdate& WithValue(AttributeValue&& value) { SetValue(value); return *this;}
+    inline AttributeValueUpdate& WithValue(AttributeValue&& value) { SetValue(std::move(value)); return *this;}
+
 
     /**
      * <p>Specifies how to perform the update. Valid values are <code>PUT</code>
@@ -257,7 +261,7 @@ namespace Model
      * numbers) for the attribute value. The only data types allowed are number and
      * number set; no other data types can be specified.</p> </li> </ul>
      */
-    inline void SetAction(AttributeAction&& value) { m_actionHasBeenSet = true; m_action = value; }
+    inline void SetAction(AttributeAction&& value) { m_actionHasBeenSet = true; m_action = std::move(value); }
 
     /**
      * <p>Specifies how to perform the update. Valid values are <code>PUT</code>
@@ -365,11 +369,13 @@ namespace Model
      * numbers) for the attribute value. The only data types allowed are number and
      * number set; no other data types can be specified.</p> </li> </ul>
      */
-    inline AttributeValueUpdate& WithAction(AttributeAction&& value) { SetAction(value); return *this;}
+    inline AttributeValueUpdate& WithAction(AttributeAction&& value) { SetAction(std::move(value)); return *this;}
 
   private:
+
     AttributeValue m_value;
     bool m_valueHasBeenSet;
+
     AttributeAction m_action;
     bool m_actionHasBeenSet;
   };

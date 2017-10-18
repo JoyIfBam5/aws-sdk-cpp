@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/logs/model/CreateLogGroupRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -23,6 +24,7 @@ using namespace Aws::Utils;
 
 CreateLogGroupRequest::CreateLogGroupRequest() : 
     m_logGroupNameHasBeenSet(false),
+    m_kmsKeyIdHasBeenSet(false),
     m_tagsHasBeenSet(false)
 {
 }
@@ -34,6 +36,12 @@ Aws::String CreateLogGroupRequest::SerializePayload() const
   if(m_logGroupNameHasBeenSet)
   {
    payload.WithString("logGroupName", m_logGroupName);
+
+  }
+
+  if(m_kmsKeyIdHasBeenSet)
+  {
+   payload.WithString("kmsKeyId", m_kmsKeyId);
 
   }
 
@@ -58,6 +66,7 @@ Aws::Http::HeaderValueCollection CreateLogGroupRequest::GetRequestSpecificHeader
   return headers;
 
 }
+
 
 
 

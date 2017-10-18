@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/support/Support_EXPORTS.h>
 #include <aws/support/SupportRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,9 +35,17 @@ namespace Model
   {
   public:
     ResolveCaseRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ResolveCase"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The AWS Support case ID requested or returned in the call. The case ID is an
@@ -56,7 +66,7 @@ namespace Model
      * alphanumeric string formatted as shown in this example:
      * case-<i>12345678910-2013-c4c1d2bf33c5cf47</i> </p>
      */
-    inline void SetCaseId(Aws::String&& value) { m_caseIdHasBeenSet = true; m_caseId = value; }
+    inline void SetCaseId(Aws::String&& value) { m_caseIdHasBeenSet = true; m_caseId = std::move(value); }
 
     /**
      * <p>The AWS Support case ID requested or returned in the call. The case ID is an
@@ -77,7 +87,7 @@ namespace Model
      * alphanumeric string formatted as shown in this example:
      * case-<i>12345678910-2013-c4c1d2bf33c5cf47</i> </p>
      */
-    inline ResolveCaseRequest& WithCaseId(Aws::String&& value) { SetCaseId(value); return *this;}
+    inline ResolveCaseRequest& WithCaseId(Aws::String&& value) { SetCaseId(std::move(value)); return *this;}
 
     /**
      * <p>The AWS Support case ID requested or returned in the call. The case ID is an
@@ -87,6 +97,7 @@ namespace Model
     inline ResolveCaseRequest& WithCaseId(const char* value) { SetCaseId(value); return *this;}
 
   private:
+
     Aws::String m_caseId;
     bool m_caseIdHasBeenSet;
   };

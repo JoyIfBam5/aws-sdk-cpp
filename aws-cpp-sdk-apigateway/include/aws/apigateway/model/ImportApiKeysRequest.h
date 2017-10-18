@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/apigateway/APIGatewayRequest.h>
 #include <aws/core/utils/Array.h>
 #include <aws/apigateway/model/ApiKeysFormat.h>
+#include <utility>
 
 namespace Aws
 {
@@ -39,7 +41,15 @@ namespace Model
   {
   public:
     ImportApiKeysRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ImportApiKeys"; }
+
     void AddQueryStringParameters(Aws::Http::URI& uri) const override;
+
 
     /**
      * <p>A query parameter to specify the input format to imported API keys.
@@ -57,7 +67,7 @@ namespace Model
      * <p>A query parameter to specify the input format to imported API keys.
      * Currently, only the <code>csv</code> format is supported.</p>
      */
-    inline void SetFormat(ApiKeysFormat&& value) { m_formatHasBeenSet = true; m_format = value; }
+    inline void SetFormat(ApiKeysFormat&& value) { m_formatHasBeenSet = true; m_format = std::move(value); }
 
     /**
      * <p>A query parameter to specify the input format to imported API keys.
@@ -69,7 +79,8 @@ namespace Model
      * <p>A query parameter to specify the input format to imported API keys.
      * Currently, only the <code>csv</code> format is supported.</p>
      */
-    inline ImportApiKeysRequest& WithFormat(ApiKeysFormat&& value) { SetFormat(value); return *this;}
+    inline ImportApiKeysRequest& WithFormat(ApiKeysFormat&& value) { SetFormat(std::move(value)); return *this;}
+
 
     /**
      * <p>A query parameter to indicate whether to rollback <a>ApiKey</a> importation
@@ -90,8 +101,11 @@ namespace Model
     inline ImportApiKeysRequest& WithFailOnWarnings(bool value) { SetFailOnWarnings(value); return *this;}
 
   private:
+
+
     ApiKeysFormat m_format;
     bool m_formatHasBeenSet;
+
     bool m_failOnWarnings;
     bool m_failOnWarningsHasBeenSet;
   };

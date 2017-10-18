@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/states/SFN_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     CreateActivityResult();
-    CreateActivityResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateActivityResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateActivityResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateActivityResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the created activity.</p>
@@ -53,7 +56,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the created activity.</p>
      */
-    inline void SetActivityArn(Aws::String&& value) { m_activityArn = value; }
+    inline void SetActivityArn(Aws::String&& value) { m_activityArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the created activity.</p>
@@ -68,12 +71,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the created activity.</p>
      */
-    inline CreateActivityResult& WithActivityArn(Aws::String&& value) { SetActivityArn(value); return *this;}
+    inline CreateActivityResult& WithActivityArn(Aws::String&& value) { SetActivityArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the created activity.</p>
      */
     inline CreateActivityResult& WithActivityArn(const char* value) { SetActivityArn(value); return *this;}
+
 
     /**
      * <p>The date the activity was created.</p>
@@ -88,7 +92,7 @@ namespace Model
     /**
      * <p>The date the activity was created.</p>
      */
-    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDate = value; }
+    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDate = std::move(value); }
 
     /**
      * <p>The date the activity was created.</p>
@@ -98,10 +102,12 @@ namespace Model
     /**
      * <p>The date the activity was created.</p>
      */
-    inline CreateActivityResult& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(value); return *this;}
+    inline CreateActivityResult& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_activityArn;
+
     Aws::Utils::DateTime m_creationDate;
   };
 

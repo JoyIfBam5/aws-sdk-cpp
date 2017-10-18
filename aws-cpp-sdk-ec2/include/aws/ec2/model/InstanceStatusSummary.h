@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
-#include <aws/ec2/model/SummaryStatus.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <aws/ec2/model/SummaryStatus.h>
 #include <aws/ec2/model/InstanceStatusDetails.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,30 +50,6 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
-    /**
-     * <p>The status.</p>
-     */
-    inline const SummaryStatus& GetStatus() const{ return m_status; }
-
-    /**
-     * <p>The status.</p>
-     */
-    inline void SetStatus(const SummaryStatus& value) { m_statusHasBeenSet = true; m_status = value; }
-
-    /**
-     * <p>The status.</p>
-     */
-    inline void SetStatus(SummaryStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
-
-    /**
-     * <p>The status.</p>
-     */
-    inline InstanceStatusSummary& WithStatus(const SummaryStatus& value) { SetStatus(value); return *this;}
-
-    /**
-     * <p>The status.</p>
-     */
-    inline InstanceStatusSummary& WithStatus(SummaryStatus&& value) { SetStatus(value); return *this;}
 
     /**
      * <p>The system instance health or application instance health.</p>
@@ -86,7 +64,7 @@ namespace Model
     /**
      * <p>The system instance health or application instance health.</p>
      */
-    inline void SetDetails(Aws::Vector<InstanceStatusDetails>&& value) { m_detailsHasBeenSet = true; m_details = value; }
+    inline void SetDetails(Aws::Vector<InstanceStatusDetails>&& value) { m_detailsHasBeenSet = true; m_details = std::move(value); }
 
     /**
      * <p>The system instance health or application instance health.</p>
@@ -96,7 +74,7 @@ namespace Model
     /**
      * <p>The system instance health or application instance health.</p>
      */
-    inline InstanceStatusSummary& WithDetails(Aws::Vector<InstanceStatusDetails>&& value) { SetDetails(value); return *this;}
+    inline InstanceStatusSummary& WithDetails(Aws::Vector<InstanceStatusDetails>&& value) { SetDetails(std::move(value)); return *this;}
 
     /**
      * <p>The system instance health or application instance health.</p>
@@ -106,13 +84,41 @@ namespace Model
     /**
      * <p>The system instance health or application instance health.</p>
      */
-    inline InstanceStatusSummary& AddDetails(InstanceStatusDetails&& value) { m_detailsHasBeenSet = true; m_details.push_back(value); return *this; }
+    inline InstanceStatusSummary& AddDetails(InstanceStatusDetails&& value) { m_detailsHasBeenSet = true; m_details.push_back(std::move(value)); return *this; }
+
+
+    /**
+     * <p>The status.</p>
+     */
+    inline const SummaryStatus& GetStatus() const{ return m_status; }
+
+    /**
+     * <p>The status.</p>
+     */
+    inline void SetStatus(const SummaryStatus& value) { m_statusHasBeenSet = true; m_status = value; }
+
+    /**
+     * <p>The status.</p>
+     */
+    inline void SetStatus(SummaryStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
+
+    /**
+     * <p>The status.</p>
+     */
+    inline InstanceStatusSummary& WithStatus(const SummaryStatus& value) { SetStatus(value); return *this;}
+
+    /**
+     * <p>The status.</p>
+     */
+    inline InstanceStatusSummary& WithStatus(SummaryStatus&& value) { SetStatus(std::move(value)); return *this;}
 
   private:
-    SummaryStatus m_status;
-    bool m_statusHasBeenSet;
+
     Aws::Vector<InstanceStatusDetails> m_details;
     bool m_detailsHasBeenSet;
+
+    SummaryStatus m_status;
+    bool m_statusHasBeenSet;
   };
 
 } // namespace Model

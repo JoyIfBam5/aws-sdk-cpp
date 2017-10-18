@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/codebuild/model/SourceType.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -33,6 +34,7 @@ namespace Aws
         static const int CODEPIPELINE_HASH = HashingUtils::HashString("CODEPIPELINE");
         static const int GITHUB_HASH = HashingUtils::HashString("GITHUB");
         static const int S3_HASH = HashingUtils::HashString("S3");
+        static const int BITBUCKET_HASH = HashingUtils::HashString("BITBUCKET");
 
 
         SourceType GetSourceTypeForName(const Aws::String& name)
@@ -53,6 +55,10 @@ namespace Aws
           else if (hashCode == S3_HASH)
           {
             return SourceType::S3;
+          }
+          else if (hashCode == BITBUCKET_HASH)
+          {
+            return SourceType::BITBUCKET;
           }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
@@ -76,6 +82,8 @@ namespace Aws
             return "GITHUB";
           case SourceType::S3:
             return "S3";
+          case SourceType::BITBUCKET:
+            return "BITBUCKET";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

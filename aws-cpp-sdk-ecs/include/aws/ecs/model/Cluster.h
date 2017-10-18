@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     Cluster& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the cluster. The ARN contains
      * the <code>arn:aws:ecs</code> namespace, followed by the region of the cluster,
@@ -74,7 +77,7 @@ namespace Model
      * <code>arn:aws:ecs:<i>region</i>:<i>012345678910</i>:cluster/<i>test</i>
      * </code>..</p>
      */
-    inline void SetClusterArn(Aws::String&& value) { m_clusterArnHasBeenSet = true; m_clusterArn = value; }
+    inline void SetClusterArn(Aws::String&& value) { m_clusterArnHasBeenSet = true; m_clusterArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the cluster. The ARN contains
@@ -104,7 +107,7 @@ namespace Model
      * <code>arn:aws:ecs:<i>region</i>:<i>012345678910</i>:cluster/<i>test</i>
      * </code>..</p>
      */
-    inline Cluster& WithClusterArn(Aws::String&& value) { SetClusterArn(value); return *this;}
+    inline Cluster& WithClusterArn(Aws::String&& value) { SetClusterArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the cluster. The ARN contains
@@ -115,6 +118,7 @@ namespace Model
      * </code>..</p>
      */
     inline Cluster& WithClusterArn(const char* value) { SetClusterArn(value); return *this;}
+
 
     /**
      * <p>A user-generated string that you use to identify your cluster.</p>
@@ -129,7 +133,7 @@ namespace Model
     /**
      * <p>A user-generated string that you use to identify your cluster.</p>
      */
-    inline void SetClusterName(Aws::String&& value) { m_clusterNameHasBeenSet = true; m_clusterName = value; }
+    inline void SetClusterName(Aws::String&& value) { m_clusterNameHasBeenSet = true; m_clusterName = std::move(value); }
 
     /**
      * <p>A user-generated string that you use to identify your cluster.</p>
@@ -144,12 +148,13 @@ namespace Model
     /**
      * <p>A user-generated string that you use to identify your cluster.</p>
      */
-    inline Cluster& WithClusterName(Aws::String&& value) { SetClusterName(value); return *this;}
+    inline Cluster& WithClusterName(Aws::String&& value) { SetClusterName(std::move(value)); return *this;}
 
     /**
      * <p>A user-generated string that you use to identify your cluster.</p>
      */
     inline Cluster& WithClusterName(const char* value) { SetClusterName(value); return *this;}
+
 
     /**
      * <p>The status of the cluster. The valid values are <code>ACTIVE</code> or
@@ -173,7 +178,7 @@ namespace Model
      * container instances with the cluster and the associated instances can accept
      * tasks.</p>
      */
-    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The status of the cluster. The valid values are <code>ACTIVE</code> or
@@ -197,7 +202,7 @@ namespace Model
      * container instances with the cluster and the associated instances can accept
      * tasks.</p>
      */
-    inline Cluster& WithStatus(Aws::String&& value) { SetStatus(value); return *this;}
+    inline Cluster& WithStatus(Aws::String&& value) { SetStatus(std::move(value)); return *this;}
 
     /**
      * <p>The status of the cluster. The valid values are <code>ACTIVE</code> or
@@ -206,6 +211,7 @@ namespace Model
      * tasks.</p>
      */
     inline Cluster& WithStatus(const char* value) { SetStatus(value); return *this;}
+
 
     /**
      * <p>The number of container instances registered into the cluster.</p>
@@ -221,6 +227,7 @@ namespace Model
      * <p>The number of container instances registered into the cluster.</p>
      */
     inline Cluster& WithRegisteredContainerInstancesCount(int value) { SetRegisteredContainerInstancesCount(value); return *this;}
+
 
     /**
      * <p>The number of tasks in the cluster that are in the <code>RUNNING</code>
@@ -240,6 +247,7 @@ namespace Model
      */
     inline Cluster& WithRunningTasksCount(int value) { SetRunningTasksCount(value); return *this;}
 
+
     /**
      * <p>The number of tasks in the cluster that are in the <code>PENDING</code>
      * state.</p>
@@ -257,6 +265,7 @@ namespace Model
      * state.</p>
      */
     inline Cluster& WithPendingTasksCount(int value) { SetPendingTasksCount(value); return *this;}
+
 
     /**
      * <p>The number of services that are running on the cluster in an
@@ -280,18 +289,25 @@ namespace Model
     inline Cluster& WithActiveServicesCount(int value) { SetActiveServicesCount(value); return *this;}
 
   private:
+
     Aws::String m_clusterArn;
     bool m_clusterArnHasBeenSet;
+
     Aws::String m_clusterName;
     bool m_clusterNameHasBeenSet;
+
     Aws::String m_status;
     bool m_statusHasBeenSet;
+
     int m_registeredContainerInstancesCount;
     bool m_registeredContainerInstancesCountHasBeenSet;
+
     int m_runningTasksCount;
     bool m_runningTasksCountHasBeenSet;
+
     int m_pendingTasksCount;
     bool m_pendingTasksCountHasBeenSet;
+
     int m_activeServicesCount;
     bool m_activeServicesCountHasBeenSet;
   };

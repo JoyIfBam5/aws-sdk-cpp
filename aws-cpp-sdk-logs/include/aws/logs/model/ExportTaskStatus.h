@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/logs/CloudWatchLogs_EXPORTS.h>
 #include <aws/logs/model/ExportTaskStatusCode.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     ExportTaskStatus& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The status code of the export task.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The status code of the export task.</p>
      */
-    inline void SetCode(ExportTaskStatusCode&& value) { m_codeHasBeenSet = true; m_code = value; }
+    inline void SetCode(ExportTaskStatusCode&& value) { m_codeHasBeenSet = true; m_code = std::move(value); }
 
     /**
      * <p>The status code of the export task.</p>
@@ -67,7 +70,8 @@ namespace Model
     /**
      * <p>The status code of the export task.</p>
      */
-    inline ExportTaskStatus& WithCode(ExportTaskStatusCode&& value) { SetCode(value); return *this;}
+    inline ExportTaskStatus& WithCode(ExportTaskStatusCode&& value) { SetCode(std::move(value)); return *this;}
+
 
     /**
      * <p>The status message related to the status code.</p>
@@ -82,7 +86,7 @@ namespace Model
     /**
      * <p>The status message related to the status code.</p>
      */
-    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = value; }
+    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = std::move(value); }
 
     /**
      * <p>The status message related to the status code.</p>
@@ -97,7 +101,7 @@ namespace Model
     /**
      * <p>The status message related to the status code.</p>
      */
-    inline ExportTaskStatus& WithMessage(Aws::String&& value) { SetMessage(value); return *this;}
+    inline ExportTaskStatus& WithMessage(Aws::String&& value) { SetMessage(std::move(value)); return *this;}
 
     /**
      * <p>The status message related to the status code.</p>
@@ -105,8 +109,10 @@ namespace Model
     inline ExportTaskStatus& WithMessage(const char* value) { SetMessage(value); return *this;}
 
   private:
+
     ExportTaskStatusCode m_code;
     bool m_codeHasBeenSet;
+
     Aws::String m_message;
     bool m_messageHasBeenSet;
   };

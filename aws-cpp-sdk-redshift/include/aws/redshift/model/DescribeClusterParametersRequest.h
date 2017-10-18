@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/redshift/RedshiftRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,19 @@ namespace Model
   {
   public:
     DescribeClusterParametersRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeClusterParameters"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The name of a cluster parameter group for which to return details.</p>
@@ -48,7 +62,7 @@ namespace Model
     /**
      * <p>The name of a cluster parameter group for which to return details.</p>
      */
-    inline void SetParameterGroupName(Aws::String&& value) { m_parameterGroupNameHasBeenSet = true; m_parameterGroupName = value; }
+    inline void SetParameterGroupName(Aws::String&& value) { m_parameterGroupNameHasBeenSet = true; m_parameterGroupName = std::move(value); }
 
     /**
      * <p>The name of a cluster parameter group for which to return details.</p>
@@ -63,12 +77,13 @@ namespace Model
     /**
      * <p>The name of a cluster parameter group for which to return details.</p>
      */
-    inline DescribeClusterParametersRequest& WithParameterGroupName(Aws::String&& value) { SetParameterGroupName(value); return *this;}
+    inline DescribeClusterParametersRequest& WithParameterGroupName(Aws::String&& value) { SetParameterGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name of a cluster parameter group for which to return details.</p>
      */
     inline DescribeClusterParametersRequest& WithParameterGroupName(const char* value) { SetParameterGroupName(value); return *this;}
+
 
     /**
      * <p>The parameter types to return. Specify <code>user</code> to show parameters
@@ -95,7 +110,7 @@ namespace Model
      * parameter group. </p> <p>Default: All parameter types returned.</p> <p>Valid
      * Values: <code>user</code> | <code>engine-default</code> </p>
      */
-    inline void SetSource(Aws::String&& value) { m_sourceHasBeenSet = true; m_source = value; }
+    inline void SetSource(Aws::String&& value) { m_sourceHasBeenSet = true; m_source = std::move(value); }
 
     /**
      * <p>The parameter types to return. Specify <code>user</code> to show parameters
@@ -122,7 +137,7 @@ namespace Model
      * parameter group. </p> <p>Default: All parameter types returned.</p> <p>Valid
      * Values: <code>user</code> | <code>engine-default</code> </p>
      */
-    inline DescribeClusterParametersRequest& WithSource(Aws::String&& value) { SetSource(value); return *this;}
+    inline DescribeClusterParametersRequest& WithSource(Aws::String&& value) { SetSource(std::move(value)); return *this;}
 
     /**
      * <p>The parameter types to return. Specify <code>user</code> to show parameters
@@ -132,6 +147,7 @@ namespace Model
      * Values: <code>user</code> | <code>engine-default</code> </p>
      */
     inline DescribeClusterParametersRequest& WithSource(const char* value) { SetSource(value); return *this;}
+
 
     /**
      * <p>The maximum number of response records to return in each call. If the number
@@ -163,6 +179,7 @@ namespace Model
      */
     inline DescribeClusterParametersRequest& WithMaxRecords(int value) { SetMaxRecords(value); return *this;}
 
+
     /**
      * <p>An optional parameter that specifies the starting point to return a set of
      * response records. When the results of a <a>DescribeClusterParameters</a> request
@@ -191,7 +208,7 @@ namespace Model
      * response records by providing the returned marker value in the
      * <code>Marker</code> parameter and retrying the request. </p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p>An optional parameter that specifies the starting point to return a set of
@@ -221,7 +238,7 @@ namespace Model
      * response records by providing the returned marker value in the
      * <code>Marker</code> parameter and retrying the request. </p>
      */
-    inline DescribeClusterParametersRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeClusterParametersRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>An optional parameter that specifies the starting point to return a set of
@@ -234,12 +251,16 @@ namespace Model
     inline DescribeClusterParametersRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
 
   private:
+
     Aws::String m_parameterGroupName;
     bool m_parameterGroupNameHasBeenSet;
+
     Aws::String m_source;
     bool m_sourceHasBeenSet;
+
     int m_maxRecords;
     bool m_maxRecordsHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
   };

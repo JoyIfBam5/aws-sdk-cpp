@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/s3/model/InventoryFormat.h>
+#include <utility>
 
 namespace Aws
 {
@@ -40,6 +42,7 @@ namespace Model
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
 
+
     /**
      * The ID of the account that owns the destination bucket.
      */
@@ -53,7 +56,7 @@ namespace Model
     /**
      * The ID of the account that owns the destination bucket.
      */
-    inline void SetAccountId(Aws::String&& value) { m_accountIdHasBeenSet = true; m_accountId = value; }
+    inline void SetAccountId(Aws::String&& value) { m_accountIdHasBeenSet = true; m_accountId = std::move(value); }
 
     /**
      * The ID of the account that owns the destination bucket.
@@ -68,12 +71,13 @@ namespace Model
     /**
      * The ID of the account that owns the destination bucket.
      */
-    inline InventoryS3BucketDestination& WithAccountId(Aws::String&& value) { SetAccountId(value); return *this;}
+    inline InventoryS3BucketDestination& WithAccountId(Aws::String&& value) { SetAccountId(std::move(value)); return *this;}
 
     /**
      * The ID of the account that owns the destination bucket.
      */
     inline InventoryS3BucketDestination& WithAccountId(const char* value) { SetAccountId(value); return *this;}
+
 
     /**
      * The Amazon resource name (ARN) of the bucket where inventory results will be
@@ -91,7 +95,7 @@ namespace Model
      * The Amazon resource name (ARN) of the bucket where inventory results will be
      * published.
      */
-    inline void SetBucket(Aws::String&& value) { m_bucketHasBeenSet = true; m_bucket = value; }
+    inline void SetBucket(Aws::String&& value) { m_bucketHasBeenSet = true; m_bucket = std::move(value); }
 
     /**
      * The Amazon resource name (ARN) of the bucket where inventory results will be
@@ -109,13 +113,14 @@ namespace Model
      * The Amazon resource name (ARN) of the bucket where inventory results will be
      * published.
      */
-    inline InventoryS3BucketDestination& WithBucket(Aws::String&& value) { SetBucket(value); return *this;}
+    inline InventoryS3BucketDestination& WithBucket(Aws::String&& value) { SetBucket(std::move(value)); return *this;}
 
     /**
      * The Amazon resource name (ARN) of the bucket where inventory results will be
      * published.
      */
     inline InventoryS3BucketDestination& WithBucket(const char* value) { SetBucket(value); return *this;}
+
 
     /**
      * Specifies the output format of the inventory results.
@@ -130,7 +135,7 @@ namespace Model
     /**
      * Specifies the output format of the inventory results.
      */
-    inline void SetFormat(InventoryFormat&& value) { m_formatHasBeenSet = true; m_format = value; }
+    inline void SetFormat(InventoryFormat&& value) { m_formatHasBeenSet = true; m_format = std::move(value); }
 
     /**
      * Specifies the output format of the inventory results.
@@ -140,7 +145,8 @@ namespace Model
     /**
      * Specifies the output format of the inventory results.
      */
-    inline InventoryS3BucketDestination& WithFormat(InventoryFormat&& value) { SetFormat(value); return *this;}
+    inline InventoryS3BucketDestination& WithFormat(InventoryFormat&& value) { SetFormat(std::move(value)); return *this;}
+
 
     /**
      * The prefix that is prepended to all inventory results.
@@ -155,7 +161,7 @@ namespace Model
     /**
      * The prefix that is prepended to all inventory results.
      */
-    inline void SetPrefix(Aws::String&& value) { m_prefixHasBeenSet = true; m_prefix = value; }
+    inline void SetPrefix(Aws::String&& value) { m_prefixHasBeenSet = true; m_prefix = std::move(value); }
 
     /**
      * The prefix that is prepended to all inventory results.
@@ -170,7 +176,7 @@ namespace Model
     /**
      * The prefix that is prepended to all inventory results.
      */
-    inline InventoryS3BucketDestination& WithPrefix(Aws::String&& value) { SetPrefix(value); return *this;}
+    inline InventoryS3BucketDestination& WithPrefix(Aws::String&& value) { SetPrefix(std::move(value)); return *this;}
 
     /**
      * The prefix that is prepended to all inventory results.
@@ -178,12 +184,16 @@ namespace Model
     inline InventoryS3BucketDestination& WithPrefix(const char* value) { SetPrefix(value); return *this;}
 
   private:
+
     Aws::String m_accountId;
     bool m_accountIdHasBeenSet;
+
     Aws::String m_bucket;
     bool m_bucketHasBeenSet;
+
     InventoryFormat m_format;
     bool m_formatHasBeenSet;
+
     Aws::String m_prefix;
     bool m_prefixHasBeenSet;
   };

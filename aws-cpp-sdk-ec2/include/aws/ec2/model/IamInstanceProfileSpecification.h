@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The Amazon Resource Name (ARN) of the instance profile.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the instance profile.</p>
      */
-    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = value; }
+    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the instance profile.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the instance profile.</p>
      */
-    inline IamInstanceProfileSpecification& WithArn(Aws::String&& value) { SetArn(value); return *this;}
+    inline IamInstanceProfileSpecification& WithArn(Aws::String&& value) { SetArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the instance profile.</p>
      */
     inline IamInstanceProfileSpecification& WithArn(const char* value) { SetArn(value); return *this;}
+
 
     /**
      * <p>The name of the instance profile.</p>
@@ -94,7 +98,7 @@ namespace Model
     /**
      * <p>The name of the instance profile.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the instance profile.</p>
@@ -109,7 +113,7 @@ namespace Model
     /**
      * <p>The name of the instance profile.</p>
      */
-    inline IamInstanceProfileSpecification& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline IamInstanceProfileSpecification& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the instance profile.</p>
@@ -117,8 +121,10 @@ namespace Model
     inline IamInstanceProfileSpecification& WithName(const char* value) { SetName(value); return *this;}
 
   private:
+
     Aws::String m_arn;
     bool m_arnHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
   };

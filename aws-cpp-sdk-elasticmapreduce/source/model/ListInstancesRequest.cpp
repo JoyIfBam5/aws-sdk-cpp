@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/elasticmapreduce/model/ListInstancesRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -25,6 +26,9 @@ ListInstancesRequest::ListInstancesRequest() :
     m_clusterIdHasBeenSet(false),
     m_instanceGroupIdHasBeenSet(false),
     m_instanceGroupTypesHasBeenSet(false),
+    m_instanceFleetIdHasBeenSet(false),
+    m_instanceFleetType(InstanceFleetType::NOT_SET),
+    m_instanceFleetTypeHasBeenSet(false),
     m_instanceStatesHasBeenSet(false),
     m_markerHasBeenSet(false)
 {
@@ -57,6 +61,17 @@ Aws::String ListInstancesRequest::SerializePayload() const
 
   }
 
+  if(m_instanceFleetIdHasBeenSet)
+  {
+   payload.WithString("InstanceFleetId", m_instanceFleetId);
+
+  }
+
+  if(m_instanceFleetTypeHasBeenSet)
+  {
+   payload.WithString("InstanceFleetType", InstanceFleetTypeMapper::GetNameForInstanceFleetType(m_instanceFleetType));
+  }
+
   if(m_instanceStatesHasBeenSet)
   {
    Array<JsonValue> instanceStatesJsonList(m_instanceStates.size());
@@ -84,6 +99,7 @@ Aws::Http::HeaderValueCollection ListInstancesRequest::GetRequestSpecificHeaders
   return headers;
 
 }
+
 
 
 

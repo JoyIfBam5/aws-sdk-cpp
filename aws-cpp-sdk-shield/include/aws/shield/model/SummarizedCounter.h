@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/shield/Shield_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     SummarizedCounter& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The counter name.</p>
      */
@@ -56,7 +59,7 @@ namespace Model
     /**
      * <p>The counter name.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The counter name.</p>
@@ -71,12 +74,13 @@ namespace Model
     /**
      * <p>The counter name.</p>
      */
-    inline SummarizedCounter& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline SummarizedCounter& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The counter name.</p>
      */
     inline SummarizedCounter& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The maximum value of the counter for a specified time period.</p>
@@ -93,6 +97,7 @@ namespace Model
      */
     inline SummarizedCounter& WithMax(double value) { SetMax(value); return *this;}
 
+
     /**
      * <p>The average value of the counter for a specified time period.</p>
      */
@@ -107,6 +112,7 @@ namespace Model
      * <p>The average value of the counter for a specified time period.</p>
      */
     inline SummarizedCounter& WithAverage(double value) { SetAverage(value); return *this;}
+
 
     /**
      * <p>The total of counter values for a specified time period.</p>
@@ -123,6 +129,7 @@ namespace Model
      */
     inline SummarizedCounter& WithSum(double value) { SetSum(value); return *this;}
 
+
     /**
      * <p>The number of counters for a specified time period.</p>
      */
@@ -138,6 +145,7 @@ namespace Model
      */
     inline SummarizedCounter& WithN(int value) { SetN(value); return *this;}
 
+
     /**
      * <p>The unit of the counters.</p>
      */
@@ -151,7 +159,7 @@ namespace Model
     /**
      * <p>The unit of the counters.</p>
      */
-    inline void SetUnit(Aws::String&& value) { m_unitHasBeenSet = true; m_unit = value; }
+    inline void SetUnit(Aws::String&& value) { m_unitHasBeenSet = true; m_unit = std::move(value); }
 
     /**
      * <p>The unit of the counters.</p>
@@ -166,7 +174,7 @@ namespace Model
     /**
      * <p>The unit of the counters.</p>
      */
-    inline SummarizedCounter& WithUnit(Aws::String&& value) { SetUnit(value); return *this;}
+    inline SummarizedCounter& WithUnit(Aws::String&& value) { SetUnit(std::move(value)); return *this;}
 
     /**
      * <p>The unit of the counters.</p>
@@ -174,16 +182,22 @@ namespace Model
     inline SummarizedCounter& WithUnit(const char* value) { SetUnit(value); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     double m_max;
     bool m_maxHasBeenSet;
+
     double m_average;
     bool m_averageHasBeenSet;
+
     double m_sum;
     bool m_sumHasBeenSet;
+
     int m_n;
     bool m_nHasBeenSet;
+
     Aws::String m_unit;
     bool m_unitHasBeenSet;
   };

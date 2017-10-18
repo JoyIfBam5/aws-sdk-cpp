@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53domains/Route53Domains_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,59 +44,54 @@ namespace Model
   {
   public:
     DisableDomainTransferLockResult();
-    DisableDomainTransferLockResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DisableDomainTransferLockResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DisableDomainTransferLockResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DisableDomainTransferLockResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Identifier for tracking the progress of the request. To use this ID to query
-     * the operation status, use GetOperationDetail.</p> <p>Type: String</p>
-     * <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p>
+     * the operation status, use <a>GetOperationDetail</a>.</p>
      */
     inline const Aws::String& GetOperationId() const{ return m_operationId; }
 
     /**
      * <p>Identifier for tracking the progress of the request. To use this ID to query
-     * the operation status, use GetOperationDetail.</p> <p>Type: String</p>
-     * <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p>
+     * the operation status, use <a>GetOperationDetail</a>.</p>
      */
     inline void SetOperationId(const Aws::String& value) { m_operationId = value; }
 
     /**
      * <p>Identifier for tracking the progress of the request. To use this ID to query
-     * the operation status, use GetOperationDetail.</p> <p>Type: String</p>
-     * <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p>
+     * the operation status, use <a>GetOperationDetail</a>.</p>
      */
-    inline void SetOperationId(Aws::String&& value) { m_operationId = value; }
+    inline void SetOperationId(Aws::String&& value) { m_operationId = std::move(value); }
 
     /**
      * <p>Identifier for tracking the progress of the request. To use this ID to query
-     * the operation status, use GetOperationDetail.</p> <p>Type: String</p>
-     * <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p>
+     * the operation status, use <a>GetOperationDetail</a>.</p>
      */
     inline void SetOperationId(const char* value) { m_operationId.assign(value); }
 
     /**
      * <p>Identifier for tracking the progress of the request. To use this ID to query
-     * the operation status, use GetOperationDetail.</p> <p>Type: String</p>
-     * <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p>
+     * the operation status, use <a>GetOperationDetail</a>.</p>
      */
     inline DisableDomainTransferLockResult& WithOperationId(const Aws::String& value) { SetOperationId(value); return *this;}
 
     /**
      * <p>Identifier for tracking the progress of the request. To use this ID to query
-     * the operation status, use GetOperationDetail.</p> <p>Type: String</p>
-     * <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p>
+     * the operation status, use <a>GetOperationDetail</a>.</p>
      */
-    inline DisableDomainTransferLockResult& WithOperationId(Aws::String&& value) { SetOperationId(value); return *this;}
+    inline DisableDomainTransferLockResult& WithOperationId(Aws::String&& value) { SetOperationId(std::move(value)); return *this;}
 
     /**
      * <p>Identifier for tracking the progress of the request. To use this ID to query
-     * the operation status, use GetOperationDetail.</p> <p>Type: String</p>
-     * <p>Default: None</p> <p>Constraints: Maximum 255 characters.</p>
+     * the operation status, use <a>GetOperationDetail</a>.</p>
      */
     inline DisableDomainTransferLockResult& WithOperationId(const char* value) { SetOperationId(value); return *this;}
 
   private:
+
     Aws::String m_operationId;
   };
 

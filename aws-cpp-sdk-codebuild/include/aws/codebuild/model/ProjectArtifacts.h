@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codebuild/CodeBuild_EXPORTS.h>
 #include <aws/codebuild/model/ArtifactsType.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/codebuild/model/ArtifactNamespace.h>
 #include <aws/codebuild/model/ArtifactPackaging.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,8 +36,8 @@ namespace Model
 {
 
   /**
-   * <p>Information about the build project's build output artifacts.</p><p><h3>See
-   * Also:</h3>   <a
+   * <p>Information about the build output artifacts for the build
+   * project.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/ProjectArtifacts">AWS
    * API Reference</a></p>
    */
@@ -47,9 +49,10 @@ namespace Model
     ProjectArtifacts& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p>The build output artifact's type. Valid values include:</p> <ul> <li> <p>
-     * <code>CODEPIPELINE</code>: The build project with have build output generated
+     * <p>The type of build output artifact. Valid values include:</p> <ul> <li> <p>
+     * <code>CODEPIPELINE</code>: The build project will have build output generated
      * through AWS CodePipeline.</p> </li> <li> <p> <code>NO_ARTIFACTS</code>: The
      * build project will not produce any build output.</p> </li> <li> <p>
      * <code>S3</code>: The build project will store build output in Amazon Simple
@@ -58,8 +61,8 @@ namespace Model
     inline const ArtifactsType& GetType() const{ return m_type; }
 
     /**
-     * <p>The build output artifact's type. Valid values include:</p> <ul> <li> <p>
-     * <code>CODEPIPELINE</code>: The build project with have build output generated
+     * <p>The type of build output artifact. Valid values include:</p> <ul> <li> <p>
+     * <code>CODEPIPELINE</code>: The build project will have build output generated
      * through AWS CodePipeline.</p> </li> <li> <p> <code>NO_ARTIFACTS</code>: The
      * build project will not produce any build output.</p> </li> <li> <p>
      * <code>S3</code>: The build project will store build output in Amazon Simple
@@ -68,18 +71,18 @@ namespace Model
     inline void SetType(const ArtifactsType& value) { m_typeHasBeenSet = true; m_type = value; }
 
     /**
-     * <p>The build output artifact's type. Valid values include:</p> <ul> <li> <p>
-     * <code>CODEPIPELINE</code>: The build project with have build output generated
+     * <p>The type of build output artifact. Valid values include:</p> <ul> <li> <p>
+     * <code>CODEPIPELINE</code>: The build project will have build output generated
      * through AWS CodePipeline.</p> </li> <li> <p> <code>NO_ARTIFACTS</code>: The
      * build project will not produce any build output.</p> </li> <li> <p>
      * <code>S3</code>: The build project will store build output in Amazon Simple
      * Storage Service (Amazon S3).</p> </li> </ul>
      */
-    inline void SetType(ArtifactsType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(ArtifactsType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
-     * <p>The build output artifact's type. Valid values include:</p> <ul> <li> <p>
-     * <code>CODEPIPELINE</code>: The build project with have build output generated
+     * <p>The type of build output artifact. Valid values include:</p> <ul> <li> <p>
+     * <code>CODEPIPELINE</code>: The build project will have build output generated
      * through AWS CodePipeline.</p> </li> <li> <p> <code>NO_ARTIFACTS</code>: The
      * build project will not produce any build output.</p> </li> <li> <p>
      * <code>S3</code>: The build project will store build output in Amazon Simple
@@ -88,14 +91,15 @@ namespace Model
     inline ProjectArtifacts& WithType(const ArtifactsType& value) { SetType(value); return *this;}
 
     /**
-     * <p>The build output artifact's type. Valid values include:</p> <ul> <li> <p>
-     * <code>CODEPIPELINE</code>: The build project with have build output generated
+     * <p>The type of build output artifact. Valid values include:</p> <ul> <li> <p>
+     * <code>CODEPIPELINE</code>: The build project will have build output generated
      * through AWS CodePipeline.</p> </li> <li> <p> <code>NO_ARTIFACTS</code>: The
      * build project will not produce any build output.</p> </li> <li> <p>
      * <code>S3</code>: The build project will store build output in Amazon Simple
      * Storage Service (Amazon S3).</p> </li> </ul>
      */
-    inline ProjectArtifacts& WithType(ArtifactsType&& value) { SetType(value); return *this;}
+    inline ProjectArtifacts& WithType(ArtifactsType&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p>Information about the build output artifact location, as follows:</p> <ul>
@@ -105,9 +109,7 @@ namespace Model
      * </li> <li> <p>If <code>type</code> is set to <code>NO_ARTIFACTS</code>, then
      * this value will be ignored if specified, because no build output will be
      * produced.</p> </li> <li> <p>If <code>type</code> is set to <code>S3</code>, this
-     * is the name of the output bucket. If <code>path</code> is not also specified,
-     * then <code>location</code> can also specify the path of the output artifact in
-     * the output bucket.</p> </li> </ul>
+     * is the name of the output bucket.</p> </li> </ul>
      */
     inline const Aws::String& GetLocation() const{ return m_location; }
 
@@ -119,9 +121,7 @@ namespace Model
      * </li> <li> <p>If <code>type</code> is set to <code>NO_ARTIFACTS</code>, then
      * this value will be ignored if specified, because no build output will be
      * produced.</p> </li> <li> <p>If <code>type</code> is set to <code>S3</code>, this
-     * is the name of the output bucket. If <code>path</code> is not also specified,
-     * then <code>location</code> can also specify the path of the output artifact in
-     * the output bucket.</p> </li> </ul>
+     * is the name of the output bucket.</p> </li> </ul>
      */
     inline void SetLocation(const Aws::String& value) { m_locationHasBeenSet = true; m_location = value; }
 
@@ -133,11 +133,9 @@ namespace Model
      * </li> <li> <p>If <code>type</code> is set to <code>NO_ARTIFACTS</code>, then
      * this value will be ignored if specified, because no build output will be
      * produced.</p> </li> <li> <p>If <code>type</code> is set to <code>S3</code>, this
-     * is the name of the output bucket. If <code>path</code> is not also specified,
-     * then <code>location</code> can also specify the path of the output artifact in
-     * the output bucket.</p> </li> </ul>
+     * is the name of the output bucket.</p> </li> </ul>
      */
-    inline void SetLocation(Aws::String&& value) { m_locationHasBeenSet = true; m_location = value; }
+    inline void SetLocation(Aws::String&& value) { m_locationHasBeenSet = true; m_location = std::move(value); }
 
     /**
      * <p>Information about the build output artifact location, as follows:</p> <ul>
@@ -147,9 +145,7 @@ namespace Model
      * </li> <li> <p>If <code>type</code> is set to <code>NO_ARTIFACTS</code>, then
      * this value will be ignored if specified, because no build output will be
      * produced.</p> </li> <li> <p>If <code>type</code> is set to <code>S3</code>, this
-     * is the name of the output bucket. If <code>path</code> is not also specified,
-     * then <code>location</code> can also specify the path of the output artifact in
-     * the output bucket.</p> </li> </ul>
+     * is the name of the output bucket.</p> </li> </ul>
      */
     inline void SetLocation(const char* value) { m_locationHasBeenSet = true; m_location.assign(value); }
 
@@ -161,9 +157,7 @@ namespace Model
      * </li> <li> <p>If <code>type</code> is set to <code>NO_ARTIFACTS</code>, then
      * this value will be ignored if specified, because no build output will be
      * produced.</p> </li> <li> <p>If <code>type</code> is set to <code>S3</code>, this
-     * is the name of the output bucket. If <code>path</code> is not also specified,
-     * then <code>location</code> can also specify the path of the output artifact in
-     * the output bucket.</p> </li> </ul>
+     * is the name of the output bucket.</p> </li> </ul>
      */
     inline ProjectArtifacts& WithLocation(const Aws::String& value) { SetLocation(value); return *this;}
 
@@ -175,11 +169,9 @@ namespace Model
      * </li> <li> <p>If <code>type</code> is set to <code>NO_ARTIFACTS</code>, then
      * this value will be ignored if specified, because no build output will be
      * produced.</p> </li> <li> <p>If <code>type</code> is set to <code>S3</code>, this
-     * is the name of the output bucket. If <code>path</code> is not also specified,
-     * then <code>location</code> can also specify the path of the output artifact in
-     * the output bucket.</p> </li> </ul>
+     * is the name of the output bucket.</p> </li> </ul>
      */
-    inline ProjectArtifacts& WithLocation(Aws::String&& value) { SetLocation(value); return *this;}
+    inline ProjectArtifacts& WithLocation(Aws::String&& value) { SetLocation(std::move(value)); return *this;}
 
     /**
      * <p>Information about the build output artifact location, as follows:</p> <ul>
@@ -189,11 +181,10 @@ namespace Model
      * </li> <li> <p>If <code>type</code> is set to <code>NO_ARTIFACTS</code>, then
      * this value will be ignored if specified, because no build output will be
      * produced.</p> </li> <li> <p>If <code>type</code> is set to <code>S3</code>, this
-     * is the name of the output bucket. If <code>path</code> is not also specified,
-     * then <code>location</code> can also specify the path of the output artifact in
-     * the output bucket.</p> </li> </ul>
+     * is the name of the output bucket.</p> </li> </ul>
      */
     inline ProjectArtifacts& WithLocation(const char* value) { SetLocation(value); return *this;}
+
 
     /**
      * <p>Along with <code>namespaceType</code> and <code>name</code>, the pattern that
@@ -247,7 +238,7 @@ namespace Model
      * <code>MyArtifact.zip</code>, then the output artifact would be stored in the
      * output bucket at <code>MyArtifacts/MyArtifact.zip</code>.</p>
      */
-    inline void SetPath(Aws::String&& value) { m_pathHasBeenSet = true; m_path = value; }
+    inline void SetPath(Aws::String&& value) { m_pathHasBeenSet = true; m_path = std::move(value); }
 
     /**
      * <p>Along with <code>namespaceType</code> and <code>name</code>, the pattern that
@@ -301,7 +292,7 @@ namespace Model
      * <code>MyArtifact.zip</code>, then the output artifact would be stored in the
      * output bucket at <code>MyArtifacts/MyArtifact.zip</code>.</p>
      */
-    inline ProjectArtifacts& WithPath(Aws::String&& value) { SetPath(value); return *this;}
+    inline ProjectArtifacts& WithPath(Aws::String&& value) { SetPath(std::move(value)); return *this;}
 
     /**
      * <p>Along with <code>namespaceType</code> and <code>name</code>, the pattern that
@@ -320,6 +311,7 @@ namespace Model
      * output bucket at <code>MyArtifacts/MyArtifact.zip</code>.</p>
      */
     inline ProjectArtifacts& WithPath(const char* value) { SetPath(value); return *this;}
+
 
     /**
      * <p>Along with <code>path</code> and <code>name</code>, the pattern that AWS
@@ -382,7 +374,7 @@ namespace Model
      * <code>MyArtifact.zip</code>, then the output artifact would be stored in
      * <code>MyArtifacts/<i>build-ID</i>/MyArtifact.zip</code>.</p>
      */
-    inline void SetNamespaceType(ArtifactNamespace&& value) { m_namespaceTypeHasBeenSet = true; m_namespaceType = value; }
+    inline void SetNamespaceType(ArtifactNamespace&& value) { m_namespaceTypeHasBeenSet = true; m_namespaceType = std::move(value); }
 
     /**
      * <p>Along with <code>path</code> and <code>name</code>, the pattern that AWS
@@ -424,7 +416,8 @@ namespace Model
      * <code>MyArtifact.zip</code>, then the output artifact would be stored in
      * <code>MyArtifacts/<i>build-ID</i>/MyArtifact.zip</code>.</p>
      */
-    inline ProjectArtifacts& WithNamespaceType(ArtifactNamespace&& value) { SetNamespaceType(value); return *this;}
+    inline ProjectArtifacts& WithNamespaceType(ArtifactNamespace&& value) { SetNamespaceType(std::move(value)); return *this;}
+
 
     /**
      * <p>Along with <code>path</code> and <code>namespaceType</code>, the pattern that
@@ -475,7 +468,7 @@ namespace Model
      * <code>MyArtifact.zip</code>, then the output artifact would be stored in
      * <code>MyArtifacts/<i>build-ID</i>/MyArtifact.zip</code>.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>Along with <code>path</code> and <code>namespaceType</code>, the pattern that
@@ -526,7 +519,7 @@ namespace Model
      * <code>MyArtifact.zip</code>, then the output artifact would be stored in
      * <code>MyArtifacts/<i>build-ID</i>/MyArtifact.zip</code>.</p>
      */
-    inline ProjectArtifacts& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline ProjectArtifacts& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>Along with <code>path</code> and <code>namespaceType</code>, the pattern that
@@ -544,6 +537,7 @@ namespace Model
      * <code>MyArtifacts/<i>build-ID</i>/MyArtifact.zip</code>.</p>
      */
     inline ProjectArtifacts& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The type of build output artifact to create, as follows:</p> <ul> <li> <p>If
@@ -591,7 +585,7 @@ namespace Model
      * AWS CodeBuild will create in the output bucket a ZIP file containing the build
      * output.</p> </li> </ul> </li> </ul>
      */
-    inline void SetPackaging(ArtifactPackaging&& value) { m_packagingHasBeenSet = true; m_packaging = value; }
+    inline void SetPackaging(ArtifactPackaging&& value) { m_packagingHasBeenSet = true; m_packaging = std::move(value); }
 
     /**
      * <p>The type of build output artifact to create, as follows:</p> <ul> <li> <p>If
@@ -623,19 +617,25 @@ namespace Model
      * AWS CodeBuild will create in the output bucket a ZIP file containing the build
      * output.</p> </li> </ul> </li> </ul>
      */
-    inline ProjectArtifacts& WithPackaging(ArtifactPackaging&& value) { SetPackaging(value); return *this;}
+    inline ProjectArtifacts& WithPackaging(ArtifactPackaging&& value) { SetPackaging(std::move(value)); return *this;}
 
   private:
+
     ArtifactsType m_type;
     bool m_typeHasBeenSet;
+
     Aws::String m_location;
     bool m_locationHasBeenSet;
+
     Aws::String m_path;
     bool m_pathHasBeenSet;
+
     ArtifactNamespace m_namespaceType;
     bool m_namespaceTypeHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     ArtifactPackaging m_packaging;
     bool m_packagingHasBeenSet;
   };

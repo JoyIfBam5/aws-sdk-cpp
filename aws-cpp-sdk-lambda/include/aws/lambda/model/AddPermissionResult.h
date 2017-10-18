@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lambda/Lambda_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -41,8 +43,9 @@ namespace Model
   {
   public:
     AddPermissionResult();
-    AddPermissionResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    AddPermissionResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    AddPermissionResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    AddPermissionResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The permission statement you specified in the request. The response returns
@@ -63,7 +66,7 @@ namespace Model
      * the same as a string using a backslash ("\") as an escape character in the
      * JSON.</p>
      */
-    inline void SetStatement(Aws::String&& value) { m_statement = value; }
+    inline void SetStatement(Aws::String&& value) { m_statement = std::move(value); }
 
     /**
      * <p>The permission statement you specified in the request. The response returns
@@ -84,7 +87,7 @@ namespace Model
      * the same as a string using a backslash ("\") as an escape character in the
      * JSON.</p>
      */
-    inline AddPermissionResult& WithStatement(Aws::String&& value) { SetStatement(value); return *this;}
+    inline AddPermissionResult& WithStatement(Aws::String&& value) { SetStatement(std::move(value)); return *this;}
 
     /**
      * <p>The permission statement you specified in the request. The response returns
@@ -94,6 +97,7 @@ namespace Model
     inline AddPermissionResult& WithStatement(const char* value) { SetStatement(value); return *this;}
 
   private:
+
     Aws::String m_statement;
   };
 

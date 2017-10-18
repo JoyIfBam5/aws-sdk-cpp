@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/lightsail/LightsailRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/lightsail/model/InstanceAccessProtocol.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,9 +33,17 @@ namespace Model
   {
   public:
     GetInstanceAccessDetailsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "GetInstanceAccessDetails"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The name of the instance to access.</p>
@@ -48,7 +58,7 @@ namespace Model
     /**
      * <p>The name of the instance to access.</p>
      */
-    inline void SetInstanceName(Aws::String&& value) { m_instanceNameHasBeenSet = true; m_instanceName = value; }
+    inline void SetInstanceName(Aws::String&& value) { m_instanceNameHasBeenSet = true; m_instanceName = std::move(value); }
 
     /**
      * <p>The name of the instance to access.</p>
@@ -63,12 +73,13 @@ namespace Model
     /**
      * <p>The name of the instance to access.</p>
      */
-    inline GetInstanceAccessDetailsRequest& WithInstanceName(Aws::String&& value) { SetInstanceName(value); return *this;}
+    inline GetInstanceAccessDetailsRequest& WithInstanceName(Aws::String&& value) { SetInstanceName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the instance to access.</p>
      */
     inline GetInstanceAccessDetailsRequest& WithInstanceName(const char* value) { SetInstanceName(value); return *this;}
+
 
     /**
      * <p>The protocol to use to connect to your instance. Defaults to
@@ -86,7 +97,7 @@ namespace Model
      * <p>The protocol to use to connect to your instance. Defaults to
      * <code>ssh</code>.</p>
      */
-    inline void SetProtocol(InstanceAccessProtocol&& value) { m_protocolHasBeenSet = true; m_protocol = value; }
+    inline void SetProtocol(InstanceAccessProtocol&& value) { m_protocolHasBeenSet = true; m_protocol = std::move(value); }
 
     /**
      * <p>The protocol to use to connect to your instance. Defaults to
@@ -98,11 +109,13 @@ namespace Model
      * <p>The protocol to use to connect to your instance. Defaults to
      * <code>ssh</code>.</p>
      */
-    inline GetInstanceAccessDetailsRequest& WithProtocol(InstanceAccessProtocol&& value) { SetProtocol(value); return *this;}
+    inline GetInstanceAccessDetailsRequest& WithProtocol(InstanceAccessProtocol&& value) { SetProtocol(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_instanceName;
     bool m_instanceNameHasBeenSet;
+
     InstanceAccessProtocol m_protocol;
     bool m_protocolHasBeenSet;
   };

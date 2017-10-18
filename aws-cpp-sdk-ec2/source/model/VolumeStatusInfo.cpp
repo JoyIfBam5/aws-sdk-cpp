@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/VolumeStatusInfo.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,16 +31,16 @@ namespace Model
 {
 
 VolumeStatusInfo::VolumeStatusInfo() : 
+    m_detailsHasBeenSet(false),
     m_status(VolumeStatusInfoStatus::NOT_SET),
-    m_statusHasBeenSet(false),
-    m_detailsHasBeenSet(false)
+    m_statusHasBeenSet(false)
 {
 }
 
 VolumeStatusInfo::VolumeStatusInfo(const XmlNode& xmlNode) : 
+    m_detailsHasBeenSet(false),
     m_status(VolumeStatusInfoStatus::NOT_SET),
-    m_statusHasBeenSet(false),
-    m_detailsHasBeenSet(false)
+    m_statusHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -50,12 +51,6 @@ VolumeStatusInfo& VolumeStatusInfo::operator =(const XmlNode& xmlNode)
 
   if(!resultNode.IsNull())
   {
-    XmlNode statusNode = resultNode.FirstChild("status");
-    if(!statusNode.IsNull())
-    {
-      m_status = VolumeStatusInfoStatusMapper::GetVolumeStatusInfoStatusForName(StringUtils::Trim(statusNode.GetText().c_str()).c_str());
-      m_statusHasBeenSet = true;
-    }
     XmlNode detailsNode = resultNode.FirstChild("details");
     if(!detailsNode.IsNull())
     {
@@ -68,6 +63,12 @@ VolumeStatusInfo& VolumeStatusInfo::operator =(const XmlNode& xmlNode)
 
       m_detailsHasBeenSet = true;
     }
+    XmlNode statusNode = resultNode.FirstChild("status");
+    if(!statusNode.IsNull())
+    {
+      m_status = VolumeStatusInfoStatusMapper::GetVolumeStatusInfoStatusForName(StringUtils::Trim(statusNode.GetText().c_str()).c_str());
+      m_statusHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -75,11 +76,6 @@ VolumeStatusInfo& VolumeStatusInfo::operator =(const XmlNode& xmlNode)
 
 void VolumeStatusInfo::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
-  if(m_statusHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".Status=" << VolumeStatusInfoStatusMapper::GetNameForVolumeStatusInfoStatus(m_status) << "&";
-  }
-
   if(m_detailsHasBeenSet)
   {
       unsigned detailsIdx = 1;
@@ -91,23 +87,28 @@ void VolumeStatusInfo::OutputToStream(Aws::OStream& oStream, const char* locatio
       }
   }
 
+  if(m_statusHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".Status=" << VolumeStatusInfoStatusMapper::GetNameForVolumeStatusInfoStatus(m_status) << "&";
+  }
+
 }
 
 void VolumeStatusInfo::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
-  if(m_statusHasBeenSet)
-  {
-      oStream << location << ".Status=" << VolumeStatusInfoStatusMapper::GetNameForVolumeStatusInfoStatus(m_status) << "&";
-  }
   if(m_detailsHasBeenSet)
   {
       unsigned detailsIdx = 1;
       for(auto& item : m_details)
       {
         Aws::StringStream detailsSs;
-        detailsSs << location <<  ".Item." << detailsIdx++;
+        detailsSs << location <<  ".Details." << detailsIdx++;
         item.OutputToStream(oStream, detailsSs.str().c_str());
       }
+  }
+  if(m_statusHasBeenSet)
+  {
+      oStream << location << ".Status=" << VolumeStatusInfoStatusMapper::GetNameForVolumeStatusInfoStatus(m_status) << "&";
   }
 }
 

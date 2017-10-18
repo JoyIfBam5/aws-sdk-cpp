@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/config/ConfigService_EXPORTS.h>
 #include <aws/config/model/ResourceType.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     ResourceIdentifier& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The type of resource.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The type of resource.</p>
      */
-    inline void SetResourceType(ResourceType&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = value; }
+    inline void SetResourceType(ResourceType&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = std::move(value); }
 
     /**
      * <p>The type of resource.</p>
@@ -70,7 +73,8 @@ namespace Model
     /**
      * <p>The type of resource.</p>
      */
-    inline ResourceIdentifier& WithResourceType(ResourceType&& value) { SetResourceType(value); return *this;}
+    inline ResourceIdentifier& WithResourceType(ResourceType&& value) { SetResourceType(std::move(value)); return *this;}
+
 
     /**
      * <p>The ID of the resource (for example., <code>sg-xxxxxx</code>).</p>
@@ -85,7 +89,7 @@ namespace Model
     /**
      * <p>The ID of the resource (for example., <code>sg-xxxxxx</code>).</p>
      */
-    inline void SetResourceId(Aws::String&& value) { m_resourceIdHasBeenSet = true; m_resourceId = value; }
+    inline void SetResourceId(Aws::String&& value) { m_resourceIdHasBeenSet = true; m_resourceId = std::move(value); }
 
     /**
      * <p>The ID of the resource (for example., <code>sg-xxxxxx</code>).</p>
@@ -100,12 +104,13 @@ namespace Model
     /**
      * <p>The ID of the resource (for example., <code>sg-xxxxxx</code>).</p>
      */
-    inline ResourceIdentifier& WithResourceId(Aws::String&& value) { SetResourceId(value); return *this;}
+    inline ResourceIdentifier& WithResourceId(Aws::String&& value) { SetResourceId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the resource (for example., <code>sg-xxxxxx</code>).</p>
      */
     inline ResourceIdentifier& WithResourceId(const char* value) { SetResourceId(value); return *this;}
+
 
     /**
      * <p>The custom name of the resource (if available).</p>
@@ -120,7 +125,7 @@ namespace Model
     /**
      * <p>The custom name of the resource (if available).</p>
      */
-    inline void SetResourceName(Aws::String&& value) { m_resourceNameHasBeenSet = true; m_resourceName = value; }
+    inline void SetResourceName(Aws::String&& value) { m_resourceNameHasBeenSet = true; m_resourceName = std::move(value); }
 
     /**
      * <p>The custom name of the resource (if available).</p>
@@ -135,12 +140,13 @@ namespace Model
     /**
      * <p>The custom name of the resource (if available).</p>
      */
-    inline ResourceIdentifier& WithResourceName(Aws::String&& value) { SetResourceName(value); return *this;}
+    inline ResourceIdentifier& WithResourceName(Aws::String&& value) { SetResourceName(std::move(value)); return *this;}
 
     /**
      * <p>The custom name of the resource (if available).</p>
      */
     inline ResourceIdentifier& WithResourceName(const char* value) { SetResourceName(value); return *this;}
+
 
     /**
      * <p>The time that the resource was deleted.</p>
@@ -155,7 +161,7 @@ namespace Model
     /**
      * <p>The time that the resource was deleted.</p>
      */
-    inline void SetResourceDeletionTime(Aws::Utils::DateTime&& value) { m_resourceDeletionTimeHasBeenSet = true; m_resourceDeletionTime = value; }
+    inline void SetResourceDeletionTime(Aws::Utils::DateTime&& value) { m_resourceDeletionTimeHasBeenSet = true; m_resourceDeletionTime = std::move(value); }
 
     /**
      * <p>The time that the resource was deleted.</p>
@@ -165,15 +171,19 @@ namespace Model
     /**
      * <p>The time that the resource was deleted.</p>
      */
-    inline ResourceIdentifier& WithResourceDeletionTime(Aws::Utils::DateTime&& value) { SetResourceDeletionTime(value); return *this;}
+    inline ResourceIdentifier& WithResourceDeletionTime(Aws::Utils::DateTime&& value) { SetResourceDeletionTime(std::move(value)); return *this;}
 
   private:
+
     ResourceType m_resourceType;
     bool m_resourceTypeHasBeenSet;
+
     Aws::String m_resourceId;
     bool m_resourceIdHasBeenSet;
+
     Aws::String m_resourceName;
     bool m_resourceNameHasBeenSet;
+
     Aws::Utils::DateTime m_resourceDeletionTime;
     bool m_resourceDeletionTimeHasBeenSet;
   };

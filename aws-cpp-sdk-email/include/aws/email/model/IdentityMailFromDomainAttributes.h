@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/email/model/CustomMailFromStatus.h>
 #include <aws/email/model/BehaviorOnMXFailure.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +51,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The custom MAIL FROM domain that the identity is configured to use.</p>
      */
@@ -62,7 +65,7 @@ namespace Model
     /**
      * <p>The custom MAIL FROM domain that the identity is configured to use.</p>
      */
-    inline void SetMailFromDomain(Aws::String&& value) { m_mailFromDomainHasBeenSet = true; m_mailFromDomain = value; }
+    inline void SetMailFromDomain(Aws::String&& value) { m_mailFromDomainHasBeenSet = true; m_mailFromDomain = std::move(value); }
 
     /**
      * <p>The custom MAIL FROM domain that the identity is configured to use.</p>
@@ -77,12 +80,13 @@ namespace Model
     /**
      * <p>The custom MAIL FROM domain that the identity is configured to use.</p>
      */
-    inline IdentityMailFromDomainAttributes& WithMailFromDomain(Aws::String&& value) { SetMailFromDomain(value); return *this;}
+    inline IdentityMailFromDomainAttributes& WithMailFromDomain(Aws::String&& value) { SetMailFromDomain(std::move(value)); return *this;}
 
     /**
      * <p>The custom MAIL FROM domain that the identity is configured to use.</p>
      */
     inline IdentityMailFromDomainAttributes& WithMailFromDomain(const char* value) { SetMailFromDomain(value); return *this;}
+
 
     /**
      * <p>The state that indicates whether Amazon SES has successfully read the MX
@@ -109,7 +113,7 @@ namespace Model
      * the verified identity sends an email. All other states indicate that Amazon SES
      * takes the action described by <code>BehaviorOnMXFailure</code>.</p>
      */
-    inline void SetMailFromDomainStatus(CustomMailFromStatus&& value) { m_mailFromDomainStatusHasBeenSet = true; m_mailFromDomainStatus = value; }
+    inline void SetMailFromDomainStatus(CustomMailFromStatus&& value) { m_mailFromDomainStatusHasBeenSet = true; m_mailFromDomainStatus = std::move(value); }
 
     /**
      * <p>The state that indicates whether Amazon SES has successfully read the MX
@@ -127,7 +131,8 @@ namespace Model
      * the verified identity sends an email. All other states indicate that Amazon SES
      * takes the action described by <code>BehaviorOnMXFailure</code>.</p>
      */
-    inline IdentityMailFromDomainAttributes& WithMailFromDomainStatus(CustomMailFromStatus&& value) { SetMailFromDomainStatus(value); return *this;}
+    inline IdentityMailFromDomainAttributes& WithMailFromDomainStatus(CustomMailFromStatus&& value) { SetMailFromDomainStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The action that Amazon SES takes if it cannot successfully read the required
@@ -166,7 +171,7 @@ namespace Model
      * this behavior are <code>Pending</code>, <code>Failed</code>, and
      * <code>TemporaryFailure</code>.</p>
      */
-    inline void SetBehaviorOnMXFailure(BehaviorOnMXFailure&& value) { m_behaviorOnMXFailureHasBeenSet = true; m_behaviorOnMXFailure = value; }
+    inline void SetBehaviorOnMXFailure(BehaviorOnMXFailure&& value) { m_behaviorOnMXFailureHasBeenSet = true; m_behaviorOnMXFailure = std::move(value); }
 
     /**
      * <p>The action that Amazon SES takes if it cannot successfully read the required
@@ -192,13 +197,16 @@ namespace Model
      * this behavior are <code>Pending</code>, <code>Failed</code>, and
      * <code>TemporaryFailure</code>.</p>
      */
-    inline IdentityMailFromDomainAttributes& WithBehaviorOnMXFailure(BehaviorOnMXFailure&& value) { SetBehaviorOnMXFailure(value); return *this;}
+    inline IdentityMailFromDomainAttributes& WithBehaviorOnMXFailure(BehaviorOnMXFailure&& value) { SetBehaviorOnMXFailure(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_mailFromDomain;
     bool m_mailFromDomainHasBeenSet;
+
     CustomMailFromStatus m_mailFromDomainStatus;
     bool m_mailFromDomainStatusHasBeenSet;
+
     BehaviorOnMXFailure m_behaviorOnMXFailure;
     bool m_behaviorOnMXFailureHasBeenSet;
   };

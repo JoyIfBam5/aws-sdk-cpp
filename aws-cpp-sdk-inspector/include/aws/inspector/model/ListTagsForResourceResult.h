@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/inspector/Inspector_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/inspector/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,46 +39,48 @@ namespace Model
   {
   public:
     ListTagsForResourceResult();
-    ListTagsForResourceResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListTagsForResourceResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListTagsForResourceResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListTagsForResourceResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A collection of key and value pairs.</p>
      */
-    inline const Aws::Vector<Tag>& GetTagList() const{ return m_tagList; }
+    inline const Aws::Vector<Tag>& GetTags() const{ return m_tags; }
 
     /**
      * <p>A collection of key and value pairs.</p>
      */
-    inline void SetTagList(const Aws::Vector<Tag>& value) { m_tagList = value; }
+    inline void SetTags(const Aws::Vector<Tag>& value) { m_tags = value; }
 
     /**
      * <p>A collection of key and value pairs.</p>
      */
-    inline void SetTagList(Aws::Vector<Tag>&& value) { m_tagList = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tags = std::move(value); }
 
     /**
      * <p>A collection of key and value pairs.</p>
      */
-    inline ListTagsForResourceResult& WithTagList(const Aws::Vector<Tag>& value) { SetTagList(value); return *this;}
+    inline ListTagsForResourceResult& WithTags(const Aws::Vector<Tag>& value) { SetTags(value); return *this;}
 
     /**
      * <p>A collection of key and value pairs.</p>
      */
-    inline ListTagsForResourceResult& WithTagList(Aws::Vector<Tag>&& value) { SetTagList(value); return *this;}
+    inline ListTagsForResourceResult& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
      * <p>A collection of key and value pairs.</p>
      */
-    inline ListTagsForResourceResult& AddTagList(const Tag& value) { m_tagList.push_back(value); return *this; }
+    inline ListTagsForResourceResult& AddTags(const Tag& value) { m_tags.push_back(value); return *this; }
 
     /**
      * <p>A collection of key and value pairs.</p>
      */
-    inline ListTagsForResourceResult& AddTagList(Tag&& value) { m_tagList.push_back(value); return *this; }
+    inline ListTagsForResourceResult& AddTags(Tag&& value) { m_tags.push_back(std::move(value)); return *this; }
 
   private:
-    Aws::Vector<Tag> m_tagList;
+
+    Aws::Vector<Tag> m_tags;
   };
 
 } // namespace Model

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/opsworks/model/UpdateLayerRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -26,6 +27,7 @@ UpdateLayerRequest::UpdateLayerRequest() :
     m_nameHasBeenSet(false),
     m_shortnameHasBeenSet(false),
     m_attributesHasBeenSet(false),
+    m_cloudWatchLogsConfigurationHasBeenSet(false),
     m_customInstanceProfileArnHasBeenSet(false),
     m_customJsonHasBeenSet(false),
     m_customSecurityGroupIdsHasBeenSet(false),
@@ -76,6 +78,12 @@ Aws::String UpdateLayerRequest::SerializePayload() const
      attributesJsonMap.WithString(LayerAttributesKeysMapper::GetNameForLayerAttributesKeys(attributesItem.first), attributesItem.second);
    }
    payload.WithObject("Attributes", std::move(attributesJsonMap));
+
+  }
+
+  if(m_cloudWatchLogsConfigurationHasBeenSet)
+  {
+   payload.WithObject("CloudWatchLogsConfiguration", m_cloudWatchLogsConfiguration.Jsonize());
 
   }
 
@@ -176,6 +184,7 @@ Aws::Http::HeaderValueCollection UpdateLayerRequest::GetRequestSpecificHeaders()
   return headers;
 
 }
+
 
 
 

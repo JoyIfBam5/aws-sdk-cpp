@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/iam/IAMErrors.h>
@@ -30,9 +31,11 @@
 #include <aws/iam/model/CreatePolicyVersionResult.h>
 #include <aws/iam/model/CreateRoleResult.h>
 #include <aws/iam/model/CreateSAMLProviderResult.h>
+#include <aws/iam/model/CreateServiceLinkedRoleResult.h>
 #include <aws/iam/model/CreateServiceSpecificCredentialResult.h>
 #include <aws/iam/model/CreateUserResult.h>
 #include <aws/iam/model/CreateVirtualMFADeviceResult.h>
+#include <aws/iam/model/DeleteServiceLinkedRoleResult.h>
 #include <aws/iam/model/GenerateCredentialReportResult.h>
 #include <aws/iam/model/GetAccessKeyLastUsedResult.h>
 #include <aws/iam/model/GetAccountAuthorizationDetailsResult.h>
@@ -53,6 +56,7 @@
 #include <aws/iam/model/GetSAMLProviderResult.h>
 #include <aws/iam/model/GetSSHPublicKeyResult.h>
 #include <aws/iam/model/GetServerCertificateResult.h>
+#include <aws/iam/model/GetServiceLinkedRoleDeletionStatusResult.h>
 #include <aws/iam/model/GetUserResult.h>
 #include <aws/iam/model/GetUserPolicyResult.h>
 #include <aws/iam/model/ListAccessKeysResult.h>
@@ -83,6 +87,7 @@
 #include <aws/iam/model/ResetServiceSpecificCredentialResult.h>
 #include <aws/iam/model/SimulateCustomPolicyResult.h>
 #include <aws/iam/model/SimulatePrincipalPolicyResult.h>
+#include <aws/iam/model/UpdateRoleDescriptionResult.h>
 #include <aws/iam/model/UpdateSAMLProviderResult.h>
 #include <aws/iam/model/UploadSSHPublicKeyResult.h>
 #include <aws/iam/model/UploadServerCertificateResult.h>
@@ -150,6 +155,7 @@ namespace Model
         class CreatePolicyVersionRequest;
         class CreateRoleRequest;
         class CreateSAMLProviderRequest;
+        class CreateServiceLinkedRoleRequest;
         class CreateServiceSpecificCredentialRequest;
         class CreateUserRequest;
         class CreateVirtualMFADeviceRequest;
@@ -169,6 +175,7 @@ namespace Model
         class DeleteSAMLProviderRequest;
         class DeleteSSHPublicKeyRequest;
         class DeleteServerCertificateRequest;
+        class DeleteServiceLinkedRoleRequest;
         class DeleteServiceSpecificCredentialRequest;
         class DeleteSigningCertificateRequest;
         class DeleteUserRequest;
@@ -198,6 +205,7 @@ namespace Model
         class GetSAMLProviderRequest;
         class GetSSHPublicKeyRequest;
         class GetServerCertificateRequest;
+        class GetServiceLinkedRoleDeletionStatusRequest;
         class GetUserRequest;
         class GetUserPolicyRequest;
         class ListAccessKeysRequest;
@@ -242,6 +250,7 @@ namespace Model
         class UpdateGroupRequest;
         class UpdateLoginProfileRequest;
         class UpdateOpenIDConnectProviderThumbprintRequest;
+        class UpdateRoleDescriptionRequest;
         class UpdateSAMLProviderRequest;
         class UpdateSSHPublicKeyRequest;
         class UpdateServerCertificateRequest;
@@ -252,15 +261,15 @@ namespace Model
         class UploadServerCertificateRequest;
         class UploadSigningCertificateRequest;
 
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> AddClientIDToOpenIDConnectProviderOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> AddRoleToInstanceProfileOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> AddUserToGroupOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> AttachGroupPolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> AttachRolePolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> AttachUserPolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> ChangePasswordOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> AddClientIDToOpenIDConnectProviderOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> AddRoleToInstanceProfileOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> AddUserToGroupOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> AttachGroupPolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> AttachRolePolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> AttachUserPolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> ChangePasswordOutcome;
         typedef Aws::Utils::Outcome<CreateAccessKeyResult, Aws::Client::AWSError<IAMErrors>> CreateAccessKeyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> CreateAccountAliasOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> CreateAccountAliasOutcome;
         typedef Aws::Utils::Outcome<CreateGroupResult, Aws::Client::AWSError<IAMErrors>> CreateGroupOutcome;
         typedef Aws::Utils::Outcome<CreateInstanceProfileResult, Aws::Client::AWSError<IAMErrors>> CreateInstanceProfileOutcome;
         typedef Aws::Utils::Outcome<CreateLoginProfileResult, Aws::Client::AWSError<IAMErrors>> CreateLoginProfileOutcome;
@@ -269,34 +278,36 @@ namespace Model
         typedef Aws::Utils::Outcome<CreatePolicyVersionResult, Aws::Client::AWSError<IAMErrors>> CreatePolicyVersionOutcome;
         typedef Aws::Utils::Outcome<CreateRoleResult, Aws::Client::AWSError<IAMErrors>> CreateRoleOutcome;
         typedef Aws::Utils::Outcome<CreateSAMLProviderResult, Aws::Client::AWSError<IAMErrors>> CreateSAMLProviderOutcome;
+        typedef Aws::Utils::Outcome<CreateServiceLinkedRoleResult, Aws::Client::AWSError<IAMErrors>> CreateServiceLinkedRoleOutcome;
         typedef Aws::Utils::Outcome<CreateServiceSpecificCredentialResult, Aws::Client::AWSError<IAMErrors>> CreateServiceSpecificCredentialOutcome;
         typedef Aws::Utils::Outcome<CreateUserResult, Aws::Client::AWSError<IAMErrors>> CreateUserOutcome;
         typedef Aws::Utils::Outcome<CreateVirtualMFADeviceResult, Aws::Client::AWSError<IAMErrors>> CreateVirtualMFADeviceOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeactivateMFADeviceOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeleteAccessKeyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeleteAccountAliasOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeleteAccountPasswordPolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeleteGroupOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeleteGroupPolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeleteInstanceProfileOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeleteLoginProfileOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeleteOpenIDConnectProviderOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeletePolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeletePolicyVersionOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeleteRoleOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeleteRolePolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeleteSAMLProviderOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeleteSSHPublicKeyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeleteServerCertificateOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeleteServiceSpecificCredentialOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeleteSigningCertificateOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeleteUserOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeleteUserPolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DeleteVirtualMFADeviceOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DetachGroupPolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DetachRolePolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> DetachUserPolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> EnableMFADeviceOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeactivateMFADeviceOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeleteAccessKeyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeleteAccountAliasOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeleteAccountPasswordPolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeleteGroupOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeleteGroupPolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeleteInstanceProfileOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeleteLoginProfileOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeleteOpenIDConnectProviderOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeletePolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeletePolicyVersionOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeleteRoleOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeleteRolePolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeleteSAMLProviderOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeleteSSHPublicKeyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeleteServerCertificateOutcome;
+        typedef Aws::Utils::Outcome<DeleteServiceLinkedRoleResult, Aws::Client::AWSError<IAMErrors>> DeleteServiceLinkedRoleOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeleteServiceSpecificCredentialOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeleteSigningCertificateOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeleteUserOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeleteUserPolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DeleteVirtualMFADeviceOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DetachGroupPolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DetachRolePolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> DetachUserPolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> EnableMFADeviceOutcome;
         typedef Aws::Utils::Outcome<GenerateCredentialReportResult, Aws::Client::AWSError<IAMErrors>> GenerateCredentialReportOutcome;
         typedef Aws::Utils::Outcome<GetAccessKeyLastUsedResult, Aws::Client::AWSError<IAMErrors>> GetAccessKeyLastUsedOutcome;
         typedef Aws::Utils::Outcome<GetAccountAuthorizationDetailsResult, Aws::Client::AWSError<IAMErrors>> GetAccountAuthorizationDetailsOutcome;
@@ -317,6 +328,7 @@ namespace Model
         typedef Aws::Utils::Outcome<GetSAMLProviderResult, Aws::Client::AWSError<IAMErrors>> GetSAMLProviderOutcome;
         typedef Aws::Utils::Outcome<GetSSHPublicKeyResult, Aws::Client::AWSError<IAMErrors>> GetSSHPublicKeyOutcome;
         typedef Aws::Utils::Outcome<GetServerCertificateResult, Aws::Client::AWSError<IAMErrors>> GetServerCertificateOutcome;
+        typedef Aws::Utils::Outcome<GetServiceLinkedRoleDeletionStatusResult, Aws::Client::AWSError<IAMErrors>> GetServiceLinkedRoleDeletionStatusOutcome;
         typedef Aws::Utils::Outcome<GetUserResult, Aws::Client::AWSError<IAMErrors>> GetUserOutcome;
         typedef Aws::Utils::Outcome<GetUserPolicyResult, Aws::Client::AWSError<IAMErrors>> GetUserPolicyOutcome;
         typedef Aws::Utils::Outcome<ListAccessKeysResult, Aws::Client::AWSError<IAMErrors>> ListAccessKeysOutcome;
@@ -344,29 +356,30 @@ namespace Model
         typedef Aws::Utils::Outcome<ListUserPoliciesResult, Aws::Client::AWSError<IAMErrors>> ListUserPoliciesOutcome;
         typedef Aws::Utils::Outcome<ListUsersResult, Aws::Client::AWSError<IAMErrors>> ListUsersOutcome;
         typedef Aws::Utils::Outcome<ListVirtualMFADevicesResult, Aws::Client::AWSError<IAMErrors>> ListVirtualMFADevicesOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> PutGroupPolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> PutRolePolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> PutUserPolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> RemoveClientIDFromOpenIDConnectProviderOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> RemoveRoleFromInstanceProfileOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> RemoveUserFromGroupOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> PutGroupPolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> PutRolePolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> PutUserPolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> RemoveClientIDFromOpenIDConnectProviderOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> RemoveRoleFromInstanceProfileOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> RemoveUserFromGroupOutcome;
         typedef Aws::Utils::Outcome<ResetServiceSpecificCredentialResult, Aws::Client::AWSError<IAMErrors>> ResetServiceSpecificCredentialOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> ResyncMFADeviceOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> SetDefaultPolicyVersionOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> ResyncMFADeviceOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> SetDefaultPolicyVersionOutcome;
         typedef Aws::Utils::Outcome<SimulateCustomPolicyResult, Aws::Client::AWSError<IAMErrors>> SimulateCustomPolicyOutcome;
         typedef Aws::Utils::Outcome<SimulatePrincipalPolicyResult, Aws::Client::AWSError<IAMErrors>> SimulatePrincipalPolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> UpdateAccessKeyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> UpdateAccountPasswordPolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> UpdateAssumeRolePolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> UpdateGroupOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> UpdateLoginProfileOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> UpdateOpenIDConnectProviderThumbprintOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> UpdateAccessKeyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> UpdateAccountPasswordPolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> UpdateAssumeRolePolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> UpdateGroupOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> UpdateLoginProfileOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> UpdateOpenIDConnectProviderThumbprintOutcome;
+        typedef Aws::Utils::Outcome<UpdateRoleDescriptionResult, Aws::Client::AWSError<IAMErrors>> UpdateRoleDescriptionOutcome;
         typedef Aws::Utils::Outcome<UpdateSAMLProviderResult, Aws::Client::AWSError<IAMErrors>> UpdateSAMLProviderOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> UpdateSSHPublicKeyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> UpdateServerCertificateOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> UpdateServiceSpecificCredentialOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> UpdateSigningCertificateOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IAMErrors>> UpdateUserOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> UpdateSSHPublicKeyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> UpdateServerCertificateOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> UpdateServiceSpecificCredentialOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> UpdateSigningCertificateOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IAMErrors>> UpdateUserOutcome;
         typedef Aws::Utils::Outcome<UploadSSHPublicKeyResult, Aws::Client::AWSError<IAMErrors>> UploadSSHPublicKeyOutcome;
         typedef Aws::Utils::Outcome<UploadServerCertificateResult, Aws::Client::AWSError<IAMErrors>> UploadServerCertificateOutcome;
         typedef Aws::Utils::Outcome<UploadSigningCertificateResult, Aws::Client::AWSError<IAMErrors>> UploadSigningCertificateOutcome;
@@ -388,6 +401,7 @@ namespace Model
         typedef std::future<CreatePolicyVersionOutcome> CreatePolicyVersionOutcomeCallable;
         typedef std::future<CreateRoleOutcome> CreateRoleOutcomeCallable;
         typedef std::future<CreateSAMLProviderOutcome> CreateSAMLProviderOutcomeCallable;
+        typedef std::future<CreateServiceLinkedRoleOutcome> CreateServiceLinkedRoleOutcomeCallable;
         typedef std::future<CreateServiceSpecificCredentialOutcome> CreateServiceSpecificCredentialOutcomeCallable;
         typedef std::future<CreateUserOutcome> CreateUserOutcomeCallable;
         typedef std::future<CreateVirtualMFADeviceOutcome> CreateVirtualMFADeviceOutcomeCallable;
@@ -407,6 +421,7 @@ namespace Model
         typedef std::future<DeleteSAMLProviderOutcome> DeleteSAMLProviderOutcomeCallable;
         typedef std::future<DeleteSSHPublicKeyOutcome> DeleteSSHPublicKeyOutcomeCallable;
         typedef std::future<DeleteServerCertificateOutcome> DeleteServerCertificateOutcomeCallable;
+        typedef std::future<DeleteServiceLinkedRoleOutcome> DeleteServiceLinkedRoleOutcomeCallable;
         typedef std::future<DeleteServiceSpecificCredentialOutcome> DeleteServiceSpecificCredentialOutcomeCallable;
         typedef std::future<DeleteSigningCertificateOutcome> DeleteSigningCertificateOutcomeCallable;
         typedef std::future<DeleteUserOutcome> DeleteUserOutcomeCallable;
@@ -436,6 +451,7 @@ namespace Model
         typedef std::future<GetSAMLProviderOutcome> GetSAMLProviderOutcomeCallable;
         typedef std::future<GetSSHPublicKeyOutcome> GetSSHPublicKeyOutcomeCallable;
         typedef std::future<GetServerCertificateOutcome> GetServerCertificateOutcomeCallable;
+        typedef std::future<GetServiceLinkedRoleDeletionStatusOutcome> GetServiceLinkedRoleDeletionStatusOutcomeCallable;
         typedef std::future<GetUserOutcome> GetUserOutcomeCallable;
         typedef std::future<GetUserPolicyOutcome> GetUserPolicyOutcomeCallable;
         typedef std::future<ListAccessKeysOutcome> ListAccessKeysOutcomeCallable;
@@ -480,6 +496,7 @@ namespace Model
         typedef std::future<UpdateGroupOutcome> UpdateGroupOutcomeCallable;
         typedef std::future<UpdateLoginProfileOutcome> UpdateLoginProfileOutcomeCallable;
         typedef std::future<UpdateOpenIDConnectProviderThumbprintOutcome> UpdateOpenIDConnectProviderThumbprintOutcomeCallable;
+        typedef std::future<UpdateRoleDescriptionOutcome> UpdateRoleDescriptionOutcomeCallable;
         typedef std::future<UpdateSAMLProviderOutcome> UpdateSAMLProviderOutcomeCallable;
         typedef std::future<UpdateSSHPublicKeyOutcome> UpdateSSHPublicKeyOutcomeCallable;
         typedef std::future<UpdateServerCertificateOutcome> UpdateServerCertificateOutcomeCallable;
@@ -510,6 +527,7 @@ namespace Model
     typedef std::function<void(const IAMClient*, const Model::CreatePolicyVersionRequest&, const Model::CreatePolicyVersionOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreatePolicyVersionResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::CreateRoleRequest&, const Model::CreateRoleOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateRoleResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::CreateSAMLProviderRequest&, const Model::CreateSAMLProviderOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateSAMLProviderResponseReceivedHandler;
+    typedef std::function<void(const IAMClient*, const Model::CreateServiceLinkedRoleRequest&, const Model::CreateServiceLinkedRoleOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateServiceLinkedRoleResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::CreateServiceSpecificCredentialRequest&, const Model::CreateServiceSpecificCredentialOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateServiceSpecificCredentialResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::CreateUserRequest&, const Model::CreateUserOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateUserResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::CreateVirtualMFADeviceRequest&, const Model::CreateVirtualMFADeviceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateVirtualMFADeviceResponseReceivedHandler;
@@ -529,6 +547,7 @@ namespace Model
     typedef std::function<void(const IAMClient*, const Model::DeleteSAMLProviderRequest&, const Model::DeleteSAMLProviderOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteSAMLProviderResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::DeleteSSHPublicKeyRequest&, const Model::DeleteSSHPublicKeyOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteSSHPublicKeyResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::DeleteServerCertificateRequest&, const Model::DeleteServerCertificateOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteServerCertificateResponseReceivedHandler;
+    typedef std::function<void(const IAMClient*, const Model::DeleteServiceLinkedRoleRequest&, const Model::DeleteServiceLinkedRoleOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteServiceLinkedRoleResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::DeleteServiceSpecificCredentialRequest&, const Model::DeleteServiceSpecificCredentialOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteServiceSpecificCredentialResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::DeleteSigningCertificateRequest&, const Model::DeleteSigningCertificateOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteSigningCertificateResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::DeleteUserRequest&, const Model::DeleteUserOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteUserResponseReceivedHandler;
@@ -558,6 +577,7 @@ namespace Model
     typedef std::function<void(const IAMClient*, const Model::GetSAMLProviderRequest&, const Model::GetSAMLProviderOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetSAMLProviderResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::GetSSHPublicKeyRequest&, const Model::GetSSHPublicKeyOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetSSHPublicKeyResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::GetServerCertificateRequest&, const Model::GetServerCertificateOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetServerCertificateResponseReceivedHandler;
+    typedef std::function<void(const IAMClient*, const Model::GetServiceLinkedRoleDeletionStatusRequest&, const Model::GetServiceLinkedRoleDeletionStatusOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetServiceLinkedRoleDeletionStatusResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::GetUserRequest&, const Model::GetUserOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetUserResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::GetUserPolicyRequest&, const Model::GetUserPolicyOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetUserPolicyResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::ListAccessKeysRequest&, const Model::ListAccessKeysOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListAccessKeysResponseReceivedHandler;
@@ -602,6 +622,7 @@ namespace Model
     typedef std::function<void(const IAMClient*, const Model::UpdateGroupRequest&, const Model::UpdateGroupOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateGroupResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::UpdateLoginProfileRequest&, const Model::UpdateLoginProfileOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateLoginProfileResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::UpdateOpenIDConnectProviderThumbprintRequest&, const Model::UpdateOpenIDConnectProviderThumbprintOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateOpenIDConnectProviderThumbprintResponseReceivedHandler;
+    typedef std::function<void(const IAMClient*, const Model::UpdateRoleDescriptionRequest&, const Model::UpdateRoleDescriptionOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateRoleDescriptionResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::UpdateSAMLProviderRequest&, const Model::UpdateSAMLProviderOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateSAMLProviderResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::UpdateSSHPublicKeyRequest&, const Model::UpdateSSHPublicKeyOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateSSHPublicKeyResponseReceivedHandler;
     typedef std::function<void(const IAMClient*, const Model::UpdateServerCertificateRequest&, const Model::UpdateServerCertificateOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateServerCertificateResponseReceivedHandler;
@@ -669,27 +690,30 @@ namespace Model
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        IAMClient(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        IAMClient(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        IAMClient(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        IAMClient(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        IAMClient(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        IAMClient(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
         virtual ~IAMClient();
+
+        inline virtual const char* GetServiceClientName() const override { return "iam"; }
+
 
        /**
         * Converts any request object to a presigned URL with the GET method, using region for the signer and a timeout of 15 minutes.
         */
-        Aws::String ConvertRequestToPresignedUrl(const AmazonSerializableWebServiceRequest& requestToConvert, const char* region) const;
+        Aws::String ConvertRequestToPresignedUrl(const Aws::AmazonSerializableWebServiceRequest& requestToConvert, const char* region) const;
 
 
         /**
@@ -727,10 +751,11 @@ namespace Model
         virtual void AddClientIDToOpenIDConnectProviderAsync(const Model::AddClientIDToOpenIDConnectProviderRequest& request, const AddClientIDToOpenIDConnectProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Adds the specified IAM role to the specified instance profile.</p> <note>
-         * <p>The caller of this API must be granted the <code>PassRole</code> permission
-         * on the IAM role by a permission policy.</p> </note> <p>For more information
-         * about roles, go to <a
+         * <p>Adds the specified IAM role to the specified instance profile. An instance
+         * profile can contain only one role, and this limit cannot be increased.</p>
+         * <note> <p>The caller of this API must be granted the <code>PassRole</code>
+         * permission on the IAM role by a permission policy.</p> </note> <p>For more
+         * information about roles, go to <a
          * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html">Working
          * with Roles</a>. For more information about instance profiles, go to <a
          * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html">About
@@ -741,10 +766,11 @@ namespace Model
         virtual Model::AddRoleToInstanceProfileOutcome AddRoleToInstanceProfile(const Model::AddRoleToInstanceProfileRequest& request) const;
 
         /**
-         * <p>Adds the specified IAM role to the specified instance profile.</p> <note>
-         * <p>The caller of this API must be granted the <code>PassRole</code> permission
-         * on the IAM role by a permission policy.</p> </note> <p>For more information
-         * about roles, go to <a
+         * <p>Adds the specified IAM role to the specified instance profile. An instance
+         * profile can contain only one role, and this limit cannot be increased.</p>
+         * <note> <p>The caller of this API must be granted the <code>PassRole</code>
+         * permission on the IAM role by a permission policy.</p> </note> <p>For more
+         * information about roles, go to <a
          * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html">Working
          * with Roles</a>. For more information about instance profiles, go to <a
          * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html">About
@@ -757,10 +783,11 @@ namespace Model
         virtual Model::AddRoleToInstanceProfileOutcomeCallable AddRoleToInstanceProfileCallable(const Model::AddRoleToInstanceProfileRequest& request) const;
 
         /**
-         * <p>Adds the specified IAM role to the specified instance profile.</p> <note>
-         * <p>The caller of this API must be granted the <code>PassRole</code> permission
-         * on the IAM role by a permission policy.</p> </note> <p>For more information
-         * about roles, go to <a
+         * <p>Adds the specified IAM role to the specified instance profile. An instance
+         * profile can contain only one role, and this limit cannot be increased.</p>
+         * <note> <p>The caller of this API must be granted the <code>PassRole</code>
+         * permission on the IAM role by a permission policy.</p> </note> <p>For more
+         * information about roles, go to <a
          * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html">Working
          * with Roles</a>. For more information about instance profiles, go to <a
          * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html">About
@@ -841,14 +868,14 @@ namespace Model
         virtual void AttachGroupPolicyAsync(const Model::AttachGroupPolicyRequest& request, const AttachGroupPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Attaches the specified managed policy to the specified IAM role.</p> <p>When
-         * you attach a managed policy to a role, the managed policy becomes part of the
-         * role's permission (access) policy. You cannot use a managed policy as the role's
-         * trust policy. The role's trust policy is created at the same time as the role,
-         * using <a>CreateRole</a>. You can update a role's trust policy using
-         * <a>UpdateAssumeRolePolicy</a>.</p> <p>Use this API to attach a <i>managed</i>
-         * policy to a role. To embed an inline policy in a role, use <a>PutRolePolicy</a>.
-         * For more information about policies, see <a
+         * <p>Attaches the specified managed policy to the specified IAM role. When you
+         * attach a managed policy to a role, the managed policy becomes part of the role's
+         * permission (access) policy.</p> <note> <p>You cannot use a managed policy as the
+         * role's trust policy. The role's trust policy is created at the same time as the
+         * role, using <a>CreateRole</a>. You can update a role's trust policy using
+         * <a>UpdateAssumeRolePolicy</a>.</p> </note> <p>Use this API to attach a
+         * <i>managed</i> policy to a role. To embed an inline policy in a role, use
+         * <a>PutRolePolicy</a>. For more information about policies, see <a
          * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
          * Policies and Inline Policies</a> in the <i>IAM User Guide</i>.</p><p><h3>See
          * Also:</h3>   <a
@@ -858,14 +885,14 @@ namespace Model
         virtual Model::AttachRolePolicyOutcome AttachRolePolicy(const Model::AttachRolePolicyRequest& request) const;
 
         /**
-         * <p>Attaches the specified managed policy to the specified IAM role.</p> <p>When
-         * you attach a managed policy to a role, the managed policy becomes part of the
-         * role's permission (access) policy. You cannot use a managed policy as the role's
-         * trust policy. The role's trust policy is created at the same time as the role,
-         * using <a>CreateRole</a>. You can update a role's trust policy using
-         * <a>UpdateAssumeRolePolicy</a>.</p> <p>Use this API to attach a <i>managed</i>
-         * policy to a role. To embed an inline policy in a role, use <a>PutRolePolicy</a>.
-         * For more information about policies, see <a
+         * <p>Attaches the specified managed policy to the specified IAM role. When you
+         * attach a managed policy to a role, the managed policy becomes part of the role's
+         * permission (access) policy.</p> <note> <p>You cannot use a managed policy as the
+         * role's trust policy. The role's trust policy is created at the same time as the
+         * role, using <a>CreateRole</a>. You can update a role's trust policy using
+         * <a>UpdateAssumeRolePolicy</a>.</p> </note> <p>Use this API to attach a
+         * <i>managed</i> policy to a role. To embed an inline policy in a role, use
+         * <a>PutRolePolicy</a>. For more information about policies, see <a
          * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
          * Policies and Inline Policies</a> in the <i>IAM User Guide</i>.</p><p><h3>See
          * Also:</h3>   <a
@@ -877,14 +904,14 @@ namespace Model
         virtual Model::AttachRolePolicyOutcomeCallable AttachRolePolicyCallable(const Model::AttachRolePolicyRequest& request) const;
 
         /**
-         * <p>Attaches the specified managed policy to the specified IAM role.</p> <p>When
-         * you attach a managed policy to a role, the managed policy becomes part of the
-         * role's permission (access) policy. You cannot use a managed policy as the role's
-         * trust policy. The role's trust policy is created at the same time as the role,
-         * using <a>CreateRole</a>. You can update a role's trust policy using
-         * <a>UpdateAssumeRolePolicy</a>.</p> <p>Use this API to attach a <i>managed</i>
-         * policy to a role. To embed an inline policy in a role, use <a>PutRolePolicy</a>.
-         * For more information about policies, see <a
+         * <p>Attaches the specified managed policy to the specified IAM role. When you
+         * attach a managed policy to a role, the managed policy becomes part of the role's
+         * permission (access) policy.</p> <note> <p>You cannot use a managed policy as the
+         * role's trust policy. The role's trust policy is created at the same time as the
+         * role, using <a>CreateRole</a>. You can update a role's trust policy using
+         * <a>UpdateAssumeRolePolicy</a>.</p> </note> <p>Use this API to attach a
+         * <i>managed</i> policy to a role. To embed an inline policy in a role, use
+         * <a>PutRolePolicy</a>. For more information about policies, see <a
          * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html">Managed
          * Policies and Inline Policies</a> in the <i>IAM User Guide</i>.</p><p><h3>See
          * Also:</h3>   <a
@@ -1485,6 +1512,64 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void CreateSAMLProviderAsync(const Model::CreateSAMLProviderRequest& request, const CreateSAMLProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Creates an IAM role that is linked to a specific AWS service. The service
+         * controls the attached policies and when the role can be deleted. This helps
+         * ensure that the service is not broken by an unexpectedly changed or deleted
+         * role, which could put your AWS resources into an unknown state. Allowing the
+         * service to control the role helps improve service stability and proper cleanup
+         * when a service and its role are no longer needed.</p> <p>The name of the role is
+         * autogenerated by combining the string that you specify for the
+         * <code>AWSServiceName</code> parameter with the string that you specify for the
+         * <code>CustomSuffix</code> parameter. The resulting name must be unique in your
+         * account or the request fails.</p> <p>To attach a policy to this service-linked
+         * role, you must make the request using the AWS service that depends on this
+         * role.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreateServiceLinkedRole">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::CreateServiceLinkedRoleOutcome CreateServiceLinkedRole(const Model::CreateServiceLinkedRoleRequest& request) const;
+
+        /**
+         * <p>Creates an IAM role that is linked to a specific AWS service. The service
+         * controls the attached policies and when the role can be deleted. This helps
+         * ensure that the service is not broken by an unexpectedly changed or deleted
+         * role, which could put your AWS resources into an unknown state. Allowing the
+         * service to control the role helps improve service stability and proper cleanup
+         * when a service and its role are no longer needed.</p> <p>The name of the role is
+         * autogenerated by combining the string that you specify for the
+         * <code>AWSServiceName</code> parameter with the string that you specify for the
+         * <code>CustomSuffix</code> parameter. The resulting name must be unique in your
+         * account or the request fails.</p> <p>To attach a policy to this service-linked
+         * role, you must make the request using the AWS service that depends on this
+         * role.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreateServiceLinkedRole">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::CreateServiceLinkedRoleOutcomeCallable CreateServiceLinkedRoleCallable(const Model::CreateServiceLinkedRoleRequest& request) const;
+
+        /**
+         * <p>Creates an IAM role that is linked to a specific AWS service. The service
+         * controls the attached policies and when the role can be deleted. This helps
+         * ensure that the service is not broken by an unexpectedly changed or deleted
+         * role, which could put your AWS resources into an unknown state. Allowing the
+         * service to control the role helps improve service stability and proper cleanup
+         * when a service and its role are no longer needed.</p> <p>The name of the role is
+         * autogenerated by combining the string that you specify for the
+         * <code>AWSServiceName</code> parameter with the string that you specify for the
+         * <code>CustomSuffix</code> parameter. The resulting name must be unique in your
+         * account or the request fails.</p> <p>To attach a policy to this service-linked
+         * role, you must make the request using the AWS service that depends on this
+         * role.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreateServiceLinkedRole">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void CreateServiceLinkedRoleAsync(const Model::CreateServiceLinkedRoleRequest& request, const CreateServiceLinkedRoleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Generates a set of credentials consisting of a user name and password that
@@ -2347,6 +2432,88 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void DeleteServerCertificateAsync(const Model::DeleteServerCertificateRequest& request, const DeleteServerCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Submits a service-linked role deletion request and returns a
+         * <code>DeletionTaskId</code>, which you can use to check the status of the
+         * deletion. Before you call this operation, confirm that the role has no active
+         * sessions and that any resources used by the role in the linked service are
+         * deleted. If you call this operation more than once for the same service-linked
+         * role and an earlier deletion task is not complete, then the
+         * <code>DeletionTaskId</code> of the earlier request is returned.</p> <p>If you
+         * submit a deletion request for a service-linked role whose linked service is
+         * still accessing a resource, then the deletion task fails. If it fails, the
+         * <a>GetServiceLinkedRoleDeletionStatus</a> API operation returns the reason for
+         * the failure, including the resources that must be deleted. To delete the
+         * service-linked role, you must first remove those resources from the linked
+         * service and then submit the deletion request again. Resources are specific to
+         * the service that is linked to the role. For more information about removing
+         * resources from a service, see the <a href="http://docs.aws.amazon.com/">AWS
+         * documentation</a> for your service.</p> <p>For more information about
+         * service-linked roles, see <a
+         * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role">Roles
+         * Terms and Concepts: AWS Service-Linked Role</a> in the <i>IAM User
+         * Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteServiceLinkedRole">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::DeleteServiceLinkedRoleOutcome DeleteServiceLinkedRole(const Model::DeleteServiceLinkedRoleRequest& request) const;
+
+        /**
+         * <p>Submits a service-linked role deletion request and returns a
+         * <code>DeletionTaskId</code>, which you can use to check the status of the
+         * deletion. Before you call this operation, confirm that the role has no active
+         * sessions and that any resources used by the role in the linked service are
+         * deleted. If you call this operation more than once for the same service-linked
+         * role and an earlier deletion task is not complete, then the
+         * <code>DeletionTaskId</code> of the earlier request is returned.</p> <p>If you
+         * submit a deletion request for a service-linked role whose linked service is
+         * still accessing a resource, then the deletion task fails. If it fails, the
+         * <a>GetServiceLinkedRoleDeletionStatus</a> API operation returns the reason for
+         * the failure, including the resources that must be deleted. To delete the
+         * service-linked role, you must first remove those resources from the linked
+         * service and then submit the deletion request again. Resources are specific to
+         * the service that is linked to the role. For more information about removing
+         * resources from a service, see the <a href="http://docs.aws.amazon.com/">AWS
+         * documentation</a> for your service.</p> <p>For more information about
+         * service-linked roles, see <a
+         * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role">Roles
+         * Terms and Concepts: AWS Service-Linked Role</a> in the <i>IAM User
+         * Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteServiceLinkedRole">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::DeleteServiceLinkedRoleOutcomeCallable DeleteServiceLinkedRoleCallable(const Model::DeleteServiceLinkedRoleRequest& request) const;
+
+        /**
+         * <p>Submits a service-linked role deletion request and returns a
+         * <code>DeletionTaskId</code>, which you can use to check the status of the
+         * deletion. Before you call this operation, confirm that the role has no active
+         * sessions and that any resources used by the role in the linked service are
+         * deleted. If you call this operation more than once for the same service-linked
+         * role and an earlier deletion task is not complete, then the
+         * <code>DeletionTaskId</code> of the earlier request is returned.</p> <p>If you
+         * submit a deletion request for a service-linked role whose linked service is
+         * still accessing a resource, then the deletion task fails. If it fails, the
+         * <a>GetServiceLinkedRoleDeletionStatus</a> API operation returns the reason for
+         * the failure, including the resources that must be deleted. To delete the
+         * service-linked role, you must first remove those resources from the linked
+         * service and then submit the deletion request again. Resources are specific to
+         * the service that is linked to the role. For more information about removing
+         * resources from a service, see the <a href="http://docs.aws.amazon.com/">AWS
+         * documentation</a> for your service.</p> <p>For more information about
+         * service-linked roles, see <a
+         * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role">Roles
+         * Terms and Concepts: AWS Service-Linked Role</a> in the <i>IAM User
+         * Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteServiceLinkedRole">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void DeleteServiceLinkedRoleAsync(const Model::DeleteServiceLinkedRoleRequest& request, const DeleteServiceLinkedRoleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Deletes the specified service-specific credential.</p><p><h3>See Also:</h3>  
@@ -3603,6 +3770,46 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void GetServerCertificateAsync(const Model::GetServerCertificateRequest& request, const GetServerCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Retrieves the status of your service-linked role deletion. After you use the
+         * <a>DeleteServiceLinkedRole</a> API operation to submit a service-linked role for
+         * deletion, you can use the <code>DeletionTaskId</code> parameter in
+         * <code>GetServiceLinkedRoleDeletionStatus</code> to check the status of the
+         * deletion. If the deletion fails, this operation returns the reason that it
+         * failed.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetServiceLinkedRoleDeletionStatus">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::GetServiceLinkedRoleDeletionStatusOutcome GetServiceLinkedRoleDeletionStatus(const Model::GetServiceLinkedRoleDeletionStatusRequest& request) const;
+
+        /**
+         * <p>Retrieves the status of your service-linked role deletion. After you use the
+         * <a>DeleteServiceLinkedRole</a> API operation to submit a service-linked role for
+         * deletion, you can use the <code>DeletionTaskId</code> parameter in
+         * <code>GetServiceLinkedRoleDeletionStatus</code> to check the status of the
+         * deletion. If the deletion fails, this operation returns the reason that it
+         * failed.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetServiceLinkedRoleDeletionStatus">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::GetServiceLinkedRoleDeletionStatusOutcomeCallable GetServiceLinkedRoleDeletionStatusCallable(const Model::GetServiceLinkedRoleDeletionStatusRequest& request) const;
+
+        /**
+         * <p>Retrieves the status of your service-linked role deletion. After you use the
+         * <a>DeleteServiceLinkedRole</a> API operation to submit a service-linked role for
+         * deletion, you can use the <code>DeletionTaskId</code> parameter in
+         * <code>GetServiceLinkedRoleDeletionStatus</code> to check the status of the
+         * deletion. If the deletion fails, this operation returns the reason that it
+         * failed.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetServiceLinkedRoleDeletionStatus">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void GetServiceLinkedRoleDeletionStatusAsync(const Model::GetServiceLinkedRoleDeletionStatusRequest& request, const GetServiceLinkedRoleDeletionStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Retrieves information about the specified IAM user, including the user's
@@ -5088,7 +5295,7 @@ namespace Model
          * <p>Removes the specified IAM role from the specified EC2 instance profile.</p>
          * <important> <p>Make sure you do not have any Amazon EC2 instances running with
          * the role you are about to remove from the instance profile. Removing a role from
-         * an instance profile that is associated with a running instance break any
+         * an instance profile that is associated with a running instance might break any
          * applications running on the instance.</p> </important> <p> For more information
          * about IAM roles, go to <a
          * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html">Working
@@ -5104,7 +5311,7 @@ namespace Model
          * <p>Removes the specified IAM role from the specified EC2 instance profile.</p>
          * <important> <p>Make sure you do not have any Amazon EC2 instances running with
          * the role you are about to remove from the instance profile. Removing a role from
-         * an instance profile that is associated with a running instance break any
+         * an instance profile that is associated with a running instance might break any
          * applications running on the instance.</p> </important> <p> For more information
          * about IAM roles, go to <a
          * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html">Working
@@ -5122,7 +5329,7 @@ namespace Model
          * <p>Removes the specified IAM role from the specified EC2 instance profile.</p>
          * <important> <p>Make sure you do not have any Amazon EC2 instances running with
          * the role you are about to remove from the instance profile. Removing a role from
-         * an instance profile that is associated with a running instance break any
+         * an instance profile that is associated with a running instance might break any
          * applications running on the instance.</p> </important> <p> For more information
          * about IAM roles, go to <a
          * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html">Working
@@ -5731,6 +5938,31 @@ namespace Model
         virtual void UpdateOpenIDConnectProviderThumbprintAsync(const Model::UpdateOpenIDConnectProviderThumbprintRequest& request, const UpdateOpenIDConnectProviderThumbprintResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
+         * <p>Modifies the description of a role.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateRoleDescription">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::UpdateRoleDescriptionOutcome UpdateRoleDescription(const Model::UpdateRoleDescriptionRequest& request) const;
+
+        /**
+         * <p>Modifies the description of a role.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateRoleDescription">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::UpdateRoleDescriptionOutcomeCallable UpdateRoleDescriptionCallable(const Model::UpdateRoleDescriptionRequest& request) const;
+
+        /**
+         * <p>Modifies the description of a role.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateRoleDescription">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void UpdateRoleDescriptionAsync(const Model::UpdateRoleDescriptionRequest& request, const UpdateRoleDescriptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
          * <p>Updates the metadata document for an existing SAML provider resource
          * object.</p> <note> <p>This operation requires <a
          * href="http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html">Signature
@@ -6085,9 +6317,16 @@ namespace Model
         /**
          * <p>Uploads a server certificate entity for the AWS account. The server
          * certificate entity includes a public key certificate, a private key, and an
-         * optional certificate chain, which should all be PEM-encoded.</p> <p>For more
-         * information about working with server certificates, including a list of AWS
-         * services that can use the server certificates that you manage with IAM, go to <a
+         * optional certificate chain, which should all be PEM-encoded.</p> <p>We recommend
+         * that you use <a href="https://aws.amazon.com/certificate-manager/">AWS
+         * Certificate Manager</a> to provision, manage, and deploy your server
+         * certificates. With ACM you can request a certificate, deploy it to AWS
+         * resources, and let ACM handle certificate renewals for you. Certificates
+         * provided by ACM are free. For more information about using ACM, see the <a
+         * href="http://docs.aws.amazon.com/acm/latest/userguide/">AWS Certificate Manager
+         * User Guide</a>.</p> <p>For more information about working with server
+         * certificates, including a list of AWS services that can use the server
+         * certificates that you manage with IAM, go to <a
          * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html">Working
          * with Server Certificates</a> in the <i>IAM User Guide</i>.</p> <p>For
          * information about the number of server certificates you can upload, see <a
@@ -6111,9 +6350,16 @@ namespace Model
         /**
          * <p>Uploads a server certificate entity for the AWS account. The server
          * certificate entity includes a public key certificate, a private key, and an
-         * optional certificate chain, which should all be PEM-encoded.</p> <p>For more
-         * information about working with server certificates, including a list of AWS
-         * services that can use the server certificates that you manage with IAM, go to <a
+         * optional certificate chain, which should all be PEM-encoded.</p> <p>We recommend
+         * that you use <a href="https://aws.amazon.com/certificate-manager/">AWS
+         * Certificate Manager</a> to provision, manage, and deploy your server
+         * certificates. With ACM you can request a certificate, deploy it to AWS
+         * resources, and let ACM handle certificate renewals for you. Certificates
+         * provided by ACM are free. For more information about using ACM, see the <a
+         * href="http://docs.aws.amazon.com/acm/latest/userguide/">AWS Certificate Manager
+         * User Guide</a>.</p> <p>For more information about working with server
+         * certificates, including a list of AWS services that can use the server
+         * certificates that you manage with IAM, go to <a
          * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html">Working
          * with Server Certificates</a> in the <i>IAM User Guide</i>.</p> <p>For
          * information about the number of server certificates you can upload, see <a
@@ -6139,9 +6385,16 @@ namespace Model
         /**
          * <p>Uploads a server certificate entity for the AWS account. The server
          * certificate entity includes a public key certificate, a private key, and an
-         * optional certificate chain, which should all be PEM-encoded.</p> <p>For more
-         * information about working with server certificates, including a list of AWS
-         * services that can use the server certificates that you manage with IAM, go to <a
+         * optional certificate chain, which should all be PEM-encoded.</p> <p>We recommend
+         * that you use <a href="https://aws.amazon.com/certificate-manager/">AWS
+         * Certificate Manager</a> to provision, manage, and deploy your server
+         * certificates. With ACM you can request a certificate, deploy it to AWS
+         * resources, and let ACM handle certificate renewals for you. Certificates
+         * provided by ACM are free. For more information about using ACM, see the <a
+         * href="http://docs.aws.amazon.com/acm/latest/userguide/">AWS Certificate Manager
+         * User Guide</a>.</p> <p>For more information about working with server
+         * certificates, including a list of AWS services that can use the server
+         * certificates that you manage with IAM, go to <a
          * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html">Working
          * with Server Certificates</a> in the <i>IAM User Guide</i>.</p> <p>For
          * information about the number of server certificates you can upload, see <a
@@ -6239,7 +6492,7 @@ namespace Model
 
 
   private:
-    void init(const Client::ClientConfiguration& clientConfiguration);
+    void init(const Aws::Client::ClientConfiguration& clientConfiguration);
 
         /**Async helpers**/
         void AddClientIDToOpenIDConnectProviderAsyncHelper(const Model::AddClientIDToOpenIDConnectProviderRequest& request, const AddClientIDToOpenIDConnectProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -6259,6 +6512,7 @@ namespace Model
         void CreatePolicyVersionAsyncHelper(const Model::CreatePolicyVersionRequest& request, const CreatePolicyVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void CreateRoleAsyncHelper(const Model::CreateRoleRequest& request, const CreateRoleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void CreateSAMLProviderAsyncHelper(const Model::CreateSAMLProviderRequest& request, const CreateSAMLProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void CreateServiceLinkedRoleAsyncHelper(const Model::CreateServiceLinkedRoleRequest& request, const CreateServiceLinkedRoleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void CreateServiceSpecificCredentialAsyncHelper(const Model::CreateServiceSpecificCredentialRequest& request, const CreateServiceSpecificCredentialResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void CreateUserAsyncHelper(const Model::CreateUserRequest& request, const CreateUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void CreateVirtualMFADeviceAsyncHelper(const Model::CreateVirtualMFADeviceRequest& request, const CreateVirtualMFADeviceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -6278,6 +6532,7 @@ namespace Model
         void DeleteSAMLProviderAsyncHelper(const Model::DeleteSAMLProviderRequest& request, const DeleteSAMLProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteSSHPublicKeyAsyncHelper(const Model::DeleteSSHPublicKeyRequest& request, const DeleteSSHPublicKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteServerCertificateAsyncHelper(const Model::DeleteServerCertificateRequest& request, const DeleteServerCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void DeleteServiceLinkedRoleAsyncHelper(const Model::DeleteServiceLinkedRoleRequest& request, const DeleteServiceLinkedRoleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteServiceSpecificCredentialAsyncHelper(const Model::DeleteServiceSpecificCredentialRequest& request, const DeleteServiceSpecificCredentialResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteSigningCertificateAsyncHelper(const Model::DeleteSigningCertificateRequest& request, const DeleteSigningCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteUserAsyncHelper(const Model::DeleteUserRequest& request, const DeleteUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -6307,6 +6562,7 @@ namespace Model
         void GetSAMLProviderAsyncHelper(const Model::GetSAMLProviderRequest& request, const GetSAMLProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void GetSSHPublicKeyAsyncHelper(const Model::GetSSHPublicKeyRequest& request, const GetSSHPublicKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void GetServerCertificateAsyncHelper(const Model::GetServerCertificateRequest& request, const GetServerCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void GetServiceLinkedRoleDeletionStatusAsyncHelper(const Model::GetServiceLinkedRoleDeletionStatusRequest& request, const GetServiceLinkedRoleDeletionStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void GetUserAsyncHelper(const Model::GetUserRequest& request, const GetUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void GetUserPolicyAsyncHelper(const Model::GetUserPolicyRequest& request, const GetUserPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListAccessKeysAsyncHelper(const Model::ListAccessKeysRequest& request, const ListAccessKeysResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -6351,6 +6607,7 @@ namespace Model
         void UpdateGroupAsyncHelper(const Model::UpdateGroupRequest& request, const UpdateGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateLoginProfileAsyncHelper(const Model::UpdateLoginProfileRequest& request, const UpdateLoginProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateOpenIDConnectProviderThumbprintAsyncHelper(const Model::UpdateOpenIDConnectProviderThumbprintRequest& request, const UpdateOpenIDConnectProviderThumbprintResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void UpdateRoleDescriptionAsyncHelper(const Model::UpdateRoleDescriptionRequest& request, const UpdateRoleDescriptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateSAMLProviderAsyncHelper(const Model::UpdateSAMLProviderRequest& request, const UpdateSAMLProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateSSHPublicKeyAsyncHelper(const Model::UpdateSSHPublicKeyRequest& request, const UpdateSSHPublicKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateServerCertificateAsyncHelper(const Model::UpdateServerCertificateRequest& request, const UpdateServerCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -6362,7 +6619,7 @@ namespace Model
         void UploadSigningCertificateAsyncHelper(const Model::UploadSigningCertificateRequest& request, const UploadSigningCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
     Aws::String m_uri;
-    std::shared_ptr<Utils::Threading::Executor> m_executor;
+    std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;
   };
 
 } // namespace IAM

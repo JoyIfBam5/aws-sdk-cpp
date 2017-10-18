@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesisanalytics/KinesisAnalytics_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     KinesisFirehoseInputDescription& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Amazon Resource Name (ARN) of the Amazon Kinesis Firehose delivery
      * stream.</p>
@@ -61,7 +64,7 @@ namespace Model
      * <p>Amazon Resource Name (ARN) of the Amazon Kinesis Firehose delivery
      * stream.</p>
      */
-    inline void SetResourceARN(Aws::String&& value) { m_resourceARNHasBeenSet = true; m_resourceARN = value; }
+    inline void SetResourceARN(Aws::String&& value) { m_resourceARNHasBeenSet = true; m_resourceARN = std::move(value); }
 
     /**
      * <p>Amazon Resource Name (ARN) of the Amazon Kinesis Firehose delivery
@@ -79,13 +82,14 @@ namespace Model
      * <p>Amazon Resource Name (ARN) of the Amazon Kinesis Firehose delivery
      * stream.</p>
      */
-    inline KinesisFirehoseInputDescription& WithResourceARN(Aws::String&& value) { SetResourceARN(value); return *this;}
+    inline KinesisFirehoseInputDescription& WithResourceARN(Aws::String&& value) { SetResourceARN(std::move(value)); return *this;}
 
     /**
      * <p>Amazon Resource Name (ARN) of the Amazon Kinesis Firehose delivery
      * stream.</p>
      */
     inline KinesisFirehoseInputDescription& WithResourceARN(const char* value) { SetResourceARN(value); return *this;}
+
 
     /**
      * <p>ARN of the IAM role that Amazon Kinesis Analytics assumes to access the
@@ -103,7 +107,7 @@ namespace Model
      * <p>ARN of the IAM role that Amazon Kinesis Analytics assumes to access the
      * stream.</p>
      */
-    inline void SetRoleARN(Aws::String&& value) { m_roleARNHasBeenSet = true; m_roleARN = value; }
+    inline void SetRoleARN(Aws::String&& value) { m_roleARNHasBeenSet = true; m_roleARN = std::move(value); }
 
     /**
      * <p>ARN of the IAM role that Amazon Kinesis Analytics assumes to access the
@@ -121,7 +125,7 @@ namespace Model
      * <p>ARN of the IAM role that Amazon Kinesis Analytics assumes to access the
      * stream.</p>
      */
-    inline KinesisFirehoseInputDescription& WithRoleARN(Aws::String&& value) { SetRoleARN(value); return *this;}
+    inline KinesisFirehoseInputDescription& WithRoleARN(Aws::String&& value) { SetRoleARN(std::move(value)); return *this;}
 
     /**
      * <p>ARN of the IAM role that Amazon Kinesis Analytics assumes to access the
@@ -130,8 +134,10 @@ namespace Model
     inline KinesisFirehoseInputDescription& WithRoleARN(const char* value) { SetRoleARN(value); return *this;}
 
   private:
+
     Aws::String m_resourceARN;
     bool m_resourceARNHasBeenSet;
+
     Aws::String m_roleARN;
     bool m_roleARNHasBeenSet;
   };

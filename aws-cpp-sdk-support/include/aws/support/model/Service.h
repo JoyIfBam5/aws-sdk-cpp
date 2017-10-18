@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/support/Support_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/support/model/Category.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     Service& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The code for an AWS service returned by the <a>DescribeServices</a> response.
      * The <code>name</code> element contains the corresponding friendly name.</p>
@@ -62,7 +65,7 @@ namespace Model
      * <p>The code for an AWS service returned by the <a>DescribeServices</a> response.
      * The <code>name</code> element contains the corresponding friendly name.</p>
      */
-    inline void SetCode(Aws::String&& value) { m_codeHasBeenSet = true; m_code = value; }
+    inline void SetCode(Aws::String&& value) { m_codeHasBeenSet = true; m_code = std::move(value); }
 
     /**
      * <p>The code for an AWS service returned by the <a>DescribeServices</a> response.
@@ -80,13 +83,14 @@ namespace Model
      * <p>The code for an AWS service returned by the <a>DescribeServices</a> response.
      * The <code>name</code> element contains the corresponding friendly name.</p>
      */
-    inline Service& WithCode(Aws::String&& value) { SetCode(value); return *this;}
+    inline Service& WithCode(Aws::String&& value) { SetCode(std::move(value)); return *this;}
 
     /**
      * <p>The code for an AWS service returned by the <a>DescribeServices</a> response.
      * The <code>name</code> element contains the corresponding friendly name.</p>
      */
     inline Service& WithCode(const char* value) { SetCode(value); return *this;}
+
 
     /**
      * <p>The friendly name for an AWS service. The <code>code</code> element contains
@@ -104,7 +108,7 @@ namespace Model
      * <p>The friendly name for an AWS service. The <code>code</code> element contains
      * the corresponding code.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The friendly name for an AWS service. The <code>code</code> element contains
@@ -122,13 +126,14 @@ namespace Model
      * <p>The friendly name for an AWS service. The <code>code</code> element contains
      * the corresponding code.</p>
      */
-    inline Service& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline Service& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The friendly name for an AWS service. The <code>code</code> element contains
      * the corresponding code.</p>
      */
     inline Service& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>A list of categories that describe the type of support issue a case
@@ -149,7 +154,7 @@ namespace Model
      * describes. Categories consist of a category name and a category code. Category
      * names and codes are passed to AWS Support when you call <a>CreateCase</a>.</p>
      */
-    inline void SetCategories(Aws::Vector<Category>&& value) { m_categoriesHasBeenSet = true; m_categories = value; }
+    inline void SetCategories(Aws::Vector<Category>&& value) { m_categoriesHasBeenSet = true; m_categories = std::move(value); }
 
     /**
      * <p>A list of categories that describe the type of support issue a case
@@ -163,7 +168,7 @@ namespace Model
      * describes. Categories consist of a category name and a category code. Category
      * names and codes are passed to AWS Support when you call <a>CreateCase</a>.</p>
      */
-    inline Service& WithCategories(Aws::Vector<Category>&& value) { SetCategories(value); return *this;}
+    inline Service& WithCategories(Aws::Vector<Category>&& value) { SetCategories(std::move(value)); return *this;}
 
     /**
      * <p>A list of categories that describe the type of support issue a case
@@ -177,13 +182,16 @@ namespace Model
      * describes. Categories consist of a category name and a category code. Category
      * names and codes are passed to AWS Support when you call <a>CreateCase</a>.</p>
      */
-    inline Service& AddCategories(Category&& value) { m_categoriesHasBeenSet = true; m_categories.push_back(value); return *this; }
+    inline Service& AddCategories(Category&& value) { m_categoriesHasBeenSet = true; m_categories.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_code;
     bool m_codeHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::Vector<Category> m_categories;
     bool m_categoriesHasBeenSet;
   };

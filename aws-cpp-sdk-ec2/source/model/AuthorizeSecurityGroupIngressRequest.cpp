@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/AuthorizeSecurityGroupIngressRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -20,19 +21,19 @@ using namespace Aws::EC2::Model;
 using namespace Aws::Utils;
 
 AuthorizeSecurityGroupIngressRequest::AuthorizeSecurityGroupIngressRequest() : 
-    m_dryRun(false),
-    m_dryRunHasBeenSet(false),
-    m_groupNameHasBeenSet(false),
-    m_groupIdHasBeenSet(false),
-    m_sourceSecurityGroupNameHasBeenSet(false),
-    m_sourceSecurityGroupOwnerIdHasBeenSet(false),
-    m_ipProtocolHasBeenSet(false),
+    m_cidrIpHasBeenSet(false),
     m_fromPort(0),
     m_fromPortHasBeenSet(false),
+    m_groupIdHasBeenSet(false),
+    m_groupNameHasBeenSet(false),
+    m_ipPermissionsHasBeenSet(false),
+    m_ipProtocolHasBeenSet(false),
+    m_sourceSecurityGroupNameHasBeenSet(false),
+    m_sourceSecurityGroupOwnerIdHasBeenSet(false),
     m_toPort(0),
     m_toPortHasBeenSet(false),
-    m_cidrIpHasBeenSet(false),
-    m_ipPermissionsHasBeenSet(false)
+    m_dryRun(false),
+    m_dryRunHasBeenSet(false)
 {
 }
 
@@ -40,34 +41,9 @@ Aws::String AuthorizeSecurityGroupIngressRequest::SerializePayload() const
 {
   Aws::StringStream ss;
   ss << "Action=AuthorizeSecurityGroupIngress&";
-  if(m_dryRunHasBeenSet)
+  if(m_cidrIpHasBeenSet)
   {
-    ss << "DryRun=" << std::boolalpha << m_dryRun << "&";
-  }
-
-  if(m_groupNameHasBeenSet)
-  {
-    ss << "GroupName=" << StringUtils::URLEncode(m_groupName.c_str()) << "&";
-  }
-
-  if(m_groupIdHasBeenSet)
-  {
-    ss << "GroupId=" << StringUtils::URLEncode(m_groupId.c_str()) << "&";
-  }
-
-  if(m_sourceSecurityGroupNameHasBeenSet)
-  {
-    ss << "SourceSecurityGroupName=" << StringUtils::URLEncode(m_sourceSecurityGroupName.c_str()) << "&";
-  }
-
-  if(m_sourceSecurityGroupOwnerIdHasBeenSet)
-  {
-    ss << "SourceSecurityGroupOwnerId=" << StringUtils::URLEncode(m_sourceSecurityGroupOwnerId.c_str()) << "&";
-  }
-
-  if(m_ipProtocolHasBeenSet)
-  {
-    ss << "IpProtocol=" << StringUtils::URLEncode(m_ipProtocol.c_str()) << "&";
+    ss << "CidrIp=" << StringUtils::URLEncode(m_cidrIp.c_str()) << "&";
   }
 
   if(m_fromPortHasBeenSet)
@@ -75,14 +51,14 @@ Aws::String AuthorizeSecurityGroupIngressRequest::SerializePayload() const
     ss << "FromPort=" << m_fromPort << "&";
   }
 
-  if(m_toPortHasBeenSet)
+  if(m_groupIdHasBeenSet)
   {
-    ss << "ToPort=" << m_toPort << "&";
+    ss << "GroupId=" << StringUtils::URLEncode(m_groupId.c_str()) << "&";
   }
 
-  if(m_cidrIpHasBeenSet)
+  if(m_groupNameHasBeenSet)
   {
-    ss << "CidrIp=" << StringUtils::URLEncode(m_cidrIp.c_str()) << "&";
+    ss << "GroupName=" << StringUtils::URLEncode(m_groupName.c_str()) << "&";
   }
 
   if(m_ipPermissionsHasBeenSet)
@@ -95,7 +71,37 @@ Aws::String AuthorizeSecurityGroupIngressRequest::SerializePayload() const
     }
   }
 
+  if(m_ipProtocolHasBeenSet)
+  {
+    ss << "IpProtocol=" << StringUtils::URLEncode(m_ipProtocol.c_str()) << "&";
+  }
+
+  if(m_sourceSecurityGroupNameHasBeenSet)
+  {
+    ss << "SourceSecurityGroupName=" << StringUtils::URLEncode(m_sourceSecurityGroupName.c_str()) << "&";
+  }
+
+  if(m_sourceSecurityGroupOwnerIdHasBeenSet)
+  {
+    ss << "SourceSecurityGroupOwnerId=" << StringUtils::URLEncode(m_sourceSecurityGroupOwnerId.c_str()) << "&";
+  }
+
+  if(m_toPortHasBeenSet)
+  {
+    ss << "ToPort=" << m_toPort << "&";
+  }
+
+  if(m_dryRunHasBeenSet)
+  {
+    ss << "DryRun=" << std::boolalpha << m_dryRun << "&";
+  }
+
   ss << "Version=2016-11-15";
   return ss.str();
 }
 
+
+void  AuthorizeSecurityGroupIngressRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

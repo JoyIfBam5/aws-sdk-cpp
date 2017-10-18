@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/config/ConfigService_EXPORTS.h>
 #include <aws/config/model/DeliveryStatus.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     ConfigStreamDeliveryInfo& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Status of the last attempted delivery.</p> <p> <b>Note</b> Providing an SNS
      * topic on a <a
@@ -71,7 +74,7 @@ namespace Model
      * for AWS Config is optional. If the SNS delivery is turned off, the last status
      * will be <b>Not_Applicable</b>.</p>
      */
-    inline void SetLastStatus(DeliveryStatus&& value) { m_lastStatusHasBeenSet = true; m_lastStatus = value; }
+    inline void SetLastStatus(DeliveryStatus&& value) { m_lastStatusHasBeenSet = true; m_lastStatus = std::move(value); }
 
     /**
      * <p>Status of the last attempted delivery.</p> <p> <b>Note</b> Providing an SNS
@@ -89,7 +92,8 @@ namespace Model
      * for AWS Config is optional. If the SNS delivery is turned off, the last status
      * will be <b>Not_Applicable</b>.</p>
      */
-    inline ConfigStreamDeliveryInfo& WithLastStatus(DeliveryStatus&& value) { SetLastStatus(value); return *this;}
+    inline ConfigStreamDeliveryInfo& WithLastStatus(DeliveryStatus&& value) { SetLastStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The error code from the last attempted delivery.</p>
@@ -104,7 +108,7 @@ namespace Model
     /**
      * <p>The error code from the last attempted delivery.</p>
      */
-    inline void SetLastErrorCode(Aws::String&& value) { m_lastErrorCodeHasBeenSet = true; m_lastErrorCode = value; }
+    inline void SetLastErrorCode(Aws::String&& value) { m_lastErrorCodeHasBeenSet = true; m_lastErrorCode = std::move(value); }
 
     /**
      * <p>The error code from the last attempted delivery.</p>
@@ -119,12 +123,13 @@ namespace Model
     /**
      * <p>The error code from the last attempted delivery.</p>
      */
-    inline ConfigStreamDeliveryInfo& WithLastErrorCode(Aws::String&& value) { SetLastErrorCode(value); return *this;}
+    inline ConfigStreamDeliveryInfo& WithLastErrorCode(Aws::String&& value) { SetLastErrorCode(std::move(value)); return *this;}
 
     /**
      * <p>The error code from the last attempted delivery.</p>
      */
     inline ConfigStreamDeliveryInfo& WithLastErrorCode(const char* value) { SetLastErrorCode(value); return *this;}
+
 
     /**
      * <p>The error message from the last attempted delivery.</p>
@@ -139,7 +144,7 @@ namespace Model
     /**
      * <p>The error message from the last attempted delivery.</p>
      */
-    inline void SetLastErrorMessage(Aws::String&& value) { m_lastErrorMessageHasBeenSet = true; m_lastErrorMessage = value; }
+    inline void SetLastErrorMessage(Aws::String&& value) { m_lastErrorMessageHasBeenSet = true; m_lastErrorMessage = std::move(value); }
 
     /**
      * <p>The error message from the last attempted delivery.</p>
@@ -154,12 +159,13 @@ namespace Model
     /**
      * <p>The error message from the last attempted delivery.</p>
      */
-    inline ConfigStreamDeliveryInfo& WithLastErrorMessage(Aws::String&& value) { SetLastErrorMessage(value); return *this;}
+    inline ConfigStreamDeliveryInfo& WithLastErrorMessage(Aws::String&& value) { SetLastErrorMessage(std::move(value)); return *this;}
 
     /**
      * <p>The error message from the last attempted delivery.</p>
      */
     inline ConfigStreamDeliveryInfo& WithLastErrorMessage(const char* value) { SetLastErrorMessage(value); return *this;}
+
 
     /**
      * <p>The time from the last status change.</p>
@@ -174,7 +180,7 @@ namespace Model
     /**
      * <p>The time from the last status change.</p>
      */
-    inline void SetLastStatusChangeTime(Aws::Utils::DateTime&& value) { m_lastStatusChangeTimeHasBeenSet = true; m_lastStatusChangeTime = value; }
+    inline void SetLastStatusChangeTime(Aws::Utils::DateTime&& value) { m_lastStatusChangeTimeHasBeenSet = true; m_lastStatusChangeTime = std::move(value); }
 
     /**
      * <p>The time from the last status change.</p>
@@ -184,15 +190,19 @@ namespace Model
     /**
      * <p>The time from the last status change.</p>
      */
-    inline ConfigStreamDeliveryInfo& WithLastStatusChangeTime(Aws::Utils::DateTime&& value) { SetLastStatusChangeTime(value); return *this;}
+    inline ConfigStreamDeliveryInfo& WithLastStatusChangeTime(Aws::Utils::DateTime&& value) { SetLastStatusChangeTime(std::move(value)); return *this;}
 
   private:
+
     DeliveryStatus m_lastStatus;
     bool m_lastStatusHasBeenSet;
+
     Aws::String m_lastErrorCode;
     bool m_lastErrorCodeHasBeenSet;
+
     Aws::String m_lastErrorMessage;
     bool m_lastErrorMessageHasBeenSet;
+
     Aws::Utils::DateTime m_lastStatusChangeTime;
     bool m_lastStatusChangeTimeHasBeenSet;
   };

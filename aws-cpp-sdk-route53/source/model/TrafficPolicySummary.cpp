@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/route53/model/TrafficPolicySummary.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -119,17 +120,17 @@ void TrafficPolicySummary::AddToNode(XmlNode& parentNode) const
   if(m_latestVersionHasBeenSet)
   {
    XmlNode latestVersionNode = parentNode.CreateChildElement("LatestVersion");
-  ss << m_latestVersion;
+   ss << m_latestVersion;
    latestVersionNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_trafficPolicyCountHasBeenSet)
   {
    XmlNode trafficPolicyCountNode = parentNode.CreateChildElement("TrafficPolicyCount");
-  ss << m_trafficPolicyCount;
+   ss << m_trafficPolicyCount;
    trafficPolicyCountNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
 }

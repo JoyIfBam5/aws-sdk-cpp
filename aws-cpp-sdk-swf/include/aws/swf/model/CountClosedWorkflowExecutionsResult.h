@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 
@@ -33,8 +34,8 @@ namespace Model
 {
   /**
    * <p>Contains the count of workflow executions returned from
-   * <a>CountOpenWorkflowExecutions</a> or
-   * <a>CountClosedWorkflowExecutions</a></p><p><h3>See Also:</h3>   <a
+   * <a>CountOpenWorkflowExecutions</a> or <a>CountClosedWorkflowExecutions</a>
+   * </p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/swf-2012-01-25/WorkflowExecutionCount">AWS
    * API Reference</a></p>
    */
@@ -42,8 +43,9 @@ namespace Model
   {
   public:
     CountClosedWorkflowExecutionsResult();
-    CountClosedWorkflowExecutionsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CountClosedWorkflowExecutionsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CountClosedWorkflowExecutionsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CountClosedWorkflowExecutionsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The number of workflow executions.</p>
@@ -59,6 +61,7 @@ namespace Model
      * <p>The number of workflow executions.</p>
      */
     inline CountClosedWorkflowExecutionsResult& WithCount(int value) { SetCount(value); return *this;}
+
 
     /**
      * <p>If set to true, indicates that the actual count was more than the maximum
@@ -79,7 +82,9 @@ namespace Model
     inline CountClosedWorkflowExecutionsResult& WithTruncated(bool value) { SetTruncated(value); return *this;}
 
   private:
+
     int m_count;
+
     bool m_truncated;
   };
 

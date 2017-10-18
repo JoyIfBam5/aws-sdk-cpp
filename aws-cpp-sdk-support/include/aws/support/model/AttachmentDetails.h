@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/support/Support_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     AttachmentDetails& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ID of the attachment.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The ID of the attachment.</p>
      */
-    inline void SetAttachmentId(Aws::String&& value) { m_attachmentIdHasBeenSet = true; m_attachmentId = value; }
+    inline void SetAttachmentId(Aws::String&& value) { m_attachmentIdHasBeenSet = true; m_attachmentId = std::move(value); }
 
     /**
      * <p>The ID of the attachment.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The ID of the attachment.</p>
      */
-    inline AttachmentDetails& WithAttachmentId(Aws::String&& value) { SetAttachmentId(value); return *this;}
+    inline AttachmentDetails& WithAttachmentId(Aws::String&& value) { SetAttachmentId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the attachment.</p>
      */
     inline AttachmentDetails& WithAttachmentId(const char* value) { SetAttachmentId(value); return *this;}
+
 
     /**
      * <p>The file name of the attachment.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The file name of the attachment.</p>
      */
-    inline void SetFileName(Aws::String&& value) { m_fileNameHasBeenSet = true; m_fileName = value; }
+    inline void SetFileName(Aws::String&& value) { m_fileNameHasBeenSet = true; m_fileName = std::move(value); }
 
     /**
      * <p>The file name of the attachment.</p>
@@ -108,7 +112,7 @@ namespace Model
     /**
      * <p>The file name of the attachment.</p>
      */
-    inline AttachmentDetails& WithFileName(Aws::String&& value) { SetFileName(value); return *this;}
+    inline AttachmentDetails& WithFileName(Aws::String&& value) { SetFileName(std::move(value)); return *this;}
 
     /**
      * <p>The file name of the attachment.</p>
@@ -116,8 +120,10 @@ namespace Model
     inline AttachmentDetails& WithFileName(const char* value) { SetFileName(value); return *this;}
 
   private:
+
     Aws::String m_attachmentId;
     bool m_attachmentIdHasBeenSet;
+
     Aws::String m_fileName;
     bool m_fileNameHasBeenSet;
   };

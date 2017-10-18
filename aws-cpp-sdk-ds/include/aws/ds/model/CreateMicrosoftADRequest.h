@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ds/DirectoryService_EXPORTS.h>
 #include <aws/ds/DirectoryServiceRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ds/model/DirectoryVpcSettings.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     CreateMicrosoftADRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateMicrosoftAD"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The fully qualified domain name for the directory, such as
@@ -57,7 +67,7 @@ namespace Model
      * <code>corp.example.com</code>. This name will resolve inside your VPC only. It
      * does not need to be publicly resolvable.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The fully qualified domain name for the directory, such as
@@ -78,7 +88,7 @@ namespace Model
      * <code>corp.example.com</code>. This name will resolve inside your VPC only. It
      * does not need to be publicly resolvable.</p>
      */
-    inline CreateMicrosoftADRequest& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline CreateMicrosoftADRequest& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The fully qualified domain name for the directory, such as
@@ -86,6 +96,7 @@ namespace Model
      * does not need to be publicly resolvable.</p>
      */
     inline CreateMicrosoftADRequest& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The NetBIOS name for your domain. A short identifier for your domain, such as
@@ -109,7 +120,7 @@ namespace Model
      * first part of your directory DNS. For example, <code>CORP</code> for the
      * directory DNS <code>corp.example.com</code>. </p>
      */
-    inline void SetShortName(Aws::String&& value) { m_shortNameHasBeenSet = true; m_shortName = value; }
+    inline void SetShortName(Aws::String&& value) { m_shortNameHasBeenSet = true; m_shortName = std::move(value); }
 
     /**
      * <p>The NetBIOS name for your domain. A short identifier for your domain, such as
@@ -133,7 +144,7 @@ namespace Model
      * first part of your directory DNS. For example, <code>CORP</code> for the
      * directory DNS <code>corp.example.com</code>. </p>
      */
-    inline CreateMicrosoftADRequest& WithShortName(Aws::String&& value) { SetShortName(value); return *this;}
+    inline CreateMicrosoftADRequest& WithShortName(Aws::String&& value) { SetShortName(std::move(value)); return *this;}
 
     /**
      * <p>The NetBIOS name for your domain. A short identifier for your domain, such as
@@ -142,6 +153,7 @@ namespace Model
      * directory DNS <code>corp.example.com</code>. </p>
      */
     inline CreateMicrosoftADRequest& WithShortName(const char* value) { SetShortName(value); return *this;}
+
 
     /**
      * <p>The password for the default administrative user named
@@ -159,7 +171,7 @@ namespace Model
      * <p>The password for the default administrative user named
      * <code>Admin</code>.</p>
      */
-    inline void SetPassword(Aws::String&& value) { m_passwordHasBeenSet = true; m_password = value; }
+    inline void SetPassword(Aws::String&& value) { m_passwordHasBeenSet = true; m_password = std::move(value); }
 
     /**
      * <p>The password for the default administrative user named
@@ -177,13 +189,14 @@ namespace Model
      * <p>The password for the default administrative user named
      * <code>Admin</code>.</p>
      */
-    inline CreateMicrosoftADRequest& WithPassword(Aws::String&& value) { SetPassword(value); return *this;}
+    inline CreateMicrosoftADRequest& WithPassword(Aws::String&& value) { SetPassword(std::move(value)); return *this;}
 
     /**
      * <p>The password for the default administrative user named
      * <code>Admin</code>.</p>
      */
     inline CreateMicrosoftADRequest& WithPassword(const char* value) { SetPassword(value); return *this;}
+
 
     /**
      * <p>A textual description for the directory. This label will appear on the AWS
@@ -201,7 +214,7 @@ namespace Model
      * <p>A textual description for the directory. This label will appear on the AWS
      * console <code>Directory Details</code> page after the directory is created.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>A textual description for the directory. This label will appear on the AWS
@@ -219,7 +232,7 @@ namespace Model
      * <p>A textual description for the directory. This label will appear on the AWS
      * console <code>Directory Details</code> page after the directory is created.</p>
      */
-    inline CreateMicrosoftADRequest& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline CreateMicrosoftADRequest& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>A textual description for the directory. This label will appear on the AWS
@@ -227,30 +240,51 @@ namespace Model
      */
     inline CreateMicrosoftADRequest& WithDescription(const char* value) { SetDescription(value); return *this;}
 
-    
+
+    /**
+     * <p>Contains VPC information for the <a>CreateDirectory</a> or
+     * <a>CreateMicrosoftAD</a> operation.</p>
+     */
     inline const DirectoryVpcSettings& GetVpcSettings() const{ return m_vpcSettings; }
 
-    
+    /**
+     * <p>Contains VPC information for the <a>CreateDirectory</a> or
+     * <a>CreateMicrosoftAD</a> operation.</p>
+     */
     inline void SetVpcSettings(const DirectoryVpcSettings& value) { m_vpcSettingsHasBeenSet = true; m_vpcSettings = value; }
 
-    
-    inline void SetVpcSettings(DirectoryVpcSettings&& value) { m_vpcSettingsHasBeenSet = true; m_vpcSettings = value; }
+    /**
+     * <p>Contains VPC information for the <a>CreateDirectory</a> or
+     * <a>CreateMicrosoftAD</a> operation.</p>
+     */
+    inline void SetVpcSettings(DirectoryVpcSettings&& value) { m_vpcSettingsHasBeenSet = true; m_vpcSettings = std::move(value); }
 
-    
+    /**
+     * <p>Contains VPC information for the <a>CreateDirectory</a> or
+     * <a>CreateMicrosoftAD</a> operation.</p>
+     */
     inline CreateMicrosoftADRequest& WithVpcSettings(const DirectoryVpcSettings& value) { SetVpcSettings(value); return *this;}
 
-    
-    inline CreateMicrosoftADRequest& WithVpcSettings(DirectoryVpcSettings&& value) { SetVpcSettings(value); return *this;}
+    /**
+     * <p>Contains VPC information for the <a>CreateDirectory</a> or
+     * <a>CreateMicrosoftAD</a> operation.</p>
+     */
+    inline CreateMicrosoftADRequest& WithVpcSettings(DirectoryVpcSettings&& value) { SetVpcSettings(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_shortName;
     bool m_shortNameHasBeenSet;
+
     Aws::String m_password;
     bool m_passwordHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     DirectoryVpcSettings m_vpcSettings;
     bool m_vpcSettingsHasBeenSet;
   };

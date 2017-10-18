@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/ssm/model/DocumentDescription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,35 +38,37 @@ namespace Model
   {
   public:
     DescribeDocumentResult();
-    DescribeDocumentResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeDocumentResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeDocumentResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeDocumentResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>Information about the SSM document.</p>
+     * <p>Information about the Systems Manager document.</p>
      */
     inline const DocumentDescription& GetDocument() const{ return m_document; }
 
     /**
-     * <p>Information about the SSM document.</p>
+     * <p>Information about the Systems Manager document.</p>
      */
     inline void SetDocument(const DocumentDescription& value) { m_document = value; }
 
     /**
-     * <p>Information about the SSM document.</p>
+     * <p>Information about the Systems Manager document.</p>
      */
-    inline void SetDocument(DocumentDescription&& value) { m_document = value; }
+    inline void SetDocument(DocumentDescription&& value) { m_document = std::move(value); }
 
     /**
-     * <p>Information about the SSM document.</p>
+     * <p>Information about the Systems Manager document.</p>
      */
     inline DescribeDocumentResult& WithDocument(const DocumentDescription& value) { SetDocument(value); return *this;}
 
     /**
-     * <p>Information about the SSM document.</p>
+     * <p>Information about the Systems Manager document.</p>
      */
-    inline DescribeDocumentResult& WithDocument(DocumentDescription&& value) { SetDocument(value); return *this;}
+    inline DescribeDocumentResult& WithDocument(DocumentDescription&& value) { SetDocument(std::move(value)); return *this;}
 
   private:
+
     DocumentDescription m_document;
   };
 

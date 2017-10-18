@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticloadbalancingv2/ElasticLoadBalancingv2_EXPORTS.h>
 #include <aws/elasticloadbalancingv2/ElasticLoadBalancingv2Request.h>
@@ -19,6 +20,7 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticloadbalancingv2/model/RuleCondition.h>
 #include <aws/elasticloadbalancingv2/model/Action.h>
+#include <utility>
 
 namespace Aws
 {
@@ -28,15 +30,24 @@ namespace Model
 {
 
   /**
-   * <p>Contains the parameters for ModifyRules.</p><p><h3>See Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/ModifyRuleInput">AWS
-   * API Reference</a></p>
    */
   class AWS_ELASTICLOADBALANCINGV2_API ModifyRuleRequest : public ElasticLoadBalancingv2Request
   {
   public:
     ModifyRuleRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ModifyRule"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The Amazon Resource Name (ARN) of the rule.</p>
@@ -51,7 +62,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the rule.</p>
      */
-    inline void SetRuleArn(Aws::String&& value) { m_ruleArnHasBeenSet = true; m_ruleArn = value; }
+    inline void SetRuleArn(Aws::String&& value) { m_ruleArnHasBeenSet = true; m_ruleArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the rule.</p>
@@ -66,12 +77,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the rule.</p>
      */
-    inline ModifyRuleRequest& WithRuleArn(Aws::String&& value) { SetRuleArn(value); return *this;}
+    inline ModifyRuleRequest& WithRuleArn(Aws::String&& value) { SetRuleArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the rule.</p>
      */
     inline ModifyRuleRequest& WithRuleArn(const char* value) { SetRuleArn(value); return *this;}
+
 
     /**
      * <p>The conditions.</p>
@@ -86,7 +98,7 @@ namespace Model
     /**
      * <p>The conditions.</p>
      */
-    inline void SetConditions(Aws::Vector<RuleCondition>&& value) { m_conditionsHasBeenSet = true; m_conditions = value; }
+    inline void SetConditions(Aws::Vector<RuleCondition>&& value) { m_conditionsHasBeenSet = true; m_conditions = std::move(value); }
 
     /**
      * <p>The conditions.</p>
@@ -96,7 +108,7 @@ namespace Model
     /**
      * <p>The conditions.</p>
      */
-    inline ModifyRuleRequest& WithConditions(Aws::Vector<RuleCondition>&& value) { SetConditions(value); return *this;}
+    inline ModifyRuleRequest& WithConditions(Aws::Vector<RuleCondition>&& value) { SetConditions(std::move(value)); return *this;}
 
     /**
      * <p>The conditions.</p>
@@ -106,48 +118,52 @@ namespace Model
     /**
      * <p>The conditions.</p>
      */
-    inline ModifyRuleRequest& AddConditions(RuleCondition&& value) { m_conditionsHasBeenSet = true; m_conditions.push_back(value); return *this; }
+    inline ModifyRuleRequest& AddConditions(RuleCondition&& value) { m_conditionsHasBeenSet = true; m_conditions.push_back(std::move(value)); return *this; }
+
 
     /**
-     * <p>The actions.</p>
+     * <p>The actions. The target group must use the HTTP or HTTPS protocol.</p>
      */
     inline const Aws::Vector<Action>& GetActions() const{ return m_actions; }
 
     /**
-     * <p>The actions.</p>
+     * <p>The actions. The target group must use the HTTP or HTTPS protocol.</p>
      */
     inline void SetActions(const Aws::Vector<Action>& value) { m_actionsHasBeenSet = true; m_actions = value; }
 
     /**
-     * <p>The actions.</p>
+     * <p>The actions. The target group must use the HTTP or HTTPS protocol.</p>
      */
-    inline void SetActions(Aws::Vector<Action>&& value) { m_actionsHasBeenSet = true; m_actions = value; }
+    inline void SetActions(Aws::Vector<Action>&& value) { m_actionsHasBeenSet = true; m_actions = std::move(value); }
 
     /**
-     * <p>The actions.</p>
+     * <p>The actions. The target group must use the HTTP or HTTPS protocol.</p>
      */
     inline ModifyRuleRequest& WithActions(const Aws::Vector<Action>& value) { SetActions(value); return *this;}
 
     /**
-     * <p>The actions.</p>
+     * <p>The actions. The target group must use the HTTP or HTTPS protocol.</p>
      */
-    inline ModifyRuleRequest& WithActions(Aws::Vector<Action>&& value) { SetActions(value); return *this;}
+    inline ModifyRuleRequest& WithActions(Aws::Vector<Action>&& value) { SetActions(std::move(value)); return *this;}
 
     /**
-     * <p>The actions.</p>
+     * <p>The actions. The target group must use the HTTP or HTTPS protocol.</p>
      */
     inline ModifyRuleRequest& AddActions(const Action& value) { m_actionsHasBeenSet = true; m_actions.push_back(value); return *this; }
 
     /**
-     * <p>The actions.</p>
+     * <p>The actions. The target group must use the HTTP or HTTPS protocol.</p>
      */
-    inline ModifyRuleRequest& AddActions(Action&& value) { m_actionsHasBeenSet = true; m_actions.push_back(value); return *this; }
+    inline ModifyRuleRequest& AddActions(Action&& value) { m_actionsHasBeenSet = true; m_actions.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_ruleArn;
     bool m_ruleArnHasBeenSet;
+
     Aws::Vector<RuleCondition> m_conditions;
     bool m_conditionsHasBeenSet;
+
     Aws::Vector<Action> m_actions;
     bool m_actionsHasBeenSet;
   };

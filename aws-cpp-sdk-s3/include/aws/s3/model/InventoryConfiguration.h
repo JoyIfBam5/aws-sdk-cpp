@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/s3/model/InventoryDestination.h>
@@ -21,6 +22,7 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/s3/model/InventorySchedule.h>
 #include <aws/s3/model/InventoryOptionalField.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
 
+
     /**
      * Contains information about where to publish the inventory results.
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * Contains information about where to publish the inventory results.
      */
-    inline void SetDestination(InventoryDestination&& value) { m_destinationHasBeenSet = true; m_destination = value; }
+    inline void SetDestination(InventoryDestination&& value) { m_destinationHasBeenSet = true; m_destination = std::move(value); }
 
     /**
      * Contains information about where to publish the inventory results.
@@ -68,7 +71,8 @@ namespace Model
     /**
      * Contains information about where to publish the inventory results.
      */
-    inline InventoryConfiguration& WithDestination(InventoryDestination&& value) { SetDestination(value); return *this;}
+    inline InventoryConfiguration& WithDestination(InventoryDestination&& value) { SetDestination(std::move(value)); return *this;}
+
 
     /**
      * Specifies whether the inventory is enabled or disabled.
@@ -84,6 +88,7 @@ namespace Model
      * Specifies whether the inventory is enabled or disabled.
      */
     inline InventoryConfiguration& WithIsEnabled(bool value) { SetIsEnabled(value); return *this;}
+
 
     /**
      * Specifies an inventory filter. The inventory only includes objects that meet the
@@ -101,7 +106,7 @@ namespace Model
      * Specifies an inventory filter. The inventory only includes objects that meet the
      * filter's criteria.
      */
-    inline void SetFilter(InventoryFilter&& value) { m_filterHasBeenSet = true; m_filter = value; }
+    inline void SetFilter(InventoryFilter&& value) { m_filterHasBeenSet = true; m_filter = std::move(value); }
 
     /**
      * Specifies an inventory filter. The inventory only includes objects that meet the
@@ -113,7 +118,8 @@ namespace Model
      * Specifies an inventory filter. The inventory only includes objects that meet the
      * filter's criteria.
      */
-    inline InventoryConfiguration& WithFilter(InventoryFilter&& value) { SetFilter(value); return *this;}
+    inline InventoryConfiguration& WithFilter(InventoryFilter&& value) { SetFilter(std::move(value)); return *this;}
+
 
     /**
      * The ID used to identify the inventory configuration.
@@ -128,7 +134,7 @@ namespace Model
     /**
      * The ID used to identify the inventory configuration.
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * The ID used to identify the inventory configuration.
@@ -143,12 +149,13 @@ namespace Model
     /**
      * The ID used to identify the inventory configuration.
      */
-    inline InventoryConfiguration& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline InventoryConfiguration& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * The ID used to identify the inventory configuration.
      */
     inline InventoryConfiguration& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * Specifies which object version(s) to included in the inventory results.
@@ -163,7 +170,7 @@ namespace Model
     /**
      * Specifies which object version(s) to included in the inventory results.
      */
-    inline void SetIncludedObjectVersions(InventoryIncludedObjectVersions&& value) { m_includedObjectVersionsHasBeenSet = true; m_includedObjectVersions = value; }
+    inline void SetIncludedObjectVersions(InventoryIncludedObjectVersions&& value) { m_includedObjectVersionsHasBeenSet = true; m_includedObjectVersions = std::move(value); }
 
     /**
      * Specifies which object version(s) to included in the inventory results.
@@ -173,7 +180,8 @@ namespace Model
     /**
      * Specifies which object version(s) to included in the inventory results.
      */
-    inline InventoryConfiguration& WithIncludedObjectVersions(InventoryIncludedObjectVersions&& value) { SetIncludedObjectVersions(value); return *this;}
+    inline InventoryConfiguration& WithIncludedObjectVersions(InventoryIncludedObjectVersions&& value) { SetIncludedObjectVersions(std::move(value)); return *this;}
+
 
     /**
      * Contains the optional fields that are included in the inventory results.
@@ -188,7 +196,7 @@ namespace Model
     /**
      * Contains the optional fields that are included in the inventory results.
      */
-    inline void SetOptionalFields(Aws::Vector<InventoryOptionalField>&& value) { m_optionalFieldsHasBeenSet = true; m_optionalFields = value; }
+    inline void SetOptionalFields(Aws::Vector<InventoryOptionalField>&& value) { m_optionalFieldsHasBeenSet = true; m_optionalFields = std::move(value); }
 
     /**
      * Contains the optional fields that are included in the inventory results.
@@ -198,7 +206,7 @@ namespace Model
     /**
      * Contains the optional fields that are included in the inventory results.
      */
-    inline InventoryConfiguration& WithOptionalFields(Aws::Vector<InventoryOptionalField>&& value) { SetOptionalFields(value); return *this;}
+    inline InventoryConfiguration& WithOptionalFields(Aws::Vector<InventoryOptionalField>&& value) { SetOptionalFields(std::move(value)); return *this;}
 
     /**
      * Contains the optional fields that are included in the inventory results.
@@ -208,7 +216,8 @@ namespace Model
     /**
      * Contains the optional fields that are included in the inventory results.
      */
-    inline InventoryConfiguration& AddOptionalFields(InventoryOptionalField&& value) { m_optionalFieldsHasBeenSet = true; m_optionalFields.push_back(value); return *this; }
+    inline InventoryConfiguration& AddOptionalFields(InventoryOptionalField&& value) { m_optionalFieldsHasBeenSet = true; m_optionalFields.push_back(std::move(value)); return *this; }
+
 
     /**
      * Specifies the schedule for generating inventory results.
@@ -223,7 +232,7 @@ namespace Model
     /**
      * Specifies the schedule for generating inventory results.
      */
-    inline void SetSchedule(InventorySchedule&& value) { m_scheduleHasBeenSet = true; m_schedule = value; }
+    inline void SetSchedule(InventorySchedule&& value) { m_scheduleHasBeenSet = true; m_schedule = std::move(value); }
 
     /**
      * Specifies the schedule for generating inventory results.
@@ -233,21 +242,28 @@ namespace Model
     /**
      * Specifies the schedule for generating inventory results.
      */
-    inline InventoryConfiguration& WithSchedule(InventorySchedule&& value) { SetSchedule(value); return *this;}
+    inline InventoryConfiguration& WithSchedule(InventorySchedule&& value) { SetSchedule(std::move(value)); return *this;}
 
   private:
+
     InventoryDestination m_destination;
     bool m_destinationHasBeenSet;
+
     bool m_isEnabled;
     bool m_isEnabledHasBeenSet;
+
     InventoryFilter m_filter;
     bool m_filterHasBeenSet;
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     InventoryIncludedObjectVersions m_includedObjectVersions;
     bool m_includedObjectVersionsHasBeenSet;
+
     Aws::Vector<InventoryOptionalField> m_optionalFields;
     bool m_optionalFieldsHasBeenSet;
+
     InventorySchedule m_schedule;
     bool m_scheduleHasBeenSet;
   };

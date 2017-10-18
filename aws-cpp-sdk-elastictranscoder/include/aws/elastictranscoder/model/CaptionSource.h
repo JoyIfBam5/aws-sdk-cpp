@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elastictranscoder/ElasticTranscoder_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/elastictranscoder/model/Encryption.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     CaptionSource& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the sidecar caption file that you want Elastic Transcoder to
      * include in the output file.</p>
@@ -61,7 +64,7 @@ namespace Model
      * <p>The name of the sidecar caption file that you want Elastic Transcoder to
      * include in the output file.</p>
      */
-    inline void SetKey(Aws::String&& value) { m_keyHasBeenSet = true; m_key = value; }
+    inline void SetKey(Aws::String&& value) { m_keyHasBeenSet = true; m_key = std::move(value); }
 
     /**
      * <p>The name of the sidecar caption file that you want Elastic Transcoder to
@@ -79,13 +82,14 @@ namespace Model
      * <p>The name of the sidecar caption file that you want Elastic Transcoder to
      * include in the output file.</p>
      */
-    inline CaptionSource& WithKey(Aws::String&& value) { SetKey(value); return *this;}
+    inline CaptionSource& WithKey(Aws::String&& value) { SetKey(std::move(value)); return *this;}
 
     /**
      * <p>The name of the sidecar caption file that you want Elastic Transcoder to
      * include in the output file.</p>
      */
     inline CaptionSource& WithKey(const char* value) { SetKey(value); return *this;}
+
 
     /**
      * <p>A string that specifies the language of the caption. If you specified
@@ -115,7 +119,7 @@ namespace Model
      * more information on ISO language codes and language names, see the List of ISO
      * 639-1 codes.</p>
      */
-    inline void SetLanguage(Aws::String&& value) { m_languageHasBeenSet = true; m_language = value; }
+    inline void SetLanguage(Aws::String&& value) { m_languageHasBeenSet = true; m_language = std::move(value); }
 
     /**
      * <p>A string that specifies the language of the caption. If you specified
@@ -145,7 +149,7 @@ namespace Model
      * more information on ISO language codes and language names, see the List of ISO
      * 639-1 codes.</p>
      */
-    inline CaptionSource& WithLanguage(Aws::String&& value) { SetLanguage(value); return *this;}
+    inline CaptionSource& WithLanguage(Aws::String&& value) { SetLanguage(std::move(value)); return *this;}
 
     /**
      * <p>A string that specifies the language of the caption. If you specified
@@ -156,6 +160,7 @@ namespace Model
      * 639-1 codes.</p>
      */
     inline CaptionSource& WithLanguage(const char* value) { SetLanguage(value); return *this;}
+
 
     /**
      * <p>For clip generation or captions that do not start at the same time as the
@@ -179,7 +184,7 @@ namespace Model
      * much of the video to encode before including captions.</p> <p>Specify the
      * TimeOffset in the form [+-]SS.sss or [+-]HH:mm:SS.ss.</p>
      */
-    inline void SetTimeOffset(Aws::String&& value) { m_timeOffsetHasBeenSet = true; m_timeOffset = value; }
+    inline void SetTimeOffset(Aws::String&& value) { m_timeOffsetHasBeenSet = true; m_timeOffset = std::move(value); }
 
     /**
      * <p>For clip generation or captions that do not start at the same time as the
@@ -203,7 +208,7 @@ namespace Model
      * much of the video to encode before including captions.</p> <p>Specify the
      * TimeOffset in the form [+-]SS.sss or [+-]HH:mm:SS.ss.</p>
      */
-    inline CaptionSource& WithTimeOffset(Aws::String&& value) { SetTimeOffset(value); return *this;}
+    inline CaptionSource& WithTimeOffset(Aws::String&& value) { SetTimeOffset(std::move(value)); return *this;}
 
     /**
      * <p>For clip generation or captions that do not start at the same time as the
@@ -212,6 +217,7 @@ namespace Model
      * TimeOffset in the form [+-]SS.sss or [+-]HH:mm:SS.ss.</p>
      */
     inline CaptionSource& WithTimeOffset(const char* value) { SetTimeOffset(value); return *this;}
+
 
     /**
      * <p>The label of the caption shown in the player when choosing a language. We
@@ -232,7 +238,7 @@ namespace Model
      * recommend that you put the caption language name here, in the language of the
      * captions.</p>
      */
-    inline void SetLabel(Aws::String&& value) { m_labelHasBeenSet = true; m_label = value; }
+    inline void SetLabel(Aws::String&& value) { m_labelHasBeenSet = true; m_label = std::move(value); }
 
     /**
      * <p>The label of the caption shown in the player when choosing a language. We
@@ -253,7 +259,7 @@ namespace Model
      * recommend that you put the caption language name here, in the language of the
      * captions.</p>
      */
-    inline CaptionSource& WithLabel(Aws::String&& value) { SetLabel(value); return *this;}
+    inline CaptionSource& WithLabel(Aws::String&& value) { SetLabel(std::move(value)); return *this;}
 
     /**
      * <p>The label of the caption shown in the player when choosing a language. We
@@ -261,6 +267,7 @@ namespace Model
      * captions.</p>
      */
     inline CaptionSource& WithLabel(const char* value) { SetLabel(value); return *this;}
+
 
     /**
      * <p>The encryption settings, if any, that Elastic Transcoder needs to decyrpt
@@ -281,7 +288,7 @@ namespace Model
      * your caption sources, or that you want Elastic Transcoder to apply to your
      * caption sources.</p>
      */
-    inline void SetEncryption(Encryption&& value) { m_encryptionHasBeenSet = true; m_encryption = value; }
+    inline void SetEncryption(Encryption&& value) { m_encryptionHasBeenSet = true; m_encryption = std::move(value); }
 
     /**
      * <p>The encryption settings, if any, that Elastic Transcoder needs to decyrpt
@@ -295,17 +302,22 @@ namespace Model
      * your caption sources, or that you want Elastic Transcoder to apply to your
      * caption sources.</p>
      */
-    inline CaptionSource& WithEncryption(Encryption&& value) { SetEncryption(value); return *this;}
+    inline CaptionSource& WithEncryption(Encryption&& value) { SetEncryption(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_key;
     bool m_keyHasBeenSet;
+
     Aws::String m_language;
     bool m_languageHasBeenSet;
+
     Aws::String m_timeOffset;
     bool m_timeOffsetHasBeenSet;
+
     Aws::String m_label;
     bool m_labelHasBeenSet;
+
     Encryption m_encryption;
     bool m_encryptionHasBeenSet;
   };

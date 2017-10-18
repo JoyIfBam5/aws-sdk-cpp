@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/codedeploy/model/CreateDeploymentGroupRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -31,7 +32,12 @@ CreateDeploymentGroupRequest::CreateDeploymentGroupRequest() :
     m_serviceRoleArnHasBeenSet(false),
     m_triggerConfigurationsHasBeenSet(false),
     m_alarmConfigurationHasBeenSet(false),
-    m_autoRollbackConfigurationHasBeenSet(false)
+    m_autoRollbackConfigurationHasBeenSet(false),
+    m_deploymentStyleHasBeenSet(false),
+    m_blueGreenDeploymentConfigurationHasBeenSet(false),
+    m_loadBalancerInfoHasBeenSet(false),
+    m_ec2TagSetHasBeenSet(false),
+    m_onPremisesTagSetHasBeenSet(false)
 {
 }
 
@@ -119,6 +125,36 @@ Aws::String CreateDeploymentGroupRequest::SerializePayload() const
 
   }
 
+  if(m_deploymentStyleHasBeenSet)
+  {
+   payload.WithObject("deploymentStyle", m_deploymentStyle.Jsonize());
+
+  }
+
+  if(m_blueGreenDeploymentConfigurationHasBeenSet)
+  {
+   payload.WithObject("blueGreenDeploymentConfiguration", m_blueGreenDeploymentConfiguration.Jsonize());
+
+  }
+
+  if(m_loadBalancerInfoHasBeenSet)
+  {
+   payload.WithObject("loadBalancerInfo", m_loadBalancerInfo.Jsonize());
+
+  }
+
+  if(m_ec2TagSetHasBeenSet)
+  {
+   payload.WithObject("ec2TagSet", m_ec2TagSet.Jsonize());
+
+  }
+
+  if(m_onPremisesTagSetHasBeenSet)
+  {
+   payload.WithObject("onPremisesTagSet", m_onPremisesTagSet.Jsonize());
+
+  }
+
   return payload.WriteReadable();
 }
 
@@ -129,6 +165,7 @@ Aws::Http::HeaderValueCollection CreateDeploymentGroupRequest::GetRequestSpecifi
   return headers;
 
 }
+
 
 
 

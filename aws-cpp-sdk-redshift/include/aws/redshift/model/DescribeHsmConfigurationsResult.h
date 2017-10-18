@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/redshift/model/ResponseMetadata.h>
 #include <aws/redshift/model/HsmConfiguration.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     DescribeHsmConfigurationsResult();
-    DescribeHsmConfigurationsResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeHsmConfigurationsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeHsmConfigurationsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeHsmConfigurationsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>A value that indicates the starting point for the next set of response
@@ -75,7 +78,7 @@ namespace Model
      * <code>Marker</code> field is empty, all response records have been retrieved for
      * the request. </p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p>A value that indicates the starting point for the next set of response
@@ -105,7 +108,7 @@ namespace Model
      * <code>Marker</code> field is empty, all response records have been retrieved for
      * the request. </p>
      */
-    inline DescribeHsmConfigurationsResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeHsmConfigurationsResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>A value that indicates the starting point for the next set of response
@@ -116,6 +119,7 @@ namespace Model
      * the request. </p>
      */
     inline DescribeHsmConfigurationsResult& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>A list of <code>HsmConfiguration</code> objects.</p>
@@ -130,7 +134,7 @@ namespace Model
     /**
      * <p>A list of <code>HsmConfiguration</code> objects.</p>
      */
-    inline void SetHsmConfigurations(Aws::Vector<HsmConfiguration>&& value) { m_hsmConfigurations = value; }
+    inline void SetHsmConfigurations(Aws::Vector<HsmConfiguration>&& value) { m_hsmConfigurations = std::move(value); }
 
     /**
      * <p>A list of <code>HsmConfiguration</code> objects.</p>
@@ -140,7 +144,7 @@ namespace Model
     /**
      * <p>A list of <code>HsmConfiguration</code> objects.</p>
      */
-    inline DescribeHsmConfigurationsResult& WithHsmConfigurations(Aws::Vector<HsmConfiguration>&& value) { SetHsmConfigurations(value); return *this;}
+    inline DescribeHsmConfigurationsResult& WithHsmConfigurations(Aws::Vector<HsmConfiguration>&& value) { SetHsmConfigurations(std::move(value)); return *this;}
 
     /**
      * <p>A list of <code>HsmConfiguration</code> objects.</p>
@@ -150,7 +154,8 @@ namespace Model
     /**
      * <p>A list of <code>HsmConfiguration</code> objects.</p>
      */
-    inline DescribeHsmConfigurationsResult& AddHsmConfigurations(HsmConfiguration&& value) { m_hsmConfigurations.push_back(value); return *this; }
+    inline DescribeHsmConfigurationsResult& AddHsmConfigurations(HsmConfiguration&& value) { m_hsmConfigurations.push_back(std::move(value)); return *this; }
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -159,17 +164,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeHsmConfigurationsResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeHsmConfigurationsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeHsmConfigurationsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_marker;
+
     Aws::Vector<HsmConfiguration> m_hsmConfigurations;
+
     ResponseMetadata m_responseMetadata;
   };
 

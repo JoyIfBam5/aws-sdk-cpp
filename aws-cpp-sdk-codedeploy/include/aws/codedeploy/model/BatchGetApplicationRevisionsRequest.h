@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codedeploy/CodeDeploy_EXPORTS.h>
 #include <aws/codedeploy/CodeDeployRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/codedeploy/model/RevisionLocation.h>
+#include <utility>
 
 namespace Aws
 {
@@ -27,7 +29,7 @@ namespace Model
 {
 
   /**
-   * <p>Represents the input of a batch get application revisions
+   * <p>Represents the input of a BatchGetApplicationRevisions
    * operation.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/BatchGetApplicationRevisionsInput">AWS
    * API Reference</a></p>
@@ -36,9 +38,17 @@ namespace Model
   {
   public:
     BatchGetApplicationRevisionsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "BatchGetApplicationRevisions"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The name of an AWS CodeDeploy application about which to get revision
@@ -56,7 +66,7 @@ namespace Model
      * <p>The name of an AWS CodeDeploy application about which to get revision
      * information.</p>
      */
-    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = value; }
+    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = std::move(value); }
 
     /**
      * <p>The name of an AWS CodeDeploy application about which to get revision
@@ -74,13 +84,14 @@ namespace Model
      * <p>The name of an AWS CodeDeploy application about which to get revision
      * information.</p>
      */
-    inline BatchGetApplicationRevisionsRequest& WithApplicationName(Aws::String&& value) { SetApplicationName(value); return *this;}
+    inline BatchGetApplicationRevisionsRequest& WithApplicationName(Aws::String&& value) { SetApplicationName(std::move(value)); return *this;}
 
     /**
      * <p>The name of an AWS CodeDeploy application about which to get revision
      * information.</p>
      */
     inline BatchGetApplicationRevisionsRequest& WithApplicationName(const char* value) { SetApplicationName(value); return *this;}
+
 
     /**
      * <p>Information to get about the application revisions, including type and
@@ -98,7 +109,7 @@ namespace Model
      * <p>Information to get about the application revisions, including type and
      * location.</p>
      */
-    inline void SetRevisions(Aws::Vector<RevisionLocation>&& value) { m_revisionsHasBeenSet = true; m_revisions = value; }
+    inline void SetRevisions(Aws::Vector<RevisionLocation>&& value) { m_revisionsHasBeenSet = true; m_revisions = std::move(value); }
 
     /**
      * <p>Information to get about the application revisions, including type and
@@ -110,7 +121,7 @@ namespace Model
      * <p>Information to get about the application revisions, including type and
      * location.</p>
      */
-    inline BatchGetApplicationRevisionsRequest& WithRevisions(Aws::Vector<RevisionLocation>&& value) { SetRevisions(value); return *this;}
+    inline BatchGetApplicationRevisionsRequest& WithRevisions(Aws::Vector<RevisionLocation>&& value) { SetRevisions(std::move(value)); return *this;}
 
     /**
      * <p>Information to get about the application revisions, including type and
@@ -122,11 +133,13 @@ namespace Model
      * <p>Information to get about the application revisions, including type and
      * location.</p>
      */
-    inline BatchGetApplicationRevisionsRequest& AddRevisions(RevisionLocation&& value) { m_revisionsHasBeenSet = true; m_revisions.push_back(value); return *this; }
+    inline BatchGetApplicationRevisionsRequest& AddRevisions(RevisionLocation&& value) { m_revisionsHasBeenSet = true; m_revisions.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_applicationName;
     bool m_applicationNameHasBeenSet;
+
     Aws::Vector<RevisionLocation> m_revisions;
     bool m_revisionsHasBeenSet;
   };

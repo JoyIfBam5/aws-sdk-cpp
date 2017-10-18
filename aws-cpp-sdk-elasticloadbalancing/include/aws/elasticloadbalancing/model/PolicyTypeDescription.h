@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticloadbalancing/ElasticLoadBalancing_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticloadbalancing/model/PolicyAttributeTypeDescription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the policy type.</p>
      */
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>The name of the policy type.</p>
      */
-    inline void SetPolicyTypeName(Aws::String&& value) { m_policyTypeNameHasBeenSet = true; m_policyTypeName = value; }
+    inline void SetPolicyTypeName(Aws::String&& value) { m_policyTypeNameHasBeenSet = true; m_policyTypeName = std::move(value); }
 
     /**
      * <p>The name of the policy type.</p>
@@ -76,12 +79,13 @@ namespace Model
     /**
      * <p>The name of the policy type.</p>
      */
-    inline PolicyTypeDescription& WithPolicyTypeName(Aws::String&& value) { SetPolicyTypeName(value); return *this;}
+    inline PolicyTypeDescription& WithPolicyTypeName(Aws::String&& value) { SetPolicyTypeName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the policy type.</p>
      */
     inline PolicyTypeDescription& WithPolicyTypeName(const char* value) { SetPolicyTypeName(value); return *this;}
+
 
     /**
      * <p>A description of the policy type.</p>
@@ -96,7 +100,7 @@ namespace Model
     /**
      * <p>A description of the policy type.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>A description of the policy type.</p>
@@ -111,12 +115,13 @@ namespace Model
     /**
      * <p>A description of the policy type.</p>
      */
-    inline PolicyTypeDescription& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline PolicyTypeDescription& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>A description of the policy type.</p>
      */
     inline PolicyTypeDescription& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The description of the policy attributes associated with the policies defined
@@ -134,7 +139,7 @@ namespace Model
      * <p>The description of the policy attributes associated with the policies defined
      * by Elastic Load Balancing.</p>
      */
-    inline void SetPolicyAttributeTypeDescriptions(Aws::Vector<PolicyAttributeTypeDescription>&& value) { m_policyAttributeTypeDescriptionsHasBeenSet = true; m_policyAttributeTypeDescriptions = value; }
+    inline void SetPolicyAttributeTypeDescriptions(Aws::Vector<PolicyAttributeTypeDescription>&& value) { m_policyAttributeTypeDescriptionsHasBeenSet = true; m_policyAttributeTypeDescriptions = std::move(value); }
 
     /**
      * <p>The description of the policy attributes associated with the policies defined
@@ -146,7 +151,7 @@ namespace Model
      * <p>The description of the policy attributes associated with the policies defined
      * by Elastic Load Balancing.</p>
      */
-    inline PolicyTypeDescription& WithPolicyAttributeTypeDescriptions(Aws::Vector<PolicyAttributeTypeDescription>&& value) { SetPolicyAttributeTypeDescriptions(value); return *this;}
+    inline PolicyTypeDescription& WithPolicyAttributeTypeDescriptions(Aws::Vector<PolicyAttributeTypeDescription>&& value) { SetPolicyAttributeTypeDescriptions(std::move(value)); return *this;}
 
     /**
      * <p>The description of the policy attributes associated with the policies defined
@@ -158,13 +163,16 @@ namespace Model
      * <p>The description of the policy attributes associated with the policies defined
      * by Elastic Load Balancing.</p>
      */
-    inline PolicyTypeDescription& AddPolicyAttributeTypeDescriptions(PolicyAttributeTypeDescription&& value) { m_policyAttributeTypeDescriptionsHasBeenSet = true; m_policyAttributeTypeDescriptions.push_back(value); return *this; }
+    inline PolicyTypeDescription& AddPolicyAttributeTypeDescriptions(PolicyAttributeTypeDescription&& value) { m_policyAttributeTypeDescriptionsHasBeenSet = true; m_policyAttributeTypeDescriptions.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_policyTypeName;
     bool m_policyTypeNameHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     Aws::Vector<PolicyAttributeTypeDescription> m_policyAttributeTypeDescriptions;
     bool m_policyAttributeTypeDescriptionsHasBeenSet;
   };

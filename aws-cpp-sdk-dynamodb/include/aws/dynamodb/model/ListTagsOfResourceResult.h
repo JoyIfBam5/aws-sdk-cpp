@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dynamodb/DynamoDB_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/dynamodb/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     ListTagsOfResourceResult();
-    ListTagsOfResourceResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListTagsOfResourceResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListTagsOfResourceResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListTagsOfResourceResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The tags currently associated with the Amazon DynamoDB resource.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>The tags currently associated with the Amazon DynamoDB resource.</p>
      */
-    inline void SetTags(Aws::Vector<Tag>&& value) { m_tags = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tags = std::move(value); }
 
     /**
      * <p>The tags currently associated with the Amazon DynamoDB resource.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>The tags currently associated with the Amazon DynamoDB resource.</p>
      */
-    inline ListTagsOfResourceResult& WithTags(Aws::Vector<Tag>&& value) { SetTags(value); return *this;}
+    inline ListTagsOfResourceResult& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
      * <p>The tags currently associated with the Amazon DynamoDB resource.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>The tags currently associated with the Amazon DynamoDB resource.</p>
      */
-    inline ListTagsOfResourceResult& AddTags(Tag&& value) { m_tags.push_back(value); return *this; }
+    inline ListTagsOfResourceResult& AddTags(Tag&& value) { m_tags.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>If this value is returned, there are additional results to be displayed. To
@@ -95,7 +99,7 @@ namespace Model
      * retrieve them, call ListTagsOfResource again, with NextToken set to this
      * value.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>If this value is returned, there are additional results to be displayed. To
@@ -116,7 +120,7 @@ namespace Model
      * retrieve them, call ListTagsOfResource again, with NextToken set to this
      * value.</p>
      */
-    inline ListTagsOfResourceResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListTagsOfResourceResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>If this value is returned, there are additional results to be displayed. To
@@ -126,7 +130,9 @@ namespace Model
     inline ListTagsOfResourceResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Tag> m_tags;
+
     Aws::String m_nextToken;
   };
 

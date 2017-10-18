@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/shield/Shield_EXPORTS.h>
 #include <aws/shield/model/AttackDetail.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     DescribeAttackResult();
-    DescribeAttackResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeAttackResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeAttackResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeAttackResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The attack that is described.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The attack that is described.</p>
      */
-    inline void SetAttack(AttackDetail&& value) { m_attack = value; }
+    inline void SetAttack(AttackDetail&& value) { m_attack = std::move(value); }
 
     /**
      * <p>The attack that is described.</p>
@@ -62,9 +65,10 @@ namespace Model
     /**
      * <p>The attack that is described.</p>
      */
-    inline DescribeAttackResult& WithAttack(AttackDetail&& value) { SetAttack(value); return *this;}
+    inline DescribeAttackResult& WithAttack(AttackDetail&& value) { SetAttack(std::move(value)); return *this;}
 
   private:
+
     AttackDetail m_attack;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/snowball/Snowball_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -19,6 +20,7 @@
 #include <aws/snowball/model/JobType.h>
 #include <aws/snowball/model/SnowballType.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +51,7 @@ namespace Model
     JobListEntry& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The automatically generated ID for a job, for example
      * <code>JID123e4567-e89b-12d3-a456-426655440000</code>.</p>
@@ -65,7 +68,7 @@ namespace Model
      * <p>The automatically generated ID for a job, for example
      * <code>JID123e4567-e89b-12d3-a456-426655440000</code>.</p>
      */
-    inline void SetJobId(Aws::String&& value) { m_jobIdHasBeenSet = true; m_jobId = value; }
+    inline void SetJobId(Aws::String&& value) { m_jobIdHasBeenSet = true; m_jobId = std::move(value); }
 
     /**
      * <p>The automatically generated ID for a job, for example
@@ -83,13 +86,14 @@ namespace Model
      * <p>The automatically generated ID for a job, for example
      * <code>JID123e4567-e89b-12d3-a456-426655440000</code>.</p>
      */
-    inline JobListEntry& WithJobId(Aws::String&& value) { SetJobId(value); return *this;}
+    inline JobListEntry& WithJobId(Aws::String&& value) { SetJobId(std::move(value)); return *this;}
 
     /**
      * <p>The automatically generated ID for a job, for example
      * <code>JID123e4567-e89b-12d3-a456-426655440000</code>.</p>
      */
     inline JobListEntry& WithJobId(const char* value) { SetJobId(value); return *this;}
+
 
     /**
      * <p>The current state of this job.</p>
@@ -104,7 +108,7 @@ namespace Model
     /**
      * <p>The current state of this job.</p>
      */
-    inline void SetJobState(JobState&& value) { m_jobStateHasBeenSet = true; m_jobState = value; }
+    inline void SetJobState(JobState&& value) { m_jobStateHasBeenSet = true; m_jobState = std::move(value); }
 
     /**
      * <p>The current state of this job.</p>
@@ -114,7 +118,8 @@ namespace Model
     /**
      * <p>The current state of this job.</p>
      */
-    inline JobListEntry& WithJobState(JobState&& value) { SetJobState(value); return *this;}
+    inline JobListEntry& WithJobState(JobState&& value) { SetJobState(std::move(value)); return *this;}
+
 
     /**
      * <p>A value that indicates that this job is a master job. A master job represents
@@ -146,6 +151,7 @@ namespace Model
      */
     inline JobListEntry& WithIsMaster(bool value) { SetIsMaster(value); return *this;}
 
+
     /**
      * <p>The type of job.</p>
      */
@@ -159,7 +165,7 @@ namespace Model
     /**
      * <p>The type of job.</p>
      */
-    inline void SetJobType(JobType&& value) { m_jobTypeHasBeenSet = true; m_jobType = value; }
+    inline void SetJobType(JobType&& value) { m_jobTypeHasBeenSet = true; m_jobType = std::move(value); }
 
     /**
      * <p>The type of job.</p>
@@ -169,7 +175,8 @@ namespace Model
     /**
      * <p>The type of job.</p>
      */
-    inline JobListEntry& WithJobType(JobType&& value) { SetJobType(value); return *this;}
+    inline JobListEntry& WithJobType(JobType&& value) { SetJobType(std::move(value)); return *this;}
+
 
     /**
      * <p>The type of appliance used with this job.</p>
@@ -184,7 +191,7 @@ namespace Model
     /**
      * <p>The type of appliance used with this job.</p>
      */
-    inline void SetSnowballType(SnowballType&& value) { m_snowballTypeHasBeenSet = true; m_snowballType = value; }
+    inline void SetSnowballType(SnowballType&& value) { m_snowballTypeHasBeenSet = true; m_snowballType = std::move(value); }
 
     /**
      * <p>The type of appliance used with this job.</p>
@@ -194,7 +201,8 @@ namespace Model
     /**
      * <p>The type of appliance used with this job.</p>
      */
-    inline JobListEntry& WithSnowballType(SnowballType&& value) { SetSnowballType(value); return *this;}
+    inline JobListEntry& WithSnowballType(SnowballType&& value) { SetSnowballType(std::move(value)); return *this;}
+
 
     /**
      * <p>The creation date for this job.</p>
@@ -209,7 +217,7 @@ namespace Model
     /**
      * <p>The creation date for this job.</p>
      */
-    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDateHasBeenSet = true; m_creationDate = value; }
+    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDateHasBeenSet = true; m_creationDate = std::move(value); }
 
     /**
      * <p>The creation date for this job.</p>
@@ -219,7 +227,8 @@ namespace Model
     /**
      * <p>The creation date for this job.</p>
      */
-    inline JobListEntry& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(value); return *this;}
+    inline JobListEntry& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(std::move(value)); return *this;}
+
 
     /**
      * <p>The optional description of this specific job, for example <code>Important
@@ -237,7 +246,7 @@ namespace Model
      * <p>The optional description of this specific job, for example <code>Important
      * Photos 2016-08-11</code>.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The optional description of this specific job, for example <code>Important
@@ -255,7 +264,7 @@ namespace Model
      * <p>The optional description of this specific job, for example <code>Important
      * Photos 2016-08-11</code>.</p>
      */
-    inline JobListEntry& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline JobListEntry& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The optional description of this specific job, for example <code>Important
@@ -264,18 +273,25 @@ namespace Model
     inline JobListEntry& WithDescription(const char* value) { SetDescription(value); return *this;}
 
   private:
+
     Aws::String m_jobId;
     bool m_jobIdHasBeenSet;
+
     JobState m_jobState;
     bool m_jobStateHasBeenSet;
+
     bool m_isMaster;
     bool m_isMasterHasBeenSet;
+
     JobType m_jobType;
     bool m_jobTypeHasBeenSet;
+
     SnowballType m_snowballType;
     bool m_snowballTypeHasBeenSet;
+
     Aws::Utils::DateTime m_creationDate;
     bool m_creationDateHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
   };

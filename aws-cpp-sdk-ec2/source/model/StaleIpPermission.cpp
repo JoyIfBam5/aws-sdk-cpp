@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/StaleIpPermission.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -182,7 +183,7 @@ void StaleIpPermission::OutputToStream(Aws::OStream& oStream, const char* locati
       unsigned ipRangesIdx = 1;
       for(auto& item : m_ipRanges)
       {
-        oStream << location << ".Item." << ipRangesIdx++ << "=" << StringUtils::URLEncode(item.c_str()) << "&";
+        oStream << location << ".IpRanges." << ipRangesIdx++ << "=" << StringUtils::URLEncode(item.c_str()) << "&";
       }
   }
   if(m_prefixListIdsHasBeenSet)
@@ -190,7 +191,7 @@ void StaleIpPermission::OutputToStream(Aws::OStream& oStream, const char* locati
       unsigned prefixListIdsIdx = 1;
       for(auto& item : m_prefixListIds)
       {
-        oStream << location << ".Item." << prefixListIdsIdx++ << "=" << StringUtils::URLEncode(item.c_str()) << "&";
+        oStream << location << ".PrefixListIds." << prefixListIdsIdx++ << "=" << StringUtils::URLEncode(item.c_str()) << "&";
       }
   }
   if(m_toPortHasBeenSet)
@@ -203,7 +204,7 @@ void StaleIpPermission::OutputToStream(Aws::OStream& oStream, const char* locati
       for(auto& item : m_userIdGroupPairs)
       {
         Aws::StringStream userIdGroupPairsSs;
-        userIdGroupPairsSs << location <<  ".Item." << userIdGroupPairsIdx++;
+        userIdGroupPairsSs << location <<  ".Groups." << userIdGroupPairsIdx++;
         item.OutputToStream(oStream, userIdGroupPairsSs.str().c_str());
       }
   }

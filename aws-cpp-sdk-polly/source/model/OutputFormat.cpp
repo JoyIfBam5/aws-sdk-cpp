@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/polly/model/OutputFormat.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -29,6 +30,7 @@ namespace Aws
       namespace OutputFormatMapper
       {
 
+        static const int json_HASH = HashingUtils::HashString("json");
         static const int mp3_HASH = HashingUtils::HashString("mp3");
         static const int ogg_vorbis_HASH = HashingUtils::HashString("ogg_vorbis");
         static const int pcm_HASH = HashingUtils::HashString("pcm");
@@ -37,7 +39,11 @@ namespace Aws
         OutputFormat GetOutputFormatForName(const Aws::String& name)
         {
           int hashCode = HashingUtils::HashString(name.c_str());
-          if (hashCode == mp3_HASH)
+          if (hashCode == json_HASH)
+          {
+            return OutputFormat::json;
+          }
+          else if (hashCode == mp3_HASH)
           {
             return OutputFormat::mp3;
           }
@@ -63,6 +69,8 @@ namespace Aws
         {
           switch(enumValue)
           {
+          case OutputFormat::json:
+            return "json";
           case OutputFormat::mp3:
             return "mp3";
           case OutputFormat::ogg_vorbis:

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/elasticbeanstalk/model/ApplicationVersionLifecycleConfig.h>
+#include <utility>
 
 namespace Aws
 {
@@ -51,6 +53,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The ARN of an IAM service role that Elastic Beanstalk has permission to
      * assume.</p>
@@ -67,7 +70,7 @@ namespace Model
      * <p>The ARN of an IAM service role that Elastic Beanstalk has permission to
      * assume.</p>
      */
-    inline void SetServiceRole(Aws::String&& value) { m_serviceRoleHasBeenSet = true; m_serviceRole = value; }
+    inline void SetServiceRole(Aws::String&& value) { m_serviceRoleHasBeenSet = true; m_serviceRole = std::move(value); }
 
     /**
      * <p>The ARN of an IAM service role that Elastic Beanstalk has permission to
@@ -85,13 +88,14 @@ namespace Model
      * <p>The ARN of an IAM service role that Elastic Beanstalk has permission to
      * assume.</p>
      */
-    inline ApplicationResourceLifecycleConfig& WithServiceRole(Aws::String&& value) { SetServiceRole(value); return *this;}
+    inline ApplicationResourceLifecycleConfig& WithServiceRole(Aws::String&& value) { SetServiceRole(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of an IAM service role that Elastic Beanstalk has permission to
      * assume.</p>
      */
     inline ApplicationResourceLifecycleConfig& WithServiceRole(const char* value) { SetServiceRole(value); return *this;}
+
 
     /**
      * <p>The application version lifecycle configuration.</p>
@@ -106,7 +110,7 @@ namespace Model
     /**
      * <p>The application version lifecycle configuration.</p>
      */
-    inline void SetVersionLifecycleConfig(ApplicationVersionLifecycleConfig&& value) { m_versionLifecycleConfigHasBeenSet = true; m_versionLifecycleConfig = value; }
+    inline void SetVersionLifecycleConfig(ApplicationVersionLifecycleConfig&& value) { m_versionLifecycleConfigHasBeenSet = true; m_versionLifecycleConfig = std::move(value); }
 
     /**
      * <p>The application version lifecycle configuration.</p>
@@ -116,11 +120,13 @@ namespace Model
     /**
      * <p>The application version lifecycle configuration.</p>
      */
-    inline ApplicationResourceLifecycleConfig& WithVersionLifecycleConfig(ApplicationVersionLifecycleConfig&& value) { SetVersionLifecycleConfig(value); return *this;}
+    inline ApplicationResourceLifecycleConfig& WithVersionLifecycleConfig(ApplicationVersionLifecycleConfig&& value) { SetVersionLifecycleConfig(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_serviceRole;
     bool m_serviceRoleHasBeenSet;
+
     ApplicationVersionLifecycleConfig m_versionLifecycleConfig;
     bool m_versionLifecycleConfigHasBeenSet;
   };

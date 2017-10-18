@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     RaidArray& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The array ID.</p>
      */
@@ -56,7 +59,7 @@ namespace Model
     /**
      * <p>The array ID.</p>
      */
-    inline void SetRaidArrayId(Aws::String&& value) { m_raidArrayIdHasBeenSet = true; m_raidArrayId = value; }
+    inline void SetRaidArrayId(Aws::String&& value) { m_raidArrayIdHasBeenSet = true; m_raidArrayId = std::move(value); }
 
     /**
      * <p>The array ID.</p>
@@ -71,12 +74,13 @@ namespace Model
     /**
      * <p>The array ID.</p>
      */
-    inline RaidArray& WithRaidArrayId(Aws::String&& value) { SetRaidArrayId(value); return *this;}
+    inline RaidArray& WithRaidArrayId(Aws::String&& value) { SetRaidArrayId(std::move(value)); return *this;}
 
     /**
      * <p>The array ID.</p>
      */
     inline RaidArray& WithRaidArrayId(const char* value) { SetRaidArrayId(value); return *this;}
+
 
     /**
      * <p>The instance ID.</p>
@@ -91,7 +95,7 @@ namespace Model
     /**
      * <p>The instance ID.</p>
      */
-    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = value; }
+    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = std::move(value); }
 
     /**
      * <p>The instance ID.</p>
@@ -106,12 +110,13 @@ namespace Model
     /**
      * <p>The instance ID.</p>
      */
-    inline RaidArray& WithInstanceId(Aws::String&& value) { SetInstanceId(value); return *this;}
+    inline RaidArray& WithInstanceId(Aws::String&& value) { SetInstanceId(std::move(value)); return *this;}
 
     /**
      * <p>The instance ID.</p>
      */
     inline RaidArray& WithInstanceId(const char* value) { SetInstanceId(value); return *this;}
+
 
     /**
      * <p>The array name.</p>
@@ -126,7 +131,7 @@ namespace Model
     /**
      * <p>The array name.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The array name.</p>
@@ -141,12 +146,13 @@ namespace Model
     /**
      * <p>The array name.</p>
      */
-    inline RaidArray& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline RaidArray& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The array name.</p>
      */
     inline RaidArray& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The <a href="http://en.wikipedia.org/wiki/Standard_RAID_levels">RAID
@@ -166,6 +172,7 @@ namespace Model
      */
     inline RaidArray& WithRaidLevel(int value) { SetRaidLevel(value); return *this;}
 
+
     /**
      * <p>The number of disks in the array.</p>
      */
@@ -180,6 +187,7 @@ namespace Model
      * <p>The number of disks in the array.</p>
      */
     inline RaidArray& WithNumberOfDisks(int value) { SetNumberOfDisks(value); return *this;}
+
 
     /**
      * <p>The array's size.</p>
@@ -196,6 +204,7 @@ namespace Model
      */
     inline RaidArray& WithSize(int value) { SetSize(value); return *this;}
 
+
     /**
      * <p>The array's Linux device. For example /dev/mdadm0.</p>
      */
@@ -209,7 +218,7 @@ namespace Model
     /**
      * <p>The array's Linux device. For example /dev/mdadm0.</p>
      */
-    inline void SetDevice(Aws::String&& value) { m_deviceHasBeenSet = true; m_device = value; }
+    inline void SetDevice(Aws::String&& value) { m_deviceHasBeenSet = true; m_device = std::move(value); }
 
     /**
      * <p>The array's Linux device. For example /dev/mdadm0.</p>
@@ -224,12 +233,13 @@ namespace Model
     /**
      * <p>The array's Linux device. For example /dev/mdadm0.</p>
      */
-    inline RaidArray& WithDevice(Aws::String&& value) { SetDevice(value); return *this;}
+    inline RaidArray& WithDevice(Aws::String&& value) { SetDevice(std::move(value)); return *this;}
 
     /**
      * <p>The array's Linux device. For example /dev/mdadm0.</p>
      */
     inline RaidArray& WithDevice(const char* value) { SetDevice(value); return *this;}
+
 
     /**
      * <p>The array's mount point.</p>
@@ -244,7 +254,7 @@ namespace Model
     /**
      * <p>The array's mount point.</p>
      */
-    inline void SetMountPoint(Aws::String&& value) { m_mountPointHasBeenSet = true; m_mountPoint = value; }
+    inline void SetMountPoint(Aws::String&& value) { m_mountPointHasBeenSet = true; m_mountPoint = std::move(value); }
 
     /**
      * <p>The array's mount point.</p>
@@ -259,12 +269,13 @@ namespace Model
     /**
      * <p>The array's mount point.</p>
      */
-    inline RaidArray& WithMountPoint(Aws::String&& value) { SetMountPoint(value); return *this;}
+    inline RaidArray& WithMountPoint(Aws::String&& value) { SetMountPoint(std::move(value)); return *this;}
 
     /**
      * <p>The array's mount point.</p>
      */
     inline RaidArray& WithMountPoint(const char* value) { SetMountPoint(value); return *this;}
+
 
     /**
      * <p>The array's Availability Zone. For more information, see <a
@@ -285,7 +296,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html">Regions and
      * Endpoints</a>.</p>
      */
-    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = value; }
+    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = std::move(value); }
 
     /**
      * <p>The array's Availability Zone. For more information, see <a
@@ -306,7 +317,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html">Regions and
      * Endpoints</a>.</p>
      */
-    inline RaidArray& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(value); return *this;}
+    inline RaidArray& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(std::move(value)); return *this;}
 
     /**
      * <p>The array's Availability Zone. For more information, see <a
@@ -314,6 +325,7 @@ namespace Model
      * Endpoints</a>.</p>
      */
     inline RaidArray& WithAvailabilityZone(const char* value) { SetAvailabilityZone(value); return *this;}
+
 
     /**
      * <p>When the RAID array was created.</p>
@@ -328,7 +340,7 @@ namespace Model
     /**
      * <p>When the RAID array was created.</p>
      */
-    inline void SetCreatedAt(Aws::String&& value) { m_createdAtHasBeenSet = true; m_createdAt = value; }
+    inline void SetCreatedAt(Aws::String&& value) { m_createdAtHasBeenSet = true; m_createdAt = std::move(value); }
 
     /**
      * <p>When the RAID array was created.</p>
@@ -343,12 +355,13 @@ namespace Model
     /**
      * <p>When the RAID array was created.</p>
      */
-    inline RaidArray& WithCreatedAt(Aws::String&& value) { SetCreatedAt(value); return *this;}
+    inline RaidArray& WithCreatedAt(Aws::String&& value) { SetCreatedAt(std::move(value)); return *this;}
 
     /**
      * <p>When the RAID array was created.</p>
      */
     inline RaidArray& WithCreatedAt(const char* value) { SetCreatedAt(value); return *this;}
+
 
     /**
      * <p>The stack ID.</p>
@@ -363,7 +376,7 @@ namespace Model
     /**
      * <p>The stack ID.</p>
      */
-    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = value; }
+    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = std::move(value); }
 
     /**
      * <p>The stack ID.</p>
@@ -378,12 +391,13 @@ namespace Model
     /**
      * <p>The stack ID.</p>
      */
-    inline RaidArray& WithStackId(Aws::String&& value) { SetStackId(value); return *this;}
+    inline RaidArray& WithStackId(Aws::String&& value) { SetStackId(std::move(value)); return *this;}
 
     /**
      * <p>The stack ID.</p>
      */
     inline RaidArray& WithStackId(const char* value) { SetStackId(value); return *this;}
+
 
     /**
      * <p>The volume type, standard or PIOPS.</p>
@@ -398,7 +412,7 @@ namespace Model
     /**
      * <p>The volume type, standard or PIOPS.</p>
      */
-    inline void SetVolumeType(Aws::String&& value) { m_volumeTypeHasBeenSet = true; m_volumeType = value; }
+    inline void SetVolumeType(Aws::String&& value) { m_volumeTypeHasBeenSet = true; m_volumeType = std::move(value); }
 
     /**
      * <p>The volume type, standard or PIOPS.</p>
@@ -413,12 +427,13 @@ namespace Model
     /**
      * <p>The volume type, standard or PIOPS.</p>
      */
-    inline RaidArray& WithVolumeType(Aws::String&& value) { SetVolumeType(value); return *this;}
+    inline RaidArray& WithVolumeType(Aws::String&& value) { SetVolumeType(std::move(value)); return *this;}
 
     /**
      * <p>The volume type, standard or PIOPS.</p>
      */
     inline RaidArray& WithVolumeType(const char* value) { SetVolumeType(value); return *this;}
+
 
     /**
      * <p>For PIOPS volumes, the IOPS per disk.</p>
@@ -436,30 +451,43 @@ namespace Model
     inline RaidArray& WithIops(int value) { SetIops(value); return *this;}
 
   private:
+
     Aws::String m_raidArrayId;
     bool m_raidArrayIdHasBeenSet;
+
     Aws::String m_instanceId;
     bool m_instanceIdHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     int m_raidLevel;
     bool m_raidLevelHasBeenSet;
+
     int m_numberOfDisks;
     bool m_numberOfDisksHasBeenSet;
+
     int m_size;
     bool m_sizeHasBeenSet;
+
     Aws::String m_device;
     bool m_deviceHasBeenSet;
+
     Aws::String m_mountPoint;
     bool m_mountPointHasBeenSet;
+
     Aws::String m_availabilityZone;
     bool m_availabilityZoneHasBeenSet;
+
     Aws::String m_createdAt;
     bool m_createdAtHasBeenSet;
+
     Aws::String m_stackId;
     bool m_stackIdHasBeenSet;
+
     Aws::String m_volumeType;
     bool m_volumeTypeHasBeenSet;
+
     int m_iops;
     bool m_iopsHasBeenSet;
   };

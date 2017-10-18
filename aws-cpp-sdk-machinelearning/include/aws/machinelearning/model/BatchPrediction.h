@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/machinelearning/MachineLearning_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/machinelearning/model/EntityStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     BatchPrediction& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ID assigned to the <code>BatchPrediction</code> at creation. This value
      * should be identical to the value of the <code>BatchPredictionID</code> in the
@@ -66,7 +69,7 @@ namespace Model
      * should be identical to the value of the <code>BatchPredictionID</code> in the
      * request. </p>
      */
-    inline void SetBatchPredictionId(Aws::String&& value) { m_batchPredictionIdHasBeenSet = true; m_batchPredictionId = value; }
+    inline void SetBatchPredictionId(Aws::String&& value) { m_batchPredictionIdHasBeenSet = true; m_batchPredictionId = std::move(value); }
 
     /**
      * <p>The ID assigned to the <code>BatchPrediction</code> at creation. This value
@@ -87,7 +90,7 @@ namespace Model
      * should be identical to the value of the <code>BatchPredictionID</code> in the
      * request. </p>
      */
-    inline BatchPrediction& WithBatchPredictionId(Aws::String&& value) { SetBatchPredictionId(value); return *this;}
+    inline BatchPrediction& WithBatchPredictionId(Aws::String&& value) { SetBatchPredictionId(std::move(value)); return *this;}
 
     /**
      * <p>The ID assigned to the <code>BatchPrediction</code> at creation. This value
@@ -95,6 +98,7 @@ namespace Model
      * request. </p>
      */
     inline BatchPrediction& WithBatchPredictionId(const char* value) { SetBatchPredictionId(value); return *this;}
+
 
     /**
      * <p>The ID of the <code>MLModel</code> that generated predictions for the
@@ -112,7 +116,7 @@ namespace Model
      * <p>The ID of the <code>MLModel</code> that generated predictions for the
      * <code>BatchPrediction</code> request.</p>
      */
-    inline void SetMLModelId(Aws::String&& value) { m_mLModelIdHasBeenSet = true; m_mLModelId = value; }
+    inline void SetMLModelId(Aws::String&& value) { m_mLModelIdHasBeenSet = true; m_mLModelId = std::move(value); }
 
     /**
      * <p>The ID of the <code>MLModel</code> that generated predictions for the
@@ -130,13 +134,14 @@ namespace Model
      * <p>The ID of the <code>MLModel</code> that generated predictions for the
      * <code>BatchPrediction</code> request.</p>
      */
-    inline BatchPrediction& WithMLModelId(Aws::String&& value) { SetMLModelId(value); return *this;}
+    inline BatchPrediction& WithMLModelId(Aws::String&& value) { SetMLModelId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the <code>MLModel</code> that generated predictions for the
      * <code>BatchPrediction</code> request.</p>
      */
     inline BatchPrediction& WithMLModelId(const char* value) { SetMLModelId(value); return *this;}
+
 
     /**
      * <p>The ID of the <code>DataSource</code> that points to the group of
@@ -154,7 +159,7 @@ namespace Model
      * <p>The ID of the <code>DataSource</code> that points to the group of
      * observations to predict.</p>
      */
-    inline void SetBatchPredictionDataSourceId(Aws::String&& value) { m_batchPredictionDataSourceIdHasBeenSet = true; m_batchPredictionDataSourceId = value; }
+    inline void SetBatchPredictionDataSourceId(Aws::String&& value) { m_batchPredictionDataSourceIdHasBeenSet = true; m_batchPredictionDataSourceId = std::move(value); }
 
     /**
      * <p>The ID of the <code>DataSource</code> that points to the group of
@@ -172,13 +177,14 @@ namespace Model
      * <p>The ID of the <code>DataSource</code> that points to the group of
      * observations to predict.</p>
      */
-    inline BatchPrediction& WithBatchPredictionDataSourceId(Aws::String&& value) { SetBatchPredictionDataSourceId(value); return *this;}
+    inline BatchPrediction& WithBatchPredictionDataSourceId(Aws::String&& value) { SetBatchPredictionDataSourceId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the <code>DataSource</code> that points to the group of
      * observations to predict.</p>
      */
     inline BatchPrediction& WithBatchPredictionDataSourceId(const char* value) { SetBatchPredictionDataSourceId(value); return *this;}
+
 
     /**
      * <p>The location of the data file or directory in Amazon Simple Storage Service
@@ -196,7 +202,7 @@ namespace Model
      * <p>The location of the data file or directory in Amazon Simple Storage Service
      * (Amazon S3).</p>
      */
-    inline void SetInputDataLocationS3(Aws::String&& value) { m_inputDataLocationS3HasBeenSet = true; m_inputDataLocationS3 = value; }
+    inline void SetInputDataLocationS3(Aws::String&& value) { m_inputDataLocationS3HasBeenSet = true; m_inputDataLocationS3 = std::move(value); }
 
     /**
      * <p>The location of the data file or directory in Amazon Simple Storage Service
@@ -214,13 +220,14 @@ namespace Model
      * <p>The location of the data file or directory in Amazon Simple Storage Service
      * (Amazon S3).</p>
      */
-    inline BatchPrediction& WithInputDataLocationS3(Aws::String&& value) { SetInputDataLocationS3(value); return *this;}
+    inline BatchPrediction& WithInputDataLocationS3(Aws::String&& value) { SetInputDataLocationS3(std::move(value)); return *this;}
 
     /**
      * <p>The location of the data file or directory in Amazon Simple Storage Service
      * (Amazon S3).</p>
      */
     inline BatchPrediction& WithInputDataLocationS3(const char* value) { SetInputDataLocationS3(value); return *this;}
+
 
     /**
      * <p>The AWS user account that invoked the <code>BatchPrediction</code>. The
@@ -241,7 +248,7 @@ namespace Model
      * account type can be either an AWS root account or an AWS Identity and Access
      * Management (IAM) user account.</p>
      */
-    inline void SetCreatedByIamUser(Aws::String&& value) { m_createdByIamUserHasBeenSet = true; m_createdByIamUser = value; }
+    inline void SetCreatedByIamUser(Aws::String&& value) { m_createdByIamUserHasBeenSet = true; m_createdByIamUser = std::move(value); }
 
     /**
      * <p>The AWS user account that invoked the <code>BatchPrediction</code>. The
@@ -262,7 +269,7 @@ namespace Model
      * account type can be either an AWS root account or an AWS Identity and Access
      * Management (IAM) user account.</p>
      */
-    inline BatchPrediction& WithCreatedByIamUser(Aws::String&& value) { SetCreatedByIamUser(value); return *this;}
+    inline BatchPrediction& WithCreatedByIamUser(Aws::String&& value) { SetCreatedByIamUser(std::move(value)); return *this;}
 
     /**
      * <p>The AWS user account that invoked the <code>BatchPrediction</code>. The
@@ -270,6 +277,7 @@ namespace Model
      * Management (IAM) user account.</p>
      */
     inline BatchPrediction& WithCreatedByIamUser(const char* value) { SetCreatedByIamUser(value); return *this;}
+
 
     /**
      * <p>The time that the <code>BatchPrediction</code> was created. The time is
@@ -287,7 +295,7 @@ namespace Model
      * <p>The time that the <code>BatchPrediction</code> was created. The time is
      * expressed in epoch time.</p>
      */
-    inline void SetCreatedAt(Aws::Utils::DateTime&& value) { m_createdAtHasBeenSet = true; m_createdAt = value; }
+    inline void SetCreatedAt(Aws::Utils::DateTime&& value) { m_createdAtHasBeenSet = true; m_createdAt = std::move(value); }
 
     /**
      * <p>The time that the <code>BatchPrediction</code> was created. The time is
@@ -299,7 +307,8 @@ namespace Model
      * <p>The time that the <code>BatchPrediction</code> was created. The time is
      * expressed in epoch time.</p>
      */
-    inline BatchPrediction& WithCreatedAt(Aws::Utils::DateTime&& value) { SetCreatedAt(value); return *this;}
+    inline BatchPrediction& WithCreatedAt(Aws::Utils::DateTime&& value) { SetCreatedAt(std::move(value)); return *this;}
+
 
     /**
      * <p>The time of the most recent edit to the <code>BatchPrediction</code>. The
@@ -317,7 +326,7 @@ namespace Model
      * <p>The time of the most recent edit to the <code>BatchPrediction</code>. The
      * time is expressed in epoch time.</p>
      */
-    inline void SetLastUpdatedAt(Aws::Utils::DateTime&& value) { m_lastUpdatedAtHasBeenSet = true; m_lastUpdatedAt = value; }
+    inline void SetLastUpdatedAt(Aws::Utils::DateTime&& value) { m_lastUpdatedAtHasBeenSet = true; m_lastUpdatedAt = std::move(value); }
 
     /**
      * <p>The time of the most recent edit to the <code>BatchPrediction</code>. The
@@ -329,7 +338,8 @@ namespace Model
      * <p>The time of the most recent edit to the <code>BatchPrediction</code>. The
      * time is expressed in epoch time.</p>
      */
-    inline BatchPrediction& WithLastUpdatedAt(Aws::Utils::DateTime&& value) { SetLastUpdatedAt(value); return *this;}
+    inline BatchPrediction& WithLastUpdatedAt(Aws::Utils::DateTime&& value) { SetLastUpdatedAt(std::move(value)); return *this;}
+
 
     /**
      * <p>A user-supplied name or description of the <code>BatchPrediction</code>.</p>
@@ -344,7 +354,7 @@ namespace Model
     /**
      * <p>A user-supplied name or description of the <code>BatchPrediction</code>.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>A user-supplied name or description of the <code>BatchPrediction</code>.</p>
@@ -359,12 +369,13 @@ namespace Model
     /**
      * <p>A user-supplied name or description of the <code>BatchPrediction</code>.</p>
      */
-    inline BatchPrediction& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline BatchPrediction& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>A user-supplied name or description of the <code>BatchPrediction</code>.</p>
      */
     inline BatchPrediction& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The status of the <code>BatchPrediction</code>. This element can have one of
@@ -400,7 +411,7 @@ namespace Model
      * prediction process completed successfully.</li> <li> <code>DELETED</code> - The
      * <code>BatchPrediction</code> is marked as deleted. It is not usable.</li> </ul>
      */
-    inline void SetStatus(EntityStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(EntityStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The status of the <code>BatchPrediction</code>. This element can have one of
@@ -424,7 +435,8 @@ namespace Model
      * prediction process completed successfully.</li> <li> <code>DELETED</code> - The
      * <code>BatchPrediction</code> is marked as deleted. It is not usable.</li> </ul>
      */
-    inline BatchPrediction& WithStatus(EntityStatus&& value) { SetStatus(value); return *this;}
+    inline BatchPrediction& WithStatus(EntityStatus&& value) { SetStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The location of an Amazon S3 bucket or directory to receive the operation
@@ -445,7 +457,7 @@ namespace Model
      * results. The following substrings are not allowed in the <code>s3 key</code>
      * portion of the <code>outputURI</code> field: ':', '//', '/./', '/../'.</p>
      */
-    inline void SetOutputUri(Aws::String&& value) { m_outputUriHasBeenSet = true; m_outputUri = value; }
+    inline void SetOutputUri(Aws::String&& value) { m_outputUriHasBeenSet = true; m_outputUri = std::move(value); }
 
     /**
      * <p>The location of an Amazon S3 bucket or directory to receive the operation
@@ -466,7 +478,7 @@ namespace Model
      * results. The following substrings are not allowed in the <code>s3 key</code>
      * portion of the <code>outputURI</code> field: ':', '//', '/./', '/../'.</p>
      */
-    inline BatchPrediction& WithOutputUri(Aws::String&& value) { SetOutputUri(value); return *this;}
+    inline BatchPrediction& WithOutputUri(Aws::String&& value) { SetOutputUri(std::move(value)); return *this;}
 
     /**
      * <p>The location of an Amazon S3 bucket or directory to receive the operation
@@ -474,6 +486,7 @@ namespace Model
      * portion of the <code>outputURI</code> field: ':', '//', '/./', '/../'.</p>
      */
     inline BatchPrediction& WithOutputUri(const char* value) { SetOutputUri(value); return *this;}
+
 
     /**
      * <p>A description of the most recent details about processing the batch
@@ -491,7 +504,7 @@ namespace Model
      * <p>A description of the most recent details about processing the batch
      * prediction request.</p>
      */
-    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = value; }
+    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = std::move(value); }
 
     /**
      * <p>A description of the most recent details about processing the batch
@@ -509,13 +522,14 @@ namespace Model
      * <p>A description of the most recent details about processing the batch
      * prediction request.</p>
      */
-    inline BatchPrediction& WithMessage(Aws::String&& value) { SetMessage(value); return *this;}
+    inline BatchPrediction& WithMessage(Aws::String&& value) { SetMessage(std::move(value)); return *this;}
 
     /**
      * <p>A description of the most recent details about processing the batch
      * prediction request.</p>
      */
     inline BatchPrediction& WithMessage(const char* value) { SetMessage(value); return *this;}
+
 
     
     inline long long GetComputeTime() const{ return m_computeTime; }
@@ -526,6 +540,7 @@ namespace Model
     
     inline BatchPrediction& WithComputeTime(long long value) { SetComputeTime(value); return *this;}
 
+
     
     inline const Aws::Utils::DateTime& GetFinishedAt() const{ return m_finishedAt; }
 
@@ -533,13 +548,14 @@ namespace Model
     inline void SetFinishedAt(const Aws::Utils::DateTime& value) { m_finishedAtHasBeenSet = true; m_finishedAt = value; }
 
     
-    inline void SetFinishedAt(Aws::Utils::DateTime&& value) { m_finishedAtHasBeenSet = true; m_finishedAt = value; }
+    inline void SetFinishedAt(Aws::Utils::DateTime&& value) { m_finishedAtHasBeenSet = true; m_finishedAt = std::move(value); }
 
     
     inline BatchPrediction& WithFinishedAt(const Aws::Utils::DateTime& value) { SetFinishedAt(value); return *this;}
 
     
-    inline BatchPrediction& WithFinishedAt(Aws::Utils::DateTime&& value) { SetFinishedAt(value); return *this;}
+    inline BatchPrediction& WithFinishedAt(Aws::Utils::DateTime&& value) { SetFinishedAt(std::move(value)); return *this;}
+
 
     
     inline const Aws::Utils::DateTime& GetStartedAt() const{ return m_startedAt; }
@@ -548,13 +564,14 @@ namespace Model
     inline void SetStartedAt(const Aws::Utils::DateTime& value) { m_startedAtHasBeenSet = true; m_startedAt = value; }
 
     
-    inline void SetStartedAt(Aws::Utils::DateTime&& value) { m_startedAtHasBeenSet = true; m_startedAt = value; }
+    inline void SetStartedAt(Aws::Utils::DateTime&& value) { m_startedAtHasBeenSet = true; m_startedAt = std::move(value); }
 
     
     inline BatchPrediction& WithStartedAt(const Aws::Utils::DateTime& value) { SetStartedAt(value); return *this;}
 
     
-    inline BatchPrediction& WithStartedAt(Aws::Utils::DateTime&& value) { SetStartedAt(value); return *this;}
+    inline BatchPrediction& WithStartedAt(Aws::Utils::DateTime&& value) { SetStartedAt(std::move(value)); return *this;}
+
 
     
     inline long long GetTotalRecordCount() const{ return m_totalRecordCount; }
@@ -564,6 +581,7 @@ namespace Model
 
     
     inline BatchPrediction& WithTotalRecordCount(long long value) { SetTotalRecordCount(value); return *this;}
+
 
     
     inline long long GetInvalidRecordCount() const{ return m_invalidRecordCount; }
@@ -575,36 +593,52 @@ namespace Model
     inline BatchPrediction& WithInvalidRecordCount(long long value) { SetInvalidRecordCount(value); return *this;}
 
   private:
+
     Aws::String m_batchPredictionId;
     bool m_batchPredictionIdHasBeenSet;
+
     Aws::String m_mLModelId;
     bool m_mLModelIdHasBeenSet;
+
     Aws::String m_batchPredictionDataSourceId;
     bool m_batchPredictionDataSourceIdHasBeenSet;
+
     Aws::String m_inputDataLocationS3;
     bool m_inputDataLocationS3HasBeenSet;
+
     Aws::String m_createdByIamUser;
     bool m_createdByIamUserHasBeenSet;
+
     Aws::Utils::DateTime m_createdAt;
     bool m_createdAtHasBeenSet;
+
     Aws::Utils::DateTime m_lastUpdatedAt;
     bool m_lastUpdatedAtHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     EntityStatus m_status;
     bool m_statusHasBeenSet;
+
     Aws::String m_outputUri;
     bool m_outputUriHasBeenSet;
+
     Aws::String m_message;
     bool m_messageHasBeenSet;
+
     long long m_computeTime;
     bool m_computeTimeHasBeenSet;
+
     Aws::Utils::DateTime m_finishedAt;
     bool m_finishedAtHasBeenSet;
+
     Aws::Utils::DateTime m_startedAt;
     bool m_startedAtHasBeenSet;
+
     long long m_totalRecordCount;
     bool m_totalRecordCountHasBeenSet;
+
     long long m_invalidRecordCount;
     bool m_invalidRecordCountHasBeenSet;
   };

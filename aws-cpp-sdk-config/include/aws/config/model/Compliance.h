@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/config/ConfigService_EXPORTS.h>
 #include <aws/config/model/ComplianceType.h>
 #include <aws/config/model/ComplianceContributorCount.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     Compliance(const Aws::Utils::Json::JsonValue& jsonValue);
     Compliance& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>Indicates whether an AWS resource or AWS Config rule is compliant.</p> <p>A
@@ -89,7 +92,7 @@ namespace Model
      * <code>INSUFFICIENT_DATA</code> values. AWS Config does not support the
      * <code>NOT_APPLICABLE</code> value for the <code>Compliance</code> data type.</p>
      */
-    inline void SetComplianceType(ComplianceType&& value) { m_complianceTypeHasBeenSet = true; m_complianceType = value; }
+    inline void SetComplianceType(ComplianceType&& value) { m_complianceTypeHasBeenSet = true; m_complianceType = std::move(value); }
 
     /**
      * <p>Indicates whether an AWS resource or AWS Config rule is compliant.</p> <p>A
@@ -119,7 +122,8 @@ namespace Model
      * <code>INSUFFICIENT_DATA</code> values. AWS Config does not support the
      * <code>NOT_APPLICABLE</code> value for the <code>Compliance</code> data type.</p>
      */
-    inline Compliance& WithComplianceType(ComplianceType&& value) { SetComplianceType(value); return *this;}
+    inline Compliance& WithComplianceType(ComplianceType&& value) { SetComplianceType(std::move(value)); return *this;}
+
 
     /**
      * <p>The number of AWS resources or AWS Config rules that cause a result of
@@ -137,7 +141,7 @@ namespace Model
      * <p>The number of AWS resources or AWS Config rules that cause a result of
      * <code>NON_COMPLIANT</code>, up to a maximum number.</p>
      */
-    inline void SetComplianceContributorCount(ComplianceContributorCount&& value) { m_complianceContributorCountHasBeenSet = true; m_complianceContributorCount = value; }
+    inline void SetComplianceContributorCount(ComplianceContributorCount&& value) { m_complianceContributorCountHasBeenSet = true; m_complianceContributorCount = std::move(value); }
 
     /**
      * <p>The number of AWS resources or AWS Config rules that cause a result of
@@ -149,11 +153,13 @@ namespace Model
      * <p>The number of AWS resources or AWS Config rules that cause a result of
      * <code>NON_COMPLIANT</code>, up to a maximum number.</p>
      */
-    inline Compliance& WithComplianceContributorCount(ComplianceContributorCount&& value) { SetComplianceContributorCount(value); return *this;}
+    inline Compliance& WithComplianceContributorCount(ComplianceContributorCount&& value) { SetComplianceContributorCount(std::move(value)); return *this;}
 
   private:
+
     ComplianceType m_complianceType;
     bool m_complianceTypeHasBeenSet;
+
     ComplianceContributorCount m_complianceContributorCount;
     bool m_complianceContributorCountHasBeenSet;
   };

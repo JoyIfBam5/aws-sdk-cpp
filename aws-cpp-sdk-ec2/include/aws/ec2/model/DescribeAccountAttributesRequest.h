@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/ec2/EC2Request.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/ec2/model/AccountAttributeName.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,7 +37,55 @@ namespace Model
   {
   public:
     DescribeAccountAttributesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeAccountAttributes"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
+
+    /**
+     * <p>One or more account attribute names.</p>
+     */
+    inline const Aws::Vector<AccountAttributeName>& GetAttributeNames() const{ return m_attributeNames; }
+
+    /**
+     * <p>One or more account attribute names.</p>
+     */
+    inline void SetAttributeNames(const Aws::Vector<AccountAttributeName>& value) { m_attributeNamesHasBeenSet = true; m_attributeNames = value; }
+
+    /**
+     * <p>One or more account attribute names.</p>
+     */
+    inline void SetAttributeNames(Aws::Vector<AccountAttributeName>&& value) { m_attributeNamesHasBeenSet = true; m_attributeNames = std::move(value); }
+
+    /**
+     * <p>One or more account attribute names.</p>
+     */
+    inline DescribeAccountAttributesRequest& WithAttributeNames(const Aws::Vector<AccountAttributeName>& value) { SetAttributeNames(value); return *this;}
+
+    /**
+     * <p>One or more account attribute names.</p>
+     */
+    inline DescribeAccountAttributesRequest& WithAttributeNames(Aws::Vector<AccountAttributeName>&& value) { SetAttributeNames(std::move(value)); return *this;}
+
+    /**
+     * <p>One or more account attribute names.</p>
+     */
+    inline DescribeAccountAttributesRequest& AddAttributeNames(const AccountAttributeName& value) { m_attributeNamesHasBeenSet = true; m_attributeNames.push_back(value); return *this; }
+
+    /**
+     * <p>One or more account attribute names.</p>
+     */
+    inline DescribeAccountAttributesRequest& AddAttributeNames(AccountAttributeName&& value) { m_attributeNamesHasBeenSet = true; m_attributeNames.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Checks whether you have the required permissions for the action, without
@@ -61,46 +111,13 @@ namespace Model
      */
     inline DescribeAccountAttributesRequest& WithDryRun(bool value) { SetDryRun(value); return *this;}
 
-    /**
-     * <p>One or more account attribute names.</p>
-     */
-    inline const Aws::Vector<AccountAttributeName>& GetAttributeNames() const{ return m_attributeNames; }
-
-    /**
-     * <p>One or more account attribute names.</p>
-     */
-    inline void SetAttributeNames(const Aws::Vector<AccountAttributeName>& value) { m_attributeNamesHasBeenSet = true; m_attributeNames = value; }
-
-    /**
-     * <p>One or more account attribute names.</p>
-     */
-    inline void SetAttributeNames(Aws::Vector<AccountAttributeName>&& value) { m_attributeNamesHasBeenSet = true; m_attributeNames = value; }
-
-    /**
-     * <p>One or more account attribute names.</p>
-     */
-    inline DescribeAccountAttributesRequest& WithAttributeNames(const Aws::Vector<AccountAttributeName>& value) { SetAttributeNames(value); return *this;}
-
-    /**
-     * <p>One or more account attribute names.</p>
-     */
-    inline DescribeAccountAttributesRequest& WithAttributeNames(Aws::Vector<AccountAttributeName>&& value) { SetAttributeNames(value); return *this;}
-
-    /**
-     * <p>One or more account attribute names.</p>
-     */
-    inline DescribeAccountAttributesRequest& AddAttributeNames(const AccountAttributeName& value) { m_attributeNamesHasBeenSet = true; m_attributeNames.push_back(value); return *this; }
-
-    /**
-     * <p>One or more account attribute names.</p>
-     */
-    inline DescribeAccountAttributesRequest& AddAttributeNames(AccountAttributeName&& value) { m_attributeNamesHasBeenSet = true; m_attributeNames.push_back(value); return *this; }
-
   private:
-    bool m_dryRun;
-    bool m_dryRunHasBeenSet;
+
     Aws::Vector<AccountAttributeName> m_attributeNames;
     bool m_attributeNamesHasBeenSet;
+
+    bool m_dryRun;
+    bool m_dryRunHasBeenSet;
   };
 
 } // namespace Model

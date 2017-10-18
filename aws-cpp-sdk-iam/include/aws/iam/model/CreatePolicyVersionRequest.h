@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/iam/IAMRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,7 +32,19 @@ namespace Model
   {
   public:
     CreatePolicyVersionRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreatePolicyVersion"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM policy to which you want to add a
@@ -57,7 +71,7 @@ namespace Model
      * Resource Names (ARNs) and AWS Service Namespaces</a> in the <i>AWS General
      * Reference</i>.</p>
      */
-    inline void SetPolicyArn(Aws::String&& value) { m_policyArnHasBeenSet = true; m_policyArn = value; }
+    inline void SetPolicyArn(Aws::String&& value) { m_policyArnHasBeenSet = true; m_policyArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM policy to which you want to add a
@@ -84,7 +98,7 @@ namespace Model
      * Resource Names (ARNs) and AWS Service Namespaces</a> in the <i>AWS General
      * Reference</i>.</p>
      */
-    inline CreatePolicyVersionRequest& WithPolicyArn(Aws::String&& value) { SetPolicyArn(value); return *this;}
+    inline CreatePolicyVersionRequest& WithPolicyArn(Aws::String&& value) { SetPolicyArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM policy to which you want to add a
@@ -94,6 +108,7 @@ namespace Model
      * Reference</i>.</p>
      */
     inline CreatePolicyVersionRequest& WithPolicyArn(const char* value) { SetPolicyArn(value); return *this;}
+
 
     /**
      * <p>The JSON policy document that you want to use as the content for this new
@@ -129,7 +144,7 @@ namespace Model
      * Supplement character set (through \u00FF). It also includes the special
      * characters tab (\u0009), line feed (\u000A), and carriage return (\u000D).</p>
      */
-    inline void SetPolicyDocument(Aws::String&& value) { m_policyDocumentHasBeenSet = true; m_policyDocument = value; }
+    inline void SetPolicyDocument(Aws::String&& value) { m_policyDocumentHasBeenSet = true; m_policyDocument = std::move(value); }
 
     /**
      * <p>The JSON policy document that you want to use as the content for this new
@@ -165,7 +180,7 @@ namespace Model
      * Supplement character set (through \u00FF). It also includes the special
      * characters tab (\u0009), line feed (\u000A), and carriage return (\u000D).</p>
      */
-    inline CreatePolicyVersionRequest& WithPolicyDocument(Aws::String&& value) { SetPolicyDocument(value); return *this;}
+    inline CreatePolicyVersionRequest& WithPolicyDocument(Aws::String&& value) { SetPolicyDocument(std::move(value)); return *this;}
 
     /**
      * <p>The JSON policy document that you want to use as the content for this new
@@ -178,6 +193,7 @@ namespace Model
      * characters tab (\u0009), line feed (\u000A), and carriage return (\u000D).</p>
      */
     inline CreatePolicyVersionRequest& WithPolicyDocument(const char* value) { SetPolicyDocument(value); return *this;}
+
 
     /**
      * <p>Specifies whether to set this version as the policy's default version.</p>
@@ -213,10 +229,13 @@ namespace Model
     inline CreatePolicyVersionRequest& WithSetAsDefault(bool value) { SetSetAsDefault(value); return *this;}
 
   private:
+
     Aws::String m_policyArn;
     bool m_policyArnHasBeenSet;
+
     Aws::String m_policyDocument;
     bool m_policyDocumentHasBeenSet;
+
     bool m_setAsDefault;
     bool m_setAsDefaultHasBeenSet;
   };

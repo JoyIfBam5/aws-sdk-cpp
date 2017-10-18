@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/snowball/Snowball_EXPORTS.h>
 #include <aws/snowball/model/Address.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     DescribeAddressResult();
-    DescribeAddressResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeAddressResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeAddressResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeAddressResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The address that you want the Snowball or Snowballs associated with a
@@ -55,7 +58,7 @@ namespace Model
      * <p>The address that you want the Snowball or Snowballs associated with a
      * specific job to be shipped to.</p>
      */
-    inline void SetAddress(Address&& value) { m_address = value; }
+    inline void SetAddress(Address&& value) { m_address = std::move(value); }
 
     /**
      * <p>The address that you want the Snowball or Snowballs associated with a
@@ -67,9 +70,10 @@ namespace Model
      * <p>The address that you want the Snowball or Snowballs associated with a
      * specific job to be shipped to.</p>
      */
-    inline DescribeAddressResult& WithAddress(Address&& value) { SetAddress(value); return *this;}
+    inline DescribeAddressResult& WithAddress(Address&& value) { SetAddress(std::move(value)); return *this;}
 
   private:
+
     Address m_address;
   };
 

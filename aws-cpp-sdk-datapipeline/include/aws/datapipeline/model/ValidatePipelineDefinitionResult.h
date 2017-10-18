@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/datapipeline/DataPipeline_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/datapipeline/model/ValidationError.h>
 #include <aws/datapipeline/model/ValidationWarning.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     ValidatePipelineDefinitionResult();
-    ValidatePipelineDefinitionResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ValidatePipelineDefinitionResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ValidatePipelineDefinitionResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ValidatePipelineDefinitionResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Any validation errors that were found.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>Any validation errors that were found.</p>
      */
-    inline void SetValidationErrors(Aws::Vector<ValidationError>&& value) { m_validationErrors = value; }
+    inline void SetValidationErrors(Aws::Vector<ValidationError>&& value) { m_validationErrors = std::move(value); }
 
     /**
      * <p>Any validation errors that were found.</p>
@@ -70,7 +73,7 @@ namespace Model
     /**
      * <p>Any validation errors that were found.</p>
      */
-    inline ValidatePipelineDefinitionResult& WithValidationErrors(Aws::Vector<ValidationError>&& value) { SetValidationErrors(value); return *this;}
+    inline ValidatePipelineDefinitionResult& WithValidationErrors(Aws::Vector<ValidationError>&& value) { SetValidationErrors(std::move(value)); return *this;}
 
     /**
      * <p>Any validation errors that were found.</p>
@@ -80,7 +83,8 @@ namespace Model
     /**
      * <p>Any validation errors that were found.</p>
      */
-    inline ValidatePipelineDefinitionResult& AddValidationErrors(ValidationError&& value) { m_validationErrors.push_back(value); return *this; }
+    inline ValidatePipelineDefinitionResult& AddValidationErrors(ValidationError&& value) { m_validationErrors.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Any validation warnings that were found.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>Any validation warnings that were found.</p>
      */
-    inline void SetValidationWarnings(Aws::Vector<ValidationWarning>&& value) { m_validationWarnings = value; }
+    inline void SetValidationWarnings(Aws::Vector<ValidationWarning>&& value) { m_validationWarnings = std::move(value); }
 
     /**
      * <p>Any validation warnings that were found.</p>
@@ -105,7 +109,7 @@ namespace Model
     /**
      * <p>Any validation warnings that were found.</p>
      */
-    inline ValidatePipelineDefinitionResult& WithValidationWarnings(Aws::Vector<ValidationWarning>&& value) { SetValidationWarnings(value); return *this;}
+    inline ValidatePipelineDefinitionResult& WithValidationWarnings(Aws::Vector<ValidationWarning>&& value) { SetValidationWarnings(std::move(value)); return *this;}
 
     /**
      * <p>Any validation warnings that were found.</p>
@@ -115,7 +119,8 @@ namespace Model
     /**
      * <p>Any validation warnings that were found.</p>
      */
-    inline ValidatePipelineDefinitionResult& AddValidationWarnings(ValidationWarning&& value) { m_validationWarnings.push_back(value); return *this; }
+    inline ValidatePipelineDefinitionResult& AddValidationWarnings(ValidationWarning&& value) { m_validationWarnings.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Indicates whether there were validation errors.</p>
@@ -133,8 +138,11 @@ namespace Model
     inline ValidatePipelineDefinitionResult& WithErrored(bool value) { SetErrored(value); return *this;}
 
   private:
+
     Aws::Vector<ValidationError> m_validationErrors;
+
     Aws::Vector<ValidationWarning> m_validationWarnings;
+
     bool m_errored;
   };
 

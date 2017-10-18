@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudsearchdomain/CloudSearchDomain_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     SuggestStatus& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>How long it took to process the request, in milliseconds.</p>
      */
@@ -59,6 +62,7 @@ namespace Model
      */
     inline SuggestStatus& WithTimems(long long value) { SetTimems(value); return *this;}
 
+
     /**
      * <p>The encrypted resource ID for the request.</p>
      */
@@ -72,7 +76,7 @@ namespace Model
     /**
      * <p>The encrypted resource ID for the request.</p>
      */
-    inline void SetRid(Aws::String&& value) { m_ridHasBeenSet = true; m_rid = value; }
+    inline void SetRid(Aws::String&& value) { m_ridHasBeenSet = true; m_rid = std::move(value); }
 
     /**
      * <p>The encrypted resource ID for the request.</p>
@@ -87,7 +91,7 @@ namespace Model
     /**
      * <p>The encrypted resource ID for the request.</p>
      */
-    inline SuggestStatus& WithRid(Aws::String&& value) { SetRid(value); return *this;}
+    inline SuggestStatus& WithRid(Aws::String&& value) { SetRid(std::move(value)); return *this;}
 
     /**
      * <p>The encrypted resource ID for the request.</p>
@@ -95,8 +99,10 @@ namespace Model
     inline SuggestStatus& WithRid(const char* value) { SetRid(value); return *this;}
 
   private:
+
     long long m_timems;
     bool m_timemsHasBeenSet;
+
     Aws::String m_rid;
     bool m_ridHasBeenSet;
   };

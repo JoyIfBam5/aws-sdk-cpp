@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/swf/model/WorkflowExecutionInfo.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     ListClosedWorkflowExecutionsResult();
-    ListClosedWorkflowExecutionsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListClosedWorkflowExecutionsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListClosedWorkflowExecutionsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListClosedWorkflowExecutionsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The list of workflow information structures.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The list of workflow information structures.</p>
      */
-    inline void SetExecutionInfos(Aws::Vector<WorkflowExecutionInfo>&& value) { m_executionInfos = value; }
+    inline void SetExecutionInfos(Aws::Vector<WorkflowExecutionInfo>&& value) { m_executionInfos = std::move(value); }
 
     /**
      * <p>The list of workflow information structures.</p>
@@ -70,7 +73,7 @@ namespace Model
     /**
      * <p>The list of workflow information structures.</p>
      */
-    inline ListClosedWorkflowExecutionsResult& WithExecutionInfos(Aws::Vector<WorkflowExecutionInfo>&& value) { SetExecutionInfos(value); return *this;}
+    inline ListClosedWorkflowExecutionsResult& WithExecutionInfos(Aws::Vector<WorkflowExecutionInfo>&& value) { SetExecutionInfos(std::move(value)); return *this;}
 
     /**
      * <p>The list of workflow information structures.</p>
@@ -80,7 +83,8 @@ namespace Model
     /**
      * <p>The list of workflow information structures.</p>
      */
-    inline ListClosedWorkflowExecutionsResult& AddExecutionInfos(WorkflowExecutionInfo&& value) { m_executionInfos.push_back(value); return *this; }
+    inline ListClosedWorkflowExecutionsResult& AddExecutionInfos(WorkflowExecutionInfo&& value) { m_executionInfos.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>If a <code>NextPageToken</code> was returned by a previous call, there are
@@ -107,7 +111,7 @@ namespace Model
      * arguments unchanged.</p> <p>The configured <code>maximumPageSize</code>
      * determines how many results can be returned in a single call.</p>
      */
-    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = value; }
+    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = std::move(value); }
 
     /**
      * <p>If a <code>NextPageToken</code> was returned by a previous call, there are
@@ -134,7 +138,7 @@ namespace Model
      * arguments unchanged.</p> <p>The configured <code>maximumPageSize</code>
      * determines how many results can be returned in a single call.</p>
      */
-    inline ListClosedWorkflowExecutionsResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(value); return *this;}
+    inline ListClosedWorkflowExecutionsResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(std::move(value)); return *this;}
 
     /**
      * <p>If a <code>NextPageToken</code> was returned by a previous call, there are
@@ -146,7 +150,9 @@ namespace Model
     inline ListClosedWorkflowExecutionsResult& WithNextPageToken(const char* value) { SetNextPageToken(value); return *this;}
 
   private:
+
     Aws::Vector<WorkflowExecutionInfo> m_executionInfos;
+
     Aws::String m_nextPageToken;
   };
 

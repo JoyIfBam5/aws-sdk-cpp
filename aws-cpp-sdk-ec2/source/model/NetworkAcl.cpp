@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/NetworkAcl.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,24 +31,24 @@ namespace Model
 {
 
 NetworkAcl::NetworkAcl() : 
-    m_networkAclIdHasBeenSet(false),
-    m_vpcIdHasBeenSet(false),
+    m_associationsHasBeenSet(false),
+    m_entriesHasBeenSet(false),
     m_isDefault(false),
     m_isDefaultHasBeenSet(false),
-    m_entriesHasBeenSet(false),
-    m_associationsHasBeenSet(false),
-    m_tagsHasBeenSet(false)
+    m_networkAclIdHasBeenSet(false),
+    m_tagsHasBeenSet(false),
+    m_vpcIdHasBeenSet(false)
 {
 }
 
 NetworkAcl::NetworkAcl(const XmlNode& xmlNode) : 
-    m_networkAclIdHasBeenSet(false),
-    m_vpcIdHasBeenSet(false),
+    m_associationsHasBeenSet(false),
+    m_entriesHasBeenSet(false),
     m_isDefault(false),
     m_isDefaultHasBeenSet(false),
-    m_entriesHasBeenSet(false),
-    m_associationsHasBeenSet(false),
-    m_tagsHasBeenSet(false)
+    m_networkAclIdHasBeenSet(false),
+    m_tagsHasBeenSet(false),
+    m_vpcIdHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -58,23 +59,17 @@ NetworkAcl& NetworkAcl::operator =(const XmlNode& xmlNode)
 
   if(!resultNode.IsNull())
   {
-    XmlNode networkAclIdNode = resultNode.FirstChild("networkAclId");
-    if(!networkAclIdNode.IsNull())
+    XmlNode associationsNode = resultNode.FirstChild("associationSet");
+    if(!associationsNode.IsNull())
     {
-      m_networkAclId = StringUtils::Trim(networkAclIdNode.GetText().c_str());
-      m_networkAclIdHasBeenSet = true;
-    }
-    XmlNode vpcIdNode = resultNode.FirstChild("vpcId");
-    if(!vpcIdNode.IsNull())
-    {
-      m_vpcId = StringUtils::Trim(vpcIdNode.GetText().c_str());
-      m_vpcIdHasBeenSet = true;
-    }
-    XmlNode isDefaultNode = resultNode.FirstChild("default");
-    if(!isDefaultNode.IsNull())
-    {
-      m_isDefault = StringUtils::ConvertToBool(StringUtils::Trim(isDefaultNode.GetText().c_str()).c_str());
-      m_isDefaultHasBeenSet = true;
+      XmlNode associationsMember = associationsNode.FirstChild("item");
+      while(!associationsMember.IsNull())
+      {
+        m_associations.push_back(associationsMember);
+        associationsMember = associationsMember.NextNode("item");
+      }
+
+      m_associationsHasBeenSet = true;
     }
     XmlNode entriesNode = resultNode.FirstChild("entrySet");
     if(!entriesNode.IsNull())
@@ -88,17 +83,17 @@ NetworkAcl& NetworkAcl::operator =(const XmlNode& xmlNode)
 
       m_entriesHasBeenSet = true;
     }
-    XmlNode associationsNode = resultNode.FirstChild("associationSet");
-    if(!associationsNode.IsNull())
+    XmlNode isDefaultNode = resultNode.FirstChild("default");
+    if(!isDefaultNode.IsNull())
     {
-      XmlNode associationsMember = associationsNode.FirstChild("item");
-      while(!associationsMember.IsNull())
-      {
-        m_associations.push_back(associationsMember);
-        associationsMember = associationsMember.NextNode("item");
-      }
-
-      m_associationsHasBeenSet = true;
+      m_isDefault = StringUtils::ConvertToBool(StringUtils::Trim(isDefaultNode.GetText().c_str()).c_str());
+      m_isDefaultHasBeenSet = true;
+    }
+    XmlNode networkAclIdNode = resultNode.FirstChild("networkAclId");
+    if(!networkAclIdNode.IsNull())
+    {
+      m_networkAclId = StringUtils::Trim(networkAclIdNode.GetText().c_str());
+      m_networkAclIdHasBeenSet = true;
     }
     XmlNode tagsNode = resultNode.FirstChild("tagSet");
     if(!tagsNode.IsNull())
@@ -112,6 +107,12 @@ NetworkAcl& NetworkAcl::operator =(const XmlNode& xmlNode)
 
       m_tagsHasBeenSet = true;
     }
+    XmlNode vpcIdNode = resultNode.FirstChild("vpcId");
+    if(!vpcIdNode.IsNull())
+    {
+      m_vpcId = StringUtils::Trim(vpcIdNode.GetText().c_str());
+      m_vpcIdHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -119,19 +120,15 @@ NetworkAcl& NetworkAcl::operator =(const XmlNode& xmlNode)
 
 void NetworkAcl::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
-  if(m_networkAclIdHasBeenSet)
+  if(m_associationsHasBeenSet)
   {
-      oStream << location << index << locationValue << ".NetworkAclId=" << StringUtils::URLEncode(m_networkAclId.c_str()) << "&";
-  }
-
-  if(m_vpcIdHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".VpcId=" << StringUtils::URLEncode(m_vpcId.c_str()) << "&";
-  }
-
-  if(m_isDefaultHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".IsDefault=" << std::boolalpha << m_isDefault << "&";
+      unsigned associationsIdx = 1;
+      for(auto& item : m_associations)
+      {
+        Aws::StringStream associationsSs;
+        associationsSs << location << index << locationValue << ".AssociationSet." << associationsIdx++;
+        item.OutputToStream(oStream, associationsSs.str().c_str());
+      }
   }
 
   if(m_entriesHasBeenSet)
@@ -145,15 +142,14 @@ void NetworkAcl::OutputToStream(Aws::OStream& oStream, const char* location, uns
       }
   }
 
-  if(m_associationsHasBeenSet)
+  if(m_isDefaultHasBeenSet)
   {
-      unsigned associationsIdx = 1;
-      for(auto& item : m_associations)
-      {
-        Aws::StringStream associationsSs;
-        associationsSs << location << index << locationValue << ".AssociationSet." << associationsIdx++;
-        item.OutputToStream(oStream, associationsSs.str().c_str());
-      }
+      oStream << location << index << locationValue << ".IsDefault=" << std::boolalpha << m_isDefault << "&";
+  }
+
+  if(m_networkAclIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".NetworkAclId=" << StringUtils::URLEncode(m_networkAclId.c_str()) << "&";
   }
 
   if(m_tagsHasBeenSet)
@@ -167,21 +163,24 @@ void NetworkAcl::OutputToStream(Aws::OStream& oStream, const char* location, uns
       }
   }
 
+  if(m_vpcIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".VpcId=" << StringUtils::URLEncode(m_vpcId.c_str()) << "&";
+  }
+
 }
 
 void NetworkAcl::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
-  if(m_networkAclIdHasBeenSet)
+  if(m_associationsHasBeenSet)
   {
-      oStream << location << ".NetworkAclId=" << StringUtils::URLEncode(m_networkAclId.c_str()) << "&";
-  }
-  if(m_vpcIdHasBeenSet)
-  {
-      oStream << location << ".VpcId=" << StringUtils::URLEncode(m_vpcId.c_str()) << "&";
-  }
-  if(m_isDefaultHasBeenSet)
-  {
-      oStream << location << ".IsDefault=" << std::boolalpha << m_isDefault << "&";
+      unsigned associationsIdx = 1;
+      for(auto& item : m_associations)
+      {
+        Aws::StringStream associationsSs;
+        associationsSs << location <<  ".AssociationSet." << associationsIdx++;
+        item.OutputToStream(oStream, associationsSs.str().c_str());
+      }
   }
   if(m_entriesHasBeenSet)
   {
@@ -189,19 +188,17 @@ void NetworkAcl::OutputToStream(Aws::OStream& oStream, const char* location) con
       for(auto& item : m_entries)
       {
         Aws::StringStream entriesSs;
-        entriesSs << location <<  ".Item." << entriesIdx++;
+        entriesSs << location <<  ".EntrySet." << entriesIdx++;
         item.OutputToStream(oStream, entriesSs.str().c_str());
       }
   }
-  if(m_associationsHasBeenSet)
+  if(m_isDefaultHasBeenSet)
   {
-      unsigned associationsIdx = 1;
-      for(auto& item : m_associations)
-      {
-        Aws::StringStream associationsSs;
-        associationsSs << location <<  ".Item." << associationsIdx++;
-        item.OutputToStream(oStream, associationsSs.str().c_str());
-      }
+      oStream << location << ".IsDefault=" << std::boolalpha << m_isDefault << "&";
+  }
+  if(m_networkAclIdHasBeenSet)
+  {
+      oStream << location << ".NetworkAclId=" << StringUtils::URLEncode(m_networkAclId.c_str()) << "&";
   }
   if(m_tagsHasBeenSet)
   {
@@ -209,9 +206,13 @@ void NetworkAcl::OutputToStream(Aws::OStream& oStream, const char* location) con
       for(auto& item : m_tags)
       {
         Aws::StringStream tagsSs;
-        tagsSs << location <<  ".Item." << tagsIdx++;
+        tagsSs << location <<  ".TagSet." << tagsIdx++;
         item.OutputToStream(oStream, tagsSs.str().c_str());
       }
+  }
+  if(m_vpcIdHasBeenSet)
+  {
+      oStream << location << ".VpcId=" << StringUtils::URLEncode(m_vpcId.c_str()) << "&";
   }
 }
 

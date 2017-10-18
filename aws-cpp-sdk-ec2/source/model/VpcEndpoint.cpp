@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/VpcEndpoint.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,26 +31,26 @@ namespace Model
 {
 
 VpcEndpoint::VpcEndpoint() : 
-    m_vpcEndpointIdHasBeenSet(false),
-    m_vpcIdHasBeenSet(false),
+    m_creationTimestampHasBeenSet(false),
+    m_policyDocumentHasBeenSet(false),
+    m_routeTableIdsHasBeenSet(false),
     m_serviceNameHasBeenSet(false),
     m_state(State::NOT_SET),
     m_stateHasBeenSet(false),
-    m_policyDocumentHasBeenSet(false),
-    m_routeTableIdsHasBeenSet(false),
-    m_creationTimestampHasBeenSet(false)
+    m_vpcEndpointIdHasBeenSet(false),
+    m_vpcIdHasBeenSet(false)
 {
 }
 
 VpcEndpoint::VpcEndpoint(const XmlNode& xmlNode) : 
-    m_vpcEndpointIdHasBeenSet(false),
-    m_vpcIdHasBeenSet(false),
+    m_creationTimestampHasBeenSet(false),
+    m_policyDocumentHasBeenSet(false),
+    m_routeTableIdsHasBeenSet(false),
     m_serviceNameHasBeenSet(false),
     m_state(State::NOT_SET),
     m_stateHasBeenSet(false),
-    m_policyDocumentHasBeenSet(false),
-    m_routeTableIdsHasBeenSet(false),
-    m_creationTimestampHasBeenSet(false)
+    m_vpcEndpointIdHasBeenSet(false),
+    m_vpcIdHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -60,29 +61,11 @@ VpcEndpoint& VpcEndpoint::operator =(const XmlNode& xmlNode)
 
   if(!resultNode.IsNull())
   {
-    XmlNode vpcEndpointIdNode = resultNode.FirstChild("vpcEndpointId");
-    if(!vpcEndpointIdNode.IsNull())
+    XmlNode creationTimestampNode = resultNode.FirstChild("creationTimestamp");
+    if(!creationTimestampNode.IsNull())
     {
-      m_vpcEndpointId = StringUtils::Trim(vpcEndpointIdNode.GetText().c_str());
-      m_vpcEndpointIdHasBeenSet = true;
-    }
-    XmlNode vpcIdNode = resultNode.FirstChild("vpcId");
-    if(!vpcIdNode.IsNull())
-    {
-      m_vpcId = StringUtils::Trim(vpcIdNode.GetText().c_str());
-      m_vpcIdHasBeenSet = true;
-    }
-    XmlNode serviceNameNode = resultNode.FirstChild("serviceName");
-    if(!serviceNameNode.IsNull())
-    {
-      m_serviceName = StringUtils::Trim(serviceNameNode.GetText().c_str());
-      m_serviceNameHasBeenSet = true;
-    }
-    XmlNode stateNode = resultNode.FirstChild("state");
-    if(!stateNode.IsNull())
-    {
-      m_state = StateMapper::GetStateForName(StringUtils::Trim(stateNode.GetText().c_str()).c_str());
-      m_stateHasBeenSet = true;
+      m_creationTimestamp = DateTime(StringUtils::Trim(creationTimestampNode.GetText().c_str()).c_str(), DateFormat::ISO_8601);
+      m_creationTimestampHasBeenSet = true;
     }
     XmlNode policyDocumentNode = resultNode.FirstChild("policyDocument");
     if(!policyDocumentNode.IsNull())
@@ -102,11 +85,29 @@ VpcEndpoint& VpcEndpoint::operator =(const XmlNode& xmlNode)
 
       m_routeTableIdsHasBeenSet = true;
     }
-    XmlNode creationTimestampNode = resultNode.FirstChild("creationTimestamp");
-    if(!creationTimestampNode.IsNull())
+    XmlNode serviceNameNode = resultNode.FirstChild("serviceName");
+    if(!serviceNameNode.IsNull())
     {
-      m_creationTimestamp = DateTime(StringUtils::Trim(creationTimestampNode.GetText().c_str()).c_str(), DateFormat::ISO_8601);
-      m_creationTimestampHasBeenSet = true;
+      m_serviceName = StringUtils::Trim(serviceNameNode.GetText().c_str());
+      m_serviceNameHasBeenSet = true;
+    }
+    XmlNode stateNode = resultNode.FirstChild("state");
+    if(!stateNode.IsNull())
+    {
+      m_state = StateMapper::GetStateForName(StringUtils::Trim(stateNode.GetText().c_str()).c_str());
+      m_stateHasBeenSet = true;
+    }
+    XmlNode vpcEndpointIdNode = resultNode.FirstChild("vpcEndpointId");
+    if(!vpcEndpointIdNode.IsNull())
+    {
+      m_vpcEndpointId = StringUtils::Trim(vpcEndpointIdNode.GetText().c_str());
+      m_vpcEndpointIdHasBeenSet = true;
+    }
+    XmlNode vpcIdNode = resultNode.FirstChild("vpcId");
+    if(!vpcIdNode.IsNull())
+    {
+      m_vpcId = StringUtils::Trim(vpcIdNode.GetText().c_str());
+      m_vpcIdHasBeenSet = true;
     }
   }
 
@@ -115,24 +116,9 @@ VpcEndpoint& VpcEndpoint::operator =(const XmlNode& xmlNode)
 
 void VpcEndpoint::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
-  if(m_vpcEndpointIdHasBeenSet)
+  if(m_creationTimestampHasBeenSet)
   {
-      oStream << location << index << locationValue << ".VpcEndpointId=" << StringUtils::URLEncode(m_vpcEndpointId.c_str()) << "&";
-  }
-
-  if(m_vpcIdHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".VpcId=" << StringUtils::URLEncode(m_vpcId.c_str()) << "&";
-  }
-
-  if(m_serviceNameHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".ServiceName=" << StringUtils::URLEncode(m_serviceName.c_str()) << "&";
-  }
-
-  if(m_stateHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".State=" << StateMapper::GetNameForState(m_state) << "&";
+      oStream << location << index << locationValue << ".CreationTimestamp=" << StringUtils::URLEncode(m_creationTimestamp.ToGmtString(DateFormat::ISO_8601).c_str()) << "&";
   }
 
   if(m_policyDocumentHasBeenSet)
@@ -149,30 +135,33 @@ void VpcEndpoint::OutputToStream(Aws::OStream& oStream, const char* location, un
       }
   }
 
-  if(m_creationTimestampHasBeenSet)
+  if(m_serviceNameHasBeenSet)
   {
-      oStream << location << index << locationValue << ".CreationTimestamp=" << StringUtils::URLEncode(m_creationTimestamp.ToGmtString(DateFormat::ISO_8601).c_str()) << "&";
+      oStream << location << index << locationValue << ".ServiceName=" << StringUtils::URLEncode(m_serviceName.c_str()) << "&";
+  }
+
+  if(m_stateHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".State=" << StateMapper::GetNameForState(m_state) << "&";
+  }
+
+  if(m_vpcEndpointIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".VpcEndpointId=" << StringUtils::URLEncode(m_vpcEndpointId.c_str()) << "&";
+  }
+
+  if(m_vpcIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".VpcId=" << StringUtils::URLEncode(m_vpcId.c_str()) << "&";
   }
 
 }
 
 void VpcEndpoint::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
-  if(m_vpcEndpointIdHasBeenSet)
+  if(m_creationTimestampHasBeenSet)
   {
-      oStream << location << ".VpcEndpointId=" << StringUtils::URLEncode(m_vpcEndpointId.c_str()) << "&";
-  }
-  if(m_vpcIdHasBeenSet)
-  {
-      oStream << location << ".VpcId=" << StringUtils::URLEncode(m_vpcId.c_str()) << "&";
-  }
-  if(m_serviceNameHasBeenSet)
-  {
-      oStream << location << ".ServiceName=" << StringUtils::URLEncode(m_serviceName.c_str()) << "&";
-  }
-  if(m_stateHasBeenSet)
-  {
-      oStream << location << ".State=" << StateMapper::GetNameForState(m_state) << "&";
+      oStream << location << ".CreationTimestamp=" << StringUtils::URLEncode(m_creationTimestamp.ToGmtString(DateFormat::ISO_8601).c_str()) << "&";
   }
   if(m_policyDocumentHasBeenSet)
   {
@@ -183,12 +172,24 @@ void VpcEndpoint::OutputToStream(Aws::OStream& oStream, const char* location) co
       unsigned routeTableIdsIdx = 1;
       for(auto& item : m_routeTableIds)
       {
-        oStream << location << ".Item." << routeTableIdsIdx++ << "=" << StringUtils::URLEncode(item.c_str()) << "&";
+        oStream << location << ".RouteTableIdSet." << routeTableIdsIdx++ << "=" << StringUtils::URLEncode(item.c_str()) << "&";
       }
   }
-  if(m_creationTimestampHasBeenSet)
+  if(m_serviceNameHasBeenSet)
   {
-      oStream << location << ".CreationTimestamp=" << StringUtils::URLEncode(m_creationTimestamp.ToGmtString(DateFormat::ISO_8601).c_str()) << "&";
+      oStream << location << ".ServiceName=" << StringUtils::URLEncode(m_serviceName.c_str()) << "&";
+  }
+  if(m_stateHasBeenSet)
+  {
+      oStream << location << ".State=" << StateMapper::GetNameForState(m_state) << "&";
+  }
+  if(m_vpcEndpointIdHasBeenSet)
+  {
+      oStream << location << ".VpcEndpointId=" << StringUtils::URLEncode(m_vpcEndpointId.c_str()) << "&";
+  }
+  if(m_vpcIdHasBeenSet)
+  {
+      oStream << location << ".VpcId=" << StringUtils::URLEncode(m_vpcId.c_str()) << "&";
   }
 }
 

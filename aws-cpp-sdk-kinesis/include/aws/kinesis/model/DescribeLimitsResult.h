@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesis/Kinesis_EXPORTS.h>
 
@@ -35,8 +36,9 @@ namespace Model
   {
   public:
     DescribeLimitsResult();
-    DescribeLimitsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeLimitsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeLimitsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeLimitsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The maximum number of shards.</p>
@@ -52,6 +54,7 @@ namespace Model
      * <p>The maximum number of shards.</p>
      */
     inline DescribeLimitsResult& WithShardLimit(int value) { SetShardLimit(value); return *this;}
+
 
     /**
      * <p>The number of open shards.</p>
@@ -69,7 +72,9 @@ namespace Model
     inline DescribeLimitsResult& WithOpenShardCount(int value) { SetOpenShardCount(value); return *this;}
 
   private:
+
     int m_shardLimit;
+
     int m_openShardCount;
   };
 

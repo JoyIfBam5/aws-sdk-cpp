@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/storagegateway/StorageGateway_EXPORTS.h>
 #include <aws/storagegateway/StorageGatewayRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,9 +40,17 @@ namespace Model
   {
   public:
     UpdateChapCredentialsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateChapCredentials"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the iSCSI volume target. Use the
@@ -61,7 +71,7 @@ namespace Model
      * <a>DescribeStorediSCSIVolumes</a> operation to return the TargetARN for
      * specified VolumeARN.</p>
      */
-    inline void SetTargetARN(Aws::String&& value) { m_targetARNHasBeenSet = true; m_targetARN = value; }
+    inline void SetTargetARN(Aws::String&& value) { m_targetARNHasBeenSet = true; m_targetARN = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the iSCSI volume target. Use the
@@ -82,7 +92,7 @@ namespace Model
      * <a>DescribeStorediSCSIVolumes</a> operation to return the TargetARN for
      * specified VolumeARN.</p>
      */
-    inline UpdateChapCredentialsRequest& WithTargetARN(Aws::String&& value) { SetTargetARN(value); return *this;}
+    inline UpdateChapCredentialsRequest& WithTargetARN(Aws::String&& value) { SetTargetARN(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the iSCSI volume target. Use the
@@ -90,6 +100,7 @@ namespace Model
      * specified VolumeARN.</p>
      */
     inline UpdateChapCredentialsRequest& WithTargetARN(const char* value) { SetTargetARN(value); return *this;}
+
 
     /**
      * <p>The secret key that the initiator (for example, the Windows client) must
@@ -110,7 +121,7 @@ namespace Model
      * provide to participate in mutual CHAP with the target.</p> <note> <p>The secret
      * key must be between 12 and 16 bytes when encoded in UTF-8.</p> </note>
      */
-    inline void SetSecretToAuthenticateInitiator(Aws::String&& value) { m_secretToAuthenticateInitiatorHasBeenSet = true; m_secretToAuthenticateInitiator = value; }
+    inline void SetSecretToAuthenticateInitiator(Aws::String&& value) { m_secretToAuthenticateInitiatorHasBeenSet = true; m_secretToAuthenticateInitiator = std::move(value); }
 
     /**
      * <p>The secret key that the initiator (for example, the Windows client) must
@@ -131,7 +142,7 @@ namespace Model
      * provide to participate in mutual CHAP with the target.</p> <note> <p>The secret
      * key must be between 12 and 16 bytes when encoded in UTF-8.</p> </note>
      */
-    inline UpdateChapCredentialsRequest& WithSecretToAuthenticateInitiator(Aws::String&& value) { SetSecretToAuthenticateInitiator(value); return *this;}
+    inline UpdateChapCredentialsRequest& WithSecretToAuthenticateInitiator(Aws::String&& value) { SetSecretToAuthenticateInitiator(std::move(value)); return *this;}
 
     /**
      * <p>The secret key that the initiator (for example, the Windows client) must
@@ -139,6 +150,7 @@ namespace Model
      * key must be between 12 and 16 bytes when encoded in UTF-8.</p> </note>
      */
     inline UpdateChapCredentialsRequest& WithSecretToAuthenticateInitiator(const char* value) { SetSecretToAuthenticateInitiator(value); return *this;}
+
 
     /**
      * <p>The iSCSI initiator that connects to the target.</p>
@@ -153,7 +165,7 @@ namespace Model
     /**
      * <p>The iSCSI initiator that connects to the target.</p>
      */
-    inline void SetInitiatorName(Aws::String&& value) { m_initiatorNameHasBeenSet = true; m_initiatorName = value; }
+    inline void SetInitiatorName(Aws::String&& value) { m_initiatorNameHasBeenSet = true; m_initiatorName = std::move(value); }
 
     /**
      * <p>The iSCSI initiator that connects to the target.</p>
@@ -168,12 +180,13 @@ namespace Model
     /**
      * <p>The iSCSI initiator that connects to the target.</p>
      */
-    inline UpdateChapCredentialsRequest& WithInitiatorName(Aws::String&& value) { SetInitiatorName(value); return *this;}
+    inline UpdateChapCredentialsRequest& WithInitiatorName(Aws::String&& value) { SetInitiatorName(std::move(value)); return *this;}
 
     /**
      * <p>The iSCSI initiator that connects to the target.</p>
      */
     inline UpdateChapCredentialsRequest& WithInitiatorName(const char* value) { SetInitiatorName(value); return *this;}
+
 
     /**
      * <p>The secret key that the target must provide to participate in mutual CHAP
@@ -197,7 +210,7 @@ namespace Model
      * of 12. Maximum bytes of 16.</p> <note> <p>The secret key must be between 12 and
      * 16 bytes when encoded in UTF-8.</p> </note>
      */
-    inline void SetSecretToAuthenticateTarget(Aws::String&& value) { m_secretToAuthenticateTargetHasBeenSet = true; m_secretToAuthenticateTarget = value; }
+    inline void SetSecretToAuthenticateTarget(Aws::String&& value) { m_secretToAuthenticateTargetHasBeenSet = true; m_secretToAuthenticateTarget = std::move(value); }
 
     /**
      * <p>The secret key that the target must provide to participate in mutual CHAP
@@ -221,7 +234,7 @@ namespace Model
      * of 12. Maximum bytes of 16.</p> <note> <p>The secret key must be between 12 and
      * 16 bytes when encoded in UTF-8.</p> </note>
      */
-    inline UpdateChapCredentialsRequest& WithSecretToAuthenticateTarget(Aws::String&& value) { SetSecretToAuthenticateTarget(value); return *this;}
+    inline UpdateChapCredentialsRequest& WithSecretToAuthenticateTarget(Aws::String&& value) { SetSecretToAuthenticateTarget(std::move(value)); return *this;}
 
     /**
      * <p>The secret key that the target must provide to participate in mutual CHAP
@@ -232,12 +245,16 @@ namespace Model
     inline UpdateChapCredentialsRequest& WithSecretToAuthenticateTarget(const char* value) { SetSecretToAuthenticateTarget(value); return *this;}
 
   private:
+
     Aws::String m_targetARN;
     bool m_targetARNHasBeenSet;
+
     Aws::String m_secretToAuthenticateInitiator;
     bool m_secretToAuthenticateInitiatorHasBeenSet;
+
     Aws::String m_initiatorName;
     bool m_initiatorNameHasBeenSet;
+
     Aws::String m_secretToAuthenticateTarget;
     bool m_secretToAuthenticateTargetHasBeenSet;
   };

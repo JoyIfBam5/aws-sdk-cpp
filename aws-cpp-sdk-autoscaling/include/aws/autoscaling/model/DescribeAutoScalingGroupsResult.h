@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/autoscaling/AutoScaling_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/autoscaling/model/ResponseMetadata.h>
 #include <aws/autoscaling/model/AutoScalingGroup.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,18 +37,13 @@ namespace AutoScaling
 {
 namespace Model
 {
-  /**
-   * <p>Contains the output for DescribeAutoScalingGroups.</p><p><h3>See Also:</h3>  
-   * <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/autoscaling-2011-01-01/AutoScalingGroupsType">AWS
-   * API Reference</a></p>
-   */
   class AWS_AUTOSCALING_API DescribeAutoScalingGroupsResult
   {
   public:
     DescribeAutoScalingGroupsResult();
-    DescribeAutoScalingGroupsResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeAutoScalingGroupsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeAutoScalingGroupsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeAutoScalingGroupsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>The groups.</p>
@@ -61,7 +58,7 @@ namespace Model
     /**
      * <p>The groups.</p>
      */
-    inline void SetAutoScalingGroups(Aws::Vector<AutoScalingGroup>&& value) { m_autoScalingGroups = value; }
+    inline void SetAutoScalingGroups(Aws::Vector<AutoScalingGroup>&& value) { m_autoScalingGroups = std::move(value); }
 
     /**
      * <p>The groups.</p>
@@ -71,7 +68,7 @@ namespace Model
     /**
      * <p>The groups.</p>
      */
-    inline DescribeAutoScalingGroupsResult& WithAutoScalingGroups(Aws::Vector<AutoScalingGroup>&& value) { SetAutoScalingGroups(value); return *this;}
+    inline DescribeAutoScalingGroupsResult& WithAutoScalingGroups(Aws::Vector<AutoScalingGroup>&& value) { SetAutoScalingGroups(std::move(value)); return *this;}
 
     /**
      * <p>The groups.</p>
@@ -81,7 +78,8 @@ namespace Model
     /**
      * <p>The groups.</p>
      */
-    inline DescribeAutoScalingGroupsResult& AddAutoScalingGroups(AutoScalingGroup&& value) { m_autoScalingGroups.push_back(value); return *this; }
+    inline DescribeAutoScalingGroupsResult& AddAutoScalingGroups(AutoScalingGroup&& value) { m_autoScalingGroups.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
@@ -99,7 +97,7 @@ namespace Model
      * <p>The token to use when requesting the next set of items. If there are no
      * additional items to return, the string is empty.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
@@ -117,13 +115,14 @@ namespace Model
      * <p>The token to use when requesting the next set of items. If there are no
      * additional items to return, the string is empty.</p>
      */
-    inline DescribeAutoScalingGroupsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeAutoScalingGroupsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
      * additional items to return, the string is empty.</p>
      */
     inline DescribeAutoScalingGroupsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -132,17 +131,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeAutoScalingGroupsResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeAutoScalingGroupsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeAutoScalingGroupsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<AutoScalingGroup> m_autoScalingGroups;
+
     Aws::String m_nextToken;
+
     ResponseMetadata m_responseMetadata;
   };
 

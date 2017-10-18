@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/xray/XRay_EXPORTS.h>
 #include <aws/xray/XRayRequest.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,7 +33,15 @@ namespace Model
   {
   public:
     BatchGetTracesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "BatchGetTraces"; }
+
     Aws::String SerializePayload() const override;
+
 
     /**
      * <p>Specify the trace IDs of requests for which to retrieve segments.</p>
@@ -46,7 +56,7 @@ namespace Model
     /**
      * <p>Specify the trace IDs of requests for which to retrieve segments.</p>
      */
-    inline void SetTraceIds(Aws::Vector<Aws::String>&& value) { m_traceIdsHasBeenSet = true; m_traceIds = value; }
+    inline void SetTraceIds(Aws::Vector<Aws::String>&& value) { m_traceIdsHasBeenSet = true; m_traceIds = std::move(value); }
 
     /**
      * <p>Specify the trace IDs of requests for which to retrieve segments.</p>
@@ -56,7 +66,7 @@ namespace Model
     /**
      * <p>Specify the trace IDs of requests for which to retrieve segments.</p>
      */
-    inline BatchGetTracesRequest& WithTraceIds(Aws::Vector<Aws::String>&& value) { SetTraceIds(value); return *this;}
+    inline BatchGetTracesRequest& WithTraceIds(Aws::Vector<Aws::String>&& value) { SetTraceIds(std::move(value)); return *this;}
 
     /**
      * <p>Specify the trace IDs of requests for which to retrieve segments.</p>
@@ -66,12 +76,13 @@ namespace Model
     /**
      * <p>Specify the trace IDs of requests for which to retrieve segments.</p>
      */
-    inline BatchGetTracesRequest& AddTraceIds(Aws::String&& value) { m_traceIdsHasBeenSet = true; m_traceIds.push_back(value); return *this; }
+    inline BatchGetTracesRequest& AddTraceIds(Aws::String&& value) { m_traceIdsHasBeenSet = true; m_traceIds.push_back(std::move(value)); return *this; }
 
     /**
      * <p>Specify the trace IDs of requests for which to retrieve segments.</p>
      */
     inline BatchGetTracesRequest& AddTraceIds(const char* value) { m_traceIdsHasBeenSet = true; m_traceIds.push_back(value); return *this; }
+
 
     /**
      * <p>Pagination token. Not used.</p>
@@ -86,7 +97,7 @@ namespace Model
     /**
      * <p>Pagination token. Not used.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>Pagination token. Not used.</p>
@@ -101,7 +112,7 @@ namespace Model
     /**
      * <p>Pagination token. Not used.</p>
      */
-    inline BatchGetTracesRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline BatchGetTracesRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>Pagination token. Not used.</p>
@@ -109,8 +120,10 @@ namespace Model
     inline BatchGetTracesRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_traceIds;
     bool m_traceIdsHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
   };

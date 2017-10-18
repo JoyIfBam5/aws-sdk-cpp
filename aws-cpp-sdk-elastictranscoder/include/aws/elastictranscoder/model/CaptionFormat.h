@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elastictranscoder/ElasticTranscoder_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/elastictranscoder/model/Encryption.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     CaptionFormat(const Aws::Utils::Json::JsonValue& jsonValue);
     CaptionFormat& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>The format you specify determines whether Elastic Transcoder generates an
@@ -91,7 +94,7 @@ namespace Model
      * <code>fmp4</code> captions have an extension of <code>.ismt</code> </p> </li>
      * </ul>
      */
-    inline void SetFormat(Aws::String&& value) { m_formatHasBeenSet = true; m_format = value; }
+    inline void SetFormat(Aws::String&& value) { m_formatHasBeenSet = true; m_format = std::move(value); }
 
     /**
      * <p>The format you specify determines whether Elastic Transcoder generates an
@@ -139,7 +142,7 @@ namespace Model
      * <code>fmp4</code> captions have an extension of <code>.ismt</code> </p> </li>
      * </ul>
      */
-    inline CaptionFormat& WithFormat(Aws::String&& value) { SetFormat(value); return *this;}
+    inline CaptionFormat& WithFormat(Aws::String&& value) { SetFormat(std::move(value)); return *this;}
 
     /**
      * <p>The format you specify determines whether Elastic Transcoder generates an
@@ -156,6 +159,7 @@ namespace Model
      * </ul>
      */
     inline CaptionFormat& WithFormat(const char* value) { SetFormat(value); return *this;}
+
 
     /**
      * <p>The prefix for caption filenames, in the form
@@ -206,7 +210,7 @@ namespace Model
      * English (en), the name of the first caption file is be
      * Sydney-en-sunrise00000.srt.</p>
      */
-    inline void SetPattern(Aws::String&& value) { m_patternHasBeenSet = true; m_pattern = value; }
+    inline void SetPattern(Aws::String&& value) { m_patternHasBeenSet = true; m_pattern = std::move(value); }
 
     /**
      * <p>The prefix for caption filenames, in the form
@@ -257,7 +261,7 @@ namespace Model
      * English (en), the name of the first caption file is be
      * Sydney-en-sunrise00000.srt.</p>
      */
-    inline CaptionFormat& WithPattern(Aws::String&& value) { SetPattern(value); return *this;}
+    inline CaptionFormat& WithPattern(Aws::String&& value) { SetPattern(std::move(value)); return *this;}
 
     /**
      * <p>The prefix for caption filenames, in the form
@@ -276,6 +280,7 @@ namespace Model
      */
     inline CaptionFormat& WithPattern(const char* value) { SetPattern(value); return *this;}
 
+
     /**
      * <p>The encryption settings, if any, that you want Elastic Transcoder to apply to
      * your caption formats.</p>
@@ -292,7 +297,7 @@ namespace Model
      * <p>The encryption settings, if any, that you want Elastic Transcoder to apply to
      * your caption formats.</p>
      */
-    inline void SetEncryption(Encryption&& value) { m_encryptionHasBeenSet = true; m_encryption = value; }
+    inline void SetEncryption(Encryption&& value) { m_encryptionHasBeenSet = true; m_encryption = std::move(value); }
 
     /**
      * <p>The encryption settings, if any, that you want Elastic Transcoder to apply to
@@ -304,13 +309,16 @@ namespace Model
      * <p>The encryption settings, if any, that you want Elastic Transcoder to apply to
      * your caption formats.</p>
      */
-    inline CaptionFormat& WithEncryption(Encryption&& value) { SetEncryption(value); return *this;}
+    inline CaptionFormat& WithEncryption(Encryption&& value) { SetEncryption(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_format;
     bool m_formatHasBeenSet;
+
     Aws::String m_pattern;
     bool m_patternHasBeenSet;
+
     Encryption m_encryption;
     bool m_encryptionHasBeenSet;
   };

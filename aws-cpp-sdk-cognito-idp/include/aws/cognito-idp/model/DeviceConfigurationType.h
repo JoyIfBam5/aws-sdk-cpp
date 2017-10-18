@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 
@@ -43,6 +44,7 @@ namespace Model
     DeviceConfigurationType& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Indicates whether a challenge is required on a new device. Only applicable to
      * a new device.</p>
@@ -61,6 +63,7 @@ namespace Model
      */
     inline DeviceConfigurationType& WithChallengeRequiredOnNewDevice(bool value) { SetChallengeRequiredOnNewDevice(value); return *this;}
 
+
     /**
      * <p>If true, a device is only remembered on user prompt.</p>
      */
@@ -77,8 +80,10 @@ namespace Model
     inline DeviceConfigurationType& WithDeviceOnlyRememberedOnUserPrompt(bool value) { SetDeviceOnlyRememberedOnUserPrompt(value); return *this;}
 
   private:
+
     bool m_challengeRequiredOnNewDevice;
     bool m_challengeRequiredOnNewDeviceHasBeenSet;
+
     bool m_deviceOnlyRememberedOnUserPrompt;
     bool m_deviceOnlyRememberedOnUserPromptHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/datapipeline/DataPipeline_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/datapipeline/model/PipelineObject.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     DescribeObjectsResult();
-    DescribeObjectsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeObjectsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeObjectsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeObjectsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>An array of object definitions.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>An array of object definitions.</p>
      */
-    inline void SetPipelineObjects(Aws::Vector<PipelineObject>&& value) { m_pipelineObjects = value; }
+    inline void SetPipelineObjects(Aws::Vector<PipelineObject>&& value) { m_pipelineObjects = std::move(value); }
 
     /**
      * <p>An array of object definitions.</p>
@@ -69,7 +72,7 @@ namespace Model
     /**
      * <p>An array of object definitions.</p>
      */
-    inline DescribeObjectsResult& WithPipelineObjects(Aws::Vector<PipelineObject>&& value) { SetPipelineObjects(value); return *this;}
+    inline DescribeObjectsResult& WithPipelineObjects(Aws::Vector<PipelineObject>&& value) { SetPipelineObjects(std::move(value)); return *this;}
 
     /**
      * <p>An array of object definitions.</p>
@@ -79,7 +82,8 @@ namespace Model
     /**
      * <p>An array of object definitions.</p>
      */
-    inline DescribeObjectsResult& AddPipelineObjects(PipelineObject&& value) { m_pipelineObjects.push_back(value); return *this; }
+    inline DescribeObjectsResult& AddPipelineObjects(PipelineObject&& value) { m_pipelineObjects.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The starting point for the next page of results. To view the next page of
@@ -100,7 +104,7 @@ namespace Model
      * results, call <code>DescribeObjects</code> again with this marker value. If the
      * value is null, there are no more results.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p>The starting point for the next page of results. To view the next page of
@@ -121,7 +125,7 @@ namespace Model
      * results, call <code>DescribeObjects</code> again with this marker value. If the
      * value is null, there are no more results.</p>
      */
-    inline DescribeObjectsResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeObjectsResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>The starting point for the next page of results. To view the next page of
@@ -129,6 +133,7 @@ namespace Model
      * value is null, there are no more results.</p>
      */
     inline DescribeObjectsResult& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>Indicates whether there are more results to return.</p>
@@ -146,8 +151,11 @@ namespace Model
     inline DescribeObjectsResult& WithHasMoreResults(bool value) { SetHasMoreResults(value); return *this;}
 
   private:
+
     Aws::Vector<PipelineObject> m_pipelineObjects;
+
     Aws::String m_marker;
+
     bool m_hasMoreResults;
   };
 

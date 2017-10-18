@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/ecs/model/UlimitName.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     Ulimit& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The <code>type</code> of the <code>ulimit</code>.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The <code>type</code> of the <code>ulimit</code>.</p>
      */
-    inline void SetName(UlimitName&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(UlimitName&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The <code>type</code> of the <code>ulimit</code>.</p>
@@ -67,7 +70,8 @@ namespace Model
     /**
      * <p>The <code>type</code> of the <code>ulimit</code>.</p>
      */
-    inline Ulimit& WithName(UlimitName&& value) { SetName(value); return *this;}
+    inline Ulimit& WithName(UlimitName&& value) { SetName(std::move(value)); return *this;}
+
 
     /**
      * <p>The soft limit for the ulimit type.</p>
@@ -83,6 +87,7 @@ namespace Model
      * <p>The soft limit for the ulimit type.</p>
      */
     inline Ulimit& WithSoftLimit(int value) { SetSoftLimit(value); return *this;}
+
 
     /**
      * <p>The hard limit for the ulimit type.</p>
@@ -100,10 +105,13 @@ namespace Model
     inline Ulimit& WithHardLimit(int value) { SetHardLimit(value); return *this;}
 
   private:
+
     UlimitName m_name;
     bool m_nameHasBeenSet;
+
     int m_softLimit;
     bool m_softLimitHasBeenSet;
+
     int m_hardLimit;
     bool m_hardLimitHasBeenSet;
   };

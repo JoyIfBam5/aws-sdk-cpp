@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/ClassicLinkDnsSupport.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,16 +31,16 @@ namespace Model
 {
 
 ClassicLinkDnsSupport::ClassicLinkDnsSupport() : 
-    m_vpcIdHasBeenSet(false),
     m_classicLinkDnsSupported(false),
-    m_classicLinkDnsSupportedHasBeenSet(false)
+    m_classicLinkDnsSupportedHasBeenSet(false),
+    m_vpcIdHasBeenSet(false)
 {
 }
 
 ClassicLinkDnsSupport::ClassicLinkDnsSupport(const XmlNode& xmlNode) : 
-    m_vpcIdHasBeenSet(false),
     m_classicLinkDnsSupported(false),
-    m_classicLinkDnsSupportedHasBeenSet(false)
+    m_classicLinkDnsSupportedHasBeenSet(false),
+    m_vpcIdHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -50,17 +51,17 @@ ClassicLinkDnsSupport& ClassicLinkDnsSupport::operator =(const XmlNode& xmlNode)
 
   if(!resultNode.IsNull())
   {
-    XmlNode vpcIdNode = resultNode.FirstChild("vpcId");
-    if(!vpcIdNode.IsNull())
-    {
-      m_vpcId = StringUtils::Trim(vpcIdNode.GetText().c_str());
-      m_vpcIdHasBeenSet = true;
-    }
     XmlNode classicLinkDnsSupportedNode = resultNode.FirstChild("classicLinkDnsSupported");
     if(!classicLinkDnsSupportedNode.IsNull())
     {
       m_classicLinkDnsSupported = StringUtils::ConvertToBool(StringUtils::Trim(classicLinkDnsSupportedNode.GetText().c_str()).c_str());
       m_classicLinkDnsSupportedHasBeenSet = true;
+    }
+    XmlNode vpcIdNode = resultNode.FirstChild("vpcId");
+    if(!vpcIdNode.IsNull())
+    {
+      m_vpcId = StringUtils::Trim(vpcIdNode.GetText().c_str());
+      m_vpcIdHasBeenSet = true;
     }
   }
 
@@ -69,27 +70,27 @@ ClassicLinkDnsSupport& ClassicLinkDnsSupport::operator =(const XmlNode& xmlNode)
 
 void ClassicLinkDnsSupport::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
-  if(m_vpcIdHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".VpcId=" << StringUtils::URLEncode(m_vpcId.c_str()) << "&";
-  }
-
   if(m_classicLinkDnsSupportedHasBeenSet)
   {
       oStream << location << index << locationValue << ".ClassicLinkDnsSupported=" << std::boolalpha << m_classicLinkDnsSupported << "&";
+  }
+
+  if(m_vpcIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".VpcId=" << StringUtils::URLEncode(m_vpcId.c_str()) << "&";
   }
 
 }
 
 void ClassicLinkDnsSupport::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
-  if(m_vpcIdHasBeenSet)
-  {
-      oStream << location << ".VpcId=" << StringUtils::URLEncode(m_vpcId.c_str()) << "&";
-  }
   if(m_classicLinkDnsSupportedHasBeenSet)
   {
       oStream << location << ".ClassicLinkDnsSupported=" << std::boolalpha << m_classicLinkDnsSupported << "&";
+  }
+  if(m_vpcIdHasBeenSet)
+  {
+      oStream << location << ".VpcId=" << StringUtils::URLEncode(m_vpcId.c_str()) << "&";
   }
 }
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/elasticmapreduce/model/StepConfig.h>
 #include <aws/elasticmapreduce/model/StepExecutionStatusDetail.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     StepDetail& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The step configuration.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The step configuration.</p>
      */
-    inline void SetStepConfig(StepConfig&& value) { m_stepConfigHasBeenSet = true; m_stepConfig = value; }
+    inline void SetStepConfig(StepConfig&& value) { m_stepConfigHasBeenSet = true; m_stepConfig = std::move(value); }
 
     /**
      * <p>The step configuration.</p>
@@ -68,7 +71,8 @@ namespace Model
     /**
      * <p>The step configuration.</p>
      */
-    inline StepDetail& WithStepConfig(StepConfig&& value) { SetStepConfig(value); return *this;}
+    inline StepDetail& WithStepConfig(StepConfig&& value) { SetStepConfig(std::move(value)); return *this;}
+
 
     /**
      * <p>The description of the step status.</p>
@@ -83,7 +87,7 @@ namespace Model
     /**
      * <p>The description of the step status.</p>
      */
-    inline void SetExecutionStatusDetail(StepExecutionStatusDetail&& value) { m_executionStatusDetailHasBeenSet = true; m_executionStatusDetail = value; }
+    inline void SetExecutionStatusDetail(StepExecutionStatusDetail&& value) { m_executionStatusDetailHasBeenSet = true; m_executionStatusDetail = std::move(value); }
 
     /**
      * <p>The description of the step status.</p>
@@ -93,11 +97,13 @@ namespace Model
     /**
      * <p>The description of the step status.</p>
      */
-    inline StepDetail& WithExecutionStatusDetail(StepExecutionStatusDetail&& value) { SetExecutionStatusDetail(value); return *this;}
+    inline StepDetail& WithExecutionStatusDetail(StepExecutionStatusDetail&& value) { SetExecutionStatusDetail(std::move(value)); return *this;}
 
   private:
+
     StepConfig m_stepConfig;
     bool m_stepConfigHasBeenSet;
+
     StepExecutionStatusDetail m_executionStatusDetail;
     bool m_executionStatusDetailHasBeenSet;
   };

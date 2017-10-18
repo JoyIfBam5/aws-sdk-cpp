@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codepipeline/CodePipeline_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/codepipeline/model/ThirdPartyJob.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,7 +36,7 @@ namespace CodePipeline
 namespace Model
 {
   /**
-   * <p>Represents the output of a poll for third party jobs action.</p><p><h3>See
+   * <p>Represents the output of a PollForThirdPartyJobs action.</p><p><h3>See
    * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PollForThirdPartyJobsOutput">AWS
    * API Reference</a></p>
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     PollForThirdPartyJobsResult();
-    PollForThirdPartyJobsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    PollForThirdPartyJobsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PollForThirdPartyJobsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PollForThirdPartyJobsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the jobs to take action on.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>Information about the jobs to take action on.</p>
      */
-    inline void SetJobs(Aws::Vector<ThirdPartyJob>&& value) { m_jobs = value; }
+    inline void SetJobs(Aws::Vector<ThirdPartyJob>&& value) { m_jobs = std::move(value); }
 
     /**
      * <p>Information about the jobs to take action on.</p>
@@ -69,7 +72,7 @@ namespace Model
     /**
      * <p>Information about the jobs to take action on.</p>
      */
-    inline PollForThirdPartyJobsResult& WithJobs(Aws::Vector<ThirdPartyJob>&& value) { SetJobs(value); return *this;}
+    inline PollForThirdPartyJobsResult& WithJobs(Aws::Vector<ThirdPartyJob>&& value) { SetJobs(std::move(value)); return *this;}
 
     /**
      * <p>Information about the jobs to take action on.</p>
@@ -79,9 +82,10 @@ namespace Model
     /**
      * <p>Information about the jobs to take action on.</p>
      */
-    inline PollForThirdPartyJobsResult& AddJobs(ThirdPartyJob&& value) { m_jobs.push_back(value); return *this; }
+    inline PollForThirdPartyJobsResult& AddJobs(ThirdPartyJob&& value) { m_jobs.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<ThirdPartyJob> m_jobs;
   };
 

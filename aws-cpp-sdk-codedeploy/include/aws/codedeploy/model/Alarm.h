@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codedeploy/CodeDeploy_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     Alarm& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the alarm. Maximum length is 255 characters. Each alarm name can
      * be used only once in a list of alarms.</p>
@@ -59,7 +62,7 @@ namespace Model
      * <p>The name of the alarm. Maximum length is 255 characters. Each alarm name can
      * be used only once in a list of alarms.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the alarm. Maximum length is 255 characters. Each alarm name can
@@ -77,7 +80,7 @@ namespace Model
      * <p>The name of the alarm. Maximum length is 255 characters. Each alarm name can
      * be used only once in a list of alarms.</p>
      */
-    inline Alarm& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline Alarm& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the alarm. Maximum length is 255 characters. Each alarm name can
@@ -86,6 +89,7 @@ namespace Model
     inline Alarm& WithName(const char* value) { SetName(value); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
   };

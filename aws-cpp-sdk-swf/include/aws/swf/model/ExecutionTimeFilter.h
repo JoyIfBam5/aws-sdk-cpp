@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,7 +37,7 @@ namespace Model
    * time-based rules. Each parameter, if specified, defines a rule that must be
    * satisfied by each returned query result. The parameter values are in the <a
    * href="https://en.wikipedia.org/wiki/Unix_time">Unix Time format</a>. For
-   * example: <code>"oldestDate": 1325376070.</code></p><p><h3>See Also:</h3>   <a
+   * example: <code>"oldestDate": 1325376070.</code> </p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/swf-2012-01-25/ExecutionTimeFilter">AWS
    * API Reference</a></p>
    */
@@ -46,6 +48,7 @@ namespace Model
     ExecutionTimeFilter(const Aws::Utils::Json::JsonValue& jsonValue);
     ExecutionTimeFilter& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>Specifies the oldest start or close date and time to return.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>Specifies the oldest start or close date and time to return.</p>
      */
-    inline void SetOldestDate(Aws::Utils::DateTime&& value) { m_oldestDateHasBeenSet = true; m_oldestDate = value; }
+    inline void SetOldestDate(Aws::Utils::DateTime&& value) { m_oldestDateHasBeenSet = true; m_oldestDate = std::move(value); }
 
     /**
      * <p>Specifies the oldest start or close date and time to return.</p>
@@ -70,7 +73,8 @@ namespace Model
     /**
      * <p>Specifies the oldest start or close date and time to return.</p>
      */
-    inline ExecutionTimeFilter& WithOldestDate(Aws::Utils::DateTime&& value) { SetOldestDate(value); return *this;}
+    inline ExecutionTimeFilter& WithOldestDate(Aws::Utils::DateTime&& value) { SetOldestDate(std::move(value)); return *this;}
+
 
     /**
      * <p>Specifies the latest start or close date and time to return.</p>
@@ -85,7 +89,7 @@ namespace Model
     /**
      * <p>Specifies the latest start or close date and time to return.</p>
      */
-    inline void SetLatestDate(Aws::Utils::DateTime&& value) { m_latestDateHasBeenSet = true; m_latestDate = value; }
+    inline void SetLatestDate(Aws::Utils::DateTime&& value) { m_latestDateHasBeenSet = true; m_latestDate = std::move(value); }
 
     /**
      * <p>Specifies the latest start or close date and time to return.</p>
@@ -95,11 +99,13 @@ namespace Model
     /**
      * <p>Specifies the latest start or close date and time to return.</p>
      */
-    inline ExecutionTimeFilter& WithLatestDate(Aws::Utils::DateTime&& value) { SetLatestDate(value); return *this;}
+    inline ExecutionTimeFilter& WithLatestDate(Aws::Utils::DateTime&& value) { SetLatestDate(std::move(value)); return *this;}
 
   private:
+
     Aws::Utils::DateTime m_oldestDate;
     bool m_oldestDateHasBeenSet;
+
     Aws::Utils::DateTime m_latestDate;
     bool m_latestDateHasBeenSet;
   };

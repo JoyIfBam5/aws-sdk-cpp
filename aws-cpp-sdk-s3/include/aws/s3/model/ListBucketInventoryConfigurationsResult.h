@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/s3/model/InventoryConfiguration.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     ListBucketInventoryConfigurationsResult();
-    ListBucketInventoryConfigurationsResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    ListBucketInventoryConfigurationsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ListBucketInventoryConfigurationsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ListBucketInventoryConfigurationsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * If sent in the request, the marker that is used as a starting point for this
@@ -57,7 +60,7 @@ namespace Model
      * If sent in the request, the marker that is used as a starting point for this
      * inventory configuration list response.
      */
-    inline void SetContinuationToken(Aws::String&& value) { m_continuationToken = value; }
+    inline void SetContinuationToken(Aws::String&& value) { m_continuationToken = std::move(value); }
 
     /**
      * If sent in the request, the marker that is used as a starting point for this
@@ -75,13 +78,14 @@ namespace Model
      * If sent in the request, the marker that is used as a starting point for this
      * inventory configuration list response.
      */
-    inline ListBucketInventoryConfigurationsResult& WithContinuationToken(Aws::String&& value) { SetContinuationToken(value); return *this;}
+    inline ListBucketInventoryConfigurationsResult& WithContinuationToken(Aws::String&& value) { SetContinuationToken(std::move(value)); return *this;}
 
     /**
      * If sent in the request, the marker that is used as a starting point for this
      * inventory configuration list response.
      */
     inline ListBucketInventoryConfigurationsResult& WithContinuationToken(const char* value) { SetContinuationToken(value); return *this;}
+
 
     /**
      * The list of inventory configurations for a bucket.
@@ -96,7 +100,7 @@ namespace Model
     /**
      * The list of inventory configurations for a bucket.
      */
-    inline void SetInventoryConfigurationList(Aws::Vector<InventoryConfiguration>&& value) { m_inventoryConfigurationList = value; }
+    inline void SetInventoryConfigurationList(Aws::Vector<InventoryConfiguration>&& value) { m_inventoryConfigurationList = std::move(value); }
 
     /**
      * The list of inventory configurations for a bucket.
@@ -106,7 +110,7 @@ namespace Model
     /**
      * The list of inventory configurations for a bucket.
      */
-    inline ListBucketInventoryConfigurationsResult& WithInventoryConfigurationList(Aws::Vector<InventoryConfiguration>&& value) { SetInventoryConfigurationList(value); return *this;}
+    inline ListBucketInventoryConfigurationsResult& WithInventoryConfigurationList(Aws::Vector<InventoryConfiguration>&& value) { SetInventoryConfigurationList(std::move(value)); return *this;}
 
     /**
      * The list of inventory configurations for a bucket.
@@ -116,7 +120,8 @@ namespace Model
     /**
      * The list of inventory configurations for a bucket.
      */
-    inline ListBucketInventoryConfigurationsResult& AddInventoryConfigurationList(InventoryConfiguration&& value) { m_inventoryConfigurationList.push_back(value); return *this; }
+    inline ListBucketInventoryConfigurationsResult& AddInventoryConfigurationList(InventoryConfiguration&& value) { m_inventoryConfigurationList.push_back(std::move(value)); return *this; }
+
 
     /**
      * Indicates whether the returned list of inventory configurations is truncated in
@@ -135,6 +140,7 @@ namespace Model
      * this response. A value of true indicates that the list is truncated.
      */
     inline ListBucketInventoryConfigurationsResult& WithIsTruncated(bool value) { SetIsTruncated(value); return *this;}
+
 
     /**
      * The marker used to continue this inventory configuration listing. Use the
@@ -155,7 +161,7 @@ namespace Model
      * NextContinuationToken from this response to continue the listing in a subsequent
      * request. The continuation token is an opaque value that Amazon S3 understands.
      */
-    inline void SetNextContinuationToken(Aws::String&& value) { m_nextContinuationToken = value; }
+    inline void SetNextContinuationToken(Aws::String&& value) { m_nextContinuationToken = std::move(value); }
 
     /**
      * The marker used to continue this inventory configuration listing. Use the
@@ -176,7 +182,7 @@ namespace Model
      * NextContinuationToken from this response to continue the listing in a subsequent
      * request. The continuation token is an opaque value that Amazon S3 understands.
      */
-    inline ListBucketInventoryConfigurationsResult& WithNextContinuationToken(Aws::String&& value) { SetNextContinuationToken(value); return *this;}
+    inline ListBucketInventoryConfigurationsResult& WithNextContinuationToken(Aws::String&& value) { SetNextContinuationToken(std::move(value)); return *this;}
 
     /**
      * The marker used to continue this inventory configuration listing. Use the
@@ -186,9 +192,13 @@ namespace Model
     inline ListBucketInventoryConfigurationsResult& WithNextContinuationToken(const char* value) { SetNextContinuationToken(value); return *this;}
 
   private:
+
     Aws::String m_continuationToken;
+
     Aws::Vector<InventoryConfiguration> m_inventoryConfigurationList;
+
     bool m_isTruncated;
+
     Aws::String m_nextContinuationToken;
   };
 

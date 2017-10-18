@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/gamelift/GameLift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     ServerProcess(const Aws::Utils::Json::JsonValue& jsonValue);
     ServerProcess& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>Location of the server executable in a game build. All game builds are
@@ -82,7 +85,7 @@ namespace Model
      * must have a launch path of "<code>/local/game/MyGame/latest/server.exe</code>".
      * </p>
      */
-    inline void SetLaunchPath(Aws::String&& value) { m_launchPathHasBeenSet = true; m_launchPath = value; }
+    inline void SetLaunchPath(Aws::String&& value) { m_launchPathHasBeenSet = true; m_launchPath = std::move(value); }
 
     /**
      * <p>Location of the server executable in a game build. All game builds are
@@ -118,7 +121,7 @@ namespace Model
      * must have a launch path of "<code>/local/game/MyGame/latest/server.exe</code>".
      * </p>
      */
-    inline ServerProcess& WithLaunchPath(Aws::String&& value) { SetLaunchPath(value); return *this;}
+    inline ServerProcess& WithLaunchPath(Aws::String&& value) { SetLaunchPath(std::move(value)); return *this;}
 
     /**
      * <p>Location of the server executable in a game build. All game builds are
@@ -131,6 +134,7 @@ namespace Model
      * </p>
      */
     inline ServerProcess& WithLaunchPath(const char* value) { SetLaunchPath(value); return *this;}
+
 
     /**
      * <p>Optional list of parameters to pass to the server executable on launch.</p>
@@ -145,7 +149,7 @@ namespace Model
     /**
      * <p>Optional list of parameters to pass to the server executable on launch.</p>
      */
-    inline void SetParameters(Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters = value; }
+    inline void SetParameters(Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters = std::move(value); }
 
     /**
      * <p>Optional list of parameters to pass to the server executable on launch.</p>
@@ -160,12 +164,13 @@ namespace Model
     /**
      * <p>Optional list of parameters to pass to the server executable on launch.</p>
      */
-    inline ServerProcess& WithParameters(Aws::String&& value) { SetParameters(value); return *this;}
+    inline ServerProcess& WithParameters(Aws::String&& value) { SetParameters(std::move(value)); return *this;}
 
     /**
      * <p>Optional list of parameters to pass to the server executable on launch.</p>
      */
     inline ServerProcess& WithParameters(const char* value) { SetParameters(value); return *this;}
+
 
     /**
      * <p>Number of server processes using this configuration to run concurrently on an
@@ -186,10 +191,13 @@ namespace Model
     inline ServerProcess& WithConcurrentExecutions(int value) { SetConcurrentExecutions(value); return *this;}
 
   private:
+
     Aws::String m_launchPath;
     bool m_launchPathHasBeenSet;
+
     Aws::String m_parameters;
     bool m_parametersHasBeenSet;
+
     int m_concurrentExecutions;
     bool m_concurrentExecutionsHasBeenSet;
   };

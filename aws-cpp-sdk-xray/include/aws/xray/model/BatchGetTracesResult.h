@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/xray/XRay_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/xray/model/Trace.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     BatchGetTracesResult();
-    BatchGetTracesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    BatchGetTracesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    BatchGetTracesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    BatchGetTracesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Full traces for the specified requests.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>Full traces for the specified requests.</p>
      */
-    inline void SetTraces(Aws::Vector<Trace>&& value) { m_traces = value; }
+    inline void SetTraces(Aws::Vector<Trace>&& value) { m_traces = std::move(value); }
 
     /**
      * <p>Full traces for the specified requests.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>Full traces for the specified requests.</p>
      */
-    inline BatchGetTracesResult& WithTraces(Aws::Vector<Trace>&& value) { SetTraces(value); return *this;}
+    inline BatchGetTracesResult& WithTraces(Aws::Vector<Trace>&& value) { SetTraces(std::move(value)); return *this;}
 
     /**
      * <p>Full traces for the specified requests.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>Full traces for the specified requests.</p>
      */
-    inline BatchGetTracesResult& AddTraces(Trace&& value) { m_traces.push_back(value); return *this; }
+    inline BatchGetTracesResult& AddTraces(Trace&& value) { m_traces.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Trace IDs of requests that haven't been processed.</p>
@@ -89,7 +93,7 @@ namespace Model
     /**
      * <p>Trace IDs of requests that haven't been processed.</p>
      */
-    inline void SetUnprocessedTraceIds(Aws::Vector<Aws::String>&& value) { m_unprocessedTraceIds = value; }
+    inline void SetUnprocessedTraceIds(Aws::Vector<Aws::String>&& value) { m_unprocessedTraceIds = std::move(value); }
 
     /**
      * <p>Trace IDs of requests that haven't been processed.</p>
@@ -99,7 +103,7 @@ namespace Model
     /**
      * <p>Trace IDs of requests that haven't been processed.</p>
      */
-    inline BatchGetTracesResult& WithUnprocessedTraceIds(Aws::Vector<Aws::String>&& value) { SetUnprocessedTraceIds(value); return *this;}
+    inline BatchGetTracesResult& WithUnprocessedTraceIds(Aws::Vector<Aws::String>&& value) { SetUnprocessedTraceIds(std::move(value)); return *this;}
 
     /**
      * <p>Trace IDs of requests that haven't been processed.</p>
@@ -109,12 +113,13 @@ namespace Model
     /**
      * <p>Trace IDs of requests that haven't been processed.</p>
      */
-    inline BatchGetTracesResult& AddUnprocessedTraceIds(Aws::String&& value) { m_unprocessedTraceIds.push_back(value); return *this; }
+    inline BatchGetTracesResult& AddUnprocessedTraceIds(Aws::String&& value) { m_unprocessedTraceIds.push_back(std::move(value)); return *this; }
 
     /**
      * <p>Trace IDs of requests that haven't been processed.</p>
      */
     inline BatchGetTracesResult& AddUnprocessedTraceIds(const char* value) { m_unprocessedTraceIds.push_back(value); return *this; }
+
 
     /**
      * <p>Pagination token. Not used.</p>
@@ -129,7 +134,7 @@ namespace Model
     /**
      * <p>Pagination token. Not used.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>Pagination token. Not used.</p>
@@ -144,7 +149,7 @@ namespace Model
     /**
      * <p>Pagination token. Not used.</p>
      */
-    inline BatchGetTracesResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline BatchGetTracesResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>Pagination token. Not used.</p>
@@ -152,8 +157,11 @@ namespace Model
     inline BatchGetTracesResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Trace> m_traces;
+
     Aws::Vector<Aws::String> m_unprocessedTraceIds;
+
     Aws::String m_nextToken;
   };
 

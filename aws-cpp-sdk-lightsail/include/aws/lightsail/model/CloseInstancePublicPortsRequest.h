@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/lightsail/LightsailRequest.h>
 #include <aws/lightsail/model/PortInfo.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,9 +33,17 @@ namespace Model
   {
   public:
     CloseInstancePublicPortsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CloseInstancePublicPorts"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>Information about the public port you are trying to close.</p>
@@ -48,7 +58,7 @@ namespace Model
     /**
      * <p>Information about the public port you are trying to close.</p>
      */
-    inline void SetPortInfo(PortInfo&& value) { m_portInfoHasBeenSet = true; m_portInfo = value; }
+    inline void SetPortInfo(PortInfo&& value) { m_portInfoHasBeenSet = true; m_portInfo = std::move(value); }
 
     /**
      * <p>Information about the public port you are trying to close.</p>
@@ -58,7 +68,8 @@ namespace Model
     /**
      * <p>Information about the public port you are trying to close.</p>
      */
-    inline CloseInstancePublicPortsRequest& WithPortInfo(PortInfo&& value) { SetPortInfo(value); return *this;}
+    inline CloseInstancePublicPortsRequest& WithPortInfo(PortInfo&& value) { SetPortInfo(std::move(value)); return *this;}
+
 
     /**
      * <p>The name of the instance on which you're attempting to close the public
@@ -76,7 +87,7 @@ namespace Model
      * <p>The name of the instance on which you're attempting to close the public
      * ports.</p>
      */
-    inline void SetInstanceName(Aws::String&& value) { m_instanceNameHasBeenSet = true; m_instanceName = value; }
+    inline void SetInstanceName(Aws::String&& value) { m_instanceNameHasBeenSet = true; m_instanceName = std::move(value); }
 
     /**
      * <p>The name of the instance on which you're attempting to close the public
@@ -94,7 +105,7 @@ namespace Model
      * <p>The name of the instance on which you're attempting to close the public
      * ports.</p>
      */
-    inline CloseInstancePublicPortsRequest& WithInstanceName(Aws::String&& value) { SetInstanceName(value); return *this;}
+    inline CloseInstancePublicPortsRequest& WithInstanceName(Aws::String&& value) { SetInstanceName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the instance on which you're attempting to close the public
@@ -103,8 +114,10 @@ namespace Model
     inline CloseInstancePublicPortsRequest& WithInstanceName(const char* value) { SetInstanceName(value); return *this;}
 
   private:
+
     PortInfo m_portInfo;
     bool m_portInfoHasBeenSet;
+
     Aws::String m_instanceName;
     bool m_instanceNameHasBeenSet;
   };

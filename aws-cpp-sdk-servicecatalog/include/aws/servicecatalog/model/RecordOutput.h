@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     RecordOutput& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The output key.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The output key.</p>
      */
-    inline void SetOutputKey(Aws::String&& value) { m_outputKeyHasBeenSet = true; m_outputKey = value; }
+    inline void SetOutputKey(Aws::String&& value) { m_outputKeyHasBeenSet = true; m_outputKey = std::move(value); }
 
     /**
      * <p>The output key.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The output key.</p>
      */
-    inline RecordOutput& WithOutputKey(Aws::String&& value) { SetOutputKey(value); return *this;}
+    inline RecordOutput& WithOutputKey(Aws::String&& value) { SetOutputKey(std::move(value)); return *this;}
 
     /**
      * <p>The output key.</p>
      */
     inline RecordOutput& WithOutputKey(const char* value) { SetOutputKey(value); return *this;}
+
 
     /**
      * <p>The output value.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The output value.</p>
      */
-    inline void SetOutputValue(Aws::String&& value) { m_outputValueHasBeenSet = true; m_outputValue = value; }
+    inline void SetOutputValue(Aws::String&& value) { m_outputValueHasBeenSet = true; m_outputValue = std::move(value); }
 
     /**
      * <p>The output value.</p>
@@ -108,12 +112,13 @@ namespace Model
     /**
      * <p>The output value.</p>
      */
-    inline RecordOutput& WithOutputValue(Aws::String&& value) { SetOutputValue(value); return *this;}
+    inline RecordOutput& WithOutputValue(Aws::String&& value) { SetOutputValue(std::move(value)); return *this;}
 
     /**
      * <p>The output value.</p>
      */
     inline RecordOutput& WithOutputValue(const char* value) { SetOutputValue(value); return *this;}
+
 
     /**
      * <p>The text description of the output.</p>
@@ -128,7 +133,7 @@ namespace Model
     /**
      * <p>The text description of the output.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The text description of the output.</p>
@@ -143,7 +148,7 @@ namespace Model
     /**
      * <p>The text description of the output.</p>
      */
-    inline RecordOutput& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline RecordOutput& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The text description of the output.</p>
@@ -151,10 +156,13 @@ namespace Model
     inline RecordOutput& WithDescription(const char* value) { SetDescription(value); return *this;}
 
   private:
+
     Aws::String m_outputKey;
     bool m_outputKeyHasBeenSet;
+
     Aws::String m_outputValue;
     bool m_outputValueHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
   };

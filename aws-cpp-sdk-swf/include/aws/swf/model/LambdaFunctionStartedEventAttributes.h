@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 
@@ -30,8 +31,8 @@ namespace Model
 {
 
   /**
-   * <p>Provides details for the <code>LambdaFunctionStarted</code>
-   * event.</p><p><h3>See Also:</h3>   <a
+   * <p>Provides the details of the <code>LambdaFunctionStarted</code> event. It
+   * isn't set for other event types.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/swf-2012-01-25/LambdaFunctionStartedEventAttributes">AWS
    * API Reference</a></p>
    */
@@ -43,31 +44,30 @@ namespace Model
     LambdaFunctionStartedEventAttributes& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ID of the <code>LambdaFunctionScheduled</code> event that was recorded
-     * when this AWS Lambda function was scheduled. This information can be useful for
-     * diagnosing problems by tracing back the chain of events leading up to this
-     * event.</p>
+     * when this activity task was scheduled. To help diagnose issues, use this
+     * information to trace back the chain of events leading up to this event.</p>
      */
     inline long long GetScheduledEventId() const{ return m_scheduledEventId; }
 
     /**
      * <p>The ID of the <code>LambdaFunctionScheduled</code> event that was recorded
-     * when this AWS Lambda function was scheduled. This information can be useful for
-     * diagnosing problems by tracing back the chain of events leading up to this
-     * event.</p>
+     * when this activity task was scheduled. To help diagnose issues, use this
+     * information to trace back the chain of events leading up to this event.</p>
      */
     inline void SetScheduledEventId(long long value) { m_scheduledEventIdHasBeenSet = true; m_scheduledEventId = value; }
 
     /**
      * <p>The ID of the <code>LambdaFunctionScheduled</code> event that was recorded
-     * when this AWS Lambda function was scheduled. This information can be useful for
-     * diagnosing problems by tracing back the chain of events leading up to this
-     * event.</p>
+     * when this activity task was scheduled. To help diagnose issues, use this
+     * information to trace back the chain of events leading up to this event.</p>
      */
     inline LambdaFunctionStartedEventAttributes& WithScheduledEventId(long long value) { SetScheduledEventId(value); return *this;}
 
   private:
+
     long long m_scheduledEventId;
     bool m_scheduledEventIdHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     RegisterPatchBaselineForPatchGroupResult();
-    RegisterPatchBaselineForPatchGroupResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    RegisterPatchBaselineForPatchGroupResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    RegisterPatchBaselineForPatchGroupResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    RegisterPatchBaselineForPatchGroupResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The ID of the patch baseline the patch group was registered with.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The ID of the patch baseline the patch group was registered with.</p>
      */
-    inline void SetBaselineId(Aws::String&& value) { m_baselineId = value; }
+    inline void SetBaselineId(Aws::String&& value) { m_baselineId = std::move(value); }
 
     /**
      * <p>The ID of the patch baseline the patch group was registered with.</p>
@@ -67,12 +70,13 @@ namespace Model
     /**
      * <p>The ID of the patch baseline the patch group was registered with.</p>
      */
-    inline RegisterPatchBaselineForPatchGroupResult& WithBaselineId(Aws::String&& value) { SetBaselineId(value); return *this;}
+    inline RegisterPatchBaselineForPatchGroupResult& WithBaselineId(Aws::String&& value) { SetBaselineId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the patch baseline the patch group was registered with.</p>
      */
     inline RegisterPatchBaselineForPatchGroupResult& WithBaselineId(const char* value) { SetBaselineId(value); return *this;}
+
 
     /**
      * <p>The name of the patch group registered with the patch baseline.</p>
@@ -87,7 +91,7 @@ namespace Model
     /**
      * <p>The name of the patch group registered with the patch baseline.</p>
      */
-    inline void SetPatchGroup(Aws::String&& value) { m_patchGroup = value; }
+    inline void SetPatchGroup(Aws::String&& value) { m_patchGroup = std::move(value); }
 
     /**
      * <p>The name of the patch group registered with the patch baseline.</p>
@@ -102,7 +106,7 @@ namespace Model
     /**
      * <p>The name of the patch group registered with the patch baseline.</p>
      */
-    inline RegisterPatchBaselineForPatchGroupResult& WithPatchGroup(Aws::String&& value) { SetPatchGroup(value); return *this;}
+    inline RegisterPatchBaselineForPatchGroupResult& WithPatchGroup(Aws::String&& value) { SetPatchGroup(std::move(value)); return *this;}
 
     /**
      * <p>The name of the patch group registered with the patch baseline.</p>
@@ -110,7 +114,9 @@ namespace Model
     inline RegisterPatchBaselineForPatchGroupResult& WithPatchGroup(const char* value) { SetPatchGroup(value); return *this;}
 
   private:
+
     Aws::String m_baselineId;
+
     Aws::String m_patchGroup;
   };
 

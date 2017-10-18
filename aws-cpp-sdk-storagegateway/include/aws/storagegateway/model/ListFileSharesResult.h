@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/storagegateway/StorageGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/storagegateway/model/FileShareInfo.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     ListFileSharesResult();
-    ListFileSharesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListFileSharesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListFileSharesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListFileSharesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>If the request includes <code>Marker</code>, the response returns that value
@@ -62,7 +65,7 @@ namespace Model
      * <p>If the request includes <code>Marker</code>, the response returns that value
      * in this field. </p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p>If the request includes <code>Marker</code>, the response returns that value
@@ -80,13 +83,14 @@ namespace Model
      * <p>If the request includes <code>Marker</code>, the response returns that value
      * in this field. </p>
      */
-    inline ListFileSharesResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline ListFileSharesResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>If the request includes <code>Marker</code>, the response returns that value
      * in this field. </p>
      */
     inline ListFileSharesResult& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>If a value is present, there are more file shares to return. In a subsequent
@@ -107,7 +111,7 @@ namespace Model
      * request, use <code>NextMarker</code> as the value for <code>Marker</code> to
      * retrieve the next set of file shares. </p>
      */
-    inline void SetNextMarker(Aws::String&& value) { m_nextMarker = value; }
+    inline void SetNextMarker(Aws::String&& value) { m_nextMarker = std::move(value); }
 
     /**
      * <p>If a value is present, there are more file shares to return. In a subsequent
@@ -128,7 +132,7 @@ namespace Model
      * request, use <code>NextMarker</code> as the value for <code>Marker</code> to
      * retrieve the next set of file shares. </p>
      */
-    inline ListFileSharesResult& WithNextMarker(Aws::String&& value) { SetNextMarker(value); return *this;}
+    inline ListFileSharesResult& WithNextMarker(Aws::String&& value) { SetNextMarker(std::move(value)); return *this;}
 
     /**
      * <p>If a value is present, there are more file shares to return. In a subsequent
@@ -136,6 +140,7 @@ namespace Model
      * retrieve the next set of file shares. </p>
      */
     inline ListFileSharesResult& WithNextMarker(const char* value) { SetNextMarker(value); return *this;}
+
 
     /**
      * <p>An array of information about the file gateway's file shares. </p>
@@ -150,7 +155,7 @@ namespace Model
     /**
      * <p>An array of information about the file gateway's file shares. </p>
      */
-    inline void SetFileShareInfoList(Aws::Vector<FileShareInfo>&& value) { m_fileShareInfoList = value; }
+    inline void SetFileShareInfoList(Aws::Vector<FileShareInfo>&& value) { m_fileShareInfoList = std::move(value); }
 
     /**
      * <p>An array of information about the file gateway's file shares. </p>
@@ -160,7 +165,7 @@ namespace Model
     /**
      * <p>An array of information about the file gateway's file shares. </p>
      */
-    inline ListFileSharesResult& WithFileShareInfoList(Aws::Vector<FileShareInfo>&& value) { SetFileShareInfoList(value); return *this;}
+    inline ListFileSharesResult& WithFileShareInfoList(Aws::Vector<FileShareInfo>&& value) { SetFileShareInfoList(std::move(value)); return *this;}
 
     /**
      * <p>An array of information about the file gateway's file shares. </p>
@@ -170,11 +175,14 @@ namespace Model
     /**
      * <p>An array of information about the file gateway's file shares. </p>
      */
-    inline ListFileSharesResult& AddFileShareInfoList(FileShareInfo&& value) { m_fileShareInfoList.push_back(value); return *this; }
+    inline ListFileSharesResult& AddFileShareInfoList(FileShareInfo&& value) { m_fileShareInfoList.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_marker;
+
     Aws::String m_nextMarker;
+
     Aws::Vector<FileShareInfo> m_fileShareInfoList;
   };
 

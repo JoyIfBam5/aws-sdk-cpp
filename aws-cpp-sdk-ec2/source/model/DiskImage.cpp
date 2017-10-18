@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/DiskImage.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,15 +31,15 @@ namespace Model
 {
 
 DiskImage::DiskImage() : 
-    m_imageHasBeenSet(false),
     m_descriptionHasBeenSet(false),
+    m_imageHasBeenSet(false),
     m_volumeHasBeenSet(false)
 {
 }
 
 DiskImage::DiskImage(const XmlNode& xmlNode) : 
-    m_imageHasBeenSet(false),
     m_descriptionHasBeenSet(false),
+    m_imageHasBeenSet(false),
     m_volumeHasBeenSet(false)
 {
   *this = xmlNode;
@@ -50,17 +51,17 @@ DiskImage& DiskImage::operator =(const XmlNode& xmlNode)
 
   if(!resultNode.IsNull())
   {
-    XmlNode imageNode = resultNode.FirstChild("Image");
-    if(!imageNode.IsNull())
-    {
-      m_image = imageNode;
-      m_imageHasBeenSet = true;
-    }
     XmlNode descriptionNode = resultNode.FirstChild("Description");
     if(!descriptionNode.IsNull())
     {
       m_description = StringUtils::Trim(descriptionNode.GetText().c_str());
       m_descriptionHasBeenSet = true;
+    }
+    XmlNode imageNode = resultNode.FirstChild("Image");
+    if(!imageNode.IsNull())
+    {
+      m_image = imageNode;
+      m_imageHasBeenSet = true;
     }
     XmlNode volumeNode = resultNode.FirstChild("Volume");
     if(!volumeNode.IsNull())
@@ -75,16 +76,16 @@ DiskImage& DiskImage::operator =(const XmlNode& xmlNode)
 
 void DiskImage::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
+  if(m_descriptionHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
+  }
+
   if(m_imageHasBeenSet)
   {
       Aws::StringStream imageLocationAndMemberSs;
       imageLocationAndMemberSs << location << index << locationValue << ".Image";
       m_image.OutputToStream(oStream, imageLocationAndMemberSs.str().c_str());
-  }
-
-  if(m_descriptionHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
   }
 
   if(m_volumeHasBeenSet)
@@ -98,15 +99,15 @@ void DiskImage::OutputToStream(Aws::OStream& oStream, const char* location, unsi
 
 void DiskImage::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
+  if(m_descriptionHasBeenSet)
+  {
+      oStream << location << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
+  }
   if(m_imageHasBeenSet)
   {
       Aws::String imageLocationAndMember(location);
       imageLocationAndMember += ".Image";
       m_image.OutputToStream(oStream, imageLocationAndMember.c_str());
-  }
-  if(m_descriptionHasBeenSet)
-  {
-      oStream << location << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
   }
   if(m_volumeHasBeenSet)
   {

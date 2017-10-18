@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesis/Kinesis_EXPORTS.h>
 #include <aws/kinesis/model/StreamDescription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     DescribeStreamResult();
-    DescribeStreamResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeStreamResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeStreamResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeStreamResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The current status of the stream, the stream ARN, an array of shard objects
@@ -61,7 +64,7 @@ namespace Model
      * <p>The current status of the stream, the stream ARN, an array of shard objects
      * that comprise the stream, and whether there are more shards available.</p>
      */
-    inline void SetStreamDescription(StreamDescription&& value) { m_streamDescription = value; }
+    inline void SetStreamDescription(StreamDescription&& value) { m_streamDescription = std::move(value); }
 
     /**
      * <p>The current status of the stream, the stream ARN, an array of shard objects
@@ -73,9 +76,10 @@ namespace Model
      * <p>The current status of the stream, the stream ARN, an array of shard objects
      * that comprise the stream, and whether there are more shards available.</p>
      */
-    inline DescribeStreamResult& WithStreamDescription(StreamDescription&& value) { SetStreamDescription(value); return *this;}
+    inline DescribeStreamResult& WithStreamDescription(StreamDescription&& value) { SetStreamDescription(std::move(value)); return *this;}
 
   private:
+
     StreamDescription m_streamDescription;
   };
 

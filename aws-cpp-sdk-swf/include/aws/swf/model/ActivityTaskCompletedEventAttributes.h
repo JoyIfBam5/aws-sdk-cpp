@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,7 +33,7 @@ namespace Model
 {
 
   /**
-   * <p>Provides details of the <code>ActivityTaskCompleted</code>
+   * <p>Provides the details of the <code>ActivityTaskCompleted</code>
    * event.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/swf-2012-01-25/ActivityTaskCompletedEventAttributes">AWS
    * API Reference</a></p>
@@ -44,40 +46,42 @@ namespace Model
     ActivityTaskCompletedEventAttributes& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p>The results of the activity task (if any).</p>
+     * <p>The results of the activity task.</p>
      */
     inline const Aws::String& GetResult() const{ return m_result; }
 
     /**
-     * <p>The results of the activity task (if any).</p>
+     * <p>The results of the activity task.</p>
      */
     inline void SetResult(const Aws::String& value) { m_resultHasBeenSet = true; m_result = value; }
 
     /**
-     * <p>The results of the activity task (if any).</p>
+     * <p>The results of the activity task.</p>
      */
-    inline void SetResult(Aws::String&& value) { m_resultHasBeenSet = true; m_result = value; }
+    inline void SetResult(Aws::String&& value) { m_resultHasBeenSet = true; m_result = std::move(value); }
 
     /**
-     * <p>The results of the activity task (if any).</p>
+     * <p>The results of the activity task.</p>
      */
     inline void SetResult(const char* value) { m_resultHasBeenSet = true; m_result.assign(value); }
 
     /**
-     * <p>The results of the activity task (if any).</p>
+     * <p>The results of the activity task.</p>
      */
     inline ActivityTaskCompletedEventAttributes& WithResult(const Aws::String& value) { SetResult(value); return *this;}
 
     /**
-     * <p>The results of the activity task (if any).</p>
+     * <p>The results of the activity task.</p>
      */
-    inline ActivityTaskCompletedEventAttributes& WithResult(Aws::String&& value) { SetResult(value); return *this;}
+    inline ActivityTaskCompletedEventAttributes& WithResult(Aws::String&& value) { SetResult(std::move(value)); return *this;}
 
     /**
-     * <p>The results of the activity task (if any).</p>
+     * <p>The results of the activity task.</p>
      */
     inline ActivityTaskCompletedEventAttributes& WithResult(const char* value) { SetResult(value); return *this;}
+
 
     /**
      * <p>The ID of the <code>ActivityTaskScheduled</code> event that was recorded when
@@ -99,6 +103,7 @@ namespace Model
      * problems by tracing back the chain of events leading up to this event.</p>
      */
     inline ActivityTaskCompletedEventAttributes& WithScheduledEventId(long long value) { SetScheduledEventId(value); return *this;}
+
 
     /**
      * <p>The ID of the <code>ActivityTaskStarted</code> event recorded when this
@@ -122,10 +127,13 @@ namespace Model
     inline ActivityTaskCompletedEventAttributes& WithStartedEventId(long long value) { SetStartedEventId(value); return *this;}
 
   private:
+
     Aws::String m_result;
     bool m_resultHasBeenSet;
+
     long long m_scheduledEventId;
     bool m_scheduledEventIdHasBeenSet;
+
     long long m_startedEventId;
     bool m_startedEventIdHasBeenSet;
   };

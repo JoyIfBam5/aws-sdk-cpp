@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/waf/model/SqlInjectionMatchSetSummary.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     ListSqlInjectionMatchSetsResult();
-    ListSqlInjectionMatchSetsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListSqlInjectionMatchSetsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListSqlInjectionMatchSetsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListSqlInjectionMatchSetsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>If you have more <a>SqlInjectionMatchSet</a> objects than the number that you
@@ -75,7 +78,7 @@ namespace Model
      * specify the <code>NextMarker</code> value from the response in the
      * <code>NextMarker</code> value in the next request.</p>
      */
-    inline void SetNextMarker(Aws::String&& value) { m_nextMarker = value; }
+    inline void SetNextMarker(Aws::String&& value) { m_nextMarker = std::move(value); }
 
     /**
      * <p>If you have more <a>SqlInjectionMatchSet</a> objects than the number that you
@@ -105,7 +108,7 @@ namespace Model
      * specify the <code>NextMarker</code> value from the response in the
      * <code>NextMarker</code> value in the next request.</p>
      */
-    inline ListSqlInjectionMatchSetsResult& WithNextMarker(Aws::String&& value) { SetNextMarker(value); return *this;}
+    inline ListSqlInjectionMatchSetsResult& WithNextMarker(Aws::String&& value) { SetNextMarker(std::move(value)); return *this;}
 
     /**
      * <p>If you have more <a>SqlInjectionMatchSet</a> objects than the number that you
@@ -116,6 +119,7 @@ namespace Model
      * <code>NextMarker</code> value in the next request.</p>
      */
     inline ListSqlInjectionMatchSetsResult& WithNextMarker(const char* value) { SetNextMarker(value); return *this;}
+
 
     /**
      * <p>An array of <a>SqlInjectionMatchSetSummary</a> objects.</p>
@@ -130,7 +134,7 @@ namespace Model
     /**
      * <p>An array of <a>SqlInjectionMatchSetSummary</a> objects.</p>
      */
-    inline void SetSqlInjectionMatchSets(Aws::Vector<SqlInjectionMatchSetSummary>&& value) { m_sqlInjectionMatchSets = value; }
+    inline void SetSqlInjectionMatchSets(Aws::Vector<SqlInjectionMatchSetSummary>&& value) { m_sqlInjectionMatchSets = std::move(value); }
 
     /**
      * <p>An array of <a>SqlInjectionMatchSetSummary</a> objects.</p>
@@ -140,7 +144,7 @@ namespace Model
     /**
      * <p>An array of <a>SqlInjectionMatchSetSummary</a> objects.</p>
      */
-    inline ListSqlInjectionMatchSetsResult& WithSqlInjectionMatchSets(Aws::Vector<SqlInjectionMatchSetSummary>&& value) { SetSqlInjectionMatchSets(value); return *this;}
+    inline ListSqlInjectionMatchSetsResult& WithSqlInjectionMatchSets(Aws::Vector<SqlInjectionMatchSetSummary>&& value) { SetSqlInjectionMatchSets(std::move(value)); return *this;}
 
     /**
      * <p>An array of <a>SqlInjectionMatchSetSummary</a> objects.</p>
@@ -150,10 +154,12 @@ namespace Model
     /**
      * <p>An array of <a>SqlInjectionMatchSetSummary</a> objects.</p>
      */
-    inline ListSqlInjectionMatchSetsResult& AddSqlInjectionMatchSets(SqlInjectionMatchSetSummary&& value) { m_sqlInjectionMatchSets.push_back(value); return *this; }
+    inline ListSqlInjectionMatchSetsResult& AddSqlInjectionMatchSets(SqlInjectionMatchSetSummary&& value) { m_sqlInjectionMatchSets.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_nextMarker;
+
     Aws::Vector<SqlInjectionMatchSetSummary> m_sqlInjectionMatchSets;
   };
 

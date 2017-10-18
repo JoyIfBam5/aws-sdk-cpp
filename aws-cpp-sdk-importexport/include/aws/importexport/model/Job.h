@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/importexport/ImportExport_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/importexport/model/JobType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     
     inline const Aws::String& GetJobId() const{ return m_jobId; }
 
@@ -55,7 +58,7 @@ namespace Model
     inline void SetJobId(const Aws::String& value) { m_jobIdHasBeenSet = true; m_jobId = value; }
 
     
-    inline void SetJobId(Aws::String&& value) { m_jobIdHasBeenSet = true; m_jobId = value; }
+    inline void SetJobId(Aws::String&& value) { m_jobIdHasBeenSet = true; m_jobId = std::move(value); }
 
     
     inline void SetJobId(const char* value) { m_jobIdHasBeenSet = true; m_jobId.assign(value); }
@@ -64,10 +67,11 @@ namespace Model
     inline Job& WithJobId(const Aws::String& value) { SetJobId(value); return *this;}
 
     
-    inline Job& WithJobId(Aws::String&& value) { SetJobId(value); return *this;}
+    inline Job& WithJobId(Aws::String&& value) { SetJobId(std::move(value)); return *this;}
 
     
     inline Job& WithJobId(const char* value) { SetJobId(value); return *this;}
+
 
     
     inline const Aws::Utils::DateTime& GetCreationDate() const{ return m_creationDate; }
@@ -76,13 +80,14 @@ namespace Model
     inline void SetCreationDate(const Aws::Utils::DateTime& value) { m_creationDateHasBeenSet = true; m_creationDate = value; }
 
     
-    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDateHasBeenSet = true; m_creationDate = value; }
+    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDateHasBeenSet = true; m_creationDate = std::move(value); }
 
     
     inline Job& WithCreationDate(const Aws::Utils::DateTime& value) { SetCreationDate(value); return *this;}
 
     
-    inline Job& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(value); return *this;}
+    inline Job& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(std::move(value)); return *this;}
+
 
     
     inline bool GetIsCanceled() const{ return m_isCanceled; }
@@ -93,6 +98,7 @@ namespace Model
     
     inline Job& WithIsCanceled(bool value) { SetIsCanceled(value); return *this;}
 
+
     
     inline const JobType& GetJobType() const{ return m_jobType; }
 
@@ -100,21 +106,25 @@ namespace Model
     inline void SetJobType(const JobType& value) { m_jobTypeHasBeenSet = true; m_jobType = value; }
 
     
-    inline void SetJobType(JobType&& value) { m_jobTypeHasBeenSet = true; m_jobType = value; }
+    inline void SetJobType(JobType&& value) { m_jobTypeHasBeenSet = true; m_jobType = std::move(value); }
 
     
     inline Job& WithJobType(const JobType& value) { SetJobType(value); return *this;}
 
     
-    inline Job& WithJobType(JobType&& value) { SetJobType(value); return *this;}
+    inline Job& WithJobType(JobType&& value) { SetJobType(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_jobId;
     bool m_jobIdHasBeenSet;
+
     Aws::Utils::DateTime m_creationDate;
     bool m_creationDateHasBeenSet;
+
     bool m_isCanceled;
     bool m_isCanceledHasBeenSet;
+
     JobType m_jobType;
     bool m_jobTypeHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53/Route53_EXPORTS.h>
 #include <aws/route53/model/HealthCheck.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     CreateHealthCheckResult();
-    CreateHealthCheckResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    CreateHealthCheckResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CreateHealthCheckResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CreateHealthCheckResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>A complex type that contains identifying information about the health
@@ -62,7 +65,7 @@ namespace Model
      * <p>A complex type that contains identifying information about the health
      * check.</p>
      */
-    inline void SetHealthCheck(HealthCheck&& value) { m_healthCheck = value; }
+    inline void SetHealthCheck(HealthCheck&& value) { m_healthCheck = std::move(value); }
 
     /**
      * <p>A complex type that contains identifying information about the health
@@ -74,7 +77,8 @@ namespace Model
      * <p>A complex type that contains identifying information about the health
      * check.</p>
      */
-    inline CreateHealthCheckResult& WithHealthCheck(HealthCheck&& value) { SetHealthCheck(value); return *this;}
+    inline CreateHealthCheckResult& WithHealthCheck(HealthCheck&& value) { SetHealthCheck(std::move(value)); return *this;}
+
 
     /**
      * <p>The unique URL representing the new health check.</p>
@@ -89,7 +93,7 @@ namespace Model
     /**
      * <p>The unique URL representing the new health check.</p>
      */
-    inline void SetLocation(Aws::String&& value) { m_location = value; }
+    inline void SetLocation(Aws::String&& value) { m_location = std::move(value); }
 
     /**
      * <p>The unique URL representing the new health check.</p>
@@ -104,7 +108,7 @@ namespace Model
     /**
      * <p>The unique URL representing the new health check.</p>
      */
-    inline CreateHealthCheckResult& WithLocation(Aws::String&& value) { SetLocation(value); return *this;}
+    inline CreateHealthCheckResult& WithLocation(Aws::String&& value) { SetLocation(std::move(value)); return *this;}
 
     /**
      * <p>The unique URL representing the new health check.</p>
@@ -112,7 +116,9 @@ namespace Model
     inline CreateHealthCheckResult& WithLocation(const char* value) { SetLocation(value); return *this;}
 
   private:
+
     HealthCheck m_healthCheck;
+
     Aws::String m_location;
   };
 

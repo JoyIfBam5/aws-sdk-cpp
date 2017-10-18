@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codepipeline/CodePipeline_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     S3ArtifactLocation& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the Amazon S3 bucket.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The name of the Amazon S3 bucket.</p>
      */
-    inline void SetBucketName(Aws::String&& value) { m_bucketNameHasBeenSet = true; m_bucketName = value; }
+    inline void SetBucketName(Aws::String&& value) { m_bucketNameHasBeenSet = true; m_bucketName = std::move(value); }
 
     /**
      * <p>The name of the Amazon S3 bucket.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The name of the Amazon S3 bucket.</p>
      */
-    inline S3ArtifactLocation& WithBucketName(Aws::String&& value) { SetBucketName(value); return *this;}
+    inline S3ArtifactLocation& WithBucketName(Aws::String&& value) { SetBucketName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the Amazon S3 bucket.</p>
      */
     inline S3ArtifactLocation& WithBucketName(const char* value) { SetBucketName(value); return *this;}
+
 
     /**
      * <p>The key of the object in the Amazon S3 bucket, which uniquely identifies the
@@ -95,7 +99,7 @@ namespace Model
      * <p>The key of the object in the Amazon S3 bucket, which uniquely identifies the
      * object in the bucket.</p>
      */
-    inline void SetObjectKey(Aws::String&& value) { m_objectKeyHasBeenSet = true; m_objectKey = value; }
+    inline void SetObjectKey(Aws::String&& value) { m_objectKeyHasBeenSet = true; m_objectKey = std::move(value); }
 
     /**
      * <p>The key of the object in the Amazon S3 bucket, which uniquely identifies the
@@ -113,7 +117,7 @@ namespace Model
      * <p>The key of the object in the Amazon S3 bucket, which uniquely identifies the
      * object in the bucket.</p>
      */
-    inline S3ArtifactLocation& WithObjectKey(Aws::String&& value) { SetObjectKey(value); return *this;}
+    inline S3ArtifactLocation& WithObjectKey(Aws::String&& value) { SetObjectKey(std::move(value)); return *this;}
 
     /**
      * <p>The key of the object in the Amazon S3 bucket, which uniquely identifies the
@@ -122,8 +126,10 @@ namespace Model
     inline S3ArtifactLocation& WithObjectKey(const char* value) { SetObjectKey(value); return *this;}
 
   private:
+
     Aws::String m_bucketName;
     bool m_bucketNameHasBeenSet;
+
     Aws::String m_objectKey;
     bool m_objectKeyHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/budgets/model/TimeUnit.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -29,6 +30,7 @@ namespace Aws
       namespace TimeUnitMapper
       {
 
+        static const int DAILY_HASH = HashingUtils::HashString("DAILY");
         static const int MONTHLY_HASH = HashingUtils::HashString("MONTHLY");
         static const int QUARTERLY_HASH = HashingUtils::HashString("QUARTERLY");
         static const int ANNUALLY_HASH = HashingUtils::HashString("ANNUALLY");
@@ -37,7 +39,11 @@ namespace Aws
         TimeUnit GetTimeUnitForName(const Aws::String& name)
         {
           int hashCode = HashingUtils::HashString(name.c_str());
-          if (hashCode == MONTHLY_HASH)
+          if (hashCode == DAILY_HASH)
+          {
+            return TimeUnit::DAILY;
+          }
+          else if (hashCode == MONTHLY_HASH)
           {
             return TimeUnit::MONTHLY;
           }
@@ -63,6 +69,8 @@ namespace Aws
         {
           switch(enumValue)
           {
+          case TimeUnit::DAILY:
+            return "DAILY";
           case TimeUnit::MONTHLY:
             return "MONTHLY";
           case TimeUnit::QUARTERLY:

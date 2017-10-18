@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codepipeline/CodePipeline_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     PipelineSummary& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the pipeline.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The name of the pipeline.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the pipeline.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The name of the pipeline.</p>
      */
-    inline PipelineSummary& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline PipelineSummary& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the pipeline.</p>
      */
     inline PipelineSummary& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The version number of the pipeline.</p>
@@ -94,6 +98,7 @@ namespace Model
      */
     inline PipelineSummary& WithVersion(int value) { SetVersion(value); return *this;}
 
+
     /**
      * <p>The date and time the pipeline was created, in timestamp format.</p>
      */
@@ -107,7 +112,7 @@ namespace Model
     /**
      * <p>The date and time the pipeline was created, in timestamp format.</p>
      */
-    inline void SetCreated(Aws::Utils::DateTime&& value) { m_createdHasBeenSet = true; m_created = value; }
+    inline void SetCreated(Aws::Utils::DateTime&& value) { m_createdHasBeenSet = true; m_created = std::move(value); }
 
     /**
      * <p>The date and time the pipeline was created, in timestamp format.</p>
@@ -117,7 +122,8 @@ namespace Model
     /**
      * <p>The date and time the pipeline was created, in timestamp format.</p>
      */
-    inline PipelineSummary& WithCreated(Aws::Utils::DateTime&& value) { SetCreated(value); return *this;}
+    inline PipelineSummary& WithCreated(Aws::Utils::DateTime&& value) { SetCreated(std::move(value)); return *this;}
+
 
     /**
      * <p>The date and time of the last update to the pipeline, in timestamp
@@ -135,7 +141,7 @@ namespace Model
      * <p>The date and time of the last update to the pipeline, in timestamp
      * format.</p>
      */
-    inline void SetUpdated(Aws::Utils::DateTime&& value) { m_updatedHasBeenSet = true; m_updated = value; }
+    inline void SetUpdated(Aws::Utils::DateTime&& value) { m_updatedHasBeenSet = true; m_updated = std::move(value); }
 
     /**
      * <p>The date and time of the last update to the pipeline, in timestamp
@@ -147,15 +153,19 @@ namespace Model
      * <p>The date and time of the last update to the pipeline, in timestamp
      * format.</p>
      */
-    inline PipelineSummary& WithUpdated(Aws::Utils::DateTime&& value) { SetUpdated(value); return *this;}
+    inline PipelineSummary& WithUpdated(Aws::Utils::DateTime&& value) { SetUpdated(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     int m_version;
     bool m_versionHasBeenSet;
+
     Aws::Utils::DateTime m_created;
     bool m_createdHasBeenSet;
+
     Aws::Utils::DateTime m_updated;
     bool m_updatedHasBeenSet;
   };

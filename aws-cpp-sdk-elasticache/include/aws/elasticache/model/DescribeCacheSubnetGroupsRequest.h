@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticache/ElastiCache_EXPORTS.h>
 #include <aws/elasticache/ElastiCacheRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,7 +36,19 @@ namespace Model
   {
   public:
     DescribeCacheSubnetGroupsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeCacheSubnetGroups"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The name of the cache subnet group to return details for.</p>
@@ -49,7 +63,7 @@ namespace Model
     /**
      * <p>The name of the cache subnet group to return details for.</p>
      */
-    inline void SetCacheSubnetGroupName(Aws::String&& value) { m_cacheSubnetGroupNameHasBeenSet = true; m_cacheSubnetGroupName = value; }
+    inline void SetCacheSubnetGroupName(Aws::String&& value) { m_cacheSubnetGroupNameHasBeenSet = true; m_cacheSubnetGroupName = std::move(value); }
 
     /**
      * <p>The name of the cache subnet group to return details for.</p>
@@ -64,12 +78,13 @@ namespace Model
     /**
      * <p>The name of the cache subnet group to return details for.</p>
      */
-    inline DescribeCacheSubnetGroupsRequest& WithCacheSubnetGroupName(Aws::String&& value) { SetCacheSubnetGroupName(value); return *this;}
+    inline DescribeCacheSubnetGroupsRequest& WithCacheSubnetGroupName(Aws::String&& value) { SetCacheSubnetGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the cache subnet group to return details for.</p>
      */
     inline DescribeCacheSubnetGroupsRequest& WithCacheSubnetGroupName(const char* value) { SetCacheSubnetGroupName(value); return *this;}
+
 
     /**
      * <p>The maximum number of records to include in the response. If more records
@@ -95,6 +110,7 @@ namespace Model
      */
     inline DescribeCacheSubnetGroupsRequest& WithMaxRecords(int value) { SetMaxRecords(value); return *this;}
 
+
     /**
      * <p>An optional marker returned from a prior request. Use this marker for
      * pagination of results from this operation. If this parameter is specified, the
@@ -117,7 +133,7 @@ namespace Model
      * response includes only records beyond the marker, up to the value specified by
      * <code>MaxRecords</code>.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p>An optional marker returned from a prior request. Use this marker for
@@ -141,7 +157,7 @@ namespace Model
      * response includes only records beyond the marker, up to the value specified by
      * <code>MaxRecords</code>.</p>
      */
-    inline DescribeCacheSubnetGroupsRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeCacheSubnetGroupsRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>An optional marker returned from a prior request. Use this marker for
@@ -152,10 +168,13 @@ namespace Model
     inline DescribeCacheSubnetGroupsRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
 
   private:
+
     Aws::String m_cacheSubnetGroupName;
     bool m_cacheSubnetGroupNameHasBeenSet;
+
     int m_maxRecords;
     bool m_maxRecordsHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
   };

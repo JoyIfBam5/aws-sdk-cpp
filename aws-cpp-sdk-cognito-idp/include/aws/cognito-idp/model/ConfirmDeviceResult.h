@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 
@@ -40,8 +41,9 @@ namespace Model
   {
   public:
     ConfirmDeviceResult();
-    ConfirmDeviceResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ConfirmDeviceResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ConfirmDeviceResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ConfirmDeviceResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Indicates whether the user confirmation is necessary to confirm the device
@@ -62,6 +64,7 @@ namespace Model
     inline ConfirmDeviceResult& WithUserConfirmationNecessary(bool value) { SetUserConfirmationNecessary(value); return *this;}
 
   private:
+
     bool m_userConfirmationNecessary;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/acm/model/DomainValidation.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -30,14 +31,18 @@ namespace Model
 DomainValidation::DomainValidation() : 
     m_domainNameHasBeenSet(false),
     m_validationEmailsHasBeenSet(false),
-    m_validationDomainHasBeenSet(false)
+    m_validationDomainHasBeenSet(false),
+    m_validationStatus(DomainStatus::NOT_SET),
+    m_validationStatusHasBeenSet(false)
 {
 }
 
 DomainValidation::DomainValidation(const JsonValue& jsonValue) : 
     m_domainNameHasBeenSet(false),
     m_validationEmailsHasBeenSet(false),
-    m_validationDomainHasBeenSet(false)
+    m_validationDomainHasBeenSet(false),
+    m_validationStatus(DomainStatus::NOT_SET),
+    m_validationStatusHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -68,6 +73,13 @@ DomainValidation& DomainValidation::operator =(const JsonValue& jsonValue)
     m_validationDomainHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("ValidationStatus"))
+  {
+    m_validationStatus = DomainStatusMapper::GetDomainStatusForName(jsonValue.GetString("ValidationStatus"));
+
+    m_validationStatusHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -96,6 +108,11 @@ JsonValue DomainValidation::Jsonize() const
   {
    payload.WithString("ValidationDomain", m_validationDomain);
 
+  }
+
+  if(m_validationStatusHasBeenSet)
+  {
+   payload.WithString("ValidationStatus", DomainStatusMapper::GetNameForDomainStatus(m_validationStatus));
   }
 
   return payload;

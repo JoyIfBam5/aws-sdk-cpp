@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/cognito-idp/model/DeliveryMediumType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     CodeDeliveryDetailsType& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The destination for the code delivery details.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The destination for the code delivery details.</p>
      */
-    inline void SetDestination(Aws::String&& value) { m_destinationHasBeenSet = true; m_destination = value; }
+    inline void SetDestination(Aws::String&& value) { m_destinationHasBeenSet = true; m_destination = std::move(value); }
 
     /**
      * <p>The destination for the code delivery details.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The destination for the code delivery details.</p>
      */
-    inline CodeDeliveryDetailsType& WithDestination(Aws::String&& value) { SetDestination(value); return *this;}
+    inline CodeDeliveryDetailsType& WithDestination(Aws::String&& value) { SetDestination(std::move(value)); return *this;}
 
     /**
      * <p>The destination for the code delivery details.</p>
      */
     inline CodeDeliveryDetailsType& WithDestination(const char* value) { SetDestination(value); return *this;}
+
 
     /**
      * <p>The delivery medium (email message or phone number).</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The delivery medium (email message or phone number).</p>
      */
-    inline void SetDeliveryMedium(DeliveryMediumType&& value) { m_deliveryMediumHasBeenSet = true; m_deliveryMedium = value; }
+    inline void SetDeliveryMedium(DeliveryMediumType&& value) { m_deliveryMediumHasBeenSet = true; m_deliveryMedium = std::move(value); }
 
     /**
      * <p>The delivery medium (email message or phone number).</p>
@@ -103,7 +107,8 @@ namespace Model
     /**
      * <p>The delivery medium (email message or phone number).</p>
      */
-    inline CodeDeliveryDetailsType& WithDeliveryMedium(DeliveryMediumType&& value) { SetDeliveryMedium(value); return *this;}
+    inline CodeDeliveryDetailsType& WithDeliveryMedium(DeliveryMediumType&& value) { SetDeliveryMedium(std::move(value)); return *this;}
+
 
     /**
      * <p>The name of the attribute in the code delivery details type.</p>
@@ -118,7 +123,7 @@ namespace Model
     /**
      * <p>The name of the attribute in the code delivery details type.</p>
      */
-    inline void SetAttributeName(Aws::String&& value) { m_attributeNameHasBeenSet = true; m_attributeName = value; }
+    inline void SetAttributeName(Aws::String&& value) { m_attributeNameHasBeenSet = true; m_attributeName = std::move(value); }
 
     /**
      * <p>The name of the attribute in the code delivery details type.</p>
@@ -133,7 +138,7 @@ namespace Model
     /**
      * <p>The name of the attribute in the code delivery details type.</p>
      */
-    inline CodeDeliveryDetailsType& WithAttributeName(Aws::String&& value) { SetAttributeName(value); return *this;}
+    inline CodeDeliveryDetailsType& WithAttributeName(Aws::String&& value) { SetAttributeName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the attribute in the code delivery details type.</p>
@@ -141,10 +146,13 @@ namespace Model
     inline CodeDeliveryDetailsType& WithAttributeName(const char* value) { SetAttributeName(value); return *this;}
 
   private:
+
     Aws::String m_destination;
     bool m_destinationHasBeenSet;
+
     DeliveryMediumType m_deliveryMedium;
     bool m_deliveryMediumHasBeenSet;
+
     Aws::String m_attributeName;
     bool m_attributeNameHasBeenSet;
   };

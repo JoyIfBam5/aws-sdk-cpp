@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/servicecatalog/model/ProductType.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -30,6 +31,7 @@ namespace Aws
       {
 
         static const int CLOUD_FORMATION_TEMPLATE_HASH = HashingUtils::HashString("CLOUD_FORMATION_TEMPLATE");
+        static const int MARKETPLACE_HASH = HashingUtils::HashString("MARKETPLACE");
 
 
         ProductType GetProductTypeForName(const Aws::String& name)
@@ -38,6 +40,10 @@ namespace Aws
           if (hashCode == CLOUD_FORMATION_TEMPLATE_HASH)
           {
             return ProductType::CLOUD_FORMATION_TEMPLATE;
+          }
+          else if (hashCode == MARKETPLACE_HASH)
+          {
+            return ProductType::MARKETPLACE;
           }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
@@ -55,6 +61,8 @@ namespace Aws
           {
           case ProductType::CLOUD_FORMATION_TEMPLATE:
             return "CLOUD_FORMATION_TEMPLATE";
+          case ProductType::MARKETPLACE:
+            return "MARKETPLACE";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

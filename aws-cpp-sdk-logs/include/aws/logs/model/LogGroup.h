@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/logs/CloudWatchLogs_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     LogGroup& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the log group.</p>
      */
@@ -56,7 +59,7 @@ namespace Model
     /**
      * <p>The name of the log group.</p>
      */
-    inline void SetLogGroupName(Aws::String&& value) { m_logGroupNameHasBeenSet = true; m_logGroupName = value; }
+    inline void SetLogGroupName(Aws::String&& value) { m_logGroupNameHasBeenSet = true; m_logGroupName = std::move(value); }
 
     /**
      * <p>The name of the log group.</p>
@@ -71,27 +74,32 @@ namespace Model
     /**
      * <p>The name of the log group.</p>
      */
-    inline LogGroup& WithLogGroupName(Aws::String&& value) { SetLogGroupName(value); return *this;}
+    inline LogGroup& WithLogGroupName(Aws::String&& value) { SetLogGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the log group.</p>
      */
     inline LogGroup& WithLogGroupName(const char* value) { SetLogGroupName(value); return *this;}
 
+
     /**
-     * <p>The creation time of the log group.</p>
+     * <p>The creation time of the log group, expressed as the number of milliseconds
+     * after Jan 1, 1970 00:00:00 UTC.</p>
      */
     inline long long GetCreationTime() const{ return m_creationTime; }
 
     /**
-     * <p>The creation time of the log group.</p>
+     * <p>The creation time of the log group, expressed as the number of milliseconds
+     * after Jan 1, 1970 00:00:00 UTC.</p>
      */
     inline void SetCreationTime(long long value) { m_creationTimeHasBeenSet = true; m_creationTime = value; }
 
     /**
-     * <p>The creation time of the log group.</p>
+     * <p>The creation time of the log group, expressed as the number of milliseconds
+     * after Jan 1, 1970 00:00:00 UTC.</p>
      */
     inline LogGroup& WithCreationTime(long long value) { SetCreationTime(value); return *this;}
+
 
     
     inline int GetRetentionInDays() const{ return m_retentionInDays; }
@@ -101,6 +109,7 @@ namespace Model
 
     
     inline LogGroup& WithRetentionInDays(int value) { SetRetentionInDays(value); return *this;}
+
 
     /**
      * <p>The number of metric filters.</p>
@@ -117,6 +126,7 @@ namespace Model
      */
     inline LogGroup& WithMetricFilterCount(int value) { SetMetricFilterCount(value); return *this;}
 
+
     /**
      * <p>The Amazon Resource Name (ARN) of the log group.</p>
      */
@@ -130,7 +140,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the log group.</p>
      */
-    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = value; }
+    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the log group.</p>
@@ -145,12 +155,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the log group.</p>
      */
-    inline LogGroup& WithArn(Aws::String&& value) { SetArn(value); return *this;}
+    inline LogGroup& WithArn(Aws::String&& value) { SetArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the log group.</p>
      */
     inline LogGroup& WithArn(const char* value) { SetArn(value); return *this;}
+
 
     /**
      * <p>The number of bytes stored.</p>
@@ -167,19 +178,71 @@ namespace Model
      */
     inline LogGroup& WithStoredBytes(long long value) { SetStoredBytes(value); return *this;}
 
+
+    /**
+     * <p>The Amazon Resource Name (ARN) of the CMK to use when encrypting log
+     * data.</p>
+     */
+    inline const Aws::String& GetKmsKeyId() const{ return m_kmsKeyId; }
+
+    /**
+     * <p>The Amazon Resource Name (ARN) of the CMK to use when encrypting log
+     * data.</p>
+     */
+    inline void SetKmsKeyId(const Aws::String& value) { m_kmsKeyIdHasBeenSet = true; m_kmsKeyId = value; }
+
+    /**
+     * <p>The Amazon Resource Name (ARN) of the CMK to use when encrypting log
+     * data.</p>
+     */
+    inline void SetKmsKeyId(Aws::String&& value) { m_kmsKeyIdHasBeenSet = true; m_kmsKeyId = std::move(value); }
+
+    /**
+     * <p>The Amazon Resource Name (ARN) of the CMK to use when encrypting log
+     * data.</p>
+     */
+    inline void SetKmsKeyId(const char* value) { m_kmsKeyIdHasBeenSet = true; m_kmsKeyId.assign(value); }
+
+    /**
+     * <p>The Amazon Resource Name (ARN) of the CMK to use when encrypting log
+     * data.</p>
+     */
+    inline LogGroup& WithKmsKeyId(const Aws::String& value) { SetKmsKeyId(value); return *this;}
+
+    /**
+     * <p>The Amazon Resource Name (ARN) of the CMK to use when encrypting log
+     * data.</p>
+     */
+    inline LogGroup& WithKmsKeyId(Aws::String&& value) { SetKmsKeyId(std::move(value)); return *this;}
+
+    /**
+     * <p>The Amazon Resource Name (ARN) of the CMK to use when encrypting log
+     * data.</p>
+     */
+    inline LogGroup& WithKmsKeyId(const char* value) { SetKmsKeyId(value); return *this;}
+
   private:
+
     Aws::String m_logGroupName;
     bool m_logGroupNameHasBeenSet;
+
     long long m_creationTime;
     bool m_creationTimeHasBeenSet;
+
     int m_retentionInDays;
     bool m_retentionInDaysHasBeenSet;
+
     int m_metricFilterCount;
     bool m_metricFilterCountHasBeenSet;
+
     Aws::String m_arn;
     bool m_arnHasBeenSet;
+
     long long m_storedBytes;
     bool m_storedBytesHasBeenSet;
+
+    Aws::String m_kmsKeyId;
+    bool m_kmsKeyIdHasBeenSet;
   };
 
 } // namespace Model

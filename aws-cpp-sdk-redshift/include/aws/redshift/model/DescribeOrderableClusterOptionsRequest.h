@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/redshift/RedshiftRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,19 @@ namespace Model
   {
   public:
     DescribeOrderableClusterOptionsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeOrderableClusterOptions"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The version filter value. Specify this parameter to show only the available
@@ -57,7 +71,7 @@ namespace Model
      * <p>Constraints: Must be one of the version returned from
      * <a>DescribeClusterVersions</a>.</p>
      */
-    inline void SetClusterVersion(Aws::String&& value) { m_clusterVersionHasBeenSet = true; m_clusterVersion = value; }
+    inline void SetClusterVersion(Aws::String&& value) { m_clusterVersionHasBeenSet = true; m_clusterVersion = std::move(value); }
 
     /**
      * <p>The version filter value. Specify this parameter to show only the available
@@ -81,7 +95,7 @@ namespace Model
      * <p>Constraints: Must be one of the version returned from
      * <a>DescribeClusterVersions</a>.</p>
      */
-    inline DescribeOrderableClusterOptionsRequest& WithClusterVersion(Aws::String&& value) { SetClusterVersion(value); return *this;}
+    inline DescribeOrderableClusterOptionsRequest& WithClusterVersion(Aws::String&& value) { SetClusterVersion(std::move(value)); return *this;}
 
     /**
      * <p>The version filter value. Specify this parameter to show only the available
@@ -90,6 +104,7 @@ namespace Model
      * <a>DescribeClusterVersions</a>.</p>
      */
     inline DescribeOrderableClusterOptionsRequest& WithClusterVersion(const char* value) { SetClusterVersion(value); return *this;}
+
 
     /**
      * <p>The node type filter value. Specify this parameter to show only the available
@@ -107,7 +122,7 @@ namespace Model
      * <p>The node type filter value. Specify this parameter to show only the available
      * offerings matching the specified node type.</p>
      */
-    inline void SetNodeType(Aws::String&& value) { m_nodeTypeHasBeenSet = true; m_nodeType = value; }
+    inline void SetNodeType(Aws::String&& value) { m_nodeTypeHasBeenSet = true; m_nodeType = std::move(value); }
 
     /**
      * <p>The node type filter value. Specify this parameter to show only the available
@@ -125,13 +140,14 @@ namespace Model
      * <p>The node type filter value. Specify this parameter to show only the available
      * offerings matching the specified node type.</p>
      */
-    inline DescribeOrderableClusterOptionsRequest& WithNodeType(Aws::String&& value) { SetNodeType(value); return *this;}
+    inline DescribeOrderableClusterOptionsRequest& WithNodeType(Aws::String&& value) { SetNodeType(std::move(value)); return *this;}
 
     /**
      * <p>The node type filter value. Specify this parameter to show only the available
      * offerings matching the specified node type.</p>
      */
     inline DescribeOrderableClusterOptionsRequest& WithNodeType(const char* value) { SetNodeType(value); return *this;}
+
 
     /**
      * <p>The maximum number of response records to return in each call. If the number
@@ -163,6 +179,7 @@ namespace Model
      */
     inline DescribeOrderableClusterOptionsRequest& WithMaxRecords(int value) { SetMaxRecords(value); return *this;}
 
+
     /**
      * <p>An optional parameter that specifies the starting point to return a set of
      * response records. When the results of a <a>DescribeOrderableClusterOptions</a>
@@ -191,7 +208,7 @@ namespace Model
      * next set of response records by providing the returned marker value in the
      * <code>Marker</code> parameter and retrying the request. </p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p>An optional parameter that specifies the starting point to return a set of
@@ -221,7 +238,7 @@ namespace Model
      * next set of response records by providing the returned marker value in the
      * <code>Marker</code> parameter and retrying the request. </p>
      */
-    inline DescribeOrderableClusterOptionsRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeOrderableClusterOptionsRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>An optional parameter that specifies the starting point to return a set of
@@ -234,12 +251,16 @@ namespace Model
     inline DescribeOrderableClusterOptionsRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
 
   private:
+
     Aws::String m_clusterVersion;
     bool m_clusterVersionHasBeenSet;
+
     Aws::String m_nodeType;
     bool m_nodeTypeHasBeenSet;
+
     int m_maxRecords;
     bool m_maxRecordsHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
   };

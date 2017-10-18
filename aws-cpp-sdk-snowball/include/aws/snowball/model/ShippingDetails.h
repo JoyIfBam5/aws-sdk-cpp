@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/snowball/Snowball_EXPORTS.h>
 #include <aws/snowball/model/ShippingOption.h>
 #include <aws/snowball/model/Shipment.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     ShippingDetails(const Aws::Utils::Json::JsonValue& jsonValue);
     ShippingDetails& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>The shipping speed for a particular job. This speed doesn't dictate how soon
@@ -88,7 +91,7 @@ namespace Model
      * in one to seven days.</p> </li> <li> <p>In the United States of America (US),
      * you have access to one-day shipping and two-day shipping.</p> </li> </ul>
      */
-    inline void SetShippingOption(ShippingOption&& value) { m_shippingOptionHasBeenSet = true; m_shippingOption = value; }
+    inline void SetShippingOption(ShippingOption&& value) { m_shippingOptionHasBeenSet = true; m_shippingOption = std::move(value); }
 
     /**
      * <p>The shipping speed for a particular job. This speed doesn't dictate how soon
@@ -118,7 +121,8 @@ namespace Model
      * in one to seven days.</p> </li> <li> <p>In the United States of America (US),
      * you have access to one-day shipping and two-day shipping.</p> </li> </ul>
      */
-    inline ShippingDetails& WithShippingOption(ShippingOption&& value) { SetShippingOption(value); return *this;}
+    inline ShippingDetails& WithShippingOption(ShippingOption&& value) { SetShippingOption(std::move(value)); return *this;}
+
 
     /**
      * <p>The <code>Status</code> and <code>TrackingNumber</code> values for a Snowball
@@ -136,7 +140,7 @@ namespace Model
      * <p>The <code>Status</code> and <code>TrackingNumber</code> values for a Snowball
      * being delivered to the address that you specified for a particular job.</p>
      */
-    inline void SetInboundShipment(Shipment&& value) { m_inboundShipmentHasBeenSet = true; m_inboundShipment = value; }
+    inline void SetInboundShipment(Shipment&& value) { m_inboundShipmentHasBeenSet = true; m_inboundShipment = std::move(value); }
 
     /**
      * <p>The <code>Status</code> and <code>TrackingNumber</code> values for a Snowball
@@ -148,7 +152,8 @@ namespace Model
      * <p>The <code>Status</code> and <code>TrackingNumber</code> values for a Snowball
      * being delivered to the address that you specified for a particular job.</p>
      */
-    inline ShippingDetails& WithInboundShipment(Shipment&& value) { SetInboundShipment(value); return *this;}
+    inline ShippingDetails& WithInboundShipment(Shipment&& value) { SetInboundShipment(std::move(value)); return *this;}
+
 
     /**
      * <p>The <code>Status</code> and <code>TrackingNumber</code> values for a Snowball
@@ -166,7 +171,7 @@ namespace Model
      * <p>The <code>Status</code> and <code>TrackingNumber</code> values for a Snowball
      * being returned to AWS for a particular job.</p>
      */
-    inline void SetOutboundShipment(Shipment&& value) { m_outboundShipmentHasBeenSet = true; m_outboundShipment = value; }
+    inline void SetOutboundShipment(Shipment&& value) { m_outboundShipmentHasBeenSet = true; m_outboundShipment = std::move(value); }
 
     /**
      * <p>The <code>Status</code> and <code>TrackingNumber</code> values for a Snowball
@@ -178,13 +183,16 @@ namespace Model
      * <p>The <code>Status</code> and <code>TrackingNumber</code> values for a Snowball
      * being returned to AWS for a particular job.</p>
      */
-    inline ShippingDetails& WithOutboundShipment(Shipment&& value) { SetOutboundShipment(value); return *this;}
+    inline ShippingDetails& WithOutboundShipment(Shipment&& value) { SetOutboundShipment(std::move(value)); return *this;}
 
   private:
+
     ShippingOption m_shippingOption;
     bool m_shippingOptionHasBeenSet;
+
     Shipment m_inboundShipment;
     bool m_inboundShipmentHasBeenSet;
+
     Shipment m_outboundShipment;
     bool m_outboundShipmentHasBeenSet;
   };

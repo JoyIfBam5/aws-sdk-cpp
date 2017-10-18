@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The regular expression pattern that a string configuration option value with
      * this restriction must match.</p>
@@ -63,7 +66,7 @@ namespace Model
      * <p>The regular expression pattern that a string configuration option value with
      * this restriction must match.</p>
      */
-    inline void SetPattern(Aws::String&& value) { m_patternHasBeenSet = true; m_pattern = value; }
+    inline void SetPattern(Aws::String&& value) { m_patternHasBeenSet = true; m_pattern = std::move(value); }
 
     /**
      * <p>The regular expression pattern that a string configuration option value with
@@ -81,13 +84,14 @@ namespace Model
      * <p>The regular expression pattern that a string configuration option value with
      * this restriction must match.</p>
      */
-    inline OptionRestrictionRegex& WithPattern(Aws::String&& value) { SetPattern(value); return *this;}
+    inline OptionRestrictionRegex& WithPattern(Aws::String&& value) { SetPattern(std::move(value)); return *this;}
 
     /**
      * <p>The regular expression pattern that a string configuration option value with
      * this restriction must match.</p>
      */
     inline OptionRestrictionRegex& WithPattern(const char* value) { SetPattern(value); return *this;}
+
 
     /**
      * <p>A unique name representing this regular expression.</p>
@@ -102,7 +106,7 @@ namespace Model
     /**
      * <p>A unique name representing this regular expression.</p>
      */
-    inline void SetLabel(Aws::String&& value) { m_labelHasBeenSet = true; m_label = value; }
+    inline void SetLabel(Aws::String&& value) { m_labelHasBeenSet = true; m_label = std::move(value); }
 
     /**
      * <p>A unique name representing this regular expression.</p>
@@ -117,7 +121,7 @@ namespace Model
     /**
      * <p>A unique name representing this regular expression.</p>
      */
-    inline OptionRestrictionRegex& WithLabel(Aws::String&& value) { SetLabel(value); return *this;}
+    inline OptionRestrictionRegex& WithLabel(Aws::String&& value) { SetLabel(std::move(value)); return *this;}
 
     /**
      * <p>A unique name representing this regular expression.</p>
@@ -125,8 +129,10 @@ namespace Model
     inline OptionRestrictionRegex& WithLabel(const char* value) { SetLabel(value); return *this;}
 
   private:
+
     Aws::String m_pattern;
     bool m_patternHasBeenSet;
+
     Aws::String m_label;
     bool m_labelHasBeenSet;
   };

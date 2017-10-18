@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/s3/model/MetricsConfiguration.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     GetBucketMetricsConfigurationResult();
-    GetBucketMetricsConfigurationResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    GetBucketMetricsConfigurationResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    GetBucketMetricsConfigurationResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    GetBucketMetricsConfigurationResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * Specifies the metrics configuration.
@@ -52,7 +55,7 @@ namespace Model
     /**
      * Specifies the metrics configuration.
      */
-    inline void SetMetricsConfiguration(MetricsConfiguration&& value) { m_metricsConfiguration = value; }
+    inline void SetMetricsConfiguration(MetricsConfiguration&& value) { m_metricsConfiguration = std::move(value); }
 
     /**
      * Specifies the metrics configuration.
@@ -62,9 +65,10 @@ namespace Model
     /**
      * Specifies the metrics configuration.
      */
-    inline GetBucketMetricsConfigurationResult& WithMetricsConfiguration(MetricsConfiguration&& value) { SetMetricsConfiguration(value); return *this;}
+    inline GetBucketMetricsConfigurationResult& WithMetricsConfiguration(MetricsConfiguration&& value) { SetMetricsConfiguration(std::move(value)); return *this;}
 
   private:
+
     MetricsConfiguration m_metricsConfiguration;
   };
 

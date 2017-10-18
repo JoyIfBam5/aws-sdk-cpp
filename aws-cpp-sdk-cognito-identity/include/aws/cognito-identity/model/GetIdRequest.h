@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-identity/CognitoIdentity_EXPORTS.h>
 #include <aws/cognito-identity/CognitoIdentityRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     GetIdRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "GetId"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>A standard AWS account ID (9+ digits).</p>
@@ -51,7 +61,7 @@ namespace Model
     /**
      * <p>A standard AWS account ID (9+ digits).</p>
      */
-    inline void SetAccountId(Aws::String&& value) { m_accountIdHasBeenSet = true; m_accountId = value; }
+    inline void SetAccountId(Aws::String&& value) { m_accountIdHasBeenSet = true; m_accountId = std::move(value); }
 
     /**
      * <p>A standard AWS account ID (9+ digits).</p>
@@ -66,12 +76,13 @@ namespace Model
     /**
      * <p>A standard AWS account ID (9+ digits).</p>
      */
-    inline GetIdRequest& WithAccountId(Aws::String&& value) { SetAccountId(value); return *this;}
+    inline GetIdRequest& WithAccountId(Aws::String&& value) { SetAccountId(std::move(value)); return *this;}
 
     /**
      * <p>A standard AWS account ID (9+ digits).</p>
      */
     inline GetIdRequest& WithAccountId(const char* value) { SetAccountId(value); return *this;}
+
 
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
@@ -86,7 +97,7 @@ namespace Model
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
      */
-    inline void SetIdentityPoolId(Aws::String&& value) { m_identityPoolIdHasBeenSet = true; m_identityPoolId = value; }
+    inline void SetIdentityPoolId(Aws::String&& value) { m_identityPoolIdHasBeenSet = true; m_identityPoolId = std::move(value); }
 
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
@@ -101,12 +112,13 @@ namespace Model
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
      */
-    inline GetIdRequest& WithIdentityPoolId(Aws::String&& value) { SetIdentityPoolId(value); return *this;}
+    inline GetIdRequest& WithIdentityPoolId(Aws::String&& value) { SetIdentityPoolId(std::move(value)); return *this;}
 
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
      */
     inline GetIdRequest& WithIdentityPoolId(const char* value) { SetIdentityPoolId(value); return *this;}
+
 
     /**
      * <p>A set of optional name-value pairs that map provider names to provider
@@ -145,7 +157,7 @@ namespace Model
      * <code>api.twitter.com</code> </p> </li> <li> <p>Digits:
      * <code>www.digits.com</code> </p> </li> </ul>
      */
-    inline void SetLogins(Aws::Map<Aws::String, Aws::String>&& value) { m_loginsHasBeenSet = true; m_logins = value; }
+    inline void SetLogins(Aws::Map<Aws::String, Aws::String>&& value) { m_loginsHasBeenSet = true; m_logins = std::move(value); }
 
     /**
      * <p>A set of optional name-value pairs that map provider names to provider
@@ -171,7 +183,7 @@ namespace Model
      * <code>api.twitter.com</code> </p> </li> <li> <p>Digits:
      * <code>www.digits.com</code> </p> </li> </ul>
      */
-    inline GetIdRequest& WithLogins(Aws::Map<Aws::String, Aws::String>&& value) { SetLogins(value); return *this;}
+    inline GetIdRequest& WithLogins(Aws::Map<Aws::String, Aws::String>&& value) { SetLogins(std::move(value)); return *this;}
 
     /**
      * <p>A set of optional name-value pairs that map provider names to provider
@@ -184,7 +196,7 @@ namespace Model
      * <code>api.twitter.com</code> </p> </li> <li> <p>Digits:
      * <code>www.digits.com</code> </p> </li> </ul>
      */
-    inline GetIdRequest& AddLogins(const Aws::String& key, const Aws::String& value) { m_loginsHasBeenSet = true; m_logins[key] = value; return *this; }
+    inline GetIdRequest& AddLogins(const Aws::String& key, const Aws::String& value) { m_loginsHasBeenSet = true; m_logins.emplace(key, value); return *this; }
 
     /**
      * <p>A set of optional name-value pairs that map provider names to provider
@@ -197,7 +209,7 @@ namespace Model
      * <code>api.twitter.com</code> </p> </li> <li> <p>Digits:
      * <code>www.digits.com</code> </p> </li> </ul>
      */
-    inline GetIdRequest& AddLogins(Aws::String&& key, const Aws::String& value) { m_loginsHasBeenSet = true; m_logins[key] = value; return *this; }
+    inline GetIdRequest& AddLogins(Aws::String&& key, const Aws::String& value) { m_loginsHasBeenSet = true; m_logins.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A set of optional name-value pairs that map provider names to provider
@@ -210,7 +222,7 @@ namespace Model
      * <code>api.twitter.com</code> </p> </li> <li> <p>Digits:
      * <code>www.digits.com</code> </p> </li> </ul>
      */
-    inline GetIdRequest& AddLogins(const Aws::String& key, Aws::String&& value) { m_loginsHasBeenSet = true; m_logins[key] = value; return *this; }
+    inline GetIdRequest& AddLogins(const Aws::String& key, Aws::String&& value) { m_loginsHasBeenSet = true; m_logins.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A set of optional name-value pairs that map provider names to provider
@@ -223,7 +235,7 @@ namespace Model
      * <code>api.twitter.com</code> </p> </li> <li> <p>Digits:
      * <code>www.digits.com</code> </p> </li> </ul>
      */
-    inline GetIdRequest& AddLogins(Aws::String&& key, Aws::String&& value) { m_loginsHasBeenSet = true; m_logins[key] = value; return *this; }
+    inline GetIdRequest& AddLogins(Aws::String&& key, Aws::String&& value) { m_loginsHasBeenSet = true; m_logins.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>A set of optional name-value pairs that map provider names to provider
@@ -236,7 +248,7 @@ namespace Model
      * <code>api.twitter.com</code> </p> </li> <li> <p>Digits:
      * <code>www.digits.com</code> </p> </li> </ul>
      */
-    inline GetIdRequest& AddLogins(const char* key, Aws::String&& value) { m_loginsHasBeenSet = true; m_logins[key] = value; return *this; }
+    inline GetIdRequest& AddLogins(const char* key, Aws::String&& value) { m_loginsHasBeenSet = true; m_logins.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A set of optional name-value pairs that map provider names to provider
@@ -249,7 +261,7 @@ namespace Model
      * <code>api.twitter.com</code> </p> </li> <li> <p>Digits:
      * <code>www.digits.com</code> </p> </li> </ul>
      */
-    inline GetIdRequest& AddLogins(Aws::String&& key, const char* value) { m_loginsHasBeenSet = true; m_logins[key] = value; return *this; }
+    inline GetIdRequest& AddLogins(Aws::String&& key, const char* value) { m_loginsHasBeenSet = true; m_logins.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A set of optional name-value pairs that map provider names to provider
@@ -262,13 +274,16 @@ namespace Model
      * <code>api.twitter.com</code> </p> </li> <li> <p>Digits:
      * <code>www.digits.com</code> </p> </li> </ul>
      */
-    inline GetIdRequest& AddLogins(const char* key, const char* value) { m_loginsHasBeenSet = true; m_logins[key] = value; return *this; }
+    inline GetIdRequest& AddLogins(const char* key, const char* value) { m_loginsHasBeenSet = true; m_logins.emplace(key, value); return *this; }
 
   private:
+
     Aws::String m_accountId;
     bool m_accountIdHasBeenSet;
+
     Aws::String m_identityPoolId;
     bool m_identityPoolIdHasBeenSet;
+
     Aws::Map<Aws::String, Aws::String> m_logins;
     bool m_loginsHasBeenSet;
   };

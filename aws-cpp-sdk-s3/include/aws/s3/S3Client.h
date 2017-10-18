@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/s3/S3Errors.h>
@@ -20,6 +21,7 @@
 #include <aws/core/client/AWSClient.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
+#include <aws/core/utils/DNS.h>
 #include <aws/s3/model/AbortMultipartUploadResult.h>
 #include <aws/s3/model/CompleteMultipartUploadResult.h>
 #include <aws/s3/model/CopyObjectResult.h>
@@ -183,16 +185,16 @@ namespace Aws
         typedef Aws::Utils::Outcome<CopyObjectResult, Aws::Client::AWSError<S3Errors>> CopyObjectOutcome;
         typedef Aws::Utils::Outcome<CreateBucketResult, Aws::Client::AWSError<S3Errors>> CreateBucketOutcome;
         typedef Aws::Utils::Outcome<CreateMultipartUploadResult, Aws::Client::AWSError<S3Errors>> CreateMultipartUploadOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketAnalyticsConfigurationOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketCorsOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketInventoryConfigurationOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketLifecycleOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketMetricsConfigurationOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketPolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketReplicationOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketTaggingOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketWebsiteOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketAnalyticsConfigurationOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketCorsOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketInventoryConfigurationOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketLifecycleOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketMetricsConfigurationOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketPolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketReplicationOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketTaggingOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> DeleteBucketWebsiteOutcome;
         typedef Aws::Utils::Outcome<DeleteObjectResult, Aws::Client::AWSError<S3Errors>> DeleteObjectOutcome;
         typedef Aws::Utils::Outcome<DeleteObjectTaggingResult, Aws::Client::AWSError<S3Errors>> DeleteObjectTaggingOutcome;
         typedef Aws::Utils::Outcome<DeleteObjectsResult, Aws::Client::AWSError<S3Errors>> DeleteObjectsOutcome;
@@ -216,7 +218,7 @@ namespace Aws
         typedef Aws::Utils::Outcome<GetObjectAclResult, Aws::Client::AWSError<S3Errors>> GetObjectAclOutcome;
         typedef Aws::Utils::Outcome<GetObjectTaggingResult, Aws::Client::AWSError<S3Errors>> GetObjectTaggingOutcome;
         typedef Aws::Utils::Outcome<GetObjectTorrentResult, Aws::Client::AWSError<S3Errors>> GetObjectTorrentOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> HeadBucketOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> HeadBucketOutcome;
         typedef Aws::Utils::Outcome<HeadObjectResult, Aws::Client::AWSError<S3Errors>> HeadObjectOutcome;
         typedef Aws::Utils::Outcome<ListBucketAnalyticsConfigurationsResult, Aws::Client::AWSError<S3Errors>> ListBucketAnalyticsConfigurationsOutcome;
         typedef Aws::Utils::Outcome<ListBucketInventoryConfigurationsResult, Aws::Client::AWSError<S3Errors>> ListBucketInventoryConfigurationsOutcome;
@@ -227,21 +229,21 @@ namespace Aws
         typedef Aws::Utils::Outcome<ListObjectsResult, Aws::Client::AWSError<S3Errors>> ListObjectsOutcome;
         typedef Aws::Utils::Outcome<ListObjectsV2Result, Aws::Client::AWSError<S3Errors>> ListObjectsV2Outcome;
         typedef Aws::Utils::Outcome<ListPartsResult, Aws::Client::AWSError<S3Errors>> ListPartsOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> PutBucketAccelerateConfigurationOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> PutBucketAclOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> PutBucketAnalyticsConfigurationOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> PutBucketCorsOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> PutBucketInventoryConfigurationOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> PutBucketLifecycleConfigurationOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> PutBucketLoggingOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> PutBucketMetricsConfigurationOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> PutBucketNotificationConfigurationOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> PutBucketPolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> PutBucketReplicationOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> PutBucketRequestPaymentOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> PutBucketTaggingOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> PutBucketVersioningOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<S3Errors>> PutBucketWebsiteOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> PutBucketAccelerateConfigurationOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> PutBucketAclOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> PutBucketAnalyticsConfigurationOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> PutBucketCorsOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> PutBucketInventoryConfigurationOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> PutBucketLifecycleConfigurationOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> PutBucketLoggingOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> PutBucketMetricsConfigurationOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> PutBucketNotificationConfigurationOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> PutBucketPolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> PutBucketReplicationOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> PutBucketRequestPaymentOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> PutBucketTaggingOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> PutBucketVersioningOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<S3Errors>> PutBucketWebsiteOutcome;
         typedef Aws::Utils::Outcome<PutObjectResult, Aws::Client::AWSError<S3Errors>> PutObjectOutcome;
         typedef Aws::Utils::Outcome<PutObjectAclResult, Aws::Client::AWSError<S3Errors>> PutObjectAclOutcome;
         typedef Aws::Utils::Outcome<PutObjectTaggingResult, Aws::Client::AWSError<S3Errors>> PutObjectTaggingOutcome;
@@ -406,22 +408,25 @@ namespace Aws
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        S3Client(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration(), bool signPayloads = false);
+        S3Client(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration(), bool signPayloads = false, bool useVirtualAdressing = true);
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        S3Client(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration(), bool signPayloads = false);
+        S3Client(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration(), bool signPayloads = false, bool useVirtualAdressing = true);
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        S3Client(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration(), bool signPayloads = false);
+        S3Client(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration(), bool signPayloads = false, bool useVirtualAdressing = true);
 
         virtual ~S3Client();
+
+        inline virtual const char* GetServiceClientName() const override { return "s3"; }
+
 
         /**
          * <p>Aborts a multipart upload.</p><p>To verify that all parts have been removed,
@@ -2366,9 +2371,12 @@ namespace Aws
 
 
         Aws::String GeneratePresignedUrl(const Aws::String& bucketName, const Aws::String& key, Http::HttpMethod method, long long expirationInSeconds = MAX_EXPIRATION_SECONDS);
+        virtual bool MultipartUploadSupported() const;
 
     private:
         void init(const Client::ClientConfiguration& clientConfiguration);
+        Aws::String ComputeEndpointString(const Aws::String& bucket) const;
+        Aws::String ComputeEndpointString() const;
 
         /**Async helpers**/
         void AbortMultipartUploadAsyncHelper(const Model::AbortMultipartUploadRequest& request, const AbortMultipartUploadResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -2442,8 +2450,10 @@ namespace Aws
         void UploadPartAsyncHelper(const Model::UploadPartRequest& request, const UploadPartResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UploadPartCopyAsyncHelper(const Model::UploadPartCopyRequest& request, const UploadPartCopyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
-        Aws::String m_uri;
+        Aws::String m_baseUri;
+        Aws::String m_scheme;
         std::shared_ptr<Utils::Threading::Executor> m_executor;
+        bool m_useVirtualAdressing;
     };
 
   } // namespace S3

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-sync/CognitoSync_EXPORTS.h>
 #include <aws/cognito-sync/CognitoSyncRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,9 +39,17 @@ namespace Model
   {
   public:
     ListIdentityPoolUsageRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListIdentityPoolUsage"; }
+
     Aws::String SerializePayload() const override;
 
     void AddQueryStringParameters(Aws::Http::URI& uri) const override;
+
 
     /**
      * A pagination token for obtaining the next page of results.
@@ -54,7 +64,7 @@ namespace Model
     /**
      * A pagination token for obtaining the next page of results.
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * A pagination token for obtaining the next page of results.
@@ -69,12 +79,13 @@ namespace Model
     /**
      * A pagination token for obtaining the next page of results.
      */
-    inline ListIdentityPoolUsageRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListIdentityPoolUsageRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * A pagination token for obtaining the next page of results.
      */
     inline ListIdentityPoolUsageRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     /**
      * The maximum number of results to be returned.
@@ -92,8 +103,10 @@ namespace Model
     inline ListIdentityPoolUsageRequest& WithMaxResults(int value) { SetMaxResults(value); return *this;}
 
   private:
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
+
     int m_maxResults;
     bool m_maxResultsHasBeenSet;
   };

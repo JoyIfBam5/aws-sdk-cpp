@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -24,6 +25,7 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticbeanstalk/model/ResponseMetadata.h>
 #include <aws/elasticbeanstalk/model/EnvironmentLink.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,8 +52,9 @@ namespace Model
   {
   public:
     TerminateEnvironmentResult();
-    TerminateEnvironmentResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    TerminateEnvironmentResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    TerminateEnvironmentResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    TerminateEnvironmentResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>The name of this environment.</p>
@@ -66,7 +69,7 @@ namespace Model
     /**
      * <p>The name of this environment.</p>
      */
-    inline void SetEnvironmentName(Aws::String&& value) { m_environmentName = value; }
+    inline void SetEnvironmentName(Aws::String&& value) { m_environmentName = std::move(value); }
 
     /**
      * <p>The name of this environment.</p>
@@ -81,12 +84,13 @@ namespace Model
     /**
      * <p>The name of this environment.</p>
      */
-    inline TerminateEnvironmentResult& WithEnvironmentName(Aws::String&& value) { SetEnvironmentName(value); return *this;}
+    inline TerminateEnvironmentResult& WithEnvironmentName(Aws::String&& value) { SetEnvironmentName(std::move(value)); return *this;}
 
     /**
      * <p>The name of this environment.</p>
      */
     inline TerminateEnvironmentResult& WithEnvironmentName(const char* value) { SetEnvironmentName(value); return *this;}
+
 
     /**
      * <p>The ID of this environment.</p>
@@ -101,7 +105,7 @@ namespace Model
     /**
      * <p>The ID of this environment.</p>
      */
-    inline void SetEnvironmentId(Aws::String&& value) { m_environmentId = value; }
+    inline void SetEnvironmentId(Aws::String&& value) { m_environmentId = std::move(value); }
 
     /**
      * <p>The ID of this environment.</p>
@@ -116,12 +120,13 @@ namespace Model
     /**
      * <p>The ID of this environment.</p>
      */
-    inline TerminateEnvironmentResult& WithEnvironmentId(Aws::String&& value) { SetEnvironmentId(value); return *this;}
+    inline TerminateEnvironmentResult& WithEnvironmentId(Aws::String&& value) { SetEnvironmentId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of this environment.</p>
      */
     inline TerminateEnvironmentResult& WithEnvironmentId(const char* value) { SetEnvironmentId(value); return *this;}
+
 
     /**
      * <p>The name of the application associated with this environment.</p>
@@ -136,7 +141,7 @@ namespace Model
     /**
      * <p>The name of the application associated with this environment.</p>
      */
-    inline void SetApplicationName(Aws::String&& value) { m_applicationName = value; }
+    inline void SetApplicationName(Aws::String&& value) { m_applicationName = std::move(value); }
 
     /**
      * <p>The name of the application associated with this environment.</p>
@@ -151,12 +156,13 @@ namespace Model
     /**
      * <p>The name of the application associated with this environment.</p>
      */
-    inline TerminateEnvironmentResult& WithApplicationName(Aws::String&& value) { SetApplicationName(value); return *this;}
+    inline TerminateEnvironmentResult& WithApplicationName(Aws::String&& value) { SetApplicationName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the application associated with this environment.</p>
      */
     inline TerminateEnvironmentResult& WithApplicationName(const char* value) { SetApplicationName(value); return *this;}
+
 
     /**
      * <p>The application version deployed in this environment.</p>
@@ -171,7 +177,7 @@ namespace Model
     /**
      * <p>The application version deployed in this environment.</p>
      */
-    inline void SetVersionLabel(Aws::String&& value) { m_versionLabel = value; }
+    inline void SetVersionLabel(Aws::String&& value) { m_versionLabel = std::move(value); }
 
     /**
      * <p>The application version deployed in this environment.</p>
@@ -186,12 +192,13 @@ namespace Model
     /**
      * <p>The application version deployed in this environment.</p>
      */
-    inline TerminateEnvironmentResult& WithVersionLabel(Aws::String&& value) { SetVersionLabel(value); return *this;}
+    inline TerminateEnvironmentResult& WithVersionLabel(Aws::String&& value) { SetVersionLabel(std::move(value)); return *this;}
 
     /**
      * <p>The application version deployed in this environment.</p>
      */
     inline TerminateEnvironmentResult& WithVersionLabel(const char* value) { SetVersionLabel(value); return *this;}
+
 
     /**
      * <p> The name of the <code>SolutionStack</code> deployed with this environment.
@@ -209,7 +216,7 @@ namespace Model
      * <p> The name of the <code>SolutionStack</code> deployed with this environment.
      * </p>
      */
-    inline void SetSolutionStackName(Aws::String&& value) { m_solutionStackName = value; }
+    inline void SetSolutionStackName(Aws::String&& value) { m_solutionStackName = std::move(value); }
 
     /**
      * <p> The name of the <code>SolutionStack</code> deployed with this environment.
@@ -227,13 +234,50 @@ namespace Model
      * <p> The name of the <code>SolutionStack</code> deployed with this environment.
      * </p>
      */
-    inline TerminateEnvironmentResult& WithSolutionStackName(Aws::String&& value) { SetSolutionStackName(value); return *this;}
+    inline TerminateEnvironmentResult& WithSolutionStackName(Aws::String&& value) { SetSolutionStackName(std::move(value)); return *this;}
 
     /**
      * <p> The name of the <code>SolutionStack</code> deployed with this environment.
      * </p>
      */
     inline TerminateEnvironmentResult& WithSolutionStackName(const char* value) { SetSolutionStackName(value); return *this;}
+
+
+    /**
+     * <p>The ARN of the platform.</p>
+     */
+    inline const Aws::String& GetPlatformArn() const{ return m_platformArn; }
+
+    /**
+     * <p>The ARN of the platform.</p>
+     */
+    inline void SetPlatformArn(const Aws::String& value) { m_platformArn = value; }
+
+    /**
+     * <p>The ARN of the platform.</p>
+     */
+    inline void SetPlatformArn(Aws::String&& value) { m_platformArn = std::move(value); }
+
+    /**
+     * <p>The ARN of the platform.</p>
+     */
+    inline void SetPlatformArn(const char* value) { m_platformArn.assign(value); }
+
+    /**
+     * <p>The ARN of the platform.</p>
+     */
+    inline TerminateEnvironmentResult& WithPlatformArn(const Aws::String& value) { SetPlatformArn(value); return *this;}
+
+    /**
+     * <p>The ARN of the platform.</p>
+     */
+    inline TerminateEnvironmentResult& WithPlatformArn(Aws::String&& value) { SetPlatformArn(std::move(value)); return *this;}
+
+    /**
+     * <p>The ARN of the platform.</p>
+     */
+    inline TerminateEnvironmentResult& WithPlatformArn(const char* value) { SetPlatformArn(value); return *this;}
+
 
     /**
      * <p>The name of the configuration template used to originally launch this
@@ -251,7 +295,7 @@ namespace Model
      * <p>The name of the configuration template used to originally launch this
      * environment.</p>
      */
-    inline void SetTemplateName(Aws::String&& value) { m_templateName = value; }
+    inline void SetTemplateName(Aws::String&& value) { m_templateName = std::move(value); }
 
     /**
      * <p>The name of the configuration template used to originally launch this
@@ -269,13 +313,14 @@ namespace Model
      * <p>The name of the configuration template used to originally launch this
      * environment.</p>
      */
-    inline TerminateEnvironmentResult& WithTemplateName(Aws::String&& value) { SetTemplateName(value); return *this;}
+    inline TerminateEnvironmentResult& WithTemplateName(Aws::String&& value) { SetTemplateName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the configuration template used to originally launch this
      * environment.</p>
      */
     inline TerminateEnvironmentResult& WithTemplateName(const char* value) { SetTemplateName(value); return *this;}
+
 
     /**
      * <p>Describes this environment.</p>
@@ -290,7 +335,7 @@ namespace Model
     /**
      * <p>Describes this environment.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_description = std::move(value); }
 
     /**
      * <p>Describes this environment.</p>
@@ -305,12 +350,13 @@ namespace Model
     /**
      * <p>Describes this environment.</p>
      */
-    inline TerminateEnvironmentResult& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline TerminateEnvironmentResult& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>Describes this environment.</p>
      */
     inline TerminateEnvironmentResult& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>For load-balanced, autoscaling environments, the URL to the LoadBalancer. For
@@ -328,7 +374,7 @@ namespace Model
      * <p>For load-balanced, autoscaling environments, the URL to the LoadBalancer. For
      * single-instance environments, the IP address of the instance.</p>
      */
-    inline void SetEndpointURL(Aws::String&& value) { m_endpointURL = value; }
+    inline void SetEndpointURL(Aws::String&& value) { m_endpointURL = std::move(value); }
 
     /**
      * <p>For load-balanced, autoscaling environments, the URL to the LoadBalancer. For
@@ -346,13 +392,14 @@ namespace Model
      * <p>For load-balanced, autoscaling environments, the URL to the LoadBalancer. For
      * single-instance environments, the IP address of the instance.</p>
      */
-    inline TerminateEnvironmentResult& WithEndpointURL(Aws::String&& value) { SetEndpointURL(value); return *this;}
+    inline TerminateEnvironmentResult& WithEndpointURL(Aws::String&& value) { SetEndpointURL(std::move(value)); return *this;}
 
     /**
      * <p>For load-balanced, autoscaling environments, the URL to the LoadBalancer. For
      * single-instance environments, the IP address of the instance.</p>
      */
     inline TerminateEnvironmentResult& WithEndpointURL(const char* value) { SetEndpointURL(value); return *this;}
+
 
     /**
      * <p>The URL to the CNAME for this environment.</p>
@@ -367,7 +414,7 @@ namespace Model
     /**
      * <p>The URL to the CNAME for this environment.</p>
      */
-    inline void SetCNAME(Aws::String&& value) { m_cNAME = value; }
+    inline void SetCNAME(Aws::String&& value) { m_cNAME = std::move(value); }
 
     /**
      * <p>The URL to the CNAME for this environment.</p>
@@ -382,12 +429,13 @@ namespace Model
     /**
      * <p>The URL to the CNAME for this environment.</p>
      */
-    inline TerminateEnvironmentResult& WithCNAME(Aws::String&& value) { SetCNAME(value); return *this;}
+    inline TerminateEnvironmentResult& WithCNAME(Aws::String&& value) { SetCNAME(std::move(value)); return *this;}
 
     /**
      * <p>The URL to the CNAME for this environment.</p>
      */
     inline TerminateEnvironmentResult& WithCNAME(const char* value) { SetCNAME(value); return *this;}
+
 
     /**
      * <p>The creation date for this environment.</p>
@@ -402,7 +450,7 @@ namespace Model
     /**
      * <p>The creation date for this environment.</p>
      */
-    inline void SetDateCreated(Aws::Utils::DateTime&& value) { m_dateCreated = value; }
+    inline void SetDateCreated(Aws::Utils::DateTime&& value) { m_dateCreated = std::move(value); }
 
     /**
      * <p>The creation date for this environment.</p>
@@ -412,7 +460,8 @@ namespace Model
     /**
      * <p>The creation date for this environment.</p>
      */
-    inline TerminateEnvironmentResult& WithDateCreated(Aws::Utils::DateTime&& value) { SetDateCreated(value); return *this;}
+    inline TerminateEnvironmentResult& WithDateCreated(Aws::Utils::DateTime&& value) { SetDateCreated(std::move(value)); return *this;}
+
 
     /**
      * <p>The last modified date for this environment.</p>
@@ -427,7 +476,7 @@ namespace Model
     /**
      * <p>The last modified date for this environment.</p>
      */
-    inline void SetDateUpdated(Aws::Utils::DateTime&& value) { m_dateUpdated = value; }
+    inline void SetDateUpdated(Aws::Utils::DateTime&& value) { m_dateUpdated = std::move(value); }
 
     /**
      * <p>The last modified date for this environment.</p>
@@ -437,7 +486,8 @@ namespace Model
     /**
      * <p>The last modified date for this environment.</p>
      */
-    inline TerminateEnvironmentResult& WithDateUpdated(Aws::Utils::DateTime&& value) { SetDateUpdated(value); return *this;}
+    inline TerminateEnvironmentResult& WithDateUpdated(Aws::Utils::DateTime&& value) { SetDateUpdated(std::move(value)); return *this;}
+
 
     /**
      * <p>The current operational status of the environment:</p> <ul> <li> <p>
@@ -473,7 +523,7 @@ namespace Model
      * Environment is in the shut-down process.</p> </li> <li> <p>
      * <code>Terminated</code>: Environment is not running.</p> </li> </ul>
      */
-    inline void SetStatus(EnvironmentStatus&& value) { m_status = value; }
+    inline void SetStatus(EnvironmentStatus&& value) { m_status = std::move(value); }
 
     /**
      * <p>The current operational status of the environment:</p> <ul> <li> <p>
@@ -497,7 +547,8 @@ namespace Model
      * Environment is in the shut-down process.</p> </li> <li> <p>
      * <code>Terminated</code>: Environment is not running.</p> </li> </ul>
      */
-    inline TerminateEnvironmentResult& WithStatus(EnvironmentStatus&& value) { SetStatus(value); return *this;}
+    inline TerminateEnvironmentResult& WithStatus(EnvironmentStatus&& value) { SetStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>Indicates if there is an in-progress environment configuration update or
@@ -522,6 +573,7 @@ namespace Model
      * updates currently in progress. </p>
      */
     inline TerminateEnvironmentResult& WithAbortableOperationInProgress(bool value) { SetAbortableOperationInProgress(value); return *this;}
+
 
     /**
      * <p>Describes the health status of the environment. AWS Elastic Beanstalk
@@ -569,7 +621,7 @@ namespace Model
      * or <code>RestartEnvironement</code> request.</p> </li> </ul> <p> Default:
      * <code>Grey</code> </p>
      */
-    inline void SetHealth(EnvironmentHealth&& value) { m_health = value; }
+    inline void SetHealth(EnvironmentHealth&& value) { m_health = std::move(value); }
 
     /**
      * <p>Describes the health status of the environment. AWS Elastic Beanstalk
@@ -601,7 +653,8 @@ namespace Model
      * or <code>RestartEnvironement</code> request.</p> </li> </ul> <p> Default:
      * <code>Grey</code> </p>
      */
-    inline TerminateEnvironmentResult& WithHealth(EnvironmentHealth&& value) { SetHealth(value); return *this;}
+    inline TerminateEnvironmentResult& WithHealth(EnvironmentHealth&& value) { SetHealth(std::move(value)); return *this;}
+
 
     /**
      * <p>Returns the health status of the application running in your environment. For
@@ -625,7 +678,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html">Health
      * Colors and Statuses</a>.</p>
      */
-    inline void SetHealthStatus(EnvironmentHealthStatus&& value) { m_healthStatus = value; }
+    inline void SetHealthStatus(EnvironmentHealthStatus&& value) { m_healthStatus = std::move(value); }
 
     /**
      * <p>Returns the health status of the application running in your environment. For
@@ -641,7 +694,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html">Health
      * Colors and Statuses</a>.</p>
      */
-    inline TerminateEnvironmentResult& WithHealthStatus(EnvironmentHealthStatus&& value) { SetHealthStatus(value); return *this;}
+    inline TerminateEnvironmentResult& WithHealthStatus(EnvironmentHealthStatus&& value) { SetHealthStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The description of the AWS resources used by this environment.</p>
@@ -656,7 +710,7 @@ namespace Model
     /**
      * <p>The description of the AWS resources used by this environment.</p>
      */
-    inline void SetResources(EnvironmentResourcesDescription&& value) { m_resources = value; }
+    inline void SetResources(EnvironmentResourcesDescription&& value) { m_resources = std::move(value); }
 
     /**
      * <p>The description of the AWS resources used by this environment.</p>
@@ -666,7 +720,8 @@ namespace Model
     /**
      * <p>The description of the AWS resources used by this environment.</p>
      */
-    inline TerminateEnvironmentResult& WithResources(EnvironmentResourcesDescription&& value) { SetResources(value); return *this;}
+    inline TerminateEnvironmentResult& WithResources(EnvironmentResourcesDescription&& value) { SetResources(std::move(value)); return *this;}
+
 
     /**
      * <p>Describes the current tier of this environment.</p>
@@ -681,7 +736,7 @@ namespace Model
     /**
      * <p>Describes the current tier of this environment.</p>
      */
-    inline void SetTier(EnvironmentTier&& value) { m_tier = value; }
+    inline void SetTier(EnvironmentTier&& value) { m_tier = std::move(value); }
 
     /**
      * <p>Describes the current tier of this environment.</p>
@@ -691,7 +746,8 @@ namespace Model
     /**
      * <p>Describes the current tier of this environment.</p>
      */
-    inline TerminateEnvironmentResult& WithTier(EnvironmentTier&& value) { SetTier(value); return *this;}
+    inline TerminateEnvironmentResult& WithTier(EnvironmentTier&& value) { SetTier(std::move(value)); return *this;}
+
 
     /**
      * <p>A list of links to other environments in the same group.</p>
@@ -706,7 +762,7 @@ namespace Model
     /**
      * <p>A list of links to other environments in the same group.</p>
      */
-    inline void SetEnvironmentLinks(Aws::Vector<EnvironmentLink>&& value) { m_environmentLinks = value; }
+    inline void SetEnvironmentLinks(Aws::Vector<EnvironmentLink>&& value) { m_environmentLinks = std::move(value); }
 
     /**
      * <p>A list of links to other environments in the same group.</p>
@@ -716,7 +772,7 @@ namespace Model
     /**
      * <p>A list of links to other environments in the same group.</p>
      */
-    inline TerminateEnvironmentResult& WithEnvironmentLinks(Aws::Vector<EnvironmentLink>&& value) { SetEnvironmentLinks(value); return *this;}
+    inline TerminateEnvironmentResult& WithEnvironmentLinks(Aws::Vector<EnvironmentLink>&& value) { SetEnvironmentLinks(std::move(value)); return *this;}
 
     /**
      * <p>A list of links to other environments in the same group.</p>
@@ -726,7 +782,51 @@ namespace Model
     /**
      * <p>A list of links to other environments in the same group.</p>
      */
-    inline TerminateEnvironmentResult& AddEnvironmentLinks(EnvironmentLink&& value) { m_environmentLinks.push_back(value); return *this; }
+    inline TerminateEnvironmentResult& AddEnvironmentLinks(EnvironmentLink&& value) { m_environmentLinks.push_back(std::move(value)); return *this; }
+
+
+    /**
+     * <p>The environment's Amazon Resource Name (ARN), which can be used in other API
+     * reuqests that require an ARN.</p>
+     */
+    inline const Aws::String& GetEnvironmentArn() const{ return m_environmentArn; }
+
+    /**
+     * <p>The environment's Amazon Resource Name (ARN), which can be used in other API
+     * reuqests that require an ARN.</p>
+     */
+    inline void SetEnvironmentArn(const Aws::String& value) { m_environmentArn = value; }
+
+    /**
+     * <p>The environment's Amazon Resource Name (ARN), which can be used in other API
+     * reuqests that require an ARN.</p>
+     */
+    inline void SetEnvironmentArn(Aws::String&& value) { m_environmentArn = std::move(value); }
+
+    /**
+     * <p>The environment's Amazon Resource Name (ARN), which can be used in other API
+     * reuqests that require an ARN.</p>
+     */
+    inline void SetEnvironmentArn(const char* value) { m_environmentArn.assign(value); }
+
+    /**
+     * <p>The environment's Amazon Resource Name (ARN), which can be used in other API
+     * reuqests that require an ARN.</p>
+     */
+    inline TerminateEnvironmentResult& WithEnvironmentArn(const Aws::String& value) { SetEnvironmentArn(value); return *this;}
+
+    /**
+     * <p>The environment's Amazon Resource Name (ARN), which can be used in other API
+     * reuqests that require an ARN.</p>
+     */
+    inline TerminateEnvironmentResult& WithEnvironmentArn(Aws::String&& value) { SetEnvironmentArn(std::move(value)); return *this;}
+
+    /**
+     * <p>The environment's Amazon Resource Name (ARN), which can be used in other API
+     * reuqests that require an ARN.</p>
+     */
+    inline TerminateEnvironmentResult& WithEnvironmentArn(const char* value) { SetEnvironmentArn(value); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -735,33 +835,56 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline TerminateEnvironmentResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline TerminateEnvironmentResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline TerminateEnvironmentResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_environmentName;
+
     Aws::String m_environmentId;
+
     Aws::String m_applicationName;
+
     Aws::String m_versionLabel;
+
     Aws::String m_solutionStackName;
+
+    Aws::String m_platformArn;
+
     Aws::String m_templateName;
+
     Aws::String m_description;
+
     Aws::String m_endpointURL;
+
     Aws::String m_cNAME;
+
     Aws::Utils::DateTime m_dateCreated;
+
     Aws::Utils::DateTime m_dateUpdated;
+
     EnvironmentStatus m_status;
+
     bool m_abortableOperationInProgress;
+
     EnvironmentHealth m_health;
+
     EnvironmentHealthStatus m_healthStatus;
+
     EnvironmentResourcesDescription m_resources;
+
     EnvironmentTier m_tier;
+
     Aws::Vector<EnvironmentLink> m_environmentLinks;
+
+    Aws::String m_environmentArn;
+
     ResponseMetadata m_responseMetadata;
   };
 

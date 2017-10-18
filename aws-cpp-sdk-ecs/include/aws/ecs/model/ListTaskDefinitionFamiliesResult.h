@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     ListTaskDefinitionFamiliesResult();
-    ListTaskDefinitionFamiliesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListTaskDefinitionFamiliesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListTaskDefinitionFamiliesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListTaskDefinitionFamiliesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The list of task definition family names that match the
@@ -56,7 +59,7 @@ namespace Model
      * <p>The list of task definition family names that match the
      * <code>ListTaskDefinitionFamilies</code> request.</p>
      */
-    inline void SetFamilies(Aws::Vector<Aws::String>&& value) { m_families = value; }
+    inline void SetFamilies(Aws::Vector<Aws::String>&& value) { m_families = std::move(value); }
 
     /**
      * <p>The list of task definition family names that match the
@@ -68,7 +71,7 @@ namespace Model
      * <p>The list of task definition family names that match the
      * <code>ListTaskDefinitionFamilies</code> request.</p>
      */
-    inline ListTaskDefinitionFamiliesResult& WithFamilies(Aws::Vector<Aws::String>&& value) { SetFamilies(value); return *this;}
+    inline ListTaskDefinitionFamiliesResult& WithFamilies(Aws::Vector<Aws::String>&& value) { SetFamilies(std::move(value)); return *this;}
 
     /**
      * <p>The list of task definition family names that match the
@@ -80,13 +83,14 @@ namespace Model
      * <p>The list of task definition family names that match the
      * <code>ListTaskDefinitionFamilies</code> request.</p>
      */
-    inline ListTaskDefinitionFamiliesResult& AddFamilies(Aws::String&& value) { m_families.push_back(value); return *this; }
+    inline ListTaskDefinitionFamiliesResult& AddFamilies(Aws::String&& value) { m_families.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The list of task definition family names that match the
      * <code>ListTaskDefinitionFamilies</code> request.</p>
      */
     inline ListTaskDefinitionFamiliesResult& AddFamilies(const char* value) { m_families.push_back(value); return *this; }
+
 
     /**
      * <p>The <code>nextToken</code> value to include in a future
@@ -113,7 +117,7 @@ namespace Model
      * this value can be used to retrieve the next page of results. This value is
      * <code>null</code> when there are no more results to return.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The <code>nextToken</code> value to include in a future
@@ -140,7 +144,7 @@ namespace Model
      * this value can be used to retrieve the next page of results. This value is
      * <code>null</code> when there are no more results to return.</p>
      */
-    inline ListTaskDefinitionFamiliesResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListTaskDefinitionFamiliesResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The <code>nextToken</code> value to include in a future
@@ -152,7 +156,9 @@ namespace Model
     inline ListTaskDefinitionFamiliesResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_families;
+
     Aws::String m_nextToken;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/redshift/model/ResponseMetadata.h>
 #include <aws/redshift/model/TaggedResource.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     DescribeTagsResult();
-    DescribeTagsResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeTagsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeTagsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeTagsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>A list of tags with their associated resources.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>A list of tags with their associated resources.</p>
      */
-    inline void SetTaggedResources(Aws::Vector<TaggedResource>&& value) { m_taggedResources = value; }
+    inline void SetTaggedResources(Aws::Vector<TaggedResource>&& value) { m_taggedResources = std::move(value); }
 
     /**
      * <p>A list of tags with their associated resources.</p>
@@ -70,7 +73,7 @@ namespace Model
     /**
      * <p>A list of tags with their associated resources.</p>
      */
-    inline DescribeTagsResult& WithTaggedResources(Aws::Vector<TaggedResource>&& value) { SetTaggedResources(value); return *this;}
+    inline DescribeTagsResult& WithTaggedResources(Aws::Vector<TaggedResource>&& value) { SetTaggedResources(std::move(value)); return *this;}
 
     /**
      * <p>A list of tags with their associated resources.</p>
@@ -80,7 +83,8 @@ namespace Model
     /**
      * <p>A list of tags with their associated resources.</p>
      */
-    inline DescribeTagsResult& AddTaggedResources(TaggedResource&& value) { m_taggedResources.push_back(value); return *this; }
+    inline DescribeTagsResult& AddTaggedResources(TaggedResource&& value) { m_taggedResources.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>A value that indicates the starting point for the next set of response
@@ -110,7 +114,7 @@ namespace Model
      * <code>Marker</code> field is empty, all response records have been retrieved for
      * the request. </p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p>A value that indicates the starting point for the next set of response
@@ -140,7 +144,7 @@ namespace Model
      * <code>Marker</code> field is empty, all response records have been retrieved for
      * the request. </p>
      */
-    inline DescribeTagsResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeTagsResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>A value that indicates the starting point for the next set of response
@@ -152,6 +156,7 @@ namespace Model
      */
     inline DescribeTagsResult& WithMarker(const char* value) { SetMarker(value); return *this;}
 
+
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
 
@@ -159,17 +164,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeTagsResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeTagsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeTagsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<TaggedResource> m_taggedResources;
+
     Aws::String m_marker;
+
     ResponseMetadata m_responseMetadata;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/core/utils/Outcome.h>
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
@@ -27,13 +28,17 @@
 #include <aws/monitoring/CloudWatchEndpoint.h>
 #include <aws/monitoring/CloudWatchErrorMarshaller.h>
 #include <aws/monitoring/model/DeleteAlarmsRequest.h>
+#include <aws/monitoring/model/DeleteDashboardsRequest.h>
 #include <aws/monitoring/model/DescribeAlarmHistoryRequest.h>
 #include <aws/monitoring/model/DescribeAlarmsRequest.h>
 #include <aws/monitoring/model/DescribeAlarmsForMetricRequest.h>
 #include <aws/monitoring/model/DisableAlarmActionsRequest.h>
 #include <aws/monitoring/model/EnableAlarmActionsRequest.h>
+#include <aws/monitoring/model/GetDashboardRequest.h>
 #include <aws/monitoring/model/GetMetricStatisticsRequest.h>
+#include <aws/monitoring/model/ListDashboardsRequest.h>
 #include <aws/monitoring/model/ListMetricsRequest.h>
+#include <aws/monitoring/model/PutDashboardRequest.h>
 #include <aws/monitoring/model/PutMetricAlarmRequest.h>
 #include <aws/monitoring/model/PutMetricDataRequest.h>
 #include <aws/monitoring/model/SetAlarmStateRequest.h>
@@ -116,8 +121,10 @@ Aws::String CloudWatchClient::ConvertRequestToPresignedUrl(const AmazonSerializa
 DeleteAlarmsOutcome CloudWatchClient::DeleteAlarms(const DeleteAlarmsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return DeleteAlarmsOutcome(NoResult());
@@ -146,11 +153,48 @@ void CloudWatchClient::DeleteAlarmsAsyncHelper(const DeleteAlarmsRequest& reques
   handler(this, request, DeleteAlarms(request), context);
 }
 
+DeleteDashboardsOutcome CloudWatchClient::DeleteDashboards(const DeleteDashboardsRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
+  if(outcome.IsSuccess())
+  {
+    return DeleteDashboardsOutcome(DeleteDashboardsResult(outcome.GetResult()));
+  }
+  else
+  {
+    return DeleteDashboardsOutcome(outcome.GetError());
+  }
+}
+
+DeleteDashboardsOutcomeCallable CloudWatchClient::DeleteDashboardsCallable(const DeleteDashboardsRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< DeleteDashboardsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDashboards(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void CloudWatchClient::DeleteDashboardsAsync(const DeleteDashboardsRequest& request, const DeleteDashboardsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->DeleteDashboardsAsyncHelper( request, handler, context ); } );
+}
+
+void CloudWatchClient::DeleteDashboardsAsyncHelper(const DeleteDashboardsRequest& request, const DeleteDashboardsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, DeleteDashboards(request), context);
+}
+
 DescribeAlarmHistoryOutcome CloudWatchClient::DescribeAlarmHistory(const DescribeAlarmHistoryRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return DescribeAlarmHistoryOutcome(DescribeAlarmHistoryResult(outcome.GetResult()));
@@ -182,8 +226,10 @@ void CloudWatchClient::DescribeAlarmHistoryAsyncHelper(const DescribeAlarmHistor
 DescribeAlarmsOutcome CloudWatchClient::DescribeAlarms(const DescribeAlarmsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return DescribeAlarmsOutcome(DescribeAlarmsResult(outcome.GetResult()));
@@ -215,8 +261,10 @@ void CloudWatchClient::DescribeAlarmsAsyncHelper(const DescribeAlarmsRequest& re
 DescribeAlarmsForMetricOutcome CloudWatchClient::DescribeAlarmsForMetric(const DescribeAlarmsForMetricRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return DescribeAlarmsForMetricOutcome(DescribeAlarmsForMetricResult(outcome.GetResult()));
@@ -248,8 +296,10 @@ void CloudWatchClient::DescribeAlarmsForMetricAsyncHelper(const DescribeAlarmsFo
 DisableAlarmActionsOutcome CloudWatchClient::DisableAlarmActions(const DisableAlarmActionsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return DisableAlarmActionsOutcome(NoResult());
@@ -281,8 +331,10 @@ void CloudWatchClient::DisableAlarmActionsAsyncHelper(const DisableAlarmActionsR
 EnableAlarmActionsOutcome CloudWatchClient::EnableAlarmActions(const EnableAlarmActionsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return EnableAlarmActionsOutcome(NoResult());
@@ -311,11 +363,48 @@ void CloudWatchClient::EnableAlarmActionsAsyncHelper(const EnableAlarmActionsReq
   handler(this, request, EnableAlarmActions(request), context);
 }
 
+GetDashboardOutcome CloudWatchClient::GetDashboard(const GetDashboardRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
+  if(outcome.IsSuccess())
+  {
+    return GetDashboardOutcome(GetDashboardResult(outcome.GetResult()));
+  }
+  else
+  {
+    return GetDashboardOutcome(outcome.GetError());
+  }
+}
+
+GetDashboardOutcomeCallable CloudWatchClient::GetDashboardCallable(const GetDashboardRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< GetDashboardOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetDashboard(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void CloudWatchClient::GetDashboardAsync(const GetDashboardRequest& request, const GetDashboardResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->GetDashboardAsyncHelper( request, handler, context ); } );
+}
+
+void CloudWatchClient::GetDashboardAsyncHelper(const GetDashboardRequest& request, const GetDashboardResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, GetDashboard(request), context);
+}
+
 GetMetricStatisticsOutcome CloudWatchClient::GetMetricStatistics(const GetMetricStatisticsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return GetMetricStatisticsOutcome(GetMetricStatisticsResult(outcome.GetResult()));
@@ -344,11 +433,48 @@ void CloudWatchClient::GetMetricStatisticsAsyncHelper(const GetMetricStatisticsR
   handler(this, request, GetMetricStatistics(request), context);
 }
 
+ListDashboardsOutcome CloudWatchClient::ListDashboards(const ListDashboardsRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
+  if(outcome.IsSuccess())
+  {
+    return ListDashboardsOutcome(ListDashboardsResult(outcome.GetResult()));
+  }
+  else
+  {
+    return ListDashboardsOutcome(outcome.GetError());
+  }
+}
+
+ListDashboardsOutcomeCallable CloudWatchClient::ListDashboardsCallable(const ListDashboardsRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< ListDashboardsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDashboards(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void CloudWatchClient::ListDashboardsAsync(const ListDashboardsRequest& request, const ListDashboardsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->ListDashboardsAsyncHelper( request, handler, context ); } );
+}
+
+void CloudWatchClient::ListDashboardsAsyncHelper(const ListDashboardsRequest& request, const ListDashboardsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, ListDashboards(request), context);
+}
+
 ListMetricsOutcome CloudWatchClient::ListMetrics(const ListMetricsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return ListMetricsOutcome(ListMetricsResult(outcome.GetResult()));
@@ -377,11 +503,48 @@ void CloudWatchClient::ListMetricsAsyncHelper(const ListMetricsRequest& request,
   handler(this, request, ListMetrics(request), context);
 }
 
+PutDashboardOutcome CloudWatchClient::PutDashboard(const PutDashboardRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
+  if(outcome.IsSuccess())
+  {
+    return PutDashboardOutcome(PutDashboardResult(outcome.GetResult()));
+  }
+  else
+  {
+    return PutDashboardOutcome(outcome.GetError());
+  }
+}
+
+PutDashboardOutcomeCallable CloudWatchClient::PutDashboardCallable(const PutDashboardRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< PutDashboardOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutDashboard(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void CloudWatchClient::PutDashboardAsync(const PutDashboardRequest& request, const PutDashboardResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->PutDashboardAsyncHelper( request, handler, context ); } );
+}
+
+void CloudWatchClient::PutDashboardAsyncHelper(const PutDashboardRequest& request, const PutDashboardResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, PutDashboard(request), context);
+}
+
 PutMetricAlarmOutcome CloudWatchClient::PutMetricAlarm(const PutMetricAlarmRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return PutMetricAlarmOutcome(NoResult());
@@ -413,8 +576,10 @@ void CloudWatchClient::PutMetricAlarmAsyncHelper(const PutMetricAlarmRequest& re
 PutMetricDataOutcome CloudWatchClient::PutMetricData(const PutMetricDataRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return PutMetricDataOutcome(NoResult());
@@ -446,8 +611,10 @@ void CloudWatchClient::PutMetricDataAsyncHelper(const PutMetricDataRequest& requ
 SetAlarmStateOutcome CloudWatchClient::SetAlarmState(const SetAlarmStateRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/";
-  XmlOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  XmlOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return SetAlarmStateOutcome(NoResult());

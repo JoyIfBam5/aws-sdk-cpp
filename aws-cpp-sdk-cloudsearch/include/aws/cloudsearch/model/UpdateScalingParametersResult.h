@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudsearch/CloudSearch_EXPORTS.h>
 #include <aws/cloudsearch/model/ScalingParametersStatus.h>
 #include <aws/cloudsearch/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     UpdateScalingParametersResult();
-    UpdateScalingParametersResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    UpdateScalingParametersResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    UpdateScalingParametersResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    UpdateScalingParametersResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     
     inline const ScalingParametersStatus& GetScalingParameters() const{ return m_scalingParameters; }
@@ -53,13 +56,14 @@ namespace Model
     inline void SetScalingParameters(const ScalingParametersStatus& value) { m_scalingParameters = value; }
 
     
-    inline void SetScalingParameters(ScalingParametersStatus&& value) { m_scalingParameters = value; }
+    inline void SetScalingParameters(ScalingParametersStatus&& value) { m_scalingParameters = std::move(value); }
 
     
     inline UpdateScalingParametersResult& WithScalingParameters(const ScalingParametersStatus& value) { SetScalingParameters(value); return *this;}
 
     
-    inline UpdateScalingParametersResult& WithScalingParameters(ScalingParametersStatus&& value) { SetScalingParameters(value); return *this;}
+    inline UpdateScalingParametersResult& WithScalingParameters(ScalingParametersStatus&& value) { SetScalingParameters(std::move(value)); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -68,16 +72,18 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline UpdateScalingParametersResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline UpdateScalingParametersResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline UpdateScalingParametersResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     ScalingParametersStatus m_scalingParameters;
+
     ResponseMetadata m_responseMetadata;
   };
 

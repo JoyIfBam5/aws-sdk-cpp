@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworkscm/OpsWorksCM_EXPORTS.h>
 #include <aws/opsworkscm/OpsWorksCMRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     UpdateServerRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateServer"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>Setting DisableAutomatedBackup to <code>true</code> disables automated or
@@ -52,6 +62,7 @@ namespace Model
      */
     inline UpdateServerRequest& WithDisableAutomatedBackup(bool value) { SetDisableAutomatedBackup(value); return *this;}
 
+
     /**
      * <p>Sets the number of automated backups that you want to keep. </p>
      */
@@ -67,6 +78,7 @@ namespace Model
      */
     inline UpdateServerRequest& WithBackupRetentionCount(int value) { SetBackupRetentionCount(value); return *this;}
 
+
     /**
      * <p>The name of the server to update. </p>
      */
@@ -80,7 +92,7 @@ namespace Model
     /**
      * <p>The name of the server to update. </p>
      */
-    inline void SetServerName(Aws::String&& value) { m_serverNameHasBeenSet = true; m_serverName = value; }
+    inline void SetServerName(Aws::String&& value) { m_serverNameHasBeenSet = true; m_serverName = std::move(value); }
 
     /**
      * <p>The name of the server to update. </p>
@@ -95,12 +107,13 @@ namespace Model
     /**
      * <p>The name of the server to update. </p>
      */
-    inline UpdateServerRequest& WithServerName(Aws::String&& value) { SetServerName(value); return *this;}
+    inline UpdateServerRequest& WithServerName(Aws::String&& value) { SetServerName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the server to update. </p>
      */
     inline UpdateServerRequest& WithServerName(const char* value) { SetServerName(value); return *this;}
+
 
     
     inline const Aws::String& GetPreferredMaintenanceWindow() const{ return m_preferredMaintenanceWindow; }
@@ -109,7 +122,7 @@ namespace Model
     inline void SetPreferredMaintenanceWindow(const Aws::String& value) { m_preferredMaintenanceWindowHasBeenSet = true; m_preferredMaintenanceWindow = value; }
 
     
-    inline void SetPreferredMaintenanceWindow(Aws::String&& value) { m_preferredMaintenanceWindowHasBeenSet = true; m_preferredMaintenanceWindow = value; }
+    inline void SetPreferredMaintenanceWindow(Aws::String&& value) { m_preferredMaintenanceWindowHasBeenSet = true; m_preferredMaintenanceWindow = std::move(value); }
 
     
     inline void SetPreferredMaintenanceWindow(const char* value) { m_preferredMaintenanceWindowHasBeenSet = true; m_preferredMaintenanceWindow.assign(value); }
@@ -118,10 +131,11 @@ namespace Model
     inline UpdateServerRequest& WithPreferredMaintenanceWindow(const Aws::String& value) { SetPreferredMaintenanceWindow(value); return *this;}
 
     
-    inline UpdateServerRequest& WithPreferredMaintenanceWindow(Aws::String&& value) { SetPreferredMaintenanceWindow(value); return *this;}
+    inline UpdateServerRequest& WithPreferredMaintenanceWindow(Aws::String&& value) { SetPreferredMaintenanceWindow(std::move(value)); return *this;}
 
     
     inline UpdateServerRequest& WithPreferredMaintenanceWindow(const char* value) { SetPreferredMaintenanceWindow(value); return *this;}
+
 
     
     inline const Aws::String& GetPreferredBackupWindow() const{ return m_preferredBackupWindow; }
@@ -130,7 +144,7 @@ namespace Model
     inline void SetPreferredBackupWindow(const Aws::String& value) { m_preferredBackupWindowHasBeenSet = true; m_preferredBackupWindow = value; }
 
     
-    inline void SetPreferredBackupWindow(Aws::String&& value) { m_preferredBackupWindowHasBeenSet = true; m_preferredBackupWindow = value; }
+    inline void SetPreferredBackupWindow(Aws::String&& value) { m_preferredBackupWindowHasBeenSet = true; m_preferredBackupWindow = std::move(value); }
 
     
     inline void SetPreferredBackupWindow(const char* value) { m_preferredBackupWindowHasBeenSet = true; m_preferredBackupWindow.assign(value); }
@@ -139,20 +153,25 @@ namespace Model
     inline UpdateServerRequest& WithPreferredBackupWindow(const Aws::String& value) { SetPreferredBackupWindow(value); return *this;}
 
     
-    inline UpdateServerRequest& WithPreferredBackupWindow(Aws::String&& value) { SetPreferredBackupWindow(value); return *this;}
+    inline UpdateServerRequest& WithPreferredBackupWindow(Aws::String&& value) { SetPreferredBackupWindow(std::move(value)); return *this;}
 
     
     inline UpdateServerRequest& WithPreferredBackupWindow(const char* value) { SetPreferredBackupWindow(value); return *this;}
 
   private:
+
     bool m_disableAutomatedBackup;
     bool m_disableAutomatedBackupHasBeenSet;
+
     int m_backupRetentionCount;
     bool m_backupRetentionCountHasBeenSet;
+
     Aws::String m_serverName;
     bool m_serverNameHasBeenSet;
+
     Aws::String m_preferredMaintenanceWindow;
     bool m_preferredMaintenanceWindowHasBeenSet;
+
     Aws::String m_preferredBackupWindow;
     bool m_preferredBackupWindowHasBeenSet;
   };

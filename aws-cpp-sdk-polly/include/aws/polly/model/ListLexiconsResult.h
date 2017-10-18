@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/polly/Polly_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/polly/model/LexiconDescription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     ListLexiconsResult();
-    ListLexiconsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListLexiconsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListLexiconsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListLexiconsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A list of lexicon names and attributes.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>A list of lexicon names and attributes.</p>
      */
-    inline void SetLexicons(Aws::Vector<LexiconDescription>&& value) { m_lexicons = value; }
+    inline void SetLexicons(Aws::Vector<LexiconDescription>&& value) { m_lexicons = std::move(value); }
 
     /**
      * <p>A list of lexicon names and attributes.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>A list of lexicon names and attributes.</p>
      */
-    inline ListLexiconsResult& WithLexicons(Aws::Vector<LexiconDescription>&& value) { SetLexicons(value); return *this;}
+    inline ListLexiconsResult& WithLexicons(Aws::Vector<LexiconDescription>&& value) { SetLexicons(std::move(value)); return *this;}
 
     /**
      * <p>A list of lexicon names and attributes.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>A list of lexicon names and attributes.</p>
      */
-    inline ListLexiconsResult& AddLexicons(LexiconDescription&& value) { m_lexicons.push_back(value); return *this; }
+    inline ListLexiconsResult& AddLexicons(LexiconDescription&& value) { m_lexicons.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The pagination token to use in the next request to continue the listing of
@@ -95,7 +99,7 @@ namespace Model
      * lexicons. <code>NextToken</code> is returned only if the response is
      * truncated.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The pagination token to use in the next request to continue the listing of
@@ -116,7 +120,7 @@ namespace Model
      * lexicons. <code>NextToken</code> is returned only if the response is
      * truncated.</p>
      */
-    inline ListLexiconsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListLexiconsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The pagination token to use in the next request to continue the listing of
@@ -126,7 +130,9 @@ namespace Model
     inline ListLexiconsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<LexiconDescription> m_lexicons;
+
     Aws::String m_nextToken;
   };
 

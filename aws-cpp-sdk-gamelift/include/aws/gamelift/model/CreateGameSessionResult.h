@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/gamelift/GameLift_EXPORTS.h>
 #include <aws/gamelift/model/GameSession.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,35 +44,37 @@ namespace Model
   {
   public:
     CreateGameSessionResult();
-    CreateGameSessionResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateGameSessionResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateGameSessionResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateGameSessionResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>Object containing the newly created game session record.</p>
+     * <p>Object that describes the newly created game session record.</p>
      */
     inline const GameSession& GetGameSession() const{ return m_gameSession; }
 
     /**
-     * <p>Object containing the newly created game session record.</p>
+     * <p>Object that describes the newly created game session record.</p>
      */
     inline void SetGameSession(const GameSession& value) { m_gameSession = value; }
 
     /**
-     * <p>Object containing the newly created game session record.</p>
+     * <p>Object that describes the newly created game session record.</p>
      */
-    inline void SetGameSession(GameSession&& value) { m_gameSession = value; }
+    inline void SetGameSession(GameSession&& value) { m_gameSession = std::move(value); }
 
     /**
-     * <p>Object containing the newly created game session record.</p>
+     * <p>Object that describes the newly created game session record.</p>
      */
     inline CreateGameSessionResult& WithGameSession(const GameSession& value) { SetGameSession(value); return *this;}
 
     /**
-     * <p>Object containing the newly created game session record.</p>
+     * <p>Object that describes the newly created game session record.</p>
      */
-    inline CreateGameSessionResult& WithGameSession(GameSession&& value) { SetGameSession(value); return *this;}
+    inline CreateGameSessionResult& WithGameSession(GameSession&& value) { SetGameSession(std::move(value)); return *this;}
 
   private:
+
     GameSession m_gameSession;
   };
 

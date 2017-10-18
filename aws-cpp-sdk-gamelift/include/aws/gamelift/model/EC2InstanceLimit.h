@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/gamelift/GameLift_EXPORTS.h>
 #include <aws/gamelift/model/EC2InstanceType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,11 +47,12 @@ namespace Model
     EC2InstanceLimit& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Name of an EC2 instance type that is supported in Amazon GameLift. A fleet
      * instance type determines the computing resources of each instance in the fleet,
-     * including CPU, memory, storage, and networking capacity. GameLift supports the
-     * following EC2 instance types. See <a
+     * including CPU, memory, storage, and networking capacity. Amazon GameLift
+     * supports the following EC2 instance types. See <a
      * href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance Types</a>
      * for detailed descriptions.</p>
      */
@@ -58,8 +61,8 @@ namespace Model
     /**
      * <p>Name of an EC2 instance type that is supported in Amazon GameLift. A fleet
      * instance type determines the computing resources of each instance in the fleet,
-     * including CPU, memory, storage, and networking capacity. GameLift supports the
-     * following EC2 instance types. See <a
+     * including CPU, memory, storage, and networking capacity. Amazon GameLift
+     * supports the following EC2 instance types. See <a
      * href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance Types</a>
      * for detailed descriptions.</p>
      */
@@ -68,18 +71,18 @@ namespace Model
     /**
      * <p>Name of an EC2 instance type that is supported in Amazon GameLift. A fleet
      * instance type determines the computing resources of each instance in the fleet,
-     * including CPU, memory, storage, and networking capacity. GameLift supports the
-     * following EC2 instance types. See <a
+     * including CPU, memory, storage, and networking capacity. Amazon GameLift
+     * supports the following EC2 instance types. See <a
      * href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance Types</a>
      * for detailed descriptions.</p>
      */
-    inline void SetEC2InstanceType(EC2InstanceType&& value) { m_eC2InstanceTypeHasBeenSet = true; m_eC2InstanceType = value; }
+    inline void SetEC2InstanceType(EC2InstanceType&& value) { m_eC2InstanceTypeHasBeenSet = true; m_eC2InstanceType = std::move(value); }
 
     /**
      * <p>Name of an EC2 instance type that is supported in Amazon GameLift. A fleet
      * instance type determines the computing resources of each instance in the fleet,
-     * including CPU, memory, storage, and networking capacity. GameLift supports the
-     * following EC2 instance types. See <a
+     * including CPU, memory, storage, and networking capacity. Amazon GameLift
+     * supports the following EC2 instance types. See <a
      * href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance Types</a>
      * for detailed descriptions.</p>
      */
@@ -88,12 +91,13 @@ namespace Model
     /**
      * <p>Name of an EC2 instance type that is supported in Amazon GameLift. A fleet
      * instance type determines the computing resources of each instance in the fleet,
-     * including CPU, memory, storage, and networking capacity. GameLift supports the
-     * following EC2 instance types. See <a
+     * including CPU, memory, storage, and networking capacity. Amazon GameLift
+     * supports the following EC2 instance types. See <a
      * href="http://aws.amazon.com/ec2/instance-types/">Amazon EC2 Instance Types</a>
      * for detailed descriptions.</p>
      */
-    inline EC2InstanceLimit& WithEC2InstanceType(EC2InstanceType&& value) { SetEC2InstanceType(value); return *this;}
+    inline EC2InstanceLimit& WithEC2InstanceType(EC2InstanceType&& value) { SetEC2InstanceType(std::move(value)); return *this;}
+
 
     /**
      * <p>Number of instances of the specified type that are currently in use by this
@@ -113,6 +117,7 @@ namespace Model
      */
     inline EC2InstanceLimit& WithCurrentInstances(int value) { SetCurrentInstances(value); return *this;}
 
+
     /**
      * <p>Number of instances allowed.</p>
      */
@@ -129,10 +134,13 @@ namespace Model
     inline EC2InstanceLimit& WithInstanceLimit(int value) { SetInstanceLimit(value); return *this;}
 
   private:
+
     EC2InstanceType m_eC2InstanceType;
     bool m_eC2InstanceTypeHasBeenSet;
+
     int m_currentInstances;
     bool m_currentInstancesHasBeenSet;
+
     int m_instanceLimit;
     bool m_instanceLimitHasBeenSet;
   };

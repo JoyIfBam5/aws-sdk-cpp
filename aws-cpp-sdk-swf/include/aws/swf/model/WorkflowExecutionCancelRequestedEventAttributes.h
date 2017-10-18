@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 #include <aws/swf/model/WorkflowExecution.h>
 #include <aws/swf/model/WorkflowExecutionCancelRequestedCause.h>
+#include <utility>
 
 namespace Aws
 {
@@ -32,7 +34,7 @@ namespace Model
 {
 
   /**
-   * <p>Provides details of the <code>WorkflowExecutionCancelRequested</code>
+   * <p>Provides the details of the <code>WorkflowExecutionCancelRequested</code>
    * event.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/swf-2012-01-25/WorkflowExecutionCancelRequestedEventAttributes">AWS
    * API Reference</a></p>
@@ -44,6 +46,7 @@ namespace Model
     WorkflowExecutionCancelRequestedEventAttributes(const Aws::Utils::Json::JsonValue& jsonValue);
     WorkflowExecutionCancelRequestedEventAttributes& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>The external workflow execution for which the cancellation was requested.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The external workflow execution for which the cancellation was requested.</p>
      */
-    inline void SetExternalWorkflowExecution(WorkflowExecution&& value) { m_externalWorkflowExecutionHasBeenSet = true; m_externalWorkflowExecution = value; }
+    inline void SetExternalWorkflowExecution(WorkflowExecution&& value) { m_externalWorkflowExecutionHasBeenSet = true; m_externalWorkflowExecution = std::move(value); }
 
     /**
      * <p>The external workflow execution for which the cancellation was requested.</p>
@@ -68,7 +71,8 @@ namespace Model
     /**
      * <p>The external workflow execution for which the cancellation was requested.</p>
      */
-    inline WorkflowExecutionCancelRequestedEventAttributes& WithExternalWorkflowExecution(WorkflowExecution&& value) { SetExternalWorkflowExecution(value); return *this;}
+    inline WorkflowExecutionCancelRequestedEventAttributes& WithExternalWorkflowExecution(WorkflowExecution&& value) { SetExternalWorkflowExecution(std::move(value)); return *this;}
+
 
     /**
      * <p>The ID of the <code>RequestCancelExternalWorkflowExecutionInitiated</code>
@@ -100,6 +104,7 @@ namespace Model
      */
     inline WorkflowExecutionCancelRequestedEventAttributes& WithExternalInitiatedEventId(long long value) { SetExternalInitiatedEventId(value); return *this;}
 
+
     /**
      * <p>If set, indicates that the request to cancel the workflow execution was
      * automatically generated, and specifies the cause. This happens if the parent
@@ -122,7 +127,7 @@ namespace Model
      * workflow execution times out or is terminated, and the child policy is set to
      * cancel child executions.</p>
      */
-    inline void SetCause(WorkflowExecutionCancelRequestedCause&& value) { m_causeHasBeenSet = true; m_cause = value; }
+    inline void SetCause(WorkflowExecutionCancelRequestedCause&& value) { m_causeHasBeenSet = true; m_cause = std::move(value); }
 
     /**
      * <p>If set, indicates that the request to cancel the workflow execution was
@@ -138,13 +143,16 @@ namespace Model
      * workflow execution times out or is terminated, and the child policy is set to
      * cancel child executions.</p>
      */
-    inline WorkflowExecutionCancelRequestedEventAttributes& WithCause(WorkflowExecutionCancelRequestedCause&& value) { SetCause(value); return *this;}
+    inline WorkflowExecutionCancelRequestedEventAttributes& WithCause(WorkflowExecutionCancelRequestedCause&& value) { SetCause(std::move(value)); return *this;}
 
   private:
+
     WorkflowExecution m_externalWorkflowExecution;
     bool m_externalWorkflowExecutionHasBeenSet;
+
     long long m_externalInitiatedEventId;
     bool m_externalInitiatedEventIdHasBeenSet;
+
     WorkflowExecutionCancelRequestedCause m_cause;
     bool m_causeHasBeenSet;
   };

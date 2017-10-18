@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/acm/ACM_EXPORTS.h>
 #include <aws/acm/ACMRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/Array.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,9 +33,17 @@ namespace Model
   {
   public:
     ImportCertificateRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ImportCertificate"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The <a
@@ -57,7 +67,7 @@ namespace Model
      * Resource Name (ARN)</a> of an imported certificate to replace. To import a new
      * certificate, omit this field.</p>
      */
-    inline void SetCertificateArn(Aws::String&& value) { m_certificateArnHasBeenSet = true; m_certificateArn = value; }
+    inline void SetCertificateArn(Aws::String&& value) { m_certificateArnHasBeenSet = true; m_certificateArn = std::move(value); }
 
     /**
      * <p>The <a
@@ -81,7 +91,7 @@ namespace Model
      * Resource Name (ARN)</a> of an imported certificate to replace. To import a new
      * certificate, omit this field.</p>
      */
-    inline ImportCertificateRequest& WithCertificateArn(Aws::String&& value) { SetCertificateArn(value); return *this;}
+    inline ImportCertificateRequest& WithCertificateArn(Aws::String&& value) { SetCertificateArn(std::move(value)); return *this;}
 
     /**
      * <p>The <a
@@ -90,6 +100,7 @@ namespace Model
      * certificate, omit this field.</p>
      */
     inline ImportCertificateRequest& WithCertificateArn(const char* value) { SetCertificateArn(value); return *this;}
+
 
     /**
      * <p>The certificate to import. It must meet the following requirements:</p> <ul>
@@ -119,7 +130,7 @@ namespace Model
      * certificate's <code>NotBefore</code> date) or after it expires (the
      * certificate's <code>NotAfter</code> date).</p> </li> </ul>
      */
-    inline void SetCertificate(Aws::Utils::ByteBuffer&& value) { m_certificateHasBeenSet = true; m_certificate = value; }
+    inline void SetCertificate(Aws::Utils::ByteBuffer&& value) { m_certificateHasBeenSet = true; m_certificate = std::move(value); }
 
     /**
      * <p>The certificate to import. It must meet the following requirements:</p> <ul>
@@ -139,7 +150,8 @@ namespace Model
      * certificate's <code>NotBefore</code> date) or after it expires (the
      * certificate's <code>NotAfter</code> date).</p> </li> </ul>
      */
-    inline ImportCertificateRequest& WithCertificate(Aws::Utils::ByteBuffer&& value) { SetCertificate(value); return *this;}
+    inline ImportCertificateRequest& WithCertificate(Aws::Utils::ByteBuffer&& value) { SetCertificate(std::move(value)); return *this;}
+
 
     /**
      * <p>The private key that matches the public key in the certificate. It must meet
@@ -163,7 +175,7 @@ namespace Model
      * <p>Must be unencrypted. You cannot import a private key that is protected by a
      * password or passphrase.</p> </li> </ul>
      */
-    inline void SetPrivateKey(Aws::Utils::ByteBuffer&& value) { m_privateKeyHasBeenSet = true; m_privateKey = value; }
+    inline void SetPrivateKey(Aws::Utils::ByteBuffer&& value) { m_privateKeyHasBeenSet = true; m_privateKey = std::move(value); }
 
     /**
      * <p>The private key that matches the public key in the certificate. It must meet
@@ -179,7 +191,8 @@ namespace Model
      * <p>Must be unencrypted. You cannot import a private key that is protected by a
      * password or passphrase.</p> </li> </ul>
      */
-    inline ImportCertificateRequest& WithPrivateKey(Aws::Utils::ByteBuffer&& value) { SetPrivateKey(value); return *this;}
+    inline ImportCertificateRequest& WithPrivateKey(Aws::Utils::ByteBuffer&& value) { SetPrivateKey(std::move(value)); return *this;}
+
 
     /**
      * <p>The certificate chain. It must be PEM-encoded.</p>
@@ -194,7 +207,7 @@ namespace Model
     /**
      * <p>The certificate chain. It must be PEM-encoded.</p>
      */
-    inline void SetCertificateChain(Aws::Utils::ByteBuffer&& value) { m_certificateChainHasBeenSet = true; m_certificateChain = value; }
+    inline void SetCertificateChain(Aws::Utils::ByteBuffer&& value) { m_certificateChainHasBeenSet = true; m_certificateChain = std::move(value); }
 
     /**
      * <p>The certificate chain. It must be PEM-encoded.</p>
@@ -204,15 +217,19 @@ namespace Model
     /**
      * <p>The certificate chain. It must be PEM-encoded.</p>
      */
-    inline ImportCertificateRequest& WithCertificateChain(Aws::Utils::ByteBuffer&& value) { SetCertificateChain(value); return *this;}
+    inline ImportCertificateRequest& WithCertificateChain(Aws::Utils::ByteBuffer&& value) { SetCertificateChain(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_certificateArn;
     bool m_certificateArnHasBeenSet;
+
     Aws::Utils::ByteBuffer m_certificate;
     bool m_certificateHasBeenSet;
+
     Aws::Utils::ByteBuffer m_privateKey;
     bool m_privateKeyHasBeenSet;
+
     Aws::Utils::ByteBuffer m_certificateChain;
     bool m_certificateChainHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 
 #include <aws/core/client/CoreErrors.h>
@@ -54,12 +55,14 @@ enum class ElasticBeanstalkErrors
   UNKNOWN = 100,
   ///////////////////////////////////////////////////////////////////////////////////////////
 
-  CODE_BUILD_NOT_IN_SERVICE_REGION= static_cast<int>(Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
+  CODE_BUILD_NOT_IN_SERVICE_REGION= static_cast<int>(Aws::Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
   ELASTIC_BEANSTALK_SERVICE,
   INSUFFICIENT_PRIVILEGES,
   INVALID_REQUEST,
   MANAGED_ACTION_INVALID_STATE,
   OPERATION_IN_PROGRESS,
+  PLATFORM_VERSION_STILL_REFERENCED,
+  RESOURCE_TYPE_NOT_SUPPORTED,
   S3_LOCATION_NOT_IN_SERVICE_REGION,
   S3_SUBSCRIPTION_REQUIRED,
   SOURCE_BUNDLE_DELETION,
@@ -67,11 +70,13 @@ enum class ElasticBeanstalkErrors
   TOO_MANY_APPLICATION_VERSIONS,
   TOO_MANY_BUCKETS,
   TOO_MANY_CONFIGURATION_TEMPLATES,
-  TOO_MANY_ENVIRONMENTS
+  TOO_MANY_ENVIRONMENTS,
+  TOO_MANY_PLATFORMS,
+  TOO_MANY_TAGS
 };
 namespace ElasticBeanstalkErrorMapper
 {
-  AWS_ELASTICBEANSTALK_API Client::AWSError<Client::CoreErrors> GetErrorForName(const char* errorName);
+  AWS_ELASTICBEANSTALK_API Aws::Client::AWSError<Aws::Client::CoreErrors> GetErrorForName(const char* errorName);
 }
 
 } // namespace ElasticBeanstalk

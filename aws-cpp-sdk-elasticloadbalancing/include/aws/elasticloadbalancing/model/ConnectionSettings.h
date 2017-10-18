@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticloadbalancing/ElasticLoadBalancing_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -46,6 +47,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The time, in seconds, that the connection is allowed to be idle (no data has
      * been sent over the connection) before it is closed by the load balancer.</p>
@@ -65,6 +67,7 @@ namespace Model
     inline ConnectionSettings& WithIdleTimeout(int value) { SetIdleTimeout(value); return *this;}
 
   private:
+
     int m_idleTimeout;
     bool m_idleTimeoutHasBeenSet;
   };

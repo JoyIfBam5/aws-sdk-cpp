@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/redshift/RedshiftRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,7 +36,19 @@ namespace Model
   {
   public:
     DescribeTagsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeTags"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The Amazon Resource Name (ARN) for which you want to describe the tag or
@@ -55,7 +69,7 @@ namespace Model
      * tags. For example, <code>arn:aws:redshift:us-east-1:123456789:cluster:t1</code>.
      * </p>
      */
-    inline void SetResourceName(Aws::String&& value) { m_resourceNameHasBeenSet = true; m_resourceName = value; }
+    inline void SetResourceName(Aws::String&& value) { m_resourceNameHasBeenSet = true; m_resourceName = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) for which you want to describe the tag or
@@ -76,7 +90,7 @@ namespace Model
      * tags. For example, <code>arn:aws:redshift:us-east-1:123456789:cluster:t1</code>.
      * </p>
      */
-    inline DescribeTagsRequest& WithResourceName(Aws::String&& value) { SetResourceName(value); return *this;}
+    inline DescribeTagsRequest& WithResourceName(Aws::String&& value) { SetResourceName(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) for which you want to describe the tag or
@@ -84,6 +98,7 @@ namespace Model
      * </p>
      */
     inline DescribeTagsRequest& WithResourceName(const char* value) { SetResourceName(value); return *this;}
+
 
     /**
      * <p>The type of resource with which you want to view tags. Valid resource types
@@ -93,9 +108,9 @@ namespace Model
      * <li> <p>HSM certificate</p> </li> <li> <p>Parameter group</p> </li> <li>
      * <p>Snapshot copy grant</p> </li> </ul> <p>For more information about Amazon
      * Redshift resource types and constructing ARNs, go to <a
-     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html">Constructing
-     * an Amazon Redshift Amazon Resource Name (ARN)</a> in the Amazon Redshift Cluster
-     * Management Guide. </p>
+     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-overview.html#redshift-iam-access-control-specify-actions">Specifying
+     * Policy Elements: Actions, Effects, Resources, and Principals</a> in the Amazon
+     * Redshift Cluster Management Guide. </p>
      */
     inline const Aws::String& GetResourceType() const{ return m_resourceType; }
 
@@ -107,9 +122,9 @@ namespace Model
      * <li> <p>HSM certificate</p> </li> <li> <p>Parameter group</p> </li> <li>
      * <p>Snapshot copy grant</p> </li> </ul> <p>For more information about Amazon
      * Redshift resource types and constructing ARNs, go to <a
-     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html">Constructing
-     * an Amazon Redshift Amazon Resource Name (ARN)</a> in the Amazon Redshift Cluster
-     * Management Guide. </p>
+     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-overview.html#redshift-iam-access-control-specify-actions">Specifying
+     * Policy Elements: Actions, Effects, Resources, and Principals</a> in the Amazon
+     * Redshift Cluster Management Guide. </p>
      */
     inline void SetResourceType(const Aws::String& value) { m_resourceTypeHasBeenSet = true; m_resourceType = value; }
 
@@ -121,11 +136,11 @@ namespace Model
      * <li> <p>HSM certificate</p> </li> <li> <p>Parameter group</p> </li> <li>
      * <p>Snapshot copy grant</p> </li> </ul> <p>For more information about Amazon
      * Redshift resource types and constructing ARNs, go to <a
-     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html">Constructing
-     * an Amazon Redshift Amazon Resource Name (ARN)</a> in the Amazon Redshift Cluster
-     * Management Guide. </p>
+     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-overview.html#redshift-iam-access-control-specify-actions">Specifying
+     * Policy Elements: Actions, Effects, Resources, and Principals</a> in the Amazon
+     * Redshift Cluster Management Guide. </p>
      */
-    inline void SetResourceType(Aws::String&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = value; }
+    inline void SetResourceType(Aws::String&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = std::move(value); }
 
     /**
      * <p>The type of resource with which you want to view tags. Valid resource types
@@ -135,9 +150,9 @@ namespace Model
      * <li> <p>HSM certificate</p> </li> <li> <p>Parameter group</p> </li> <li>
      * <p>Snapshot copy grant</p> </li> </ul> <p>For more information about Amazon
      * Redshift resource types and constructing ARNs, go to <a
-     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html">Constructing
-     * an Amazon Redshift Amazon Resource Name (ARN)</a> in the Amazon Redshift Cluster
-     * Management Guide. </p>
+     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-overview.html#redshift-iam-access-control-specify-actions">Specifying
+     * Policy Elements: Actions, Effects, Resources, and Principals</a> in the Amazon
+     * Redshift Cluster Management Guide. </p>
      */
     inline void SetResourceType(const char* value) { m_resourceTypeHasBeenSet = true; m_resourceType.assign(value); }
 
@@ -149,9 +164,9 @@ namespace Model
      * <li> <p>HSM certificate</p> </li> <li> <p>Parameter group</p> </li> <li>
      * <p>Snapshot copy grant</p> </li> </ul> <p>For more information about Amazon
      * Redshift resource types and constructing ARNs, go to <a
-     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html">Constructing
-     * an Amazon Redshift Amazon Resource Name (ARN)</a> in the Amazon Redshift Cluster
-     * Management Guide. </p>
+     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-overview.html#redshift-iam-access-control-specify-actions">Specifying
+     * Policy Elements: Actions, Effects, Resources, and Principals</a> in the Amazon
+     * Redshift Cluster Management Guide. </p>
      */
     inline DescribeTagsRequest& WithResourceType(const Aws::String& value) { SetResourceType(value); return *this;}
 
@@ -163,11 +178,11 @@ namespace Model
      * <li> <p>HSM certificate</p> </li> <li> <p>Parameter group</p> </li> <li>
      * <p>Snapshot copy grant</p> </li> </ul> <p>For more information about Amazon
      * Redshift resource types and constructing ARNs, go to <a
-     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html">Constructing
-     * an Amazon Redshift Amazon Resource Name (ARN)</a> in the Amazon Redshift Cluster
-     * Management Guide. </p>
+     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-overview.html#redshift-iam-access-control-specify-actions">Specifying
+     * Policy Elements: Actions, Effects, Resources, and Principals</a> in the Amazon
+     * Redshift Cluster Management Guide. </p>
      */
-    inline DescribeTagsRequest& WithResourceType(Aws::String&& value) { SetResourceType(value); return *this;}
+    inline DescribeTagsRequest& WithResourceType(Aws::String&& value) { SetResourceType(std::move(value)); return *this;}
 
     /**
      * <p>The type of resource with which you want to view tags. Valid resource types
@@ -177,11 +192,12 @@ namespace Model
      * <li> <p>HSM certificate</p> </li> <li> <p>Parameter group</p> </li> <li>
      * <p>Snapshot copy grant</p> </li> </ul> <p>For more information about Amazon
      * Redshift resource types and constructing ARNs, go to <a
-     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html">Constructing
-     * an Amazon Redshift Amazon Resource Name (ARN)</a> in the Amazon Redshift Cluster
-     * Management Guide. </p>
+     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-overview.html#redshift-iam-access-control-specify-actions">Specifying
+     * Policy Elements: Actions, Effects, Resources, and Principals</a> in the Amazon
+     * Redshift Cluster Management Guide. </p>
      */
     inline DescribeTagsRequest& WithResourceType(const char* value) { SetResourceType(value); return *this;}
+
 
     /**
      * <p>The maximum number or response records to return in each call. If the number
@@ -209,6 +225,7 @@ namespace Model
      * <code>marker</code> value. </p>
      */
     inline DescribeTagsRequest& WithMaxRecords(int value) { SetMaxRecords(value); return *this;}
+
 
     /**
      * <p>A value that indicates the starting point for the next set of response
@@ -238,7 +255,7 @@ namespace Model
      * <code>marker</code> field is empty, all response records have been retrieved for
      * the request. </p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p>A value that indicates the starting point for the next set of response
@@ -268,7 +285,7 @@ namespace Model
      * <code>marker</code> field is empty, all response records have been retrieved for
      * the request. </p>
      */
-    inline DescribeTagsRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeTagsRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>A value that indicates the starting point for the next set of response
@@ -279,6 +296,7 @@ namespace Model
      * the request. </p>
      */
     inline DescribeTagsRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>A tag key or keys for which you want to return all matching resources that
@@ -308,7 +326,7 @@ namespace Model
      * Amazon Redshift returns a response with all resources that have either or both
      * of these tag keys associated with them.</p>
      */
-    inline void SetTagKeys(Aws::Vector<Aws::String>&& value) { m_tagKeysHasBeenSet = true; m_tagKeys = value; }
+    inline void SetTagKeys(Aws::Vector<Aws::String>&& value) { m_tagKeysHasBeenSet = true; m_tagKeys = std::move(value); }
 
     /**
      * <p>A tag key or keys for which you want to return all matching resources that
@@ -328,7 +346,7 @@ namespace Model
      * Amazon Redshift returns a response with all resources that have either or both
      * of these tag keys associated with them.</p>
      */
-    inline DescribeTagsRequest& WithTagKeys(Aws::Vector<Aws::String>&& value) { SetTagKeys(value); return *this;}
+    inline DescribeTagsRequest& WithTagKeys(Aws::Vector<Aws::String>&& value) { SetTagKeys(std::move(value)); return *this;}
 
     /**
      * <p>A tag key or keys for which you want to return all matching resources that
@@ -348,7 +366,7 @@ namespace Model
      * Amazon Redshift returns a response with all resources that have either or both
      * of these tag keys associated with them.</p>
      */
-    inline DescribeTagsRequest& AddTagKeys(Aws::String&& value) { m_tagKeysHasBeenSet = true; m_tagKeys.push_back(value); return *this; }
+    inline DescribeTagsRequest& AddTagKeys(Aws::String&& value) { m_tagKeysHasBeenSet = true; m_tagKeys.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A tag key or keys for which you want to return all matching resources that
@@ -359,6 +377,7 @@ namespace Model
      * of these tag keys associated with them.</p>
      */
     inline DescribeTagsRequest& AddTagKeys(const char* value) { m_tagKeysHasBeenSet = true; m_tagKeys.push_back(value); return *this; }
+
 
     /**
      * <p>A tag value or values for which you want to return all matching resources
@@ -388,7 +407,7 @@ namespace Model
      * Amazon Redshift returns a response with all resources that have either or both
      * of these tag values associated with them.</p>
      */
-    inline void SetTagValues(Aws::Vector<Aws::String>&& value) { m_tagValuesHasBeenSet = true; m_tagValues = value; }
+    inline void SetTagValues(Aws::Vector<Aws::String>&& value) { m_tagValuesHasBeenSet = true; m_tagValues = std::move(value); }
 
     /**
      * <p>A tag value or values for which you want to return all matching resources
@@ -408,7 +427,7 @@ namespace Model
      * Amazon Redshift returns a response with all resources that have either or both
      * of these tag values associated with them.</p>
      */
-    inline DescribeTagsRequest& WithTagValues(Aws::Vector<Aws::String>&& value) { SetTagValues(value); return *this;}
+    inline DescribeTagsRequest& WithTagValues(Aws::Vector<Aws::String>&& value) { SetTagValues(std::move(value)); return *this;}
 
     /**
      * <p>A tag value or values for which you want to return all matching resources
@@ -428,7 +447,7 @@ namespace Model
      * Amazon Redshift returns a response with all resources that have either or both
      * of these tag values associated with them.</p>
      */
-    inline DescribeTagsRequest& AddTagValues(Aws::String&& value) { m_tagValuesHasBeenSet = true; m_tagValues.push_back(value); return *this; }
+    inline DescribeTagsRequest& AddTagValues(Aws::String&& value) { m_tagValuesHasBeenSet = true; m_tagValues.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A tag value or values for which you want to return all matching resources
@@ -441,16 +460,22 @@ namespace Model
     inline DescribeTagsRequest& AddTagValues(const char* value) { m_tagValuesHasBeenSet = true; m_tagValues.push_back(value); return *this; }
 
   private:
+
     Aws::String m_resourceName;
     bool m_resourceNameHasBeenSet;
+
     Aws::String m_resourceType;
     bool m_resourceTypeHasBeenSet;
+
     int m_maxRecords;
     bool m_maxRecordsHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
+
     Aws::Vector<Aws::String> m_tagKeys;
     bool m_tagKeysHasBeenSet;
+
     Aws::Vector<Aws::String> m_tagValues;
     bool m_tagValuesHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticache/ElastiCache_EXPORTS.h>
 #include <aws/elasticache/ElastiCacheRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticache/model/AZMode.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,7 +38,19 @@ namespace Model
   {
   public:
     ModifyCacheClusterRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ModifyCacheCluster"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The cache cluster identifier. This value is stored as a lowercase string.</p>
@@ -51,7 +65,7 @@ namespace Model
     /**
      * <p>The cache cluster identifier. This value is stored as a lowercase string.</p>
      */
-    inline void SetCacheClusterId(Aws::String&& value) { m_cacheClusterIdHasBeenSet = true; m_cacheClusterId = value; }
+    inline void SetCacheClusterId(Aws::String&& value) { m_cacheClusterIdHasBeenSet = true; m_cacheClusterId = std::move(value); }
 
     /**
      * <p>The cache cluster identifier. This value is stored as a lowercase string.</p>
@@ -66,12 +80,13 @@ namespace Model
     /**
      * <p>The cache cluster identifier. This value is stored as a lowercase string.</p>
      */
-    inline ModifyCacheClusterRequest& WithCacheClusterId(Aws::String&& value) { SetCacheClusterId(value); return *this;}
+    inline ModifyCacheClusterRequest& WithCacheClusterId(Aws::String&& value) { SetCacheClusterId(std::move(value)); return *this;}
 
     /**
      * <p>The cache cluster identifier. This value is stored as a lowercase string.</p>
      */
     inline ModifyCacheClusterRequest& WithCacheClusterId(const char* value) { SetCacheClusterId(value); return *this;}
+
 
     /**
      * <p>The number of cache nodes that the cache cluster should have. If the value
@@ -166,6 +181,7 @@ namespace Model
      */
     inline ModifyCacheClusterRequest& WithNumCacheNodes(int value) { SetNumCacheNodes(value); return *this;}
 
+
     /**
      * <p>A list of cache node IDs to be removed. A node ID is a numeric identifier
      * (0001, 0002, etc.). This parameter is only valid when <code>NumCacheNodes</code>
@@ -203,7 +219,7 @@ namespace Model
      * nodes in this <code>ModifyCacheCluser</code> call is 5, you must list 2 (7 - 5)
      * cache node IDs to remove.</p>
      */
-    inline void SetCacheNodeIdsToRemove(Aws::Vector<Aws::String>&& value) { m_cacheNodeIdsToRemoveHasBeenSet = true; m_cacheNodeIdsToRemove = value; }
+    inline void SetCacheNodeIdsToRemove(Aws::Vector<Aws::String>&& value) { m_cacheNodeIdsToRemoveHasBeenSet = true; m_cacheNodeIdsToRemove = std::move(value); }
 
     /**
      * <p>A list of cache node IDs to be removed. A node ID is a numeric identifier
@@ -229,7 +245,7 @@ namespace Model
      * nodes in this <code>ModifyCacheCluser</code> call is 5, you must list 2 (7 - 5)
      * cache node IDs to remove.</p>
      */
-    inline ModifyCacheClusterRequest& WithCacheNodeIdsToRemove(Aws::Vector<Aws::String>&& value) { SetCacheNodeIdsToRemove(value); return *this;}
+    inline ModifyCacheClusterRequest& WithCacheNodeIdsToRemove(Aws::Vector<Aws::String>&& value) { SetCacheNodeIdsToRemove(std::move(value)); return *this;}
 
     /**
      * <p>A list of cache node IDs to be removed. A node ID is a numeric identifier
@@ -255,7 +271,7 @@ namespace Model
      * nodes in this <code>ModifyCacheCluser</code> call is 5, you must list 2 (7 - 5)
      * cache node IDs to remove.</p>
      */
-    inline ModifyCacheClusterRequest& AddCacheNodeIdsToRemove(Aws::String&& value) { m_cacheNodeIdsToRemoveHasBeenSet = true; m_cacheNodeIdsToRemove.push_back(value); return *this; }
+    inline ModifyCacheClusterRequest& AddCacheNodeIdsToRemove(Aws::String&& value) { m_cacheNodeIdsToRemoveHasBeenSet = true; m_cacheNodeIdsToRemove.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of cache node IDs to be removed. A node ID is a numeric identifier
@@ -269,6 +285,7 @@ namespace Model
      * cache node IDs to remove.</p>
      */
     inline ModifyCacheClusterRequest& AddCacheNodeIdsToRemove(const char* value) { m_cacheNodeIdsToRemoveHasBeenSet = true; m_cacheNodeIdsToRemove.push_back(value); return *this; }
+
 
     /**
      * <p>Specifies whether the new nodes in this Memcached cache cluster are all
@@ -319,7 +336,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheNode.Memcached.html">Cache
      * Node Considerations for Memcached</a>.</p> </note>
      */
-    inline void SetAZMode(AZMode&& value) { m_aZModeHasBeenSet = true; m_aZMode = value; }
+    inline void SetAZMode(AZMode&& value) { m_aZModeHasBeenSet = true; m_aZMode = std::move(value); }
 
     /**
      * <p>Specifies whether the new nodes in this Memcached cache cluster are all
@@ -353,7 +370,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheNode.Memcached.html">Cache
      * Node Considerations for Memcached</a>.</p> </note>
      */
-    inline ModifyCacheClusterRequest& WithAZMode(AZMode&& value) { SetAZMode(value); return *this;}
+    inline ModifyCacheClusterRequest& WithAZMode(AZMode&& value) { SetAZMode(std::move(value)); return *this;}
+
 
     /**
      * <p>The list of Availability Zones where the new Memcached cache nodes are
@@ -482,7 +500,7 @@ namespace Model
      * new create request is <b>Apply Immediately - No</b>, all creates are
      * pending.</p> </important> </li> </ul> </li> </ul>
      */
-    inline void SetNewAvailabilityZones(Aws::Vector<Aws::String>&& value) { m_newAvailabilityZonesHasBeenSet = true; m_newAvailabilityZones = value; }
+    inline void SetNewAvailabilityZones(Aws::Vector<Aws::String>&& value) { m_newAvailabilityZonesHasBeenSet = true; m_newAvailabilityZones = std::move(value); }
 
     /**
      * <p>The list of Availability Zones where the new Memcached cache nodes are
@@ -568,7 +586,7 @@ namespace Model
      * new create request is <b>Apply Immediately - No</b>, all creates are
      * pending.</p> </important> </li> </ul> </li> </ul>
      */
-    inline ModifyCacheClusterRequest& WithNewAvailabilityZones(Aws::Vector<Aws::String>&& value) { SetNewAvailabilityZones(value); return *this;}
+    inline ModifyCacheClusterRequest& WithNewAvailabilityZones(Aws::Vector<Aws::String>&& value) { SetNewAvailabilityZones(std::move(value)); return *this;}
 
     /**
      * <p>The list of Availability Zones where the new Memcached cache nodes are
@@ -654,7 +672,7 @@ namespace Model
      * new create request is <b>Apply Immediately - No</b>, all creates are
      * pending.</p> </important> </li> </ul> </li> </ul>
      */
-    inline ModifyCacheClusterRequest& AddNewAvailabilityZones(Aws::String&& value) { m_newAvailabilityZonesHasBeenSet = true; m_newAvailabilityZones.push_back(value); return *this; }
+    inline ModifyCacheClusterRequest& AddNewAvailabilityZones(Aws::String&& value) { m_newAvailabilityZonesHasBeenSet = true; m_newAvailabilityZones.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The list of Availability Zones where the new Memcached cache nodes are
@@ -699,6 +717,7 @@ namespace Model
      */
     inline ModifyCacheClusterRequest& AddNewAvailabilityZones(const char* value) { m_newAvailabilityZonesHasBeenSet = true; m_newAvailabilityZones.push_back(value); return *this; }
 
+
     /**
      * <p>A list of cache security group names to authorize on this cache cluster. This
      * change is asynchronously applied as soon as possible.</p> <p>You can use this
@@ -724,7 +743,7 @@ namespace Model
      * Private Cloud (Amazon VPC).</p> <p>Constraints: Must contain no more than 255
      * alphanumeric characters. Must not be "Default".</p>
      */
-    inline void SetCacheSecurityGroupNames(Aws::Vector<Aws::String>&& value) { m_cacheSecurityGroupNamesHasBeenSet = true; m_cacheSecurityGroupNames = value; }
+    inline void SetCacheSecurityGroupNames(Aws::Vector<Aws::String>&& value) { m_cacheSecurityGroupNamesHasBeenSet = true; m_cacheSecurityGroupNames = std::move(value); }
 
     /**
      * <p>A list of cache security group names to authorize on this cache cluster. This
@@ -742,7 +761,7 @@ namespace Model
      * Private Cloud (Amazon VPC).</p> <p>Constraints: Must contain no more than 255
      * alphanumeric characters. Must not be "Default".</p>
      */
-    inline ModifyCacheClusterRequest& WithCacheSecurityGroupNames(Aws::Vector<Aws::String>&& value) { SetCacheSecurityGroupNames(value); return *this;}
+    inline ModifyCacheClusterRequest& WithCacheSecurityGroupNames(Aws::Vector<Aws::String>&& value) { SetCacheSecurityGroupNames(std::move(value)); return *this;}
 
     /**
      * <p>A list of cache security group names to authorize on this cache cluster. This
@@ -760,7 +779,7 @@ namespace Model
      * Private Cloud (Amazon VPC).</p> <p>Constraints: Must contain no more than 255
      * alphanumeric characters. Must not be "Default".</p>
      */
-    inline ModifyCacheClusterRequest& AddCacheSecurityGroupNames(Aws::String&& value) { m_cacheSecurityGroupNamesHasBeenSet = true; m_cacheSecurityGroupNames.push_back(value); return *this; }
+    inline ModifyCacheClusterRequest& AddCacheSecurityGroupNames(Aws::String&& value) { m_cacheSecurityGroupNamesHasBeenSet = true; m_cacheSecurityGroupNames.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of cache security group names to authorize on this cache cluster. This
@@ -770,6 +789,7 @@ namespace Model
      * alphanumeric characters. Must not be "Default".</p>
      */
     inline ModifyCacheClusterRequest& AddCacheSecurityGroupNames(const char* value) { m_cacheSecurityGroupNamesHasBeenSet = true; m_cacheSecurityGroupNames.push_back(value); return *this; }
+
 
     /**
      * <p>Specifies the VPC Security Groups associated with the cache cluster.</p>
@@ -790,7 +810,7 @@ namespace Model
      * <p>This parameter can be used only with clusters that are created in an Amazon
      * Virtual Private Cloud (Amazon VPC).</p>
      */
-    inline void SetSecurityGroupIds(Aws::Vector<Aws::String>&& value) { m_securityGroupIdsHasBeenSet = true; m_securityGroupIds = value; }
+    inline void SetSecurityGroupIds(Aws::Vector<Aws::String>&& value) { m_securityGroupIdsHasBeenSet = true; m_securityGroupIds = std::move(value); }
 
     /**
      * <p>Specifies the VPC Security Groups associated with the cache cluster.</p>
@@ -804,7 +824,7 @@ namespace Model
      * <p>This parameter can be used only with clusters that are created in an Amazon
      * Virtual Private Cloud (Amazon VPC).</p>
      */
-    inline ModifyCacheClusterRequest& WithSecurityGroupIds(Aws::Vector<Aws::String>&& value) { SetSecurityGroupIds(value); return *this;}
+    inline ModifyCacheClusterRequest& WithSecurityGroupIds(Aws::Vector<Aws::String>&& value) { SetSecurityGroupIds(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the VPC Security Groups associated with the cache cluster.</p>
@@ -818,7 +838,7 @@ namespace Model
      * <p>This parameter can be used only with clusters that are created in an Amazon
      * Virtual Private Cloud (Amazon VPC).</p>
      */
-    inline ModifyCacheClusterRequest& AddSecurityGroupIds(Aws::String&& value) { m_securityGroupIdsHasBeenSet = true; m_securityGroupIds.push_back(value); return *this; }
+    inline ModifyCacheClusterRequest& AddSecurityGroupIds(Aws::String&& value) { m_securityGroupIdsHasBeenSet = true; m_securityGroupIds.push_back(std::move(value)); return *this; }
 
     /**
      * <p>Specifies the VPC Security Groups associated with the cache cluster.</p>
@@ -826,6 +846,7 @@ namespace Model
      * Virtual Private Cloud (Amazon VPC).</p>
      */
     inline ModifyCacheClusterRequest& AddSecurityGroupIds(const char* value) { m_securityGroupIdsHasBeenSet = true; m_securityGroupIds.push_back(value); return *this; }
+
 
     /**
      * <p>Specifies the weekly time range during which maintenance on the cluster is
@@ -861,7 +882,7 @@ namespace Model
      * <code>fri</code> </p> </li> <li> <p> <code>sat</code> </p> </li> </ul>
      * <p>Example: <code>sun:23:00-mon:01:30</code> </p>
      */
-    inline void SetPreferredMaintenanceWindow(Aws::String&& value) { m_preferredMaintenanceWindowHasBeenSet = true; m_preferredMaintenanceWindow = value; }
+    inline void SetPreferredMaintenanceWindow(Aws::String&& value) { m_preferredMaintenanceWindowHasBeenSet = true; m_preferredMaintenanceWindow = std::move(value); }
 
     /**
      * <p>Specifies the weekly time range during which maintenance on the cluster is
@@ -897,7 +918,7 @@ namespace Model
      * <code>fri</code> </p> </li> <li> <p> <code>sat</code> </p> </li> </ul>
      * <p>Example: <code>sun:23:00-mon:01:30</code> </p>
      */
-    inline ModifyCacheClusterRequest& WithPreferredMaintenanceWindow(Aws::String&& value) { SetPreferredMaintenanceWindow(value); return *this;}
+    inline ModifyCacheClusterRequest& WithPreferredMaintenanceWindow(Aws::String&& value) { SetPreferredMaintenanceWindow(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the weekly time range during which maintenance on the cluster is
@@ -910,6 +931,7 @@ namespace Model
      * <p>Example: <code>sun:23:00-mon:01:30</code> </p>
      */
     inline ModifyCacheClusterRequest& WithPreferredMaintenanceWindow(const char* value) { SetPreferredMaintenanceWindow(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the Amazon SNS topic to which notifications
@@ -930,7 +952,7 @@ namespace Model
      * are sent.</p> <note> <p>The Amazon SNS topic owner must be same as the cache
      * cluster owner.</p> </note>
      */
-    inline void SetNotificationTopicArn(Aws::String&& value) { m_notificationTopicArnHasBeenSet = true; m_notificationTopicArn = value; }
+    inline void SetNotificationTopicArn(Aws::String&& value) { m_notificationTopicArnHasBeenSet = true; m_notificationTopicArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the Amazon SNS topic to which notifications
@@ -951,7 +973,7 @@ namespace Model
      * are sent.</p> <note> <p>The Amazon SNS topic owner must be same as the cache
      * cluster owner.</p> </note>
      */
-    inline ModifyCacheClusterRequest& WithNotificationTopicArn(Aws::String&& value) { SetNotificationTopicArn(value); return *this;}
+    inline ModifyCacheClusterRequest& WithNotificationTopicArn(Aws::String&& value) { SetNotificationTopicArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the Amazon SNS topic to which notifications
@@ -959,6 +981,7 @@ namespace Model
      * cluster owner.</p> </note>
      */
     inline ModifyCacheClusterRequest& WithNotificationTopicArn(const char* value) { SetNotificationTopicArn(value); return *this;}
+
 
     /**
      * <p>The name of the cache parameter group to apply to this cache cluster. This
@@ -982,7 +1005,7 @@ namespace Model
      * <code>ApplyImmediately</code> parameter is specified as <code>true</code> for
      * this request.</p>
      */
-    inline void SetCacheParameterGroupName(Aws::String&& value) { m_cacheParameterGroupNameHasBeenSet = true; m_cacheParameterGroupName = value; }
+    inline void SetCacheParameterGroupName(Aws::String&& value) { m_cacheParameterGroupNameHasBeenSet = true; m_cacheParameterGroupName = std::move(value); }
 
     /**
      * <p>The name of the cache parameter group to apply to this cache cluster. This
@@ -1006,7 +1029,7 @@ namespace Model
      * <code>ApplyImmediately</code> parameter is specified as <code>true</code> for
      * this request.</p>
      */
-    inline ModifyCacheClusterRequest& WithCacheParameterGroupName(Aws::String&& value) { SetCacheParameterGroupName(value); return *this;}
+    inline ModifyCacheClusterRequest& WithCacheParameterGroupName(Aws::String&& value) { SetCacheParameterGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the cache parameter group to apply to this cache cluster. This
@@ -1015,6 +1038,7 @@ namespace Model
      * this request.</p>
      */
     inline ModifyCacheClusterRequest& WithCacheParameterGroupName(const char* value) { SetCacheParameterGroupName(value); return *this;}
+
 
     /**
      * <p>The status of the Amazon SNS notification topic. Notifications are sent only
@@ -1035,7 +1059,7 @@ namespace Model
      * if the status is <code>active</code>.</p> <p>Valid values: <code>active</code> |
      * <code>inactive</code> </p>
      */
-    inline void SetNotificationTopicStatus(Aws::String&& value) { m_notificationTopicStatusHasBeenSet = true; m_notificationTopicStatus = value; }
+    inline void SetNotificationTopicStatus(Aws::String&& value) { m_notificationTopicStatusHasBeenSet = true; m_notificationTopicStatus = std::move(value); }
 
     /**
      * <p>The status of the Amazon SNS notification topic. Notifications are sent only
@@ -1056,7 +1080,7 @@ namespace Model
      * if the status is <code>active</code>.</p> <p>Valid values: <code>active</code> |
      * <code>inactive</code> </p>
      */
-    inline ModifyCacheClusterRequest& WithNotificationTopicStatus(Aws::String&& value) { SetNotificationTopicStatus(value); return *this;}
+    inline ModifyCacheClusterRequest& WithNotificationTopicStatus(Aws::String&& value) { SetNotificationTopicStatus(std::move(value)); return *this;}
 
     /**
      * <p>The status of the Amazon SNS notification topic. Notifications are sent only
@@ -1064,6 +1088,7 @@ namespace Model
      * <code>inactive</code> </p>
      */
     inline ModifyCacheClusterRequest& WithNotificationTopicStatus(const char* value) { SetNotificationTopicStatus(value); return *this;}
+
 
     /**
      * <p>If <code>true</code>, this parameter causes the modifications in this request
@@ -1107,6 +1132,7 @@ namespace Model
      */
     inline ModifyCacheClusterRequest& WithApplyImmediately(bool value) { SetApplyImmediately(value); return *this;}
 
+
     /**
      * <p>The upgraded version of the cache engine to be run on the cache nodes.</p>
      * <p> <b>Important:</b> You can upgrade to a newer engine version (see <a
@@ -1135,7 +1161,7 @@ namespace Model
      * version. If you want to use an earlier engine version, you must delete the
      * existing cache cluster and create it anew with the earlier engine version. </p>
      */
-    inline void SetEngineVersion(Aws::String&& value) { m_engineVersionHasBeenSet = true; m_engineVersion = value; }
+    inline void SetEngineVersion(Aws::String&& value) { m_engineVersionHasBeenSet = true; m_engineVersion = std::move(value); }
 
     /**
      * <p>The upgraded version of the cache engine to be run on the cache nodes.</p>
@@ -1165,7 +1191,7 @@ namespace Model
      * version. If you want to use an earlier engine version, you must delete the
      * existing cache cluster and create it anew with the earlier engine version. </p>
      */
-    inline ModifyCacheClusterRequest& WithEngineVersion(Aws::String&& value) { SetEngineVersion(value); return *this;}
+    inline ModifyCacheClusterRequest& WithEngineVersion(Aws::String&& value) { SetEngineVersion(std::move(value)); return *this;}
 
     /**
      * <p>The upgraded version of the cache engine to be run on the cache nodes.</p>
@@ -1176,6 +1202,7 @@ namespace Model
      * existing cache cluster and create it anew with the earlier engine version. </p>
      */
     inline ModifyCacheClusterRequest& WithEngineVersion(const char* value) { SetEngineVersion(value); return *this;}
+
 
     /**
      * <p>This parameter is currently disabled.</p>
@@ -1191,6 +1218,7 @@ namespace Model
      * <p>This parameter is currently disabled.</p>
      */
     inline ModifyCacheClusterRequest& WithAutoMinorVersionUpgrade(bool value) { SetAutoMinorVersionUpgrade(value); return *this;}
+
 
     /**
      * <p>The number of days for which ElastiCache retains automatic cache cluster
@@ -1222,6 +1250,7 @@ namespace Model
      */
     inline ModifyCacheClusterRequest& WithSnapshotRetentionLimit(int value) { SetSnapshotRetentionLimit(value); return *this;}
 
+
     /**
      * <p>The daily time range (in UTC) during which ElastiCache begins taking a daily
      * snapshot of your cache cluster. </p>
@@ -1238,7 +1267,7 @@ namespace Model
      * <p>The daily time range (in UTC) during which ElastiCache begins taking a daily
      * snapshot of your cache cluster. </p>
      */
-    inline void SetSnapshotWindow(Aws::String&& value) { m_snapshotWindowHasBeenSet = true; m_snapshotWindow = value; }
+    inline void SetSnapshotWindow(Aws::String&& value) { m_snapshotWindowHasBeenSet = true; m_snapshotWindow = std::move(value); }
 
     /**
      * <p>The daily time range (in UTC) during which ElastiCache begins taking a daily
@@ -1256,13 +1285,14 @@ namespace Model
      * <p>The daily time range (in UTC) during which ElastiCache begins taking a daily
      * snapshot of your cache cluster. </p>
      */
-    inline ModifyCacheClusterRequest& WithSnapshotWindow(Aws::String&& value) { SetSnapshotWindow(value); return *this;}
+    inline ModifyCacheClusterRequest& WithSnapshotWindow(Aws::String&& value) { SetSnapshotWindow(std::move(value)); return *this;}
 
     /**
      * <p>The daily time range (in UTC) during which ElastiCache begins taking a daily
      * snapshot of your cache cluster. </p>
      */
     inline ModifyCacheClusterRequest& WithSnapshotWindow(const char* value) { SetSnapshotWindow(value); return *this;}
+
 
     /**
      * <p>A valid cache node type that you want to scale this cache cluster up to.</p>
@@ -1277,7 +1307,7 @@ namespace Model
     /**
      * <p>A valid cache node type that you want to scale this cache cluster up to.</p>
      */
-    inline void SetCacheNodeType(Aws::String&& value) { m_cacheNodeTypeHasBeenSet = true; m_cacheNodeType = value; }
+    inline void SetCacheNodeType(Aws::String&& value) { m_cacheNodeTypeHasBeenSet = true; m_cacheNodeType = std::move(value); }
 
     /**
      * <p>A valid cache node type that you want to scale this cache cluster up to.</p>
@@ -1292,7 +1322,7 @@ namespace Model
     /**
      * <p>A valid cache node type that you want to scale this cache cluster up to.</p>
      */
-    inline ModifyCacheClusterRequest& WithCacheNodeType(Aws::String&& value) { SetCacheNodeType(value); return *this;}
+    inline ModifyCacheClusterRequest& WithCacheNodeType(Aws::String&& value) { SetCacheNodeType(std::move(value)); return *this;}
 
     /**
      * <p>A valid cache node type that you want to scale this cache cluster up to.</p>
@@ -1300,38 +1330,55 @@ namespace Model
     inline ModifyCacheClusterRequest& WithCacheNodeType(const char* value) { SetCacheNodeType(value); return *this;}
 
   private:
+
     Aws::String m_cacheClusterId;
     bool m_cacheClusterIdHasBeenSet;
+
     int m_numCacheNodes;
     bool m_numCacheNodesHasBeenSet;
+
     Aws::Vector<Aws::String> m_cacheNodeIdsToRemove;
     bool m_cacheNodeIdsToRemoveHasBeenSet;
+
     AZMode m_aZMode;
     bool m_aZModeHasBeenSet;
+
     Aws::Vector<Aws::String> m_newAvailabilityZones;
     bool m_newAvailabilityZonesHasBeenSet;
+
     Aws::Vector<Aws::String> m_cacheSecurityGroupNames;
     bool m_cacheSecurityGroupNamesHasBeenSet;
+
     Aws::Vector<Aws::String> m_securityGroupIds;
     bool m_securityGroupIdsHasBeenSet;
+
     Aws::String m_preferredMaintenanceWindow;
     bool m_preferredMaintenanceWindowHasBeenSet;
+
     Aws::String m_notificationTopicArn;
     bool m_notificationTopicArnHasBeenSet;
+
     Aws::String m_cacheParameterGroupName;
     bool m_cacheParameterGroupNameHasBeenSet;
+
     Aws::String m_notificationTopicStatus;
     bool m_notificationTopicStatusHasBeenSet;
+
     bool m_applyImmediately;
     bool m_applyImmediatelyHasBeenSet;
+
     Aws::String m_engineVersion;
     bool m_engineVersionHasBeenSet;
+
     bool m_autoMinorVersionUpgrade;
     bool m_autoMinorVersionUpgradeHasBeenSet;
+
     int m_snapshotRetentionLimit;
     bool m_snapshotRetentionLimitHasBeenSet;
+
     Aws::String m_snapshotWindow;
     bool m_snapshotWindowHasBeenSet;
+
     Aws::String m_cacheNodeType;
     bool m_cacheNodeTypeHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/xray/XRay_EXPORTS.h>
 #include <aws/xray/model/ErrorStatistics.h>
 #include <aws/xray/model/FaultStatistics.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     ServiceStatistics& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The number of requests that completed with a 2xx Success status code.</p>
      */
@@ -58,6 +61,7 @@ namespace Model
      * <p>The number of requests that completed with a 2xx Success status code.</p>
      */
     inline ServiceStatistics& WithOkCount(long long value) { SetOkCount(value); return *this;}
+
 
     /**
      * <p>Information about requests that failed with a 4xx Client Error status
@@ -75,7 +79,7 @@ namespace Model
      * <p>Information about requests that failed with a 4xx Client Error status
      * code.</p>
      */
-    inline void SetErrorStatistics(ErrorStatistics&& value) { m_errorStatisticsHasBeenSet = true; m_errorStatistics = value; }
+    inline void SetErrorStatistics(ErrorStatistics&& value) { m_errorStatisticsHasBeenSet = true; m_errorStatistics = std::move(value); }
 
     /**
      * <p>Information about requests that failed with a 4xx Client Error status
@@ -87,7 +91,8 @@ namespace Model
      * <p>Information about requests that failed with a 4xx Client Error status
      * code.</p>
      */
-    inline ServiceStatistics& WithErrorStatistics(ErrorStatistics&& value) { SetErrorStatistics(value); return *this;}
+    inline ServiceStatistics& WithErrorStatistics(ErrorStatistics&& value) { SetErrorStatistics(std::move(value)); return *this;}
+
 
     /**
      * <p>Information about requests that failed with a 5xx Server Error status
@@ -105,7 +110,7 @@ namespace Model
      * <p>Information about requests that failed with a 5xx Server Error status
      * code.</p>
      */
-    inline void SetFaultStatistics(FaultStatistics&& value) { m_faultStatisticsHasBeenSet = true; m_faultStatistics = value; }
+    inline void SetFaultStatistics(FaultStatistics&& value) { m_faultStatisticsHasBeenSet = true; m_faultStatistics = std::move(value); }
 
     /**
      * <p>Information about requests that failed with a 5xx Server Error status
@@ -117,7 +122,8 @@ namespace Model
      * <p>Information about requests that failed with a 5xx Server Error status
      * code.</p>
      */
-    inline ServiceStatistics& WithFaultStatistics(FaultStatistics&& value) { SetFaultStatistics(value); return *this;}
+    inline ServiceStatistics& WithFaultStatistics(FaultStatistics&& value) { SetFaultStatistics(std::move(value)); return *this;}
+
 
     /**
      * <p>The total number of completed requests.</p>
@@ -133,6 +139,7 @@ namespace Model
      * <p>The total number of completed requests.</p>
      */
     inline ServiceStatistics& WithTotalCount(long long value) { SetTotalCount(value); return *this;}
+
 
     /**
      * <p>The aggregate response time of completed requests.</p>
@@ -150,14 +157,19 @@ namespace Model
     inline ServiceStatistics& WithTotalResponseTime(double value) { SetTotalResponseTime(value); return *this;}
 
   private:
+
     long long m_okCount;
     bool m_okCountHasBeenSet;
+
     ErrorStatistics m_errorStatistics;
     bool m_errorStatisticsHasBeenSet;
+
     FaultStatistics m_faultStatistics;
     bool m_faultStatisticsHasBeenSet;
+
     long long m_totalCount;
     bool m_totalCountHasBeenSet;
+
     double m_totalResponseTime;
     bool m_totalResponseTimeHasBeenSet;
   };

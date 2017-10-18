@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/iot/IoTRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,11 +40,19 @@ namespace Model
   {
   public:
     ListPrincipalPoliciesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListPrincipalPolicies"; }
+
     Aws::String SerializePayload() const override;
 
     void AddQueryStringParameters(Aws::Http::URI& uri) const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The principal.</p>
@@ -57,7 +67,7 @@ namespace Model
     /**
      * <p>The principal.</p>
      */
-    inline void SetPrincipal(Aws::String&& value) { m_principalHasBeenSet = true; m_principal = value; }
+    inline void SetPrincipal(Aws::String&& value) { m_principalHasBeenSet = true; m_principal = std::move(value); }
 
     /**
      * <p>The principal.</p>
@@ -72,12 +82,13 @@ namespace Model
     /**
      * <p>The principal.</p>
      */
-    inline ListPrincipalPoliciesRequest& WithPrincipal(Aws::String&& value) { SetPrincipal(value); return *this;}
+    inline ListPrincipalPoliciesRequest& WithPrincipal(Aws::String&& value) { SetPrincipal(std::move(value)); return *this;}
 
     /**
      * <p>The principal.</p>
      */
     inline ListPrincipalPoliciesRequest& WithPrincipal(const char* value) { SetPrincipal(value); return *this;}
+
 
     /**
      * <p>The marker for the next set of results.</p>
@@ -92,7 +103,7 @@ namespace Model
     /**
      * <p>The marker for the next set of results.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p>The marker for the next set of results.</p>
@@ -107,12 +118,13 @@ namespace Model
     /**
      * <p>The marker for the next set of results.</p>
      */
-    inline ListPrincipalPoliciesRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline ListPrincipalPoliciesRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>The marker for the next set of results.</p>
      */
     inline ListPrincipalPoliciesRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>The result page size.</p>
@@ -128,6 +140,7 @@ namespace Model
      * <p>The result page size.</p>
      */
     inline ListPrincipalPoliciesRequest& WithPageSize(int value) { SetPageSize(value); return *this;}
+
 
     /**
      * <p>Specifies the order for results. If true, results are returned in ascending
@@ -148,12 +161,16 @@ namespace Model
     inline ListPrincipalPoliciesRequest& WithAscendingOrder(bool value) { SetAscendingOrder(value); return *this;}
 
   private:
+
     Aws::String m_principal;
     bool m_principalHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
+
     int m_pageSize;
     bool m_pageSizeHasBeenSet;
+
     bool m_ascendingOrder;
     bool m_ascendingOrderHasBeenSet;
   };

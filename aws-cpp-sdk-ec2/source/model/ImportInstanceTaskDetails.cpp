@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/ImportInstanceTaskDetails.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,20 +31,20 @@ namespace Model
 {
 
 ImportInstanceTaskDetails::ImportInstanceTaskDetails() : 
-    m_volumesHasBeenSet(false),
+    m_descriptionHasBeenSet(false),
     m_instanceIdHasBeenSet(false),
     m_platform(PlatformValues::NOT_SET),
     m_platformHasBeenSet(false),
-    m_descriptionHasBeenSet(false)
+    m_volumesHasBeenSet(false)
 {
 }
 
 ImportInstanceTaskDetails::ImportInstanceTaskDetails(const XmlNode& xmlNode) : 
-    m_volumesHasBeenSet(false),
+    m_descriptionHasBeenSet(false),
     m_instanceIdHasBeenSet(false),
     m_platform(PlatformValues::NOT_SET),
     m_platformHasBeenSet(false),
-    m_descriptionHasBeenSet(false)
+    m_volumesHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -54,17 +55,11 @@ ImportInstanceTaskDetails& ImportInstanceTaskDetails::operator =(const XmlNode& 
 
   if(!resultNode.IsNull())
   {
-    XmlNode volumesNode = resultNode.FirstChild("volumes");
-    if(!volumesNode.IsNull())
+    XmlNode descriptionNode = resultNode.FirstChild("description");
+    if(!descriptionNode.IsNull())
     {
-      XmlNode volumesMember = volumesNode.FirstChild("item");
-      while(!volumesMember.IsNull())
-      {
-        m_volumes.push_back(volumesMember);
-        volumesMember = volumesMember.NextNode("item");
-      }
-
-      m_volumesHasBeenSet = true;
+      m_description = StringUtils::Trim(descriptionNode.GetText().c_str());
+      m_descriptionHasBeenSet = true;
     }
     XmlNode instanceIdNode = resultNode.FirstChild("instanceId");
     if(!instanceIdNode.IsNull())
@@ -78,11 +73,17 @@ ImportInstanceTaskDetails& ImportInstanceTaskDetails::operator =(const XmlNode& 
       m_platform = PlatformValuesMapper::GetPlatformValuesForName(StringUtils::Trim(platformNode.GetText().c_str()).c_str());
       m_platformHasBeenSet = true;
     }
-    XmlNode descriptionNode = resultNode.FirstChild("description");
-    if(!descriptionNode.IsNull())
+    XmlNode volumesNode = resultNode.FirstChild("volumes");
+    if(!volumesNode.IsNull())
     {
-      m_description = StringUtils::Trim(descriptionNode.GetText().c_str());
-      m_descriptionHasBeenSet = true;
+      XmlNode volumesMember = volumesNode.FirstChild("item");
+      while(!volumesMember.IsNull())
+      {
+        m_volumes.push_back(volumesMember);
+        volumesMember = volumesMember.NextNode("item");
+      }
+
+      m_volumesHasBeenSet = true;
     }
   }
 
@@ -91,15 +92,9 @@ ImportInstanceTaskDetails& ImportInstanceTaskDetails::operator =(const XmlNode& 
 
 void ImportInstanceTaskDetails::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
-  if(m_volumesHasBeenSet)
+  if(m_descriptionHasBeenSet)
   {
-      unsigned volumesIdx = 1;
-      for(auto& item : m_volumes)
-      {
-        Aws::StringStream volumesSs;
-        volumesSs << location << index << locationValue << ".Volumes." << volumesIdx++;
-        item.OutputToStream(oStream, volumesSs.str().c_str());
-      }
+      oStream << location << index << locationValue << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
   }
 
   if(m_instanceIdHasBeenSet)
@@ -112,24 +107,24 @@ void ImportInstanceTaskDetails::OutputToStream(Aws::OStream& oStream, const char
       oStream << location << index << locationValue << ".Platform=" << PlatformValuesMapper::GetNameForPlatformValues(m_platform) << "&";
   }
 
-  if(m_descriptionHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
-  }
-
-}
-
-void ImportInstanceTaskDetails::OutputToStream(Aws::OStream& oStream, const char* location) const
-{
   if(m_volumesHasBeenSet)
   {
       unsigned volumesIdx = 1;
       for(auto& item : m_volumes)
       {
         Aws::StringStream volumesSs;
-        volumesSs << location <<  ".Item." << volumesIdx++;
+        volumesSs << location << index << locationValue << ".Volumes." << volumesIdx++;
         item.OutputToStream(oStream, volumesSs.str().c_str());
       }
+  }
+
+}
+
+void ImportInstanceTaskDetails::OutputToStream(Aws::OStream& oStream, const char* location) const
+{
+  if(m_descriptionHasBeenSet)
+  {
+      oStream << location << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
   }
   if(m_instanceIdHasBeenSet)
   {
@@ -139,9 +134,15 @@ void ImportInstanceTaskDetails::OutputToStream(Aws::OStream& oStream, const char
   {
       oStream << location << ".Platform=" << PlatformValuesMapper::GetNameForPlatformValues(m_platform) << "&";
   }
-  if(m_descriptionHasBeenSet)
+  if(m_volumesHasBeenSet)
   {
-      oStream << location << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
+      unsigned volumesIdx = 1;
+      for(auto& item : m_volumes)
+      {
+        Aws::StringStream volumesSs;
+        volumesSs << location <<  ".Volumes." << volumesIdx++;
+        item.OutputToStream(oStream, volumesSs.str().c_str());
+      }
   }
 }
 

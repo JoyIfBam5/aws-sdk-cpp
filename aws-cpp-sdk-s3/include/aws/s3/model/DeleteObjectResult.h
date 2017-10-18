@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/s3/model/RequestCharged.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     DeleteObjectResult();
-    DeleteObjectResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DeleteObjectResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DeleteObjectResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DeleteObjectResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * Specifies whether the versioned object that was permanently deleted was (true)
@@ -58,6 +61,7 @@ namespace Model
      */
     inline DeleteObjectResult& WithDeleteMarker(bool value) { SetDeleteMarker(value); return *this;}
 
+
     /**
      * Returns the version ID of the delete marker created as a result of the DELETE
      * operation.
@@ -74,7 +78,7 @@ namespace Model
      * Returns the version ID of the delete marker created as a result of the DELETE
      * operation.
      */
-    inline void SetVersionId(Aws::String&& value) { m_versionId = value; }
+    inline void SetVersionId(Aws::String&& value) { m_versionId = std::move(value); }
 
     /**
      * Returns the version ID of the delete marker created as a result of the DELETE
@@ -92,13 +96,14 @@ namespace Model
      * Returns the version ID of the delete marker created as a result of the DELETE
      * operation.
      */
-    inline DeleteObjectResult& WithVersionId(Aws::String&& value) { SetVersionId(value); return *this;}
+    inline DeleteObjectResult& WithVersionId(Aws::String&& value) { SetVersionId(std::move(value)); return *this;}
 
     /**
      * Returns the version ID of the delete marker created as a result of the DELETE
      * operation.
      */
     inline DeleteObjectResult& WithVersionId(const char* value) { SetVersionId(value); return *this;}
+
 
     
     inline const RequestCharged& GetRequestCharged() const{ return m_requestCharged; }
@@ -107,17 +112,20 @@ namespace Model
     inline void SetRequestCharged(const RequestCharged& value) { m_requestCharged = value; }
 
     
-    inline void SetRequestCharged(RequestCharged&& value) { m_requestCharged = value; }
+    inline void SetRequestCharged(RequestCharged&& value) { m_requestCharged = std::move(value); }
 
     
     inline DeleteObjectResult& WithRequestCharged(const RequestCharged& value) { SetRequestCharged(value); return *this;}
 
     
-    inline DeleteObjectResult& WithRequestCharged(RequestCharged&& value) { SetRequestCharged(value); return *this;}
+    inline DeleteObjectResult& WithRequestCharged(RequestCharged&& value) { SetRequestCharged(std::move(value)); return *this;}
 
   private:
+
     bool m_deleteMarker;
+
     Aws::String m_versionId;
+
     RequestCharged m_requestCharged;
   };
 

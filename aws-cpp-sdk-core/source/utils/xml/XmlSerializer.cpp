@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   * 
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ Aws::String Aws::Utils::Xml::DecodeEscapedXmlText(const Aws::String& textToDecod
     StringUtils::Replace(decodedString, "&apos;", "'");
     StringUtils::Replace(decodedString, "&lt;", "<");
     StringUtils::Replace(decodedString, "&gt;", ">");
-    StringUtils::Replace(decodedString, "&amp;;", "&");
+    StringUtils::Replace(decodedString, "&amp;", "&");
 
     return decodedString;
 }
@@ -66,7 +66,8 @@ void XmlNode::SetName(const Aws::String& name)
 
 const Aws::String XmlNode::GetAttributeValue(const Aws::String& name) const
 {
-    return m_node->ToElement()->Attribute(name.c_str(), nullptr);
+	auto pointer =  m_node->ToElement()->Attribute(name.c_str(), nullptr);
+	return pointer ? pointer : "";
 }
 
 void XmlNode::SetAttributeValue(const Aws::String& name, const Aws::String& value)

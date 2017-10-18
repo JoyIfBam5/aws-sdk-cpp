@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53/Route53_EXPORTS.h>
 #include <aws/route53/model/TrafficPolicyInstance.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     CreateTrafficPolicyInstanceResult();
-    CreateTrafficPolicyInstanceResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    CreateTrafficPolicyInstanceResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CreateTrafficPolicyInstanceResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CreateTrafficPolicyInstanceResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>A complex type that contains settings for the new traffic policy
@@ -62,7 +65,7 @@ namespace Model
      * <p>A complex type that contains settings for the new traffic policy
      * instance.</p>
      */
-    inline void SetTrafficPolicyInstance(TrafficPolicyInstance&& value) { m_trafficPolicyInstance = value; }
+    inline void SetTrafficPolicyInstance(TrafficPolicyInstance&& value) { m_trafficPolicyInstance = std::move(value); }
 
     /**
      * <p>A complex type that contains settings for the new traffic policy
@@ -74,7 +77,8 @@ namespace Model
      * <p>A complex type that contains settings for the new traffic policy
      * instance.</p>
      */
-    inline CreateTrafficPolicyInstanceResult& WithTrafficPolicyInstance(TrafficPolicyInstance&& value) { SetTrafficPolicyInstance(value); return *this;}
+    inline CreateTrafficPolicyInstanceResult& WithTrafficPolicyInstance(TrafficPolicyInstance&& value) { SetTrafficPolicyInstance(std::move(value)); return *this;}
+
 
     /**
      * <p>A unique URL that represents a new traffic policy instance.</p>
@@ -89,7 +93,7 @@ namespace Model
     /**
      * <p>A unique URL that represents a new traffic policy instance.</p>
      */
-    inline void SetLocation(Aws::String&& value) { m_location = value; }
+    inline void SetLocation(Aws::String&& value) { m_location = std::move(value); }
 
     /**
      * <p>A unique URL that represents a new traffic policy instance.</p>
@@ -104,7 +108,7 @@ namespace Model
     /**
      * <p>A unique URL that represents a new traffic policy instance.</p>
      */
-    inline CreateTrafficPolicyInstanceResult& WithLocation(Aws::String&& value) { SetLocation(value); return *this;}
+    inline CreateTrafficPolicyInstanceResult& WithLocation(Aws::String&& value) { SetLocation(std::move(value)); return *this;}
 
     /**
      * <p>A unique URL that represents a new traffic policy instance.</p>
@@ -112,7 +116,9 @@ namespace Model
     inline CreateTrafficPolicyInstanceResult& WithLocation(const char* value) { SetLocation(value); return *this;}
 
   private:
+
     TrafficPolicyInstance m_trafficPolicyInstance;
+
     Aws::String m_location;
   };
 

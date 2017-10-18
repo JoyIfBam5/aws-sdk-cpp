@@ -20,11 +20,15 @@ macro(determine_stdlib_and_api)
             SET(ANDROID_STL "libc++_static" CACHE STRING "" FORCE)
         endif()
 
-        # API levels below 21 will not build with libc++
+        if(NOT ANDROID_NATIVE_API_LEVEL)
+            set(ANDROID_NATIVE_API_LEVEL "android-21")
+        endif()
+
+        # API levels below 9 will not build with libc++
         string(REGEX REPLACE "android-(..?)" "\\1" EXTRACTED_API_LEVEL "${ANDROID_NATIVE_API_LEVEL}")
-        if(NOT ANDROID_NATIVE_API_LEVEL OR EXTRACTED_API_LEVEL LESS "21")
-            message(STATUS "Libc++ requires setting API level to at least 21")
-            set(ANDROID_NATIVE_API_LEVEL "android-21" CACHE STRING "" FORCE)
+        if(EXTRACTED_API_LEVEL LESS "9")
+            message(STATUS "Libc++ requires setting API level to at least 9")
+            set(ANDROID_NATIVE_API_LEVEL "android-9" CACHE STRING "" FORCE)
         endif()
 
         set(STANDALONE_TOOLCHAIN_STL "libc++")
@@ -197,10 +201,13 @@ endmacro()
 macro(apply_pre_project_platform_settings)
     verify_tools()
 
-    set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/cmake/platform/android.toolchain.cmake)
+    set(CMAKE_TOOLCHAIN_FILE ${AWS_NATIVE_SDK_ROOT}/cmake/platform/android.toolchain.cmake)
 
     # android-specific required overrrides
-    set(CUSTOM_MEMORY_MANAGEMENT "1")
+    if (NOT DEFINED CUSTOM_MEMORY_MANAGEMENT)
+        set(CUSTOM_MEMORY_MANAGEMENT "1")
+    endif()
+
     set(ANDROID_STL_FORCE_FEATURES "OFF")
 
     # android-specific parameter defaults
@@ -231,6 +238,7 @@ macro(apply_post_project_platform_settings)
     set(SDK_INSTALL_BINARY_PREFIX "${SDK_INSTALL_BINARY_PREFIX}/${ANDROID_ABI}")
 
     set(PLATFORM_DEP_LIBS log atomic)
+    set(PLATFORM_DEP_LIBS_ABSTRACT_NAME log atomic)
 
     # Workaround for problem when ndk 13, gcc, and libc++ are used together.
     # See https://www.bountysource.com/issues/38341727-stddef-h-no-such-file-or-directory
@@ -239,5 +247,9 @@ macro(apply_post_project_platform_settings)
             set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -isystem ${ANDROID_STANDALONE_TOOLCHAIN}/include/c++/4.9.x")
         endif()
     endif()
+    if(ANDROID_STL MATCHES "libc" AND ANDROID_NATIVE_API_LEVEL_NUM LESS "21")
+        include_directories("${NDK_DIR}/sources/android/support/include")
+    endif()
+
 endmacro()
 

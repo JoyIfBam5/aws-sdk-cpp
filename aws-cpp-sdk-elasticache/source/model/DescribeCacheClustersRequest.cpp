@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/elasticache/model/DescribeCacheClustersRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -25,7 +26,9 @@ DescribeCacheClustersRequest::DescribeCacheClustersRequest() :
     m_maxRecordsHasBeenSet(false),
     m_markerHasBeenSet(false),
     m_showCacheNodeInfo(false),
-    m_showCacheNodeInfoHasBeenSet(false)
+    m_showCacheNodeInfoHasBeenSet(false),
+    m_showCacheClustersNotInReplicationGroups(false),
+    m_showCacheClustersNotInReplicationGroupsHasBeenSet(false)
 {
 }
 
@@ -53,7 +56,17 @@ Aws::String DescribeCacheClustersRequest::SerializePayload() const
     ss << "ShowCacheNodeInfo=" << std::boolalpha << m_showCacheNodeInfo << "&";
   }
 
+  if(m_showCacheClustersNotInReplicationGroupsHasBeenSet)
+  {
+    ss << "ShowCacheClustersNotInReplicationGroups=" << std::boolalpha << m_showCacheClustersNotInReplicationGroups << "&";
+  }
+
   ss << "Version=2015-02-02";
   return ss.str();
 }
 
+
+void  DescribeCacheClustersRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

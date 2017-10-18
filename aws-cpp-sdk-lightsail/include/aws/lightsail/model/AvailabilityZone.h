@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,40 +45,49 @@ namespace Model
     AvailabilityZone& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p>The name of the Availability Zone.</p>
+     * <p>The name of the Availability Zone. The format is <code>us-east-1a</code>
+     * (case-sensitive).</p>
      */
     inline const Aws::String& GetZoneName() const{ return m_zoneName; }
 
     /**
-     * <p>The name of the Availability Zone.</p>
+     * <p>The name of the Availability Zone. The format is <code>us-east-1a</code>
+     * (case-sensitive).</p>
      */
     inline void SetZoneName(const Aws::String& value) { m_zoneNameHasBeenSet = true; m_zoneName = value; }
 
     /**
-     * <p>The name of the Availability Zone.</p>
+     * <p>The name of the Availability Zone. The format is <code>us-east-1a</code>
+     * (case-sensitive).</p>
      */
-    inline void SetZoneName(Aws::String&& value) { m_zoneNameHasBeenSet = true; m_zoneName = value; }
+    inline void SetZoneName(Aws::String&& value) { m_zoneNameHasBeenSet = true; m_zoneName = std::move(value); }
 
     /**
-     * <p>The name of the Availability Zone.</p>
+     * <p>The name of the Availability Zone. The format is <code>us-east-1a</code>
+     * (case-sensitive).</p>
      */
     inline void SetZoneName(const char* value) { m_zoneNameHasBeenSet = true; m_zoneName.assign(value); }
 
     /**
-     * <p>The name of the Availability Zone.</p>
+     * <p>The name of the Availability Zone. The format is <code>us-east-1a</code>
+     * (case-sensitive).</p>
      */
     inline AvailabilityZone& WithZoneName(const Aws::String& value) { SetZoneName(value); return *this;}
 
     /**
-     * <p>The name of the Availability Zone.</p>
+     * <p>The name of the Availability Zone. The format is <code>us-east-1a</code>
+     * (case-sensitive).</p>
      */
-    inline AvailabilityZone& WithZoneName(Aws::String&& value) { SetZoneName(value); return *this;}
+    inline AvailabilityZone& WithZoneName(Aws::String&& value) { SetZoneName(std::move(value)); return *this;}
 
     /**
-     * <p>The name of the Availability Zone.</p>
+     * <p>The name of the Availability Zone. The format is <code>us-east-1a</code>
+     * (case-sensitive).</p>
      */
     inline AvailabilityZone& WithZoneName(const char* value) { SetZoneName(value); return *this;}
+
 
     /**
      * <p>The state of the Availability Zone.</p>
@@ -91,7 +102,7 @@ namespace Model
     /**
      * <p>The state of the Availability Zone.</p>
      */
-    inline void SetState(Aws::String&& value) { m_stateHasBeenSet = true; m_state = value; }
+    inline void SetState(Aws::String&& value) { m_stateHasBeenSet = true; m_state = std::move(value); }
 
     /**
      * <p>The state of the Availability Zone.</p>
@@ -106,7 +117,7 @@ namespace Model
     /**
      * <p>The state of the Availability Zone.</p>
      */
-    inline AvailabilityZone& WithState(Aws::String&& value) { SetState(value); return *this;}
+    inline AvailabilityZone& WithState(Aws::String&& value) { SetState(std::move(value)); return *this;}
 
     /**
      * <p>The state of the Availability Zone.</p>
@@ -114,8 +125,10 @@ namespace Model
     inline AvailabilityZone& WithState(const char* value) { SetState(value); return *this;}
 
   private:
+
     Aws::String m_zoneName;
     bool m_zoneNameHasBeenSet;
+
     Aws::String m_state;
     bool m_stateHasBeenSet;
   };

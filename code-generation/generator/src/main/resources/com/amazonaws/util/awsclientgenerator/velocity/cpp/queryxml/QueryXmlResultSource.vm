@@ -1,6 +1,8 @@
 #parse("com/amazonaws/util/awsclientgenerator/velocity/cfamily/Attribution.vm")
 
 #set($metadata = $serviceModel.metadata)
+#set($rootNamespace = $serviceModel.namespace)
+#set($serviceNamespace = $metadata.namespace)
 \#include <aws/${metadata.projectName}/model/${typeInfo.className}.h>
 \#include <aws/core/utils/xml/XmlSerializer.h>
 \#include <aws/core/AmazonWebServiceResult.h>
@@ -12,7 +14,7 @@
 
 \#include <utility>
 
-using namespace Aws::${metadata.namespace}::Model;
+using namespace ${rootNamespace}::${serviceNamespace}::Model;
 using namespace Aws::Utils::Xml;
 using namespace Aws::Utils::Logging;
 using namespace Aws::Utils;
@@ -24,17 +26,17 @@ ${typeInfo.className}::${typeInfo.className}()$initializers
 {
 }
 
-${typeInfo.className}::${typeInfo.className}(const AmazonWebServiceResult<XmlDocument>& result)$initializers
+${typeInfo.className}::${typeInfo.className}(const Aws::AmazonWebServiceResult<XmlDocument>& result)$initializers
 {
   *this = result;
 }
 
-${typeInfo.className}& ${typeInfo.className}::operator =(const AmazonWebServiceResult<XmlDocument>& result)
+${typeInfo.className}& ${typeInfo.className}::operator =(const Aws::AmazonWebServiceResult<XmlDocument>& result)
 {
   const XmlDocument& xmlDocument = result.GetPayload();
   XmlNode rootNode = xmlDocument.GetRootElement();
   XmlNode resultNode = rootNode;
-  if (rootNode.GetName() != "${typeInfo.shape.name}")
+  if (!rootNode.IsNull() && (rootNode.GetName() != "${typeInfo.shape.name}"))
   {
     resultNode = rootNode.FirstChild("${typeInfo.shape.name}");
   }
@@ -45,10 +47,11 @@ ${typeInfo.className}& ${typeInfo.className}::operator =(const AmazonWebServiceR
 #parse("com/amazonaws/util/awsclientgenerator/velocity/cpp/xml/ModelClassMembersDeserializeXml.vm")
   }
 
-  XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
-  m_responseMetadata = responseMetadataNode;
-  AWS_LOGSTREAM_DEBUG("Aws::${metadata.namespace}::Model::${typeInfo.className}", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
-
+  if (!rootNode.IsNull()) {
+    XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
+    m_responseMetadata = responseMetadataNode;
+    AWS_LOGSTREAM_DEBUG("Aws::${metadata.namespace}::Model::${typeInfo.className}", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
+  }
 #if($shape.hasHeaderMembers())
   const auto& headers = result.GetHeaderValueCollection();
 #foreach($memberEntry in $shape.members.entrySet())

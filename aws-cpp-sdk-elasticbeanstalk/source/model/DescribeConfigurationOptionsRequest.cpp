@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/elasticbeanstalk/model/DescribeConfigurationOptionsRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -24,6 +25,7 @@ DescribeConfigurationOptionsRequest::DescribeConfigurationOptionsRequest() :
     m_templateNameHasBeenSet(false),
     m_environmentNameHasBeenSet(false),
     m_solutionStackNameHasBeenSet(false),
+    m_platformArnHasBeenSet(false),
     m_optionsHasBeenSet(false)
 {
 }
@@ -52,6 +54,11 @@ Aws::String DescribeConfigurationOptionsRequest::SerializePayload() const
     ss << "SolutionStackName=" << StringUtils::URLEncode(m_solutionStackName.c_str()) << "&";
   }
 
+  if(m_platformArnHasBeenSet)
+  {
+    ss << "PlatformArn=" << StringUtils::URLEncode(m_platformArn.c_str()) << "&";
+  }
+
   if(m_optionsHasBeenSet)
   {
     unsigned optionsCount = 1;
@@ -66,3 +73,8 @@ Aws::String DescribeConfigurationOptionsRequest::SerializePayload() const
   return ss.str();
 }
 
+
+void  DescribeConfigurationOptionsRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

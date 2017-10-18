@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   * 
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -22,6 +22,8 @@
 using namespace Aws::Utils::Logging;
 using namespace Aws::Http;
 
+const char WIN_CONNECTION_CONTAINER_TAG[] = "WinConnectionContainer";
+
 WinConnectionPoolMgr::WinConnectionPoolMgr(void* iOpenHandle,
                                                    unsigned maxConnectionsPerHost, 
                                                    long requestTimeoutMs,
@@ -39,13 +41,13 @@ WinConnectionPoolMgr::~WinConnectionPoolMgr()
 {
     if (!m_hostConnections.empty())
     {
-        AWS_LOG_WARN(GetLogTag(), "Connection pool manager clearing with host connections not empty!");
+        AWS_LOGSTREAM_WARN(GetLogTag(), "Connection pool manager clearing with host connections not empty!");
     }
 }
 
 void WinConnectionPoolMgr::DoCleanup()
 {
-    AWS_LOG_INFO(GetLogTag(), "Cleaning up conneciton pool mgr.");
+    AWS_LOGSTREAM_INFO(GetLogTag(), "Cleaning up conneciton pool mgr.");
     for (auto& hostHandles : m_hostConnections)
     {
         for(void* handleToClose : hostHandles.second->hostConnections.ShutdownAndWait(hostHandles.second->currentPoolSize))
@@ -73,12 +75,12 @@ void* WinConnectionPoolMgr::AquireConnectionForHost(const Aws::String& host, uin
 
         if (foundPool != m_hostConnections.end())
         {
-            AWS_LOG_DEBUG(GetLogTag(), "Pool found, reusing");
+            AWS_LOGSTREAM_DEBUG(GetLogTag(), "Pool found, reusing");
             hostConnectionContainer = foundPool->second;
         }
         else
         {
-            AWS_LOG_DEBUG(GetLogTag(), "Pool doesn't exist for endpoint, creating...");
+            AWS_LOGSTREAM_DEBUG(GetLogTag(), "Pool doesn't exist for endpoint, creating...");
             //mutex doesn't have a frickin move. We have to dynamically allocate.
             HostConnectionContainer* newHostContainer = Aws::New<HostConnectionContainer>(GetLogTag());
             newHostContainer->currentPoolSize = 0;
@@ -91,7 +93,7 @@ void* WinConnectionPoolMgr::AquireConnectionForHost(const Aws::String& host, uin
 
     if(!hostConnectionContainer->hostConnections.HasResourcesAvailable())
     {
-        AWS_LOG_DEBUG(GetLogTag(), "Pool has no available existing connections for endpoint, attempting to grow pool.");
+        AWS_LOGSTREAM_DEBUG(GetLogTag(), "Pool has no available existing connections for endpoint, attempting to grow pool.");
         CheckAndGrowPool(host, *hostConnectionContainer);
     }
 
@@ -125,12 +127,12 @@ void WinConnectionPoolMgr::ReleaseConnectionForHost(const Aws::String& host, uns
 
 bool WinConnectionPoolMgr::CheckAndGrowPool(const Aws::String& host, HostConnectionContainer& connectionContainer)
 {
+    std::lock_guard<std::mutex> locker(m_containerLock);
     if (connectionContainer.currentPoolSize < m_maxConnectionsPerHost)
     {
         unsigned multiplier = connectionContainer.currentPoolSize > 0 ? connectionContainer.currentPoolSize : 1;
-        unsigned amountToAdd = min(multiplier * 2, m_maxConnectionsPerHost - connectionContainer.currentPoolSize);
-        connectionContainer.currentPoolSize += amountToAdd;
-
+        unsigned amountToAdd = (std::min)(multiplier * 2, m_maxConnectionsPerHost - connectionContainer.currentPoolSize);
+        unsigned actuallyAdded = 0;
         for (unsigned i = 0; i < amountToAdd; ++i)
         {
             void* newConnection = CreateNewConnection(host, connectionContainer);
@@ -138,11 +140,20 @@ bool WinConnectionPoolMgr::CheckAndGrowPool(const Aws::String& host, HostConnect
             if (newConnection)
             {
                 connectionContainer.hostConnections.Release(newConnection);
+                ++actuallyAdded;
+            }
+            else
+            {
+                AWS_LOGSTREAM_ERROR(WIN_CONNECTION_CONTAINER_TAG, "CreateNewConnection failed to allocate Win Http connection handles.");
+                break;
             }
         }
+        AWS_LOGSTREAM_INFO(WIN_CONNECTION_CONTAINER_TAG, "Pool grown by " << actuallyAdded);
+        connectionContainer.currentPoolSize += actuallyAdded;
 
-        return true;
+        return actuallyAdded > 0;
     }
 
+    AWS_LOGSTREAM_INFO(WIN_CONNECTION_CONTAINER_TAG, "Pool cannot be grown any further, already at max size.");
     return false;
 }

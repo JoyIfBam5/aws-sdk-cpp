@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dynamodb/DynamoDB_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -20,6 +21,7 @@
 #include <aws/dynamodb/model/IndexStatus.h>
 #include <aws/dynamodb/model/ProvisionedThroughputDescription.h>
 #include <aws/dynamodb/model/KeySchemaElement.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +51,7 @@ namespace Model
     GlobalSecondaryIndexDescription& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the global secondary index.</p>
      */
@@ -62,7 +65,7 @@ namespace Model
     /**
      * <p>The name of the global secondary index.</p>
      */
-    inline void SetIndexName(Aws::String&& value) { m_indexNameHasBeenSet = true; m_indexName = value; }
+    inline void SetIndexName(Aws::String&& value) { m_indexNameHasBeenSet = true; m_indexName = std::move(value); }
 
     /**
      * <p>The name of the global secondary index.</p>
@@ -77,12 +80,13 @@ namespace Model
     /**
      * <p>The name of the global secondary index.</p>
      */
-    inline GlobalSecondaryIndexDescription& WithIndexName(Aws::String&& value) { SetIndexName(value); return *this;}
+    inline GlobalSecondaryIndexDescription& WithIndexName(Aws::String&& value) { SetIndexName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the global secondary index.</p>
      */
     inline GlobalSecondaryIndexDescription& WithIndexName(const char* value) { SetIndexName(value); return *this;}
+
 
     /**
      * <p>The complete key schema for a global secondary index, which consists of one
@@ -124,7 +128,7 @@ namespace Model
      * way DynamoDB stores items with the same partition key physically close together,
      * in sorted order by the sort key value.</p> </note>
      */
-    inline void SetKeySchema(Aws::Vector<KeySchemaElement>&& value) { m_keySchemaHasBeenSet = true; m_keySchema = value; }
+    inline void SetKeySchema(Aws::Vector<KeySchemaElement>&& value) { m_keySchemaHasBeenSet = true; m_keySchema = std::move(value); }
 
     /**
      * <p>The complete key schema for a global secondary index, which consists of one
@@ -152,7 +156,7 @@ namespace Model
      * way DynamoDB stores items with the same partition key physically close together,
      * in sorted order by the sort key value.</p> </note>
      */
-    inline GlobalSecondaryIndexDescription& WithKeySchema(Aws::Vector<KeySchemaElement>&& value) { SetKeySchema(value); return *this;}
+    inline GlobalSecondaryIndexDescription& WithKeySchema(Aws::Vector<KeySchemaElement>&& value) { SetKeySchema(std::move(value)); return *this;}
 
     /**
      * <p>The complete key schema for a global secondary index, which consists of one
@@ -180,7 +184,8 @@ namespace Model
      * way DynamoDB stores items with the same partition key physically close together,
      * in sorted order by the sort key value.</p> </note>
      */
-    inline GlobalSecondaryIndexDescription& AddKeySchema(KeySchemaElement&& value) { m_keySchemaHasBeenSet = true; m_keySchema.push_back(value); return *this; }
+    inline GlobalSecondaryIndexDescription& AddKeySchema(KeySchemaElement&& value) { m_keySchemaHasBeenSet = true; m_keySchema.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Represents attributes that are copied (projected) from the table into the
@@ -201,7 +206,7 @@ namespace Model
      * global secondary index. These are in addition to the primary key attributes and
      * index key attributes, which are automatically projected. </p>
      */
-    inline void SetProjection(Projection&& value) { m_projectionHasBeenSet = true; m_projection = value; }
+    inline void SetProjection(Projection&& value) { m_projectionHasBeenSet = true; m_projection = std::move(value); }
 
     /**
      * <p>Represents attributes that are copied (projected) from the table into the
@@ -215,7 +220,8 @@ namespace Model
      * global secondary index. These are in addition to the primary key attributes and
      * index key attributes, which are automatically projected. </p>
      */
-    inline GlobalSecondaryIndexDescription& WithProjection(Projection&& value) { SetProjection(value); return *this;}
+    inline GlobalSecondaryIndexDescription& WithProjection(Projection&& value) { SetProjection(std::move(value)); return *this;}
+
 
     /**
      * <p>The current state of the global secondary index:</p> <ul> <li> <p>
@@ -242,7 +248,7 @@ namespace Model
      * <code>DELETING</code> - The index is being deleted.</p> </li> <li> <p>
      * <code>ACTIVE</code> - The index is ready for use.</p> </li> </ul>
      */
-    inline void SetIndexStatus(IndexStatus&& value) { m_indexStatusHasBeenSet = true; m_indexStatus = value; }
+    inline void SetIndexStatus(IndexStatus&& value) { m_indexStatusHasBeenSet = true; m_indexStatus = std::move(value); }
 
     /**
      * <p>The current state of the global secondary index:</p> <ul> <li> <p>
@@ -260,7 +266,8 @@ namespace Model
      * <code>DELETING</code> - The index is being deleted.</p> </li> <li> <p>
      * <code>ACTIVE</code> - The index is ready for use.</p> </li> </ul>
      */
-    inline GlobalSecondaryIndexDescription& WithIndexStatus(IndexStatus&& value) { SetIndexStatus(value); return *this;}
+    inline GlobalSecondaryIndexDescription& WithIndexStatus(IndexStatus&& value) { SetIndexStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>Indicates whether the index is currently backfilling. <i>Backfilling</i> is
@@ -301,6 +308,7 @@ namespace Model
      */
     inline GlobalSecondaryIndexDescription& WithBackfilling(bool value) { SetBackfilling(value); return *this;}
 
+
     /**
      * <p>Represents the provisioned throughput settings for the specified global
      * secondary index.</p> <p>For current minimum and maximum provisioned throughput
@@ -326,7 +334,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
      * in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline void SetProvisionedThroughput(ProvisionedThroughputDescription&& value) { m_provisionedThroughputHasBeenSet = true; m_provisionedThroughput = value; }
+    inline void SetProvisionedThroughput(ProvisionedThroughputDescription&& value) { m_provisionedThroughputHasBeenSet = true; m_provisionedThroughput = std::move(value); }
 
     /**
      * <p>Represents the provisioned throughput settings for the specified global
@@ -344,7 +352,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html">Limits</a>
      * in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline GlobalSecondaryIndexDescription& WithProvisionedThroughput(ProvisionedThroughputDescription&& value) { SetProvisionedThroughput(value); return *this;}
+    inline GlobalSecondaryIndexDescription& WithProvisionedThroughput(ProvisionedThroughputDescription&& value) { SetProvisionedThroughput(std::move(value)); return *this;}
+
 
     /**
      * <p>The total size of the specified index, in bytes. DynamoDB updates this value
@@ -367,6 +376,7 @@ namespace Model
      */
     inline GlobalSecondaryIndexDescription& WithIndexSizeBytes(long long value) { SetIndexSizeBytes(value); return *this;}
 
+
     /**
      * <p>The number of items in the specified index. DynamoDB updates this value
      * approximately every six hours. Recent changes might not be reflected in this
@@ -388,6 +398,7 @@ namespace Model
      */
     inline GlobalSecondaryIndexDescription& WithItemCount(long long value) { SetItemCount(value); return *this;}
 
+
     /**
      * <p>The Amazon Resource Name (ARN) that uniquely identifies the index.</p>
      */
@@ -401,7 +412,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) that uniquely identifies the index.</p>
      */
-    inline void SetIndexArn(Aws::String&& value) { m_indexArnHasBeenSet = true; m_indexArn = value; }
+    inline void SetIndexArn(Aws::String&& value) { m_indexArnHasBeenSet = true; m_indexArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) that uniquely identifies the index.</p>
@@ -416,7 +427,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) that uniquely identifies the index.</p>
      */
-    inline GlobalSecondaryIndexDescription& WithIndexArn(Aws::String&& value) { SetIndexArn(value); return *this;}
+    inline GlobalSecondaryIndexDescription& WithIndexArn(Aws::String&& value) { SetIndexArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) that uniquely identifies the index.</p>
@@ -424,22 +435,31 @@ namespace Model
     inline GlobalSecondaryIndexDescription& WithIndexArn(const char* value) { SetIndexArn(value); return *this;}
 
   private:
+
     Aws::String m_indexName;
     bool m_indexNameHasBeenSet;
+
     Aws::Vector<KeySchemaElement> m_keySchema;
     bool m_keySchemaHasBeenSet;
+
     Projection m_projection;
     bool m_projectionHasBeenSet;
+
     IndexStatus m_indexStatus;
     bool m_indexStatusHasBeenSet;
+
     bool m_backfilling;
     bool m_backfillingHasBeenSet;
+
     ProvisionedThroughputDescription m_provisionedThroughput;
     bool m_provisionedThroughputHasBeenSet;
+
     long long m_indexSizeBytes;
     bool m_indexSizeBytesHasBeenSet;
+
     long long m_itemCount;
     bool m_itemCountHasBeenSet;
+
     Aws::String m_indexArn;
     bool m_indexArnHasBeenSet;
   };

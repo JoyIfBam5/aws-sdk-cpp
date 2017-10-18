@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/elasticmapreduce/EMRRequest.h>
@@ -19,6 +20,7 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/elasticmapreduce/model/ClusterState.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,9 +39,17 @@ namespace Model
   {
   public:
     ListClustersRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListClusters"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The creation date and time beginning value filter for listing clusters.</p>
@@ -54,7 +64,7 @@ namespace Model
     /**
      * <p>The creation date and time beginning value filter for listing clusters.</p>
      */
-    inline void SetCreatedAfter(Aws::Utils::DateTime&& value) { m_createdAfterHasBeenSet = true; m_createdAfter = value; }
+    inline void SetCreatedAfter(Aws::Utils::DateTime&& value) { m_createdAfterHasBeenSet = true; m_createdAfter = std::move(value); }
 
     /**
      * <p>The creation date and time beginning value filter for listing clusters.</p>
@@ -64,7 +74,8 @@ namespace Model
     /**
      * <p>The creation date and time beginning value filter for listing clusters.</p>
      */
-    inline ListClustersRequest& WithCreatedAfter(Aws::Utils::DateTime&& value) { SetCreatedAfter(value); return *this;}
+    inline ListClustersRequest& WithCreatedAfter(Aws::Utils::DateTime&& value) { SetCreatedAfter(std::move(value)); return *this;}
+
 
     /**
      * <p>The creation date and time end value filter for listing clusters.</p>
@@ -79,7 +90,7 @@ namespace Model
     /**
      * <p>The creation date and time end value filter for listing clusters.</p>
      */
-    inline void SetCreatedBefore(Aws::Utils::DateTime&& value) { m_createdBeforeHasBeenSet = true; m_createdBefore = value; }
+    inline void SetCreatedBefore(Aws::Utils::DateTime&& value) { m_createdBeforeHasBeenSet = true; m_createdBefore = std::move(value); }
 
     /**
      * <p>The creation date and time end value filter for listing clusters.</p>
@@ -89,7 +100,8 @@ namespace Model
     /**
      * <p>The creation date and time end value filter for listing clusters.</p>
      */
-    inline ListClustersRequest& WithCreatedBefore(Aws::Utils::DateTime&& value) { SetCreatedBefore(value); return *this;}
+    inline ListClustersRequest& WithCreatedBefore(Aws::Utils::DateTime&& value) { SetCreatedBefore(std::move(value)); return *this;}
+
 
     /**
      * <p>The cluster state filters to apply when listing clusters.</p>
@@ -104,7 +116,7 @@ namespace Model
     /**
      * <p>The cluster state filters to apply when listing clusters.</p>
      */
-    inline void SetClusterStates(Aws::Vector<ClusterState>&& value) { m_clusterStatesHasBeenSet = true; m_clusterStates = value; }
+    inline void SetClusterStates(Aws::Vector<ClusterState>&& value) { m_clusterStatesHasBeenSet = true; m_clusterStates = std::move(value); }
 
     /**
      * <p>The cluster state filters to apply when listing clusters.</p>
@@ -114,7 +126,7 @@ namespace Model
     /**
      * <p>The cluster state filters to apply when listing clusters.</p>
      */
-    inline ListClustersRequest& WithClusterStates(Aws::Vector<ClusterState>&& value) { SetClusterStates(value); return *this;}
+    inline ListClustersRequest& WithClusterStates(Aws::Vector<ClusterState>&& value) { SetClusterStates(std::move(value)); return *this;}
 
     /**
      * <p>The cluster state filters to apply when listing clusters.</p>
@@ -124,7 +136,8 @@ namespace Model
     /**
      * <p>The cluster state filters to apply when listing clusters.</p>
      */
-    inline ListClustersRequest& AddClusterStates(ClusterState&& value) { m_clusterStatesHasBeenSet = true; m_clusterStates.push_back(value); return *this; }
+    inline ListClustersRequest& AddClusterStates(ClusterState&& value) { m_clusterStatesHasBeenSet = true; m_clusterStates.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
@@ -139,7 +152,7 @@ namespace Model
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
@@ -154,7 +167,7 @@ namespace Model
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
      */
-    inline ListClustersRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline ListClustersRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
@@ -162,12 +175,16 @@ namespace Model
     inline ListClustersRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
 
   private:
+
     Aws::Utils::DateTime m_createdAfter;
     bool m_createdAfterHasBeenSet;
+
     Aws::Utils::DateTime m_createdBefore;
     bool m_createdBeforeHasBeenSet;
+
     Aws::Vector<ClusterState> m_clusterStates;
     bool m_clusterStatesHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
   };

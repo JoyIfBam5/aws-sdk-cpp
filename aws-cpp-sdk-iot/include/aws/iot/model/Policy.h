@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     Policy& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The policy name.</p>
      */
@@ -56,7 +59,7 @@ namespace Model
     /**
      * <p>The policy name.</p>
      */
-    inline void SetPolicyName(Aws::String&& value) { m_policyNameHasBeenSet = true; m_policyName = value; }
+    inline void SetPolicyName(Aws::String&& value) { m_policyNameHasBeenSet = true; m_policyName = std::move(value); }
 
     /**
      * <p>The policy name.</p>
@@ -71,12 +74,13 @@ namespace Model
     /**
      * <p>The policy name.</p>
      */
-    inline Policy& WithPolicyName(Aws::String&& value) { SetPolicyName(value); return *this;}
+    inline Policy& WithPolicyName(Aws::String&& value) { SetPolicyName(std::move(value)); return *this;}
 
     /**
      * <p>The policy name.</p>
      */
     inline Policy& WithPolicyName(const char* value) { SetPolicyName(value); return *this;}
+
 
     /**
      * <p>The policy ARN.</p>
@@ -91,7 +95,7 @@ namespace Model
     /**
      * <p>The policy ARN.</p>
      */
-    inline void SetPolicyArn(Aws::String&& value) { m_policyArnHasBeenSet = true; m_policyArn = value; }
+    inline void SetPolicyArn(Aws::String&& value) { m_policyArnHasBeenSet = true; m_policyArn = std::move(value); }
 
     /**
      * <p>The policy ARN.</p>
@@ -106,7 +110,7 @@ namespace Model
     /**
      * <p>The policy ARN.</p>
      */
-    inline Policy& WithPolicyArn(Aws::String&& value) { SetPolicyArn(value); return *this;}
+    inline Policy& WithPolicyArn(Aws::String&& value) { SetPolicyArn(std::move(value)); return *this;}
 
     /**
      * <p>The policy ARN.</p>
@@ -114,8 +118,10 @@ namespace Model
     inline Policy& WithPolicyArn(const char* value) { SetPolicyArn(value); return *this;}
 
   private:
+
     Aws::String m_policyName;
     bool m_policyNameHasBeenSet;
+
     Aws::String m_policyArn;
     bool m_policyArnHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/devicefarm/DeviceFarm_EXPORTS.h>
 
@@ -42,6 +43,7 @@ namespace Model
     Counters& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The total number of entities.</p>
      */
@@ -56,6 +58,7 @@ namespace Model
      * <p>The total number of entities.</p>
      */
     inline Counters& WithTotal(int value) { SetTotal(value); return *this;}
+
 
     /**
      * <p>The number of passed entities.</p>
@@ -72,6 +75,7 @@ namespace Model
      */
     inline Counters& WithPassed(int value) { SetPassed(value); return *this;}
 
+
     /**
      * <p>The number of failed entities.</p>
      */
@@ -86,6 +90,7 @@ namespace Model
      * <p>The number of failed entities.</p>
      */
     inline Counters& WithFailed(int value) { SetFailed(value); return *this;}
+
 
     /**
      * <p>The number of warned entities.</p>
@@ -102,6 +107,7 @@ namespace Model
      */
     inline Counters& WithWarned(int value) { SetWarned(value); return *this;}
 
+
     /**
      * <p>The number of errored entities.</p>
      */
@@ -117,6 +123,7 @@ namespace Model
      */
     inline Counters& WithErrored(int value) { SetErrored(value); return *this;}
 
+
     /**
      * <p>The number of stopped entities.</p>
      */
@@ -131,6 +138,7 @@ namespace Model
      * <p>The number of stopped entities.</p>
      */
     inline Counters& WithStopped(int value) { SetStopped(value); return *this;}
+
 
     /**
      * <p>The number of skipped entities.</p>
@@ -148,18 +156,25 @@ namespace Model
     inline Counters& WithSkipped(int value) { SetSkipped(value); return *this;}
 
   private:
+
     int m_total;
     bool m_totalHasBeenSet;
+
     int m_passed;
     bool m_passedHasBeenSet;
+
     int m_failed;
     bool m_failedHasBeenSet;
+
     int m_warned;
     bool m_warnedHasBeenSet;
+
     int m_errored;
     bool m_erroredHasBeenSet;
+
     int m_stopped;
     bool m_stoppedHasBeenSet;
+
     int m_skipped;
     bool m_skippedHasBeenSet;
   };

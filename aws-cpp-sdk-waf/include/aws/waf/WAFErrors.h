@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 
 #include <aws/core/client/CoreErrors.h>
@@ -54,11 +55,12 @@ enum class WAFErrors
   UNKNOWN = 100,
   ///////////////////////////////////////////////////////////////////////////////////////////
 
-  W_A_F_DISALLOWED_NAME= static_cast<int>(Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
+  W_A_F_DISALLOWED_NAME= static_cast<int>(Aws::Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
   W_A_F_INTERNAL_ERROR,
   W_A_F_INVALID_ACCOUNT,
   W_A_F_INVALID_OPERATION,
   W_A_F_INVALID_PARAMETER,
+  W_A_F_INVALID_REGEX_PATTERN,
   W_A_F_LIMITS_EXCEEDED,
   W_A_F_NONEXISTENT_CONTAINER,
   W_A_F_NONEXISTENT_ITEM,
@@ -68,7 +70,7 @@ enum class WAFErrors
 };
 namespace WAFErrorMapper
 {
-  AWS_WAF_API Client::AWSError<Client::CoreErrors> GetErrorForName(const char* errorName);
+  AWS_WAF_API Aws::Client::AWSError<Aws::Client::CoreErrors> GetErrorForName(const char* errorName);
 }
 
 } // namespace WAF

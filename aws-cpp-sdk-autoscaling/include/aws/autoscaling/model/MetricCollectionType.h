@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/autoscaling/AutoScaling_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
 
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
+
 
     /**
      * <p>One of the following metrics:</p> <ul> <li> <p> <code>GroupMinSize</code>
@@ -80,7 +83,7 @@ namespace Model
      * <code>GroupTerminatingInstances</code> </p> </li> <li> <p>
      * <code>GroupTotalInstances</code> </p> </li> </ul>
      */
-    inline void SetMetric(Aws::String&& value) { m_metricHasBeenSet = true; m_metric = value; }
+    inline void SetMetric(Aws::String&& value) { m_metricHasBeenSet = true; m_metric = std::move(value); }
 
     /**
      * <p>One of the following metrics:</p> <ul> <li> <p> <code>GroupMinSize</code>
@@ -116,7 +119,7 @@ namespace Model
      * <code>GroupTerminatingInstances</code> </p> </li> <li> <p>
      * <code>GroupTotalInstances</code> </p> </li> </ul>
      */
-    inline MetricCollectionType& WithMetric(Aws::String&& value) { SetMetric(value); return *this;}
+    inline MetricCollectionType& WithMetric(Aws::String&& value) { SetMetric(std::move(value)); return *this;}
 
     /**
      * <p>One of the following metrics:</p> <ul> <li> <p> <code>GroupMinSize</code>
@@ -131,6 +134,7 @@ namespace Model
     inline MetricCollectionType& WithMetric(const char* value) { SetMetric(value); return *this;}
 
   private:
+
     Aws::String m_metric;
     bool m_metricHasBeenSet;
   };

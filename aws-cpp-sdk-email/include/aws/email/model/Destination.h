@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,7 +40,7 @@ namespace Model
    * contain any other characters, then you must use MIME encoded-word syntax (RFC
    * 2047) instead of a literal string. MIME encoded-word syntax uses the following
    * form: <code>=?charset?encoding?encoded-text?=</code>. For more information, see
-   * <a href="http://tools.ietf.org/html/rfc2047">RFC 2047</a>. </p><p><h3>See
+   * <a href="https://tools.ietf.org/html/rfc2047">RFC 2047</a>. </p><p><h3>See
    * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/Destination">AWS
    * API Reference</a></p>
@@ -53,6 +55,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The To: field(s) of the message.</p>
      */
@@ -66,7 +69,7 @@ namespace Model
     /**
      * <p>The To: field(s) of the message.</p>
      */
-    inline void SetToAddresses(Aws::Vector<Aws::String>&& value) { m_toAddressesHasBeenSet = true; m_toAddresses = value; }
+    inline void SetToAddresses(Aws::Vector<Aws::String>&& value) { m_toAddressesHasBeenSet = true; m_toAddresses = std::move(value); }
 
     /**
      * <p>The To: field(s) of the message.</p>
@@ -76,7 +79,7 @@ namespace Model
     /**
      * <p>The To: field(s) of the message.</p>
      */
-    inline Destination& WithToAddresses(Aws::Vector<Aws::String>&& value) { SetToAddresses(value); return *this;}
+    inline Destination& WithToAddresses(Aws::Vector<Aws::String>&& value) { SetToAddresses(std::move(value)); return *this;}
 
     /**
      * <p>The To: field(s) of the message.</p>
@@ -86,12 +89,13 @@ namespace Model
     /**
      * <p>The To: field(s) of the message.</p>
      */
-    inline Destination& AddToAddresses(Aws::String&& value) { m_toAddressesHasBeenSet = true; m_toAddresses.push_back(value); return *this; }
+    inline Destination& AddToAddresses(Aws::String&& value) { m_toAddressesHasBeenSet = true; m_toAddresses.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The To: field(s) of the message.</p>
      */
     inline Destination& AddToAddresses(const char* value) { m_toAddressesHasBeenSet = true; m_toAddresses.push_back(value); return *this; }
+
 
     /**
      * <p>The CC: field(s) of the message.</p>
@@ -106,7 +110,7 @@ namespace Model
     /**
      * <p>The CC: field(s) of the message.</p>
      */
-    inline void SetCcAddresses(Aws::Vector<Aws::String>&& value) { m_ccAddressesHasBeenSet = true; m_ccAddresses = value; }
+    inline void SetCcAddresses(Aws::Vector<Aws::String>&& value) { m_ccAddressesHasBeenSet = true; m_ccAddresses = std::move(value); }
 
     /**
      * <p>The CC: field(s) of the message.</p>
@@ -116,7 +120,7 @@ namespace Model
     /**
      * <p>The CC: field(s) of the message.</p>
      */
-    inline Destination& WithCcAddresses(Aws::Vector<Aws::String>&& value) { SetCcAddresses(value); return *this;}
+    inline Destination& WithCcAddresses(Aws::Vector<Aws::String>&& value) { SetCcAddresses(std::move(value)); return *this;}
 
     /**
      * <p>The CC: field(s) of the message.</p>
@@ -126,12 +130,13 @@ namespace Model
     /**
      * <p>The CC: field(s) of the message.</p>
      */
-    inline Destination& AddCcAddresses(Aws::String&& value) { m_ccAddressesHasBeenSet = true; m_ccAddresses.push_back(value); return *this; }
+    inline Destination& AddCcAddresses(Aws::String&& value) { m_ccAddressesHasBeenSet = true; m_ccAddresses.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The CC: field(s) of the message.</p>
      */
     inline Destination& AddCcAddresses(const char* value) { m_ccAddressesHasBeenSet = true; m_ccAddresses.push_back(value); return *this; }
+
 
     /**
      * <p>The BCC: field(s) of the message.</p>
@@ -146,7 +151,7 @@ namespace Model
     /**
      * <p>The BCC: field(s) of the message.</p>
      */
-    inline void SetBccAddresses(Aws::Vector<Aws::String>&& value) { m_bccAddressesHasBeenSet = true; m_bccAddresses = value; }
+    inline void SetBccAddresses(Aws::Vector<Aws::String>&& value) { m_bccAddressesHasBeenSet = true; m_bccAddresses = std::move(value); }
 
     /**
      * <p>The BCC: field(s) of the message.</p>
@@ -156,7 +161,7 @@ namespace Model
     /**
      * <p>The BCC: field(s) of the message.</p>
      */
-    inline Destination& WithBccAddresses(Aws::Vector<Aws::String>&& value) { SetBccAddresses(value); return *this;}
+    inline Destination& WithBccAddresses(Aws::Vector<Aws::String>&& value) { SetBccAddresses(std::move(value)); return *this;}
 
     /**
      * <p>The BCC: field(s) of the message.</p>
@@ -166,7 +171,7 @@ namespace Model
     /**
      * <p>The BCC: field(s) of the message.</p>
      */
-    inline Destination& AddBccAddresses(Aws::String&& value) { m_bccAddressesHasBeenSet = true; m_bccAddresses.push_back(value); return *this; }
+    inline Destination& AddBccAddresses(Aws::String&& value) { m_bccAddressesHasBeenSet = true; m_bccAddresses.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The BCC: field(s) of the message.</p>
@@ -174,10 +179,13 @@ namespace Model
     inline Destination& AddBccAddresses(const char* value) { m_bccAddressesHasBeenSet = true; m_bccAddresses.push_back(value); return *this; }
 
   private:
+
     Aws::Vector<Aws::String> m_toAddresses;
     bool m_toAddressesHasBeenSet;
+
     Aws::Vector<Aws::String> m_ccAddresses;
     bool m_ccAddressesHasBeenSet;
+
     Aws::Vector<Aws::String> m_bccAddresses;
     bool m_bccAddressesHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/PrefixListId.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,11 +31,13 @@ namespace Model
 {
 
 PrefixListId::PrefixListId() : 
+    m_descriptionHasBeenSet(false),
     m_prefixListIdHasBeenSet(false)
 {
 }
 
 PrefixListId::PrefixListId(const XmlNode& xmlNode) : 
+    m_descriptionHasBeenSet(false),
     m_prefixListIdHasBeenSet(false)
 {
   *this = xmlNode;
@@ -46,6 +49,12 @@ PrefixListId& PrefixListId::operator =(const XmlNode& xmlNode)
 
   if(!resultNode.IsNull())
   {
+    XmlNode descriptionNode = resultNode.FirstChild("description");
+    if(!descriptionNode.IsNull())
+    {
+      m_description = StringUtils::Trim(descriptionNode.GetText().c_str());
+      m_descriptionHasBeenSet = true;
+    }
     XmlNode prefixListIdNode = resultNode.FirstChild("prefixListId");
     if(!prefixListIdNode.IsNull())
     {
@@ -59,6 +68,11 @@ PrefixListId& PrefixListId::operator =(const XmlNode& xmlNode)
 
 void PrefixListId::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
+  if(m_descriptionHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
+  }
+
   if(m_prefixListIdHasBeenSet)
   {
       oStream << location << index << locationValue << ".PrefixListId=" << StringUtils::URLEncode(m_prefixListId.c_str()) << "&";
@@ -68,6 +82,10 @@ void PrefixListId::OutputToStream(Aws::OStream& oStream, const char* location, u
 
 void PrefixListId::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
+  if(m_descriptionHasBeenSet)
+  {
+      oStream << location << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
+  }
   if(m_prefixListIdHasBeenSet)
   {
       oStream << location << ".PrefixListId=" << StringUtils::URLEncode(m_prefixListId.c_str()) << "&";

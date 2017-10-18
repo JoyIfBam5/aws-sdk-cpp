@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lambda/Lambda_EXPORTS.h>
 #include <aws/core/utils/stream/ResponseStream.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/Array.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,13 +48,14 @@ namespace Model
     InvokeResult& operator=(const InvokeResult&) = delete;
 
 
-    InvokeResult(AmazonWebServiceResult<Utils::Stream::ResponseStream>&& result);
-    InvokeResult& operator=(AmazonWebServiceResult<Utils::Stream::ResponseStream>&& result);
+    InvokeResult(Aws::AmazonWebServiceResult<Aws::Utils::Stream::ResponseStream>&& result);
+    InvokeResult& operator=(Aws::AmazonWebServiceResult<Aws::Utils::Stream::ResponseStream>&& result);
+
 
 
     /**
      * <p>The HTTP status code will be in the 200 range for successful request. For the
-     * <code>RequestResonse</code> invocation type this status code will be 200. For
+     * <code>RequestResponse</code> invocation type this status code will be 200. For
      * the <code>Event</code> invocation type this status code will be 202. For the
      * <code>DryRun</code> invocation type the status code will be 204. </p>
      */
@@ -60,7 +63,7 @@ namespace Model
 
     /**
      * <p>The HTTP status code will be in the 200 range for successful request. For the
-     * <code>RequestResonse</code> invocation type this status code will be 200. For
+     * <code>RequestResponse</code> invocation type this status code will be 200. For
      * the <code>Event</code> invocation type this status code will be 202. For the
      * <code>DryRun</code> invocation type the status code will be 204. </p>
      */
@@ -68,11 +71,12 @@ namespace Model
 
     /**
      * <p>The HTTP status code will be in the 200 range for successful request. For the
-     * <code>RequestResonse</code> invocation type this status code will be 200. For
+     * <code>RequestResponse</code> invocation type this status code will be 200. For
      * the <code>Event</code> invocation type this status code will be 202. For the
      * <code>DryRun</code> invocation type the status code will be 204. </p>
      */
     inline InvokeResult& WithStatusCode(int value) { SetStatusCode(value); return *this;}
+
 
     /**
      * <p>Indicates whether an error occurred while executing the Lambda function. If
@@ -111,7 +115,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/lambda/latest/dg/programming-model.html">Programming
      * Model</a>. </p>
      */
-    inline void SetFunctionError(Aws::String&& value) { m_functionError = value; }
+    inline void SetFunctionError(Aws::String&& value) { m_functionError = std::move(value); }
 
     /**
      * <p>Indicates whether an error occurred while executing the Lambda function. If
@@ -150,7 +154,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/lambda/latest/dg/programming-model.html">Programming
      * Model</a>. </p>
      */
-    inline InvokeResult& WithFunctionError(Aws::String&& value) { SetFunctionError(value); return *this;}
+    inline InvokeResult& WithFunctionError(Aws::String&& value) { SetFunctionError(std::move(value)); return *this;}
 
     /**
      * <p>Indicates whether an error occurred while executing the Lambda function. If
@@ -164,6 +168,7 @@ namespace Model
      * Model</a>. </p>
      */
     inline InvokeResult& WithFunctionError(const char* value) { SetFunctionError(value); return *this;}
+
 
     /**
      * <p> It is the base64-encoded logs for the Lambda function invocation. This is
@@ -184,7 +189,7 @@ namespace Model
      * present only if the invocation type is <code>RequestResponse</code> and the logs
      * were requested. </p>
      */
-    inline void SetLogResult(Aws::String&& value) { m_logResult = value; }
+    inline void SetLogResult(Aws::String&& value) { m_logResult = std::move(value); }
 
     /**
      * <p> It is the base64-encoded logs for the Lambda function invocation. This is
@@ -205,7 +210,7 @@ namespace Model
      * present only if the invocation type is <code>RequestResponse</code> and the logs
      * were requested. </p>
      */
-    inline InvokeResult& WithLogResult(Aws::String&& value) { SetLogResult(value); return *this;}
+    inline InvokeResult& WithLogResult(Aws::String&& value) { SetLogResult(std::move(value)); return *this;}
 
     /**
      * <p> It is the base64-encoded logs for the Lambda function invocation. This is
@@ -213,6 +218,7 @@ namespace Model
      * were requested. </p>
      */
     inline InvokeResult& WithLogResult(const char* value) { SetLogResult(value); return *this;}
+
 
     /**
      * <p> It is the JSON representation of the object returned by the Lambda function.
@@ -235,10 +241,14 @@ namespace Model
     inline void ReplaceBody(Aws::IOStream* body) { m_payload = Aws::Utils::Stream::ResponseStream(body); }
     
   private:
+
     int m_statusCode;
+
     Aws::String m_functionError;
+
     Aws::String m_logResult;
-    Utils::Stream::ResponseStream m_payload;
+
+  Aws::Utils::Stream::ResponseStream m_payload;
   };
 
 } // namespace Model

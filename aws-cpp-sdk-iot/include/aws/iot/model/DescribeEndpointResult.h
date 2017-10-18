@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -41,8 +43,9 @@ namespace Model
   {
   public:
     DescribeEndpointResult();
-    DescribeEndpointResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeEndpointResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeEndpointResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeEndpointResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The endpoint. The format of the endpoint is as follows:
@@ -60,7 +63,7 @@ namespace Model
      * <p>The endpoint. The format of the endpoint is as follows:
      * <i>identifier</i>.iot.<i>region</i>.amazonaws.com.</p>
      */
-    inline void SetEndpointAddress(Aws::String&& value) { m_endpointAddress = value; }
+    inline void SetEndpointAddress(Aws::String&& value) { m_endpointAddress = std::move(value); }
 
     /**
      * <p>The endpoint. The format of the endpoint is as follows:
@@ -78,7 +81,7 @@ namespace Model
      * <p>The endpoint. The format of the endpoint is as follows:
      * <i>identifier</i>.iot.<i>region</i>.amazonaws.com.</p>
      */
-    inline DescribeEndpointResult& WithEndpointAddress(Aws::String&& value) { SetEndpointAddress(value); return *this;}
+    inline DescribeEndpointResult& WithEndpointAddress(Aws::String&& value) { SetEndpointAddress(std::move(value)); return *this;}
 
     /**
      * <p>The endpoint. The format of the endpoint is as follows:
@@ -87,6 +90,7 @@ namespace Model
     inline DescribeEndpointResult& WithEndpointAddress(const char* value) { SetEndpointAddress(value); return *this;}
 
   private:
+
     Aws::String m_endpointAddress;
   };
 

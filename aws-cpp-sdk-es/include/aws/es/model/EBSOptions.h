@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/es/ElasticsearchService_EXPORTS.h>
 #include <aws/es/model/VolumeType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     EBSOptions& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Specifies whether EBS-based storage is enabled.</p>
      */
@@ -61,6 +64,7 @@ namespace Model
      */
     inline EBSOptions& WithEBSEnabled(bool value) { SetEBSEnabled(value); return *this;}
 
+
     /**
      * <p> Specifies the volume type for EBS-based storage.</p>
      */
@@ -74,7 +78,7 @@ namespace Model
     /**
      * <p> Specifies the volume type for EBS-based storage.</p>
      */
-    inline void SetVolumeType(VolumeType&& value) { m_volumeTypeHasBeenSet = true; m_volumeType = value; }
+    inline void SetVolumeType(VolumeType&& value) { m_volumeTypeHasBeenSet = true; m_volumeType = std::move(value); }
 
     /**
      * <p> Specifies the volume type for EBS-based storage.</p>
@@ -84,7 +88,8 @@ namespace Model
     /**
      * <p> Specifies the volume type for EBS-based storage.</p>
      */
-    inline EBSOptions& WithVolumeType(VolumeType&& value) { SetVolumeType(value); return *this;}
+    inline EBSOptions& WithVolumeType(VolumeType&& value) { SetVolumeType(std::move(value)); return *this;}
+
 
     /**
      * <p> Integer to specify the size of an EBS volume.</p>
@@ -100,6 +105,7 @@ namespace Model
      * <p> Integer to specify the size of an EBS volume.</p>
      */
     inline EBSOptions& WithVolumeSize(int value) { SetVolumeSize(value); return *this;}
+
 
     /**
      * <p>Specifies the IOPD for a Provisioned IOPS EBS volume (SSD).</p>
@@ -117,12 +123,16 @@ namespace Model
     inline EBSOptions& WithIops(int value) { SetIops(value); return *this;}
 
   private:
+
     bool m_eBSEnabled;
     bool m_eBSEnabledHasBeenSet;
+
     VolumeType m_volumeType;
     bool m_volumeTypeHasBeenSet;
+
     int m_volumeSize;
     bool m_volumeSizeHasBeenSet;
+
     int m_iops;
     bool m_iopsHasBeenSet;
   };

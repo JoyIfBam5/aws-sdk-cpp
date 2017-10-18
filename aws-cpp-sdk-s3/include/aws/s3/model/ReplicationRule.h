@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/s3/model/ReplicationRuleStatus.h>
 #include <aws/s3/model/Destination.h>
+#include <utility>
 
 namespace Aws
 {
@@ -41,6 +43,7 @@ namespace Model
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
 
+
     /**
      * Unique identifier for the rule. The value cannot be longer than 255 characters.
      */
@@ -54,7 +57,7 @@ namespace Model
     /**
      * Unique identifier for the rule. The value cannot be longer than 255 characters.
      */
-    inline void SetID(Aws::String&& value) { m_iDHasBeenSet = true; m_iD = value; }
+    inline void SetID(Aws::String&& value) { m_iDHasBeenSet = true; m_iD = std::move(value); }
 
     /**
      * Unique identifier for the rule. The value cannot be longer than 255 characters.
@@ -69,12 +72,13 @@ namespace Model
     /**
      * Unique identifier for the rule. The value cannot be longer than 255 characters.
      */
-    inline ReplicationRule& WithID(Aws::String&& value) { SetID(value); return *this;}
+    inline ReplicationRule& WithID(Aws::String&& value) { SetID(std::move(value)); return *this;}
 
     /**
      * Unique identifier for the rule. The value cannot be longer than 255 characters.
      */
     inline ReplicationRule& WithID(const char* value) { SetID(value); return *this;}
+
 
     /**
      * Object keyname prefix identifying one or more objects to which the rule applies.
@@ -95,7 +99,7 @@ namespace Model
      * Maximum prefix length can be up to 1,024 characters. Overlapping prefixes are
      * not supported.
      */
-    inline void SetPrefix(Aws::String&& value) { m_prefixHasBeenSet = true; m_prefix = value; }
+    inline void SetPrefix(Aws::String&& value) { m_prefixHasBeenSet = true; m_prefix = std::move(value); }
 
     /**
      * Object keyname prefix identifying one or more objects to which the rule applies.
@@ -116,7 +120,7 @@ namespace Model
      * Maximum prefix length can be up to 1,024 characters. Overlapping prefixes are
      * not supported.
      */
-    inline ReplicationRule& WithPrefix(Aws::String&& value) { SetPrefix(value); return *this;}
+    inline ReplicationRule& WithPrefix(Aws::String&& value) { SetPrefix(std::move(value)); return *this;}
 
     /**
      * Object keyname prefix identifying one or more objects to which the rule applies.
@@ -124,6 +128,7 @@ namespace Model
      * not supported.
      */
     inline ReplicationRule& WithPrefix(const char* value) { SetPrefix(value); return *this;}
+
 
     /**
      * The rule is ignored if status is not Enabled.
@@ -138,7 +143,7 @@ namespace Model
     /**
      * The rule is ignored if status is not Enabled.
      */
-    inline void SetStatus(ReplicationRuleStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(ReplicationRuleStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * The rule is ignored if status is not Enabled.
@@ -148,7 +153,8 @@ namespace Model
     /**
      * The rule is ignored if status is not Enabled.
      */
-    inline ReplicationRule& WithStatus(ReplicationRuleStatus&& value) { SetStatus(value); return *this;}
+    inline ReplicationRule& WithStatus(ReplicationRuleStatus&& value) { SetStatus(std::move(value)); return *this;}
+
 
     
     inline const Destination& GetDestination() const{ return m_destination; }
@@ -157,21 +163,25 @@ namespace Model
     inline void SetDestination(const Destination& value) { m_destinationHasBeenSet = true; m_destination = value; }
 
     
-    inline void SetDestination(Destination&& value) { m_destinationHasBeenSet = true; m_destination = value; }
+    inline void SetDestination(Destination&& value) { m_destinationHasBeenSet = true; m_destination = std::move(value); }
 
     
     inline ReplicationRule& WithDestination(const Destination& value) { SetDestination(value); return *this;}
 
     
-    inline ReplicationRule& WithDestination(Destination&& value) { SetDestination(value); return *this;}
+    inline ReplicationRule& WithDestination(Destination&& value) { SetDestination(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_iD;
     bool m_iDHasBeenSet;
+
     Aws::String m_prefix;
     bool m_prefixHasBeenSet;
+
     ReplicationRuleStatus m_status;
     bool m_statusHasBeenSet;
+
     Destination m_destination;
     bool m_destinationHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codecommit/CodeCommit_EXPORTS.h>
 #include <aws/codecommit/model/Commit.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,35 +44,42 @@ namespace Model
   {
   public:
     GetCommitResult();
-    GetCommitResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetCommitResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetCommitResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetCommitResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>Information about the specified commit.</p>
+     * <p>A commit data type object that contains information about the specified
+     * commit.</p>
      */
     inline const Commit& GetCommit() const{ return m_commit; }
 
     /**
-     * <p>Information about the specified commit.</p>
+     * <p>A commit data type object that contains information about the specified
+     * commit.</p>
      */
     inline void SetCommit(const Commit& value) { m_commit = value; }
 
     /**
-     * <p>Information about the specified commit.</p>
+     * <p>A commit data type object that contains information about the specified
+     * commit.</p>
      */
-    inline void SetCommit(Commit&& value) { m_commit = value; }
+    inline void SetCommit(Commit&& value) { m_commit = std::move(value); }
 
     /**
-     * <p>Information about the specified commit.</p>
+     * <p>A commit data type object that contains information about the specified
+     * commit.</p>
      */
     inline GetCommitResult& WithCommit(const Commit& value) { SetCommit(value); return *this;}
 
     /**
-     * <p>Information about the specified commit.</p>
+     * <p>A commit data type object that contains information about the specified
+     * commit.</p>
      */
-    inline GetCommitResult& WithCommit(Commit&& value) { SetCommit(value); return *this;}
+    inline GetCommitResult& WithCommit(Commit&& value) { SetCommit(std::move(value)); return *this;}
 
   private:
+
     Commit m_commit;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elastictranscoder/ElasticTranscoder_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -54,6 +56,7 @@ namespace Model
     PresetWatermark& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p> A unique identifier for the settings for one watermark. The value of
      * <code>Id</code> can be up to 40 characters long. </p>
@@ -70,7 +73,7 @@ namespace Model
      * <p> A unique identifier for the settings for one watermark. The value of
      * <code>Id</code> can be up to 40 characters long. </p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p> A unique identifier for the settings for one watermark. The value of
@@ -88,13 +91,14 @@ namespace Model
      * <p> A unique identifier for the settings for one watermark. The value of
      * <code>Id</code> can be up to 40 characters long. </p>
      */
-    inline PresetWatermark& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline PresetWatermark& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p> A unique identifier for the settings for one watermark. The value of
      * <code>Id</code> can be up to 40 characters long. </p>
      */
     inline PresetWatermark& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>The maximum width of the watermark in one of the following formats: </p> <ul>
@@ -130,7 +134,7 @@ namespace Model
      * calculation.</p> <p>If you specify the value in pixels, it must be less than or
      * equal to the value of <code>MaxWidth</code>.</p> </li> </ul>
      */
-    inline void SetMaxWidth(Aws::String&& value) { m_maxWidthHasBeenSet = true; m_maxWidth = value; }
+    inline void SetMaxWidth(Aws::String&& value) { m_maxWidthHasBeenSet = true; m_maxWidth = std::move(value); }
 
     /**
      * <p>The maximum width of the watermark in one of the following formats: </p> <ul>
@@ -166,7 +170,7 @@ namespace Model
      * calculation.</p> <p>If you specify the value in pixels, it must be less than or
      * equal to the value of <code>MaxWidth</code>.</p> </li> </ul>
      */
-    inline PresetWatermark& WithMaxWidth(Aws::String&& value) { SetMaxWidth(value); return *this;}
+    inline PresetWatermark& WithMaxWidth(Aws::String&& value) { SetMaxWidth(std::move(value)); return *this;}
 
     /**
      * <p>The maximum width of the watermark in one of the following formats: </p> <ul>
@@ -179,6 +183,7 @@ namespace Model
      * equal to the value of <code>MaxWidth</code>.</p> </li> </ul>
      */
     inline PresetWatermark& WithMaxWidth(const char* value) { SetMaxWidth(value); return *this;}
+
 
     /**
      * <p>The maximum height of the watermark in one of the following formats: </p>
@@ -214,7 +219,7 @@ namespace Model
      * calculation.</p> </li> </ul> <p>If you specify the value in pixels, it must be
      * less than or equal to the value of <code>MaxHeight</code>.</p>
      */
-    inline void SetMaxHeight(Aws::String&& value) { m_maxHeightHasBeenSet = true; m_maxHeight = value; }
+    inline void SetMaxHeight(Aws::String&& value) { m_maxHeightHasBeenSet = true; m_maxHeight = std::move(value); }
 
     /**
      * <p>The maximum height of the watermark in one of the following formats: </p>
@@ -250,7 +255,7 @@ namespace Model
      * calculation.</p> </li> </ul> <p>If you specify the value in pixels, it must be
      * less than or equal to the value of <code>MaxHeight</code>.</p>
      */
-    inline PresetWatermark& WithMaxHeight(Aws::String&& value) { SetMaxHeight(value); return *this;}
+    inline PresetWatermark& WithMaxHeight(Aws::String&& value) { SetMaxHeight(std::move(value)); return *this;}
 
     /**
      * <p>The maximum height of the watermark in one of the following formats: </p>
@@ -263,6 +268,7 @@ namespace Model
      * less than or equal to the value of <code>MaxHeight</code>.</p>
      */
     inline PresetWatermark& WithMaxHeight(const char* value) { SetMaxHeight(value); return *this;}
+
 
     /**
      * <p>A value that controls scaling of the watermark: </p> <ul> <li> <p>
@@ -313,7 +319,7 @@ namespace Model
      * If you specify this option, Elastic Transcoder does not scale the watermark
      * up.</p> </li> </ul>
      */
-    inline void SetSizingPolicy(Aws::String&& value) { m_sizingPolicyHasBeenSet = true; m_sizingPolicy = value; }
+    inline void SetSizingPolicy(Aws::String&& value) { m_sizingPolicyHasBeenSet = true; m_sizingPolicy = std::move(value); }
 
     /**
      * <p>A value that controls scaling of the watermark: </p> <ul> <li> <p>
@@ -364,7 +370,7 @@ namespace Model
      * If you specify this option, Elastic Transcoder does not scale the watermark
      * up.</p> </li> </ul>
      */
-    inline PresetWatermark& WithSizingPolicy(Aws::String&& value) { SetSizingPolicy(value); return *this;}
+    inline PresetWatermark& WithSizingPolicy(Aws::String&& value) { SetSizingPolicy(std::move(value)); return *this;}
 
     /**
      * <p>A value that controls scaling of the watermark: </p> <ul> <li> <p>
@@ -382,6 +388,7 @@ namespace Model
      * up.</p> </li> </ul>
      */
     inline PresetWatermark& WithSizingPolicy(const char* value) { SetSizingPolicy(value); return *this;}
+
 
     /**
      * <p>The horizontal position of the watermark unless you specify a non-zero value
@@ -411,7 +418,7 @@ namespace Model
      * border of the video.</p> </li> <li> <p> <b>Center</b>: The watermark is centered
      * between the left and right borders.</p> </li> </ul>
      */
-    inline void SetHorizontalAlign(Aws::String&& value) { m_horizontalAlignHasBeenSet = true; m_horizontalAlign = value; }
+    inline void SetHorizontalAlign(Aws::String&& value) { m_horizontalAlignHasBeenSet = true; m_horizontalAlign = std::move(value); }
 
     /**
      * <p>The horizontal position of the watermark unless you specify a non-zero value
@@ -441,7 +448,7 @@ namespace Model
      * border of the video.</p> </li> <li> <p> <b>Center</b>: The watermark is centered
      * between the left and right borders.</p> </li> </ul>
      */
-    inline PresetWatermark& WithHorizontalAlign(Aws::String&& value) { SetHorizontalAlign(value); return *this;}
+    inline PresetWatermark& WithHorizontalAlign(Aws::String&& value) { SetHorizontalAlign(std::move(value)); return *this;}
 
     /**
      * <p>The horizontal position of the watermark unless you specify a non-zero value
@@ -452,6 +459,7 @@ namespace Model
      * between the left and right borders.</p> </li> </ul>
      */
     inline PresetWatermark& WithHorizontalAlign(const char* value) { SetHorizontalAlign(value); return *this;}
+
 
     /**
      * <p>The amount by which you want the horizontal position of the watermark to be
@@ -511,7 +519,7 @@ namespace Model
      * to include the black bars that are added by Elastic Transcoder, if any, in the
      * offset calculation.</p>
      */
-    inline void SetHorizontalOffset(Aws::String&& value) { m_horizontalOffsetHasBeenSet = true; m_horizontalOffset = value; }
+    inline void SetHorizontalOffset(Aws::String&& value) { m_horizontalOffsetHasBeenSet = true; m_horizontalOffset = std::move(value); }
 
     /**
      * <p>The amount by which you want the horizontal position of the watermark to be
@@ -571,7 +579,7 @@ namespace Model
      * to include the black bars that are added by Elastic Transcoder, if any, in the
      * offset calculation.</p>
      */
-    inline PresetWatermark& WithHorizontalOffset(Aws::String&& value) { SetHorizontalOffset(value); return *this;}
+    inline PresetWatermark& WithHorizontalOffset(Aws::String&& value) { SetHorizontalOffset(std::move(value)); return *this;}
 
     /**
      * <p>The amount by which you want the horizontal position of the watermark to be
@@ -592,6 +600,7 @@ namespace Model
      * offset calculation.</p>
      */
     inline PresetWatermark& WithHorizontalOffset(const char* value) { SetHorizontalOffset(value); return *this;}
+
 
     /**
      * <p>The vertical position of the watermark unless you specify a non-zero value
@@ -621,7 +630,7 @@ namespace Model
      * border of the video.</p> </li> <li> <p> <b>Center</b>: The watermark is centered
      * between the top and bottom borders.</p> </li> </ul>
      */
-    inline void SetVerticalAlign(Aws::String&& value) { m_verticalAlignHasBeenSet = true; m_verticalAlign = value; }
+    inline void SetVerticalAlign(Aws::String&& value) { m_verticalAlignHasBeenSet = true; m_verticalAlign = std::move(value); }
 
     /**
      * <p>The vertical position of the watermark unless you specify a non-zero value
@@ -651,7 +660,7 @@ namespace Model
      * border of the video.</p> </li> <li> <p> <b>Center</b>: The watermark is centered
      * between the top and bottom borders.</p> </li> </ul>
      */
-    inline PresetWatermark& WithVerticalAlign(Aws::String&& value) { SetVerticalAlign(value); return *this;}
+    inline PresetWatermark& WithVerticalAlign(Aws::String&& value) { SetVerticalAlign(std::move(value)); return *this;}
 
     /**
      * <p>The vertical position of the watermark unless you specify a non-zero value
@@ -662,6 +671,7 @@ namespace Model
      * between the top and bottom borders.</p> </li> </ul>
      */
     inline PresetWatermark& WithVerticalAlign(const char* value) { SetVerticalAlign(value); return *this;}
+
 
     /**
      * <p> <code>VerticalOffset</code> </p> <p>The amount by which you want the
@@ -724,7 +734,7 @@ namespace Model
      * the black bars that are added by Elastic Transcoder, if any, in the offset
      * calculation.</p>
      */
-    inline void SetVerticalOffset(Aws::String&& value) { m_verticalOffsetHasBeenSet = true; m_verticalOffset = value; }
+    inline void SetVerticalOffset(Aws::String&& value) { m_verticalOffsetHasBeenSet = true; m_verticalOffset = std::move(value); }
 
     /**
      * <p> <code>VerticalOffset</code> </p> <p>The amount by which you want the
@@ -787,7 +797,7 @@ namespace Model
      * the black bars that are added by Elastic Transcoder, if any, in the offset
      * calculation.</p>
      */
-    inline PresetWatermark& WithVerticalOffset(Aws::String&& value) { SetVerticalOffset(value); return *this;}
+    inline PresetWatermark& WithVerticalOffset(Aws::String&& value) { SetVerticalOffset(std::move(value)); return *this;}
 
     /**
      * <p> <code>VerticalOffset</code> </p> <p>The amount by which you want the
@@ -809,6 +819,7 @@ namespace Model
      * calculation.</p>
      */
     inline PresetWatermark& WithVerticalOffset(const char* value) { SetVerticalOffset(value); return *this;}
+
 
     /**
      * <p>A percentage that indicates how much you want a watermark to obscure the
@@ -844,7 +855,7 @@ namespace Model
      * 0 for <code>Opacity</code>. The .jpg file format doesn't support
      * transparency.</p>
      */
-    inline void SetOpacity(Aws::String&& value) { m_opacityHasBeenSet = true; m_opacity = value; }
+    inline void SetOpacity(Aws::String&& value) { m_opacityHasBeenSet = true; m_opacity = std::move(value); }
 
     /**
      * <p>A percentage that indicates how much you want a watermark to obscure the
@@ -880,7 +891,7 @@ namespace Model
      * 0 for <code>Opacity</code>. The .jpg file format doesn't support
      * transparency.</p>
      */
-    inline PresetWatermark& WithOpacity(Aws::String&& value) { SetOpacity(value); return *this;}
+    inline PresetWatermark& WithOpacity(Aws::String&& value) { SetOpacity(std::move(value)); return *this;}
 
     /**
      * <p>A percentage that indicates how much you want a watermark to obscure the
@@ -893,6 +904,7 @@ namespace Model
      * transparency.</p>
      */
     inline PresetWatermark& WithOpacity(const char* value) { SetOpacity(value); return *this;}
+
 
     /**
      * <p>A value that determines how Elastic Transcoder interprets values that you
@@ -946,7 +958,7 @@ namespace Model
      * are calculated based on the borders of the video including black bars added by
      * Elastic Transcoder, if any.</p> </li> </ul>
      */
-    inline void SetTarget(Aws::String&& value) { m_targetHasBeenSet = true; m_target = value; }
+    inline void SetTarget(Aws::String&& value) { m_targetHasBeenSet = true; m_target = std::move(value); }
 
     /**
      * <p>A value that determines how Elastic Transcoder interprets values that you
@@ -1000,7 +1012,7 @@ namespace Model
      * are calculated based on the borders of the video including black bars added by
      * Elastic Transcoder, if any.</p> </li> </ul>
      */
-    inline PresetWatermark& WithTarget(Aws::String&& value) { SetTarget(value); return *this;}
+    inline PresetWatermark& WithTarget(Aws::String&& value) { SetTarget(std::move(value)); return *this;}
 
     /**
      * <p>A value that determines how Elastic Transcoder interprets values that you
@@ -1021,24 +1033,34 @@ namespace Model
     inline PresetWatermark& WithTarget(const char* value) { SetTarget(value); return *this;}
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     Aws::String m_maxWidth;
     bool m_maxWidthHasBeenSet;
+
     Aws::String m_maxHeight;
     bool m_maxHeightHasBeenSet;
+
     Aws::String m_sizingPolicy;
     bool m_sizingPolicyHasBeenSet;
+
     Aws::String m_horizontalAlign;
     bool m_horizontalAlignHasBeenSet;
+
     Aws::String m_horizontalOffset;
     bool m_horizontalOffsetHasBeenSet;
+
     Aws::String m_verticalAlign;
     bool m_verticalAlignHasBeenSet;
+
     Aws::String m_verticalOffset;
     bool m_verticalOffsetHasBeenSet;
+
     Aws::String m_opacity;
     bool m_opacityHasBeenSet;
+
     Aws::String m_target;
     bool m_targetHasBeenSet;
   };

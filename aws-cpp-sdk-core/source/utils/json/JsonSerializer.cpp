@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   * 
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -44,12 +44,17 @@ JsonValue::JsonValue(Aws::IStream& istream) : m_wasParseSuccessful(true)
     }
 }
 
-JsonValue::JsonValue(const JsonValue& value)
+JsonValue::JsonValue(const JsonValue& value) : 
+    m_value(value.m_value), 
+    m_wasParseSuccessful(value.m_wasParseSuccessful), 
+    m_errorMessage(value.m_errorMessage)
 {
-    AsObject(value);
 }
 
-JsonValue::JsonValue(JsonValue&& value) : m_value(std::move(value.m_value))
+JsonValue::JsonValue(JsonValue&& value) : 
+    m_value(std::move(value.m_value)),
+    m_wasParseSuccessful(value.m_wasParseSuccessful), 
+    m_errorMessage(std::move(value.m_errorMessage))
 {
 }
 
@@ -64,8 +69,10 @@ JsonValue& JsonValue::operator=(const JsonValue& other)
         return *this;
     }
 
-    return AsObject(other);
-
+    m_value = other.m_value;
+    m_wasParseSuccessful = other.m_wasParseSuccessful;
+    m_errorMessage = other.m_errorMessage;
+    return *this;
 }
 
 JsonValue& JsonValue::operator=(JsonValue&& other)
@@ -75,7 +82,10 @@ JsonValue& JsonValue::operator=(JsonValue&& other)
         return *this;
     }
 
-    return AsObject(other);
+    m_value = std::move(other.m_value);
+    m_wasParseSuccessful = other.m_wasParseSuccessful;
+    m_errorMessage = std::move(other.m_errorMessage);
+    return *this;
 }
 
 JsonValue::JsonValue(const Aws::External::Json::Value& value)
@@ -389,13 +399,13 @@ JsonValue& JsonValue::WithObject(const Aws::String& key, const JsonValue&& value
 
 JsonValue& JsonValue::AsObject(const JsonValue& value)
 {
-    m_value = value.m_value;
+    *this = value;
     return *this;
 }
 
 JsonValue& JsonValue::AsObject(JsonValue && value)
 {
-    m_value = std::move(value.m_value);
+    *this = std::move(value);
     return *this;
 }
 

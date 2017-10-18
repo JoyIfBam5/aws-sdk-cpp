@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/rds/RDSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,70 +35,69 @@ namespace Model
   {
   public:
     DeleteDBInstanceRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DeleteDBInstance"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The DB instance identifier for the DB instance to be deleted. This parameter
-     * isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1
-     * to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First character must
-     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul>
+     * isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the name
+     * of an existing DB instance.</p> </li> </ul>
      */
     inline const Aws::String& GetDBInstanceIdentifier() const{ return m_dBInstanceIdentifier; }
 
     /**
      * <p>The DB instance identifier for the DB instance to be deleted. This parameter
-     * isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1
-     * to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First character must
-     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul>
+     * isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the name
+     * of an existing DB instance.</p> </li> </ul>
      */
     inline void SetDBInstanceIdentifier(const Aws::String& value) { m_dBInstanceIdentifierHasBeenSet = true; m_dBInstanceIdentifier = value; }
 
     /**
      * <p>The DB instance identifier for the DB instance to be deleted. This parameter
-     * isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1
-     * to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First character must
-     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul>
+     * isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the name
+     * of an existing DB instance.</p> </li> </ul>
      */
-    inline void SetDBInstanceIdentifier(Aws::String&& value) { m_dBInstanceIdentifierHasBeenSet = true; m_dBInstanceIdentifier = value; }
+    inline void SetDBInstanceIdentifier(Aws::String&& value) { m_dBInstanceIdentifierHasBeenSet = true; m_dBInstanceIdentifier = std::move(value); }
 
     /**
      * <p>The DB instance identifier for the DB instance to be deleted. This parameter
-     * isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1
-     * to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First character must
-     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul>
+     * isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the name
+     * of an existing DB instance.</p> </li> </ul>
      */
     inline void SetDBInstanceIdentifier(const char* value) { m_dBInstanceIdentifierHasBeenSet = true; m_dBInstanceIdentifier.assign(value); }
 
     /**
      * <p>The DB instance identifier for the DB instance to be deleted. This parameter
-     * isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1
-     * to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First character must
-     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul>
+     * isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the name
+     * of an existing DB instance.</p> </li> </ul>
      */
     inline DeleteDBInstanceRequest& WithDBInstanceIdentifier(const Aws::String& value) { SetDBInstanceIdentifier(value); return *this;}
 
     /**
      * <p>The DB instance identifier for the DB instance to be deleted. This parameter
-     * isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1
-     * to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First character must
-     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul>
+     * isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the name
+     * of an existing DB instance.</p> </li> </ul>
      */
-    inline DeleteDBInstanceRequest& WithDBInstanceIdentifier(Aws::String&& value) { SetDBInstanceIdentifier(value); return *this;}
+    inline DeleteDBInstanceRequest& WithDBInstanceIdentifier(Aws::String&& value) { SetDBInstanceIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The DB instance identifier for the DB instance to be deleted. This parameter
-     * isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1
-     * to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First character must
-     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul>
+     * isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the name
+     * of an existing DB instance.</p> </li> </ul>
      */
     inline DeleteDBInstanceRequest& WithDBInstanceIdentifier(const char* value) { SetDBInstanceIdentifier(value); return *this;}
+
 
     /**
      * <p> Determines whether a final DB snapshot is created before the DB instance is
@@ -137,14 +138,15 @@ namespace Model
      */
     inline DeleteDBInstanceRequest& WithSkipFinalSnapshot(bool value) { SetSkipFinalSnapshot(value); return *this;}
 
+
     /**
      * <p> The DBSnapshotIdentifier of the new DBSnapshot created when
      * SkipFinalSnapshot is set to <code>false</code>. </p> <note> <p>Specifying this
      * parameter and also setting the SkipFinalShapshot parameter to true results in an
-     * error.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255
-     * alphanumeric characters</p> </li> <li> <p>First character must be a letter</p>
-     * </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p>
-     * </li> <li> <p>Cannot be specified when deleting a Read Replica.</p> </li> </ul>
+     * error.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 letters or
+     * numbers.</p> </li> <li> <p>First character must be a letter</p> </li> <li>
+     * <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> <li>
+     * <p>Cannot be specified when deleting a Read Replica.</p> </li> </ul>
      */
     inline const Aws::String& GetFinalDBSnapshotIdentifier() const{ return m_finalDBSnapshotIdentifier; }
 
@@ -152,10 +154,10 @@ namespace Model
      * <p> The DBSnapshotIdentifier of the new DBSnapshot created when
      * SkipFinalSnapshot is set to <code>false</code>. </p> <note> <p>Specifying this
      * parameter and also setting the SkipFinalShapshot parameter to true results in an
-     * error.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255
-     * alphanumeric characters</p> </li> <li> <p>First character must be a letter</p>
-     * </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p>
-     * </li> <li> <p>Cannot be specified when deleting a Read Replica.</p> </li> </ul>
+     * error.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 letters or
+     * numbers.</p> </li> <li> <p>First character must be a letter</p> </li> <li>
+     * <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> <li>
+     * <p>Cannot be specified when deleting a Read Replica.</p> </li> </ul>
      */
     inline void SetFinalDBSnapshotIdentifier(const Aws::String& value) { m_finalDBSnapshotIdentifierHasBeenSet = true; m_finalDBSnapshotIdentifier = value; }
 
@@ -163,21 +165,21 @@ namespace Model
      * <p> The DBSnapshotIdentifier of the new DBSnapshot created when
      * SkipFinalSnapshot is set to <code>false</code>. </p> <note> <p>Specifying this
      * parameter and also setting the SkipFinalShapshot parameter to true results in an
-     * error.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255
-     * alphanumeric characters</p> </li> <li> <p>First character must be a letter</p>
-     * </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p>
-     * </li> <li> <p>Cannot be specified when deleting a Read Replica.</p> </li> </ul>
+     * error.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 letters or
+     * numbers.</p> </li> <li> <p>First character must be a letter</p> </li> <li>
+     * <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> <li>
+     * <p>Cannot be specified when deleting a Read Replica.</p> </li> </ul>
      */
-    inline void SetFinalDBSnapshotIdentifier(Aws::String&& value) { m_finalDBSnapshotIdentifierHasBeenSet = true; m_finalDBSnapshotIdentifier = value; }
+    inline void SetFinalDBSnapshotIdentifier(Aws::String&& value) { m_finalDBSnapshotIdentifierHasBeenSet = true; m_finalDBSnapshotIdentifier = std::move(value); }
 
     /**
      * <p> The DBSnapshotIdentifier of the new DBSnapshot created when
      * SkipFinalSnapshot is set to <code>false</code>. </p> <note> <p>Specifying this
      * parameter and also setting the SkipFinalShapshot parameter to true results in an
-     * error.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255
-     * alphanumeric characters</p> </li> <li> <p>First character must be a letter</p>
-     * </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p>
-     * </li> <li> <p>Cannot be specified when deleting a Read Replica.</p> </li> </ul>
+     * error.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 letters or
+     * numbers.</p> </li> <li> <p>First character must be a letter</p> </li> <li>
+     * <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> <li>
+     * <p>Cannot be specified when deleting a Read Replica.</p> </li> </ul>
      */
     inline void SetFinalDBSnapshotIdentifier(const char* value) { m_finalDBSnapshotIdentifierHasBeenSet = true; m_finalDBSnapshotIdentifier.assign(value); }
 
@@ -185,10 +187,10 @@ namespace Model
      * <p> The DBSnapshotIdentifier of the new DBSnapshot created when
      * SkipFinalSnapshot is set to <code>false</code>. </p> <note> <p>Specifying this
      * parameter and also setting the SkipFinalShapshot parameter to true results in an
-     * error.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255
-     * alphanumeric characters</p> </li> <li> <p>First character must be a letter</p>
-     * </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p>
-     * </li> <li> <p>Cannot be specified when deleting a Read Replica.</p> </li> </ul>
+     * error.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 letters or
+     * numbers.</p> </li> <li> <p>First character must be a letter</p> </li> <li>
+     * <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> <li>
+     * <p>Cannot be specified when deleting a Read Replica.</p> </li> </ul>
      */
     inline DeleteDBInstanceRequest& WithFinalDBSnapshotIdentifier(const Aws::String& value) { SetFinalDBSnapshotIdentifier(value); return *this;}
 
@@ -196,29 +198,32 @@ namespace Model
      * <p> The DBSnapshotIdentifier of the new DBSnapshot created when
      * SkipFinalSnapshot is set to <code>false</code>. </p> <note> <p>Specifying this
      * parameter and also setting the SkipFinalShapshot parameter to true results in an
-     * error.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255
-     * alphanumeric characters</p> </li> <li> <p>First character must be a letter</p>
-     * </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p>
-     * </li> <li> <p>Cannot be specified when deleting a Read Replica.</p> </li> </ul>
+     * error.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 letters or
+     * numbers.</p> </li> <li> <p>First character must be a letter</p> </li> <li>
+     * <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> <li>
+     * <p>Cannot be specified when deleting a Read Replica.</p> </li> </ul>
      */
-    inline DeleteDBInstanceRequest& WithFinalDBSnapshotIdentifier(Aws::String&& value) { SetFinalDBSnapshotIdentifier(value); return *this;}
+    inline DeleteDBInstanceRequest& WithFinalDBSnapshotIdentifier(Aws::String&& value) { SetFinalDBSnapshotIdentifier(std::move(value)); return *this;}
 
     /**
      * <p> The DBSnapshotIdentifier of the new DBSnapshot created when
      * SkipFinalSnapshot is set to <code>false</code>. </p> <note> <p>Specifying this
      * parameter and also setting the SkipFinalShapshot parameter to true results in an
-     * error.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255
-     * alphanumeric characters</p> </li> <li> <p>First character must be a letter</p>
-     * </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p>
-     * </li> <li> <p>Cannot be specified when deleting a Read Replica.</p> </li> </ul>
+     * error.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 letters or
+     * numbers.</p> </li> <li> <p>First character must be a letter</p> </li> <li>
+     * <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> <li>
+     * <p>Cannot be specified when deleting a Read Replica.</p> </li> </ul>
      */
     inline DeleteDBInstanceRequest& WithFinalDBSnapshotIdentifier(const char* value) { SetFinalDBSnapshotIdentifier(value); return *this;}
 
   private:
+
     Aws::String m_dBInstanceIdentifier;
     bool m_dBInstanceIdentifierHasBeenSet;
+
     bool m_skipFinalSnapshot;
     bool m_skipFinalSnapshotHasBeenSet;
+
     Aws::String m_finalDBSnapshotIdentifier;
     bool m_finalDBSnapshotIdentifierHasBeenSet;
   };

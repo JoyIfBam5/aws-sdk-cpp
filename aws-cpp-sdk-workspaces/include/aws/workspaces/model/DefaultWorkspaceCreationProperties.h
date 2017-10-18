@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/workspaces/WorkSpaces_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     DefaultWorkspaceCreationProperties& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Specifies if the directory is enabled for Amazon WorkDocs.</p>
      */
@@ -58,6 +61,7 @@ namespace Model
      * <p>Specifies if the directory is enabled for Amazon WorkDocs.</p>
      */
     inline DefaultWorkspaceCreationProperties& WithEnableWorkDocs(bool value) { SetEnableWorkDocs(value); return *this;}
+
 
     /**
      * <p>A public IP address will be attached to all WorkSpaces that are created or
@@ -77,6 +81,7 @@ namespace Model
      */
     inline DefaultWorkspaceCreationProperties& WithEnableInternetAccess(bool value) { SetEnableInternetAccess(value); return *this;}
 
+
     /**
      * <p>The organizational unit (OU) in the directory that the WorkSpace machine
      * accounts are placed in.</p>
@@ -93,7 +98,7 @@ namespace Model
      * <p>The organizational unit (OU) in the directory that the WorkSpace machine
      * accounts are placed in.</p>
      */
-    inline void SetDefaultOu(Aws::String&& value) { m_defaultOuHasBeenSet = true; m_defaultOu = value; }
+    inline void SetDefaultOu(Aws::String&& value) { m_defaultOuHasBeenSet = true; m_defaultOu = std::move(value); }
 
     /**
      * <p>The organizational unit (OU) in the directory that the WorkSpace machine
@@ -111,13 +116,14 @@ namespace Model
      * <p>The organizational unit (OU) in the directory that the WorkSpace machine
      * accounts are placed in.</p>
      */
-    inline DefaultWorkspaceCreationProperties& WithDefaultOu(Aws::String&& value) { SetDefaultOu(value); return *this;}
+    inline DefaultWorkspaceCreationProperties& WithDefaultOu(Aws::String&& value) { SetDefaultOu(std::move(value)); return *this;}
 
     /**
      * <p>The organizational unit (OU) in the directory that the WorkSpace machine
      * accounts are placed in.</p>
      */
     inline DefaultWorkspaceCreationProperties& WithDefaultOu(const char* value) { SetDefaultOu(value); return *this;}
+
 
     /**
      * <p>The identifier of any custom security groups that are applied to the
@@ -135,7 +141,7 @@ namespace Model
      * <p>The identifier of any custom security groups that are applied to the
      * WorkSpaces when they are created.</p>
      */
-    inline void SetCustomSecurityGroupId(Aws::String&& value) { m_customSecurityGroupIdHasBeenSet = true; m_customSecurityGroupId = value; }
+    inline void SetCustomSecurityGroupId(Aws::String&& value) { m_customSecurityGroupIdHasBeenSet = true; m_customSecurityGroupId = std::move(value); }
 
     /**
      * <p>The identifier of any custom security groups that are applied to the
@@ -153,13 +159,14 @@ namespace Model
      * <p>The identifier of any custom security groups that are applied to the
      * WorkSpaces when they are created.</p>
      */
-    inline DefaultWorkspaceCreationProperties& WithCustomSecurityGroupId(Aws::String&& value) { SetCustomSecurityGroupId(value); return *this;}
+    inline DefaultWorkspaceCreationProperties& WithCustomSecurityGroupId(Aws::String&& value) { SetCustomSecurityGroupId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of any custom security groups that are applied to the
      * WorkSpaces when they are created.</p>
      */
     inline DefaultWorkspaceCreationProperties& WithCustomSecurityGroupId(const char* value) { SetCustomSecurityGroupId(value); return *this;}
+
 
     /**
      * <p>The WorkSpace user is an administrator on the WorkSpace.</p>
@@ -177,14 +184,19 @@ namespace Model
     inline DefaultWorkspaceCreationProperties& WithUserEnabledAsLocalAdministrator(bool value) { SetUserEnabledAsLocalAdministrator(value); return *this;}
 
   private:
+
     bool m_enableWorkDocs;
     bool m_enableWorkDocsHasBeenSet;
+
     bool m_enableInternetAccess;
     bool m_enableInternetAccessHasBeenSet;
+
     Aws::String m_defaultOu;
     bool m_defaultOuHasBeenSet;
+
     Aws::String m_customSecurityGroupId;
     bool m_customSecurityGroupIdHasBeenSet;
+
     bool m_userEnabledAsLocalAdministrator;
     bool m_userEnabledAsLocalAdministratorHasBeenSet;
   };

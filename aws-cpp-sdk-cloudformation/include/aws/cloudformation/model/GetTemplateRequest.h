@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudformation/CloudFormation_EXPORTS.h>
 #include <aws/cloudformation/CloudFormationRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/cloudformation/model/TemplateStage.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,7 +36,19 @@ namespace Model
   {
   public:
     GetTemplateRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "GetTemplate"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The name or the unique stack ID that is associated with the stack, which are
@@ -61,7 +75,7 @@ namespace Model
      * stacks: You must specify the unique stack ID.</p> </li> </ul> <p>Default: There
      * is no default value.</p>
      */
-    inline void SetStackName(Aws::String&& value) { m_stackNameHasBeenSet = true; m_stackName = value; }
+    inline void SetStackName(Aws::String&& value) { m_stackNameHasBeenSet = true; m_stackName = std::move(value); }
 
     /**
      * <p>The name or the unique stack ID that is associated with the stack, which are
@@ -88,7 +102,7 @@ namespace Model
      * stacks: You must specify the unique stack ID.</p> </li> </ul> <p>Default: There
      * is no default value.</p>
      */
-    inline GetTemplateRequest& WithStackName(Aws::String&& value) { SetStackName(value); return *this;}
+    inline GetTemplateRequest& WithStackName(Aws::String&& value) { SetStackName(std::move(value)); return *this;}
 
     /**
      * <p>The name or the unique stack ID that is associated with the stack, which are
@@ -98,6 +112,7 @@ namespace Model
      * is no default value.</p>
      */
     inline GetTemplateRequest& WithStackName(const char* value) { SetStackName(value); return *this;}
+
 
     /**
      * <p>The name or Amazon Resource Name (ARN) of a change set for which AWS
@@ -118,7 +133,7 @@ namespace Model
      * CloudFormation returns the associated template. If you specify a name, you must
      * also specify the <code>StackName</code>.</p>
      */
-    inline void SetChangeSetName(Aws::String&& value) { m_changeSetNameHasBeenSet = true; m_changeSetName = value; }
+    inline void SetChangeSetName(Aws::String&& value) { m_changeSetNameHasBeenSet = true; m_changeSetName = std::move(value); }
 
     /**
      * <p>The name or Amazon Resource Name (ARN) of a change set for which AWS
@@ -139,7 +154,7 @@ namespace Model
      * CloudFormation returns the associated template. If you specify a name, you must
      * also specify the <code>StackName</code>.</p>
      */
-    inline GetTemplateRequest& WithChangeSetName(Aws::String&& value) { SetChangeSetName(value); return *this;}
+    inline GetTemplateRequest& WithChangeSetName(Aws::String&& value) { SetChangeSetName(std::move(value)); return *this;}
 
     /**
      * <p>The name or Amazon Resource Name (ARN) of a change set for which AWS
@@ -147,6 +162,7 @@ namespace Model
      * also specify the <code>StackName</code>.</p>
      */
     inline GetTemplateRequest& WithChangeSetName(const char* value) { SetChangeSetName(value); return *this;}
+
 
     /**
      * <p>For templates that include transforms, the stage of the template that AWS
@@ -179,7 +195,7 @@ namespace Model
      * <code>Processed</code> return the same template. By default, AWS CloudFormation
      * specifies <code>Original</code>. </p>
      */
-    inline void SetTemplateStage(TemplateStage&& value) { m_templateStageHasBeenSet = true; m_templateStage = value; }
+    inline void SetTemplateStage(TemplateStage&& value) { m_templateStageHasBeenSet = true; m_templateStage = std::move(value); }
 
     /**
      * <p>For templates that include transforms, the stage of the template that AWS
@@ -201,13 +217,16 @@ namespace Model
      * <code>Processed</code> return the same template. By default, AWS CloudFormation
      * specifies <code>Original</code>. </p>
      */
-    inline GetTemplateRequest& WithTemplateStage(TemplateStage&& value) { SetTemplateStage(value); return *this;}
+    inline GetTemplateRequest& WithTemplateStage(TemplateStage&& value) { SetTemplateStage(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_stackName;
     bool m_stackNameHasBeenSet;
+
     Aws::String m_changeSetName;
     bool m_changeSetNameHasBeenSet;
+
     TemplateStage m_templateStage;
     bool m_templateStageHasBeenSet;
   };

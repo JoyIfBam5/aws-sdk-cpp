@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/opsworks/model/ShutdownEventConfiguration.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     LifecycleEventConfiguration& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>A <code>ShutdownEventConfiguration</code> object that specifies the Shutdown
      * event configuration.</p>
@@ -59,7 +62,7 @@ namespace Model
      * <p>A <code>ShutdownEventConfiguration</code> object that specifies the Shutdown
      * event configuration.</p>
      */
-    inline void SetShutdown(ShutdownEventConfiguration&& value) { m_shutdownHasBeenSet = true; m_shutdown = value; }
+    inline void SetShutdown(ShutdownEventConfiguration&& value) { m_shutdownHasBeenSet = true; m_shutdown = std::move(value); }
 
     /**
      * <p>A <code>ShutdownEventConfiguration</code> object that specifies the Shutdown
@@ -71,9 +74,10 @@ namespace Model
      * <p>A <code>ShutdownEventConfiguration</code> object that specifies the Shutdown
      * event configuration.</p>
      */
-    inline LifecycleEventConfiguration& WithShutdown(ShutdownEventConfiguration&& value) { SetShutdown(value); return *this;}
+    inline LifecycleEventConfiguration& WithShutdown(ShutdownEventConfiguration&& value) { SetShutdown(std::move(value)); return *this;}
 
   private:
+
     ShutdownEventConfiguration m_shutdown;
     bool m_shutdownHasBeenSet;
   };

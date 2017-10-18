@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/sqs/SQS_EXPORTS.h>
 #include <aws/sqs/SQSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
 #include <aws/sqs/model/MessageAttributeValue.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,7 +37,19 @@ namespace Model
   {
   public:
     SendMessageRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "SendMessage"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The URL of the Amazon SQS queue to which a message is sent.</p> <p>Queue URLs
@@ -53,7 +67,7 @@ namespace Model
      * <p>The URL of the Amazon SQS queue to which a message is sent.</p> <p>Queue URLs
      * are case-sensitive.</p>
      */
-    inline void SetQueueUrl(Aws::String&& value) { m_queueUrlHasBeenSet = true; m_queueUrl = value; }
+    inline void SetQueueUrl(Aws::String&& value) { m_queueUrlHasBeenSet = true; m_queueUrl = std::move(value); }
 
     /**
      * <p>The URL of the Amazon SQS queue to which a message is sent.</p> <p>Queue URLs
@@ -71,7 +85,7 @@ namespace Model
      * <p>The URL of the Amazon SQS queue to which a message is sent.</p> <p>Queue URLs
      * are case-sensitive.</p>
      */
-    inline SendMessageRequest& WithQueueUrl(Aws::String&& value) { SetQueueUrl(value); return *this;}
+    inline SendMessageRequest& WithQueueUrl(Aws::String&& value) { SetQueueUrl(std::move(value)); return *this;}
 
     /**
      * <p>The URL of the Amazon SQS queue to which a message is sent.</p> <p>Queue URLs
@@ -79,133 +93,132 @@ namespace Model
      */
     inline SendMessageRequest& WithQueueUrl(const char* value) { SetQueueUrl(value); return *this;}
 
+
     /**
-     * <p>The message to send. The maximum string size is 256 KB.</p> <important>
-     * <p>The following list shows the characters (in Unicode) that are allowed in your
-     * message, according to the W3C XML specification:</p> <ul> <li> <p>
-     * <code>#x9</code> </p> </li> <li> <p> <code>#xA</code> </p> </li> <li> <p>
-     * <code>#xD</code> </p> </li> <li> <p> <code>#x20</code> to <code>#xD7FF</code>
-     * </p> </li> <li> <p> <code>#xE000</code> to <code>#xFFFD</code> </p> </li> <li>
-     * <p> <code>#x10000</code> to <code>#x10FFFF</code> </p> </li> </ul> <p>For more
-     * information, see <a href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>. If
-     * you send any characters that aren't included in this list, your request is
-     * rejected.</p> </important>
+     * <p>The message to send. The maximum string size is 256 KB.</p> <important> <p>A
+     * message can include only XML, JSON, and unformatted text. The following Unicode
+     * characters are allowed:</p> <p> <code>#x9</code> | <code>#xA</code> |
+     * <code>#xD</code> | <code>#x20</code> to <code>#xD7FF</code> |
+     * <code>#xE000</code> to <code>#xFFFD</code> | <code>#x10000</code> to
+     * <code>#x10FFFF</code> </p> <p>Any characters not included in this list will be
+     * rejected. For more information, see the <a
+     * href="http://www.w3.org/TR/REC-xml/#charsets">W3C specification for
+     * characters</a>.</p> </important>
      */
     inline const Aws::String& GetMessageBody() const{ return m_messageBody; }
 
     /**
-     * <p>The message to send. The maximum string size is 256 KB.</p> <important>
-     * <p>The following list shows the characters (in Unicode) that are allowed in your
-     * message, according to the W3C XML specification:</p> <ul> <li> <p>
-     * <code>#x9</code> </p> </li> <li> <p> <code>#xA</code> </p> </li> <li> <p>
-     * <code>#xD</code> </p> </li> <li> <p> <code>#x20</code> to <code>#xD7FF</code>
-     * </p> </li> <li> <p> <code>#xE000</code> to <code>#xFFFD</code> </p> </li> <li>
-     * <p> <code>#x10000</code> to <code>#x10FFFF</code> </p> </li> </ul> <p>For more
-     * information, see <a href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>. If
-     * you send any characters that aren't included in this list, your request is
-     * rejected.</p> </important>
+     * <p>The message to send. The maximum string size is 256 KB.</p> <important> <p>A
+     * message can include only XML, JSON, and unformatted text. The following Unicode
+     * characters are allowed:</p> <p> <code>#x9</code> | <code>#xA</code> |
+     * <code>#xD</code> | <code>#x20</code> to <code>#xD7FF</code> |
+     * <code>#xE000</code> to <code>#xFFFD</code> | <code>#x10000</code> to
+     * <code>#x10FFFF</code> </p> <p>Any characters not included in this list will be
+     * rejected. For more information, see the <a
+     * href="http://www.w3.org/TR/REC-xml/#charsets">W3C specification for
+     * characters</a>.</p> </important>
      */
     inline void SetMessageBody(const Aws::String& value) { m_messageBodyHasBeenSet = true; m_messageBody = value; }
 
     /**
-     * <p>The message to send. The maximum string size is 256 KB.</p> <important>
-     * <p>The following list shows the characters (in Unicode) that are allowed in your
-     * message, according to the W3C XML specification:</p> <ul> <li> <p>
-     * <code>#x9</code> </p> </li> <li> <p> <code>#xA</code> </p> </li> <li> <p>
-     * <code>#xD</code> </p> </li> <li> <p> <code>#x20</code> to <code>#xD7FF</code>
-     * </p> </li> <li> <p> <code>#xE000</code> to <code>#xFFFD</code> </p> </li> <li>
-     * <p> <code>#x10000</code> to <code>#x10FFFF</code> </p> </li> </ul> <p>For more
-     * information, see <a href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>. If
-     * you send any characters that aren't included in this list, your request is
-     * rejected.</p> </important>
+     * <p>The message to send. The maximum string size is 256 KB.</p> <important> <p>A
+     * message can include only XML, JSON, and unformatted text. The following Unicode
+     * characters are allowed:</p> <p> <code>#x9</code> | <code>#xA</code> |
+     * <code>#xD</code> | <code>#x20</code> to <code>#xD7FF</code> |
+     * <code>#xE000</code> to <code>#xFFFD</code> | <code>#x10000</code> to
+     * <code>#x10FFFF</code> </p> <p>Any characters not included in this list will be
+     * rejected. For more information, see the <a
+     * href="http://www.w3.org/TR/REC-xml/#charsets">W3C specification for
+     * characters</a>.</p> </important>
      */
-    inline void SetMessageBody(Aws::String&& value) { m_messageBodyHasBeenSet = true; m_messageBody = value; }
+    inline void SetMessageBody(Aws::String&& value) { m_messageBodyHasBeenSet = true; m_messageBody = std::move(value); }
 
     /**
-     * <p>The message to send. The maximum string size is 256 KB.</p> <important>
-     * <p>The following list shows the characters (in Unicode) that are allowed in your
-     * message, according to the W3C XML specification:</p> <ul> <li> <p>
-     * <code>#x9</code> </p> </li> <li> <p> <code>#xA</code> </p> </li> <li> <p>
-     * <code>#xD</code> </p> </li> <li> <p> <code>#x20</code> to <code>#xD7FF</code>
-     * </p> </li> <li> <p> <code>#xE000</code> to <code>#xFFFD</code> </p> </li> <li>
-     * <p> <code>#x10000</code> to <code>#x10FFFF</code> </p> </li> </ul> <p>For more
-     * information, see <a href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>. If
-     * you send any characters that aren't included in this list, your request is
-     * rejected.</p> </important>
+     * <p>The message to send. The maximum string size is 256 KB.</p> <important> <p>A
+     * message can include only XML, JSON, and unformatted text. The following Unicode
+     * characters are allowed:</p> <p> <code>#x9</code> | <code>#xA</code> |
+     * <code>#xD</code> | <code>#x20</code> to <code>#xD7FF</code> |
+     * <code>#xE000</code> to <code>#xFFFD</code> | <code>#x10000</code> to
+     * <code>#x10FFFF</code> </p> <p>Any characters not included in this list will be
+     * rejected. For more information, see the <a
+     * href="http://www.w3.org/TR/REC-xml/#charsets">W3C specification for
+     * characters</a>.</p> </important>
      */
     inline void SetMessageBody(const char* value) { m_messageBodyHasBeenSet = true; m_messageBody.assign(value); }
 
     /**
-     * <p>The message to send. The maximum string size is 256 KB.</p> <important>
-     * <p>The following list shows the characters (in Unicode) that are allowed in your
-     * message, according to the W3C XML specification:</p> <ul> <li> <p>
-     * <code>#x9</code> </p> </li> <li> <p> <code>#xA</code> </p> </li> <li> <p>
-     * <code>#xD</code> </p> </li> <li> <p> <code>#x20</code> to <code>#xD7FF</code>
-     * </p> </li> <li> <p> <code>#xE000</code> to <code>#xFFFD</code> </p> </li> <li>
-     * <p> <code>#x10000</code> to <code>#x10FFFF</code> </p> </li> </ul> <p>For more
-     * information, see <a href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>. If
-     * you send any characters that aren't included in this list, your request is
-     * rejected.</p> </important>
+     * <p>The message to send. The maximum string size is 256 KB.</p> <important> <p>A
+     * message can include only XML, JSON, and unformatted text. The following Unicode
+     * characters are allowed:</p> <p> <code>#x9</code> | <code>#xA</code> |
+     * <code>#xD</code> | <code>#x20</code> to <code>#xD7FF</code> |
+     * <code>#xE000</code> to <code>#xFFFD</code> | <code>#x10000</code> to
+     * <code>#x10FFFF</code> </p> <p>Any characters not included in this list will be
+     * rejected. For more information, see the <a
+     * href="http://www.w3.org/TR/REC-xml/#charsets">W3C specification for
+     * characters</a>.</p> </important>
      */
     inline SendMessageRequest& WithMessageBody(const Aws::String& value) { SetMessageBody(value); return *this;}
 
     /**
-     * <p>The message to send. The maximum string size is 256 KB.</p> <important>
-     * <p>The following list shows the characters (in Unicode) that are allowed in your
-     * message, according to the W3C XML specification:</p> <ul> <li> <p>
-     * <code>#x9</code> </p> </li> <li> <p> <code>#xA</code> </p> </li> <li> <p>
-     * <code>#xD</code> </p> </li> <li> <p> <code>#x20</code> to <code>#xD7FF</code>
-     * </p> </li> <li> <p> <code>#xE000</code> to <code>#xFFFD</code> </p> </li> <li>
-     * <p> <code>#x10000</code> to <code>#x10FFFF</code> </p> </li> </ul> <p>For more
-     * information, see <a href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>. If
-     * you send any characters that aren't included in this list, your request is
-     * rejected.</p> </important>
+     * <p>The message to send. The maximum string size is 256 KB.</p> <important> <p>A
+     * message can include only XML, JSON, and unformatted text. The following Unicode
+     * characters are allowed:</p> <p> <code>#x9</code> | <code>#xA</code> |
+     * <code>#xD</code> | <code>#x20</code> to <code>#xD7FF</code> |
+     * <code>#xE000</code> to <code>#xFFFD</code> | <code>#x10000</code> to
+     * <code>#x10FFFF</code> </p> <p>Any characters not included in this list will be
+     * rejected. For more information, see the <a
+     * href="http://www.w3.org/TR/REC-xml/#charsets">W3C specification for
+     * characters</a>.</p> </important>
      */
-    inline SendMessageRequest& WithMessageBody(Aws::String&& value) { SetMessageBody(value); return *this;}
+    inline SendMessageRequest& WithMessageBody(Aws::String&& value) { SetMessageBody(std::move(value)); return *this;}
 
     /**
-     * <p>The message to send. The maximum string size is 256 KB.</p> <important>
-     * <p>The following list shows the characters (in Unicode) that are allowed in your
-     * message, according to the W3C XML specification:</p> <ul> <li> <p>
-     * <code>#x9</code> </p> </li> <li> <p> <code>#xA</code> </p> </li> <li> <p>
-     * <code>#xD</code> </p> </li> <li> <p> <code>#x20</code> to <code>#xD7FF</code>
-     * </p> </li> <li> <p> <code>#xE000</code> to <code>#xFFFD</code> </p> </li> <li>
-     * <p> <code>#x10000</code> to <code>#x10FFFF</code> </p> </li> </ul> <p>For more
-     * information, see <a href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>. If
-     * you send any characters that aren't included in this list, your request is
-     * rejected.</p> </important>
+     * <p>The message to send. The maximum string size is 256 KB.</p> <important> <p>A
+     * message can include only XML, JSON, and unformatted text. The following Unicode
+     * characters are allowed:</p> <p> <code>#x9</code> | <code>#xA</code> |
+     * <code>#xD</code> | <code>#x20</code> to <code>#xD7FF</code> |
+     * <code>#xE000</code> to <code>#xFFFD</code> | <code>#x10000</code> to
+     * <code>#x10FFFF</code> </p> <p>Any characters not included in this list will be
+     * rejected. For more information, see the <a
+     * href="http://www.w3.org/TR/REC-xml/#charsets">W3C specification for
+     * characters</a>.</p> </important>
      */
     inline SendMessageRequest& WithMessageBody(const char* value) { SetMessageBody(value); return *this;}
 
+
     /**
-     * <p> The number of seconds to delay a specific message. Valid values: 0 to 900.
-     * Maximum: 15 minutes. Messages with a positive <code>DelaySeconds</code> value
-     * become available for processing after the delay period is finished. If you don't
-     * specify a value, the default value for the queue applies. </p> <note> <p>When
-     * you set <code>FifoQueue</code>, you can't set <code>DelaySeconds</code> per
-     * message. You can set this parameter only on a queue level.</p> </note>
+     * <p> The length of time, in seconds, for which to delay a specific message. Valid
+     * values: 0 to 900. Maximum: 15 minutes. Messages with a positive
+     * <code>DelaySeconds</code> value become available for processing after the delay
+     * period is finished. If you don't specify a value, the default value for the
+     * queue applies. </p> <note> <p>When you set <code>FifoQueue</code>, you can't set
+     * <code>DelaySeconds</code> per message. You can set this parameter only on a
+     * queue level.</p> </note>
      */
     inline int GetDelaySeconds() const{ return m_delaySeconds; }
 
     /**
-     * <p> The number of seconds to delay a specific message. Valid values: 0 to 900.
-     * Maximum: 15 minutes. Messages with a positive <code>DelaySeconds</code> value
-     * become available for processing after the delay period is finished. If you don't
-     * specify a value, the default value for the queue applies. </p> <note> <p>When
-     * you set <code>FifoQueue</code>, you can't set <code>DelaySeconds</code> per
-     * message. You can set this parameter only on a queue level.</p> </note>
+     * <p> The length of time, in seconds, for which to delay a specific message. Valid
+     * values: 0 to 900. Maximum: 15 minutes. Messages with a positive
+     * <code>DelaySeconds</code> value become available for processing after the delay
+     * period is finished. If you don't specify a value, the default value for the
+     * queue applies. </p> <note> <p>When you set <code>FifoQueue</code>, you can't set
+     * <code>DelaySeconds</code> per message. You can set this parameter only on a
+     * queue level.</p> </note>
      */
     inline void SetDelaySeconds(int value) { m_delaySecondsHasBeenSet = true; m_delaySeconds = value; }
 
     /**
-     * <p> The number of seconds to delay a specific message. Valid values: 0 to 900.
-     * Maximum: 15 minutes. Messages with a positive <code>DelaySeconds</code> value
-     * become available for processing after the delay period is finished. If you don't
-     * specify a value, the default value for the queue applies. </p> <note> <p>When
-     * you set <code>FifoQueue</code>, you can't set <code>DelaySeconds</code> per
-     * message. You can set this parameter only on a queue level.</p> </note>
+     * <p> The length of time, in seconds, for which to delay a specific message. Valid
+     * values: 0 to 900. Maximum: 15 minutes. Messages with a positive
+     * <code>DelaySeconds</code> value become available for processing after the delay
+     * period is finished. If you don't specify a value, the default value for the
+     * queue applies. </p> <note> <p>When you set <code>FifoQueue</code>, you can't set
+     * <code>DelaySeconds</code> per message. You can set this parameter only on a
+     * queue level.</p> </note>
      */
     inline SendMessageRequest& WithDelaySeconds(int value) { SetDelaySeconds(value); return *this;}
+
 
     /**
      * <p>Each message attribute consists of a <code>Name</code>, <code>Type</code>,
@@ -229,7 +242,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html#message-attributes-items-validation">Message
      * Attribute Items and Validation</a> in the <i>Amazon SQS Developer Guide</i>.</p>
      */
-    inline void SetMessageAttributes(Aws::Map<Aws::String, MessageAttributeValue>&& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes = value; }
+    inline void SetMessageAttributes(Aws::Map<Aws::String, MessageAttributeValue>&& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes = std::move(value); }
 
     /**
      * <p>Each message attribute consists of a <code>Name</code>, <code>Type</code>,
@@ -245,7 +258,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html#message-attributes-items-validation">Message
      * Attribute Items and Validation</a> in the <i>Amazon SQS Developer Guide</i>.</p>
      */
-    inline SendMessageRequest& WithMessageAttributes(Aws::Map<Aws::String, MessageAttributeValue>&& value) { SetMessageAttributes(value); return *this;}
+    inline SendMessageRequest& WithMessageAttributes(Aws::Map<Aws::String, MessageAttributeValue>&& value) { SetMessageAttributes(std::move(value)); return *this;}
 
     /**
      * <p>Each message attribute consists of a <code>Name</code>, <code>Type</code>,
@@ -253,7 +266,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html#message-attributes-items-validation">Message
      * Attribute Items and Validation</a> in the <i>Amazon SQS Developer Guide</i>.</p>
      */
-    inline SendMessageRequest& AddMessageAttributes(const Aws::String& key, const MessageAttributeValue& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes[key] = value; return *this; }
+    inline SendMessageRequest& AddMessageAttributes(const Aws::String& key, const MessageAttributeValue& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes.emplace(key, value); return *this; }
 
     /**
      * <p>Each message attribute consists of a <code>Name</code>, <code>Type</code>,
@@ -261,7 +274,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html#message-attributes-items-validation">Message
      * Attribute Items and Validation</a> in the <i>Amazon SQS Developer Guide</i>.</p>
      */
-    inline SendMessageRequest& AddMessageAttributes(Aws::String&& key, const MessageAttributeValue& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes[key] = value; return *this; }
+    inline SendMessageRequest& AddMessageAttributes(Aws::String&& key, const MessageAttributeValue& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>Each message attribute consists of a <code>Name</code>, <code>Type</code>,
@@ -269,7 +282,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html#message-attributes-items-validation">Message
      * Attribute Items and Validation</a> in the <i>Amazon SQS Developer Guide</i>.</p>
      */
-    inline SendMessageRequest& AddMessageAttributes(const Aws::String& key, MessageAttributeValue&& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes[key] = value; return *this; }
+    inline SendMessageRequest& AddMessageAttributes(const Aws::String& key, MessageAttributeValue&& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>Each message attribute consists of a <code>Name</code>, <code>Type</code>,
@@ -277,7 +290,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html#message-attributes-items-validation">Message
      * Attribute Items and Validation</a> in the <i>Amazon SQS Developer Guide</i>.</p>
      */
-    inline SendMessageRequest& AddMessageAttributes(Aws::String&& key, MessageAttributeValue&& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes[key] = value; return *this; }
+    inline SendMessageRequest& AddMessageAttributes(Aws::String&& key, MessageAttributeValue&& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>Each message attribute consists of a <code>Name</code>, <code>Type</code>,
@@ -285,7 +298,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html#message-attributes-items-validation">Message
      * Attribute Items and Validation</a> in the <i>Amazon SQS Developer Guide</i>.</p>
      */
-    inline SendMessageRequest& AddMessageAttributes(const char* key, MessageAttributeValue&& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes[key] = value; return *this; }
+    inline SendMessageRequest& AddMessageAttributes(const char* key, MessageAttributeValue&& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>Each message attribute consists of a <code>Name</code>, <code>Type</code>,
@@ -293,7 +306,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html#message-attributes-items-validation">Message
      * Attribute Items and Validation</a> in the <i>Amazon SQS Developer Guide</i>.</p>
      */
-    inline SendMessageRequest& AddMessageAttributes(const char* key, const MessageAttributeValue& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes[key] = value; return *this; }
+    inline SendMessageRequest& AddMessageAttributes(const char* key, const MessageAttributeValue& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes.emplace(key, value); return *this; }
+
 
     /**
      * <p>This parameter applies only to FIFO (first-in-first-out) queues.</p> <p>The
@@ -317,19 +331,18 @@ namespace Model
      * <code>MessageDeduplicationId</code> overrides the generated one.</p> </li> </ul>
      * </li> <li> <p>When <code>ContentBasedDeduplication</code> is in effect, messages
      * with identical content sent within the deduplication interval are treated as
-     * duplicates and only one copy of the message is delivered.</p> </li> <li> <p>You
-     * can also use <code>ContentBasedDeduplication</code> for messages with identical
-     * content to be treated as duplicates.</p> </li> <li> <p>If you send one message
-     * with <code>ContentBasedDeduplication</code> enabled and then another message
-     * with a <code>MessageDeduplicationId</code> that is the same as the one generated
-     * for the first <code>MessageDeduplicationId</code>, the two messages are treated
-     * as duplicates and only one copy of the message is delivered. </p> </li> </ul>
-     * <note> <p>The <code>MessageDeduplicationId</code> is available to the recipient
-     * of the message (this can be useful for troubleshooting delivery issues).</p>
-     * <p>If a message is sent successfully but the acknowledgement is lost and the
-     * message is resent with the same <code>MessageDeduplicationId</code> after the
-     * deduplication interval, Amazon SQS can't detect duplicate messages.</p> </note>
-     * <p>The length of <code>MessageDeduplicationId</code> is 128 characters.
+     * duplicates and only one copy of the message is delivered.</p> </li> <li> <p>If
+     * you send one message with <code>ContentBasedDeduplication</code> enabled and
+     * then another message with a <code>MessageDeduplicationId</code> that is the same
+     * as the one generated for the first <code>MessageDeduplicationId</code>, the two
+     * messages are treated as duplicates and only one copy of the message is
+     * delivered. </p> </li> </ul> <note> <p>The <code>MessageDeduplicationId</code> is
+     * available to the recipient of the message (this can be useful for
+     * troubleshooting delivery issues).</p> <p>If a message is sent successfully but
+     * the acknowledgement is lost and the message is resent with the same
+     * <code>MessageDeduplicationId</code> after the deduplication interval, Amazon SQS
+     * can't detect duplicate messages.</p> </note> <p>The length of
+     * <code>MessageDeduplicationId</code> is 128 characters.
      * <code>MessageDeduplicationId</code> can contain alphanumeric characters
      * (<code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and punctuation
      * (<code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).</p> <p>For best
@@ -362,19 +375,18 @@ namespace Model
      * <code>MessageDeduplicationId</code> overrides the generated one.</p> </li> </ul>
      * </li> <li> <p>When <code>ContentBasedDeduplication</code> is in effect, messages
      * with identical content sent within the deduplication interval are treated as
-     * duplicates and only one copy of the message is delivered.</p> </li> <li> <p>You
-     * can also use <code>ContentBasedDeduplication</code> for messages with identical
-     * content to be treated as duplicates.</p> </li> <li> <p>If you send one message
-     * with <code>ContentBasedDeduplication</code> enabled and then another message
-     * with a <code>MessageDeduplicationId</code> that is the same as the one generated
-     * for the first <code>MessageDeduplicationId</code>, the two messages are treated
-     * as duplicates and only one copy of the message is delivered. </p> </li> </ul>
-     * <note> <p>The <code>MessageDeduplicationId</code> is available to the recipient
-     * of the message (this can be useful for troubleshooting delivery issues).</p>
-     * <p>If a message is sent successfully but the acknowledgement is lost and the
-     * message is resent with the same <code>MessageDeduplicationId</code> after the
-     * deduplication interval, Amazon SQS can't detect duplicate messages.</p> </note>
-     * <p>The length of <code>MessageDeduplicationId</code> is 128 characters.
+     * duplicates and only one copy of the message is delivered.</p> </li> <li> <p>If
+     * you send one message with <code>ContentBasedDeduplication</code> enabled and
+     * then another message with a <code>MessageDeduplicationId</code> that is the same
+     * as the one generated for the first <code>MessageDeduplicationId</code>, the two
+     * messages are treated as duplicates and only one copy of the message is
+     * delivered. </p> </li> </ul> <note> <p>The <code>MessageDeduplicationId</code> is
+     * available to the recipient of the message (this can be useful for
+     * troubleshooting delivery issues).</p> <p>If a message is sent successfully but
+     * the acknowledgement is lost and the message is resent with the same
+     * <code>MessageDeduplicationId</code> after the deduplication interval, Amazon SQS
+     * can't detect duplicate messages.</p> </note> <p>The length of
+     * <code>MessageDeduplicationId</code> is 128 characters.
      * <code>MessageDeduplicationId</code> can contain alphanumeric characters
      * (<code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and punctuation
      * (<code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).</p> <p>For best
@@ -407,19 +419,18 @@ namespace Model
      * <code>MessageDeduplicationId</code> overrides the generated one.</p> </li> </ul>
      * </li> <li> <p>When <code>ContentBasedDeduplication</code> is in effect, messages
      * with identical content sent within the deduplication interval are treated as
-     * duplicates and only one copy of the message is delivered.</p> </li> <li> <p>You
-     * can also use <code>ContentBasedDeduplication</code> for messages with identical
-     * content to be treated as duplicates.</p> </li> <li> <p>If you send one message
-     * with <code>ContentBasedDeduplication</code> enabled and then another message
-     * with a <code>MessageDeduplicationId</code> that is the same as the one generated
-     * for the first <code>MessageDeduplicationId</code>, the two messages are treated
-     * as duplicates and only one copy of the message is delivered. </p> </li> </ul>
-     * <note> <p>The <code>MessageDeduplicationId</code> is available to the recipient
-     * of the message (this can be useful for troubleshooting delivery issues).</p>
-     * <p>If a message is sent successfully but the acknowledgement is lost and the
-     * message is resent with the same <code>MessageDeduplicationId</code> after the
-     * deduplication interval, Amazon SQS can't detect duplicate messages.</p> </note>
-     * <p>The length of <code>MessageDeduplicationId</code> is 128 characters.
+     * duplicates and only one copy of the message is delivered.</p> </li> <li> <p>If
+     * you send one message with <code>ContentBasedDeduplication</code> enabled and
+     * then another message with a <code>MessageDeduplicationId</code> that is the same
+     * as the one generated for the first <code>MessageDeduplicationId</code>, the two
+     * messages are treated as duplicates and only one copy of the message is
+     * delivered. </p> </li> </ul> <note> <p>The <code>MessageDeduplicationId</code> is
+     * available to the recipient of the message (this can be useful for
+     * troubleshooting delivery issues).</p> <p>If a message is sent successfully but
+     * the acknowledgement is lost and the message is resent with the same
+     * <code>MessageDeduplicationId</code> after the deduplication interval, Amazon SQS
+     * can't detect duplicate messages.</p> </note> <p>The length of
+     * <code>MessageDeduplicationId</code> is 128 characters.
      * <code>MessageDeduplicationId</code> can contain alphanumeric characters
      * (<code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and punctuation
      * (<code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).</p> <p>For best
@@ -428,7 +439,7 @@ namespace Model
      * the MessageDeduplicationId Property</a> in the <i>Amazon Simple Queue Service
      * Developer Guide</i>.</p>
      */
-    inline void SetMessageDeduplicationId(Aws::String&& value) { m_messageDeduplicationIdHasBeenSet = true; m_messageDeduplicationId = value; }
+    inline void SetMessageDeduplicationId(Aws::String&& value) { m_messageDeduplicationIdHasBeenSet = true; m_messageDeduplicationId = std::move(value); }
 
     /**
      * <p>This parameter applies only to FIFO (first-in-first-out) queues.</p> <p>The
@@ -452,19 +463,18 @@ namespace Model
      * <code>MessageDeduplicationId</code> overrides the generated one.</p> </li> </ul>
      * </li> <li> <p>When <code>ContentBasedDeduplication</code> is in effect, messages
      * with identical content sent within the deduplication interval are treated as
-     * duplicates and only one copy of the message is delivered.</p> </li> <li> <p>You
-     * can also use <code>ContentBasedDeduplication</code> for messages with identical
-     * content to be treated as duplicates.</p> </li> <li> <p>If you send one message
-     * with <code>ContentBasedDeduplication</code> enabled and then another message
-     * with a <code>MessageDeduplicationId</code> that is the same as the one generated
-     * for the first <code>MessageDeduplicationId</code>, the two messages are treated
-     * as duplicates and only one copy of the message is delivered. </p> </li> </ul>
-     * <note> <p>The <code>MessageDeduplicationId</code> is available to the recipient
-     * of the message (this can be useful for troubleshooting delivery issues).</p>
-     * <p>If a message is sent successfully but the acknowledgement is lost and the
-     * message is resent with the same <code>MessageDeduplicationId</code> after the
-     * deduplication interval, Amazon SQS can't detect duplicate messages.</p> </note>
-     * <p>The length of <code>MessageDeduplicationId</code> is 128 characters.
+     * duplicates and only one copy of the message is delivered.</p> </li> <li> <p>If
+     * you send one message with <code>ContentBasedDeduplication</code> enabled and
+     * then another message with a <code>MessageDeduplicationId</code> that is the same
+     * as the one generated for the first <code>MessageDeduplicationId</code>, the two
+     * messages are treated as duplicates and only one copy of the message is
+     * delivered. </p> </li> </ul> <note> <p>The <code>MessageDeduplicationId</code> is
+     * available to the recipient of the message (this can be useful for
+     * troubleshooting delivery issues).</p> <p>If a message is sent successfully but
+     * the acknowledgement is lost and the message is resent with the same
+     * <code>MessageDeduplicationId</code> after the deduplication interval, Amazon SQS
+     * can't detect duplicate messages.</p> </note> <p>The length of
+     * <code>MessageDeduplicationId</code> is 128 characters.
      * <code>MessageDeduplicationId</code> can contain alphanumeric characters
      * (<code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and punctuation
      * (<code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).</p> <p>For best
@@ -497,19 +507,18 @@ namespace Model
      * <code>MessageDeduplicationId</code> overrides the generated one.</p> </li> </ul>
      * </li> <li> <p>When <code>ContentBasedDeduplication</code> is in effect, messages
      * with identical content sent within the deduplication interval are treated as
-     * duplicates and only one copy of the message is delivered.</p> </li> <li> <p>You
-     * can also use <code>ContentBasedDeduplication</code> for messages with identical
-     * content to be treated as duplicates.</p> </li> <li> <p>If you send one message
-     * with <code>ContentBasedDeduplication</code> enabled and then another message
-     * with a <code>MessageDeduplicationId</code> that is the same as the one generated
-     * for the first <code>MessageDeduplicationId</code>, the two messages are treated
-     * as duplicates and only one copy of the message is delivered. </p> </li> </ul>
-     * <note> <p>The <code>MessageDeduplicationId</code> is available to the recipient
-     * of the message (this can be useful for troubleshooting delivery issues).</p>
-     * <p>If a message is sent successfully but the acknowledgement is lost and the
-     * message is resent with the same <code>MessageDeduplicationId</code> after the
-     * deduplication interval, Amazon SQS can't detect duplicate messages.</p> </note>
-     * <p>The length of <code>MessageDeduplicationId</code> is 128 characters.
+     * duplicates and only one copy of the message is delivered.</p> </li> <li> <p>If
+     * you send one message with <code>ContentBasedDeduplication</code> enabled and
+     * then another message with a <code>MessageDeduplicationId</code> that is the same
+     * as the one generated for the first <code>MessageDeduplicationId</code>, the two
+     * messages are treated as duplicates and only one copy of the message is
+     * delivered. </p> </li> </ul> <note> <p>The <code>MessageDeduplicationId</code> is
+     * available to the recipient of the message (this can be useful for
+     * troubleshooting delivery issues).</p> <p>If a message is sent successfully but
+     * the acknowledgement is lost and the message is resent with the same
+     * <code>MessageDeduplicationId</code> after the deduplication interval, Amazon SQS
+     * can't detect duplicate messages.</p> </note> <p>The length of
+     * <code>MessageDeduplicationId</code> is 128 characters.
      * <code>MessageDeduplicationId</code> can contain alphanumeric characters
      * (<code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and punctuation
      * (<code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).</p> <p>For best
@@ -542,19 +551,18 @@ namespace Model
      * <code>MessageDeduplicationId</code> overrides the generated one.</p> </li> </ul>
      * </li> <li> <p>When <code>ContentBasedDeduplication</code> is in effect, messages
      * with identical content sent within the deduplication interval are treated as
-     * duplicates and only one copy of the message is delivered.</p> </li> <li> <p>You
-     * can also use <code>ContentBasedDeduplication</code> for messages with identical
-     * content to be treated as duplicates.</p> </li> <li> <p>If you send one message
-     * with <code>ContentBasedDeduplication</code> enabled and then another message
-     * with a <code>MessageDeduplicationId</code> that is the same as the one generated
-     * for the first <code>MessageDeduplicationId</code>, the two messages are treated
-     * as duplicates and only one copy of the message is delivered. </p> </li> </ul>
-     * <note> <p>The <code>MessageDeduplicationId</code> is available to the recipient
-     * of the message (this can be useful for troubleshooting delivery issues).</p>
-     * <p>If a message is sent successfully but the acknowledgement is lost and the
-     * message is resent with the same <code>MessageDeduplicationId</code> after the
-     * deduplication interval, Amazon SQS can't detect duplicate messages.</p> </note>
-     * <p>The length of <code>MessageDeduplicationId</code> is 128 characters.
+     * duplicates and only one copy of the message is delivered.</p> </li> <li> <p>If
+     * you send one message with <code>ContentBasedDeduplication</code> enabled and
+     * then another message with a <code>MessageDeduplicationId</code> that is the same
+     * as the one generated for the first <code>MessageDeduplicationId</code>, the two
+     * messages are treated as duplicates and only one copy of the message is
+     * delivered. </p> </li> </ul> <note> <p>The <code>MessageDeduplicationId</code> is
+     * available to the recipient of the message (this can be useful for
+     * troubleshooting delivery issues).</p> <p>If a message is sent successfully but
+     * the acknowledgement is lost and the message is resent with the same
+     * <code>MessageDeduplicationId</code> after the deduplication interval, Amazon SQS
+     * can't detect duplicate messages.</p> </note> <p>The length of
+     * <code>MessageDeduplicationId</code> is 128 characters.
      * <code>MessageDeduplicationId</code> can contain alphanumeric characters
      * (<code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and punctuation
      * (<code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).</p> <p>For best
@@ -563,7 +571,7 @@ namespace Model
      * the MessageDeduplicationId Property</a> in the <i>Amazon Simple Queue Service
      * Developer Guide</i>.</p>
      */
-    inline SendMessageRequest& WithMessageDeduplicationId(Aws::String&& value) { SetMessageDeduplicationId(value); return *this;}
+    inline SendMessageRequest& WithMessageDeduplicationId(Aws::String&& value) { SetMessageDeduplicationId(std::move(value)); return *this;}
 
     /**
      * <p>This parameter applies only to FIFO (first-in-first-out) queues.</p> <p>The
@@ -587,19 +595,18 @@ namespace Model
      * <code>MessageDeduplicationId</code> overrides the generated one.</p> </li> </ul>
      * </li> <li> <p>When <code>ContentBasedDeduplication</code> is in effect, messages
      * with identical content sent within the deduplication interval are treated as
-     * duplicates and only one copy of the message is delivered.</p> </li> <li> <p>You
-     * can also use <code>ContentBasedDeduplication</code> for messages with identical
-     * content to be treated as duplicates.</p> </li> <li> <p>If you send one message
-     * with <code>ContentBasedDeduplication</code> enabled and then another message
-     * with a <code>MessageDeduplicationId</code> that is the same as the one generated
-     * for the first <code>MessageDeduplicationId</code>, the two messages are treated
-     * as duplicates and only one copy of the message is delivered. </p> </li> </ul>
-     * <note> <p>The <code>MessageDeduplicationId</code> is available to the recipient
-     * of the message (this can be useful for troubleshooting delivery issues).</p>
-     * <p>If a message is sent successfully but the acknowledgement is lost and the
-     * message is resent with the same <code>MessageDeduplicationId</code> after the
-     * deduplication interval, Amazon SQS can't detect duplicate messages.</p> </note>
-     * <p>The length of <code>MessageDeduplicationId</code> is 128 characters.
+     * duplicates and only one copy of the message is delivered.</p> </li> <li> <p>If
+     * you send one message with <code>ContentBasedDeduplication</code> enabled and
+     * then another message with a <code>MessageDeduplicationId</code> that is the same
+     * as the one generated for the first <code>MessageDeduplicationId</code>, the two
+     * messages are treated as duplicates and only one copy of the message is
+     * delivered. </p> </li> </ul> <note> <p>The <code>MessageDeduplicationId</code> is
+     * available to the recipient of the message (this can be useful for
+     * troubleshooting delivery issues).</p> <p>If a message is sent successfully but
+     * the acknowledgement is lost and the message is resent with the same
+     * <code>MessageDeduplicationId</code> after the deduplication interval, Amazon SQS
+     * can't detect duplicate messages.</p> </note> <p>The length of
+     * <code>MessageDeduplicationId</code> is 128 characters.
      * <code>MessageDeduplicationId</code> can contain alphanumeric characters
      * (<code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and punctuation
      * (<code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).</p> <p>For best
@@ -609,6 +616,7 @@ namespace Model
      * Developer Guide</i>.</p>
      */
     inline SendMessageRequest& WithMessageDeduplicationId(const char* value) { SetMessageDeduplicationId(value); return *this;}
+
 
     /**
      * <p>This parameter applies only to FIFO (first-in-first-out) queues.</p> <p>The
@@ -631,7 +639,8 @@ namespace Model
      * practices of using <code>MessageGroupId</code>, see <a
      * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagegroupid-property">Using
      * the MessageGroupId Property</a> in the <i>Amazon Simple Queue Service Developer
-     * Guide</i>.</p>
+     * Guide</i>.</p> <important> <p> <code>MessageGroupId</code> is required for FIFO
+     * queues. You can't use it for Standard queues.</p> </important>
      */
     inline const Aws::String& GetMessageGroupId() const{ return m_messageGroupId; }
 
@@ -656,7 +665,8 @@ namespace Model
      * practices of using <code>MessageGroupId</code>, see <a
      * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagegroupid-property">Using
      * the MessageGroupId Property</a> in the <i>Amazon Simple Queue Service Developer
-     * Guide</i>.</p>
+     * Guide</i>.</p> <important> <p> <code>MessageGroupId</code> is required for FIFO
+     * queues. You can't use it for Standard queues.</p> </important>
      */
     inline void SetMessageGroupId(const Aws::String& value) { m_messageGroupIdHasBeenSet = true; m_messageGroupId = value; }
 
@@ -681,9 +691,10 @@ namespace Model
      * practices of using <code>MessageGroupId</code>, see <a
      * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagegroupid-property">Using
      * the MessageGroupId Property</a> in the <i>Amazon Simple Queue Service Developer
-     * Guide</i>.</p>
+     * Guide</i>.</p> <important> <p> <code>MessageGroupId</code> is required for FIFO
+     * queues. You can't use it for Standard queues.</p> </important>
      */
-    inline void SetMessageGroupId(Aws::String&& value) { m_messageGroupIdHasBeenSet = true; m_messageGroupId = value; }
+    inline void SetMessageGroupId(Aws::String&& value) { m_messageGroupIdHasBeenSet = true; m_messageGroupId = std::move(value); }
 
     /**
      * <p>This parameter applies only to FIFO (first-in-first-out) queues.</p> <p>The
@@ -706,7 +717,8 @@ namespace Model
      * practices of using <code>MessageGroupId</code>, see <a
      * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagegroupid-property">Using
      * the MessageGroupId Property</a> in the <i>Amazon Simple Queue Service Developer
-     * Guide</i>.</p>
+     * Guide</i>.</p> <important> <p> <code>MessageGroupId</code> is required for FIFO
+     * queues. You can't use it for Standard queues.</p> </important>
      */
     inline void SetMessageGroupId(const char* value) { m_messageGroupIdHasBeenSet = true; m_messageGroupId.assign(value); }
 
@@ -731,7 +743,8 @@ namespace Model
      * practices of using <code>MessageGroupId</code>, see <a
      * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagegroupid-property">Using
      * the MessageGroupId Property</a> in the <i>Amazon Simple Queue Service Developer
-     * Guide</i>.</p>
+     * Guide</i>.</p> <important> <p> <code>MessageGroupId</code> is required for FIFO
+     * queues. You can't use it for Standard queues.</p> </important>
      */
     inline SendMessageRequest& WithMessageGroupId(const Aws::String& value) { SetMessageGroupId(value); return *this;}
 
@@ -756,9 +769,10 @@ namespace Model
      * practices of using <code>MessageGroupId</code>, see <a
      * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagegroupid-property">Using
      * the MessageGroupId Property</a> in the <i>Amazon Simple Queue Service Developer
-     * Guide</i>.</p>
+     * Guide</i>.</p> <important> <p> <code>MessageGroupId</code> is required for FIFO
+     * queues. You can't use it for Standard queues.</p> </important>
      */
-    inline SendMessageRequest& WithMessageGroupId(Aws::String&& value) { SetMessageGroupId(value); return *this;}
+    inline SendMessageRequest& WithMessageGroupId(Aws::String&& value) { SetMessageGroupId(std::move(value)); return *this;}
 
     /**
      * <p>This parameter applies only to FIFO (first-in-first-out) queues.</p> <p>The
@@ -781,21 +795,28 @@ namespace Model
      * practices of using <code>MessageGroupId</code>, see <a
      * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagegroupid-property">Using
      * the MessageGroupId Property</a> in the <i>Amazon Simple Queue Service Developer
-     * Guide</i>.</p>
+     * Guide</i>.</p> <important> <p> <code>MessageGroupId</code> is required for FIFO
+     * queues. You can't use it for Standard queues.</p> </important>
      */
     inline SendMessageRequest& WithMessageGroupId(const char* value) { SetMessageGroupId(value); return *this;}
 
   private:
+
     Aws::String m_queueUrl;
     bool m_queueUrlHasBeenSet;
+
     Aws::String m_messageBody;
     bool m_messageBodyHasBeenSet;
+
     int m_delaySeconds;
     bool m_delaySecondsHasBeenSet;
+
     Aws::Map<Aws::String, MessageAttributeValue> m_messageAttributes;
     bool m_messageAttributesHasBeenSet;
+
     Aws::String m_messageDeduplicationId;
     bool m_messageDeduplicationIdHasBeenSet;
+
     Aws::String m_messageGroupId;
     bool m_messageGroupIdHasBeenSet;
   };

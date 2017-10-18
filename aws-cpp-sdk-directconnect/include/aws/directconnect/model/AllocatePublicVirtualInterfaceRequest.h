@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/directconnect/DirectConnect_EXPORTS.h>
 #include <aws/directconnect/DirectConnectRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/directconnect/model/NewPublicVirtualInterfaceAllocation.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,9 +37,17 @@ namespace Model
   {
   public:
     AllocatePublicVirtualInterfaceRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "AllocatePublicVirtualInterface"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The connection ID on which the public virtual interface is provisioned.</p>
@@ -55,7 +65,7 @@ namespace Model
      * <p>The connection ID on which the public virtual interface is provisioned.</p>
      * <p>Default: None</p>
      */
-    inline void SetConnectionId(Aws::String&& value) { m_connectionIdHasBeenSet = true; m_connectionId = value; }
+    inline void SetConnectionId(Aws::String&& value) { m_connectionIdHasBeenSet = true; m_connectionId = std::move(value); }
 
     /**
      * <p>The connection ID on which the public virtual interface is provisioned.</p>
@@ -73,13 +83,14 @@ namespace Model
      * <p>The connection ID on which the public virtual interface is provisioned.</p>
      * <p>Default: None</p>
      */
-    inline AllocatePublicVirtualInterfaceRequest& WithConnectionId(Aws::String&& value) { SetConnectionId(value); return *this;}
+    inline AllocatePublicVirtualInterfaceRequest& WithConnectionId(Aws::String&& value) { SetConnectionId(std::move(value)); return *this;}
 
     /**
      * <p>The connection ID on which the public virtual interface is provisioned.</p>
      * <p>Default: None</p>
      */
     inline AllocatePublicVirtualInterfaceRequest& WithConnectionId(const char* value) { SetConnectionId(value); return *this;}
+
 
     /**
      * <p>The AWS account that will own the new public virtual interface.</p>
@@ -97,7 +108,7 @@ namespace Model
      * <p>The AWS account that will own the new public virtual interface.</p>
      * <p>Default: None</p>
      */
-    inline void SetOwnerAccount(Aws::String&& value) { m_ownerAccountHasBeenSet = true; m_ownerAccount = value; }
+    inline void SetOwnerAccount(Aws::String&& value) { m_ownerAccountHasBeenSet = true; m_ownerAccount = std::move(value); }
 
     /**
      * <p>The AWS account that will own the new public virtual interface.</p>
@@ -115,13 +126,14 @@ namespace Model
      * <p>The AWS account that will own the new public virtual interface.</p>
      * <p>Default: None</p>
      */
-    inline AllocatePublicVirtualInterfaceRequest& WithOwnerAccount(Aws::String&& value) { SetOwnerAccount(value); return *this;}
+    inline AllocatePublicVirtualInterfaceRequest& WithOwnerAccount(Aws::String&& value) { SetOwnerAccount(std::move(value)); return *this;}
 
     /**
      * <p>The AWS account that will own the new public virtual interface.</p>
      * <p>Default: None</p>
      */
     inline AllocatePublicVirtualInterfaceRequest& WithOwnerAccount(const char* value) { SetOwnerAccount(value); return *this;}
+
 
     /**
      * <p>Detailed information for the public virtual interface to be provisioned.</p>
@@ -139,7 +151,7 @@ namespace Model
      * <p>Detailed information for the public virtual interface to be provisioned.</p>
      * <p>Default: None</p>
      */
-    inline void SetNewPublicVirtualInterfaceAllocation(NewPublicVirtualInterfaceAllocation&& value) { m_newPublicVirtualInterfaceAllocationHasBeenSet = true; m_newPublicVirtualInterfaceAllocation = value; }
+    inline void SetNewPublicVirtualInterfaceAllocation(NewPublicVirtualInterfaceAllocation&& value) { m_newPublicVirtualInterfaceAllocationHasBeenSet = true; m_newPublicVirtualInterfaceAllocation = std::move(value); }
 
     /**
      * <p>Detailed information for the public virtual interface to be provisioned.</p>
@@ -151,13 +163,16 @@ namespace Model
      * <p>Detailed information for the public virtual interface to be provisioned.</p>
      * <p>Default: None</p>
      */
-    inline AllocatePublicVirtualInterfaceRequest& WithNewPublicVirtualInterfaceAllocation(NewPublicVirtualInterfaceAllocation&& value) { SetNewPublicVirtualInterfaceAllocation(value); return *this;}
+    inline AllocatePublicVirtualInterfaceRequest& WithNewPublicVirtualInterfaceAllocation(NewPublicVirtualInterfaceAllocation&& value) { SetNewPublicVirtualInterfaceAllocation(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_connectionId;
     bool m_connectionIdHasBeenSet;
+
     Aws::String m_ownerAccount;
     bool m_ownerAccountHasBeenSet;
+
     NewPublicVirtualInterfaceAllocation m_newPublicVirtualInterfaceAllocation;
     bool m_newPublicVirtualInterfaceAllocationHasBeenSet;
   };

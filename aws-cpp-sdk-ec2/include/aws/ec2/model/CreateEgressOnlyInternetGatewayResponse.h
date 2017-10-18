@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
-#include <aws/ec2/model/EgressOnlyInternetGateway.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <aws/ec2/model/EgressOnlyInternetGateway.h>
 #include <aws/ec2/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,33 +40,9 @@ namespace Model
   {
   public:
     CreateEgressOnlyInternetGatewayResponse();
-    CreateEgressOnlyInternetGatewayResponse(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    CreateEgressOnlyInternetGatewayResponse& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CreateEgressOnlyInternetGatewayResponse(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CreateEgressOnlyInternetGatewayResponse& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
 
-    /**
-     * <p>Information about the egress-only Internet gateway.</p>
-     */
-    inline const EgressOnlyInternetGateway& GetEgressOnlyInternetGateway() const{ return m_egressOnlyInternetGateway; }
-
-    /**
-     * <p>Information about the egress-only Internet gateway.</p>
-     */
-    inline void SetEgressOnlyInternetGateway(const EgressOnlyInternetGateway& value) { m_egressOnlyInternetGateway = value; }
-
-    /**
-     * <p>Information about the egress-only Internet gateway.</p>
-     */
-    inline void SetEgressOnlyInternetGateway(EgressOnlyInternetGateway&& value) { m_egressOnlyInternetGateway = value; }
-
-    /**
-     * <p>Information about the egress-only Internet gateway.</p>
-     */
-    inline CreateEgressOnlyInternetGatewayResponse& WithEgressOnlyInternetGateway(const EgressOnlyInternetGateway& value) { SetEgressOnlyInternetGateway(value); return *this;}
-
-    /**
-     * <p>Information about the egress-only Internet gateway.</p>
-     */
-    inline CreateEgressOnlyInternetGatewayResponse& WithEgressOnlyInternetGateway(EgressOnlyInternetGateway&& value) { SetEgressOnlyInternetGateway(value); return *this;}
 
     /**
      * <p>Unique, case-sensitive identifier you provide to ensure the idempotency of
@@ -82,7 +60,7 @@ namespace Model
      * <p>Unique, case-sensitive identifier you provide to ensure the idempotency of
      * the request.</p>
      */
-    inline void SetClientToken(Aws::String&& value) { m_clientToken = value; }
+    inline void SetClientToken(Aws::String&& value) { m_clientToken = std::move(value); }
 
     /**
      * <p>Unique, case-sensitive identifier you provide to ensure the idempotency of
@@ -100,13 +78,40 @@ namespace Model
      * <p>Unique, case-sensitive identifier you provide to ensure the idempotency of
      * the request.</p>
      */
-    inline CreateEgressOnlyInternetGatewayResponse& WithClientToken(Aws::String&& value) { SetClientToken(value); return *this;}
+    inline CreateEgressOnlyInternetGatewayResponse& WithClientToken(Aws::String&& value) { SetClientToken(std::move(value)); return *this;}
 
     /**
      * <p>Unique, case-sensitive identifier you provide to ensure the idempotency of
      * the request.</p>
      */
     inline CreateEgressOnlyInternetGatewayResponse& WithClientToken(const char* value) { SetClientToken(value); return *this;}
+
+
+    /**
+     * <p>Information about the egress-only Internet gateway.</p>
+     */
+    inline const EgressOnlyInternetGateway& GetEgressOnlyInternetGateway() const{ return m_egressOnlyInternetGateway; }
+
+    /**
+     * <p>Information about the egress-only Internet gateway.</p>
+     */
+    inline void SetEgressOnlyInternetGateway(const EgressOnlyInternetGateway& value) { m_egressOnlyInternetGateway = value; }
+
+    /**
+     * <p>Information about the egress-only Internet gateway.</p>
+     */
+    inline void SetEgressOnlyInternetGateway(EgressOnlyInternetGateway&& value) { m_egressOnlyInternetGateway = std::move(value); }
+
+    /**
+     * <p>Information about the egress-only Internet gateway.</p>
+     */
+    inline CreateEgressOnlyInternetGatewayResponse& WithEgressOnlyInternetGateway(const EgressOnlyInternetGateway& value) { SetEgressOnlyInternetGateway(value); return *this;}
+
+    /**
+     * <p>Information about the egress-only Internet gateway.</p>
+     */
+    inline CreateEgressOnlyInternetGatewayResponse& WithEgressOnlyInternetGateway(EgressOnlyInternetGateway&& value) { SetEgressOnlyInternetGateway(std::move(value)); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -115,17 +120,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline CreateEgressOnlyInternetGatewayResponse& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline CreateEgressOnlyInternetGatewayResponse& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline CreateEgressOnlyInternetGatewayResponse& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
-    EgressOnlyInternetGateway m_egressOnlyInternetGateway;
+
     Aws::String m_clientToken;
+
+    EgressOnlyInternetGateway m_egressOnlyInternetGateway;
+
     ResponseMetadata m_responseMetadata;
   };
 

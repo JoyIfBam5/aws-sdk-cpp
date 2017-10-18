@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     DownloadDefaultKeyPairResult();
-    DownloadDefaultKeyPairResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DownloadDefaultKeyPairResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DownloadDefaultKeyPairResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DownloadDefaultKeyPairResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A base64-encoded public key of the <code>ssh-rsa</code> type.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>A base64-encoded public key of the <code>ssh-rsa</code> type.</p>
      */
-    inline void SetPublicKeyBase64(Aws::String&& value) { m_publicKeyBase64 = value; }
+    inline void SetPublicKeyBase64(Aws::String&& value) { m_publicKeyBase64 = std::move(value); }
 
     /**
      * <p>A base64-encoded public key of the <code>ssh-rsa</code> type.</p>
@@ -67,12 +70,13 @@ namespace Model
     /**
      * <p>A base64-encoded public key of the <code>ssh-rsa</code> type.</p>
      */
-    inline DownloadDefaultKeyPairResult& WithPublicKeyBase64(Aws::String&& value) { SetPublicKeyBase64(value); return *this;}
+    inline DownloadDefaultKeyPairResult& WithPublicKeyBase64(Aws::String&& value) { SetPublicKeyBase64(std::move(value)); return *this;}
 
     /**
      * <p>A base64-encoded public key of the <code>ssh-rsa</code> type.</p>
      */
     inline DownloadDefaultKeyPairResult& WithPublicKeyBase64(const char* value) { SetPublicKeyBase64(value); return *this;}
+
 
     /**
      * <p>A base64-encoded RSA private key.</p>
@@ -87,7 +91,7 @@ namespace Model
     /**
      * <p>A base64-encoded RSA private key.</p>
      */
-    inline void SetPrivateKeyBase64(Aws::String&& value) { m_privateKeyBase64 = value; }
+    inline void SetPrivateKeyBase64(Aws::String&& value) { m_privateKeyBase64 = std::move(value); }
 
     /**
      * <p>A base64-encoded RSA private key.</p>
@@ -102,7 +106,7 @@ namespace Model
     /**
      * <p>A base64-encoded RSA private key.</p>
      */
-    inline DownloadDefaultKeyPairResult& WithPrivateKeyBase64(Aws::String&& value) { SetPrivateKeyBase64(value); return *this;}
+    inline DownloadDefaultKeyPairResult& WithPrivateKeyBase64(Aws::String&& value) { SetPrivateKeyBase64(std::move(value)); return *this;}
 
     /**
      * <p>A base64-encoded RSA private key.</p>
@@ -110,7 +114,9 @@ namespace Model
     inline DownloadDefaultKeyPairResult& WithPrivateKeyBase64(const char* value) { SetPrivateKeyBase64(value); return *this;}
 
   private:
+
     Aws::String m_publicKeyBase64;
+
     Aws::String m_privateKeyBase64;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/gamelift/model/EC2InstanceType.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -48,6 +49,12 @@ namespace Aws
         static const int r3_2xlarge_HASH = HashingUtils::HashString("r3.2xlarge");
         static const int r3_4xlarge_HASH = HashingUtils::HashString("r3.4xlarge");
         static const int r3_8xlarge_HASH = HashingUtils::HashString("r3.8xlarge");
+        static const int r4_large_HASH = HashingUtils::HashString("r4.large");
+        static const int r4_xlarge_HASH = HashingUtils::HashString("r4.xlarge");
+        static const int r4_2xlarge_HASH = HashingUtils::HashString("r4.2xlarge");
+        static const int r4_4xlarge_HASH = HashingUtils::HashString("r4.4xlarge");
+        static const int r4_8xlarge_HASH = HashingUtils::HashString("r4.8xlarge");
+        static const int r4_16xlarge_HASH = HashingUtils::HashString("r4.16xlarge");
         static const int m3_medium_HASH = HashingUtils::HashString("m3.medium");
         static const int m3_large_HASH = HashingUtils::HashString("m3.large");
         static const int m3_xlarge_HASH = HashingUtils::HashString("m3.xlarge");
@@ -138,6 +145,30 @@ namespace Aws
           {
             return EC2InstanceType::r3_8xlarge;
           }
+          else if (hashCode == r4_large_HASH)
+          {
+            return EC2InstanceType::r4_large;
+          }
+          else if (hashCode == r4_xlarge_HASH)
+          {
+            return EC2InstanceType::r4_xlarge;
+          }
+          else if (hashCode == r4_2xlarge_HASH)
+          {
+            return EC2InstanceType::r4_2xlarge;
+          }
+          else if (hashCode == r4_4xlarge_HASH)
+          {
+            return EC2InstanceType::r4_4xlarge;
+          }
+          else if (hashCode == r4_8xlarge_HASH)
+          {
+            return EC2InstanceType::r4_8xlarge;
+          }
+          else if (hashCode == r4_16xlarge_HASH)
+          {
+            return EC2InstanceType::r4_16xlarge;
+          }
           else if (hashCode == m3_medium_HASH)
           {
             return EC2InstanceType::m3_medium;
@@ -226,6 +257,18 @@ namespace Aws
             return "r3.4xlarge";
           case EC2InstanceType::r3_8xlarge:
             return "r3.8xlarge";
+          case EC2InstanceType::r4_large:
+            return "r4.large";
+          case EC2InstanceType::r4_xlarge:
+            return "r4.xlarge";
+          case EC2InstanceType::r4_2xlarge:
+            return "r4.2xlarge";
+          case EC2InstanceType::r4_4xlarge:
+            return "r4.4xlarge";
+          case EC2InstanceType::r4_8xlarge:
+            return "r4.8xlarge";
+          case EC2InstanceType::r4_16xlarge:
+            return "r4.16xlarge";
           case EC2InstanceType::m3_medium:
             return "m3.medium";
           case EC2InstanceType::m3_large:

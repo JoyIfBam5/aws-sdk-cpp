@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/WAFRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     GetByteMatchSetRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "GetByteMatchSet"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The <code>ByteMatchSetId</code> of the <a>ByteMatchSet</a> that you want to
@@ -53,7 +63,7 @@ namespace Model
      * get. <code>ByteMatchSetId</code> is returned by <a>CreateByteMatchSet</a> and by
      * <a>ListByteMatchSets</a>.</p>
      */
-    inline void SetByteMatchSetId(Aws::String&& value) { m_byteMatchSetIdHasBeenSet = true; m_byteMatchSetId = value; }
+    inline void SetByteMatchSetId(Aws::String&& value) { m_byteMatchSetIdHasBeenSet = true; m_byteMatchSetId = std::move(value); }
 
     /**
      * <p>The <code>ByteMatchSetId</code> of the <a>ByteMatchSet</a> that you want to
@@ -74,7 +84,7 @@ namespace Model
      * get. <code>ByteMatchSetId</code> is returned by <a>CreateByteMatchSet</a> and by
      * <a>ListByteMatchSets</a>.</p>
      */
-    inline GetByteMatchSetRequest& WithByteMatchSetId(Aws::String&& value) { SetByteMatchSetId(value); return *this;}
+    inline GetByteMatchSetRequest& WithByteMatchSetId(Aws::String&& value) { SetByteMatchSetId(std::move(value)); return *this;}
 
     /**
      * <p>The <code>ByteMatchSetId</code> of the <a>ByteMatchSet</a> that you want to
@@ -84,6 +94,7 @@ namespace Model
     inline GetByteMatchSetRequest& WithByteMatchSetId(const char* value) { SetByteMatchSetId(value); return *this;}
 
   private:
+
     Aws::String m_byteMatchSetId;
     bool m_byteMatchSetIdHasBeenSet;
   };

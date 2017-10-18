@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/ssm/model/AssociationFilterKey.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     AssociationFilter& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the filter.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The name of the filter.</p>
      */
-    inline void SetKey(AssociationFilterKey&& value) { m_keyHasBeenSet = true; m_key = value; }
+    inline void SetKey(AssociationFilterKey&& value) { m_keyHasBeenSet = true; m_key = std::move(value); }
 
     /**
      * <p>The name of the filter.</p>
@@ -67,7 +70,8 @@ namespace Model
     /**
      * <p>The name of the filter.</p>
      */
-    inline AssociationFilter& WithKey(AssociationFilterKey&& value) { SetKey(value); return *this;}
+    inline AssociationFilter& WithKey(AssociationFilterKey&& value) { SetKey(std::move(value)); return *this;}
+
 
     /**
      * <p>The filter value.</p>
@@ -82,7 +86,7 @@ namespace Model
     /**
      * <p>The filter value.</p>
      */
-    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = value; }
+    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = std::move(value); }
 
     /**
      * <p>The filter value.</p>
@@ -97,7 +101,7 @@ namespace Model
     /**
      * <p>The filter value.</p>
      */
-    inline AssociationFilter& WithValue(Aws::String&& value) { SetValue(value); return *this;}
+    inline AssociationFilter& WithValue(Aws::String&& value) { SetValue(std::move(value)); return *this;}
 
     /**
      * <p>The filter value.</p>
@@ -105,8 +109,10 @@ namespace Model
     inline AssociationFilter& WithValue(const char* value) { SetValue(value); return *this;}
 
   private:
+
     AssociationFilterKey m_key;
     bool m_keyHasBeenSet;
+
     Aws::String m_value;
     bool m_valueHasBeenSet;
   };

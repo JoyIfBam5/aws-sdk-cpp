@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 
 #include <aws/core/client/CoreErrors.h>
@@ -54,7 +55,7 @@ enum class ECRErrors
   UNKNOWN = 100,
   ///////////////////////////////////////////////////////////////////////////////////////////
 
-  EMPTY_UPLOAD= static_cast<int>(Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
+  EMPTY_UPLOAD= static_cast<int>(Aws::Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
   IMAGE_ALREADY_EXISTS,
   IMAGE_NOT_FOUND,
   INVALID_LAYER,
@@ -64,6 +65,9 @@ enum class ECRErrors
   LAYER_ALREADY_EXISTS,
   LAYER_INACCESSIBLE,
   LAYER_PART_TOO_SMALL,
+  LIFECYCLE_POLICY_NOT_FOUND,
+  LIFECYCLE_POLICY_PREVIEW_IN_PROGRESS,
+  LIFECYCLE_POLICY_PREVIEW_NOT_FOUND,
   LIMIT_EXCEEDED,
   REPOSITORY_ALREADY_EXISTS,
   REPOSITORY_NOT_EMPTY,
@@ -74,7 +78,7 @@ enum class ECRErrors
 };
 namespace ECRErrorMapper
 {
-  AWS_ECR_API Client::AWSError<Client::CoreErrors> GetErrorForName(const char* errorName);
+  AWS_ECR_API Aws::Client::AWSError<Aws::Client::CoreErrors> GetErrorForName(const char* errorName);
 }
 
 } // namespace ECR

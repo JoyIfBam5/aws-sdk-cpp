@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rekognition/Rekognition_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     S3Object& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Name of the S3 bucket.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>Name of the S3 bucket.</p>
      */
-    inline void SetBucket(Aws::String&& value) { m_bucketHasBeenSet = true; m_bucket = value; }
+    inline void SetBucket(Aws::String&& value) { m_bucketHasBeenSet = true; m_bucket = std::move(value); }
 
     /**
      * <p>Name of the S3 bucket.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>Name of the S3 bucket.</p>
      */
-    inline S3Object& WithBucket(Aws::String&& value) { SetBucket(value); return *this;}
+    inline S3Object& WithBucket(Aws::String&& value) { SetBucket(std::move(value)); return *this;}
 
     /**
      * <p>Name of the S3 bucket.</p>
      */
     inline S3Object& WithBucket(const char* value) { SetBucket(value); return *this;}
+
 
     /**
      * <p>S3 object key name.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>S3 object key name.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>S3 object key name.</p>
@@ -110,12 +114,13 @@ namespace Model
     /**
      * <p>S3 object key name.</p>
      */
-    inline S3Object& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline S3Object& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>S3 object key name.</p>
      */
     inline S3Object& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>If the bucket is versioning enabled, you can specify the object version. </p>
@@ -130,7 +135,7 @@ namespace Model
     /**
      * <p>If the bucket is versioning enabled, you can specify the object version. </p>
      */
-    inline void SetVersion(Aws::String&& value) { m_versionHasBeenSet = true; m_version = value; }
+    inline void SetVersion(Aws::String&& value) { m_versionHasBeenSet = true; m_version = std::move(value); }
 
     /**
      * <p>If the bucket is versioning enabled, you can specify the object version. </p>
@@ -145,7 +150,7 @@ namespace Model
     /**
      * <p>If the bucket is versioning enabled, you can specify the object version. </p>
      */
-    inline S3Object& WithVersion(Aws::String&& value) { SetVersion(value); return *this;}
+    inline S3Object& WithVersion(Aws::String&& value) { SetVersion(std::move(value)); return *this;}
 
     /**
      * <p>If the bucket is versioning enabled, you can specify the object version. </p>
@@ -153,10 +158,13 @@ namespace Model
     inline S3Object& WithVersion(const char* value) { SetVersion(value); return *this;}
 
   private:
+
     Aws::String m_bucket;
     bool m_bucketHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_version;
     bool m_versionHasBeenSet;
   };

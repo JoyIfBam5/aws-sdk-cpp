@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -52,6 +54,7 @@ namespace Model
     TimeWindow& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The beginning of the time range from which you want
      * <code>GetSampledRequests</code> to return a sample of the requests that your AWS
@@ -77,7 +80,7 @@ namespace Model
      * <code>"2016-09-27T14:50Z"</code>. You can specify any time range in the previous
      * three hours.</p>
      */
-    inline void SetStartTime(Aws::Utils::DateTime&& value) { m_startTimeHasBeenSet = true; m_startTime = value; }
+    inline void SetStartTime(Aws::Utils::DateTime&& value) { m_startTimeHasBeenSet = true; m_startTime = std::move(value); }
 
     /**
      * <p>The beginning of the time range from which you want
@@ -95,7 +98,8 @@ namespace Model
      * <code>"2016-09-27T14:50Z"</code>. You can specify any time range in the previous
      * three hours.</p>
      */
-    inline TimeWindow& WithStartTime(Aws::Utils::DateTime&& value) { SetStartTime(value); return *this;}
+    inline TimeWindow& WithStartTime(Aws::Utils::DateTime&& value) { SetStartTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The end of the time range from which you want <code>GetSampledRequests</code>
@@ -119,7 +123,7 @@ namespace Model
      * date and time in the following format: <code>"2016-09-27T14:50Z"</code>. You can
      * specify any time range in the previous three hours.</p>
      */
-    inline void SetEndTime(Aws::Utils::DateTime&& value) { m_endTimeHasBeenSet = true; m_endTime = value; }
+    inline void SetEndTime(Aws::Utils::DateTime&& value) { m_endTimeHasBeenSet = true; m_endTime = std::move(value); }
 
     /**
      * <p>The end of the time range from which you want <code>GetSampledRequests</code>
@@ -135,11 +139,13 @@ namespace Model
      * date and time in the following format: <code>"2016-09-27T14:50Z"</code>. You can
      * specify any time range in the previous three hours.</p>
      */
-    inline TimeWindow& WithEndTime(Aws::Utils::DateTime&& value) { SetEndTime(value); return *this;}
+    inline TimeWindow& WithEndTime(Aws::Utils::DateTime&& value) { SetEndTime(std::move(value)); return *this;}
 
   private:
+
     Aws::Utils::DateTime m_startTime;
     bool m_startTimeHasBeenSet;
+
     Aws::Utils::DateTime m_endTime;
     bool m_endTimeHasBeenSet;
   };

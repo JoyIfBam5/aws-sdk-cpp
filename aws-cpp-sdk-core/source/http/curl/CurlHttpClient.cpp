@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   * 
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -74,7 +74,7 @@ static void* realloc_callback(void* ptr, size_t size)
         std::size_t* pointerToSize = reinterpret_cast<std::size_t*>(rawMemory);
         *pointerToSize = size;
 
-        size_t copyLength = std::min(originalLen, size);
+        size_t copyLength = (std::min)(originalLen, size);
 #ifdef _MSC_VER
         memcpy_s(rawMemory + offset, size, ptr, copyLength);
 #else
@@ -194,7 +194,16 @@ void SetOptCodeForHttpMethod(CURL* requestHandle, const HttpRequest& request)
             curl_easy_setopt(requestHandle, CURLOPT_NOBODY, 1L);
             break;
         case HttpMethod::HTTP_PATCH:
-            curl_easy_setopt(requestHandle, CURLOPT_CUSTOMREQUEST, "PATCH");
+            if (!request.HasHeader(Aws::Http::CONTENT_LENGTH_HEADER)|| request.GetHeaderValue(Aws::Http::CONTENT_LENGTH_HEADER) == "0")
+            {
+                curl_easy_setopt(requestHandle, CURLOPT_CUSTOMREQUEST, "PATCH");
+            }
+            else
+            {
+                curl_easy_setopt(requestHandle, CURLOPT_POST, 1L);
+                curl_easy_setopt(requestHandle, CURLOPT_CUSTOMREQUEST, "PATCH");
+            }
+
             break;
         case HttpMethod::HTTP_DELETE:
             curl_easy_setopt(requestHandle, CURLOPT_CUSTOMREQUEST, "DELETE");
@@ -214,7 +223,7 @@ void CurlHttpClient::InitGlobalState()
 {
     if (!isInit)
     {
-        AWS_LOG_INFO(CURL_HTTP_CLIENT_TAG, "Initializing Curl library");
+        AWS_LOGSTREAM_INFO(CURL_HTTP_CLIENT_TAG, "Initializing Curl library");
         isInit = true;
 #ifdef AWS_CUSTOM_MEMORY_MANAGEMENT
         curl_global_init_mem(CURL_GLOBAL_ALL, &malloc_callback, &free_callback, &realloc_callback, &strdup_callback, &calloc_callback);
@@ -283,8 +292,9 @@ CurlHttpClient::CurlHttpClient(const ClientConfiguration& clientConfig) :
     Base(),   
     m_curlHandleContainer(clientConfig.maxConnections, clientConfig.requestTimeoutMs, clientConfig.connectTimeoutMs),
     m_isUsingProxy(!clientConfig.proxyHost.empty()), m_proxyUserName(clientConfig.proxyUserName),
-    m_proxyPassword(clientConfig.proxyPassword), m_proxyHost(clientConfig.proxyHost),
-    m_proxyPort(clientConfig.proxyPort), m_verifySSL(clientConfig.verifySSL), m_caPath(clientConfig.caPath), m_allowRedirects(clientConfig.followRedirects)
+    m_proxyPassword(clientConfig.proxyPassword), m_proxyScheme(SchemeMapper::ToString(clientConfig.proxyScheme)), m_proxyHost(clientConfig.proxyHost),
+    m_proxyPort(clientConfig.proxyPort), m_verifySSL(clientConfig.verifySSL), m_caPath(clientConfig.caPath),
+    m_caFile(clientConfig.caFile), m_allowRedirects(clientConfig.followRedirects)
 {
 }
 
@@ -308,7 +318,7 @@ std::shared_ptr<HttpResponse> CurlHttpClient::MakeRequest(HttpRequest& request, 
     Aws::StringStream headerStream;
     HeaderValueCollection requestHeaders = request.GetHeaders();
 
-    AWS_LOG_TRACE(CURL_HTTP_CLIENT_TAG, "Including headers:");
+    AWS_LOGSTREAM_TRACE(CURL_HTTP_CLIENT_TAG, "Including headers:");
     for (auto& requestHeader : requestHeaders)
     {
         headerStream.str("");
@@ -358,6 +368,10 @@ std::shared_ptr<HttpResponse> CurlHttpClient::MakeRequest(HttpRequest& request, 
         {
             curl_easy_setopt(connectionHandle, CURLOPT_CAPATH, m_caPath.c_str());
         }
+        if(!m_caFile.empty())
+        {
+            curl_easy_setopt(connectionHandle, CURLOPT_CAINFO, m_caFile.c_str());
+        }
 
 	// only set by android test builds because the emulator is missing a cert needed for aws services
 #ifdef TEST_CERT_PATH
@@ -394,10 +408,16 @@ std::shared_ptr<HttpResponse> CurlHttpClient::MakeRequest(HttpRequest& request, 
 
         if (m_isUsingProxy)
         {
-            curl_easy_setopt(connectionHandle, CURLOPT_PROXY, m_proxyHost.c_str());
+            Aws::StringStream ss;
+            ss << m_proxyScheme << "://" << m_proxyHost;
+            curl_easy_setopt(connectionHandle, CURLOPT_PROXY, ss.str().c_str());
             curl_easy_setopt(connectionHandle, CURLOPT_PROXYPORT, (long) m_proxyPort);
             curl_easy_setopt(connectionHandle, CURLOPT_PROXYUSERNAME, m_proxyUserName.c_str());
             curl_easy_setopt(connectionHandle, CURLOPT_PROXYPASSWORD, m_proxyPassword.c_str());
+        }
+        else
+        {
+            curl_easy_setopt(connectionHandle, CURLOPT_PROXY, "");
         }
 
         if (request.GetContentBody())
@@ -443,7 +463,7 @@ std::shared_ptr<HttpResponse> CurlHttpClient::MakeRequest(HttpRequest& request, 
                 if (StringUtils::ConvertToInt64(contentLength.c_str()) != numBytesResponseReceived)
                 {
                     response = nullptr;
-                    AWS_LOG_ERROR(CURL_HTTP_CLIENT_TAG, "Response body length doesn't match the content-length header.");
+                    AWS_LOGSTREAM_ERROR(CURL_HTTP_CLIENT_TAG, "Response body length doesn't match the content-length header.");
                 }
             }
 
@@ -546,9 +566,9 @@ size_t CurlHttpClient::ReadBody(char* ptr, size_t size, size_t nmemb, void* user
     HttpRequest* request = context->m_request;
     std::shared_ptr<Aws::IOStream> ioStream = request->GetContentBody();
 
-    if (ioStream != nullptr && size * nmemb)
+    const size_t amountToRead = size * nmemb;
+    if (ioStream != nullptr && amountToRead > 0)
     {
-        size_t amountToRead = size * nmemb;
         ioStream->read(ptr, amountToRead);
         size_t amountRead = static_cast<size_t>(ioStream->gcount());
         auto& sentHandler = request->GetDataSentEventHandler();

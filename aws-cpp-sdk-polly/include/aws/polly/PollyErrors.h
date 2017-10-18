@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 
 #include <aws/core/client/CoreErrors.h>
@@ -54,22 +55,24 @@ enum class PollyErrors
   UNKNOWN = 100,
   ///////////////////////////////////////////////////////////////////////////////////////////
 
-  INVALID_LEXICON= static_cast<int>(Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
+  INVALID_LEXICON= static_cast<int>(Aws::Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
   INVALID_NEXT_TOKEN,
   INVALID_SAMPLE_RATE,
   INVALID_SSML,
   LEXICON_NOT_FOUND,
   LEXICON_SIZE_EXCEEDED,
+  MARKS_NOT_SUPPORTED_FOR_FORMAT,
   MAX_LEXEME_LENGTH_EXCEEDED,
   MAX_LEXICONS_NUMBER_EXCEEDED,
   SERVICE_FAILURE,
+  SSML_MARKS_NOT_SUPPORTED_FOR_TEXT_TYPE,
   TEXT_LENGTH_EXCEEDED,
   UNSUPPORTED_PLS_ALPHABET,
   UNSUPPORTED_PLS_LANGUAGE
 };
 namespace PollyErrorMapper
 {
-  AWS_POLLY_API Client::AWSError<Client::CoreErrors> GetErrorForName(const char* errorName);
+  AWS_POLLY_API Aws::Client::AWSError<Aws::Client::CoreErrors> GetErrorForName(const char* errorName);
 }
 
 } // namespace Polly

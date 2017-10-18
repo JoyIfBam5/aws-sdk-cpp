@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/datapipeline/DataPipeline_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     PipelineIdName& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ID of the pipeline that was assigned by AWS Data Pipeline. This is a
      * string of the form <code>df-297EG78HU43EEXAMPLE</code>.</p>
@@ -59,7 +62,7 @@ namespace Model
      * <p>The ID of the pipeline that was assigned by AWS Data Pipeline. This is a
      * string of the form <code>df-297EG78HU43EEXAMPLE</code>.</p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>The ID of the pipeline that was assigned by AWS Data Pipeline. This is a
@@ -77,13 +80,14 @@ namespace Model
      * <p>The ID of the pipeline that was assigned by AWS Data Pipeline. This is a
      * string of the form <code>df-297EG78HU43EEXAMPLE</code>.</p>
      */
-    inline PipelineIdName& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline PipelineIdName& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the pipeline that was assigned by AWS Data Pipeline. This is a
      * string of the form <code>df-297EG78HU43EEXAMPLE</code>.</p>
      */
     inline PipelineIdName& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>The name of the pipeline.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>The name of the pipeline.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the pipeline.</p>
@@ -113,7 +117,7 @@ namespace Model
     /**
      * <p>The name of the pipeline.</p>
      */
-    inline PipelineIdName& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline PipelineIdName& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the pipeline.</p>
@@ -121,8 +125,10 @@ namespace Model
     inline PipelineIdName& WithName(const char* value) { SetName(value); return *this;}
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
   };

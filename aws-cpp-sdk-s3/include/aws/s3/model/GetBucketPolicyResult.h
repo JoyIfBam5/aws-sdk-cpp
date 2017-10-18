@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/core/utils/stream/ResponseStream.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -39,8 +41,9 @@ namespace Model
     GetBucketPolicyResult& operator=(const GetBucketPolicyResult&) = delete;
 
 
-    GetBucketPolicyResult(AmazonWebServiceResult<Utils::Stream::ResponseStream>&& result);
-    GetBucketPolicyResult& operator=(AmazonWebServiceResult<Utils::Stream::ResponseStream>&& result);
+    GetBucketPolicyResult(Aws::AmazonWebServiceResult<Aws::Utils::Stream::ResponseStream>&& result);
+    GetBucketPolicyResult& operator=(Aws::AmazonWebServiceResult<Aws::Utils::Stream::ResponseStream>&& result);
+
 
 
     /**
@@ -54,7 +57,8 @@ namespace Model
     inline void ReplaceBody(Aws::IOStream* body) { m_policy = Aws::Utils::Stream::ResponseStream(body); }
     
   private:
-    Utils::Stream::ResponseStream m_policy;
+
+  Aws::Utils::Stream::ResponseStream m_policy;
   };
 
 } // namespace Model

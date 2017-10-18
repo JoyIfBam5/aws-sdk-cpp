@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/shield/Shield_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/shield/model/SummarizedCounter.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     SummarizedAttackVector& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The attack type, for example, SNMP reflection or SYN flood.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The attack type, for example, SNMP reflection or SYN flood.</p>
      */
-    inline void SetVectorType(Aws::String&& value) { m_vectorTypeHasBeenSet = true; m_vectorType = value; }
+    inline void SetVectorType(Aws::String&& value) { m_vectorTypeHasBeenSet = true; m_vectorType = std::move(value); }
 
     /**
      * <p>The attack type, for example, SNMP reflection or SYN flood.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The attack type, for example, SNMP reflection or SYN flood.</p>
      */
-    inline SummarizedAttackVector& WithVectorType(Aws::String&& value) { SetVectorType(value); return *this;}
+    inline SummarizedAttackVector& WithVectorType(Aws::String&& value) { SetVectorType(std::move(value)); return *this;}
 
     /**
      * <p>The attack type, for example, SNMP reflection or SYN flood.</p>
      */
     inline SummarizedAttackVector& WithVectorType(const char* value) { SetVectorType(value); return *this;}
+
 
     /**
      * <p>The list of counters that describe the details of the attack.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The list of counters that describe the details of the attack.</p>
      */
-    inline void SetVectorCounters(Aws::Vector<SummarizedCounter>&& value) { m_vectorCountersHasBeenSet = true; m_vectorCounters = value; }
+    inline void SetVectorCounters(Aws::Vector<SummarizedCounter>&& value) { m_vectorCountersHasBeenSet = true; m_vectorCounters = std::move(value); }
 
     /**
      * <p>The list of counters that describe the details of the attack.</p>
@@ -103,7 +107,7 @@ namespace Model
     /**
      * <p>The list of counters that describe the details of the attack.</p>
      */
-    inline SummarizedAttackVector& WithVectorCounters(Aws::Vector<SummarizedCounter>&& value) { SetVectorCounters(value); return *this;}
+    inline SummarizedAttackVector& WithVectorCounters(Aws::Vector<SummarizedCounter>&& value) { SetVectorCounters(std::move(value)); return *this;}
 
     /**
      * <p>The list of counters that describe the details of the attack.</p>
@@ -113,11 +117,13 @@ namespace Model
     /**
      * <p>The list of counters that describe the details of the attack.</p>
      */
-    inline SummarizedAttackVector& AddVectorCounters(SummarizedCounter&& value) { m_vectorCountersHasBeenSet = true; m_vectorCounters.push_back(value); return *this; }
+    inline SummarizedAttackVector& AddVectorCounters(SummarizedCounter&& value) { m_vectorCountersHasBeenSet = true; m_vectorCounters.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_vectorType;
     bool m_vectorTypeHasBeenSet;
+
     Aws::Vector<SummarizedCounter> m_vectorCounters;
     bool m_vectorCountersHasBeenSet;
   };

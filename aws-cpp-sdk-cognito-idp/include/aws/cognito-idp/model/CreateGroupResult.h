@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/cognito-idp/model/GroupType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     CreateGroupResult();
-    CreateGroupResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateGroupResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateGroupResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateGroupResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The group object for the group.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The group object for the group.</p>
      */
-    inline void SetGroup(GroupType&& value) { m_group = value; }
+    inline void SetGroup(GroupType&& value) { m_group = std::move(value); }
 
     /**
      * <p>The group object for the group.</p>
@@ -62,9 +65,10 @@ namespace Model
     /**
      * <p>The group object for the group.</p>
      */
-    inline CreateGroupResult& WithGroup(GroupType&& value) { SetGroup(value); return *this;}
+    inline CreateGroupResult& WithGroup(GroupType&& value) { SetGroup(std::move(value)); return *this;}
 
   private:
+
     GroupType m_group;
   };
 

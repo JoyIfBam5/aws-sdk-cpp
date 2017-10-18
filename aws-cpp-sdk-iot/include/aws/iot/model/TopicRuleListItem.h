@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     TopicRuleListItem& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The rule ARN.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The rule ARN.</p>
      */
-    inline void SetRuleArn(Aws::String&& value) { m_ruleArnHasBeenSet = true; m_ruleArn = value; }
+    inline void SetRuleArn(Aws::String&& value) { m_ruleArnHasBeenSet = true; m_ruleArn = std::move(value); }
 
     /**
      * <p>The rule ARN.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The rule ARN.</p>
      */
-    inline TopicRuleListItem& WithRuleArn(Aws::String&& value) { SetRuleArn(value); return *this;}
+    inline TopicRuleListItem& WithRuleArn(Aws::String&& value) { SetRuleArn(std::move(value)); return *this;}
 
     /**
      * <p>The rule ARN.</p>
      */
     inline TopicRuleListItem& WithRuleArn(const char* value) { SetRuleArn(value); return *this;}
+
 
     /**
      * <p>The name of the rule.</p>
@@ -92,7 +96,7 @@ namespace Model
     /**
      * <p>The name of the rule.</p>
      */
-    inline void SetRuleName(Aws::String&& value) { m_ruleNameHasBeenSet = true; m_ruleName = value; }
+    inline void SetRuleName(Aws::String&& value) { m_ruleNameHasBeenSet = true; m_ruleName = std::move(value); }
 
     /**
      * <p>The name of the rule.</p>
@@ -107,12 +111,13 @@ namespace Model
     /**
      * <p>The name of the rule.</p>
      */
-    inline TopicRuleListItem& WithRuleName(Aws::String&& value) { SetRuleName(value); return *this;}
+    inline TopicRuleListItem& WithRuleName(Aws::String&& value) { SetRuleName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the rule.</p>
      */
     inline TopicRuleListItem& WithRuleName(const char* value) { SetRuleName(value); return *this;}
+
 
     /**
      * <p>The pattern for the topic names that apply.</p>
@@ -127,7 +132,7 @@ namespace Model
     /**
      * <p>The pattern for the topic names that apply.</p>
      */
-    inline void SetTopicPattern(Aws::String&& value) { m_topicPatternHasBeenSet = true; m_topicPattern = value; }
+    inline void SetTopicPattern(Aws::String&& value) { m_topicPatternHasBeenSet = true; m_topicPattern = std::move(value); }
 
     /**
      * <p>The pattern for the topic names that apply.</p>
@@ -142,12 +147,13 @@ namespace Model
     /**
      * <p>The pattern for the topic names that apply.</p>
      */
-    inline TopicRuleListItem& WithTopicPattern(Aws::String&& value) { SetTopicPattern(value); return *this;}
+    inline TopicRuleListItem& WithTopicPattern(Aws::String&& value) { SetTopicPattern(std::move(value)); return *this;}
 
     /**
      * <p>The pattern for the topic names that apply.</p>
      */
     inline TopicRuleListItem& WithTopicPattern(const char* value) { SetTopicPattern(value); return *this;}
+
 
     /**
      * <p>The date and time the rule was created.</p>
@@ -162,7 +168,7 @@ namespace Model
     /**
      * <p>The date and time the rule was created.</p>
      */
-    inline void SetCreatedAt(Aws::Utils::DateTime&& value) { m_createdAtHasBeenSet = true; m_createdAt = value; }
+    inline void SetCreatedAt(Aws::Utils::DateTime&& value) { m_createdAtHasBeenSet = true; m_createdAt = std::move(value); }
 
     /**
      * <p>The date and time the rule was created.</p>
@@ -172,7 +178,8 @@ namespace Model
     /**
      * <p>The date and time the rule was created.</p>
      */
-    inline TopicRuleListItem& WithCreatedAt(Aws::Utils::DateTime&& value) { SetCreatedAt(value); return *this;}
+    inline TopicRuleListItem& WithCreatedAt(Aws::Utils::DateTime&& value) { SetCreatedAt(std::move(value)); return *this;}
+
 
     /**
      * <p>Specifies whether the rule is disabled.</p>
@@ -190,14 +197,19 @@ namespace Model
     inline TopicRuleListItem& WithRuleDisabled(bool value) { SetRuleDisabled(value); return *this;}
 
   private:
+
     Aws::String m_ruleArn;
     bool m_ruleArnHasBeenSet;
+
     Aws::String m_ruleName;
     bool m_ruleNameHasBeenSet;
+
     Aws::String m_topicPattern;
     bool m_topicPatternHasBeenSet;
+
     Aws::Utils::DateTime m_createdAt;
     bool m_createdAtHasBeenSet;
+
     bool m_ruleDisabled;
     bool m_ruleDisabledHasBeenSet;
   };

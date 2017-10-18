@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     RegisterCertificateResult();
-    RegisterCertificateResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    RegisterCertificateResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    RegisterCertificateResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    RegisterCertificateResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The certificate ARN.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The certificate ARN.</p>
      */
-    inline void SetCertificateArn(Aws::String&& value) { m_certificateArn = value; }
+    inline void SetCertificateArn(Aws::String&& value) { m_certificateArn = std::move(value); }
 
     /**
      * <p>The certificate ARN.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The certificate ARN.</p>
      */
-    inline RegisterCertificateResult& WithCertificateArn(Aws::String&& value) { SetCertificateArn(value); return *this;}
+    inline RegisterCertificateResult& WithCertificateArn(Aws::String&& value) { SetCertificateArn(std::move(value)); return *this;}
 
     /**
      * <p>The certificate ARN.</p>
      */
     inline RegisterCertificateResult& WithCertificateArn(const char* value) { SetCertificateArn(value); return *this;}
+
 
     /**
      * <p>The certificate identifier.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The certificate identifier.</p>
      */
-    inline void SetCertificateId(Aws::String&& value) { m_certificateId = value; }
+    inline void SetCertificateId(Aws::String&& value) { m_certificateId = std::move(value); }
 
     /**
      * <p>The certificate identifier.</p>
@@ -108,7 +112,7 @@ namespace Model
     /**
      * <p>The certificate identifier.</p>
      */
-    inline RegisterCertificateResult& WithCertificateId(Aws::String&& value) { SetCertificateId(value); return *this;}
+    inline RegisterCertificateResult& WithCertificateId(Aws::String&& value) { SetCertificateId(std::move(value)); return *this;}
 
     /**
      * <p>The certificate identifier.</p>
@@ -116,7 +120,9 @@ namespace Model
     inline RegisterCertificateResult& WithCertificateId(const char* value) { SetCertificateId(value); return *this;}
 
   private:
+
     Aws::String m_certificateArn;
+
     Aws::String m_certificateId;
   };
 

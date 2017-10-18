@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/support/Support_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/support/model/Communication.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     DescribeCommunicationsResult();
-    DescribeCommunicationsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeCommunicationsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeCommunicationsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeCommunicationsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The communications for the case.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The communications for the case.</p>
      */
-    inline void SetCommunications(Aws::Vector<Communication>&& value) { m_communications = value; }
+    inline void SetCommunications(Aws::Vector<Communication>&& value) { m_communications = std::move(value); }
 
     /**
      * <p>The communications for the case.</p>
@@ -70,7 +73,7 @@ namespace Model
     /**
      * <p>The communications for the case.</p>
      */
-    inline DescribeCommunicationsResult& WithCommunications(Aws::Vector<Communication>&& value) { SetCommunications(value); return *this;}
+    inline DescribeCommunicationsResult& WithCommunications(Aws::Vector<Communication>&& value) { SetCommunications(std::move(value)); return *this;}
 
     /**
      * <p>The communications for the case.</p>
@@ -80,7 +83,8 @@ namespace Model
     /**
      * <p>The communications for the case.</p>
      */
-    inline DescribeCommunicationsResult& AddCommunications(Communication&& value) { m_communications.push_back(value); return *this; }
+    inline DescribeCommunicationsResult& AddCommunications(Communication&& value) { m_communications.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>A resumption point for pagination.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>A resumption point for pagination.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>A resumption point for pagination.</p>
@@ -110,7 +114,7 @@ namespace Model
     /**
      * <p>A resumption point for pagination.</p>
      */
-    inline DescribeCommunicationsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeCommunicationsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>A resumption point for pagination.</p>
@@ -118,7 +122,9 @@ namespace Model
     inline DescribeCommunicationsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Communication> m_communications;
+
     Aws::String m_nextToken;
   };
 

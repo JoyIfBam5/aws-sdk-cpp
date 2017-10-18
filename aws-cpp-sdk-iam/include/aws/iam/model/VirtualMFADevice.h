@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -19,6 +20,7 @@
 #include <aws/core/utils/Array.h>
 #include <aws/iam/model/User.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,6 +52,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The serial number associated with <code>VirtualMFADevice</code>.</p>
      */
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>The serial number associated with <code>VirtualMFADevice</code>.</p>
      */
-    inline void SetSerialNumber(Aws::String&& value) { m_serialNumberHasBeenSet = true; m_serialNumber = value; }
+    inline void SetSerialNumber(Aws::String&& value) { m_serialNumberHasBeenSet = true; m_serialNumber = std::move(value); }
 
     /**
      * <p>The serial number associated with <code>VirtualMFADevice</code>.</p>
@@ -78,12 +81,13 @@ namespace Model
     /**
      * <p>The serial number associated with <code>VirtualMFADevice</code>.</p>
      */
-    inline VirtualMFADevice& WithSerialNumber(Aws::String&& value) { SetSerialNumber(value); return *this;}
+    inline VirtualMFADevice& WithSerialNumber(Aws::String&& value) { SetSerialNumber(std::move(value)); return *this;}
 
     /**
      * <p>The serial number associated with <code>VirtualMFADevice</code>.</p>
      */
     inline VirtualMFADevice& WithSerialNumber(const char* value) { SetSerialNumber(value); return *this;}
+
 
     /**
      * <p> The Base32 seed defined as specified in <a
@@ -104,7 +108,7 @@ namespace Model
      * href="https://tools.ietf.org/html/rfc3548.txt">RFC3548</a>. The
      * <code>Base32StringSeed</code> is Base64-encoded. </p>
      */
-    inline void SetBase32StringSeed(Aws::Utils::ByteBuffer&& value) { m_base32StringSeedHasBeenSet = true; m_base32StringSeed = value; }
+    inline void SetBase32StringSeed(Aws::Utils::ByteBuffer&& value) { m_base32StringSeedHasBeenSet = true; m_base32StringSeed = std::move(value); }
 
     /**
      * <p> The Base32 seed defined as specified in <a
@@ -118,7 +122,8 @@ namespace Model
      * href="https://tools.ietf.org/html/rfc3548.txt">RFC3548</a>. The
      * <code>Base32StringSeed</code> is Base64-encoded. </p>
      */
-    inline VirtualMFADevice& WithBase32StringSeed(Aws::Utils::ByteBuffer&& value) { SetBase32StringSeed(value); return *this;}
+    inline VirtualMFADevice& WithBase32StringSeed(Aws::Utils::ByteBuffer&& value) { SetBase32StringSeed(std::move(value)); return *this;}
+
 
     /**
      * <p> A QR code PNG image that encodes
@@ -148,7 +153,7 @@ namespace Model
      * otherwise), and <code>Base32String</code> is the seed in Base32 format. The
      * <code>Base32String</code> value is Base64-encoded. </p>
      */
-    inline void SetQRCodePNG(Aws::Utils::ByteBuffer&& value) { m_qRCodePNGHasBeenSet = true; m_qRCodePNG = value; }
+    inline void SetQRCodePNG(Aws::Utils::ByteBuffer&& value) { m_qRCodePNGHasBeenSet = true; m_qRCodePNG = std::move(value); }
 
     /**
      * <p> A QR code PNG image that encodes
@@ -168,32 +173,34 @@ namespace Model
      * otherwise), and <code>Base32String</code> is the seed in Base32 format. The
      * <code>Base32String</code> value is Base64-encoded. </p>
      */
-    inline VirtualMFADevice& WithQRCodePNG(Aws::Utils::ByteBuffer&& value) { SetQRCodePNG(value); return *this;}
+    inline VirtualMFADevice& WithQRCodePNG(Aws::Utils::ByteBuffer&& value) { SetQRCodePNG(std::move(value)); return *this;}
+
 
     /**
-     * <p>The user to whom the MFA device is assigned.</p>
+     * <p>The IAM user associated with this virtual MFA device.</p>
      */
     inline const User& GetUser() const{ return m_user; }
 
     /**
-     * <p>The user to whom the MFA device is assigned.</p>
+     * <p>The IAM user associated with this virtual MFA device.</p>
      */
     inline void SetUser(const User& value) { m_userHasBeenSet = true; m_user = value; }
 
     /**
-     * <p>The user to whom the MFA device is assigned.</p>
+     * <p>The IAM user associated with this virtual MFA device.</p>
      */
-    inline void SetUser(User&& value) { m_userHasBeenSet = true; m_user = value; }
+    inline void SetUser(User&& value) { m_userHasBeenSet = true; m_user = std::move(value); }
 
     /**
-     * <p>The user to whom the MFA device is assigned.</p>
+     * <p>The IAM user associated with this virtual MFA device.</p>
      */
     inline VirtualMFADevice& WithUser(const User& value) { SetUser(value); return *this;}
 
     /**
-     * <p>The user to whom the MFA device is assigned.</p>
+     * <p>The IAM user associated with this virtual MFA device.</p>
      */
-    inline VirtualMFADevice& WithUser(User&& value) { SetUser(value); return *this;}
+    inline VirtualMFADevice& WithUser(User&& value) { SetUser(std::move(value)); return *this;}
+
 
     /**
      * <p>The date and time on which the virtual MFA device was enabled.</p>
@@ -208,7 +215,7 @@ namespace Model
     /**
      * <p>The date and time on which the virtual MFA device was enabled.</p>
      */
-    inline void SetEnableDate(Aws::Utils::DateTime&& value) { m_enableDateHasBeenSet = true; m_enableDate = value; }
+    inline void SetEnableDate(Aws::Utils::DateTime&& value) { m_enableDateHasBeenSet = true; m_enableDate = std::move(value); }
 
     /**
      * <p>The date and time on which the virtual MFA device was enabled.</p>
@@ -218,17 +225,22 @@ namespace Model
     /**
      * <p>The date and time on which the virtual MFA device was enabled.</p>
      */
-    inline VirtualMFADevice& WithEnableDate(Aws::Utils::DateTime&& value) { SetEnableDate(value); return *this;}
+    inline VirtualMFADevice& WithEnableDate(Aws::Utils::DateTime&& value) { SetEnableDate(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_serialNumber;
     bool m_serialNumberHasBeenSet;
+
     Aws::Utils::ByteBuffer m_base32StringSeed;
     bool m_base32StringSeedHasBeenSet;
+
     Aws::Utils::ByteBuffer m_qRCodePNG;
     bool m_qRCodePNGHasBeenSet;
+
     User m_user;
     bool m_userHasBeenSet;
+
     Aws::Utils::DateTime m_enableDate;
     bool m_enableDateHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -23,6 +24,7 @@
 #include <aws/elasticmapreduce/model/AutoScalingPolicyDescription.h>
 #include <aws/elasticmapreduce/model/Configuration.h>
 #include <aws/elasticmapreduce/model/EbsBlockDevice.h>
+#include <utility>
 
 namespace Aws
 {
@@ -53,6 +55,7 @@ namespace Model
     InstanceGroup& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The identifier of the instance group.</p>
      */
@@ -66,7 +69,7 @@ namespace Model
     /**
      * <p>The identifier of the instance group.</p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>The identifier of the instance group.</p>
@@ -81,12 +84,13 @@ namespace Model
     /**
      * <p>The identifier of the instance group.</p>
      */
-    inline InstanceGroup& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline InstanceGroup& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the instance group.</p>
      */
     inline InstanceGroup& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>The name of the instance group.</p>
@@ -101,7 +105,7 @@ namespace Model
     /**
      * <p>The name of the instance group.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the instance group.</p>
@@ -116,12 +120,13 @@ namespace Model
     /**
      * <p>The name of the instance group.</p>
      */
-    inline InstanceGroup& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline InstanceGroup& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the instance group.</p>
      */
     inline InstanceGroup& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The marketplace to provision instances for this group. Valid values are
@@ -139,7 +144,7 @@ namespace Model
      * <p>The marketplace to provision instances for this group. Valid values are
      * ON_DEMAND or SPOT.</p>
      */
-    inline void SetMarket(MarketType&& value) { m_marketHasBeenSet = true; m_market = value; }
+    inline void SetMarket(MarketType&& value) { m_marketHasBeenSet = true; m_market = std::move(value); }
 
     /**
      * <p>The marketplace to provision instances for this group. Valid values are
@@ -151,7 +156,8 @@ namespace Model
      * <p>The marketplace to provision instances for this group. Valid values are
      * ON_DEMAND or SPOT.</p>
      */
-    inline InstanceGroup& WithMarket(MarketType&& value) { SetMarket(value); return *this;}
+    inline InstanceGroup& WithMarket(MarketType&& value) { SetMarket(std::move(value)); return *this;}
+
 
     /**
      * <p>The type of the instance group. Valid values are MASTER, CORE or TASK.</p>
@@ -166,7 +172,7 @@ namespace Model
     /**
      * <p>The type of the instance group. Valid values are MASTER, CORE or TASK.</p>
      */
-    inline void SetInstanceGroupType(InstanceGroupType&& value) { m_instanceGroupTypeHasBeenSet = true; m_instanceGroupType = value; }
+    inline void SetInstanceGroupType(InstanceGroupType&& value) { m_instanceGroupTypeHasBeenSet = true; m_instanceGroupType = std::move(value); }
 
     /**
      * <p>The type of the instance group. Valid values are MASTER, CORE or TASK.</p>
@@ -176,7 +182,8 @@ namespace Model
     /**
      * <p>The type of the instance group. Valid values are MASTER, CORE or TASK.</p>
      */
-    inline InstanceGroup& WithInstanceGroupType(InstanceGroupType&& value) { SetInstanceGroupType(value); return *this;}
+    inline InstanceGroup& WithInstanceGroupType(InstanceGroupType&& value) { SetInstanceGroupType(std::move(value)); return *this;}
+
 
     /**
      * <p>The bid price for each EC2 instance in the instance group when launching
@@ -194,7 +201,7 @@ namespace Model
      * <p>The bid price for each EC2 instance in the instance group when launching
      * nodes as Spot Instances, expressed in USD.</p>
      */
-    inline void SetBidPrice(Aws::String&& value) { m_bidPriceHasBeenSet = true; m_bidPrice = value; }
+    inline void SetBidPrice(Aws::String&& value) { m_bidPriceHasBeenSet = true; m_bidPrice = std::move(value); }
 
     /**
      * <p>The bid price for each EC2 instance in the instance group when launching
@@ -212,13 +219,14 @@ namespace Model
      * <p>The bid price for each EC2 instance in the instance group when launching
      * nodes as Spot Instances, expressed in USD.</p>
      */
-    inline InstanceGroup& WithBidPrice(Aws::String&& value) { SetBidPrice(value); return *this;}
+    inline InstanceGroup& WithBidPrice(Aws::String&& value) { SetBidPrice(std::move(value)); return *this;}
 
     /**
      * <p>The bid price for each EC2 instance in the instance group when launching
      * nodes as Spot Instances, expressed in USD.</p>
      */
     inline InstanceGroup& WithBidPrice(const char* value) { SetBidPrice(value); return *this;}
+
 
     /**
      * <p>The EC2 instance type for all instances in the instance group.</p>
@@ -233,7 +241,7 @@ namespace Model
     /**
      * <p>The EC2 instance type for all instances in the instance group.</p>
      */
-    inline void SetInstanceType(Aws::String&& value) { m_instanceTypeHasBeenSet = true; m_instanceType = value; }
+    inline void SetInstanceType(Aws::String&& value) { m_instanceTypeHasBeenSet = true; m_instanceType = std::move(value); }
 
     /**
      * <p>The EC2 instance type for all instances in the instance group.</p>
@@ -248,12 +256,13 @@ namespace Model
     /**
      * <p>The EC2 instance type for all instances in the instance group.</p>
      */
-    inline InstanceGroup& WithInstanceType(Aws::String&& value) { SetInstanceType(value); return *this;}
+    inline InstanceGroup& WithInstanceType(Aws::String&& value) { SetInstanceType(std::move(value)); return *this;}
 
     /**
      * <p>The EC2 instance type for all instances in the instance group.</p>
      */
     inline InstanceGroup& WithInstanceType(const char* value) { SetInstanceType(value); return *this;}
+
 
     /**
      * <p>The target number of instances for the instance group.</p>
@@ -270,6 +279,7 @@ namespace Model
      */
     inline InstanceGroup& WithRequestedInstanceCount(int value) { SetRequestedInstanceCount(value); return *this;}
 
+
     /**
      * <p>The number of instances currently running in this instance group.</p>
      */
@@ -285,6 +295,7 @@ namespace Model
      */
     inline InstanceGroup& WithRunningInstanceCount(int value) { SetRunningInstanceCount(value); return *this;}
 
+
     /**
      * <p>The current status of the instance group.</p>
      */
@@ -298,7 +309,7 @@ namespace Model
     /**
      * <p>The current status of the instance group.</p>
      */
-    inline void SetStatus(InstanceGroupStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(InstanceGroupStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The current status of the instance group.</p>
@@ -308,7 +319,8 @@ namespace Model
     /**
      * <p>The current status of the instance group.</p>
      */
-    inline InstanceGroup& WithStatus(InstanceGroupStatus&& value) { SetStatus(value); return *this;}
+    inline InstanceGroup& WithStatus(InstanceGroupStatus&& value) { SetStatus(std::move(value)); return *this;}
+
 
     /**
      * <note> <p>Amazon EMR releases 4.x or later.</p> </note> <p>The list of
@@ -329,7 +341,7 @@ namespace Model
      * configurations supplied for an EMR cluster instance group. You can specify a
      * separate configuration for each instance group (master, core, and task).</p>
      */
-    inline void SetConfigurations(Aws::Vector<Configuration>&& value) { m_configurationsHasBeenSet = true; m_configurations = value; }
+    inline void SetConfigurations(Aws::Vector<Configuration>&& value) { m_configurationsHasBeenSet = true; m_configurations = std::move(value); }
 
     /**
      * <note> <p>Amazon EMR releases 4.x or later.</p> </note> <p>The list of
@@ -343,7 +355,7 @@ namespace Model
      * configurations supplied for an EMR cluster instance group. You can specify a
      * separate configuration for each instance group (master, core, and task).</p>
      */
-    inline InstanceGroup& WithConfigurations(Aws::Vector<Configuration>&& value) { SetConfigurations(value); return *this;}
+    inline InstanceGroup& WithConfigurations(Aws::Vector<Configuration>&& value) { SetConfigurations(std::move(value)); return *this;}
 
     /**
      * <note> <p>Amazon EMR releases 4.x or later.</p> </note> <p>The list of
@@ -357,7 +369,8 @@ namespace Model
      * configurations supplied for an EMR cluster instance group. You can specify a
      * separate configuration for each instance group (master, core, and task).</p>
      */
-    inline InstanceGroup& AddConfigurations(Configuration&& value) { m_configurationsHasBeenSet = true; m_configurations.push_back(value); return *this; }
+    inline InstanceGroup& AddConfigurations(Configuration&& value) { m_configurationsHasBeenSet = true; m_configurations.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The EBS block devices that are mapped to this instance group.</p>
@@ -372,7 +385,7 @@ namespace Model
     /**
      * <p>The EBS block devices that are mapped to this instance group.</p>
      */
-    inline void SetEbsBlockDevices(Aws::Vector<EbsBlockDevice>&& value) { m_ebsBlockDevicesHasBeenSet = true; m_ebsBlockDevices = value; }
+    inline void SetEbsBlockDevices(Aws::Vector<EbsBlockDevice>&& value) { m_ebsBlockDevicesHasBeenSet = true; m_ebsBlockDevices = std::move(value); }
 
     /**
      * <p>The EBS block devices that are mapped to this instance group.</p>
@@ -382,7 +395,7 @@ namespace Model
     /**
      * <p>The EBS block devices that are mapped to this instance group.</p>
      */
-    inline InstanceGroup& WithEbsBlockDevices(Aws::Vector<EbsBlockDevice>&& value) { SetEbsBlockDevices(value); return *this;}
+    inline InstanceGroup& WithEbsBlockDevices(Aws::Vector<EbsBlockDevice>&& value) { SetEbsBlockDevices(std::move(value)); return *this;}
 
     /**
      * <p>The EBS block devices that are mapped to this instance group.</p>
@@ -392,7 +405,8 @@ namespace Model
     /**
      * <p>The EBS block devices that are mapped to this instance group.</p>
      */
-    inline InstanceGroup& AddEbsBlockDevices(EbsBlockDevice&& value) { m_ebsBlockDevicesHasBeenSet = true; m_ebsBlockDevices.push_back(value); return *this; }
+    inline InstanceGroup& AddEbsBlockDevices(EbsBlockDevice&& value) { m_ebsBlockDevicesHasBeenSet = true; m_ebsBlockDevices.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>If the instance group is EBS-optimized. An Amazon EBS-optimized instance uses
@@ -415,6 +429,7 @@ namespace Model
      */
     inline InstanceGroup& WithEbsOptimized(bool value) { SetEbsOptimized(value); return *this;}
 
+
     /**
      * <p>Policy for customizing shrink operations.</p>
      */
@@ -428,7 +443,7 @@ namespace Model
     /**
      * <p>Policy for customizing shrink operations.</p>
      */
-    inline void SetShrinkPolicy(ShrinkPolicy&& value) { m_shrinkPolicyHasBeenSet = true; m_shrinkPolicy = value; }
+    inline void SetShrinkPolicy(ShrinkPolicy&& value) { m_shrinkPolicyHasBeenSet = true; m_shrinkPolicy = std::move(value); }
 
     /**
      * <p>Policy for customizing shrink operations.</p>
@@ -438,7 +453,8 @@ namespace Model
     /**
      * <p>Policy for customizing shrink operations.</p>
      */
-    inline InstanceGroup& WithShrinkPolicy(ShrinkPolicy&& value) { SetShrinkPolicy(value); return *this;}
+    inline InstanceGroup& WithShrinkPolicy(ShrinkPolicy&& value) { SetShrinkPolicy(std::move(value)); return *this;}
+
 
     /**
      * <p>An automatic scaling policy for a core instance group or task instance group
@@ -462,7 +478,7 @@ namespace Model
      * group dynamically adds and terminates EC2 instances in response to the value of
      * a CloudWatch metric. See PutAutoScalingPolicy.</p>
      */
-    inline void SetAutoScalingPolicy(AutoScalingPolicyDescription&& value) { m_autoScalingPolicyHasBeenSet = true; m_autoScalingPolicy = value; }
+    inline void SetAutoScalingPolicy(AutoScalingPolicyDescription&& value) { m_autoScalingPolicyHasBeenSet = true; m_autoScalingPolicy = std::move(value); }
 
     /**
      * <p>An automatic scaling policy for a core instance group or task instance group
@@ -478,35 +494,49 @@ namespace Model
      * group dynamically adds and terminates EC2 instances in response to the value of
      * a CloudWatch metric. See PutAutoScalingPolicy.</p>
      */
-    inline InstanceGroup& WithAutoScalingPolicy(AutoScalingPolicyDescription&& value) { SetAutoScalingPolicy(value); return *this;}
+    inline InstanceGroup& WithAutoScalingPolicy(AutoScalingPolicyDescription&& value) { SetAutoScalingPolicy(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     MarketType m_market;
     bool m_marketHasBeenSet;
+
     InstanceGroupType m_instanceGroupType;
     bool m_instanceGroupTypeHasBeenSet;
+
     Aws::String m_bidPrice;
     bool m_bidPriceHasBeenSet;
+
     Aws::String m_instanceType;
     bool m_instanceTypeHasBeenSet;
+
     int m_requestedInstanceCount;
     bool m_requestedInstanceCountHasBeenSet;
+
     int m_runningInstanceCount;
     bool m_runningInstanceCountHasBeenSet;
+
     InstanceGroupStatus m_status;
     bool m_statusHasBeenSet;
+
     Aws::Vector<Configuration> m_configurations;
     bool m_configurationsHasBeenSet;
+
     Aws::Vector<EbsBlockDevice> m_ebsBlockDevices;
     bool m_ebsBlockDevicesHasBeenSet;
+
     bool m_ebsOptimized;
     bool m_ebsOptimizedHasBeenSet;
+
     ShrinkPolicy m_shrinkPolicy;
     bool m_shrinkPolicyHasBeenSet;
+
     AutoScalingPolicyDescription m_autoScalingPolicy;
     bool m_autoScalingPolicyHasBeenSet;
   };

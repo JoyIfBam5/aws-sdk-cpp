@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lambda/Lambda_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/lambda/model/FunctionConfiguration.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     ListVersionsByFunctionResult();
-    ListVersionsByFunctionResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListVersionsByFunctionResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListVersionsByFunctionResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListVersionsByFunctionResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A string, present if there are more function versions.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>A string, present if there are more function versions.</p>
      */
-    inline void SetNextMarker(Aws::String&& value) { m_nextMarker = value; }
+    inline void SetNextMarker(Aws::String&& value) { m_nextMarker = std::move(value); }
 
     /**
      * <p>A string, present if there are more function versions.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>A string, present if there are more function versions.</p>
      */
-    inline ListVersionsByFunctionResult& WithNextMarker(Aws::String&& value) { SetNextMarker(value); return *this;}
+    inline ListVersionsByFunctionResult& WithNextMarker(Aws::String&& value) { SetNextMarker(std::move(value)); return *this;}
 
     /**
      * <p>A string, present if there are more function versions.</p>
      */
     inline ListVersionsByFunctionResult& WithNextMarker(const char* value) { SetNextMarker(value); return *this;}
+
 
     /**
      * <p>A list of Lambda function versions.</p>
@@ -94,7 +98,7 @@ namespace Model
     /**
      * <p>A list of Lambda function versions.</p>
      */
-    inline void SetVersions(Aws::Vector<FunctionConfiguration>&& value) { m_versions = value; }
+    inline void SetVersions(Aws::Vector<FunctionConfiguration>&& value) { m_versions = std::move(value); }
 
     /**
      * <p>A list of Lambda function versions.</p>
@@ -104,7 +108,7 @@ namespace Model
     /**
      * <p>A list of Lambda function versions.</p>
      */
-    inline ListVersionsByFunctionResult& WithVersions(Aws::Vector<FunctionConfiguration>&& value) { SetVersions(value); return *this;}
+    inline ListVersionsByFunctionResult& WithVersions(Aws::Vector<FunctionConfiguration>&& value) { SetVersions(std::move(value)); return *this;}
 
     /**
      * <p>A list of Lambda function versions.</p>
@@ -114,10 +118,12 @@ namespace Model
     /**
      * <p>A list of Lambda function versions.</p>
      */
-    inline ListVersionsByFunctionResult& AddVersions(FunctionConfiguration&& value) { m_versions.push_back(value); return *this; }
+    inline ListVersionsByFunctionResult& AddVersions(FunctionConfiguration&& value) { m_versions.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_nextMarker;
+
     Aws::Vector<FunctionConfiguration> m_versions;
   };
 

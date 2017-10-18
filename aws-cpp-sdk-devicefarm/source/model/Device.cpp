@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/devicefarm/model/Device.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -48,6 +49,8 @@ Device::Device() :
     m_radioHasBeenSet(false),
     m_remoteAccessEnabled(false),
     m_remoteAccessEnabledHasBeenSet(false),
+    m_remoteDebugEnabled(false),
+    m_remoteDebugEnabledHasBeenSet(false),
     m_fleetTypeHasBeenSet(false),
     m_fleetNameHasBeenSet(false)
 {
@@ -74,6 +77,8 @@ Device::Device(const JsonValue& jsonValue) :
     m_radioHasBeenSet(false),
     m_remoteAccessEnabled(false),
     m_remoteAccessEnabledHasBeenSet(false),
+    m_remoteDebugEnabled(false),
+    m_remoteDebugEnabledHasBeenSet(false),
     m_fleetTypeHasBeenSet(false),
     m_fleetNameHasBeenSet(false)
 {
@@ -187,6 +192,13 @@ Device& Device::operator =(const JsonValue& jsonValue)
     m_remoteAccessEnabledHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("remoteDebugEnabled"))
+  {
+    m_remoteDebugEnabled = jsonValue.GetBool("remoteDebugEnabled");
+
+    m_remoteDebugEnabledHasBeenSet = true;
+  }
+
   if(jsonValue.ValueExists("fleetType"))
   {
     m_fleetType = jsonValue.GetString("fleetType");
@@ -293,6 +305,12 @@ JsonValue Device::Jsonize() const
   if(m_remoteAccessEnabledHasBeenSet)
   {
    payload.WithBool("remoteAccessEnabled", m_remoteAccessEnabled);
+
+  }
+
+  if(m_remoteDebugEnabledHasBeenSet)
+  {
+   payload.WithBool("remoteDebugEnabled", m_remoteDebugEnabled);
 
   }
 

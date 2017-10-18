@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 
@@ -45,6 +46,7 @@ namespace Model
     ScalingConstraints& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The lower boundary of EC2 instances in an instance group below which scaling
      * activities are not allowed to shrink. Scale-in activities will not terminate
@@ -65,6 +67,7 @@ namespace Model
      * instances below this boundary.</p>
      */
     inline ScalingConstraints& WithMinCapacity(int value) { SetMinCapacity(value); return *this;}
+
 
     /**
      * <p>The upper boundary of EC2 instances in an instance group beyond which scaling
@@ -88,8 +91,10 @@ namespace Model
     inline ScalingConstraints& WithMaxCapacity(int value) { SetMaxCapacity(value); return *this;}
 
   private:
+
     int m_minCapacity;
     bool m_minCapacityHasBeenSet;
+
     int m_maxCapacity;
     bool m_maxCapacityHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elastictranscoder/ElasticTranscoder_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     Encryption(const Aws::Utils::Json::JsonValue& jsonValue);
     Encryption& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>The specific server-side encryption mode that you want Elastic Transcoder to
@@ -117,7 +120,7 @@ namespace Model
      * is important that you safely manage your encryption keys. If you lose them, you
      * won't be able to unencrypt your data.</p> </important>
      */
-    inline void SetMode(Aws::String&& value) { m_modeHasBeenSet = true; m_mode = value; }
+    inline void SetMode(Aws::String&& value) { m_modeHasBeenSet = true; m_mode = std::move(value); }
 
     /**
      * <p>The specific server-side encryption mode that you want Elastic Transcoder to
@@ -189,7 +192,7 @@ namespace Model
      * is important that you safely manage your encryption keys. If you lose them, you
      * won't be able to unencrypt your data.</p> </important>
      */
-    inline Encryption& WithMode(Aws::String&& value) { SetMode(value); return *this;}
+    inline Encryption& WithMode(Aws::String&& value) { SetMode(std::move(value)); return *this;}
 
     /**
      * <p>The specific server-side encryption mode that you want Elastic Transcoder to
@@ -214,6 +217,7 @@ namespace Model
      * won't be able to unencrypt your data.</p> </important>
      */
     inline Encryption& WithMode(const char* value) { SetMode(value); return *this;}
+
 
     /**
      * <p>The data encryption key that you want Elastic Transcoder to use to encrypt
@@ -243,7 +247,7 @@ namespace Model
      * </p> <p>The key must also be encrypted by using the Amazon Key Management
      * Service.</p>
      */
-    inline void SetKey(Aws::String&& value) { m_keyHasBeenSet = true; m_key = value; }
+    inline void SetKey(Aws::String&& value) { m_keyHasBeenSet = true; m_key = std::move(value); }
 
     /**
      * <p>The data encryption key that you want Elastic Transcoder to use to encrypt
@@ -273,7 +277,7 @@ namespace Model
      * </p> <p>The key must also be encrypted by using the Amazon Key Management
      * Service.</p>
      */
-    inline Encryption& WithKey(Aws::String&& value) { SetKey(value); return *this;}
+    inline Encryption& WithKey(Aws::String&& value) { SetKey(std::move(value)); return *this;}
 
     /**
      * <p>The data encryption key that you want Elastic Transcoder to use to encrypt
@@ -284,6 +288,7 @@ namespace Model
      * Service.</p>
      */
     inline Encryption& WithKey(const char* value) { SetKey(value); return *this;}
+
 
     /**
      * <p>The MD5 digest of the key that you used to encrypt your input file, or that
@@ -310,7 +315,7 @@ namespace Model
      * corrupted in transit. The key MD5 must be base64-encoded, and it must be exactly
      * 16 bytes long before being base64-encoded.</p>
      */
-    inline void SetKeyMd5(Aws::String&& value) { m_keyMd5HasBeenSet = true; m_keyMd5 = value; }
+    inline void SetKeyMd5(Aws::String&& value) { m_keyMd5HasBeenSet = true; m_keyMd5 = std::move(value); }
 
     /**
      * <p>The MD5 digest of the key that you used to encrypt your input file, or that
@@ -337,7 +342,7 @@ namespace Model
      * corrupted in transit. The key MD5 must be base64-encoded, and it must be exactly
      * 16 bytes long before being base64-encoded.</p>
      */
-    inline Encryption& WithKeyMd5(Aws::String&& value) { SetKeyMd5(value); return *this;}
+    inline Encryption& WithKeyMd5(Aws::String&& value) { SetKeyMd5(std::move(value)); return *this;}
 
     /**
      * <p>The MD5 digest of the key that you used to encrypt your input file, or that
@@ -347,6 +352,7 @@ namespace Model
      * 16 bytes long before being base64-encoded.</p>
      */
     inline Encryption& WithKeyMd5(const char* value) { SetKeyMd5(value); return *this;}
+
 
     /**
      * <p>The series of random bits created by a random bit generator, unique for every
@@ -373,7 +379,7 @@ namespace Model
      * vector must be base64-encoded, and it must be exactly 16 bytes long before being
      * base64-encoded.</p>
      */
-    inline void SetInitializationVector(Aws::String&& value) { m_initializationVectorHasBeenSet = true; m_initializationVector = value; }
+    inline void SetInitializationVector(Aws::String&& value) { m_initializationVectorHasBeenSet = true; m_initializationVector = std::move(value); }
 
     /**
      * <p>The series of random bits created by a random bit generator, unique for every
@@ -400,7 +406,7 @@ namespace Model
      * vector must be base64-encoded, and it must be exactly 16 bytes long before being
      * base64-encoded.</p>
      */
-    inline Encryption& WithInitializationVector(Aws::String&& value) { SetInitializationVector(value); return *this;}
+    inline Encryption& WithInitializationVector(Aws::String&& value) { SetInitializationVector(std::move(value)); return *this;}
 
     /**
      * <p>The series of random bits created by a random bit generator, unique for every
@@ -412,12 +418,16 @@ namespace Model
     inline Encryption& WithInitializationVector(const char* value) { SetInitializationVector(value); return *this;}
 
   private:
+
     Aws::String m_mode;
     bool m_modeHasBeenSet;
+
     Aws::String m_key;
     bool m_keyHasBeenSet;
+
     Aws::String m_keyMd5;
     bool m_keyMd5HasBeenSet;
+
     Aws::String m_initializationVector;
     bool m_initializationVectorHasBeenSet;
   };

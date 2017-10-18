@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/devicefarm/DeviceFarm_EXPORTS.h>
 #include <aws/devicefarm/model/AccountSettings.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,25 +44,37 @@ namespace Model
   {
   public:
     GetAccountSettingsResult();
-    GetAccountSettingsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetAccountSettingsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetAccountSettingsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetAccountSettingsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
 
-    
+
+    /**
+     * <p>The account settings.</p>
+     */
     inline const AccountSettings& GetAccountSettings() const{ return m_accountSettings; }
 
-    
+    /**
+     * <p>The account settings.</p>
+     */
     inline void SetAccountSettings(const AccountSettings& value) { m_accountSettings = value; }
 
-    
-    inline void SetAccountSettings(AccountSettings&& value) { m_accountSettings = value; }
+    /**
+     * <p>The account settings.</p>
+     */
+    inline void SetAccountSettings(AccountSettings&& value) { m_accountSettings = std::move(value); }
 
-    
+    /**
+     * <p>The account settings.</p>
+     */
     inline GetAccountSettingsResult& WithAccountSettings(const AccountSettings& value) { SetAccountSettings(value); return *this;}
 
-    
-    inline GetAccountSettingsResult& WithAccountSettings(AccountSettings&& value) { SetAccountSettings(value); return *this;}
+    /**
+     * <p>The account settings.</p>
+     */
+    inline GetAccountSettingsResult& WithAccountSettings(AccountSettings&& value) { SetAccountSettings(std::move(value)); return *this;}
 
   private:
+
     AccountSettings m_accountSettings;
   };
 

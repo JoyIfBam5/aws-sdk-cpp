@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/redshift/model/ResponseMetadata.h>
 #include <aws/redshift/model/Parameter.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,8 +47,9 @@ namespace Model
   {
   public:
     DescribeClusterParametersResult();
-    DescribeClusterParametersResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeClusterParametersResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeClusterParametersResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeClusterParametersResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>A list of <a>Parameter</a> instances. Each instance lists the parameters of
@@ -64,7 +67,7 @@ namespace Model
      * <p>A list of <a>Parameter</a> instances. Each instance lists the parameters of
      * one cluster parameter group. </p>
      */
-    inline void SetParameters(Aws::Vector<Parameter>&& value) { m_parameters = value; }
+    inline void SetParameters(Aws::Vector<Parameter>&& value) { m_parameters = std::move(value); }
 
     /**
      * <p>A list of <a>Parameter</a> instances. Each instance lists the parameters of
@@ -76,7 +79,7 @@ namespace Model
      * <p>A list of <a>Parameter</a> instances. Each instance lists the parameters of
      * one cluster parameter group. </p>
      */
-    inline DescribeClusterParametersResult& WithParameters(Aws::Vector<Parameter>&& value) { SetParameters(value); return *this;}
+    inline DescribeClusterParametersResult& WithParameters(Aws::Vector<Parameter>&& value) { SetParameters(std::move(value)); return *this;}
 
     /**
      * <p>A list of <a>Parameter</a> instances. Each instance lists the parameters of
@@ -88,7 +91,8 @@ namespace Model
      * <p>A list of <a>Parameter</a> instances. Each instance lists the parameters of
      * one cluster parameter group. </p>
      */
-    inline DescribeClusterParametersResult& AddParameters(Parameter&& value) { m_parameters.push_back(value); return *this; }
+    inline DescribeClusterParametersResult& AddParameters(Parameter&& value) { m_parameters.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>A value that indicates the starting point for the next set of response
@@ -118,7 +122,7 @@ namespace Model
      * <code>Marker</code> field is empty, all response records have been retrieved for
      * the request. </p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p>A value that indicates the starting point for the next set of response
@@ -148,7 +152,7 @@ namespace Model
      * <code>Marker</code> field is empty, all response records have been retrieved for
      * the request. </p>
      */
-    inline DescribeClusterParametersResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeClusterParametersResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>A value that indicates the starting point for the next set of response
@@ -160,6 +164,7 @@ namespace Model
      */
     inline DescribeClusterParametersResult& WithMarker(const char* value) { SetMarker(value); return *this;}
 
+
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
 
@@ -167,17 +172,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeClusterParametersResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeClusterParametersResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeClusterParametersResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<Parameter> m_parameters;
+
     Aws::String m_marker;
+
     ResponseMetadata m_responseMetadata;
   };
 

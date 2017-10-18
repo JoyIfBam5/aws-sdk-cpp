@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/shield/Shield_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/shield/model/AttackSummary.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     ListAttacksResult();
-    ListAttacksResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListAttacksResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListAttacksResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListAttacksResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The attack information for the specified time range.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>The attack information for the specified time range.</p>
      */
-    inline void SetAttackSummaries(Aws::Vector<AttackSummary>&& value) { m_attackSummaries = value; }
+    inline void SetAttackSummaries(Aws::Vector<AttackSummary>&& value) { m_attackSummaries = std::move(value); }
 
     /**
      * <p>The attack information for the specified time range.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>The attack information for the specified time range.</p>
      */
-    inline ListAttacksResult& WithAttackSummaries(Aws::Vector<AttackSummary>&& value) { SetAttackSummaries(value); return *this;}
+    inline ListAttacksResult& WithAttackSummaries(Aws::Vector<AttackSummary>&& value) { SetAttackSummaries(std::move(value)); return *this;}
 
     /**
      * <p>The attack information for the specified time range.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>The attack information for the specified time range.</p>
      */
-    inline ListAttacksResult& AddAttackSummaries(AttackSummary&& value) { m_attackSummaries.push_back(value); return *this; }
+    inline ListAttacksResult& AddAttackSummaries(AttackSummary&& value) { m_attackSummaries.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The token returned by a previous call to indicate that there is more data
@@ -98,7 +102,7 @@ namespace Model
      * <code>NextMarker</code> parameter in a subsequent call to
      * <code>ListAttacks</code> to retrieve the next set of items.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The token returned by a previous call to indicate that there is more data
@@ -122,7 +126,7 @@ namespace Model
      * <code>NextMarker</code> parameter in a subsequent call to
      * <code>ListAttacks</code> to retrieve the next set of items.</p>
      */
-    inline ListAttacksResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListAttacksResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The token returned by a previous call to indicate that there is more data
@@ -133,7 +137,9 @@ namespace Model
     inline ListAttacksResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<AttackSummary> m_attackSummaries;
+
     Aws::String m_nextToken;
   };
 

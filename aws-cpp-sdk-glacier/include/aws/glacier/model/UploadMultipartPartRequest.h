@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/glacier/Glacier_EXPORTS.h>
 #include <aws/glacier/GlacierRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/Array.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,7 +37,15 @@ namespace Model
   {
   public:
     UploadMultipartPartRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UploadMultipartPart"; }
+
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The <code>AccountId</code> value is the AWS account ID of the account that
@@ -62,7 +72,7 @@ namespace Model
      * associated with the credentials used to sign the request. If you use an account
      * ID, do not include any hyphens ('-') in the ID. </p>
      */
-    inline void SetAccountId(Aws::String&& value) { m_accountIdHasBeenSet = true; m_accountId = value; }
+    inline void SetAccountId(Aws::String&& value) { m_accountIdHasBeenSet = true; m_accountId = std::move(value); }
 
     /**
      * <p>The <code>AccountId</code> value is the AWS account ID of the account that
@@ -89,7 +99,7 @@ namespace Model
      * associated with the credentials used to sign the request. If you use an account
      * ID, do not include any hyphens ('-') in the ID. </p>
      */
-    inline UploadMultipartPartRequest& WithAccountId(Aws::String&& value) { SetAccountId(value); return *this;}
+    inline UploadMultipartPartRequest& WithAccountId(Aws::String&& value) { SetAccountId(std::move(value)); return *this;}
 
     /**
      * <p>The <code>AccountId</code> value is the AWS account ID of the account that
@@ -99,6 +109,7 @@ namespace Model
      * ID, do not include any hyphens ('-') in the ID. </p>
      */
     inline UploadMultipartPartRequest& WithAccountId(const char* value) { SetAccountId(value); return *this;}
+
 
     /**
      * <p>The name of the vault.</p>
@@ -113,7 +124,7 @@ namespace Model
     /**
      * <p>The name of the vault.</p>
      */
-    inline void SetVaultName(Aws::String&& value) { m_vaultNameHasBeenSet = true; m_vaultName = value; }
+    inline void SetVaultName(Aws::String&& value) { m_vaultNameHasBeenSet = true; m_vaultName = std::move(value); }
 
     /**
      * <p>The name of the vault.</p>
@@ -128,12 +139,13 @@ namespace Model
     /**
      * <p>The name of the vault.</p>
      */
-    inline UploadMultipartPartRequest& WithVaultName(Aws::String&& value) { SetVaultName(value); return *this;}
+    inline UploadMultipartPartRequest& WithVaultName(Aws::String&& value) { SetVaultName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the vault.</p>
      */
     inline UploadMultipartPartRequest& WithVaultName(const char* value) { SetVaultName(value); return *this;}
+
 
     /**
      * <p>The upload ID of the multipart upload.</p>
@@ -148,7 +160,7 @@ namespace Model
     /**
      * <p>The upload ID of the multipart upload.</p>
      */
-    inline void SetUploadId(Aws::String&& value) { m_uploadIdHasBeenSet = true; m_uploadId = value; }
+    inline void SetUploadId(Aws::String&& value) { m_uploadIdHasBeenSet = true; m_uploadId = std::move(value); }
 
     /**
      * <p>The upload ID of the multipart upload.</p>
@@ -163,12 +175,13 @@ namespace Model
     /**
      * <p>The upload ID of the multipart upload.</p>
      */
-    inline UploadMultipartPartRequest& WithUploadId(Aws::String&& value) { SetUploadId(value); return *this;}
+    inline UploadMultipartPartRequest& WithUploadId(Aws::String&& value) { SetUploadId(std::move(value)); return *this;}
 
     /**
      * <p>The upload ID of the multipart upload.</p>
      */
     inline UploadMultipartPartRequest& WithUploadId(const char* value) { SetUploadId(value); return *this;}
+
 
     /**
      * <p>The SHA256 tree hash of the data being uploaded.</p>
@@ -183,7 +196,7 @@ namespace Model
     /**
      * <p>The SHA256 tree hash of the data being uploaded.</p>
      */
-    inline void SetChecksum(Aws::String&& value) { m_checksumHasBeenSet = true; m_checksum = value; }
+    inline void SetChecksum(Aws::String&& value) { m_checksumHasBeenSet = true; m_checksum = std::move(value); }
 
     /**
      * <p>The SHA256 tree hash of the data being uploaded.</p>
@@ -198,12 +211,13 @@ namespace Model
     /**
      * <p>The SHA256 tree hash of the data being uploaded.</p>
      */
-    inline UploadMultipartPartRequest& WithChecksum(Aws::String&& value) { SetChecksum(value); return *this;}
+    inline UploadMultipartPartRequest& WithChecksum(Aws::String&& value) { SetChecksum(std::move(value)); return *this;}
 
     /**
      * <p>The SHA256 tree hash of the data being uploaded.</p>
      */
     inline UploadMultipartPartRequest& WithChecksum(const char* value) { SetChecksum(value); return *this;}
+
 
     /**
      * <p>Identifies the range of bytes in the assembled archive that will be uploaded
@@ -227,7 +241,7 @@ namespace Model
      * the proper sequence. The format of this header follows RFC 2616. An example
      * header is Content-Range:bytes 0-4194303/ *.</p>
      */
-    inline void SetRange(Aws::String&& value) { m_rangeHasBeenSet = true; m_range = value; }
+    inline void SetRange(Aws::String&& value) { m_rangeHasBeenSet = true; m_range = std::move(value); }
 
     /**
      * <p>Identifies the range of bytes in the assembled archive that will be uploaded
@@ -251,7 +265,7 @@ namespace Model
      * the proper sequence. The format of this header follows RFC 2616. An example
      * header is Content-Range:bytes 0-4194303/ *.</p>
      */
-    inline UploadMultipartPartRequest& WithRange(Aws::String&& value) { SetRange(value); return *this;}
+    inline UploadMultipartPartRequest& WithRange(Aws::String&& value) { SetRange(std::move(value)); return *this;}
 
     /**
      * <p>Identifies the range of bytes in the assembled archive that will be uploaded
@@ -262,16 +276,22 @@ namespace Model
     inline UploadMultipartPartRequest& WithRange(const char* value) { SetRange(value); return *this;}
 
   private:
+
     Aws::String m_accountId;
     bool m_accountIdHasBeenSet;
+
     Aws::String m_vaultName;
     bool m_vaultNameHasBeenSet;
+
     Aws::String m_uploadId;
     bool m_uploadIdHasBeenSet;
+
     Aws::String m_checksum;
     bool m_checksumHasBeenSet;
+
     Aws::String m_range;
     bool m_rangeHasBeenSet;
+
   };
 
 } // namespace Model

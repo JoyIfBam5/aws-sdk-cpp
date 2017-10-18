@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-sync/CognitoSync_EXPORTS.h>
 #include <aws/cognito-sync/model/Dataset.h>
+#include <utility>
 
 namespace Aws
 {
@@ -41,8 +43,9 @@ namespace Model
   {
   public:
     DescribeDatasetResult();
-    DescribeDatasetResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeDatasetResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeDatasetResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeDatasetResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * Meta data for a collection of data for an identity. An identity can have
@@ -69,7 +72,7 @@ namespace Model
      * if they don't exist. Data is synced by dataset, and a dataset can hold up to 1MB
      * of key-value pairs.
      */
-    inline void SetDataset(Dataset&& value) { m_dataset = value; }
+    inline void SetDataset(Dataset&& value) { m_dataset = std::move(value); }
 
     /**
      * Meta data for a collection of data for an identity. An identity can have
@@ -87,9 +90,10 @@ namespace Model
      * if they don't exist. Data is synced by dataset, and a dataset can hold up to 1MB
      * of key-value pairs.
      */
-    inline DescribeDatasetResult& WithDataset(Dataset&& value) { SetDataset(value); return *this;}
+    inline DescribeDatasetResult& WithDataset(Dataset&& value) { SetDataset(std::move(value)); return *this;}
 
   private:
+
     Dataset m_dataset;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/cognito-idp/model/UserImportJobType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     ListUserImportJobsResult();
-    ListUserImportJobsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListUserImportJobsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListUserImportJobsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListUserImportJobsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The user import jobs.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The user import jobs.</p>
      */
-    inline void SetUserImportJobs(Aws::Vector<UserImportJobType>&& value) { m_userImportJobs = value; }
+    inline void SetUserImportJobs(Aws::Vector<UserImportJobType>&& value) { m_userImportJobs = std::move(value); }
 
     /**
      * <p>The user import jobs.</p>
@@ -70,7 +73,7 @@ namespace Model
     /**
      * <p>The user import jobs.</p>
      */
-    inline ListUserImportJobsResult& WithUserImportJobs(Aws::Vector<UserImportJobType>&& value) { SetUserImportJobs(value); return *this;}
+    inline ListUserImportJobsResult& WithUserImportJobs(Aws::Vector<UserImportJobType>&& value) { SetUserImportJobs(std::move(value)); return *this;}
 
     /**
      * <p>The user import jobs.</p>
@@ -80,7 +83,8 @@ namespace Model
     /**
      * <p>The user import jobs.</p>
      */
-    inline ListUserImportJobsResult& AddUserImportJobs(UserImportJobType&& value) { m_userImportJobs.push_back(value); return *this; }
+    inline ListUserImportJobsResult& AddUserImportJobs(UserImportJobType&& value) { m_userImportJobs.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>An identifier that can be used to return the next set of user import jobs in
@@ -98,7 +102,7 @@ namespace Model
      * <p>An identifier that can be used to return the next set of user import jobs in
      * the list.</p>
      */
-    inline void SetPaginationToken(Aws::String&& value) { m_paginationToken = value; }
+    inline void SetPaginationToken(Aws::String&& value) { m_paginationToken = std::move(value); }
 
     /**
      * <p>An identifier that can be used to return the next set of user import jobs in
@@ -116,7 +120,7 @@ namespace Model
      * <p>An identifier that can be used to return the next set of user import jobs in
      * the list.</p>
      */
-    inline ListUserImportJobsResult& WithPaginationToken(Aws::String&& value) { SetPaginationToken(value); return *this;}
+    inline ListUserImportJobsResult& WithPaginationToken(Aws::String&& value) { SetPaginationToken(std::move(value)); return *this;}
 
     /**
      * <p>An identifier that can be used to return the next set of user import jobs in
@@ -125,7 +129,9 @@ namespace Model
     inline ListUserImportJobsResult& WithPaginationToken(const char* value) { SetPaginationToken(value); return *this;}
 
   private:
+
     Aws::Vector<UserImportJobType> m_userImportJobs;
+
     Aws::String m_paginationToken;
   };
 

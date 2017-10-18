@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/acm/ACM_EXPORTS.h>
 #include <aws/acm/ACMErrors.h>
@@ -83,16 +84,16 @@ namespace Model
         class RequestCertificateRequest;
         class ResendValidationEmailRequest;
 
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<ACMErrors>> AddTagsToCertificateOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<ACMErrors>> DeleteCertificateOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<ACMErrors>> AddTagsToCertificateOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<ACMErrors>> DeleteCertificateOutcome;
         typedef Aws::Utils::Outcome<DescribeCertificateResult, Aws::Client::AWSError<ACMErrors>> DescribeCertificateOutcome;
         typedef Aws::Utils::Outcome<GetCertificateResult, Aws::Client::AWSError<ACMErrors>> GetCertificateOutcome;
         typedef Aws::Utils::Outcome<ImportCertificateResult, Aws::Client::AWSError<ACMErrors>> ImportCertificateOutcome;
         typedef Aws::Utils::Outcome<ListCertificatesResult, Aws::Client::AWSError<ACMErrors>> ListCertificatesOutcome;
         typedef Aws::Utils::Outcome<ListTagsForCertificateResult, Aws::Client::AWSError<ACMErrors>> ListTagsForCertificateOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<ACMErrors>> RemoveTagsFromCertificateOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<ACMErrors>> RemoveTagsFromCertificateOutcome;
         typedef Aws::Utils::Outcome<RequestCertificateResult, Aws::Client::AWSError<ACMErrors>> RequestCertificateOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<ACMErrors>> ResendValidationEmailOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<ACMErrors>> ResendValidationEmailOutcome;
 
         typedef std::future<AddTagsToCertificateOutcome> AddTagsToCertificateOutcomeCallable;
         typedef std::future<DeleteCertificateOutcome> DeleteCertificateOutcomeCallable;
@@ -136,22 +137,25 @@ namespace Model
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        ACMClient(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        ACMClient(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        ACMClient(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        ACMClient(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        ACMClient(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        ACMClient(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
         virtual ~ACMClient();
+
+        inline virtual const char* GetServiceClientName() const override { return "acm"; }
+
 
         /**
          * <p>Adds one or more tags to an ACM Certificate. Tags are labels that you can use
@@ -273,22 +277,16 @@ namespace Model
         virtual void DeleteCertificateAsync(const Model::DeleteCertificateRequest& request, const DeleteCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Returns a list of the fields contained in the specified ACM Certificate. For
-         * example, this action returns the certificate status, a flag that indicates
-         * whether the certificate is associated with any other AWS service, and the date
-         * at which the certificate request was created. You specify the ACM Certificate on
-         * input by its Amazon Resource Name (ARN).</p><p><h3>See Also:</h3>   <a
+         * <p>Returns detailed metadata about the specified ACM Certificate.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/DescribeCertificate">AWS
          * API Reference</a></p>
          */
         virtual Model::DescribeCertificateOutcome DescribeCertificate(const Model::DescribeCertificateRequest& request) const;
 
         /**
-         * <p>Returns a list of the fields contained in the specified ACM Certificate. For
-         * example, this action returns the certificate status, a flag that indicates
-         * whether the certificate is associated with any other AWS service, and the date
-         * at which the certificate request was created. You specify the ACM Certificate on
-         * input by its Amazon Resource Name (ARN).</p><p><h3>See Also:</h3>   <a
+         * <p>Returns detailed metadata about the specified ACM Certificate.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/DescribeCertificate">AWS
          * API Reference</a></p>
          *
@@ -297,11 +295,8 @@ namespace Model
         virtual Model::DescribeCertificateOutcomeCallable DescribeCertificateCallable(const Model::DescribeCertificateRequest& request) const;
 
         /**
-         * <p>Returns a list of the fields contained in the specified ACM Certificate. For
-         * example, this action returns the certificate status, a flag that indicates
-         * whether the certificate is associated with any other AWS service, and the date
-         * at which the certificate request was created. You specify the ACM Certificate on
-         * input by its Amazon Resource Name (ARN).</p><p><h3>See Also:</h3>   <a
+         * <p>Returns detailed metadata about the specified ACM Certificate.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/DescribeCertificate">AWS
          * API Reference</a></p>
          *
@@ -482,9 +477,10 @@ namespace Model
 
         /**
          * <p>Lists the tags that have been applied to the ACM Certificate. Use the
-         * certificate ARN to specify the certificate. To add a tag to an ACM Certificate,
-         * use the <a>AddTagsToCertificate</a> action. To delete a tag, use the
-         * <a>RemoveTagsFromCertificate</a> action.</p><p><h3>See Also:</h3>   <a
+         * certificate's Amazon Resource Name (ARN) to specify the certificate. To add a
+         * tag to an ACM Certificate, use the <a>AddTagsToCertificate</a> action. To delete
+         * a tag, use the <a>RemoveTagsFromCertificate</a> action.</p><p><h3>See Also:</h3>
+         * <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ListTagsForCertificate">AWS
          * API Reference</a></p>
          */
@@ -492,9 +488,10 @@ namespace Model
 
         /**
          * <p>Lists the tags that have been applied to the ACM Certificate. Use the
-         * certificate ARN to specify the certificate. To add a tag to an ACM Certificate,
-         * use the <a>AddTagsToCertificate</a> action. To delete a tag, use the
-         * <a>RemoveTagsFromCertificate</a> action.</p><p><h3>See Also:</h3>   <a
+         * certificate's Amazon Resource Name (ARN) to specify the certificate. To add a
+         * tag to an ACM Certificate, use the <a>AddTagsToCertificate</a> action. To delete
+         * a tag, use the <a>RemoveTagsFromCertificate</a> action.</p><p><h3>See Also:</h3>
+         * <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ListTagsForCertificate">AWS
          * API Reference</a></p>
          *
@@ -504,9 +501,10 @@ namespace Model
 
         /**
          * <p>Lists the tags that have been applied to the ACM Certificate. Use the
-         * certificate ARN to specify the certificate. To add a tag to an ACM Certificate,
-         * use the <a>AddTagsToCertificate</a> action. To delete a tag, use the
-         * <a>RemoveTagsFromCertificate</a> action.</p><p><h3>See Also:</h3>   <a
+         * certificate's Amazon Resource Name (ARN) to specify the certificate. To add a
+         * tag to an ACM Certificate, use the <a>AddTagsToCertificate</a> action. To delete
+         * a tag, use the <a>RemoveTagsFromCertificate</a> action.</p><p><h3>See Also:</h3>
+         * <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ListTagsForCertificate">AWS
          * API Reference</a></p>
          *
@@ -612,8 +610,10 @@ namespace Model
          * Therefore, if you do not receive the original mail, you can request that the
          * mail be resent within 72 hours of requesting the ACM Certificate. If more than
          * 72 hours have elapsed since your original request or since your last attempt to
-         * resend validation mail, you must request a new certificate.</p><p><h3>See
-         * Also:</h3>   <a
+         * resend validation mail, you must request a new certificate. For more information
+         * about setting up your contact email addresses, see <a
+         * href="http://docs.aws.amazon.com/acm/latest/userguide/setup-email.html">Configure
+         * Email for your Domain</a>. </p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ResendValidationEmail">AWS
          * API Reference</a></p>
          */
@@ -628,8 +628,10 @@ namespace Model
          * Therefore, if you do not receive the original mail, you can request that the
          * mail be resent within 72 hours of requesting the ACM Certificate. If more than
          * 72 hours have elapsed since your original request or since your last attempt to
-         * resend validation mail, you must request a new certificate.</p><p><h3>See
-         * Also:</h3>   <a
+         * resend validation mail, you must request a new certificate. For more information
+         * about setting up your contact email addresses, see <a
+         * href="http://docs.aws.amazon.com/acm/latest/userguide/setup-email.html">Configure
+         * Email for your Domain</a>. </p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ResendValidationEmail">AWS
          * API Reference</a></p>
          *
@@ -646,8 +648,10 @@ namespace Model
          * Therefore, if you do not receive the original mail, you can request that the
          * mail be resent within 72 hours of requesting the ACM Certificate. If more than
          * 72 hours have elapsed since your original request or since your last attempt to
-         * resend validation mail, you must request a new certificate.</p><p><h3>See
-         * Also:</h3>   <a
+         * resend validation mail, you must request a new certificate. For more information
+         * about setting up your contact email addresses, see <a
+         * href="http://docs.aws.amazon.com/acm/latest/userguide/setup-email.html">Configure
+         * Email for your Domain</a>. </p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ResendValidationEmail">AWS
          * API Reference</a></p>
          *
@@ -657,7 +661,7 @@ namespace Model
 
 
     private:
-      void init(const Client::ClientConfiguration& clientConfiguration);
+      void init(const Aws::Client::ClientConfiguration& clientConfiguration);
 
         /**Async helpers**/
         void AddTagsToCertificateAsyncHelper(const Model::AddTagsToCertificateRequest& request, const AddTagsToCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -672,7 +676,7 @@ namespace Model
         void ResendValidationEmailAsyncHelper(const Model::ResendValidationEmailRequest& request, const ResendValidationEmailResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
       Aws::String m_uri;
-      std::shared_ptr<Utils::Threading::Executor> m_executor;
+      std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;
   };
 
 } // namespace ACM

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/s3/model/InventoryS3BucketDestination.h>
+#include <utility>
 
 namespace Aws
 {
@@ -39,6 +41,7 @@ namespace Model
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
 
+
     /**
      * Contains the bucket name, file format, bucket owner (optional), and prefix
      * (optional) where inventory results are published.
@@ -55,7 +58,7 @@ namespace Model
      * Contains the bucket name, file format, bucket owner (optional), and prefix
      * (optional) where inventory results are published.
      */
-    inline void SetS3BucketDestination(InventoryS3BucketDestination&& value) { m_s3BucketDestinationHasBeenSet = true; m_s3BucketDestination = value; }
+    inline void SetS3BucketDestination(InventoryS3BucketDestination&& value) { m_s3BucketDestinationHasBeenSet = true; m_s3BucketDestination = std::move(value); }
 
     /**
      * Contains the bucket name, file format, bucket owner (optional), and prefix
@@ -67,9 +70,10 @@ namespace Model
      * Contains the bucket name, file format, bucket owner (optional), and prefix
      * (optional) where inventory results are published.
      */
-    inline InventoryDestination& WithS3BucketDestination(InventoryS3BucketDestination&& value) { SetS3BucketDestination(value); return *this;}
+    inline InventoryDestination& WithS3BucketDestination(InventoryS3BucketDestination&& value) { SetS3BucketDestination(std::move(value)); return *this;}
 
   private:
+
     InventoryS3BucketDestination m_s3BucketDestination;
     bool m_s3BucketDestinationHasBeenSet;
   };

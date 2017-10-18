@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/monitoring/model/PutMetricAlarmRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -42,7 +43,9 @@ PutMetricAlarmRequest::PutMetricAlarmRequest() :
     m_threshold(0.0),
     m_thresholdHasBeenSet(false),
     m_comparisonOperator(ComparisonOperator::NOT_SET),
-    m_comparisonOperatorHasBeenSet(false)
+    m_comparisonOperatorHasBeenSet(false),
+    m_treatMissingDataHasBeenSet(false),
+    m_evaluateLowSampleCountPercentileHasBeenSet(false)
 {
 }
 
@@ -153,7 +156,22 @@ Aws::String PutMetricAlarmRequest::SerializePayload() const
     ss << "ComparisonOperator=" << ComparisonOperatorMapper::GetNameForComparisonOperator(m_comparisonOperator) << "&";
   }
 
+  if(m_treatMissingDataHasBeenSet)
+  {
+    ss << "TreatMissingData=" << StringUtils::URLEncode(m_treatMissingData.c_str()) << "&";
+  }
+
+  if(m_evaluateLowSampleCountPercentileHasBeenSet)
+  {
+    ss << "EvaluateLowSampleCountPercentile=" << StringUtils::URLEncode(m_evaluateLowSampleCountPercentile.c_str()) << "&";
+  }
+
   ss << "Version=2010-08-01";
   return ss.str();
 }
 
+
+void  PutMetricAlarmRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

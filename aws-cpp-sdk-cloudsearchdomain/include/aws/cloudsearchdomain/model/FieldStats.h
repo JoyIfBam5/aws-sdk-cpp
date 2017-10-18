@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudsearchdomain/CloudSearchDomain_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     FieldStats(const Aws::Utils::Json::JsonValue& jsonValue);
     FieldStats& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>The minimum value found in the specified field in the result set.</p> <p>If
@@ -78,7 +81,7 @@ namespace Model
      * href="http://tools.ietf.org/html/rfc3339">IETF RFC3339</a>:
      * yyyy-mm-ddTHH:mm:ss.SSSZ.</p>
      */
-    inline void SetMin(Aws::String&& value) { m_minHasBeenSet = true; m_min = value; }
+    inline void SetMin(Aws::String&& value) { m_minHasBeenSet = true; m_min = std::move(value); }
 
     /**
      * <p>The minimum value found in the specified field in the result set.</p> <p>If
@@ -114,7 +117,7 @@ namespace Model
      * href="http://tools.ietf.org/html/rfc3339">IETF RFC3339</a>:
      * yyyy-mm-ddTHH:mm:ss.SSSZ.</p>
      */
-    inline FieldStats& WithMin(Aws::String&& value) { SetMin(value); return *this;}
+    inline FieldStats& WithMin(Aws::String&& value) { SetMin(std::move(value)); return *this;}
 
     /**
      * <p>The minimum value found in the specified field in the result set.</p> <p>If
@@ -127,6 +130,7 @@ namespace Model
      * yyyy-mm-ddTHH:mm:ss.SSSZ.</p>
      */
     inline FieldStats& WithMin(const char* value) { SetMin(value); return *this;}
+
 
     /**
      * <p>The maximum value found in the specified field in the result set.</p> <p>If
@@ -162,7 +166,7 @@ namespace Model
      * href="http://tools.ietf.org/html/rfc3339">IETF RFC3339</a>:
      * yyyy-mm-ddTHH:mm:ss.SSSZ.</p>
      */
-    inline void SetMax(Aws::String&& value) { m_maxHasBeenSet = true; m_max = value; }
+    inline void SetMax(Aws::String&& value) { m_maxHasBeenSet = true; m_max = std::move(value); }
 
     /**
      * <p>The maximum value found in the specified field in the result set.</p> <p>If
@@ -198,7 +202,7 @@ namespace Model
      * href="http://tools.ietf.org/html/rfc3339">IETF RFC3339</a>:
      * yyyy-mm-ddTHH:mm:ss.SSSZ.</p>
      */
-    inline FieldStats& WithMax(Aws::String&& value) { SetMax(value); return *this;}
+    inline FieldStats& WithMax(Aws::String&& value) { SetMax(std::move(value)); return *this;}
 
     /**
      * <p>The maximum value found in the specified field in the result set.</p> <p>If
@@ -211,6 +215,7 @@ namespace Model
      * yyyy-mm-ddTHH:mm:ss.SSSZ.</p>
      */
     inline FieldStats& WithMax(const char* value) { SetMax(value); return *this;}
+
 
     /**
      * <p>The number of documents that contain a value in the specified field in the
@@ -230,6 +235,7 @@ namespace Model
      */
     inline FieldStats& WithCount(long long value) { SetCount(value); return *this;}
 
+
     /**
      * <p>The number of documents that do not contain a value in the specified field in
      * the result set.</p>
@@ -247,6 +253,7 @@ namespace Model
      * the result set.</p>
      */
     inline FieldStats& WithMissing(long long value) { SetMissing(value); return *this;}
+
 
     /**
      * <p>The sum of the field values across the documents in the result set.
@@ -266,6 +273,7 @@ namespace Model
      */
     inline FieldStats& WithSum(double value) { SetSum(value); return *this;}
 
+
     /**
      * <p>The sum of all field values in the result set squared.</p>
      */
@@ -280,6 +288,7 @@ namespace Model
      * <p>The sum of all field values in the result set squared.</p>
      */
     inline FieldStats& WithSumOfSquares(double value) { SetSumOfSquares(value); return *this;}
+
 
     /**
      * <p>The average of the values found in the specified field in the result set.</p>
@@ -315,7 +324,7 @@ namespace Model
      * href="http://tools.ietf.org/html/rfc3339">IETF RFC3339</a>:
      * yyyy-mm-ddTHH:mm:ss.SSSZ.</p>
      */
-    inline void SetMean(Aws::String&& value) { m_meanHasBeenSet = true; m_mean = value; }
+    inline void SetMean(Aws::String&& value) { m_meanHasBeenSet = true; m_mean = std::move(value); }
 
     /**
      * <p>The average of the values found in the specified field in the result set.</p>
@@ -351,7 +360,7 @@ namespace Model
      * href="http://tools.ietf.org/html/rfc3339">IETF RFC3339</a>:
      * yyyy-mm-ddTHH:mm:ss.SSSZ.</p>
      */
-    inline FieldStats& WithMean(Aws::String&& value) { SetMean(value); return *this;}
+    inline FieldStats& WithMean(Aws::String&& value) { SetMean(std::move(value)); return *this;}
 
     /**
      * <p>The average of the values found in the specified field in the result set.</p>
@@ -364,6 +373,7 @@ namespace Model
      * yyyy-mm-ddTHH:mm:ss.SSSZ.</p>
      */
     inline FieldStats& WithMean(const char* value) { SetMean(value); return *this;}
+
 
     /**
      * <p>The standard deviation of the values in the specified field in the result
@@ -384,20 +394,28 @@ namespace Model
     inline FieldStats& WithStddev(double value) { SetStddev(value); return *this;}
 
   private:
+
     Aws::String m_min;
     bool m_minHasBeenSet;
+
     Aws::String m_max;
     bool m_maxHasBeenSet;
+
     long long m_count;
     bool m_countHasBeenSet;
+
     long long m_missing;
     bool m_missingHasBeenSet;
+
     double m_sum;
     bool m_sumHasBeenSet;
+
     double m_sumOfSquares;
     bool m_sumOfSquaresHasBeenSet;
+
     Aws::String m_mean;
     bool m_meanHasBeenSet;
+
     double m_stddev;
     bool m_stddevHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/DiskImageDescription.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,22 +31,22 @@ namespace Model
 {
 
 DiskImageDescription::DiskImageDescription() : 
+    m_checksumHasBeenSet(false),
     m_format(DiskImageFormat::NOT_SET),
     m_formatHasBeenSet(false),
-    m_size(0),
-    m_sizeHasBeenSet(false),
     m_importManifestUrlHasBeenSet(false),
-    m_checksumHasBeenSet(false)
+    m_size(0),
+    m_sizeHasBeenSet(false)
 {
 }
 
 DiskImageDescription::DiskImageDescription(const XmlNode& xmlNode) : 
+    m_checksumHasBeenSet(false),
     m_format(DiskImageFormat::NOT_SET),
     m_formatHasBeenSet(false),
-    m_size(0),
-    m_sizeHasBeenSet(false),
     m_importManifestUrlHasBeenSet(false),
-    m_checksumHasBeenSet(false)
+    m_size(0),
+    m_sizeHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -56,17 +57,17 @@ DiskImageDescription& DiskImageDescription::operator =(const XmlNode& xmlNode)
 
   if(!resultNode.IsNull())
   {
+    XmlNode checksumNode = resultNode.FirstChild("checksum");
+    if(!checksumNode.IsNull())
+    {
+      m_checksum = StringUtils::Trim(checksumNode.GetText().c_str());
+      m_checksumHasBeenSet = true;
+    }
     XmlNode formatNode = resultNode.FirstChild("format");
     if(!formatNode.IsNull())
     {
       m_format = DiskImageFormatMapper::GetDiskImageFormatForName(StringUtils::Trim(formatNode.GetText().c_str()).c_str());
       m_formatHasBeenSet = true;
-    }
-    XmlNode sizeNode = resultNode.FirstChild("size");
-    if(!sizeNode.IsNull())
-    {
-      m_size = StringUtils::ConvertToInt64(StringUtils::Trim(sizeNode.GetText().c_str()).c_str());
-      m_sizeHasBeenSet = true;
     }
     XmlNode importManifestUrlNode = resultNode.FirstChild("importManifestUrl");
     if(!importManifestUrlNode.IsNull())
@@ -74,11 +75,11 @@ DiskImageDescription& DiskImageDescription::operator =(const XmlNode& xmlNode)
       m_importManifestUrl = StringUtils::Trim(importManifestUrlNode.GetText().c_str());
       m_importManifestUrlHasBeenSet = true;
     }
-    XmlNode checksumNode = resultNode.FirstChild("checksum");
-    if(!checksumNode.IsNull())
+    XmlNode sizeNode = resultNode.FirstChild("size");
+    if(!sizeNode.IsNull())
     {
-      m_checksum = StringUtils::Trim(checksumNode.GetText().c_str());
-      m_checksumHasBeenSet = true;
+      m_size = StringUtils::ConvertToInt64(StringUtils::Trim(sizeNode.GetText().c_str()).c_str());
+      m_sizeHasBeenSet = true;
     }
   }
 
@@ -87,14 +88,14 @@ DiskImageDescription& DiskImageDescription::operator =(const XmlNode& xmlNode)
 
 void DiskImageDescription::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
+  if(m_checksumHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".Checksum=" << StringUtils::URLEncode(m_checksum.c_str()) << "&";
+  }
+
   if(m_formatHasBeenSet)
   {
       oStream << location << index << locationValue << ".Format=" << DiskImageFormatMapper::GetNameForDiskImageFormat(m_format) << "&";
-  }
-
-  if(m_sizeHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".Size=" << m_size << "&";
   }
 
   if(m_importManifestUrlHasBeenSet)
@@ -102,30 +103,30 @@ void DiskImageDescription::OutputToStream(Aws::OStream& oStream, const char* loc
       oStream << location << index << locationValue << ".ImportManifestUrl=" << StringUtils::URLEncode(m_importManifestUrl.c_str()) << "&";
   }
 
-  if(m_checksumHasBeenSet)
+  if(m_sizeHasBeenSet)
   {
-      oStream << location << index << locationValue << ".Checksum=" << StringUtils::URLEncode(m_checksum.c_str()) << "&";
+      oStream << location << index << locationValue << ".Size=" << m_size << "&";
   }
 
 }
 
 void DiskImageDescription::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
+  if(m_checksumHasBeenSet)
+  {
+      oStream << location << ".Checksum=" << StringUtils::URLEncode(m_checksum.c_str()) << "&";
+  }
   if(m_formatHasBeenSet)
   {
       oStream << location << ".Format=" << DiskImageFormatMapper::GetNameForDiskImageFormat(m_format) << "&";
-  }
-  if(m_sizeHasBeenSet)
-  {
-      oStream << location << ".Size=" << m_size << "&";
   }
   if(m_importManifestUrlHasBeenSet)
   {
       oStream << location << ".ImportManifestUrl=" << StringUtils::URLEncode(m_importManifestUrl.c_str()) << "&";
   }
-  if(m_checksumHasBeenSet)
+  if(m_sizeHasBeenSet)
   {
-      oStream << location << ".Checksum=" << StringUtils::URLEncode(m_checksum.c_str()) << "&";
+      oStream << location << ".Size=" << m_size << "&";
   }
 }
 

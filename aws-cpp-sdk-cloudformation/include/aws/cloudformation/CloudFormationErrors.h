@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 
 #include <aws/core/client/CoreErrors.h>
@@ -54,15 +55,26 @@ enum class CloudFormationErrors
   UNKNOWN = 100,
   ///////////////////////////////////////////////////////////////////////////////////////////
 
-  ALREADY_EXISTS= static_cast<int>(Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
+  ALREADY_EXISTS= static_cast<int>(Aws::Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
   CHANGE_SET_NOT_FOUND,
+  CREATED_BUT_MODIFIED,
   INSUFFICIENT_CAPABILITIES,
   INVALID_CHANGE_SET_STATUS,
-  LIMIT_EXCEEDED
+  INVALID_OPERATION,
+  LIMIT_EXCEEDED,
+  NAME_ALREADY_EXISTS,
+  OPERATION_ID_ALREADY_EXISTS,
+  OPERATION_IN_PROGRESS,
+  OPERATION_NOT_FOUND,
+  STACK_INSTANCE_NOT_FOUND,
+  STACK_SET_NOT_EMPTY,
+  STACK_SET_NOT_FOUND,
+  STALE_REQUEST,
+  TOKEN_ALREADY_EXISTS
 };
 namespace CloudFormationErrorMapper
 {
-  AWS_CLOUDFORMATION_API Client::AWSError<Client::CoreErrors> GetErrorForName(const char* errorName);
+  AWS_CLOUDFORMATION_API Aws::Client::AWSError<Aws::Client::CoreErrors> GetErrorForName(const char* errorName);
 }
 
 } // namespace CloudFormation

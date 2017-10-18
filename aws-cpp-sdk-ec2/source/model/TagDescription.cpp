@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/TagDescription.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,19 +31,19 @@ namespace Model
 {
 
 TagDescription::TagDescription() : 
+    m_keyHasBeenSet(false),
     m_resourceIdHasBeenSet(false),
     m_resourceType(ResourceType::NOT_SET),
     m_resourceTypeHasBeenSet(false),
-    m_keyHasBeenSet(false),
     m_valueHasBeenSet(false)
 {
 }
 
 TagDescription::TagDescription(const XmlNode& xmlNode) : 
+    m_keyHasBeenSet(false),
     m_resourceIdHasBeenSet(false),
     m_resourceType(ResourceType::NOT_SET),
     m_resourceTypeHasBeenSet(false),
-    m_keyHasBeenSet(false),
     m_valueHasBeenSet(false)
 {
   *this = xmlNode;
@@ -54,6 +55,12 @@ TagDescription& TagDescription::operator =(const XmlNode& xmlNode)
 
   if(!resultNode.IsNull())
   {
+    XmlNode keyNode = resultNode.FirstChild("key");
+    if(!keyNode.IsNull())
+    {
+      m_key = StringUtils::Trim(keyNode.GetText().c_str());
+      m_keyHasBeenSet = true;
+    }
     XmlNode resourceIdNode = resultNode.FirstChild("resourceId");
     if(!resourceIdNode.IsNull())
     {
@@ -65,12 +72,6 @@ TagDescription& TagDescription::operator =(const XmlNode& xmlNode)
     {
       m_resourceType = ResourceTypeMapper::GetResourceTypeForName(StringUtils::Trim(resourceTypeNode.GetText().c_str()).c_str());
       m_resourceTypeHasBeenSet = true;
-    }
-    XmlNode keyNode = resultNode.FirstChild("key");
-    if(!keyNode.IsNull())
-    {
-      m_key = StringUtils::Trim(keyNode.GetText().c_str());
-      m_keyHasBeenSet = true;
     }
     XmlNode valueNode = resultNode.FirstChild("value");
     if(!valueNode.IsNull())
@@ -85,6 +86,11 @@ TagDescription& TagDescription::operator =(const XmlNode& xmlNode)
 
 void TagDescription::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
+  if(m_keyHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".Key=" << StringUtils::URLEncode(m_key.c_str()) << "&";
+  }
+
   if(m_resourceIdHasBeenSet)
   {
       oStream << location << index << locationValue << ".ResourceId=" << StringUtils::URLEncode(m_resourceId.c_str()) << "&";
@@ -93,11 +99,6 @@ void TagDescription::OutputToStream(Aws::OStream& oStream, const char* location,
   if(m_resourceTypeHasBeenSet)
   {
       oStream << location << index << locationValue << ".ResourceType=" << ResourceTypeMapper::GetNameForResourceType(m_resourceType) << "&";
-  }
-
-  if(m_keyHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".Key=" << StringUtils::URLEncode(m_key.c_str()) << "&";
   }
 
   if(m_valueHasBeenSet)
@@ -109,6 +110,10 @@ void TagDescription::OutputToStream(Aws::OStream& oStream, const char* location,
 
 void TagDescription::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
+  if(m_keyHasBeenSet)
+  {
+      oStream << location << ".Key=" << StringUtils::URLEncode(m_key.c_str()) << "&";
+  }
   if(m_resourceIdHasBeenSet)
   {
       oStream << location << ".ResourceId=" << StringUtils::URLEncode(m_resourceId.c_str()) << "&";
@@ -116,10 +121,6 @@ void TagDescription::OutputToStream(Aws::OStream& oStream, const char* location)
   if(m_resourceTypeHasBeenSet)
   {
       oStream << location << ".ResourceType=" << ResourceTypeMapper::GetNameForResourceType(m_resourceType) << "&";
-  }
-  if(m_keyHasBeenSet)
-  {
-      oStream << location << ".Key=" << StringUtils::URLEncode(m_key.c_str()) << "&";
   }
   if(m_valueHasBeenSet)
   {

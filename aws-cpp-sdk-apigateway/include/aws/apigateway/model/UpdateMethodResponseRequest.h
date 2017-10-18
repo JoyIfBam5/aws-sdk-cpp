@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/apigateway/APIGatewayRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/apigateway/model/PatchOperation.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,42 +38,51 @@ namespace Model
   {
   public:
     UpdateMethodResponseRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateMethodResponse"; }
+
     Aws::String SerializePayload() const override;
 
+
     /**
-     * <p>The <a>RestApi</a> identifier for the <a>MethodResponse</a> resource.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline const Aws::String& GetRestApiId() const{ return m_restApiId; }
 
     /**
-     * <p>The <a>RestApi</a> identifier for the <a>MethodResponse</a> resource.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline void SetRestApiId(const Aws::String& value) { m_restApiIdHasBeenSet = true; m_restApiId = value; }
 
     /**
-     * <p>The <a>RestApi</a> identifier for the <a>MethodResponse</a> resource.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
-    inline void SetRestApiId(Aws::String&& value) { m_restApiIdHasBeenSet = true; m_restApiId = value; }
+    inline void SetRestApiId(Aws::String&& value) { m_restApiIdHasBeenSet = true; m_restApiId = std::move(value); }
 
     /**
-     * <p>The <a>RestApi</a> identifier for the <a>MethodResponse</a> resource.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline void SetRestApiId(const char* value) { m_restApiIdHasBeenSet = true; m_restApiId.assign(value); }
 
     /**
-     * <p>The <a>RestApi</a> identifier for the <a>MethodResponse</a> resource.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline UpdateMethodResponseRequest& WithRestApiId(const Aws::String& value) { SetRestApiId(value); return *this;}
 
     /**
-     * <p>The <a>RestApi</a> identifier for the <a>MethodResponse</a> resource.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
-    inline UpdateMethodResponseRequest& WithRestApiId(Aws::String&& value) { SetRestApiId(value); return *this;}
+    inline UpdateMethodResponseRequest& WithRestApiId(Aws::String&& value) { SetRestApiId(std::move(value)); return *this;}
 
     /**
-     * <p>The <a>RestApi</a> identifier for the <a>MethodResponse</a> resource.</p>
+     * <p>The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline UpdateMethodResponseRequest& WithRestApiId(const char* value) { SetRestApiId(value); return *this;}
+
 
     /**
      * <p>The <a>Resource</a> identifier for the <a>MethodResponse</a> resource.</p>
@@ -86,7 +97,7 @@ namespace Model
     /**
      * <p>The <a>Resource</a> identifier for the <a>MethodResponse</a> resource.</p>
      */
-    inline void SetResourceId(Aws::String&& value) { m_resourceIdHasBeenSet = true; m_resourceId = value; }
+    inline void SetResourceId(Aws::String&& value) { m_resourceIdHasBeenSet = true; m_resourceId = std::move(value); }
 
     /**
      * <p>The <a>Resource</a> identifier for the <a>MethodResponse</a> resource.</p>
@@ -101,12 +112,13 @@ namespace Model
     /**
      * <p>The <a>Resource</a> identifier for the <a>MethodResponse</a> resource.</p>
      */
-    inline UpdateMethodResponseRequest& WithResourceId(Aws::String&& value) { SetResourceId(value); return *this;}
+    inline UpdateMethodResponseRequest& WithResourceId(Aws::String&& value) { SetResourceId(std::move(value)); return *this;}
 
     /**
      * <p>The <a>Resource</a> identifier for the <a>MethodResponse</a> resource.</p>
      */
     inline UpdateMethodResponseRequest& WithResourceId(const char* value) { SetResourceId(value); return *this;}
+
 
     /**
      * <p>The HTTP verb of the <a>Method</a> resource.</p>
@@ -121,7 +133,7 @@ namespace Model
     /**
      * <p>The HTTP verb of the <a>Method</a> resource.</p>
      */
-    inline void SetHttpMethod(Aws::String&& value) { m_httpMethodHasBeenSet = true; m_httpMethod = value; }
+    inline void SetHttpMethod(Aws::String&& value) { m_httpMethodHasBeenSet = true; m_httpMethod = std::move(value); }
 
     /**
      * <p>The HTTP verb of the <a>Method</a> resource.</p>
@@ -136,12 +148,13 @@ namespace Model
     /**
      * <p>The HTTP verb of the <a>Method</a> resource.</p>
      */
-    inline UpdateMethodResponseRequest& WithHttpMethod(Aws::String&& value) { SetHttpMethod(value); return *this;}
+    inline UpdateMethodResponseRequest& WithHttpMethod(Aws::String&& value) { SetHttpMethod(std::move(value)); return *this;}
 
     /**
      * <p>The HTTP verb of the <a>Method</a> resource.</p>
      */
     inline UpdateMethodResponseRequest& WithHttpMethod(const char* value) { SetHttpMethod(value); return *this;}
+
 
     /**
      * <p>The status code for the <a>MethodResponse</a> resource.</p>
@@ -156,7 +169,7 @@ namespace Model
     /**
      * <p>The status code for the <a>MethodResponse</a> resource.</p>
      */
-    inline void SetStatusCode(Aws::String&& value) { m_statusCodeHasBeenSet = true; m_statusCode = value; }
+    inline void SetStatusCode(Aws::String&& value) { m_statusCodeHasBeenSet = true; m_statusCode = std::move(value); }
 
     /**
      * <p>The status code for the <a>MethodResponse</a> resource.</p>
@@ -171,12 +184,13 @@ namespace Model
     /**
      * <p>The status code for the <a>MethodResponse</a> resource.</p>
      */
-    inline UpdateMethodResponseRequest& WithStatusCode(Aws::String&& value) { SetStatusCode(value); return *this;}
+    inline UpdateMethodResponseRequest& WithStatusCode(Aws::String&& value) { SetStatusCode(std::move(value)); return *this;}
 
     /**
      * <p>The status code for the <a>MethodResponse</a> resource.</p>
      */
     inline UpdateMethodResponseRequest& WithStatusCode(const char* value) { SetStatusCode(value); return *this;}
+
 
     /**
      * <p>A list of update operations to be applied to the specified resource and in
@@ -194,7 +208,7 @@ namespace Model
      * <p>A list of update operations to be applied to the specified resource and in
      * the order specified in this list.</p>
      */
-    inline void SetPatchOperations(Aws::Vector<PatchOperation>&& value) { m_patchOperationsHasBeenSet = true; m_patchOperations = value; }
+    inline void SetPatchOperations(Aws::Vector<PatchOperation>&& value) { m_patchOperationsHasBeenSet = true; m_patchOperations = std::move(value); }
 
     /**
      * <p>A list of update operations to be applied to the specified resource and in
@@ -206,7 +220,7 @@ namespace Model
      * <p>A list of update operations to be applied to the specified resource and in
      * the order specified in this list.</p>
      */
-    inline UpdateMethodResponseRequest& WithPatchOperations(Aws::Vector<PatchOperation>&& value) { SetPatchOperations(value); return *this;}
+    inline UpdateMethodResponseRequest& WithPatchOperations(Aws::Vector<PatchOperation>&& value) { SetPatchOperations(std::move(value)); return *this;}
 
     /**
      * <p>A list of update operations to be applied to the specified resource and in
@@ -218,17 +232,22 @@ namespace Model
      * <p>A list of update operations to be applied to the specified resource and in
      * the order specified in this list.</p>
      */
-    inline UpdateMethodResponseRequest& AddPatchOperations(PatchOperation&& value) { m_patchOperationsHasBeenSet = true; m_patchOperations.push_back(value); return *this; }
+    inline UpdateMethodResponseRequest& AddPatchOperations(PatchOperation&& value) { m_patchOperationsHasBeenSet = true; m_patchOperations.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_restApiId;
     bool m_restApiIdHasBeenSet;
+
     Aws::String m_resourceId;
     bool m_resourceIdHasBeenSet;
+
     Aws::String m_httpMethod;
     bool m_httpMethodHasBeenSet;
+
     Aws::String m_statusCode;
     bool m_statusCodeHasBeenSet;
+
     Aws::Vector<PatchOperation> m_patchOperations;
     bool m_patchOperationsHasBeenSet;
   };

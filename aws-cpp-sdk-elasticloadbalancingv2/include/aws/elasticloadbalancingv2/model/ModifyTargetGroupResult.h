@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticloadbalancingv2/ElasticLoadBalancingv2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticloadbalancingv2/model/ResponseMetadata.h>
 #include <aws/elasticloadbalancingv2/model/TargetGroup.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,17 +36,13 @@ namespace ElasticLoadBalancingv2
 {
 namespace Model
 {
-  /**
-   * <p>Contains the output of ModifyTargetGroup.</p><p><h3>See Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/ModifyTargetGroupOutput">AWS
-   * API Reference</a></p>
-   */
   class AWS_ELASTICLOADBALANCINGV2_API ModifyTargetGroupResult
   {
   public:
     ModifyTargetGroupResult();
-    ModifyTargetGroupResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    ModifyTargetGroupResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ModifyTargetGroupResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ModifyTargetGroupResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>Information about the target group.</p>
@@ -59,7 +57,7 @@ namespace Model
     /**
      * <p>Information about the target group.</p>
      */
-    inline void SetTargetGroups(Aws::Vector<TargetGroup>&& value) { m_targetGroups = value; }
+    inline void SetTargetGroups(Aws::Vector<TargetGroup>&& value) { m_targetGroups = std::move(value); }
 
     /**
      * <p>Information about the target group.</p>
@@ -69,7 +67,7 @@ namespace Model
     /**
      * <p>Information about the target group.</p>
      */
-    inline ModifyTargetGroupResult& WithTargetGroups(Aws::Vector<TargetGroup>&& value) { SetTargetGroups(value); return *this;}
+    inline ModifyTargetGroupResult& WithTargetGroups(Aws::Vector<TargetGroup>&& value) { SetTargetGroups(std::move(value)); return *this;}
 
     /**
      * <p>Information about the target group.</p>
@@ -79,7 +77,8 @@ namespace Model
     /**
      * <p>Information about the target group.</p>
      */
-    inline ModifyTargetGroupResult& AddTargetGroups(TargetGroup&& value) { m_targetGroups.push_back(value); return *this; }
+    inline ModifyTargetGroupResult& AddTargetGroups(TargetGroup&& value) { m_targetGroups.push_back(std::move(value)); return *this; }
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -88,16 +87,18 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline ModifyTargetGroupResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline ModifyTargetGroupResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline ModifyTargetGroupResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<TargetGroup> m_targetGroups;
+
     ResponseMetadata m_responseMetadata;
   };
 

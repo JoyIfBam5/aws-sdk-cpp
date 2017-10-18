@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/DescribeNatGatewaysRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -20,10 +21,10 @@ using namespace Aws::EC2::Model;
 using namespace Aws::Utils;
 
 DescribeNatGatewaysRequest::DescribeNatGatewaysRequest() : 
-    m_natGatewayIdsHasBeenSet(false),
     m_filterHasBeenSet(false),
     m_maxResults(0),
     m_maxResultsHasBeenSet(false),
+    m_natGatewayIdsHasBeenSet(false),
     m_nextTokenHasBeenSet(false)
 {
 }
@@ -32,17 +33,6 @@ Aws::String DescribeNatGatewaysRequest::SerializePayload() const
 {
   Aws::StringStream ss;
   ss << "Action=DescribeNatGateways&";
-  if(m_natGatewayIdsHasBeenSet)
-  {
-    unsigned natGatewayIdsCount = 1;
-    for(auto& item : m_natGatewayIds)
-    {
-      ss << "NatGatewayId." << natGatewayIdsCount << "="
-          << StringUtils::URLEncode(item.c_str()) << "&";
-      natGatewayIdsCount++;
-    }
-  }
-
   if(m_filterHasBeenSet)
   {
     unsigned filterCount = 1;
@@ -58,6 +48,17 @@ Aws::String DescribeNatGatewaysRequest::SerializePayload() const
     ss << "MaxResults=" << m_maxResults << "&";
   }
 
+  if(m_natGatewayIdsHasBeenSet)
+  {
+    unsigned natGatewayIdsCount = 1;
+    for(auto& item : m_natGatewayIds)
+    {
+      ss << "NatGatewayId." << natGatewayIdsCount << "="
+          << StringUtils::URLEncode(item.c_str()) << "&";
+      natGatewayIdsCount++;
+    }
+  }
+
   if(m_nextTokenHasBeenSet)
   {
     ss << "NextToken=" << StringUtils::URLEncode(m_nextToken.c_str()) << "&";
@@ -67,3 +68,8 @@ Aws::String DescribeNatGatewaysRequest::SerializePayload() const
   return ss.str();
 }
 
+
+void  DescribeNatGatewaysRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

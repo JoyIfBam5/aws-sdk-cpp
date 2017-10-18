@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/storagegateway/StorageGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -41,8 +43,9 @@ namespace Model
   {
   public:
     CreateTapeWithBarcodeResult();
-    CreateTapeWithBarcodeResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateTapeWithBarcodeResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateTapeWithBarcodeResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateTapeWithBarcodeResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A unique Amazon Resource Name (ARN) that represents the virtual tape that was
@@ -60,7 +63,7 @@ namespace Model
      * <p>A unique Amazon Resource Name (ARN) that represents the virtual tape that was
      * created.</p>
      */
-    inline void SetTapeARN(Aws::String&& value) { m_tapeARN = value; }
+    inline void SetTapeARN(Aws::String&& value) { m_tapeARN = std::move(value); }
 
     /**
      * <p>A unique Amazon Resource Name (ARN) that represents the virtual tape that was
@@ -78,7 +81,7 @@ namespace Model
      * <p>A unique Amazon Resource Name (ARN) that represents the virtual tape that was
      * created.</p>
      */
-    inline CreateTapeWithBarcodeResult& WithTapeARN(Aws::String&& value) { SetTapeARN(value); return *this;}
+    inline CreateTapeWithBarcodeResult& WithTapeARN(Aws::String&& value) { SetTapeARN(std::move(value)); return *this;}
 
     /**
      * <p>A unique Amazon Resource Name (ARN) that represents the virtual tape that was
@@ -87,6 +90,7 @@ namespace Model
     inline CreateTapeWithBarcodeResult& WithTapeARN(const char* value) { SetTapeARN(value); return *this;}
 
   private:
+
     Aws::String m_tapeARN;
   };
 

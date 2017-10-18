@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/cognito-idp/CognitoIdentityProviderRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,9 +35,17 @@ namespace Model
   {
   public:
     ForgetDeviceRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ForgetDevice"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The access token for the forgotten device request.</p>
@@ -50,7 +60,7 @@ namespace Model
     /**
      * <p>The access token for the forgotten device request.</p>
      */
-    inline void SetAccessToken(Aws::String&& value) { m_accessTokenHasBeenSet = true; m_accessToken = value; }
+    inline void SetAccessToken(Aws::String&& value) { m_accessTokenHasBeenSet = true; m_accessToken = std::move(value); }
 
     /**
      * <p>The access token for the forgotten device request.</p>
@@ -65,12 +75,13 @@ namespace Model
     /**
      * <p>The access token for the forgotten device request.</p>
      */
-    inline ForgetDeviceRequest& WithAccessToken(Aws::String&& value) { SetAccessToken(value); return *this;}
+    inline ForgetDeviceRequest& WithAccessToken(Aws::String&& value) { SetAccessToken(std::move(value)); return *this;}
 
     /**
      * <p>The access token for the forgotten device request.</p>
      */
     inline ForgetDeviceRequest& WithAccessToken(const char* value) { SetAccessToken(value); return *this;}
+
 
     /**
      * <p>The device key.</p>
@@ -85,7 +96,7 @@ namespace Model
     /**
      * <p>The device key.</p>
      */
-    inline void SetDeviceKey(Aws::String&& value) { m_deviceKeyHasBeenSet = true; m_deviceKey = value; }
+    inline void SetDeviceKey(Aws::String&& value) { m_deviceKeyHasBeenSet = true; m_deviceKey = std::move(value); }
 
     /**
      * <p>The device key.</p>
@@ -100,7 +111,7 @@ namespace Model
     /**
      * <p>The device key.</p>
      */
-    inline ForgetDeviceRequest& WithDeviceKey(Aws::String&& value) { SetDeviceKey(value); return *this;}
+    inline ForgetDeviceRequest& WithDeviceKey(Aws::String&& value) { SetDeviceKey(std::move(value)); return *this;}
 
     /**
      * <p>The device key.</p>
@@ -108,8 +119,10 @@ namespace Model
     inline ForgetDeviceRequest& WithDeviceKey(const char* value) { SetDeviceKey(value); return *this;}
 
   private:
+
     Aws::String m_accessToken;
     bool m_accessTokenHasBeenSet;
+
     Aws::String m_deviceKey;
     bool m_deviceKeyHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elastictranscoder/ElasticTranscoder_EXPORTS.h>
 #include <aws/elastictranscoder/ElasticTranscoderRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,9 +40,17 @@ namespace Model
   {
   public:
     ListJobsByPipelineRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListJobsByPipeline"; }
+
     Aws::String SerializePayload() const override;
 
     void AddQueryStringParameters(Aws::Http::URI& uri) const override;
+
 
     /**
      * <p>The ID of the pipeline for which you want to get job information.</p>
@@ -55,7 +65,7 @@ namespace Model
     /**
      * <p>The ID of the pipeline for which you want to get job information.</p>
      */
-    inline void SetPipelineId(Aws::String&& value) { m_pipelineIdHasBeenSet = true; m_pipelineId = value; }
+    inline void SetPipelineId(Aws::String&& value) { m_pipelineIdHasBeenSet = true; m_pipelineId = std::move(value); }
 
     /**
      * <p>The ID of the pipeline for which you want to get job information.</p>
@@ -70,12 +80,13 @@ namespace Model
     /**
      * <p>The ID of the pipeline for which you want to get job information.</p>
      */
-    inline ListJobsByPipelineRequest& WithPipelineId(Aws::String&& value) { SetPipelineId(value); return *this;}
+    inline ListJobsByPipelineRequest& WithPipelineId(Aws::String&& value) { SetPipelineId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the pipeline for which you want to get job information.</p>
      */
     inline ListJobsByPipelineRequest& WithPipelineId(const char* value) { SetPipelineId(value); return *this;}
+
 
     /**
      * <p> To list jobs in chronological order by the date and time that they were
@@ -96,7 +107,7 @@ namespace Model
      * submitted, enter <code>true</code>. To list jobs in reverse chronological order,
      * enter <code>false</code>. </p>
      */
-    inline void SetAscending(Aws::String&& value) { m_ascendingHasBeenSet = true; m_ascending = value; }
+    inline void SetAscending(Aws::String&& value) { m_ascendingHasBeenSet = true; m_ascending = std::move(value); }
 
     /**
      * <p> To list jobs in chronological order by the date and time that they were
@@ -117,7 +128,7 @@ namespace Model
      * submitted, enter <code>true</code>. To list jobs in reverse chronological order,
      * enter <code>false</code>. </p>
      */
-    inline ListJobsByPipelineRequest& WithAscending(Aws::String&& value) { SetAscending(value); return *this;}
+    inline ListJobsByPipelineRequest& WithAscending(Aws::String&& value) { SetAscending(std::move(value)); return *this;}
 
     /**
      * <p> To list jobs in chronological order by the date and time that they were
@@ -125,6 +136,7 @@ namespace Model
      * enter <code>false</code>. </p>
      */
     inline ListJobsByPipelineRequest& WithAscending(const char* value) { SetAscending(value); return *this;}
+
 
     /**
      * <p> When Elastic Transcoder returns more than one page of results, use
@@ -145,7 +157,7 @@ namespace Model
      * <code>pageToken</code> in subsequent <code>GET</code> requests to get each
      * successive page of results. </p>
      */
-    inline void SetPageToken(Aws::String&& value) { m_pageTokenHasBeenSet = true; m_pageToken = value; }
+    inline void SetPageToken(Aws::String&& value) { m_pageTokenHasBeenSet = true; m_pageToken = std::move(value); }
 
     /**
      * <p> When Elastic Transcoder returns more than one page of results, use
@@ -166,7 +178,7 @@ namespace Model
      * <code>pageToken</code> in subsequent <code>GET</code> requests to get each
      * successive page of results. </p>
      */
-    inline ListJobsByPipelineRequest& WithPageToken(Aws::String&& value) { SetPageToken(value); return *this;}
+    inline ListJobsByPipelineRequest& WithPageToken(Aws::String&& value) { SetPageToken(std::move(value)); return *this;}
 
     /**
      * <p> When Elastic Transcoder returns more than one page of results, use
@@ -176,10 +188,13 @@ namespace Model
     inline ListJobsByPipelineRequest& WithPageToken(const char* value) { SetPageToken(value); return *this;}
 
   private:
+
     Aws::String m_pipelineId;
     bool m_pipelineIdHasBeenSet;
+
     Aws::String m_ascending;
     bool m_ascendingHasBeenSet;
+
     Aws::String m_pageToken;
     bool m_pageTokenHasBeenSet;
   };

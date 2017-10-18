@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/ssm/model/S3OutputUrl.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     InstanceAssociationOutputUrl& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The URL of Amazon S3 bucket where you want to store the results of this
      * request.</p>
@@ -60,7 +63,7 @@ namespace Model
      * <p>The URL of Amazon S3 bucket where you want to store the results of this
      * request.</p>
      */
-    inline void SetS3OutputUrl(S3OutputUrl&& value) { m_s3OutputUrlHasBeenSet = true; m_s3OutputUrl = value; }
+    inline void SetS3OutputUrl(S3OutputUrl&& value) { m_s3OutputUrlHasBeenSet = true; m_s3OutputUrl = std::move(value); }
 
     /**
      * <p>The URL of Amazon S3 bucket where you want to store the results of this
@@ -72,9 +75,10 @@ namespace Model
      * <p>The URL of Amazon S3 bucket where you want to store the results of this
      * request.</p>
      */
-    inline InstanceAssociationOutputUrl& WithS3OutputUrl(S3OutputUrl&& value) { SetS3OutputUrl(value); return *this;}
+    inline InstanceAssociationOutputUrl& WithS3OutputUrl(S3OutputUrl&& value) { SetS3OutputUrl(std::move(value)); return *this;}
 
   private:
+
     S3OutputUrl m_s3OutputUrl;
     bool m_s3OutputUrlHasBeenSet;
   };

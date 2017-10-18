@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ssm/model/InstanceAssociation.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -30,14 +31,16 @@ namespace Model
 InstanceAssociation::InstanceAssociation() : 
     m_associationIdHasBeenSet(false),
     m_instanceIdHasBeenSet(false),
-    m_contentHasBeenSet(false)
+    m_contentHasBeenSet(false),
+    m_associationVersionHasBeenSet(false)
 {
 }
 
 InstanceAssociation::InstanceAssociation(const JsonValue& jsonValue) : 
     m_associationIdHasBeenSet(false),
     m_instanceIdHasBeenSet(false),
-    m_contentHasBeenSet(false)
+    m_contentHasBeenSet(false),
+    m_associationVersionHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -65,6 +68,13 @@ InstanceAssociation& InstanceAssociation::operator =(const JsonValue& jsonValue)
     m_contentHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("AssociationVersion"))
+  {
+    m_associationVersion = jsonValue.GetString("AssociationVersion");
+
+    m_associationVersionHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -87,6 +97,12 @@ JsonValue InstanceAssociation::Jsonize() const
   if(m_contentHasBeenSet)
   {
    payload.WithString("Content", m_content);
+
+  }
+
+  if(m_associationVersionHasBeenSet)
+  {
+   payload.WithString("AssociationVersion", m_associationVersion);
 
   }
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/rds/RDSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/rds/model/Filter.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,154 +37,147 @@ namespace Model
   {
   public:
     DescribeDBSnapshotsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeDBSnapshots"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The ID of the DB instance to retrieve the list of DB snapshots for. This
      * parameter cannot be used in conjunction with <code>DBSnapshotIdentifier</code>.
-     * This parameter is not case-sensitive. </p> <p>Constraints:</p> <ul> <li> <p>Must
-     * contain from 1 to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First
-     * character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain
-     * two consecutive hyphens</p> </li> </ul>
+     * This parameter is not case-sensitive. </p> <p>Constraints:</p> <ul> <li> <p>If
+     * supplied, must match the identifier of an existing DBInstance.</p> </li> </ul>
      */
     inline const Aws::String& GetDBInstanceIdentifier() const{ return m_dBInstanceIdentifier; }
 
     /**
      * <p>The ID of the DB instance to retrieve the list of DB snapshots for. This
      * parameter cannot be used in conjunction with <code>DBSnapshotIdentifier</code>.
-     * This parameter is not case-sensitive. </p> <p>Constraints:</p> <ul> <li> <p>Must
-     * contain from 1 to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First
-     * character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain
-     * two consecutive hyphens</p> </li> </ul>
+     * This parameter is not case-sensitive. </p> <p>Constraints:</p> <ul> <li> <p>If
+     * supplied, must match the identifier of an existing DBInstance.</p> </li> </ul>
      */
     inline void SetDBInstanceIdentifier(const Aws::String& value) { m_dBInstanceIdentifierHasBeenSet = true; m_dBInstanceIdentifier = value; }
 
     /**
      * <p>The ID of the DB instance to retrieve the list of DB snapshots for. This
      * parameter cannot be used in conjunction with <code>DBSnapshotIdentifier</code>.
-     * This parameter is not case-sensitive. </p> <p>Constraints:</p> <ul> <li> <p>Must
-     * contain from 1 to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First
-     * character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain
-     * two consecutive hyphens</p> </li> </ul>
+     * This parameter is not case-sensitive. </p> <p>Constraints:</p> <ul> <li> <p>If
+     * supplied, must match the identifier of an existing DBInstance.</p> </li> </ul>
      */
-    inline void SetDBInstanceIdentifier(Aws::String&& value) { m_dBInstanceIdentifierHasBeenSet = true; m_dBInstanceIdentifier = value; }
+    inline void SetDBInstanceIdentifier(Aws::String&& value) { m_dBInstanceIdentifierHasBeenSet = true; m_dBInstanceIdentifier = std::move(value); }
 
     /**
      * <p>The ID of the DB instance to retrieve the list of DB snapshots for. This
      * parameter cannot be used in conjunction with <code>DBSnapshotIdentifier</code>.
-     * This parameter is not case-sensitive. </p> <p>Constraints:</p> <ul> <li> <p>Must
-     * contain from 1 to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First
-     * character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain
-     * two consecutive hyphens</p> </li> </ul>
+     * This parameter is not case-sensitive. </p> <p>Constraints:</p> <ul> <li> <p>If
+     * supplied, must match the identifier of an existing DBInstance.</p> </li> </ul>
      */
     inline void SetDBInstanceIdentifier(const char* value) { m_dBInstanceIdentifierHasBeenSet = true; m_dBInstanceIdentifier.assign(value); }
 
     /**
      * <p>The ID of the DB instance to retrieve the list of DB snapshots for. This
      * parameter cannot be used in conjunction with <code>DBSnapshotIdentifier</code>.
-     * This parameter is not case-sensitive. </p> <p>Constraints:</p> <ul> <li> <p>Must
-     * contain from 1 to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First
-     * character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain
-     * two consecutive hyphens</p> </li> </ul>
+     * This parameter is not case-sensitive. </p> <p>Constraints:</p> <ul> <li> <p>If
+     * supplied, must match the identifier of an existing DBInstance.</p> </li> </ul>
      */
     inline DescribeDBSnapshotsRequest& WithDBInstanceIdentifier(const Aws::String& value) { SetDBInstanceIdentifier(value); return *this;}
 
     /**
      * <p>The ID of the DB instance to retrieve the list of DB snapshots for. This
      * parameter cannot be used in conjunction with <code>DBSnapshotIdentifier</code>.
-     * This parameter is not case-sensitive. </p> <p>Constraints:</p> <ul> <li> <p>Must
-     * contain from 1 to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First
-     * character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain
-     * two consecutive hyphens</p> </li> </ul>
+     * This parameter is not case-sensitive. </p> <p>Constraints:</p> <ul> <li> <p>If
+     * supplied, must match the identifier of an existing DBInstance.</p> </li> </ul>
      */
-    inline DescribeDBSnapshotsRequest& WithDBInstanceIdentifier(Aws::String&& value) { SetDBInstanceIdentifier(value); return *this;}
+    inline DescribeDBSnapshotsRequest& WithDBInstanceIdentifier(Aws::String&& value) { SetDBInstanceIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the DB instance to retrieve the list of DB snapshots for. This
      * parameter cannot be used in conjunction with <code>DBSnapshotIdentifier</code>.
-     * This parameter is not case-sensitive. </p> <p>Constraints:</p> <ul> <li> <p>Must
-     * contain from 1 to 63 alphanumeric characters or hyphens</p> </li> <li> <p>First
-     * character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain
-     * two consecutive hyphens</p> </li> </ul>
+     * This parameter is not case-sensitive. </p> <p>Constraints:</p> <ul> <li> <p>If
+     * supplied, must match the identifier of an existing DBInstance.</p> </li> </ul>
      */
     inline DescribeDBSnapshotsRequest& WithDBInstanceIdentifier(const char* value) { SetDBInstanceIdentifier(value); return *this;}
+
 
     /**
      * <p> A specific DB snapshot identifier to describe. This parameter cannot be used
      * in conjunction with <code>DBInstanceIdentifier</code>. This value is stored as a
-     * lowercase string. </p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255
-     * alphanumeric characters.</p> </li> <li> <p>First character must be a letter.</p>
-     * </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p>
-     * </li> <li> <p>If this identifier is for an automated snapshot, the
-     * <code>SnapshotType</code> parameter must also be specified.</p> </li> </ul>
+     * lowercase string. </p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match
+     * the identifier of an existing DBSnapshot.</p> </li> <li> <p>If this identifier
+     * is for an automated snapshot, the <code>SnapshotType</code> parameter must also
+     * be specified.</p> </li> </ul>
      */
     inline const Aws::String& GetDBSnapshotIdentifier() const{ return m_dBSnapshotIdentifier; }
 
     /**
      * <p> A specific DB snapshot identifier to describe. This parameter cannot be used
      * in conjunction with <code>DBInstanceIdentifier</code>. This value is stored as a
-     * lowercase string. </p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255
-     * alphanumeric characters.</p> </li> <li> <p>First character must be a letter.</p>
-     * </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p>
-     * </li> <li> <p>If this identifier is for an automated snapshot, the
-     * <code>SnapshotType</code> parameter must also be specified.</p> </li> </ul>
+     * lowercase string. </p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match
+     * the identifier of an existing DBSnapshot.</p> </li> <li> <p>If this identifier
+     * is for an automated snapshot, the <code>SnapshotType</code> parameter must also
+     * be specified.</p> </li> </ul>
      */
     inline void SetDBSnapshotIdentifier(const Aws::String& value) { m_dBSnapshotIdentifierHasBeenSet = true; m_dBSnapshotIdentifier = value; }
 
     /**
      * <p> A specific DB snapshot identifier to describe. This parameter cannot be used
      * in conjunction with <code>DBInstanceIdentifier</code>. This value is stored as a
-     * lowercase string. </p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255
-     * alphanumeric characters.</p> </li> <li> <p>First character must be a letter.</p>
-     * </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p>
-     * </li> <li> <p>If this identifier is for an automated snapshot, the
-     * <code>SnapshotType</code> parameter must also be specified.</p> </li> </ul>
+     * lowercase string. </p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match
+     * the identifier of an existing DBSnapshot.</p> </li> <li> <p>If this identifier
+     * is for an automated snapshot, the <code>SnapshotType</code> parameter must also
+     * be specified.</p> </li> </ul>
      */
-    inline void SetDBSnapshotIdentifier(Aws::String&& value) { m_dBSnapshotIdentifierHasBeenSet = true; m_dBSnapshotIdentifier = value; }
+    inline void SetDBSnapshotIdentifier(Aws::String&& value) { m_dBSnapshotIdentifierHasBeenSet = true; m_dBSnapshotIdentifier = std::move(value); }
 
     /**
      * <p> A specific DB snapshot identifier to describe. This parameter cannot be used
      * in conjunction with <code>DBInstanceIdentifier</code>. This value is stored as a
-     * lowercase string. </p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255
-     * alphanumeric characters.</p> </li> <li> <p>First character must be a letter.</p>
-     * </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p>
-     * </li> <li> <p>If this identifier is for an automated snapshot, the
-     * <code>SnapshotType</code> parameter must also be specified.</p> </li> </ul>
+     * lowercase string. </p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match
+     * the identifier of an existing DBSnapshot.</p> </li> <li> <p>If this identifier
+     * is for an automated snapshot, the <code>SnapshotType</code> parameter must also
+     * be specified.</p> </li> </ul>
      */
     inline void SetDBSnapshotIdentifier(const char* value) { m_dBSnapshotIdentifierHasBeenSet = true; m_dBSnapshotIdentifier.assign(value); }
 
     /**
      * <p> A specific DB snapshot identifier to describe. This parameter cannot be used
      * in conjunction with <code>DBInstanceIdentifier</code>. This value is stored as a
-     * lowercase string. </p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255
-     * alphanumeric characters.</p> </li> <li> <p>First character must be a letter.</p>
-     * </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p>
-     * </li> <li> <p>If this identifier is for an automated snapshot, the
-     * <code>SnapshotType</code> parameter must also be specified.</p> </li> </ul>
+     * lowercase string. </p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match
+     * the identifier of an existing DBSnapshot.</p> </li> <li> <p>If this identifier
+     * is for an automated snapshot, the <code>SnapshotType</code> parameter must also
+     * be specified.</p> </li> </ul>
      */
     inline DescribeDBSnapshotsRequest& WithDBSnapshotIdentifier(const Aws::String& value) { SetDBSnapshotIdentifier(value); return *this;}
 
     /**
      * <p> A specific DB snapshot identifier to describe. This parameter cannot be used
      * in conjunction with <code>DBInstanceIdentifier</code>. This value is stored as a
-     * lowercase string. </p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255
-     * alphanumeric characters.</p> </li> <li> <p>First character must be a letter.</p>
-     * </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p>
-     * </li> <li> <p>If this identifier is for an automated snapshot, the
-     * <code>SnapshotType</code> parameter must also be specified.</p> </li> </ul>
+     * lowercase string. </p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match
+     * the identifier of an existing DBSnapshot.</p> </li> <li> <p>If this identifier
+     * is for an automated snapshot, the <code>SnapshotType</code> parameter must also
+     * be specified.</p> </li> </ul>
      */
-    inline DescribeDBSnapshotsRequest& WithDBSnapshotIdentifier(Aws::String&& value) { SetDBSnapshotIdentifier(value); return *this;}
+    inline DescribeDBSnapshotsRequest& WithDBSnapshotIdentifier(Aws::String&& value) { SetDBSnapshotIdentifier(std::move(value)); return *this;}
 
     /**
      * <p> A specific DB snapshot identifier to describe. This parameter cannot be used
      * in conjunction with <code>DBInstanceIdentifier</code>. This value is stored as a
-     * lowercase string. </p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255
-     * alphanumeric characters.</p> </li> <li> <p>First character must be a letter.</p>
-     * </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p>
-     * </li> <li> <p>If this identifier is for an automated snapshot, the
-     * <code>SnapshotType</code> parameter must also be specified.</p> </li> </ul>
+     * lowercase string. </p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match
+     * the identifier of an existing DBSnapshot.</p> </li> <li> <p>If this identifier
+     * is for an automated snapshot, the <code>SnapshotType</code> parameter must also
+     * be specified.</p> </li> </ul>
      */
     inline DescribeDBSnapshotsRequest& WithDBSnapshotIdentifier(const char* value) { SetDBSnapshotIdentifier(value); return *this;}
+
 
     /**
      * <p>The type of snapshots to be returned. You can specify one of the following
@@ -251,7 +246,7 @@ namespace Model
      * <code>IncludeShared</code> parameter doesn't apply when
      * <code>SnapshotType</code> is set to <code>public</code>.</p>
      */
-    inline void SetSnapshotType(Aws::String&& value) { m_snapshotTypeHasBeenSet = true; m_snapshotType = value; }
+    inline void SetSnapshotType(Aws::String&& value) { m_snapshotTypeHasBeenSet = true; m_snapshotType = std::move(value); }
 
     /**
      * <p>The type of snapshots to be returned. You can specify one of the following
@@ -320,7 +315,7 @@ namespace Model
      * <code>IncludeShared</code> parameter doesn't apply when
      * <code>SnapshotType</code> is set to <code>public</code>.</p>
      */
-    inline DescribeDBSnapshotsRequest& WithSnapshotType(Aws::String&& value) { SetSnapshotType(value); return *this;}
+    inline DescribeDBSnapshotsRequest& WithSnapshotType(Aws::String&& value) { SetSnapshotType(std::move(value)); return *this;}
 
     /**
      * <p>The type of snapshots to be returned. You can specify one of the following
@@ -345,6 +340,7 @@ namespace Model
      */
     inline DescribeDBSnapshotsRequest& WithSnapshotType(const char* value) { SetSnapshotType(value); return *this;}
 
+
     /**
      * <p>This parameter is not currently supported.</p>
      */
@@ -358,7 +354,7 @@ namespace Model
     /**
      * <p>This parameter is not currently supported.</p>
      */
-    inline void SetFilters(Aws::Vector<Filter>&& value) { m_filtersHasBeenSet = true; m_filters = value; }
+    inline void SetFilters(Aws::Vector<Filter>&& value) { m_filtersHasBeenSet = true; m_filters = std::move(value); }
 
     /**
      * <p>This parameter is not currently supported.</p>
@@ -368,7 +364,7 @@ namespace Model
     /**
      * <p>This parameter is not currently supported.</p>
      */
-    inline DescribeDBSnapshotsRequest& WithFilters(Aws::Vector<Filter>&& value) { SetFilters(value); return *this;}
+    inline DescribeDBSnapshotsRequest& WithFilters(Aws::Vector<Filter>&& value) { SetFilters(std::move(value)); return *this;}
 
     /**
      * <p>This parameter is not currently supported.</p>
@@ -378,7 +374,8 @@ namespace Model
     /**
      * <p>This parameter is not currently supported.</p>
      */
-    inline DescribeDBSnapshotsRequest& AddFilters(Filter&& value) { m_filtersHasBeenSet = true; m_filters.push_back(value); return *this; }
+    inline DescribeDBSnapshotsRequest& AddFilters(Filter&& value) { m_filtersHasBeenSet = true; m_filters.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p> The maximum number of records to include in the response. If more records
@@ -404,6 +401,7 @@ namespace Model
      */
     inline DescribeDBSnapshotsRequest& WithMaxRecords(int value) { SetMaxRecords(value); return *this;}
 
+
     /**
      * <p> An optional pagination token provided by a previous
      * <code>DescribeDBSnapshots</code> request. If this parameter is specified, the
@@ -426,7 +424,7 @@ namespace Model
      * response includes only records beyond the marker, up to the value specified by
      * <code>MaxRecords</code>. </p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p> An optional pagination token provided by a previous
@@ -450,7 +448,7 @@ namespace Model
      * response includes only records beyond the marker, up to the value specified by
      * <code>MaxRecords</code>. </p>
      */
-    inline DescribeDBSnapshotsRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeDBSnapshotsRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p> An optional pagination token provided by a previous
@@ -459,6 +457,7 @@ namespace Model
      * <code>MaxRecords</code>. </p>
      */
     inline DescribeDBSnapshotsRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>Set this value to <code>true</code> to include shared manual DB snapshots
@@ -490,6 +489,7 @@ namespace Model
      */
     inline DescribeDBSnapshotsRequest& WithIncludeShared(bool value) { SetIncludeShared(value); return *this;}
 
+
     /**
      * <p>Set this value to <code>true</code> to include manual DB snapshots that are
      * public and can be copied or restored by any AWS account, otherwise set this
@@ -518,20 +518,28 @@ namespace Model
     inline DescribeDBSnapshotsRequest& WithIncludePublic(bool value) { SetIncludePublic(value); return *this;}
 
   private:
+
     Aws::String m_dBInstanceIdentifier;
     bool m_dBInstanceIdentifierHasBeenSet;
+
     Aws::String m_dBSnapshotIdentifier;
     bool m_dBSnapshotIdentifierHasBeenSet;
+
     Aws::String m_snapshotType;
     bool m_snapshotTypeHasBeenSet;
+
     Aws::Vector<Filter> m_filters;
     bool m_filtersHasBeenSet;
+
     int m_maxRecords;
     bool m_maxRecordsHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
+
     bool m_includeShared;
     bool m_includeSharedHasBeenSet;
+
     bool m_includePublic;
     bool m_includePublicHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/gamelift/GameLift_EXPORTS.h>
 #include <aws/gamelift/model/Alias.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,35 +44,37 @@ namespace Model
   {
   public:
     DescribeAliasResult();
-    DescribeAliasResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeAliasResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeAliasResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeAliasResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>Object containing the requested alias.</p>
+     * <p>Object that contains the requested alias.</p>
      */
     inline const Alias& GetAlias() const{ return m_alias; }
 
     /**
-     * <p>Object containing the requested alias.</p>
+     * <p>Object that contains the requested alias.</p>
      */
     inline void SetAlias(const Alias& value) { m_alias = value; }
 
     /**
-     * <p>Object containing the requested alias.</p>
+     * <p>Object that contains the requested alias.</p>
      */
-    inline void SetAlias(Alias&& value) { m_alias = value; }
+    inline void SetAlias(Alias&& value) { m_alias = std::move(value); }
 
     /**
-     * <p>Object containing the requested alias.</p>
+     * <p>Object that contains the requested alias.</p>
      */
     inline DescribeAliasResult& WithAlias(const Alias& value) { SetAlias(value); return *this;}
 
     /**
-     * <p>Object containing the requested alias.</p>
+     * <p>Object that contains the requested alias.</p>
      */
-    inline DescribeAliasResult& WithAlias(Alias&& value) { SetAlias(value); return *this;}
+    inline DescribeAliasResult& WithAlias(Alias&& value) { SetAlias(std::move(value)); return *this;}
 
   private:
+
     Alias m_alias;
   };
 

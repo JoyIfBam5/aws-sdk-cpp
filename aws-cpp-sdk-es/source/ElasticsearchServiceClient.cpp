@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/core/utils/Outcome.h>
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
@@ -32,6 +33,9 @@
 #include <aws/es/model/DescribeElasticsearchDomainRequest.h>
 #include <aws/es/model/DescribeElasticsearchDomainConfigRequest.h>
 #include <aws/es/model/DescribeElasticsearchDomainsRequest.h>
+#include <aws/es/model/DescribeElasticsearchInstanceTypeLimitsRequest.h>
+#include <aws/es/model/ListElasticsearchInstanceTypesRequest.h>
+#include <aws/es/model/ListElasticsearchVersionsRequest.h>
 #include <aws/es/model/ListTagsRequest.h>
 #include <aws/es/model/RemoveTagsRequest.h>
 #include <aws/es/model/UpdateElasticsearchDomainConfigRequest.h>
@@ -103,9 +107,10 @@ void ElasticsearchServiceClient::init(const ClientConfiguration& config)
 AddTagsOutcome ElasticsearchServiceClient::AddTags(const AddTagsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-01-01/tags";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-01-01/tags";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return AddTagsOutcome(NoResult());
@@ -137,9 +142,10 @@ void ElasticsearchServiceClient::AddTagsAsyncHelper(const AddTagsRequest& reques
 CreateElasticsearchDomainOutcome ElasticsearchServiceClient::CreateElasticsearchDomain(const CreateElasticsearchDomainRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-01-01/es/domain";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-01-01/es/domain";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return CreateElasticsearchDomainOutcome(CreateElasticsearchDomainResult(outcome.GetResult()));
@@ -171,10 +177,11 @@ void ElasticsearchServiceClient::CreateElasticsearchDomainAsyncHelper(const Crea
 DeleteElasticsearchDomainOutcome ElasticsearchServiceClient::DeleteElasticsearchDomain(const DeleteElasticsearchDomainRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-01-01/es/domain/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-01-01/es/domain/";
   ss << request.GetDomainName();
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_DELETE);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_DELETE, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DeleteElasticsearchDomainOutcome(DeleteElasticsearchDomainResult(outcome.GetResult()));
@@ -203,13 +210,48 @@ void ElasticsearchServiceClient::DeleteElasticsearchDomainAsyncHelper(const Dele
   handler(this, request, DeleteElasticsearchDomain(request), context);
 }
 
+DeleteElasticsearchServiceRoleOutcome ElasticsearchServiceClient::DeleteElasticsearchServiceRole() const
+{
+  Aws::StringStream ss;
+  ss << m_uri << "/2015-01-01/es/role";
+
+  JsonOutcome outcome = MakeRequest(ss.str(), HttpMethod::HTTP_DELETE, Aws::Auth::SIGV4_SIGNER, "{operation.name}");
+  if(outcome.IsSuccess())
+  {
+    return DeleteElasticsearchServiceRoleOutcome(NoResult());
+  }
+  else
+  {
+    return DeleteElasticsearchServiceRoleOutcome(outcome.GetError());
+  }
+}
+
+DeleteElasticsearchServiceRoleOutcomeCallable ElasticsearchServiceClient::DeleteElasticsearchServiceRoleCallable() const
+{
+  auto task = Aws::MakeShared< std::packaged_task< DeleteElasticsearchServiceRoleOutcome() > >(ALLOCATION_TAG, [this](){ return this->DeleteElasticsearchServiceRole(); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void ElasticsearchServiceClient::DeleteElasticsearchServiceRoleAsync(const DeleteElasticsearchServiceRoleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, handler, context](){ this->DeleteElasticsearchServiceRoleAsyncHelper( handler, context ); } );
+}
+
+void ElasticsearchServiceClient::DeleteElasticsearchServiceRoleAsyncHelper(const DeleteElasticsearchServiceRoleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, DeleteElasticsearchServiceRole(), context);
+}
+
 DescribeElasticsearchDomainOutcome ElasticsearchServiceClient::DescribeElasticsearchDomain(const DescribeElasticsearchDomainRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-01-01/es/domain/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-01-01/es/domain/";
   ss << request.GetDomainName();
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_GET);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeElasticsearchDomainOutcome(DescribeElasticsearchDomainResult(outcome.GetResult()));
@@ -241,11 +283,12 @@ void ElasticsearchServiceClient::DescribeElasticsearchDomainAsyncHelper(const De
 DescribeElasticsearchDomainConfigOutcome ElasticsearchServiceClient::DescribeElasticsearchDomainConfig(const DescribeElasticsearchDomainConfigRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-01-01/es/domain/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-01-01/es/domain/";
   ss << request.GetDomainName();
   ss << "/config";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_GET);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeElasticsearchDomainConfigOutcome(DescribeElasticsearchDomainConfigResult(outcome.GetResult()));
@@ -277,9 +320,10 @@ void ElasticsearchServiceClient::DescribeElasticsearchDomainConfigAsyncHelper(co
 DescribeElasticsearchDomainsOutcome ElasticsearchServiceClient::DescribeElasticsearchDomains(const DescribeElasticsearchDomainsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-01-01/es/domain-info";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-01-01/es/domain-info";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeElasticsearchDomainsOutcome(DescribeElasticsearchDomainsResult(outcome.GetResult()));
@@ -308,12 +352,50 @@ void ElasticsearchServiceClient::DescribeElasticsearchDomainsAsyncHelper(const D
   handler(this, request, DescribeElasticsearchDomains(request), context);
 }
 
+DescribeElasticsearchInstanceTypeLimitsOutcome ElasticsearchServiceClient::DescribeElasticsearchInstanceTypeLimits(const DescribeElasticsearchInstanceTypeLimitsRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-01-01/es/instanceTypeLimits/";
+  ss << request.GetElasticsearchVersion();
+  ss << "/";
+  ss << ESPartitionInstanceTypeMapper::GetNameForESPartitionInstanceType(request.GetInstanceType());
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return DescribeElasticsearchInstanceTypeLimitsOutcome(DescribeElasticsearchInstanceTypeLimitsResult(outcome.GetResult()));
+  }
+  else
+  {
+    return DescribeElasticsearchInstanceTypeLimitsOutcome(outcome.GetError());
+  }
+}
+
+DescribeElasticsearchInstanceTypeLimitsOutcomeCallable ElasticsearchServiceClient::DescribeElasticsearchInstanceTypeLimitsCallable(const DescribeElasticsearchInstanceTypeLimitsRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< DescribeElasticsearchInstanceTypeLimitsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeElasticsearchInstanceTypeLimits(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void ElasticsearchServiceClient::DescribeElasticsearchInstanceTypeLimitsAsync(const DescribeElasticsearchInstanceTypeLimitsRequest& request, const DescribeElasticsearchInstanceTypeLimitsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->DescribeElasticsearchInstanceTypeLimitsAsyncHelper( request, handler, context ); } );
+}
+
+void ElasticsearchServiceClient::DescribeElasticsearchInstanceTypeLimitsAsyncHelper(const DescribeElasticsearchInstanceTypeLimitsRequest& request, const DescribeElasticsearchInstanceTypeLimitsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, DescribeElasticsearchInstanceTypeLimits(request), context);
+}
+
 ListDomainNamesOutcome ElasticsearchServiceClient::ListDomainNames() const
 {
   Aws::StringStream ss;
   ss << m_uri << "/2015-01-01/domain";
 
-  JsonOutcome outcome = MakeRequest(ss.str(), HttpMethod::HTTP_GET);
+  JsonOutcome outcome = MakeRequest(ss.str(), HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER, "{operation.name}");
   if(outcome.IsSuccess())
   {
     return ListDomainNamesOutcome(ListDomainNamesResult(outcome.GetResult()));
@@ -342,12 +424,84 @@ void ElasticsearchServiceClient::ListDomainNamesAsyncHelper(const ListDomainName
   handler(this, ListDomainNames(), context);
 }
 
+ListElasticsearchInstanceTypesOutcome ElasticsearchServiceClient::ListElasticsearchInstanceTypes(const ListElasticsearchInstanceTypesRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-01-01/es/instanceTypes/";
+  ss << request.GetElasticsearchVersion();
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return ListElasticsearchInstanceTypesOutcome(ListElasticsearchInstanceTypesResult(outcome.GetResult()));
+  }
+  else
+  {
+    return ListElasticsearchInstanceTypesOutcome(outcome.GetError());
+  }
+}
+
+ListElasticsearchInstanceTypesOutcomeCallable ElasticsearchServiceClient::ListElasticsearchInstanceTypesCallable(const ListElasticsearchInstanceTypesRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< ListElasticsearchInstanceTypesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListElasticsearchInstanceTypes(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void ElasticsearchServiceClient::ListElasticsearchInstanceTypesAsync(const ListElasticsearchInstanceTypesRequest& request, const ListElasticsearchInstanceTypesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->ListElasticsearchInstanceTypesAsyncHelper( request, handler, context ); } );
+}
+
+void ElasticsearchServiceClient::ListElasticsearchInstanceTypesAsyncHelper(const ListElasticsearchInstanceTypesRequest& request, const ListElasticsearchInstanceTypesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, ListElasticsearchInstanceTypes(request), context);
+}
+
+ListElasticsearchVersionsOutcome ElasticsearchServiceClient::ListElasticsearchVersions(const ListElasticsearchVersionsRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-01-01/es/versions";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return ListElasticsearchVersionsOutcome(ListElasticsearchVersionsResult(outcome.GetResult()));
+  }
+  else
+  {
+    return ListElasticsearchVersionsOutcome(outcome.GetError());
+  }
+}
+
+ListElasticsearchVersionsOutcomeCallable ElasticsearchServiceClient::ListElasticsearchVersionsCallable(const ListElasticsearchVersionsRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< ListElasticsearchVersionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListElasticsearchVersions(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void ElasticsearchServiceClient::ListElasticsearchVersionsAsync(const ListElasticsearchVersionsRequest& request, const ListElasticsearchVersionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->ListElasticsearchVersionsAsyncHelper( request, handler, context ); } );
+}
+
+void ElasticsearchServiceClient::ListElasticsearchVersionsAsyncHelper(const ListElasticsearchVersionsRequest& request, const ListElasticsearchVersionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, ListElasticsearchVersions(request), context);
+}
+
 ListTagsOutcome ElasticsearchServiceClient::ListTags(const ListTagsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-01-01/tags/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_GET);
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-01-01/tags/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ListTagsOutcome(ListTagsResult(outcome.GetResult()));
@@ -379,9 +533,10 @@ void ElasticsearchServiceClient::ListTagsAsyncHelper(const ListTagsRequest& requ
 RemoveTagsOutcome ElasticsearchServiceClient::RemoveTags(const RemoveTagsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-01-01/tags-removal";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-01-01/tags-removal";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return RemoveTagsOutcome(NoResult());
@@ -413,11 +568,12 @@ void ElasticsearchServiceClient::RemoveTagsAsyncHelper(const RemoveTagsRequest& 
 UpdateElasticsearchDomainConfigOutcome ElasticsearchServiceClient::UpdateElasticsearchDomainConfig(const UpdateElasticsearchDomainConfigRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-01-01/es/domain/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-01-01/es/domain/";
   ss << request.GetDomainName();
   ss << "/config";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return UpdateElasticsearchDomainConfigOutcome(UpdateElasticsearchDomainConfigResult(outcome.GetResult()));

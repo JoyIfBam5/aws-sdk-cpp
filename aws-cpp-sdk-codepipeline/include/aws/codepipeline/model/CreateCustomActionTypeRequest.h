@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codepipeline/CodePipeline_EXPORTS.h>
 #include <aws/codepipeline/CodePipelineRequest.h>
@@ -21,6 +22,7 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/codepipeline/model/ArtifactDetails.h>
 #include <aws/codepipeline/model/ActionConfigurationProperty.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,7 +32,7 @@ namespace Model
 {
 
   /**
-   * <p>Represents the input of a create custom action operation.</p><p><h3>See
+   * <p>Represents the input of a CreateCustomActionType operation.</p><p><h3>See
    * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/CreateCustomActionTypeInput">AWS
    * API Reference</a></p>
@@ -39,9 +41,17 @@ namespace Model
   {
   public:
     CreateCustomActionTypeRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateCustomActionType"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The category of the custom action, such as a build action or a test
@@ -65,7 +75,7 @@ namespace Model
      * they are not currently functional. These values are reserved for future use.</p>
      * </note>
      */
-    inline void SetCategory(ActionCategory&& value) { m_categoryHasBeenSet = true; m_category = value; }
+    inline void SetCategory(ActionCategory&& value) { m_categoryHasBeenSet = true; m_category = std::move(value); }
 
     /**
      * <p>The category of the custom action, such as a build action or a test
@@ -81,7 +91,8 @@ namespace Model
      * they are not currently functional. These values are reserved for future use.</p>
      * </note>
      */
-    inline CreateCustomActionTypeRequest& WithCategory(ActionCategory&& value) { SetCategory(value); return *this;}
+    inline CreateCustomActionTypeRequest& WithCategory(ActionCategory&& value) { SetCategory(std::move(value)); return *this;}
+
 
     /**
      * <p>The provider of the service used in the custom action, such as AWS
@@ -99,7 +110,7 @@ namespace Model
      * <p>The provider of the service used in the custom action, such as AWS
      * CodeDeploy.</p>
      */
-    inline void SetProvider(Aws::String&& value) { m_providerHasBeenSet = true; m_provider = value; }
+    inline void SetProvider(Aws::String&& value) { m_providerHasBeenSet = true; m_provider = std::move(value); }
 
     /**
      * <p>The provider of the service used in the custom action, such as AWS
@@ -117,13 +128,14 @@ namespace Model
      * <p>The provider of the service used in the custom action, such as AWS
      * CodeDeploy.</p>
      */
-    inline CreateCustomActionTypeRequest& WithProvider(Aws::String&& value) { SetProvider(value); return *this;}
+    inline CreateCustomActionTypeRequest& WithProvider(Aws::String&& value) { SetProvider(std::move(value)); return *this;}
 
     /**
      * <p>The provider of the service used in the custom action, such as AWS
      * CodeDeploy.</p>
      */
     inline CreateCustomActionTypeRequest& WithProvider(const char* value) { SetProvider(value); return *this;}
+
 
     /**
      * <p>The version identifier of the custom action.</p>
@@ -138,7 +150,7 @@ namespace Model
     /**
      * <p>The version identifier of the custom action.</p>
      */
-    inline void SetVersion(Aws::String&& value) { m_versionHasBeenSet = true; m_version = value; }
+    inline void SetVersion(Aws::String&& value) { m_versionHasBeenSet = true; m_version = std::move(value); }
 
     /**
      * <p>The version identifier of the custom action.</p>
@@ -153,27 +165,39 @@ namespace Model
     /**
      * <p>The version identifier of the custom action.</p>
      */
-    inline CreateCustomActionTypeRequest& WithVersion(Aws::String&& value) { SetVersion(value); return *this;}
+    inline CreateCustomActionTypeRequest& WithVersion(Aws::String&& value) { SetVersion(std::move(value)); return *this;}
 
     /**
      * <p>The version identifier of the custom action.</p>
      */
     inline CreateCustomActionTypeRequest& WithVersion(const char* value) { SetVersion(value); return *this;}
 
-    
+
+    /**
+     * <p>Returns information about the settings for an action type.</p>
+     */
     inline const ActionTypeSettings& GetSettings() const{ return m_settings; }
 
-    
+    /**
+     * <p>Returns information about the settings for an action type.</p>
+     */
     inline void SetSettings(const ActionTypeSettings& value) { m_settingsHasBeenSet = true; m_settings = value; }
 
-    
-    inline void SetSettings(ActionTypeSettings&& value) { m_settingsHasBeenSet = true; m_settings = value; }
+    /**
+     * <p>Returns information about the settings for an action type.</p>
+     */
+    inline void SetSettings(ActionTypeSettings&& value) { m_settingsHasBeenSet = true; m_settings = std::move(value); }
 
-    
+    /**
+     * <p>Returns information about the settings for an action type.</p>
+     */
     inline CreateCustomActionTypeRequest& WithSettings(const ActionTypeSettings& value) { SetSettings(value); return *this;}
 
-    
-    inline CreateCustomActionTypeRequest& WithSettings(ActionTypeSettings&& value) { SetSettings(value); return *this;}
+    /**
+     * <p>Returns information about the settings for an action type.</p>
+     */
+    inline CreateCustomActionTypeRequest& WithSettings(ActionTypeSettings&& value) { SetSettings(std::move(value)); return *this;}
+
 
     /**
      * <p>The configuration properties for the custom action.</p> <note> <p>You can
@@ -206,7 +230,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/codepipeline/latest/userguide/how-to-create-custom-action.html">Create
      * a Custom Action for a Pipeline</a>.</p> </note>
      */
-    inline void SetConfigurationProperties(Aws::Vector<ActionConfigurationProperty>&& value) { m_configurationPropertiesHasBeenSet = true; m_configurationProperties = value; }
+    inline void SetConfigurationProperties(Aws::Vector<ActionConfigurationProperty>&& value) { m_configurationPropertiesHasBeenSet = true; m_configurationProperties = std::move(value); }
 
     /**
      * <p>The configuration properties for the custom action.</p> <note> <p>You can
@@ -228,7 +252,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/codepipeline/latest/userguide/how-to-create-custom-action.html">Create
      * a Custom Action for a Pipeline</a>.</p> </note>
      */
-    inline CreateCustomActionTypeRequest& WithConfigurationProperties(Aws::Vector<ActionConfigurationProperty>&& value) { SetConfigurationProperties(value); return *this;}
+    inline CreateCustomActionTypeRequest& WithConfigurationProperties(Aws::Vector<ActionConfigurationProperty>&& value) { SetConfigurationProperties(std::move(value)); return *this;}
 
     /**
      * <p>The configuration properties for the custom action.</p> <note> <p>You can
@@ -250,51 +274,80 @@ namespace Model
      * href="http://docs.aws.amazon.com/codepipeline/latest/userguide/how-to-create-custom-action.html">Create
      * a Custom Action for a Pipeline</a>.</p> </note>
      */
-    inline CreateCustomActionTypeRequest& AddConfigurationProperties(ActionConfigurationProperty&& value) { m_configurationPropertiesHasBeenSet = true; m_configurationProperties.push_back(value); return *this; }
+    inline CreateCustomActionTypeRequest& AddConfigurationProperties(ActionConfigurationProperty&& value) { m_configurationPropertiesHasBeenSet = true; m_configurationProperties.push_back(std::move(value)); return *this; }
 
-    
+
+    /**
+     * <p>The details of the input artifact for the action, such as its commit ID.</p>
+     */
     inline const ArtifactDetails& GetInputArtifactDetails() const{ return m_inputArtifactDetails; }
 
-    
+    /**
+     * <p>The details of the input artifact for the action, such as its commit ID.</p>
+     */
     inline void SetInputArtifactDetails(const ArtifactDetails& value) { m_inputArtifactDetailsHasBeenSet = true; m_inputArtifactDetails = value; }
 
-    
-    inline void SetInputArtifactDetails(ArtifactDetails&& value) { m_inputArtifactDetailsHasBeenSet = true; m_inputArtifactDetails = value; }
+    /**
+     * <p>The details of the input artifact for the action, such as its commit ID.</p>
+     */
+    inline void SetInputArtifactDetails(ArtifactDetails&& value) { m_inputArtifactDetailsHasBeenSet = true; m_inputArtifactDetails = std::move(value); }
 
-    
+    /**
+     * <p>The details of the input artifact for the action, such as its commit ID.</p>
+     */
     inline CreateCustomActionTypeRequest& WithInputArtifactDetails(const ArtifactDetails& value) { SetInputArtifactDetails(value); return *this;}
 
-    
-    inline CreateCustomActionTypeRequest& WithInputArtifactDetails(ArtifactDetails&& value) { SetInputArtifactDetails(value); return *this;}
+    /**
+     * <p>The details of the input artifact for the action, such as its commit ID.</p>
+     */
+    inline CreateCustomActionTypeRequest& WithInputArtifactDetails(ArtifactDetails&& value) { SetInputArtifactDetails(std::move(value)); return *this;}
 
-    
+
+    /**
+     * <p>The details of the output artifact of the action, such as its commit ID.</p>
+     */
     inline const ArtifactDetails& GetOutputArtifactDetails() const{ return m_outputArtifactDetails; }
 
-    
+    /**
+     * <p>The details of the output artifact of the action, such as its commit ID.</p>
+     */
     inline void SetOutputArtifactDetails(const ArtifactDetails& value) { m_outputArtifactDetailsHasBeenSet = true; m_outputArtifactDetails = value; }
 
-    
-    inline void SetOutputArtifactDetails(ArtifactDetails&& value) { m_outputArtifactDetailsHasBeenSet = true; m_outputArtifactDetails = value; }
+    /**
+     * <p>The details of the output artifact of the action, such as its commit ID.</p>
+     */
+    inline void SetOutputArtifactDetails(ArtifactDetails&& value) { m_outputArtifactDetailsHasBeenSet = true; m_outputArtifactDetails = std::move(value); }
 
-    
+    /**
+     * <p>The details of the output artifact of the action, such as its commit ID.</p>
+     */
     inline CreateCustomActionTypeRequest& WithOutputArtifactDetails(const ArtifactDetails& value) { SetOutputArtifactDetails(value); return *this;}
 
-    
-    inline CreateCustomActionTypeRequest& WithOutputArtifactDetails(ArtifactDetails&& value) { SetOutputArtifactDetails(value); return *this;}
+    /**
+     * <p>The details of the output artifact of the action, such as its commit ID.</p>
+     */
+    inline CreateCustomActionTypeRequest& WithOutputArtifactDetails(ArtifactDetails&& value) { SetOutputArtifactDetails(std::move(value)); return *this;}
 
   private:
+
     ActionCategory m_category;
     bool m_categoryHasBeenSet;
+
     Aws::String m_provider;
     bool m_providerHasBeenSet;
+
     Aws::String m_version;
     bool m_versionHasBeenSet;
+
     ActionTypeSettings m_settings;
     bool m_settingsHasBeenSet;
+
     Aws::Vector<ActionConfigurationProperty> m_configurationProperties;
     bool m_configurationPropertiesHasBeenSet;
+
     ArtifactDetails m_inputArtifactDetails;
     bool m_inputArtifactDetailsHasBeenSet;
+
     ArtifactDetails m_outputArtifactDetails;
     bool m_outputArtifactDetailsHasBeenSet;
   };

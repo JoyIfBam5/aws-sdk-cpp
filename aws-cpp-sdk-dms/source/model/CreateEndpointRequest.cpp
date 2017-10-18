@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/dms/model/CreateEndpointRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -37,7 +38,10 @@ CreateEndpointRequest::CreateEndpointRequest() :
     m_tagsHasBeenSet(false),
     m_certificateArnHasBeenSet(false),
     m_sslMode(DmsSslModeValue::NOT_SET),
-    m_sslModeHasBeenSet(false)
+    m_sslModeHasBeenSet(false),
+    m_dynamoDbSettingsHasBeenSet(false),
+    m_s3SettingsHasBeenSet(false),
+    m_mongoDbSettingsHasBeenSet(false)
 {
 }
 
@@ -126,6 +130,24 @@ Aws::String CreateEndpointRequest::SerializePayload() const
    payload.WithString("SslMode", DmsSslModeValueMapper::GetNameForDmsSslModeValue(m_sslMode));
   }
 
+  if(m_dynamoDbSettingsHasBeenSet)
+  {
+   payload.WithObject("DynamoDbSettings", m_dynamoDbSettings.Jsonize());
+
+  }
+
+  if(m_s3SettingsHasBeenSet)
+  {
+   payload.WithObject("S3Settings", m_s3Settings.Jsonize());
+
+  }
+
+  if(m_mongoDbSettingsHasBeenSet)
+  {
+   payload.WithObject("MongoDbSettings", m_mongoDbSettings.Jsonize());
+
+  }
+
   return payload.WriteReadable();
 }
 
@@ -136,6 +158,7 @@ Aws::Http::HeaderValueCollection CreateEndpointRequest::GetRequestSpecificHeader
   return headers;
 
 }
+
 
 
 

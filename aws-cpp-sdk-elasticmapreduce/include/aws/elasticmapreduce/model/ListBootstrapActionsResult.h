@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/elasticmapreduce/model/Command.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     ListBootstrapActionsResult();
-    ListBootstrapActionsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListBootstrapActionsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListBootstrapActionsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListBootstrapActionsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The bootstrap actions associated with the cluster.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The bootstrap actions associated with the cluster.</p>
      */
-    inline void SetBootstrapActions(Aws::Vector<Command>&& value) { m_bootstrapActions = value; }
+    inline void SetBootstrapActions(Aws::Vector<Command>&& value) { m_bootstrapActions = std::move(value); }
 
     /**
      * <p>The bootstrap actions associated with the cluster.</p>
@@ -70,7 +73,7 @@ namespace Model
     /**
      * <p>The bootstrap actions associated with the cluster.</p>
      */
-    inline ListBootstrapActionsResult& WithBootstrapActions(Aws::Vector<Command>&& value) { SetBootstrapActions(value); return *this;}
+    inline ListBootstrapActionsResult& WithBootstrapActions(Aws::Vector<Command>&& value) { SetBootstrapActions(std::move(value)); return *this;}
 
     /**
      * <p>The bootstrap actions associated with the cluster.</p>
@@ -80,7 +83,8 @@ namespace Model
     /**
      * <p>The bootstrap actions associated with the cluster.</p>
      */
-    inline ListBootstrapActionsResult& AddBootstrapActions(Command&& value) { m_bootstrapActions.push_back(value); return *this; }
+    inline ListBootstrapActionsResult& AddBootstrapActions(Command&& value) { m_bootstrapActions.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
@@ -110,7 +114,7 @@ namespace Model
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
      */
-    inline ListBootstrapActionsResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline ListBootstrapActionsResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
@@ -118,7 +122,9 @@ namespace Model
     inline ListBootstrapActionsResult& WithMarker(const char* value) { SetMarker(value); return *this;}
 
   private:
+
     Aws::Vector<Command> m_bootstrapActions;
+
     Aws::String m_marker;
   };
 

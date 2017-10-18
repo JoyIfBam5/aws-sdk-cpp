@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,7 +33,7 @@ namespace Model
 {
 
   /**
-   * <p>Provides details of the <code>ActivityTaskCanceled</code>
+   * <p>Provides the details of the <code>ActivityTaskCanceled</code>
    * event.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/swf-2012-01-25/ActivityTaskCanceledEventAttributes">AWS
    * API Reference</a></p>
@@ -44,40 +46,42 @@ namespace Model
     ActivityTaskCanceledEventAttributes& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p>Details of the cancellation (if any).</p>
+     * <p>Details of the cancellation.</p>
      */
     inline const Aws::String& GetDetails() const{ return m_details; }
 
     /**
-     * <p>Details of the cancellation (if any).</p>
+     * <p>Details of the cancellation.</p>
      */
     inline void SetDetails(const Aws::String& value) { m_detailsHasBeenSet = true; m_details = value; }
 
     /**
-     * <p>Details of the cancellation (if any).</p>
+     * <p>Details of the cancellation.</p>
      */
-    inline void SetDetails(Aws::String&& value) { m_detailsHasBeenSet = true; m_details = value; }
+    inline void SetDetails(Aws::String&& value) { m_detailsHasBeenSet = true; m_details = std::move(value); }
 
     /**
-     * <p>Details of the cancellation (if any).</p>
+     * <p>Details of the cancellation.</p>
      */
     inline void SetDetails(const char* value) { m_detailsHasBeenSet = true; m_details.assign(value); }
 
     /**
-     * <p>Details of the cancellation (if any).</p>
+     * <p>Details of the cancellation.</p>
      */
     inline ActivityTaskCanceledEventAttributes& WithDetails(const Aws::String& value) { SetDetails(value); return *this;}
 
     /**
-     * <p>Details of the cancellation (if any).</p>
+     * <p>Details of the cancellation.</p>
      */
-    inline ActivityTaskCanceledEventAttributes& WithDetails(Aws::String&& value) { SetDetails(value); return *this;}
+    inline ActivityTaskCanceledEventAttributes& WithDetails(Aws::String&& value) { SetDetails(std::move(value)); return *this;}
 
     /**
-     * <p>Details of the cancellation (if any).</p>
+     * <p>Details of the cancellation.</p>
      */
     inline ActivityTaskCanceledEventAttributes& WithDetails(const char* value) { SetDetails(value); return *this;}
+
 
     /**
      * <p>The ID of the <code>ActivityTaskScheduled</code> event that was recorded when
@@ -100,6 +104,7 @@ namespace Model
      */
     inline ActivityTaskCanceledEventAttributes& WithScheduledEventId(long long value) { SetScheduledEventId(value); return *this;}
 
+
     /**
      * <p>The ID of the <code>ActivityTaskStarted</code> event recorded when this
      * activity task was started. This information can be useful for diagnosing
@@ -120,6 +125,7 @@ namespace Model
      * problems by tracing back the chain of events leading up to this event.</p>
      */
     inline ActivityTaskCanceledEventAttributes& WithStartedEventId(long long value) { SetStartedEventId(value); return *this;}
+
 
     /**
      * <p>If set, contains the ID of the last <code>ActivityTaskCancelRequested</code>
@@ -146,12 +152,16 @@ namespace Model
     inline ActivityTaskCanceledEventAttributes& WithLatestCancelRequestedEventId(long long value) { SetLatestCancelRequestedEventId(value); return *this;}
 
   private:
+
     Aws::String m_details;
     bool m_detailsHasBeenSet;
+
     long long m_scheduledEventId;
     bool m_scheduledEventIdHasBeenSet;
+
     long long m_startedEventId;
     bool m_startedEventIdHasBeenSet;
+
     long long m_latestCancelRequestedEventId;
     bool m_latestCancelRequestedEventIdHasBeenSet;
   };

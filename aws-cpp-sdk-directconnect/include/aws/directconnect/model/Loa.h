@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/directconnect/DirectConnect_EXPORTS.h>
 #include <aws/core/utils/Array.h>
 #include <aws/directconnect/model/LoaContentType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     Loa& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     
     inline const Aws::Utils::ByteBuffer& GetLoaContent() const{ return m_loaContent; }
 
@@ -52,13 +55,14 @@ namespace Model
     inline void SetLoaContent(const Aws::Utils::ByteBuffer& value) { m_loaContentHasBeenSet = true; m_loaContent = value; }
 
     
-    inline void SetLoaContent(Aws::Utils::ByteBuffer&& value) { m_loaContentHasBeenSet = true; m_loaContent = value; }
+    inline void SetLoaContent(Aws::Utils::ByteBuffer&& value) { m_loaContentHasBeenSet = true; m_loaContent = std::move(value); }
 
     
     inline Loa& WithLoaContent(const Aws::Utils::ByteBuffer& value) { SetLoaContent(value); return *this;}
 
     
-    inline Loa& WithLoaContent(Aws::Utils::ByteBuffer&& value) { SetLoaContent(value); return *this;}
+    inline Loa& WithLoaContent(Aws::Utils::ByteBuffer&& value) { SetLoaContent(std::move(value)); return *this;}
+
 
     
     inline const LoaContentType& GetLoaContentType() const{ return m_loaContentType; }
@@ -67,17 +71,19 @@ namespace Model
     inline void SetLoaContentType(const LoaContentType& value) { m_loaContentTypeHasBeenSet = true; m_loaContentType = value; }
 
     
-    inline void SetLoaContentType(LoaContentType&& value) { m_loaContentTypeHasBeenSet = true; m_loaContentType = value; }
+    inline void SetLoaContentType(LoaContentType&& value) { m_loaContentTypeHasBeenSet = true; m_loaContentType = std::move(value); }
 
     
     inline Loa& WithLoaContentType(const LoaContentType& value) { SetLoaContentType(value); return *this;}
 
     
-    inline Loa& WithLoaContentType(LoaContentType&& value) { SetLoaContentType(value); return *this;}
+    inline Loa& WithLoaContentType(LoaContentType&& value) { SetLoaContentType(std::move(value)); return *this;}
 
   private:
+
     Aws::Utils::ByteBuffer m_loaContent;
     bool m_loaContentHasBeenSet;
+
     LoaContentType m_loaContentType;
     bool m_loaContentTypeHasBeenSet;
   };

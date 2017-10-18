@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   *
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ Aws::String ComputeOSVersionString()
 
     DWORD uselessParameter(0);
     static const char* FILE_TO_CHECK = "Kernel32.dll";
-    DWORD fileVersionSize = GetFileVersionInfoSize(FILE_TO_CHECK, &uselessParameter);
+    DWORD fileVersionSize = GetFileVersionInfoSizeA(FILE_TO_CHECK, &uselessParameter);
     void* blob = Aws::Malloc("OSVersionInfo", static_cast<size_t>(fileVersionSize));
     bool versionFound(false);
 

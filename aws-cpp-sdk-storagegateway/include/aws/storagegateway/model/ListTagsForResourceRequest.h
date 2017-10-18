@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/storagegateway/StorageGateway_EXPORTS.h>
 #include <aws/storagegateway/StorageGatewayRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,9 +35,17 @@ namespace Model
   {
   public:
     ListTagsForResourceRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListTagsForResource"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the resource for which you want to list
@@ -53,7 +63,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the resource for which you want to list
      * tags.</p>
      */
-    inline void SetResourceARN(Aws::String&& value) { m_resourceARNHasBeenSet = true; m_resourceARN = value; }
+    inline void SetResourceARN(Aws::String&& value) { m_resourceARNHasBeenSet = true; m_resourceARN = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the resource for which you want to list
@@ -71,13 +81,14 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the resource for which you want to list
      * tags.</p>
      */
-    inline ListTagsForResourceRequest& WithResourceARN(Aws::String&& value) { SetResourceARN(value); return *this;}
+    inline ListTagsForResourceRequest& WithResourceARN(Aws::String&& value) { SetResourceARN(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the resource for which you want to list
      * tags.</p>
      */
     inline ListTagsForResourceRequest& WithResourceARN(const char* value) { SetResourceARN(value); return *this;}
+
 
     /**
      * <p>An opaque string that indicates the position at which to begin returning the
@@ -95,7 +106,7 @@ namespace Model
      * <p>An opaque string that indicates the position at which to begin returning the
      * list of tags.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p>An opaque string that indicates the position at which to begin returning the
@@ -113,13 +124,14 @@ namespace Model
      * <p>An opaque string that indicates the position at which to begin returning the
      * list of tags.</p>
      */
-    inline ListTagsForResourceRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline ListTagsForResourceRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>An opaque string that indicates the position at which to begin returning the
      * list of tags.</p>
      */
     inline ListTagsForResourceRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>Specifies that the list of tags returned be limited to the specified number
@@ -140,10 +152,13 @@ namespace Model
     inline ListTagsForResourceRequest& WithLimit(int value) { SetLimit(value); return *this;}
 
   private:
+
     Aws::String m_resourceARN;
     bool m_resourceARNHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
+
     int m_limit;
     bool m_limitHasBeenSet;
   };

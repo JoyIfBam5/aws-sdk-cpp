@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ssm/model/DocumentIdentifier.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -34,7 +35,8 @@ DocumentIdentifier::DocumentIdentifier() :
     m_documentVersionHasBeenSet(false),
     m_documentType(DocumentType::NOT_SET),
     m_documentTypeHasBeenSet(false),
-    m_schemaVersionHasBeenSet(false)
+    m_schemaVersionHasBeenSet(false),
+    m_tagsHasBeenSet(false)
 {
 }
 
@@ -45,7 +47,8 @@ DocumentIdentifier::DocumentIdentifier(const JsonValue& jsonValue) :
     m_documentVersionHasBeenSet(false),
     m_documentType(DocumentType::NOT_SET),
     m_documentTypeHasBeenSet(false),
-    m_schemaVersionHasBeenSet(false)
+    m_schemaVersionHasBeenSet(false),
+    m_tagsHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -97,6 +100,16 @@ DocumentIdentifier& DocumentIdentifier::operator =(const JsonValue& jsonValue)
     m_schemaVersionHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("Tags"))
+  {
+    Array<JsonValue> tagsJsonList = jsonValue.GetArray("Tags");
+    for(unsigned tagsIndex = 0; tagsIndex < tagsJsonList.GetLength(); ++tagsIndex)
+    {
+      m_tags.push_back(tagsJsonList[tagsIndex].AsObject());
+    }
+    m_tagsHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -141,6 +154,17 @@ JsonValue DocumentIdentifier::Jsonize() const
   if(m_schemaVersionHasBeenSet)
   {
    payload.WithString("SchemaVersion", m_schemaVersion);
+
+  }
+
+  if(m_tagsHasBeenSet)
+  {
+   Array<JsonValue> tagsJsonList(m_tags.size());
+   for(unsigned tagsIndex = 0; tagsIndex < tagsJsonList.GetLength(); ++tagsIndex)
+   {
+     tagsJsonList[tagsIndex].AsObject(m_tags[tagsIndex].Jsonize());
+   }
+   payload.WithArray("Tags", std::move(tagsJsonList));
 
   }
 

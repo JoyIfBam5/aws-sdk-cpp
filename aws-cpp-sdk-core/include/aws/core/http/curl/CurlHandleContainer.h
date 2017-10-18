@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   * 
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -58,13 +58,14 @@ private:
     const CurlHandleContainer& operator = (const CurlHandleContainer&&) = delete;
 
     bool CheckAndGrowPool();
-    void SetDefaultOptionsOnHandle(void* handle);
+    void SetDefaultOptionsOnHandle(CURL* handle);
 
     Aws::Utils::ExclusiveOwnershipResourceManager<CURL*> m_handleContainer;
     unsigned m_maxPoolSize;
     unsigned long m_requestTimeout;
     unsigned long m_connectTimeout;
     unsigned m_poolSize;
+    std::mutex m_containerLock;
 };
 
 } // namespace Http

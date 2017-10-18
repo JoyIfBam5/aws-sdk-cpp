@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ecs/model/TargetType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -32,9 +34,12 @@ namespace Model
 {
 
   /**
-   * <p>Attributes are name-value pairs associated with various Amazon ECS objects.
-   * Attributes allow you to extend the Amazon ECS data model by adding custom
-   * metadata to your resources.</p><p><h3>See Also:</h3>   <a
+   * <p>An attribute is a name-value pair associated with an Amazon ECS object.
+   * Attributes enable you to extend the Amazon ECS data model by adding custom
+   * metadata to your resources. For more information, see <a
+   * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-constraints.html#attributes">Attributes</a>
+   * in the <i>Amazon EC2 Container Service Developer Guide</i>.</p><p><h3>See
+   * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/Attribute">AWS API
    * Reference</a></p>
    */
@@ -45,6 +50,7 @@ namespace Model
     Attribute(const Aws::Utils::Json::JsonValue& jsonValue);
     Attribute& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>The name of the attribute. Up to 128 letters (uppercase and lowercase),
@@ -62,7 +68,7 @@ namespace Model
      * <p>The name of the attribute. Up to 128 letters (uppercase and lowercase),
      * numbers, hyphens, underscores, and periods are allowed.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the attribute. Up to 128 letters (uppercase and lowercase),
@@ -80,13 +86,14 @@ namespace Model
      * <p>The name of the attribute. Up to 128 letters (uppercase and lowercase),
      * numbers, hyphens, underscores, and periods are allowed.</p>
      */
-    inline Attribute& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline Attribute& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the attribute. Up to 128 letters (uppercase and lowercase),
      * numbers, hyphens, underscores, and periods are allowed.</p>
      */
     inline Attribute& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The value of the attribute. Up to 128 letters (uppercase and lowercase),
@@ -107,7 +114,7 @@ namespace Model
      * numbers, hyphens, underscores, periods, at signs (@), forward slashes, colons,
      * and spaces are allowed.</p>
      */
-    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = value; }
+    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = std::move(value); }
 
     /**
      * <p>The value of the attribute. Up to 128 letters (uppercase and lowercase),
@@ -128,7 +135,7 @@ namespace Model
      * numbers, hyphens, underscores, periods, at signs (@), forward slashes, colons,
      * and spaces are allowed.</p>
      */
-    inline Attribute& WithValue(Aws::String&& value) { SetValue(value); return *this;}
+    inline Attribute& WithValue(Aws::String&& value) { SetValue(std::move(value)); return *this;}
 
     /**
      * <p>The value of the attribute. Up to 128 letters (uppercase and lowercase),
@@ -136,6 +143,7 @@ namespace Model
      * and spaces are allowed.</p>
      */
     inline Attribute& WithValue(const char* value) { SetValue(value); return *this;}
+
 
     /**
      * <p>The type of the target with which to attach the attribute. This parameter is
@@ -156,7 +164,7 @@ namespace Model
      * required if you use the short form ID for a resource instead of the full Amazon
      * Resource Name (ARN).</p>
      */
-    inline void SetTargetType(TargetType&& value) { m_targetTypeHasBeenSet = true; m_targetType = value; }
+    inline void SetTargetType(TargetType&& value) { m_targetTypeHasBeenSet = true; m_targetType = std::move(value); }
 
     /**
      * <p>The type of the target with which to attach the attribute. This parameter is
@@ -170,7 +178,8 @@ namespace Model
      * required if you use the short form ID for a resource instead of the full Amazon
      * Resource Name (ARN).</p>
      */
-    inline Attribute& WithTargetType(TargetType&& value) { SetTargetType(value); return *this;}
+    inline Attribute& WithTargetType(TargetType&& value) { SetTargetType(std::move(value)); return *this;}
+
 
     /**
      * <p>The ID of the target. You can specify the short form ID for a resource or the
@@ -188,7 +197,7 @@ namespace Model
      * <p>The ID of the target. You can specify the short form ID for a resource or the
      * full Amazon Resource Name (ARN).</p>
      */
-    inline void SetTargetId(Aws::String&& value) { m_targetIdHasBeenSet = true; m_targetId = value; }
+    inline void SetTargetId(Aws::String&& value) { m_targetIdHasBeenSet = true; m_targetId = std::move(value); }
 
     /**
      * <p>The ID of the target. You can specify the short form ID for a resource or the
@@ -206,7 +215,7 @@ namespace Model
      * <p>The ID of the target. You can specify the short form ID for a resource or the
      * full Amazon Resource Name (ARN).</p>
      */
-    inline Attribute& WithTargetId(Aws::String&& value) { SetTargetId(value); return *this;}
+    inline Attribute& WithTargetId(Aws::String&& value) { SetTargetId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the target. You can specify the short form ID for a resource or the
@@ -215,12 +224,16 @@ namespace Model
     inline Attribute& WithTargetId(const char* value) { SetTargetId(value); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_value;
     bool m_valueHasBeenSet;
+
     TargetType m_targetType;
     bool m_targetTypeHasBeenSet;
+
     Aws::String m_targetId;
     bool m_targetIdHasBeenSet;
   };

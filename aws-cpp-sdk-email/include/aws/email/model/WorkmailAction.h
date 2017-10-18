@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -52,6 +54,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The Amazon Resource Name (ARN) of the Amazon SNS topic to notify when the
      * WorkMail action is called. An example of an Amazon SNS topic ARN is
@@ -80,7 +83,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon SNS
      * Developer Guide</a>.</p>
      */
-    inline void SetTopicArn(Aws::String&& value) { m_topicArnHasBeenSet = true; m_topicArn = value; }
+    inline void SetTopicArn(Aws::String&& value) { m_topicArnHasBeenSet = true; m_topicArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the Amazon SNS topic to notify when the
@@ -110,7 +113,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon SNS
      * Developer Guide</a>.</p>
      */
-    inline WorkmailAction& WithTopicArn(Aws::String&& value) { SetTopicArn(value); return *this;}
+    inline WorkmailAction& WithTopicArn(Aws::String&& value) { SetTopicArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the Amazon SNS topic to notify when the
@@ -121,6 +124,7 @@ namespace Model
      * Developer Guide</a>.</p>
      */
     inline WorkmailAction& WithTopicArn(const char* value) { SetTopicArn(value); return *this;}
+
 
     /**
      * <p>The ARN of the Amazon WorkMail organization. An example of an Amazon WorkMail
@@ -150,7 +154,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/workmail/latest/adminguide/organizations_overview.html">Amazon
      * WorkMail Administrator Guide</a>.</p>
      */
-    inline void SetOrganizationArn(Aws::String&& value) { m_organizationArnHasBeenSet = true; m_organizationArn = value; }
+    inline void SetOrganizationArn(Aws::String&& value) { m_organizationArnHasBeenSet = true; m_organizationArn = std::move(value); }
 
     /**
      * <p>The ARN of the Amazon WorkMail organization. An example of an Amazon WorkMail
@@ -180,7 +184,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/workmail/latest/adminguide/organizations_overview.html">Amazon
      * WorkMail Administrator Guide</a>.</p>
      */
-    inline WorkmailAction& WithOrganizationArn(Aws::String&& value) { SetOrganizationArn(value); return *this;}
+    inline WorkmailAction& WithOrganizationArn(Aws::String&& value) { SetOrganizationArn(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of the Amazon WorkMail organization. An example of an Amazon WorkMail
@@ -193,8 +197,10 @@ namespace Model
     inline WorkmailAction& WithOrganizationArn(const char* value) { SetOrganizationArn(value); return *this;}
 
   private:
+
     Aws::String m_topicArn;
     bool m_topicArnHasBeenSet;
+
     Aws::String m_organizationArn;
     bool m_organizationArnHasBeenSet;
   };

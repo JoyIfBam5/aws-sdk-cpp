@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/inspector/Inspector_EXPORTS.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,8 +33,10 @@ namespace Model
 {
 
   /**
-   * <p>This data type is used in the <a>AssessmentsFilter</a> and <a>RunsFilter</a>
-   * data types.</p>
+   * <p>This data type is used in the <a>AssessmentRunFilter</a> data
+   * type.</p><p><h3>See Also:</h3>   <a
+   * href="http://docs.aws.amazon.com/goto/WebAPI/inspector-2016-02-16/TimestampRange">AWS
+   * API Reference</a></p>
    */
   class AWS_INSPECTOR_API TimestampRange
   {
@@ -42,61 +46,65 @@ namespace Model
     TimestampRange& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
-    /**
-     * <p>The minimum value of the timestamp range.</p>
-     */
-    inline const Aws::Utils::DateTime& GetMinimum() const{ return m_minimum; }
 
     /**
      * <p>The minimum value of the timestamp range.</p>
      */
-    inline void SetMinimum(const Aws::Utils::DateTime& value) { m_minimumHasBeenSet = true; m_minimum = value; }
+    inline const Aws::Utils::DateTime& GetBeginDate() const{ return m_beginDate; }
 
     /**
      * <p>The minimum value of the timestamp range.</p>
      */
-    inline void SetMinimum(Aws::Utils::DateTime&& value) { m_minimumHasBeenSet = true; m_minimum = value; }
+    inline void SetBeginDate(const Aws::Utils::DateTime& value) { m_beginDateHasBeenSet = true; m_beginDate = value; }
 
     /**
      * <p>The minimum value of the timestamp range.</p>
      */
-    inline TimestampRange& WithMinimum(const Aws::Utils::DateTime& value) { SetMinimum(value); return *this;}
+    inline void SetBeginDate(Aws::Utils::DateTime&& value) { m_beginDateHasBeenSet = true; m_beginDate = std::move(value); }
 
     /**
      * <p>The minimum value of the timestamp range.</p>
      */
-    inline TimestampRange& WithMinimum(Aws::Utils::DateTime&& value) { SetMinimum(value); return *this;}
+    inline TimestampRange& WithBeginDate(const Aws::Utils::DateTime& value) { SetBeginDate(value); return *this;}
+
+    /**
+     * <p>The minimum value of the timestamp range.</p>
+     */
+    inline TimestampRange& WithBeginDate(Aws::Utils::DateTime&& value) { SetBeginDate(std::move(value)); return *this;}
+
 
     /**
      * <p>The maximum value of the timestamp range.</p>
      */
-    inline const Aws::Utils::DateTime& GetMaximum() const{ return m_maximum; }
+    inline const Aws::Utils::DateTime& GetEndDate() const{ return m_endDate; }
 
     /**
      * <p>The maximum value of the timestamp range.</p>
      */
-    inline void SetMaximum(const Aws::Utils::DateTime& value) { m_maximumHasBeenSet = true; m_maximum = value; }
+    inline void SetEndDate(const Aws::Utils::DateTime& value) { m_endDateHasBeenSet = true; m_endDate = value; }
 
     /**
      * <p>The maximum value of the timestamp range.</p>
      */
-    inline void SetMaximum(Aws::Utils::DateTime&& value) { m_maximumHasBeenSet = true; m_maximum = value; }
+    inline void SetEndDate(Aws::Utils::DateTime&& value) { m_endDateHasBeenSet = true; m_endDate = std::move(value); }
 
     /**
      * <p>The maximum value of the timestamp range.</p>
      */
-    inline TimestampRange& WithMaximum(const Aws::Utils::DateTime& value) { SetMaximum(value); return *this;}
+    inline TimestampRange& WithEndDate(const Aws::Utils::DateTime& value) { SetEndDate(value); return *this;}
 
     /**
      * <p>The maximum value of the timestamp range.</p>
      */
-    inline TimestampRange& WithMaximum(Aws::Utils::DateTime&& value) { SetMaximum(value); return *this;}
+    inline TimestampRange& WithEndDate(Aws::Utils::DateTime&& value) { SetEndDate(std::move(value)); return *this;}
 
   private:
-    Aws::Utils::DateTime m_minimum;
-    bool m_minimumHasBeenSet;
-    Aws::Utils::DateTime m_maximum;
-    bool m_maximumHasBeenSet;
+
+    Aws::Utils::DateTime m_beginDate;
+    bool m_beginDateHasBeenSet;
+
+    Aws::Utils::DateTime m_endDate;
+    bool m_endDateHasBeenSet;
   };
 
 } // namespace Model

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/devicefarm/model/ScheduleRunRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -27,7 +28,8 @@ ScheduleRunRequest::ScheduleRunRequest() :
     m_devicePoolArnHasBeenSet(false),
     m_nameHasBeenSet(false),
     m_testHasBeenSet(false),
-    m_configurationHasBeenSet(false)
+    m_configurationHasBeenSet(false),
+    m_executionConfigurationHasBeenSet(false)
 {
 }
 
@@ -71,6 +73,12 @@ Aws::String ScheduleRunRequest::SerializePayload() const
 
   }
 
+  if(m_executionConfigurationHasBeenSet)
+  {
+   payload.WithObject("executionConfiguration", m_executionConfiguration.Jsonize());
+
+  }
+
   return payload.WriteReadable();
 }
 
@@ -81,6 +89,7 @@ Aws::Http::HeaderValueCollection ScheduleRunRequest::GetRequestSpecificHeaders()
   return headers;
 
 }
+
 
 
 

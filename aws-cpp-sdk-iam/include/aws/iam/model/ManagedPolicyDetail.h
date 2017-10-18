@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -19,6 +20,7 @@
 #include <aws/core/utils/DateTime.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/iam/model/PolicyVersion.h>
+#include <utility>
 
 namespace Aws
 {
@@ -56,6 +58,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The friendly name (not ARN) identifying the policy.</p>
      */
@@ -69,7 +72,7 @@ namespace Model
     /**
      * <p>The friendly name (not ARN) identifying the policy.</p>
      */
-    inline void SetPolicyName(Aws::String&& value) { m_policyNameHasBeenSet = true; m_policyName = value; }
+    inline void SetPolicyName(Aws::String&& value) { m_policyNameHasBeenSet = true; m_policyName = std::move(value); }
 
     /**
      * <p>The friendly name (not ARN) identifying the policy.</p>
@@ -84,12 +87,13 @@ namespace Model
     /**
      * <p>The friendly name (not ARN) identifying the policy.</p>
      */
-    inline ManagedPolicyDetail& WithPolicyName(Aws::String&& value) { SetPolicyName(value); return *this;}
+    inline ManagedPolicyDetail& WithPolicyName(Aws::String&& value) { SetPolicyName(std::move(value)); return *this;}
 
     /**
      * <p>The friendly name (not ARN) identifying the policy.</p>
      */
     inline ManagedPolicyDetail& WithPolicyName(const char* value) { SetPolicyName(value); return *this;}
+
 
     /**
      * <p>The stable and unique string identifying the policy.</p> <p>For more
@@ -113,7 +117,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html">IAM
      * Identifiers</a> in the <i>Using IAM</i> guide.</p>
      */
-    inline void SetPolicyId(Aws::String&& value) { m_policyIdHasBeenSet = true; m_policyId = value; }
+    inline void SetPolicyId(Aws::String&& value) { m_policyIdHasBeenSet = true; m_policyId = std::move(value); }
 
     /**
      * <p>The stable and unique string identifying the policy.</p> <p>For more
@@ -137,7 +141,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html">IAM
      * Identifiers</a> in the <i>Using IAM</i> guide.</p>
      */
-    inline ManagedPolicyDetail& WithPolicyId(Aws::String&& value) { SetPolicyId(value); return *this;}
+    inline ManagedPolicyDetail& WithPolicyId(Aws::String&& value) { SetPolicyId(std::move(value)); return *this;}
 
     /**
      * <p>The stable and unique string identifying the policy.</p> <p>For more
@@ -147,6 +151,7 @@ namespace Model
      */
     inline ManagedPolicyDetail& WithPolicyId(const char* value) { SetPolicyId(value); return *this;}
 
+
     
     inline const Aws::String& GetArn() const{ return m_arn; }
 
@@ -154,7 +159,7 @@ namespace Model
     inline void SetArn(const Aws::String& value) { m_arnHasBeenSet = true; m_arn = value; }
 
     
-    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = value; }
+    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = std::move(value); }
 
     
     inline void SetArn(const char* value) { m_arnHasBeenSet = true; m_arn.assign(value); }
@@ -163,10 +168,11 @@ namespace Model
     inline ManagedPolicyDetail& WithArn(const Aws::String& value) { SetArn(value); return *this;}
 
     
-    inline ManagedPolicyDetail& WithArn(Aws::String&& value) { SetArn(value); return *this;}
+    inline ManagedPolicyDetail& WithArn(Aws::String&& value) { SetArn(std::move(value)); return *this;}
 
     
     inline ManagedPolicyDetail& WithArn(const char* value) { SetArn(value); return *this;}
+
 
     /**
      * <p>The path to the policy.</p> <p>For more information about paths, see <a
@@ -187,7 +193,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html">IAM
      * Identifiers</a> in the <i>Using IAM</i> guide.</p>
      */
-    inline void SetPath(Aws::String&& value) { m_pathHasBeenSet = true; m_path = value; }
+    inline void SetPath(Aws::String&& value) { m_pathHasBeenSet = true; m_path = std::move(value); }
 
     /**
      * <p>The path to the policy.</p> <p>For more information about paths, see <a
@@ -208,7 +214,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html">IAM
      * Identifiers</a> in the <i>Using IAM</i> guide.</p>
      */
-    inline ManagedPolicyDetail& WithPath(Aws::String&& value) { SetPath(value); return *this;}
+    inline ManagedPolicyDetail& WithPath(Aws::String&& value) { SetPath(std::move(value)); return *this;}
 
     /**
      * <p>The path to the policy.</p> <p>For more information about paths, see <a
@@ -216,6 +222,7 @@ namespace Model
      * Identifiers</a> in the <i>Using IAM</i> guide.</p>
      */
     inline ManagedPolicyDetail& WithPath(const char* value) { SetPath(value); return *this;}
+
 
     /**
      * <p>The identifier for the version of the policy that is set as the default
@@ -239,7 +246,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html">Versioning
      * for Managed Policies</a> in the <i>Using IAM</i> guide. </p>
      */
-    inline void SetDefaultVersionId(Aws::String&& value) { m_defaultVersionIdHasBeenSet = true; m_defaultVersionId = value; }
+    inline void SetDefaultVersionId(Aws::String&& value) { m_defaultVersionIdHasBeenSet = true; m_defaultVersionId = std::move(value); }
 
     /**
      * <p>The identifier for the version of the policy that is set as the default
@@ -263,7 +270,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html">Versioning
      * for Managed Policies</a> in the <i>Using IAM</i> guide. </p>
      */
-    inline ManagedPolicyDetail& WithDefaultVersionId(Aws::String&& value) { SetDefaultVersionId(value); return *this;}
+    inline ManagedPolicyDetail& WithDefaultVersionId(Aws::String&& value) { SetDefaultVersionId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier for the version of the policy that is set as the default
@@ -272,6 +279,7 @@ namespace Model
      * for Managed Policies</a> in the <i>Using IAM</i> guide. </p>
      */
     inline ManagedPolicyDetail& WithDefaultVersionId(const char* value) { SetDefaultVersionId(value); return *this;}
+
 
     /**
      * <p>The number of principal entities (users, groups, and roles) that the policy
@@ -291,6 +299,7 @@ namespace Model
      */
     inline ManagedPolicyDetail& WithAttachmentCount(int value) { SetAttachmentCount(value); return *this;}
 
+
     /**
      * <p>Specifies whether the policy can be attached to an IAM user, group, or
      * role.</p>
@@ -309,6 +318,7 @@ namespace Model
      */
     inline ManagedPolicyDetail& WithIsAttachable(bool value) { SetIsAttachable(value); return *this;}
 
+
     /**
      * <p>A friendly description of the policy.</p>
      */
@@ -322,7 +332,7 @@ namespace Model
     /**
      * <p>A friendly description of the policy.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>A friendly description of the policy.</p>
@@ -337,12 +347,13 @@ namespace Model
     /**
      * <p>A friendly description of the policy.</p>
      */
-    inline ManagedPolicyDetail& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline ManagedPolicyDetail& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>A friendly description of the policy.</p>
      */
     inline ManagedPolicyDetail& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The date and time, in <a href="http://www.iso.org/iso/iso8601">ISO 8601
@@ -360,7 +371,7 @@ namespace Model
      * <p>The date and time, in <a href="http://www.iso.org/iso/iso8601">ISO 8601
      * date-time format</a>, when the policy was created.</p>
      */
-    inline void SetCreateDate(Aws::Utils::DateTime&& value) { m_createDateHasBeenSet = true; m_createDate = value; }
+    inline void SetCreateDate(Aws::Utils::DateTime&& value) { m_createDateHasBeenSet = true; m_createDate = std::move(value); }
 
     /**
      * <p>The date and time, in <a href="http://www.iso.org/iso/iso8601">ISO 8601
@@ -372,7 +383,8 @@ namespace Model
      * <p>The date and time, in <a href="http://www.iso.org/iso/iso8601">ISO 8601
      * date-time format</a>, when the policy was created.</p>
      */
-    inline ManagedPolicyDetail& WithCreateDate(Aws::Utils::DateTime&& value) { SetCreateDate(value); return *this;}
+    inline ManagedPolicyDetail& WithCreateDate(Aws::Utils::DateTime&& value) { SetCreateDate(std::move(value)); return *this;}
+
 
     /**
      * <p>The date and time, in <a href="http://www.iso.org/iso/iso8601">ISO 8601
@@ -399,7 +411,7 @@ namespace Model
      * created. When a policy has more than one version, this field contains the date
      * and time when the most recent policy version was created.</p>
      */
-    inline void SetUpdateDate(Aws::Utils::DateTime&& value) { m_updateDateHasBeenSet = true; m_updateDate = value; }
+    inline void SetUpdateDate(Aws::Utils::DateTime&& value) { m_updateDateHasBeenSet = true; m_updateDate = std::move(value); }
 
     /**
      * <p>The date and time, in <a href="http://www.iso.org/iso/iso8601">ISO 8601
@@ -417,7 +429,8 @@ namespace Model
      * created. When a policy has more than one version, this field contains the date
      * and time when the most recent policy version was created.</p>
      */
-    inline ManagedPolicyDetail& WithUpdateDate(Aws::Utils::DateTime&& value) { SetUpdateDate(value); return *this;}
+    inline ManagedPolicyDetail& WithUpdateDate(Aws::Utils::DateTime&& value) { SetUpdateDate(std::move(value)); return *this;}
+
 
     /**
      * <p>A list containing information about the versions of the policy.</p>
@@ -432,7 +445,7 @@ namespace Model
     /**
      * <p>A list containing information about the versions of the policy.</p>
      */
-    inline void SetPolicyVersionList(Aws::Vector<PolicyVersion>&& value) { m_policyVersionListHasBeenSet = true; m_policyVersionList = value; }
+    inline void SetPolicyVersionList(Aws::Vector<PolicyVersion>&& value) { m_policyVersionListHasBeenSet = true; m_policyVersionList = std::move(value); }
 
     /**
      * <p>A list containing information about the versions of the policy.</p>
@@ -442,7 +455,7 @@ namespace Model
     /**
      * <p>A list containing information about the versions of the policy.</p>
      */
-    inline ManagedPolicyDetail& WithPolicyVersionList(Aws::Vector<PolicyVersion>&& value) { SetPolicyVersionList(value); return *this;}
+    inline ManagedPolicyDetail& WithPolicyVersionList(Aws::Vector<PolicyVersion>&& value) { SetPolicyVersionList(std::move(value)); return *this;}
 
     /**
      * <p>A list containing information about the versions of the policy.</p>
@@ -452,29 +465,40 @@ namespace Model
     /**
      * <p>A list containing information about the versions of the policy.</p>
      */
-    inline ManagedPolicyDetail& AddPolicyVersionList(PolicyVersion&& value) { m_policyVersionListHasBeenSet = true; m_policyVersionList.push_back(value); return *this; }
+    inline ManagedPolicyDetail& AddPolicyVersionList(PolicyVersion&& value) { m_policyVersionListHasBeenSet = true; m_policyVersionList.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_policyName;
     bool m_policyNameHasBeenSet;
+
     Aws::String m_policyId;
     bool m_policyIdHasBeenSet;
+
     Aws::String m_arn;
     bool m_arnHasBeenSet;
+
     Aws::String m_path;
     bool m_pathHasBeenSet;
+
     Aws::String m_defaultVersionId;
     bool m_defaultVersionIdHasBeenSet;
+
     int m_attachmentCount;
     bool m_attachmentCountHasBeenSet;
+
     bool m_isAttachable;
     bool m_isAttachableHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     Aws::Utils::DateTime m_createDate;
     bool m_createDateHasBeenSet;
+
     Aws::Utils::DateTime m_updateDate;
     bool m_updateDateHasBeenSet;
+
     Aws::Vector<PolicyVersion> m_policyVersionList;
     bool m_policyVersionListHasBeenSet;
   };

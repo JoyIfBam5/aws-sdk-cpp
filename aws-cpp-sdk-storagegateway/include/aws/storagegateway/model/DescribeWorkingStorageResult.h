@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/storagegateway/StorageGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     DescribeWorkingStorageResult();
-    DescribeWorkingStorageResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeWorkingStorageResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeWorkingStorageResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeWorkingStorageResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     
     inline const Aws::String& GetGatewayARN() const{ return m_gatewayARN; }
@@ -52,7 +55,7 @@ namespace Model
     inline void SetGatewayARN(const Aws::String& value) { m_gatewayARN = value; }
 
     
-    inline void SetGatewayARN(Aws::String&& value) { m_gatewayARN = value; }
+    inline void SetGatewayARN(Aws::String&& value) { m_gatewayARN = std::move(value); }
 
     
     inline void SetGatewayARN(const char* value) { m_gatewayARN.assign(value); }
@@ -61,10 +64,11 @@ namespace Model
     inline DescribeWorkingStorageResult& WithGatewayARN(const Aws::String& value) { SetGatewayARN(value); return *this;}
 
     
-    inline DescribeWorkingStorageResult& WithGatewayARN(Aws::String&& value) { SetGatewayARN(value); return *this;}
+    inline DescribeWorkingStorageResult& WithGatewayARN(Aws::String&& value) { SetGatewayARN(std::move(value)); return *this;}
 
     
     inline DescribeWorkingStorageResult& WithGatewayARN(const char* value) { SetGatewayARN(value); return *this;}
+
 
     /**
      * <p>An array of the gateway's local disk IDs that are configured as working
@@ -88,7 +92,7 @@ namespace Model
      * maximum length of 300). If no local disks are configured as working storage,
      * then the DiskIds array is empty.</p>
      */
-    inline void SetDiskIds(Aws::Vector<Aws::String>&& value) { m_diskIds = value; }
+    inline void SetDiskIds(Aws::Vector<Aws::String>&& value) { m_diskIds = std::move(value); }
 
     /**
      * <p>An array of the gateway's local disk IDs that are configured as working
@@ -104,7 +108,7 @@ namespace Model
      * maximum length of 300). If no local disks are configured as working storage,
      * then the DiskIds array is empty.</p>
      */
-    inline DescribeWorkingStorageResult& WithDiskIds(Aws::Vector<Aws::String>&& value) { SetDiskIds(value); return *this;}
+    inline DescribeWorkingStorageResult& WithDiskIds(Aws::Vector<Aws::String>&& value) { SetDiskIds(std::move(value)); return *this;}
 
     /**
      * <p>An array of the gateway's local disk IDs that are configured as working
@@ -120,7 +124,7 @@ namespace Model
      * maximum length of 300). If no local disks are configured as working storage,
      * then the DiskIds array is empty.</p>
      */
-    inline DescribeWorkingStorageResult& AddDiskIds(Aws::String&& value) { m_diskIds.push_back(value); return *this; }
+    inline DescribeWorkingStorageResult& AddDiskIds(Aws::String&& value) { m_diskIds.push_back(std::move(value)); return *this; }
 
     /**
      * <p>An array of the gateway's local disk IDs that are configured as working
@@ -129,6 +133,7 @@ namespace Model
      * then the DiskIds array is empty.</p>
      */
     inline DescribeWorkingStorageResult& AddDiskIds(const char* value) { m_diskIds.push_back(value); return *this; }
+
 
     /**
      * <p>The total working storage in bytes in use by the gateway. If no working
@@ -147,6 +152,7 @@ namespace Model
      * storage is configured for the gateway, this field returns 0.</p>
      */
     inline DescribeWorkingStorageResult& WithWorkingStorageUsedInBytes(long long value) { SetWorkingStorageUsedInBytes(value); return *this;}
+
 
     /**
      * <p>The total working storage in bytes allocated for the gateway. If no working
@@ -167,9 +173,13 @@ namespace Model
     inline DescribeWorkingStorageResult& WithWorkingStorageAllocatedInBytes(long long value) { SetWorkingStorageAllocatedInBytes(value); return *this;}
 
   private:
+
     Aws::String m_gatewayARN;
+
     Aws::Vector<Aws::String> m_diskIds;
+
     long long m_workingStorageUsedInBytes;
+
     long long m_workingStorageAllocatedInBytes;
   };
 

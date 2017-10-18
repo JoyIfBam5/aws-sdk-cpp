@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/ssm/model/PatchFilter.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     PatchFilterGroup& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The set of patch filters that make up the group.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The set of patch filters that make up the group.</p>
      */
-    inline void SetPatchFilters(Aws::Vector<PatchFilter>&& value) { m_patchFiltersHasBeenSet = true; m_patchFilters = value; }
+    inline void SetPatchFilters(Aws::Vector<PatchFilter>&& value) { m_patchFiltersHasBeenSet = true; m_patchFilters = std::move(value); }
 
     /**
      * <p>The set of patch filters that make up the group.</p>
@@ -68,7 +71,7 @@ namespace Model
     /**
      * <p>The set of patch filters that make up the group.</p>
      */
-    inline PatchFilterGroup& WithPatchFilters(Aws::Vector<PatchFilter>&& value) { SetPatchFilters(value); return *this;}
+    inline PatchFilterGroup& WithPatchFilters(Aws::Vector<PatchFilter>&& value) { SetPatchFilters(std::move(value)); return *this;}
 
     /**
      * <p>The set of patch filters that make up the group.</p>
@@ -78,9 +81,10 @@ namespace Model
     /**
      * <p>The set of patch filters that make up the group.</p>
      */
-    inline PatchFilterGroup& AddPatchFilters(PatchFilter&& value) { m_patchFiltersHasBeenSet = true; m_patchFilters.push_back(value); return *this; }
+    inline PatchFilterGroup& AddPatchFilters(PatchFilter&& value) { m_patchFiltersHasBeenSet = true; m_patchFilters.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<PatchFilter> m_patchFilters;
     bool m_patchFiltersHasBeenSet;
   };

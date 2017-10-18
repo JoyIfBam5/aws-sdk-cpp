@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/es/ElasticsearchService_EXPORTS.h>
 #include <aws/es/model/SnapshotOptions.h>
 #include <aws/es/model/OptionStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     SnapshotOptionsStatus& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Specifies the daily snapshot options specified for the Elasticsearch
      * domain.</p>
@@ -60,7 +63,7 @@ namespace Model
      * <p>Specifies the daily snapshot options specified for the Elasticsearch
      * domain.</p>
      */
-    inline void SetOptions(SnapshotOptions&& value) { m_optionsHasBeenSet = true; m_options = value; }
+    inline void SetOptions(SnapshotOptions&& value) { m_optionsHasBeenSet = true; m_options = std::move(value); }
 
     /**
      * <p>Specifies the daily snapshot options specified for the Elasticsearch
@@ -72,7 +75,8 @@ namespace Model
      * <p>Specifies the daily snapshot options specified for the Elasticsearch
      * domain.</p>
      */
-    inline SnapshotOptionsStatus& WithOptions(SnapshotOptions&& value) { SetOptions(value); return *this;}
+    inline SnapshotOptionsStatus& WithOptions(SnapshotOptions&& value) { SetOptions(std::move(value)); return *this;}
+
 
     /**
      * <p>Specifies the status of a daily automated snapshot.</p>
@@ -87,7 +91,7 @@ namespace Model
     /**
      * <p>Specifies the status of a daily automated snapshot.</p>
      */
-    inline void SetStatus(OptionStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(OptionStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>Specifies the status of a daily automated snapshot.</p>
@@ -97,11 +101,13 @@ namespace Model
     /**
      * <p>Specifies the status of a daily automated snapshot.</p>
      */
-    inline SnapshotOptionsStatus& WithStatus(OptionStatus&& value) { SetStatus(value); return *this;}
+    inline SnapshotOptionsStatus& WithStatus(OptionStatus&& value) { SetStatus(std::move(value)); return *this;}
 
   private:
+
     SnapshotOptions m_options;
     bool m_optionsHasBeenSet;
+
     OptionStatus m_status;
     bool m_statusHasBeenSet;
   };

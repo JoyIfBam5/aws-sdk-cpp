@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/snowball/Snowball_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/snowball/model/JobListEntry.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     ListClusterJobsResult();
-    ListClusterJobsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListClusterJobsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListClusterJobsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListClusterJobsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Each <code>JobListEntry</code> object contains a job's state, a job's ID, and
@@ -60,7 +63,7 @@ namespace Model
      * a value that indicates whether the job is a job part, in the case of export
      * jobs. </p>
      */
-    inline void SetJobListEntries(Aws::Vector<JobListEntry>&& value) { m_jobListEntries = value; }
+    inline void SetJobListEntries(Aws::Vector<JobListEntry>&& value) { m_jobListEntries = std::move(value); }
 
     /**
      * <p>Each <code>JobListEntry</code> object contains a job's state, a job's ID, and
@@ -74,7 +77,7 @@ namespace Model
      * a value that indicates whether the job is a job part, in the case of export
      * jobs. </p>
      */
-    inline ListClusterJobsResult& WithJobListEntries(Aws::Vector<JobListEntry>&& value) { SetJobListEntries(value); return *this;}
+    inline ListClusterJobsResult& WithJobListEntries(Aws::Vector<JobListEntry>&& value) { SetJobListEntries(std::move(value)); return *this;}
 
     /**
      * <p>Each <code>JobListEntry</code> object contains a job's state, a job's ID, and
@@ -88,7 +91,8 @@ namespace Model
      * a value that indicates whether the job is a job part, in the case of export
      * jobs. </p>
      */
-    inline ListClusterJobsResult& AddJobListEntries(JobListEntry&& value) { m_jobListEntries.push_back(value); return *this; }
+    inline ListClusterJobsResult& AddJobListEntries(JobListEntry&& value) { m_jobListEntries.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>HTTP requests are stateless. If you use the automatically generated
@@ -109,7 +113,7 @@ namespace Model
      * <code>NextToken</code> value in your next <code>ListClusterJobsResult</code>
      * call, your list of returned jobs will start from this point in the array.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>HTTP requests are stateless. If you use the automatically generated
@@ -130,7 +134,7 @@ namespace Model
      * <code>NextToken</code> value in your next <code>ListClusterJobsResult</code>
      * call, your list of returned jobs will start from this point in the array.</p>
      */
-    inline ListClusterJobsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListClusterJobsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>HTTP requests are stateless. If you use the automatically generated
@@ -140,7 +144,9 @@ namespace Model
     inline ListClusterJobsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<JobListEntry> m_jobListEntries;
+
     Aws::String m_nextToken;
   };
 

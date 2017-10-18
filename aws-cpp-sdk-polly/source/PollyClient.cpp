@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/core/utils/Outcome.h>
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
@@ -100,10 +101,11 @@ void PollyClient::init(const ClientConfiguration& config)
 DeleteLexiconOutcome PollyClient::DeleteLexicon(const DeleteLexiconRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/v1/lexicons/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/v1/lexicons/";
   ss << request.GetName();
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_DELETE);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_DELETE, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DeleteLexiconOutcome(DeleteLexiconResult(outcome.GetResult()));
@@ -135,9 +137,10 @@ void PollyClient::DeleteLexiconAsyncHelper(const DeleteLexiconRequest& request, 
 DescribeVoicesOutcome PollyClient::DescribeVoices(const DescribeVoicesRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/v1/voices";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_GET);
+  Aws::Http::URI uri = m_uri;
+  ss << "/v1/voices";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeVoicesOutcome(DescribeVoicesResult(outcome.GetResult()));
@@ -169,10 +172,11 @@ void PollyClient::DescribeVoicesAsyncHelper(const DescribeVoicesRequest& request
 GetLexiconOutcome PollyClient::GetLexicon(const GetLexiconRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/v1/lexicons/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/v1/lexicons/";
   ss << request.GetName();
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_GET);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return GetLexiconOutcome(GetLexiconResult(outcome.GetResult()));
@@ -204,9 +208,10 @@ void PollyClient::GetLexiconAsyncHelper(const GetLexiconRequest& request, const 
 ListLexiconsOutcome PollyClient::ListLexicons(const ListLexiconsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/v1/lexicons";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_GET);
+  Aws::Http::URI uri = m_uri;
+  ss << "/v1/lexicons";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ListLexiconsOutcome(ListLexiconsResult(outcome.GetResult()));
@@ -238,10 +243,11 @@ void PollyClient::ListLexiconsAsyncHelper(const ListLexiconsRequest& request, co
 PutLexiconOutcome PollyClient::PutLexicon(const PutLexiconRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/v1/lexicons/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/v1/lexicons/";
   ss << request.GetName();
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_PUT);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_PUT, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return PutLexiconOutcome(PutLexiconResult(outcome.GetResult()));
@@ -273,9 +279,10 @@ void PollyClient::PutLexiconAsyncHelper(const PutLexiconRequest& request, const 
 SynthesizeSpeechOutcome PollyClient::SynthesizeSpeech(const SynthesizeSpeechRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/v1/speech";
-
-  StreamOutcome outcome = MakeRequestWithUnparsedResponse(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/v1/speech";
+  uri.SetPath(uri.GetPath() + ss.str());
+  StreamOutcome outcome = MakeRequestWithUnparsedResponse(uri, request, HttpMethod::HTTP_POST);
   if(outcome.IsSuccess())
   {
     return SynthesizeSpeechOutcome(SynthesizeSpeechResult(outcome.GetResultWithOwnership()));

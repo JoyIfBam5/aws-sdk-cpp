@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-identity/CognitoIdentity_EXPORTS.h>
 #include <aws/cognito-identity/CognitoIdentityRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     MergeDeveloperIdentitiesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "MergeDeveloperIdentities"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>User identifier for the source user. The value should be a
@@ -54,7 +64,7 @@ namespace Model
      * <p>User identifier for the source user. The value should be a
      * <code>DeveloperUserIdentifier</code>.</p>
      */
-    inline void SetSourceUserIdentifier(Aws::String&& value) { m_sourceUserIdentifierHasBeenSet = true; m_sourceUserIdentifier = value; }
+    inline void SetSourceUserIdentifier(Aws::String&& value) { m_sourceUserIdentifierHasBeenSet = true; m_sourceUserIdentifier = std::move(value); }
 
     /**
      * <p>User identifier for the source user. The value should be a
@@ -72,13 +82,14 @@ namespace Model
      * <p>User identifier for the source user. The value should be a
      * <code>DeveloperUserIdentifier</code>.</p>
      */
-    inline MergeDeveloperIdentitiesRequest& WithSourceUserIdentifier(Aws::String&& value) { SetSourceUserIdentifier(value); return *this;}
+    inline MergeDeveloperIdentitiesRequest& WithSourceUserIdentifier(Aws::String&& value) { SetSourceUserIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>User identifier for the source user. The value should be a
      * <code>DeveloperUserIdentifier</code>.</p>
      */
     inline MergeDeveloperIdentitiesRequest& WithSourceUserIdentifier(const char* value) { SetSourceUserIdentifier(value); return *this;}
+
 
     /**
      * <p>User identifier for the destination user. The value should be a
@@ -96,7 +107,7 @@ namespace Model
      * <p>User identifier for the destination user. The value should be a
      * <code>DeveloperUserIdentifier</code>.</p>
      */
-    inline void SetDestinationUserIdentifier(Aws::String&& value) { m_destinationUserIdentifierHasBeenSet = true; m_destinationUserIdentifier = value; }
+    inline void SetDestinationUserIdentifier(Aws::String&& value) { m_destinationUserIdentifierHasBeenSet = true; m_destinationUserIdentifier = std::move(value); }
 
     /**
      * <p>User identifier for the destination user. The value should be a
@@ -114,13 +125,14 @@ namespace Model
      * <p>User identifier for the destination user. The value should be a
      * <code>DeveloperUserIdentifier</code>.</p>
      */
-    inline MergeDeveloperIdentitiesRequest& WithDestinationUserIdentifier(Aws::String&& value) { SetDestinationUserIdentifier(value); return *this;}
+    inline MergeDeveloperIdentitiesRequest& WithDestinationUserIdentifier(Aws::String&& value) { SetDestinationUserIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>User identifier for the destination user. The value should be a
      * <code>DeveloperUserIdentifier</code>.</p>
      */
     inline MergeDeveloperIdentitiesRequest& WithDestinationUserIdentifier(const char* value) { SetDestinationUserIdentifier(value); return *this;}
+
 
     /**
      * <p>The "domain" by which Cognito will refer to your users. This is a (pseudo)
@@ -147,7 +159,7 @@ namespace Model
      * about the developer provider. For the <code>DeveloperProviderName</code>, you
      * can use letters as well as period (.), underscore (_), and dash (-).</p>
      */
-    inline void SetDeveloperProviderName(Aws::String&& value) { m_developerProviderNameHasBeenSet = true; m_developerProviderName = value; }
+    inline void SetDeveloperProviderName(Aws::String&& value) { m_developerProviderNameHasBeenSet = true; m_developerProviderName = std::move(value); }
 
     /**
      * <p>The "domain" by which Cognito will refer to your users. This is a (pseudo)
@@ -174,7 +186,7 @@ namespace Model
      * about the developer provider. For the <code>DeveloperProviderName</code>, you
      * can use letters as well as period (.), underscore (_), and dash (-).</p>
      */
-    inline MergeDeveloperIdentitiesRequest& WithDeveloperProviderName(Aws::String&& value) { SetDeveloperProviderName(value); return *this;}
+    inline MergeDeveloperIdentitiesRequest& WithDeveloperProviderName(Aws::String&& value) { SetDeveloperProviderName(std::move(value)); return *this;}
 
     /**
      * <p>The "domain" by which Cognito will refer to your users. This is a (pseudo)
@@ -184,6 +196,7 @@ namespace Model
      * can use letters as well as period (.), underscore (_), and dash (-).</p>
      */
     inline MergeDeveloperIdentitiesRequest& WithDeveloperProviderName(const char* value) { SetDeveloperProviderName(value); return *this;}
+
 
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
@@ -198,7 +211,7 @@ namespace Model
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
      */
-    inline void SetIdentityPoolId(Aws::String&& value) { m_identityPoolIdHasBeenSet = true; m_identityPoolId = value; }
+    inline void SetIdentityPoolId(Aws::String&& value) { m_identityPoolIdHasBeenSet = true; m_identityPoolId = std::move(value); }
 
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
@@ -213,7 +226,7 @@ namespace Model
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
      */
-    inline MergeDeveloperIdentitiesRequest& WithIdentityPoolId(Aws::String&& value) { SetIdentityPoolId(value); return *this;}
+    inline MergeDeveloperIdentitiesRequest& WithIdentityPoolId(Aws::String&& value) { SetIdentityPoolId(std::move(value)); return *this;}
 
     /**
      * <p>An identity pool ID in the format REGION:GUID.</p>
@@ -221,12 +234,16 @@ namespace Model
     inline MergeDeveloperIdentitiesRequest& WithIdentityPoolId(const char* value) { SetIdentityPoolId(value); return *this;}
 
   private:
+
     Aws::String m_sourceUserIdentifier;
     bool m_sourceUserIdentifierHasBeenSet;
+
     Aws::String m_destinationUserIdentifier;
     bool m_destinationUserIdentifierHasBeenSet;
+
     Aws::String m_developerProviderName;
     bool m_developerProviderNameHasBeenSet;
+
     Aws::String m_identityPoolId;
     bool m_identityPoolIdHasBeenSet;
   };

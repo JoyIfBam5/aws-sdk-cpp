@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/events/CloudWatchEvents_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/events/model/RuleState.h>
+#include <utility>
 
 namespace Aws
 {
@@ -32,8 +34,8 @@ namespace Model
 {
 
   /**
-   * <p>Contains information about a rule in Amazon CloudWatch Events. A
-   * ListRulesResult contains a list of Rules.</p><p><h3>See Also:</h3>   <a
+   * <p>Contains information about a rule in Amazon CloudWatch Events.</p><p><h3>See
+   * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/Rule">AWS API
    * Reference</a></p>
    */
@@ -45,40 +47,42 @@ namespace Model
     Rule& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p>The rule's name.</p>
+     * <p>The name of the rule.</p>
      */
     inline const Aws::String& GetName() const{ return m_name; }
 
     /**
-     * <p>The rule's name.</p>
+     * <p>The name of the rule.</p>
      */
     inline void SetName(const Aws::String& value) { m_nameHasBeenSet = true; m_name = value; }
 
     /**
-     * <p>The rule's name.</p>
+     * <p>The name of the rule.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
-     * <p>The rule's name.</p>
+     * <p>The name of the rule.</p>
      */
     inline void SetName(const char* value) { m_nameHasBeenSet = true; m_name.assign(value); }
 
     /**
-     * <p>The rule's name.</p>
+     * <p>The name of the rule.</p>
      */
     inline Rule& WithName(const Aws::String& value) { SetName(value); return *this;}
 
     /**
-     * <p>The rule's name.</p>
+     * <p>The name of the rule.</p>
      */
-    inline Rule& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline Rule& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
-     * <p>The rule's name.</p>
+     * <p>The name of the rule.</p>
      */
     inline Rule& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the rule.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the rule.</p>
      */
-    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = value; }
+    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the rule.</p>
@@ -108,72 +112,89 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the rule.</p>
      */
-    inline Rule& WithArn(Aws::String&& value) { SetArn(value); return *this;}
+    inline Rule& WithArn(Aws::String&& value) { SetArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the rule.</p>
      */
     inline Rule& WithArn(const char* value) { SetArn(value); return *this;}
 
+
     /**
-     * <p>The event pattern of the rule.</p>
+     * <p>The event pattern of the rule. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html">Events
+     * and Event Patterns</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>
      */
     inline const Aws::String& GetEventPattern() const{ return m_eventPattern; }
 
     /**
-     * <p>The event pattern of the rule.</p>
+     * <p>The event pattern of the rule. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html">Events
+     * and Event Patterns</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>
      */
     inline void SetEventPattern(const Aws::String& value) { m_eventPatternHasBeenSet = true; m_eventPattern = value; }
 
     /**
-     * <p>The event pattern of the rule.</p>
+     * <p>The event pattern of the rule. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html">Events
+     * and Event Patterns</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>
      */
-    inline void SetEventPattern(Aws::String&& value) { m_eventPatternHasBeenSet = true; m_eventPattern = value; }
+    inline void SetEventPattern(Aws::String&& value) { m_eventPatternHasBeenSet = true; m_eventPattern = std::move(value); }
 
     /**
-     * <p>The event pattern of the rule.</p>
+     * <p>The event pattern of the rule. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html">Events
+     * and Event Patterns</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>
      */
     inline void SetEventPattern(const char* value) { m_eventPatternHasBeenSet = true; m_eventPattern.assign(value); }
 
     /**
-     * <p>The event pattern of the rule.</p>
+     * <p>The event pattern of the rule. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html">Events
+     * and Event Patterns</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>
      */
     inline Rule& WithEventPattern(const Aws::String& value) { SetEventPattern(value); return *this;}
 
     /**
-     * <p>The event pattern of the rule.</p>
+     * <p>The event pattern of the rule. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html">Events
+     * and Event Patterns</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>
      */
-    inline Rule& WithEventPattern(Aws::String&& value) { SetEventPattern(value); return *this;}
+    inline Rule& WithEventPattern(Aws::String&& value) { SetEventPattern(std::move(value)); return *this;}
 
     /**
-     * <p>The event pattern of the rule.</p>
+     * <p>The event pattern of the rule. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CloudWatchEventsandEventPatterns.html">Events
+     * and Event Patterns</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>
      */
     inline Rule& WithEventPattern(const char* value) { SetEventPattern(value); return *this;}
 
+
     /**
-     * <p>The rule's state.</p>
+     * <p>The state of the rule.</p>
      */
     inline const RuleState& GetState() const{ return m_state; }
 
     /**
-     * <p>The rule's state.</p>
+     * <p>The state of the rule.</p>
      */
     inline void SetState(const RuleState& value) { m_stateHasBeenSet = true; m_state = value; }
 
     /**
-     * <p>The rule's state.</p>
+     * <p>The state of the rule.</p>
      */
-    inline void SetState(RuleState&& value) { m_stateHasBeenSet = true; m_state = value; }
+    inline void SetState(RuleState&& value) { m_stateHasBeenSet = true; m_state = std::move(value); }
 
     /**
-     * <p>The rule's state.</p>
+     * <p>The state of the rule.</p>
      */
     inline Rule& WithState(const RuleState& value) { SetState(value); return *this;}
 
     /**
-     * <p>The rule's state.</p>
+     * <p>The state of the rule.</p>
      */
-    inline Rule& WithState(RuleState&& value) { SetState(value); return *this;}
+    inline Rule& WithState(RuleState&& value) { SetState(std::move(value)); return *this;}
+
 
     /**
      * <p>The description of the rule.</p>
@@ -188,7 +209,7 @@ namespace Model
     /**
      * <p>The description of the rule.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The description of the rule.</p>
@@ -203,12 +224,13 @@ namespace Model
     /**
      * <p>The description of the rule.</p>
      */
-    inline Rule& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline Rule& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description of the rule.</p>
      */
     inline Rule& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The scheduling expression. For example, "cron(0 20 * * ? *)", "rate(5
@@ -226,7 +248,7 @@ namespace Model
      * <p>The scheduling expression. For example, "cron(0 20 * * ? *)", "rate(5
      * minutes)".</p>
      */
-    inline void SetScheduleExpression(Aws::String&& value) { m_scheduleExpressionHasBeenSet = true; m_scheduleExpression = value; }
+    inline void SetScheduleExpression(Aws::String&& value) { m_scheduleExpressionHasBeenSet = true; m_scheduleExpression = std::move(value); }
 
     /**
      * <p>The scheduling expression. For example, "cron(0 20 * * ? *)", "rate(5
@@ -244,7 +266,7 @@ namespace Model
      * <p>The scheduling expression. For example, "cron(0 20 * * ? *)", "rate(5
      * minutes)".</p>
      */
-    inline Rule& WithScheduleExpression(Aws::String&& value) { SetScheduleExpression(value); return *this;}
+    inline Rule& WithScheduleExpression(Aws::String&& value) { SetScheduleExpression(std::move(value)); return *this;}
 
     /**
      * <p>The scheduling expression. For example, "cron(0 20 * * ? *)", "rate(5
@@ -252,61 +274,69 @@ namespace Model
      */
     inline Rule& WithScheduleExpression(const char* value) { SetScheduleExpression(value); return *this;}
 
+
     /**
-     * <p>The Amazon Resource Name (ARN) associated with the role that is used for
-     * target invocation.</p>
+     * <p>The Amazon Resource Name (ARN) of the role that is used for target
+     * invocation.</p>
      */
     inline const Aws::String& GetRoleArn() const{ return m_roleArn; }
 
     /**
-     * <p>The Amazon Resource Name (ARN) associated with the role that is used for
-     * target invocation.</p>
+     * <p>The Amazon Resource Name (ARN) of the role that is used for target
+     * invocation.</p>
      */
     inline void SetRoleArn(const Aws::String& value) { m_roleArnHasBeenSet = true; m_roleArn = value; }
 
     /**
-     * <p>The Amazon Resource Name (ARN) associated with the role that is used for
-     * target invocation.</p>
+     * <p>The Amazon Resource Name (ARN) of the role that is used for target
+     * invocation.</p>
      */
-    inline void SetRoleArn(Aws::String&& value) { m_roleArnHasBeenSet = true; m_roleArn = value; }
+    inline void SetRoleArn(Aws::String&& value) { m_roleArnHasBeenSet = true; m_roleArn = std::move(value); }
 
     /**
-     * <p>The Amazon Resource Name (ARN) associated with the role that is used for
-     * target invocation.</p>
+     * <p>The Amazon Resource Name (ARN) of the role that is used for target
+     * invocation.</p>
      */
     inline void SetRoleArn(const char* value) { m_roleArnHasBeenSet = true; m_roleArn.assign(value); }
 
     /**
-     * <p>The Amazon Resource Name (ARN) associated with the role that is used for
-     * target invocation.</p>
+     * <p>The Amazon Resource Name (ARN) of the role that is used for target
+     * invocation.</p>
      */
     inline Rule& WithRoleArn(const Aws::String& value) { SetRoleArn(value); return *this;}
 
     /**
-     * <p>The Amazon Resource Name (ARN) associated with the role that is used for
-     * target invocation.</p>
+     * <p>The Amazon Resource Name (ARN) of the role that is used for target
+     * invocation.</p>
      */
-    inline Rule& WithRoleArn(Aws::String&& value) { SetRoleArn(value); return *this;}
+    inline Rule& WithRoleArn(Aws::String&& value) { SetRoleArn(std::move(value)); return *this;}
 
     /**
-     * <p>The Amazon Resource Name (ARN) associated with the role that is used for
-     * target invocation.</p>
+     * <p>The Amazon Resource Name (ARN) of the role that is used for target
+     * invocation.</p>
      */
     inline Rule& WithRoleArn(const char* value) { SetRoleArn(value); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_arn;
     bool m_arnHasBeenSet;
+
     Aws::String m_eventPattern;
     bool m_eventPatternHasBeenSet;
+
     RuleState m_state;
     bool m_stateHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     Aws::String m_scheduleExpression;
     bool m_scheduleExpressionHasBeenSet;
+
     Aws::String m_roleArn;
     bool m_roleArnHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/health/Health_EXPORTS.h>
 #include <aws/health/HealthRequest.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,9 +33,17 @@ namespace Model
   {
   public:
     DescribeEntityAggregatesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeEntityAggregates"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>A list of event ARNs (unique identifiers). For example:
@@ -54,7 +64,7 @@ namespace Model
      * <code>"arn:aws:health:us-east-1::event/AWS_EC2_MAINTENANCE_5331",
      * "arn:aws:health:us-west-1::event/AWS_EBS_LOST_VOLUME_xyz"</code> </p>
      */
-    inline void SetEventArns(Aws::Vector<Aws::String>&& value) { m_eventArnsHasBeenSet = true; m_eventArns = value; }
+    inline void SetEventArns(Aws::Vector<Aws::String>&& value) { m_eventArnsHasBeenSet = true; m_eventArns = std::move(value); }
 
     /**
      * <p>A list of event ARNs (unique identifiers). For example:
@@ -68,7 +78,7 @@ namespace Model
      * <code>"arn:aws:health:us-east-1::event/AWS_EC2_MAINTENANCE_5331",
      * "arn:aws:health:us-west-1::event/AWS_EBS_LOST_VOLUME_xyz"</code> </p>
      */
-    inline DescribeEntityAggregatesRequest& WithEventArns(Aws::Vector<Aws::String>&& value) { SetEventArns(value); return *this;}
+    inline DescribeEntityAggregatesRequest& WithEventArns(Aws::Vector<Aws::String>&& value) { SetEventArns(std::move(value)); return *this;}
 
     /**
      * <p>A list of event ARNs (unique identifiers). For example:
@@ -82,7 +92,7 @@ namespace Model
      * <code>"arn:aws:health:us-east-1::event/AWS_EC2_MAINTENANCE_5331",
      * "arn:aws:health:us-west-1::event/AWS_EBS_LOST_VOLUME_xyz"</code> </p>
      */
-    inline DescribeEntityAggregatesRequest& AddEventArns(Aws::String&& value) { m_eventArnsHasBeenSet = true; m_eventArns.push_back(value); return *this; }
+    inline DescribeEntityAggregatesRequest& AddEventArns(Aws::String&& value) { m_eventArnsHasBeenSet = true; m_eventArns.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of event ARNs (unique identifiers). For example:
@@ -92,6 +102,7 @@ namespace Model
     inline DescribeEntityAggregatesRequest& AddEventArns(const char* value) { m_eventArnsHasBeenSet = true; m_eventArns.push_back(value); return *this; }
 
   private:
+
     Aws::Vector<Aws::String> m_eventArns;
     bool m_eventArnsHasBeenSet;
   };

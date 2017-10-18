@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/rds/model/ApplyMethod.h>
+#include <utility>
 
 namespace Aws
 {
@@ -51,6 +53,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>Specifies the name of the parameter.</p>
      */
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>Specifies the name of the parameter.</p>
      */
-    inline void SetParameterName(Aws::String&& value) { m_parameterNameHasBeenSet = true; m_parameterName = value; }
+    inline void SetParameterName(Aws::String&& value) { m_parameterNameHasBeenSet = true; m_parameterName = std::move(value); }
 
     /**
      * <p>Specifies the name of the parameter.</p>
@@ -79,12 +82,13 @@ namespace Model
     /**
      * <p>Specifies the name of the parameter.</p>
      */
-    inline Parameter& WithParameterName(Aws::String&& value) { SetParameterName(value); return *this;}
+    inline Parameter& WithParameterName(Aws::String&& value) { SetParameterName(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the name of the parameter.</p>
      */
     inline Parameter& WithParameterName(const char* value) { SetParameterName(value); return *this;}
+
 
     /**
      * <p>Specifies the value of the parameter.</p>
@@ -99,7 +103,7 @@ namespace Model
     /**
      * <p>Specifies the value of the parameter.</p>
      */
-    inline void SetParameterValue(Aws::String&& value) { m_parameterValueHasBeenSet = true; m_parameterValue = value; }
+    inline void SetParameterValue(Aws::String&& value) { m_parameterValueHasBeenSet = true; m_parameterValue = std::move(value); }
 
     /**
      * <p>Specifies the value of the parameter.</p>
@@ -114,12 +118,13 @@ namespace Model
     /**
      * <p>Specifies the value of the parameter.</p>
      */
-    inline Parameter& WithParameterValue(Aws::String&& value) { SetParameterValue(value); return *this;}
+    inline Parameter& WithParameterValue(Aws::String&& value) { SetParameterValue(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the value of the parameter.</p>
      */
     inline Parameter& WithParameterValue(const char* value) { SetParameterValue(value); return *this;}
+
 
     /**
      * <p>Provides a description of the parameter.</p>
@@ -134,7 +139,7 @@ namespace Model
     /**
      * <p>Provides a description of the parameter.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>Provides a description of the parameter.</p>
@@ -149,12 +154,13 @@ namespace Model
     /**
      * <p>Provides a description of the parameter.</p>
      */
-    inline Parameter& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline Parameter& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>Provides a description of the parameter.</p>
      */
     inline Parameter& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>Indicates the source of the parameter value.</p>
@@ -169,7 +175,7 @@ namespace Model
     /**
      * <p>Indicates the source of the parameter value.</p>
      */
-    inline void SetSource(Aws::String&& value) { m_sourceHasBeenSet = true; m_source = value; }
+    inline void SetSource(Aws::String&& value) { m_sourceHasBeenSet = true; m_source = std::move(value); }
 
     /**
      * <p>Indicates the source of the parameter value.</p>
@@ -184,12 +190,13 @@ namespace Model
     /**
      * <p>Indicates the source of the parameter value.</p>
      */
-    inline Parameter& WithSource(Aws::String&& value) { SetSource(value); return *this;}
+    inline Parameter& WithSource(Aws::String&& value) { SetSource(std::move(value)); return *this;}
 
     /**
      * <p>Indicates the source of the parameter value.</p>
      */
     inline Parameter& WithSource(const char* value) { SetSource(value); return *this;}
+
 
     /**
      * <p>Specifies the engine specific parameters type.</p>
@@ -204,7 +211,7 @@ namespace Model
     /**
      * <p>Specifies the engine specific parameters type.</p>
      */
-    inline void SetApplyType(Aws::String&& value) { m_applyTypeHasBeenSet = true; m_applyType = value; }
+    inline void SetApplyType(Aws::String&& value) { m_applyTypeHasBeenSet = true; m_applyType = std::move(value); }
 
     /**
      * <p>Specifies the engine specific parameters type.</p>
@@ -219,12 +226,13 @@ namespace Model
     /**
      * <p>Specifies the engine specific parameters type.</p>
      */
-    inline Parameter& WithApplyType(Aws::String&& value) { SetApplyType(value); return *this;}
+    inline Parameter& WithApplyType(Aws::String&& value) { SetApplyType(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the engine specific parameters type.</p>
      */
     inline Parameter& WithApplyType(const char* value) { SetApplyType(value); return *this;}
+
 
     /**
      * <p>Specifies the valid data type for the parameter.</p>
@@ -239,7 +247,7 @@ namespace Model
     /**
      * <p>Specifies the valid data type for the parameter.</p>
      */
-    inline void SetDataType(Aws::String&& value) { m_dataTypeHasBeenSet = true; m_dataType = value; }
+    inline void SetDataType(Aws::String&& value) { m_dataTypeHasBeenSet = true; m_dataType = std::move(value); }
 
     /**
      * <p>Specifies the valid data type for the parameter.</p>
@@ -254,12 +262,13 @@ namespace Model
     /**
      * <p>Specifies the valid data type for the parameter.</p>
      */
-    inline Parameter& WithDataType(Aws::String&& value) { SetDataType(value); return *this;}
+    inline Parameter& WithDataType(Aws::String&& value) { SetDataType(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the valid data type for the parameter.</p>
      */
     inline Parameter& WithDataType(const char* value) { SetDataType(value); return *this;}
+
 
     /**
      * <p>Specifies the valid range of values for the parameter.</p>
@@ -274,7 +283,7 @@ namespace Model
     /**
      * <p>Specifies the valid range of values for the parameter.</p>
      */
-    inline void SetAllowedValues(Aws::String&& value) { m_allowedValuesHasBeenSet = true; m_allowedValues = value; }
+    inline void SetAllowedValues(Aws::String&& value) { m_allowedValuesHasBeenSet = true; m_allowedValues = std::move(value); }
 
     /**
      * <p>Specifies the valid range of values for the parameter.</p>
@@ -289,12 +298,13 @@ namespace Model
     /**
      * <p>Specifies the valid range of values for the parameter.</p>
      */
-    inline Parameter& WithAllowedValues(Aws::String&& value) { SetAllowedValues(value); return *this;}
+    inline Parameter& WithAllowedValues(Aws::String&& value) { SetAllowedValues(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the valid range of values for the parameter.</p>
      */
     inline Parameter& WithAllowedValues(const char* value) { SetAllowedValues(value); return *this;}
+
 
     /**
      * <p> Indicates whether (<code>true</code>) or not (<code>false</code>) the
@@ -317,6 +327,7 @@ namespace Model
      */
     inline Parameter& WithIsModifiable(bool value) { SetIsModifiable(value); return *this;}
 
+
     /**
      * <p>The earliest engine version to which the parameter can apply.</p>
      */
@@ -330,7 +341,7 @@ namespace Model
     /**
      * <p>The earliest engine version to which the parameter can apply.</p>
      */
-    inline void SetMinimumEngineVersion(Aws::String&& value) { m_minimumEngineVersionHasBeenSet = true; m_minimumEngineVersion = value; }
+    inline void SetMinimumEngineVersion(Aws::String&& value) { m_minimumEngineVersionHasBeenSet = true; m_minimumEngineVersion = std::move(value); }
 
     /**
      * <p>The earliest engine version to which the parameter can apply.</p>
@@ -345,12 +356,13 @@ namespace Model
     /**
      * <p>The earliest engine version to which the parameter can apply.</p>
      */
-    inline Parameter& WithMinimumEngineVersion(Aws::String&& value) { SetMinimumEngineVersion(value); return *this;}
+    inline Parameter& WithMinimumEngineVersion(Aws::String&& value) { SetMinimumEngineVersion(std::move(value)); return *this;}
 
     /**
      * <p>The earliest engine version to which the parameter can apply.</p>
      */
     inline Parameter& WithMinimumEngineVersion(const char* value) { SetMinimumEngineVersion(value); return *this;}
+
 
     /**
      * <p>Indicates when to apply parameter updates.</p>
@@ -365,7 +377,7 @@ namespace Model
     /**
      * <p>Indicates when to apply parameter updates.</p>
      */
-    inline void SetApplyMethod(ApplyMethod&& value) { m_applyMethodHasBeenSet = true; m_applyMethod = value; }
+    inline void SetApplyMethod(ApplyMethod&& value) { m_applyMethodHasBeenSet = true; m_applyMethod = std::move(value); }
 
     /**
      * <p>Indicates when to apply parameter updates.</p>
@@ -375,27 +387,37 @@ namespace Model
     /**
      * <p>Indicates when to apply parameter updates.</p>
      */
-    inline Parameter& WithApplyMethod(ApplyMethod&& value) { SetApplyMethod(value); return *this;}
+    inline Parameter& WithApplyMethod(ApplyMethod&& value) { SetApplyMethod(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_parameterName;
     bool m_parameterNameHasBeenSet;
+
     Aws::String m_parameterValue;
     bool m_parameterValueHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     Aws::String m_source;
     bool m_sourceHasBeenSet;
+
     Aws::String m_applyType;
     bool m_applyTypeHasBeenSet;
+
     Aws::String m_dataType;
     bool m_dataTypeHasBeenSet;
+
     Aws::String m_allowedValues;
     bool m_allowedValuesHasBeenSet;
+
     bool m_isModifiable;
     bool m_isModifiableHasBeenSet;
+
     Aws::String m_minimumEngineVersion;
     bool m_minimumEngineVersionHasBeenSet;
+
     ApplyMethod m_applyMethod;
     bool m_applyMethodHasBeenSet;
   };

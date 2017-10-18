@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/iam/IAMRequest.h>
 #include <aws/iam/model/AssignmentStatusType.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,7 +33,19 @@ namespace Model
   {
   public:
     ListVirtualMFADevicesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListVirtualMFADevices"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p> The status (<code>Unassigned</code> or <code>Assigned</code>) of the devices
@@ -55,7 +69,7 @@ namespace Model
      * defaults to <code>Any</code> which lists both assigned and unassigned virtual
      * MFA devices.</p>
      */
-    inline void SetAssignmentStatus(AssignmentStatusType&& value) { m_assignmentStatusHasBeenSet = true; m_assignmentStatus = value; }
+    inline void SetAssignmentStatus(AssignmentStatusType&& value) { m_assignmentStatusHasBeenSet = true; m_assignmentStatus = std::move(value); }
 
     /**
      * <p> The status (<code>Unassigned</code> or <code>Assigned</code>) of the devices
@@ -71,7 +85,8 @@ namespace Model
      * defaults to <code>Any</code> which lists both assigned and unassigned virtual
      * MFA devices.</p>
      */
-    inline ListVirtualMFADevicesRequest& WithAssignmentStatus(AssignmentStatusType&& value) { SetAssignmentStatus(value); return *this;}
+    inline ListVirtualMFADevicesRequest& WithAssignmentStatus(AssignmentStatusType&& value) { SetAssignmentStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>Use this parameter only when paginating results and only after you receive a
@@ -95,7 +110,7 @@ namespace Model
      * <code>Marker</code> element in the response that you received to indicate where
      * the next call should start.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p>Use this parameter only when paginating results and only after you receive a
@@ -119,7 +134,7 @@ namespace Model
      * <code>Marker</code> element in the response that you received to indicate where
      * the next call should start.</p>
      */
-    inline ListVirtualMFADevicesRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline ListVirtualMFADevicesRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>Use this parameter only when paginating results and only after you receive a
@@ -128,6 +143,7 @@ namespace Model
      * the next call should start.</p>
      */
     inline ListVirtualMFADevicesRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>(Optional) Use this only when paginating results to indicate the maximum
@@ -166,10 +182,13 @@ namespace Model
     inline ListVirtualMFADevicesRequest& WithMaxItems(int value) { SetMaxItems(value); return *this;}
 
   private:
+
     AssignmentStatusType m_assignmentStatus;
     bool m_assignmentStatusHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
+
     int m_maxItems;
     bool m_maxItemsHasBeenSet;
   };

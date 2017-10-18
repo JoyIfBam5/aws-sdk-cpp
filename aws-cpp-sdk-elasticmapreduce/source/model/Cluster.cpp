@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/elasticmapreduce/model/Cluster.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -32,6 +33,8 @@ Cluster::Cluster() :
     m_nameHasBeenSet(false),
     m_statusHasBeenSet(false),
     m_ec2InstanceAttributesHasBeenSet(false),
+    m_instanceCollectionType(InstanceCollectionType::NOT_SET),
+    m_instanceCollectionTypeHasBeenSet(false),
     m_logUriHasBeenSet(false),
     m_requestedAmiVersionHasBeenSet(false),
     m_runningAmiVersionHasBeenSet(false),
@@ -52,7 +55,12 @@ Cluster::Cluster() :
     m_securityConfigurationHasBeenSet(false),
     m_autoScalingRoleHasBeenSet(false),
     m_scaleDownBehavior(ScaleDownBehavior::NOT_SET),
-    m_scaleDownBehaviorHasBeenSet(false)
+    m_scaleDownBehaviorHasBeenSet(false),
+    m_customAmiIdHasBeenSet(false),
+    m_ebsRootVolumeSize(0),
+    m_ebsRootVolumeSizeHasBeenSet(false),
+    m_repoUpgradeOnBoot(RepoUpgradeOnBoot::NOT_SET),
+    m_repoUpgradeOnBootHasBeenSet(false)
 {
 }
 
@@ -61,6 +69,8 @@ Cluster::Cluster(const JsonValue& jsonValue) :
     m_nameHasBeenSet(false),
     m_statusHasBeenSet(false),
     m_ec2InstanceAttributesHasBeenSet(false),
+    m_instanceCollectionType(InstanceCollectionType::NOT_SET),
+    m_instanceCollectionTypeHasBeenSet(false),
     m_logUriHasBeenSet(false),
     m_requestedAmiVersionHasBeenSet(false),
     m_runningAmiVersionHasBeenSet(false),
@@ -81,7 +91,12 @@ Cluster::Cluster(const JsonValue& jsonValue) :
     m_securityConfigurationHasBeenSet(false),
     m_autoScalingRoleHasBeenSet(false),
     m_scaleDownBehavior(ScaleDownBehavior::NOT_SET),
-    m_scaleDownBehaviorHasBeenSet(false)
+    m_scaleDownBehaviorHasBeenSet(false),
+    m_customAmiIdHasBeenSet(false),
+    m_ebsRootVolumeSize(0),
+    m_ebsRootVolumeSizeHasBeenSet(false),
+    m_repoUpgradeOnBoot(RepoUpgradeOnBoot::NOT_SET),
+    m_repoUpgradeOnBootHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -114,6 +129,13 @@ Cluster& Cluster::operator =(const JsonValue& jsonValue)
     m_ec2InstanceAttributes = jsonValue.GetObject("Ec2InstanceAttributes");
 
     m_ec2InstanceAttributesHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("InstanceCollectionType"))
+  {
+    m_instanceCollectionType = InstanceCollectionTypeMapper::GetInstanceCollectionTypeForName(jsonValue.GetString("InstanceCollectionType"));
+
+    m_instanceCollectionTypeHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("LogUri"))
@@ -237,6 +259,27 @@ Cluster& Cluster::operator =(const JsonValue& jsonValue)
     m_scaleDownBehaviorHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("CustomAmiId"))
+  {
+    m_customAmiId = jsonValue.GetString("CustomAmiId");
+
+    m_customAmiIdHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("EbsRootVolumeSize"))
+  {
+    m_ebsRootVolumeSize = jsonValue.GetInteger("EbsRootVolumeSize");
+
+    m_ebsRootVolumeSizeHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("RepoUpgradeOnBoot"))
+  {
+    m_repoUpgradeOnBoot = RepoUpgradeOnBootMapper::GetRepoUpgradeOnBootForName(jsonValue.GetString("RepoUpgradeOnBoot"));
+
+    m_repoUpgradeOnBootHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -266,6 +309,11 @@ JsonValue Cluster::Jsonize() const
   {
    payload.WithObject("Ec2InstanceAttributes", m_ec2InstanceAttributes.Jsonize());
 
+  }
+
+  if(m_instanceCollectionTypeHasBeenSet)
+  {
+   payload.WithString("InstanceCollectionType", InstanceCollectionTypeMapper::GetNameForInstanceCollectionType(m_instanceCollectionType));
   }
 
   if(m_logUriHasBeenSet)
@@ -376,6 +424,23 @@ JsonValue Cluster::Jsonize() const
   if(m_scaleDownBehaviorHasBeenSet)
   {
    payload.WithString("ScaleDownBehavior", ScaleDownBehaviorMapper::GetNameForScaleDownBehavior(m_scaleDownBehavior));
+  }
+
+  if(m_customAmiIdHasBeenSet)
+  {
+   payload.WithString("CustomAmiId", m_customAmiId);
+
+  }
+
+  if(m_ebsRootVolumeSizeHasBeenSet)
+  {
+   payload.WithInteger("EbsRootVolumeSize", m_ebsRootVolumeSize);
+
+  }
+
+  if(m_repoUpgradeOnBootHasBeenSet)
+  {
+   payload.WithString("RepoUpgradeOnBoot", RepoUpgradeOnBootMapper::GetNameForRepoUpgradeOnBoot(m_repoUpgradeOnBoot));
   }
 
   return payload;

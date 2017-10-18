@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/cloudfront/model/CustomOriginConfig.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -36,7 +37,11 @@ CustomOriginConfig::CustomOriginConfig() :
     m_hTTPSPortHasBeenSet(false),
     m_originProtocolPolicy(OriginProtocolPolicy::NOT_SET),
     m_originProtocolPolicyHasBeenSet(false),
-    m_originSslProtocolsHasBeenSet(false)
+    m_originSslProtocolsHasBeenSet(false),
+    m_originReadTimeout(0),
+    m_originReadTimeoutHasBeenSet(false),
+    m_originKeepaliveTimeout(0),
+    m_originKeepaliveTimeoutHasBeenSet(false)
 {
 }
 
@@ -47,7 +52,11 @@ CustomOriginConfig::CustomOriginConfig(const XmlNode& xmlNode) :
     m_hTTPSPortHasBeenSet(false),
     m_originProtocolPolicy(OriginProtocolPolicy::NOT_SET),
     m_originProtocolPolicyHasBeenSet(false),
-    m_originSslProtocolsHasBeenSet(false)
+    m_originSslProtocolsHasBeenSet(false),
+    m_originReadTimeout(0),
+    m_originReadTimeoutHasBeenSet(false),
+    m_originKeepaliveTimeout(0),
+    m_originKeepaliveTimeoutHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -82,6 +91,18 @@ CustomOriginConfig& CustomOriginConfig::operator =(const XmlNode& xmlNode)
       m_originSslProtocols = originSslProtocolsNode;
       m_originSslProtocolsHasBeenSet = true;
     }
+    XmlNode originReadTimeoutNode = resultNode.FirstChild("OriginReadTimeout");
+    if(!originReadTimeoutNode.IsNull())
+    {
+      m_originReadTimeout = StringUtils::ConvertToInt32(StringUtils::Trim(originReadTimeoutNode.GetText().c_str()).c_str());
+      m_originReadTimeoutHasBeenSet = true;
+    }
+    XmlNode originKeepaliveTimeoutNode = resultNode.FirstChild("OriginKeepaliveTimeout");
+    if(!originKeepaliveTimeoutNode.IsNull())
+    {
+      m_originKeepaliveTimeout = StringUtils::ConvertToInt32(StringUtils::Trim(originKeepaliveTimeoutNode.GetText().c_str()).c_str());
+      m_originKeepaliveTimeoutHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -93,17 +114,17 @@ void CustomOriginConfig::AddToNode(XmlNode& parentNode) const
   if(m_hTTPPortHasBeenSet)
   {
    XmlNode hTTPPortNode = parentNode.CreateChildElement("HTTPPort");
-  ss << m_hTTPPort;
+   ss << m_hTTPPort;
    hTTPPortNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_hTTPSPortHasBeenSet)
   {
    XmlNode hTTPSPortNode = parentNode.CreateChildElement("HTTPSPort");
-  ss << m_hTTPSPort;
+   ss << m_hTTPSPort;
    hTTPSPortNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_originProtocolPolicyHasBeenSet)
@@ -116,6 +137,22 @@ void CustomOriginConfig::AddToNode(XmlNode& parentNode) const
   {
    XmlNode originSslProtocolsNode = parentNode.CreateChildElement("OriginSslProtocols");
    m_originSslProtocols.AddToNode(originSslProtocolsNode);
+  }
+
+  if(m_originReadTimeoutHasBeenSet)
+  {
+   XmlNode originReadTimeoutNode = parentNode.CreateChildElement("OriginReadTimeout");
+   ss << m_originReadTimeout;
+   originReadTimeoutNode.SetText(ss.str());
+   ss.str("");
+  }
+
+  if(m_originKeepaliveTimeoutHasBeenSet)
+  {
+   XmlNode originKeepaliveTimeoutNode = parentNode.CreateChildElement("OriginKeepaliveTimeout");
+   ss << m_originKeepaliveTimeout;
+   originKeepaliveTimeoutNode.SetText(ss.str());
+   ss.str("");
   }
 
 }

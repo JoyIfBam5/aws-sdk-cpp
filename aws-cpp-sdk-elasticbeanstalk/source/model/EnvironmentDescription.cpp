@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/elasticbeanstalk/model/EnvironmentDescription.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -35,6 +36,7 @@ EnvironmentDescription::EnvironmentDescription() :
     m_applicationNameHasBeenSet(false),
     m_versionLabelHasBeenSet(false),
     m_solutionStackNameHasBeenSet(false),
+    m_platformArnHasBeenSet(false),
     m_templateNameHasBeenSet(false),
     m_descriptionHasBeenSet(false),
     m_endpointURLHasBeenSet(false),
@@ -52,6 +54,7 @@ EnvironmentDescription::EnvironmentDescription() :
     m_resourcesHasBeenSet(false),
     m_tierHasBeenSet(false),
     m_environmentLinksHasBeenSet(false),
+    m_environmentArnHasBeenSet(false),
     m_responseMetadataHasBeenSet(false)
 {
 }
@@ -62,6 +65,7 @@ EnvironmentDescription::EnvironmentDescription(const XmlNode& xmlNode) :
     m_applicationNameHasBeenSet(false),
     m_versionLabelHasBeenSet(false),
     m_solutionStackNameHasBeenSet(false),
+    m_platformArnHasBeenSet(false),
     m_templateNameHasBeenSet(false),
     m_descriptionHasBeenSet(false),
     m_endpointURLHasBeenSet(false),
@@ -79,6 +83,7 @@ EnvironmentDescription::EnvironmentDescription(const XmlNode& xmlNode) :
     m_resourcesHasBeenSet(false),
     m_tierHasBeenSet(false),
     m_environmentLinksHasBeenSet(false),
+    m_environmentArnHasBeenSet(false),
     m_responseMetadataHasBeenSet(false)
 {
   *this = xmlNode;
@@ -119,6 +124,12 @@ EnvironmentDescription& EnvironmentDescription::operator =(const XmlNode& xmlNod
     {
       m_solutionStackName = StringUtils::Trim(solutionStackNameNode.GetText().c_str());
       m_solutionStackNameHasBeenSet = true;
+    }
+    XmlNode platformArnNode = resultNode.FirstChild("PlatformArn");
+    if(!platformArnNode.IsNull())
+    {
+      m_platformArn = StringUtils::Trim(platformArnNode.GetText().c_str());
+      m_platformArnHasBeenSet = true;
     }
     XmlNode templateNameNode = resultNode.FirstChild("TemplateName");
     if(!templateNameNode.IsNull())
@@ -204,6 +215,12 @@ EnvironmentDescription& EnvironmentDescription::operator =(const XmlNode& xmlNod
 
       m_environmentLinksHasBeenSet = true;
     }
+    XmlNode environmentArnNode = resultNode.FirstChild("EnvironmentArn");
+    if(!environmentArnNode.IsNull())
+    {
+      m_environmentArn = StringUtils::Trim(environmentArnNode.GetText().c_str());
+      m_environmentArnHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -234,6 +251,11 @@ void EnvironmentDescription::OutputToStream(Aws::OStream& oStream, const char* l
   if(m_solutionStackNameHasBeenSet)
   {
       oStream << location << index << locationValue << ".SolutionStackName=" << StringUtils::URLEncode(m_solutionStackName.c_str()) << "&";
+  }
+
+  if(m_platformArnHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".PlatformArn=" << StringUtils::URLEncode(m_platformArn.c_str()) << "&";
   }
 
   if(m_templateNameHasBeenSet)
@@ -311,6 +333,11 @@ void EnvironmentDescription::OutputToStream(Aws::OStream& oStream, const char* l
       }
   }
 
+  if(m_environmentArnHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".EnvironmentArn=" << StringUtils::URLEncode(m_environmentArn.c_str()) << "&";
+  }
+
   if(m_responseMetadataHasBeenSet)
   {
       Aws::StringStream responseMetadataLocationAndMemberSs;
@@ -341,6 +368,10 @@ void EnvironmentDescription::OutputToStream(Aws::OStream& oStream, const char* l
   if(m_solutionStackNameHasBeenSet)
   {
       oStream << location << ".SolutionStackName=" << StringUtils::URLEncode(m_solutionStackName.c_str()) << "&";
+  }
+  if(m_platformArnHasBeenSet)
+  {
+      oStream << location << ".PlatformArn=" << StringUtils::URLEncode(m_platformArn.c_str()) << "&";
   }
   if(m_templateNameHasBeenSet)
   {
@@ -403,6 +434,10 @@ void EnvironmentDescription::OutputToStream(Aws::OStream& oStream, const char* l
         environmentLinksSs << location <<  ".EnvironmentLinks.member." << environmentLinksIdx++;
         item.OutputToStream(oStream, environmentLinksSs.str().c_str());
       }
+  }
+  if(m_environmentArnHasBeenSet)
+  {
+      oStream << location << ".EnvironmentArn=" << StringUtils::URLEncode(m_environmentArn.c_str()) << "&";
   }
   if(m_responseMetadataHasBeenSet)
   {

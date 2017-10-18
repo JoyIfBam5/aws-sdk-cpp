@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/autoscaling/AutoScaling_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/autoscaling/model/ResponseMetadata.h>
 #include <aws/autoscaling/model/LoadBalancerTargetGroupState.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,18 +37,13 @@ namespace AutoScaling
 {
 namespace Model
 {
-  /**
-   * <p>Contains the output of DescribeLoadBalancerTargetGroups.</p><p><h3>See
-   * Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/autoscaling-2011-01-01/DescribeLoadBalancerTargetGroupsResponse">AWS
-   * API Reference</a></p>
-   */
   class AWS_AUTOSCALING_API DescribeLoadBalancerTargetGroupsResult
   {
   public:
     DescribeLoadBalancerTargetGroupsResult();
-    DescribeLoadBalancerTargetGroupsResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeLoadBalancerTargetGroupsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeLoadBalancerTargetGroupsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeLoadBalancerTargetGroupsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>Information about the target groups.</p>
@@ -61,7 +58,7 @@ namespace Model
     /**
      * <p>Information about the target groups.</p>
      */
-    inline void SetLoadBalancerTargetGroups(Aws::Vector<LoadBalancerTargetGroupState>&& value) { m_loadBalancerTargetGroups = value; }
+    inline void SetLoadBalancerTargetGroups(Aws::Vector<LoadBalancerTargetGroupState>&& value) { m_loadBalancerTargetGroups = std::move(value); }
 
     /**
      * <p>Information about the target groups.</p>
@@ -71,7 +68,7 @@ namespace Model
     /**
      * <p>Information about the target groups.</p>
      */
-    inline DescribeLoadBalancerTargetGroupsResult& WithLoadBalancerTargetGroups(Aws::Vector<LoadBalancerTargetGroupState>&& value) { SetLoadBalancerTargetGroups(value); return *this;}
+    inline DescribeLoadBalancerTargetGroupsResult& WithLoadBalancerTargetGroups(Aws::Vector<LoadBalancerTargetGroupState>&& value) { SetLoadBalancerTargetGroups(std::move(value)); return *this;}
 
     /**
      * <p>Information about the target groups.</p>
@@ -81,7 +78,8 @@ namespace Model
     /**
      * <p>Information about the target groups.</p>
      */
-    inline DescribeLoadBalancerTargetGroupsResult& AddLoadBalancerTargetGroups(LoadBalancerTargetGroupState&& value) { m_loadBalancerTargetGroups.push_back(value); return *this; }
+    inline DescribeLoadBalancerTargetGroupsResult& AddLoadBalancerTargetGroups(LoadBalancerTargetGroupState&& value) { m_loadBalancerTargetGroups.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
@@ -99,7 +97,7 @@ namespace Model
      * <p>The token to use when requesting the next set of items. If there are no
      * additional items to return, the string is empty.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
@@ -117,13 +115,14 @@ namespace Model
      * <p>The token to use when requesting the next set of items. If there are no
      * additional items to return, the string is empty.</p>
      */
-    inline DescribeLoadBalancerTargetGroupsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeLoadBalancerTargetGroupsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
      * additional items to return, the string is empty.</p>
      */
     inline DescribeLoadBalancerTargetGroupsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -132,17 +131,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeLoadBalancerTargetGroupsResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeLoadBalancerTargetGroupsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeLoadBalancerTargetGroupsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<LoadBalancerTargetGroupState> m_loadBalancerTargetGroups;
+
     Aws::String m_nextToken;
+
     ResponseMetadata m_responseMetadata;
   };
 

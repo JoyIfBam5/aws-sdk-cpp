@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecr/ECR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     AuthorizationData& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>A base64-encoded string that contains authorization data for the specified
      * Amazon ECR registry. When the string is decoded, it is presented in the format
@@ -67,7 +70,7 @@ namespace Model
      * <code>user:password</code> for private registry authentication using
      * <code>docker login</code>.</p>
      */
-    inline void SetAuthorizationToken(Aws::String&& value) { m_authorizationTokenHasBeenSet = true; m_authorizationToken = value; }
+    inline void SetAuthorizationToken(Aws::String&& value) { m_authorizationTokenHasBeenSet = true; m_authorizationToken = std::move(value); }
 
     /**
      * <p>A base64-encoded string that contains authorization data for the specified
@@ -91,7 +94,7 @@ namespace Model
      * <code>user:password</code> for private registry authentication using
      * <code>docker login</code>.</p>
      */
-    inline AuthorizationData& WithAuthorizationToken(Aws::String&& value) { SetAuthorizationToken(value); return *this;}
+    inline AuthorizationData& WithAuthorizationToken(Aws::String&& value) { SetAuthorizationToken(std::move(value)); return *this;}
 
     /**
      * <p>A base64-encoded string that contains authorization data for the specified
@@ -100,6 +103,7 @@ namespace Model
      * <code>docker login</code>.</p>
      */
     inline AuthorizationData& WithAuthorizationToken(const char* value) { SetAuthorizationToken(value); return *this;}
+
 
     /**
      * <p>The Unix time in seconds and milliseconds when the authorization token
@@ -117,7 +121,7 @@ namespace Model
      * <p>The Unix time in seconds and milliseconds when the authorization token
      * expires. Authorization tokens are valid for 12 hours.</p>
      */
-    inline void SetExpiresAt(Aws::Utils::DateTime&& value) { m_expiresAtHasBeenSet = true; m_expiresAt = value; }
+    inline void SetExpiresAt(Aws::Utils::DateTime&& value) { m_expiresAtHasBeenSet = true; m_expiresAt = std::move(value); }
 
     /**
      * <p>The Unix time in seconds and milliseconds when the authorization token
@@ -129,7 +133,8 @@ namespace Model
      * <p>The Unix time in seconds and milliseconds when the authorization token
      * expires. Authorization tokens are valid for 12 hours.</p>
      */
-    inline AuthorizationData& WithExpiresAt(Aws::Utils::DateTime&& value) { SetExpiresAt(value); return *this;}
+    inline AuthorizationData& WithExpiresAt(Aws::Utils::DateTime&& value) { SetExpiresAt(std::move(value)); return *this;}
+
 
     /**
      * <p>The registry URL to use for this authorization token in a <code>docker
@@ -153,7 +158,7 @@ namespace Model
      * <code>https://aws_account_id.dkr.ecr.region.amazonaws.com</code>. For example,
      * <code>https://012345678910.dkr.ecr.us-east-1.amazonaws.com</code>.. </p>
      */
-    inline void SetProxyEndpoint(Aws::String&& value) { m_proxyEndpointHasBeenSet = true; m_proxyEndpoint = value; }
+    inline void SetProxyEndpoint(Aws::String&& value) { m_proxyEndpointHasBeenSet = true; m_proxyEndpoint = std::move(value); }
 
     /**
      * <p>The registry URL to use for this authorization token in a <code>docker
@@ -177,7 +182,7 @@ namespace Model
      * <code>https://aws_account_id.dkr.ecr.region.amazonaws.com</code>. For example,
      * <code>https://012345678910.dkr.ecr.us-east-1.amazonaws.com</code>.. </p>
      */
-    inline AuthorizationData& WithProxyEndpoint(Aws::String&& value) { SetProxyEndpoint(value); return *this;}
+    inline AuthorizationData& WithProxyEndpoint(Aws::String&& value) { SetProxyEndpoint(std::move(value)); return *this;}
 
     /**
      * <p>The registry URL to use for this authorization token in a <code>docker
@@ -188,10 +193,13 @@ namespace Model
     inline AuthorizationData& WithProxyEndpoint(const char* value) { SetProxyEndpoint(value); return *this;}
 
   private:
+
     Aws::String m_authorizationToken;
     bool m_authorizationTokenHasBeenSet;
+
     Aws::Utils::DateTime m_expiresAt;
     bool m_expiresAtHasBeenSet;
+
     Aws::String m_proxyEndpoint;
     bool m_proxyEndpointHasBeenSet;
   };

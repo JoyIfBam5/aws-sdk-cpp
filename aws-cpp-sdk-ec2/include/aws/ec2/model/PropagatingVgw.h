@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The ID of the virtual private gateway (VGW).</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The ID of the virtual private gateway (VGW).</p>
      */
-    inline void SetGatewayId(Aws::String&& value) { m_gatewayIdHasBeenSet = true; m_gatewayId = value; }
+    inline void SetGatewayId(Aws::String&& value) { m_gatewayIdHasBeenSet = true; m_gatewayId = std::move(value); }
 
     /**
      * <p>The ID of the virtual private gateway (VGW).</p>
@@ -75,7 +78,7 @@ namespace Model
     /**
      * <p>The ID of the virtual private gateway (VGW).</p>
      */
-    inline PropagatingVgw& WithGatewayId(Aws::String&& value) { SetGatewayId(value); return *this;}
+    inline PropagatingVgw& WithGatewayId(Aws::String&& value) { SetGatewayId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the virtual private gateway (VGW).</p>
@@ -83,6 +86,7 @@ namespace Model
     inline PropagatingVgw& WithGatewayId(const char* value) { SetGatewayId(value); return *this;}
 
   private:
+
     Aws::String m_gatewayId;
     bool m_gatewayIdHasBeenSet;
   };

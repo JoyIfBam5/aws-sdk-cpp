@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/rds/RDSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/rds/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,70 +37,69 @@ namespace Model
   {
   public:
     CreateDBClusterParameterGroupRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateDBClusterParameterGroup"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The name of the DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li>
-     * <p>Must be 1 to 255 alphanumeric characters</p> </li> <li> <p>First character
-     * must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
-     * lowercase string.</p> </note>
+     * <p>Must match the name of an existing DBClusterParameterGroup.</p> </li> </ul>
+     * <note> <p>This value is stored as a lowercase string.</p> </note>
      */
     inline const Aws::String& GetDBClusterParameterGroupName() const{ return m_dBClusterParameterGroupName; }
 
     /**
      * <p>The name of the DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li>
-     * <p>Must be 1 to 255 alphanumeric characters</p> </li> <li> <p>First character
-     * must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
-     * lowercase string.</p> </note>
+     * <p>Must match the name of an existing DBClusterParameterGroup.</p> </li> </ul>
+     * <note> <p>This value is stored as a lowercase string.</p> </note>
      */
     inline void SetDBClusterParameterGroupName(const Aws::String& value) { m_dBClusterParameterGroupNameHasBeenSet = true; m_dBClusterParameterGroupName = value; }
 
     /**
      * <p>The name of the DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li>
-     * <p>Must be 1 to 255 alphanumeric characters</p> </li> <li> <p>First character
-     * must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
-     * lowercase string.</p> </note>
+     * <p>Must match the name of an existing DBClusterParameterGroup.</p> </li> </ul>
+     * <note> <p>This value is stored as a lowercase string.</p> </note>
      */
-    inline void SetDBClusterParameterGroupName(Aws::String&& value) { m_dBClusterParameterGroupNameHasBeenSet = true; m_dBClusterParameterGroupName = value; }
+    inline void SetDBClusterParameterGroupName(Aws::String&& value) { m_dBClusterParameterGroupNameHasBeenSet = true; m_dBClusterParameterGroupName = std::move(value); }
 
     /**
      * <p>The name of the DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li>
-     * <p>Must be 1 to 255 alphanumeric characters</p> </li> <li> <p>First character
-     * must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
-     * lowercase string.</p> </note>
+     * <p>Must match the name of an existing DBClusterParameterGroup.</p> </li> </ul>
+     * <note> <p>This value is stored as a lowercase string.</p> </note>
      */
     inline void SetDBClusterParameterGroupName(const char* value) { m_dBClusterParameterGroupNameHasBeenSet = true; m_dBClusterParameterGroupName.assign(value); }
 
     /**
      * <p>The name of the DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li>
-     * <p>Must be 1 to 255 alphanumeric characters</p> </li> <li> <p>First character
-     * must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
-     * lowercase string.</p> </note>
+     * <p>Must match the name of an existing DBClusterParameterGroup.</p> </li> </ul>
+     * <note> <p>This value is stored as a lowercase string.</p> </note>
      */
     inline CreateDBClusterParameterGroupRequest& WithDBClusterParameterGroupName(const Aws::String& value) { SetDBClusterParameterGroupName(value); return *this;}
 
     /**
      * <p>The name of the DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li>
-     * <p>Must be 1 to 255 alphanumeric characters</p> </li> <li> <p>First character
-     * must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
-     * lowercase string.</p> </note>
+     * <p>Must match the name of an existing DBClusterParameterGroup.</p> </li> </ul>
+     * <note> <p>This value is stored as a lowercase string.</p> </note>
      */
-    inline CreateDBClusterParameterGroupRequest& WithDBClusterParameterGroupName(Aws::String&& value) { SetDBClusterParameterGroupName(value); return *this;}
+    inline CreateDBClusterParameterGroupRequest& WithDBClusterParameterGroupName(Aws::String&& value) { SetDBClusterParameterGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li>
-     * <p>Must be 1 to 255 alphanumeric characters</p> </li> <li> <p>First character
-     * must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
-     * lowercase string.</p> </note>
+     * <p>Must match the name of an existing DBClusterParameterGroup.</p> </li> </ul>
+     * <note> <p>This value is stored as a lowercase string.</p> </note>
      */
     inline CreateDBClusterParameterGroupRequest& WithDBClusterParameterGroupName(const char* value) { SetDBClusterParameterGroupName(value); return *this;}
+
 
     /**
      * <p>The DB cluster parameter group family name. A DB cluster parameter group can
@@ -122,7 +123,7 @@ namespace Model
      * be applied only to a DB cluster running a database engine and engine version
      * compatible with that DB cluster parameter group family.</p>
      */
-    inline void SetDBParameterGroupFamily(Aws::String&& value) { m_dBParameterGroupFamilyHasBeenSet = true; m_dBParameterGroupFamily = value; }
+    inline void SetDBParameterGroupFamily(Aws::String&& value) { m_dBParameterGroupFamilyHasBeenSet = true; m_dBParameterGroupFamily = std::move(value); }
 
     /**
      * <p>The DB cluster parameter group family name. A DB cluster parameter group can
@@ -146,7 +147,7 @@ namespace Model
      * be applied only to a DB cluster running a database engine and engine version
      * compatible with that DB cluster parameter group family.</p>
      */
-    inline CreateDBClusterParameterGroupRequest& WithDBParameterGroupFamily(Aws::String&& value) { SetDBParameterGroupFamily(value); return *this;}
+    inline CreateDBClusterParameterGroupRequest& WithDBParameterGroupFamily(Aws::String&& value) { SetDBParameterGroupFamily(std::move(value)); return *this;}
 
     /**
      * <p>The DB cluster parameter group family name. A DB cluster parameter group can
@@ -155,6 +156,7 @@ namespace Model
      * compatible with that DB cluster parameter group family.</p>
      */
     inline CreateDBClusterParameterGroupRequest& WithDBParameterGroupFamily(const char* value) { SetDBParameterGroupFamily(value); return *this;}
+
 
     /**
      * <p>The description for the DB cluster parameter group.</p>
@@ -169,7 +171,7 @@ namespace Model
     /**
      * <p>The description for the DB cluster parameter group.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The description for the DB cluster parameter group.</p>
@@ -184,12 +186,13 @@ namespace Model
     /**
      * <p>The description for the DB cluster parameter group.</p>
      */
-    inline CreateDBClusterParameterGroupRequest& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline CreateDBClusterParameterGroupRequest& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description for the DB cluster parameter group.</p>
      */
     inline CreateDBClusterParameterGroupRequest& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     
     inline const Aws::Vector<Tag>& GetTags() const{ return m_tags; }
@@ -198,27 +201,31 @@ namespace Model
     inline void SetTags(const Aws::Vector<Tag>& value) { m_tagsHasBeenSet = true; m_tags = value; }
 
     
-    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = std::move(value); }
 
     
     inline CreateDBClusterParameterGroupRequest& WithTags(const Aws::Vector<Tag>& value) { SetTags(value); return *this;}
 
     
-    inline CreateDBClusterParameterGroupRequest& WithTags(Aws::Vector<Tag>&& value) { SetTags(value); return *this;}
+    inline CreateDBClusterParameterGroupRequest& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     
     inline CreateDBClusterParameterGroupRequest& AddTags(const Tag& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
 
     
-    inline CreateDBClusterParameterGroupRequest& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
+    inline CreateDBClusterParameterGroupRequest& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_dBClusterParameterGroupName;
     bool m_dBClusterParameterGroupNameHasBeenSet;
+
     Aws::String m_dBParameterGroupFamily;
     bool m_dBParameterGroupFamilyHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     Aws::Vector<Tag> m_tags;
     bool m_tagsHasBeenSet;
   };

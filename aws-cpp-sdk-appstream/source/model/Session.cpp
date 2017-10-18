@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/appstream/model/Session.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -33,7 +34,9 @@ Session::Session() :
     m_stackNameHasBeenSet(false),
     m_fleetNameHasBeenSet(false),
     m_state(SessionState::NOT_SET),
-    m_stateHasBeenSet(false)
+    m_stateHasBeenSet(false),
+    m_authenticationType(AuthenticationType::NOT_SET),
+    m_authenticationTypeHasBeenSet(false)
 {
 }
 
@@ -43,7 +46,9 @@ Session::Session(const JsonValue& jsonValue) :
     m_stackNameHasBeenSet(false),
     m_fleetNameHasBeenSet(false),
     m_state(SessionState::NOT_SET),
-    m_stateHasBeenSet(false)
+    m_stateHasBeenSet(false),
+    m_authenticationType(AuthenticationType::NOT_SET),
+    m_authenticationTypeHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -85,6 +90,13 @@ Session& Session::operator =(const JsonValue& jsonValue)
     m_stateHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("AuthenticationType"))
+  {
+    m_authenticationType = AuthenticationTypeMapper::GetAuthenticationTypeForName(jsonValue.GetString("AuthenticationType"));
+
+    m_authenticationTypeHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -119,6 +131,11 @@ JsonValue Session::Jsonize() const
   if(m_stateHasBeenSet)
   {
    payload.WithString("State", SessionStateMapper::GetNameForSessionState(m_state));
+  }
+
+  if(m_authenticationTypeHasBeenSet)
+  {
+   payload.WithString("AuthenticationType", AuthenticationTypeMapper::GetNameForAuthenticationType(m_authenticationType));
   }
 
   return payload;

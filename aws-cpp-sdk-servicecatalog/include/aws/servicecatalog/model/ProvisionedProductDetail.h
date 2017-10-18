@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
-#include <aws/servicecatalog/model/RecordStatus.h>
+#include <aws/servicecatalog/model/ProvisionedProductStatus.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     ProvisionedProductDetail& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The user-friendly name of the ProvisionedProduct object.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The user-friendly name of the ProvisionedProduct object.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The user-friendly name of the ProvisionedProduct object.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>The user-friendly name of the ProvisionedProduct object.</p>
      */
-    inline ProvisionedProductDetail& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline ProvisionedProductDetail& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The user-friendly name of the ProvisionedProduct object.</p>
      */
     inline ProvisionedProductDetail& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The ARN associated with the ProvisionedProduct object.</p>
@@ -94,7 +98,7 @@ namespace Model
     /**
      * <p>The ARN associated with the ProvisionedProduct object.</p>
      */
-    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = value; }
+    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = std::move(value); }
 
     /**
      * <p>The ARN associated with the ProvisionedProduct object.</p>
@@ -109,12 +113,13 @@ namespace Model
     /**
      * <p>The ARN associated with the ProvisionedProduct object.</p>
      */
-    inline ProvisionedProductDetail& WithArn(Aws::String&& value) { SetArn(value); return *this;}
+    inline ProvisionedProductDetail& WithArn(Aws::String&& value) { SetArn(std::move(value)); return *this;}
 
     /**
      * <p>The ARN associated with the ProvisionedProduct object.</p>
      */
     inline ProvisionedProductDetail& WithArn(const char* value) { SetArn(value); return *this;}
+
 
     /**
      * <p>The type of the ProvisionedProduct object.</p>
@@ -129,7 +134,7 @@ namespace Model
     /**
      * <p>The type of the ProvisionedProduct object.</p>
      */
-    inline void SetType(Aws::String&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(Aws::String&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The type of the ProvisionedProduct object.</p>
@@ -144,12 +149,13 @@ namespace Model
     /**
      * <p>The type of the ProvisionedProduct object.</p>
      */
-    inline ProvisionedProductDetail& WithType(Aws::String&& value) { SetType(value); return *this;}
+    inline ProvisionedProductDetail& WithType(Aws::String&& value) { SetType(std::move(value)); return *this;}
 
     /**
      * <p>The type of the ProvisionedProduct object.</p>
      */
     inline ProvisionedProductDetail& WithType(const char* value) { SetType(value); return *this;}
+
 
     /**
      * <p>The identifier of the ProvisionedProduct object.</p>
@@ -164,7 +170,7 @@ namespace Model
     /**
      * <p>The identifier of the ProvisionedProduct object.</p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>The identifier of the ProvisionedProduct object.</p>
@@ -179,37 +185,94 @@ namespace Model
     /**
      * <p>The identifier of the ProvisionedProduct object.</p>
      */
-    inline ProvisionedProductDetail& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline ProvisionedProductDetail& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the ProvisionedProduct object.</p>
      */
     inline ProvisionedProductDetail& WithId(const char* value) { SetId(value); return *this;}
 
-    /**
-     * <p>The current status of the ProvisionedProduct.</p>
-     */
-    inline const RecordStatus& GetStatus() const{ return m_status; }
 
     /**
-     * <p>The current status of the ProvisionedProduct.</p>
+     * <p>The current status of the ProvisionedProduct.</p> <p> <code>AVAILABLE</code>
+     * - Stable state, ready to perform any operation. The most recent action request
+     * succeeded and completed.</p> <p> <code>UNDER_CHANGE</code> - Transitive state,
+     * operations performed may or may not have valid results. Wait for an
+     * <code>AVAILABLE</code> status before performing operations.</p> <p>
+     * <code>TAINTED</code> - Stable state, ready to perform any operation. The stack
+     * has completed the requested operation but is not exactly what was requested. For
+     * example, a request to update to a new version failed and the stack rolled back
+     * to the current version. </p> <p> <code>ERROR</code> - Something unexpected
+     * happened such that the provisioned product exists but the stack is not running.
+     * For example, CloudFormation received an invalid parameter value and could not
+     * launch the stack.</p>
      */
-    inline void SetStatus(const RecordStatus& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline const ProvisionedProductStatus& GetStatus() const{ return m_status; }
 
     /**
-     * <p>The current status of the ProvisionedProduct.</p>
+     * <p>The current status of the ProvisionedProduct.</p> <p> <code>AVAILABLE</code>
+     * - Stable state, ready to perform any operation. The most recent action request
+     * succeeded and completed.</p> <p> <code>UNDER_CHANGE</code> - Transitive state,
+     * operations performed may or may not have valid results. Wait for an
+     * <code>AVAILABLE</code> status before performing operations.</p> <p>
+     * <code>TAINTED</code> - Stable state, ready to perform any operation. The stack
+     * has completed the requested operation but is not exactly what was requested. For
+     * example, a request to update to a new version failed and the stack rolled back
+     * to the current version. </p> <p> <code>ERROR</code> - Something unexpected
+     * happened such that the provisioned product exists but the stack is not running.
+     * For example, CloudFormation received an invalid parameter value and could not
+     * launch the stack.</p>
      */
-    inline void SetStatus(RecordStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(const ProvisionedProductStatus& value) { m_statusHasBeenSet = true; m_status = value; }
 
     /**
-     * <p>The current status of the ProvisionedProduct.</p>
+     * <p>The current status of the ProvisionedProduct.</p> <p> <code>AVAILABLE</code>
+     * - Stable state, ready to perform any operation. The most recent action request
+     * succeeded and completed.</p> <p> <code>UNDER_CHANGE</code> - Transitive state,
+     * operations performed may or may not have valid results. Wait for an
+     * <code>AVAILABLE</code> status before performing operations.</p> <p>
+     * <code>TAINTED</code> - Stable state, ready to perform any operation. The stack
+     * has completed the requested operation but is not exactly what was requested. For
+     * example, a request to update to a new version failed and the stack rolled back
+     * to the current version. </p> <p> <code>ERROR</code> - Something unexpected
+     * happened such that the provisioned product exists but the stack is not running.
+     * For example, CloudFormation received an invalid parameter value and could not
+     * launch the stack.</p>
      */
-    inline ProvisionedProductDetail& WithStatus(const RecordStatus& value) { SetStatus(value); return *this;}
+    inline void SetStatus(ProvisionedProductStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
-     * <p>The current status of the ProvisionedProduct.</p>
+     * <p>The current status of the ProvisionedProduct.</p> <p> <code>AVAILABLE</code>
+     * - Stable state, ready to perform any operation. The most recent action request
+     * succeeded and completed.</p> <p> <code>UNDER_CHANGE</code> - Transitive state,
+     * operations performed may or may not have valid results. Wait for an
+     * <code>AVAILABLE</code> status before performing operations.</p> <p>
+     * <code>TAINTED</code> - Stable state, ready to perform any operation. The stack
+     * has completed the requested operation but is not exactly what was requested. For
+     * example, a request to update to a new version failed and the stack rolled back
+     * to the current version. </p> <p> <code>ERROR</code> - Something unexpected
+     * happened such that the provisioned product exists but the stack is not running.
+     * For example, CloudFormation received an invalid parameter value and could not
+     * launch the stack.</p>
      */
-    inline ProvisionedProductDetail& WithStatus(RecordStatus&& value) { SetStatus(value); return *this;}
+    inline ProvisionedProductDetail& WithStatus(const ProvisionedProductStatus& value) { SetStatus(value); return *this;}
+
+    /**
+     * <p>The current status of the ProvisionedProduct.</p> <p> <code>AVAILABLE</code>
+     * - Stable state, ready to perform any operation. The most recent action request
+     * succeeded and completed.</p> <p> <code>UNDER_CHANGE</code> - Transitive state,
+     * operations performed may or may not have valid results. Wait for an
+     * <code>AVAILABLE</code> status before performing operations.</p> <p>
+     * <code>TAINTED</code> - Stable state, ready to perform any operation. The stack
+     * has completed the requested operation but is not exactly what was requested. For
+     * example, a request to update to a new version failed and the stack rolled back
+     * to the current version. </p> <p> <code>ERROR</code> - Something unexpected
+     * happened such that the provisioned product exists but the stack is not running.
+     * For example, CloudFormation received an invalid parameter value and could not
+     * launch the stack.</p>
+     */
+    inline ProvisionedProductDetail& WithStatus(ProvisionedProductStatus&& value) { SetStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The current status message of the ProvisionedProduct.</p>
@@ -224,7 +287,7 @@ namespace Model
     /**
      * <p>The current status message of the ProvisionedProduct.</p>
      */
-    inline void SetStatusMessage(Aws::String&& value) { m_statusMessageHasBeenSet = true; m_statusMessage = value; }
+    inline void SetStatusMessage(Aws::String&& value) { m_statusMessageHasBeenSet = true; m_statusMessage = std::move(value); }
 
     /**
      * <p>The current status message of the ProvisionedProduct.</p>
@@ -239,12 +302,13 @@ namespace Model
     /**
      * <p>The current status message of the ProvisionedProduct.</p>
      */
-    inline ProvisionedProductDetail& WithStatusMessage(Aws::String&& value) { SetStatusMessage(value); return *this;}
+    inline ProvisionedProductDetail& WithStatusMessage(Aws::String&& value) { SetStatusMessage(std::move(value)); return *this;}
 
     /**
      * <p>The current status message of the ProvisionedProduct.</p>
      */
     inline ProvisionedProductDetail& WithStatusMessage(const char* value) { SetStatusMessage(value); return *this;}
+
 
     /**
      * <p>The UTC timestamp of the creation time.</p>
@@ -259,7 +323,7 @@ namespace Model
     /**
      * <p>The UTC timestamp of the creation time.</p>
      */
-    inline void SetCreatedTime(Aws::Utils::DateTime&& value) { m_createdTimeHasBeenSet = true; m_createdTime = value; }
+    inline void SetCreatedTime(Aws::Utils::DateTime&& value) { m_createdTimeHasBeenSet = true; m_createdTime = std::move(value); }
 
     /**
      * <p>The UTC timestamp of the creation time.</p>
@@ -269,56 +333,58 @@ namespace Model
     /**
      * <p>The UTC timestamp of the creation time.</p>
      */
-    inline ProvisionedProductDetail& WithCreatedTime(Aws::Utils::DateTime&& value) { SetCreatedTime(value); return *this;}
+    inline ProvisionedProductDetail& WithCreatedTime(Aws::Utils::DateTime&& value) { SetCreatedTime(std::move(value)); return *this;}
+
 
     /**
-     * <p>A token to disambiguate duplicate requests. You can create multiple resources
-     * using the same input in multiple requests, provided that you also specify a
-     * different idempotency token for each request.</p>
+     * <p>A token to disambiguate duplicate requests. You can use the same input in
+     * multiple requests, provided that you also specify a different idempotency token
+     * for each request.</p>
      */
     inline const Aws::String& GetIdempotencyToken() const{ return m_idempotencyToken; }
 
     /**
-     * <p>A token to disambiguate duplicate requests. You can create multiple resources
-     * using the same input in multiple requests, provided that you also specify a
-     * different idempotency token for each request.</p>
+     * <p>A token to disambiguate duplicate requests. You can use the same input in
+     * multiple requests, provided that you also specify a different idempotency token
+     * for each request.</p>
      */
     inline void SetIdempotencyToken(const Aws::String& value) { m_idempotencyTokenHasBeenSet = true; m_idempotencyToken = value; }
 
     /**
-     * <p>A token to disambiguate duplicate requests. You can create multiple resources
-     * using the same input in multiple requests, provided that you also specify a
-     * different idempotency token for each request.</p>
+     * <p>A token to disambiguate duplicate requests. You can use the same input in
+     * multiple requests, provided that you also specify a different idempotency token
+     * for each request.</p>
      */
-    inline void SetIdempotencyToken(Aws::String&& value) { m_idempotencyTokenHasBeenSet = true; m_idempotencyToken = value; }
+    inline void SetIdempotencyToken(Aws::String&& value) { m_idempotencyTokenHasBeenSet = true; m_idempotencyToken = std::move(value); }
 
     /**
-     * <p>A token to disambiguate duplicate requests. You can create multiple resources
-     * using the same input in multiple requests, provided that you also specify a
-     * different idempotency token for each request.</p>
+     * <p>A token to disambiguate duplicate requests. You can use the same input in
+     * multiple requests, provided that you also specify a different idempotency token
+     * for each request.</p>
      */
     inline void SetIdempotencyToken(const char* value) { m_idempotencyTokenHasBeenSet = true; m_idempotencyToken.assign(value); }
 
     /**
-     * <p>A token to disambiguate duplicate requests. You can create multiple resources
-     * using the same input in multiple requests, provided that you also specify a
-     * different idempotency token for each request.</p>
+     * <p>A token to disambiguate duplicate requests. You can use the same input in
+     * multiple requests, provided that you also specify a different idempotency token
+     * for each request.</p>
      */
     inline ProvisionedProductDetail& WithIdempotencyToken(const Aws::String& value) { SetIdempotencyToken(value); return *this;}
 
     /**
-     * <p>A token to disambiguate duplicate requests. You can create multiple resources
-     * using the same input in multiple requests, provided that you also specify a
-     * different idempotency token for each request.</p>
+     * <p>A token to disambiguate duplicate requests. You can use the same input in
+     * multiple requests, provided that you also specify a different idempotency token
+     * for each request.</p>
      */
-    inline ProvisionedProductDetail& WithIdempotencyToken(Aws::String&& value) { SetIdempotencyToken(value); return *this;}
+    inline ProvisionedProductDetail& WithIdempotencyToken(Aws::String&& value) { SetIdempotencyToken(std::move(value)); return *this;}
 
     /**
-     * <p>A token to disambiguate duplicate requests. You can create multiple resources
-     * using the same input in multiple requests, provided that you also specify a
-     * different idempotency token for each request.</p>
+     * <p>A token to disambiguate duplicate requests. You can use the same input in
+     * multiple requests, provided that you also specify a different idempotency token
+     * for each request.</p>
      */
     inline ProvisionedProductDetail& WithIdempotencyToken(const char* value) { SetIdempotencyToken(value); return *this;}
+
 
     /**
      * <p>The record identifier of the last request performed on this
@@ -336,7 +402,7 @@ namespace Model
      * <p>The record identifier of the last request performed on this
      * ProvisionedProduct object.</p>
      */
-    inline void SetLastRecordId(Aws::String&& value) { m_lastRecordIdHasBeenSet = true; m_lastRecordId = value; }
+    inline void SetLastRecordId(Aws::String&& value) { m_lastRecordIdHasBeenSet = true; m_lastRecordId = std::move(value); }
 
     /**
      * <p>The record identifier of the last request performed on this
@@ -354,7 +420,7 @@ namespace Model
      * <p>The record identifier of the last request performed on this
      * ProvisionedProduct object.</p>
      */
-    inline ProvisionedProductDetail& WithLastRecordId(Aws::String&& value) { SetLastRecordId(value); return *this;}
+    inline ProvisionedProductDetail& WithLastRecordId(Aws::String&& value) { SetLastRecordId(std::move(value)); return *this;}
 
     /**
      * <p>The record identifier of the last request performed on this
@@ -363,22 +429,31 @@ namespace Model
     inline ProvisionedProductDetail& WithLastRecordId(const char* value) { SetLastRecordId(value); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_arn;
     bool m_arnHasBeenSet;
+
     Aws::String m_type;
     bool m_typeHasBeenSet;
+
     Aws::String m_id;
     bool m_idHasBeenSet;
-    RecordStatus m_status;
+
+    ProvisionedProductStatus m_status;
     bool m_statusHasBeenSet;
+
     Aws::String m_statusMessage;
     bool m_statusMessageHasBeenSet;
+
     Aws::Utils::DateTime m_createdTime;
     bool m_createdTimeHasBeenSet;
+
     Aws::String m_idempotencyToken;
     bool m_idempotencyTokenHasBeenSet;
+
     Aws::String m_lastRecordId;
     bool m_lastRecordIdHasBeenSet;
   };

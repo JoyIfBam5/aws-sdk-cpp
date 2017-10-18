@@ -6,7 +6,20 @@ ${operation.name}Outcome ${className}::${operation.name}(const ${operation.reque
 #set($uriParts = $operation.http.requestUriParts)
 #set($uriVars = $operation.http.requestParameters)
 #set($partIndex = 1)
-  ss << m_uri << "${uriParts.get(0)}";
+  Aws::Http::URI uri = m_uri;
+#set($uriPartString = "${uriParts.get(0)}")
+#set($queryStart = false)
+#if($uriPartString.contains("?"))
+#set($queryStart = true)
+#set($pathAndQuery = $operation.http.splitUriPartIntoPathAndQuery($uriPartString))
+#if(!$pathAndQuery.get(0).isEmpty())
+  ss << "${pathAndQuery.get(0)}";
+  uri.SetPath(uri.GetPath() + ss.str());
+#end
+  ss.str("${pathAndQuery.get(1)}");
+#else
+  ss << "$uriPartString";
+#end
 #foreach($var in $uriVars)
 #set($varIndex = $partIndex - 1)
 #set($partShapeMember = $operation.request.shape.getMemberByLocationName($uriVars.get($varIndex)))
@@ -16,15 +29,30 @@ ${operation.name}Outcome ${className}::${operation.name}(const ${operation.reque
   ss << request.Get${CppViewHelper.convertToUpperCamel($operation.request.shape.getMemberNameByLocationName($uriVars.get($varIndex)))}();
 #end
 #if($uriParts.size() > $partIndex)
-  ss << "${uriParts.get($partIndex)}";
+#set($uriPartString = "${uriParts.get($partIndex)}")
+#if(!$queryStart && $uriPartString.contains("?"))
+#set($queryStart = true)
+#set($pathAndQuery = $operation.http.splitUriPartIntoPathAndQuery($uriPartString))
+#if(!$pathAndQuery.get(0).isEmpty())
+  ss << "${pathAndQuery.get(0)}";
+#end
+  uri.SetPath(uri.GetPath() + ss.str());
+  ss.str("${pathAndQuery.get(1)}");
+#else
+  ss << "$uriPartString";
+#end
 #end
 #set($partIndex = $partIndex + 1)
 #end
-
-#if($operation.result && $operation.result.shape.hasStreamMembers())
-  StreamOutcome outcome = MakeRequestWithUnparsedResponse(ss.str(), request, HttpMethod::HTTP_${operation.http.method});
+#if(!$queryStart)
+  uri.SetPath(uri.GetPath() + ss.str());
 #else
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_${operation.http.method});
+  uri.SetQueryString(ss.str());
+#end
+#if($operation.result && $operation.result.shape.hasStreamMembers())
+  StreamOutcome outcome = MakeRequestWithUnparsedResponse(uri, request, HttpMethod::HTTP_${operation.http.method});
+#else
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_${operation.http.method}, ${operation.request.shape.signerName});
 #end
   if(outcome.IsSuccess())
   {
@@ -69,9 +97,11 @@ ${operation.name}Outcome ${className}::${operation.name}() const
   ss << m_uri << "${operation.http.requestUri}";
 
 #if($operation.result && $operation.result.shape.hasStreamMembers())
-  StreamOutcome outcome = MakeRequestWithUnparsedResponse(ss.str(), HttpMethod::HTTP_${operation.http.method});
+  StreamOutcome outcome = MakeRequestWithUnparsedResponse(ss.str(), HttpMethod::HTTP_${operation.http.method}, $operation.request.shape.signerName, "{operation.name}");
+#elseif($operation.request)
+  JsonOutcome outcome = MakeRequest(ss.str(), HttpMethod::HTTP_${operation.http.method}, $operation.request.shape.signerName, "{operation.name}");
 #else
-  JsonOutcome outcome = MakeRequest(ss.str(), HttpMethod::HTTP_${operation.http.method});
+  JsonOutcome outcome = MakeRequest(ss.str(), HttpMethod::HTTP_${operation.http.method}, Aws::Auth::SIGV4_SIGNER, "{operation.name}");
 #end
   if(outcome.IsSuccess())
   {

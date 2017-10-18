@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/rds/RDSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,70 +35,69 @@ namespace Model
   {
   public:
     DownloadDBLogFilePortionRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DownloadDBLogFilePortion"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The customer-assigned name of the DB instance that contains the log files you
-     * want to list.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63
-     * alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a
-     * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
-     * hyphens</p> </li> </ul>
+     * want to list.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of
+     * an existing DBInstance.</p> </li> </ul>
      */
     inline const Aws::String& GetDBInstanceIdentifier() const{ return m_dBInstanceIdentifier; }
 
     /**
      * <p>The customer-assigned name of the DB instance that contains the log files you
-     * want to list.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63
-     * alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a
-     * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
-     * hyphens</p> </li> </ul>
+     * want to list.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of
+     * an existing DBInstance.</p> </li> </ul>
      */
     inline void SetDBInstanceIdentifier(const Aws::String& value) { m_dBInstanceIdentifierHasBeenSet = true; m_dBInstanceIdentifier = value; }
 
     /**
      * <p>The customer-assigned name of the DB instance that contains the log files you
-     * want to list.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63
-     * alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a
-     * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
-     * hyphens</p> </li> </ul>
+     * want to list.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of
+     * an existing DBInstance.</p> </li> </ul>
      */
-    inline void SetDBInstanceIdentifier(Aws::String&& value) { m_dBInstanceIdentifierHasBeenSet = true; m_dBInstanceIdentifier = value; }
+    inline void SetDBInstanceIdentifier(Aws::String&& value) { m_dBInstanceIdentifierHasBeenSet = true; m_dBInstanceIdentifier = std::move(value); }
 
     /**
      * <p>The customer-assigned name of the DB instance that contains the log files you
-     * want to list.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63
-     * alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a
-     * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
-     * hyphens</p> </li> </ul>
+     * want to list.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of
+     * an existing DBInstance.</p> </li> </ul>
      */
     inline void SetDBInstanceIdentifier(const char* value) { m_dBInstanceIdentifierHasBeenSet = true; m_dBInstanceIdentifier.assign(value); }
 
     /**
      * <p>The customer-assigned name of the DB instance that contains the log files you
-     * want to list.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63
-     * alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a
-     * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
-     * hyphens</p> </li> </ul>
+     * want to list.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of
+     * an existing DBInstance.</p> </li> </ul>
      */
     inline DownloadDBLogFilePortionRequest& WithDBInstanceIdentifier(const Aws::String& value) { SetDBInstanceIdentifier(value); return *this;}
 
     /**
      * <p>The customer-assigned name of the DB instance that contains the log files you
-     * want to list.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63
-     * alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a
-     * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
-     * hyphens</p> </li> </ul>
+     * want to list.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of
+     * an existing DBInstance.</p> </li> </ul>
      */
-    inline DownloadDBLogFilePortionRequest& WithDBInstanceIdentifier(Aws::String&& value) { SetDBInstanceIdentifier(value); return *this;}
+    inline DownloadDBLogFilePortionRequest& WithDBInstanceIdentifier(Aws::String&& value) { SetDBInstanceIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The customer-assigned name of the DB instance that contains the log files you
-     * want to list.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63
-     * alphanumeric characters or hyphens</p> </li> <li> <p>First character must be a
-     * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
-     * hyphens</p> </li> </ul>
+     * want to list.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of
+     * an existing DBInstance.</p> </li> </ul>
      */
     inline DownloadDBLogFilePortionRequest& WithDBInstanceIdentifier(const char* value) { SetDBInstanceIdentifier(value); return *this;}
+
 
     /**
      * <p>The name of the log file to be downloaded.</p>
@@ -111,7 +112,7 @@ namespace Model
     /**
      * <p>The name of the log file to be downloaded.</p>
      */
-    inline void SetLogFileName(Aws::String&& value) { m_logFileNameHasBeenSet = true; m_logFileName = value; }
+    inline void SetLogFileName(Aws::String&& value) { m_logFileNameHasBeenSet = true; m_logFileName = std::move(value); }
 
     /**
      * <p>The name of the log file to be downloaded.</p>
@@ -126,12 +127,13 @@ namespace Model
     /**
      * <p>The name of the log file to be downloaded.</p>
      */
-    inline DownloadDBLogFilePortionRequest& WithLogFileName(Aws::String&& value) { SetLogFileName(value); return *this;}
+    inline DownloadDBLogFilePortionRequest& WithLogFileName(Aws::String&& value) { SetLogFileName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the log file to be downloaded.</p>
      */
     inline DownloadDBLogFilePortionRequest& WithLogFileName(const char* value) { SetLogFileName(value); return *this;}
+
 
     /**
      * <p>The pagination token provided in the previous request or "0". If the Marker
@@ -152,7 +154,7 @@ namespace Model
      * parameter is specified the response includes only records beyond the marker
      * until the end of the file or up to NumberOfLines.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p>The pagination token provided in the previous request or "0". If the Marker
@@ -173,7 +175,7 @@ namespace Model
      * parameter is specified the response includes only records beyond the marker
      * until the end of the file or up to NumberOfLines.</p>
      */
-    inline DownloadDBLogFilePortionRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DownloadDBLogFilePortionRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>The pagination token provided in the previous request or "0". If the Marker
@@ -181,6 +183,7 @@ namespace Model
      * until the end of the file or up to NumberOfLines.</p>
      */
     inline DownloadDBLogFilePortionRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>The number of lines to download. If the number of lines specified results in
@@ -243,12 +246,16 @@ namespace Model
     inline DownloadDBLogFilePortionRequest& WithNumberOfLines(int value) { SetNumberOfLines(value); return *this;}
 
   private:
+
     Aws::String m_dBInstanceIdentifier;
     bool m_dBInstanceIdentifierHasBeenSet;
+
     Aws::String m_logFileName;
     bool m_logFileNameHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
+
     int m_numberOfLines;
     bool m_numberOfLinesHasBeenSet;
   };

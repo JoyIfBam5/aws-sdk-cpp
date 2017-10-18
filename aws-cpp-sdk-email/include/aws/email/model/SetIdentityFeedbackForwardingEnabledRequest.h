@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/email/SESRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,7 +39,19 @@ namespace Model
   {
   public:
     SetIdentityFeedbackForwardingEnabledRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "SetIdentityFeedbackForwardingEnabled"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The identity for which to set bounce and complaint notification forwarding.
@@ -55,7 +69,7 @@ namespace Model
      * <p>The identity for which to set bounce and complaint notification forwarding.
      * Examples: <code>user@example.com</code>, <code>example.com</code>.</p>
      */
-    inline void SetIdentity(Aws::String&& value) { m_identityHasBeenSet = true; m_identity = value; }
+    inline void SetIdentity(Aws::String&& value) { m_identityHasBeenSet = true; m_identity = std::move(value); }
 
     /**
      * <p>The identity for which to set bounce and complaint notification forwarding.
@@ -73,13 +87,14 @@ namespace Model
      * <p>The identity for which to set bounce and complaint notification forwarding.
      * Examples: <code>user@example.com</code>, <code>example.com</code>.</p>
      */
-    inline SetIdentityFeedbackForwardingEnabledRequest& WithIdentity(Aws::String&& value) { SetIdentity(value); return *this;}
+    inline SetIdentityFeedbackForwardingEnabledRequest& WithIdentity(Aws::String&& value) { SetIdentity(std::move(value)); return *this;}
 
     /**
      * <p>The identity for which to set bounce and complaint notification forwarding.
      * Examples: <code>user@example.com</code>, <code>example.com</code>.</p>
      */
     inline SetIdentityFeedbackForwardingEnabledRequest& WithIdentity(const char* value) { SetIdentity(value); return *this;}
+
 
     /**
      * <p>Sets whether Amazon SES will forward bounce and complaint notifications as
@@ -115,8 +130,10 @@ namespace Model
     inline SetIdentityFeedbackForwardingEnabledRequest& WithForwardingEnabled(bool value) { SetForwardingEnabled(value); return *this;}
 
   private:
+
     Aws::String m_identity;
     bool m_identityHasBeenSet;
+
     bool m_forwardingEnabled;
     bool m_forwardingEnabledHasBeenSet;
   };

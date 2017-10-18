@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/iot/IoTRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,9 +39,17 @@ namespace Model
   {
   public:
     ListTopicRulesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListTopicRules"; }
+
     Aws::String SerializePayload() const override;
 
     void AddQueryStringParameters(Aws::Http::URI& uri) const override;
+
 
     /**
      * <p>The topic.</p>
@@ -54,7 +64,7 @@ namespace Model
     /**
      * <p>The topic.</p>
      */
-    inline void SetTopic(Aws::String&& value) { m_topicHasBeenSet = true; m_topic = value; }
+    inline void SetTopic(Aws::String&& value) { m_topicHasBeenSet = true; m_topic = std::move(value); }
 
     /**
      * <p>The topic.</p>
@@ -69,12 +79,13 @@ namespace Model
     /**
      * <p>The topic.</p>
      */
-    inline ListTopicRulesRequest& WithTopic(Aws::String&& value) { SetTopic(value); return *this;}
+    inline ListTopicRulesRequest& WithTopic(Aws::String&& value) { SetTopic(std::move(value)); return *this;}
 
     /**
      * <p>The topic.</p>
      */
     inline ListTopicRulesRequest& WithTopic(const char* value) { SetTopic(value); return *this;}
+
 
     /**
      * <p>The maximum number of results to return.</p>
@@ -91,6 +102,7 @@ namespace Model
      */
     inline ListTopicRulesRequest& WithMaxResults(int value) { SetMaxResults(value); return *this;}
 
+
     /**
      * <p>A token used to retrieve the next value.</p>
      */
@@ -104,7 +116,7 @@ namespace Model
     /**
      * <p>A token used to retrieve the next value.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>A token used to retrieve the next value.</p>
@@ -119,12 +131,13 @@ namespace Model
     /**
      * <p>A token used to retrieve the next value.</p>
      */
-    inline ListTopicRulesRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListTopicRulesRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>A token used to retrieve the next value.</p>
      */
     inline ListTopicRulesRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     /**
      * <p>Specifies whether the rule is disabled.</p>
@@ -142,12 +155,16 @@ namespace Model
     inline ListTopicRulesRequest& WithRuleDisabled(bool value) { SetRuleDisabled(value); return *this;}
 
   private:
+
     Aws::String m_topic;
     bool m_topicHasBeenSet;
+
     int m_maxResults;
     bool m_maxResultsHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
+
     bool m_ruleDisabled;
     bool m_ruleDisabledHasBeenSet;
   };

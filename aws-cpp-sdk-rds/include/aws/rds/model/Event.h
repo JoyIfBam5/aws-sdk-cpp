@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -19,6 +20,7 @@
 #include <aws/rds/model/SourceType.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,6 +52,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>Provides the identifier for the source of the event.</p>
      */
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>Provides the identifier for the source of the event.</p>
      */
-    inline void SetSourceIdentifier(Aws::String&& value) { m_sourceIdentifierHasBeenSet = true; m_sourceIdentifier = value; }
+    inline void SetSourceIdentifier(Aws::String&& value) { m_sourceIdentifierHasBeenSet = true; m_sourceIdentifier = std::move(value); }
 
     /**
      * <p>Provides the identifier for the source of the event.</p>
@@ -78,12 +81,13 @@ namespace Model
     /**
      * <p>Provides the identifier for the source of the event.</p>
      */
-    inline Event& WithSourceIdentifier(Aws::String&& value) { SetSourceIdentifier(value); return *this;}
+    inline Event& WithSourceIdentifier(Aws::String&& value) { SetSourceIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>Provides the identifier for the source of the event.</p>
      */
     inline Event& WithSourceIdentifier(const char* value) { SetSourceIdentifier(value); return *this;}
+
 
     /**
      * <p>Specifies the source type for this event.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>Specifies the source type for this event.</p>
      */
-    inline void SetSourceType(SourceType&& value) { m_sourceTypeHasBeenSet = true; m_sourceType = value; }
+    inline void SetSourceType(SourceType&& value) { m_sourceTypeHasBeenSet = true; m_sourceType = std::move(value); }
 
     /**
      * <p>Specifies the source type for this event.</p>
@@ -108,7 +112,8 @@ namespace Model
     /**
      * <p>Specifies the source type for this event.</p>
      */
-    inline Event& WithSourceType(SourceType&& value) { SetSourceType(value); return *this;}
+    inline Event& WithSourceType(SourceType&& value) { SetSourceType(std::move(value)); return *this;}
+
 
     /**
      * <p>Provides the text of this event.</p>
@@ -123,7 +128,7 @@ namespace Model
     /**
      * <p>Provides the text of this event.</p>
      */
-    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = value; }
+    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = std::move(value); }
 
     /**
      * <p>Provides the text of this event.</p>
@@ -138,12 +143,13 @@ namespace Model
     /**
      * <p>Provides the text of this event.</p>
      */
-    inline Event& WithMessage(Aws::String&& value) { SetMessage(value); return *this;}
+    inline Event& WithMessage(Aws::String&& value) { SetMessage(std::move(value)); return *this;}
 
     /**
      * <p>Provides the text of this event.</p>
      */
     inline Event& WithMessage(const char* value) { SetMessage(value); return *this;}
+
 
     /**
      * <p>Specifies the category for the event.</p>
@@ -158,7 +164,7 @@ namespace Model
     /**
      * <p>Specifies the category for the event.</p>
      */
-    inline void SetEventCategories(Aws::Vector<Aws::String>&& value) { m_eventCategoriesHasBeenSet = true; m_eventCategories = value; }
+    inline void SetEventCategories(Aws::Vector<Aws::String>&& value) { m_eventCategoriesHasBeenSet = true; m_eventCategories = std::move(value); }
 
     /**
      * <p>Specifies the category for the event.</p>
@@ -168,7 +174,7 @@ namespace Model
     /**
      * <p>Specifies the category for the event.</p>
      */
-    inline Event& WithEventCategories(Aws::Vector<Aws::String>&& value) { SetEventCategories(value); return *this;}
+    inline Event& WithEventCategories(Aws::Vector<Aws::String>&& value) { SetEventCategories(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the category for the event.</p>
@@ -178,12 +184,13 @@ namespace Model
     /**
      * <p>Specifies the category for the event.</p>
      */
-    inline Event& AddEventCategories(Aws::String&& value) { m_eventCategoriesHasBeenSet = true; m_eventCategories.push_back(value); return *this; }
+    inline Event& AddEventCategories(Aws::String&& value) { m_eventCategoriesHasBeenSet = true; m_eventCategories.push_back(std::move(value)); return *this; }
 
     /**
      * <p>Specifies the category for the event.</p>
      */
     inline Event& AddEventCategories(const char* value) { m_eventCategoriesHasBeenSet = true; m_eventCategories.push_back(value); return *this; }
+
 
     /**
      * <p>Specifies the date and time of the event.</p>
@@ -198,7 +205,7 @@ namespace Model
     /**
      * <p>Specifies the date and time of the event.</p>
      */
-    inline void SetDate(Aws::Utils::DateTime&& value) { m_dateHasBeenSet = true; m_date = value; }
+    inline void SetDate(Aws::Utils::DateTime&& value) { m_dateHasBeenSet = true; m_date = std::move(value); }
 
     /**
      * <p>Specifies the date and time of the event.</p>
@@ -208,7 +215,8 @@ namespace Model
     /**
      * <p>Specifies the date and time of the event.</p>
      */
-    inline Event& WithDate(Aws::Utils::DateTime&& value) { SetDate(value); return *this;}
+    inline Event& WithDate(Aws::Utils::DateTime&& value) { SetDate(std::move(value)); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) for the event.</p>
@@ -223,7 +231,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) for the event.</p>
      */
-    inline void SetSourceArn(Aws::String&& value) { m_sourceArnHasBeenSet = true; m_sourceArn = value; }
+    inline void SetSourceArn(Aws::String&& value) { m_sourceArnHasBeenSet = true; m_sourceArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) for the event.</p>
@@ -238,7 +246,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) for the event.</p>
      */
-    inline Event& WithSourceArn(Aws::String&& value) { SetSourceArn(value); return *this;}
+    inline Event& WithSourceArn(Aws::String&& value) { SetSourceArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) for the event.</p>
@@ -246,16 +254,22 @@ namespace Model
     inline Event& WithSourceArn(const char* value) { SetSourceArn(value); return *this;}
 
   private:
+
     Aws::String m_sourceIdentifier;
     bool m_sourceIdentifierHasBeenSet;
+
     SourceType m_sourceType;
     bool m_sourceTypeHasBeenSet;
+
     Aws::String m_message;
     bool m_messageHasBeenSet;
+
     Aws::Vector<Aws::String> m_eventCategories;
     bool m_eventCategoriesHasBeenSet;
+
     Aws::Utils::DateTime m_date;
     bool m_dateHasBeenSet;
+
     Aws::String m_sourceArn;
     bool m_sourceArnHasBeenSet;
   };

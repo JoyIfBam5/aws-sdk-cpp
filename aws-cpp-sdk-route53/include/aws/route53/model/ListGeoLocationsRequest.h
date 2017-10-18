@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53/Route53_EXPORTS.h>
 #include <aws/route53/Route53Request.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -29,15 +31,8 @@ namespace Model
 {
 
   /**
-   * <p>To get a list of geographic locations that Amazon Route 53 supports for
-   * geolocation, send a <code>GET</code> request to the <code>/<i>Amazon Route 53
-   * API version</i>/geolocations</code> resource. The response to this request
-   * includes a <code>GeoLocationDetails</code> element for each location that Amazon
-   * Route 53 supports.</p> <p>Countries are listed first, and continents are listed
-   * last. If Amazon Route 53 supports subdivisions for a country (for example,
-   * states or provinces), the subdivisions for that country are listed in
-   * alphabetical order immediately after the corresponding country. </p><p><h3>See
-   * Also:</h3>   <a
+   * <p>A request to get a list of geographic locations that Amazon Route 53 supports
+   * for geolocation resource record sets. </p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListGeoLocationsRequest">AWS
    * API Reference</a></p>
    */
@@ -45,9 +40,17 @@ namespace Model
   {
   public:
     ListGeoLocationsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListGeoLocations"; }
+
     Aws::String SerializePayload() const override;
 
     void AddQueryStringParameters(Aws::Http::URI& uri) const override;
+
 
     /**
      * <p>The code for the continent with which you want to start listing locations
@@ -83,7 +86,7 @@ namespace Model
      * continents. Don't include <code>StartContinentCode</code> when you're listing
      * countries or countries with their subdivisions.</p>
      */
-    inline void SetStartContinentCode(Aws::String&& value) { m_startContinentCodeHasBeenSet = true; m_startContinentCode = value; }
+    inline void SetStartContinentCode(Aws::String&& value) { m_startContinentCodeHasBeenSet = true; m_startContinentCode = std::move(value); }
 
     /**
      * <p>The code for the continent with which you want to start listing locations
@@ -119,7 +122,7 @@ namespace Model
      * continents. Don't include <code>StartContinentCode</code> when you're listing
      * countries or countries with their subdivisions.</p>
      */
-    inline ListGeoLocationsRequest& WithStartContinentCode(Aws::String&& value) { SetStartContinentCode(value); return *this;}
+    inline ListGeoLocationsRequest& WithStartContinentCode(Aws::String&& value) { SetStartContinentCode(std::move(value)); return *this;}
 
     /**
      * <p>The code for the continent with which you want to start listing locations
@@ -132,6 +135,7 @@ namespace Model
      * countries or countries with their subdivisions.</p>
      */
     inline ListGeoLocationsRequest& WithStartContinentCode(const char* value) { SetStartContinentCode(value); return *this;}
+
 
     /**
      * <p>The code for the country with which you want to start listing locations that
@@ -170,7 +174,7 @@ namespace Model
      * href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO standard 3166-1
      * alpha-2</a>.</p>
      */
-    inline void SetStartCountryCode(Aws::String&& value) { m_startCountryCodeHasBeenSet = true; m_startCountryCode = value; }
+    inline void SetStartCountryCode(Aws::String&& value) { m_startCountryCodeHasBeenSet = true; m_startCountryCode = std::move(value); }
 
     /**
      * <p>The code for the country with which you want to start listing locations that
@@ -209,7 +213,7 @@ namespace Model
      * href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO standard 3166-1
      * alpha-2</a>.</p>
      */
-    inline ListGeoLocationsRequest& WithStartCountryCode(Aws::String&& value) { SetStartCountryCode(value); return *this;}
+    inline ListGeoLocationsRequest& WithStartCountryCode(Aws::String&& value) { SetStartCountryCode(std::move(value)); return *this;}
 
     /**
      * <p>The code for the country with which you want to start listing locations that
@@ -223,6 +227,7 @@ namespace Model
      * alpha-2</a>.</p>
      */
     inline ListGeoLocationsRequest& WithStartCountryCode(const char* value) { SetStartCountryCode(value); return *this;}
+
 
     /**
      * <p>The code for the subdivision (for example, state or province) with which you
@@ -258,7 +263,7 @@ namespace Model
      * results.</p> <p>To list subdivisions of a country, you must include both
      * <code>StartCountryCode</code> and <code>StartSubdivisionCode</code>.</p>
      */
-    inline void SetStartSubdivisionCode(Aws::String&& value) { m_startSubdivisionCodeHasBeenSet = true; m_startSubdivisionCode = value; }
+    inline void SetStartSubdivisionCode(Aws::String&& value) { m_startSubdivisionCodeHasBeenSet = true; m_startSubdivisionCode = std::move(value); }
 
     /**
      * <p>The code for the subdivision (for example, state or province) with which you
@@ -294,7 +299,7 @@ namespace Model
      * results.</p> <p>To list subdivisions of a country, you must include both
      * <code>StartCountryCode</code> and <code>StartSubdivisionCode</code>.</p>
      */
-    inline ListGeoLocationsRequest& WithStartSubdivisionCode(Aws::String&& value) { SetStartSubdivisionCode(value); return *this;}
+    inline ListGeoLocationsRequest& WithStartSubdivisionCode(Aws::String&& value) { SetStartSubdivisionCode(std::move(value)); return *this;}
 
     /**
      * <p>The code for the subdivision (for example, state or province) with which you
@@ -307,6 +312,7 @@ namespace Model
      * <code>StartCountryCode</code> and <code>StartSubdivisionCode</code>.</p>
      */
     inline ListGeoLocationsRequest& WithStartSubdivisionCode(const char* value) { SetStartSubdivisionCode(value); return *this;}
+
 
     /**
      * <p>(Optional) The maximum number of geolocations to be included in the response
@@ -330,7 +336,7 @@ namespace Model
      * be listed, then the value of the <code>IsTruncated</code> element in the
      * response is <code>true</code>.</p>
      */
-    inline void SetMaxItems(Aws::String&& value) { m_maxItemsHasBeenSet = true; m_maxItems = value; }
+    inline void SetMaxItems(Aws::String&& value) { m_maxItemsHasBeenSet = true; m_maxItems = std::move(value); }
 
     /**
      * <p>(Optional) The maximum number of geolocations to be included in the response
@@ -354,7 +360,7 @@ namespace Model
      * be listed, then the value of the <code>IsTruncated</code> element in the
      * response is <code>true</code>.</p>
      */
-    inline ListGeoLocationsRequest& WithMaxItems(Aws::String&& value) { SetMaxItems(value); return *this;}
+    inline ListGeoLocationsRequest& WithMaxItems(Aws::String&& value) { SetMaxItems(std::move(value)); return *this;}
 
     /**
      * <p>(Optional) The maximum number of geolocations to be included in the response
@@ -365,12 +371,16 @@ namespace Model
     inline ListGeoLocationsRequest& WithMaxItems(const char* value) { SetMaxItems(value); return *this;}
 
   private:
+
     Aws::String m_startContinentCode;
     bool m_startContinentCodeHasBeenSet;
+
     Aws::String m_startCountryCode;
     bool m_startCountryCodeHasBeenSet;
+
     Aws::String m_startSubdivisionCode;
     bool m_startSubdivisionCodeHasBeenSet;
+
     Aws::String m_maxItems;
     bool m_maxItemsHasBeenSet;
   };

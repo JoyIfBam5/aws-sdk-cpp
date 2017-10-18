@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticache/ElastiCache_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticache/model/ResponseMetadata.h>
 #include <aws/elasticache/model/CacheParameterGroup.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,8 +47,9 @@ namespace Model
   {
   public:
     DescribeCacheParameterGroupsResult();
-    DescribeCacheParameterGroupsResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeCacheParameterGroupsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeCacheParameterGroupsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeCacheParameterGroupsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>Provides an identifier to allow retrieval of paginated results.</p>
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>Provides an identifier to allow retrieval of paginated results.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p>Provides an identifier to allow retrieval of paginated results.</p>
@@ -76,12 +79,13 @@ namespace Model
     /**
      * <p>Provides an identifier to allow retrieval of paginated results.</p>
      */
-    inline DescribeCacheParameterGroupsResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeCacheParameterGroupsResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>Provides an identifier to allow retrieval of paginated results.</p>
      */
     inline DescribeCacheParameterGroupsResult& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>A list of cache parameter groups. Each element in the list contains detailed
@@ -99,7 +103,7 @@ namespace Model
      * <p>A list of cache parameter groups. Each element in the list contains detailed
      * information about one cache parameter group.</p>
      */
-    inline void SetCacheParameterGroups(Aws::Vector<CacheParameterGroup>&& value) { m_cacheParameterGroups = value; }
+    inline void SetCacheParameterGroups(Aws::Vector<CacheParameterGroup>&& value) { m_cacheParameterGroups = std::move(value); }
 
     /**
      * <p>A list of cache parameter groups. Each element in the list contains detailed
@@ -111,7 +115,7 @@ namespace Model
      * <p>A list of cache parameter groups. Each element in the list contains detailed
      * information about one cache parameter group.</p>
      */
-    inline DescribeCacheParameterGroupsResult& WithCacheParameterGroups(Aws::Vector<CacheParameterGroup>&& value) { SetCacheParameterGroups(value); return *this;}
+    inline DescribeCacheParameterGroupsResult& WithCacheParameterGroups(Aws::Vector<CacheParameterGroup>&& value) { SetCacheParameterGroups(std::move(value)); return *this;}
 
     /**
      * <p>A list of cache parameter groups. Each element in the list contains detailed
@@ -123,7 +127,8 @@ namespace Model
      * <p>A list of cache parameter groups. Each element in the list contains detailed
      * information about one cache parameter group.</p>
      */
-    inline DescribeCacheParameterGroupsResult& AddCacheParameterGroups(CacheParameterGroup&& value) { m_cacheParameterGroups.push_back(value); return *this; }
+    inline DescribeCacheParameterGroupsResult& AddCacheParameterGroups(CacheParameterGroup&& value) { m_cacheParameterGroups.push_back(std::move(value)); return *this; }
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -132,17 +137,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeCacheParameterGroupsResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeCacheParameterGroupsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeCacheParameterGroupsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_marker;
+
     Aws::Vector<CacheParameterGroup> m_cacheParameterGroups;
+
     ResponseMetadata m_responseMetadata;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/lightsail/model/OperationType.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -35,6 +36,7 @@ namespace Aws
         static const int StartInstance_HASH = HashingUtils::HashString("StartInstance");
         static const int RebootInstance_HASH = HashingUtils::HashString("RebootInstance");
         static const int OpenInstancePublicPorts_HASH = HashingUtils::HashString("OpenInstancePublicPorts");
+        static const int PutInstancePublicPorts_HASH = HashingUtils::HashString("PutInstancePublicPorts");
         static const int CloseInstancePublicPorts_HASH = HashingUtils::HashString("CloseInstancePublicPorts");
         static const int AllocateStaticIp_HASH = HashingUtils::HashString("AllocateStaticIp");
         static const int ReleaseStaticIp_HASH = HashingUtils::HashString("ReleaseStaticIp");
@@ -75,6 +77,10 @@ namespace Aws
           else if (hashCode == OpenInstancePublicPorts_HASH)
           {
             return OperationType::OpenInstancePublicPorts;
+          }
+          else if (hashCode == PutInstancePublicPorts_HASH)
+          {
+            return OperationType::PutInstancePublicPorts;
           }
           else if (hashCode == CloseInstancePublicPorts_HASH)
           {
@@ -150,6 +156,8 @@ namespace Aws
             return "RebootInstance";
           case OperationType::OpenInstancePublicPorts:
             return "OpenInstancePublicPorts";
+          case OperationType::PutInstancePublicPorts:
+            return "PutInstancePublicPorts";
           case OperationType::CloseInstancePublicPorts:
             return "CloseInstancePublicPorts";
           case OperationType::AllocateStaticIp:

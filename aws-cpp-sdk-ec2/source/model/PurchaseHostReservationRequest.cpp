@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/PurchaseHostReservationRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -20,12 +21,12 @@ using namespace Aws::EC2::Model;
 using namespace Aws::Utils;
 
 PurchaseHostReservationRequest::PurchaseHostReservationRequest() : 
-    m_offeringIdHasBeenSet(false),
-    m_hostIdSetHasBeenSet(false),
-    m_limitPriceHasBeenSet(false),
+    m_clientTokenHasBeenSet(false),
     m_currencyCode(CurrencyCodeValues::NOT_SET),
     m_currencyCodeHasBeenSet(false),
-    m_clientTokenHasBeenSet(false)
+    m_hostIdSetHasBeenSet(false),
+    m_limitPriceHasBeenSet(false),
+    m_offeringIdHasBeenSet(false)
 {
 }
 
@@ -33,9 +34,14 @@ Aws::String PurchaseHostReservationRequest::SerializePayload() const
 {
   Aws::StringStream ss;
   ss << "Action=PurchaseHostReservation&";
-  if(m_offeringIdHasBeenSet)
+  if(m_clientTokenHasBeenSet)
   {
-    ss << "OfferingId=" << StringUtils::URLEncode(m_offeringId.c_str()) << "&";
+    ss << "ClientToken=" << StringUtils::URLEncode(m_clientToken.c_str()) << "&";
+  }
+
+  if(m_currencyCodeHasBeenSet)
+  {
+    ss << "CurrencyCode=" << CurrencyCodeValuesMapper::GetNameForCurrencyCodeValues(m_currencyCode) << "&";
   }
 
   if(m_hostIdSetHasBeenSet)
@@ -54,17 +60,17 @@ Aws::String PurchaseHostReservationRequest::SerializePayload() const
     ss << "LimitPrice=" << StringUtils::URLEncode(m_limitPrice.c_str()) << "&";
   }
 
-  if(m_currencyCodeHasBeenSet)
+  if(m_offeringIdHasBeenSet)
   {
-    ss << "CurrencyCode=" << CurrencyCodeValuesMapper::GetNameForCurrencyCodeValues(m_currencyCode) << "&";
-  }
-
-  if(m_clientTokenHasBeenSet)
-  {
-    ss << "ClientToken=" << StringUtils::URLEncode(m_clientToken.c_str()) << "&";
+    ss << "OfferingId=" << StringUtils::URLEncode(m_offeringId.c_str()) << "&";
   }
 
   ss << "Version=2016-11-15";
   return ss.str();
 }
 
+
+void  PurchaseHostReservationRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

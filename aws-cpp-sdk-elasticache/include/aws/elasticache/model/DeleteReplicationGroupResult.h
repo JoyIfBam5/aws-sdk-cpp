@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticache/ElastiCache_EXPORTS.h>
 #include <aws/elasticache/model/ReplicationGroup.h>
 #include <aws/elasticache/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     DeleteReplicationGroupResult();
-    DeleteReplicationGroupResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DeleteReplicationGroupResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DeleteReplicationGroupResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DeleteReplicationGroupResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     
     inline const ReplicationGroup& GetReplicationGroup() const{ return m_replicationGroup; }
@@ -47,13 +50,14 @@ namespace Model
     inline void SetReplicationGroup(const ReplicationGroup& value) { m_replicationGroup = value; }
 
     
-    inline void SetReplicationGroup(ReplicationGroup&& value) { m_replicationGroup = value; }
+    inline void SetReplicationGroup(ReplicationGroup&& value) { m_replicationGroup = std::move(value); }
 
     
     inline DeleteReplicationGroupResult& WithReplicationGroup(const ReplicationGroup& value) { SetReplicationGroup(value); return *this;}
 
     
-    inline DeleteReplicationGroupResult& WithReplicationGroup(ReplicationGroup&& value) { SetReplicationGroup(value); return *this;}
+    inline DeleteReplicationGroupResult& WithReplicationGroup(ReplicationGroup&& value) { SetReplicationGroup(std::move(value)); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -62,16 +66,18 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DeleteReplicationGroupResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DeleteReplicationGroupResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DeleteReplicationGroupResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     ReplicationGroup m_replicationGroup;
+
     ResponseMetadata m_responseMetadata;
   };
 

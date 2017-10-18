@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53/Route53_EXPORTS.h>
 #include <aws/route53/Route53Request.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/route53/model/VPC.h>
 #include <aws/route53/model/HostedZoneConfig.h>
+#include <utility>
 
 namespace Aws
 {
@@ -27,8 +29,8 @@ namespace Model
 {
 
   /**
-   * <p>A complex type containing the hosted zone request information.</p><p><h3>See
-   * Also:</h3>   <a
+   * <p>A complex type that contains information about the request to create a hosted
+   * zone.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateHostedZoneRequest">AWS
    * API Reference</a></p>
    */
@@ -36,7 +38,15 @@ namespace Model
   {
   public:
     CreateHostedZoneRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateHostedZone"; }
+
     Aws::String SerializePayload() const override;
+
 
     /**
      * <p>The name of the domain. For resource record types that include a domain name,
@@ -48,7 +58,7 @@ namespace Model
      * have registered with your DNS registrar. If your domain name is registered with
      * a registrar other than Amazon Route 53, change the name servers for your domain
      * to the set of <code>NameServers</code> that <code>CreateHostedZone</code>
-     * returns in the DelegationSet element.</p>
+     * returns in <code>DelegationSet</code>.</p>
      */
     inline const Aws::String& GetName() const{ return m_name; }
 
@@ -62,7 +72,7 @@ namespace Model
      * have registered with your DNS registrar. If your domain name is registered with
      * a registrar other than Amazon Route 53, change the name servers for your domain
      * to the set of <code>NameServers</code> that <code>CreateHostedZone</code>
-     * returns in the DelegationSet element.</p>
+     * returns in <code>DelegationSet</code>.</p>
      */
     inline void SetName(const Aws::String& value) { m_nameHasBeenSet = true; m_name = value; }
 
@@ -76,9 +86,9 @@ namespace Model
      * have registered with your DNS registrar. If your domain name is registered with
      * a registrar other than Amazon Route 53, change the name servers for your domain
      * to the set of <code>NameServers</code> that <code>CreateHostedZone</code>
-     * returns in the DelegationSet element.</p>
+     * returns in <code>DelegationSet</code>.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the domain. For resource record types that include a domain name,
@@ -90,7 +100,7 @@ namespace Model
      * have registered with your DNS registrar. If your domain name is registered with
      * a registrar other than Amazon Route 53, change the name servers for your domain
      * to the set of <code>NameServers</code> that <code>CreateHostedZone</code>
-     * returns in the DelegationSet element.</p>
+     * returns in <code>DelegationSet</code>.</p>
      */
     inline void SetName(const char* value) { m_nameHasBeenSet = true; m_name.assign(value); }
 
@@ -104,7 +114,7 @@ namespace Model
      * have registered with your DNS registrar. If your domain name is registered with
      * a registrar other than Amazon Route 53, change the name servers for your domain
      * to the set of <code>NameServers</code> that <code>CreateHostedZone</code>
-     * returns in the DelegationSet element.</p>
+     * returns in <code>DelegationSet</code>.</p>
      */
     inline CreateHostedZoneRequest& WithName(const Aws::String& value) { SetName(value); return *this;}
 
@@ -118,9 +128,9 @@ namespace Model
      * have registered with your DNS registrar. If your domain name is registered with
      * a registrar other than Amazon Route 53, change the name servers for your domain
      * to the set of <code>NameServers</code> that <code>CreateHostedZone</code>
-     * returns in the DelegationSet element.</p>
+     * returns in <code>DelegationSet</code>.</p>
      */
-    inline CreateHostedZoneRequest& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline CreateHostedZoneRequest& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the domain. For resource record types that include a domain name,
@@ -132,52 +142,64 @@ namespace Model
      * have registered with your DNS registrar. If your domain name is registered with
      * a registrar other than Amazon Route 53, change the name servers for your domain
      * to the set of <code>NameServers</code> that <code>CreateHostedZone</code>
-     * returns in the DelegationSet element.</p>
+     * returns in <code>DelegationSet</code>.</p>
      */
     inline CreateHostedZoneRequest& WithName(const char* value) { SetName(value); return *this;}
 
+
     /**
-     * <p>The VPC that you want your hosted zone to be associated with. By providing
-     * this parameter, your newly created hosted can't be resolved anywhere other than
-     * the given VPC.</p>
+     * <p>(Private hosted zones only) A complex type that contains information about
+     * the Amazon VPC that you're associating with this hosted zone.</p> <p>You can
+     * specify only one Amazon VPC when you create a private hosted zone. To associate
+     * additional Amazon VPCs with the hosted zone, use
+     * <a>AssociateVPCWithHostedZone</a> after you create a hosted zone.</p>
      */
     inline const VPC& GetVPC() const{ return m_vPC; }
 
     /**
-     * <p>The VPC that you want your hosted zone to be associated with. By providing
-     * this parameter, your newly created hosted can't be resolved anywhere other than
-     * the given VPC.</p>
+     * <p>(Private hosted zones only) A complex type that contains information about
+     * the Amazon VPC that you're associating with this hosted zone.</p> <p>You can
+     * specify only one Amazon VPC when you create a private hosted zone. To associate
+     * additional Amazon VPCs with the hosted zone, use
+     * <a>AssociateVPCWithHostedZone</a> after you create a hosted zone.</p>
      */
     inline void SetVPC(const VPC& value) { m_vPCHasBeenSet = true; m_vPC = value; }
 
     /**
-     * <p>The VPC that you want your hosted zone to be associated with. By providing
-     * this parameter, your newly created hosted can't be resolved anywhere other than
-     * the given VPC.</p>
+     * <p>(Private hosted zones only) A complex type that contains information about
+     * the Amazon VPC that you're associating with this hosted zone.</p> <p>You can
+     * specify only one Amazon VPC when you create a private hosted zone. To associate
+     * additional Amazon VPCs with the hosted zone, use
+     * <a>AssociateVPCWithHostedZone</a> after you create a hosted zone.</p>
      */
-    inline void SetVPC(VPC&& value) { m_vPCHasBeenSet = true; m_vPC = value; }
+    inline void SetVPC(VPC&& value) { m_vPCHasBeenSet = true; m_vPC = std::move(value); }
 
     /**
-     * <p>The VPC that you want your hosted zone to be associated with. By providing
-     * this parameter, your newly created hosted can't be resolved anywhere other than
-     * the given VPC.</p>
+     * <p>(Private hosted zones only) A complex type that contains information about
+     * the Amazon VPC that you're associating with this hosted zone.</p> <p>You can
+     * specify only one Amazon VPC when you create a private hosted zone. To associate
+     * additional Amazon VPCs with the hosted zone, use
+     * <a>AssociateVPCWithHostedZone</a> after you create a hosted zone.</p>
      */
     inline CreateHostedZoneRequest& WithVPC(const VPC& value) { SetVPC(value); return *this;}
 
     /**
-     * <p>The VPC that you want your hosted zone to be associated with. By providing
-     * this parameter, your newly created hosted can't be resolved anywhere other than
-     * the given VPC.</p>
+     * <p>(Private hosted zones only) A complex type that contains information about
+     * the Amazon VPC that you're associating with this hosted zone.</p> <p>You can
+     * specify only one Amazon VPC when you create a private hosted zone. To associate
+     * additional Amazon VPCs with the hosted zone, use
+     * <a>AssociateVPCWithHostedZone</a> after you create a hosted zone.</p>
      */
-    inline CreateHostedZoneRequest& WithVPC(VPC&& value) { SetVPC(value); return *this;}
+    inline CreateHostedZoneRequest& WithVPC(VPC&& value) { SetVPC(std::move(value)); return *this;}
+
 
     /**
      * <p>A unique string that identifies the request and that allows failed
      * <code>CreateHostedZone</code> requests to be retried without the risk of
      * executing the operation twice. You must use a unique
-     * <code>CallerReference</code> string every time you create a hosted zone.
-     * <code>CallerReference</code> can be any unique string, for example, a date/time
-     * stamp.</p>
+     * <code>CallerReference</code> string every time you submit a
+     * <code>CreateHostedZone</code> request. <code>CallerReference</code> can be any
+     * unique string, for example, a date/time stamp.</p>
      */
     inline const Aws::String& GetCallerReference() const{ return m_callerReference; }
 
@@ -185,9 +207,9 @@ namespace Model
      * <p>A unique string that identifies the request and that allows failed
      * <code>CreateHostedZone</code> requests to be retried without the risk of
      * executing the operation twice. You must use a unique
-     * <code>CallerReference</code> string every time you create a hosted zone.
-     * <code>CallerReference</code> can be any unique string, for example, a date/time
-     * stamp.</p>
+     * <code>CallerReference</code> string every time you submit a
+     * <code>CreateHostedZone</code> request. <code>CallerReference</code> can be any
+     * unique string, for example, a date/time stamp.</p>
      */
     inline void SetCallerReference(const Aws::String& value) { m_callerReferenceHasBeenSet = true; m_callerReference = value; }
 
@@ -195,19 +217,19 @@ namespace Model
      * <p>A unique string that identifies the request and that allows failed
      * <code>CreateHostedZone</code> requests to be retried without the risk of
      * executing the operation twice. You must use a unique
-     * <code>CallerReference</code> string every time you create a hosted zone.
-     * <code>CallerReference</code> can be any unique string, for example, a date/time
-     * stamp.</p>
+     * <code>CallerReference</code> string every time you submit a
+     * <code>CreateHostedZone</code> request. <code>CallerReference</code> can be any
+     * unique string, for example, a date/time stamp.</p>
      */
-    inline void SetCallerReference(Aws::String&& value) { m_callerReferenceHasBeenSet = true; m_callerReference = value; }
+    inline void SetCallerReference(Aws::String&& value) { m_callerReferenceHasBeenSet = true; m_callerReference = std::move(value); }
 
     /**
      * <p>A unique string that identifies the request and that allows failed
      * <code>CreateHostedZone</code> requests to be retried without the risk of
      * executing the operation twice. You must use a unique
-     * <code>CallerReference</code> string every time you create a hosted zone.
-     * <code>CallerReference</code> can be any unique string, for example, a date/time
-     * stamp.</p>
+     * <code>CallerReference</code> string every time you submit a
+     * <code>CreateHostedZone</code> request. <code>CallerReference</code> can be any
+     * unique string, for example, a date/time stamp.</p>
      */
     inline void SetCallerReference(const char* value) { m_callerReferenceHasBeenSet = true; m_callerReference.assign(value); }
 
@@ -215,9 +237,9 @@ namespace Model
      * <p>A unique string that identifies the request and that allows failed
      * <code>CreateHostedZone</code> requests to be retried without the risk of
      * executing the operation twice. You must use a unique
-     * <code>CallerReference</code> string every time you create a hosted zone.
-     * <code>CallerReference</code> can be any unique string, for example, a date/time
-     * stamp.</p>
+     * <code>CallerReference</code> string every time you submit a
+     * <code>CreateHostedZone</code> request. <code>CallerReference</code> can be any
+     * unique string, for example, a date/time stamp.</p>
      */
     inline CreateHostedZoneRequest& WithCallerReference(const Aws::String& value) { SetCallerReference(value); return *this;}
 
@@ -225,64 +247,79 @@ namespace Model
      * <p>A unique string that identifies the request and that allows failed
      * <code>CreateHostedZone</code> requests to be retried without the risk of
      * executing the operation twice. You must use a unique
-     * <code>CallerReference</code> string every time you create a hosted zone.
-     * <code>CallerReference</code> can be any unique string, for example, a date/time
-     * stamp.</p>
+     * <code>CallerReference</code> string every time you submit a
+     * <code>CreateHostedZone</code> request. <code>CallerReference</code> can be any
+     * unique string, for example, a date/time stamp.</p>
      */
-    inline CreateHostedZoneRequest& WithCallerReference(Aws::String&& value) { SetCallerReference(value); return *this;}
+    inline CreateHostedZoneRequest& WithCallerReference(Aws::String&& value) { SetCallerReference(std::move(value)); return *this;}
 
     /**
      * <p>A unique string that identifies the request and that allows failed
      * <code>CreateHostedZone</code> requests to be retried without the risk of
      * executing the operation twice. You must use a unique
-     * <code>CallerReference</code> string every time you create a hosted zone.
-     * <code>CallerReference</code> can be any unique string, for example, a date/time
-     * stamp.</p>
+     * <code>CallerReference</code> string every time you submit a
+     * <code>CreateHostedZone</code> request. <code>CallerReference</code> can be any
+     * unique string, for example, a date/time stamp.</p>
      */
     inline CreateHostedZoneRequest& WithCallerReference(const char* value) { SetCallerReference(value); return *this;}
 
+
     /**
-     * <p> (Optional) A complex type that contains an optional comment about your
-     * hosted zone. If you don't want to specify a comment, omit both the
-     * <code>HostedZoneConfig</code> and <code>Comment</code> elements.</p>
+     * <p>(Optional) A complex type that contains the following optional values:</p>
+     * <ul> <li> <p>For public and private hosted zones, an optional comment</p> </li>
+     * <li> <p>For private hosted zones, an optional <code>PrivateZone</code>
+     * element</p> </li> </ul> <p>If you don't specify a comment or the
+     * <code>PrivateZone</code> element, omit <code>HostedZoneConfig</code> and the
+     * other elements.</p>
      */
     inline const HostedZoneConfig& GetHostedZoneConfig() const{ return m_hostedZoneConfig; }
 
     /**
-     * <p> (Optional) A complex type that contains an optional comment about your
-     * hosted zone. If you don't want to specify a comment, omit both the
-     * <code>HostedZoneConfig</code> and <code>Comment</code> elements.</p>
+     * <p>(Optional) A complex type that contains the following optional values:</p>
+     * <ul> <li> <p>For public and private hosted zones, an optional comment</p> </li>
+     * <li> <p>For private hosted zones, an optional <code>PrivateZone</code>
+     * element</p> </li> </ul> <p>If you don't specify a comment or the
+     * <code>PrivateZone</code> element, omit <code>HostedZoneConfig</code> and the
+     * other elements.</p>
      */
     inline void SetHostedZoneConfig(const HostedZoneConfig& value) { m_hostedZoneConfigHasBeenSet = true; m_hostedZoneConfig = value; }
 
     /**
-     * <p> (Optional) A complex type that contains an optional comment about your
-     * hosted zone. If you don't want to specify a comment, omit both the
-     * <code>HostedZoneConfig</code> and <code>Comment</code> elements.</p>
+     * <p>(Optional) A complex type that contains the following optional values:</p>
+     * <ul> <li> <p>For public and private hosted zones, an optional comment</p> </li>
+     * <li> <p>For private hosted zones, an optional <code>PrivateZone</code>
+     * element</p> </li> </ul> <p>If you don't specify a comment or the
+     * <code>PrivateZone</code> element, omit <code>HostedZoneConfig</code> and the
+     * other elements.</p>
      */
-    inline void SetHostedZoneConfig(HostedZoneConfig&& value) { m_hostedZoneConfigHasBeenSet = true; m_hostedZoneConfig = value; }
+    inline void SetHostedZoneConfig(HostedZoneConfig&& value) { m_hostedZoneConfigHasBeenSet = true; m_hostedZoneConfig = std::move(value); }
 
     /**
-     * <p> (Optional) A complex type that contains an optional comment about your
-     * hosted zone. If you don't want to specify a comment, omit both the
-     * <code>HostedZoneConfig</code> and <code>Comment</code> elements.</p>
+     * <p>(Optional) A complex type that contains the following optional values:</p>
+     * <ul> <li> <p>For public and private hosted zones, an optional comment</p> </li>
+     * <li> <p>For private hosted zones, an optional <code>PrivateZone</code>
+     * element</p> </li> </ul> <p>If you don't specify a comment or the
+     * <code>PrivateZone</code> element, omit <code>HostedZoneConfig</code> and the
+     * other elements.</p>
      */
     inline CreateHostedZoneRequest& WithHostedZoneConfig(const HostedZoneConfig& value) { SetHostedZoneConfig(value); return *this;}
 
     /**
-     * <p> (Optional) A complex type that contains an optional comment about your
-     * hosted zone. If you don't want to specify a comment, omit both the
-     * <code>HostedZoneConfig</code> and <code>Comment</code> elements.</p>
+     * <p>(Optional) A complex type that contains the following optional values:</p>
+     * <ul> <li> <p>For public and private hosted zones, an optional comment</p> </li>
+     * <li> <p>For private hosted zones, an optional <code>PrivateZone</code>
+     * element</p> </li> </ul> <p>If you don't specify a comment or the
+     * <code>PrivateZone</code> element, omit <code>HostedZoneConfig</code> and the
+     * other elements.</p>
      */
-    inline CreateHostedZoneRequest& WithHostedZoneConfig(HostedZoneConfig&& value) { SetHostedZoneConfig(value); return *this;}
+    inline CreateHostedZoneRequest& WithHostedZoneConfig(HostedZoneConfig&& value) { SetHostedZoneConfig(std::move(value)); return *this;}
+
 
     /**
      * <p>If you want to associate a reusable delegation set with this hosted zone, the
      * ID that Amazon Route 53 assigned to the reusable delegation set when you created
      * it. For more information about reusable delegation sets, see
-     * <a>CreateReusableDelegationSet</a>.</p> <dl> <dt>Type</dt> <dd> <p>String</p>
-     * </dd> <dt>Default</dt> <dd> <p>None</p> </dd> <dt>Parent</dt> <dd> <p>
-     * <code>CreatedHostedZoneRequest</code> </p> </dd> </dl>
+     * <a>CreateReusableDelegationSet</a>.</p>
      */
     inline const Aws::String& GetDelegationSetId() const{ return m_delegationSetId; }
 
@@ -290,9 +327,7 @@ namespace Model
      * <p>If you want to associate a reusable delegation set with this hosted zone, the
      * ID that Amazon Route 53 assigned to the reusable delegation set when you created
      * it. For more information about reusable delegation sets, see
-     * <a>CreateReusableDelegationSet</a>.</p> <dl> <dt>Type</dt> <dd> <p>String</p>
-     * </dd> <dt>Default</dt> <dd> <p>None</p> </dd> <dt>Parent</dt> <dd> <p>
-     * <code>CreatedHostedZoneRequest</code> </p> </dd> </dl>
+     * <a>CreateReusableDelegationSet</a>.</p>
      */
     inline void SetDelegationSetId(const Aws::String& value) { m_delegationSetIdHasBeenSet = true; m_delegationSetId = value; }
 
@@ -300,19 +335,15 @@ namespace Model
      * <p>If you want to associate a reusable delegation set with this hosted zone, the
      * ID that Amazon Route 53 assigned to the reusable delegation set when you created
      * it. For more information about reusable delegation sets, see
-     * <a>CreateReusableDelegationSet</a>.</p> <dl> <dt>Type</dt> <dd> <p>String</p>
-     * </dd> <dt>Default</dt> <dd> <p>None</p> </dd> <dt>Parent</dt> <dd> <p>
-     * <code>CreatedHostedZoneRequest</code> </p> </dd> </dl>
+     * <a>CreateReusableDelegationSet</a>.</p>
      */
-    inline void SetDelegationSetId(Aws::String&& value) { m_delegationSetIdHasBeenSet = true; m_delegationSetId = value; }
+    inline void SetDelegationSetId(Aws::String&& value) { m_delegationSetIdHasBeenSet = true; m_delegationSetId = std::move(value); }
 
     /**
      * <p>If you want to associate a reusable delegation set with this hosted zone, the
      * ID that Amazon Route 53 assigned to the reusable delegation set when you created
      * it. For more information about reusable delegation sets, see
-     * <a>CreateReusableDelegationSet</a>.</p> <dl> <dt>Type</dt> <dd> <p>String</p>
-     * </dd> <dt>Default</dt> <dd> <p>None</p> </dd> <dt>Parent</dt> <dd> <p>
-     * <code>CreatedHostedZoneRequest</code> </p> </dd> </dl>
+     * <a>CreateReusableDelegationSet</a>.</p>
      */
     inline void SetDelegationSetId(const char* value) { m_delegationSetIdHasBeenSet = true; m_delegationSetId.assign(value); }
 
@@ -320,9 +351,7 @@ namespace Model
      * <p>If you want to associate a reusable delegation set with this hosted zone, the
      * ID that Amazon Route 53 assigned to the reusable delegation set when you created
      * it. For more information about reusable delegation sets, see
-     * <a>CreateReusableDelegationSet</a>.</p> <dl> <dt>Type</dt> <dd> <p>String</p>
-     * </dd> <dt>Default</dt> <dd> <p>None</p> </dd> <dt>Parent</dt> <dd> <p>
-     * <code>CreatedHostedZoneRequest</code> </p> </dd> </dl>
+     * <a>CreateReusableDelegationSet</a>.</p>
      */
     inline CreateHostedZoneRequest& WithDelegationSetId(const Aws::String& value) { SetDelegationSetId(value); return *this;}
 
@@ -330,31 +359,32 @@ namespace Model
      * <p>If you want to associate a reusable delegation set with this hosted zone, the
      * ID that Amazon Route 53 assigned to the reusable delegation set when you created
      * it. For more information about reusable delegation sets, see
-     * <a>CreateReusableDelegationSet</a>.</p> <dl> <dt>Type</dt> <dd> <p>String</p>
-     * </dd> <dt>Default</dt> <dd> <p>None</p> </dd> <dt>Parent</dt> <dd> <p>
-     * <code>CreatedHostedZoneRequest</code> </p> </dd> </dl>
+     * <a>CreateReusableDelegationSet</a>.</p>
      */
-    inline CreateHostedZoneRequest& WithDelegationSetId(Aws::String&& value) { SetDelegationSetId(value); return *this;}
+    inline CreateHostedZoneRequest& WithDelegationSetId(Aws::String&& value) { SetDelegationSetId(std::move(value)); return *this;}
 
     /**
      * <p>If you want to associate a reusable delegation set with this hosted zone, the
      * ID that Amazon Route 53 assigned to the reusable delegation set when you created
      * it. For more information about reusable delegation sets, see
-     * <a>CreateReusableDelegationSet</a>.</p> <dl> <dt>Type</dt> <dd> <p>String</p>
-     * </dd> <dt>Default</dt> <dd> <p>None</p> </dd> <dt>Parent</dt> <dd> <p>
-     * <code>CreatedHostedZoneRequest</code> </p> </dd> </dl>
+     * <a>CreateReusableDelegationSet</a>.</p>
      */
     inline CreateHostedZoneRequest& WithDelegationSetId(const char* value) { SetDelegationSetId(value); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     VPC m_vPC;
     bool m_vPCHasBeenSet;
+
     Aws::String m_callerReference;
     bool m_callerReferenceHasBeenSet;
+
     HostedZoneConfig m_hostedZoneConfig;
     bool m_hostedZoneConfigHasBeenSet;
+
     Aws::String m_delegationSetId;
     bool m_delegationSetIdHasBeenSet;
   };

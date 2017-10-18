@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/lightsail/model/GetOperationsForResourceResult.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
+#include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/UnreferencedParam.h>
 
 #include <utility>
@@ -28,12 +30,12 @@ GetOperationsForResourceResult::GetOperationsForResourceResult()
 {
 }
 
-GetOperationsForResourceResult::GetOperationsForResourceResult(const AmazonWebServiceResult<JsonValue>& result)
+GetOperationsForResourceResult::GetOperationsForResourceResult(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
   *this = result;
 }
 
-GetOperationsForResourceResult& GetOperationsForResourceResult::operator =(const AmazonWebServiceResult<JsonValue>& result)
+GetOperationsForResourceResult& GetOperationsForResourceResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
   const JsonValue& jsonValue = result.GetPayload();
   if(jsonValue.ValueExists("operations"))
@@ -45,9 +47,9 @@ GetOperationsForResourceResult& GetOperationsForResourceResult::operator =(const
     }
   }
 
-  if(jsonValue.ValueExists("nextPageCount"))
+  if(jsonValue.ValueExists("nextPageToken"))
   {
-    m_nextPageCount = jsonValue.GetString("nextPageCount");
+    m_nextPageToken = jsonValue.GetString("nextPageToken");
 
   }
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/redshift/RedshiftRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/redshift/model/SourceType.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,7 +37,19 @@ namespace Model
   {
   public:
     DescribeEventsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeEvents"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The identifier of the event source for which events will be returned. If this
@@ -80,7 +94,7 @@ namespace Model
      * snapshot identifier when <i>SourceType</i> is <code>cluster-snapshot</code>.</p>
      * </li> </ul>
      */
-    inline void SetSourceIdentifier(Aws::String&& value) { m_sourceIdentifierHasBeenSet = true; m_sourceIdentifier = value; }
+    inline void SetSourceIdentifier(Aws::String&& value) { m_sourceIdentifierHasBeenSet = true; m_sourceIdentifier = std::move(value); }
 
     /**
      * <p>The identifier of the event source for which events will be returned. If this
@@ -125,7 +139,7 @@ namespace Model
      * snapshot identifier when <i>SourceType</i> is <code>cluster-snapshot</code>.</p>
      * </li> </ul>
      */
-    inline DescribeEventsRequest& WithSourceIdentifier(Aws::String&& value) { SetSourceIdentifier(value); return *this;}
+    inline DescribeEventsRequest& WithSourceIdentifier(Aws::String&& value) { SetSourceIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the event source for which events will be returned. If this
@@ -141,6 +155,7 @@ namespace Model
      * </li> </ul>
      */
     inline DescribeEventsRequest& WithSourceIdentifier(const char* value) { SetSourceIdentifier(value); return *this;}
+
 
     /**
      * <p>The event source to retrieve events for. If no value is specified, all events
@@ -182,7 +197,7 @@ namespace Model
      * <code>cluster-snapshot</code> when <i>SourceIdentifier</i> is a cluster snapshot
      * identifier.</p> </li> </ul>
      */
-    inline void SetSourceType(SourceType&& value) { m_sourceTypeHasBeenSet = true; m_sourceType = value; }
+    inline void SetSourceType(SourceType&& value) { m_sourceTypeHasBeenSet = true; m_sourceType = std::move(value); }
 
     /**
      * <p>The event source to retrieve events for. If no value is specified, all events
@@ -210,7 +225,8 @@ namespace Model
      * <code>cluster-snapshot</code> when <i>SourceIdentifier</i> is a cluster snapshot
      * identifier.</p> </li> </ul>
      */
-    inline DescribeEventsRequest& WithSourceType(SourceType&& value) { SetSourceType(value); return *this;}
+    inline DescribeEventsRequest& WithSourceType(SourceType&& value) { SetSourceType(std::move(value)); return *this;}
+
 
     /**
      * <p>The beginning of the time interval to retrieve events for, specified in ISO
@@ -234,7 +250,7 @@ namespace Model
      * href="http://en.wikipedia.org/wiki/ISO_8601">ISO8601 Wikipedia page.</a> </p>
      * <p>Example: <code>2009-07-08T18:00Z</code> </p>
      */
-    inline void SetStartTime(Aws::Utils::DateTime&& value) { m_startTimeHasBeenSet = true; m_startTime = value; }
+    inline void SetStartTime(Aws::Utils::DateTime&& value) { m_startTimeHasBeenSet = true; m_startTime = std::move(value); }
 
     /**
      * <p>The beginning of the time interval to retrieve events for, specified in ISO
@@ -250,7 +266,8 @@ namespace Model
      * href="http://en.wikipedia.org/wiki/ISO_8601">ISO8601 Wikipedia page.</a> </p>
      * <p>Example: <code>2009-07-08T18:00Z</code> </p>
      */
-    inline DescribeEventsRequest& WithStartTime(Aws::Utils::DateTime&& value) { SetStartTime(value); return *this;}
+    inline DescribeEventsRequest& WithStartTime(Aws::Utils::DateTime&& value) { SetStartTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The end of the time interval for which to retrieve events, specified in ISO
@@ -274,7 +291,7 @@ namespace Model
      * href="http://en.wikipedia.org/wiki/ISO_8601">ISO8601 Wikipedia page.</a> </p>
      * <p>Example: <code>2009-07-08T18:00Z</code> </p>
      */
-    inline void SetEndTime(Aws::Utils::DateTime&& value) { m_endTimeHasBeenSet = true; m_endTime = value; }
+    inline void SetEndTime(Aws::Utils::DateTime&& value) { m_endTimeHasBeenSet = true; m_endTime = std::move(value); }
 
     /**
      * <p>The end of the time interval for which to retrieve events, specified in ISO
@@ -290,7 +307,8 @@ namespace Model
      * href="http://en.wikipedia.org/wiki/ISO_8601">ISO8601 Wikipedia page.</a> </p>
      * <p>Example: <code>2009-07-08T18:00Z</code> </p>
      */
-    inline DescribeEventsRequest& WithEndTime(Aws::Utils::DateTime&& value) { SetEndTime(value); return *this;}
+    inline DescribeEventsRequest& WithEndTime(Aws::Utils::DateTime&& value) { SetEndTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The number of minutes prior to the time of the request for which to retrieve
@@ -315,6 +333,7 @@ namespace Model
      * <p>Default: <code>60</code> </p>
      */
     inline DescribeEventsRequest& WithDuration(int value) { SetDuration(value); return *this;}
+
 
     /**
      * <p>The maximum number of response records to return in each call. If the number
@@ -346,6 +365,7 @@ namespace Model
      */
     inline DescribeEventsRequest& WithMaxRecords(int value) { SetMaxRecords(value); return *this;}
 
+
     /**
      * <p>An optional parameter that specifies the starting point to return a set of
      * response records. When the results of a <a>DescribeEvents</a> request exceed the
@@ -374,7 +394,7 @@ namespace Model
      * response records by providing the returned marker value in the
      * <code>Marker</code> parameter and retrying the request. </p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p>An optional parameter that specifies the starting point to return a set of
@@ -404,7 +424,7 @@ namespace Model
      * response records by providing the returned marker value in the
      * <code>Marker</code> parameter and retrying the request. </p>
      */
-    inline DescribeEventsRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeEventsRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>An optional parameter that specifies the starting point to return a set of
@@ -417,18 +437,25 @@ namespace Model
     inline DescribeEventsRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
 
   private:
+
     Aws::String m_sourceIdentifier;
     bool m_sourceIdentifierHasBeenSet;
+
     SourceType m_sourceType;
     bool m_sourceTypeHasBeenSet;
+
     Aws::Utils::DateTime m_startTime;
     bool m_startTimeHasBeenSet;
+
     Aws::Utils::DateTime m_endTime;
     bool m_endTimeHasBeenSet;
+
     int m_duration;
     bool m_durationHasBeenSet;
+
     int m_maxRecords;
     bool m_maxRecordsHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
   };

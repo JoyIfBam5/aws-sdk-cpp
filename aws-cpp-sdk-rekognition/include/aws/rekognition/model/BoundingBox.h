@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rekognition/Rekognition_EXPORTS.h>
 
@@ -58,6 +59,7 @@ namespace Model
     BoundingBox& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Width of the bounding box as a ratio of the overall image width.</p>
      */
@@ -72,6 +74,7 @@ namespace Model
      * <p>Width of the bounding box as a ratio of the overall image width.</p>
      */
     inline BoundingBox& WithWidth(double value) { SetWidth(value); return *this;}
+
 
     /**
      * <p>Height of the bounding box as a ratio of the overall image height.</p>
@@ -88,6 +91,7 @@ namespace Model
      */
     inline BoundingBox& WithHeight(double value) { SetHeight(value); return *this;}
 
+
     /**
      * <p>Left coordinate of the bounding box as a ratio of overall image width.</p>
      */
@@ -102,6 +106,7 @@ namespace Model
      * <p>Left coordinate of the bounding box as a ratio of overall image width.</p>
      */
     inline BoundingBox& WithLeft(double value) { SetLeft(value); return *this;}
+
 
     /**
      * <p>Top coordinate of the bounding box as a ratio of overall image height.</p>
@@ -119,12 +124,16 @@ namespace Model
     inline BoundingBox& WithTop(double value) { SetTop(value); return *this;}
 
   private:
+
     double m_width;
     bool m_widthHasBeenSet;
+
     double m_height;
     bool m_heightHasBeenSet;
+
     double m_left;
     bool m_leftHasBeenSet;
+
     double m_top;
     bool m_topHasBeenSet;
   };

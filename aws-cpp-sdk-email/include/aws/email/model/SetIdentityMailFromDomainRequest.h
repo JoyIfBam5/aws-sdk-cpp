@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/email/SESRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/email/model/BehaviorOnMXFailure.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,7 +40,19 @@ namespace Model
   {
   public:
     SetIdentityMailFromDomainRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "SetIdentityMailFromDomain"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The verified identity for which you want to enable or disable the specified
@@ -56,7 +70,7 @@ namespace Model
      * <p>The verified identity for which you want to enable or disable the specified
      * custom MAIL FROM domain.</p>
      */
-    inline void SetIdentity(Aws::String&& value) { m_identityHasBeenSet = true; m_identity = value; }
+    inline void SetIdentity(Aws::String&& value) { m_identityHasBeenSet = true; m_identity = std::move(value); }
 
     /**
      * <p>The verified identity for which you want to enable or disable the specified
@@ -74,13 +88,14 @@ namespace Model
      * <p>The verified identity for which you want to enable or disable the specified
      * custom MAIL FROM domain.</p>
      */
-    inline SetIdentityMailFromDomainRequest& WithIdentity(Aws::String&& value) { SetIdentity(value); return *this;}
+    inline SetIdentityMailFromDomainRequest& WithIdentity(Aws::String&& value) { SetIdentity(std::move(value)); return *this;}
 
     /**
      * <p>The verified identity for which you want to enable or disable the specified
      * custom MAIL FROM domain.</p>
      */
     inline SetIdentityMailFromDomainRequest& WithIdentity(const char* value) { SetIdentity(value); return *this;}
+
 
     /**
      * <p>The custom MAIL FROM domain that you want the verified identity to use. The
@@ -113,7 +128,7 @@ namespace Model
      * SES Developer Guide</a>), and 3) not be used to receive emails. A value of
      * <code>null</code> disables the custom MAIL FROM setting for the identity.</p>
      */
-    inline void SetMailFromDomain(Aws::String&& value) { m_mailFromDomainHasBeenSet = true; m_mailFromDomain = value; }
+    inline void SetMailFromDomain(Aws::String&& value) { m_mailFromDomainHasBeenSet = true; m_mailFromDomain = std::move(value); }
 
     /**
      * <p>The custom MAIL FROM domain that you want the verified identity to use. The
@@ -146,7 +161,7 @@ namespace Model
      * SES Developer Guide</a>), and 3) not be used to receive emails. A value of
      * <code>null</code> disables the custom MAIL FROM setting for the identity.</p>
      */
-    inline SetIdentityMailFromDomainRequest& WithMailFromDomain(Aws::String&& value) { SetMailFromDomain(value); return *this;}
+    inline SetIdentityMailFromDomainRequest& WithMailFromDomain(Aws::String&& value) { SetMailFromDomain(std::move(value)); return *this;}
 
     /**
      * <p>The custom MAIL FROM domain that you want the verified identity to use. The
@@ -158,6 +173,7 @@ namespace Model
      * <code>null</code> disables the custom MAIL FROM setting for the identity.</p>
      */
     inline SetIdentityMailFromDomainRequest& WithMailFromDomain(const char* value) { SetMailFromDomain(value); return *this;}
+
 
     /**
      * <p>The action that you want Amazon SES to take if it cannot successfully read
@@ -193,7 +209,7 @@ namespace Model
      * is taken when the custom MAIL FROM domain setup is in the <code>Pending</code>,
      * <code>Failed</code>, and <code>TemporaryFailure</code> states.</p>
      */
-    inline void SetBehaviorOnMXFailure(BehaviorOnMXFailure&& value) { m_behaviorOnMXFailureHasBeenSet = true; m_behaviorOnMXFailure = value; }
+    inline void SetBehaviorOnMXFailure(BehaviorOnMXFailure&& value) { m_behaviorOnMXFailureHasBeenSet = true; m_behaviorOnMXFailure = std::move(value); }
 
     /**
      * <p>The action that you want Amazon SES to take if it cannot successfully read
@@ -217,13 +233,16 @@ namespace Model
      * is taken when the custom MAIL FROM domain setup is in the <code>Pending</code>,
      * <code>Failed</code>, and <code>TemporaryFailure</code> states.</p>
      */
-    inline SetIdentityMailFromDomainRequest& WithBehaviorOnMXFailure(BehaviorOnMXFailure&& value) { SetBehaviorOnMXFailure(value); return *this;}
+    inline SetIdentityMailFromDomainRequest& WithBehaviorOnMXFailure(BehaviorOnMXFailure&& value) { SetBehaviorOnMXFailure(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_identity;
     bool m_identityHasBeenSet;
+
     Aws::String m_mailFromDomain;
     bool m_mailFromDomainHasBeenSet;
+
     BehaviorOnMXFailure m_behaviorOnMXFailure;
     bool m_behaviorOnMXFailureHasBeenSet;
   };

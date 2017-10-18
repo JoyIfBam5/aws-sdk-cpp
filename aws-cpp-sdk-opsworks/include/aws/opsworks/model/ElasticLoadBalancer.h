@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     ElasticLoadBalancer& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The Elastic Load Balancing instance's name.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The Elastic Load Balancing instance's name.</p>
      */
-    inline void SetElasticLoadBalancerName(Aws::String&& value) { m_elasticLoadBalancerNameHasBeenSet = true; m_elasticLoadBalancerName = value; }
+    inline void SetElasticLoadBalancerName(Aws::String&& value) { m_elasticLoadBalancerNameHasBeenSet = true; m_elasticLoadBalancerName = std::move(value); }
 
     /**
      * <p>The Elastic Load Balancing instance's name.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The Elastic Load Balancing instance's name.</p>
      */
-    inline ElasticLoadBalancer& WithElasticLoadBalancerName(Aws::String&& value) { SetElasticLoadBalancerName(value); return *this;}
+    inline ElasticLoadBalancer& WithElasticLoadBalancerName(Aws::String&& value) { SetElasticLoadBalancerName(std::move(value)); return *this;}
 
     /**
      * <p>The Elastic Load Balancing instance's name.</p>
      */
     inline ElasticLoadBalancer& WithElasticLoadBalancerName(const char* value) { SetElasticLoadBalancerName(value); return *this;}
+
 
     /**
      * <p>The instance's AWS region.</p>
@@ -92,7 +96,7 @@ namespace Model
     /**
      * <p>The instance's AWS region.</p>
      */
-    inline void SetRegion(Aws::String&& value) { m_regionHasBeenSet = true; m_region = value; }
+    inline void SetRegion(Aws::String&& value) { m_regionHasBeenSet = true; m_region = std::move(value); }
 
     /**
      * <p>The instance's AWS region.</p>
@@ -107,12 +111,13 @@ namespace Model
     /**
      * <p>The instance's AWS region.</p>
      */
-    inline ElasticLoadBalancer& WithRegion(Aws::String&& value) { SetRegion(value); return *this;}
+    inline ElasticLoadBalancer& WithRegion(Aws::String&& value) { SetRegion(std::move(value)); return *this;}
 
     /**
      * <p>The instance's AWS region.</p>
      */
     inline ElasticLoadBalancer& WithRegion(const char* value) { SetRegion(value); return *this;}
+
 
     /**
      * <p>The instance's public DNS name.</p>
@@ -127,7 +132,7 @@ namespace Model
     /**
      * <p>The instance's public DNS name.</p>
      */
-    inline void SetDnsName(Aws::String&& value) { m_dnsNameHasBeenSet = true; m_dnsName = value; }
+    inline void SetDnsName(Aws::String&& value) { m_dnsNameHasBeenSet = true; m_dnsName = std::move(value); }
 
     /**
      * <p>The instance's public DNS name.</p>
@@ -142,12 +147,13 @@ namespace Model
     /**
      * <p>The instance's public DNS name.</p>
      */
-    inline ElasticLoadBalancer& WithDnsName(Aws::String&& value) { SetDnsName(value); return *this;}
+    inline ElasticLoadBalancer& WithDnsName(Aws::String&& value) { SetDnsName(std::move(value)); return *this;}
 
     /**
      * <p>The instance's public DNS name.</p>
      */
     inline ElasticLoadBalancer& WithDnsName(const char* value) { SetDnsName(value); return *this;}
+
 
     /**
      * <p>The ID of the stack that the instance is associated with.</p>
@@ -162,7 +168,7 @@ namespace Model
     /**
      * <p>The ID of the stack that the instance is associated with.</p>
      */
-    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = value; }
+    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = std::move(value); }
 
     /**
      * <p>The ID of the stack that the instance is associated with.</p>
@@ -177,12 +183,13 @@ namespace Model
     /**
      * <p>The ID of the stack that the instance is associated with.</p>
      */
-    inline ElasticLoadBalancer& WithStackId(Aws::String&& value) { SetStackId(value); return *this;}
+    inline ElasticLoadBalancer& WithStackId(Aws::String&& value) { SetStackId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the stack that the instance is associated with.</p>
      */
     inline ElasticLoadBalancer& WithStackId(const char* value) { SetStackId(value); return *this;}
+
 
     /**
      * <p>The ID of the layer that the instance is attached to.</p>
@@ -197,7 +204,7 @@ namespace Model
     /**
      * <p>The ID of the layer that the instance is attached to.</p>
      */
-    inline void SetLayerId(Aws::String&& value) { m_layerIdHasBeenSet = true; m_layerId = value; }
+    inline void SetLayerId(Aws::String&& value) { m_layerIdHasBeenSet = true; m_layerId = std::move(value); }
 
     /**
      * <p>The ID of the layer that the instance is attached to.</p>
@@ -212,12 +219,13 @@ namespace Model
     /**
      * <p>The ID of the layer that the instance is attached to.</p>
      */
-    inline ElasticLoadBalancer& WithLayerId(Aws::String&& value) { SetLayerId(value); return *this;}
+    inline ElasticLoadBalancer& WithLayerId(Aws::String&& value) { SetLayerId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the layer that the instance is attached to.</p>
      */
     inline ElasticLoadBalancer& WithLayerId(const char* value) { SetLayerId(value); return *this;}
+
 
     /**
      * <p>The VPC ID.</p>
@@ -232,7 +240,7 @@ namespace Model
     /**
      * <p>The VPC ID.</p>
      */
-    inline void SetVpcId(Aws::String&& value) { m_vpcIdHasBeenSet = true; m_vpcId = value; }
+    inline void SetVpcId(Aws::String&& value) { m_vpcIdHasBeenSet = true; m_vpcId = std::move(value); }
 
     /**
      * <p>The VPC ID.</p>
@@ -247,12 +255,13 @@ namespace Model
     /**
      * <p>The VPC ID.</p>
      */
-    inline ElasticLoadBalancer& WithVpcId(Aws::String&& value) { SetVpcId(value); return *this;}
+    inline ElasticLoadBalancer& WithVpcId(Aws::String&& value) { SetVpcId(std::move(value)); return *this;}
 
     /**
      * <p>The VPC ID.</p>
      */
     inline ElasticLoadBalancer& WithVpcId(const char* value) { SetVpcId(value); return *this;}
+
 
     /**
      * <p>A list of Availability Zones.</p>
@@ -267,7 +276,7 @@ namespace Model
     /**
      * <p>A list of Availability Zones.</p>
      */
-    inline void SetAvailabilityZones(Aws::Vector<Aws::String>&& value) { m_availabilityZonesHasBeenSet = true; m_availabilityZones = value; }
+    inline void SetAvailabilityZones(Aws::Vector<Aws::String>&& value) { m_availabilityZonesHasBeenSet = true; m_availabilityZones = std::move(value); }
 
     /**
      * <p>A list of Availability Zones.</p>
@@ -277,7 +286,7 @@ namespace Model
     /**
      * <p>A list of Availability Zones.</p>
      */
-    inline ElasticLoadBalancer& WithAvailabilityZones(Aws::Vector<Aws::String>&& value) { SetAvailabilityZones(value); return *this;}
+    inline ElasticLoadBalancer& WithAvailabilityZones(Aws::Vector<Aws::String>&& value) { SetAvailabilityZones(std::move(value)); return *this;}
 
     /**
      * <p>A list of Availability Zones.</p>
@@ -287,12 +296,13 @@ namespace Model
     /**
      * <p>A list of Availability Zones.</p>
      */
-    inline ElasticLoadBalancer& AddAvailabilityZones(Aws::String&& value) { m_availabilityZonesHasBeenSet = true; m_availabilityZones.push_back(value); return *this; }
+    inline ElasticLoadBalancer& AddAvailabilityZones(Aws::String&& value) { m_availabilityZonesHasBeenSet = true; m_availabilityZones.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of Availability Zones.</p>
      */
     inline ElasticLoadBalancer& AddAvailabilityZones(const char* value) { m_availabilityZonesHasBeenSet = true; m_availabilityZones.push_back(value); return *this; }
+
 
     /**
      * <p>A list of subnet IDs, if the stack is running in a VPC.</p>
@@ -307,7 +317,7 @@ namespace Model
     /**
      * <p>A list of subnet IDs, if the stack is running in a VPC.</p>
      */
-    inline void SetSubnetIds(Aws::Vector<Aws::String>&& value) { m_subnetIdsHasBeenSet = true; m_subnetIds = value; }
+    inline void SetSubnetIds(Aws::Vector<Aws::String>&& value) { m_subnetIdsHasBeenSet = true; m_subnetIds = std::move(value); }
 
     /**
      * <p>A list of subnet IDs, if the stack is running in a VPC.</p>
@@ -317,7 +327,7 @@ namespace Model
     /**
      * <p>A list of subnet IDs, if the stack is running in a VPC.</p>
      */
-    inline ElasticLoadBalancer& WithSubnetIds(Aws::Vector<Aws::String>&& value) { SetSubnetIds(value); return *this;}
+    inline ElasticLoadBalancer& WithSubnetIds(Aws::Vector<Aws::String>&& value) { SetSubnetIds(std::move(value)); return *this;}
 
     /**
      * <p>A list of subnet IDs, if the stack is running in a VPC.</p>
@@ -327,12 +337,13 @@ namespace Model
     /**
      * <p>A list of subnet IDs, if the stack is running in a VPC.</p>
      */
-    inline ElasticLoadBalancer& AddSubnetIds(Aws::String&& value) { m_subnetIdsHasBeenSet = true; m_subnetIds.push_back(value); return *this; }
+    inline ElasticLoadBalancer& AddSubnetIds(Aws::String&& value) { m_subnetIdsHasBeenSet = true; m_subnetIds.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of subnet IDs, if the stack is running in a VPC.</p>
      */
     inline ElasticLoadBalancer& AddSubnetIds(const char* value) { m_subnetIdsHasBeenSet = true; m_subnetIds.push_back(value); return *this; }
+
 
     /**
      * <p>A list of the EC2 instances that the Elastic Load Balancing instance is
@@ -350,7 +361,7 @@ namespace Model
      * <p>A list of the EC2 instances that the Elastic Load Balancing instance is
      * managing traffic for.</p>
      */
-    inline void SetEc2InstanceIds(Aws::Vector<Aws::String>&& value) { m_ec2InstanceIdsHasBeenSet = true; m_ec2InstanceIds = value; }
+    inline void SetEc2InstanceIds(Aws::Vector<Aws::String>&& value) { m_ec2InstanceIdsHasBeenSet = true; m_ec2InstanceIds = std::move(value); }
 
     /**
      * <p>A list of the EC2 instances that the Elastic Load Balancing instance is
@@ -362,7 +373,7 @@ namespace Model
      * <p>A list of the EC2 instances that the Elastic Load Balancing instance is
      * managing traffic for.</p>
      */
-    inline ElasticLoadBalancer& WithEc2InstanceIds(Aws::Vector<Aws::String>&& value) { SetEc2InstanceIds(value); return *this;}
+    inline ElasticLoadBalancer& WithEc2InstanceIds(Aws::Vector<Aws::String>&& value) { SetEc2InstanceIds(std::move(value)); return *this;}
 
     /**
      * <p>A list of the EC2 instances that the Elastic Load Balancing instance is
@@ -374,7 +385,7 @@ namespace Model
      * <p>A list of the EC2 instances that the Elastic Load Balancing instance is
      * managing traffic for.</p>
      */
-    inline ElasticLoadBalancer& AddEc2InstanceIds(Aws::String&& value) { m_ec2InstanceIdsHasBeenSet = true; m_ec2InstanceIds.push_back(value); return *this; }
+    inline ElasticLoadBalancer& AddEc2InstanceIds(Aws::String&& value) { m_ec2InstanceIdsHasBeenSet = true; m_ec2InstanceIds.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of the EC2 instances that the Elastic Load Balancing instance is
@@ -383,22 +394,31 @@ namespace Model
     inline ElasticLoadBalancer& AddEc2InstanceIds(const char* value) { m_ec2InstanceIdsHasBeenSet = true; m_ec2InstanceIds.push_back(value); return *this; }
 
   private:
+
     Aws::String m_elasticLoadBalancerName;
     bool m_elasticLoadBalancerNameHasBeenSet;
+
     Aws::String m_region;
     bool m_regionHasBeenSet;
+
     Aws::String m_dnsName;
     bool m_dnsNameHasBeenSet;
+
     Aws::String m_stackId;
     bool m_stackIdHasBeenSet;
+
     Aws::String m_layerId;
     bool m_layerIdHasBeenSet;
+
     Aws::String m_vpcId;
     bool m_vpcIdHasBeenSet;
+
     Aws::Vector<Aws::String> m_availabilityZones;
     bool m_availabilityZonesHasBeenSet;
+
     Aws::Vector<Aws::String> m_subnetIds;
     bool m_subnetIdsHasBeenSet;
+
     Aws::Vector<Aws::String> m_ec2InstanceIds;
     bool m_ec2InstanceIdsHasBeenSet;
   };

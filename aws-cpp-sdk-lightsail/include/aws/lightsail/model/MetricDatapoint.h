@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/lightsail/model/MetricUnit.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     MetricDatapoint& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The average.</p>
      */
@@ -58,6 +61,7 @@ namespace Model
      * <p>The average.</p>
      */
     inline MetricDatapoint& WithAverage(double value) { SetAverage(value); return *this;}
+
 
     /**
      * <p>The maximum.</p>
@@ -74,6 +78,7 @@ namespace Model
      */
     inline MetricDatapoint& WithMaximum(double value) { SetMaximum(value); return *this;}
 
+
     /**
      * <p>The minimum.</p>
      */
@@ -88,6 +93,7 @@ namespace Model
      * <p>The minimum.</p>
      */
     inline MetricDatapoint& WithMinimum(double value) { SetMinimum(value); return *this;}
+
 
     /**
      * <p>The sample count.</p>
@@ -104,6 +110,7 @@ namespace Model
      */
     inline MetricDatapoint& WithSampleCount(double value) { SetSampleCount(value); return *this;}
 
+
     /**
      * <p>The sum.</p>
      */
@@ -119,6 +126,7 @@ namespace Model
      */
     inline MetricDatapoint& WithSum(double value) { SetSum(value); return *this;}
 
+
     /**
      * <p>The timestamp (e.g., <code>1479816991.349</code>).</p>
      */
@@ -132,7 +140,7 @@ namespace Model
     /**
      * <p>The timestamp (e.g., <code>1479816991.349</code>).</p>
      */
-    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = value; }
+    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = std::move(value); }
 
     /**
      * <p>The timestamp (e.g., <code>1479816991.349</code>).</p>
@@ -142,7 +150,8 @@ namespace Model
     /**
      * <p>The timestamp (e.g., <code>1479816991.349</code>).</p>
      */
-    inline MetricDatapoint& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(value); return *this;}
+    inline MetricDatapoint& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(std::move(value)); return *this;}
+
 
     /**
      * <p>The unit. </p>
@@ -157,7 +166,7 @@ namespace Model
     /**
      * <p>The unit. </p>
      */
-    inline void SetUnit(MetricUnit&& value) { m_unitHasBeenSet = true; m_unit = value; }
+    inline void SetUnit(MetricUnit&& value) { m_unitHasBeenSet = true; m_unit = std::move(value); }
 
     /**
      * <p>The unit. </p>
@@ -167,21 +176,28 @@ namespace Model
     /**
      * <p>The unit. </p>
      */
-    inline MetricDatapoint& WithUnit(MetricUnit&& value) { SetUnit(value); return *this;}
+    inline MetricDatapoint& WithUnit(MetricUnit&& value) { SetUnit(std::move(value)); return *this;}
 
   private:
+
     double m_average;
     bool m_averageHasBeenSet;
+
     double m_maximum;
     bool m_maximumHasBeenSet;
+
     double m_minimum;
     bool m_minimumHasBeenSet;
+
     double m_sampleCount;
     bool m_sampleCountHasBeenSet;
+
     double m_sum;
     bool m_sumHasBeenSet;
+
     Aws::Utils::DateTime m_timestamp;
     bool m_timestampHasBeenSet;
+
     MetricUnit m_unit;
     bool m_unitHasBeenSet;
   };

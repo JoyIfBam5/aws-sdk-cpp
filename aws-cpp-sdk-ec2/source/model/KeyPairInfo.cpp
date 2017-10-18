@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/KeyPairInfo.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,14 +31,14 @@ namespace Model
 {
 
 KeyPairInfo::KeyPairInfo() : 
-    m_keyNameHasBeenSet(false),
-    m_keyFingerprintHasBeenSet(false)
+    m_keyFingerprintHasBeenSet(false),
+    m_keyNameHasBeenSet(false)
 {
 }
 
 KeyPairInfo::KeyPairInfo(const XmlNode& xmlNode) : 
-    m_keyNameHasBeenSet(false),
-    m_keyFingerprintHasBeenSet(false)
+    m_keyFingerprintHasBeenSet(false),
+    m_keyNameHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -48,17 +49,17 @@ KeyPairInfo& KeyPairInfo::operator =(const XmlNode& xmlNode)
 
   if(!resultNode.IsNull())
   {
-    XmlNode keyNameNode = resultNode.FirstChild("keyName");
-    if(!keyNameNode.IsNull())
-    {
-      m_keyName = StringUtils::Trim(keyNameNode.GetText().c_str());
-      m_keyNameHasBeenSet = true;
-    }
     XmlNode keyFingerprintNode = resultNode.FirstChild("keyFingerprint");
     if(!keyFingerprintNode.IsNull())
     {
       m_keyFingerprint = StringUtils::Trim(keyFingerprintNode.GetText().c_str());
       m_keyFingerprintHasBeenSet = true;
+    }
+    XmlNode keyNameNode = resultNode.FirstChild("keyName");
+    if(!keyNameNode.IsNull())
+    {
+      m_keyName = StringUtils::Trim(keyNameNode.GetText().c_str());
+      m_keyNameHasBeenSet = true;
     }
   }
 
@@ -67,27 +68,27 @@ KeyPairInfo& KeyPairInfo::operator =(const XmlNode& xmlNode)
 
 void KeyPairInfo::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
-  if(m_keyNameHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".KeyName=" << StringUtils::URLEncode(m_keyName.c_str()) << "&";
-  }
-
   if(m_keyFingerprintHasBeenSet)
   {
       oStream << location << index << locationValue << ".KeyFingerprint=" << StringUtils::URLEncode(m_keyFingerprint.c_str()) << "&";
+  }
+
+  if(m_keyNameHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".KeyName=" << StringUtils::URLEncode(m_keyName.c_str()) << "&";
   }
 
 }
 
 void KeyPairInfo::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
-  if(m_keyNameHasBeenSet)
-  {
-      oStream << location << ".KeyName=" << StringUtils::URLEncode(m_keyName.c_str()) << "&";
-  }
   if(m_keyFingerprintHasBeenSet)
   {
       oStream << location << ".KeyFingerprint=" << StringUtils::URLEncode(m_keyFingerprint.c_str()) << "&";
+  }
+  if(m_keyNameHasBeenSet)
+  {
+      oStream << location << ".KeyName=" << StringUtils::URLEncode(m_keyName.c_str()) << "&";
   }
 }
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesis/Kinesis_EXPORTS.h>
 #include <aws/kinesis/KinesisRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     CreateStreamRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateStream"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>A name to identify the stream. The stream name is scoped to the AWS account
@@ -63,7 +73,7 @@ namespace Model
      * two streams in the same AWS account but in two different regions can have the
      * same name.</p>
      */
-    inline void SetStreamName(Aws::String&& value) { m_streamNameHasBeenSet = true; m_streamName = value; }
+    inline void SetStreamName(Aws::String&& value) { m_streamNameHasBeenSet = true; m_streamName = std::move(value); }
 
     /**
      * <p>A name to identify the stream. The stream name is scoped to the AWS account
@@ -90,7 +100,7 @@ namespace Model
      * two streams in the same AWS account but in two different regions can have the
      * same name.</p>
      */
-    inline CreateStreamRequest& WithStreamName(Aws::String&& value) { SetStreamName(value); return *this;}
+    inline CreateStreamRequest& WithStreamName(Aws::String&& value) { SetStreamName(std::move(value)); return *this;}
 
     /**
      * <p>A name to identify the stream. The stream name is scoped to the AWS account
@@ -100,6 +110,7 @@ namespace Model
      * same name.</p>
      */
     inline CreateStreamRequest& WithStreamName(const char* value) { SetStreamName(value); return *this;}
+
 
     /**
      * <p>The number of shards that the stream will use. The throughput of the stream
@@ -123,8 +134,10 @@ namespace Model
     inline CreateStreamRequest& WithShardCount(int value) { SetShardCount(value); return *this;}
 
   private:
+
     Aws::String m_streamName;
     bool m_streamNameHasBeenSet;
+
     int m_shardCount;
     bool m_shardCountHasBeenSet;
   };

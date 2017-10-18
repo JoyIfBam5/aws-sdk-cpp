@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/gamelift/model/FleetAttributes.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -29,6 +30,7 @@ namespace Model
 
 FleetAttributes::FleetAttributes() : 
     m_fleetIdHasBeenSet(false),
+    m_fleetArnHasBeenSet(false),
     m_descriptionHasBeenSet(false),
     m_nameHasBeenSet(false),
     m_creationTimeHasBeenSet(false),
@@ -43,12 +45,14 @@ FleetAttributes::FleetAttributes() :
     m_newGameSessionProtectionPolicyHasBeenSet(false),
     m_operatingSystem(OperatingSystem::NOT_SET),
     m_operatingSystemHasBeenSet(false),
-    m_resourceCreationLimitPolicyHasBeenSet(false)
+    m_resourceCreationLimitPolicyHasBeenSet(false),
+    m_metricGroupsHasBeenSet(false)
 {
 }
 
 FleetAttributes::FleetAttributes(const JsonValue& jsonValue) : 
     m_fleetIdHasBeenSet(false),
+    m_fleetArnHasBeenSet(false),
     m_descriptionHasBeenSet(false),
     m_nameHasBeenSet(false),
     m_creationTimeHasBeenSet(false),
@@ -63,7 +67,8 @@ FleetAttributes::FleetAttributes(const JsonValue& jsonValue) :
     m_newGameSessionProtectionPolicyHasBeenSet(false),
     m_operatingSystem(OperatingSystem::NOT_SET),
     m_operatingSystemHasBeenSet(false),
-    m_resourceCreationLimitPolicyHasBeenSet(false)
+    m_resourceCreationLimitPolicyHasBeenSet(false),
+    m_metricGroupsHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -75,6 +80,13 @@ FleetAttributes& FleetAttributes::operator =(const JsonValue& jsonValue)
     m_fleetId = jsonValue.GetString("FleetId");
 
     m_fleetIdHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("FleetArn"))
+  {
+    m_fleetArn = jsonValue.GetString("FleetArn");
+
+    m_fleetArnHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("Description"))
@@ -164,6 +176,16 @@ FleetAttributes& FleetAttributes::operator =(const JsonValue& jsonValue)
     m_resourceCreationLimitPolicyHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("MetricGroups"))
+  {
+    Array<JsonValue> metricGroupsJsonList = jsonValue.GetArray("MetricGroups");
+    for(unsigned metricGroupsIndex = 0; metricGroupsIndex < metricGroupsJsonList.GetLength(); ++metricGroupsIndex)
+    {
+      m_metricGroups.push_back(metricGroupsJsonList[metricGroupsIndex].AsString());
+    }
+    m_metricGroupsHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -174,6 +196,12 @@ JsonValue FleetAttributes::Jsonize() const
   if(m_fleetIdHasBeenSet)
   {
    payload.WithString("FleetId", m_fleetId);
+
+  }
+
+  if(m_fleetArnHasBeenSet)
+  {
+   payload.WithString("FleetArn", m_fleetArn);
 
   }
 
@@ -246,6 +274,17 @@ JsonValue FleetAttributes::Jsonize() const
   if(m_resourceCreationLimitPolicyHasBeenSet)
   {
    payload.WithObject("ResourceCreationLimitPolicy", m_resourceCreationLimitPolicy.Jsonize());
+
+  }
+
+  if(m_metricGroupsHasBeenSet)
+  {
+   Array<JsonValue> metricGroupsJsonList(m_metricGroups.size());
+   for(unsigned metricGroupsIndex = 0; metricGroupsIndex < metricGroupsJsonList.GetLength(); ++metricGroupsIndex)
+   {
+     metricGroupsJsonList[metricGroupsIndex].AsString(m_metricGroups[metricGroupsIndex]);
+   }
+   payload.WithArray("MetricGroups", std::move(metricGroupsJsonList));
 
   }
 

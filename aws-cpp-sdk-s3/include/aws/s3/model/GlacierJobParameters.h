@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/s3/model/Tier.h>
+#include <utility>
 
 namespace Aws
 {
@@ -39,6 +41,7 @@ namespace Model
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
 
+
     /**
      * Glacier retrieval tier at which the restore will be processed.
      */
@@ -52,7 +55,7 @@ namespace Model
     /**
      * Glacier retrieval tier at which the restore will be processed.
      */
-    inline void SetTier(Tier&& value) { m_tierHasBeenSet = true; m_tier = value; }
+    inline void SetTier(Tier&& value) { m_tierHasBeenSet = true; m_tier = std::move(value); }
 
     /**
      * Glacier retrieval tier at which the restore will be processed.
@@ -62,9 +65,10 @@ namespace Model
     /**
      * Glacier retrieval tier at which the restore will be processed.
      */
-    inline GlacierJobParameters& WithTier(Tier&& value) { SetTier(value); return *this;}
+    inline GlacierJobParameters& WithTier(Tier&& value) { SetTier(std::move(value)); return *this;}
 
   private:
+
     Tier m_tier;
     bool m_tierHasBeenSet;
   };

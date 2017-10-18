@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/meteringmarketplace/MarketplaceMetering_EXPORTS.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     UsageRecord& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Timestamp of the hour, recorded in UTC. The seconds and milliseconds portions
      * of the timestamp will be ignored.</p> <p>Your application can meter usage for up
@@ -65,7 +68,7 @@ namespace Model
      * of the timestamp will be ignored.</p> <p>Your application can meter usage for up
      * to one hour in the past.</p>
      */
-    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = value; }
+    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = std::move(value); }
 
     /**
      * <p>Timestamp of the hour, recorded in UTC. The seconds and milliseconds portions
@@ -79,7 +82,8 @@ namespace Model
      * of the timestamp will be ignored.</p> <p>Your application can meter usage for up
      * to one hour in the past.</p>
      */
-    inline UsageRecord& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(value); return *this;}
+    inline UsageRecord& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(std::move(value)); return *this;}
+
 
     /**
      * <p>The CustomerIdentifier is obtained through the ResolveCustomer operation and
@@ -97,7 +101,7 @@ namespace Model
      * <p>The CustomerIdentifier is obtained through the ResolveCustomer operation and
      * represents an individual buyer in your application.</p>
      */
-    inline void SetCustomerIdentifier(Aws::String&& value) { m_customerIdentifierHasBeenSet = true; m_customerIdentifier = value; }
+    inline void SetCustomerIdentifier(Aws::String&& value) { m_customerIdentifierHasBeenSet = true; m_customerIdentifier = std::move(value); }
 
     /**
      * <p>The CustomerIdentifier is obtained through the ResolveCustomer operation and
@@ -115,13 +119,14 @@ namespace Model
      * <p>The CustomerIdentifier is obtained through the ResolveCustomer operation and
      * represents an individual buyer in your application.</p>
      */
-    inline UsageRecord& WithCustomerIdentifier(Aws::String&& value) { SetCustomerIdentifier(value); return *this;}
+    inline UsageRecord& WithCustomerIdentifier(Aws::String&& value) { SetCustomerIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The CustomerIdentifier is obtained through the ResolveCustomer operation and
      * represents an individual buyer in your application.</p>
      */
     inline UsageRecord& WithCustomerIdentifier(const char* value) { SetCustomerIdentifier(value); return *this;}
+
 
     /**
      * <p>During the process of registering a product on AWS Marketplace, up to eight
@@ -142,7 +147,7 @@ namespace Model
      * dimensions are specified. These represent different units of value in your
      * application.</p>
      */
-    inline void SetDimension(Aws::String&& value) { m_dimensionHasBeenSet = true; m_dimension = value; }
+    inline void SetDimension(Aws::String&& value) { m_dimensionHasBeenSet = true; m_dimension = std::move(value); }
 
     /**
      * <p>During the process of registering a product on AWS Marketplace, up to eight
@@ -163,7 +168,7 @@ namespace Model
      * dimensions are specified. These represent different units of value in your
      * application.</p>
      */
-    inline UsageRecord& WithDimension(Aws::String&& value) { SetDimension(value); return *this;}
+    inline UsageRecord& WithDimension(Aws::String&& value) { SetDimension(std::move(value)); return *this;}
 
     /**
      * <p>During the process of registering a product on AWS Marketplace, up to eight
@@ -171,6 +176,7 @@ namespace Model
      * application.</p>
      */
     inline UsageRecord& WithDimension(const char* value) { SetDimension(value); return *this;}
+
 
     /**
      * <p>The quantity of usage consumed by the customer for the given dimension and
@@ -191,12 +197,16 @@ namespace Model
     inline UsageRecord& WithQuantity(int value) { SetQuantity(value); return *this;}
 
   private:
+
     Aws::Utils::DateTime m_timestamp;
     bool m_timestampHasBeenSet;
+
     Aws::String m_customerIdentifier;
     bool m_customerIdentifierHasBeenSet;
+
     Aws::String m_dimension;
     bool m_dimensionHasBeenSet;
+
     int m_quantity;
     bool m_quantityHasBeenSet;
   };

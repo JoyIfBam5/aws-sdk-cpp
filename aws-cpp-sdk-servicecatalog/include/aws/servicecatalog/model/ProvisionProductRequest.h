@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/servicecatalog/ServiceCatalogRequest.h>
@@ -19,6 +20,7 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/servicecatalog/model/ProvisioningParameter.h>
 #include <aws/servicecatalog/model/Tag.h>
+#include <utility>
 #include <aws/core/utils/UUID.h>
 
 namespace Aws
@@ -34,58 +36,67 @@ namespace Model
   {
   public:
     ProvisionProductRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ProvisionProduct"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
 
+
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline const Aws::String& GetAcceptLanguage() const{ return m_acceptLanguage; }
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline void SetAcceptLanguage(const Aws::String& value) { m_acceptLanguageHasBeenSet = true; m_acceptLanguage = value; }
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
-    inline void SetAcceptLanguage(Aws::String&& value) { m_acceptLanguageHasBeenSet = true; m_acceptLanguage = value; }
+    inline void SetAcceptLanguage(Aws::String&& value) { m_acceptLanguageHasBeenSet = true; m_acceptLanguage = std::move(value); }
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline void SetAcceptLanguage(const char* value) { m_acceptLanguageHasBeenSet = true; m_acceptLanguage.assign(value); }
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline ProvisionProductRequest& WithAcceptLanguage(const Aws::String& value) { SetAcceptLanguage(value); return *this;}
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
-    inline ProvisionProductRequest& WithAcceptLanguage(Aws::String&& value) { SetAcceptLanguage(value); return *this;}
+    inline ProvisionProductRequest& WithAcceptLanguage(Aws::String&& value) { SetAcceptLanguage(std::move(value)); return *this;}
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline ProvisionProductRequest& WithAcceptLanguage(const char* value) { SetAcceptLanguage(value); return *this;}
+
 
     /**
      * <p>The product identifier.</p>
@@ -100,7 +111,7 @@ namespace Model
     /**
      * <p>The product identifier.</p>
      */
-    inline void SetProductId(Aws::String&& value) { m_productIdHasBeenSet = true; m_productId = value; }
+    inline void SetProductId(Aws::String&& value) { m_productIdHasBeenSet = true; m_productId = std::move(value); }
 
     /**
      * <p>The product identifier.</p>
@@ -115,47 +126,56 @@ namespace Model
     /**
      * <p>The product identifier.</p>
      */
-    inline ProvisionProductRequest& WithProductId(Aws::String&& value) { SetProductId(value); return *this;}
+    inline ProvisionProductRequest& WithProductId(Aws::String&& value) { SetProductId(std::move(value)); return *this;}
 
     /**
      * <p>The product identifier.</p>
      */
     inline ProvisionProductRequest& WithProductId(const char* value) { SetProductId(value); return *this;}
 
+
     /**
-     * <p>The provisioning artifact identifier for this product.</p>
+     * <p>The provisioning artifact identifier for this product. This is sometimes
+     * referred to as the product version.</p>
      */
     inline const Aws::String& GetProvisioningArtifactId() const{ return m_provisioningArtifactId; }
 
     /**
-     * <p>The provisioning artifact identifier for this product.</p>
+     * <p>The provisioning artifact identifier for this product. This is sometimes
+     * referred to as the product version.</p>
      */
     inline void SetProvisioningArtifactId(const Aws::String& value) { m_provisioningArtifactIdHasBeenSet = true; m_provisioningArtifactId = value; }
 
     /**
-     * <p>The provisioning artifact identifier for this product.</p>
+     * <p>The provisioning artifact identifier for this product. This is sometimes
+     * referred to as the product version.</p>
      */
-    inline void SetProvisioningArtifactId(Aws::String&& value) { m_provisioningArtifactIdHasBeenSet = true; m_provisioningArtifactId = value; }
+    inline void SetProvisioningArtifactId(Aws::String&& value) { m_provisioningArtifactIdHasBeenSet = true; m_provisioningArtifactId = std::move(value); }
 
     /**
-     * <p>The provisioning artifact identifier for this product.</p>
+     * <p>The provisioning artifact identifier for this product. This is sometimes
+     * referred to as the product version.</p>
      */
     inline void SetProvisioningArtifactId(const char* value) { m_provisioningArtifactIdHasBeenSet = true; m_provisioningArtifactId.assign(value); }
 
     /**
-     * <p>The provisioning artifact identifier for this product.</p>
+     * <p>The provisioning artifact identifier for this product. This is sometimes
+     * referred to as the product version.</p>
      */
     inline ProvisionProductRequest& WithProvisioningArtifactId(const Aws::String& value) { SetProvisioningArtifactId(value); return *this;}
 
     /**
-     * <p>The provisioning artifact identifier for this product.</p>
+     * <p>The provisioning artifact identifier for this product. This is sometimes
+     * referred to as the product version.</p>
      */
-    inline ProvisionProductRequest& WithProvisioningArtifactId(Aws::String&& value) { SetProvisioningArtifactId(value); return *this;}
+    inline ProvisionProductRequest& WithProvisioningArtifactId(Aws::String&& value) { SetProvisioningArtifactId(std::move(value)); return *this;}
 
     /**
-     * <p>The provisioning artifact identifier for this product.</p>
+     * <p>The provisioning artifact identifier for this product. This is sometimes
+     * referred to as the product version.</p>
      */
     inline ProvisionProductRequest& WithProvisioningArtifactId(const char* value) { SetProvisioningArtifactId(value); return *this;}
+
 
     /**
      * <p>The identifier of the path for this product's provisioning. This value is
@@ -176,7 +196,7 @@ namespace Model
      * optional if the product has a default path, and is required if there is more
      * than one path for the specified product.</p>
      */
-    inline void SetPathId(Aws::String&& value) { m_pathIdHasBeenSet = true; m_pathId = value; }
+    inline void SetPathId(Aws::String&& value) { m_pathIdHasBeenSet = true; m_pathId = std::move(value); }
 
     /**
      * <p>The identifier of the path for this product's provisioning. This value is
@@ -197,7 +217,7 @@ namespace Model
      * optional if the product has a default path, and is required if there is more
      * than one path for the specified product.</p>
      */
-    inline ProvisionProductRequest& WithPathId(Aws::String&& value) { SetPathId(value); return *this;}
+    inline ProvisionProductRequest& WithPathId(Aws::String&& value) { SetPathId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the path for this product's provisioning. This value is
@@ -205,6 +225,7 @@ namespace Model
      * than one path for the specified product.</p>
      */
     inline ProvisionProductRequest& WithPathId(const char* value) { SetPathId(value); return *this;}
+
 
     /**
      * <p>A user-friendly name to identify the ProvisionedProduct object. This value
@@ -225,7 +246,7 @@ namespace Model
      * must be unique for the AWS account and cannot be updated after the product is
      * provisioned.</p>
      */
-    inline void SetProvisionedProductName(Aws::String&& value) { m_provisionedProductNameHasBeenSet = true; m_provisionedProductName = value; }
+    inline void SetProvisionedProductName(Aws::String&& value) { m_provisionedProductNameHasBeenSet = true; m_provisionedProductName = std::move(value); }
 
     /**
      * <p>A user-friendly name to identify the ProvisionedProduct object. This value
@@ -246,7 +267,7 @@ namespace Model
      * must be unique for the AWS account and cannot be updated after the product is
      * provisioned.</p>
      */
-    inline ProvisionProductRequest& WithProvisionedProductName(Aws::String&& value) { SetProvisionedProductName(value); return *this;}
+    inline ProvisionProductRequest& WithProvisionedProductName(Aws::String&& value) { SetProvisionedProductName(std::move(value)); return *this;}
 
     /**
      * <p>A user-friendly name to identify the ProvisionedProduct object. This value
@@ -254,6 +275,7 @@ namespace Model
      * provisioned.</p>
      */
     inline ProvisionProductRequest& WithProvisionedProductName(const char* value) { SetProvisionedProductName(value); return *this;}
+
 
     /**
      * <p>Parameters specified by the administrator that are required for provisioning
@@ -271,7 +293,7 @@ namespace Model
      * <p>Parameters specified by the administrator that are required for provisioning
      * the product.</p>
      */
-    inline void SetProvisioningParameters(Aws::Vector<ProvisioningParameter>&& value) { m_provisioningParametersHasBeenSet = true; m_provisioningParameters = value; }
+    inline void SetProvisioningParameters(Aws::Vector<ProvisioningParameter>&& value) { m_provisioningParametersHasBeenSet = true; m_provisioningParameters = std::move(value); }
 
     /**
      * <p>Parameters specified by the administrator that are required for provisioning
@@ -283,7 +305,7 @@ namespace Model
      * <p>Parameters specified by the administrator that are required for provisioning
      * the product.</p>
      */
-    inline ProvisionProductRequest& WithProvisioningParameters(Aws::Vector<ProvisioningParameter>&& value) { SetProvisioningParameters(value); return *this;}
+    inline ProvisionProductRequest& WithProvisioningParameters(Aws::Vector<ProvisioningParameter>&& value) { SetProvisioningParameters(std::move(value)); return *this;}
 
     /**
      * <p>Parameters specified by the administrator that are required for provisioning
@@ -295,7 +317,8 @@ namespace Model
      * <p>Parameters specified by the administrator that are required for provisioning
      * the product.</p>
      */
-    inline ProvisionProductRequest& AddProvisioningParameters(ProvisioningParameter&& value) { m_provisioningParametersHasBeenSet = true; m_provisioningParameters.push_back(value); return *this; }
+    inline ProvisionProductRequest& AddProvisioningParameters(ProvisioningParameter&& value) { m_provisioningParametersHasBeenSet = true; m_provisioningParameters.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>A list of tags to use as provisioning options.</p>
@@ -310,7 +333,7 @@ namespace Model
     /**
      * <p>A list of tags to use as provisioning options.</p>
      */
-    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = std::move(value); }
 
     /**
      * <p>A list of tags to use as provisioning options.</p>
@@ -320,7 +343,7 @@ namespace Model
     /**
      * <p>A list of tags to use as provisioning options.</p>
      */
-    inline ProvisionProductRequest& WithTags(Aws::Vector<Tag>&& value) { SetTags(value); return *this;}
+    inline ProvisionProductRequest& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
      * <p>A list of tags to use as provisioning options.</p>
@@ -330,7 +353,8 @@ namespace Model
     /**
      * <p>A list of tags to use as provisioning options.</p>
      */
-    inline ProvisionProductRequest& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
+    inline ProvisionProductRequest& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Passed to CloudFormation. The SNS topic ARNs to which to publish
@@ -348,7 +372,7 @@ namespace Model
      * <p>Passed to CloudFormation. The SNS topic ARNs to which to publish
      * stack-related events.</p>
      */
-    inline void SetNotificationArns(Aws::Vector<Aws::String>&& value) { m_notificationArnsHasBeenSet = true; m_notificationArns = value; }
+    inline void SetNotificationArns(Aws::Vector<Aws::String>&& value) { m_notificationArnsHasBeenSet = true; m_notificationArns = std::move(value); }
 
     /**
      * <p>Passed to CloudFormation. The SNS topic ARNs to which to publish
@@ -360,7 +384,7 @@ namespace Model
      * <p>Passed to CloudFormation. The SNS topic ARNs to which to publish
      * stack-related events.</p>
      */
-    inline ProvisionProductRequest& WithNotificationArns(Aws::Vector<Aws::String>&& value) { SetNotificationArns(value); return *this;}
+    inline ProvisionProductRequest& WithNotificationArns(Aws::Vector<Aws::String>&& value) { SetNotificationArns(std::move(value)); return *this;}
 
     /**
      * <p>Passed to CloudFormation. The SNS topic ARNs to which to publish
@@ -372,13 +396,14 @@ namespace Model
      * <p>Passed to CloudFormation. The SNS topic ARNs to which to publish
      * stack-related events.</p>
      */
-    inline ProvisionProductRequest& AddNotificationArns(Aws::String&& value) { m_notificationArnsHasBeenSet = true; m_notificationArns.push_back(value); return *this; }
+    inline ProvisionProductRequest& AddNotificationArns(Aws::String&& value) { m_notificationArnsHasBeenSet = true; m_notificationArns.push_back(std::move(value)); return *this; }
 
     /**
      * <p>Passed to CloudFormation. The SNS topic ARNs to which to publish
      * stack-related events.</p>
      */
     inline ProvisionProductRequest& AddNotificationArns(const char* value) { m_notificationArnsHasBeenSet = true; m_notificationArns.push_back(value); return *this; }
+
 
     /**
      * <p>An idempotency token that uniquely identifies the provisioning request. </p>
@@ -393,7 +418,7 @@ namespace Model
     /**
      * <p>An idempotency token that uniquely identifies the provisioning request. </p>
      */
-    inline void SetProvisionToken(Aws::String&& value) { m_provisionTokenHasBeenSet = true; m_provisionToken = value; }
+    inline void SetProvisionToken(Aws::String&& value) { m_provisionTokenHasBeenSet = true; m_provisionToken = std::move(value); }
 
     /**
      * <p>An idempotency token that uniquely identifies the provisioning request. </p>
@@ -408,7 +433,7 @@ namespace Model
     /**
      * <p>An idempotency token that uniquely identifies the provisioning request. </p>
      */
-    inline ProvisionProductRequest& WithProvisionToken(Aws::String&& value) { SetProvisionToken(value); return *this;}
+    inline ProvisionProductRequest& WithProvisionToken(Aws::String&& value) { SetProvisionToken(std::move(value)); return *this;}
 
     /**
      * <p>An idempotency token that uniquely identifies the provisioning request. </p>
@@ -416,22 +441,31 @@ namespace Model
     inline ProvisionProductRequest& WithProvisionToken(const char* value) { SetProvisionToken(value); return *this;}
 
   private:
+
     Aws::String m_acceptLanguage;
     bool m_acceptLanguageHasBeenSet;
+
     Aws::String m_productId;
     bool m_productIdHasBeenSet;
+
     Aws::String m_provisioningArtifactId;
     bool m_provisioningArtifactIdHasBeenSet;
+
     Aws::String m_pathId;
     bool m_pathIdHasBeenSet;
+
     Aws::String m_provisionedProductName;
     bool m_provisionedProductNameHasBeenSet;
+
     Aws::Vector<ProvisioningParameter> m_provisioningParameters;
     bool m_provisioningParametersHasBeenSet;
+
     Aws::Vector<Tag> m_tags;
     bool m_tagsHasBeenSet;
+
     Aws::Vector<Aws::String> m_notificationArns;
     bool m_notificationArnsHasBeenSet;
+
     Aws::String m_provisionToken;
     bool m_provisionTokenHasBeenSet;
   };

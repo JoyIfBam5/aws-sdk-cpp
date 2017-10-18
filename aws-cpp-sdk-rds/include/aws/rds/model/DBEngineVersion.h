@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -20,6 +21,7 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/rds/model/UpgradeTarget.h>
 #include <aws/rds/model/Timezone.h>
+#include <utility>
 
 namespace Aws
 {
@@ -51,6 +53,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the database engine.</p>
      */
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>The name of the database engine.</p>
      */
-    inline void SetEngine(Aws::String&& value) { m_engineHasBeenSet = true; m_engine = value; }
+    inline void SetEngine(Aws::String&& value) { m_engineHasBeenSet = true; m_engine = std::move(value); }
 
     /**
      * <p>The name of the database engine.</p>
@@ -79,12 +82,13 @@ namespace Model
     /**
      * <p>The name of the database engine.</p>
      */
-    inline DBEngineVersion& WithEngine(Aws::String&& value) { SetEngine(value); return *this;}
+    inline DBEngineVersion& WithEngine(Aws::String&& value) { SetEngine(std::move(value)); return *this;}
 
     /**
      * <p>The name of the database engine.</p>
      */
     inline DBEngineVersion& WithEngine(const char* value) { SetEngine(value); return *this;}
+
 
     /**
      * <p>The version number of the database engine.</p>
@@ -99,7 +103,7 @@ namespace Model
     /**
      * <p>The version number of the database engine.</p>
      */
-    inline void SetEngineVersion(Aws::String&& value) { m_engineVersionHasBeenSet = true; m_engineVersion = value; }
+    inline void SetEngineVersion(Aws::String&& value) { m_engineVersionHasBeenSet = true; m_engineVersion = std::move(value); }
 
     /**
      * <p>The version number of the database engine.</p>
@@ -114,12 +118,13 @@ namespace Model
     /**
      * <p>The version number of the database engine.</p>
      */
-    inline DBEngineVersion& WithEngineVersion(Aws::String&& value) { SetEngineVersion(value); return *this;}
+    inline DBEngineVersion& WithEngineVersion(Aws::String&& value) { SetEngineVersion(std::move(value)); return *this;}
 
     /**
      * <p>The version number of the database engine.</p>
      */
     inline DBEngineVersion& WithEngineVersion(const char* value) { SetEngineVersion(value); return *this;}
+
 
     /**
      * <p>The name of the DB parameter group family for the database engine.</p>
@@ -134,7 +139,7 @@ namespace Model
     /**
      * <p>The name of the DB parameter group family for the database engine.</p>
      */
-    inline void SetDBParameterGroupFamily(Aws::String&& value) { m_dBParameterGroupFamilyHasBeenSet = true; m_dBParameterGroupFamily = value; }
+    inline void SetDBParameterGroupFamily(Aws::String&& value) { m_dBParameterGroupFamilyHasBeenSet = true; m_dBParameterGroupFamily = std::move(value); }
 
     /**
      * <p>The name of the DB parameter group family for the database engine.</p>
@@ -149,12 +154,13 @@ namespace Model
     /**
      * <p>The name of the DB parameter group family for the database engine.</p>
      */
-    inline DBEngineVersion& WithDBParameterGroupFamily(Aws::String&& value) { SetDBParameterGroupFamily(value); return *this;}
+    inline DBEngineVersion& WithDBParameterGroupFamily(Aws::String&& value) { SetDBParameterGroupFamily(std::move(value)); return *this;}
 
     /**
      * <p>The name of the DB parameter group family for the database engine.</p>
      */
     inline DBEngineVersion& WithDBParameterGroupFamily(const char* value) { SetDBParameterGroupFamily(value); return *this;}
+
 
     /**
      * <p>The description of the database engine.</p>
@@ -169,7 +175,7 @@ namespace Model
     /**
      * <p>The description of the database engine.</p>
      */
-    inline void SetDBEngineDescription(Aws::String&& value) { m_dBEngineDescriptionHasBeenSet = true; m_dBEngineDescription = value; }
+    inline void SetDBEngineDescription(Aws::String&& value) { m_dBEngineDescriptionHasBeenSet = true; m_dBEngineDescription = std::move(value); }
 
     /**
      * <p>The description of the database engine.</p>
@@ -184,12 +190,13 @@ namespace Model
     /**
      * <p>The description of the database engine.</p>
      */
-    inline DBEngineVersion& WithDBEngineDescription(Aws::String&& value) { SetDBEngineDescription(value); return *this;}
+    inline DBEngineVersion& WithDBEngineDescription(Aws::String&& value) { SetDBEngineDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description of the database engine.</p>
      */
     inline DBEngineVersion& WithDBEngineDescription(const char* value) { SetDBEngineDescription(value); return *this;}
+
 
     /**
      * <p>The description of the database engine version.</p>
@@ -204,7 +211,7 @@ namespace Model
     /**
      * <p>The description of the database engine version.</p>
      */
-    inline void SetDBEngineVersionDescription(Aws::String&& value) { m_dBEngineVersionDescriptionHasBeenSet = true; m_dBEngineVersionDescription = value; }
+    inline void SetDBEngineVersionDescription(Aws::String&& value) { m_dBEngineVersionDescriptionHasBeenSet = true; m_dBEngineVersionDescription = std::move(value); }
 
     /**
      * <p>The description of the database engine version.</p>
@@ -219,12 +226,13 @@ namespace Model
     /**
      * <p>The description of the database engine version.</p>
      */
-    inline DBEngineVersion& WithDBEngineVersionDescription(Aws::String&& value) { SetDBEngineVersionDescription(value); return *this;}
+    inline DBEngineVersion& WithDBEngineVersionDescription(Aws::String&& value) { SetDBEngineVersionDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description of the database engine version.</p>
      */
     inline DBEngineVersion& WithDBEngineVersionDescription(const char* value) { SetDBEngineVersionDescription(value); return *this;}
+
 
     /**
      * <p> The default character set for new instances of this engine version, if the
@@ -245,7 +253,7 @@ namespace Model
      * <code>CharacterSetName</code> parameter of the CreateDBInstance API is not
      * specified. </p>
      */
-    inline void SetDefaultCharacterSet(CharacterSet&& value) { m_defaultCharacterSetHasBeenSet = true; m_defaultCharacterSet = value; }
+    inline void SetDefaultCharacterSet(CharacterSet&& value) { m_defaultCharacterSetHasBeenSet = true; m_defaultCharacterSet = std::move(value); }
 
     /**
      * <p> The default character set for new instances of this engine version, if the
@@ -259,7 +267,8 @@ namespace Model
      * <code>CharacterSetName</code> parameter of the CreateDBInstance API is not
      * specified. </p>
      */
-    inline DBEngineVersion& WithDefaultCharacterSet(CharacterSet&& value) { SetDefaultCharacterSet(value); return *this;}
+    inline DBEngineVersion& WithDefaultCharacterSet(CharacterSet&& value) { SetDefaultCharacterSet(std::move(value)); return *this;}
+
 
     /**
      * <p> A list of the character sets supported by this engine for the
@@ -280,7 +289,7 @@ namespace Model
      * <code>CharacterSetName</code> parameter of the <code>CreateDBInstance</code>
      * action. </p>
      */
-    inline void SetSupportedCharacterSets(Aws::Vector<CharacterSet>&& value) { m_supportedCharacterSetsHasBeenSet = true; m_supportedCharacterSets = value; }
+    inline void SetSupportedCharacterSets(Aws::Vector<CharacterSet>&& value) { m_supportedCharacterSetsHasBeenSet = true; m_supportedCharacterSets = std::move(value); }
 
     /**
      * <p> A list of the character sets supported by this engine for the
@@ -294,7 +303,7 @@ namespace Model
      * <code>CharacterSetName</code> parameter of the <code>CreateDBInstance</code>
      * action. </p>
      */
-    inline DBEngineVersion& WithSupportedCharacterSets(Aws::Vector<CharacterSet>&& value) { SetSupportedCharacterSets(value); return *this;}
+    inline DBEngineVersion& WithSupportedCharacterSets(Aws::Vector<CharacterSet>&& value) { SetSupportedCharacterSets(std::move(value)); return *this;}
 
     /**
      * <p> A list of the character sets supported by this engine for the
@@ -308,7 +317,8 @@ namespace Model
      * <code>CharacterSetName</code> parameter of the <code>CreateDBInstance</code>
      * action. </p>
      */
-    inline DBEngineVersion& AddSupportedCharacterSets(CharacterSet&& value) { m_supportedCharacterSetsHasBeenSet = true; m_supportedCharacterSets.push_back(value); return *this; }
+    inline DBEngineVersion& AddSupportedCharacterSets(CharacterSet&& value) { m_supportedCharacterSetsHasBeenSet = true; m_supportedCharacterSets.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>A list of engine versions that this database engine version can be upgraded
@@ -326,7 +336,7 @@ namespace Model
      * <p>A list of engine versions that this database engine version can be upgraded
      * to.</p>
      */
-    inline void SetValidUpgradeTarget(Aws::Vector<UpgradeTarget>&& value) { m_validUpgradeTargetHasBeenSet = true; m_validUpgradeTarget = value; }
+    inline void SetValidUpgradeTarget(Aws::Vector<UpgradeTarget>&& value) { m_validUpgradeTargetHasBeenSet = true; m_validUpgradeTarget = std::move(value); }
 
     /**
      * <p>A list of engine versions that this database engine version can be upgraded
@@ -338,7 +348,7 @@ namespace Model
      * <p>A list of engine versions that this database engine version can be upgraded
      * to.</p>
      */
-    inline DBEngineVersion& WithValidUpgradeTarget(Aws::Vector<UpgradeTarget>&& value) { SetValidUpgradeTarget(value); return *this;}
+    inline DBEngineVersion& WithValidUpgradeTarget(Aws::Vector<UpgradeTarget>&& value) { SetValidUpgradeTarget(std::move(value)); return *this;}
 
     /**
      * <p>A list of engine versions that this database engine version can be upgraded
@@ -350,7 +360,8 @@ namespace Model
      * <p>A list of engine versions that this database engine version can be upgraded
      * to.</p>
      */
-    inline DBEngineVersion& AddValidUpgradeTarget(UpgradeTarget&& value) { m_validUpgradeTargetHasBeenSet = true; m_validUpgradeTarget.push_back(value); return *this; }
+    inline DBEngineVersion& AddValidUpgradeTarget(UpgradeTarget&& value) { m_validUpgradeTargetHasBeenSet = true; m_validUpgradeTarget.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>A list of the time zones supported by this engine for the
@@ -371,7 +382,7 @@ namespace Model
      * <code>Timezone</code> parameter of the <code>CreateDBInstance</code> action.
      * </p>
      */
-    inline void SetSupportedTimezones(Aws::Vector<Timezone>&& value) { m_supportedTimezonesHasBeenSet = true; m_supportedTimezones = value; }
+    inline void SetSupportedTimezones(Aws::Vector<Timezone>&& value) { m_supportedTimezonesHasBeenSet = true; m_supportedTimezones = std::move(value); }
 
     /**
      * <p>A list of the time zones supported by this engine for the
@@ -385,7 +396,7 @@ namespace Model
      * <code>Timezone</code> parameter of the <code>CreateDBInstance</code> action.
      * </p>
      */
-    inline DBEngineVersion& WithSupportedTimezones(Aws::Vector<Timezone>&& value) { SetSupportedTimezones(value); return *this;}
+    inline DBEngineVersion& WithSupportedTimezones(Aws::Vector<Timezone>&& value) { SetSupportedTimezones(std::move(value)); return *this;}
 
     /**
      * <p>A list of the time zones supported by this engine for the
@@ -399,25 +410,34 @@ namespace Model
      * <code>Timezone</code> parameter of the <code>CreateDBInstance</code> action.
      * </p>
      */
-    inline DBEngineVersion& AddSupportedTimezones(Timezone&& value) { m_supportedTimezonesHasBeenSet = true; m_supportedTimezones.push_back(value); return *this; }
+    inline DBEngineVersion& AddSupportedTimezones(Timezone&& value) { m_supportedTimezonesHasBeenSet = true; m_supportedTimezones.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_engine;
     bool m_engineHasBeenSet;
+
     Aws::String m_engineVersion;
     bool m_engineVersionHasBeenSet;
+
     Aws::String m_dBParameterGroupFamily;
     bool m_dBParameterGroupFamilyHasBeenSet;
+
     Aws::String m_dBEngineDescription;
     bool m_dBEngineDescriptionHasBeenSet;
+
     Aws::String m_dBEngineVersionDescription;
     bool m_dBEngineVersionDescriptionHasBeenSet;
+
     CharacterSet m_defaultCharacterSet;
     bool m_defaultCharacterSetHasBeenSet;
+
     Aws::Vector<CharacterSet> m_supportedCharacterSets;
     bool m_supportedCharacterSetsHasBeenSet;
+
     Aws::Vector<UpgradeTarget> m_validUpgradeTarget;
     bool m_validUpgradeTargetHasBeenSet;
+
     Aws::Vector<Timezone> m_supportedTimezones;
     bool m_supportedTimezonesHasBeenSet;
   };

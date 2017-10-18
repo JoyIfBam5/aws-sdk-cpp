@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/email/SESRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/email/model/ReceiptRule.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,42 +39,55 @@ namespace Model
   {
   public:
     CreateReceiptRuleRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateReceiptRule"; }
+
     Aws::String SerializePayload() const override;
 
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
+
     /**
-     * <p>The name of the rule set to which to add the rule.</p>
+     * <p>The name of the rule set that the receipt rule will be added to.</p>
      */
     inline const Aws::String& GetRuleSetName() const{ return m_ruleSetName; }
 
     /**
-     * <p>The name of the rule set to which to add the rule.</p>
+     * <p>The name of the rule set that the receipt rule will be added to.</p>
      */
     inline void SetRuleSetName(const Aws::String& value) { m_ruleSetNameHasBeenSet = true; m_ruleSetName = value; }
 
     /**
-     * <p>The name of the rule set to which to add the rule.</p>
+     * <p>The name of the rule set that the receipt rule will be added to.</p>
      */
-    inline void SetRuleSetName(Aws::String&& value) { m_ruleSetNameHasBeenSet = true; m_ruleSetName = value; }
+    inline void SetRuleSetName(Aws::String&& value) { m_ruleSetNameHasBeenSet = true; m_ruleSetName = std::move(value); }
 
     /**
-     * <p>The name of the rule set to which to add the rule.</p>
+     * <p>The name of the rule set that the receipt rule will be added to.</p>
      */
     inline void SetRuleSetName(const char* value) { m_ruleSetNameHasBeenSet = true; m_ruleSetName.assign(value); }
 
     /**
-     * <p>The name of the rule set to which to add the rule.</p>
+     * <p>The name of the rule set that the receipt rule will be added to.</p>
      */
     inline CreateReceiptRuleRequest& WithRuleSetName(const Aws::String& value) { SetRuleSetName(value); return *this;}
 
     /**
-     * <p>The name of the rule set to which to add the rule.</p>
+     * <p>The name of the rule set that the receipt rule will be added to.</p>
      */
-    inline CreateReceiptRuleRequest& WithRuleSetName(Aws::String&& value) { SetRuleSetName(value); return *this;}
+    inline CreateReceiptRuleRequest& WithRuleSetName(Aws::String&& value) { SetRuleSetName(std::move(value)); return *this;}
 
     /**
-     * <p>The name of the rule set to which to add the rule.</p>
+     * <p>The name of the rule set that the receipt rule will be added to.</p>
      */
     inline CreateReceiptRuleRequest& WithRuleSetName(const char* value) { SetRuleSetName(value); return *this;}
+
 
     /**
      * <p>The name of an existing rule after which the new rule will be placed. If this
@@ -93,7 +108,7 @@ namespace Model
      * parameter is null, the new rule will be inserted at the beginning of the rule
      * list.</p>
      */
-    inline void SetAfter(Aws::String&& value) { m_afterHasBeenSet = true; m_after = value; }
+    inline void SetAfter(Aws::String&& value) { m_afterHasBeenSet = true; m_after = std::move(value); }
 
     /**
      * <p>The name of an existing rule after which the new rule will be placed. If this
@@ -114,7 +129,7 @@ namespace Model
      * parameter is null, the new rule will be inserted at the beginning of the rule
      * list.</p>
      */
-    inline CreateReceiptRuleRequest& WithAfter(Aws::String&& value) { SetAfter(value); return *this;}
+    inline CreateReceiptRuleRequest& WithAfter(Aws::String&& value) { SetAfter(std::move(value)); return *this;}
 
     /**
      * <p>The name of an existing rule after which the new rule will be placed. If this
@@ -122,6 +137,7 @@ namespace Model
      * list.</p>
      */
     inline CreateReceiptRuleRequest& WithAfter(const char* value) { SetAfter(value); return *this;}
+
 
     /**
      * <p>A data structure that contains the specified rule's name, actions,
@@ -139,7 +155,7 @@ namespace Model
      * <p>A data structure that contains the specified rule's name, actions,
      * recipients, domains, enabled status, scan status, and TLS policy.</p>
      */
-    inline void SetRule(ReceiptRule&& value) { m_ruleHasBeenSet = true; m_rule = value; }
+    inline void SetRule(ReceiptRule&& value) { m_ruleHasBeenSet = true; m_rule = std::move(value); }
 
     /**
      * <p>A data structure that contains the specified rule's name, actions,
@@ -151,13 +167,16 @@ namespace Model
      * <p>A data structure that contains the specified rule's name, actions,
      * recipients, domains, enabled status, scan status, and TLS policy.</p>
      */
-    inline CreateReceiptRuleRequest& WithRule(ReceiptRule&& value) { SetRule(value); return *this;}
+    inline CreateReceiptRuleRequest& WithRule(ReceiptRule&& value) { SetRule(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_ruleSetName;
     bool m_ruleSetNameHasBeenSet;
+
     Aws::String m_after;
     bool m_afterHasBeenSet;
+
     ReceiptRule m_rule;
     bool m_ruleHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/elasticbeanstalk/ElasticBeanstalkRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,19 @@ namespace Model
   {
   public:
     SwapEnvironmentCNAMEsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "SwapEnvironmentCNAMEs"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The ID of the source environment.</p> <p> Condition: You must specify at
@@ -60,7 +74,7 @@ namespace Model
      * the <code>SourceEnvironmentId</code>, you must specify the
      * <code>DestinationEnvironmentId</code>. </p>
      */
-    inline void SetSourceEnvironmentId(Aws::String&& value) { m_sourceEnvironmentIdHasBeenSet = true; m_sourceEnvironmentId = value; }
+    inline void SetSourceEnvironmentId(Aws::String&& value) { m_sourceEnvironmentIdHasBeenSet = true; m_sourceEnvironmentId = std::move(value); }
 
     /**
      * <p>The ID of the source environment.</p> <p> Condition: You must specify at
@@ -87,7 +101,7 @@ namespace Model
      * the <code>SourceEnvironmentId</code>, you must specify the
      * <code>DestinationEnvironmentId</code>. </p>
      */
-    inline SwapEnvironmentCNAMEsRequest& WithSourceEnvironmentId(Aws::String&& value) { SetSourceEnvironmentId(value); return *this;}
+    inline SwapEnvironmentCNAMEsRequest& WithSourceEnvironmentId(Aws::String&& value) { SetSourceEnvironmentId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the source environment.</p> <p> Condition: You must specify at
@@ -97,6 +111,7 @@ namespace Model
      * <code>DestinationEnvironmentId</code>. </p>
      */
     inline SwapEnvironmentCNAMEsRequest& WithSourceEnvironmentId(const char* value) { SetSourceEnvironmentId(value); return *this;}
+
 
     /**
      * <p>The name of the source environment.</p> <p> Condition: You must specify at
@@ -123,7 +138,7 @@ namespace Model
      * the <code>SourceEnvironmentName</code>, you must specify the
      * <code>DestinationEnvironmentName</code>. </p>
      */
-    inline void SetSourceEnvironmentName(Aws::String&& value) { m_sourceEnvironmentNameHasBeenSet = true; m_sourceEnvironmentName = value; }
+    inline void SetSourceEnvironmentName(Aws::String&& value) { m_sourceEnvironmentNameHasBeenSet = true; m_sourceEnvironmentName = std::move(value); }
 
     /**
      * <p>The name of the source environment.</p> <p> Condition: You must specify at
@@ -150,7 +165,7 @@ namespace Model
      * the <code>SourceEnvironmentName</code>, you must specify the
      * <code>DestinationEnvironmentName</code>. </p>
      */
-    inline SwapEnvironmentCNAMEsRequest& WithSourceEnvironmentName(Aws::String&& value) { SetSourceEnvironmentName(value); return *this;}
+    inline SwapEnvironmentCNAMEsRequest& WithSourceEnvironmentName(Aws::String&& value) { SetSourceEnvironmentName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the source environment.</p> <p> Condition: You must specify at
@@ -160,6 +175,7 @@ namespace Model
      * <code>DestinationEnvironmentName</code>. </p>
      */
     inline SwapEnvironmentCNAMEsRequest& WithSourceEnvironmentName(const char* value) { SetSourceEnvironmentName(value); return *this;}
+
 
     /**
      * <p>The ID of the destination environment.</p> <p> Condition: You must specify at
@@ -186,7 +202,7 @@ namespace Model
      * specify the <code>SourceEnvironmentId</code> with the
      * <code>DestinationEnvironmentId</code>. </p>
      */
-    inline void SetDestinationEnvironmentId(Aws::String&& value) { m_destinationEnvironmentIdHasBeenSet = true; m_destinationEnvironmentId = value; }
+    inline void SetDestinationEnvironmentId(Aws::String&& value) { m_destinationEnvironmentIdHasBeenSet = true; m_destinationEnvironmentId = std::move(value); }
 
     /**
      * <p>The ID of the destination environment.</p> <p> Condition: You must specify at
@@ -213,7 +229,7 @@ namespace Model
      * specify the <code>SourceEnvironmentId</code> with the
      * <code>DestinationEnvironmentId</code>. </p>
      */
-    inline SwapEnvironmentCNAMEsRequest& WithDestinationEnvironmentId(Aws::String&& value) { SetDestinationEnvironmentId(value); return *this;}
+    inline SwapEnvironmentCNAMEsRequest& WithDestinationEnvironmentId(Aws::String&& value) { SetDestinationEnvironmentId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the destination environment.</p> <p> Condition: You must specify at
@@ -223,6 +239,7 @@ namespace Model
      * <code>DestinationEnvironmentId</code>. </p>
      */
     inline SwapEnvironmentCNAMEsRequest& WithDestinationEnvironmentId(const char* value) { SetDestinationEnvironmentId(value); return *this;}
+
 
     /**
      * <p>The name of the destination environment.</p> <p> Condition: You must specify
@@ -249,7 +266,7 @@ namespace Model
      * specify the <code>SourceEnvironmentName</code> with the
      * <code>DestinationEnvironmentName</code>. </p>
      */
-    inline void SetDestinationEnvironmentName(Aws::String&& value) { m_destinationEnvironmentNameHasBeenSet = true; m_destinationEnvironmentName = value; }
+    inline void SetDestinationEnvironmentName(Aws::String&& value) { m_destinationEnvironmentNameHasBeenSet = true; m_destinationEnvironmentName = std::move(value); }
 
     /**
      * <p>The name of the destination environment.</p> <p> Condition: You must specify
@@ -276,7 +293,7 @@ namespace Model
      * specify the <code>SourceEnvironmentName</code> with the
      * <code>DestinationEnvironmentName</code>. </p>
      */
-    inline SwapEnvironmentCNAMEsRequest& WithDestinationEnvironmentName(Aws::String&& value) { SetDestinationEnvironmentName(value); return *this;}
+    inline SwapEnvironmentCNAMEsRequest& WithDestinationEnvironmentName(Aws::String&& value) { SetDestinationEnvironmentName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the destination environment.</p> <p> Condition: You must specify
@@ -288,12 +305,16 @@ namespace Model
     inline SwapEnvironmentCNAMEsRequest& WithDestinationEnvironmentName(const char* value) { SetDestinationEnvironmentName(value); return *this;}
 
   private:
+
     Aws::String m_sourceEnvironmentId;
     bool m_sourceEnvironmentIdHasBeenSet;
+
     Aws::String m_sourceEnvironmentName;
     bool m_sourceEnvironmentNameHasBeenSet;
+
     Aws::String m_destinationEnvironmentId;
     bool m_destinationEnvironmentIdHasBeenSet;
+
     Aws::String m_destinationEnvironmentName;
     bool m_destinationEnvironmentNameHasBeenSet;
   };

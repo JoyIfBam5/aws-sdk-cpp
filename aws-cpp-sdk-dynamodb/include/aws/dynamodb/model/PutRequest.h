@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dynamodb/DynamoDB_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/dynamodb/model/AttributeValue.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     PutRequest& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>A map of attribute name to attribute values, representing the primary key of
      * an item to be processed by <code>PutItem</code>. All of the table's primary key
@@ -74,7 +77,7 @@ namespace Model
      * an index key schema for the table, their types must match the index key
      * schema.</p>
      */
-    inline void SetItem(Aws::Map<Aws::String, AttributeValue>&& value) { m_itemHasBeenSet = true; m_item = value; }
+    inline void SetItem(Aws::Map<Aws::String, AttributeValue>&& value) { m_itemHasBeenSet = true; m_item = std::move(value); }
 
     /**
      * <p>A map of attribute name to attribute values, representing the primary key of
@@ -94,7 +97,7 @@ namespace Model
      * an index key schema for the table, their types must match the index key
      * schema.</p>
      */
-    inline PutRequest& WithItem(Aws::Map<Aws::String, AttributeValue>&& value) { SetItem(value); return *this;}
+    inline PutRequest& WithItem(Aws::Map<Aws::String, AttributeValue>&& value) { SetItem(std::move(value)); return *this;}
 
     /**
      * <p>A map of attribute name to attribute values, representing the primary key of
@@ -104,7 +107,7 @@ namespace Model
      * an index key schema for the table, their types must match the index key
      * schema.</p>
      */
-    inline PutRequest& AddItem(const Aws::String& key, const AttributeValue& value) { m_itemHasBeenSet = true; m_item[key] = value; return *this; }
+    inline PutRequest& AddItem(const Aws::String& key, const AttributeValue& value) { m_itemHasBeenSet = true; m_item.emplace(key, value); return *this; }
 
     /**
      * <p>A map of attribute name to attribute values, representing the primary key of
@@ -114,7 +117,7 @@ namespace Model
      * an index key schema for the table, their types must match the index key
      * schema.</p>
      */
-    inline PutRequest& AddItem(Aws::String&& key, const AttributeValue& value) { m_itemHasBeenSet = true; m_item[key] = value; return *this; }
+    inline PutRequest& AddItem(Aws::String&& key, const AttributeValue& value) { m_itemHasBeenSet = true; m_item.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A map of attribute name to attribute values, representing the primary key of
@@ -124,7 +127,7 @@ namespace Model
      * an index key schema for the table, their types must match the index key
      * schema.</p>
      */
-    inline PutRequest& AddItem(const Aws::String& key, AttributeValue&& value) { m_itemHasBeenSet = true; m_item[key] = value; return *this; }
+    inline PutRequest& AddItem(const Aws::String& key, AttributeValue&& value) { m_itemHasBeenSet = true; m_item.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A map of attribute name to attribute values, representing the primary key of
@@ -134,7 +137,7 @@ namespace Model
      * an index key schema for the table, their types must match the index key
      * schema.</p>
      */
-    inline PutRequest& AddItem(Aws::String&& key, AttributeValue&& value) { m_itemHasBeenSet = true; m_item[key] = value; return *this; }
+    inline PutRequest& AddItem(Aws::String&& key, AttributeValue&& value) { m_itemHasBeenSet = true; m_item.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>A map of attribute name to attribute values, representing the primary key of
@@ -144,7 +147,7 @@ namespace Model
      * an index key schema for the table, their types must match the index key
      * schema.</p>
      */
-    inline PutRequest& AddItem(const char* key, AttributeValue&& value) { m_itemHasBeenSet = true; m_item[key] = value; return *this; }
+    inline PutRequest& AddItem(const char* key, AttributeValue&& value) { m_itemHasBeenSet = true; m_item.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A map of attribute name to attribute values, representing the primary key of
@@ -154,9 +157,10 @@ namespace Model
      * an index key schema for the table, their types must match the index key
      * schema.</p>
      */
-    inline PutRequest& AddItem(const char* key, const AttributeValue& value) { m_itemHasBeenSet = true; m_item[key] = value; return *this; }
+    inline PutRequest& AddItem(const char* key, const AttributeValue& value) { m_itemHasBeenSet = true; m_item.emplace(key, value); return *this; }
 
   private:
+
     Aws::Map<Aws::String, AttributeValue> m_item;
     bool m_itemHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -21,6 +22,7 @@
 #include <aws/ec2/model/ConversionTaskState.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/ec2/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -51,6 +53,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The ID of the conversion task.</p>
      */
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>The ID of the conversion task.</p>
      */
-    inline void SetConversionTaskId(Aws::String&& value) { m_conversionTaskIdHasBeenSet = true; m_conversionTaskId = value; }
+    inline void SetConversionTaskId(Aws::String&& value) { m_conversionTaskIdHasBeenSet = true; m_conversionTaskId = std::move(value); }
 
     /**
      * <p>The ID of the conversion task.</p>
@@ -79,12 +82,13 @@ namespace Model
     /**
      * <p>The ID of the conversion task.</p>
      */
-    inline ConversionTask& WithConversionTaskId(Aws::String&& value) { SetConversionTaskId(value); return *this;}
+    inline ConversionTask& WithConversionTaskId(Aws::String&& value) { SetConversionTaskId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the conversion task.</p>
      */
     inline ConversionTask& WithConversionTaskId(const char* value) { SetConversionTaskId(value); return *this;}
+
 
     /**
      * <p>The time when the task expires. If the upload isn't complete before the
@@ -102,7 +106,7 @@ namespace Model
      * <p>The time when the task expires. If the upload isn't complete before the
      * expiration time, we automatically cancel the task.</p>
      */
-    inline void SetExpirationTime(Aws::String&& value) { m_expirationTimeHasBeenSet = true; m_expirationTime = value; }
+    inline void SetExpirationTime(Aws::String&& value) { m_expirationTimeHasBeenSet = true; m_expirationTime = std::move(value); }
 
     /**
      * <p>The time when the task expires. If the upload isn't complete before the
@@ -120,13 +124,14 @@ namespace Model
      * <p>The time when the task expires. If the upload isn't complete before the
      * expiration time, we automatically cancel the task.</p>
      */
-    inline ConversionTask& WithExpirationTime(Aws::String&& value) { SetExpirationTime(value); return *this;}
+    inline ConversionTask& WithExpirationTime(Aws::String&& value) { SetExpirationTime(std::move(value)); return *this;}
 
     /**
      * <p>The time when the task expires. If the upload isn't complete before the
      * expiration time, we automatically cancel the task.</p>
      */
     inline ConversionTask& WithExpirationTime(const char* value) { SetExpirationTime(value); return *this;}
+
 
     /**
      * <p>If the task is for importing an instance, this contains information about the
@@ -144,7 +149,7 @@ namespace Model
      * <p>If the task is for importing an instance, this contains information about the
      * import instance task.</p>
      */
-    inline void SetImportInstance(ImportInstanceTaskDetails&& value) { m_importInstanceHasBeenSet = true; m_importInstance = value; }
+    inline void SetImportInstance(ImportInstanceTaskDetails&& value) { m_importInstanceHasBeenSet = true; m_importInstance = std::move(value); }
 
     /**
      * <p>If the task is for importing an instance, this contains information about the
@@ -156,7 +161,8 @@ namespace Model
      * <p>If the task is for importing an instance, this contains information about the
      * import instance task.</p>
      */
-    inline ConversionTask& WithImportInstance(ImportInstanceTaskDetails&& value) { SetImportInstance(value); return *this;}
+    inline ConversionTask& WithImportInstance(ImportInstanceTaskDetails&& value) { SetImportInstance(std::move(value)); return *this;}
+
 
     /**
      * <p>If the task is for importing a volume, this contains information about the
@@ -174,7 +180,7 @@ namespace Model
      * <p>If the task is for importing a volume, this contains information about the
      * import volume task.</p>
      */
-    inline void SetImportVolume(ImportVolumeTaskDetails&& value) { m_importVolumeHasBeenSet = true; m_importVolume = value; }
+    inline void SetImportVolume(ImportVolumeTaskDetails&& value) { m_importVolumeHasBeenSet = true; m_importVolume = std::move(value); }
 
     /**
      * <p>If the task is for importing a volume, this contains information about the
@@ -186,7 +192,8 @@ namespace Model
      * <p>If the task is for importing a volume, this contains information about the
      * import volume task.</p>
      */
-    inline ConversionTask& WithImportVolume(ImportVolumeTaskDetails&& value) { SetImportVolume(value); return *this;}
+    inline ConversionTask& WithImportVolume(ImportVolumeTaskDetails&& value) { SetImportVolume(std::move(value)); return *this;}
+
 
     /**
      * <p>The state of the conversion task.</p>
@@ -201,7 +208,7 @@ namespace Model
     /**
      * <p>The state of the conversion task.</p>
      */
-    inline void SetState(ConversionTaskState&& value) { m_stateHasBeenSet = true; m_state = value; }
+    inline void SetState(ConversionTaskState&& value) { m_stateHasBeenSet = true; m_state = std::move(value); }
 
     /**
      * <p>The state of the conversion task.</p>
@@ -211,7 +218,8 @@ namespace Model
     /**
      * <p>The state of the conversion task.</p>
      */
-    inline ConversionTask& WithState(ConversionTaskState&& value) { SetState(value); return *this;}
+    inline ConversionTask& WithState(ConversionTaskState&& value) { SetState(std::move(value)); return *this;}
+
 
     /**
      * <p>The status message related to the conversion task.</p>
@@ -226,7 +234,7 @@ namespace Model
     /**
      * <p>The status message related to the conversion task.</p>
      */
-    inline void SetStatusMessage(Aws::String&& value) { m_statusMessageHasBeenSet = true; m_statusMessage = value; }
+    inline void SetStatusMessage(Aws::String&& value) { m_statusMessageHasBeenSet = true; m_statusMessage = std::move(value); }
 
     /**
      * <p>The status message related to the conversion task.</p>
@@ -241,12 +249,13 @@ namespace Model
     /**
      * <p>The status message related to the conversion task.</p>
      */
-    inline ConversionTask& WithStatusMessage(Aws::String&& value) { SetStatusMessage(value); return *this;}
+    inline ConversionTask& WithStatusMessage(Aws::String&& value) { SetStatusMessage(std::move(value)); return *this;}
 
     /**
      * <p>The status message related to the conversion task.</p>
      */
     inline ConversionTask& WithStatusMessage(const char* value) { SetStatusMessage(value); return *this;}
+
 
     /**
      * <p>Any tags assigned to the task.</p>
@@ -261,7 +270,7 @@ namespace Model
     /**
      * <p>Any tags assigned to the task.</p>
      */
-    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = std::move(value); }
 
     /**
      * <p>Any tags assigned to the task.</p>
@@ -271,7 +280,7 @@ namespace Model
     /**
      * <p>Any tags assigned to the task.</p>
      */
-    inline ConversionTask& WithTags(Aws::Vector<Tag>&& value) { SetTags(value); return *this;}
+    inline ConversionTask& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
      * <p>Any tags assigned to the task.</p>
@@ -281,21 +290,28 @@ namespace Model
     /**
      * <p>Any tags assigned to the task.</p>
      */
-    inline ConversionTask& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
+    inline ConversionTask& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_conversionTaskId;
     bool m_conversionTaskIdHasBeenSet;
+
     Aws::String m_expirationTime;
     bool m_expirationTimeHasBeenSet;
+
     ImportInstanceTaskDetails m_importInstance;
     bool m_importInstanceHasBeenSet;
+
     ImportVolumeTaskDetails m_importVolume;
     bool m_importVolumeHasBeenSet;
+
     ConversionTaskState m_state;
     bool m_stateHasBeenSet;
+
     Aws::String m_statusMessage;
     bool m_statusMessageHasBeenSet;
+
     Aws::Vector<Tag> m_tags;
     bool m_tagsHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/cognito-idp/model/DeliveryMediumType.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     MFAOptionType& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The delivery medium (email message or SMS message) to send the MFA code.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The delivery medium (email message or SMS message) to send the MFA code.</p>
      */
-    inline void SetDeliveryMedium(DeliveryMediumType&& value) { m_deliveryMediumHasBeenSet = true; m_deliveryMedium = value; }
+    inline void SetDeliveryMedium(DeliveryMediumType&& value) { m_deliveryMediumHasBeenSet = true; m_deliveryMedium = std::move(value); }
 
     /**
      * <p>The delivery medium (email message or SMS message) to send the MFA code.</p>
@@ -68,7 +71,8 @@ namespace Model
     /**
      * <p>The delivery medium (email message or SMS message) to send the MFA code.</p>
      */
-    inline MFAOptionType& WithDeliveryMedium(DeliveryMediumType&& value) { SetDeliveryMedium(value); return *this;}
+    inline MFAOptionType& WithDeliveryMedium(DeliveryMediumType&& value) { SetDeliveryMedium(std::move(value)); return *this;}
+
 
     /**
      * <p>The attribute name of the MFA option type.</p>
@@ -83,7 +87,7 @@ namespace Model
     /**
      * <p>The attribute name of the MFA option type.</p>
      */
-    inline void SetAttributeName(Aws::String&& value) { m_attributeNameHasBeenSet = true; m_attributeName = value; }
+    inline void SetAttributeName(Aws::String&& value) { m_attributeNameHasBeenSet = true; m_attributeName = std::move(value); }
 
     /**
      * <p>The attribute name of the MFA option type.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>The attribute name of the MFA option type.</p>
      */
-    inline MFAOptionType& WithAttributeName(Aws::String&& value) { SetAttributeName(value); return *this;}
+    inline MFAOptionType& WithAttributeName(Aws::String&& value) { SetAttributeName(std::move(value)); return *this;}
 
     /**
      * <p>The attribute name of the MFA option type.</p>
@@ -106,8 +110,10 @@ namespace Model
     inline MFAOptionType& WithAttributeName(const char* value) { SetAttributeName(value); return *this;}
 
   private:
+
     DeliveryMediumType m_deliveryMedium;
     bool m_deliveryMediumHasBeenSet;
+
     Aws::String m_attributeName;
     bool m_attributeNameHasBeenSet;
   };

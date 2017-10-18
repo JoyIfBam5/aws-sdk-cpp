@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/directconnect/DirectConnect_EXPORTS.h>
 #include <aws/directconnect/model/VirtualInterface.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     CreateBGPPeerResult();
-    CreateBGPPeerResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateBGPPeerResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateBGPPeerResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateBGPPeerResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     
     inline const VirtualInterface& GetVirtualInterface() const{ return m_virtualInterface; }
@@ -52,15 +55,16 @@ namespace Model
     inline void SetVirtualInterface(const VirtualInterface& value) { m_virtualInterface = value; }
 
     
-    inline void SetVirtualInterface(VirtualInterface&& value) { m_virtualInterface = value; }
+    inline void SetVirtualInterface(VirtualInterface&& value) { m_virtualInterface = std::move(value); }
 
     
     inline CreateBGPPeerResult& WithVirtualInterface(const VirtualInterface& value) { SetVirtualInterface(value); return *this;}
 
     
-    inline CreateBGPPeerResult& WithVirtualInterface(VirtualInterface&& value) { SetVirtualInterface(value); return *this;}
+    inline CreateBGPPeerResult& WithVirtualInterface(VirtualInterface&& value) { SetVirtualInterface(std::move(value)); return *this;}
 
   private:
+
     VirtualInterface m_virtualInterface;
   };
 

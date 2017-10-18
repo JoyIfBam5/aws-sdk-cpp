@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/model/IPSet.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     GetIPSetResult();
-    GetIPSetResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetIPSetResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetIPSetResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetIPSetResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the <a>IPSet</a> that you specified in the
@@ -70,7 +73,7 @@ namespace Model
      * objects. Each <code>IPSetDescriptor</code> object contains <code>Type</code> and
      * <code>Value</code> </p> </li> </ul>
      */
-    inline void SetIPSet(IPSet&& value) { m_iPSet = value; }
+    inline void SetIPSet(IPSet&& value) { m_iPSet = std::move(value); }
 
     /**
      * <p>Information about the <a>IPSet</a> that you specified in the
@@ -92,9 +95,10 @@ namespace Model
      * objects. Each <code>IPSetDescriptor</code> object contains <code>Type</code> and
      * <code>Value</code> </p> </li> </ul>
      */
-    inline GetIPSetResult& WithIPSet(IPSet&& value) { SetIPSet(value); return *this;}
+    inline GetIPSetResult& WithIPSet(IPSet&& value) { SetIPSet(std::move(value)); return *this;}
 
   private:
+
     IPSet m_iPSet;
   };
 

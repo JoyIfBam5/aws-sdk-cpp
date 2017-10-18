@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/iam/IAMRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,7 +32,19 @@ namespace Model
   {
   public:
     UpdateGroupRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateGroup"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>Name of the IAM group to update. If you're changing the name of the group,
@@ -57,7 +71,7 @@ namespace Model
      * consisting of upper and lowercase alphanumeric characters with no spaces. You
      * can also include any of the following characters: =,.@-</p>
      */
-    inline void SetGroupName(Aws::String&& value) { m_groupNameHasBeenSet = true; m_groupName = value; }
+    inline void SetGroupName(Aws::String&& value) { m_groupNameHasBeenSet = true; m_groupName = std::move(value); }
 
     /**
      * <p>Name of the IAM group to update. If you're changing the name of the group,
@@ -84,7 +98,7 @@ namespace Model
      * consisting of upper and lowercase alphanumeric characters with no spaces. You
      * can also include any of the following characters: =,.@-</p>
      */
-    inline UpdateGroupRequest& WithGroupName(Aws::String&& value) { SetGroupName(value); return *this;}
+    inline UpdateGroupRequest& WithGroupName(Aws::String&& value) { SetGroupName(std::move(value)); return *this;}
 
     /**
      * <p>Name of the IAM group to update. If you're changing the name of the group,
@@ -94,6 +108,7 @@ namespace Model
      * can also include any of the following characters: =,.@-</p>
      */
     inline UpdateGroupRequest& WithGroupName(const char* value) { SetGroupName(value); return *this;}
+
 
     /**
      * <p>New path for the IAM group. Only include this if changing the group's
@@ -126,7 +141,7 @@ namespace Model
      * thru the DEL character (\u007F), including most punctuation characters, digits,
      * and upper and lowercased letters.</p>
      */
-    inline void SetNewPath(Aws::String&& value) { m_newPathHasBeenSet = true; m_newPath = value; }
+    inline void SetNewPath(Aws::String&& value) { m_newPathHasBeenSet = true; m_newPath = std::move(value); }
 
     /**
      * <p>New path for the IAM group. Only include this if changing the group's
@@ -159,7 +174,7 @@ namespace Model
      * thru the DEL character (\u007F), including most punctuation characters, digits,
      * and upper and lowercased letters.</p>
      */
-    inline UpdateGroupRequest& WithNewPath(Aws::String&& value) { SetNewPath(value); return *this;}
+    inline UpdateGroupRequest& WithNewPath(Aws::String&& value) { SetNewPath(std::move(value)); return *this;}
 
     /**
      * <p>New path for the IAM group. Only include this if changing the group's
@@ -171,6 +186,7 @@ namespace Model
      * and upper and lowercased letters.</p>
      */
     inline UpdateGroupRequest& WithNewPath(const char* value) { SetNewPath(value); return *this;}
+
 
     /**
      * <p>New name for the IAM group. Only include this if changing the group's
@@ -197,7 +213,7 @@ namespace Model
      * consisting of upper and lowercase alphanumeric characters with no spaces. You
      * can also include any of the following characters: =,.@-</p>
      */
-    inline void SetNewGroupName(Aws::String&& value) { m_newGroupNameHasBeenSet = true; m_newGroupName = value; }
+    inline void SetNewGroupName(Aws::String&& value) { m_newGroupNameHasBeenSet = true; m_newGroupName = std::move(value); }
 
     /**
      * <p>New name for the IAM group. Only include this if changing the group's
@@ -224,7 +240,7 @@ namespace Model
      * consisting of upper and lowercase alphanumeric characters with no spaces. You
      * can also include any of the following characters: =,.@-</p>
      */
-    inline UpdateGroupRequest& WithNewGroupName(Aws::String&& value) { SetNewGroupName(value); return *this;}
+    inline UpdateGroupRequest& WithNewGroupName(Aws::String&& value) { SetNewGroupName(std::move(value)); return *this;}
 
     /**
      * <p>New name for the IAM group. Only include this if changing the group's
@@ -236,10 +252,13 @@ namespace Model
     inline UpdateGroupRequest& WithNewGroupName(const char* value) { SetNewGroupName(value); return *this;}
 
   private:
+
     Aws::String m_groupName;
     bool m_groupNameHasBeenSet;
+
     Aws::String m_newPath;
     bool m_newPathHasBeenSet;
+
     Aws::String m_newGroupName;
     bool m_newGroupNameHasBeenSet;
   };

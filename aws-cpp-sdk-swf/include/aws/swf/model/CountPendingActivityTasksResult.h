@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 
@@ -40,8 +41,9 @@ namespace Model
   {
   public:
     CountPendingActivityTasksResult();
-    CountPendingActivityTasksResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CountPendingActivityTasksResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CountPendingActivityTasksResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CountPendingActivityTasksResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The number of tasks in the task list.</p>
@@ -57,6 +59,7 @@ namespace Model
      * <p>The number of tasks in the task list.</p>
      */
     inline CountPendingActivityTasksResult& WithCount(int value) { SetCount(value); return *this;}
+
 
     /**
      * <p>If set to true, indicates that the actual count was more than the maximum
@@ -77,7 +80,9 @@ namespace Model
     inline CountPendingActivityTasksResult& WithTruncated(bool value) { SetTruncated(value); return *this;}
 
   private:
+
     int m_count;
+
     bool m_truncated;
   };
 

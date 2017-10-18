@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/inspector/model/ListFindingsResult.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
+#include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/UnreferencedParam.h>
 
 #include <utility>
@@ -28,20 +30,20 @@ ListFindingsResult::ListFindingsResult()
 {
 }
 
-ListFindingsResult::ListFindingsResult(const AmazonWebServiceResult<JsonValue>& result)
+ListFindingsResult::ListFindingsResult(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
   *this = result;
 }
 
-ListFindingsResult& ListFindingsResult::operator =(const AmazonWebServiceResult<JsonValue>& result)
+ListFindingsResult& ListFindingsResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
   const JsonValue& jsonValue = result.GetPayload();
-  if(jsonValue.ValueExists("findingArnList"))
+  if(jsonValue.ValueExists("findingArns"))
   {
-    Array<JsonValue> findingArnListJsonList = jsonValue.GetArray("findingArnList");
-    for(unsigned findingArnListIndex = 0; findingArnListIndex < findingArnListJsonList.GetLength(); ++findingArnListIndex)
+    Array<JsonValue> findingArnsJsonList = jsonValue.GetArray("findingArns");
+    for(unsigned findingArnsIndex = 0; findingArnsIndex < findingArnsJsonList.GetLength(); ++findingArnsIndex)
     {
-      m_findingArnList.push_back(findingArnListJsonList[findingArnListIndex].AsString());
+      m_findingArns.push_back(findingArnsJsonList[findingArnsIndex].AsString());
     }
   }
 

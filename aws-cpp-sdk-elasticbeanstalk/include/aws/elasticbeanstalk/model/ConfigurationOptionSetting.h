@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,6 +52,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>A unique resource name for a time-based scaling configuration option.</p>
      */
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>A unique resource name for a time-based scaling configuration option.</p>
      */
-    inline void SetResourceName(Aws::String&& value) { m_resourceNameHasBeenSet = true; m_resourceName = value; }
+    inline void SetResourceName(Aws::String&& value) { m_resourceNameHasBeenSet = true; m_resourceName = std::move(value); }
 
     /**
      * <p>A unique resource name for a time-based scaling configuration option.</p>
@@ -78,12 +81,13 @@ namespace Model
     /**
      * <p>A unique resource name for a time-based scaling configuration option.</p>
      */
-    inline ConfigurationOptionSetting& WithResourceName(Aws::String&& value) { SetResourceName(value); return *this;}
+    inline ConfigurationOptionSetting& WithResourceName(Aws::String&& value) { SetResourceName(std::move(value)); return *this;}
 
     /**
      * <p>A unique resource name for a time-based scaling configuration option.</p>
      */
     inline ConfigurationOptionSetting& WithResourceName(const char* value) { SetResourceName(value); return *this;}
+
 
     /**
      * <p>A unique namespace identifying the option's associated AWS resource.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>A unique namespace identifying the option's associated AWS resource.</p>
      */
-    inline void SetNamespace(Aws::String&& value) { m_namespaceHasBeenSet = true; m_namespace = value; }
+    inline void SetNamespace(Aws::String&& value) { m_namespaceHasBeenSet = true; m_namespace = std::move(value); }
 
     /**
      * <p>A unique namespace identifying the option's associated AWS resource.</p>
@@ -113,12 +117,13 @@ namespace Model
     /**
      * <p>A unique namespace identifying the option's associated AWS resource.</p>
      */
-    inline ConfigurationOptionSetting& WithNamespace(Aws::String&& value) { SetNamespace(value); return *this;}
+    inline ConfigurationOptionSetting& WithNamespace(Aws::String&& value) { SetNamespace(std::move(value)); return *this;}
 
     /**
      * <p>A unique namespace identifying the option's associated AWS resource.</p>
      */
     inline ConfigurationOptionSetting& WithNamespace(const char* value) { SetNamespace(value); return *this;}
+
 
     /**
      * <p>The name of the configuration option.</p>
@@ -133,7 +138,7 @@ namespace Model
     /**
      * <p>The name of the configuration option.</p>
      */
-    inline void SetOptionName(Aws::String&& value) { m_optionNameHasBeenSet = true; m_optionName = value; }
+    inline void SetOptionName(Aws::String&& value) { m_optionNameHasBeenSet = true; m_optionName = std::move(value); }
 
     /**
      * <p>The name of the configuration option.</p>
@@ -148,12 +153,13 @@ namespace Model
     /**
      * <p>The name of the configuration option.</p>
      */
-    inline ConfigurationOptionSetting& WithOptionName(Aws::String&& value) { SetOptionName(value); return *this;}
+    inline ConfigurationOptionSetting& WithOptionName(Aws::String&& value) { SetOptionName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the configuration option.</p>
      */
     inline ConfigurationOptionSetting& WithOptionName(const char* value) { SetOptionName(value); return *this;}
+
 
     /**
      * <p>The current value for the configuration option.</p>
@@ -168,7 +174,7 @@ namespace Model
     /**
      * <p>The current value for the configuration option.</p>
      */
-    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = value; }
+    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = std::move(value); }
 
     /**
      * <p>The current value for the configuration option.</p>
@@ -183,7 +189,7 @@ namespace Model
     /**
      * <p>The current value for the configuration option.</p>
      */
-    inline ConfigurationOptionSetting& WithValue(Aws::String&& value) { SetValue(value); return *this;}
+    inline ConfigurationOptionSetting& WithValue(Aws::String&& value) { SetValue(std::move(value)); return *this;}
 
     /**
      * <p>The current value for the configuration option.</p>
@@ -191,12 +197,16 @@ namespace Model
     inline ConfigurationOptionSetting& WithValue(const char* value) { SetValue(value); return *this;}
 
   private:
+
     Aws::String m_resourceName;
     bool m_resourceNameHasBeenSet;
+
     Aws::String m_namespace;
     bool m_namespaceHasBeenSet;
+
     Aws::String m_optionName;
     bool m_optionNameHasBeenSet;
+
     Aws::String m_value;
     bool m_valueHasBeenSet;
   };

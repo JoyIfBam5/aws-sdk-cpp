@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudtrail/CloudTrail_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/cloudtrail/model/Trail.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     DescribeTrailsResult();
-    DescribeTrailsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeTrailsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeTrailsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeTrailsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The list of trail objects.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The list of trail objects.</p>
      */
-    inline void SetTrailList(Aws::Vector<Trail>&& value) { m_trailList = value; }
+    inline void SetTrailList(Aws::Vector<Trail>&& value) { m_trailList = std::move(value); }
 
     /**
      * <p>The list of trail objects.</p>
@@ -69,7 +72,7 @@ namespace Model
     /**
      * <p>The list of trail objects.</p>
      */
-    inline DescribeTrailsResult& WithTrailList(Aws::Vector<Trail>&& value) { SetTrailList(value); return *this;}
+    inline DescribeTrailsResult& WithTrailList(Aws::Vector<Trail>&& value) { SetTrailList(std::move(value)); return *this;}
 
     /**
      * <p>The list of trail objects.</p>
@@ -79,9 +82,10 @@ namespace Model
     /**
      * <p>The list of trail objects.</p>
      */
-    inline DescribeTrailsResult& AddTrailList(Trail&& value) { m_trailList.push_back(value); return *this; }
+    inline DescribeTrailsResult& AddTrailList(Trail&& value) { m_trailList.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<Trail> m_trailList;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/firehose/Firehose_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -19,6 +20,7 @@
 #include <aws/firehose/model/CompressionFormat.h>
 #include <aws/firehose/model/EncryptionConfiguration.h>
 #include <aws/firehose/model/CloudWatchLoggingOptions.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     S3DestinationConfiguration& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ARN of the AWS credentials.</p>
      */
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>The ARN of the AWS credentials.</p>
      */
-    inline void SetRoleARN(Aws::String&& value) { m_roleARNHasBeenSet = true; m_roleARN = value; }
+    inline void SetRoleARN(Aws::String&& value) { m_roleARNHasBeenSet = true; m_roleARN = std::move(value); }
 
     /**
      * <p>The ARN of the AWS credentials.</p>
@@ -76,12 +79,13 @@ namespace Model
     /**
      * <p>The ARN of the AWS credentials.</p>
      */
-    inline S3DestinationConfiguration& WithRoleARN(Aws::String&& value) { SetRoleARN(value); return *this;}
+    inline S3DestinationConfiguration& WithRoleARN(Aws::String&& value) { SetRoleARN(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of the AWS credentials.</p>
      */
     inline S3DestinationConfiguration& WithRoleARN(const char* value) { SetRoleARN(value); return *this;}
+
 
     /**
      * <p>The ARN of the S3 bucket.</p>
@@ -96,7 +100,7 @@ namespace Model
     /**
      * <p>The ARN of the S3 bucket.</p>
      */
-    inline void SetBucketARN(Aws::String&& value) { m_bucketARNHasBeenSet = true; m_bucketARN = value; }
+    inline void SetBucketARN(Aws::String&& value) { m_bucketARNHasBeenSet = true; m_bucketARN = std::move(value); }
 
     /**
      * <p>The ARN of the S3 bucket.</p>
@@ -111,18 +115,19 @@ namespace Model
     /**
      * <p>The ARN of the S3 bucket.</p>
      */
-    inline S3DestinationConfiguration& WithBucketARN(Aws::String&& value) { SetBucketARN(value); return *this;}
+    inline S3DestinationConfiguration& WithBucketARN(Aws::String&& value) { SetBucketARN(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of the S3 bucket.</p>
      */
     inline S3DestinationConfiguration& WithBucketARN(const char* value) { SetBucketARN(value); return *this;}
 
+
     /**
      * <p>The "YYYY/MM/DD/HH" time format prefix is automatically used for delivered S3
      * files. You can specify an extra prefix to be added in front of the time format
-     * prefix. Note that if the prefix ends with a slash, it appears as a folder in the
-     * S3 bucket. For more information, see <a
+     * prefix. If the prefix ends with a slash, it appears as a folder in the S3
+     * bucket. For more information, see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html">Amazon
      * S3 Object Name Format</a> in the <i>Amazon Kinesis Firehose Developer
      * Guide</i>.</p>
@@ -132,8 +137,8 @@ namespace Model
     /**
      * <p>The "YYYY/MM/DD/HH" time format prefix is automatically used for delivered S3
      * files. You can specify an extra prefix to be added in front of the time format
-     * prefix. Note that if the prefix ends with a slash, it appears as a folder in the
-     * S3 bucket. For more information, see <a
+     * prefix. If the prefix ends with a slash, it appears as a folder in the S3
+     * bucket. For more information, see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html">Amazon
      * S3 Object Name Format</a> in the <i>Amazon Kinesis Firehose Developer
      * Guide</i>.</p>
@@ -143,19 +148,19 @@ namespace Model
     /**
      * <p>The "YYYY/MM/DD/HH" time format prefix is automatically used for delivered S3
      * files. You can specify an extra prefix to be added in front of the time format
-     * prefix. Note that if the prefix ends with a slash, it appears as a folder in the
-     * S3 bucket. For more information, see <a
+     * prefix. If the prefix ends with a slash, it appears as a folder in the S3
+     * bucket. For more information, see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html">Amazon
      * S3 Object Name Format</a> in the <i>Amazon Kinesis Firehose Developer
      * Guide</i>.</p>
      */
-    inline void SetPrefix(Aws::String&& value) { m_prefixHasBeenSet = true; m_prefix = value; }
+    inline void SetPrefix(Aws::String&& value) { m_prefixHasBeenSet = true; m_prefix = std::move(value); }
 
     /**
      * <p>The "YYYY/MM/DD/HH" time format prefix is automatically used for delivered S3
      * files. You can specify an extra prefix to be added in front of the time format
-     * prefix. Note that if the prefix ends with a slash, it appears as a folder in the
-     * S3 bucket. For more information, see <a
+     * prefix. If the prefix ends with a slash, it appears as a folder in the S3
+     * bucket. For more information, see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html">Amazon
      * S3 Object Name Format</a> in the <i>Amazon Kinesis Firehose Developer
      * Guide</i>.</p>
@@ -165,8 +170,8 @@ namespace Model
     /**
      * <p>The "YYYY/MM/DD/HH" time format prefix is automatically used for delivered S3
      * files. You can specify an extra prefix to be added in front of the time format
-     * prefix. Note that if the prefix ends with a slash, it appears as a folder in the
-     * S3 bucket. For more information, see <a
+     * prefix. If the prefix ends with a slash, it appears as a folder in the S3
+     * bucket. For more information, see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html">Amazon
      * S3 Object Name Format</a> in the <i>Amazon Kinesis Firehose Developer
      * Guide</i>.</p>
@@ -176,24 +181,25 @@ namespace Model
     /**
      * <p>The "YYYY/MM/DD/HH" time format prefix is automatically used for delivered S3
      * files. You can specify an extra prefix to be added in front of the time format
-     * prefix. Note that if the prefix ends with a slash, it appears as a folder in the
-     * S3 bucket. For more information, see <a
+     * prefix. If the prefix ends with a slash, it appears as a folder in the S3
+     * bucket. For more information, see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html">Amazon
      * S3 Object Name Format</a> in the <i>Amazon Kinesis Firehose Developer
      * Guide</i>.</p>
      */
-    inline S3DestinationConfiguration& WithPrefix(Aws::String&& value) { SetPrefix(value); return *this;}
+    inline S3DestinationConfiguration& WithPrefix(Aws::String&& value) { SetPrefix(std::move(value)); return *this;}
 
     /**
      * <p>The "YYYY/MM/DD/HH" time format prefix is automatically used for delivered S3
      * files. You can specify an extra prefix to be added in front of the time format
-     * prefix. Note that if the prefix ends with a slash, it appears as a folder in the
-     * S3 bucket. For more information, see <a
+     * prefix. If the prefix ends with a slash, it appears as a folder in the S3
+     * bucket. For more information, see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html">Amazon
      * S3 Object Name Format</a> in the <i>Amazon Kinesis Firehose Developer
      * Guide</i>.</p>
      */
     inline S3DestinationConfiguration& WithPrefix(const char* value) { SetPrefix(value); return *this;}
+
 
     /**
      * <p>The buffering option. If no value is specified, <b>BufferingHints</b> object
@@ -211,7 +217,7 @@ namespace Model
      * <p>The buffering option. If no value is specified, <b>BufferingHints</b> object
      * default values are used.</p>
      */
-    inline void SetBufferingHints(BufferingHints&& value) { m_bufferingHintsHasBeenSet = true; m_bufferingHints = value; }
+    inline void SetBufferingHints(BufferingHints&& value) { m_bufferingHintsHasBeenSet = true; m_bufferingHints = std::move(value); }
 
     /**
      * <p>The buffering option. If no value is specified, <b>BufferingHints</b> object
@@ -223,7 +229,8 @@ namespace Model
      * <p>The buffering option. If no value is specified, <b>BufferingHints</b> object
      * default values are used.</p>
      */
-    inline S3DestinationConfiguration& WithBufferingHints(BufferingHints&& value) { SetBufferingHints(value); return *this;}
+    inline S3DestinationConfiguration& WithBufferingHints(BufferingHints&& value) { SetBufferingHints(std::move(value)); return *this;}
+
 
     /**
      * <p>The compression format. If no value is specified, the default is
@@ -250,7 +257,7 @@ namespace Model
      * they are not supported by the Amazon Redshift <code>COPY</code> operation that
      * reads from the S3 bucket.</p>
      */
-    inline void SetCompressionFormat(CompressionFormat&& value) { m_compressionFormatHasBeenSet = true; m_compressionFormat = value; }
+    inline void SetCompressionFormat(CompressionFormat&& value) { m_compressionFormatHasBeenSet = true; m_compressionFormat = std::move(value); }
 
     /**
      * <p>The compression format. If no value is specified, the default is
@@ -268,7 +275,8 @@ namespace Model
      * they are not supported by the Amazon Redshift <code>COPY</code> operation that
      * reads from the S3 bucket.</p>
      */
-    inline S3DestinationConfiguration& WithCompressionFormat(CompressionFormat&& value) { SetCompressionFormat(value); return *this;}
+    inline S3DestinationConfiguration& WithCompressionFormat(CompressionFormat&& value) { SetCompressionFormat(std::move(value)); return *this;}
+
 
     /**
      * <p>The encryption configuration. If no value is specified, the default is no
@@ -286,7 +294,7 @@ namespace Model
      * <p>The encryption configuration. If no value is specified, the default is no
      * encryption.</p>
      */
-    inline void SetEncryptionConfiguration(EncryptionConfiguration&& value) { m_encryptionConfigurationHasBeenSet = true; m_encryptionConfiguration = value; }
+    inline void SetEncryptionConfiguration(EncryptionConfiguration&& value) { m_encryptionConfigurationHasBeenSet = true; m_encryptionConfiguration = std::move(value); }
 
     /**
      * <p>The encryption configuration. If no value is specified, the default is no
@@ -298,7 +306,8 @@ namespace Model
      * <p>The encryption configuration. If no value is specified, the default is no
      * encryption.</p>
      */
-    inline S3DestinationConfiguration& WithEncryptionConfiguration(EncryptionConfiguration&& value) { SetEncryptionConfiguration(value); return *this;}
+    inline S3DestinationConfiguration& WithEncryptionConfiguration(EncryptionConfiguration&& value) { SetEncryptionConfiguration(std::move(value)); return *this;}
+
 
     /**
      * <p>The CloudWatch logging options for your delivery stream.</p>
@@ -313,7 +322,7 @@ namespace Model
     /**
      * <p>The CloudWatch logging options for your delivery stream.</p>
      */
-    inline void SetCloudWatchLoggingOptions(CloudWatchLoggingOptions&& value) { m_cloudWatchLoggingOptionsHasBeenSet = true; m_cloudWatchLoggingOptions = value; }
+    inline void SetCloudWatchLoggingOptions(CloudWatchLoggingOptions&& value) { m_cloudWatchLoggingOptionsHasBeenSet = true; m_cloudWatchLoggingOptions = std::move(value); }
 
     /**
      * <p>The CloudWatch logging options for your delivery stream.</p>
@@ -323,21 +332,28 @@ namespace Model
     /**
      * <p>The CloudWatch logging options for your delivery stream.</p>
      */
-    inline S3DestinationConfiguration& WithCloudWatchLoggingOptions(CloudWatchLoggingOptions&& value) { SetCloudWatchLoggingOptions(value); return *this;}
+    inline S3DestinationConfiguration& WithCloudWatchLoggingOptions(CloudWatchLoggingOptions&& value) { SetCloudWatchLoggingOptions(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_roleARN;
     bool m_roleARNHasBeenSet;
+
     Aws::String m_bucketARN;
     bool m_bucketARNHasBeenSet;
+
     Aws::String m_prefix;
     bool m_prefixHasBeenSet;
+
     BufferingHints m_bufferingHints;
     bool m_bufferingHintsHasBeenSet;
+
     CompressionFormat m_compressionFormat;
     bool m_compressionFormatHasBeenSet;
+
     EncryptionConfiguration m_encryptionConfiguration;
     bool m_encryptionConfigurationHasBeenSet;
+
     CloudWatchLoggingOptions m_cloudWatchLoggingOptions;
     bool m_cloudWatchLoggingOptionsHasBeenSet;
   };

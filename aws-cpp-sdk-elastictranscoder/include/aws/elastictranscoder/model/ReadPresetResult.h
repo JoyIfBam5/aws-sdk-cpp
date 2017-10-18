@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elastictranscoder/ElasticTranscoder_EXPORTS.h>
 #include <aws/elastictranscoder/model/Preset.h>
+#include <utility>
 
 namespace Aws
 {
@@ -41,8 +43,9 @@ namespace Model
   {
   public:
     ReadPresetResult();
-    ReadPresetResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ReadPresetResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ReadPresetResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ReadPresetResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A section of the response body that provides information about the
@@ -60,7 +63,7 @@ namespace Model
      * <p>A section of the response body that provides information about the
      * preset.</p>
      */
-    inline void SetPreset(Preset&& value) { m_preset = value; }
+    inline void SetPreset(Preset&& value) { m_preset = std::move(value); }
 
     /**
      * <p>A section of the response body that provides information about the
@@ -72,9 +75,10 @@ namespace Model
      * <p>A section of the response body that provides information about the
      * preset.</p>
      */
-    inline ReadPresetResult& WithPreset(Preset&& value) { SetPreset(value); return *this;}
+    inline ReadPresetResult& WithPreset(Preset&& value) { SetPreset(std::move(value)); return *this;}
 
   private:
+
     Preset m_preset;
   };
 

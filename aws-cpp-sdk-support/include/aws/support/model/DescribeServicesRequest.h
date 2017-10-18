@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/support/Support_EXPORTS.h>
 #include <aws/support/SupportRequest.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     DescribeServicesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeServices"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>A JSON-formatted list of service codes available for AWS services.</p>
@@ -51,7 +61,7 @@ namespace Model
     /**
      * <p>A JSON-formatted list of service codes available for AWS services.</p>
      */
-    inline void SetServiceCodeList(Aws::Vector<Aws::String>&& value) { m_serviceCodeListHasBeenSet = true; m_serviceCodeList = value; }
+    inline void SetServiceCodeList(Aws::Vector<Aws::String>&& value) { m_serviceCodeListHasBeenSet = true; m_serviceCodeList = std::move(value); }
 
     /**
      * <p>A JSON-formatted list of service codes available for AWS services.</p>
@@ -61,7 +71,7 @@ namespace Model
     /**
      * <p>A JSON-formatted list of service codes available for AWS services.</p>
      */
-    inline DescribeServicesRequest& WithServiceCodeList(Aws::Vector<Aws::String>&& value) { SetServiceCodeList(value); return *this;}
+    inline DescribeServicesRequest& WithServiceCodeList(Aws::Vector<Aws::String>&& value) { SetServiceCodeList(std::move(value)); return *this;}
 
     /**
      * <p>A JSON-formatted list of service codes available for AWS services.</p>
@@ -71,12 +81,13 @@ namespace Model
     /**
      * <p>A JSON-formatted list of service codes available for AWS services.</p>
      */
-    inline DescribeServicesRequest& AddServiceCodeList(Aws::String&& value) { m_serviceCodeListHasBeenSet = true; m_serviceCodeList.push_back(value); return *this; }
+    inline DescribeServicesRequest& AddServiceCodeList(Aws::String&& value) { m_serviceCodeListHasBeenSet = true; m_serviceCodeList.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A JSON-formatted list of service codes available for AWS services.</p>
      */
     inline DescribeServicesRequest& AddServiceCodeList(const char* value) { m_serviceCodeListHasBeenSet = true; m_serviceCodeList.push_back(value); return *this; }
+
 
     /**
      * <p>The ISO 639-1 code for the language in which AWS provides support. AWS
@@ -97,7 +108,7 @@ namespace Model
      * Support currently supports English ("en") and Japanese ("ja"). Language
      * parameters must be passed explicitly for operations that take them.</p>
      */
-    inline void SetLanguage(Aws::String&& value) { m_languageHasBeenSet = true; m_language = value; }
+    inline void SetLanguage(Aws::String&& value) { m_languageHasBeenSet = true; m_language = std::move(value); }
 
     /**
      * <p>The ISO 639-1 code for the language in which AWS provides support. AWS
@@ -118,7 +129,7 @@ namespace Model
      * Support currently supports English ("en") and Japanese ("ja"). Language
      * parameters must be passed explicitly for operations that take them.</p>
      */
-    inline DescribeServicesRequest& WithLanguage(Aws::String&& value) { SetLanguage(value); return *this;}
+    inline DescribeServicesRequest& WithLanguage(Aws::String&& value) { SetLanguage(std::move(value)); return *this;}
 
     /**
      * <p>The ISO 639-1 code for the language in which AWS provides support. AWS
@@ -128,8 +139,10 @@ namespace Model
     inline DescribeServicesRequest& WithLanguage(const char* value) { SetLanguage(value); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_serviceCodeList;
     bool m_serviceCodeListHasBeenSet;
+
     Aws::String m_language;
     bool m_languageHasBeenSet;
   };

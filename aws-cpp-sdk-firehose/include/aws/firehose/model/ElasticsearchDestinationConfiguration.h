@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/firehose/Firehose_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -22,6 +23,7 @@
 #include <aws/firehose/model/S3DestinationConfiguration.h>
 #include <aws/firehose/model/ProcessingConfiguration.h>
 #include <aws/firehose/model/CloudWatchLoggingOptions.h>
+#include <utility>
 
 namespace Aws
 {
@@ -51,61 +53,70 @@ namespace Model
     ElasticsearchDestinationConfiguration& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p>The ARN of the IAM role to be assumed by Firehose for calling the Amazon ES
-     * Configuration API and for indexing documents. For more information, see <a
+     * <p>The ARN of the IAM role to be assumed by Kinesis Firehose for calling the
+     * Amazon ES Configuration API and for indexing documents. For more information,
+     * see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/controlling-access.html#using-iam-s3">Amazon
      * S3 Bucket Access</a>.</p>
      */
     inline const Aws::String& GetRoleARN() const{ return m_roleARN; }
 
     /**
-     * <p>The ARN of the IAM role to be assumed by Firehose for calling the Amazon ES
-     * Configuration API and for indexing documents. For more information, see <a
+     * <p>The ARN of the IAM role to be assumed by Kinesis Firehose for calling the
+     * Amazon ES Configuration API and for indexing documents. For more information,
+     * see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/controlling-access.html#using-iam-s3">Amazon
      * S3 Bucket Access</a>.</p>
      */
     inline void SetRoleARN(const Aws::String& value) { m_roleARNHasBeenSet = true; m_roleARN = value; }
 
     /**
-     * <p>The ARN of the IAM role to be assumed by Firehose for calling the Amazon ES
-     * Configuration API and for indexing documents. For more information, see <a
+     * <p>The ARN of the IAM role to be assumed by Kinesis Firehose for calling the
+     * Amazon ES Configuration API and for indexing documents. For more information,
+     * see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/controlling-access.html#using-iam-s3">Amazon
      * S3 Bucket Access</a>.</p>
      */
-    inline void SetRoleARN(Aws::String&& value) { m_roleARNHasBeenSet = true; m_roleARN = value; }
+    inline void SetRoleARN(Aws::String&& value) { m_roleARNHasBeenSet = true; m_roleARN = std::move(value); }
 
     /**
-     * <p>The ARN of the IAM role to be assumed by Firehose for calling the Amazon ES
-     * Configuration API and for indexing documents. For more information, see <a
+     * <p>The ARN of the IAM role to be assumed by Kinesis Firehose for calling the
+     * Amazon ES Configuration API and for indexing documents. For more information,
+     * see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/controlling-access.html#using-iam-s3">Amazon
      * S3 Bucket Access</a>.</p>
      */
     inline void SetRoleARN(const char* value) { m_roleARNHasBeenSet = true; m_roleARN.assign(value); }
 
     /**
-     * <p>The ARN of the IAM role to be assumed by Firehose for calling the Amazon ES
-     * Configuration API and for indexing documents. For more information, see <a
+     * <p>The ARN of the IAM role to be assumed by Kinesis Firehose for calling the
+     * Amazon ES Configuration API and for indexing documents. For more information,
+     * see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/controlling-access.html#using-iam-s3">Amazon
      * S3 Bucket Access</a>.</p>
      */
     inline ElasticsearchDestinationConfiguration& WithRoleARN(const Aws::String& value) { SetRoleARN(value); return *this;}
 
     /**
-     * <p>The ARN of the IAM role to be assumed by Firehose for calling the Amazon ES
-     * Configuration API and for indexing documents. For more information, see <a
+     * <p>The ARN of the IAM role to be assumed by Kinesis Firehose for calling the
+     * Amazon ES Configuration API and for indexing documents. For more information,
+     * see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/controlling-access.html#using-iam-s3">Amazon
      * S3 Bucket Access</a>.</p>
      */
-    inline ElasticsearchDestinationConfiguration& WithRoleARN(Aws::String&& value) { SetRoleARN(value); return *this;}
+    inline ElasticsearchDestinationConfiguration& WithRoleARN(Aws::String&& value) { SetRoleARN(std::move(value)); return *this;}
 
     /**
-     * <p>The ARN of the IAM role to be assumed by Firehose for calling the Amazon ES
-     * Configuration API and for indexing documents. For more information, see <a
+     * <p>The ARN of the IAM role to be assumed by Kinesis Firehose for calling the
+     * Amazon ES Configuration API and for indexing documents. For more information,
+     * see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/controlling-access.html#using-iam-s3">Amazon
      * S3 Bucket Access</a>.</p>
      */
     inline ElasticsearchDestinationConfiguration& WithRoleARN(const char* value) { SetRoleARN(value); return *this;}
+
 
     /**
      * <p>The ARN of the Amazon ES domain. The IAM role must have permissions
@@ -132,7 +143,7 @@ namespace Model
      * <code>DescribeElasticsearchDomainConfig</code> after assuming the role specified
      * in <b>RoleARN</b>.</p>
      */
-    inline void SetDomainARN(Aws::String&& value) { m_domainARNHasBeenSet = true; m_domainARN = value; }
+    inline void SetDomainARN(Aws::String&& value) { m_domainARNHasBeenSet = true; m_domainARN = std::move(value); }
 
     /**
      * <p>The ARN of the Amazon ES domain. The IAM role must have permissions
@@ -159,7 +170,7 @@ namespace Model
      * <code>DescribeElasticsearchDomainConfig</code> after assuming the role specified
      * in <b>RoleARN</b>.</p>
      */
-    inline ElasticsearchDestinationConfiguration& WithDomainARN(Aws::String&& value) { SetDomainARN(value); return *this;}
+    inline ElasticsearchDestinationConfiguration& WithDomainARN(Aws::String&& value) { SetDomainARN(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of the Amazon ES domain. The IAM role must have permissions
@@ -169,6 +180,7 @@ namespace Model
      * in <b>RoleARN</b>.</p>
      */
     inline ElasticsearchDestinationConfiguration& WithDomainARN(const char* value) { SetDomainARN(value); return *this;}
+
 
     /**
      * <p>The Elasticsearch index name.</p>
@@ -183,7 +195,7 @@ namespace Model
     /**
      * <p>The Elasticsearch index name.</p>
      */
-    inline void SetIndexName(Aws::String&& value) { m_indexNameHasBeenSet = true; m_indexName = value; }
+    inline void SetIndexName(Aws::String&& value) { m_indexNameHasBeenSet = true; m_indexName = std::move(value); }
 
     /**
      * <p>The Elasticsearch index name.</p>
@@ -198,12 +210,13 @@ namespace Model
     /**
      * <p>The Elasticsearch index name.</p>
      */
-    inline ElasticsearchDestinationConfiguration& WithIndexName(Aws::String&& value) { SetIndexName(value); return *this;}
+    inline ElasticsearchDestinationConfiguration& WithIndexName(Aws::String&& value) { SetIndexName(std::move(value)); return *this;}
 
     /**
      * <p>The Elasticsearch index name.</p>
      */
     inline ElasticsearchDestinationConfiguration& WithIndexName(const char* value) { SetIndexName(value); return *this;}
+
 
     /**
      * <p>The Elasticsearch type name.</p>
@@ -218,7 +231,7 @@ namespace Model
     /**
      * <p>The Elasticsearch type name.</p>
      */
-    inline void SetTypeName(Aws::String&& value) { m_typeNameHasBeenSet = true; m_typeName = value; }
+    inline void SetTypeName(Aws::String&& value) { m_typeNameHasBeenSet = true; m_typeName = std::move(value); }
 
     /**
      * <p>The Elasticsearch type name.</p>
@@ -233,17 +246,18 @@ namespace Model
     /**
      * <p>The Elasticsearch type name.</p>
      */
-    inline ElasticsearchDestinationConfiguration& WithTypeName(Aws::String&& value) { SetTypeName(value); return *this;}
+    inline ElasticsearchDestinationConfiguration& WithTypeName(Aws::String&& value) { SetTypeName(std::move(value)); return *this;}
 
     /**
      * <p>The Elasticsearch type name.</p>
      */
     inline ElasticsearchDestinationConfiguration& WithTypeName(const char* value) { SetTypeName(value); return *this;}
 
+
     /**
-     * <p>The Elasticsearch index rotation period. Index rotation appends a timestamp
-     * to the IndexName to facilitate expiration of old data. For more information, see
-     * <a
+     * <p>The Elasticsearch index rotation period. Index rotation appends a time stamp
+     * to the IndexName to facilitate the expiration of old data. For more information,
+     * see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html#es-index-rotation">Index
      * Rotation for Amazon Elasticsearch Service Destination</a>. The default value
      * is <code>OneDay</code>.</p>
@@ -251,9 +265,9 @@ namespace Model
     inline const ElasticsearchIndexRotationPeriod& GetIndexRotationPeriod() const{ return m_indexRotationPeriod; }
 
     /**
-     * <p>The Elasticsearch index rotation period. Index rotation appends a timestamp
-     * to the IndexName to facilitate expiration of old data. For more information, see
-     * <a
+     * <p>The Elasticsearch index rotation period. Index rotation appends a time stamp
+     * to the IndexName to facilitate the expiration of old data. For more information,
+     * see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html#es-index-rotation">Index
      * Rotation for Amazon Elasticsearch Service Destination</a>. The default value
      * is <code>OneDay</code>.</p>
@@ -261,19 +275,19 @@ namespace Model
     inline void SetIndexRotationPeriod(const ElasticsearchIndexRotationPeriod& value) { m_indexRotationPeriodHasBeenSet = true; m_indexRotationPeriod = value; }
 
     /**
-     * <p>The Elasticsearch index rotation period. Index rotation appends a timestamp
-     * to the IndexName to facilitate expiration of old data. For more information, see
-     * <a
+     * <p>The Elasticsearch index rotation period. Index rotation appends a time stamp
+     * to the IndexName to facilitate the expiration of old data. For more information,
+     * see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html#es-index-rotation">Index
      * Rotation for Amazon Elasticsearch Service Destination</a>. The default value
      * is <code>OneDay</code>.</p>
      */
-    inline void SetIndexRotationPeriod(ElasticsearchIndexRotationPeriod&& value) { m_indexRotationPeriodHasBeenSet = true; m_indexRotationPeriod = value; }
+    inline void SetIndexRotationPeriod(ElasticsearchIndexRotationPeriod&& value) { m_indexRotationPeriodHasBeenSet = true; m_indexRotationPeriod = std::move(value); }
 
     /**
-     * <p>The Elasticsearch index rotation period. Index rotation appends a timestamp
-     * to the IndexName to facilitate expiration of old data. For more information, see
-     * <a
+     * <p>The Elasticsearch index rotation period. Index rotation appends a time stamp
+     * to the IndexName to facilitate the expiration of old data. For more information,
+     * see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html#es-index-rotation">Index
      * Rotation for Amazon Elasticsearch Service Destination</a>. The default value
      * is <code>OneDay</code>.</p>
@@ -281,14 +295,15 @@ namespace Model
     inline ElasticsearchDestinationConfiguration& WithIndexRotationPeriod(const ElasticsearchIndexRotationPeriod& value) { SetIndexRotationPeriod(value); return *this;}
 
     /**
-     * <p>The Elasticsearch index rotation period. Index rotation appends a timestamp
-     * to the IndexName to facilitate expiration of old data. For more information, see
-     * <a
+     * <p>The Elasticsearch index rotation period. Index rotation appends a time stamp
+     * to the IndexName to facilitate the expiration of old data. For more information,
+     * see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html#es-index-rotation">Index
      * Rotation for Amazon Elasticsearch Service Destination</a>. The default value
      * is <code>OneDay</code>.</p>
      */
-    inline ElasticsearchDestinationConfiguration& WithIndexRotationPeriod(ElasticsearchIndexRotationPeriod&& value) { SetIndexRotationPeriod(value); return *this;}
+    inline ElasticsearchDestinationConfiguration& WithIndexRotationPeriod(ElasticsearchIndexRotationPeriod&& value) { SetIndexRotationPeriod(std::move(value)); return *this;}
+
 
     /**
      * <p>The buffering options. If no value is specified, the default values for
@@ -306,7 +321,7 @@ namespace Model
      * <p>The buffering options. If no value is specified, the default values for
      * <b>ElasticsearchBufferingHints</b> are used.</p>
      */
-    inline void SetBufferingHints(ElasticsearchBufferingHints&& value) { m_bufferingHintsHasBeenSet = true; m_bufferingHints = value; }
+    inline void SetBufferingHints(ElasticsearchBufferingHints&& value) { m_bufferingHintsHasBeenSet = true; m_bufferingHints = std::move(value); }
 
     /**
      * <p>The buffering options. If no value is specified, the default values for
@@ -318,45 +333,47 @@ namespace Model
      * <p>The buffering options. If no value is specified, the default values for
      * <b>ElasticsearchBufferingHints</b> are used.</p>
      */
-    inline ElasticsearchDestinationConfiguration& WithBufferingHints(ElasticsearchBufferingHints&& value) { SetBufferingHints(value); return *this;}
+    inline ElasticsearchDestinationConfiguration& WithBufferingHints(ElasticsearchBufferingHints&& value) { SetBufferingHints(std::move(value)); return *this;}
+
 
     /**
-     * <p>The retry behavior in the event that Firehose is unable to deliver documents
-     * to Amazon ES. The default value is 300 (5 minutes).</p>
+     * <p>The retry behavior in case Kinesis Firehose is unable to deliver documents to
+     * Amazon ES. The default value is 300 (5 minutes).</p>
      */
     inline const ElasticsearchRetryOptions& GetRetryOptions() const{ return m_retryOptions; }
 
     /**
-     * <p>The retry behavior in the event that Firehose is unable to deliver documents
-     * to Amazon ES. The default value is 300 (5 minutes).</p>
+     * <p>The retry behavior in case Kinesis Firehose is unable to deliver documents to
+     * Amazon ES. The default value is 300 (5 minutes).</p>
      */
     inline void SetRetryOptions(const ElasticsearchRetryOptions& value) { m_retryOptionsHasBeenSet = true; m_retryOptions = value; }
 
     /**
-     * <p>The retry behavior in the event that Firehose is unable to deliver documents
-     * to Amazon ES. The default value is 300 (5 minutes).</p>
+     * <p>The retry behavior in case Kinesis Firehose is unable to deliver documents to
+     * Amazon ES. The default value is 300 (5 minutes).</p>
      */
-    inline void SetRetryOptions(ElasticsearchRetryOptions&& value) { m_retryOptionsHasBeenSet = true; m_retryOptions = value; }
+    inline void SetRetryOptions(ElasticsearchRetryOptions&& value) { m_retryOptionsHasBeenSet = true; m_retryOptions = std::move(value); }
 
     /**
-     * <p>The retry behavior in the event that Firehose is unable to deliver documents
-     * to Amazon ES. The default value is 300 (5 minutes).</p>
+     * <p>The retry behavior in case Kinesis Firehose is unable to deliver documents to
+     * Amazon ES. The default value is 300 (5 minutes).</p>
      */
     inline ElasticsearchDestinationConfiguration& WithRetryOptions(const ElasticsearchRetryOptions& value) { SetRetryOptions(value); return *this;}
 
     /**
-     * <p>The retry behavior in the event that Firehose is unable to deliver documents
-     * to Amazon ES. The default value is 300 (5 minutes).</p>
+     * <p>The retry behavior in case Kinesis Firehose is unable to deliver documents to
+     * Amazon ES. The default value is 300 (5 minutes).</p>
      */
-    inline ElasticsearchDestinationConfiguration& WithRetryOptions(ElasticsearchRetryOptions&& value) { SetRetryOptions(value); return *this;}
+    inline ElasticsearchDestinationConfiguration& WithRetryOptions(ElasticsearchRetryOptions&& value) { SetRetryOptions(std::move(value)); return *this;}
+
 
     /**
      * <p>Defines how documents should be delivered to Amazon S3. When set to
-     * FailedDocumentsOnly, Firehose writes any documents that could not be indexed to
-     * the configured Amazon S3 destination, with elasticsearch-failed/ appended to the
-     * key prefix. When set to AllDocuments, Firehose delivers all incoming records to
-     * Amazon S3, and also writes failed documents with elasticsearch-failed/ appended
-     * to the prefix. For more information, see <a
+     * FailedDocumentsOnly, Kinesis Firehose writes any documents that could not be
+     * indexed to the configured Amazon S3 destination, with elasticsearch-failed/
+     * appended to the key prefix. When set to AllDocuments, Kinesis Firehose delivers
+     * all incoming records to Amazon S3, and also writes failed documents with
+     * elasticsearch-failed/ appended to the prefix. For more information, see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html#es-s3-backup">Amazon
      * S3 Backup for Amazon Elasticsearch Service Destination</a>. Default value is
      * FailedDocumentsOnly.</p>
@@ -365,11 +382,11 @@ namespace Model
 
     /**
      * <p>Defines how documents should be delivered to Amazon S3. When set to
-     * FailedDocumentsOnly, Firehose writes any documents that could not be indexed to
-     * the configured Amazon S3 destination, with elasticsearch-failed/ appended to the
-     * key prefix. When set to AllDocuments, Firehose delivers all incoming records to
-     * Amazon S3, and also writes failed documents with elasticsearch-failed/ appended
-     * to the prefix. For more information, see <a
+     * FailedDocumentsOnly, Kinesis Firehose writes any documents that could not be
+     * indexed to the configured Amazon S3 destination, with elasticsearch-failed/
+     * appended to the key prefix. When set to AllDocuments, Kinesis Firehose delivers
+     * all incoming records to Amazon S3, and also writes failed documents with
+     * elasticsearch-failed/ appended to the prefix. For more information, see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html#es-s3-backup">Amazon
      * S3 Backup for Amazon Elasticsearch Service Destination</a>. Default value is
      * FailedDocumentsOnly.</p>
@@ -378,24 +395,24 @@ namespace Model
 
     /**
      * <p>Defines how documents should be delivered to Amazon S3. When set to
-     * FailedDocumentsOnly, Firehose writes any documents that could not be indexed to
-     * the configured Amazon S3 destination, with elasticsearch-failed/ appended to the
-     * key prefix. When set to AllDocuments, Firehose delivers all incoming records to
-     * Amazon S3, and also writes failed documents with elasticsearch-failed/ appended
-     * to the prefix. For more information, see <a
+     * FailedDocumentsOnly, Kinesis Firehose writes any documents that could not be
+     * indexed to the configured Amazon S3 destination, with elasticsearch-failed/
+     * appended to the key prefix. When set to AllDocuments, Kinesis Firehose delivers
+     * all incoming records to Amazon S3, and also writes failed documents with
+     * elasticsearch-failed/ appended to the prefix. For more information, see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html#es-s3-backup">Amazon
      * S3 Backup for Amazon Elasticsearch Service Destination</a>. Default value is
      * FailedDocumentsOnly.</p>
      */
-    inline void SetS3BackupMode(ElasticsearchS3BackupMode&& value) { m_s3BackupModeHasBeenSet = true; m_s3BackupMode = value; }
+    inline void SetS3BackupMode(ElasticsearchS3BackupMode&& value) { m_s3BackupModeHasBeenSet = true; m_s3BackupMode = std::move(value); }
 
     /**
      * <p>Defines how documents should be delivered to Amazon S3. When set to
-     * FailedDocumentsOnly, Firehose writes any documents that could not be indexed to
-     * the configured Amazon S3 destination, with elasticsearch-failed/ appended to the
-     * key prefix. When set to AllDocuments, Firehose delivers all incoming records to
-     * Amazon S3, and also writes failed documents with elasticsearch-failed/ appended
-     * to the prefix. For more information, see <a
+     * FailedDocumentsOnly, Kinesis Firehose writes any documents that could not be
+     * indexed to the configured Amazon S3 destination, with elasticsearch-failed/
+     * appended to the key prefix. When set to AllDocuments, Kinesis Firehose delivers
+     * all incoming records to Amazon S3, and also writes failed documents with
+     * elasticsearch-failed/ appended to the prefix. For more information, see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html#es-s3-backup">Amazon
      * S3 Backup for Amazon Elasticsearch Service Destination</a>. Default value is
      * FailedDocumentsOnly.</p>
@@ -404,46 +421,43 @@ namespace Model
 
     /**
      * <p>Defines how documents should be delivered to Amazon S3. When set to
-     * FailedDocumentsOnly, Firehose writes any documents that could not be indexed to
-     * the configured Amazon S3 destination, with elasticsearch-failed/ appended to the
-     * key prefix. When set to AllDocuments, Firehose delivers all incoming records to
-     * Amazon S3, and also writes failed documents with elasticsearch-failed/ appended
-     * to the prefix. For more information, see <a
+     * FailedDocumentsOnly, Kinesis Firehose writes any documents that could not be
+     * indexed to the configured Amazon S3 destination, with elasticsearch-failed/
+     * appended to the key prefix. When set to AllDocuments, Kinesis Firehose delivers
+     * all incoming records to Amazon S3, and also writes failed documents with
+     * elasticsearch-failed/ appended to the prefix. For more information, see <a
      * href="http://docs.aws.amazon.com/firehose/latest/dev/basic-deliver.html#es-s3-backup">Amazon
      * S3 Backup for Amazon Elasticsearch Service Destination</a>. Default value is
      * FailedDocumentsOnly.</p>
      */
-    inline ElasticsearchDestinationConfiguration& WithS3BackupMode(ElasticsearchS3BackupMode&& value) { SetS3BackupMode(value); return *this;}
+    inline ElasticsearchDestinationConfiguration& WithS3BackupMode(ElasticsearchS3BackupMode&& value) { SetS3BackupMode(std::move(value)); return *this;}
+
 
     /**
-     * <p>The configuration for the intermediate Amazon S3 location from which Amazon
-     * ES obtains data.</p>
+     * <p>The configuration for the backup Amazon S3 location.</p>
      */
     inline const S3DestinationConfiguration& GetS3Configuration() const{ return m_s3Configuration; }
 
     /**
-     * <p>The configuration for the intermediate Amazon S3 location from which Amazon
-     * ES obtains data.</p>
+     * <p>The configuration for the backup Amazon S3 location.</p>
      */
     inline void SetS3Configuration(const S3DestinationConfiguration& value) { m_s3ConfigurationHasBeenSet = true; m_s3Configuration = value; }
 
     /**
-     * <p>The configuration for the intermediate Amazon S3 location from which Amazon
-     * ES obtains data.</p>
+     * <p>The configuration for the backup Amazon S3 location.</p>
      */
-    inline void SetS3Configuration(S3DestinationConfiguration&& value) { m_s3ConfigurationHasBeenSet = true; m_s3Configuration = value; }
+    inline void SetS3Configuration(S3DestinationConfiguration&& value) { m_s3ConfigurationHasBeenSet = true; m_s3Configuration = std::move(value); }
 
     /**
-     * <p>The configuration for the intermediate Amazon S3 location from which Amazon
-     * ES obtains data.</p>
+     * <p>The configuration for the backup Amazon S3 location.</p>
      */
     inline ElasticsearchDestinationConfiguration& WithS3Configuration(const S3DestinationConfiguration& value) { SetS3Configuration(value); return *this;}
 
     /**
-     * <p>The configuration for the intermediate Amazon S3 location from which Amazon
-     * ES obtains data.</p>
+     * <p>The configuration for the backup Amazon S3 location.</p>
      */
-    inline ElasticsearchDestinationConfiguration& WithS3Configuration(S3DestinationConfiguration&& value) { SetS3Configuration(value); return *this;}
+    inline ElasticsearchDestinationConfiguration& WithS3Configuration(S3DestinationConfiguration&& value) { SetS3Configuration(std::move(value)); return *this;}
+
 
     /**
      * <p>The data processing configuration.</p>
@@ -458,7 +472,7 @@ namespace Model
     /**
      * <p>The data processing configuration.</p>
      */
-    inline void SetProcessingConfiguration(ProcessingConfiguration&& value) { m_processingConfigurationHasBeenSet = true; m_processingConfiguration = value; }
+    inline void SetProcessingConfiguration(ProcessingConfiguration&& value) { m_processingConfigurationHasBeenSet = true; m_processingConfiguration = std::move(value); }
 
     /**
      * <p>The data processing configuration.</p>
@@ -468,7 +482,8 @@ namespace Model
     /**
      * <p>The data processing configuration.</p>
      */
-    inline ElasticsearchDestinationConfiguration& WithProcessingConfiguration(ProcessingConfiguration&& value) { SetProcessingConfiguration(value); return *this;}
+    inline ElasticsearchDestinationConfiguration& WithProcessingConfiguration(ProcessingConfiguration&& value) { SetProcessingConfiguration(std::move(value)); return *this;}
+
 
     /**
      * <p>The CloudWatch logging options for your delivery stream.</p>
@@ -483,7 +498,7 @@ namespace Model
     /**
      * <p>The CloudWatch logging options for your delivery stream.</p>
      */
-    inline void SetCloudWatchLoggingOptions(CloudWatchLoggingOptions&& value) { m_cloudWatchLoggingOptionsHasBeenSet = true; m_cloudWatchLoggingOptions = value; }
+    inline void SetCloudWatchLoggingOptions(CloudWatchLoggingOptions&& value) { m_cloudWatchLoggingOptionsHasBeenSet = true; m_cloudWatchLoggingOptions = std::move(value); }
 
     /**
      * <p>The CloudWatch logging options for your delivery stream.</p>
@@ -493,29 +508,40 @@ namespace Model
     /**
      * <p>The CloudWatch logging options for your delivery stream.</p>
      */
-    inline ElasticsearchDestinationConfiguration& WithCloudWatchLoggingOptions(CloudWatchLoggingOptions&& value) { SetCloudWatchLoggingOptions(value); return *this;}
+    inline ElasticsearchDestinationConfiguration& WithCloudWatchLoggingOptions(CloudWatchLoggingOptions&& value) { SetCloudWatchLoggingOptions(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_roleARN;
     bool m_roleARNHasBeenSet;
+
     Aws::String m_domainARN;
     bool m_domainARNHasBeenSet;
+
     Aws::String m_indexName;
     bool m_indexNameHasBeenSet;
+
     Aws::String m_typeName;
     bool m_typeNameHasBeenSet;
+
     ElasticsearchIndexRotationPeriod m_indexRotationPeriod;
     bool m_indexRotationPeriodHasBeenSet;
+
     ElasticsearchBufferingHints m_bufferingHints;
     bool m_bufferingHintsHasBeenSet;
+
     ElasticsearchRetryOptions m_retryOptions;
     bool m_retryOptionsHasBeenSet;
+
     ElasticsearchS3BackupMode m_s3BackupMode;
     bool m_s3BackupModeHasBeenSet;
+
     S3DestinationConfiguration m_s3Configuration;
     bool m_s3ConfigurationHasBeenSet;
+
     ProcessingConfiguration m_processingConfiguration;
     bool m_processingConfigurationHasBeenSet;
+
     CloudWatchLoggingOptions m_cloudWatchLoggingOptions;
     bool m_cloudWatchLoggingOptionsHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/ecs/model/TaskDefinition.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     DescribeTaskDefinitionResult();
-    DescribeTaskDefinitionResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeTaskDefinitionResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeTaskDefinitionResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeTaskDefinitionResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The full task definition description.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The full task definition description.</p>
      */
-    inline void SetTaskDefinition(TaskDefinition&& value) { m_taskDefinition = value; }
+    inline void SetTaskDefinition(TaskDefinition&& value) { m_taskDefinition = std::move(value); }
 
     /**
      * <p>The full task definition description.</p>
@@ -62,9 +65,10 @@ namespace Model
     /**
      * <p>The full task definition description.</p>
      */
-    inline DescribeTaskDefinitionResult& WithTaskDefinition(TaskDefinition&& value) { SetTaskDefinition(value); return *this;}
+    inline DescribeTaskDefinitionResult& WithTaskDefinition(TaskDefinition&& value) { SetTaskDefinition(std::move(value)); return *this;}
 
   private:
+
     TaskDefinition m_taskDefinition;
   };
 

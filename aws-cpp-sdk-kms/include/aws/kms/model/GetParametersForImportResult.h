@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kms/KMS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/Array.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     GetParametersForImportResult();
-    GetParametersForImportResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetParametersForImportResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetParametersForImportResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetParametersForImportResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The identifier of the CMK to use in a subsequent <a>ImportKeyMaterial</a>
@@ -60,7 +63,7 @@ namespace Model
      * request. This is the same CMK specified in the
      * <code>GetParametersForImport</code> request.</p>
      */
-    inline void SetKeyId(Aws::String&& value) { m_keyId = value; }
+    inline void SetKeyId(Aws::String&& value) { m_keyId = std::move(value); }
 
     /**
      * <p>The identifier of the CMK to use in a subsequent <a>ImportKeyMaterial</a>
@@ -81,7 +84,7 @@ namespace Model
      * request. This is the same CMK specified in the
      * <code>GetParametersForImport</code> request.</p>
      */
-    inline GetParametersForImportResult& WithKeyId(Aws::String&& value) { SetKeyId(value); return *this;}
+    inline GetParametersForImportResult& WithKeyId(Aws::String&& value) { SetKeyId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the CMK to use in a subsequent <a>ImportKeyMaterial</a>
@@ -89,6 +92,7 @@ namespace Model
      * <code>GetParametersForImport</code> request.</p>
      */
     inline GetParametersForImportResult& WithKeyId(const char* value) { SetKeyId(value); return *this;}
+
 
     /**
      * <p>The import token to send in a subsequent <a>ImportKeyMaterial</a>
@@ -106,7 +110,7 @@ namespace Model
      * <p>The import token to send in a subsequent <a>ImportKeyMaterial</a>
      * request.</p>
      */
-    inline void SetImportToken(Aws::Utils::ByteBuffer&& value) { m_importToken = value; }
+    inline void SetImportToken(Aws::Utils::ByteBuffer&& value) { m_importToken = std::move(value); }
 
     /**
      * <p>The import token to send in a subsequent <a>ImportKeyMaterial</a>
@@ -118,7 +122,8 @@ namespace Model
      * <p>The import token to send in a subsequent <a>ImportKeyMaterial</a>
      * request.</p>
      */
-    inline GetParametersForImportResult& WithImportToken(Aws::Utils::ByteBuffer&& value) { SetImportToken(value); return *this;}
+    inline GetParametersForImportResult& WithImportToken(Aws::Utils::ByteBuffer&& value) { SetImportToken(std::move(value)); return *this;}
+
 
     /**
      * <p>The public key to use to encrypt the key material before importing it with
@@ -136,7 +141,7 @@ namespace Model
      * <p>The public key to use to encrypt the key material before importing it with
      * <a>ImportKeyMaterial</a>.</p>
      */
-    inline void SetPublicKey(Aws::Utils::ByteBuffer&& value) { m_publicKey = value; }
+    inline void SetPublicKey(Aws::Utils::ByteBuffer&& value) { m_publicKey = std::move(value); }
 
     /**
      * <p>The public key to use to encrypt the key material before importing it with
@@ -148,7 +153,8 @@ namespace Model
      * <p>The public key to use to encrypt the key material before importing it with
      * <a>ImportKeyMaterial</a>.</p>
      */
-    inline GetParametersForImportResult& WithPublicKey(Aws::Utils::ByteBuffer&& value) { SetPublicKey(value); return *this;}
+    inline GetParametersForImportResult& WithPublicKey(Aws::Utils::ByteBuffer&& value) { SetPublicKey(std::move(value)); return *this;}
+
 
     /**
      * <p>The time at which the import token and public key are no longer valid. After
@@ -172,7 +178,7 @@ namespace Model
      * you must send another <code>GetParametersForImport</code> request to retrieve
      * new ones.</p>
      */
-    inline void SetParametersValidTo(Aws::Utils::DateTime&& value) { m_parametersValidTo = value; }
+    inline void SetParametersValidTo(Aws::Utils::DateTime&& value) { m_parametersValidTo = std::move(value); }
 
     /**
      * <p>The time at which the import token and public key are no longer valid. After
@@ -188,12 +194,16 @@ namespace Model
      * you must send another <code>GetParametersForImport</code> request to retrieve
      * new ones.</p>
      */
-    inline GetParametersForImportResult& WithParametersValidTo(Aws::Utils::DateTime&& value) { SetParametersValidTo(value); return *this;}
+    inline GetParametersForImportResult& WithParametersValidTo(Aws::Utils::DateTime&& value) { SetParametersValidTo(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_keyId;
+
     Aws::Utils::ByteBuffer m_importToken;
+
     Aws::Utils::ByteBuffer m_publicKey;
+
     Aws::Utils::DateTime m_parametersValidTo;
   };
 

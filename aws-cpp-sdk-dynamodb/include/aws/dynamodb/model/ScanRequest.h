@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dynamodb/DynamoDB_EXPORTS.h>
 #include <aws/dynamodb/DynamoDBRequest.h>
@@ -23,6 +24,7 @@
 #include <aws/dynamodb/model/ReturnConsumedCapacity.h>
 #include <aws/dynamodb/model/Condition.h>
 #include <aws/dynamodb/model/AttributeValue.h>
+#include <utility>
 
 namespace Aws
 {
@@ -41,9 +43,17 @@ namespace Model
   {
   public:
     ScanRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "Scan"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The name of the table containing the requested items; or, if you provide
@@ -61,7 +71,7 @@ namespace Model
      * <p>The name of the table containing the requested items; or, if you provide
      * <code>IndexName</code>, the name of the table to which that index belongs.</p>
      */
-    inline void SetTableName(Aws::String&& value) { m_tableNameHasBeenSet = true; m_tableName = value; }
+    inline void SetTableName(Aws::String&& value) { m_tableNameHasBeenSet = true; m_tableName = std::move(value); }
 
     /**
      * <p>The name of the table containing the requested items; or, if you provide
@@ -79,13 +89,14 @@ namespace Model
      * <p>The name of the table containing the requested items; or, if you provide
      * <code>IndexName</code>, the name of the table to which that index belongs.</p>
      */
-    inline ScanRequest& WithTableName(Aws::String&& value) { SetTableName(value); return *this;}
+    inline ScanRequest& WithTableName(Aws::String&& value) { SetTableName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the table containing the requested items; or, if you provide
      * <code>IndexName</code>, the name of the table to which that index belongs.</p>
      */
     inline ScanRequest& WithTableName(const char* value) { SetTableName(value); return *this;}
+
 
     /**
      * <p>The name of a secondary index to scan. This index can be any local secondary
@@ -106,7 +117,7 @@ namespace Model
      * index or global secondary index. Note that if you use the <code>IndexName</code>
      * parameter, you must also provide <code>TableName</code>.</p>
      */
-    inline void SetIndexName(Aws::String&& value) { m_indexNameHasBeenSet = true; m_indexName = value; }
+    inline void SetIndexName(Aws::String&& value) { m_indexNameHasBeenSet = true; m_indexName = std::move(value); }
 
     /**
      * <p>The name of a secondary index to scan. This index can be any local secondary
@@ -127,7 +138,7 @@ namespace Model
      * index or global secondary index. Note that if you use the <code>IndexName</code>
      * parameter, you must also provide <code>TableName</code>.</p>
      */
-    inline ScanRequest& WithIndexName(Aws::String&& value) { SetIndexName(value); return *this;}
+    inline ScanRequest& WithIndexName(Aws::String&& value) { SetIndexName(std::move(value)); return *this;}
 
     /**
      * <p>The name of a secondary index to scan. This index can be any local secondary
@@ -135,6 +146,7 @@ namespace Model
      * parameter, you must also provide <code>TableName</code>.</p>
      */
     inline ScanRequest& WithIndexName(const char* value) { SetIndexName(value); return *this;}
+
 
     /**
      * <p>This is a legacy parameter. Use <code>ProjectionExpression</code> instead.
@@ -158,7 +170,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html">AttributesToGet</a>
      * in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline void SetAttributesToGet(Aws::Vector<Aws::String>&& value) { m_attributesToGetHasBeenSet = true; m_attributesToGet = value; }
+    inline void SetAttributesToGet(Aws::Vector<Aws::String>&& value) { m_attributesToGetHasBeenSet = true; m_attributesToGet = std::move(value); }
 
     /**
      * <p>This is a legacy parameter. Use <code>ProjectionExpression</code> instead.
@@ -174,7 +186,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html">AttributesToGet</a>
      * in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& WithAttributesToGet(Aws::Vector<Aws::String>&& value) { SetAttributesToGet(value); return *this;}
+    inline ScanRequest& WithAttributesToGet(Aws::Vector<Aws::String>&& value) { SetAttributesToGet(std::move(value)); return *this;}
 
     /**
      * <p>This is a legacy parameter. Use <code>ProjectionExpression</code> instead.
@@ -190,7 +202,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html">AttributesToGet</a>
      * in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddAttributesToGet(Aws::String&& value) { m_attributesToGetHasBeenSet = true; m_attributesToGet.push_back(value); return *this; }
+    inline ScanRequest& AddAttributesToGet(Aws::String&& value) { m_attributesToGetHasBeenSet = true; m_attributesToGet.push_back(std::move(value)); return *this; }
 
     /**
      * <p>This is a legacy parameter. Use <code>ProjectionExpression</code> instead.
@@ -199,6 +211,7 @@ namespace Model
      * in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
     inline ScanRequest& AddAttributesToGet(const char* value) { m_attributesToGetHasBeenSet = true; m_attributesToGet.push_back(value); return *this; }
+
 
     /**
      * <p>The maximum number of items to evaluate (not necessarily the number of
@@ -244,6 +257,7 @@ namespace Model
      * and Scan</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
     inline ScanRequest& WithLimit(int value) { SetLimit(value); return *this;}
+
 
     /**
      * <p>The attributes to be returned in the result. You can retrieve all item
@@ -360,7 +374,7 @@ namespace Model
      * value for <code>Select</code> can only be <code>SPECIFIC_ATTRIBUTES</code>. Any
      * other value for <code>Select</code> will return an error.</p> </note>
      */
-    inline void SetSelect(Select&& value) { m_selectHasBeenSet = true; m_select = value; }
+    inline void SetSelect(Select&& value) { m_selectHasBeenSet = true; m_select = std::move(value); }
 
     /**
      * <p>The attributes to be returned in the result. You can retrieve all item
@@ -438,7 +452,8 @@ namespace Model
      * value for <code>Select</code> can only be <code>SPECIFIC_ATTRIBUTES</code>. Any
      * other value for <code>Select</code> will return an error.</p> </note>
      */
-    inline ScanRequest& WithSelect(Select&& value) { SetSelect(value); return *this;}
+    inline ScanRequest& WithSelect(Select&& value) { SetSelect(std::move(value)); return *this;}
+
 
     /**
      * <p>This is a legacy parameter. Use <code>FilterExpression</code> instead. For
@@ -462,7 +477,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ScanFilter.html">ScanFilter</a>
      * in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline void SetScanFilter(Aws::Map<Aws::String, Condition>&& value) { m_scanFilterHasBeenSet = true; m_scanFilter = value; }
+    inline void SetScanFilter(Aws::Map<Aws::String, Condition>&& value) { m_scanFilterHasBeenSet = true; m_scanFilter = std::move(value); }
 
     /**
      * <p>This is a legacy parameter. Use <code>FilterExpression</code> instead. For
@@ -478,7 +493,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ScanFilter.html">ScanFilter</a>
      * in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& WithScanFilter(Aws::Map<Aws::String, Condition>&& value) { SetScanFilter(value); return *this;}
+    inline ScanRequest& WithScanFilter(Aws::Map<Aws::String, Condition>&& value) { SetScanFilter(std::move(value)); return *this;}
 
     /**
      * <p>This is a legacy parameter. Use <code>FilterExpression</code> instead. For
@@ -486,7 +501,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ScanFilter.html">ScanFilter</a>
      * in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddScanFilter(const Aws::String& key, const Condition& value) { m_scanFilterHasBeenSet = true; m_scanFilter[key] = value; return *this; }
+    inline ScanRequest& AddScanFilter(const Aws::String& key, const Condition& value) { m_scanFilterHasBeenSet = true; m_scanFilter.emplace(key, value); return *this; }
 
     /**
      * <p>This is a legacy parameter. Use <code>FilterExpression</code> instead. For
@@ -494,7 +509,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ScanFilter.html">ScanFilter</a>
      * in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddScanFilter(Aws::String&& key, const Condition& value) { m_scanFilterHasBeenSet = true; m_scanFilter[key] = value; return *this; }
+    inline ScanRequest& AddScanFilter(Aws::String&& key, const Condition& value) { m_scanFilterHasBeenSet = true; m_scanFilter.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>This is a legacy parameter. Use <code>FilterExpression</code> instead. For
@@ -502,7 +517,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ScanFilter.html">ScanFilter</a>
      * in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddScanFilter(const Aws::String& key, Condition&& value) { m_scanFilterHasBeenSet = true; m_scanFilter[key] = value; return *this; }
+    inline ScanRequest& AddScanFilter(const Aws::String& key, Condition&& value) { m_scanFilterHasBeenSet = true; m_scanFilter.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>This is a legacy parameter. Use <code>FilterExpression</code> instead. For
@@ -510,7 +525,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ScanFilter.html">ScanFilter</a>
      * in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddScanFilter(Aws::String&& key, Condition&& value) { m_scanFilterHasBeenSet = true; m_scanFilter[key] = value; return *this; }
+    inline ScanRequest& AddScanFilter(Aws::String&& key, Condition&& value) { m_scanFilterHasBeenSet = true; m_scanFilter.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>This is a legacy parameter. Use <code>FilterExpression</code> instead. For
@@ -518,7 +533,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ScanFilter.html">ScanFilter</a>
      * in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddScanFilter(const char* key, Condition&& value) { m_scanFilterHasBeenSet = true; m_scanFilter[key] = value; return *this; }
+    inline ScanRequest& AddScanFilter(const char* key, Condition&& value) { m_scanFilterHasBeenSet = true; m_scanFilter.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>This is a legacy parameter. Use <code>FilterExpression</code> instead. For
@@ -526,7 +541,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ScanFilter.html">ScanFilter</a>
      * in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddScanFilter(const char* key, const Condition& value) { m_scanFilterHasBeenSet = true; m_scanFilter[key] = value; return *this; }
+    inline ScanRequest& AddScanFilter(const char* key, const Condition& value) { m_scanFilterHasBeenSet = true; m_scanFilter.emplace(key, value); return *this; }
+
 
     /**
      * <p>This is a legacy parameter. Use <code>FilterExpression</code> instead. For
@@ -550,7 +566,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ConditionalOperator.html">ConditionalOperator</a>
      * in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline void SetConditionalOperator(ConditionalOperator&& value) { m_conditionalOperatorHasBeenSet = true; m_conditionalOperator = value; }
+    inline void SetConditionalOperator(ConditionalOperator&& value) { m_conditionalOperatorHasBeenSet = true; m_conditionalOperator = std::move(value); }
 
     /**
      * <p>This is a legacy parameter. Use <code>FilterExpression</code> instead. For
@@ -566,7 +582,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.ConditionalOperator.html">ConditionalOperator</a>
      * in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& WithConditionalOperator(ConditionalOperator&& value) { SetConditionalOperator(value); return *this;}
+    inline ScanRequest& WithConditionalOperator(ConditionalOperator&& value) { SetConditionalOperator(std::move(value)); return *this;}
+
 
     /**
      * <p>The primary key of the first item that this operation will evaluate. Use the
@@ -599,7 +616,7 @@ namespace Model
      * must specify the same segment whose previous <code>Scan</code> returned the
      * corresponding value of <code>LastEvaluatedKey</code>.</p>
      */
-    inline void SetExclusiveStartKey(Aws::Map<Aws::String, AttributeValue>&& value) { m_exclusiveStartKeyHasBeenSet = true; m_exclusiveStartKey = value; }
+    inline void SetExclusiveStartKey(Aws::Map<Aws::String, AttributeValue>&& value) { m_exclusiveStartKeyHasBeenSet = true; m_exclusiveStartKey = std::move(value); }
 
     /**
      * <p>The primary key of the first item that this operation will evaluate. Use the
@@ -621,7 +638,7 @@ namespace Model
      * must specify the same segment whose previous <code>Scan</code> returned the
      * corresponding value of <code>LastEvaluatedKey</code>.</p>
      */
-    inline ScanRequest& WithExclusiveStartKey(Aws::Map<Aws::String, AttributeValue>&& value) { SetExclusiveStartKey(value); return *this;}
+    inline ScanRequest& WithExclusiveStartKey(Aws::Map<Aws::String, AttributeValue>&& value) { SetExclusiveStartKey(std::move(value)); return *this;}
 
     /**
      * <p>The primary key of the first item that this operation will evaluate. Use the
@@ -632,7 +649,7 @@ namespace Model
      * must specify the same segment whose previous <code>Scan</code> returned the
      * corresponding value of <code>LastEvaluatedKey</code>.</p>
      */
-    inline ScanRequest& AddExclusiveStartKey(const Aws::String& key, const AttributeValue& value) { m_exclusiveStartKeyHasBeenSet = true; m_exclusiveStartKey[key] = value; return *this; }
+    inline ScanRequest& AddExclusiveStartKey(const Aws::String& key, const AttributeValue& value) { m_exclusiveStartKeyHasBeenSet = true; m_exclusiveStartKey.emplace(key, value); return *this; }
 
     /**
      * <p>The primary key of the first item that this operation will evaluate. Use the
@@ -643,7 +660,7 @@ namespace Model
      * must specify the same segment whose previous <code>Scan</code> returned the
      * corresponding value of <code>LastEvaluatedKey</code>.</p>
      */
-    inline ScanRequest& AddExclusiveStartKey(Aws::String&& key, const AttributeValue& value) { m_exclusiveStartKeyHasBeenSet = true; m_exclusiveStartKey[key] = value; return *this; }
+    inline ScanRequest& AddExclusiveStartKey(Aws::String&& key, const AttributeValue& value) { m_exclusiveStartKeyHasBeenSet = true; m_exclusiveStartKey.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The primary key of the first item that this operation will evaluate. Use the
@@ -654,7 +671,7 @@ namespace Model
      * must specify the same segment whose previous <code>Scan</code> returned the
      * corresponding value of <code>LastEvaluatedKey</code>.</p>
      */
-    inline ScanRequest& AddExclusiveStartKey(const Aws::String& key, AttributeValue&& value) { m_exclusiveStartKeyHasBeenSet = true; m_exclusiveStartKey[key] = value; return *this; }
+    inline ScanRequest& AddExclusiveStartKey(const Aws::String& key, AttributeValue&& value) { m_exclusiveStartKeyHasBeenSet = true; m_exclusiveStartKey.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The primary key of the first item that this operation will evaluate. Use the
@@ -665,7 +682,7 @@ namespace Model
      * must specify the same segment whose previous <code>Scan</code> returned the
      * corresponding value of <code>LastEvaluatedKey</code>.</p>
      */
-    inline ScanRequest& AddExclusiveStartKey(Aws::String&& key, AttributeValue&& value) { m_exclusiveStartKeyHasBeenSet = true; m_exclusiveStartKey[key] = value; return *this; }
+    inline ScanRequest& AddExclusiveStartKey(Aws::String&& key, AttributeValue&& value) { m_exclusiveStartKeyHasBeenSet = true; m_exclusiveStartKey.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>The primary key of the first item that this operation will evaluate. Use the
@@ -676,7 +693,7 @@ namespace Model
      * must specify the same segment whose previous <code>Scan</code> returned the
      * corresponding value of <code>LastEvaluatedKey</code>.</p>
      */
-    inline ScanRequest& AddExclusiveStartKey(const char* key, AttributeValue&& value) { m_exclusiveStartKeyHasBeenSet = true; m_exclusiveStartKey[key] = value; return *this; }
+    inline ScanRequest& AddExclusiveStartKey(const char* key, AttributeValue&& value) { m_exclusiveStartKeyHasBeenSet = true; m_exclusiveStartKey.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The primary key of the first item that this operation will evaluate. Use the
@@ -687,7 +704,8 @@ namespace Model
      * must specify the same segment whose previous <code>Scan</code> returned the
      * corresponding value of <code>LastEvaluatedKey</code>.</p>
      */
-    inline ScanRequest& AddExclusiveStartKey(const char* key, const AttributeValue& value) { m_exclusiveStartKeyHasBeenSet = true; m_exclusiveStartKey[key] = value; return *this; }
+    inline ScanRequest& AddExclusiveStartKey(const char* key, const AttributeValue& value) { m_exclusiveStartKeyHasBeenSet = true; m_exclusiveStartKey.emplace(key, value); return *this; }
+
 
     
     inline const ReturnConsumedCapacity& GetReturnConsumedCapacity() const{ return m_returnConsumedCapacity; }
@@ -696,13 +714,14 @@ namespace Model
     inline void SetReturnConsumedCapacity(const ReturnConsumedCapacity& value) { m_returnConsumedCapacityHasBeenSet = true; m_returnConsumedCapacity = value; }
 
     
-    inline void SetReturnConsumedCapacity(ReturnConsumedCapacity&& value) { m_returnConsumedCapacityHasBeenSet = true; m_returnConsumedCapacity = value; }
+    inline void SetReturnConsumedCapacity(ReturnConsumedCapacity&& value) { m_returnConsumedCapacityHasBeenSet = true; m_returnConsumedCapacity = std::move(value); }
 
     
     inline ScanRequest& WithReturnConsumedCapacity(const ReturnConsumedCapacity& value) { SetReturnConsumedCapacity(value); return *this;}
 
     
-    inline ScanRequest& WithReturnConsumedCapacity(ReturnConsumedCapacity&& value) { SetReturnConsumedCapacity(value); return *this;}
+    inline ScanRequest& WithReturnConsumedCapacity(ReturnConsumedCapacity&& value) { SetReturnConsumedCapacity(std::move(value)); return *this;}
+
 
     /**
      * <p>For a parallel <code>Scan</code> request, <code>TotalSegments</code>
@@ -748,6 +767,7 @@ namespace Model
      * <code>Segment</code>.</p>
      */
     inline ScanRequest& WithTotalSegments(int value) { SetTotalSegments(value); return *this;}
+
 
     /**
      * <p>For a parallel <code>Scan</code> request, <code>Segment</code> identifies an
@@ -797,6 +817,7 @@ namespace Model
      */
     inline ScanRequest& WithSegment(int value) { SetSegment(value); return *this;}
 
+
     /**
      * <p>A string that identifies one or more attributes to retrieve from the
      * specified table or index. These attributes can include scalars, sets, or
@@ -831,7 +852,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
      * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline void SetProjectionExpression(Aws::String&& value) { m_projectionExpressionHasBeenSet = true; m_projectionExpression = value; }
+    inline void SetProjectionExpression(Aws::String&& value) { m_projectionExpressionHasBeenSet = true; m_projectionExpression = std::move(value); }
 
     /**
      * <p>A string that identifies one or more attributes to retrieve from the
@@ -867,7 +888,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
      * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& WithProjectionExpression(Aws::String&& value) { SetProjectionExpression(value); return *this;}
+    inline ScanRequest& WithProjectionExpression(Aws::String&& value) { SetProjectionExpression(std::move(value)); return *this;}
 
     /**
      * <p>A string that identifies one or more attributes to retrieve from the
@@ -880,6 +901,7 @@ namespace Model
      * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
     inline ScanRequest& WithProjectionExpression(const char* value) { SetProjectionExpression(value); return *this;}
+
 
     /**
      * <p>A string that contains conditions that DynamoDB applies after the
@@ -915,7 +937,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#FilteringResults">Filter
      * Expressions</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline void SetFilterExpression(Aws::String&& value) { m_filterExpressionHasBeenSet = true; m_filterExpression = value; }
+    inline void SetFilterExpression(Aws::String&& value) { m_filterExpressionHasBeenSet = true; m_filterExpression = std::move(value); }
 
     /**
      * <p>A string that contains conditions that DynamoDB applies after the
@@ -951,7 +973,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#FilteringResults">Filter
      * Expressions</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& WithFilterExpression(Aws::String&& value) { SetFilterExpression(value); return *this;}
+    inline ScanRequest& WithFilterExpression(Aws::String&& value) { SetFilterExpression(std::move(value)); return *this;}
 
     /**
      * <p>A string that contains conditions that DynamoDB applies after the
@@ -964,6 +986,7 @@ namespace Model
      * Expressions</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
     inline ScanRequest& WithFilterExpression(const char* value) { SetFilterExpression(value); return *this;}
+
 
     /**
      * <p>One or more substitution tokens for attribute names in an expression. The
@@ -1044,7 +1067,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
      * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline void SetExpressionAttributeNames(Aws::Map<Aws::String, Aws::String>&& value) { m_expressionAttributeNamesHasBeenSet = true; m_expressionAttributeNames = value; }
+    inline void SetExpressionAttributeNames(Aws::Map<Aws::String, Aws::String>&& value) { m_expressionAttributeNamesHasBeenSet = true; m_expressionAttributeNames = std::move(value); }
 
     /**
      * <p>One or more substitution tokens for attribute names in an expression. The
@@ -1098,7 +1121,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
      * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& WithExpressionAttributeNames(Aws::Map<Aws::String, Aws::String>&& value) { SetExpressionAttributeNames(value); return *this;}
+    inline ScanRequest& WithExpressionAttributeNames(Aws::Map<Aws::String, Aws::String>&& value) { SetExpressionAttributeNames(std::move(value)); return *this;}
 
     /**
      * <p>One or more substitution tokens for attribute names in an expression. The
@@ -1125,7 +1148,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
      * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddExpressionAttributeNames(const Aws::String& key, const Aws::String& value) { m_expressionAttributeNamesHasBeenSet = true; m_expressionAttributeNames[key] = value; return *this; }
+    inline ScanRequest& AddExpressionAttributeNames(const Aws::String& key, const Aws::String& value) { m_expressionAttributeNamesHasBeenSet = true; m_expressionAttributeNames.emplace(key, value); return *this; }
 
     /**
      * <p>One or more substitution tokens for attribute names in an expression. The
@@ -1152,7 +1175,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
      * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddExpressionAttributeNames(Aws::String&& key, const Aws::String& value) { m_expressionAttributeNamesHasBeenSet = true; m_expressionAttributeNames[key] = value; return *this; }
+    inline ScanRequest& AddExpressionAttributeNames(Aws::String&& key, const Aws::String& value) { m_expressionAttributeNamesHasBeenSet = true; m_expressionAttributeNames.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>One or more substitution tokens for attribute names in an expression. The
@@ -1179,7 +1202,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
      * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddExpressionAttributeNames(const Aws::String& key, Aws::String&& value) { m_expressionAttributeNamesHasBeenSet = true; m_expressionAttributeNames[key] = value; return *this; }
+    inline ScanRequest& AddExpressionAttributeNames(const Aws::String& key, Aws::String&& value) { m_expressionAttributeNamesHasBeenSet = true; m_expressionAttributeNames.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>One or more substitution tokens for attribute names in an expression. The
@@ -1206,7 +1229,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
      * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddExpressionAttributeNames(Aws::String&& key, Aws::String&& value) { m_expressionAttributeNamesHasBeenSet = true; m_expressionAttributeNames[key] = value; return *this; }
+    inline ScanRequest& AddExpressionAttributeNames(Aws::String&& key, Aws::String&& value) { m_expressionAttributeNamesHasBeenSet = true; m_expressionAttributeNames.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>One or more substitution tokens for attribute names in an expression. The
@@ -1233,7 +1256,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
      * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddExpressionAttributeNames(const char* key, Aws::String&& value) { m_expressionAttributeNamesHasBeenSet = true; m_expressionAttributeNames[key] = value; return *this; }
+    inline ScanRequest& AddExpressionAttributeNames(const char* key, Aws::String&& value) { m_expressionAttributeNamesHasBeenSet = true; m_expressionAttributeNames.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>One or more substitution tokens for attribute names in an expression. The
@@ -1260,7 +1283,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
      * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddExpressionAttributeNames(Aws::String&& key, const char* value) { m_expressionAttributeNamesHasBeenSet = true; m_expressionAttributeNames[key] = value; return *this; }
+    inline ScanRequest& AddExpressionAttributeNames(Aws::String&& key, const char* value) { m_expressionAttributeNamesHasBeenSet = true; m_expressionAttributeNames.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>One or more substitution tokens for attribute names in an expression. The
@@ -1287,7 +1310,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html">Accessing
      * Item Attributes</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddExpressionAttributeNames(const char* key, const char* value) { m_expressionAttributeNamesHasBeenSet = true; m_expressionAttributeNames[key] = value; return *this; }
+    inline ScanRequest& AddExpressionAttributeNames(const char* key, const char* value) { m_expressionAttributeNamesHasBeenSet = true; m_expressionAttributeNames.emplace(key, value); return *this; }
+
 
     /**
      * <p>One or more values that can be substituted in an expression.</p> <p>Use the
@@ -1338,7 +1362,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html">Specifying
      * Conditions</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline void SetExpressionAttributeValues(Aws::Map<Aws::String, AttributeValue>&& value) { m_expressionAttributeValuesHasBeenSet = true; m_expressionAttributeValues = value; }
+    inline void SetExpressionAttributeValues(Aws::Map<Aws::String, AttributeValue>&& value) { m_expressionAttributeValuesHasBeenSet = true; m_expressionAttributeValues = std::move(value); }
 
     /**
      * <p>One or more values that can be substituted in an expression.</p> <p>Use the
@@ -1372,7 +1396,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html">Specifying
      * Conditions</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& WithExpressionAttributeValues(Aws::Map<Aws::String, AttributeValue>&& value) { SetExpressionAttributeValues(value); return *this;}
+    inline ScanRequest& WithExpressionAttributeValues(Aws::Map<Aws::String, AttributeValue>&& value) { SetExpressionAttributeValues(std::move(value)); return *this;}
 
     /**
      * <p>One or more values that can be substituted in an expression.</p> <p>Use the
@@ -1389,7 +1413,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html">Specifying
      * Conditions</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddExpressionAttributeValues(const Aws::String& key, const AttributeValue& value) { m_expressionAttributeValuesHasBeenSet = true; m_expressionAttributeValues[key] = value; return *this; }
+    inline ScanRequest& AddExpressionAttributeValues(const Aws::String& key, const AttributeValue& value) { m_expressionAttributeValuesHasBeenSet = true; m_expressionAttributeValues.emplace(key, value); return *this; }
 
     /**
      * <p>One or more values that can be substituted in an expression.</p> <p>Use the
@@ -1406,7 +1430,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html">Specifying
      * Conditions</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddExpressionAttributeValues(Aws::String&& key, const AttributeValue& value) { m_expressionAttributeValuesHasBeenSet = true; m_expressionAttributeValues[key] = value; return *this; }
+    inline ScanRequest& AddExpressionAttributeValues(Aws::String&& key, const AttributeValue& value) { m_expressionAttributeValuesHasBeenSet = true; m_expressionAttributeValues.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>One or more values that can be substituted in an expression.</p> <p>Use the
@@ -1423,7 +1447,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html">Specifying
      * Conditions</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddExpressionAttributeValues(const Aws::String& key, AttributeValue&& value) { m_expressionAttributeValuesHasBeenSet = true; m_expressionAttributeValues[key] = value; return *this; }
+    inline ScanRequest& AddExpressionAttributeValues(const Aws::String& key, AttributeValue&& value) { m_expressionAttributeValuesHasBeenSet = true; m_expressionAttributeValues.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>One or more values that can be substituted in an expression.</p> <p>Use the
@@ -1440,7 +1464,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html">Specifying
      * Conditions</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddExpressionAttributeValues(Aws::String&& key, AttributeValue&& value) { m_expressionAttributeValuesHasBeenSet = true; m_expressionAttributeValues[key] = value; return *this; }
+    inline ScanRequest& AddExpressionAttributeValues(Aws::String&& key, AttributeValue&& value) { m_expressionAttributeValuesHasBeenSet = true; m_expressionAttributeValues.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>One or more values that can be substituted in an expression.</p> <p>Use the
@@ -1457,7 +1481,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html">Specifying
      * Conditions</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddExpressionAttributeValues(const char* key, AttributeValue&& value) { m_expressionAttributeValuesHasBeenSet = true; m_expressionAttributeValues[key] = value; return *this; }
+    inline ScanRequest& AddExpressionAttributeValues(const char* key, AttributeValue&& value) { m_expressionAttributeValuesHasBeenSet = true; m_expressionAttributeValues.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>One or more values that can be substituted in an expression.</p> <p>Use the
@@ -1474,7 +1498,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html">Specifying
      * Conditions</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline ScanRequest& AddExpressionAttributeValues(const char* key, const AttributeValue& value) { m_expressionAttributeValuesHasBeenSet = true; m_expressionAttributeValues[key] = value; return *this; }
+    inline ScanRequest& AddExpressionAttributeValues(const char* key, const AttributeValue& value) { m_expressionAttributeValuesHasBeenSet = true; m_expressionAttributeValues.emplace(key, value); return *this; }
+
 
     /**
      * <p>A Boolean value that determines the read consistency model during the
@@ -1525,36 +1550,52 @@ namespace Model
     inline ScanRequest& WithConsistentRead(bool value) { SetConsistentRead(value); return *this;}
 
   private:
+
     Aws::String m_tableName;
     bool m_tableNameHasBeenSet;
+
     Aws::String m_indexName;
     bool m_indexNameHasBeenSet;
+
     Aws::Vector<Aws::String> m_attributesToGet;
     bool m_attributesToGetHasBeenSet;
+
     int m_limit;
     bool m_limitHasBeenSet;
+
     Select m_select;
     bool m_selectHasBeenSet;
+
     Aws::Map<Aws::String, Condition> m_scanFilter;
     bool m_scanFilterHasBeenSet;
+
     ConditionalOperator m_conditionalOperator;
     bool m_conditionalOperatorHasBeenSet;
+
     Aws::Map<Aws::String, AttributeValue> m_exclusiveStartKey;
     bool m_exclusiveStartKeyHasBeenSet;
+
     ReturnConsumedCapacity m_returnConsumedCapacity;
     bool m_returnConsumedCapacityHasBeenSet;
+
     int m_totalSegments;
     bool m_totalSegmentsHasBeenSet;
+
     int m_segment;
     bool m_segmentHasBeenSet;
+
     Aws::String m_projectionExpression;
     bool m_projectionExpressionHasBeenSet;
+
     Aws::String m_filterExpression;
     bool m_filterExpressionHasBeenSet;
+
     Aws::Map<Aws::String, Aws::String> m_expressionAttributeNames;
     bool m_expressionAttributeNamesHasBeenSet;
+
     Aws::Map<Aws::String, AttributeValue> m_expressionAttributeValues;
     bool m_expressionAttributeValuesHasBeenSet;
+
     bool m_consistentRead;
     bool m_consistentReadHasBeenSet;
   };

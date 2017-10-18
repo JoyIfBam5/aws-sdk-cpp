@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,7 +33,7 @@ namespace Model
 {
 
   /**
-   * <p>Provides details of the <code>WorkflowExecutionCanceled</code>
+   * <p>Provides the details of the <code>WorkflowExecutionCanceled</code>
    * event.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/swf-2012-01-25/WorkflowExecutionCanceledEventAttributes">AWS
    * API Reference</a></p>
@@ -44,40 +46,42 @@ namespace Model
     WorkflowExecutionCanceledEventAttributes& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p>Details for the cancellation (if any).</p>
+     * <p>The details of the cancellation.</p>
      */
     inline const Aws::String& GetDetails() const{ return m_details; }
 
     /**
-     * <p>Details for the cancellation (if any).</p>
+     * <p>The details of the cancellation.</p>
      */
     inline void SetDetails(const Aws::String& value) { m_detailsHasBeenSet = true; m_details = value; }
 
     /**
-     * <p>Details for the cancellation (if any).</p>
+     * <p>The details of the cancellation.</p>
      */
-    inline void SetDetails(Aws::String&& value) { m_detailsHasBeenSet = true; m_details = value; }
+    inline void SetDetails(Aws::String&& value) { m_detailsHasBeenSet = true; m_details = std::move(value); }
 
     /**
-     * <p>Details for the cancellation (if any).</p>
+     * <p>The details of the cancellation.</p>
      */
     inline void SetDetails(const char* value) { m_detailsHasBeenSet = true; m_details.assign(value); }
 
     /**
-     * <p>Details for the cancellation (if any).</p>
+     * <p>The details of the cancellation.</p>
      */
     inline WorkflowExecutionCanceledEventAttributes& WithDetails(const Aws::String& value) { SetDetails(value); return *this;}
 
     /**
-     * <p>Details for the cancellation (if any).</p>
+     * <p>The details of the cancellation.</p>
      */
-    inline WorkflowExecutionCanceledEventAttributes& WithDetails(Aws::String&& value) { SetDetails(value); return *this;}
+    inline WorkflowExecutionCanceledEventAttributes& WithDetails(Aws::String&& value) { SetDetails(std::move(value)); return *this;}
 
     /**
-     * <p>Details for the cancellation (if any).</p>
+     * <p>The details of the cancellation.</p>
      */
     inline WorkflowExecutionCanceledEventAttributes& WithDetails(const char* value) { SetDetails(value); return *this;}
+
 
     /**
      * <p>The ID of the <code>DecisionTaskCompleted</code> event corresponding to the
@@ -104,8 +108,10 @@ namespace Model
     inline WorkflowExecutionCanceledEventAttributes& WithDecisionTaskCompletedEventId(long long value) { SetDecisionTaskCompletedEventId(value); return *this;}
 
   private:
+
     Aws::String m_details;
     bool m_detailsHasBeenSet;
+
     long long m_decisionTaskCompletedEventId;
     bool m_decisionTaskCompletedEventIdHasBeenSet;
   };

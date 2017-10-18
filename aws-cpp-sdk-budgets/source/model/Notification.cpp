@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/budgets/model/Notification.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -33,7 +34,9 @@ Notification::Notification() :
     m_comparisonOperator(ComparisonOperator::NOT_SET),
     m_comparisonOperatorHasBeenSet(false),
     m_threshold(0.0),
-    m_thresholdHasBeenSet(false)
+    m_thresholdHasBeenSet(false),
+    m_thresholdType(ThresholdType::NOT_SET),
+    m_thresholdTypeHasBeenSet(false)
 {
 }
 
@@ -43,7 +46,9 @@ Notification::Notification(const JsonValue& jsonValue) :
     m_comparisonOperator(ComparisonOperator::NOT_SET),
     m_comparisonOperatorHasBeenSet(false),
     m_threshold(0.0),
-    m_thresholdHasBeenSet(false)
+    m_thresholdHasBeenSet(false),
+    m_thresholdType(ThresholdType::NOT_SET),
+    m_thresholdTypeHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -71,6 +76,13 @@ Notification& Notification::operator =(const JsonValue& jsonValue)
     m_thresholdHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("ThresholdType"))
+  {
+    m_thresholdType = ThresholdTypeMapper::GetThresholdTypeForName(jsonValue.GetString("ThresholdType"));
+
+    m_thresholdTypeHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -92,6 +104,11 @@ JsonValue Notification::Jsonize() const
   {
    payload.WithDouble("Threshold", m_threshold);
 
+  }
+
+  if(m_thresholdTypeHasBeenSet)
+  {
+   payload.WithString("ThresholdType", ThresholdTypeMapper::GetNameForThresholdType(m_thresholdType));
   }
 
   return payload;

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/gamelift/model/Alias.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -30,6 +31,7 @@ namespace Model
 Alias::Alias() : 
     m_aliasIdHasBeenSet(false),
     m_nameHasBeenSet(false),
+    m_aliasArnHasBeenSet(false),
     m_descriptionHasBeenSet(false),
     m_routingStrategyHasBeenSet(false),
     m_creationTimeHasBeenSet(false),
@@ -40,6 +42,7 @@ Alias::Alias() :
 Alias::Alias(const JsonValue& jsonValue) : 
     m_aliasIdHasBeenSet(false),
     m_nameHasBeenSet(false),
+    m_aliasArnHasBeenSet(false),
     m_descriptionHasBeenSet(false),
     m_routingStrategyHasBeenSet(false),
     m_creationTimeHasBeenSet(false),
@@ -62,6 +65,13 @@ Alias& Alias::operator =(const JsonValue& jsonValue)
     m_name = jsonValue.GetString("Name");
 
     m_nameHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("AliasArn"))
+  {
+    m_aliasArn = jsonValue.GetString("AliasArn");
+
+    m_aliasArnHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("Description"))
@@ -108,6 +118,12 @@ JsonValue Alias::Jsonize() const
   if(m_nameHasBeenSet)
   {
    payload.WithString("Name", m_name);
+
+  }
+
+  if(m_aliasArnHasBeenSet)
+  {
+   payload.WithString("AliasArn", m_aliasArn);
 
   }
 

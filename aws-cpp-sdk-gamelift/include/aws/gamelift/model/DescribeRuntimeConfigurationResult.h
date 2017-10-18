@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/gamelift/GameLift_EXPORTS.h>
 #include <aws/gamelift/model/RuntimeConfiguration.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     DescribeRuntimeConfigurationResult();
-    DescribeRuntimeConfigurationResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeRuntimeConfigurationResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeRuntimeConfigurationResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeRuntimeConfigurationResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Instructions describing how server processes should be launched and
@@ -61,7 +64,7 @@ namespace Model
      * <p>Instructions describing how server processes should be launched and
      * maintained on each instance in the fleet.</p>
      */
-    inline void SetRuntimeConfiguration(RuntimeConfiguration&& value) { m_runtimeConfiguration = value; }
+    inline void SetRuntimeConfiguration(RuntimeConfiguration&& value) { m_runtimeConfiguration = std::move(value); }
 
     /**
      * <p>Instructions describing how server processes should be launched and
@@ -73,9 +76,10 @@ namespace Model
      * <p>Instructions describing how server processes should be launched and
      * maintained on each instance in the fleet.</p>
      */
-    inline DescribeRuntimeConfigurationResult& WithRuntimeConfiguration(RuntimeConfiguration&& value) { SetRuntimeConfiguration(value); return *this;}
+    inline DescribeRuntimeConfigurationResult& WithRuntimeConfiguration(RuntimeConfiguration&& value) { SetRuntimeConfiguration(std::move(value)); return *this;}
 
   private:
+
     RuntimeConfiguration m_runtimeConfiguration;
   };
 

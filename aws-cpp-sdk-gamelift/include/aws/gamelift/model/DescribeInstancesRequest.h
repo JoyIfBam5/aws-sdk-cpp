@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/gamelift/GameLift_EXPORTS.h>
 #include <aws/gamelift/GameLiftRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,100 +35,96 @@ namespace Model
   {
   public:
     DescribeInstancesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeInstances"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
 
+
     /**
-     * <p>Unique identifier for a fleet. Specify the fleet to retrieve instance
-     * information for.</p>
+     * <p>Unique identifier for a fleet to retrieve instance information for.</p>
      */
     inline const Aws::String& GetFleetId() const{ return m_fleetId; }
 
     /**
-     * <p>Unique identifier for a fleet. Specify the fleet to retrieve instance
-     * information for.</p>
+     * <p>Unique identifier for a fleet to retrieve instance information for.</p>
      */
     inline void SetFleetId(const Aws::String& value) { m_fleetIdHasBeenSet = true; m_fleetId = value; }
 
     /**
-     * <p>Unique identifier for a fleet. Specify the fleet to retrieve instance
-     * information for.</p>
+     * <p>Unique identifier for a fleet to retrieve instance information for.</p>
      */
-    inline void SetFleetId(Aws::String&& value) { m_fleetIdHasBeenSet = true; m_fleetId = value; }
+    inline void SetFleetId(Aws::String&& value) { m_fleetIdHasBeenSet = true; m_fleetId = std::move(value); }
 
     /**
-     * <p>Unique identifier for a fleet. Specify the fleet to retrieve instance
-     * information for.</p>
+     * <p>Unique identifier for a fleet to retrieve instance information for.</p>
      */
     inline void SetFleetId(const char* value) { m_fleetIdHasBeenSet = true; m_fleetId.assign(value); }
 
     /**
-     * <p>Unique identifier for a fleet. Specify the fleet to retrieve instance
-     * information for.</p>
+     * <p>Unique identifier for a fleet to retrieve instance information for.</p>
      */
     inline DescribeInstancesRequest& WithFleetId(const Aws::String& value) { SetFleetId(value); return *this;}
 
     /**
-     * <p>Unique identifier for a fleet. Specify the fleet to retrieve instance
-     * information for.</p>
+     * <p>Unique identifier for a fleet to retrieve instance information for.</p>
      */
-    inline DescribeInstancesRequest& WithFleetId(Aws::String&& value) { SetFleetId(value); return *this;}
+    inline DescribeInstancesRequest& WithFleetId(Aws::String&& value) { SetFleetId(std::move(value)); return *this;}
 
     /**
-     * <p>Unique identifier for a fleet. Specify the fleet to retrieve instance
-     * information for.</p>
+     * <p>Unique identifier for a fleet to retrieve instance information for.</p>
      */
     inline DescribeInstancesRequest& WithFleetId(const char* value) { SetFleetId(value); return *this;}
 
+
     /**
-     * <p>Unique identifier for an instance. Specify an instance to retrieve
-     * information for or leave blank to get information on all instances in the
-     * fleet.</p>
+     * <p>Unique identifier for an instance to retrieve. Specify an instance ID or
+     * leave blank to retrieve all instances in the fleet.</p>
      */
     inline const Aws::String& GetInstanceId() const{ return m_instanceId; }
 
     /**
-     * <p>Unique identifier for an instance. Specify an instance to retrieve
-     * information for or leave blank to get information on all instances in the
-     * fleet.</p>
+     * <p>Unique identifier for an instance to retrieve. Specify an instance ID or
+     * leave blank to retrieve all instances in the fleet.</p>
      */
     inline void SetInstanceId(const Aws::String& value) { m_instanceIdHasBeenSet = true; m_instanceId = value; }
 
     /**
-     * <p>Unique identifier for an instance. Specify an instance to retrieve
-     * information for or leave blank to get information on all instances in the
-     * fleet.</p>
+     * <p>Unique identifier for an instance to retrieve. Specify an instance ID or
+     * leave blank to retrieve all instances in the fleet.</p>
      */
-    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = value; }
+    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = std::move(value); }
 
     /**
-     * <p>Unique identifier for an instance. Specify an instance to retrieve
-     * information for or leave blank to get information on all instances in the
-     * fleet.</p>
+     * <p>Unique identifier for an instance to retrieve. Specify an instance ID or
+     * leave blank to retrieve all instances in the fleet.</p>
      */
     inline void SetInstanceId(const char* value) { m_instanceIdHasBeenSet = true; m_instanceId.assign(value); }
 
     /**
-     * <p>Unique identifier for an instance. Specify an instance to retrieve
-     * information for or leave blank to get information on all instances in the
-     * fleet.</p>
+     * <p>Unique identifier for an instance to retrieve. Specify an instance ID or
+     * leave blank to retrieve all instances in the fleet.</p>
      */
     inline DescribeInstancesRequest& WithInstanceId(const Aws::String& value) { SetInstanceId(value); return *this;}
 
     /**
-     * <p>Unique identifier for an instance. Specify an instance to retrieve
-     * information for or leave blank to get information on all instances in the
-     * fleet.</p>
+     * <p>Unique identifier for an instance to retrieve. Specify an instance ID or
+     * leave blank to retrieve all instances in the fleet.</p>
      */
-    inline DescribeInstancesRequest& WithInstanceId(Aws::String&& value) { SetInstanceId(value); return *this;}
+    inline DescribeInstancesRequest& WithInstanceId(Aws::String&& value) { SetInstanceId(std::move(value)); return *this;}
 
     /**
-     * <p>Unique identifier for an instance. Specify an instance to retrieve
-     * information for or leave blank to get information on all instances in the
-     * fleet.</p>
+     * <p>Unique identifier for an instance to retrieve. Specify an instance ID or
+     * leave blank to retrieve all instances in the fleet.</p>
      */
     inline DescribeInstancesRequest& WithInstanceId(const char* value) { SetInstanceId(value); return *this;}
+
 
     /**
      * <p>Maximum number of results to return. Use this parameter with
@@ -146,62 +144,67 @@ namespace Model
      */
     inline DescribeInstancesRequest& WithLimit(int value) { SetLimit(value); return *this;}
 
+
     /**
-     * <p>Token indicating the start of the next sequential page of results. Use the
-     * token that is returned with a previous call to this action. To specify the start
-     * of the result set, do not specify a value.</p>
+     * <p>Token that indicates the start of the next sequential page of results. Use
+     * the token that is returned with a previous call to this action. To start at the
+     * beginning of the result set, do not specify a value.</p>
      */
     inline const Aws::String& GetNextToken() const{ return m_nextToken; }
 
     /**
-     * <p>Token indicating the start of the next sequential page of results. Use the
-     * token that is returned with a previous call to this action. To specify the start
-     * of the result set, do not specify a value.</p>
+     * <p>Token that indicates the start of the next sequential page of results. Use
+     * the token that is returned with a previous call to this action. To start at the
+     * beginning of the result set, do not specify a value.</p>
      */
     inline void SetNextToken(const Aws::String& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
 
     /**
-     * <p>Token indicating the start of the next sequential page of results. Use the
-     * token that is returned with a previous call to this action. To specify the start
-     * of the result set, do not specify a value.</p>
+     * <p>Token that indicates the start of the next sequential page of results. Use
+     * the token that is returned with a previous call to this action. To start at the
+     * beginning of the result set, do not specify a value.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
-     * <p>Token indicating the start of the next sequential page of results. Use the
-     * token that is returned with a previous call to this action. To specify the start
-     * of the result set, do not specify a value.</p>
+     * <p>Token that indicates the start of the next sequential page of results. Use
+     * the token that is returned with a previous call to this action. To start at the
+     * beginning of the result set, do not specify a value.</p>
      */
     inline void SetNextToken(const char* value) { m_nextTokenHasBeenSet = true; m_nextToken.assign(value); }
 
     /**
-     * <p>Token indicating the start of the next sequential page of results. Use the
-     * token that is returned with a previous call to this action. To specify the start
-     * of the result set, do not specify a value.</p>
+     * <p>Token that indicates the start of the next sequential page of results. Use
+     * the token that is returned with a previous call to this action. To start at the
+     * beginning of the result set, do not specify a value.</p>
      */
     inline DescribeInstancesRequest& WithNextToken(const Aws::String& value) { SetNextToken(value); return *this;}
 
     /**
-     * <p>Token indicating the start of the next sequential page of results. Use the
-     * token that is returned with a previous call to this action. To specify the start
-     * of the result set, do not specify a value.</p>
+     * <p>Token that indicates the start of the next sequential page of results. Use
+     * the token that is returned with a previous call to this action. To start at the
+     * beginning of the result set, do not specify a value.</p>
      */
-    inline DescribeInstancesRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeInstancesRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
-     * <p>Token indicating the start of the next sequential page of results. Use the
-     * token that is returned with a previous call to this action. To specify the start
-     * of the result set, do not specify a value.</p>
+     * <p>Token that indicates the start of the next sequential page of results. Use
+     * the token that is returned with a previous call to this action. To start at the
+     * beginning of the result set, do not specify a value.</p>
      */
     inline DescribeInstancesRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::String m_fleetId;
     bool m_fleetIdHasBeenSet;
+
     Aws::String m_instanceId;
     bool m_instanceIdHasBeenSet;
+
     int m_limit;
     bool m_limitHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
   };

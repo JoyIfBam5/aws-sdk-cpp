@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/codedeploy/model/DeploymentInfo.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -32,6 +33,7 @@ DeploymentInfo::DeploymentInfo() :
     m_deploymentGroupNameHasBeenSet(false),
     m_deploymentConfigNameHasBeenSet(false),
     m_deploymentIdHasBeenSet(false),
+    m_previousRevisionHasBeenSet(false),
     m_revisionHasBeenSet(false),
     m_status(DeploymentStatus::NOT_SET),
     m_statusHasBeenSet(false),
@@ -48,7 +50,16 @@ DeploymentInfo::DeploymentInfo() :
     m_autoRollbackConfigurationHasBeenSet(false),
     m_updateOutdatedInstancesOnly(false),
     m_updateOutdatedInstancesOnlyHasBeenSet(false),
-    m_rollbackInfoHasBeenSet(false)
+    m_rollbackInfoHasBeenSet(false),
+    m_deploymentStyleHasBeenSet(false),
+    m_targetInstancesHasBeenSet(false),
+    m_instanceTerminationWaitTimeStarted(false),
+    m_instanceTerminationWaitTimeStartedHasBeenSet(false),
+    m_blueGreenDeploymentConfigurationHasBeenSet(false),
+    m_loadBalancerInfoHasBeenSet(false),
+    m_additionalDeploymentStatusInfoHasBeenSet(false),
+    m_fileExistsBehavior(FileExistsBehavior::NOT_SET),
+    m_fileExistsBehaviorHasBeenSet(false)
 {
 }
 
@@ -57,6 +68,7 @@ DeploymentInfo::DeploymentInfo(const JsonValue& jsonValue) :
     m_deploymentGroupNameHasBeenSet(false),
     m_deploymentConfigNameHasBeenSet(false),
     m_deploymentIdHasBeenSet(false),
+    m_previousRevisionHasBeenSet(false),
     m_revisionHasBeenSet(false),
     m_status(DeploymentStatus::NOT_SET),
     m_statusHasBeenSet(false),
@@ -73,7 +85,16 @@ DeploymentInfo::DeploymentInfo(const JsonValue& jsonValue) :
     m_autoRollbackConfigurationHasBeenSet(false),
     m_updateOutdatedInstancesOnly(false),
     m_updateOutdatedInstancesOnlyHasBeenSet(false),
-    m_rollbackInfoHasBeenSet(false)
+    m_rollbackInfoHasBeenSet(false),
+    m_deploymentStyleHasBeenSet(false),
+    m_targetInstancesHasBeenSet(false),
+    m_instanceTerminationWaitTimeStarted(false),
+    m_instanceTerminationWaitTimeStartedHasBeenSet(false),
+    m_blueGreenDeploymentConfigurationHasBeenSet(false),
+    m_loadBalancerInfoHasBeenSet(false),
+    m_additionalDeploymentStatusInfoHasBeenSet(false),
+    m_fileExistsBehavior(FileExistsBehavior::NOT_SET),
+    m_fileExistsBehaviorHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -106,6 +127,13 @@ DeploymentInfo& DeploymentInfo::operator =(const JsonValue& jsonValue)
     m_deploymentId = jsonValue.GetString("deploymentId");
 
     m_deploymentIdHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("previousRevision"))
+  {
+    m_previousRevision = jsonValue.GetObject("previousRevision");
+
+    m_previousRevisionHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("revision"))
@@ -199,6 +227,55 @@ DeploymentInfo& DeploymentInfo::operator =(const JsonValue& jsonValue)
     m_rollbackInfoHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("deploymentStyle"))
+  {
+    m_deploymentStyle = jsonValue.GetObject("deploymentStyle");
+
+    m_deploymentStyleHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("targetInstances"))
+  {
+    m_targetInstances = jsonValue.GetObject("targetInstances");
+
+    m_targetInstancesHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("instanceTerminationWaitTimeStarted"))
+  {
+    m_instanceTerminationWaitTimeStarted = jsonValue.GetBool("instanceTerminationWaitTimeStarted");
+
+    m_instanceTerminationWaitTimeStartedHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("blueGreenDeploymentConfiguration"))
+  {
+    m_blueGreenDeploymentConfiguration = jsonValue.GetObject("blueGreenDeploymentConfiguration");
+
+    m_blueGreenDeploymentConfigurationHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("loadBalancerInfo"))
+  {
+    m_loadBalancerInfo = jsonValue.GetObject("loadBalancerInfo");
+
+    m_loadBalancerInfoHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("additionalDeploymentStatusInfo"))
+  {
+    m_additionalDeploymentStatusInfo = jsonValue.GetString("additionalDeploymentStatusInfo");
+
+    m_additionalDeploymentStatusInfoHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("fileExistsBehavior"))
+  {
+    m_fileExistsBehavior = FileExistsBehaviorMapper::GetFileExistsBehaviorForName(jsonValue.GetString("fileExistsBehavior"));
+
+    m_fileExistsBehaviorHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -227,6 +304,12 @@ JsonValue DeploymentInfo::Jsonize() const
   if(m_deploymentIdHasBeenSet)
   {
    payload.WithString("deploymentId", m_deploymentId);
+
+  }
+
+  if(m_previousRevisionHasBeenSet)
+  {
+   payload.WithObject("previousRevision", m_previousRevision.Jsonize());
 
   }
 
@@ -301,6 +384,47 @@ JsonValue DeploymentInfo::Jsonize() const
   {
    payload.WithObject("rollbackInfo", m_rollbackInfo.Jsonize());
 
+  }
+
+  if(m_deploymentStyleHasBeenSet)
+  {
+   payload.WithObject("deploymentStyle", m_deploymentStyle.Jsonize());
+
+  }
+
+  if(m_targetInstancesHasBeenSet)
+  {
+   payload.WithObject("targetInstances", m_targetInstances.Jsonize());
+
+  }
+
+  if(m_instanceTerminationWaitTimeStartedHasBeenSet)
+  {
+   payload.WithBool("instanceTerminationWaitTimeStarted", m_instanceTerminationWaitTimeStarted);
+
+  }
+
+  if(m_blueGreenDeploymentConfigurationHasBeenSet)
+  {
+   payload.WithObject("blueGreenDeploymentConfiguration", m_blueGreenDeploymentConfiguration.Jsonize());
+
+  }
+
+  if(m_loadBalancerInfoHasBeenSet)
+  {
+   payload.WithObject("loadBalancerInfo", m_loadBalancerInfo.Jsonize());
+
+  }
+
+  if(m_additionalDeploymentStatusInfoHasBeenSet)
+  {
+   payload.WithString("additionalDeploymentStatusInfo", m_additionalDeploymentStatusInfo);
+
+  }
+
+  if(m_fileExistsBehaviorHasBeenSet)
+  {
+   payload.WithString("fileExistsBehavior", FileExistsBehaviorMapper::GetNameForFileExistsBehavior(m_fileExistsBehavior));
   }
 
   return payload;

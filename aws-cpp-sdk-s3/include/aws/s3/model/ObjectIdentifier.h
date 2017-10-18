@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -39,6 +41,7 @@ namespace Model
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
 
+
     /**
      * Key name of the object to delete.
      */
@@ -52,7 +55,7 @@ namespace Model
     /**
      * Key name of the object to delete.
      */
-    inline void SetKey(Aws::String&& value) { m_keyHasBeenSet = true; m_key = value; }
+    inline void SetKey(Aws::String&& value) { m_keyHasBeenSet = true; m_key = std::move(value); }
 
     /**
      * Key name of the object to delete.
@@ -67,12 +70,13 @@ namespace Model
     /**
      * Key name of the object to delete.
      */
-    inline ObjectIdentifier& WithKey(Aws::String&& value) { SetKey(value); return *this;}
+    inline ObjectIdentifier& WithKey(Aws::String&& value) { SetKey(std::move(value)); return *this;}
 
     /**
      * Key name of the object to delete.
      */
     inline ObjectIdentifier& WithKey(const char* value) { SetKey(value); return *this;}
+
 
     /**
      * VersionId for the specific version of the object to delete.
@@ -87,7 +91,7 @@ namespace Model
     /**
      * VersionId for the specific version of the object to delete.
      */
-    inline void SetVersionId(Aws::String&& value) { m_versionIdHasBeenSet = true; m_versionId = value; }
+    inline void SetVersionId(Aws::String&& value) { m_versionIdHasBeenSet = true; m_versionId = std::move(value); }
 
     /**
      * VersionId for the specific version of the object to delete.
@@ -102,7 +106,7 @@ namespace Model
     /**
      * VersionId for the specific version of the object to delete.
      */
-    inline ObjectIdentifier& WithVersionId(Aws::String&& value) { SetVersionId(value); return *this;}
+    inline ObjectIdentifier& WithVersionId(Aws::String&& value) { SetVersionId(std::move(value)); return *this;}
 
     /**
      * VersionId for the specific version of the object to delete.
@@ -110,8 +114,10 @@ namespace Model
     inline ObjectIdentifier& WithVersionId(const char* value) { SetVersionId(value); return *this;}
 
   private:
+
     Aws::String m_key;
     bool m_keyHasBeenSet;
+
     Aws::String m_versionId;
     bool m_versionIdHasBeenSet;
   };

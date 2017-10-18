@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticache/ElastiCache_EXPORTS.h>
 #include <aws/elasticache/ElastiCacheRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,7 +36,19 @@ namespace Model
   {
   public:
     DescribeCacheEngineVersionsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeCacheEngineVersions"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The cache engine to return. Valid values: <code>memcached</code> |
@@ -52,7 +66,7 @@ namespace Model
      * <p>The cache engine to return. Valid values: <code>memcached</code> |
      * <code>redis</code> </p>
      */
-    inline void SetEngine(Aws::String&& value) { m_engineHasBeenSet = true; m_engine = value; }
+    inline void SetEngine(Aws::String&& value) { m_engineHasBeenSet = true; m_engine = std::move(value); }
 
     /**
      * <p>The cache engine to return. Valid values: <code>memcached</code> |
@@ -70,13 +84,14 @@ namespace Model
      * <p>The cache engine to return. Valid values: <code>memcached</code> |
      * <code>redis</code> </p>
      */
-    inline DescribeCacheEngineVersionsRequest& WithEngine(Aws::String&& value) { SetEngine(value); return *this;}
+    inline DescribeCacheEngineVersionsRequest& WithEngine(Aws::String&& value) { SetEngine(std::move(value)); return *this;}
 
     /**
      * <p>The cache engine to return. Valid values: <code>memcached</code> |
      * <code>redis</code> </p>
      */
     inline DescribeCacheEngineVersionsRequest& WithEngine(const char* value) { SetEngine(value); return *this;}
+
 
     /**
      * <p>The cache engine version to return.</p> <p>Example: <code>1.4.14</code> </p>
@@ -91,7 +106,7 @@ namespace Model
     /**
      * <p>The cache engine version to return.</p> <p>Example: <code>1.4.14</code> </p>
      */
-    inline void SetEngineVersion(Aws::String&& value) { m_engineVersionHasBeenSet = true; m_engineVersion = value; }
+    inline void SetEngineVersion(Aws::String&& value) { m_engineVersionHasBeenSet = true; m_engineVersion = std::move(value); }
 
     /**
      * <p>The cache engine version to return.</p> <p>Example: <code>1.4.14</code> </p>
@@ -106,12 +121,13 @@ namespace Model
     /**
      * <p>The cache engine version to return.</p> <p>Example: <code>1.4.14</code> </p>
      */
-    inline DescribeCacheEngineVersionsRequest& WithEngineVersion(Aws::String&& value) { SetEngineVersion(value); return *this;}
+    inline DescribeCacheEngineVersionsRequest& WithEngineVersion(Aws::String&& value) { SetEngineVersion(std::move(value)); return *this;}
 
     /**
      * <p>The cache engine version to return.</p> <p>Example: <code>1.4.14</code> </p>
      */
     inline DescribeCacheEngineVersionsRequest& WithEngineVersion(const char* value) { SetEngineVersion(value); return *this;}
+
 
     /**
      * <p>The name of a specific cache parameter group family to return details
@@ -141,7 +157,7 @@ namespace Model
      * character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain
      * two consecutive hyphens</p> </li> </ul>
      */
-    inline void SetCacheParameterGroupFamily(Aws::String&& value) { m_cacheParameterGroupFamilyHasBeenSet = true; m_cacheParameterGroupFamily = value; }
+    inline void SetCacheParameterGroupFamily(Aws::String&& value) { m_cacheParameterGroupFamilyHasBeenSet = true; m_cacheParameterGroupFamily = std::move(value); }
 
     /**
      * <p>The name of a specific cache parameter group family to return details
@@ -171,7 +187,7 @@ namespace Model
      * character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain
      * two consecutive hyphens</p> </li> </ul>
      */
-    inline DescribeCacheEngineVersionsRequest& WithCacheParameterGroupFamily(Aws::String&& value) { SetCacheParameterGroupFamily(value); return *this;}
+    inline DescribeCacheEngineVersionsRequest& WithCacheParameterGroupFamily(Aws::String&& value) { SetCacheParameterGroupFamily(std::move(value)); return *this;}
 
     /**
      * <p>The name of a specific cache parameter group family to return details
@@ -182,6 +198,7 @@ namespace Model
      * two consecutive hyphens</p> </li> </ul>
      */
     inline DescribeCacheEngineVersionsRequest& WithCacheParameterGroupFamily(const char* value) { SetCacheParameterGroupFamily(value); return *this;}
+
 
     /**
      * <p>The maximum number of records to include in the response. If more records
@@ -207,6 +224,7 @@ namespace Model
      */
     inline DescribeCacheEngineVersionsRequest& WithMaxRecords(int value) { SetMaxRecords(value); return *this;}
 
+
     /**
      * <p>An optional marker returned from a prior request. Use this marker for
      * pagination of results from this operation. If this parameter is specified, the
@@ -229,7 +247,7 @@ namespace Model
      * response includes only records beyond the marker, up to the value specified by
      * <code>MaxRecords</code>.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p>An optional marker returned from a prior request. Use this marker for
@@ -253,7 +271,7 @@ namespace Model
      * response includes only records beyond the marker, up to the value specified by
      * <code>MaxRecords</code>.</p>
      */
-    inline DescribeCacheEngineVersionsRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeCacheEngineVersionsRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>An optional marker returned from a prior request. Use this marker for
@@ -262,6 +280,7 @@ namespace Model
      * <code>MaxRecords</code>.</p>
      */
     inline DescribeCacheEngineVersionsRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>If <code>true</code>, specifies that only the default version of the
@@ -282,16 +301,22 @@ namespace Model
     inline DescribeCacheEngineVersionsRequest& WithDefaultOnly(bool value) { SetDefaultOnly(value); return *this;}
 
   private:
+
     Aws::String m_engine;
     bool m_engineHasBeenSet;
+
     Aws::String m_engineVersion;
     bool m_engineVersionHasBeenSet;
+
     Aws::String m_cacheParameterGroupFamily;
     bool m_cacheParameterGroupFamilyHasBeenSet;
+
     int m_maxRecords;
     bool m_maxRecordsHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
+
     bool m_defaultOnly;
     bool m_defaultOnlyHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/servicecatalog/ServiceCatalogRequest.h>
@@ -21,6 +22,7 @@
 #include <aws/servicecatalog/model/SortOrder.h>
 #include <aws/servicecatalog/model/ProductViewFilterBy.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,58 +37,67 @@ namespace Model
   {
   public:
     SearchProductsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "SearchProducts"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
 
+
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline const Aws::String& GetAcceptLanguage() const{ return m_acceptLanguage; }
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline void SetAcceptLanguage(const Aws::String& value) { m_acceptLanguageHasBeenSet = true; m_acceptLanguage = value; }
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
-    inline void SetAcceptLanguage(Aws::String&& value) { m_acceptLanguageHasBeenSet = true; m_acceptLanguage = value; }
+    inline void SetAcceptLanguage(Aws::String&& value) { m_acceptLanguageHasBeenSet = true; m_acceptLanguage = std::move(value); }
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline void SetAcceptLanguage(const char* value) { m_acceptLanguageHasBeenSet = true; m_acceptLanguage.assign(value); }
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline SearchProductsRequest& WithAcceptLanguage(const Aws::String& value) { SetAcceptLanguage(value); return *this;}
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
-    inline SearchProductsRequest& WithAcceptLanguage(Aws::String&& value) { SetAcceptLanguage(value); return *this;}
+    inline SearchProductsRequest& WithAcceptLanguage(Aws::String&& value) { SetAcceptLanguage(std::move(value)); return *this;}
 
     /**
-     * <p>The language code to use for this operation. Supported language codes are as
-     * follows:</p> <p>"en" (English)</p> <p>"jp" (Japanese)</p> <p>"zh" (Chinese)</p>
-     * <p>If no code is specified, "en" is used as the default.</p>
+     * <p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p>
+     * </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> -
+     * Chinese</p> </li> </ul>
      */
     inline SearchProductsRequest& WithAcceptLanguage(const char* value) { SetAcceptLanguage(value); return *this;}
+
 
     /**
      * <p>The list of filters with which to limit search results. If no search filters
@@ -107,7 +118,7 @@ namespace Model
      * are specified, the output is all the products to which the calling user has
      * access. </p>
      */
-    inline void SetFilters(Aws::Map<ProductViewFilterBy, Aws::Vector<Aws::String>>&& value) { m_filtersHasBeenSet = true; m_filters = value; }
+    inline void SetFilters(Aws::Map<ProductViewFilterBy, Aws::Vector<Aws::String>>&& value) { m_filtersHasBeenSet = true; m_filters = std::move(value); }
 
     /**
      * <p>The list of filters with which to limit search results. If no search filters
@@ -121,35 +132,36 @@ namespace Model
      * are specified, the output is all the products to which the calling user has
      * access. </p>
      */
-    inline SearchProductsRequest& WithFilters(Aws::Map<ProductViewFilterBy, Aws::Vector<Aws::String>>&& value) { SetFilters(value); return *this;}
+    inline SearchProductsRequest& WithFilters(Aws::Map<ProductViewFilterBy, Aws::Vector<Aws::String>>&& value) { SetFilters(std::move(value)); return *this;}
 
     /**
      * <p>The list of filters with which to limit search results. If no search filters
      * are specified, the output is all the products to which the calling user has
      * access. </p>
      */
-    inline SearchProductsRequest& AddFilters(const ProductViewFilterBy& key, const Aws::Vector<Aws::String>& value) { m_filtersHasBeenSet = true; m_filters[key] = value; return *this; }
+    inline SearchProductsRequest& AddFilters(const ProductViewFilterBy& key, const Aws::Vector<Aws::String>& value) { m_filtersHasBeenSet = true; m_filters.emplace(key, value); return *this; }
 
     /**
      * <p>The list of filters with which to limit search results. If no search filters
      * are specified, the output is all the products to which the calling user has
      * access. </p>
      */
-    inline SearchProductsRequest& AddFilters(ProductViewFilterBy&& key, const Aws::Vector<Aws::String>& value) { m_filtersHasBeenSet = true; m_filters[key] = value; return *this; }
+    inline SearchProductsRequest& AddFilters(ProductViewFilterBy&& key, const Aws::Vector<Aws::String>& value) { m_filtersHasBeenSet = true; m_filters.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The list of filters with which to limit search results. If no search filters
      * are specified, the output is all the products to which the calling user has
      * access. </p>
      */
-    inline SearchProductsRequest& AddFilters(const ProductViewFilterBy& key, Aws::Vector<Aws::String>&& value) { m_filtersHasBeenSet = true; m_filters[key] = value; return *this; }
+    inline SearchProductsRequest& AddFilters(const ProductViewFilterBy& key, Aws::Vector<Aws::String>&& value) { m_filtersHasBeenSet = true; m_filters.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The list of filters with which to limit search results. If no search filters
      * are specified, the output is all the products to which the calling user has
      * access. </p>
      */
-    inline SearchProductsRequest& AddFilters(ProductViewFilterBy&& key, Aws::Vector<Aws::String>&& value) { m_filtersHasBeenSet = true; m_filters[key] = value; return *this; }
+    inline SearchProductsRequest& AddFilters(ProductViewFilterBy&& key, Aws::Vector<Aws::String>&& value) { m_filtersHasBeenSet = true; m_filters.emplace(std::move(key), std::move(value)); return *this; }
+
 
     /**
      * <p>The maximum number of items to return in the results. If more results exist
@@ -172,6 +184,7 @@ namespace Model
      */
     inline SearchProductsRequest& WithPageSize(int value) { SetPageSize(value); return *this;}
 
+
     /**
      * <p>The sort field specifier. If no value is specified, results are not
      * sorted.</p>
@@ -188,7 +201,7 @@ namespace Model
      * <p>The sort field specifier. If no value is specified, results are not
      * sorted.</p>
      */
-    inline void SetSortBy(ProductViewSortBy&& value) { m_sortByHasBeenSet = true; m_sortBy = value; }
+    inline void SetSortBy(ProductViewSortBy&& value) { m_sortByHasBeenSet = true; m_sortBy = std::move(value); }
 
     /**
      * <p>The sort field specifier. If no value is specified, results are not
@@ -200,7 +213,8 @@ namespace Model
      * <p>The sort field specifier. If no value is specified, results are not
      * sorted.</p>
      */
-    inline SearchProductsRequest& WithSortBy(ProductViewSortBy&& value) { SetSortBy(value); return *this;}
+    inline SearchProductsRequest& WithSortBy(ProductViewSortBy&& value) { SetSortBy(std::move(value)); return *this;}
+
 
     /**
      * <p>The sort order specifier. If no value is specified, results are not
@@ -218,7 +232,7 @@ namespace Model
      * <p>The sort order specifier. If no value is specified, results are not
      * sorted.</p>
      */
-    inline void SetSortOrder(SortOrder&& value) { m_sortOrderHasBeenSet = true; m_sortOrder = value; }
+    inline void SetSortOrder(SortOrder&& value) { m_sortOrderHasBeenSet = true; m_sortOrder = std::move(value); }
 
     /**
      * <p>The sort order specifier. If no value is specified, results are not
@@ -230,7 +244,8 @@ namespace Model
      * <p>The sort order specifier. If no value is specified, results are not
      * sorted.</p>
      */
-    inline SearchProductsRequest& WithSortOrder(SortOrder&& value) { SetSortOrder(value); return *this;}
+    inline SearchProductsRequest& WithSortOrder(SortOrder&& value) { SetSortOrder(std::move(value)); return *this;}
+
 
     /**
      * <p>The page token of the first page retrieved. If null, this retrieves the first
@@ -248,7 +263,7 @@ namespace Model
      * <p>The page token of the first page retrieved. If null, this retrieves the first
      * page of size <code>PageSize</code>.</p>
      */
-    inline void SetPageToken(Aws::String&& value) { m_pageTokenHasBeenSet = true; m_pageToken = value; }
+    inline void SetPageToken(Aws::String&& value) { m_pageTokenHasBeenSet = true; m_pageToken = std::move(value); }
 
     /**
      * <p>The page token of the first page retrieved. If null, this retrieves the first
@@ -266,7 +281,7 @@ namespace Model
      * <p>The page token of the first page retrieved. If null, this retrieves the first
      * page of size <code>PageSize</code>.</p>
      */
-    inline SearchProductsRequest& WithPageToken(Aws::String&& value) { SetPageToken(value); return *this;}
+    inline SearchProductsRequest& WithPageToken(Aws::String&& value) { SetPageToken(std::move(value)); return *this;}
 
     /**
      * <p>The page token of the first page retrieved. If null, this retrieves the first
@@ -275,16 +290,22 @@ namespace Model
     inline SearchProductsRequest& WithPageToken(const char* value) { SetPageToken(value); return *this;}
 
   private:
+
     Aws::String m_acceptLanguage;
     bool m_acceptLanguageHasBeenSet;
+
     Aws::Map<ProductViewFilterBy, Aws::Vector<Aws::String>> m_filters;
     bool m_filtersHasBeenSet;
+
     int m_pageSize;
     bool m_pageSizeHasBeenSet;
+
     ProductViewSortBy m_sortBy;
     bool m_sortByHasBeenSet;
+
     SortOrder m_sortOrder;
     bool m_sortOrderHasBeenSet;
+
     Aws::String m_pageToken;
     bool m_pageTokenHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/es/ElasticsearchService_EXPORTS.h>
 #include <aws/es/model/ElasticsearchVersionStatus.h>
@@ -19,7 +20,10 @@
 #include <aws/es/model/EBSOptionsStatus.h>
 #include <aws/es/model/AccessPoliciesStatus.h>
 #include <aws/es/model/SnapshotOptionsStatus.h>
+#include <aws/es/model/VPCDerivedInfoStatus.h>
 #include <aws/es/model/AdvancedOptionsStatus.h>
+#include <aws/es/model/LogPublishingOptionsStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +52,7 @@ namespace Model
     ElasticsearchDomainConfig& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>String of format X.Y to specify version for the Elasticsearch domain.</p>
      */
@@ -61,7 +66,7 @@ namespace Model
     /**
      * <p>String of format X.Y to specify version for the Elasticsearch domain.</p>
      */
-    inline void SetElasticsearchVersion(ElasticsearchVersionStatus&& value) { m_elasticsearchVersionHasBeenSet = true; m_elasticsearchVersion = value; }
+    inline void SetElasticsearchVersion(ElasticsearchVersionStatus&& value) { m_elasticsearchVersionHasBeenSet = true; m_elasticsearchVersion = std::move(value); }
 
     /**
      * <p>String of format X.Y to specify version for the Elasticsearch domain.</p>
@@ -71,7 +76,8 @@ namespace Model
     /**
      * <p>String of format X.Y to specify version for the Elasticsearch domain.</p>
      */
-    inline ElasticsearchDomainConfig& WithElasticsearchVersion(ElasticsearchVersionStatus&& value) { SetElasticsearchVersion(value); return *this;}
+    inline ElasticsearchDomainConfig& WithElasticsearchVersion(ElasticsearchVersionStatus&& value) { SetElasticsearchVersion(std::move(value)); return *this;}
+
 
     /**
      * <p>Specifies the <code>ElasticsearchClusterConfig</code> for the Elasticsearch
@@ -89,7 +95,7 @@ namespace Model
      * <p>Specifies the <code>ElasticsearchClusterConfig</code> for the Elasticsearch
      * domain.</p>
      */
-    inline void SetElasticsearchClusterConfig(ElasticsearchClusterConfigStatus&& value) { m_elasticsearchClusterConfigHasBeenSet = true; m_elasticsearchClusterConfig = value; }
+    inline void SetElasticsearchClusterConfig(ElasticsearchClusterConfigStatus&& value) { m_elasticsearchClusterConfigHasBeenSet = true; m_elasticsearchClusterConfig = std::move(value); }
 
     /**
      * <p>Specifies the <code>ElasticsearchClusterConfig</code> for the Elasticsearch
@@ -101,7 +107,8 @@ namespace Model
      * <p>Specifies the <code>ElasticsearchClusterConfig</code> for the Elasticsearch
      * domain.</p>
      */
-    inline ElasticsearchDomainConfig& WithElasticsearchClusterConfig(ElasticsearchClusterConfigStatus&& value) { SetElasticsearchClusterConfig(value); return *this;}
+    inline ElasticsearchDomainConfig& WithElasticsearchClusterConfig(ElasticsearchClusterConfigStatus&& value) { SetElasticsearchClusterConfig(std::move(value)); return *this;}
+
 
     /**
      * <p>Specifies the <code>EBSOptions</code> for the Elasticsearch domain.</p>
@@ -116,7 +123,7 @@ namespace Model
     /**
      * <p>Specifies the <code>EBSOptions</code> for the Elasticsearch domain.</p>
      */
-    inline void SetEBSOptions(EBSOptionsStatus&& value) { m_eBSOptionsHasBeenSet = true; m_eBSOptions = value; }
+    inline void SetEBSOptions(EBSOptionsStatus&& value) { m_eBSOptionsHasBeenSet = true; m_eBSOptions = std::move(value); }
 
     /**
      * <p>Specifies the <code>EBSOptions</code> for the Elasticsearch domain.</p>
@@ -126,7 +133,8 @@ namespace Model
     /**
      * <p>Specifies the <code>EBSOptions</code> for the Elasticsearch domain.</p>
      */
-    inline ElasticsearchDomainConfig& WithEBSOptions(EBSOptionsStatus&& value) { SetEBSOptions(value); return *this;}
+    inline ElasticsearchDomainConfig& WithEBSOptions(EBSOptionsStatus&& value) { SetEBSOptions(std::move(value)); return *this;}
+
 
     /**
      * <p>IAM access policy as a JSON-formatted string.</p>
@@ -141,7 +149,7 @@ namespace Model
     /**
      * <p>IAM access policy as a JSON-formatted string.</p>
      */
-    inline void SetAccessPolicies(AccessPoliciesStatus&& value) { m_accessPoliciesHasBeenSet = true; m_accessPolicies = value; }
+    inline void SetAccessPolicies(AccessPoliciesStatus&& value) { m_accessPoliciesHasBeenSet = true; m_accessPolicies = std::move(value); }
 
     /**
      * <p>IAM access policy as a JSON-formatted string.</p>
@@ -151,7 +159,8 @@ namespace Model
     /**
      * <p>IAM access policy as a JSON-formatted string.</p>
      */
-    inline ElasticsearchDomainConfig& WithAccessPolicies(AccessPoliciesStatus&& value) { SetAccessPolicies(value); return *this;}
+    inline ElasticsearchDomainConfig& WithAccessPolicies(AccessPoliciesStatus&& value) { SetAccessPolicies(std::move(value)); return *this;}
+
 
     /**
      * <p>Specifies the <code>SnapshotOptions</code> for the Elasticsearch domain.</p>
@@ -166,7 +175,7 @@ namespace Model
     /**
      * <p>Specifies the <code>SnapshotOptions</code> for the Elasticsearch domain.</p>
      */
-    inline void SetSnapshotOptions(SnapshotOptionsStatus&& value) { m_snapshotOptionsHasBeenSet = true; m_snapshotOptions = value; }
+    inline void SetSnapshotOptions(SnapshotOptionsStatus&& value) { m_snapshotOptionsHasBeenSet = true; m_snapshotOptions = std::move(value); }
 
     /**
      * <p>Specifies the <code>SnapshotOptions</code> for the Elasticsearch domain.</p>
@@ -176,7 +185,49 @@ namespace Model
     /**
      * <p>Specifies the <code>SnapshotOptions</code> for the Elasticsearch domain.</p>
      */
-    inline ElasticsearchDomainConfig& WithSnapshotOptions(SnapshotOptionsStatus&& value) { SetSnapshotOptions(value); return *this;}
+    inline ElasticsearchDomainConfig& WithSnapshotOptions(SnapshotOptionsStatus&& value) { SetSnapshotOptions(std::move(value)); return *this;}
+
+
+    /**
+     * <p>The <code>VPCOptions</code> for the specified domain. For more information,
+     * see <a
+     * href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html"
+     * target="_blank">VPC Endpoints for Amazon Elasticsearch Service Domains</a>.</p>
+     */
+    inline const VPCDerivedInfoStatus& GetVPCOptions() const{ return m_vPCOptions; }
+
+    /**
+     * <p>The <code>VPCOptions</code> for the specified domain. For more information,
+     * see <a
+     * href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html"
+     * target="_blank">VPC Endpoints for Amazon Elasticsearch Service Domains</a>.</p>
+     */
+    inline void SetVPCOptions(const VPCDerivedInfoStatus& value) { m_vPCOptionsHasBeenSet = true; m_vPCOptions = value; }
+
+    /**
+     * <p>The <code>VPCOptions</code> for the specified domain. For more information,
+     * see <a
+     * href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html"
+     * target="_blank">VPC Endpoints for Amazon Elasticsearch Service Domains</a>.</p>
+     */
+    inline void SetVPCOptions(VPCDerivedInfoStatus&& value) { m_vPCOptionsHasBeenSet = true; m_vPCOptions = std::move(value); }
+
+    /**
+     * <p>The <code>VPCOptions</code> for the specified domain. For more information,
+     * see <a
+     * href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html"
+     * target="_blank">VPC Endpoints for Amazon Elasticsearch Service Domains</a>.</p>
+     */
+    inline ElasticsearchDomainConfig& WithVPCOptions(const VPCDerivedInfoStatus& value) { SetVPCOptions(value); return *this;}
+
+    /**
+     * <p>The <code>VPCOptions</code> for the specified domain. For more information,
+     * see <a
+     * href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html"
+     * target="_blank">VPC Endpoints for Amazon Elasticsearch Service Domains</a>.</p>
+     */
+    inline ElasticsearchDomainConfig& WithVPCOptions(VPCDerivedInfoStatus&& value) { SetVPCOptions(std::move(value)); return *this;}
+
 
     /**
      * <p>Specifies the <code>AdvancedOptions</code> for the domain. See <a
@@ -197,7 +248,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options"
      * target="_blank">Configuring Advanced Options</a> for more information.</p>
      */
-    inline void SetAdvancedOptions(AdvancedOptionsStatus&& value) { m_advancedOptionsHasBeenSet = true; m_advancedOptions = value; }
+    inline void SetAdvancedOptions(AdvancedOptionsStatus&& value) { m_advancedOptionsHasBeenSet = true; m_advancedOptions = std::move(value); }
 
     /**
      * <p>Specifies the <code>AdvancedOptions</code> for the domain. See <a
@@ -211,21 +262,59 @@ namespace Model
      * href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options"
      * target="_blank">Configuring Advanced Options</a> for more information.</p>
      */
-    inline ElasticsearchDomainConfig& WithAdvancedOptions(AdvancedOptionsStatus&& value) { SetAdvancedOptions(value); return *this;}
+    inline ElasticsearchDomainConfig& WithAdvancedOptions(AdvancedOptionsStatus&& value) { SetAdvancedOptions(std::move(value)); return *this;}
+
+
+    /**
+     * <p>Log publishing options for the given domain.</p>
+     */
+    inline const LogPublishingOptionsStatus& GetLogPublishingOptions() const{ return m_logPublishingOptions; }
+
+    /**
+     * <p>Log publishing options for the given domain.</p>
+     */
+    inline void SetLogPublishingOptions(const LogPublishingOptionsStatus& value) { m_logPublishingOptionsHasBeenSet = true; m_logPublishingOptions = value; }
+
+    /**
+     * <p>Log publishing options for the given domain.</p>
+     */
+    inline void SetLogPublishingOptions(LogPublishingOptionsStatus&& value) { m_logPublishingOptionsHasBeenSet = true; m_logPublishingOptions = std::move(value); }
+
+    /**
+     * <p>Log publishing options for the given domain.</p>
+     */
+    inline ElasticsearchDomainConfig& WithLogPublishingOptions(const LogPublishingOptionsStatus& value) { SetLogPublishingOptions(value); return *this;}
+
+    /**
+     * <p>Log publishing options for the given domain.</p>
+     */
+    inline ElasticsearchDomainConfig& WithLogPublishingOptions(LogPublishingOptionsStatus&& value) { SetLogPublishingOptions(std::move(value)); return *this;}
 
   private:
+
     ElasticsearchVersionStatus m_elasticsearchVersion;
     bool m_elasticsearchVersionHasBeenSet;
+
     ElasticsearchClusterConfigStatus m_elasticsearchClusterConfig;
     bool m_elasticsearchClusterConfigHasBeenSet;
+
     EBSOptionsStatus m_eBSOptions;
     bool m_eBSOptionsHasBeenSet;
+
     AccessPoliciesStatus m_accessPolicies;
     bool m_accessPoliciesHasBeenSet;
+
     SnapshotOptionsStatus m_snapshotOptions;
     bool m_snapshotOptionsHasBeenSet;
+
+    VPCDerivedInfoStatus m_vPCOptions;
+    bool m_vPCOptionsHasBeenSet;
+
     AdvancedOptionsStatus m_advancedOptions;
     bool m_advancedOptionsHasBeenSet;
+
+    LogPublishingOptionsStatus m_logPublishingOptions;
+    bool m_logPublishingOptionsHasBeenSet;
   };
 
 } // namespace Model

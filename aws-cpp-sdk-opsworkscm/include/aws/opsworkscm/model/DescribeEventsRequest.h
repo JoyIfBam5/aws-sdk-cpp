@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworkscm/OpsWorksCM_EXPORTS.h>
 #include <aws/opsworkscm/OpsWorksCMRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     DescribeEventsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeEvents"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The name of the server for which you want to view events.</p>
@@ -47,7 +57,7 @@ namespace Model
     /**
      * <p>The name of the server for which you want to view events.</p>
      */
-    inline void SetServerName(Aws::String&& value) { m_serverNameHasBeenSet = true; m_serverName = value; }
+    inline void SetServerName(Aws::String&& value) { m_serverNameHasBeenSet = true; m_serverName = std::move(value); }
 
     /**
      * <p>The name of the server for which you want to view events.</p>
@@ -62,12 +72,13 @@ namespace Model
     /**
      * <p>The name of the server for which you want to view events.</p>
      */
-    inline DescribeEventsRequest& WithServerName(Aws::String&& value) { SetServerName(value); return *this;}
+    inline DescribeEventsRequest& WithServerName(Aws::String&& value) { SetServerName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the server for which you want to view events.</p>
      */
     inline DescribeEventsRequest& WithServerName(const char* value) { SetServerName(value); return *this;}
+
 
     /**
      * <p>NextToken is a string that is returned in some command responses. It
@@ -106,7 +117,7 @@ namespace Model
      * in your previous results causes an <code>InvalidNextTokenException</code> to
      * occur. </p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>NextToken is a string that is returned in some command responses. It
@@ -145,7 +156,7 @@ namespace Model
      * in your previous results causes an <code>InvalidNextTokenException</code> to
      * occur. </p>
      */
-    inline DescribeEventsRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeEventsRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>NextToken is a string that is returned in some command responses. It
@@ -159,6 +170,7 @@ namespace Model
      * occur. </p>
      */
     inline DescribeEventsRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     /**
      * <p>To receive a paginated response, use this parameter to specify the maximum
@@ -188,10 +200,13 @@ namespace Model
     inline DescribeEventsRequest& WithMaxResults(int value) { SetMaxResults(value); return *this;}
 
   private:
+
     Aws::String m_serverName;
     bool m_serverNameHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
+
     int m_maxResults;
     bool m_maxResultsHasBeenSet;
   };

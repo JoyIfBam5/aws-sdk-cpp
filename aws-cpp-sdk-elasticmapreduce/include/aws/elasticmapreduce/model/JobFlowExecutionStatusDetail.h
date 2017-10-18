@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/elasticmapreduce/model/JobFlowExecutionState.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,7 @@ namespace Model
 {
 
   /**
-   * <p>Describes the status of the job flow.</p><p><h3>See Also:</h3>   <a
+   * <p>Describes the status of the cluster (job flow).</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/JobFlowExecutionStatusDetail">AWS
    * API Reference</a></p>
    */
@@ -44,6 +46,7 @@ namespace Model
     JobFlowExecutionStatusDetail(const Aws::Utils::Json::JsonValue& jsonValue);
     JobFlowExecutionStatusDetail& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>The state of the job flow.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The state of the job flow.</p>
      */
-    inline void SetState(JobFlowExecutionState&& value) { m_stateHasBeenSet = true; m_state = value; }
+    inline void SetState(JobFlowExecutionState&& value) { m_stateHasBeenSet = true; m_state = std::move(value); }
 
     /**
      * <p>The state of the job flow.</p>
@@ -68,7 +71,8 @@ namespace Model
     /**
      * <p>The state of the job flow.</p>
      */
-    inline JobFlowExecutionStatusDetail& WithState(JobFlowExecutionState&& value) { SetState(value); return *this;}
+    inline JobFlowExecutionStatusDetail& WithState(JobFlowExecutionState&& value) { SetState(std::move(value)); return *this;}
+
 
     /**
      * <p>The creation date and time of the job flow.</p>
@@ -83,7 +87,7 @@ namespace Model
     /**
      * <p>The creation date and time of the job flow.</p>
      */
-    inline void SetCreationDateTime(Aws::Utils::DateTime&& value) { m_creationDateTimeHasBeenSet = true; m_creationDateTime = value; }
+    inline void SetCreationDateTime(Aws::Utils::DateTime&& value) { m_creationDateTimeHasBeenSet = true; m_creationDateTime = std::move(value); }
 
     /**
      * <p>The creation date and time of the job flow.</p>
@@ -93,7 +97,8 @@ namespace Model
     /**
      * <p>The creation date and time of the job flow.</p>
      */
-    inline JobFlowExecutionStatusDetail& WithCreationDateTime(Aws::Utils::DateTime&& value) { SetCreationDateTime(value); return *this;}
+    inline JobFlowExecutionStatusDetail& WithCreationDateTime(Aws::Utils::DateTime&& value) { SetCreationDateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The start date and time of the job flow.</p>
@@ -108,7 +113,7 @@ namespace Model
     /**
      * <p>The start date and time of the job flow.</p>
      */
-    inline void SetStartDateTime(Aws::Utils::DateTime&& value) { m_startDateTimeHasBeenSet = true; m_startDateTime = value; }
+    inline void SetStartDateTime(Aws::Utils::DateTime&& value) { m_startDateTimeHasBeenSet = true; m_startDateTime = std::move(value); }
 
     /**
      * <p>The start date and time of the job flow.</p>
@@ -118,7 +123,8 @@ namespace Model
     /**
      * <p>The start date and time of the job flow.</p>
      */
-    inline JobFlowExecutionStatusDetail& WithStartDateTime(Aws::Utils::DateTime&& value) { SetStartDateTime(value); return *this;}
+    inline JobFlowExecutionStatusDetail& WithStartDateTime(Aws::Utils::DateTime&& value) { SetStartDateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The date and time when the job flow was ready to start running bootstrap
@@ -136,7 +142,7 @@ namespace Model
      * <p>The date and time when the job flow was ready to start running bootstrap
      * actions.</p>
      */
-    inline void SetReadyDateTime(Aws::Utils::DateTime&& value) { m_readyDateTimeHasBeenSet = true; m_readyDateTime = value; }
+    inline void SetReadyDateTime(Aws::Utils::DateTime&& value) { m_readyDateTimeHasBeenSet = true; m_readyDateTime = std::move(value); }
 
     /**
      * <p>The date and time when the job flow was ready to start running bootstrap
@@ -148,7 +154,8 @@ namespace Model
      * <p>The date and time when the job flow was ready to start running bootstrap
      * actions.</p>
      */
-    inline JobFlowExecutionStatusDetail& WithReadyDateTime(Aws::Utils::DateTime&& value) { SetReadyDateTime(value); return *this;}
+    inline JobFlowExecutionStatusDetail& WithReadyDateTime(Aws::Utils::DateTime&& value) { SetReadyDateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The completion date and time of the job flow.</p>
@@ -163,7 +170,7 @@ namespace Model
     /**
      * <p>The completion date and time of the job flow.</p>
      */
-    inline void SetEndDateTime(Aws::Utils::DateTime&& value) { m_endDateTimeHasBeenSet = true; m_endDateTime = value; }
+    inline void SetEndDateTime(Aws::Utils::DateTime&& value) { m_endDateTimeHasBeenSet = true; m_endDateTime = std::move(value); }
 
     /**
      * <p>The completion date and time of the job flow.</p>
@@ -173,7 +180,8 @@ namespace Model
     /**
      * <p>The completion date and time of the job flow.</p>
      */
-    inline JobFlowExecutionStatusDetail& WithEndDateTime(Aws::Utils::DateTime&& value) { SetEndDateTime(value); return *this;}
+    inline JobFlowExecutionStatusDetail& WithEndDateTime(Aws::Utils::DateTime&& value) { SetEndDateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>Description of the job flow last changed state.</p>
@@ -188,7 +196,7 @@ namespace Model
     /**
      * <p>Description of the job flow last changed state.</p>
      */
-    inline void SetLastStateChangeReason(Aws::String&& value) { m_lastStateChangeReasonHasBeenSet = true; m_lastStateChangeReason = value; }
+    inline void SetLastStateChangeReason(Aws::String&& value) { m_lastStateChangeReasonHasBeenSet = true; m_lastStateChangeReason = std::move(value); }
 
     /**
      * <p>Description of the job flow last changed state.</p>
@@ -203,7 +211,7 @@ namespace Model
     /**
      * <p>Description of the job flow last changed state.</p>
      */
-    inline JobFlowExecutionStatusDetail& WithLastStateChangeReason(Aws::String&& value) { SetLastStateChangeReason(value); return *this;}
+    inline JobFlowExecutionStatusDetail& WithLastStateChangeReason(Aws::String&& value) { SetLastStateChangeReason(std::move(value)); return *this;}
 
     /**
      * <p>Description of the job flow last changed state.</p>
@@ -211,16 +219,22 @@ namespace Model
     inline JobFlowExecutionStatusDetail& WithLastStateChangeReason(const char* value) { SetLastStateChangeReason(value); return *this;}
 
   private:
+
     JobFlowExecutionState m_state;
     bool m_stateHasBeenSet;
+
     Aws::Utils::DateTime m_creationDateTime;
     bool m_creationDateTimeHasBeenSet;
+
     Aws::Utils::DateTime m_startDateTime;
     bool m_startDateTimeHasBeenSet;
+
     Aws::Utils::DateTime m_readyDateTime;
     bool m_readyDateTimeHasBeenSet;
+
     Aws::Utils::DateTime m_endDateTime;
     bool m_endDateTimeHasBeenSet;
+
     Aws::String m_lastStateChangeReason;
     bool m_lastStateChangeReasonHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/support/Support_EXPORTS.h>
 #include <aws/support/model/TrustedAdvisorCheckResult.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     DescribeTrustedAdvisorCheckResultResult();
-    DescribeTrustedAdvisorCheckResultResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeTrustedAdvisorCheckResultResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeTrustedAdvisorCheckResultResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeTrustedAdvisorCheckResultResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The detailed results of the Trusted Advisor check.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The detailed results of the Trusted Advisor check.</p>
      */
-    inline void SetResult(TrustedAdvisorCheckResult&& value) { m_result = value; }
+    inline void SetResult(TrustedAdvisorCheckResult&& value) { m_result = std::move(value); }
 
     /**
      * <p>The detailed results of the Trusted Advisor check.</p>
@@ -69,9 +72,10 @@ namespace Model
     /**
      * <p>The detailed results of the Trusted Advisor check.</p>
      */
-    inline DescribeTrustedAdvisorCheckResultResult& WithResult(TrustedAdvisorCheckResult&& value) { SetResult(value); return *this;}
+    inline DescribeTrustedAdvisorCheckResultResult& WithResult(TrustedAdvisorCheckResult&& value) { SetResult(std::move(value)); return *this;}
 
   private:
+
     TrustedAdvisorCheckResult m_result;
   };
 

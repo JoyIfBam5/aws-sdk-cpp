@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dynamodb/DynamoDB_EXPORTS.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     ProvisionedThroughputDescription& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The date and time of the last provisioned throughput increase for this
      * table.</p>
@@ -61,7 +64,7 @@ namespace Model
      * <p>The date and time of the last provisioned throughput increase for this
      * table.</p>
      */
-    inline void SetLastIncreaseDateTime(Aws::Utils::DateTime&& value) { m_lastIncreaseDateTimeHasBeenSet = true; m_lastIncreaseDateTime = value; }
+    inline void SetLastIncreaseDateTime(Aws::Utils::DateTime&& value) { m_lastIncreaseDateTimeHasBeenSet = true; m_lastIncreaseDateTime = std::move(value); }
 
     /**
      * <p>The date and time of the last provisioned throughput increase for this
@@ -73,7 +76,8 @@ namespace Model
      * <p>The date and time of the last provisioned throughput increase for this
      * table.</p>
      */
-    inline ProvisionedThroughputDescription& WithLastIncreaseDateTime(Aws::Utils::DateTime&& value) { SetLastIncreaseDateTime(value); return *this;}
+    inline ProvisionedThroughputDescription& WithLastIncreaseDateTime(Aws::Utils::DateTime&& value) { SetLastIncreaseDateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The date and time of the last provisioned throughput decrease for this
@@ -91,7 +95,7 @@ namespace Model
      * <p>The date and time of the last provisioned throughput decrease for this
      * table.</p>
      */
-    inline void SetLastDecreaseDateTime(Aws::Utils::DateTime&& value) { m_lastDecreaseDateTimeHasBeenSet = true; m_lastDecreaseDateTime = value; }
+    inline void SetLastDecreaseDateTime(Aws::Utils::DateTime&& value) { m_lastDecreaseDateTimeHasBeenSet = true; m_lastDecreaseDateTime = std::move(value); }
 
     /**
      * <p>The date and time of the last provisioned throughput decrease for this
@@ -103,7 +107,8 @@ namespace Model
      * <p>The date and time of the last provisioned throughput decrease for this
      * table.</p>
      */
-    inline ProvisionedThroughputDescription& WithLastDecreaseDateTime(Aws::Utils::DateTime&& value) { SetLastDecreaseDateTime(value); return *this;}
+    inline ProvisionedThroughputDescription& WithLastDecreaseDateTime(Aws::Utils::DateTime&& value) { SetLastDecreaseDateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The number of provisioned throughput decreases for this table during this UTC
@@ -128,6 +133,7 @@ namespace Model
      * in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
     inline ProvisionedThroughputDescription& WithNumberOfDecreasesToday(long long value) { SetNumberOfDecreasesToday(value); return *this;}
+
 
     /**
      * <p>The maximum number of strongly consistent reads consumed per second before
@@ -156,6 +162,7 @@ namespace Model
      */
     inline ProvisionedThroughputDescription& WithReadCapacityUnits(long long value) { SetReadCapacityUnits(value); return *this;}
 
+
     /**
      * <p>The maximum number of writes consumed per second before DynamoDB returns a
      * <code>ThrottlingException</code>.</p>
@@ -175,14 +182,19 @@ namespace Model
     inline ProvisionedThroughputDescription& WithWriteCapacityUnits(long long value) { SetWriteCapacityUnits(value); return *this;}
 
   private:
+
     Aws::Utils::DateTime m_lastIncreaseDateTime;
     bool m_lastIncreaseDateTimeHasBeenSet;
+
     Aws::Utils::DateTime m_lastDecreaseDateTime;
     bool m_lastDecreaseDateTimeHasBeenSet;
+
     long long m_numberOfDecreasesToday;
     bool m_numberOfDecreasesTodayHasBeenSet;
+
     long long m_readCapacityUnits;
     bool m_readCapacityUnitsHasBeenSet;
+
     long long m_writeCapacityUnits;
     bool m_writeCapacityUnitsHasBeenSet;
   };

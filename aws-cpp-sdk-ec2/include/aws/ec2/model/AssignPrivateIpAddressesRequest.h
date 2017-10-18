@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/ec2/EC2Request.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,7 +37,41 @@ namespace Model
   {
   public:
     AssignPrivateIpAddressesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "AssignPrivateIpAddresses"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
+
+    /**
+     * <p>Indicates whether to allow an IP address that is already assigned to another
+     * network interface or instance to be reassigned to the specified network
+     * interface.</p>
+     */
+    inline bool GetAllowReassignment() const{ return m_allowReassignment; }
+
+    /**
+     * <p>Indicates whether to allow an IP address that is already assigned to another
+     * network interface or instance to be reassigned to the specified network
+     * interface.</p>
+     */
+    inline void SetAllowReassignment(bool value) { m_allowReassignmentHasBeenSet = true; m_allowReassignment = value; }
+
+    /**
+     * <p>Indicates whether to allow an IP address that is already assigned to another
+     * network interface or instance to be reassigned to the specified network
+     * interface.</p>
+     */
+    inline AssignPrivateIpAddressesRequest& WithAllowReassignment(bool value) { SetAllowReassignment(value); return *this;}
+
 
     /**
      * <p>The ID of the network interface.</p>
@@ -50,7 +86,7 @@ namespace Model
     /**
      * <p>The ID of the network interface.</p>
      */
-    inline void SetNetworkInterfaceId(Aws::String&& value) { m_networkInterfaceIdHasBeenSet = true; m_networkInterfaceId = value; }
+    inline void SetNetworkInterfaceId(Aws::String&& value) { m_networkInterfaceIdHasBeenSet = true; m_networkInterfaceId = std::move(value); }
 
     /**
      * <p>The ID of the network interface.</p>
@@ -65,12 +101,13 @@ namespace Model
     /**
      * <p>The ID of the network interface.</p>
      */
-    inline AssignPrivateIpAddressesRequest& WithNetworkInterfaceId(Aws::String&& value) { SetNetworkInterfaceId(value); return *this;}
+    inline AssignPrivateIpAddressesRequest& WithNetworkInterfaceId(Aws::String&& value) { SetNetworkInterfaceId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the network interface.</p>
      */
     inline AssignPrivateIpAddressesRequest& WithNetworkInterfaceId(const char* value) { SetNetworkInterfaceId(value); return *this;}
+
 
     /**
      * <p>One or more IP addresses to be assigned as a secondary private IP address to
@@ -94,7 +131,7 @@ namespace Model
      * number of secondary IP addresses.</p> <p>If you don't specify an IP address,
      * Amazon EC2 automatically selects an IP address within the subnet range.</p>
      */
-    inline void SetPrivateIpAddresses(Aws::Vector<Aws::String>&& value) { m_privateIpAddressesHasBeenSet = true; m_privateIpAddresses = value; }
+    inline void SetPrivateIpAddresses(Aws::Vector<Aws::String>&& value) { m_privateIpAddressesHasBeenSet = true; m_privateIpAddresses = std::move(value); }
 
     /**
      * <p>One or more IP addresses to be assigned as a secondary private IP address to
@@ -110,7 +147,7 @@ namespace Model
      * number of secondary IP addresses.</p> <p>If you don't specify an IP address,
      * Amazon EC2 automatically selects an IP address within the subnet range.</p>
      */
-    inline AssignPrivateIpAddressesRequest& WithPrivateIpAddresses(Aws::Vector<Aws::String>&& value) { SetPrivateIpAddresses(value); return *this;}
+    inline AssignPrivateIpAddressesRequest& WithPrivateIpAddresses(Aws::Vector<Aws::String>&& value) { SetPrivateIpAddresses(std::move(value)); return *this;}
 
     /**
      * <p>One or more IP addresses to be assigned as a secondary private IP address to
@@ -126,7 +163,7 @@ namespace Model
      * number of secondary IP addresses.</p> <p>If you don't specify an IP address,
      * Amazon EC2 automatically selects an IP address within the subnet range.</p>
      */
-    inline AssignPrivateIpAddressesRequest& AddPrivateIpAddresses(Aws::String&& value) { m_privateIpAddressesHasBeenSet = true; m_privateIpAddresses.push_back(value); return *this; }
+    inline AssignPrivateIpAddressesRequest& AddPrivateIpAddresses(Aws::String&& value) { m_privateIpAddressesHasBeenSet = true; m_privateIpAddresses.push_back(std::move(value)); return *this; }
 
     /**
      * <p>One or more IP addresses to be assigned as a secondary private IP address to
@@ -135,6 +172,7 @@ namespace Model
      * Amazon EC2 automatically selects an IP address within the subnet range.</p>
      */
     inline AssignPrivateIpAddressesRequest& AddPrivateIpAddresses(const char* value) { m_privateIpAddressesHasBeenSet = true; m_privateIpAddresses.push_back(value); return *this; }
+
 
     /**
      * <p>The number of secondary IP addresses to assign to the network interface. You
@@ -154,36 +192,19 @@ namespace Model
      */
     inline AssignPrivateIpAddressesRequest& WithSecondaryPrivateIpAddressCount(int value) { SetSecondaryPrivateIpAddressCount(value); return *this;}
 
-    /**
-     * <p>Indicates whether to allow an IP address that is already assigned to another
-     * network interface or instance to be reassigned to the specified network
-     * interface.</p>
-     */
-    inline bool GetAllowReassignment() const{ return m_allowReassignment; }
-
-    /**
-     * <p>Indicates whether to allow an IP address that is already assigned to another
-     * network interface or instance to be reassigned to the specified network
-     * interface.</p>
-     */
-    inline void SetAllowReassignment(bool value) { m_allowReassignmentHasBeenSet = true; m_allowReassignment = value; }
-
-    /**
-     * <p>Indicates whether to allow an IP address that is already assigned to another
-     * network interface or instance to be reassigned to the specified network
-     * interface.</p>
-     */
-    inline AssignPrivateIpAddressesRequest& WithAllowReassignment(bool value) { SetAllowReassignment(value); return *this;}
-
   private:
-    Aws::String m_networkInterfaceId;
-    bool m_networkInterfaceIdHasBeenSet;
-    Aws::Vector<Aws::String> m_privateIpAddresses;
-    bool m_privateIpAddressesHasBeenSet;
-    int m_secondaryPrivateIpAddressCount;
-    bool m_secondaryPrivateIpAddressCountHasBeenSet;
+
     bool m_allowReassignment;
     bool m_allowReassignmentHasBeenSet;
+
+    Aws::String m_networkInterfaceId;
+    bool m_networkInterfaceIdHasBeenSet;
+
+    Aws::Vector<Aws::String> m_privateIpAddresses;
+    bool m_privateIpAddressesHasBeenSet;
+
+    int m_secondaryPrivateIpAddressCount;
+    bool m_secondaryPrivateIpAddressCountHasBeenSet;
   };
 
 } // namespace Model

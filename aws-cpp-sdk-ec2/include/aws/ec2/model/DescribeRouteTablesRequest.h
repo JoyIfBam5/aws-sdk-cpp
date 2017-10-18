@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/ec2/EC2Request.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
-#include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ec2/model/Filter.h>
+#include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,79 +38,19 @@ namespace Model
   {
   public:
     DescribeRouteTablesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeRouteTables"; }
+
     Aws::String SerializePayload() const override;
 
-    /**
-     * <p>Checks whether you have the required permissions for the action, without
-     * actually making the request, and provides an error response. If you have the
-     * required permissions, the error response is <code>DryRunOperation</code>.
-     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
-     */
-    inline bool GetDryRun() const{ return m_dryRun; }
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
 
-    /**
-     * <p>Checks whether you have the required permissions for the action, without
-     * actually making the request, and provides an error response. If you have the
-     * required permissions, the error response is <code>DryRunOperation</code>.
-     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
-     */
-    inline void SetDryRun(bool value) { m_dryRunHasBeenSet = true; m_dryRun = value; }
-
-    /**
-     * <p>Checks whether you have the required permissions for the action, without
-     * actually making the request, and provides an error response. If you have the
-     * required permissions, the error response is <code>DryRunOperation</code>.
-     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
-     */
-    inline DescribeRouteTablesRequest& WithDryRun(bool value) { SetDryRun(value); return *this;}
-
-    /**
-     * <p>One or more route table IDs.</p> <p>Default: Describes all your route
-     * tables.</p>
-     */
-    inline const Aws::Vector<Aws::String>& GetRouteTableIds() const{ return m_routeTableIds; }
-
-    /**
-     * <p>One or more route table IDs.</p> <p>Default: Describes all your route
-     * tables.</p>
-     */
-    inline void SetRouteTableIds(const Aws::Vector<Aws::String>& value) { m_routeTableIdsHasBeenSet = true; m_routeTableIds = value; }
-
-    /**
-     * <p>One or more route table IDs.</p> <p>Default: Describes all your route
-     * tables.</p>
-     */
-    inline void SetRouteTableIds(Aws::Vector<Aws::String>&& value) { m_routeTableIdsHasBeenSet = true; m_routeTableIds = value; }
-
-    /**
-     * <p>One or more route table IDs.</p> <p>Default: Describes all your route
-     * tables.</p>
-     */
-    inline DescribeRouteTablesRequest& WithRouteTableIds(const Aws::Vector<Aws::String>& value) { SetRouteTableIds(value); return *this;}
-
-    /**
-     * <p>One or more route table IDs.</p> <p>Default: Describes all your route
-     * tables.</p>
-     */
-    inline DescribeRouteTablesRequest& WithRouteTableIds(Aws::Vector<Aws::String>&& value) { SetRouteTableIds(value); return *this;}
-
-    /**
-     * <p>One or more route table IDs.</p> <p>Default: Describes all your route
-     * tables.</p>
-     */
-    inline DescribeRouteTablesRequest& AddRouteTableIds(const Aws::String& value) { m_routeTableIdsHasBeenSet = true; m_routeTableIds.push_back(value); return *this; }
-
-    /**
-     * <p>One or more route table IDs.</p> <p>Default: Describes all your route
-     * tables.</p>
-     */
-    inline DescribeRouteTablesRequest& AddRouteTableIds(Aws::String&& value) { m_routeTableIdsHasBeenSet = true; m_routeTableIds.push_back(value); return *this; }
-
-    /**
-     * <p>One or more route table IDs.</p> <p>Default: Describes all your route
-     * tables.</p>
-     */
-    inline DescribeRouteTablesRequest& AddRouteTableIds(const char* value) { m_routeTableIdsHasBeenSet = true; m_routeTableIds.push_back(value); return *this; }
+  public:
 
     /**
      * <p>One or more filters.</p> <ul> <li> <p>
@@ -118,10 +60,11 @@ namespace Model
      * the association.</p> </li> <li> <p> <code>association.subnet-id</code> - The ID
      * of the subnet involved in the association.</p> </li> <li> <p>
      * <code>association.main</code> - Indicates whether the route table is the main
-     * route table for the VPC (<code>true</code> | <code>false</code>).</p> </li> <li>
-     * <p> <code>route-table-id</code> - The ID of the route table.</p> </li> <li> <p>
-     * <code>route.destination-cidr-block</code> - The IPv4 CIDR range specified in a
-     * route in the table.</p> </li> <li> <p>
+     * route table for the VPC (<code>true</code> | <code>false</code>). Route tables
+     * that do not have an association ID are not returned in the response.</p> </li>
+     * <li> <p> <code>route-table-id</code> - The ID of the route table.</p> </li> <li>
+     * <p> <code>route.destination-cidr-block</code> - The IPv4 CIDR range specified in
+     * a route in the table.</p> </li> <li> <p>
      * <code>route.destination-ipv6-cidr-block</code> - The IPv6 CIDR range specified
      * in a route in the route table.</p> </li> <li> <p>
      * <code>route.destination-prefix-list-id</code> - The ID (prefix) of the AWS
@@ -170,10 +113,11 @@ namespace Model
      * the association.</p> </li> <li> <p> <code>association.subnet-id</code> - The ID
      * of the subnet involved in the association.</p> </li> <li> <p>
      * <code>association.main</code> - Indicates whether the route table is the main
-     * route table for the VPC (<code>true</code> | <code>false</code>).</p> </li> <li>
-     * <p> <code>route-table-id</code> - The ID of the route table.</p> </li> <li> <p>
-     * <code>route.destination-cidr-block</code> - The IPv4 CIDR range specified in a
-     * route in the table.</p> </li> <li> <p>
+     * route table for the VPC (<code>true</code> | <code>false</code>). Route tables
+     * that do not have an association ID are not returned in the response.</p> </li>
+     * <li> <p> <code>route-table-id</code> - The ID of the route table.</p> </li> <li>
+     * <p> <code>route.destination-cidr-block</code> - The IPv4 CIDR range specified in
+     * a route in the table.</p> </li> <li> <p>
      * <code>route.destination-ipv6-cidr-block</code> - The IPv6 CIDR range specified
      * in a route in the route table.</p> </li> <li> <p>
      * <code>route.destination-prefix-list-id</code> - The ID (prefix) of the AWS
@@ -222,10 +166,11 @@ namespace Model
      * the association.</p> </li> <li> <p> <code>association.subnet-id</code> - The ID
      * of the subnet involved in the association.</p> </li> <li> <p>
      * <code>association.main</code> - Indicates whether the route table is the main
-     * route table for the VPC (<code>true</code> | <code>false</code>).</p> </li> <li>
-     * <p> <code>route-table-id</code> - The ID of the route table.</p> </li> <li> <p>
-     * <code>route.destination-cidr-block</code> - The IPv4 CIDR range specified in a
-     * route in the table.</p> </li> <li> <p>
+     * route table for the VPC (<code>true</code> | <code>false</code>). Route tables
+     * that do not have an association ID are not returned in the response.</p> </li>
+     * <li> <p> <code>route-table-id</code> - The ID of the route table.</p> </li> <li>
+     * <p> <code>route.destination-cidr-block</code> - The IPv4 CIDR range specified in
+     * a route in the table.</p> </li> <li> <p>
      * <code>route.destination-ipv6-cidr-block</code> - The IPv6 CIDR range specified
      * in a route in the route table.</p> </li> <li> <p>
      * <code>route.destination-prefix-list-id</code> - The ID (prefix) of the AWS
@@ -264,7 +209,7 @@ namespace Model
      * filter.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC for the route
      * table.</p> </li> </ul>
      */
-    inline void SetFilters(Aws::Vector<Filter>&& value) { m_filtersHasBeenSet = true; m_filters = value; }
+    inline void SetFilters(Aws::Vector<Filter>&& value) { m_filtersHasBeenSet = true; m_filters = std::move(value); }
 
     /**
      * <p>One or more filters.</p> <ul> <li> <p>
@@ -274,10 +219,11 @@ namespace Model
      * the association.</p> </li> <li> <p> <code>association.subnet-id</code> - The ID
      * of the subnet involved in the association.</p> </li> <li> <p>
      * <code>association.main</code> - Indicates whether the route table is the main
-     * route table for the VPC (<code>true</code> | <code>false</code>).</p> </li> <li>
-     * <p> <code>route-table-id</code> - The ID of the route table.</p> </li> <li> <p>
-     * <code>route.destination-cidr-block</code> - The IPv4 CIDR range specified in a
-     * route in the table.</p> </li> <li> <p>
+     * route table for the VPC (<code>true</code> | <code>false</code>). Route tables
+     * that do not have an association ID are not returned in the response.</p> </li>
+     * <li> <p> <code>route-table-id</code> - The ID of the route table.</p> </li> <li>
+     * <p> <code>route.destination-cidr-block</code> - The IPv4 CIDR range specified in
+     * a route in the table.</p> </li> <li> <p>
      * <code>route.destination-ipv6-cidr-block</code> - The IPv6 CIDR range specified
      * in a route in the route table.</p> </li> <li> <p>
      * <code>route.destination-prefix-list-id</code> - The ID (prefix) of the AWS
@@ -326,10 +272,11 @@ namespace Model
      * the association.</p> </li> <li> <p> <code>association.subnet-id</code> - The ID
      * of the subnet involved in the association.</p> </li> <li> <p>
      * <code>association.main</code> - Indicates whether the route table is the main
-     * route table for the VPC (<code>true</code> | <code>false</code>).</p> </li> <li>
-     * <p> <code>route-table-id</code> - The ID of the route table.</p> </li> <li> <p>
-     * <code>route.destination-cidr-block</code> - The IPv4 CIDR range specified in a
-     * route in the table.</p> </li> <li> <p>
+     * route table for the VPC (<code>true</code> | <code>false</code>). Route tables
+     * that do not have an association ID are not returned in the response.</p> </li>
+     * <li> <p> <code>route-table-id</code> - The ID of the route table.</p> </li> <li>
+     * <p> <code>route.destination-cidr-block</code> - The IPv4 CIDR range specified in
+     * a route in the table.</p> </li> <li> <p>
      * <code>route.destination-ipv6-cidr-block</code> - The IPv6 CIDR range specified
      * in a route in the route table.</p> </li> <li> <p>
      * <code>route.destination-prefix-list-id</code> - The ID (prefix) of the AWS
@@ -368,7 +315,7 @@ namespace Model
      * filter.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC for the route
      * table.</p> </li> </ul>
      */
-    inline DescribeRouteTablesRequest& WithFilters(Aws::Vector<Filter>&& value) { SetFilters(value); return *this;}
+    inline DescribeRouteTablesRequest& WithFilters(Aws::Vector<Filter>&& value) { SetFilters(std::move(value)); return *this;}
 
     /**
      * <p>One or more filters.</p> <ul> <li> <p>
@@ -378,10 +325,11 @@ namespace Model
      * the association.</p> </li> <li> <p> <code>association.subnet-id</code> - The ID
      * of the subnet involved in the association.</p> </li> <li> <p>
      * <code>association.main</code> - Indicates whether the route table is the main
-     * route table for the VPC (<code>true</code> | <code>false</code>).</p> </li> <li>
-     * <p> <code>route-table-id</code> - The ID of the route table.</p> </li> <li> <p>
-     * <code>route.destination-cidr-block</code> - The IPv4 CIDR range specified in a
-     * route in the table.</p> </li> <li> <p>
+     * route table for the VPC (<code>true</code> | <code>false</code>). Route tables
+     * that do not have an association ID are not returned in the response.</p> </li>
+     * <li> <p> <code>route-table-id</code> - The ID of the route table.</p> </li> <li>
+     * <p> <code>route.destination-cidr-block</code> - The IPv4 CIDR range specified in
+     * a route in the table.</p> </li> <li> <p>
      * <code>route.destination-ipv6-cidr-block</code> - The IPv6 CIDR range specified
      * in a route in the route table.</p> </li> <li> <p>
      * <code>route.destination-prefix-list-id</code> - The ID (prefix) of the AWS
@@ -430,10 +378,11 @@ namespace Model
      * the association.</p> </li> <li> <p> <code>association.subnet-id</code> - The ID
      * of the subnet involved in the association.</p> </li> <li> <p>
      * <code>association.main</code> - Indicates whether the route table is the main
-     * route table for the VPC (<code>true</code> | <code>false</code>).</p> </li> <li>
-     * <p> <code>route-table-id</code> - The ID of the route table.</p> </li> <li> <p>
-     * <code>route.destination-cidr-block</code> - The IPv4 CIDR range specified in a
-     * route in the table.</p> </li> <li> <p>
+     * route table for the VPC (<code>true</code> | <code>false</code>). Route tables
+     * that do not have an association ID are not returned in the response.</p> </li>
+     * <li> <p> <code>route-table-id</code> - The ID of the route table.</p> </li> <li>
+     * <p> <code>route.destination-cidr-block</code> - The IPv4 CIDR range specified in
+     * a route in the table.</p> </li> <li> <p>
      * <code>route.destination-ipv6-cidr-block</code> - The IPv6 CIDR range specified
      * in a route in the route table.</p> </li> <li> <p>
      * <code>route.destination-prefix-list-id</code> - The ID (prefix) of the AWS
@@ -472,15 +421,92 @@ namespace Model
      * filter.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC for the route
      * table.</p> </li> </ul>
      */
-    inline DescribeRouteTablesRequest& AddFilters(Filter&& value) { m_filtersHasBeenSet = true; m_filters.push_back(value); return *this; }
+    inline DescribeRouteTablesRequest& AddFilters(Filter&& value) { m_filtersHasBeenSet = true; m_filters.push_back(std::move(value)); return *this; }
+
+
+    /**
+     * <p>Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have the
+     * required permissions, the error response is <code>DryRunOperation</code>.
+     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+     */
+    inline bool GetDryRun() const{ return m_dryRun; }
+
+    /**
+     * <p>Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have the
+     * required permissions, the error response is <code>DryRunOperation</code>.
+     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+     */
+    inline void SetDryRun(bool value) { m_dryRunHasBeenSet = true; m_dryRun = value; }
+
+    /**
+     * <p>Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have the
+     * required permissions, the error response is <code>DryRunOperation</code>.
+     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+     */
+    inline DescribeRouteTablesRequest& WithDryRun(bool value) { SetDryRun(value); return *this;}
+
+
+    /**
+     * <p>One or more route table IDs.</p> <p>Default: Describes all your route
+     * tables.</p>
+     */
+    inline const Aws::Vector<Aws::String>& GetRouteTableIds() const{ return m_routeTableIds; }
+
+    /**
+     * <p>One or more route table IDs.</p> <p>Default: Describes all your route
+     * tables.</p>
+     */
+    inline void SetRouteTableIds(const Aws::Vector<Aws::String>& value) { m_routeTableIdsHasBeenSet = true; m_routeTableIds = value; }
+
+    /**
+     * <p>One or more route table IDs.</p> <p>Default: Describes all your route
+     * tables.</p>
+     */
+    inline void SetRouteTableIds(Aws::Vector<Aws::String>&& value) { m_routeTableIdsHasBeenSet = true; m_routeTableIds = std::move(value); }
+
+    /**
+     * <p>One or more route table IDs.</p> <p>Default: Describes all your route
+     * tables.</p>
+     */
+    inline DescribeRouteTablesRequest& WithRouteTableIds(const Aws::Vector<Aws::String>& value) { SetRouteTableIds(value); return *this;}
+
+    /**
+     * <p>One or more route table IDs.</p> <p>Default: Describes all your route
+     * tables.</p>
+     */
+    inline DescribeRouteTablesRequest& WithRouteTableIds(Aws::Vector<Aws::String>&& value) { SetRouteTableIds(std::move(value)); return *this;}
+
+    /**
+     * <p>One or more route table IDs.</p> <p>Default: Describes all your route
+     * tables.</p>
+     */
+    inline DescribeRouteTablesRequest& AddRouteTableIds(const Aws::String& value) { m_routeTableIdsHasBeenSet = true; m_routeTableIds.push_back(value); return *this; }
+
+    /**
+     * <p>One or more route table IDs.</p> <p>Default: Describes all your route
+     * tables.</p>
+     */
+    inline DescribeRouteTablesRequest& AddRouteTableIds(Aws::String&& value) { m_routeTableIdsHasBeenSet = true; m_routeTableIds.push_back(std::move(value)); return *this; }
+
+    /**
+     * <p>One or more route table IDs.</p> <p>Default: Describes all your route
+     * tables.</p>
+     */
+    inline DescribeRouteTablesRequest& AddRouteTableIds(const char* value) { m_routeTableIdsHasBeenSet = true; m_routeTableIds.push_back(value); return *this; }
 
   private:
-    bool m_dryRun;
-    bool m_dryRunHasBeenSet;
-    Aws::Vector<Aws::String> m_routeTableIds;
-    bool m_routeTableIdsHasBeenSet;
+
     Aws::Vector<Filter> m_filters;
     bool m_filtersHasBeenSet;
+
+    bool m_dryRun;
+    bool m_dryRunHasBeenSet;
+
+    Aws::Vector<Aws::String> m_routeTableIds;
+    bool m_routeTableIdsHasBeenSet;
   };
 
 } // namespace Model

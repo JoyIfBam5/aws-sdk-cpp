@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
-#include <aws/ec2/model/VolumeStatusInfoStatus.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <aws/ec2/model/VolumeStatusInfoStatus.h>
 #include <aws/ec2/model/VolumeStatusDetails.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,30 +50,6 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
-    /**
-     * <p>The status of the volume.</p>
-     */
-    inline const VolumeStatusInfoStatus& GetStatus() const{ return m_status; }
-
-    /**
-     * <p>The status of the volume.</p>
-     */
-    inline void SetStatus(const VolumeStatusInfoStatus& value) { m_statusHasBeenSet = true; m_status = value; }
-
-    /**
-     * <p>The status of the volume.</p>
-     */
-    inline void SetStatus(VolumeStatusInfoStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
-
-    /**
-     * <p>The status of the volume.</p>
-     */
-    inline VolumeStatusInfo& WithStatus(const VolumeStatusInfoStatus& value) { SetStatus(value); return *this;}
-
-    /**
-     * <p>The status of the volume.</p>
-     */
-    inline VolumeStatusInfo& WithStatus(VolumeStatusInfoStatus&& value) { SetStatus(value); return *this;}
 
     /**
      * <p>The details of the volume status.</p>
@@ -86,7 +64,7 @@ namespace Model
     /**
      * <p>The details of the volume status.</p>
      */
-    inline void SetDetails(Aws::Vector<VolumeStatusDetails>&& value) { m_detailsHasBeenSet = true; m_details = value; }
+    inline void SetDetails(Aws::Vector<VolumeStatusDetails>&& value) { m_detailsHasBeenSet = true; m_details = std::move(value); }
 
     /**
      * <p>The details of the volume status.</p>
@@ -96,7 +74,7 @@ namespace Model
     /**
      * <p>The details of the volume status.</p>
      */
-    inline VolumeStatusInfo& WithDetails(Aws::Vector<VolumeStatusDetails>&& value) { SetDetails(value); return *this;}
+    inline VolumeStatusInfo& WithDetails(Aws::Vector<VolumeStatusDetails>&& value) { SetDetails(std::move(value)); return *this;}
 
     /**
      * <p>The details of the volume status.</p>
@@ -106,13 +84,41 @@ namespace Model
     /**
      * <p>The details of the volume status.</p>
      */
-    inline VolumeStatusInfo& AddDetails(VolumeStatusDetails&& value) { m_detailsHasBeenSet = true; m_details.push_back(value); return *this; }
+    inline VolumeStatusInfo& AddDetails(VolumeStatusDetails&& value) { m_detailsHasBeenSet = true; m_details.push_back(std::move(value)); return *this; }
+
+
+    /**
+     * <p>The status of the volume.</p>
+     */
+    inline const VolumeStatusInfoStatus& GetStatus() const{ return m_status; }
+
+    /**
+     * <p>The status of the volume.</p>
+     */
+    inline void SetStatus(const VolumeStatusInfoStatus& value) { m_statusHasBeenSet = true; m_status = value; }
+
+    /**
+     * <p>The status of the volume.</p>
+     */
+    inline void SetStatus(VolumeStatusInfoStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
+
+    /**
+     * <p>The status of the volume.</p>
+     */
+    inline VolumeStatusInfo& WithStatus(const VolumeStatusInfoStatus& value) { SetStatus(value); return *this;}
+
+    /**
+     * <p>The status of the volume.</p>
+     */
+    inline VolumeStatusInfo& WithStatus(VolumeStatusInfoStatus&& value) { SetStatus(std::move(value)); return *this;}
 
   private:
-    VolumeStatusInfoStatus m_status;
-    bool m_statusHasBeenSet;
+
     Aws::Vector<VolumeStatusDetails> m_details;
     bool m_detailsHasBeenSet;
+
+    VolumeStatusInfoStatus m_status;
+    bool m_statusHasBeenSet;
   };
 
 } // namespace Model

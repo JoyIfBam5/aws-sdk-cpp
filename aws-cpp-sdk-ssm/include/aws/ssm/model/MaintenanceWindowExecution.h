@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ssm/model/MaintenanceWindowExecutionStatus.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     MaintenanceWindowExecution& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ID of the Maintenance Window.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The ID of the Maintenance Window.</p>
      */
-    inline void SetWindowId(Aws::String&& value) { m_windowIdHasBeenSet = true; m_windowId = value; }
+    inline void SetWindowId(Aws::String&& value) { m_windowIdHasBeenSet = true; m_windowId = std::move(value); }
 
     /**
      * <p>The ID of the Maintenance Window.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>The ID of the Maintenance Window.</p>
      */
-    inline MaintenanceWindowExecution& WithWindowId(Aws::String&& value) { SetWindowId(value); return *this;}
+    inline MaintenanceWindowExecution& WithWindowId(Aws::String&& value) { SetWindowId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the Maintenance Window.</p>
      */
     inline MaintenanceWindowExecution& WithWindowId(const char* value) { SetWindowId(value); return *this;}
+
 
     /**
      * <p>The ID of the Maintenance Window execution.</p>
@@ -94,7 +98,7 @@ namespace Model
     /**
      * <p>The ID of the Maintenance Window execution.</p>
      */
-    inline void SetWindowExecutionId(Aws::String&& value) { m_windowExecutionIdHasBeenSet = true; m_windowExecutionId = value; }
+    inline void SetWindowExecutionId(Aws::String&& value) { m_windowExecutionIdHasBeenSet = true; m_windowExecutionId = std::move(value); }
 
     /**
      * <p>The ID of the Maintenance Window execution.</p>
@@ -109,12 +113,13 @@ namespace Model
     /**
      * <p>The ID of the Maintenance Window execution.</p>
      */
-    inline MaintenanceWindowExecution& WithWindowExecutionId(Aws::String&& value) { SetWindowExecutionId(value); return *this;}
+    inline MaintenanceWindowExecution& WithWindowExecutionId(Aws::String&& value) { SetWindowExecutionId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the Maintenance Window execution.</p>
      */
     inline MaintenanceWindowExecution& WithWindowExecutionId(const char* value) { SetWindowExecutionId(value); return *this;}
+
 
     /**
      * <p>The status of the execution.</p>
@@ -129,7 +134,7 @@ namespace Model
     /**
      * <p>The status of the execution.</p>
      */
-    inline void SetStatus(MaintenanceWindowExecutionStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(MaintenanceWindowExecutionStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The status of the execution.</p>
@@ -139,7 +144,8 @@ namespace Model
     /**
      * <p>The status of the execution.</p>
      */
-    inline MaintenanceWindowExecution& WithStatus(MaintenanceWindowExecutionStatus&& value) { SetStatus(value); return *this;}
+    inline MaintenanceWindowExecution& WithStatus(MaintenanceWindowExecutionStatus&& value) { SetStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The details explaining the Status. Only available for certain status
@@ -157,7 +163,7 @@ namespace Model
      * <p>The details explaining the Status. Only available for certain status
      * values.</p>
      */
-    inline void SetStatusDetails(Aws::String&& value) { m_statusDetailsHasBeenSet = true; m_statusDetails = value; }
+    inline void SetStatusDetails(Aws::String&& value) { m_statusDetailsHasBeenSet = true; m_statusDetails = std::move(value); }
 
     /**
      * <p>The details explaining the Status. Only available for certain status
@@ -175,13 +181,14 @@ namespace Model
      * <p>The details explaining the Status. Only available for certain status
      * values.</p>
      */
-    inline MaintenanceWindowExecution& WithStatusDetails(Aws::String&& value) { SetStatusDetails(value); return *this;}
+    inline MaintenanceWindowExecution& WithStatusDetails(Aws::String&& value) { SetStatusDetails(std::move(value)); return *this;}
 
     /**
      * <p>The details explaining the Status. Only available for certain status
      * values.</p>
      */
     inline MaintenanceWindowExecution& WithStatusDetails(const char* value) { SetStatusDetails(value); return *this;}
+
 
     /**
      * <p>The time the execution started.</p>
@@ -196,7 +203,7 @@ namespace Model
     /**
      * <p>The time the execution started.</p>
      */
-    inline void SetStartTime(Aws::Utils::DateTime&& value) { m_startTimeHasBeenSet = true; m_startTime = value; }
+    inline void SetStartTime(Aws::Utils::DateTime&& value) { m_startTimeHasBeenSet = true; m_startTime = std::move(value); }
 
     /**
      * <p>The time the execution started.</p>
@@ -206,7 +213,8 @@ namespace Model
     /**
      * <p>The time the execution started.</p>
      */
-    inline MaintenanceWindowExecution& WithStartTime(Aws::Utils::DateTime&& value) { SetStartTime(value); return *this;}
+    inline MaintenanceWindowExecution& WithStartTime(Aws::Utils::DateTime&& value) { SetStartTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The time the execution finished.</p>
@@ -221,7 +229,7 @@ namespace Model
     /**
      * <p>The time the execution finished.</p>
      */
-    inline void SetEndTime(Aws::Utils::DateTime&& value) { m_endTimeHasBeenSet = true; m_endTime = value; }
+    inline void SetEndTime(Aws::Utils::DateTime&& value) { m_endTimeHasBeenSet = true; m_endTime = std::move(value); }
 
     /**
      * <p>The time the execution finished.</p>
@@ -231,19 +239,25 @@ namespace Model
     /**
      * <p>The time the execution finished.</p>
      */
-    inline MaintenanceWindowExecution& WithEndTime(Aws::Utils::DateTime&& value) { SetEndTime(value); return *this;}
+    inline MaintenanceWindowExecution& WithEndTime(Aws::Utils::DateTime&& value) { SetEndTime(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_windowId;
     bool m_windowIdHasBeenSet;
+
     Aws::String m_windowExecutionId;
     bool m_windowExecutionIdHasBeenSet;
+
     MaintenanceWindowExecutionStatus m_status;
     bool m_statusHasBeenSet;
+
     Aws::String m_statusDetails;
     bool m_statusDetailsHasBeenSet;
+
     Aws::Utils::DateTime m_startTime;
     bool m_startTimeHasBeenSet;
+
     Aws::Utils::DateTime m_endTime;
     bool m_endTimeHasBeenSet;
   };

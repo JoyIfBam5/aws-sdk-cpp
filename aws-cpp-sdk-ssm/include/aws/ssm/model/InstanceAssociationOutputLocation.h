@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/ssm/model/S3OutputLocation.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     InstanceAssociationOutputLocation& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>An Amazon S3 bucket where you want to store the results of this request.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>An Amazon S3 bucket where you want to store the results of this request.</p>
      */
-    inline void SetS3Location(S3OutputLocation&& value) { m_s3LocationHasBeenSet = true; m_s3Location = value; }
+    inline void SetS3Location(S3OutputLocation&& value) { m_s3LocationHasBeenSet = true; m_s3Location = std::move(value); }
 
     /**
      * <p>An Amazon S3 bucket where you want to store the results of this request.</p>
@@ -67,9 +70,10 @@ namespace Model
     /**
      * <p>An Amazon S3 bucket where you want to store the results of this request.</p>
      */
-    inline InstanceAssociationOutputLocation& WithS3Location(S3OutputLocation&& value) { SetS3Location(value); return *this;}
+    inline InstanceAssociationOutputLocation& WithS3Location(S3OutputLocation&& value) { SetS3Location(std::move(value)); return *this;}
 
   private:
+
     S3OutputLocation m_s3Location;
     bool m_s3LocationHasBeenSet;
   };

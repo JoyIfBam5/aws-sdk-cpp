@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/route53domains/model/UpdateDomainNameserversRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -23,7 +24,6 @@ using namespace Aws::Utils;
 
 UpdateDomainNameserversRequest::UpdateDomainNameserversRequest() : 
     m_domainNameHasBeenSet(false),
-    m_fIAuthKeyHasBeenSet(false),
     m_nameserversHasBeenSet(false)
 {
 }
@@ -35,12 +35,6 @@ Aws::String UpdateDomainNameserversRequest::SerializePayload() const
   if(m_domainNameHasBeenSet)
   {
    payload.WithString("DomainName", m_domainName);
-
-  }
-
-  if(m_fIAuthKeyHasBeenSet)
-  {
-   payload.WithString("FIAuthKey", m_fIAuthKey);
 
   }
 
@@ -65,6 +59,7 @@ Aws::Http::HeaderValueCollection UpdateDomainNameserversRequest::GetRequestSpeci
   return headers;
 
 }
+
 
 
 

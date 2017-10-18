@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/ec2/model/LaunchPermission.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The AWS account ID to add to the list of launch permissions for the AMI.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The AWS account ID to add to the list of launch permissions for the AMI.</p>
      */
-    inline void SetAdd(Aws::Vector<LaunchPermission>&& value) { m_addHasBeenSet = true; m_add = value; }
+    inline void SetAdd(Aws::Vector<LaunchPermission>&& value) { m_addHasBeenSet = true; m_add = std::move(value); }
 
     /**
      * <p>The AWS account ID to add to the list of launch permissions for the AMI.</p>
@@ -70,7 +73,7 @@ namespace Model
     /**
      * <p>The AWS account ID to add to the list of launch permissions for the AMI.</p>
      */
-    inline LaunchPermissionModifications& WithAdd(Aws::Vector<LaunchPermission>&& value) { SetAdd(value); return *this;}
+    inline LaunchPermissionModifications& WithAdd(Aws::Vector<LaunchPermission>&& value) { SetAdd(std::move(value)); return *this;}
 
     /**
      * <p>The AWS account ID to add to the list of launch permissions for the AMI.</p>
@@ -80,7 +83,8 @@ namespace Model
     /**
      * <p>The AWS account ID to add to the list of launch permissions for the AMI.</p>
      */
-    inline LaunchPermissionModifications& AddAdd(LaunchPermission&& value) { m_addHasBeenSet = true; m_add.push_back(value); return *this; }
+    inline LaunchPermissionModifications& AddAdd(LaunchPermission&& value) { m_addHasBeenSet = true; m_add.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The AWS account ID to remove from the list of launch permissions for the
@@ -98,7 +102,7 @@ namespace Model
      * <p>The AWS account ID to remove from the list of launch permissions for the
      * AMI.</p>
      */
-    inline void SetRemove(Aws::Vector<LaunchPermission>&& value) { m_removeHasBeenSet = true; m_remove = value; }
+    inline void SetRemove(Aws::Vector<LaunchPermission>&& value) { m_removeHasBeenSet = true; m_remove = std::move(value); }
 
     /**
      * <p>The AWS account ID to remove from the list of launch permissions for the
@@ -110,7 +114,7 @@ namespace Model
      * <p>The AWS account ID to remove from the list of launch permissions for the
      * AMI.</p>
      */
-    inline LaunchPermissionModifications& WithRemove(Aws::Vector<LaunchPermission>&& value) { SetRemove(value); return *this;}
+    inline LaunchPermissionModifications& WithRemove(Aws::Vector<LaunchPermission>&& value) { SetRemove(std::move(value)); return *this;}
 
     /**
      * <p>The AWS account ID to remove from the list of launch permissions for the
@@ -122,11 +126,13 @@ namespace Model
      * <p>The AWS account ID to remove from the list of launch permissions for the
      * AMI.</p>
      */
-    inline LaunchPermissionModifications& AddRemove(LaunchPermission&& value) { m_removeHasBeenSet = true; m_remove.push_back(value); return *this; }
+    inline LaunchPermissionModifications& AddRemove(LaunchPermission&& value) { m_removeHasBeenSet = true; m_remove.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<LaunchPermission> m_add;
     bool m_addHasBeenSet;
+
     Aws::Vector<LaunchPermission> m_remove;
     bool m_removeHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     DomainName& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the <a>DomainName</a> resource.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The name of the <a>DomainName</a> resource.</p>
      */
-    inline void SetDomainName(Aws::String&& value) { m_domainNameHasBeenSet = true; m_domainName = value; }
+    inline void SetDomainName(Aws::String&& value) { m_domainNameHasBeenSet = true; m_domainName = std::move(value); }
 
     /**
      * <p>The name of the <a>DomainName</a> resource.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The name of the <a>DomainName</a> resource.</p>
      */
-    inline DomainName& WithDomainName(Aws::String&& value) { SetDomainName(value); return *this;}
+    inline DomainName& WithDomainName(Aws::String&& value) { SetDomainName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the <a>DomainName</a> resource.</p>
      */
     inline DomainName& WithDomainName(const char* value) { SetDomainName(value); return *this;}
+
 
     /**
      * <p>The name of the certificate.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>The name of the certificate.</p>
      */
-    inline void SetCertificateName(Aws::String&& value) { m_certificateNameHasBeenSet = true; m_certificateName = value; }
+    inline void SetCertificateName(Aws::String&& value) { m_certificateNameHasBeenSet = true; m_certificateName = std::move(value); }
 
     /**
      * <p>The name of the certificate.</p>
@@ -110,47 +114,82 @@ namespace Model
     /**
      * <p>The name of the certificate.</p>
      */
-    inline DomainName& WithCertificateName(Aws::String&& value) { SetCertificateName(value); return *this;}
+    inline DomainName& WithCertificateName(Aws::String&& value) { SetCertificateName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the certificate.</p>
      */
     inline DomainName& WithCertificateName(const char* value) { SetCertificateName(value); return *this;}
 
+
     /**
-     * <p>The date when the certificate was uploaded, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The reference to an AWS-managed certificate. AWS Certificate Manager is the
+     * only supported source.</p>
+     */
+    inline const Aws::String& GetCertificateArn() const{ return m_certificateArn; }
+
+    /**
+     * <p>The reference to an AWS-managed certificate. AWS Certificate Manager is the
+     * only supported source.</p>
+     */
+    inline void SetCertificateArn(const Aws::String& value) { m_certificateArnHasBeenSet = true; m_certificateArn = value; }
+
+    /**
+     * <p>The reference to an AWS-managed certificate. AWS Certificate Manager is the
+     * only supported source.</p>
+     */
+    inline void SetCertificateArn(Aws::String&& value) { m_certificateArnHasBeenSet = true; m_certificateArn = std::move(value); }
+
+    /**
+     * <p>The reference to an AWS-managed certificate. AWS Certificate Manager is the
+     * only supported source.</p>
+     */
+    inline void SetCertificateArn(const char* value) { m_certificateArnHasBeenSet = true; m_certificateArn.assign(value); }
+
+    /**
+     * <p>The reference to an AWS-managed certificate. AWS Certificate Manager is the
+     * only supported source.</p>
+     */
+    inline DomainName& WithCertificateArn(const Aws::String& value) { SetCertificateArn(value); return *this;}
+
+    /**
+     * <p>The reference to an AWS-managed certificate. AWS Certificate Manager is the
+     * only supported source.</p>
+     */
+    inline DomainName& WithCertificateArn(Aws::String&& value) { SetCertificateArn(std::move(value)); return *this;}
+
+    /**
+     * <p>The reference to an AWS-managed certificate. AWS Certificate Manager is the
+     * only supported source.</p>
+     */
+    inline DomainName& WithCertificateArn(const char* value) { SetCertificateArn(value); return *this;}
+
+
+    /**
+     * <p>The timestamp when the certificate was uploaded.</p>
      */
     inline const Aws::Utils::DateTime& GetCertificateUploadDate() const{ return m_certificateUploadDate; }
 
     /**
-     * <p>The date when the certificate was uploaded, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The timestamp when the certificate was uploaded.</p>
      */
     inline void SetCertificateUploadDate(const Aws::Utils::DateTime& value) { m_certificateUploadDateHasBeenSet = true; m_certificateUploadDate = value; }
 
     /**
-     * <p>The date when the certificate was uploaded, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The timestamp when the certificate was uploaded.</p>
      */
-    inline void SetCertificateUploadDate(Aws::Utils::DateTime&& value) { m_certificateUploadDateHasBeenSet = true; m_certificateUploadDate = value; }
+    inline void SetCertificateUploadDate(Aws::Utils::DateTime&& value) { m_certificateUploadDateHasBeenSet = true; m_certificateUploadDate = std::move(value); }
 
     /**
-     * <p>The date when the certificate was uploaded, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The timestamp when the certificate was uploaded.</p>
      */
     inline DomainName& WithCertificateUploadDate(const Aws::Utils::DateTime& value) { SetCertificateUploadDate(value); return *this;}
 
     /**
-     * <p>The date when the certificate was uploaded, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The timestamp when the certificate was uploaded.</p>
      */
-    inline DomainName& WithCertificateUploadDate(Aws::Utils::DateTime&& value) { SetCertificateUploadDate(value); return *this;}
+    inline DomainName& WithCertificateUploadDate(Aws::Utils::DateTime&& value) { SetCertificateUploadDate(std::move(value)); return *this;}
+
 
     /**
      * <p>The domain name of the Amazon CloudFront distribution. For more information,
@@ -171,7 +210,7 @@ namespace Model
      * see the <a href="http://aws.amazon.com/documentation/cloudfront/"
      * target="_blank">Amazon CloudFront documentation</a>.</p>
      */
-    inline void SetDistributionDomainName(Aws::String&& value) { m_distributionDomainNameHasBeenSet = true; m_distributionDomainName = value; }
+    inline void SetDistributionDomainName(Aws::String&& value) { m_distributionDomainNameHasBeenSet = true; m_distributionDomainName = std::move(value); }
 
     /**
      * <p>The domain name of the Amazon CloudFront distribution. For more information,
@@ -192,7 +231,7 @@ namespace Model
      * see the <a href="http://aws.amazon.com/documentation/cloudfront/"
      * target="_blank">Amazon CloudFront documentation</a>.</p>
      */
-    inline DomainName& WithDistributionDomainName(Aws::String&& value) { SetDistributionDomainName(value); return *this;}
+    inline DomainName& WithDistributionDomainName(Aws::String&& value) { SetDistributionDomainName(std::move(value)); return *this;}
 
     /**
      * <p>The domain name of the Amazon CloudFront distribution. For more information,
@@ -202,12 +241,19 @@ namespace Model
     inline DomainName& WithDistributionDomainName(const char* value) { SetDistributionDomainName(value); return *this;}
 
   private:
+
     Aws::String m_domainName;
     bool m_domainNameHasBeenSet;
+
     Aws::String m_certificateName;
     bool m_certificateNameHasBeenSet;
+
+    Aws::String m_certificateArn;
+    bool m_certificateArnHasBeenSet;
+
     Aws::Utils::DateTime m_certificateUploadDate;
     bool m_certificateUploadDateHasBeenSet;
+
     Aws::String m_distributionDomainName;
     bool m_distributionDomainNameHasBeenSet;
   };

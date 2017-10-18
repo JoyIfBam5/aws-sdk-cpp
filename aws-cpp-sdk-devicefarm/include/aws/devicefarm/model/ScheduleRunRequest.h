@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,15 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/devicefarm/DeviceFarm_EXPORTS.h>
 #include <aws/devicefarm/DeviceFarmRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/devicefarm/model/ScheduleRunTest.h>
 #include <aws/devicefarm/model/ScheduleRunConfiguration.h>
+#include <aws/devicefarm/model/ExecutionConfiguration.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,9 +39,17 @@ namespace Model
   {
   public:
     ScheduleRunRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ScheduleRun"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The ARN of the project for the run to be scheduled.</p>
@@ -53,7 +64,7 @@ namespace Model
     /**
      * <p>The ARN of the project for the run to be scheduled.</p>
      */
-    inline void SetProjectArn(Aws::String&& value) { m_projectArnHasBeenSet = true; m_projectArn = value; }
+    inline void SetProjectArn(Aws::String&& value) { m_projectArnHasBeenSet = true; m_projectArn = std::move(value); }
 
     /**
      * <p>The ARN of the project for the run to be scheduled.</p>
@@ -68,12 +79,13 @@ namespace Model
     /**
      * <p>The ARN of the project for the run to be scheduled.</p>
      */
-    inline ScheduleRunRequest& WithProjectArn(Aws::String&& value) { SetProjectArn(value); return *this;}
+    inline ScheduleRunRequest& WithProjectArn(Aws::String&& value) { SetProjectArn(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of the project for the run to be scheduled.</p>
      */
     inline ScheduleRunRequest& WithProjectArn(const char* value) { SetProjectArn(value); return *this;}
+
 
     /**
      * <p>The ARN of the app to schedule a run.</p>
@@ -88,7 +100,7 @@ namespace Model
     /**
      * <p>The ARN of the app to schedule a run.</p>
      */
-    inline void SetAppArn(Aws::String&& value) { m_appArnHasBeenSet = true; m_appArn = value; }
+    inline void SetAppArn(Aws::String&& value) { m_appArnHasBeenSet = true; m_appArn = std::move(value); }
 
     /**
      * <p>The ARN of the app to schedule a run.</p>
@@ -103,12 +115,13 @@ namespace Model
     /**
      * <p>The ARN of the app to schedule a run.</p>
      */
-    inline ScheduleRunRequest& WithAppArn(Aws::String&& value) { SetAppArn(value); return *this;}
+    inline ScheduleRunRequest& WithAppArn(Aws::String&& value) { SetAppArn(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of the app to schedule a run.</p>
      */
     inline ScheduleRunRequest& WithAppArn(const char* value) { SetAppArn(value); return *this;}
+
 
     /**
      * <p>The ARN of the device pool for the run to be scheduled.</p>
@@ -123,7 +136,7 @@ namespace Model
     /**
      * <p>The ARN of the device pool for the run to be scheduled.</p>
      */
-    inline void SetDevicePoolArn(Aws::String&& value) { m_devicePoolArnHasBeenSet = true; m_devicePoolArn = value; }
+    inline void SetDevicePoolArn(Aws::String&& value) { m_devicePoolArnHasBeenSet = true; m_devicePoolArn = std::move(value); }
 
     /**
      * <p>The ARN of the device pool for the run to be scheduled.</p>
@@ -138,12 +151,13 @@ namespace Model
     /**
      * <p>The ARN of the device pool for the run to be scheduled.</p>
      */
-    inline ScheduleRunRequest& WithDevicePoolArn(Aws::String&& value) { SetDevicePoolArn(value); return *this;}
+    inline ScheduleRunRequest& WithDevicePoolArn(Aws::String&& value) { SetDevicePoolArn(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of the device pool for the run to be scheduled.</p>
      */
     inline ScheduleRunRequest& WithDevicePoolArn(const char* value) { SetDevicePoolArn(value); return *this;}
+
 
     /**
      * <p>The name for the run to be scheduled.</p>
@@ -158,7 +172,7 @@ namespace Model
     /**
      * <p>The name for the run to be scheduled.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name for the run to be scheduled.</p>
@@ -173,12 +187,13 @@ namespace Model
     /**
      * <p>The name for the run to be scheduled.</p>
      */
-    inline ScheduleRunRequest& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline ScheduleRunRequest& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name for the run to be scheduled.</p>
      */
     inline ScheduleRunRequest& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>Information about the test for the run to be scheduled.</p>
@@ -193,7 +208,7 @@ namespace Model
     /**
      * <p>Information about the test for the run to be scheduled.</p>
      */
-    inline void SetTest(ScheduleRunTest&& value) { m_testHasBeenSet = true; m_test = value; }
+    inline void SetTest(ScheduleRunTest&& value) { m_testHasBeenSet = true; m_test = std::move(value); }
 
     /**
      * <p>Information about the test for the run to be scheduled.</p>
@@ -203,7 +218,8 @@ namespace Model
     /**
      * <p>Information about the test for the run to be scheduled.</p>
      */
-    inline ScheduleRunRequest& WithTest(ScheduleRunTest&& value) { SetTest(value); return *this;}
+    inline ScheduleRunRequest& WithTest(ScheduleRunTest&& value) { SetTest(std::move(value)); return *this;}
+
 
     /**
      * <p>Information about the settings for the run to be scheduled.</p>
@@ -218,7 +234,7 @@ namespace Model
     /**
      * <p>Information about the settings for the run to be scheduled.</p>
      */
-    inline void SetConfiguration(ScheduleRunConfiguration&& value) { m_configurationHasBeenSet = true; m_configuration = value; }
+    inline void SetConfiguration(ScheduleRunConfiguration&& value) { m_configurationHasBeenSet = true; m_configuration = std::move(value); }
 
     /**
      * <p>Information about the settings for the run to be scheduled.</p>
@@ -228,21 +244,61 @@ namespace Model
     /**
      * <p>Information about the settings for the run to be scheduled.</p>
      */
-    inline ScheduleRunRequest& WithConfiguration(ScheduleRunConfiguration&& value) { SetConfiguration(value); return *this;}
+    inline ScheduleRunRequest& WithConfiguration(ScheduleRunConfiguration&& value) { SetConfiguration(std::move(value)); return *this;}
+
+
+    /**
+     * <p>Specifies configuration information about a test run, such as the execution
+     * timeout (in minutes).</p>
+     */
+    inline const ExecutionConfiguration& GetExecutionConfiguration() const{ return m_executionConfiguration; }
+
+    /**
+     * <p>Specifies configuration information about a test run, such as the execution
+     * timeout (in minutes).</p>
+     */
+    inline void SetExecutionConfiguration(const ExecutionConfiguration& value) { m_executionConfigurationHasBeenSet = true; m_executionConfiguration = value; }
+
+    /**
+     * <p>Specifies configuration information about a test run, such as the execution
+     * timeout (in minutes).</p>
+     */
+    inline void SetExecutionConfiguration(ExecutionConfiguration&& value) { m_executionConfigurationHasBeenSet = true; m_executionConfiguration = std::move(value); }
+
+    /**
+     * <p>Specifies configuration information about a test run, such as the execution
+     * timeout (in minutes).</p>
+     */
+    inline ScheduleRunRequest& WithExecutionConfiguration(const ExecutionConfiguration& value) { SetExecutionConfiguration(value); return *this;}
+
+    /**
+     * <p>Specifies configuration information about a test run, such as the execution
+     * timeout (in minutes).</p>
+     */
+    inline ScheduleRunRequest& WithExecutionConfiguration(ExecutionConfiguration&& value) { SetExecutionConfiguration(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_projectArn;
     bool m_projectArnHasBeenSet;
+
     Aws::String m_appArn;
     bool m_appArnHasBeenSet;
+
     Aws::String m_devicePoolArn;
     bool m_devicePoolArnHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     ScheduleRunTest m_test;
     bool m_testHasBeenSet;
+
     ScheduleRunConfiguration m_configuration;
     bool m_configurationHasBeenSet;
+
+    ExecutionConfiguration m_executionConfiguration;
+    bool m_executionConfigurationHasBeenSet;
   };
 
 } // namespace Model

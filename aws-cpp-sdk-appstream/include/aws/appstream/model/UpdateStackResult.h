@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/appstream/AppStream_EXPORTS.h>
 #include <aws/appstream/model/Stack.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,35 +38,37 @@ namespace Model
   {
   public:
     UpdateStackResult();
-    UpdateStackResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    UpdateStackResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdateStackResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdateStackResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>A list of stack details.</p>
+     * <p>Information about the stack.</p>
      */
     inline const Stack& GetStack() const{ return m_stack; }
 
     /**
-     * <p>A list of stack details.</p>
+     * <p>Information about the stack.</p>
      */
     inline void SetStack(const Stack& value) { m_stack = value; }
 
     /**
-     * <p>A list of stack details.</p>
+     * <p>Information about the stack.</p>
      */
-    inline void SetStack(Stack&& value) { m_stack = value; }
+    inline void SetStack(Stack&& value) { m_stack = std::move(value); }
 
     /**
-     * <p>A list of stack details.</p>
+     * <p>Information about the stack.</p>
      */
     inline UpdateStackResult& WithStack(const Stack& value) { SetStack(value); return *this;}
 
     /**
-     * <p>A list of stack details.</p>
+     * <p>Information about the stack.</p>
      */
-    inline UpdateStackResult& WithStack(Stack&& value) { SetStack(value); return *this;}
+    inline UpdateStackResult& WithStack(Stack&& value) { SetStack(std::move(value)); return *this;}
 
   private:
+
     Stack m_stack;
   };
 

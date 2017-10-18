@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     SubmitContainerStateChangeResult();
-    SubmitContainerStateChangeResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    SubmitContainerStateChangeResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    SubmitContainerStateChangeResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    SubmitContainerStateChangeResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Acknowledgement of the state change.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>Acknowledgement of the state change.</p>
      */
-    inline void SetAcknowledgment(Aws::String&& value) { m_acknowledgment = value; }
+    inline void SetAcknowledgment(Aws::String&& value) { m_acknowledgment = std::move(value); }
 
     /**
      * <p>Acknowledgement of the state change.</p>
@@ -67,7 +70,7 @@ namespace Model
     /**
      * <p>Acknowledgement of the state change.</p>
      */
-    inline SubmitContainerStateChangeResult& WithAcknowledgment(Aws::String&& value) { SetAcknowledgment(value); return *this;}
+    inline SubmitContainerStateChangeResult& WithAcknowledgment(Aws::String&& value) { SetAcknowledgment(std::move(value)); return *this;}
 
     /**
      * <p>Acknowledgement of the state change.</p>
@@ -75,6 +78,7 @@ namespace Model
     inline SubmitContainerStateChangeResult& WithAcknowledgment(const char* value) { SetAcknowledgment(value); return *this;}
 
   private:
+
     Aws::String m_acknowledgment;
   };
 

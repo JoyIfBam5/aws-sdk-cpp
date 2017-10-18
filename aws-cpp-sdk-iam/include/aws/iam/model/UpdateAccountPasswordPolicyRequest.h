@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/iam/IAMRequest.h>
@@ -29,7 +30,19 @@ namespace Model
   {
   public:
     UpdateAccountPasswordPolicyRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateAccountPasswordPolicy"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The minimum number of characters allowed in an IAM user password.</p>
@@ -48,6 +61,7 @@ namespace Model
      * <p>Default value: 6</p>
      */
     inline UpdateAccountPasswordPolicyRequest& WithMinimumPasswordLength(int value) { SetMinimumPasswordLength(value); return *this;}
+
 
     /**
      * <p>Specifies whether IAM user passwords must contain at least one of the
@@ -70,6 +84,7 @@ namespace Model
      */
     inline UpdateAccountPasswordPolicyRequest& WithRequireSymbols(bool value) { SetRequireSymbols(value); return *this;}
 
+
     /**
      * <p>Specifies whether IAM user passwords must contain at least one numeric
      * character (0 to 9).</p> <p>Default value: false</p>
@@ -87,6 +102,7 @@ namespace Model
      * character (0 to 9).</p> <p>Default value: false</p>
      */
     inline UpdateAccountPasswordPolicyRequest& WithRequireNumbers(bool value) { SetRequireNumbers(value); return *this;}
+
 
     /**
      * <p>Specifies whether IAM user passwords must contain at least one uppercase
@@ -109,6 +125,7 @@ namespace Model
      */
     inline UpdateAccountPasswordPolicyRequest& WithRequireUppercaseCharacters(bool value) { SetRequireUppercaseCharacters(value); return *this;}
 
+
     /**
      * <p>Specifies whether IAM user passwords must contain at least one lowercase
      * character from the ISO basic Latin alphabet (a to z).</p> <p>Default value:
@@ -129,6 +146,7 @@ namespace Model
      * false</p>
      */
     inline UpdateAccountPasswordPolicyRequest& WithRequireLowercaseCharacters(bool value) { SetRequireLowercaseCharacters(value); return *this;}
+
 
     /**
      * <p> Allows all IAM users in your account to use the AWS Management Console to
@@ -157,6 +175,7 @@ namespace Model
      */
     inline UpdateAccountPasswordPolicyRequest& WithAllowUsersToChangePassword(bool value) { SetAllowUsersToChangePassword(value); return *this;}
 
+
     /**
      * <p>The number of days that an IAM user password is valid. The default value of 0
      * means IAM user passwords never expire.</p> <p>Default value: 0</p>
@@ -174,6 +193,7 @@ namespace Model
      * means IAM user passwords never expire.</p> <p>Default value: 0</p>
      */
     inline UpdateAccountPasswordPolicyRequest& WithMaxPasswordAge(int value) { SetMaxPasswordAge(value); return *this;}
+
 
     /**
      * <p>Specifies the number of previous passwords that IAM users are prevented from
@@ -196,6 +216,7 @@ namespace Model
      */
     inline UpdateAccountPasswordPolicyRequest& WithPasswordReusePrevention(int value) { SetPasswordReusePrevention(value); return *this;}
 
+
     /**
      * <p>Prevents IAM users from setting a new password after their password has
      * expired.</p> <p>Default value: false</p>
@@ -215,22 +236,31 @@ namespace Model
     inline UpdateAccountPasswordPolicyRequest& WithHardExpiry(bool value) { SetHardExpiry(value); return *this;}
 
   private:
+
     int m_minimumPasswordLength;
     bool m_minimumPasswordLengthHasBeenSet;
+
     bool m_requireSymbols;
     bool m_requireSymbolsHasBeenSet;
+
     bool m_requireNumbers;
     bool m_requireNumbersHasBeenSet;
+
     bool m_requireUppercaseCharacters;
     bool m_requireUppercaseCharactersHasBeenSet;
+
     bool m_requireLowercaseCharacters;
     bool m_requireLowercaseCharactersHasBeenSet;
+
     bool m_allowUsersToChangePassword;
     bool m_allowUsersToChangePasswordHasBeenSet;
+
     int m_maxPasswordAge;
     bool m_maxPasswordAgeHasBeenSet;
+
     int m_passwordReusePrevention;
     bool m_passwordReusePreventionHasBeenSet;
+
     bool m_hardExpiry;
     bool m_hardExpiryHasBeenSet;
   };

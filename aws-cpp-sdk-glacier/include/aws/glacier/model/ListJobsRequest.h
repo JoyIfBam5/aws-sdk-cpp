@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/glacier/Glacier_EXPORTS.h>
 #include <aws/glacier/GlacierRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,9 +40,17 @@ namespace Model
   {
   public:
     ListJobsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListJobs"; }
+
     Aws::String SerializePayload() const override;
 
     void AddQueryStringParameters(Aws::Http::URI& uri) const override;
+
 
     /**
      * <p>The <code>AccountId</code> value is the AWS account ID of the account that
@@ -67,7 +77,7 @@ namespace Model
      * associated with the credentials used to sign the request. If you use an account
      * ID, do not include any hyphens ('-') in the ID. </p>
      */
-    inline void SetAccountId(Aws::String&& value) { m_accountIdHasBeenSet = true; m_accountId = value; }
+    inline void SetAccountId(Aws::String&& value) { m_accountIdHasBeenSet = true; m_accountId = std::move(value); }
 
     /**
      * <p>The <code>AccountId</code> value is the AWS account ID of the account that
@@ -94,7 +104,7 @@ namespace Model
      * associated with the credentials used to sign the request. If you use an account
      * ID, do not include any hyphens ('-') in the ID. </p>
      */
-    inline ListJobsRequest& WithAccountId(Aws::String&& value) { SetAccountId(value); return *this;}
+    inline ListJobsRequest& WithAccountId(Aws::String&& value) { SetAccountId(std::move(value)); return *this;}
 
     /**
      * <p>The <code>AccountId</code> value is the AWS account ID of the account that
@@ -104,6 +114,7 @@ namespace Model
      * ID, do not include any hyphens ('-') in the ID. </p>
      */
     inline ListJobsRequest& WithAccountId(const char* value) { SetAccountId(value); return *this;}
+
 
     /**
      * <p>The name of the vault.</p>
@@ -118,7 +129,7 @@ namespace Model
     /**
      * <p>The name of the vault.</p>
      */
-    inline void SetVaultName(Aws::String&& value) { m_vaultNameHasBeenSet = true; m_vaultName = value; }
+    inline void SetVaultName(Aws::String&& value) { m_vaultNameHasBeenSet = true; m_vaultName = std::move(value); }
 
     /**
      * <p>The name of the vault.</p>
@@ -133,12 +144,13 @@ namespace Model
     /**
      * <p>The name of the vault.</p>
      */
-    inline ListJobsRequest& WithVaultName(Aws::String&& value) { SetVaultName(value); return *this;}
+    inline ListJobsRequest& WithVaultName(Aws::String&& value) { SetVaultName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the vault.</p>
      */
     inline ListJobsRequest& WithVaultName(const char* value) { SetVaultName(value); return *this;}
+
 
     /**
      * <p>The maximum number of jobs to be returned. The default limit is 1000. The
@@ -159,7 +171,7 @@ namespace Model
      * number of jobs returned might be fewer than the specified limit, but the number
      * of returned jobs never exceeds the limit.</p>
      */
-    inline void SetLimit(Aws::String&& value) { m_limitHasBeenSet = true; m_limit = value; }
+    inline void SetLimit(Aws::String&& value) { m_limitHasBeenSet = true; m_limit = std::move(value); }
 
     /**
      * <p>The maximum number of jobs to be returned. The default limit is 1000. The
@@ -180,7 +192,7 @@ namespace Model
      * number of jobs returned might be fewer than the specified limit, but the number
      * of returned jobs never exceeds the limit.</p>
      */
-    inline ListJobsRequest& WithLimit(Aws::String&& value) { SetLimit(value); return *this;}
+    inline ListJobsRequest& WithLimit(Aws::String&& value) { SetLimit(std::move(value)); return *this;}
 
     /**
      * <p>The maximum number of jobs to be returned. The default limit is 1000. The
@@ -188,6 +200,7 @@ namespace Model
      * of returned jobs never exceeds the limit.</p>
      */
     inline ListJobsRequest& WithLimit(const char* value) { SetLimit(value); return *this;}
+
 
     /**
      * <p>An opaque string used for pagination. This value specifies the job at which
@@ -211,7 +224,7 @@ namespace Model
      * response. You only need to include the marker if you are continuing the
      * pagination of results started in a previous List Jobs request.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p>An opaque string used for pagination. This value specifies the job at which
@@ -235,7 +248,7 @@ namespace Model
      * response. You only need to include the marker if you are continuing the
      * pagination of results started in a previous List Jobs request.</p>
      */
-    inline ListJobsRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline ListJobsRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>An opaque string used for pagination. This value specifies the job at which
@@ -244,6 +257,7 @@ namespace Model
      * pagination of results started in a previous List Jobs request.</p>
      */
     inline ListJobsRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>The type of job status to return. You can specify the following values:
@@ -261,7 +275,7 @@ namespace Model
      * <p>The type of job status to return. You can specify the following values:
      * <code>InProgress</code>, <code>Succeeded</code>, or <code>Failed</code>.</p>
      */
-    inline void SetStatuscode(Aws::String&& value) { m_statuscodeHasBeenSet = true; m_statuscode = value; }
+    inline void SetStatuscode(Aws::String&& value) { m_statuscodeHasBeenSet = true; m_statuscode = std::move(value); }
 
     /**
      * <p>The type of job status to return. You can specify the following values:
@@ -279,13 +293,14 @@ namespace Model
      * <p>The type of job status to return. You can specify the following values:
      * <code>InProgress</code>, <code>Succeeded</code>, or <code>Failed</code>.</p>
      */
-    inline ListJobsRequest& WithStatuscode(Aws::String&& value) { SetStatuscode(value); return *this;}
+    inline ListJobsRequest& WithStatuscode(Aws::String&& value) { SetStatuscode(std::move(value)); return *this;}
 
     /**
      * <p>The type of job status to return. You can specify the following values:
      * <code>InProgress</code>, <code>Succeeded</code>, or <code>Failed</code>.</p>
      */
     inline ListJobsRequest& WithStatuscode(const char* value) { SetStatuscode(value); return *this;}
+
 
     /**
      * <p>The state of the jobs to return. You can specify <code>true</code> or
@@ -303,7 +318,7 @@ namespace Model
      * <p>The state of the jobs to return. You can specify <code>true</code> or
      * <code>false</code>.</p>
      */
-    inline void SetCompleted(Aws::String&& value) { m_completedHasBeenSet = true; m_completed = value; }
+    inline void SetCompleted(Aws::String&& value) { m_completedHasBeenSet = true; m_completed = std::move(value); }
 
     /**
      * <p>The state of the jobs to return. You can specify <code>true</code> or
@@ -321,7 +336,7 @@ namespace Model
      * <p>The state of the jobs to return. You can specify <code>true</code> or
      * <code>false</code>.</p>
      */
-    inline ListJobsRequest& WithCompleted(Aws::String&& value) { SetCompleted(value); return *this;}
+    inline ListJobsRequest& WithCompleted(Aws::String&& value) { SetCompleted(std::move(value)); return *this;}
 
     /**
      * <p>The state of the jobs to return. You can specify <code>true</code> or
@@ -330,16 +345,22 @@ namespace Model
     inline ListJobsRequest& WithCompleted(const char* value) { SetCompleted(value); return *this;}
 
   private:
+
     Aws::String m_accountId;
     bool m_accountIdHasBeenSet;
+
     Aws::String m_vaultName;
     bool m_vaultNameHasBeenSet;
+
     Aws::String m_limit;
     bool m_limitHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
+
     Aws::String m_statuscode;
     bool m_statuscodeHasBeenSet;
+
     Aws::String m_completed;
     bool m_completedHasBeenSet;
   };

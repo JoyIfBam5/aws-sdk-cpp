@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ds/DirectoryService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/ds/model/TopicStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     EventTopic& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The Directory ID of an AWS Directory Service directory that will publish
      * status messages to an SNS topic.</p>
@@ -62,7 +65,7 @@ namespace Model
      * <p>The Directory ID of an AWS Directory Service directory that will publish
      * status messages to an SNS topic.</p>
      */
-    inline void SetDirectoryId(Aws::String&& value) { m_directoryIdHasBeenSet = true; m_directoryId = value; }
+    inline void SetDirectoryId(Aws::String&& value) { m_directoryIdHasBeenSet = true; m_directoryId = std::move(value); }
 
     /**
      * <p>The Directory ID of an AWS Directory Service directory that will publish
@@ -80,13 +83,14 @@ namespace Model
      * <p>The Directory ID of an AWS Directory Service directory that will publish
      * status messages to an SNS topic.</p>
      */
-    inline EventTopic& WithDirectoryId(Aws::String&& value) { SetDirectoryId(value); return *this;}
+    inline EventTopic& WithDirectoryId(Aws::String&& value) { SetDirectoryId(std::move(value)); return *this;}
 
     /**
      * <p>The Directory ID of an AWS Directory Service directory that will publish
      * status messages to an SNS topic.</p>
      */
     inline EventTopic& WithDirectoryId(const char* value) { SetDirectoryId(value); return *this;}
+
 
     /**
      * <p>The name of an AWS SNS topic the receives status messages from the
@@ -104,7 +108,7 @@ namespace Model
      * <p>The name of an AWS SNS topic the receives status messages from the
      * directory.</p>
      */
-    inline void SetTopicName(Aws::String&& value) { m_topicNameHasBeenSet = true; m_topicName = value; }
+    inline void SetTopicName(Aws::String&& value) { m_topicNameHasBeenSet = true; m_topicName = std::move(value); }
 
     /**
      * <p>The name of an AWS SNS topic the receives status messages from the
@@ -122,13 +126,14 @@ namespace Model
      * <p>The name of an AWS SNS topic the receives status messages from the
      * directory.</p>
      */
-    inline EventTopic& WithTopicName(Aws::String&& value) { SetTopicName(value); return *this;}
+    inline EventTopic& WithTopicName(Aws::String&& value) { SetTopicName(std::move(value)); return *this;}
 
     /**
      * <p>The name of an AWS SNS topic the receives status messages from the
      * directory.</p>
      */
     inline EventTopic& WithTopicName(const char* value) { SetTopicName(value); return *this;}
+
 
     /**
      * <p>The SNS topic ARN (Amazon Resource Name).</p>
@@ -143,7 +148,7 @@ namespace Model
     /**
      * <p>The SNS topic ARN (Amazon Resource Name).</p>
      */
-    inline void SetTopicArn(Aws::String&& value) { m_topicArnHasBeenSet = true; m_topicArn = value; }
+    inline void SetTopicArn(Aws::String&& value) { m_topicArnHasBeenSet = true; m_topicArn = std::move(value); }
 
     /**
      * <p>The SNS topic ARN (Amazon Resource Name).</p>
@@ -158,12 +163,13 @@ namespace Model
     /**
      * <p>The SNS topic ARN (Amazon Resource Name).</p>
      */
-    inline EventTopic& WithTopicArn(Aws::String&& value) { SetTopicArn(value); return *this;}
+    inline EventTopic& WithTopicArn(Aws::String&& value) { SetTopicArn(std::move(value)); return *this;}
 
     /**
      * <p>The SNS topic ARN (Amazon Resource Name).</p>
      */
     inline EventTopic& WithTopicArn(const char* value) { SetTopicArn(value); return *this;}
+
 
     /**
      * <p>The date and time of when you associated your directory with the SNS
@@ -181,7 +187,7 @@ namespace Model
      * <p>The date and time of when you associated your directory with the SNS
      * topic.</p>
      */
-    inline void SetCreatedDateTime(Aws::Utils::DateTime&& value) { m_createdDateTimeHasBeenSet = true; m_createdDateTime = value; }
+    inline void SetCreatedDateTime(Aws::Utils::DateTime&& value) { m_createdDateTimeHasBeenSet = true; m_createdDateTime = std::move(value); }
 
     /**
      * <p>The date and time of when you associated your directory with the SNS
@@ -193,7 +199,8 @@ namespace Model
      * <p>The date and time of when you associated your directory with the SNS
      * topic.</p>
      */
-    inline EventTopic& WithCreatedDateTime(Aws::Utils::DateTime&& value) { SetCreatedDateTime(value); return *this;}
+    inline EventTopic& WithCreatedDateTime(Aws::Utils::DateTime&& value) { SetCreatedDateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The topic registration status.</p>
@@ -208,7 +215,7 @@ namespace Model
     /**
      * <p>The topic registration status.</p>
      */
-    inline void SetStatus(TopicStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(TopicStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The topic registration status.</p>
@@ -218,17 +225,22 @@ namespace Model
     /**
      * <p>The topic registration status.</p>
      */
-    inline EventTopic& WithStatus(TopicStatus&& value) { SetStatus(value); return *this;}
+    inline EventTopic& WithStatus(TopicStatus&& value) { SetStatus(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_directoryId;
     bool m_directoryIdHasBeenSet;
+
     Aws::String m_topicName;
     bool m_topicNameHasBeenSet;
+
     Aws::String m_topicArn;
     bool m_topicArnHasBeenSet;
+
     Aws::Utils::DateTime m_createdDateTime;
     bool m_createdDateTimeHasBeenSet;
+
     TopicStatus m_status;
     bool m_statusHasBeenSet;
   };

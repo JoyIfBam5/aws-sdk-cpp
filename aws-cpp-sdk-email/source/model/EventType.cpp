@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/email/model/EventType.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -34,6 +35,9 @@ namespace Aws
         static const int bounce_HASH = HashingUtils::HashString("bounce");
         static const int complaint_HASH = HashingUtils::HashString("complaint");
         static const int delivery_HASH = HashingUtils::HashString("delivery");
+        static const int open_HASH = HashingUtils::HashString("open");
+        static const int click_HASH = HashingUtils::HashString("click");
+        static const int renderingFailure_HASH = HashingUtils::HashString("renderingFailure");
 
 
         EventType GetEventTypeForName(const Aws::String& name)
@@ -59,6 +63,18 @@ namespace Aws
           {
             return EventType::delivery;
           }
+          else if (hashCode == open_HASH)
+          {
+            return EventType::open;
+          }
+          else if (hashCode == click_HASH)
+          {
+            return EventType::click;
+          }
+          else if (hashCode == renderingFailure_HASH)
+          {
+            return EventType::renderingFailure;
+          }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
           {
@@ -83,6 +99,12 @@ namespace Aws
             return "complaint";
           case EventType::delivery:
             return "delivery";
+          case EventType::open:
+            return "open";
+          case EventType::click:
+            return "click";
+          case EventType::renderingFailure:
+            return "renderingFailure";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

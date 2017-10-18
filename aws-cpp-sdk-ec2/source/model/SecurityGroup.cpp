@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/SecurityGroup.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,26 +31,26 @@ namespace Model
 {
 
 SecurityGroup::SecurityGroup() : 
-    m_ownerIdHasBeenSet(false),
-    m_groupNameHasBeenSet(false),
-    m_groupIdHasBeenSet(false),
     m_descriptionHasBeenSet(false),
+    m_groupNameHasBeenSet(false),
     m_ipPermissionsHasBeenSet(false),
+    m_ownerIdHasBeenSet(false),
+    m_groupIdHasBeenSet(false),
     m_ipPermissionsEgressHasBeenSet(false),
-    m_vpcIdHasBeenSet(false),
-    m_tagsHasBeenSet(false)
+    m_tagsHasBeenSet(false),
+    m_vpcIdHasBeenSet(false)
 {
 }
 
 SecurityGroup::SecurityGroup(const XmlNode& xmlNode) : 
-    m_ownerIdHasBeenSet(false),
-    m_groupNameHasBeenSet(false),
-    m_groupIdHasBeenSet(false),
     m_descriptionHasBeenSet(false),
+    m_groupNameHasBeenSet(false),
     m_ipPermissionsHasBeenSet(false),
+    m_ownerIdHasBeenSet(false),
+    m_groupIdHasBeenSet(false),
     m_ipPermissionsEgressHasBeenSet(false),
-    m_vpcIdHasBeenSet(false),
-    m_tagsHasBeenSet(false)
+    m_tagsHasBeenSet(false),
+    m_vpcIdHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -60,29 +61,17 @@ SecurityGroup& SecurityGroup::operator =(const XmlNode& xmlNode)
 
   if(!resultNode.IsNull())
   {
-    XmlNode ownerIdNode = resultNode.FirstChild("ownerId");
-    if(!ownerIdNode.IsNull())
+    XmlNode descriptionNode = resultNode.FirstChild("groupDescription");
+    if(!descriptionNode.IsNull())
     {
-      m_ownerId = StringUtils::Trim(ownerIdNode.GetText().c_str());
-      m_ownerIdHasBeenSet = true;
+      m_description = StringUtils::Trim(descriptionNode.GetText().c_str());
+      m_descriptionHasBeenSet = true;
     }
     XmlNode groupNameNode = resultNode.FirstChild("groupName");
     if(!groupNameNode.IsNull())
     {
       m_groupName = StringUtils::Trim(groupNameNode.GetText().c_str());
       m_groupNameHasBeenSet = true;
-    }
-    XmlNode groupIdNode = resultNode.FirstChild("groupId");
-    if(!groupIdNode.IsNull())
-    {
-      m_groupId = StringUtils::Trim(groupIdNode.GetText().c_str());
-      m_groupIdHasBeenSet = true;
-    }
-    XmlNode descriptionNode = resultNode.FirstChild("groupDescription");
-    if(!descriptionNode.IsNull())
-    {
-      m_description = StringUtils::Trim(descriptionNode.GetText().c_str());
-      m_descriptionHasBeenSet = true;
     }
     XmlNode ipPermissionsNode = resultNode.FirstChild("ipPermissions");
     if(!ipPermissionsNode.IsNull())
@@ -96,6 +85,18 @@ SecurityGroup& SecurityGroup::operator =(const XmlNode& xmlNode)
 
       m_ipPermissionsHasBeenSet = true;
     }
+    XmlNode ownerIdNode = resultNode.FirstChild("ownerId");
+    if(!ownerIdNode.IsNull())
+    {
+      m_ownerId = StringUtils::Trim(ownerIdNode.GetText().c_str());
+      m_ownerIdHasBeenSet = true;
+    }
+    XmlNode groupIdNode = resultNode.FirstChild("groupId");
+    if(!groupIdNode.IsNull())
+    {
+      m_groupId = StringUtils::Trim(groupIdNode.GetText().c_str());
+      m_groupIdHasBeenSet = true;
+    }
     XmlNode ipPermissionsEgressNode = resultNode.FirstChild("ipPermissionsEgress");
     if(!ipPermissionsEgressNode.IsNull())
     {
@@ -107,12 +108,6 @@ SecurityGroup& SecurityGroup::operator =(const XmlNode& xmlNode)
       }
 
       m_ipPermissionsEgressHasBeenSet = true;
-    }
-    XmlNode vpcIdNode = resultNode.FirstChild("vpcId");
-    if(!vpcIdNode.IsNull())
-    {
-      m_vpcId = StringUtils::Trim(vpcIdNode.GetText().c_str());
-      m_vpcIdHasBeenSet = true;
     }
     XmlNode tagsNode = resultNode.FirstChild("tagSet");
     if(!tagsNode.IsNull())
@@ -126,6 +121,12 @@ SecurityGroup& SecurityGroup::operator =(const XmlNode& xmlNode)
 
       m_tagsHasBeenSet = true;
     }
+    XmlNode vpcIdNode = resultNode.FirstChild("vpcId");
+    if(!vpcIdNode.IsNull())
+    {
+      m_vpcId = StringUtils::Trim(vpcIdNode.GetText().c_str());
+      m_vpcIdHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -133,24 +134,14 @@ SecurityGroup& SecurityGroup::operator =(const XmlNode& xmlNode)
 
 void SecurityGroup::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
-  if(m_ownerIdHasBeenSet)
+  if(m_descriptionHasBeenSet)
   {
-      oStream << location << index << locationValue << ".OwnerId=" << StringUtils::URLEncode(m_ownerId.c_str()) << "&";
+      oStream << location << index << locationValue << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
   }
 
   if(m_groupNameHasBeenSet)
   {
       oStream << location << index << locationValue << ".GroupName=" << StringUtils::URLEncode(m_groupName.c_str()) << "&";
-  }
-
-  if(m_groupIdHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".GroupId=" << StringUtils::URLEncode(m_groupId.c_str()) << "&";
-  }
-
-  if(m_descriptionHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
   }
 
   if(m_ipPermissionsHasBeenSet)
@@ -164,6 +155,16 @@ void SecurityGroup::OutputToStream(Aws::OStream& oStream, const char* location, 
       }
   }
 
+  if(m_ownerIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".OwnerId=" << StringUtils::URLEncode(m_ownerId.c_str()) << "&";
+  }
+
+  if(m_groupIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".GroupId=" << StringUtils::URLEncode(m_groupId.c_str()) << "&";
+  }
+
   if(m_ipPermissionsEgressHasBeenSet)
   {
       unsigned ipPermissionsEgressIdx = 1;
@@ -173,11 +174,6 @@ void SecurityGroup::OutputToStream(Aws::OStream& oStream, const char* location, 
         ipPermissionsEgressSs << location << index << locationValue << ".IpPermissionsEgress." << ipPermissionsEgressIdx++;
         item.OutputToStream(oStream, ipPermissionsEgressSs.str().c_str());
       }
-  }
-
-  if(m_vpcIdHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".VpcId=" << StringUtils::URLEncode(m_vpcId.c_str()) << "&";
   }
 
   if(m_tagsHasBeenSet)
@@ -191,25 +187,22 @@ void SecurityGroup::OutputToStream(Aws::OStream& oStream, const char* location, 
       }
   }
 
+  if(m_vpcIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".VpcId=" << StringUtils::URLEncode(m_vpcId.c_str()) << "&";
+  }
+
 }
 
 void SecurityGroup::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
-  if(m_ownerIdHasBeenSet)
+  if(m_descriptionHasBeenSet)
   {
-      oStream << location << ".OwnerId=" << StringUtils::URLEncode(m_ownerId.c_str()) << "&";
+      oStream << location << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
   }
   if(m_groupNameHasBeenSet)
   {
       oStream << location << ".GroupName=" << StringUtils::URLEncode(m_groupName.c_str()) << "&";
-  }
-  if(m_groupIdHasBeenSet)
-  {
-      oStream << location << ".GroupId=" << StringUtils::URLEncode(m_groupId.c_str()) << "&";
-  }
-  if(m_descriptionHasBeenSet)
-  {
-      oStream << location << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
   }
   if(m_ipPermissionsHasBeenSet)
   {
@@ -217,9 +210,17 @@ void SecurityGroup::OutputToStream(Aws::OStream& oStream, const char* location) 
       for(auto& item : m_ipPermissions)
       {
         Aws::StringStream ipPermissionsSs;
-        ipPermissionsSs << location <<  ".Item." << ipPermissionsIdx++;
+        ipPermissionsSs << location <<  ".IpPermissions." << ipPermissionsIdx++;
         item.OutputToStream(oStream, ipPermissionsSs.str().c_str());
       }
+  }
+  if(m_ownerIdHasBeenSet)
+  {
+      oStream << location << ".OwnerId=" << StringUtils::URLEncode(m_ownerId.c_str()) << "&";
+  }
+  if(m_groupIdHasBeenSet)
+  {
+      oStream << location << ".GroupId=" << StringUtils::URLEncode(m_groupId.c_str()) << "&";
   }
   if(m_ipPermissionsEgressHasBeenSet)
   {
@@ -227,13 +228,9 @@ void SecurityGroup::OutputToStream(Aws::OStream& oStream, const char* location) 
       for(auto& item : m_ipPermissionsEgress)
       {
         Aws::StringStream ipPermissionsEgressSs;
-        ipPermissionsEgressSs << location <<  ".Item." << ipPermissionsEgressIdx++;
+        ipPermissionsEgressSs << location <<  ".IpPermissionsEgress." << ipPermissionsEgressIdx++;
         item.OutputToStream(oStream, ipPermissionsEgressSs.str().c_str());
       }
-  }
-  if(m_vpcIdHasBeenSet)
-  {
-      oStream << location << ".VpcId=" << StringUtils::URLEncode(m_vpcId.c_str()) << "&";
   }
   if(m_tagsHasBeenSet)
   {
@@ -241,9 +238,13 @@ void SecurityGroup::OutputToStream(Aws::OStream& oStream, const char* location) 
       for(auto& item : m_tags)
       {
         Aws::StringStream tagsSs;
-        tagsSs << location <<  ".Item." << tagsIdx++;
+        tagsSs << location <<  ".TagSet." << tagsIdx++;
         item.OutputToStream(oStream, tagsSs.str().c_str());
       }
+  }
+  if(m_vpcIdHasBeenSet)
+  {
+      oStream << location << ".VpcId=" << StringUtils::URLEncode(m_vpcId.c_str()) << "&";
   }
 }
 

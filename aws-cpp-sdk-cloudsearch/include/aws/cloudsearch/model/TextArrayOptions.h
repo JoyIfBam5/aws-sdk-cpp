@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudsearch/CloudSearch_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +51,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * A value to use for the field if the field isn't specified for a document.
      */
@@ -62,7 +65,7 @@ namespace Model
     /**
      * A value to use for the field if the field isn't specified for a document.
      */
-    inline void SetDefaultValue(Aws::String&& value) { m_defaultValueHasBeenSet = true; m_defaultValue = value; }
+    inline void SetDefaultValue(Aws::String&& value) { m_defaultValueHasBeenSet = true; m_defaultValue = std::move(value); }
 
     /**
      * A value to use for the field if the field isn't specified for a document.
@@ -77,12 +80,13 @@ namespace Model
     /**
      * A value to use for the field if the field isn't specified for a document.
      */
-    inline TextArrayOptions& WithDefaultValue(Aws::String&& value) { SetDefaultValue(value); return *this;}
+    inline TextArrayOptions& WithDefaultValue(Aws::String&& value) { SetDefaultValue(std::move(value)); return *this;}
 
     /**
      * A value to use for the field if the field isn't specified for a document.
      */
     inline TextArrayOptions& WithDefaultValue(const char* value) { SetDefaultValue(value); return *this;}
+
 
     /**
      * <p>A list of source fields to map to the field. </p>
@@ -97,7 +101,7 @@ namespace Model
     /**
      * <p>A list of source fields to map to the field. </p>
      */
-    inline void SetSourceFields(Aws::String&& value) { m_sourceFieldsHasBeenSet = true; m_sourceFields = value; }
+    inline void SetSourceFields(Aws::String&& value) { m_sourceFieldsHasBeenSet = true; m_sourceFields = std::move(value); }
 
     /**
      * <p>A list of source fields to map to the field. </p>
@@ -112,12 +116,13 @@ namespace Model
     /**
      * <p>A list of source fields to map to the field. </p>
      */
-    inline TextArrayOptions& WithSourceFields(Aws::String&& value) { SetSourceFields(value); return *this;}
+    inline TextArrayOptions& WithSourceFields(Aws::String&& value) { SetSourceFields(std::move(value)); return *this;}
 
     /**
      * <p>A list of source fields to map to the field. </p>
      */
     inline TextArrayOptions& WithSourceFields(const char* value) { SetSourceFields(value); return *this;}
+
 
     /**
      * <p>Whether the contents of the field can be returned in the search results.</p>
@@ -134,6 +139,7 @@ namespace Model
      */
     inline TextArrayOptions& WithReturnEnabled(bool value) { SetReturnEnabled(value); return *this;}
 
+
     /**
      * <p>Whether highlights can be returned for the field.</p>
      */
@@ -149,6 +155,7 @@ namespace Model
      */
     inline TextArrayOptions& WithHighlightEnabled(bool value) { SetHighlightEnabled(value); return *this;}
 
+
     /**
      * <p>The name of an analysis scheme for a <code>text-array</code> field.</p>
      */
@@ -162,7 +169,7 @@ namespace Model
     /**
      * <p>The name of an analysis scheme for a <code>text-array</code> field.</p>
      */
-    inline void SetAnalysisScheme(Aws::String&& value) { m_analysisSchemeHasBeenSet = true; m_analysisScheme = value; }
+    inline void SetAnalysisScheme(Aws::String&& value) { m_analysisSchemeHasBeenSet = true; m_analysisScheme = std::move(value); }
 
     /**
      * <p>The name of an analysis scheme for a <code>text-array</code> field.</p>
@@ -177,7 +184,7 @@ namespace Model
     /**
      * <p>The name of an analysis scheme for a <code>text-array</code> field.</p>
      */
-    inline TextArrayOptions& WithAnalysisScheme(Aws::String&& value) { SetAnalysisScheme(value); return *this;}
+    inline TextArrayOptions& WithAnalysisScheme(Aws::String&& value) { SetAnalysisScheme(std::move(value)); return *this;}
 
     /**
      * <p>The name of an analysis scheme for a <code>text-array</code> field.</p>
@@ -185,14 +192,19 @@ namespace Model
     inline TextArrayOptions& WithAnalysisScheme(const char* value) { SetAnalysisScheme(value); return *this;}
 
   private:
+
     Aws::String m_defaultValue;
     bool m_defaultValueHasBeenSet;
+
     Aws::String m_sourceFields;
     bool m_sourceFieldsHasBeenSet;
+
     bool m_returnEnabled;
     bool m_returnEnabledHasBeenSet;
+
     bool m_highlightEnabled;
     bool m_highlightEnabledHasBeenSet;
+
     Aws::String m_analysisScheme;
     bool m_analysisSchemeHasBeenSet;
   };

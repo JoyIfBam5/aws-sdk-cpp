@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecr/ECR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/ecr/model/ImageIdentifier.h>
 #include <aws/ecr/model/ImageFailure.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     BatchDeleteImageResult();
-    BatchDeleteImageResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    BatchDeleteImageResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    BatchDeleteImageResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    BatchDeleteImageResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The image IDs of the deleted images.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>The image IDs of the deleted images.</p>
      */
-    inline void SetImageIds(Aws::Vector<ImageIdentifier>&& value) { m_imageIds = value; }
+    inline void SetImageIds(Aws::Vector<ImageIdentifier>&& value) { m_imageIds = std::move(value); }
 
     /**
      * <p>The image IDs of the deleted images.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>The image IDs of the deleted images.</p>
      */
-    inline BatchDeleteImageResult& WithImageIds(Aws::Vector<ImageIdentifier>&& value) { SetImageIds(value); return *this;}
+    inline BatchDeleteImageResult& WithImageIds(Aws::Vector<ImageIdentifier>&& value) { SetImageIds(std::move(value)); return *this;}
 
     /**
      * <p>The image IDs of the deleted images.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>The image IDs of the deleted images.</p>
      */
-    inline BatchDeleteImageResult& AddImageIds(ImageIdentifier&& value) { m_imageIds.push_back(value); return *this; }
+    inline BatchDeleteImageResult& AddImageIds(ImageIdentifier&& value) { m_imageIds.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Any failures associated with the call.</p>
@@ -89,7 +93,7 @@ namespace Model
     /**
      * <p>Any failures associated with the call.</p>
      */
-    inline void SetFailures(Aws::Vector<ImageFailure>&& value) { m_failures = value; }
+    inline void SetFailures(Aws::Vector<ImageFailure>&& value) { m_failures = std::move(value); }
 
     /**
      * <p>Any failures associated with the call.</p>
@@ -99,7 +103,7 @@ namespace Model
     /**
      * <p>Any failures associated with the call.</p>
      */
-    inline BatchDeleteImageResult& WithFailures(Aws::Vector<ImageFailure>&& value) { SetFailures(value); return *this;}
+    inline BatchDeleteImageResult& WithFailures(Aws::Vector<ImageFailure>&& value) { SetFailures(std::move(value)); return *this;}
 
     /**
      * <p>Any failures associated with the call.</p>
@@ -109,10 +113,12 @@ namespace Model
     /**
      * <p>Any failures associated with the call.</p>
      */
-    inline BatchDeleteImageResult& AddFailures(ImageFailure&& value) { m_failures.push_back(value); return *this; }
+    inline BatchDeleteImageResult& AddFailures(ImageFailure&& value) { m_failures.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<ImageIdentifier> m_imageIds;
+
     Aws::Vector<ImageFailure> m_failures;
   };
 

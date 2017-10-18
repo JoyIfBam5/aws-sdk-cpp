@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,45 +44,47 @@ namespace Model
   {
   public:
     RegisterInstanceResult();
-    RegisterInstanceResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    RegisterInstanceResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    RegisterInstanceResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    RegisterInstanceResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>The registered instance's AWS OpsWorks ID.</p>
+     * <p>The registered instance's AWS OpsWorks Stacks ID.</p>
      */
     inline const Aws::String& GetInstanceId() const{ return m_instanceId; }
 
     /**
-     * <p>The registered instance's AWS OpsWorks ID.</p>
+     * <p>The registered instance's AWS OpsWorks Stacks ID.</p>
      */
     inline void SetInstanceId(const Aws::String& value) { m_instanceId = value; }
 
     /**
-     * <p>The registered instance's AWS OpsWorks ID.</p>
+     * <p>The registered instance's AWS OpsWorks Stacks ID.</p>
      */
-    inline void SetInstanceId(Aws::String&& value) { m_instanceId = value; }
+    inline void SetInstanceId(Aws::String&& value) { m_instanceId = std::move(value); }
 
     /**
-     * <p>The registered instance's AWS OpsWorks ID.</p>
+     * <p>The registered instance's AWS OpsWorks Stacks ID.</p>
      */
     inline void SetInstanceId(const char* value) { m_instanceId.assign(value); }
 
     /**
-     * <p>The registered instance's AWS OpsWorks ID.</p>
+     * <p>The registered instance's AWS OpsWorks Stacks ID.</p>
      */
     inline RegisterInstanceResult& WithInstanceId(const Aws::String& value) { SetInstanceId(value); return *this;}
 
     /**
-     * <p>The registered instance's AWS OpsWorks ID.</p>
+     * <p>The registered instance's AWS OpsWorks Stacks ID.</p>
      */
-    inline RegisterInstanceResult& WithInstanceId(Aws::String&& value) { SetInstanceId(value); return *this;}
+    inline RegisterInstanceResult& WithInstanceId(Aws::String&& value) { SetInstanceId(std::move(value)); return *this;}
 
     /**
-     * <p>The registered instance's AWS OpsWorks ID.</p>
+     * <p>The registered instance's AWS OpsWorks Stacks ID.</p>
      */
     inline RegisterInstanceResult& WithInstanceId(const char* value) { SetInstanceId(value); return *this;}
 
   private:
+
     Aws::String m_instanceId;
   };
 

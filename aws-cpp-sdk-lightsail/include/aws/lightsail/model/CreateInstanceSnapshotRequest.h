@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/lightsail/LightsailRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     CreateInstanceSnapshotRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateInstanceSnapshot"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The name for your new snapshot.</p>
@@ -47,7 +57,7 @@ namespace Model
     /**
      * <p>The name for your new snapshot.</p>
      */
-    inline void SetInstanceSnapshotName(Aws::String&& value) { m_instanceSnapshotNameHasBeenSet = true; m_instanceSnapshotName = value; }
+    inline void SetInstanceSnapshotName(Aws::String&& value) { m_instanceSnapshotNameHasBeenSet = true; m_instanceSnapshotName = std::move(value); }
 
     /**
      * <p>The name for your new snapshot.</p>
@@ -62,12 +72,13 @@ namespace Model
     /**
      * <p>The name for your new snapshot.</p>
      */
-    inline CreateInstanceSnapshotRequest& WithInstanceSnapshotName(Aws::String&& value) { SetInstanceSnapshotName(value); return *this;}
+    inline CreateInstanceSnapshotRequest& WithInstanceSnapshotName(Aws::String&& value) { SetInstanceSnapshotName(std::move(value)); return *this;}
 
     /**
      * <p>The name for your new snapshot.</p>
      */
     inline CreateInstanceSnapshotRequest& WithInstanceSnapshotName(const char* value) { SetInstanceSnapshotName(value); return *this;}
+
 
     /**
      * <p>The Lightsail instance on which to base your snapshot.</p>
@@ -82,7 +93,7 @@ namespace Model
     /**
      * <p>The Lightsail instance on which to base your snapshot.</p>
      */
-    inline void SetInstanceName(Aws::String&& value) { m_instanceNameHasBeenSet = true; m_instanceName = value; }
+    inline void SetInstanceName(Aws::String&& value) { m_instanceNameHasBeenSet = true; m_instanceName = std::move(value); }
 
     /**
      * <p>The Lightsail instance on which to base your snapshot.</p>
@@ -97,7 +108,7 @@ namespace Model
     /**
      * <p>The Lightsail instance on which to base your snapshot.</p>
      */
-    inline CreateInstanceSnapshotRequest& WithInstanceName(Aws::String&& value) { SetInstanceName(value); return *this;}
+    inline CreateInstanceSnapshotRequest& WithInstanceName(Aws::String&& value) { SetInstanceName(std::move(value)); return *this;}
 
     /**
      * <p>The Lightsail instance on which to base your snapshot.</p>
@@ -105,8 +116,10 @@ namespace Model
     inline CreateInstanceSnapshotRequest& WithInstanceName(const char* value) { SetInstanceName(value); return *this;}
 
   private:
+
     Aws::String m_instanceSnapshotName;
     bool m_instanceSnapshotNameHasBeenSet;
+
     Aws::String m_instanceName;
     bool m_instanceNameHasBeenSet;
   };

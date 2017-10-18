@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,6 +52,7 @@ namespace Model
     ApiKey& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The identifier of the API Key.</p>
      */
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>The identifier of the API Key.</p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>The identifier of the API Key.</p>
@@ -78,12 +81,13 @@ namespace Model
     /**
      * <p>The identifier of the API Key.</p>
      */
-    inline ApiKey& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline ApiKey& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the API Key.</p>
      */
     inline ApiKey& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>The value of the API Key.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>The value of the API Key.</p>
      */
-    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = value; }
+    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = std::move(value); }
 
     /**
      * <p>The value of the API Key.</p>
@@ -113,12 +117,13 @@ namespace Model
     /**
      * <p>The value of the API Key.</p>
      */
-    inline ApiKey& WithValue(Aws::String&& value) { SetValue(value); return *this;}
+    inline ApiKey& WithValue(Aws::String&& value) { SetValue(std::move(value)); return *this;}
 
     /**
      * <p>The value of the API Key.</p>
      */
     inline ApiKey& WithValue(const char* value) { SetValue(value); return *this;}
+
 
     /**
      * <p>The name of the API Key.</p>
@@ -133,7 +138,7 @@ namespace Model
     /**
      * <p>The name of the API Key.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the API Key.</p>
@@ -148,12 +153,13 @@ namespace Model
     /**
      * <p>The name of the API Key.</p>
      */
-    inline ApiKey& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline ApiKey& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the API Key.</p>
      */
     inline ApiKey& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>An AWS Marketplace customer identifier , when integrating with the AWS SaaS
@@ -171,7 +177,7 @@ namespace Model
      * <p>An AWS Marketplace customer identifier , when integrating with the AWS SaaS
      * Marketplace.</p>
      */
-    inline void SetCustomerId(Aws::String&& value) { m_customerIdHasBeenSet = true; m_customerId = value; }
+    inline void SetCustomerId(Aws::String&& value) { m_customerIdHasBeenSet = true; m_customerId = std::move(value); }
 
     /**
      * <p>An AWS Marketplace customer identifier , when integrating with the AWS SaaS
@@ -189,13 +195,14 @@ namespace Model
      * <p>An AWS Marketplace customer identifier , when integrating with the AWS SaaS
      * Marketplace.</p>
      */
-    inline ApiKey& WithCustomerId(Aws::String&& value) { SetCustomerId(value); return *this;}
+    inline ApiKey& WithCustomerId(Aws::String&& value) { SetCustomerId(std::move(value)); return *this;}
 
     /**
      * <p>An AWS Marketplace customer identifier , when integrating with the AWS SaaS
      * Marketplace.</p>
      */
     inline ApiKey& WithCustomerId(const char* value) { SetCustomerId(value); return *this;}
+
 
     /**
      * <p>The description of the API Key.</p>
@@ -210,7 +217,7 @@ namespace Model
     /**
      * <p>The description of the API Key.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The description of the API Key.</p>
@@ -225,12 +232,13 @@ namespace Model
     /**
      * <p>The description of the API Key.</p>
      */
-    inline ApiKey& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline ApiKey& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description of the API Key.</p>
      */
     inline ApiKey& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>Specifies whether the API Key can be used by callers.</p>
@@ -247,65 +255,58 @@ namespace Model
      */
     inline ApiKey& WithEnabled(bool value) { SetEnabled(value); return *this;}
 
+
     /**
-     * <p>The date when the API Key was created, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The timestamp when the API Key was created.</p>
      */
     inline const Aws::Utils::DateTime& GetCreatedDate() const{ return m_createdDate; }
 
     /**
-     * <p>The date when the API Key was created, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The timestamp when the API Key was created.</p>
      */
     inline void SetCreatedDate(const Aws::Utils::DateTime& value) { m_createdDateHasBeenSet = true; m_createdDate = value; }
 
     /**
-     * <p>The date when the API Key was created, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The timestamp when the API Key was created.</p>
      */
-    inline void SetCreatedDate(Aws::Utils::DateTime&& value) { m_createdDateHasBeenSet = true; m_createdDate = value; }
+    inline void SetCreatedDate(Aws::Utils::DateTime&& value) { m_createdDateHasBeenSet = true; m_createdDate = std::move(value); }
 
     /**
-     * <p>The date when the API Key was created, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The timestamp when the API Key was created.</p>
      */
     inline ApiKey& WithCreatedDate(const Aws::Utils::DateTime& value) { SetCreatedDate(value); return *this;}
 
     /**
-     * <p>The date when the API Key was created, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The timestamp when the API Key was created.</p>
      */
-    inline ApiKey& WithCreatedDate(Aws::Utils::DateTime&& value) { SetCreatedDate(value); return *this;}
+    inline ApiKey& WithCreatedDate(Aws::Utils::DateTime&& value) { SetCreatedDate(std::move(value)); return *this;}
+
 
     /**
-     * <p>When the API Key was last updated, in ISO 8601 format.</p>
+     * <p>The timestamp when the API Key was last updated.</p>
      */
     inline const Aws::Utils::DateTime& GetLastUpdatedDate() const{ return m_lastUpdatedDate; }
 
     /**
-     * <p>When the API Key was last updated, in ISO 8601 format.</p>
+     * <p>The timestamp when the API Key was last updated.</p>
      */
     inline void SetLastUpdatedDate(const Aws::Utils::DateTime& value) { m_lastUpdatedDateHasBeenSet = true; m_lastUpdatedDate = value; }
 
     /**
-     * <p>When the API Key was last updated, in ISO 8601 format.</p>
+     * <p>The timestamp when the API Key was last updated.</p>
      */
-    inline void SetLastUpdatedDate(Aws::Utils::DateTime&& value) { m_lastUpdatedDateHasBeenSet = true; m_lastUpdatedDate = value; }
+    inline void SetLastUpdatedDate(Aws::Utils::DateTime&& value) { m_lastUpdatedDateHasBeenSet = true; m_lastUpdatedDate = std::move(value); }
 
     /**
-     * <p>When the API Key was last updated, in ISO 8601 format.</p>
+     * <p>The timestamp when the API Key was last updated.</p>
      */
     inline ApiKey& WithLastUpdatedDate(const Aws::Utils::DateTime& value) { SetLastUpdatedDate(value); return *this;}
 
     /**
-     * <p>When the API Key was last updated, in ISO 8601 format.</p>
+     * <p>The timestamp when the API Key was last updated.</p>
      */
-    inline ApiKey& WithLastUpdatedDate(Aws::Utils::DateTime&& value) { SetLastUpdatedDate(value); return *this;}
+    inline ApiKey& WithLastUpdatedDate(Aws::Utils::DateTime&& value) { SetLastUpdatedDate(std::move(value)); return *this;}
+
 
     /**
      * <p>A list of <a>Stage</a> resources that are associated with the <a>ApiKey</a>
@@ -323,7 +324,7 @@ namespace Model
      * <p>A list of <a>Stage</a> resources that are associated with the <a>ApiKey</a>
      * resource.</p>
      */
-    inline void SetStageKeys(Aws::Vector<Aws::String>&& value) { m_stageKeysHasBeenSet = true; m_stageKeys = value; }
+    inline void SetStageKeys(Aws::Vector<Aws::String>&& value) { m_stageKeysHasBeenSet = true; m_stageKeys = std::move(value); }
 
     /**
      * <p>A list of <a>Stage</a> resources that are associated with the <a>ApiKey</a>
@@ -335,7 +336,7 @@ namespace Model
      * <p>A list of <a>Stage</a> resources that are associated with the <a>ApiKey</a>
      * resource.</p>
      */
-    inline ApiKey& WithStageKeys(Aws::Vector<Aws::String>&& value) { SetStageKeys(value); return *this;}
+    inline ApiKey& WithStageKeys(Aws::Vector<Aws::String>&& value) { SetStageKeys(std::move(value)); return *this;}
 
     /**
      * <p>A list of <a>Stage</a> resources that are associated with the <a>ApiKey</a>
@@ -347,7 +348,7 @@ namespace Model
      * <p>A list of <a>Stage</a> resources that are associated with the <a>ApiKey</a>
      * resource.</p>
      */
-    inline ApiKey& AddStageKeys(Aws::String&& value) { m_stageKeysHasBeenSet = true; m_stageKeys.push_back(value); return *this; }
+    inline ApiKey& AddStageKeys(Aws::String&& value) { m_stageKeysHasBeenSet = true; m_stageKeys.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of <a>Stage</a> resources that are associated with the <a>ApiKey</a>
@@ -356,22 +357,31 @@ namespace Model
     inline ApiKey& AddStageKeys(const char* value) { m_stageKeysHasBeenSet = true; m_stageKeys.push_back(value); return *this; }
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     Aws::String m_value;
     bool m_valueHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_customerId;
     bool m_customerIdHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     bool m_enabled;
     bool m_enabledHasBeenSet;
+
     Aws::Utils::DateTime m_createdDate;
     bool m_createdDateHasBeenSet;
+
     Aws::Utils::DateTime m_lastUpdatedDate;
     bool m_lastUpdatedDateHasBeenSet;
+
     Aws::Vector<Aws::String> m_stageKeys;
     bool m_stageKeysHasBeenSet;
   };

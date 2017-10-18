@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/ModifyReservedInstancesRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -20,8 +21,8 @@ using namespace Aws::EC2::Model;
 using namespace Aws::Utils;
 
 ModifyReservedInstancesRequest::ModifyReservedInstancesRequest() : 
-    m_clientTokenHasBeenSet(false),
     m_reservedInstancesIdsHasBeenSet(false),
+    m_clientTokenHasBeenSet(false),
     m_targetConfigurationsHasBeenSet(false)
 {
 }
@@ -30,11 +31,6 @@ Aws::String ModifyReservedInstancesRequest::SerializePayload() const
 {
   Aws::StringStream ss;
   ss << "Action=ModifyReservedInstances&";
-  if(m_clientTokenHasBeenSet)
-  {
-    ss << "ClientToken=" << StringUtils::URLEncode(m_clientToken.c_str()) << "&";
-  }
-
   if(m_reservedInstancesIdsHasBeenSet)
   {
     unsigned reservedInstancesIdsCount = 1;
@@ -44,6 +40,11 @@ Aws::String ModifyReservedInstancesRequest::SerializePayload() const
           << StringUtils::URLEncode(item.c_str()) << "&";
       reservedInstancesIdsCount++;
     }
+  }
+
+  if(m_clientTokenHasBeenSet)
+  {
+    ss << "ClientToken=" << StringUtils::URLEncode(m_clientToken.c_str()) << "&";
   }
 
   if(m_targetConfigurationsHasBeenSet)
@@ -60,3 +61,8 @@ Aws::String ModifyReservedInstancesRequest::SerializePayload() const
   return ss.str();
 }
 
+
+void  ModifyReservedInstancesRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

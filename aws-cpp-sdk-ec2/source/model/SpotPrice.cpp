@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/SpotPrice.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,24 +31,24 @@ namespace Model
 {
 
 SpotPrice::SpotPrice() : 
+    m_availabilityZoneHasBeenSet(false),
     m_instanceType(InstanceType::NOT_SET),
     m_instanceTypeHasBeenSet(false),
     m_productDescription(RIProductDescription::NOT_SET),
     m_productDescriptionHasBeenSet(false),
     m_spotPriceHasBeenSet(false),
-    m_timestampHasBeenSet(false),
-    m_availabilityZoneHasBeenSet(false)
+    m_timestampHasBeenSet(false)
 {
 }
 
 SpotPrice::SpotPrice(const XmlNode& xmlNode) : 
+    m_availabilityZoneHasBeenSet(false),
     m_instanceType(InstanceType::NOT_SET),
     m_instanceTypeHasBeenSet(false),
     m_productDescription(RIProductDescription::NOT_SET),
     m_productDescriptionHasBeenSet(false),
     m_spotPriceHasBeenSet(false),
-    m_timestampHasBeenSet(false),
-    m_availabilityZoneHasBeenSet(false)
+    m_timestampHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -58,6 +59,12 @@ SpotPrice& SpotPrice::operator =(const XmlNode& xmlNode)
 
   if(!resultNode.IsNull())
   {
+    XmlNode availabilityZoneNode = resultNode.FirstChild("availabilityZone");
+    if(!availabilityZoneNode.IsNull())
+    {
+      m_availabilityZone = StringUtils::Trim(availabilityZoneNode.GetText().c_str());
+      m_availabilityZoneHasBeenSet = true;
+    }
     XmlNode instanceTypeNode = resultNode.FirstChild("instanceType");
     if(!instanceTypeNode.IsNull())
     {
@@ -82,12 +89,6 @@ SpotPrice& SpotPrice::operator =(const XmlNode& xmlNode)
       m_timestamp = DateTime(StringUtils::Trim(timestampNode.GetText().c_str()).c_str(), DateFormat::ISO_8601);
       m_timestampHasBeenSet = true;
     }
-    XmlNode availabilityZoneNode = resultNode.FirstChild("availabilityZone");
-    if(!availabilityZoneNode.IsNull())
-    {
-      m_availabilityZone = StringUtils::Trim(availabilityZoneNode.GetText().c_str());
-      m_availabilityZoneHasBeenSet = true;
-    }
   }
 
   return *this;
@@ -95,6 +96,11 @@ SpotPrice& SpotPrice::operator =(const XmlNode& xmlNode)
 
 void SpotPrice::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
+  if(m_availabilityZoneHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".AvailabilityZone=" << StringUtils::URLEncode(m_availabilityZone.c_str()) << "&";
+  }
+
   if(m_instanceTypeHasBeenSet)
   {
       oStream << location << index << locationValue << ".InstanceType=" << InstanceTypeMapper::GetNameForInstanceType(m_instanceType) << "&";
@@ -115,15 +121,14 @@ void SpotPrice::OutputToStream(Aws::OStream& oStream, const char* location, unsi
       oStream << location << index << locationValue << ".Timestamp=" << StringUtils::URLEncode(m_timestamp.ToGmtString(DateFormat::ISO_8601).c_str()) << "&";
   }
 
-  if(m_availabilityZoneHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".AvailabilityZone=" << StringUtils::URLEncode(m_availabilityZone.c_str()) << "&";
-  }
-
 }
 
 void SpotPrice::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
+  if(m_availabilityZoneHasBeenSet)
+  {
+      oStream << location << ".AvailabilityZone=" << StringUtils::URLEncode(m_availabilityZone.c_str()) << "&";
+  }
   if(m_instanceTypeHasBeenSet)
   {
       oStream << location << ".InstanceType=" << InstanceTypeMapper::GetNameForInstanceType(m_instanceType) << "&";
@@ -139,10 +144,6 @@ void SpotPrice::OutputToStream(Aws::OStream& oStream, const char* location) cons
   if(m_timestampHasBeenSet)
   {
       oStream << location << ".Timestamp=" << StringUtils::URLEncode(m_timestamp.ToGmtString(DateFormat::ISO_8601).c_str()) << "&";
-  }
-  if(m_availabilityZoneHasBeenSet)
-  {
-      oStream << location << ".AvailabilityZone=" << StringUtils::URLEncode(m_availabilityZone.c_str()) << "&";
   }
 }
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/machinelearning/MachineLearning_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,8 +47,9 @@ namespace Model
   {
   public:
     CreateEvaluationResult();
-    CreateEvaluationResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateEvaluationResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateEvaluationResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateEvaluationResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The user-supplied ID that uniquely identifies the <code>Evaluation</code>.
@@ -67,7 +70,7 @@ namespace Model
      * This value should be identical to the value of the <code>EvaluationId</code> in
      * the request.</p>
      */
-    inline void SetEvaluationId(Aws::String&& value) { m_evaluationId = value; }
+    inline void SetEvaluationId(Aws::String&& value) { m_evaluationId = std::move(value); }
 
     /**
      * <p>The user-supplied ID that uniquely identifies the <code>Evaluation</code>.
@@ -88,7 +91,7 @@ namespace Model
      * This value should be identical to the value of the <code>EvaluationId</code> in
      * the request.</p>
      */
-    inline CreateEvaluationResult& WithEvaluationId(Aws::String&& value) { SetEvaluationId(value); return *this;}
+    inline CreateEvaluationResult& WithEvaluationId(Aws::String&& value) { SetEvaluationId(std::move(value)); return *this;}
 
     /**
      * <p>The user-supplied ID that uniquely identifies the <code>Evaluation</code>.
@@ -98,6 +101,7 @@ namespace Model
     inline CreateEvaluationResult& WithEvaluationId(const char* value) { SetEvaluationId(value); return *this;}
 
   private:
+
     Aws::String m_evaluationId;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/storagegateway/StorageGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/storagegateway/model/TapeArchive.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     DescribeTapeArchivesResult();
-    DescribeTapeArchivesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeTapeArchivesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeTapeArchivesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeTapeArchivesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>An array of virtual tape objects in the virtual tape shelf (VTS). The
@@ -71,7 +74,7 @@ namespace Model
      * size of the tapes, status of the tapes, progress of the description and tape
      * barcode.</p>
      */
-    inline void SetTapeArchives(Aws::Vector<TapeArchive>&& value) { m_tapeArchives = value; }
+    inline void SetTapeArchives(Aws::Vector<TapeArchive>&& value) { m_tapeArchives = std::move(value); }
 
     /**
      * <p>An array of virtual tape objects in the virtual tape shelf (VTS). The
@@ -89,7 +92,7 @@ namespace Model
      * size of the tapes, status of the tapes, progress of the description and tape
      * barcode.</p>
      */
-    inline DescribeTapeArchivesResult& WithTapeArchives(Aws::Vector<TapeArchive>&& value) { SetTapeArchives(value); return *this;}
+    inline DescribeTapeArchivesResult& WithTapeArchives(Aws::Vector<TapeArchive>&& value) { SetTapeArchives(std::move(value)); return *this;}
 
     /**
      * <p>An array of virtual tape objects in the virtual tape shelf (VTS). The
@@ -107,7 +110,8 @@ namespace Model
      * size of the tapes, status of the tapes, progress of the description and tape
      * barcode.</p>
      */
-    inline DescribeTapeArchivesResult& AddTapeArchives(TapeArchive&& value) { m_tapeArchives.push_back(value); return *this; }
+    inline DescribeTapeArchivesResult& AddTapeArchives(TapeArchive&& value) { m_tapeArchives.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>An opaque string that indicates the position at which the virtual tapes that
@@ -134,7 +138,7 @@ namespace Model
      * are no more virtual tapes to describe, this field does not appear in the
      * response.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p>An opaque string that indicates the position at which the virtual tapes that
@@ -161,7 +165,7 @@ namespace Model
      * are no more virtual tapes to describe, this field does not appear in the
      * response.</p>
      */
-    inline DescribeTapeArchivesResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeTapeArchivesResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>An opaque string that indicates the position at which the virtual tapes that
@@ -173,7 +177,9 @@ namespace Model
     inline DescribeTapeArchivesResult& WithMarker(const char* value) { SetMarker(value); return *this;}
 
   private:
+
     Aws::Vector<TapeArchive> m_tapeArchives;
+
     Aws::String m_marker;
   };
 

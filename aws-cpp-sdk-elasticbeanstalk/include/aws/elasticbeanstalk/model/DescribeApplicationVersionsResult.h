@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/elasticbeanstalk/model/ResponseMetadata.h>
 #include <aws/elasticbeanstalk/model/ApplicationVersionDescription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,8 +47,9 @@ namespace Model
   {
   public:
     DescribeApplicationVersionsResult();
-    DescribeApplicationVersionsResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeApplicationVersionsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeApplicationVersionsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeApplicationVersionsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>List of <code>ApplicationVersionDescription</code> objects sorted in order of
@@ -64,7 +67,7 @@ namespace Model
      * <p>List of <code>ApplicationVersionDescription</code> objects sorted in order of
      * creation.</p>
      */
-    inline void SetApplicationVersions(Aws::Vector<ApplicationVersionDescription>&& value) { m_applicationVersions = value; }
+    inline void SetApplicationVersions(Aws::Vector<ApplicationVersionDescription>&& value) { m_applicationVersions = std::move(value); }
 
     /**
      * <p>List of <code>ApplicationVersionDescription</code> objects sorted in order of
@@ -76,7 +79,7 @@ namespace Model
      * <p>List of <code>ApplicationVersionDescription</code> objects sorted in order of
      * creation.</p>
      */
-    inline DescribeApplicationVersionsResult& WithApplicationVersions(Aws::Vector<ApplicationVersionDescription>&& value) { SetApplicationVersions(value); return *this;}
+    inline DescribeApplicationVersionsResult& WithApplicationVersions(Aws::Vector<ApplicationVersionDescription>&& value) { SetApplicationVersions(std::move(value)); return *this;}
 
     /**
      * <p>List of <code>ApplicationVersionDescription</code> objects sorted in order of
@@ -88,49 +91,51 @@ namespace Model
      * <p>List of <code>ApplicationVersionDescription</code> objects sorted in order of
      * creation.</p>
      */
-    inline DescribeApplicationVersionsResult& AddApplicationVersions(ApplicationVersionDescription&& value) { m_applicationVersions.push_back(value); return *this; }
+    inline DescribeApplicationVersionsResult& AddApplicationVersions(ApplicationVersionDescription&& value) { m_applicationVersions.push_back(std::move(value)); return *this; }
+
 
     /**
-     * <p>For a paginated request, the token that you can pass in a subsequent request
-     * to get the next page.</p>
+     * <p>In a paginated request, the token that you can pass in a subsequent request
+     * to get the next response page.</p>
      */
     inline const Aws::String& GetNextToken() const{ return m_nextToken; }
 
     /**
-     * <p>For a paginated request, the token that you can pass in a subsequent request
-     * to get the next page.</p>
+     * <p>In a paginated request, the token that you can pass in a subsequent request
+     * to get the next response page.</p>
      */
     inline void SetNextToken(const Aws::String& value) { m_nextToken = value; }
 
     /**
-     * <p>For a paginated request, the token that you can pass in a subsequent request
-     * to get the next page.</p>
+     * <p>In a paginated request, the token that you can pass in a subsequent request
+     * to get the next response page.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
-     * <p>For a paginated request, the token that you can pass in a subsequent request
-     * to get the next page.</p>
+     * <p>In a paginated request, the token that you can pass in a subsequent request
+     * to get the next response page.</p>
      */
     inline void SetNextToken(const char* value) { m_nextToken.assign(value); }
 
     /**
-     * <p>For a paginated request, the token that you can pass in a subsequent request
-     * to get the next page.</p>
+     * <p>In a paginated request, the token that you can pass in a subsequent request
+     * to get the next response page.</p>
      */
     inline DescribeApplicationVersionsResult& WithNextToken(const Aws::String& value) { SetNextToken(value); return *this;}
 
     /**
-     * <p>For a paginated request, the token that you can pass in a subsequent request
-     * to get the next page.</p>
+     * <p>In a paginated request, the token that you can pass in a subsequent request
+     * to get the next response page.</p>
      */
-    inline DescribeApplicationVersionsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeApplicationVersionsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
-     * <p>For a paginated request, the token that you can pass in a subsequent request
-     * to get the next page.</p>
+     * <p>In a paginated request, the token that you can pass in a subsequent request
+     * to get the next response page.</p>
      */
     inline DescribeApplicationVersionsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -139,17 +144,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeApplicationVersionsResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeApplicationVersionsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeApplicationVersionsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<ApplicationVersionDescription> m_applicationVersions;
+
     Aws::String m_nextToken;
+
     ResponseMetadata m_responseMetadata;
   };
 

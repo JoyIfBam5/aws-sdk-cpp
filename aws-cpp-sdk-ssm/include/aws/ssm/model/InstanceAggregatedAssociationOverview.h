@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     InstanceAggregatedAssociationOverview& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Detailed status information about the aggregated associations.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>Detailed status information about the aggregated associations.</p>
      */
-    inline void SetDetailedStatus(Aws::String&& value) { m_detailedStatusHasBeenSet = true; m_detailedStatus = value; }
+    inline void SetDetailedStatus(Aws::String&& value) { m_detailedStatusHasBeenSet = true; m_detailedStatus = std::move(value); }
 
     /**
      * <p>Detailed status information about the aggregated associations.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>Detailed status information about the aggregated associations.</p>
      */
-    inline InstanceAggregatedAssociationOverview& WithDetailedStatus(Aws::String&& value) { SetDetailedStatus(value); return *this;}
+    inline InstanceAggregatedAssociationOverview& WithDetailedStatus(Aws::String&& value) { SetDetailedStatus(std::move(value)); return *this;}
 
     /**
      * <p>Detailed status information about the aggregated associations.</p>
      */
     inline InstanceAggregatedAssociationOverview& WithDetailedStatus(const char* value) { SetDetailedStatus(value); return *this;}
+
 
     /**
      * <p>The number of associations for the instance(s).</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The number of associations for the instance(s).</p>
      */
-    inline void SetInstanceAssociationStatusAggregatedCount(Aws::Map<Aws::String, int>&& value) { m_instanceAssociationStatusAggregatedCountHasBeenSet = true; m_instanceAssociationStatusAggregatedCount = value; }
+    inline void SetInstanceAssociationStatusAggregatedCount(Aws::Map<Aws::String, int>&& value) { m_instanceAssociationStatusAggregatedCountHasBeenSet = true; m_instanceAssociationStatusAggregatedCount = std::move(value); }
 
     /**
      * <p>The number of associations for the instance(s).</p>
@@ -103,26 +107,28 @@ namespace Model
     /**
      * <p>The number of associations for the instance(s).</p>
      */
-    inline InstanceAggregatedAssociationOverview& WithInstanceAssociationStatusAggregatedCount(Aws::Map<Aws::String, int>&& value) { SetInstanceAssociationStatusAggregatedCount(value); return *this;}
+    inline InstanceAggregatedAssociationOverview& WithInstanceAssociationStatusAggregatedCount(Aws::Map<Aws::String, int>&& value) { SetInstanceAssociationStatusAggregatedCount(std::move(value)); return *this;}
 
     /**
      * <p>The number of associations for the instance(s).</p>
      */
-    inline InstanceAggregatedAssociationOverview& AddInstanceAssociationStatusAggregatedCount(const Aws::String& key, int value) { m_instanceAssociationStatusAggregatedCountHasBeenSet = true; m_instanceAssociationStatusAggregatedCount[key] = value; return *this; }
+    inline InstanceAggregatedAssociationOverview& AddInstanceAssociationStatusAggregatedCount(const Aws::String& key, int value) { m_instanceAssociationStatusAggregatedCountHasBeenSet = true; m_instanceAssociationStatusAggregatedCount.emplace(key, value); return *this; }
 
     /**
      * <p>The number of associations for the instance(s).</p>
      */
-    inline InstanceAggregatedAssociationOverview& AddInstanceAssociationStatusAggregatedCount(Aws::String&& key, int value) { m_instanceAssociationStatusAggregatedCountHasBeenSet = true; m_instanceAssociationStatusAggregatedCount[key] = value; return *this; }
+    inline InstanceAggregatedAssociationOverview& AddInstanceAssociationStatusAggregatedCount(Aws::String&& key, int value) { m_instanceAssociationStatusAggregatedCountHasBeenSet = true; m_instanceAssociationStatusAggregatedCount.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The number of associations for the instance(s).</p>
      */
-    inline InstanceAggregatedAssociationOverview& AddInstanceAssociationStatusAggregatedCount(const char* key, int value) { m_instanceAssociationStatusAggregatedCountHasBeenSet = true; m_instanceAssociationStatusAggregatedCount[key] = value; return *this; }
+    inline InstanceAggregatedAssociationOverview& AddInstanceAssociationStatusAggregatedCount(const char* key, int value) { m_instanceAssociationStatusAggregatedCountHasBeenSet = true; m_instanceAssociationStatusAggregatedCount.emplace(key, value); return *this; }
 
   private:
+
     Aws::String m_detailedStatus;
     bool m_detailedStatusHasBeenSet;
+
     Aws::Map<Aws::String, int> m_instanceAssociationStatusAggregatedCount;
     bool m_instanceAssociationStatusAggregatedCountHasBeenSet;
   };

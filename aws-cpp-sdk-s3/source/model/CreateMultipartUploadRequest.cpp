@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/s3/model/CreateMultipartUploadRequest.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -49,7 +50,8 @@ CreateMultipartUploadRequest::CreateMultipartUploadRequest() :
     m_sSECustomerKeyMD5HasBeenSet(false),
     m_sSEKMSKeyIdHasBeenSet(false),
     m_requestPayer(RequestPayer::NOT_SET),
-    m_requestPayerHasBeenSet(false)
+    m_requestPayerHasBeenSet(false),
+    m_taggingHasBeenSet(false)
 {
 }
 
@@ -194,6 +196,13 @@ Aws::Http::HeaderValueCollection CreateMultipartUploadRequest::GetRequestSpecifi
   if(m_requestPayerHasBeenSet)
   {
     headers.insert(Aws::Http::HeaderValuePair("x-amz-request-payer", RequestPayerMapper::GetNameForRequestPayer(m_requestPayer)));
+  }
+
+  if(m_taggingHasBeenSet)
+  {
+    ss << m_tagging;
+    headers.insert(Aws::Http::HeaderValuePair("x-amz-tagging", ss.str()));
+    ss.str("");
   }
 
   return headers;

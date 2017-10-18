@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   * 
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -50,10 +50,12 @@ private:
     bool m_isUsingProxy;
     Aws::String m_proxyUserName;
     Aws::String m_proxyPassword;
+    Aws::String m_proxyScheme;
     Aws::String m_proxyHost;
     unsigned m_proxyPort;
     bool m_verifySSL;
     Aws::String m_caPath;
+    Aws::String m_caFile;
     bool m_allowRedirects;
 
     static std::atomic<bool> isInit;

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/iot/IoTRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     AttachPrincipalPolicyRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "AttachPrincipalPolicy"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The policy name.</p>
@@ -51,7 +61,7 @@ namespace Model
     /**
      * <p>The policy name.</p>
      */
-    inline void SetPolicyName(Aws::String&& value) { m_policyNameHasBeenSet = true; m_policyName = value; }
+    inline void SetPolicyName(Aws::String&& value) { m_policyNameHasBeenSet = true; m_policyName = std::move(value); }
 
     /**
      * <p>The policy name.</p>
@@ -66,12 +76,13 @@ namespace Model
     /**
      * <p>The policy name.</p>
      */
-    inline AttachPrincipalPolicyRequest& WithPolicyName(Aws::String&& value) { SetPolicyName(value); return *this;}
+    inline AttachPrincipalPolicyRequest& WithPolicyName(Aws::String&& value) { SetPolicyName(std::move(value)); return *this;}
 
     /**
      * <p>The policy name.</p>
      */
     inline AttachPrincipalPolicyRequest& WithPolicyName(const char* value) { SetPolicyName(value); return *this;}
+
 
     /**
      * <p>The principal, which can be a certificate ARN (as returned from the
@@ -89,7 +100,7 @@ namespace Model
      * <p>The principal, which can be a certificate ARN (as returned from the
      * CreateCertificate operation) or an Amazon Cognito ID.</p>
      */
-    inline void SetPrincipal(Aws::String&& value) { m_principalHasBeenSet = true; m_principal = value; }
+    inline void SetPrincipal(Aws::String&& value) { m_principalHasBeenSet = true; m_principal = std::move(value); }
 
     /**
      * <p>The principal, which can be a certificate ARN (as returned from the
@@ -107,7 +118,7 @@ namespace Model
      * <p>The principal, which can be a certificate ARN (as returned from the
      * CreateCertificate operation) or an Amazon Cognito ID.</p>
      */
-    inline AttachPrincipalPolicyRequest& WithPrincipal(Aws::String&& value) { SetPrincipal(value); return *this;}
+    inline AttachPrincipalPolicyRequest& WithPrincipal(Aws::String&& value) { SetPrincipal(std::move(value)); return *this;}
 
     /**
      * <p>The principal, which can be a certificate ARN (as returned from the
@@ -116,8 +127,10 @@ namespace Model
     inline AttachPrincipalPolicyRequest& WithPrincipal(const char* value) { SetPrincipal(value); return *this;}
 
   private:
+
     Aws::String m_policyName;
     bool m_policyNameHasBeenSet;
+
     Aws::String m_principal;
     bool m_principalHasBeenSet;
   };

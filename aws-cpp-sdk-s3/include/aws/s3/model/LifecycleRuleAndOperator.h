@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/s3/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
 
+
     
     inline const Aws::String& GetPrefix() const{ return m_prefix; }
 
@@ -55,7 +58,7 @@ namespace Model
     inline void SetPrefix(const Aws::String& value) { m_prefixHasBeenSet = true; m_prefix = value; }
 
     
-    inline void SetPrefix(Aws::String&& value) { m_prefixHasBeenSet = true; m_prefix = value; }
+    inline void SetPrefix(Aws::String&& value) { m_prefixHasBeenSet = true; m_prefix = std::move(value); }
 
     
     inline void SetPrefix(const char* value) { m_prefixHasBeenSet = true; m_prefix.assign(value); }
@@ -64,10 +67,11 @@ namespace Model
     inline LifecycleRuleAndOperator& WithPrefix(const Aws::String& value) { SetPrefix(value); return *this;}
 
     
-    inline LifecycleRuleAndOperator& WithPrefix(Aws::String&& value) { SetPrefix(value); return *this;}
+    inline LifecycleRuleAndOperator& WithPrefix(Aws::String&& value) { SetPrefix(std::move(value)); return *this;}
 
     
     inline LifecycleRuleAndOperator& WithPrefix(const char* value) { SetPrefix(value); return *this;}
+
 
     /**
      * All of these tags must exist in the object's tag set in order for the rule to
@@ -85,7 +89,7 @@ namespace Model
      * All of these tags must exist in the object's tag set in order for the rule to
      * apply.
      */
-    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = std::move(value); }
 
     /**
      * All of these tags must exist in the object's tag set in order for the rule to
@@ -97,7 +101,7 @@ namespace Model
      * All of these tags must exist in the object's tag set in order for the rule to
      * apply.
      */
-    inline LifecycleRuleAndOperator& WithTags(Aws::Vector<Tag>&& value) { SetTags(value); return *this;}
+    inline LifecycleRuleAndOperator& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
      * All of these tags must exist in the object's tag set in order for the rule to
@@ -109,11 +113,13 @@ namespace Model
      * All of these tags must exist in the object's tag set in order for the rule to
      * apply.
      */
-    inline LifecycleRuleAndOperator& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
+    inline LifecycleRuleAndOperator& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_prefix;
     bool m_prefixHasBeenSet;
+
     Aws::Vector<Tag> m_tags;
     bool m_tagsHasBeenSet;
   };

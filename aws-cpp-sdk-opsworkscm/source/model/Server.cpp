@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/opsworkscm/model/Server.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -28,10 +29,13 @@ namespace Model
 {
 
 Server::Server() : 
+    m_associatePublicIpAddress(false),
+    m_associatePublicIpAddressHasBeenSet(false),
     m_backupRetentionCount(0),
     m_backupRetentionCountHasBeenSet(false),
     m_serverNameHasBeenSet(false),
     m_createdAtHasBeenSet(false),
+    m_cloudFormationStackArnHasBeenSet(false),
     m_disableAutomatedBackup(false),
     m_disableAutomatedBackupHasBeenSet(false),
     m_endpointHasBeenSet(false),
@@ -57,10 +61,13 @@ Server::Server() :
 }
 
 Server::Server(const JsonValue& jsonValue) : 
+    m_associatePublicIpAddress(false),
+    m_associatePublicIpAddressHasBeenSet(false),
     m_backupRetentionCount(0),
     m_backupRetentionCountHasBeenSet(false),
     m_serverNameHasBeenSet(false),
     m_createdAtHasBeenSet(false),
+    m_cloudFormationStackArnHasBeenSet(false),
     m_disableAutomatedBackup(false),
     m_disableAutomatedBackupHasBeenSet(false),
     m_endpointHasBeenSet(false),
@@ -88,6 +95,13 @@ Server::Server(const JsonValue& jsonValue) :
 
 Server& Server::operator =(const JsonValue& jsonValue)
 {
+  if(jsonValue.ValueExists("AssociatePublicIpAddress"))
+  {
+    m_associatePublicIpAddress = jsonValue.GetBool("AssociatePublicIpAddress");
+
+    m_associatePublicIpAddressHasBeenSet = true;
+  }
+
   if(jsonValue.ValueExists("BackupRetentionCount"))
   {
     m_backupRetentionCount = jsonValue.GetInteger("BackupRetentionCount");
@@ -107,6 +121,13 @@ Server& Server::operator =(const JsonValue& jsonValue)
     m_createdAt = jsonValue.GetDouble("CreatedAt");
 
     m_createdAtHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("CloudFormationStackArn"))
+  {
+    m_cloudFormationStackArn = jsonValue.GetString("CloudFormationStackArn");
+
+    m_cloudFormationStackArnHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("DisableAutomatedBackup"))
@@ -251,6 +272,12 @@ JsonValue Server::Jsonize() const
 {
   JsonValue payload;
 
+  if(m_associatePublicIpAddressHasBeenSet)
+  {
+   payload.WithBool("AssociatePublicIpAddress", m_associatePublicIpAddress);
+
+  }
+
   if(m_backupRetentionCountHasBeenSet)
   {
    payload.WithInteger("BackupRetentionCount", m_backupRetentionCount);
@@ -266,6 +293,12 @@ JsonValue Server::Jsonize() const
   if(m_createdAtHasBeenSet)
   {
    payload.WithDouble("CreatedAt", m_createdAt.SecondsWithMSPrecision());
+  }
+
+  if(m_cloudFormationStackArnHasBeenSet)
+  {
+   payload.WithString("CloudFormationStackArn", m_cloudFormationStackArn);
+
   }
 
   if(m_disableAutomatedBackupHasBeenSet)

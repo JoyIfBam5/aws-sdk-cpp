@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/elasticbeanstalk/model/StatusCodes.h>
 #include <aws/elasticbeanstalk/model/Latency.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The amount of time that the metrics cover (usually 10 seconds). For example,
      * you might have 5 requests (<code>request_count</code>) within the most recent
@@ -69,6 +72,7 @@ namespace Model
      */
     inline ApplicationMetrics& WithDuration(int value) { SetDuration(value); return *this;}
 
+
     /**
      * <p>Average number of requests handled by the web server per second over the last
      * 10 seconds.</p>
@@ -87,6 +91,7 @@ namespace Model
      */
     inline ApplicationMetrics& WithRequestCount(int value) { SetRequestCount(value); return *this;}
 
+
     /**
      * <p>Represents the percentage of requests over the last 10 seconds that resulted
      * in each type of status code response.</p>
@@ -103,7 +108,7 @@ namespace Model
      * <p>Represents the percentage of requests over the last 10 seconds that resulted
      * in each type of status code response.</p>
      */
-    inline void SetStatusCodes(StatusCodes&& value) { m_statusCodesHasBeenSet = true; m_statusCodes = value; }
+    inline void SetStatusCodes(StatusCodes&& value) { m_statusCodesHasBeenSet = true; m_statusCodes = std::move(value); }
 
     /**
      * <p>Represents the percentage of requests over the last 10 seconds that resulted
@@ -115,45 +120,50 @@ namespace Model
      * <p>Represents the percentage of requests over the last 10 seconds that resulted
      * in each type of status code response.</p>
      */
-    inline ApplicationMetrics& WithStatusCodes(StatusCodes&& value) { SetStatusCodes(value); return *this;}
+    inline ApplicationMetrics& WithStatusCodes(StatusCodes&& value) { SetStatusCodes(std::move(value)); return *this;}
+
 
     /**
      * <p>Represents the average latency for the slowest X percent of requests over the
-     * last 10 seconds. Latencies are in seconds with one milisecond resolution.</p>
+     * last 10 seconds. Latencies are in seconds with one millisecond resolution.</p>
      */
     inline const Latency& GetLatency() const{ return m_latency; }
 
     /**
      * <p>Represents the average latency for the slowest X percent of requests over the
-     * last 10 seconds. Latencies are in seconds with one milisecond resolution.</p>
+     * last 10 seconds. Latencies are in seconds with one millisecond resolution.</p>
      */
     inline void SetLatency(const Latency& value) { m_latencyHasBeenSet = true; m_latency = value; }
 
     /**
      * <p>Represents the average latency for the slowest X percent of requests over the
-     * last 10 seconds. Latencies are in seconds with one milisecond resolution.</p>
+     * last 10 seconds. Latencies are in seconds with one millisecond resolution.</p>
      */
-    inline void SetLatency(Latency&& value) { m_latencyHasBeenSet = true; m_latency = value; }
+    inline void SetLatency(Latency&& value) { m_latencyHasBeenSet = true; m_latency = std::move(value); }
 
     /**
      * <p>Represents the average latency for the slowest X percent of requests over the
-     * last 10 seconds. Latencies are in seconds with one milisecond resolution.</p>
+     * last 10 seconds. Latencies are in seconds with one millisecond resolution.</p>
      */
     inline ApplicationMetrics& WithLatency(const Latency& value) { SetLatency(value); return *this;}
 
     /**
      * <p>Represents the average latency for the slowest X percent of requests over the
-     * last 10 seconds. Latencies are in seconds with one milisecond resolution.</p>
+     * last 10 seconds. Latencies are in seconds with one millisecond resolution.</p>
      */
-    inline ApplicationMetrics& WithLatency(Latency&& value) { SetLatency(value); return *this;}
+    inline ApplicationMetrics& WithLatency(Latency&& value) { SetLatency(std::move(value)); return *this;}
 
   private:
+
     int m_duration;
     bool m_durationHasBeenSet;
+
     int m_requestCount;
     bool m_requestCountHasBeenSet;
+
     StatusCodes m_statusCodes;
     bool m_statusCodesHasBeenSet;
+
     Latency m_latency;
     bool m_latencyHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codebuild/CodeBuild_EXPORTS.h>
 #include <aws/codebuild/model/LanguageType.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/codebuild/model/EnvironmentImage.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,30 +48,32 @@ namespace Model
     EnvironmentLanguage& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p>The programming language for the related set of Docker images.</p>
+     * <p>The programming language for the Docker images.</p>
      */
     inline const LanguageType& GetLanguage() const{ return m_language; }
 
     /**
-     * <p>The programming language for the related set of Docker images.</p>
+     * <p>The programming language for the Docker images.</p>
      */
     inline void SetLanguage(const LanguageType& value) { m_languageHasBeenSet = true; m_language = value; }
 
     /**
-     * <p>The programming language for the related set of Docker images.</p>
+     * <p>The programming language for the Docker images.</p>
      */
-    inline void SetLanguage(LanguageType&& value) { m_languageHasBeenSet = true; m_language = value; }
+    inline void SetLanguage(LanguageType&& value) { m_languageHasBeenSet = true; m_language = std::move(value); }
 
     /**
-     * <p>The programming language for the related set of Docker images.</p>
+     * <p>The programming language for the Docker images.</p>
      */
     inline EnvironmentLanguage& WithLanguage(const LanguageType& value) { SetLanguage(value); return *this;}
 
     /**
-     * <p>The programming language for the related set of Docker images.</p>
+     * <p>The programming language for the Docker images.</p>
      */
-    inline EnvironmentLanguage& WithLanguage(LanguageType&& value) { SetLanguage(value); return *this;}
+    inline EnvironmentLanguage& WithLanguage(LanguageType&& value) { SetLanguage(std::move(value)); return *this;}
+
 
     /**
      * <p>The list of Docker images that are related by the specified programming
@@ -87,7 +91,7 @@ namespace Model
      * <p>The list of Docker images that are related by the specified programming
      * language.</p>
      */
-    inline void SetImages(Aws::Vector<EnvironmentImage>&& value) { m_imagesHasBeenSet = true; m_images = value; }
+    inline void SetImages(Aws::Vector<EnvironmentImage>&& value) { m_imagesHasBeenSet = true; m_images = std::move(value); }
 
     /**
      * <p>The list of Docker images that are related by the specified programming
@@ -99,7 +103,7 @@ namespace Model
      * <p>The list of Docker images that are related by the specified programming
      * language.</p>
      */
-    inline EnvironmentLanguage& WithImages(Aws::Vector<EnvironmentImage>&& value) { SetImages(value); return *this;}
+    inline EnvironmentLanguage& WithImages(Aws::Vector<EnvironmentImage>&& value) { SetImages(std::move(value)); return *this;}
 
     /**
      * <p>The list of Docker images that are related by the specified programming
@@ -111,11 +115,13 @@ namespace Model
      * <p>The list of Docker images that are related by the specified programming
      * language.</p>
      */
-    inline EnvironmentLanguage& AddImages(EnvironmentImage&& value) { m_imagesHasBeenSet = true; m_images.push_back(value); return *this; }
+    inline EnvironmentLanguage& AddImages(EnvironmentImage&& value) { m_imagesHasBeenSet = true; m_images.push_back(std::move(value)); return *this; }
 
   private:
+
     LanguageType m_language;
     bool m_languageHasBeenSet;
+
     Aws::Vector<EnvironmentImage> m_images;
     bool m_imagesHasBeenSet;
   };

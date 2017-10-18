@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,47 +48,42 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
-    /**
-     * <p>The ID of the instance. This information is available only for
-     * <code>instanceChange</code> events.</p>
-     */
-    inline const Aws::String& GetInstanceId() const{ return m_instanceId; }
 
     /**
-     * <p>The ID of the instance. This information is available only for
-     * <code>instanceChange</code> events.</p>
+     * <p>The description of the event.</p>
      */
-    inline void SetInstanceId(const Aws::String& value) { m_instanceIdHasBeenSet = true; m_instanceId = value; }
+    inline const Aws::String& GetEventDescription() const{ return m_eventDescription; }
 
     /**
-     * <p>The ID of the instance. This information is available only for
-     * <code>instanceChange</code> events.</p>
+     * <p>The description of the event.</p>
      */
-    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = value; }
+    inline void SetEventDescription(const Aws::String& value) { m_eventDescriptionHasBeenSet = true; m_eventDescription = value; }
 
     /**
-     * <p>The ID of the instance. This information is available only for
-     * <code>instanceChange</code> events.</p>
+     * <p>The description of the event.</p>
      */
-    inline void SetInstanceId(const char* value) { m_instanceIdHasBeenSet = true; m_instanceId.assign(value); }
+    inline void SetEventDescription(Aws::String&& value) { m_eventDescriptionHasBeenSet = true; m_eventDescription = std::move(value); }
 
     /**
-     * <p>The ID of the instance. This information is available only for
-     * <code>instanceChange</code> events.</p>
+     * <p>The description of the event.</p>
      */
-    inline EventInformation& WithInstanceId(const Aws::String& value) { SetInstanceId(value); return *this;}
+    inline void SetEventDescription(const char* value) { m_eventDescriptionHasBeenSet = true; m_eventDescription.assign(value); }
 
     /**
-     * <p>The ID of the instance. This information is available only for
-     * <code>instanceChange</code> events.</p>
+     * <p>The description of the event.</p>
      */
-    inline EventInformation& WithInstanceId(Aws::String&& value) { SetInstanceId(value); return *this;}
+    inline EventInformation& WithEventDescription(const Aws::String& value) { SetEventDescription(value); return *this;}
 
     /**
-     * <p>The ID of the instance. This information is available only for
-     * <code>instanceChange</code> events.</p>
+     * <p>The description of the event.</p>
      */
-    inline EventInformation& WithInstanceId(const char* value) { SetInstanceId(value); return *this;}
+    inline EventInformation& WithEventDescription(Aws::String&& value) { SetEventDescription(std::move(value)); return *this;}
+
+    /**
+     * <p>The description of the event.</p>
+     */
+    inline EventInformation& WithEventDescription(const char* value) { SetEventDescription(value); return *this;}
+
 
     /**
      * <p>The event.</p> <p>The following are the <code>error</code> events.</p> <ul>
@@ -200,7 +197,7 @@ namespace Model
      * </li> <li> <p> <code>terminated</code> - An instance was terminated by the
      * user.</p> </li> </ul>
      */
-    inline void SetEventSubType(Aws::String&& value) { m_eventSubTypeHasBeenSet = true; m_eventSubType = value; }
+    inline void SetEventSubType(Aws::String&& value) { m_eventSubTypeHasBeenSet = true; m_eventSubType = std::move(value); }
 
     /**
      * <p>The event.</p> <p>The following are the <code>error</code> events.</p> <ul>
@@ -314,7 +311,7 @@ namespace Model
      * </li> <li> <p> <code>terminated</code> - An instance was terminated by the
      * user.</p> </li> </ul>
      */
-    inline EventInformation& WithEventSubType(Aws::String&& value) { SetEventSubType(value); return *this;}
+    inline EventInformation& WithEventSubType(Aws::String&& value) { SetEventSubType(std::move(value)); return *this;}
 
     /**
      * <p>The event.</p> <p>The following are the <code>error</code> events.</p> <ul>
@@ -354,48 +351,59 @@ namespace Model
      */
     inline EventInformation& WithEventSubType(const char* value) { SetEventSubType(value); return *this;}
 
-    /**
-     * <p>The description of the event.</p>
-     */
-    inline const Aws::String& GetEventDescription() const{ return m_eventDescription; }
 
     /**
-     * <p>The description of the event.</p>
+     * <p>The ID of the instance. This information is available only for
+     * <code>instanceChange</code> events.</p>
      */
-    inline void SetEventDescription(const Aws::String& value) { m_eventDescriptionHasBeenSet = true; m_eventDescription = value; }
+    inline const Aws::String& GetInstanceId() const{ return m_instanceId; }
 
     /**
-     * <p>The description of the event.</p>
+     * <p>The ID of the instance. This information is available only for
+     * <code>instanceChange</code> events.</p>
      */
-    inline void SetEventDescription(Aws::String&& value) { m_eventDescriptionHasBeenSet = true; m_eventDescription = value; }
+    inline void SetInstanceId(const Aws::String& value) { m_instanceIdHasBeenSet = true; m_instanceId = value; }
 
     /**
-     * <p>The description of the event.</p>
+     * <p>The ID of the instance. This information is available only for
+     * <code>instanceChange</code> events.</p>
      */
-    inline void SetEventDescription(const char* value) { m_eventDescriptionHasBeenSet = true; m_eventDescription.assign(value); }
+    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = std::move(value); }
 
     /**
-     * <p>The description of the event.</p>
+     * <p>The ID of the instance. This information is available only for
+     * <code>instanceChange</code> events.</p>
      */
-    inline EventInformation& WithEventDescription(const Aws::String& value) { SetEventDescription(value); return *this;}
+    inline void SetInstanceId(const char* value) { m_instanceIdHasBeenSet = true; m_instanceId.assign(value); }
 
     /**
-     * <p>The description of the event.</p>
+     * <p>The ID of the instance. This information is available only for
+     * <code>instanceChange</code> events.</p>
      */
-    inline EventInformation& WithEventDescription(Aws::String&& value) { SetEventDescription(value); return *this;}
+    inline EventInformation& WithInstanceId(const Aws::String& value) { SetInstanceId(value); return *this;}
 
     /**
-     * <p>The description of the event.</p>
+     * <p>The ID of the instance. This information is available only for
+     * <code>instanceChange</code> events.</p>
      */
-    inline EventInformation& WithEventDescription(const char* value) { SetEventDescription(value); return *this;}
+    inline EventInformation& WithInstanceId(Aws::String&& value) { SetInstanceId(std::move(value)); return *this;}
+
+    /**
+     * <p>The ID of the instance. This information is available only for
+     * <code>instanceChange</code> events.</p>
+     */
+    inline EventInformation& WithInstanceId(const char* value) { SetInstanceId(value); return *this;}
 
   private:
-    Aws::String m_instanceId;
-    bool m_instanceIdHasBeenSet;
-    Aws::String m_eventSubType;
-    bool m_eventSubTypeHasBeenSet;
+
     Aws::String m_eventDescription;
     bool m_eventDescriptionHasBeenSet;
+
+    Aws::String m_eventSubType;
+    bool m_eventSubTypeHasBeenSet;
+
+    Aws::String m_instanceId;
+    bool m_instanceIdHasBeenSet;
   };
 
 } // namespace Model

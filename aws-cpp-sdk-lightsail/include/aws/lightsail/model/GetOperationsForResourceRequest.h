@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/lightsail/LightsailRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     GetOperationsForResourceRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "GetOperationsForResource"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The name of the resource for which you are requesting information.</p>
@@ -47,7 +57,7 @@ namespace Model
     /**
      * <p>The name of the resource for which you are requesting information.</p>
      */
-    inline void SetResourceName(Aws::String&& value) { m_resourceNameHasBeenSet = true; m_resourceName = value; }
+    inline void SetResourceName(Aws::String&& value) { m_resourceNameHasBeenSet = true; m_resourceName = std::move(value); }
 
     /**
      * <p>The name of the resource for which you are requesting information.</p>
@@ -62,12 +72,13 @@ namespace Model
     /**
      * <p>The name of the resource for which you are requesting information.</p>
      */
-    inline GetOperationsForResourceRequest& WithResourceName(Aws::String&& value) { SetResourceName(value); return *this;}
+    inline GetOperationsForResourceRequest& WithResourceName(Aws::String&& value) { SetResourceName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the resource for which you are requesting information.</p>
      */
     inline GetOperationsForResourceRequest& WithResourceName(const char* value) { SetResourceName(value); return *this;}
+
 
     /**
      * <p>A token used for advancing to the next page of results from your get
@@ -85,7 +96,7 @@ namespace Model
      * <p>A token used for advancing to the next page of results from your get
      * operations for resource request.</p>
      */
-    inline void SetPageToken(Aws::String&& value) { m_pageTokenHasBeenSet = true; m_pageToken = value; }
+    inline void SetPageToken(Aws::String&& value) { m_pageTokenHasBeenSet = true; m_pageToken = std::move(value); }
 
     /**
      * <p>A token used for advancing to the next page of results from your get
@@ -103,7 +114,7 @@ namespace Model
      * <p>A token used for advancing to the next page of results from your get
      * operations for resource request.</p>
      */
-    inline GetOperationsForResourceRequest& WithPageToken(Aws::String&& value) { SetPageToken(value); return *this;}
+    inline GetOperationsForResourceRequest& WithPageToken(Aws::String&& value) { SetPageToken(std::move(value)); return *this;}
 
     /**
      * <p>A token used for advancing to the next page of results from your get
@@ -112,8 +123,10 @@ namespace Model
     inline GetOperationsForResourceRequest& WithPageToken(const char* value) { SetPageToken(value); return *this;}
 
   private:
+
     Aws::String m_resourceName;
     bool m_resourceNameHasBeenSet;
+
     Aws::String m_pageToken;
     bool m_pageTokenHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/redshift/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the cluster parameter group.</p>
      */
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>The name of the cluster parameter group.</p>
      */
-    inline void SetParameterGroupName(Aws::String&& value) { m_parameterGroupNameHasBeenSet = true; m_parameterGroupName = value; }
+    inline void SetParameterGroupName(Aws::String&& value) { m_parameterGroupNameHasBeenSet = true; m_parameterGroupName = std::move(value); }
 
     /**
      * <p>The name of the cluster parameter group.</p>
@@ -76,12 +79,13 @@ namespace Model
     /**
      * <p>The name of the cluster parameter group.</p>
      */
-    inline ClusterParameterGroup& WithParameterGroupName(Aws::String&& value) { SetParameterGroupName(value); return *this;}
+    inline ClusterParameterGroup& WithParameterGroupName(Aws::String&& value) { SetParameterGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the cluster parameter group.</p>
      */
     inline ClusterParameterGroup& WithParameterGroupName(const char* value) { SetParameterGroupName(value); return *this;}
+
 
     /**
      * <p>The name of the cluster parameter group family that this cluster parameter
@@ -99,7 +103,7 @@ namespace Model
      * <p>The name of the cluster parameter group family that this cluster parameter
      * group is compatible with.</p>
      */
-    inline void SetParameterGroupFamily(Aws::String&& value) { m_parameterGroupFamilyHasBeenSet = true; m_parameterGroupFamily = value; }
+    inline void SetParameterGroupFamily(Aws::String&& value) { m_parameterGroupFamilyHasBeenSet = true; m_parameterGroupFamily = std::move(value); }
 
     /**
      * <p>The name of the cluster parameter group family that this cluster parameter
@@ -117,13 +121,14 @@ namespace Model
      * <p>The name of the cluster parameter group family that this cluster parameter
      * group is compatible with.</p>
      */
-    inline ClusterParameterGroup& WithParameterGroupFamily(Aws::String&& value) { SetParameterGroupFamily(value); return *this;}
+    inline ClusterParameterGroup& WithParameterGroupFamily(Aws::String&& value) { SetParameterGroupFamily(std::move(value)); return *this;}
 
     /**
      * <p>The name of the cluster parameter group family that this cluster parameter
      * group is compatible with.</p>
      */
     inline ClusterParameterGroup& WithParameterGroupFamily(const char* value) { SetParameterGroupFamily(value); return *this;}
+
 
     /**
      * <p>The description of the parameter group.</p>
@@ -138,7 +143,7 @@ namespace Model
     /**
      * <p>The description of the parameter group.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The description of the parameter group.</p>
@@ -153,12 +158,13 @@ namespace Model
     /**
      * <p>The description of the parameter group.</p>
      */
-    inline ClusterParameterGroup& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline ClusterParameterGroup& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description of the parameter group.</p>
      */
     inline ClusterParameterGroup& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The list of tags for the cluster parameter group.</p>
@@ -173,7 +179,7 @@ namespace Model
     /**
      * <p>The list of tags for the cluster parameter group.</p>
      */
-    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = std::move(value); }
 
     /**
      * <p>The list of tags for the cluster parameter group.</p>
@@ -183,7 +189,7 @@ namespace Model
     /**
      * <p>The list of tags for the cluster parameter group.</p>
      */
-    inline ClusterParameterGroup& WithTags(Aws::Vector<Tag>&& value) { SetTags(value); return *this;}
+    inline ClusterParameterGroup& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
      * <p>The list of tags for the cluster parameter group.</p>
@@ -193,15 +199,19 @@ namespace Model
     /**
      * <p>The list of tags for the cluster parameter group.</p>
      */
-    inline ClusterParameterGroup& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
+    inline ClusterParameterGroup& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_parameterGroupName;
     bool m_parameterGroupNameHasBeenSet;
+
     Aws::String m_parameterGroupFamily;
     bool m_parameterGroupFamilyHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     Aws::Vector<Tag> m_tags;
     bool m_tagsHasBeenSet;
   };

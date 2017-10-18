@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/apigateway/model/IntegrationType.h>
@@ -20,6 +21,7 @@
 #include <aws/apigateway/model/ContentHandlingStrategy.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/apigateway/model/IntegrationResponse.h>
+#include <utility>
 
 namespace Aws
 {
@@ -52,6 +54,7 @@ namespace Model
     Integration& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Specifies the integration's type. The valid value is <code>HTTP</code> for
      * integrating with an HTTP back end, <code>AWS</code> for any AWS service
@@ -80,7 +83,7 @@ namespace Model
      * <code>AWS_PROXY</code> for integrating with the Lambda proxy integration
      * type.</p>
      */
-    inline void SetType(IntegrationType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(IntegrationType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>Specifies the integration's type. The valid value is <code>HTTP</code> for
@@ -100,7 +103,8 @@ namespace Model
      * <code>AWS_PROXY</code> for integrating with the Lambda proxy integration
      * type.</p>
      */
-    inline Integration& WithType(IntegrationType&& value) { SetType(value); return *this;}
+    inline Integration& WithType(IntegrationType&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p>Specifies the integration's HTTP method type.</p>
@@ -115,7 +119,7 @@ namespace Model
     /**
      * <p>Specifies the integration's HTTP method type.</p>
      */
-    inline void SetHttpMethod(Aws::String&& value) { m_httpMethodHasBeenSet = true; m_httpMethod = value; }
+    inline void SetHttpMethod(Aws::String&& value) { m_httpMethodHasBeenSet = true; m_httpMethod = std::move(value); }
 
     /**
      * <p>Specifies the integration's HTTP method type.</p>
@@ -130,12 +134,13 @@ namespace Model
     /**
      * <p>Specifies the integration's HTTP method type.</p>
      */
-    inline Integration& WithHttpMethod(Aws::String&& value) { SetHttpMethod(value); return *this;}
+    inline Integration& WithHttpMethod(Aws::String&& value) { SetHttpMethod(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the integration's HTTP method type.</p>
      */
     inline Integration& WithHttpMethod(const char* value) { SetHttpMethod(value); return *this;}
+
 
     /**
      * <p>Specifies the integration's Uniform Resource Identifier (URI). For HTTP
@@ -183,7 +188,7 @@ namespace Model
      * indicate that the remaining substring in the URI should be treated as the path
      * to the resource, including the initial <code>/</code>.</p>
      */
-    inline void SetUri(Aws::String&& value) { m_uriHasBeenSet = true; m_uri = value; }
+    inline void SetUri(Aws::String&& value) { m_uriHasBeenSet = true; m_uri = std::move(value); }
 
     /**
      * <p>Specifies the integration's Uniform Resource Identifier (URI). For HTTP
@@ -231,7 +236,7 @@ namespace Model
      * indicate that the remaining substring in the URI should be treated as the path
      * to the resource, including the initial <code>/</code>.</p>
      */
-    inline Integration& WithUri(Aws::String&& value) { SetUri(value); return *this;}
+    inline Integration& WithUri(Aws::String&& value) { SetUri(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the integration's Uniform Resource Identifier (URI). For HTTP
@@ -248,6 +253,7 @@ namespace Model
      * to the resource, including the initial <code>/</code>.</p>
      */
     inline Integration& WithUri(const char* value) { SetUri(value); return *this;}
+
 
     /**
      * <p>Specifies the credentials required for the integration, if any. For AWS
@@ -277,7 +283,7 @@ namespace Model
      * <code>arn:aws:iam::\*:user/\*</code>. To use resource-based permissions on
      * supported AWS services, specify null.</p>
      */
-    inline void SetCredentials(Aws::String&& value) { m_credentialsHasBeenSet = true; m_credentials = value; }
+    inline void SetCredentials(Aws::String&& value) { m_credentialsHasBeenSet = true; m_credentials = std::move(value); }
 
     /**
      * <p>Specifies the credentials required for the integration, if any. For AWS
@@ -307,7 +313,7 @@ namespace Model
      * <code>arn:aws:iam::\*:user/\*</code>. To use resource-based permissions on
      * supported AWS services, specify null.</p>
      */
-    inline Integration& WithCredentials(Aws::String&& value) { SetCredentials(value); return *this;}
+    inline Integration& WithCredentials(Aws::String&& value) { SetCredentials(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the credentials required for the integration, if any. For AWS
@@ -318,6 +324,7 @@ namespace Model
      * supported AWS services, specify null.</p>
      */
     inline Integration& WithCredentials(const char* value) { SetCredentials(value); return *this;}
+
 
     /**
      * <p>A key-value map specifying request parameters that are passed from the method
@@ -353,7 +360,7 @@ namespace Model
      * <code>querystring</code>, <code>path</code>, or <code>header</code> and
      * <code>name</code> must be a valid and unique method request parameter name.</p>
      */
-    inline void SetRequestParameters(Aws::Map<Aws::String, Aws::String>&& value) { m_requestParametersHasBeenSet = true; m_requestParameters = value; }
+    inline void SetRequestParameters(Aws::Map<Aws::String, Aws::String>&& value) { m_requestParametersHasBeenSet = true; m_requestParameters = std::move(value); }
 
     /**
      * <p>A key-value map specifying request parameters that are passed from the method
@@ -377,7 +384,7 @@ namespace Model
      * <code>querystring</code>, <code>path</code>, or <code>header</code> and
      * <code>name</code> must be a valid and unique method request parameter name.</p>
      */
-    inline Integration& WithRequestParameters(Aws::Map<Aws::String, Aws::String>&& value) { SetRequestParameters(value); return *this;}
+    inline Integration& WithRequestParameters(Aws::Map<Aws::String, Aws::String>&& value) { SetRequestParameters(std::move(value)); return *this;}
 
     /**
      * <p>A key-value map specifying request parameters that are passed from the method
@@ -389,7 +396,7 @@ namespace Model
      * <code>querystring</code>, <code>path</code>, or <code>header</code> and
      * <code>name</code> must be a valid and unique method request parameter name.</p>
      */
-    inline Integration& AddRequestParameters(const Aws::String& key, const Aws::String& value) { m_requestParametersHasBeenSet = true; m_requestParameters[key] = value; return *this; }
+    inline Integration& AddRequestParameters(const Aws::String& key, const Aws::String& value) { m_requestParametersHasBeenSet = true; m_requestParameters.emplace(key, value); return *this; }
 
     /**
      * <p>A key-value map specifying request parameters that are passed from the method
@@ -401,7 +408,7 @@ namespace Model
      * <code>querystring</code>, <code>path</code>, or <code>header</code> and
      * <code>name</code> must be a valid and unique method request parameter name.</p>
      */
-    inline Integration& AddRequestParameters(Aws::String&& key, const Aws::String& value) { m_requestParametersHasBeenSet = true; m_requestParameters[key] = value; return *this; }
+    inline Integration& AddRequestParameters(Aws::String&& key, const Aws::String& value) { m_requestParametersHasBeenSet = true; m_requestParameters.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A key-value map specifying request parameters that are passed from the method
@@ -413,7 +420,7 @@ namespace Model
      * <code>querystring</code>, <code>path</code>, or <code>header</code> and
      * <code>name</code> must be a valid and unique method request parameter name.</p>
      */
-    inline Integration& AddRequestParameters(const Aws::String& key, Aws::String&& value) { m_requestParametersHasBeenSet = true; m_requestParameters[key] = value; return *this; }
+    inline Integration& AddRequestParameters(const Aws::String& key, Aws::String&& value) { m_requestParametersHasBeenSet = true; m_requestParameters.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A key-value map specifying request parameters that are passed from the method
@@ -425,7 +432,7 @@ namespace Model
      * <code>querystring</code>, <code>path</code>, or <code>header</code> and
      * <code>name</code> must be a valid and unique method request parameter name.</p>
      */
-    inline Integration& AddRequestParameters(Aws::String&& key, Aws::String&& value) { m_requestParametersHasBeenSet = true; m_requestParameters[key] = value; return *this; }
+    inline Integration& AddRequestParameters(Aws::String&& key, Aws::String&& value) { m_requestParametersHasBeenSet = true; m_requestParameters.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>A key-value map specifying request parameters that are passed from the method
@@ -437,7 +444,7 @@ namespace Model
      * <code>querystring</code>, <code>path</code>, or <code>header</code> and
      * <code>name</code> must be a valid and unique method request parameter name.</p>
      */
-    inline Integration& AddRequestParameters(const char* key, Aws::String&& value) { m_requestParametersHasBeenSet = true; m_requestParameters[key] = value; return *this; }
+    inline Integration& AddRequestParameters(const char* key, Aws::String&& value) { m_requestParametersHasBeenSet = true; m_requestParameters.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A key-value map specifying request parameters that are passed from the method
@@ -449,7 +456,7 @@ namespace Model
      * <code>querystring</code>, <code>path</code>, or <code>header</code> and
      * <code>name</code> must be a valid and unique method request parameter name.</p>
      */
-    inline Integration& AddRequestParameters(Aws::String&& key, const char* value) { m_requestParametersHasBeenSet = true; m_requestParameters[key] = value; return *this; }
+    inline Integration& AddRequestParameters(Aws::String&& key, const char* value) { m_requestParametersHasBeenSet = true; m_requestParameters.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A key-value map specifying request parameters that are passed from the method
@@ -461,7 +468,8 @@ namespace Model
      * <code>querystring</code>, <code>path</code>, or <code>header</code> and
      * <code>name</code> must be a valid and unique method request parameter name.</p>
      */
-    inline Integration& AddRequestParameters(const char* key, const char* value) { m_requestParametersHasBeenSet = true; m_requestParameters[key] = value; return *this; }
+    inline Integration& AddRequestParameters(const char* key, const char* value) { m_requestParametersHasBeenSet = true; m_requestParameters.emplace(key, value); return *this; }
+
 
     /**
      * <p>Represents a map of Velocity templates that are applied on the request
@@ -485,7 +493,7 @@ namespace Model
      * content type value is the key in this map, and the template (as a String) is the
      * value.</p>
      */
-    inline void SetRequestTemplates(Aws::Map<Aws::String, Aws::String>&& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates = value; }
+    inline void SetRequestTemplates(Aws::Map<Aws::String, Aws::String>&& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates = std::move(value); }
 
     /**
      * <p>Represents a map of Velocity templates that are applied on the request
@@ -501,7 +509,7 @@ namespace Model
      * content type value is the key in this map, and the template (as a String) is the
      * value.</p>
      */
-    inline Integration& WithRequestTemplates(Aws::Map<Aws::String, Aws::String>&& value) { SetRequestTemplates(value); return *this;}
+    inline Integration& WithRequestTemplates(Aws::Map<Aws::String, Aws::String>&& value) { SetRequestTemplates(std::move(value)); return *this;}
 
     /**
      * <p>Represents a map of Velocity templates that are applied on the request
@@ -509,7 +517,7 @@ namespace Model
      * content type value is the key in this map, and the template (as a String) is the
      * value.</p>
      */
-    inline Integration& AddRequestTemplates(const Aws::String& key, const Aws::String& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates[key] = value; return *this; }
+    inline Integration& AddRequestTemplates(const Aws::String& key, const Aws::String& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates.emplace(key, value); return *this; }
 
     /**
      * <p>Represents a map of Velocity templates that are applied on the request
@@ -517,7 +525,7 @@ namespace Model
      * content type value is the key in this map, and the template (as a String) is the
      * value.</p>
      */
-    inline Integration& AddRequestTemplates(Aws::String&& key, const Aws::String& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates[key] = value; return *this; }
+    inline Integration& AddRequestTemplates(Aws::String&& key, const Aws::String& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>Represents a map of Velocity templates that are applied on the request
@@ -525,7 +533,7 @@ namespace Model
      * content type value is the key in this map, and the template (as a String) is the
      * value.</p>
      */
-    inline Integration& AddRequestTemplates(const Aws::String& key, Aws::String&& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates[key] = value; return *this; }
+    inline Integration& AddRequestTemplates(const Aws::String& key, Aws::String&& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>Represents a map of Velocity templates that are applied on the request
@@ -533,7 +541,7 @@ namespace Model
      * content type value is the key in this map, and the template (as a String) is the
      * value.</p>
      */
-    inline Integration& AddRequestTemplates(Aws::String&& key, Aws::String&& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates[key] = value; return *this; }
+    inline Integration& AddRequestTemplates(Aws::String&& key, Aws::String&& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>Represents a map of Velocity templates that are applied on the request
@@ -541,7 +549,7 @@ namespace Model
      * content type value is the key in this map, and the template (as a String) is the
      * value.</p>
      */
-    inline Integration& AddRequestTemplates(const char* key, Aws::String&& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates[key] = value; return *this; }
+    inline Integration& AddRequestTemplates(const char* key, Aws::String&& value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>Represents a map of Velocity templates that are applied on the request
@@ -549,7 +557,7 @@ namespace Model
      * content type value is the key in this map, and the template (as a String) is the
      * value.</p>
      */
-    inline Integration& AddRequestTemplates(Aws::String&& key, const char* value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates[key] = value; return *this; }
+    inline Integration& AddRequestTemplates(Aws::String&& key, const char* value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>Represents a map of Velocity templates that are applied on the request
@@ -557,7 +565,8 @@ namespace Model
      * content type value is the key in this map, and the template (as a String) is the
      * value.</p>
      */
-    inline Integration& AddRequestTemplates(const char* key, const char* value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates[key] = value; return *this; }
+    inline Integration& AddRequestTemplates(const char* key, const char* value) { m_requestTemplatesHasBeenSet = true; m_requestTemplates.emplace(key, value); return *this; }
+
 
     /**
      * <div> <p> Specifies how the method request body of an unmapped content type will
@@ -629,7 +638,7 @@ namespace Model
      * defined in the integration request or no mapping template is defined in the
      * integration request. </li> </ul> </div>
      */
-    inline void SetPassthroughBehavior(Aws::String&& value) { m_passthroughBehaviorHasBeenSet = true; m_passthroughBehavior = value; }
+    inline void SetPassthroughBehavior(Aws::String&& value) { m_passthroughBehaviorHasBeenSet = true; m_passthroughBehavior = std::move(value); }
 
     /**
      * <div> <p> Specifies how the method request body of an unmapped content type will
@@ -701,7 +710,7 @@ namespace Model
      * defined in the integration request or no mapping template is defined in the
      * integration request. </li> </ul> </div>
      */
-    inline Integration& WithPassthroughBehavior(Aws::String&& value) { SetPassthroughBehavior(value); return *this;}
+    inline Integration& WithPassthroughBehavior(Aws::String&& value) { SetPassthroughBehavior(std::move(value)); return *this;}
 
     /**
      * <div> <p> Specifies how the method request body of an unmapped content type will
@@ -726,6 +735,7 @@ namespace Model
      * integration request. </li> </ul> </div>
      */
     inline Integration& WithPassthroughBehavior(const char* value) { SetPassthroughBehavior(value); return *this;}
+
 
     /**
      * <p>Specifies how to handle request payload content type conversions. Supported
@@ -767,7 +777,7 @@ namespace Model
      * <code>passthroughBehaviors</code> is configured to support payload
      * pass-through.</p>
      */
-    inline void SetContentHandling(ContentHandlingStrategy&& value) { m_contentHandlingHasBeenSet = true; m_contentHandling = value; }
+    inline void SetContentHandling(ContentHandlingStrategy&& value) { m_contentHandlingHasBeenSet = true; m_contentHandling = std::move(value); }
 
     /**
      * <p>Specifies how to handle request payload content type conversions. Supported
@@ -795,7 +805,8 @@ namespace Model
      * <code>passthroughBehaviors</code> is configured to support payload
      * pass-through.</p>
      */
-    inline Integration& WithContentHandling(ContentHandlingStrategy&& value) { SetContentHandling(value); return *this;}
+    inline Integration& WithContentHandling(ContentHandlingStrategy&& value) { SetContentHandling(std::move(value)); return *this;}
+
 
     /**
      * <p>Specifies the integration's cache namespace.</p>
@@ -810,7 +821,7 @@ namespace Model
     /**
      * <p>Specifies the integration's cache namespace.</p>
      */
-    inline void SetCacheNamespace(Aws::String&& value) { m_cacheNamespaceHasBeenSet = true; m_cacheNamespace = value; }
+    inline void SetCacheNamespace(Aws::String&& value) { m_cacheNamespaceHasBeenSet = true; m_cacheNamespace = std::move(value); }
 
     /**
      * <p>Specifies the integration's cache namespace.</p>
@@ -825,12 +836,13 @@ namespace Model
     /**
      * <p>Specifies the integration's cache namespace.</p>
      */
-    inline Integration& WithCacheNamespace(Aws::String&& value) { SetCacheNamespace(value); return *this;}
+    inline Integration& WithCacheNamespace(Aws::String&& value) { SetCacheNamespace(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the integration's cache namespace.</p>
      */
     inline Integration& WithCacheNamespace(const char* value) { SetCacheNamespace(value); return *this;}
+
 
     /**
      * <p>Specifies the integration's cache key parameters.</p>
@@ -845,7 +857,7 @@ namespace Model
     /**
      * <p>Specifies the integration's cache key parameters.</p>
      */
-    inline void SetCacheKeyParameters(Aws::Vector<Aws::String>&& value) { m_cacheKeyParametersHasBeenSet = true; m_cacheKeyParameters = value; }
+    inline void SetCacheKeyParameters(Aws::Vector<Aws::String>&& value) { m_cacheKeyParametersHasBeenSet = true; m_cacheKeyParameters = std::move(value); }
 
     /**
      * <p>Specifies the integration's cache key parameters.</p>
@@ -855,7 +867,7 @@ namespace Model
     /**
      * <p>Specifies the integration's cache key parameters.</p>
      */
-    inline Integration& WithCacheKeyParameters(Aws::Vector<Aws::String>&& value) { SetCacheKeyParameters(value); return *this;}
+    inline Integration& WithCacheKeyParameters(Aws::Vector<Aws::String>&& value) { SetCacheKeyParameters(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the integration's cache key parameters.</p>
@@ -865,12 +877,13 @@ namespace Model
     /**
      * <p>Specifies the integration's cache key parameters.</p>
      */
-    inline Integration& AddCacheKeyParameters(Aws::String&& value) { m_cacheKeyParametersHasBeenSet = true; m_cacheKeyParameters.push_back(value); return *this; }
+    inline Integration& AddCacheKeyParameters(Aws::String&& value) { m_cacheKeyParametersHasBeenSet = true; m_cacheKeyParameters.push_back(std::move(value)); return *this; }
 
     /**
      * <p>Specifies the integration's cache key parameters.</p>
      */
     inline Integration& AddCacheKeyParameters(const char* value) { m_cacheKeyParametersHasBeenSet = true; m_cacheKeyParameters.push_back(value); return *this; }
+
 
     /**
      * <p>Specifies the integration's responses.</p> <div class="remarks"> <p/>
@@ -954,7 +967,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html">Creating
      * an API</a> </div>
      */
-    inline void SetIntegrationResponses(Aws::Map<Aws::String, IntegrationResponse>&& value) { m_integrationResponsesHasBeenSet = true; m_integrationResponses = value; }
+    inline void SetIntegrationResponses(Aws::Map<Aws::String, IntegrationResponse>&& value) { m_integrationResponsesHasBeenSet = true; m_integrationResponses = std::move(value); }
 
     /**
      * <p>Specifies the integration's responses.</p> <div class="remarks"> <p/>
@@ -1010,7 +1023,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html">Creating
      * an API</a> </div>
      */
-    inline Integration& WithIntegrationResponses(Aws::Map<Aws::String, IntegrationResponse>&& value) { SetIntegrationResponses(value); return *this;}
+    inline Integration& WithIntegrationResponses(Aws::Map<Aws::String, IntegrationResponse>&& value) { SetIntegrationResponses(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the integration's responses.</p> <div class="remarks"> <p/>
@@ -1038,7 +1051,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html">Creating
      * an API</a> </div>
      */
-    inline Integration& AddIntegrationResponses(const Aws::String& key, const IntegrationResponse& value) { m_integrationResponsesHasBeenSet = true; m_integrationResponses[key] = value; return *this; }
+    inline Integration& AddIntegrationResponses(const Aws::String& key, const IntegrationResponse& value) { m_integrationResponsesHasBeenSet = true; m_integrationResponses.emplace(key, value); return *this; }
 
     /**
      * <p>Specifies the integration's responses.</p> <div class="remarks"> <p/>
@@ -1066,7 +1079,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html">Creating
      * an API</a> </div>
      */
-    inline Integration& AddIntegrationResponses(Aws::String&& key, const IntegrationResponse& value) { m_integrationResponsesHasBeenSet = true; m_integrationResponses[key] = value; return *this; }
+    inline Integration& AddIntegrationResponses(Aws::String&& key, const IntegrationResponse& value) { m_integrationResponsesHasBeenSet = true; m_integrationResponses.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>Specifies the integration's responses.</p> <div class="remarks"> <p/>
@@ -1094,7 +1107,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html">Creating
      * an API</a> </div>
      */
-    inline Integration& AddIntegrationResponses(const Aws::String& key, IntegrationResponse&& value) { m_integrationResponsesHasBeenSet = true; m_integrationResponses[key] = value; return *this; }
+    inline Integration& AddIntegrationResponses(const Aws::String& key, IntegrationResponse&& value) { m_integrationResponsesHasBeenSet = true; m_integrationResponses.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>Specifies the integration's responses.</p> <div class="remarks"> <p/>
@@ -1122,7 +1135,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html">Creating
      * an API</a> </div>
      */
-    inline Integration& AddIntegrationResponses(Aws::String&& key, IntegrationResponse&& value) { m_integrationResponsesHasBeenSet = true; m_integrationResponses[key] = value; return *this; }
+    inline Integration& AddIntegrationResponses(Aws::String&& key, IntegrationResponse&& value) { m_integrationResponsesHasBeenSet = true; m_integrationResponses.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>Specifies the integration's responses.</p> <div class="remarks"> <p/>
@@ -1150,7 +1163,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html">Creating
      * an API</a> </div>
      */
-    inline Integration& AddIntegrationResponses(const char* key, IntegrationResponse&& value) { m_integrationResponsesHasBeenSet = true; m_integrationResponses[key] = value; return *this; }
+    inline Integration& AddIntegrationResponses(const char* key, IntegrationResponse&& value) { m_integrationResponsesHasBeenSet = true; m_integrationResponses.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>Specifies the integration's responses.</p> <div class="remarks"> <p/>
@@ -1178,29 +1191,40 @@ namespace Model
      * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html">Creating
      * an API</a> </div>
      */
-    inline Integration& AddIntegrationResponses(const char* key, const IntegrationResponse& value) { m_integrationResponsesHasBeenSet = true; m_integrationResponses[key] = value; return *this; }
+    inline Integration& AddIntegrationResponses(const char* key, const IntegrationResponse& value) { m_integrationResponsesHasBeenSet = true; m_integrationResponses.emplace(key, value); return *this; }
 
   private:
+
     IntegrationType m_type;
     bool m_typeHasBeenSet;
+
     Aws::String m_httpMethod;
     bool m_httpMethodHasBeenSet;
+
     Aws::String m_uri;
     bool m_uriHasBeenSet;
+
     Aws::String m_credentials;
     bool m_credentialsHasBeenSet;
+
     Aws::Map<Aws::String, Aws::String> m_requestParameters;
     bool m_requestParametersHasBeenSet;
+
     Aws::Map<Aws::String, Aws::String> m_requestTemplates;
     bool m_requestTemplatesHasBeenSet;
+
     Aws::String m_passthroughBehavior;
     bool m_passthroughBehaviorHasBeenSet;
+
     ContentHandlingStrategy m_contentHandling;
     bool m_contentHandlingHasBeenSet;
+
     Aws::String m_cacheNamespace;
     bool m_cacheNamespaceHasBeenSet;
+
     Aws::Vector<Aws::String> m_cacheKeyParameters;
     bool m_cacheKeyParametersHasBeenSet;
+
     Aws::Map<Aws::String, IntegrationResponse> m_integrationResponses;
     bool m_integrationResponsesHasBeenSet;
   };

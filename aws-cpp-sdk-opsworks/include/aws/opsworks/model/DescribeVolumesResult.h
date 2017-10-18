@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/opsworks/model/Volume.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     DescribeVolumesResult();
-    DescribeVolumesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeVolumesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeVolumesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeVolumesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>An array of volume IDs.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>An array of volume IDs.</p>
      */
-    inline void SetVolumes(Aws::Vector<Volume>&& value) { m_volumes = value; }
+    inline void SetVolumes(Aws::Vector<Volume>&& value) { m_volumes = std::move(value); }
 
     /**
      * <p>An array of volume IDs.</p>
@@ -69,7 +72,7 @@ namespace Model
     /**
      * <p>An array of volume IDs.</p>
      */
-    inline DescribeVolumesResult& WithVolumes(Aws::Vector<Volume>&& value) { SetVolumes(value); return *this;}
+    inline DescribeVolumesResult& WithVolumes(Aws::Vector<Volume>&& value) { SetVolumes(std::move(value)); return *this;}
 
     /**
      * <p>An array of volume IDs.</p>
@@ -79,9 +82,10 @@ namespace Model
     /**
      * <p>An array of volume IDs.</p>
      */
-    inline DescribeVolumesResult& AddVolumes(Volume&& value) { m_volumes.push_back(value); return *this; }
+    inline DescribeVolumesResult& AddVolumes(Volume&& value) { m_volumes.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<Volume> m_volumes;
   };
 

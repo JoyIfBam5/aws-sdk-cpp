@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The protocol that is used by the Listener.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The protocol that is used by the Listener.</p>
      */
-    inline void SetProtocol(Aws::String&& value) { m_protocolHasBeenSet = true; m_protocol = value; }
+    inline void SetProtocol(Aws::String&& value) { m_protocolHasBeenSet = true; m_protocol = std::move(value); }
 
     /**
      * <p>The protocol that is used by the Listener.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The protocol that is used by the Listener.</p>
      */
-    inline Listener& WithProtocol(Aws::String&& value) { SetProtocol(value); return *this;}
+    inline Listener& WithProtocol(Aws::String&& value) { SetProtocol(std::move(value)); return *this;}
 
     /**
      * <p>The protocol that is used by the Listener.</p>
      */
     inline Listener& WithProtocol(const char* value) { SetProtocol(value); return *this;}
+
 
     /**
      * <p>The port that is used by the Listener.</p>
@@ -98,8 +102,10 @@ namespace Model
     inline Listener& WithPort(int value) { SetPort(value); return *this;}
 
   private:
+
     Aws::String m_protocol;
     bool m_protocolHasBeenSet;
+
     int m_port;
     bool m_portHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -22,6 +23,8 @@
 #include <aws/ssm/model/DocumentType.h>
 #include <aws/ssm/model/DocumentParameter.h>
 #include <aws/ssm/model/PlatformType.h>
+#include <aws/ssm/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,7 +41,7 @@ namespace Model
 {
 
   /**
-   * <p> Describes an SSM document. </p><p><h3>See Also:</h3>   <a
+   * <p>Describes a Systems Manager document. </p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DocumentDescription">AWS
    * API Reference</a></p>
    */
@@ -50,47 +53,42 @@ namespace Model
     DocumentDescription& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p>The SHA1 hash of the document, which you can use for verification
-     * purposes.</p>
+     * <p>The SHA1 hash of the document, which you can use for verification.</p>
      */
     inline const Aws::String& GetSha1() const{ return m_sha1; }
 
     /**
-     * <p>The SHA1 hash of the document, which you can use for verification
-     * purposes.</p>
+     * <p>The SHA1 hash of the document, which you can use for verification.</p>
      */
     inline void SetSha1(const Aws::String& value) { m_sha1HasBeenSet = true; m_sha1 = value; }
 
     /**
-     * <p>The SHA1 hash of the document, which you can use for verification
-     * purposes.</p>
+     * <p>The SHA1 hash of the document, which you can use for verification.</p>
      */
-    inline void SetSha1(Aws::String&& value) { m_sha1HasBeenSet = true; m_sha1 = value; }
+    inline void SetSha1(Aws::String&& value) { m_sha1HasBeenSet = true; m_sha1 = std::move(value); }
 
     /**
-     * <p>The SHA1 hash of the document, which you can use for verification
-     * purposes.</p>
+     * <p>The SHA1 hash of the document, which you can use for verification.</p>
      */
     inline void SetSha1(const char* value) { m_sha1HasBeenSet = true; m_sha1.assign(value); }
 
     /**
-     * <p>The SHA1 hash of the document, which you can use for verification
-     * purposes.</p>
+     * <p>The SHA1 hash of the document, which you can use for verification.</p>
      */
     inline DocumentDescription& WithSha1(const Aws::String& value) { SetSha1(value); return *this;}
 
     /**
-     * <p>The SHA1 hash of the document, which you can use for verification
-     * purposes.</p>
+     * <p>The SHA1 hash of the document, which you can use for verification.</p>
      */
-    inline DocumentDescription& WithSha1(Aws::String&& value) { SetSha1(value); return *this;}
+    inline DocumentDescription& WithSha1(Aws::String&& value) { SetSha1(std::move(value)); return *this;}
 
     /**
-     * <p>The SHA1 hash of the document, which you can use for verification
-     * purposes.</p>
+     * <p>The SHA1 hash of the document, which you can use for verification.</p>
      */
     inline DocumentDescription& WithSha1(const char* value) { SetSha1(value); return *this;}
+
 
     /**
      * <p>The Sha256 or Sha1 hash created by the system when the document was created.
@@ -108,7 +106,7 @@ namespace Model
      * <p>The Sha256 or Sha1 hash created by the system when the document was created.
      * </p> <note> <p>Sha1 hashes have been deprecated.</p> </note>
      */
-    inline void SetHash(Aws::String&& value) { m_hashHasBeenSet = true; m_hash = value; }
+    inline void SetHash(Aws::String&& value) { m_hashHasBeenSet = true; m_hash = std::move(value); }
 
     /**
      * <p>The Sha256 or Sha1 hash created by the system when the document was created.
@@ -126,13 +124,14 @@ namespace Model
      * <p>The Sha256 or Sha1 hash created by the system when the document was created.
      * </p> <note> <p>Sha1 hashes have been deprecated.</p> </note>
      */
-    inline DocumentDescription& WithHash(Aws::String&& value) { SetHash(value); return *this;}
+    inline DocumentDescription& WithHash(Aws::String&& value) { SetHash(std::move(value)); return *this;}
 
     /**
      * <p>The Sha256 or Sha1 hash created by the system when the document was created.
      * </p> <note> <p>Sha1 hashes have been deprecated.</p> </note>
      */
     inline DocumentDescription& WithHash(const char* value) { SetHash(value); return *this;}
+
 
     /**
      * <p>Sha256 or Sha1.</p> <note> <p>Sha1 hashes have been deprecated.</p> </note>
@@ -147,7 +146,7 @@ namespace Model
     /**
      * <p>Sha256 or Sha1.</p> <note> <p>Sha1 hashes have been deprecated.</p> </note>
      */
-    inline void SetHashType(DocumentHashType&& value) { m_hashTypeHasBeenSet = true; m_hashType = value; }
+    inline void SetHashType(DocumentHashType&& value) { m_hashTypeHasBeenSet = true; m_hashType = std::move(value); }
 
     /**
      * <p>Sha256 or Sha1.</p> <note> <p>Sha1 hashes have been deprecated.</p> </note>
@@ -157,127 +156,132 @@ namespace Model
     /**
      * <p>Sha256 or Sha1.</p> <note> <p>Sha1 hashes have been deprecated.</p> </note>
      */
-    inline DocumentDescription& WithHashType(DocumentHashType&& value) { SetHashType(value); return *this;}
+    inline DocumentDescription& WithHashType(DocumentHashType&& value) { SetHashType(std::move(value)); return *this;}
+
 
     /**
-     * <p>The name of the SSM document.</p>
+     * <p>The name of the Systems Manager document.</p>
      */
     inline const Aws::String& GetName() const{ return m_name; }
 
     /**
-     * <p>The name of the SSM document.</p>
+     * <p>The name of the Systems Manager document.</p>
      */
     inline void SetName(const Aws::String& value) { m_nameHasBeenSet = true; m_name = value; }
 
     /**
-     * <p>The name of the SSM document.</p>
+     * <p>The name of the Systems Manager document.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
-     * <p>The name of the SSM document.</p>
+     * <p>The name of the Systems Manager document.</p>
      */
     inline void SetName(const char* value) { m_nameHasBeenSet = true; m_name.assign(value); }
 
     /**
-     * <p>The name of the SSM document.</p>
+     * <p>The name of the Systems Manager document.</p>
      */
     inline DocumentDescription& WithName(const Aws::String& value) { SetName(value); return *this;}
 
     /**
-     * <p>The name of the SSM document.</p>
+     * <p>The name of the Systems Manager document.</p>
      */
-    inline DocumentDescription& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline DocumentDescription& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
-     * <p>The name of the SSM document.</p>
+     * <p>The name of the Systems Manager document.</p>
      */
     inline DocumentDescription& WithName(const char* value) { SetName(value); return *this;}
 
+
     /**
-     * <p>The AWS user account of the person who created the document.</p>
+     * <p>The AWS user account that created the document.</p>
      */
     inline const Aws::String& GetOwner() const{ return m_owner; }
 
     /**
-     * <p>The AWS user account of the person who created the document.</p>
+     * <p>The AWS user account that created the document.</p>
      */
     inline void SetOwner(const Aws::String& value) { m_ownerHasBeenSet = true; m_owner = value; }
 
     /**
-     * <p>The AWS user account of the person who created the document.</p>
+     * <p>The AWS user account that created the document.</p>
      */
-    inline void SetOwner(Aws::String&& value) { m_ownerHasBeenSet = true; m_owner = value; }
+    inline void SetOwner(Aws::String&& value) { m_ownerHasBeenSet = true; m_owner = std::move(value); }
 
     /**
-     * <p>The AWS user account of the person who created the document.</p>
+     * <p>The AWS user account that created the document.</p>
      */
     inline void SetOwner(const char* value) { m_ownerHasBeenSet = true; m_owner.assign(value); }
 
     /**
-     * <p>The AWS user account of the person who created the document.</p>
+     * <p>The AWS user account that created the document.</p>
      */
     inline DocumentDescription& WithOwner(const Aws::String& value) { SetOwner(value); return *this;}
 
     /**
-     * <p>The AWS user account of the person who created the document.</p>
+     * <p>The AWS user account that created the document.</p>
      */
-    inline DocumentDescription& WithOwner(Aws::String&& value) { SetOwner(value); return *this;}
+    inline DocumentDescription& WithOwner(Aws::String&& value) { SetOwner(std::move(value)); return *this;}
 
     /**
-     * <p>The AWS user account of the person who created the document.</p>
+     * <p>The AWS user account that created the document.</p>
      */
     inline DocumentDescription& WithOwner(const char* value) { SetOwner(value); return *this;}
 
+
     /**
-     * <p> The date when the SSM document was created. </p>
+     * <p>The date when the document was created.</p>
      */
     inline const Aws::Utils::DateTime& GetCreatedDate() const{ return m_createdDate; }
 
     /**
-     * <p> The date when the SSM document was created. </p>
+     * <p>The date when the document was created.</p>
      */
     inline void SetCreatedDate(const Aws::Utils::DateTime& value) { m_createdDateHasBeenSet = true; m_createdDate = value; }
 
     /**
-     * <p> The date when the SSM document was created. </p>
+     * <p>The date when the document was created.</p>
      */
-    inline void SetCreatedDate(Aws::Utils::DateTime&& value) { m_createdDateHasBeenSet = true; m_createdDate = value; }
+    inline void SetCreatedDate(Aws::Utils::DateTime&& value) { m_createdDateHasBeenSet = true; m_createdDate = std::move(value); }
 
     /**
-     * <p> The date when the SSM document was created. </p>
+     * <p>The date when the document was created.</p>
      */
     inline DocumentDescription& WithCreatedDate(const Aws::Utils::DateTime& value) { SetCreatedDate(value); return *this;}
 
     /**
-     * <p> The date when the SSM document was created. </p>
+     * <p>The date when the document was created.</p>
      */
-    inline DocumentDescription& WithCreatedDate(Aws::Utils::DateTime&& value) { SetCreatedDate(value); return *this;}
+    inline DocumentDescription& WithCreatedDate(Aws::Utils::DateTime&& value) { SetCreatedDate(std::move(value)); return *this;}
+
 
     /**
-     * <p>The status of the SSM document.</p>
+     * <p>The status of the Systems Manager document.</p>
      */
     inline const DocumentStatus& GetStatus() const{ return m_status; }
 
     /**
-     * <p>The status of the SSM document.</p>
+     * <p>The status of the Systems Manager document.</p>
      */
     inline void SetStatus(const DocumentStatus& value) { m_statusHasBeenSet = true; m_status = value; }
 
     /**
-     * <p>The status of the SSM document.</p>
+     * <p>The status of the Systems Manager document.</p>
      */
-    inline void SetStatus(DocumentStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(DocumentStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
-     * <p>The status of the SSM document.</p>
+     * <p>The status of the Systems Manager document.</p>
      */
     inline DocumentDescription& WithStatus(const DocumentStatus& value) { SetStatus(value); return *this;}
 
     /**
-     * <p>The status of the SSM document.</p>
+     * <p>The status of the Systems Manager document.</p>
      */
-    inline DocumentDescription& WithStatus(DocumentStatus&& value) { SetStatus(value); return *this;}
+    inline DocumentDescription& WithStatus(DocumentStatus&& value) { SetStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The document version.</p>
@@ -292,7 +296,7 @@ namespace Model
     /**
      * <p>The document version.</p>
      */
-    inline void SetDocumentVersion(Aws::String&& value) { m_documentVersionHasBeenSet = true; m_documentVersion = value; }
+    inline void SetDocumentVersion(Aws::String&& value) { m_documentVersionHasBeenSet = true; m_documentVersion = std::move(value); }
 
     /**
      * <p>The document version.</p>
@@ -307,47 +311,49 @@ namespace Model
     /**
      * <p>The document version.</p>
      */
-    inline DocumentDescription& WithDocumentVersion(Aws::String&& value) { SetDocumentVersion(value); return *this;}
+    inline DocumentDescription& WithDocumentVersion(Aws::String&& value) { SetDocumentVersion(std::move(value)); return *this;}
 
     /**
      * <p>The document version.</p>
      */
     inline DocumentDescription& WithDocumentVersion(const char* value) { SetDocumentVersion(value); return *this;}
 
+
     /**
-     * <p> A description of the document. </p>
+     * <p>A description of the document. </p>
      */
     inline const Aws::String& GetDescription() const{ return m_description; }
 
     /**
-     * <p> A description of the document. </p>
+     * <p>A description of the document. </p>
      */
     inline void SetDescription(const Aws::String& value) { m_descriptionHasBeenSet = true; m_description = value; }
 
     /**
-     * <p> A description of the document. </p>
+     * <p>A description of the document. </p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
-     * <p> A description of the document. </p>
+     * <p>A description of the document. </p>
      */
     inline void SetDescription(const char* value) { m_descriptionHasBeenSet = true; m_description.assign(value); }
 
     /**
-     * <p> A description of the document. </p>
+     * <p>A description of the document. </p>
      */
     inline DocumentDescription& WithDescription(const Aws::String& value) { SetDescription(value); return *this;}
 
     /**
-     * <p> A description of the document. </p>
+     * <p>A description of the document. </p>
      */
-    inline DocumentDescription& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline DocumentDescription& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
-     * <p> A description of the document. </p>
+     * <p>A description of the document. </p>
      */
     inline DocumentDescription& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>A description of the parameters for a document.</p>
@@ -362,7 +368,7 @@ namespace Model
     /**
      * <p>A description of the parameters for a document.</p>
      */
-    inline void SetParameters(Aws::Vector<DocumentParameter>&& value) { m_parametersHasBeenSet = true; m_parameters = value; }
+    inline void SetParameters(Aws::Vector<DocumentParameter>&& value) { m_parametersHasBeenSet = true; m_parameters = std::move(value); }
 
     /**
      * <p>A description of the parameters for a document.</p>
@@ -372,7 +378,7 @@ namespace Model
     /**
      * <p>A description of the parameters for a document.</p>
      */
-    inline DocumentDescription& WithParameters(Aws::Vector<DocumentParameter>&& value) { SetParameters(value); return *this;}
+    inline DocumentDescription& WithParameters(Aws::Vector<DocumentParameter>&& value) { SetParameters(std::move(value)); return *this;}
 
     /**
      * <p>A description of the parameters for a document.</p>
@@ -382,42 +388,44 @@ namespace Model
     /**
      * <p>A description of the parameters for a document.</p>
      */
-    inline DocumentDescription& AddParameters(DocumentParameter&& value) { m_parametersHasBeenSet = true; m_parameters.push_back(value); return *this; }
+    inline DocumentDescription& AddParameters(DocumentParameter&& value) { m_parametersHasBeenSet = true; m_parameters.push_back(std::move(value)); return *this; }
+
 
     /**
-     * <p>The list of OS platforms compatible with this SSM document. </p>
+     * <p>The list of OS platforms compatible with this Systems Manager document. </p>
      */
     inline const Aws::Vector<PlatformType>& GetPlatformTypes() const{ return m_platformTypes; }
 
     /**
-     * <p>The list of OS platforms compatible with this SSM document. </p>
+     * <p>The list of OS platforms compatible with this Systems Manager document. </p>
      */
     inline void SetPlatformTypes(const Aws::Vector<PlatformType>& value) { m_platformTypesHasBeenSet = true; m_platformTypes = value; }
 
     /**
-     * <p>The list of OS platforms compatible with this SSM document. </p>
+     * <p>The list of OS platforms compatible with this Systems Manager document. </p>
      */
-    inline void SetPlatformTypes(Aws::Vector<PlatformType>&& value) { m_platformTypesHasBeenSet = true; m_platformTypes = value; }
+    inline void SetPlatformTypes(Aws::Vector<PlatformType>&& value) { m_platformTypesHasBeenSet = true; m_platformTypes = std::move(value); }
 
     /**
-     * <p>The list of OS platforms compatible with this SSM document. </p>
+     * <p>The list of OS platforms compatible with this Systems Manager document. </p>
      */
     inline DocumentDescription& WithPlatformTypes(const Aws::Vector<PlatformType>& value) { SetPlatformTypes(value); return *this;}
 
     /**
-     * <p>The list of OS platforms compatible with this SSM document. </p>
+     * <p>The list of OS platforms compatible with this Systems Manager document. </p>
      */
-    inline DocumentDescription& WithPlatformTypes(Aws::Vector<PlatformType>&& value) { SetPlatformTypes(value); return *this;}
+    inline DocumentDescription& WithPlatformTypes(Aws::Vector<PlatformType>&& value) { SetPlatformTypes(std::move(value)); return *this;}
 
     /**
-     * <p>The list of OS platforms compatible with this SSM document. </p>
+     * <p>The list of OS platforms compatible with this Systems Manager document. </p>
      */
     inline DocumentDescription& AddPlatformTypes(const PlatformType& value) { m_platformTypesHasBeenSet = true; m_platformTypes.push_back(value); return *this; }
 
     /**
-     * <p>The list of OS platforms compatible with this SSM document. </p>
+     * <p>The list of OS platforms compatible with this Systems Manager document. </p>
      */
-    inline DocumentDescription& AddPlatformTypes(PlatformType&& value) { m_platformTypesHasBeenSet = true; m_platformTypes.push_back(value); return *this; }
+    inline DocumentDescription& AddPlatformTypes(PlatformType&& value) { m_platformTypesHasBeenSet = true; m_platformTypes.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The type of document. </p>
@@ -432,7 +440,7 @@ namespace Model
     /**
      * <p>The type of document. </p>
      */
-    inline void SetDocumentType(DocumentType&& value) { m_documentTypeHasBeenSet = true; m_documentType = value; }
+    inline void SetDocumentType(DocumentType&& value) { m_documentTypeHasBeenSet = true; m_documentType = std::move(value); }
 
     /**
      * <p>The type of document. </p>
@@ -442,7 +450,8 @@ namespace Model
     /**
      * <p>The type of document. </p>
      */
-    inline DocumentDescription& WithDocumentType(DocumentType&& value) { SetDocumentType(value); return *this;}
+    inline DocumentDescription& WithDocumentType(DocumentType&& value) { SetDocumentType(std::move(value)); return *this;}
+
 
     /**
      * <p>The schema version.</p>
@@ -457,7 +466,7 @@ namespace Model
     /**
      * <p>The schema version.</p>
      */
-    inline void SetSchemaVersion(Aws::String&& value) { m_schemaVersionHasBeenSet = true; m_schemaVersion = value; }
+    inline void SetSchemaVersion(Aws::String&& value) { m_schemaVersionHasBeenSet = true; m_schemaVersion = std::move(value); }
 
     /**
      * <p>The schema version.</p>
@@ -472,12 +481,13 @@ namespace Model
     /**
      * <p>The schema version.</p>
      */
-    inline DocumentDescription& WithSchemaVersion(Aws::String&& value) { SetSchemaVersion(value); return *this;}
+    inline DocumentDescription& WithSchemaVersion(Aws::String&& value) { SetSchemaVersion(std::move(value)); return *this;}
 
     /**
      * <p>The schema version.</p>
      */
     inline DocumentDescription& WithSchemaVersion(const char* value) { SetSchemaVersion(value); return *this;}
+
 
     /**
      * <p>The latest version of the document.</p>
@@ -492,7 +502,7 @@ namespace Model
     /**
      * <p>The latest version of the document.</p>
      */
-    inline void SetLatestVersion(Aws::String&& value) { m_latestVersionHasBeenSet = true; m_latestVersion = value; }
+    inline void SetLatestVersion(Aws::String&& value) { m_latestVersionHasBeenSet = true; m_latestVersion = std::move(value); }
 
     /**
      * <p>The latest version of the document.</p>
@@ -507,12 +517,13 @@ namespace Model
     /**
      * <p>The latest version of the document.</p>
      */
-    inline DocumentDescription& WithLatestVersion(Aws::String&& value) { SetLatestVersion(value); return *this;}
+    inline DocumentDescription& WithLatestVersion(Aws::String&& value) { SetLatestVersion(std::move(value)); return *this;}
 
     /**
      * <p>The latest version of the document.</p>
      */
     inline DocumentDescription& WithLatestVersion(const char* value) { SetLatestVersion(value); return *this;}
+
 
     /**
      * <p>The default version.</p>
@@ -527,7 +538,7 @@ namespace Model
     /**
      * <p>The default version.</p>
      */
-    inline void SetDefaultVersion(Aws::String&& value) { m_defaultVersionHasBeenSet = true; m_defaultVersion = value; }
+    inline void SetDefaultVersion(Aws::String&& value) { m_defaultVersionHasBeenSet = true; m_defaultVersion = std::move(value); }
 
     /**
      * <p>The default version.</p>
@@ -542,44 +553,98 @@ namespace Model
     /**
      * <p>The default version.</p>
      */
-    inline DocumentDescription& WithDefaultVersion(Aws::String&& value) { SetDefaultVersion(value); return *this;}
+    inline DocumentDescription& WithDefaultVersion(Aws::String&& value) { SetDefaultVersion(std::move(value)); return *this;}
 
     /**
      * <p>The default version.</p>
      */
     inline DocumentDescription& WithDefaultVersion(const char* value) { SetDefaultVersion(value); return *this;}
 
+
+    /**
+     * <p>The tags, or metadata, that have been applied to the document.</p>
+     */
+    inline const Aws::Vector<Tag>& GetTags() const{ return m_tags; }
+
+    /**
+     * <p>The tags, or metadata, that have been applied to the document.</p>
+     */
+    inline void SetTags(const Aws::Vector<Tag>& value) { m_tagsHasBeenSet = true; m_tags = value; }
+
+    /**
+     * <p>The tags, or metadata, that have been applied to the document.</p>
+     */
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = std::move(value); }
+
+    /**
+     * <p>The tags, or metadata, that have been applied to the document.</p>
+     */
+    inline DocumentDescription& WithTags(const Aws::Vector<Tag>& value) { SetTags(value); return *this;}
+
+    /**
+     * <p>The tags, or metadata, that have been applied to the document.</p>
+     */
+    inline DocumentDescription& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
+
+    /**
+     * <p>The tags, or metadata, that have been applied to the document.</p>
+     */
+    inline DocumentDescription& AddTags(const Tag& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
+
+    /**
+     * <p>The tags, or metadata, that have been applied to the document.</p>
+     */
+    inline DocumentDescription& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(std::move(value)); return *this; }
+
   private:
+
     Aws::String m_sha1;
     bool m_sha1HasBeenSet;
+
     Aws::String m_hash;
     bool m_hashHasBeenSet;
+
     DocumentHashType m_hashType;
     bool m_hashTypeHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_owner;
     bool m_ownerHasBeenSet;
+
     Aws::Utils::DateTime m_createdDate;
     bool m_createdDateHasBeenSet;
+
     DocumentStatus m_status;
     bool m_statusHasBeenSet;
+
     Aws::String m_documentVersion;
     bool m_documentVersionHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     Aws::Vector<DocumentParameter> m_parameters;
     bool m_parametersHasBeenSet;
+
     Aws::Vector<PlatformType> m_platformTypes;
     bool m_platformTypesHasBeenSet;
+
     DocumentType m_documentType;
     bool m_documentTypeHasBeenSet;
+
     Aws::String m_schemaVersion;
     bool m_schemaVersionHasBeenSet;
+
     Aws::String m_latestVersion;
     bool m_latestVersionHasBeenSet;
+
     Aws::String m_defaultVersion;
     bool m_defaultVersionHasBeenSet;
+
+    Aws::Vector<Tag> m_tags;
+    bool m_tagsHasBeenSet;
   };
 
 } // namespace Model

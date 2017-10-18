@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codebuild/CodeBuild_EXPORTS.h>
 #include <aws/codebuild/CodeBuildRequest.h>
 #include <aws/codebuild/model/SortOrderType.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,9 +33,17 @@ namespace Model
   {
   public:
     ListBuildsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListBuilds"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The order to list build IDs. Valid values include:</p> <ul> <li> <p>
@@ -57,7 +67,7 @@ namespace Model
      * </li> <li> <p> <code>DESCENDING</code>: List the build IDs in descending order
      * by build ID.</p> </li> </ul>
      */
-    inline void SetSortOrder(SortOrderType&& value) { m_sortOrderHasBeenSet = true; m_sortOrder = value; }
+    inline void SetSortOrder(SortOrderType&& value) { m_sortOrderHasBeenSet = true; m_sortOrder = std::move(value); }
 
     /**
      * <p>The order to list build IDs. Valid values include:</p> <ul> <li> <p>
@@ -73,7 +83,8 @@ namespace Model
      * </li> <li> <p> <code>DESCENDING</code>: List the build IDs in descending order
      * by build ID.</p> </li> </ul>
      */
-    inline ListBuildsRequest& WithSortOrder(SortOrderType&& value) { SetSortOrder(value); return *this;}
+    inline ListBuildsRequest& WithSortOrder(SortOrderType&& value) { SetSortOrder(std::move(value)); return *this;}
+
 
     /**
      * <p>During a previous call, if there are more than 100 items in the list, only
@@ -103,7 +114,7 @@ namespace Model
      * keep calling this operation with each subsequent next token that is returned,
      * until no more next tokens are returned.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>During a previous call, if there are more than 100 items in the list, only
@@ -133,7 +144,7 @@ namespace Model
      * keep calling this operation with each subsequent next token that is returned,
      * until no more next tokens are returned.</p>
      */
-    inline ListBuildsRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListBuildsRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>During a previous call, if there are more than 100 items in the list, only
@@ -146,8 +157,10 @@ namespace Model
     inline ListBuildsRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     SortOrderType m_sortOrder;
     bool m_sortOrderHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
   };

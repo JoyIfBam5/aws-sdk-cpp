@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticache/ElastiCache_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -19,6 +20,7 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticache/model/Parameter.h>
 #include <aws/elasticache/model/CacheNodeTypeSpecificParameter.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,6 +52,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>Specifies the name of the cache parameter group family to which the engine
      * default parameters apply.</p> <p>Valid values are: <code>memcached1.4</code> |
@@ -69,7 +72,7 @@ namespace Model
      * default parameters apply.</p> <p>Valid values are: <code>memcached1.4</code> |
      * <code>redis2.6</code> | <code>redis2.8</code> | <code>redis3.2</code> </p>
      */
-    inline void SetCacheParameterGroupFamily(Aws::String&& value) { m_cacheParameterGroupFamilyHasBeenSet = true; m_cacheParameterGroupFamily = value; }
+    inline void SetCacheParameterGroupFamily(Aws::String&& value) { m_cacheParameterGroupFamilyHasBeenSet = true; m_cacheParameterGroupFamily = std::move(value); }
 
     /**
      * <p>Specifies the name of the cache parameter group family to which the engine
@@ -90,7 +93,7 @@ namespace Model
      * default parameters apply.</p> <p>Valid values are: <code>memcached1.4</code> |
      * <code>redis2.6</code> | <code>redis2.8</code> | <code>redis3.2</code> </p>
      */
-    inline EngineDefaults& WithCacheParameterGroupFamily(Aws::String&& value) { SetCacheParameterGroupFamily(value); return *this;}
+    inline EngineDefaults& WithCacheParameterGroupFamily(Aws::String&& value) { SetCacheParameterGroupFamily(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the name of the cache parameter group family to which the engine
@@ -98,6 +101,7 @@ namespace Model
      * <code>redis2.6</code> | <code>redis2.8</code> | <code>redis3.2</code> </p>
      */
     inline EngineDefaults& WithCacheParameterGroupFamily(const char* value) { SetCacheParameterGroupFamily(value); return *this;}
+
 
     /**
      * <p>Provides an identifier to allow retrieval of paginated results.</p>
@@ -112,7 +116,7 @@ namespace Model
     /**
      * <p>Provides an identifier to allow retrieval of paginated results.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p>Provides an identifier to allow retrieval of paginated results.</p>
@@ -127,12 +131,13 @@ namespace Model
     /**
      * <p>Provides an identifier to allow retrieval of paginated results.</p>
      */
-    inline EngineDefaults& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline EngineDefaults& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>Provides an identifier to allow retrieval of paginated results.</p>
      */
     inline EngineDefaults& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>Contains a list of engine default parameters.</p>
@@ -147,7 +152,7 @@ namespace Model
     /**
      * <p>Contains a list of engine default parameters.</p>
      */
-    inline void SetParameters(Aws::Vector<Parameter>&& value) { m_parametersHasBeenSet = true; m_parameters = value; }
+    inline void SetParameters(Aws::Vector<Parameter>&& value) { m_parametersHasBeenSet = true; m_parameters = std::move(value); }
 
     /**
      * <p>Contains a list of engine default parameters.</p>
@@ -157,7 +162,7 @@ namespace Model
     /**
      * <p>Contains a list of engine default parameters.</p>
      */
-    inline EngineDefaults& WithParameters(Aws::Vector<Parameter>&& value) { SetParameters(value); return *this;}
+    inline EngineDefaults& WithParameters(Aws::Vector<Parameter>&& value) { SetParameters(std::move(value)); return *this;}
 
     /**
      * <p>Contains a list of engine default parameters.</p>
@@ -167,7 +172,8 @@ namespace Model
     /**
      * <p>Contains a list of engine default parameters.</p>
      */
-    inline EngineDefaults& AddParameters(Parameter&& value) { m_parametersHasBeenSet = true; m_parameters.push_back(value); return *this; }
+    inline EngineDefaults& AddParameters(Parameter&& value) { m_parametersHasBeenSet = true; m_parameters.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>A list of parameters specific to a particular cache node type. Each element
@@ -185,7 +191,7 @@ namespace Model
      * <p>A list of parameters specific to a particular cache node type. Each element
      * in the list contains detailed information about one parameter.</p>
      */
-    inline void SetCacheNodeTypeSpecificParameters(Aws::Vector<CacheNodeTypeSpecificParameter>&& value) { m_cacheNodeTypeSpecificParametersHasBeenSet = true; m_cacheNodeTypeSpecificParameters = value; }
+    inline void SetCacheNodeTypeSpecificParameters(Aws::Vector<CacheNodeTypeSpecificParameter>&& value) { m_cacheNodeTypeSpecificParametersHasBeenSet = true; m_cacheNodeTypeSpecificParameters = std::move(value); }
 
     /**
      * <p>A list of parameters specific to a particular cache node type. Each element
@@ -197,7 +203,7 @@ namespace Model
      * <p>A list of parameters specific to a particular cache node type. Each element
      * in the list contains detailed information about one parameter.</p>
      */
-    inline EngineDefaults& WithCacheNodeTypeSpecificParameters(Aws::Vector<CacheNodeTypeSpecificParameter>&& value) { SetCacheNodeTypeSpecificParameters(value); return *this;}
+    inline EngineDefaults& WithCacheNodeTypeSpecificParameters(Aws::Vector<CacheNodeTypeSpecificParameter>&& value) { SetCacheNodeTypeSpecificParameters(std::move(value)); return *this;}
 
     /**
      * <p>A list of parameters specific to a particular cache node type. Each element
@@ -209,15 +215,19 @@ namespace Model
      * <p>A list of parameters specific to a particular cache node type. Each element
      * in the list contains detailed information about one parameter.</p>
      */
-    inline EngineDefaults& AddCacheNodeTypeSpecificParameters(CacheNodeTypeSpecificParameter&& value) { m_cacheNodeTypeSpecificParametersHasBeenSet = true; m_cacheNodeTypeSpecificParameters.push_back(value); return *this; }
+    inline EngineDefaults& AddCacheNodeTypeSpecificParameters(CacheNodeTypeSpecificParameter&& value) { m_cacheNodeTypeSpecificParametersHasBeenSet = true; m_cacheNodeTypeSpecificParameters.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_cacheParameterGroupFamily;
     bool m_cacheParameterGroupFamilyHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
+
     Aws::Vector<Parameter> m_parameters;
     bool m_parametersHasBeenSet;
+
     Aws::Vector<CacheNodeTypeSpecificParameter> m_cacheNodeTypeSpecificParameters;
     bool m_cacheNodeTypeSpecificParametersHasBeenSet;
   };

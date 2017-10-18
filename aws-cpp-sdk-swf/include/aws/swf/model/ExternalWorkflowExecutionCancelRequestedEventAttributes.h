@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 #include <aws/swf/model/WorkflowExecution.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,8 +33,9 @@ namespace Model
 {
 
   /**
-   * <p>Provides details of the <code>ExternalWorkflowExecutionCancelRequested</code>
-   * event.</p><p><h3>See Also:</h3>   <a
+   * <p>Provides the details of the
+   * <code>ExternalWorkflowExecutionCancelRequested</code> event.</p><p><h3>See
+   * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/swf-2012-01-25/ExternalWorkflowExecutionCancelRequestedEventAttributes">AWS
    * API Reference</a></p>
    */
@@ -43,6 +46,7 @@ namespace Model
     ExternalWorkflowExecutionCancelRequestedEventAttributes(const Aws::Utils::Json::JsonValue& jsonValue);
     ExternalWorkflowExecutionCancelRequestedEventAttributes& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>The external workflow execution to which the cancellation request was
@@ -60,7 +64,7 @@ namespace Model
      * <p>The external workflow execution to which the cancellation request was
      * delivered.</p>
      */
-    inline void SetWorkflowExecution(WorkflowExecution&& value) { m_workflowExecutionHasBeenSet = true; m_workflowExecution = value; }
+    inline void SetWorkflowExecution(WorkflowExecution&& value) { m_workflowExecutionHasBeenSet = true; m_workflowExecution = std::move(value); }
 
     /**
      * <p>The external workflow execution to which the cancellation request was
@@ -72,7 +76,8 @@ namespace Model
      * <p>The external workflow execution to which the cancellation request was
      * delivered.</p>
      */
-    inline ExternalWorkflowExecutionCancelRequestedEventAttributes& WithWorkflowExecution(WorkflowExecution&& value) { SetWorkflowExecution(value); return *this;}
+    inline ExternalWorkflowExecutionCancelRequestedEventAttributes& WithWorkflowExecution(WorkflowExecution&& value) { SetWorkflowExecution(std::move(value)); return *this;}
+
 
     /**
      * <p>The ID of the <code>RequestCancelExternalWorkflowExecutionInitiated</code>
@@ -102,8 +107,10 @@ namespace Model
     inline ExternalWorkflowExecutionCancelRequestedEventAttributes& WithInitiatedEventId(long long value) { SetInitiatedEventId(value); return *this;}
 
   private:
+
     WorkflowExecution m_workflowExecution;
     bool m_workflowExecutionHasBeenSet;
+
     long long m_initiatedEventId;
     bool m_initiatedEventIdHasBeenSet;
   };

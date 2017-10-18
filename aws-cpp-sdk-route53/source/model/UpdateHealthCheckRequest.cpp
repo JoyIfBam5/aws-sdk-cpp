@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/route53/model/UpdateHealthCheckRequest.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -44,7 +45,8 @@ UpdateHealthCheckRequest::UpdateHealthCheckRequest() :
     m_regionsHasBeenSet(false),
     m_alarmIdentifierHasBeenSet(false),
     m_insufficientDataHealthStatus(InsufficientDataHealthStatus::NOT_SET),
-    m_insufficientDataHealthStatusHasBeenSet(false)
+    m_insufficientDataHealthStatusHasBeenSet(false),
+    m_resetElementsHasBeenSet(false)
 {
 }
 
@@ -59,9 +61,9 @@ Aws::String UpdateHealthCheckRequest::SerializePayload() const
   if(m_healthCheckVersionHasBeenSet)
   {
    XmlNode healthCheckVersionNode = parentNode.CreateChildElement("HealthCheckVersion");
-  ss << m_healthCheckVersion;
+   ss << m_healthCheckVersion;
    healthCheckVersionNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_iPAddressHasBeenSet)
@@ -73,9 +75,9 @@ Aws::String UpdateHealthCheckRequest::SerializePayload() const
   if(m_portHasBeenSet)
   {
    XmlNode portNode = parentNode.CreateChildElement("Port");
-  ss << m_port;
+   ss << m_port;
    portNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_resourcePathHasBeenSet)
@@ -99,25 +101,25 @@ Aws::String UpdateHealthCheckRequest::SerializePayload() const
   if(m_failureThresholdHasBeenSet)
   {
    XmlNode failureThresholdNode = parentNode.CreateChildElement("FailureThreshold");
-  ss << m_failureThreshold;
+   ss << m_failureThreshold;
    failureThresholdNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_invertedHasBeenSet)
   {
    XmlNode invertedNode = parentNode.CreateChildElement("Inverted");
-  ss << m_inverted;
+   ss << std::boolalpha << m_inverted;
    invertedNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_healthThresholdHasBeenSet)
   {
    XmlNode healthThresholdNode = parentNode.CreateChildElement("HealthThreshold");
-  ss << m_healthThreshold;
+   ss << m_healthThreshold;
    healthThresholdNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_childHealthChecksHasBeenSet)
@@ -133,9 +135,9 @@ Aws::String UpdateHealthCheckRequest::SerializePayload() const
   if(m_enableSNIHasBeenSet)
   {
    XmlNode enableSNINode = parentNode.CreateChildElement("EnableSNI");
-  ss << m_enableSNI;
+   ss << std::boolalpha << m_enableSNI;
    enableSNINode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_regionsHasBeenSet)
@@ -158,6 +160,16 @@ Aws::String UpdateHealthCheckRequest::SerializePayload() const
   {
    XmlNode insufficientDataHealthStatusNode = parentNode.CreateChildElement("InsufficientDataHealthStatus");
    insufficientDataHealthStatusNode.SetText(InsufficientDataHealthStatusMapper::GetNameForInsufficientDataHealthStatus(m_insufficientDataHealthStatus));
+  }
+
+  if(m_resetElementsHasBeenSet)
+  {
+   XmlNode resetElementsParentNode = parentNode.CreateChildElement("ResetElements");
+   for(const auto& item : m_resetElements)
+   {
+     XmlNode resetElementsNode = resetElementsParentNode.CreateChildElement("ResettableElementName");
+     resetElementsNode.SetText(ResettableElementNameMapper::GetNameForResettableElementName(item));
+   }
   }
 
   return payloadDoc.ConvertToString();

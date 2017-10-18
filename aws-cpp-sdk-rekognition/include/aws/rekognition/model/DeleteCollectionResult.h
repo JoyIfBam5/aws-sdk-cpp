@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rekognition/Rekognition_EXPORTS.h>
 
@@ -35,8 +36,9 @@ namespace Model
   {
   public:
     DeleteCollectionResult();
-    DeleteCollectionResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DeleteCollectionResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DeleteCollectionResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DeleteCollectionResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>HTTP status code that indicates the result of the operation.</p>
@@ -54,6 +56,7 @@ namespace Model
     inline DeleteCollectionResult& WithStatusCode(int value) { SetStatusCode(value); return *this;}
 
   private:
+
     int m_statusCode;
   };
 

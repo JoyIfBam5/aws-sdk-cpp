@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/opsworks/model/InstancesCount.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     StackSummary& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The stack ID.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The stack ID.</p>
      */
-    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = value; }
+    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = std::move(value); }
 
     /**
      * <p>The stack ID.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The stack ID.</p>
      */
-    inline StackSummary& WithStackId(Aws::String&& value) { SetStackId(value); return *this;}
+    inline StackSummary& WithStackId(Aws::String&& value) { SetStackId(std::move(value)); return *this;}
 
     /**
      * <p>The stack ID.</p>
      */
     inline StackSummary& WithStackId(const char* value) { SetStackId(value); return *this;}
+
 
     /**
      * <p>The stack name.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The stack name.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The stack name.</p>
@@ -108,12 +112,13 @@ namespace Model
     /**
      * <p>The stack name.</p>
      */
-    inline StackSummary& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline StackSummary& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The stack name.</p>
      */
     inline StackSummary& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The stack's ARN.</p>
@@ -128,7 +133,7 @@ namespace Model
     /**
      * <p>The stack's ARN.</p>
      */
-    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = value; }
+    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = std::move(value); }
 
     /**
      * <p>The stack's ARN.</p>
@@ -143,12 +148,13 @@ namespace Model
     /**
      * <p>The stack's ARN.</p>
      */
-    inline StackSummary& WithArn(Aws::String&& value) { SetArn(value); return *this;}
+    inline StackSummary& WithArn(Aws::String&& value) { SetArn(std::move(value)); return *this;}
 
     /**
      * <p>The stack's ARN.</p>
      */
     inline StackSummary& WithArn(const char* value) { SetArn(value); return *this;}
+
 
     /**
      * <p>The number of layers.</p>
@@ -165,6 +171,7 @@ namespace Model
      */
     inline StackSummary& WithLayersCount(int value) { SetLayersCount(value); return *this;}
 
+
     /**
      * <p>The number of apps.</p>
      */
@@ -179,6 +186,7 @@ namespace Model
      * <p>The number of apps.</p>
      */
     inline StackSummary& WithAppsCount(int value) { SetAppsCount(value); return *this;}
+
 
     /**
      * <p>An <code>InstancesCount</code> object with the number of instances in each
@@ -196,7 +204,7 @@ namespace Model
      * <p>An <code>InstancesCount</code> object with the number of instances in each
      * status.</p>
      */
-    inline void SetInstancesCount(InstancesCount&& value) { m_instancesCountHasBeenSet = true; m_instancesCount = value; }
+    inline void SetInstancesCount(InstancesCount&& value) { m_instancesCountHasBeenSet = true; m_instancesCount = std::move(value); }
 
     /**
      * <p>An <code>InstancesCount</code> object with the number of instances in each
@@ -208,19 +216,25 @@ namespace Model
      * <p>An <code>InstancesCount</code> object with the number of instances in each
      * status.</p>
      */
-    inline StackSummary& WithInstancesCount(InstancesCount&& value) { SetInstancesCount(value); return *this;}
+    inline StackSummary& WithInstancesCount(InstancesCount&& value) { SetInstancesCount(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_stackId;
     bool m_stackIdHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_arn;
     bool m_arnHasBeenSet;
+
     int m_layersCount;
     bool m_layersCountHasBeenSet;
+
     int m_appsCount;
     bool m_appsCountHasBeenSet;
+
     InstancesCount m_instancesCount;
     bool m_instancesCountHasBeenSet;
   };

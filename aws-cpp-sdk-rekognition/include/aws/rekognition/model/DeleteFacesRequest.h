@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rekognition/Rekognition_EXPORTS.h>
 #include <aws/rekognition/RekognitionRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,9 +33,17 @@ namespace Model
   {
   public:
     DeleteFacesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DeleteFaces"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>Collection from which to remove the specific faces.</p>
@@ -48,7 +58,7 @@ namespace Model
     /**
      * <p>Collection from which to remove the specific faces.</p>
      */
-    inline void SetCollectionId(Aws::String&& value) { m_collectionIdHasBeenSet = true; m_collectionId = value; }
+    inline void SetCollectionId(Aws::String&& value) { m_collectionIdHasBeenSet = true; m_collectionId = std::move(value); }
 
     /**
      * <p>Collection from which to remove the specific faces.</p>
@@ -63,12 +73,13 @@ namespace Model
     /**
      * <p>Collection from which to remove the specific faces.</p>
      */
-    inline DeleteFacesRequest& WithCollectionId(Aws::String&& value) { SetCollectionId(value); return *this;}
+    inline DeleteFacesRequest& WithCollectionId(Aws::String&& value) { SetCollectionId(std::move(value)); return *this;}
 
     /**
      * <p>Collection from which to remove the specific faces.</p>
      */
     inline DeleteFacesRequest& WithCollectionId(const char* value) { SetCollectionId(value); return *this;}
+
 
     /**
      * <p>An array of face IDs to delete.</p>
@@ -83,7 +94,7 @@ namespace Model
     /**
      * <p>An array of face IDs to delete.</p>
      */
-    inline void SetFaceIds(Aws::Vector<Aws::String>&& value) { m_faceIdsHasBeenSet = true; m_faceIds = value; }
+    inline void SetFaceIds(Aws::Vector<Aws::String>&& value) { m_faceIdsHasBeenSet = true; m_faceIds = std::move(value); }
 
     /**
      * <p>An array of face IDs to delete.</p>
@@ -93,7 +104,7 @@ namespace Model
     /**
      * <p>An array of face IDs to delete.</p>
      */
-    inline DeleteFacesRequest& WithFaceIds(Aws::Vector<Aws::String>&& value) { SetFaceIds(value); return *this;}
+    inline DeleteFacesRequest& WithFaceIds(Aws::Vector<Aws::String>&& value) { SetFaceIds(std::move(value)); return *this;}
 
     /**
      * <p>An array of face IDs to delete.</p>
@@ -103,7 +114,7 @@ namespace Model
     /**
      * <p>An array of face IDs to delete.</p>
      */
-    inline DeleteFacesRequest& AddFaceIds(Aws::String&& value) { m_faceIdsHasBeenSet = true; m_faceIds.push_back(value); return *this; }
+    inline DeleteFacesRequest& AddFaceIds(Aws::String&& value) { m_faceIdsHasBeenSet = true; m_faceIds.push_back(std::move(value)); return *this; }
 
     /**
      * <p>An array of face IDs to delete.</p>
@@ -111,8 +122,10 @@ namespace Model
     inline DeleteFacesRequest& AddFaceIds(const char* value) { m_faceIdsHasBeenSet = true; m_faceIds.push_back(value); return *this; }
 
   private:
+
     Aws::String m_collectionId;
     bool m_collectionIdHasBeenSet;
+
     Aws::Vector<Aws::String> m_faceIds;
     bool m_faceIdsHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ssm/model/MaintenanceWindowExecutionTaskIdentity.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     DescribeMaintenanceWindowExecutionTasksResult();
-    DescribeMaintenanceWindowExecutionTasksResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeMaintenanceWindowExecutionTasksResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeMaintenanceWindowExecutionTasksResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeMaintenanceWindowExecutionTasksResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the task executions.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>Information about the task executions.</p>
      */
-    inline void SetWindowExecutionTaskIdentities(Aws::Vector<MaintenanceWindowExecutionTaskIdentity>&& value) { m_windowExecutionTaskIdentities = value; }
+    inline void SetWindowExecutionTaskIdentities(Aws::Vector<MaintenanceWindowExecutionTaskIdentity>&& value) { m_windowExecutionTaskIdentities = std::move(value); }
 
     /**
      * <p>Information about the task executions.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>Information about the task executions.</p>
      */
-    inline DescribeMaintenanceWindowExecutionTasksResult& WithWindowExecutionTaskIdentities(Aws::Vector<MaintenanceWindowExecutionTaskIdentity>&& value) { SetWindowExecutionTaskIdentities(value); return *this;}
+    inline DescribeMaintenanceWindowExecutionTasksResult& WithWindowExecutionTaskIdentities(Aws::Vector<MaintenanceWindowExecutionTaskIdentity>&& value) { SetWindowExecutionTaskIdentities(std::move(value)); return *this;}
 
     /**
      * <p>Information about the task executions.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>Information about the task executions.</p>
      */
-    inline DescribeMaintenanceWindowExecutionTasksResult& AddWindowExecutionTaskIdentities(MaintenanceWindowExecutionTaskIdentity&& value) { m_windowExecutionTaskIdentities.push_back(value); return *this; }
+    inline DescribeMaintenanceWindowExecutionTasksResult& AddWindowExecutionTaskIdentities(MaintenanceWindowExecutionTaskIdentity&& value) { m_windowExecutionTaskIdentities.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
@@ -92,7 +96,7 @@ namespace Model
      * <p>The token to use when requesting the next set of items. If there are no
      * additional items to return, the string is empty.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
@@ -110,7 +114,7 @@ namespace Model
      * <p>The token to use when requesting the next set of items. If there are no
      * additional items to return, the string is empty.</p>
      */
-    inline DescribeMaintenanceWindowExecutionTasksResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeMaintenanceWindowExecutionTasksResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
@@ -119,7 +123,9 @@ namespace Model
     inline DescribeMaintenanceWindowExecutionTasksResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<MaintenanceWindowExecutionTaskIdentity> m_windowExecutionTaskIdentities;
+
     Aws::String m_nextToken;
   };
 

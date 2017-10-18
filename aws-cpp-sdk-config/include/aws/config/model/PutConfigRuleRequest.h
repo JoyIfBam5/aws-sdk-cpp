@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/config/ConfigService_EXPORTS.h>
 #include <aws/config/ConfigServiceRequest.h>
 #include <aws/config/model/ConfigRule.h>
+#include <utility>
 
 namespace Aws
 {
@@ -25,34 +27,50 @@ namespace Model
 {
 
   /**
-   * <p/><p><h3>See Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutConfigRuleRequest">AWS
-   * API Reference</a></p>
    */
   class AWS_CONFIGSERVICE_API PutConfigRuleRequest : public ConfigServiceRequest
   {
   public:
     PutConfigRuleRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "PutConfigRule"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
 
-    
+
+    /**
+     * <p>The rule that you want to add to your account.</p>
+     */
     inline const ConfigRule& GetConfigRule() const{ return m_configRule; }
 
-    
+    /**
+     * <p>The rule that you want to add to your account.</p>
+     */
     inline void SetConfigRule(const ConfigRule& value) { m_configRuleHasBeenSet = true; m_configRule = value; }
 
-    
-    inline void SetConfigRule(ConfigRule&& value) { m_configRuleHasBeenSet = true; m_configRule = value; }
+    /**
+     * <p>The rule that you want to add to your account.</p>
+     */
+    inline void SetConfigRule(ConfigRule&& value) { m_configRuleHasBeenSet = true; m_configRule = std::move(value); }
 
-    
+    /**
+     * <p>The rule that you want to add to your account.</p>
+     */
     inline PutConfigRuleRequest& WithConfigRule(const ConfigRule& value) { SetConfigRule(value); return *this;}
 
-    
-    inline PutConfigRuleRequest& WithConfigRule(ConfigRule&& value) { SetConfigRule(value); return *this;}
+    /**
+     * <p>The rule that you want to add to your account.</p>
+     */
+    inline PutConfigRuleRequest& WithConfigRule(ConfigRule&& value) { SetConfigRule(std::move(value)); return *this;}
 
   private:
+
     ConfigRule m_configRule;
     bool m_configRuleHasBeenSet;
   };

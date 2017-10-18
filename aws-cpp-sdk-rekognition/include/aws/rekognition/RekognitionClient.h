@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rekognition/Rekognition_EXPORTS.h>
 #include <aws/rekognition/RekognitionErrors.h>
@@ -26,9 +27,12 @@
 #include <aws/rekognition/model/DeleteFacesResult.h>
 #include <aws/rekognition/model/DetectFacesResult.h>
 #include <aws/rekognition/model/DetectLabelsResult.h>
+#include <aws/rekognition/model/DetectModerationLabelsResult.h>
+#include <aws/rekognition/model/GetCelebrityInfoResult.h>
 #include <aws/rekognition/model/IndexFacesResult.h>
 #include <aws/rekognition/model/ListCollectionsResult.h>
 #include <aws/rekognition/model/ListFacesResult.h>
+#include <aws/rekognition/model/RecognizeCelebritiesResult.h>
 #include <aws/rekognition/model/SearchFacesResult.h>
 #include <aws/rekognition/model/SearchFacesByImageResult.h>
 #include <aws/core/client/AsyncCallerContext.h>
@@ -82,9 +86,12 @@ namespace Model
         class DeleteFacesRequest;
         class DetectFacesRequest;
         class DetectLabelsRequest;
+        class DetectModerationLabelsRequest;
+        class GetCelebrityInfoRequest;
         class IndexFacesRequest;
         class ListCollectionsRequest;
         class ListFacesRequest;
+        class RecognizeCelebritiesRequest;
         class SearchFacesRequest;
         class SearchFacesByImageRequest;
 
@@ -94,9 +101,12 @@ namespace Model
         typedef Aws::Utils::Outcome<DeleteFacesResult, Aws::Client::AWSError<RekognitionErrors>> DeleteFacesOutcome;
         typedef Aws::Utils::Outcome<DetectFacesResult, Aws::Client::AWSError<RekognitionErrors>> DetectFacesOutcome;
         typedef Aws::Utils::Outcome<DetectLabelsResult, Aws::Client::AWSError<RekognitionErrors>> DetectLabelsOutcome;
+        typedef Aws::Utils::Outcome<DetectModerationLabelsResult, Aws::Client::AWSError<RekognitionErrors>> DetectModerationLabelsOutcome;
+        typedef Aws::Utils::Outcome<GetCelebrityInfoResult, Aws::Client::AWSError<RekognitionErrors>> GetCelebrityInfoOutcome;
         typedef Aws::Utils::Outcome<IndexFacesResult, Aws::Client::AWSError<RekognitionErrors>> IndexFacesOutcome;
         typedef Aws::Utils::Outcome<ListCollectionsResult, Aws::Client::AWSError<RekognitionErrors>> ListCollectionsOutcome;
         typedef Aws::Utils::Outcome<ListFacesResult, Aws::Client::AWSError<RekognitionErrors>> ListFacesOutcome;
+        typedef Aws::Utils::Outcome<RecognizeCelebritiesResult, Aws::Client::AWSError<RekognitionErrors>> RecognizeCelebritiesOutcome;
         typedef Aws::Utils::Outcome<SearchFacesResult, Aws::Client::AWSError<RekognitionErrors>> SearchFacesOutcome;
         typedef Aws::Utils::Outcome<SearchFacesByImageResult, Aws::Client::AWSError<RekognitionErrors>> SearchFacesByImageOutcome;
 
@@ -106,9 +116,12 @@ namespace Model
         typedef std::future<DeleteFacesOutcome> DeleteFacesOutcomeCallable;
         typedef std::future<DetectFacesOutcome> DetectFacesOutcomeCallable;
         typedef std::future<DetectLabelsOutcome> DetectLabelsOutcomeCallable;
+        typedef std::future<DetectModerationLabelsOutcome> DetectModerationLabelsOutcomeCallable;
+        typedef std::future<GetCelebrityInfoOutcome> GetCelebrityInfoOutcomeCallable;
         typedef std::future<IndexFacesOutcome> IndexFacesOutcomeCallable;
         typedef std::future<ListCollectionsOutcome> ListCollectionsOutcomeCallable;
         typedef std::future<ListFacesOutcome> ListFacesOutcomeCallable;
+        typedef std::future<RecognizeCelebritiesOutcome> RecognizeCelebritiesOutcomeCallable;
         typedef std::future<SearchFacesOutcome> SearchFacesOutcomeCallable;
         typedef std::future<SearchFacesByImageOutcome> SearchFacesByImageOutcomeCallable;
 } // namespace Model
@@ -121,9 +134,12 @@ namespace Model
     typedef std::function<void(const RekognitionClient*, const Model::DeleteFacesRequest&, const Model::DeleteFacesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteFacesResponseReceivedHandler;
     typedef std::function<void(const RekognitionClient*, const Model::DetectFacesRequest&, const Model::DetectFacesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DetectFacesResponseReceivedHandler;
     typedef std::function<void(const RekognitionClient*, const Model::DetectLabelsRequest&, const Model::DetectLabelsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DetectLabelsResponseReceivedHandler;
+    typedef std::function<void(const RekognitionClient*, const Model::DetectModerationLabelsRequest&, const Model::DetectModerationLabelsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DetectModerationLabelsResponseReceivedHandler;
+    typedef std::function<void(const RekognitionClient*, const Model::GetCelebrityInfoRequest&, const Model::GetCelebrityInfoOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetCelebrityInfoResponseReceivedHandler;
     typedef std::function<void(const RekognitionClient*, const Model::IndexFacesRequest&, const Model::IndexFacesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > IndexFacesResponseReceivedHandler;
     typedef std::function<void(const RekognitionClient*, const Model::ListCollectionsRequest&, const Model::ListCollectionsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListCollectionsResponseReceivedHandler;
     typedef std::function<void(const RekognitionClient*, const Model::ListFacesRequest&, const Model::ListFacesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListFacesResponseReceivedHandler;
+    typedef std::function<void(const RekognitionClient*, const Model::RecognizeCelebritiesRequest&, const Model::RecognizeCelebritiesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > RecognizeCelebritiesResponseReceivedHandler;
     typedef std::function<void(const RekognitionClient*, const Model::SearchFacesRequest&, const Model::SearchFacesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > SearchFacesResponseReceivedHandler;
     typedef std::function<void(const RekognitionClient*, const Model::SearchFacesByImageRequest&, const Model::SearchFacesByImageOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > SearchFacesByImageResponseReceivedHandler;
 
@@ -139,40 +155,50 @@ namespace Model
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        RekognitionClient(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        RekognitionClient(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        RekognitionClient(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        RekognitionClient(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        RekognitionClient(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        RekognitionClient(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
         virtual ~RekognitionClient();
+
+        inline virtual const char* GetServiceClientName() const override { return "rekognition"; }
+
 
         /**
          * <p>Compares a face in the <i>source</i> input image with each face detected in
          * the <i>target</i> input image. </p> <note> <p> If the source image contains
-         * multiple faces, the service detects the largest face and uses it to compare with
-         * each face detected in the target image. </p> </note> <p>In response, the
-         * operation returns an array of face matches ordered by similarity score with the
-         * highest similarity scores first. For each face match, the response provides a
-         * bounding box of the face and <code>confidence</code> value (indicating the level
-         * of confidence that the bounding box contains a face). The response also provides
-         * a <code>similarity</code> score, which indicates how closely the faces match.
-         * </p> <note> <p>By default, only faces with the similarity score of greater than
-         * or equal to 80% are returned in the response. You can change this value.</p>
-         * </note> <p>In addition to the face matches, the response returns information
+         * multiple faces, the service detects the largest face and compares it with each
+         * face detected in the target image. </p> </note> <p>In response, the operation
+         * returns an array of face matches ordered by similarity score in descending
+         * order. For each face match, the response provides a bounding box of the face,
+         * facial landmarks, pose details (pitch, role, and yaw), quality (brightness and
+         * sharpness), and confidence value (indicating the level of confidence that the
+         * bounding box contains a face). The response also provides a similarity score,
+         * which indicates how closely the faces match. </p> <note> <p>By default, only
+         * faces with a similarity score of greater than or equal to 80% are returned in
+         * the response. You can change this value by specifying the
+         * <code>SimilarityThreshold</code> parameter.</p> </note> <p>
+         * <code>CompareFaces</code> also returns an array of faces that don't match the
+         * source image. For each face, it returns a bounding box, confidence value,
+         * landmarks, pose details, and quality. The response also returns information
          * about the face in the source image, including the bounding box of the face and
-         * confidence value.</p> <note> <p> This is a stateless API operation. That is, the
-         * operation does not persist any data.</p> </note> <p>For an example, see
-         * <a>get-started-exercise-compare-faces</a> </p> <p>This operation requires
+         * confidence value.</p> <p>If the image doesn't contain Exif metadata,
+         * <code>CompareFaces</code> returns orientation information for the source and
+         * target images. Use these values to display the images with the correct image
+         * orientation.</p> <note> <p> This is a stateless API operation. That is, data
+         * returned by this operation doesn't persist.</p> </note> <p>For an example, see
+         * <a>get-started-exercise-compare-faces</a>.</p> <p>This operation requires
          * permissions to perform the <code>rekognition:CompareFaces</code>
          * action.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/CompareFaces">AWS
@@ -183,20 +209,27 @@ namespace Model
         /**
          * <p>Compares a face in the <i>source</i> input image with each face detected in
          * the <i>target</i> input image. </p> <note> <p> If the source image contains
-         * multiple faces, the service detects the largest face and uses it to compare with
-         * each face detected in the target image. </p> </note> <p>In response, the
-         * operation returns an array of face matches ordered by similarity score with the
-         * highest similarity scores first. For each face match, the response provides a
-         * bounding box of the face and <code>confidence</code> value (indicating the level
-         * of confidence that the bounding box contains a face). The response also provides
-         * a <code>similarity</code> score, which indicates how closely the faces match.
-         * </p> <note> <p>By default, only faces with the similarity score of greater than
-         * or equal to 80% are returned in the response. You can change this value.</p>
-         * </note> <p>In addition to the face matches, the response returns information
+         * multiple faces, the service detects the largest face and compares it with each
+         * face detected in the target image. </p> </note> <p>In response, the operation
+         * returns an array of face matches ordered by similarity score in descending
+         * order. For each face match, the response provides a bounding box of the face,
+         * facial landmarks, pose details (pitch, role, and yaw), quality (brightness and
+         * sharpness), and confidence value (indicating the level of confidence that the
+         * bounding box contains a face). The response also provides a similarity score,
+         * which indicates how closely the faces match. </p> <note> <p>By default, only
+         * faces with a similarity score of greater than or equal to 80% are returned in
+         * the response. You can change this value by specifying the
+         * <code>SimilarityThreshold</code> parameter.</p> </note> <p>
+         * <code>CompareFaces</code> also returns an array of faces that don't match the
+         * source image. For each face, it returns a bounding box, confidence value,
+         * landmarks, pose details, and quality. The response also returns information
          * about the face in the source image, including the bounding box of the face and
-         * confidence value.</p> <note> <p> This is a stateless API operation. That is, the
-         * operation does not persist any data.</p> </note> <p>For an example, see
-         * <a>get-started-exercise-compare-faces</a> </p> <p>This operation requires
+         * confidence value.</p> <p>If the image doesn't contain Exif metadata,
+         * <code>CompareFaces</code> returns orientation information for the source and
+         * target images. Use these values to display the images with the correct image
+         * orientation.</p> <note> <p> This is a stateless API operation. That is, data
+         * returned by this operation doesn't persist.</p> </note> <p>For an example, see
+         * <a>get-started-exercise-compare-faces</a>.</p> <p>This operation requires
          * permissions to perform the <code>rekognition:CompareFaces</code>
          * action.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/CompareFaces">AWS
@@ -209,20 +242,27 @@ namespace Model
         /**
          * <p>Compares a face in the <i>source</i> input image with each face detected in
          * the <i>target</i> input image. </p> <note> <p> If the source image contains
-         * multiple faces, the service detects the largest face and uses it to compare with
-         * each face detected in the target image. </p> </note> <p>In response, the
-         * operation returns an array of face matches ordered by similarity score with the
-         * highest similarity scores first. For each face match, the response provides a
-         * bounding box of the face and <code>confidence</code> value (indicating the level
-         * of confidence that the bounding box contains a face). The response also provides
-         * a <code>similarity</code> score, which indicates how closely the faces match.
-         * </p> <note> <p>By default, only faces with the similarity score of greater than
-         * or equal to 80% are returned in the response. You can change this value.</p>
-         * </note> <p>In addition to the face matches, the response returns information
+         * multiple faces, the service detects the largest face and compares it with each
+         * face detected in the target image. </p> </note> <p>In response, the operation
+         * returns an array of face matches ordered by similarity score in descending
+         * order. For each face match, the response provides a bounding box of the face,
+         * facial landmarks, pose details (pitch, role, and yaw), quality (brightness and
+         * sharpness), and confidence value (indicating the level of confidence that the
+         * bounding box contains a face). The response also provides a similarity score,
+         * which indicates how closely the faces match. </p> <note> <p>By default, only
+         * faces with a similarity score of greater than or equal to 80% are returned in
+         * the response. You can change this value by specifying the
+         * <code>SimilarityThreshold</code> parameter.</p> </note> <p>
+         * <code>CompareFaces</code> also returns an array of faces that don't match the
+         * source image. For each face, it returns a bounding box, confidence value,
+         * landmarks, pose details, and quality. The response also returns information
          * about the face in the source image, including the bounding box of the face and
-         * confidence value.</p> <note> <p> This is a stateless API operation. That is, the
-         * operation does not persist any data.</p> </note> <p>For an example, see
-         * <a>get-started-exercise-compare-faces</a> </p> <p>This operation requires
+         * confidence value.</p> <p>If the image doesn't contain Exif metadata,
+         * <code>CompareFaces</code> returns orientation information for the source and
+         * target images. Use these values to display the images with the correct image
+         * orientation.</p> <note> <p> This is a stateless API operation. That is, data
+         * returned by this operation doesn't persist.</p> </note> <p>For an example, see
+         * <a>get-started-exercise-compare-faces</a>.</p> <p>This operation requires
          * permissions to perform the <code>rekognition:CompareFaces</code>
          * action.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/CompareFaces">AWS
@@ -238,9 +278,10 @@ namespace Model
          * each of your application users. A user can then index faces using the
          * <code>IndexFaces</code> operation and persist results in a specific collection.
          * Then, a user can search the collection for faces in the user-specific container.
-         * </p> <p>For an example, see <a>example1</a>. </p> <p>This operation requires
-         * permissions to perform the <code>rekognition:CreateCollection</code>
-         * action.</p><p><h3>See Also:</h3>   <a
+         * </p> <note> <p>Collection names are case-sensitive.</p> </note> <p>For an
+         * example, see <a>example1</a>. </p> <p>This operation requires permissions to
+         * perform the <code>rekognition:CreateCollection</code> action.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/CreateCollection">AWS
          * API Reference</a></p>
          */
@@ -252,9 +293,10 @@ namespace Model
          * each of your application users. A user can then index faces using the
          * <code>IndexFaces</code> operation and persist results in a specific collection.
          * Then, a user can search the collection for faces in the user-specific container.
-         * </p> <p>For an example, see <a>example1</a>. </p> <p>This operation requires
-         * permissions to perform the <code>rekognition:CreateCollection</code>
-         * action.</p><p><h3>See Also:</h3>   <a
+         * </p> <note> <p>Collection names are case-sensitive.</p> </note> <p>For an
+         * example, see <a>example1</a>. </p> <p>This operation requires permissions to
+         * perform the <code>rekognition:CreateCollection</code> action.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/CreateCollection">AWS
          * API Reference</a></p>
          *
@@ -268,9 +310,10 @@ namespace Model
          * each of your application users. A user can then index faces using the
          * <code>IndexFaces</code> operation and persist results in a specific collection.
          * Then, a user can search the collection for faces in the user-specific container.
-         * </p> <p>For an example, see <a>example1</a>. </p> <p>This operation requires
-         * permissions to perform the <code>rekognition:CreateCollection</code>
-         * action.</p><p><h3>See Also:</h3>   <a
+         * </p> <note> <p>Collection names are case-sensitive.</p> </note> <p>For an
+         * example, see <a>example1</a>. </p> <p>This operation requires permissions to
+         * perform the <code>rekognition:CreateCollection</code> action.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/CreateCollection">AWS
          * API Reference</a></p>
          *
@@ -514,6 +557,89 @@ namespace Model
         virtual void DetectLabelsAsync(const Model::DetectLabelsRequest& request, const DetectLabelsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
+         * <p>Detects explicit or suggestive adult content in a specified JPEG or PNG
+         * format image. Use <code>DetectModerationLabels</code> to moderate images
+         * depending on your requirements. For example, you might want to filter images
+         * that contain nudity, but not images containing suggestive content.</p> <p>To
+         * filter images, use the labels returned by <code>DetectModerationLabels</code> to
+         * determine which types of content are appropriate. For information about
+         * moderation labels, see <a>image-moderation</a>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/DetectModerationLabels">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::DetectModerationLabelsOutcome DetectModerationLabels(const Model::DetectModerationLabelsRequest& request) const;
+
+        /**
+         * <p>Detects explicit or suggestive adult content in a specified JPEG or PNG
+         * format image. Use <code>DetectModerationLabels</code> to moderate images
+         * depending on your requirements. For example, you might want to filter images
+         * that contain nudity, but not images containing suggestive content.</p> <p>To
+         * filter images, use the labels returned by <code>DetectModerationLabels</code> to
+         * determine which types of content are appropriate. For information about
+         * moderation labels, see <a>image-moderation</a>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/DetectModerationLabels">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::DetectModerationLabelsOutcomeCallable DetectModerationLabelsCallable(const Model::DetectModerationLabelsRequest& request) const;
+
+        /**
+         * <p>Detects explicit or suggestive adult content in a specified JPEG or PNG
+         * format image. Use <code>DetectModerationLabels</code> to moderate images
+         * depending on your requirements. For example, you might want to filter images
+         * that contain nudity, but not images containing suggestive content.</p> <p>To
+         * filter images, use the labels returned by <code>DetectModerationLabels</code> to
+         * determine which types of content are appropriate. For information about
+         * moderation labels, see <a>image-moderation</a>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/DetectModerationLabels">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void DetectModerationLabelsAsync(const Model::DetectModerationLabelsRequest& request, const DetectModerationLabelsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Gets the name and additional information about a celebrity based on his or
+         * her Rekognition ID. The additional information is returned as an array of URLs.
+         * If there is no additional information about the celebrity, this list is empty.
+         * For more information, see <a>celebrity-recognition</a>.</p> <p>This operation
+         * requires permissions to perform the <code>rekognition:GetCelebrityInfo</code>
+         * action. </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/GetCelebrityInfo">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::GetCelebrityInfoOutcome GetCelebrityInfo(const Model::GetCelebrityInfoRequest& request) const;
+
+        /**
+         * <p>Gets the name and additional information about a celebrity based on his or
+         * her Rekognition ID. The additional information is returned as an array of URLs.
+         * If there is no additional information about the celebrity, this list is empty.
+         * For more information, see <a>celebrity-recognition</a>.</p> <p>This operation
+         * requires permissions to perform the <code>rekognition:GetCelebrityInfo</code>
+         * action. </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/GetCelebrityInfo">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::GetCelebrityInfoOutcomeCallable GetCelebrityInfoCallable(const Model::GetCelebrityInfoRequest& request) const;
+
+        /**
+         * <p>Gets the name and additional information about a celebrity based on his or
+         * her Rekognition ID. The additional information is returned as an array of URLs.
+         * If there is no additional information about the celebrity, this list is empty.
+         * For more information, see <a>celebrity-recognition</a>.</p> <p>This operation
+         * requires permissions to perform the <code>rekognition:GetCelebrityInfo</code>
+         * action. </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/GetCelebrityInfo">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void GetCelebrityInfoAsync(const Model::GetCelebrityInfoRequest& request, const GetCelebrityInfoResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
          * <p>Detects faces in the input image and adds them to the specified collection.
          * </p> <p> Amazon Rekognition does not save the actual faces detected. Instead,
          * the underlying detection algorithm first detects the faces in the input image,
@@ -529,7 +655,7 @@ namespace Model
          * This includes, the bounding box of the detected face, confidence value
          * (indicating the bounding box contains a face), a face ID assigned by the service
          * for each face that is detected and stored, and an image ID assigned by the
-         * service for the input image If you request all facial attributes (using the
+         * service for the input image. If you request all facial attributes (using the
          * <code>detectionAttributes</code> parameter, Amazon Rekognition returns detailed
          * facial attributes such as facial landmarks (for example, location of eye and
          * mount) and other facial attributes such gender. If you provide the same image,
@@ -559,7 +685,7 @@ namespace Model
          * This includes, the bounding box of the detected face, confidence value
          * (indicating the bounding box contains a face), a face ID assigned by the service
          * for each face that is detected and stored, and an image ID assigned by the
-         * service for the input image If you request all facial attributes (using the
+         * service for the input image. If you request all facial attributes (using the
          * <code>detectionAttributes</code> parameter, Amazon Rekognition returns detailed
          * facial attributes such as facial landmarks (for example, location of eye and
          * mount) and other facial attributes such gender. If you provide the same image,
@@ -591,7 +717,7 @@ namespace Model
          * This includes, the bounding box of the detected face, confidence value
          * (indicating the bounding box contains a face), a face ID assigned by the service
          * for each face that is detected and stored, and an image ID assigned by the
-         * service for the input image If you request all facial attributes (using the
+         * service for the input image. If you request all facial attributes (using the
          * <code>detectionAttributes</code> parameter, Amazon Rekognition returns detailed
          * facial attributes such as facial landmarks (for example, location of eye and
          * mount) and other facial attributes such gender. If you provide the same image,
@@ -683,6 +809,91 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void ListFacesAsync(const Model::ListFacesRequest& request, const ListFacesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Returns an array of celebrities recognized in the input image. The image is
+         * passed either as base64-encoded image bytes or as a reference to an image in an
+         * Amazon S3 bucket. The image must be either a PNG or JPEG formatted file. For
+         * more information, see <a>celebrity-recognition</a>. </p> <p>
+         * <code>RecognizeCelebrities</code> returns the 15 largest faces in the image. It
+         * lists recognized celebrities in the <code>CelebrityFaces</code> list and
+         * unrecognized faces in the <code>UnrecognizedFaces</code> list. The operation
+         * doesn't return celebrities whose face sizes are smaller than the largest 15
+         * faces in the image.</p> <p>For each celebrity recognized, the API returns a
+         * <code>Celebrity</code> object. The <code>Celebrity</code> object contains the
+         * celebrity name, ID, URL links to additional information, match confidence, and a
+         * <code>ComparedFace</code> object that you can use to locate the celebrity's face
+         * on the image.</p> <p>Rekognition does not retain information about which images
+         * a celebrity has been recognized in. Your application must store this information
+         * and use the <code>Celebrity</code> ID property as a unique identifier for the
+         * celebrity. If you don't store the celebrity name or additional information URLs
+         * returned by <code>RecognizeCelebrities</code>, you will need the ID to identify
+         * the celebrity in a call to the operation.</p> <p>For an example, see
+         * <a>recognize-celebrities-tutorial</a>.</p> <p>This operation requires
+         * permissions to perform the <code>rekognition:RecognizeCelebrities</code>
+         * operation.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/RecognizeCelebrities">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::RecognizeCelebritiesOutcome RecognizeCelebrities(const Model::RecognizeCelebritiesRequest& request) const;
+
+        /**
+         * <p>Returns an array of celebrities recognized in the input image. The image is
+         * passed either as base64-encoded image bytes or as a reference to an image in an
+         * Amazon S3 bucket. The image must be either a PNG or JPEG formatted file. For
+         * more information, see <a>celebrity-recognition</a>. </p> <p>
+         * <code>RecognizeCelebrities</code> returns the 15 largest faces in the image. It
+         * lists recognized celebrities in the <code>CelebrityFaces</code> list and
+         * unrecognized faces in the <code>UnrecognizedFaces</code> list. The operation
+         * doesn't return celebrities whose face sizes are smaller than the largest 15
+         * faces in the image.</p> <p>For each celebrity recognized, the API returns a
+         * <code>Celebrity</code> object. The <code>Celebrity</code> object contains the
+         * celebrity name, ID, URL links to additional information, match confidence, and a
+         * <code>ComparedFace</code> object that you can use to locate the celebrity's face
+         * on the image.</p> <p>Rekognition does not retain information about which images
+         * a celebrity has been recognized in. Your application must store this information
+         * and use the <code>Celebrity</code> ID property as a unique identifier for the
+         * celebrity. If you don't store the celebrity name or additional information URLs
+         * returned by <code>RecognizeCelebrities</code>, you will need the ID to identify
+         * the celebrity in a call to the operation.</p> <p>For an example, see
+         * <a>recognize-celebrities-tutorial</a>.</p> <p>This operation requires
+         * permissions to perform the <code>rekognition:RecognizeCelebrities</code>
+         * operation.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/RecognizeCelebrities">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::RecognizeCelebritiesOutcomeCallable RecognizeCelebritiesCallable(const Model::RecognizeCelebritiesRequest& request) const;
+
+        /**
+         * <p>Returns an array of celebrities recognized in the input image. The image is
+         * passed either as base64-encoded image bytes or as a reference to an image in an
+         * Amazon S3 bucket. The image must be either a PNG or JPEG formatted file. For
+         * more information, see <a>celebrity-recognition</a>. </p> <p>
+         * <code>RecognizeCelebrities</code> returns the 15 largest faces in the image. It
+         * lists recognized celebrities in the <code>CelebrityFaces</code> list and
+         * unrecognized faces in the <code>UnrecognizedFaces</code> list. The operation
+         * doesn't return celebrities whose face sizes are smaller than the largest 15
+         * faces in the image.</p> <p>For each celebrity recognized, the API returns a
+         * <code>Celebrity</code> object. The <code>Celebrity</code> object contains the
+         * celebrity name, ID, URL links to additional information, match confidence, and a
+         * <code>ComparedFace</code> object that you can use to locate the celebrity's face
+         * on the image.</p> <p>Rekognition does not retain information about which images
+         * a celebrity has been recognized in. Your application must store this information
+         * and use the <code>Celebrity</code> ID property as a unique identifier for the
+         * celebrity. If you don't store the celebrity name or additional information URLs
+         * returned by <code>RecognizeCelebrities</code>, you will need the ID to identify
+         * the celebrity in a call to the operation.</p> <p>For an example, see
+         * <a>recognize-celebrities-tutorial</a>.</p> <p>This operation requires
+         * permissions to perform the <code>rekognition:RecognizeCelebrities</code>
+         * operation.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/RecognizeCelebrities">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void RecognizeCelebritiesAsync(const Model::RecognizeCelebritiesRequest& request, const RecognizeCelebritiesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>For a given input face ID, searches for matching faces in the collection the
@@ -823,7 +1034,7 @@ namespace Model
 
 
     private:
-      void init(const Client::ClientConfiguration& clientConfiguration);
+      void init(const Aws::Client::ClientConfiguration& clientConfiguration);
 
         /**Async helpers**/
         void CompareFacesAsyncHelper(const Model::CompareFacesRequest& request, const CompareFacesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -832,14 +1043,17 @@ namespace Model
         void DeleteFacesAsyncHelper(const Model::DeleteFacesRequest& request, const DeleteFacesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DetectFacesAsyncHelper(const Model::DetectFacesRequest& request, const DetectFacesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DetectLabelsAsyncHelper(const Model::DetectLabelsRequest& request, const DetectLabelsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void DetectModerationLabelsAsyncHelper(const Model::DetectModerationLabelsRequest& request, const DetectModerationLabelsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void GetCelebrityInfoAsyncHelper(const Model::GetCelebrityInfoRequest& request, const GetCelebrityInfoResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void IndexFacesAsyncHelper(const Model::IndexFacesRequest& request, const IndexFacesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListCollectionsAsyncHelper(const Model::ListCollectionsRequest& request, const ListCollectionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListFacesAsyncHelper(const Model::ListFacesRequest& request, const ListFacesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void RecognizeCelebritiesAsyncHelper(const Model::RecognizeCelebritiesRequest& request, const RecognizeCelebritiesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void SearchFacesAsyncHelper(const Model::SearchFacesRequest& request, const SearchFacesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void SearchFacesByImageAsyncHelper(const Model::SearchFacesByImageRequest& request, const SearchFacesByImageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
       Aws::String m_uri;
-      std::shared_ptr<Utils::Threading::Executor> m_executor;
+      std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;
   };
 
 } // namespace Rekognition

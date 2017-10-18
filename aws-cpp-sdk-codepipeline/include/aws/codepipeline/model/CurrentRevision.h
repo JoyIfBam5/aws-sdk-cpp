@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codepipeline/CodePipeline_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     CurrentRevision& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The revision ID of the current version of an artifact.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The revision ID of the current version of an artifact.</p>
      */
-    inline void SetRevision(Aws::String&& value) { m_revisionHasBeenSet = true; m_revision = value; }
+    inline void SetRevision(Aws::String&& value) { m_revisionHasBeenSet = true; m_revision = std::move(value); }
 
     /**
      * <p>The revision ID of the current version of an artifact.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The revision ID of the current version of an artifact.</p>
      */
-    inline CurrentRevision& WithRevision(Aws::String&& value) { SetRevision(value); return *this;}
+    inline CurrentRevision& WithRevision(Aws::String&& value) { SetRevision(std::move(value)); return *this;}
 
     /**
      * <p>The revision ID of the current version of an artifact.</p>
      */
     inline CurrentRevision& WithRevision(const char* value) { SetRevision(value); return *this;}
+
 
     /**
      * <p>The change identifier for the current revision.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The change identifier for the current revision.</p>
      */
-    inline void SetChangeIdentifier(Aws::String&& value) { m_changeIdentifierHasBeenSet = true; m_changeIdentifier = value; }
+    inline void SetChangeIdentifier(Aws::String&& value) { m_changeIdentifierHasBeenSet = true; m_changeIdentifier = std::move(value); }
 
     /**
      * <p>The change identifier for the current revision.</p>
@@ -108,12 +112,13 @@ namespace Model
     /**
      * <p>The change identifier for the current revision.</p>
      */
-    inline CurrentRevision& WithChangeIdentifier(Aws::String&& value) { SetChangeIdentifier(value); return *this;}
+    inline CurrentRevision& WithChangeIdentifier(Aws::String&& value) { SetChangeIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The change identifier for the current revision.</p>
      */
     inline CurrentRevision& WithChangeIdentifier(const char* value) { SetChangeIdentifier(value); return *this;}
+
 
     /**
      * <p>The date and time when the most recent revision of the artifact was created,
@@ -131,7 +136,7 @@ namespace Model
      * <p>The date and time when the most recent revision of the artifact was created,
      * in timestamp format.</p>
      */
-    inline void SetCreated(Aws::Utils::DateTime&& value) { m_createdHasBeenSet = true; m_created = value; }
+    inline void SetCreated(Aws::Utils::DateTime&& value) { m_createdHasBeenSet = true; m_created = std::move(value); }
 
     /**
      * <p>The date and time when the most recent revision of the artifact was created,
@@ -143,7 +148,8 @@ namespace Model
      * <p>The date and time when the most recent revision of the artifact was created,
      * in timestamp format.</p>
      */
-    inline CurrentRevision& WithCreated(Aws::Utils::DateTime&& value) { SetCreated(value); return *this;}
+    inline CurrentRevision& WithCreated(Aws::Utils::DateTime&& value) { SetCreated(std::move(value)); return *this;}
+
 
     /**
      * <p>The summary of the most recent revision of the artifact.</p>
@@ -158,7 +164,7 @@ namespace Model
     /**
      * <p>The summary of the most recent revision of the artifact.</p>
      */
-    inline void SetRevisionSummary(Aws::String&& value) { m_revisionSummaryHasBeenSet = true; m_revisionSummary = value; }
+    inline void SetRevisionSummary(Aws::String&& value) { m_revisionSummaryHasBeenSet = true; m_revisionSummary = std::move(value); }
 
     /**
      * <p>The summary of the most recent revision of the artifact.</p>
@@ -173,7 +179,7 @@ namespace Model
     /**
      * <p>The summary of the most recent revision of the artifact.</p>
      */
-    inline CurrentRevision& WithRevisionSummary(Aws::String&& value) { SetRevisionSummary(value); return *this;}
+    inline CurrentRevision& WithRevisionSummary(Aws::String&& value) { SetRevisionSummary(std::move(value)); return *this;}
 
     /**
      * <p>The summary of the most recent revision of the artifact.</p>
@@ -181,12 +187,16 @@ namespace Model
     inline CurrentRevision& WithRevisionSummary(const char* value) { SetRevisionSummary(value); return *this;}
 
   private:
+
     Aws::String m_revision;
     bool m_revisionHasBeenSet;
+
     Aws::String m_changeIdentifier;
     bool m_changeIdentifierHasBeenSet;
+
     Aws::Utils::DateTime m_created;
     bool m_createdHasBeenSet;
+
     Aws::String m_revisionSummary;
     bool m_revisionSummaryHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     DataSource& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The data source's type, <code>AutoSelectOpsworksMysqlInstance</code>,
      * <code>OpsworksMysqlInstance</code>, or <code>RdsDbInstance</code>.</p>
@@ -59,7 +62,7 @@ namespace Model
      * <p>The data source's type, <code>AutoSelectOpsworksMysqlInstance</code>,
      * <code>OpsworksMysqlInstance</code>, or <code>RdsDbInstance</code>.</p>
      */
-    inline void SetType(Aws::String&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(Aws::String&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The data source's type, <code>AutoSelectOpsworksMysqlInstance</code>,
@@ -77,13 +80,14 @@ namespace Model
      * <p>The data source's type, <code>AutoSelectOpsworksMysqlInstance</code>,
      * <code>OpsworksMysqlInstance</code>, or <code>RdsDbInstance</code>.</p>
      */
-    inline DataSource& WithType(Aws::String&& value) { SetType(value); return *this;}
+    inline DataSource& WithType(Aws::String&& value) { SetType(std::move(value)); return *this;}
 
     /**
      * <p>The data source's type, <code>AutoSelectOpsworksMysqlInstance</code>,
      * <code>OpsworksMysqlInstance</code>, or <code>RdsDbInstance</code>.</p>
      */
     inline DataSource& WithType(const char* value) { SetType(value); return *this;}
+
 
     /**
      * <p>The data source's ARN.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>The data source's ARN.</p>
      */
-    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = value; }
+    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = std::move(value); }
 
     /**
      * <p>The data source's ARN.</p>
@@ -113,12 +117,13 @@ namespace Model
     /**
      * <p>The data source's ARN.</p>
      */
-    inline DataSource& WithArn(Aws::String&& value) { SetArn(value); return *this;}
+    inline DataSource& WithArn(Aws::String&& value) { SetArn(std::move(value)); return *this;}
 
     /**
      * <p>The data source's ARN.</p>
      */
     inline DataSource& WithArn(const char* value) { SetArn(value); return *this;}
+
 
     /**
      * <p>The database name.</p>
@@ -133,7 +138,7 @@ namespace Model
     /**
      * <p>The database name.</p>
      */
-    inline void SetDatabaseName(Aws::String&& value) { m_databaseNameHasBeenSet = true; m_databaseName = value; }
+    inline void SetDatabaseName(Aws::String&& value) { m_databaseNameHasBeenSet = true; m_databaseName = std::move(value); }
 
     /**
      * <p>The database name.</p>
@@ -148,7 +153,7 @@ namespace Model
     /**
      * <p>The database name.</p>
      */
-    inline DataSource& WithDatabaseName(Aws::String&& value) { SetDatabaseName(value); return *this;}
+    inline DataSource& WithDatabaseName(Aws::String&& value) { SetDatabaseName(std::move(value)); return *this;}
 
     /**
      * <p>The database name.</p>
@@ -156,10 +161,13 @@ namespace Model
     inline DataSource& WithDatabaseName(const char* value) { SetDatabaseName(value); return *this;}
 
   private:
+
     Aws::String m_type;
     bool m_typeHasBeenSet;
+
     Aws::String m_arn;
     bool m_arnHasBeenSet;
+
     Aws::String m_databaseName;
     bool m_databaseNameHasBeenSet;
   };

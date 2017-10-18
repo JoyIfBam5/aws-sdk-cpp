@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudsearchdomain/CloudSearchDomain_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/cloudsearchdomain/model/SuggestionMatch.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     SuggestModel& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The query string specified in the suggest request.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The query string specified in the suggest request.</p>
      */
-    inline void SetQuery(Aws::String&& value) { m_queryHasBeenSet = true; m_query = value; }
+    inline void SetQuery(Aws::String&& value) { m_queryHasBeenSet = true; m_query = std::move(value); }
 
     /**
      * <p>The query string specified in the suggest request.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>The query string specified in the suggest request.</p>
      */
-    inline SuggestModel& WithQuery(Aws::String&& value) { SetQuery(value); return *this;}
+    inline SuggestModel& WithQuery(Aws::String&& value) { SetQuery(std::move(value)); return *this;}
 
     /**
      * <p>The query string specified in the suggest request.</p>
      */
     inline SuggestModel& WithQuery(const char* value) { SetQuery(value); return *this;}
+
 
     /**
      * <p>The number of documents that were found to match the query string.</p>
@@ -96,6 +100,7 @@ namespace Model
      */
     inline SuggestModel& WithFound(long long value) { SetFound(value); return *this;}
 
+
     /**
      * <p>The documents that match the query string.</p>
      */
@@ -109,7 +114,7 @@ namespace Model
     /**
      * <p>The documents that match the query string.</p>
      */
-    inline void SetSuggestions(Aws::Vector<SuggestionMatch>&& value) { m_suggestionsHasBeenSet = true; m_suggestions = value; }
+    inline void SetSuggestions(Aws::Vector<SuggestionMatch>&& value) { m_suggestionsHasBeenSet = true; m_suggestions = std::move(value); }
 
     /**
      * <p>The documents that match the query string.</p>
@@ -119,7 +124,7 @@ namespace Model
     /**
      * <p>The documents that match the query string.</p>
      */
-    inline SuggestModel& WithSuggestions(Aws::Vector<SuggestionMatch>&& value) { SetSuggestions(value); return *this;}
+    inline SuggestModel& WithSuggestions(Aws::Vector<SuggestionMatch>&& value) { SetSuggestions(std::move(value)); return *this;}
 
     /**
      * <p>The documents that match the query string.</p>
@@ -129,13 +134,16 @@ namespace Model
     /**
      * <p>The documents that match the query string.</p>
      */
-    inline SuggestModel& AddSuggestions(SuggestionMatch&& value) { m_suggestionsHasBeenSet = true; m_suggestions.push_back(value); return *this; }
+    inline SuggestModel& AddSuggestions(SuggestionMatch&& value) { m_suggestionsHasBeenSet = true; m_suggestions.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_query;
     bool m_queryHasBeenSet;
+
     long long m_found;
     bool m_foundHasBeenSet;
+
     Aws::Vector<SuggestionMatch> m_suggestions;
     bool m_suggestionsHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/sts/STS_EXPORTS.h>
 #include <aws/sts/STSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,7 +32,19 @@ namespace Model
   {
   public:
     GetFederationTokenRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "GetFederationToken"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The name of the federated user. The name is used as an identifier for the
@@ -63,7 +77,7 @@ namespace Model
      * with no spaces. You can also include underscores or any of the following
      * characters: =,.@-</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the federated user. The name is used as an identifier for the
@@ -96,7 +110,7 @@ namespace Model
      * with no spaces. You can also include underscores or any of the following
      * characters: =,.@-</p>
      */
-    inline GetFederationTokenRequest& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline GetFederationTokenRequest& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the federated user. The name is used as an identifier for the
@@ -108,6 +122,7 @@ namespace Model
      * characters: =,.@-</p>
      */
     inline GetFederationTokenRequest& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>An IAM policy in JSON format that is passed with the
@@ -191,7 +206,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_getfederationtoken.html">Permissions
      * for GetFederationToken</a>.</p>
      */
-    inline void SetPolicy(Aws::String&& value) { m_policyHasBeenSet = true; m_policy = value; }
+    inline void SetPolicy(Aws::String&& value) { m_policyHasBeenSet = true; m_policy = std::move(value); }
 
     /**
      * <p>An IAM policy in JSON format that is passed with the
@@ -275,7 +290,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_getfederationtoken.html">Permissions
      * for GetFederationToken</a>.</p>
      */
-    inline GetFederationTokenRequest& WithPolicy(Aws::String&& value) { SetPolicy(value); return *this;}
+    inline GetFederationTokenRequest& WithPolicy(Aws::String&& value) { SetPolicy(std::move(value)); return *this;}
 
     /**
      * <p>An IAM policy in JSON format that is passed with the
@@ -304,6 +319,7 @@ namespace Model
      * for GetFederationToken</a>.</p>
      */
     inline GetFederationTokenRequest& WithPolicy(const char* value) { SetPolicy(value); return *this;}
+
 
     /**
      * <p>The duration, in seconds, that the session should last. Acceptable durations
@@ -336,10 +352,13 @@ namespace Model
     inline GetFederationTokenRequest& WithDurationSeconds(int value) { SetDurationSeconds(value); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_policy;
     bool m_policyHasBeenSet;
+
     int m_durationSeconds;
     bool m_durationSecondsHasBeenSet;
   };

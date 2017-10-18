@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/es/ElasticsearchService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
 #include <aws/es/model/OptionStatus.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -56,6 +58,7 @@ namespace Model
     AdvancedOptionsStatus& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p> Specifies the status of advanced options for the specified Elasticsearch
      * domain.</p>
@@ -72,7 +75,7 @@ namespace Model
      * <p> Specifies the status of advanced options for the specified Elasticsearch
      * domain.</p>
      */
-    inline void SetOptions(Aws::Map<Aws::String, Aws::String>&& value) { m_optionsHasBeenSet = true; m_options = value; }
+    inline void SetOptions(Aws::Map<Aws::String, Aws::String>&& value) { m_optionsHasBeenSet = true; m_options = std::move(value); }
 
     /**
      * <p> Specifies the status of advanced options for the specified Elasticsearch
@@ -84,49 +87,50 @@ namespace Model
      * <p> Specifies the status of advanced options for the specified Elasticsearch
      * domain.</p>
      */
-    inline AdvancedOptionsStatus& WithOptions(Aws::Map<Aws::String, Aws::String>&& value) { SetOptions(value); return *this;}
+    inline AdvancedOptionsStatus& WithOptions(Aws::Map<Aws::String, Aws::String>&& value) { SetOptions(std::move(value)); return *this;}
 
     /**
      * <p> Specifies the status of advanced options for the specified Elasticsearch
      * domain.</p>
      */
-    inline AdvancedOptionsStatus& AddOptions(const Aws::String& key, const Aws::String& value) { m_optionsHasBeenSet = true; m_options[key] = value; return *this; }
+    inline AdvancedOptionsStatus& AddOptions(const Aws::String& key, const Aws::String& value) { m_optionsHasBeenSet = true; m_options.emplace(key, value); return *this; }
 
     /**
      * <p> Specifies the status of advanced options for the specified Elasticsearch
      * domain.</p>
      */
-    inline AdvancedOptionsStatus& AddOptions(Aws::String&& key, const Aws::String& value) { m_optionsHasBeenSet = true; m_options[key] = value; return *this; }
+    inline AdvancedOptionsStatus& AddOptions(Aws::String&& key, const Aws::String& value) { m_optionsHasBeenSet = true; m_options.emplace(std::move(key), value); return *this; }
 
     /**
      * <p> Specifies the status of advanced options for the specified Elasticsearch
      * domain.</p>
      */
-    inline AdvancedOptionsStatus& AddOptions(const Aws::String& key, Aws::String&& value) { m_optionsHasBeenSet = true; m_options[key] = value; return *this; }
+    inline AdvancedOptionsStatus& AddOptions(const Aws::String& key, Aws::String&& value) { m_optionsHasBeenSet = true; m_options.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p> Specifies the status of advanced options for the specified Elasticsearch
      * domain.</p>
      */
-    inline AdvancedOptionsStatus& AddOptions(Aws::String&& key, Aws::String&& value) { m_optionsHasBeenSet = true; m_options[key] = value; return *this; }
+    inline AdvancedOptionsStatus& AddOptions(Aws::String&& key, Aws::String&& value) { m_optionsHasBeenSet = true; m_options.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p> Specifies the status of advanced options for the specified Elasticsearch
      * domain.</p>
      */
-    inline AdvancedOptionsStatus& AddOptions(const char* key, Aws::String&& value) { m_optionsHasBeenSet = true; m_options[key] = value; return *this; }
+    inline AdvancedOptionsStatus& AddOptions(const char* key, Aws::String&& value) { m_optionsHasBeenSet = true; m_options.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p> Specifies the status of advanced options for the specified Elasticsearch
      * domain.</p>
      */
-    inline AdvancedOptionsStatus& AddOptions(Aws::String&& key, const char* value) { m_optionsHasBeenSet = true; m_options[key] = value; return *this; }
+    inline AdvancedOptionsStatus& AddOptions(Aws::String&& key, const char* value) { m_optionsHasBeenSet = true; m_options.emplace(std::move(key), value); return *this; }
 
     /**
      * <p> Specifies the status of advanced options for the specified Elasticsearch
      * domain.</p>
      */
-    inline AdvancedOptionsStatus& AddOptions(const char* key, const char* value) { m_optionsHasBeenSet = true; m_options[key] = value; return *this; }
+    inline AdvancedOptionsStatus& AddOptions(const char* key, const char* value) { m_optionsHasBeenSet = true; m_options.emplace(key, value); return *this; }
+
 
     /**
      * <p> Specifies the status of <code>OptionStatus</code> for advanced options for
@@ -144,7 +148,7 @@ namespace Model
      * <p> Specifies the status of <code>OptionStatus</code> for advanced options for
      * the specified Elasticsearch domain.</p>
      */
-    inline void SetStatus(OptionStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(OptionStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p> Specifies the status of <code>OptionStatus</code> for advanced options for
@@ -156,11 +160,13 @@ namespace Model
      * <p> Specifies the status of <code>OptionStatus</code> for advanced options for
      * the specified Elasticsearch domain.</p>
      */
-    inline AdvancedOptionsStatus& WithStatus(OptionStatus&& value) { SetStatus(value); return *this;}
+    inline AdvancedOptionsStatus& WithStatus(OptionStatus&& value) { SetStatus(std::move(value)); return *this;}
 
   private:
+
     Aws::Map<Aws::String, Aws::String> m_options;
     bool m_optionsHasBeenSet;
+
     OptionStatus m_status;
     bool m_statusHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesisanalytics/KinesisAnalytics_EXPORTS.h>
 #include <aws/kinesisanalytics/KinesisAnalyticsRequest.h>
@@ -19,6 +20,8 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/kinesisanalytics/model/Input.h>
 #include <aws/kinesisanalytics/model/Output.h>
+#include <aws/kinesisanalytics/model/CloudWatchLoggingOption.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,9 +39,17 @@ namespace Model
   {
   public:
     CreateApplicationRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateApplication"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>Name of your Amazon Kinesis Analytics application (for example,
@@ -56,7 +67,7 @@ namespace Model
      * <p>Name of your Amazon Kinesis Analytics application (for example,
      * <code>sample-app</code>).</p>
      */
-    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = value; }
+    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = std::move(value); }
 
     /**
      * <p>Name of your Amazon Kinesis Analytics application (for example,
@@ -74,13 +85,14 @@ namespace Model
      * <p>Name of your Amazon Kinesis Analytics application (for example,
      * <code>sample-app</code>).</p>
      */
-    inline CreateApplicationRequest& WithApplicationName(Aws::String&& value) { SetApplicationName(value); return *this;}
+    inline CreateApplicationRequest& WithApplicationName(Aws::String&& value) { SetApplicationName(std::move(value)); return *this;}
 
     /**
      * <p>Name of your Amazon Kinesis Analytics application (for example,
      * <code>sample-app</code>).</p>
      */
     inline CreateApplicationRequest& WithApplicationName(const char* value) { SetApplicationName(value); return *this;}
+
 
     /**
      * <p>Summary description of the application.</p>
@@ -95,7 +107,7 @@ namespace Model
     /**
      * <p>Summary description of the application.</p>
      */
-    inline void SetApplicationDescription(Aws::String&& value) { m_applicationDescriptionHasBeenSet = true; m_applicationDescription = value; }
+    inline void SetApplicationDescription(Aws::String&& value) { m_applicationDescriptionHasBeenSet = true; m_applicationDescription = std::move(value); }
 
     /**
      * <p>Summary description of the application.</p>
@@ -110,12 +122,13 @@ namespace Model
     /**
      * <p>Summary description of the application.</p>
      */
-    inline CreateApplicationRequest& WithApplicationDescription(Aws::String&& value) { SetApplicationDescription(value); return *this;}
+    inline CreateApplicationRequest& WithApplicationDescription(Aws::String&& value) { SetApplicationDescription(std::move(value)); return *this;}
 
     /**
      * <p>Summary description of the application.</p>
      */
     inline CreateApplicationRequest& WithApplicationDescription(const char* value) { SetApplicationDescription(value); return *this;}
+
 
     /**
      * <p>Use this parameter to configure the application input.</p> <p>You can
@@ -163,7 +176,7 @@ namespace Model
      * you provide the necessary mapping of the data elements in the streaming source
      * to record columns in the in-app stream.</p>
      */
-    inline void SetInputs(Aws::Vector<Input>&& value) { m_inputsHasBeenSet = true; m_inputs = value; }
+    inline void SetInputs(Aws::Vector<Input>&& value) { m_inputsHasBeenSet = true; m_inputs = std::move(value); }
 
     /**
      * <p>Use this parameter to configure the application input.</p> <p>You can
@@ -195,7 +208,7 @@ namespace Model
      * you provide the necessary mapping of the data elements in the streaming source
      * to record columns in the in-app stream.</p>
      */
-    inline CreateApplicationRequest& WithInputs(Aws::Vector<Input>&& value) { SetInputs(value); return *this;}
+    inline CreateApplicationRequest& WithInputs(Aws::Vector<Input>&& value) { SetInputs(std::move(value)); return *this;}
 
     /**
      * <p>Use this parameter to configure the application input.</p> <p>You can
@@ -227,7 +240,8 @@ namespace Model
      * you provide the necessary mapping of the data elements in the streaming source
      * to record columns in the in-app stream.</p>
      */
-    inline CreateApplicationRequest& AddInputs(Input&& value) { m_inputsHasBeenSet = true; m_inputs.push_back(value); return *this; }
+    inline CreateApplicationRequest& AddInputs(Input&& value) { m_inputsHasBeenSet = true; m_inputs.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>You can configure application output to write data from any of the
@@ -272,7 +286,7 @@ namespace Model
      * must provide an IAM role that Amazon Kinesis Analytics can assume to write to
      * this stream on your behalf.</p>
      */
-    inline void SetOutputs(Aws::Vector<Output>&& value) { m_outputsHasBeenSet = true; m_outputs = value; }
+    inline void SetOutputs(Aws::Vector<Output>&& value) { m_outputsHasBeenSet = true; m_outputs = std::move(value); }
 
     /**
      * <p>You can configure application output to write data from any of the
@@ -302,7 +316,7 @@ namespace Model
      * must provide an IAM role that Amazon Kinesis Analytics can assume to write to
      * this stream on your behalf.</p>
      */
-    inline CreateApplicationRequest& WithOutputs(Aws::Vector<Output>&& value) { SetOutputs(value); return *this;}
+    inline CreateApplicationRequest& WithOutputs(Aws::Vector<Output>&& value) { SetOutputs(std::move(value)); return *this;}
 
     /**
      * <p>You can configure application output to write data from any of the
@@ -332,15 +346,78 @@ namespace Model
      * must provide an IAM role that Amazon Kinesis Analytics can assume to write to
      * this stream on your behalf.</p>
      */
-    inline CreateApplicationRequest& AddOutputs(Output&& value) { m_outputsHasBeenSet = true; m_outputs.push_back(value); return *this; }
+    inline CreateApplicationRequest& AddOutputs(Output&& value) { m_outputsHasBeenSet = true; m_outputs.push_back(std::move(value)); return *this; }
+
+
+    /**
+     * <p>Use this parameter to configure a CloudWatch log stream to monitor
+     * application configuration errors. For more information, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-logs.html">Working
+     * with Amazon CloudWatch Logs</a>.</p>
+     */
+    inline const Aws::Vector<CloudWatchLoggingOption>& GetCloudWatchLoggingOptions() const{ return m_cloudWatchLoggingOptions; }
+
+    /**
+     * <p>Use this parameter to configure a CloudWatch log stream to monitor
+     * application configuration errors. For more information, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-logs.html">Working
+     * with Amazon CloudWatch Logs</a>.</p>
+     */
+    inline void SetCloudWatchLoggingOptions(const Aws::Vector<CloudWatchLoggingOption>& value) { m_cloudWatchLoggingOptionsHasBeenSet = true; m_cloudWatchLoggingOptions = value; }
+
+    /**
+     * <p>Use this parameter to configure a CloudWatch log stream to monitor
+     * application configuration errors. For more information, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-logs.html">Working
+     * with Amazon CloudWatch Logs</a>.</p>
+     */
+    inline void SetCloudWatchLoggingOptions(Aws::Vector<CloudWatchLoggingOption>&& value) { m_cloudWatchLoggingOptionsHasBeenSet = true; m_cloudWatchLoggingOptions = std::move(value); }
+
+    /**
+     * <p>Use this parameter to configure a CloudWatch log stream to monitor
+     * application configuration errors. For more information, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-logs.html">Working
+     * with Amazon CloudWatch Logs</a>.</p>
+     */
+    inline CreateApplicationRequest& WithCloudWatchLoggingOptions(const Aws::Vector<CloudWatchLoggingOption>& value) { SetCloudWatchLoggingOptions(value); return *this;}
+
+    /**
+     * <p>Use this parameter to configure a CloudWatch log stream to monitor
+     * application configuration errors. For more information, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-logs.html">Working
+     * with Amazon CloudWatch Logs</a>.</p>
+     */
+    inline CreateApplicationRequest& WithCloudWatchLoggingOptions(Aws::Vector<CloudWatchLoggingOption>&& value) { SetCloudWatchLoggingOptions(std::move(value)); return *this;}
+
+    /**
+     * <p>Use this parameter to configure a CloudWatch log stream to monitor
+     * application configuration errors. For more information, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-logs.html">Working
+     * with Amazon CloudWatch Logs</a>.</p>
+     */
+    inline CreateApplicationRequest& AddCloudWatchLoggingOptions(const CloudWatchLoggingOption& value) { m_cloudWatchLoggingOptionsHasBeenSet = true; m_cloudWatchLoggingOptions.push_back(value); return *this; }
+
+    /**
+     * <p>Use this parameter to configure a CloudWatch log stream to monitor
+     * application configuration errors. For more information, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-logs.html">Working
+     * with Amazon CloudWatch Logs</a>.</p>
+     */
+    inline CreateApplicationRequest& AddCloudWatchLoggingOptions(CloudWatchLoggingOption&& value) { m_cloudWatchLoggingOptionsHasBeenSet = true; m_cloudWatchLoggingOptions.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>One or more SQL statements that read input data, transform it, and generate
-     * output. For example, you can write a SQL statement that reads input data and
-     * generates a running average of the number of advertisement clicks by vendor.</p>
-     * <p>You can also provide a series of SQL statements, where output of one
-     * statement can be used as the input for the next statement.</p> <p>Note that the
-     * application code must create the streams with names specified in the
+     * output. For example, you can write a SQL statement that reads data from one
+     * in-application stream, generates a running average of the number of
+     * advertisement clicks by vendor, and insert resulting rows in another
+     * in-application stream using pumps. For more inforamtion about the typical
+     * pattern, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-app-code.html">Application
+     * Code</a>. </p> <p>You can provide such series of SQL statements, where output of
+     * one statement can be used as the input for the next statement. You store
+     * intermediate results by creating in-application streams and pumps.</p> <p>Note
+     * that the application code must create the streams with names specified in the
      * <code>Outputs</code>. For example, if your <code>Outputs</code> defines output
      * streams named <code>ExampleOutputStream1</code> and
      * <code>ExampleOutputStream2</code>, then your application code must create these
@@ -350,11 +427,16 @@ namespace Model
 
     /**
      * <p>One or more SQL statements that read input data, transform it, and generate
-     * output. For example, you can write a SQL statement that reads input data and
-     * generates a running average of the number of advertisement clicks by vendor.</p>
-     * <p>You can also provide a series of SQL statements, where output of one
-     * statement can be used as the input for the next statement.</p> <p>Note that the
-     * application code must create the streams with names specified in the
+     * output. For example, you can write a SQL statement that reads data from one
+     * in-application stream, generates a running average of the number of
+     * advertisement clicks by vendor, and insert resulting rows in another
+     * in-application stream using pumps. For more inforamtion about the typical
+     * pattern, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-app-code.html">Application
+     * Code</a>. </p> <p>You can provide such series of SQL statements, where output of
+     * one statement can be used as the input for the next statement. You store
+     * intermediate results by creating in-application streams and pumps.</p> <p>Note
+     * that the application code must create the streams with names specified in the
      * <code>Outputs</code>. For example, if your <code>Outputs</code> defines output
      * streams named <code>ExampleOutputStream1</code> and
      * <code>ExampleOutputStream2</code>, then your application code must create these
@@ -364,25 +446,35 @@ namespace Model
 
     /**
      * <p>One or more SQL statements that read input data, transform it, and generate
-     * output. For example, you can write a SQL statement that reads input data and
-     * generates a running average of the number of advertisement clicks by vendor.</p>
-     * <p>You can also provide a series of SQL statements, where output of one
-     * statement can be used as the input for the next statement.</p> <p>Note that the
-     * application code must create the streams with names specified in the
+     * output. For example, you can write a SQL statement that reads data from one
+     * in-application stream, generates a running average of the number of
+     * advertisement clicks by vendor, and insert resulting rows in another
+     * in-application stream using pumps. For more inforamtion about the typical
+     * pattern, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-app-code.html">Application
+     * Code</a>. </p> <p>You can provide such series of SQL statements, where output of
+     * one statement can be used as the input for the next statement. You store
+     * intermediate results by creating in-application streams and pumps.</p> <p>Note
+     * that the application code must create the streams with names specified in the
      * <code>Outputs</code>. For example, if your <code>Outputs</code> defines output
      * streams named <code>ExampleOutputStream1</code> and
      * <code>ExampleOutputStream2</code>, then your application code must create these
      * streams. </p>
      */
-    inline void SetApplicationCode(Aws::String&& value) { m_applicationCodeHasBeenSet = true; m_applicationCode = value; }
+    inline void SetApplicationCode(Aws::String&& value) { m_applicationCodeHasBeenSet = true; m_applicationCode = std::move(value); }
 
     /**
      * <p>One or more SQL statements that read input data, transform it, and generate
-     * output. For example, you can write a SQL statement that reads input data and
-     * generates a running average of the number of advertisement clicks by vendor.</p>
-     * <p>You can also provide a series of SQL statements, where output of one
-     * statement can be used as the input for the next statement.</p> <p>Note that the
-     * application code must create the streams with names specified in the
+     * output. For example, you can write a SQL statement that reads data from one
+     * in-application stream, generates a running average of the number of
+     * advertisement clicks by vendor, and insert resulting rows in another
+     * in-application stream using pumps. For more inforamtion about the typical
+     * pattern, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-app-code.html">Application
+     * Code</a>. </p> <p>You can provide such series of SQL statements, where output of
+     * one statement can be used as the input for the next statement. You store
+     * intermediate results by creating in-application streams and pumps.</p> <p>Note
+     * that the application code must create the streams with names specified in the
      * <code>Outputs</code>. For example, if your <code>Outputs</code> defines output
      * streams named <code>ExampleOutputStream1</code> and
      * <code>ExampleOutputStream2</code>, then your application code must create these
@@ -392,11 +484,16 @@ namespace Model
 
     /**
      * <p>One or more SQL statements that read input data, transform it, and generate
-     * output. For example, you can write a SQL statement that reads input data and
-     * generates a running average of the number of advertisement clicks by vendor.</p>
-     * <p>You can also provide a series of SQL statements, where output of one
-     * statement can be used as the input for the next statement.</p> <p>Note that the
-     * application code must create the streams with names specified in the
+     * output. For example, you can write a SQL statement that reads data from one
+     * in-application stream, generates a running average of the number of
+     * advertisement clicks by vendor, and insert resulting rows in another
+     * in-application stream using pumps. For more inforamtion about the typical
+     * pattern, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-app-code.html">Application
+     * Code</a>. </p> <p>You can provide such series of SQL statements, where output of
+     * one statement can be used as the input for the next statement. You store
+     * intermediate results by creating in-application streams and pumps.</p> <p>Note
+     * that the application code must create the streams with names specified in the
      * <code>Outputs</code>. For example, if your <code>Outputs</code> defines output
      * streams named <code>ExampleOutputStream1</code> and
      * <code>ExampleOutputStream2</code>, then your application code must create these
@@ -406,25 +503,35 @@ namespace Model
 
     /**
      * <p>One or more SQL statements that read input data, transform it, and generate
-     * output. For example, you can write a SQL statement that reads input data and
-     * generates a running average of the number of advertisement clicks by vendor.</p>
-     * <p>You can also provide a series of SQL statements, where output of one
-     * statement can be used as the input for the next statement.</p> <p>Note that the
-     * application code must create the streams with names specified in the
+     * output. For example, you can write a SQL statement that reads data from one
+     * in-application stream, generates a running average of the number of
+     * advertisement clicks by vendor, and insert resulting rows in another
+     * in-application stream using pumps. For more inforamtion about the typical
+     * pattern, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-app-code.html">Application
+     * Code</a>. </p> <p>You can provide such series of SQL statements, where output of
+     * one statement can be used as the input for the next statement. You store
+     * intermediate results by creating in-application streams and pumps.</p> <p>Note
+     * that the application code must create the streams with names specified in the
      * <code>Outputs</code>. For example, if your <code>Outputs</code> defines output
      * streams named <code>ExampleOutputStream1</code> and
      * <code>ExampleOutputStream2</code>, then your application code must create these
      * streams. </p>
      */
-    inline CreateApplicationRequest& WithApplicationCode(Aws::String&& value) { SetApplicationCode(value); return *this;}
+    inline CreateApplicationRequest& WithApplicationCode(Aws::String&& value) { SetApplicationCode(std::move(value)); return *this;}
 
     /**
      * <p>One or more SQL statements that read input data, transform it, and generate
-     * output. For example, you can write a SQL statement that reads input data and
-     * generates a running average of the number of advertisement clicks by vendor.</p>
-     * <p>You can also provide a series of SQL statements, where output of one
-     * statement can be used as the input for the next statement.</p> <p>Note that the
-     * application code must create the streams with names specified in the
+     * output. For example, you can write a SQL statement that reads data from one
+     * in-application stream, generates a running average of the number of
+     * advertisement clicks by vendor, and insert resulting rows in another
+     * in-application stream using pumps. For more inforamtion about the typical
+     * pattern, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-app-code.html">Application
+     * Code</a>. </p> <p>You can provide such series of SQL statements, where output of
+     * one statement can be used as the input for the next statement. You store
+     * intermediate results by creating in-application streams and pumps.</p> <p>Note
+     * that the application code must create the streams with names specified in the
      * <code>Outputs</code>. For example, if your <code>Outputs</code> defines output
      * streams named <code>ExampleOutputStream1</code> and
      * <code>ExampleOutputStream2</code>, then your application code must create these
@@ -433,14 +540,22 @@ namespace Model
     inline CreateApplicationRequest& WithApplicationCode(const char* value) { SetApplicationCode(value); return *this;}
 
   private:
+
     Aws::String m_applicationName;
     bool m_applicationNameHasBeenSet;
+
     Aws::String m_applicationDescription;
     bool m_applicationDescriptionHasBeenSet;
+
     Aws::Vector<Input> m_inputs;
     bool m_inputsHasBeenSet;
+
     Aws::Vector<Output> m_outputs;
     bool m_outputsHasBeenSet;
+
+    Aws::Vector<CloudWatchLoggingOption> m_cloudWatchLoggingOptions;
+    bool m_cloudWatchLoggingOptionsHasBeenSet;
+
     Aws::String m_applicationCode;
     bool m_applicationCodeHasBeenSet;
   };

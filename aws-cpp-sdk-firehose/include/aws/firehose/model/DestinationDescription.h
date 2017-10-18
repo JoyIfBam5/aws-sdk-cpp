@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/firehose/Firehose_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -19,6 +20,7 @@
 #include <aws/firehose/model/ExtendedS3DestinationDescription.h>
 #include <aws/firehose/model/RedshiftDestinationDescription.h>
 #include <aws/firehose/model/ElasticsearchDestinationDescription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     DestinationDescription& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ID of the destination.</p>
      */
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>The ID of the destination.</p>
      */
-    inline void SetDestinationId(Aws::String&& value) { m_destinationIdHasBeenSet = true; m_destinationId = value; }
+    inline void SetDestinationId(Aws::String&& value) { m_destinationIdHasBeenSet = true; m_destinationId = std::move(value); }
 
     /**
      * <p>The ID of the destination.</p>
@@ -76,12 +79,13 @@ namespace Model
     /**
      * <p>The ID of the destination.</p>
      */
-    inline DestinationDescription& WithDestinationId(Aws::String&& value) { SetDestinationId(value); return *this;}
+    inline DestinationDescription& WithDestinationId(Aws::String&& value) { SetDestinationId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the destination.</p>
      */
     inline DestinationDescription& WithDestinationId(const char* value) { SetDestinationId(value); return *this;}
+
 
     /**
      * <p>[Deprecated] The destination in Amazon S3.</p>
@@ -96,7 +100,7 @@ namespace Model
     /**
      * <p>[Deprecated] The destination in Amazon S3.</p>
      */
-    inline void SetS3DestinationDescription(S3DestinationDescription&& value) { m_s3DestinationDescriptionHasBeenSet = true; m_s3DestinationDescription = value; }
+    inline void SetS3DestinationDescription(S3DestinationDescription&& value) { m_s3DestinationDescriptionHasBeenSet = true; m_s3DestinationDescription = std::move(value); }
 
     /**
      * <p>[Deprecated] The destination in Amazon S3.</p>
@@ -106,7 +110,8 @@ namespace Model
     /**
      * <p>[Deprecated] The destination in Amazon S3.</p>
      */
-    inline DestinationDescription& WithS3DestinationDescription(S3DestinationDescription&& value) { SetS3DestinationDescription(value); return *this;}
+    inline DestinationDescription& WithS3DestinationDescription(S3DestinationDescription&& value) { SetS3DestinationDescription(std::move(value)); return *this;}
+
 
     /**
      * <p>The destination in Amazon S3.</p>
@@ -121,7 +126,7 @@ namespace Model
     /**
      * <p>The destination in Amazon S3.</p>
      */
-    inline void SetExtendedS3DestinationDescription(ExtendedS3DestinationDescription&& value) { m_extendedS3DestinationDescriptionHasBeenSet = true; m_extendedS3DestinationDescription = value; }
+    inline void SetExtendedS3DestinationDescription(ExtendedS3DestinationDescription&& value) { m_extendedS3DestinationDescriptionHasBeenSet = true; m_extendedS3DestinationDescription = std::move(value); }
 
     /**
      * <p>The destination in Amazon S3.</p>
@@ -131,7 +136,8 @@ namespace Model
     /**
      * <p>The destination in Amazon S3.</p>
      */
-    inline DestinationDescription& WithExtendedS3DestinationDescription(ExtendedS3DestinationDescription&& value) { SetExtendedS3DestinationDescription(value); return *this;}
+    inline DestinationDescription& WithExtendedS3DestinationDescription(ExtendedS3DestinationDescription&& value) { SetExtendedS3DestinationDescription(std::move(value)); return *this;}
+
 
     /**
      * <p>The destination in Amazon Redshift.</p>
@@ -146,7 +152,7 @@ namespace Model
     /**
      * <p>The destination in Amazon Redshift.</p>
      */
-    inline void SetRedshiftDestinationDescription(RedshiftDestinationDescription&& value) { m_redshiftDestinationDescriptionHasBeenSet = true; m_redshiftDestinationDescription = value; }
+    inline void SetRedshiftDestinationDescription(RedshiftDestinationDescription&& value) { m_redshiftDestinationDescriptionHasBeenSet = true; m_redshiftDestinationDescription = std::move(value); }
 
     /**
      * <p>The destination in Amazon Redshift.</p>
@@ -156,7 +162,8 @@ namespace Model
     /**
      * <p>The destination in Amazon Redshift.</p>
      */
-    inline DestinationDescription& WithRedshiftDestinationDescription(RedshiftDestinationDescription&& value) { SetRedshiftDestinationDescription(value); return *this;}
+    inline DestinationDescription& WithRedshiftDestinationDescription(RedshiftDestinationDescription&& value) { SetRedshiftDestinationDescription(std::move(value)); return *this;}
+
 
     /**
      * <p>The destination in Amazon ES.</p>
@@ -171,7 +178,7 @@ namespace Model
     /**
      * <p>The destination in Amazon ES.</p>
      */
-    inline void SetElasticsearchDestinationDescription(ElasticsearchDestinationDescription&& value) { m_elasticsearchDestinationDescriptionHasBeenSet = true; m_elasticsearchDestinationDescription = value; }
+    inline void SetElasticsearchDestinationDescription(ElasticsearchDestinationDescription&& value) { m_elasticsearchDestinationDescriptionHasBeenSet = true; m_elasticsearchDestinationDescription = std::move(value); }
 
     /**
      * <p>The destination in Amazon ES.</p>
@@ -181,17 +188,22 @@ namespace Model
     /**
      * <p>The destination in Amazon ES.</p>
      */
-    inline DestinationDescription& WithElasticsearchDestinationDescription(ElasticsearchDestinationDescription&& value) { SetElasticsearchDestinationDescription(value); return *this;}
+    inline DestinationDescription& WithElasticsearchDestinationDescription(ElasticsearchDestinationDescription&& value) { SetElasticsearchDestinationDescription(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_destinationId;
     bool m_destinationIdHasBeenSet;
+
     S3DestinationDescription m_s3DestinationDescription;
     bool m_s3DestinationDescriptionHasBeenSet;
+
     ExtendedS3DestinationDescription m_extendedS3DestinationDescription;
     bool m_extendedS3DestinationDescriptionHasBeenSet;
+
     RedshiftDestinationDescription m_redshiftDestinationDescription;
     bool m_redshiftDestinationDescriptionHasBeenSet;
+
     ElasticsearchDestinationDescription m_elasticsearchDestinationDescription;
     bool m_elasticsearchDestinationDescriptionHasBeenSet;
   };

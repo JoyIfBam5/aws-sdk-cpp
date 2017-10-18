@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
+#include <utility>
 
 namespace Aws
 {
@@ -69,6 +71,7 @@ namespace Model
     MethodResponse& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The method response's status code.</p>
      */
@@ -82,7 +85,7 @@ namespace Model
     /**
      * <p>The method response's status code.</p>
      */
-    inline void SetStatusCode(Aws::String&& value) { m_statusCodeHasBeenSet = true; m_statusCode = value; }
+    inline void SetStatusCode(Aws::String&& value) { m_statusCodeHasBeenSet = true; m_statusCode = std::move(value); }
 
     /**
      * <p>The method response's status code.</p>
@@ -97,12 +100,13 @@ namespace Model
     /**
      * <p>The method response's status code.</p>
      */
-    inline MethodResponse& WithStatusCode(Aws::String&& value) { SetStatusCode(value); return *this;}
+    inline MethodResponse& WithStatusCode(Aws::String&& value) { SetStatusCode(std::move(value)); return *this;}
 
     /**
      * <p>The method response's status code.</p>
      */
     inline MethodResponse& WithStatusCode(const char* value) { SetStatusCode(value); return *this;}
+
 
     /**
      * <p>A key-value map specifying required or optional response parameters that
@@ -159,7 +163,7 @@ namespace Model
      * <code>JSON-expression</code> is a valid JSON expression without the
      * <code>$</code> prefix.)</p>
      */
-    inline void SetResponseParameters(Aws::Map<Aws::String, bool>&& value) { m_responseParametersHasBeenSet = true; m_responseParameters = value; }
+    inline void SetResponseParameters(Aws::Map<Aws::String, bool>&& value) { m_responseParametersHasBeenSet = true; m_responseParameters = std::move(value); }
 
     /**
      * <p>A key-value map specifying required or optional response parameters that
@@ -197,7 +201,7 @@ namespace Model
      * <code>JSON-expression</code> is a valid JSON expression without the
      * <code>$</code> prefix.)</p>
      */
-    inline MethodResponse& WithResponseParameters(Aws::Map<Aws::String, bool>&& value) { SetResponseParameters(value); return *this;}
+    inline MethodResponse& WithResponseParameters(Aws::Map<Aws::String, bool>&& value) { SetResponseParameters(std::move(value)); return *this;}
 
     /**
      * <p>A key-value map specifying required or optional response parameters that
@@ -216,7 +220,7 @@ namespace Model
      * <code>JSON-expression</code> is a valid JSON expression without the
      * <code>$</code> prefix.)</p>
      */
-    inline MethodResponse& AddResponseParameters(const Aws::String& key, bool value) { m_responseParametersHasBeenSet = true; m_responseParameters[key] = value; return *this; }
+    inline MethodResponse& AddResponseParameters(const Aws::String& key, bool value) { m_responseParametersHasBeenSet = true; m_responseParameters.emplace(key, value); return *this; }
 
     /**
      * <p>A key-value map specifying required or optional response parameters that
@@ -235,7 +239,7 @@ namespace Model
      * <code>JSON-expression</code> is a valid JSON expression without the
      * <code>$</code> prefix.)</p>
      */
-    inline MethodResponse& AddResponseParameters(Aws::String&& key, bool value) { m_responseParametersHasBeenSet = true; m_responseParameters[key] = value; return *this; }
+    inline MethodResponse& AddResponseParameters(Aws::String&& key, bool value) { m_responseParametersHasBeenSet = true; m_responseParameters.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A key-value map specifying required or optional response parameters that
@@ -254,7 +258,8 @@ namespace Model
      * <code>JSON-expression</code> is a valid JSON expression without the
      * <code>$</code> prefix.)</p>
      */
-    inline MethodResponse& AddResponseParameters(const char* key, bool value) { m_responseParametersHasBeenSet = true; m_responseParameters[key] = value; return *this; }
+    inline MethodResponse& AddResponseParameters(const char* key, bool value) { m_responseParametersHasBeenSet = true; m_responseParameters.emplace(key, value); return *this; }
+
 
     /**
      * <p>Specifies the <a>Model</a> resources used for the response's content-type.
@@ -275,7 +280,7 @@ namespace Model
      * Response models are represented as a key/value map, with a content-type as the
      * key and a <a>Model</a> name as the value.</p>
      */
-    inline void SetResponseModels(Aws::Map<Aws::String, Aws::String>&& value) { m_responseModelsHasBeenSet = true; m_responseModels = value; }
+    inline void SetResponseModels(Aws::Map<Aws::String, Aws::String>&& value) { m_responseModelsHasBeenSet = true; m_responseModels = std::move(value); }
 
     /**
      * <p>Specifies the <a>Model</a> resources used for the response's content-type.
@@ -289,62 +294,65 @@ namespace Model
      * Response models are represented as a key/value map, with a content-type as the
      * key and a <a>Model</a> name as the value.</p>
      */
-    inline MethodResponse& WithResponseModels(Aws::Map<Aws::String, Aws::String>&& value) { SetResponseModels(value); return *this;}
+    inline MethodResponse& WithResponseModels(Aws::Map<Aws::String, Aws::String>&& value) { SetResponseModels(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the <a>Model</a> resources used for the response's content-type.
      * Response models are represented as a key/value map, with a content-type as the
      * key and a <a>Model</a> name as the value.</p>
      */
-    inline MethodResponse& AddResponseModels(const Aws::String& key, const Aws::String& value) { m_responseModelsHasBeenSet = true; m_responseModels[key] = value; return *this; }
+    inline MethodResponse& AddResponseModels(const Aws::String& key, const Aws::String& value) { m_responseModelsHasBeenSet = true; m_responseModels.emplace(key, value); return *this; }
 
     /**
      * <p>Specifies the <a>Model</a> resources used for the response's content-type.
      * Response models are represented as a key/value map, with a content-type as the
      * key and a <a>Model</a> name as the value.</p>
      */
-    inline MethodResponse& AddResponseModels(Aws::String&& key, const Aws::String& value) { m_responseModelsHasBeenSet = true; m_responseModels[key] = value; return *this; }
+    inline MethodResponse& AddResponseModels(Aws::String&& key, const Aws::String& value) { m_responseModelsHasBeenSet = true; m_responseModels.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>Specifies the <a>Model</a> resources used for the response's content-type.
      * Response models are represented as a key/value map, with a content-type as the
      * key and a <a>Model</a> name as the value.</p>
      */
-    inline MethodResponse& AddResponseModels(const Aws::String& key, Aws::String&& value) { m_responseModelsHasBeenSet = true; m_responseModels[key] = value; return *this; }
+    inline MethodResponse& AddResponseModels(const Aws::String& key, Aws::String&& value) { m_responseModelsHasBeenSet = true; m_responseModels.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>Specifies the <a>Model</a> resources used for the response's content-type.
      * Response models are represented as a key/value map, with a content-type as the
      * key and a <a>Model</a> name as the value.</p>
      */
-    inline MethodResponse& AddResponseModels(Aws::String&& key, Aws::String&& value) { m_responseModelsHasBeenSet = true; m_responseModels[key] = value; return *this; }
+    inline MethodResponse& AddResponseModels(Aws::String&& key, Aws::String&& value) { m_responseModelsHasBeenSet = true; m_responseModels.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>Specifies the <a>Model</a> resources used for the response's content-type.
      * Response models are represented as a key/value map, with a content-type as the
      * key and a <a>Model</a> name as the value.</p>
      */
-    inline MethodResponse& AddResponseModels(const char* key, Aws::String&& value) { m_responseModelsHasBeenSet = true; m_responseModels[key] = value; return *this; }
+    inline MethodResponse& AddResponseModels(const char* key, Aws::String&& value) { m_responseModelsHasBeenSet = true; m_responseModels.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>Specifies the <a>Model</a> resources used for the response's content-type.
      * Response models are represented as a key/value map, with a content-type as the
      * key and a <a>Model</a> name as the value.</p>
      */
-    inline MethodResponse& AddResponseModels(Aws::String&& key, const char* value) { m_responseModelsHasBeenSet = true; m_responseModels[key] = value; return *this; }
+    inline MethodResponse& AddResponseModels(Aws::String&& key, const char* value) { m_responseModelsHasBeenSet = true; m_responseModels.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>Specifies the <a>Model</a> resources used for the response's content-type.
      * Response models are represented as a key/value map, with a content-type as the
      * key and a <a>Model</a> name as the value.</p>
      */
-    inline MethodResponse& AddResponseModels(const char* key, const char* value) { m_responseModelsHasBeenSet = true; m_responseModels[key] = value; return *this; }
+    inline MethodResponse& AddResponseModels(const char* key, const char* value) { m_responseModelsHasBeenSet = true; m_responseModels.emplace(key, value); return *this; }
 
   private:
+
     Aws::String m_statusCode;
     bool m_statusCodeHasBeenSet;
+
     Aws::Map<Aws::String, bool> m_responseParameters;
     bool m_responseParametersHasBeenSet;
+
     Aws::Map<Aws::String, Aws::String> m_responseModels;
     bool m_responseModelsHasBeenSet;
   };

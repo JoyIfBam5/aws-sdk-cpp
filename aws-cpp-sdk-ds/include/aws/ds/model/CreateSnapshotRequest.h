@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ds/DirectoryService_EXPORTS.h>
 #include <aws/ds/DirectoryServiceRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     CreateSnapshotRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateSnapshot"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The identifier of the directory of which to take a snapshot.</p>
@@ -51,7 +61,7 @@ namespace Model
     /**
      * <p>The identifier of the directory of which to take a snapshot.</p>
      */
-    inline void SetDirectoryId(Aws::String&& value) { m_directoryIdHasBeenSet = true; m_directoryId = value; }
+    inline void SetDirectoryId(Aws::String&& value) { m_directoryIdHasBeenSet = true; m_directoryId = std::move(value); }
 
     /**
      * <p>The identifier of the directory of which to take a snapshot.</p>
@@ -66,12 +76,13 @@ namespace Model
     /**
      * <p>The identifier of the directory of which to take a snapshot.</p>
      */
-    inline CreateSnapshotRequest& WithDirectoryId(Aws::String&& value) { SetDirectoryId(value); return *this;}
+    inline CreateSnapshotRequest& WithDirectoryId(Aws::String&& value) { SetDirectoryId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the directory of which to take a snapshot.</p>
      */
     inline CreateSnapshotRequest& WithDirectoryId(const char* value) { SetDirectoryId(value); return *this;}
+
 
     /**
      * <p>The descriptive name to apply to the snapshot.</p>
@@ -86,7 +97,7 @@ namespace Model
     /**
      * <p>The descriptive name to apply to the snapshot.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The descriptive name to apply to the snapshot.</p>
@@ -101,7 +112,7 @@ namespace Model
     /**
      * <p>The descriptive name to apply to the snapshot.</p>
      */
-    inline CreateSnapshotRequest& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline CreateSnapshotRequest& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The descriptive name to apply to the snapshot.</p>
@@ -109,8 +120,10 @@ namespace Model
     inline CreateSnapshotRequest& WithName(const char* value) { SetName(value); return *this;}
 
   private:
+
     Aws::String m_directoryId;
     bool m_directoryIdHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
   };

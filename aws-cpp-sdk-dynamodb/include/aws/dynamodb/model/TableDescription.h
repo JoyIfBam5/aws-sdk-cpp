@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dynamodb/DynamoDB_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
@@ -24,6 +25,7 @@
 #include <aws/dynamodb/model/KeySchemaElement.h>
 #include <aws/dynamodb/model/LocalSecondaryIndexDescription.h>
 #include <aws/dynamodb/model/GlobalSecondaryIndexDescription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -51,6 +53,7 @@ namespace Model
     TableDescription(const Aws::Utils::Json::JsonValue& jsonValue);
     TableDescription& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>An array of <code>AttributeDefinition</code> objects. Each of these objects
@@ -80,7 +83,7 @@ namespace Model
      * <p> <code>AttributeType</code> - The data type for the attribute.</p> </li>
      * </ul>
      */
-    inline void SetAttributeDefinitions(Aws::Vector<AttributeDefinition>&& value) { m_attributeDefinitionsHasBeenSet = true; m_attributeDefinitions = value; }
+    inline void SetAttributeDefinitions(Aws::Vector<AttributeDefinition>&& value) { m_attributeDefinitionsHasBeenSet = true; m_attributeDefinitions = std::move(value); }
 
     /**
      * <p>An array of <code>AttributeDefinition</code> objects. Each of these objects
@@ -100,7 +103,7 @@ namespace Model
      * <p> <code>AttributeType</code> - The data type for the attribute.</p> </li>
      * </ul>
      */
-    inline TableDescription& WithAttributeDefinitions(Aws::Vector<AttributeDefinition>&& value) { SetAttributeDefinitions(value); return *this;}
+    inline TableDescription& WithAttributeDefinitions(Aws::Vector<AttributeDefinition>&& value) { SetAttributeDefinitions(std::move(value)); return *this;}
 
     /**
      * <p>An array of <code>AttributeDefinition</code> objects. Each of these objects
@@ -120,7 +123,8 @@ namespace Model
      * <p> <code>AttributeType</code> - The data type for the attribute.</p> </li>
      * </ul>
      */
-    inline TableDescription& AddAttributeDefinitions(AttributeDefinition&& value) { m_attributeDefinitionsHasBeenSet = true; m_attributeDefinitions.push_back(value); return *this; }
+    inline TableDescription& AddAttributeDefinitions(AttributeDefinition&& value) { m_attributeDefinitionsHasBeenSet = true; m_attributeDefinitions.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The name of the table.</p>
@@ -135,7 +139,7 @@ namespace Model
     /**
      * <p>The name of the table.</p>
      */
-    inline void SetTableName(Aws::String&& value) { m_tableNameHasBeenSet = true; m_tableName = value; }
+    inline void SetTableName(Aws::String&& value) { m_tableNameHasBeenSet = true; m_tableName = std::move(value); }
 
     /**
      * <p>The name of the table.</p>
@@ -150,12 +154,13 @@ namespace Model
     /**
      * <p>The name of the table.</p>
      */
-    inline TableDescription& WithTableName(Aws::String&& value) { SetTableName(value); return *this;}
+    inline TableDescription& WithTableName(Aws::String&& value) { SetTableName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the table.</p>
      */
     inline TableDescription& WithTableName(const char* value) { SetTableName(value); return *this;}
+
 
     /**
      * <p>The primary key structure for the table. Each <code>KeySchemaElement</code>
@@ -209,7 +214,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      * Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline void SetKeySchema(Aws::Vector<KeySchemaElement>&& value) { m_keySchemaHasBeenSet = true; m_keySchema = value; }
+    inline void SetKeySchema(Aws::Vector<KeySchemaElement>&& value) { m_keySchemaHasBeenSet = true; m_keySchema = std::move(value); }
 
     /**
      * <p>The primary key structure for the table. Each <code>KeySchemaElement</code>
@@ -245,7 +250,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      * Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline TableDescription& WithKeySchema(Aws::Vector<KeySchemaElement>&& value) { SetKeySchema(value); return *this;}
+    inline TableDescription& WithKeySchema(Aws::Vector<KeySchemaElement>&& value) { SetKeySchema(std::move(value)); return *this;}
 
     /**
      * <p>The primary key structure for the table. Each <code>KeySchemaElement</code>
@@ -281,7 +286,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey">Primary
      * Key</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline TableDescription& AddKeySchema(KeySchemaElement&& value) { m_keySchemaHasBeenSet = true; m_keySchema.push_back(value); return *this; }
+    inline TableDescription& AddKeySchema(KeySchemaElement&& value) { m_keySchemaHasBeenSet = true; m_keySchema.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The current state of the table:</p> <ul> <li> <p> <code>CREATING</code> - The
@@ -308,7 +314,7 @@ namespace Model
      * deleted.</p> </li> <li> <p> <code>ACTIVE</code> - The table is ready for
      * use.</p> </li> </ul>
      */
-    inline void SetTableStatus(TableStatus&& value) { m_tableStatusHasBeenSet = true; m_tableStatus = value; }
+    inline void SetTableStatus(TableStatus&& value) { m_tableStatusHasBeenSet = true; m_tableStatus = std::move(value); }
 
     /**
      * <p>The current state of the table:</p> <ul> <li> <p> <code>CREATING</code> - The
@@ -326,7 +332,8 @@ namespace Model
      * deleted.</p> </li> <li> <p> <code>ACTIVE</code> - The table is ready for
      * use.</p> </li> </ul>
      */
-    inline TableDescription& WithTableStatus(TableStatus&& value) { SetTableStatus(value); return *this;}
+    inline TableDescription& WithTableStatus(TableStatus&& value) { SetTableStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The date and time when the table was created, in <a
@@ -344,7 +351,7 @@ namespace Model
      * <p>The date and time when the table was created, in <a
      * href="http://www.epochconverter.com/">UNIX epoch time</a> format.</p>
      */
-    inline void SetCreationDateTime(Aws::Utils::DateTime&& value) { m_creationDateTimeHasBeenSet = true; m_creationDateTime = value; }
+    inline void SetCreationDateTime(Aws::Utils::DateTime&& value) { m_creationDateTimeHasBeenSet = true; m_creationDateTime = std::move(value); }
 
     /**
      * <p>The date and time when the table was created, in <a
@@ -356,7 +363,8 @@ namespace Model
      * <p>The date and time when the table was created, in <a
      * href="http://www.epochconverter.com/">UNIX epoch time</a> format.</p>
      */
-    inline TableDescription& WithCreationDateTime(Aws::Utils::DateTime&& value) { SetCreationDateTime(value); return *this;}
+    inline TableDescription& WithCreationDateTime(Aws::Utils::DateTime&& value) { SetCreationDateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The provisioned throughput settings for the table, consisting of read and
@@ -374,7 +382,7 @@ namespace Model
      * <p>The provisioned throughput settings for the table, consisting of read and
      * write capacity units, along with data about increases and decreases.</p>
      */
-    inline void SetProvisionedThroughput(ProvisionedThroughputDescription&& value) { m_provisionedThroughputHasBeenSet = true; m_provisionedThroughput = value; }
+    inline void SetProvisionedThroughput(ProvisionedThroughputDescription&& value) { m_provisionedThroughputHasBeenSet = true; m_provisionedThroughput = std::move(value); }
 
     /**
      * <p>The provisioned throughput settings for the table, consisting of read and
@@ -386,7 +394,8 @@ namespace Model
      * <p>The provisioned throughput settings for the table, consisting of read and
      * write capacity units, along with data about increases and decreases.</p>
      */
-    inline TableDescription& WithProvisionedThroughput(ProvisionedThroughputDescription&& value) { SetProvisionedThroughput(value); return *this;}
+    inline TableDescription& WithProvisionedThroughput(ProvisionedThroughputDescription&& value) { SetProvisionedThroughput(std::move(value)); return *this;}
+
 
     /**
      * <p>The total size of the specified table, in bytes. DynamoDB updates this value
@@ -409,6 +418,7 @@ namespace Model
      */
     inline TableDescription& WithTableSizeBytes(long long value) { SetTableSizeBytes(value); return *this;}
 
+
     /**
      * <p>The number of items in the specified table. DynamoDB updates this value
      * approximately every six hours. Recent changes might not be reflected in this
@@ -430,6 +440,7 @@ namespace Model
      */
     inline TableDescription& WithItemCount(long long value) { SetItemCount(value); return *this;}
 
+
     /**
      * <p>The Amazon Resource Name (ARN) that uniquely identifies the table.</p>
      */
@@ -443,7 +454,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) that uniquely identifies the table.</p>
      */
-    inline void SetTableArn(Aws::String&& value) { m_tableArnHasBeenSet = true; m_tableArn = value; }
+    inline void SetTableArn(Aws::String&& value) { m_tableArnHasBeenSet = true; m_tableArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) that uniquely identifies the table.</p>
@@ -458,12 +469,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) that uniquely identifies the table.</p>
      */
-    inline TableDescription& WithTableArn(Aws::String&& value) { SetTableArn(value); return *this;}
+    inline TableDescription& WithTableArn(Aws::String&& value) { SetTableArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) that uniquely identifies the table.</p>
      */
     inline TableDescription& WithTableArn(const char* value) { SetTableArn(value); return *this;}
+
 
     /**
      * <p>Represents one or more local secondary indexes on the table. Each index is
@@ -565,7 +577,7 @@ namespace Model
      * not be reflected in this value.</p> </li> </ul> <p>If the table is in the
      * <code>DELETING</code> state, no information about indexes will be returned.</p>
      */
-    inline void SetLocalSecondaryIndexes(Aws::Vector<LocalSecondaryIndexDescription>&& value) { m_localSecondaryIndexesHasBeenSet = true; m_localSecondaryIndexes = value; }
+    inline void SetLocalSecondaryIndexes(Aws::Vector<LocalSecondaryIndexDescription>&& value) { m_localSecondaryIndexesHasBeenSet = true; m_localSecondaryIndexes = std::move(value); }
 
     /**
      * <p>Represents one or more local secondary indexes on the table. Each index is
@@ -633,7 +645,7 @@ namespace Model
      * not be reflected in this value.</p> </li> </ul> <p>If the table is in the
      * <code>DELETING</code> state, no information about indexes will be returned.</p>
      */
-    inline TableDescription& WithLocalSecondaryIndexes(Aws::Vector<LocalSecondaryIndexDescription>&& value) { SetLocalSecondaryIndexes(value); return *this;}
+    inline TableDescription& WithLocalSecondaryIndexes(Aws::Vector<LocalSecondaryIndexDescription>&& value) { SetLocalSecondaryIndexes(std::move(value)); return *this;}
 
     /**
      * <p>Represents one or more local secondary indexes on the table. Each index is
@@ -701,7 +713,8 @@ namespace Model
      * not be reflected in this value.</p> </li> </ul> <p>If the table is in the
      * <code>DELETING</code> state, no information about indexes will be returned.</p>
      */
-    inline TableDescription& AddLocalSecondaryIndexes(LocalSecondaryIndexDescription&& value) { m_localSecondaryIndexesHasBeenSet = true; m_localSecondaryIndexes.push_back(value); return *this; }
+    inline TableDescription& AddLocalSecondaryIndexes(LocalSecondaryIndexDescription&& value) { m_localSecondaryIndexesHasBeenSet = true; m_localSecondaryIndexes.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The global secondary indexes, if any, on the table. Each index is scoped to a
@@ -836,7 +849,7 @@ namespace Model
      * data about increases and decreases. </p> </li> </ul> <p>If the table is in the
      * <code>DELETING</code> state, no information about indexes will be returned.</p>
      */
-    inline void SetGlobalSecondaryIndexes(Aws::Vector<GlobalSecondaryIndexDescription>&& value) { m_globalSecondaryIndexesHasBeenSet = true; m_globalSecondaryIndexes = value; }
+    inline void SetGlobalSecondaryIndexes(Aws::Vector<GlobalSecondaryIndexDescription>&& value) { m_globalSecondaryIndexesHasBeenSet = true; m_globalSecondaryIndexes = std::move(value); }
 
     /**
      * <p>The global secondary indexes, if any, on the table. Each index is scoped to a
@@ -926,7 +939,7 @@ namespace Model
      * data about increases and decreases. </p> </li> </ul> <p>If the table is in the
      * <code>DELETING</code> state, no information about indexes will be returned.</p>
      */
-    inline TableDescription& WithGlobalSecondaryIndexes(Aws::Vector<GlobalSecondaryIndexDescription>&& value) { SetGlobalSecondaryIndexes(value); return *this;}
+    inline TableDescription& WithGlobalSecondaryIndexes(Aws::Vector<GlobalSecondaryIndexDescription>&& value) { SetGlobalSecondaryIndexes(std::move(value)); return *this;}
 
     /**
      * <p>The global secondary indexes, if any, on the table. Each index is scoped to a
@@ -1016,7 +1029,8 @@ namespace Model
      * data about increases and decreases. </p> </li> </ul> <p>If the table is in the
      * <code>DELETING</code> state, no information about indexes will be returned.</p>
      */
-    inline TableDescription& AddGlobalSecondaryIndexes(GlobalSecondaryIndexDescription&& value) { m_globalSecondaryIndexesHasBeenSet = true; m_globalSecondaryIndexes.push_back(value); return *this; }
+    inline TableDescription& AddGlobalSecondaryIndexes(GlobalSecondaryIndexDescription&& value) { m_globalSecondaryIndexesHasBeenSet = true; m_globalSecondaryIndexes.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The current DynamoDB Streams configuration for the table.</p>
@@ -1031,7 +1045,7 @@ namespace Model
     /**
      * <p>The current DynamoDB Streams configuration for the table.</p>
      */
-    inline void SetStreamSpecification(StreamSpecification&& value) { m_streamSpecificationHasBeenSet = true; m_streamSpecification = value; }
+    inline void SetStreamSpecification(StreamSpecification&& value) { m_streamSpecificationHasBeenSet = true; m_streamSpecification = std::move(value); }
 
     /**
      * <p>The current DynamoDB Streams configuration for the table.</p>
@@ -1041,7 +1055,8 @@ namespace Model
     /**
      * <p>The current DynamoDB Streams configuration for the table.</p>
      */
-    inline TableDescription& WithStreamSpecification(StreamSpecification&& value) { SetStreamSpecification(value); return *this;}
+    inline TableDescription& WithStreamSpecification(StreamSpecification&& value) { SetStreamSpecification(std::move(value)); return *this;}
+
 
     /**
      * <p>A timestamp, in ISO 8601 format, for this stream.</p> <p>Note that
@@ -1074,7 +1089,7 @@ namespace Model
      * <p>the table name.</p> </li> <li> <p>the <code>StreamLabel</code>.</p> </li>
      * </ul>
      */
-    inline void SetLatestStreamLabel(Aws::String&& value) { m_latestStreamLabelHasBeenSet = true; m_latestStreamLabel = value; }
+    inline void SetLatestStreamLabel(Aws::String&& value) { m_latestStreamLabelHasBeenSet = true; m_latestStreamLabel = std::move(value); }
 
     /**
      * <p>A timestamp, in ISO 8601 format, for this stream.</p> <p>Note that
@@ -1107,7 +1122,7 @@ namespace Model
      * <p>the table name.</p> </li> <li> <p>the <code>StreamLabel</code>.</p> </li>
      * </ul>
      */
-    inline TableDescription& WithLatestStreamLabel(Aws::String&& value) { SetLatestStreamLabel(value); return *this;}
+    inline TableDescription& WithLatestStreamLabel(Aws::String&& value) { SetLatestStreamLabel(std::move(value)); return *this;}
 
     /**
      * <p>A timestamp, in ISO 8601 format, for this stream.</p> <p>Note that
@@ -1119,6 +1134,7 @@ namespace Model
      * </ul>
      */
     inline TableDescription& WithLatestStreamLabel(const char* value) { SetLatestStreamLabel(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) that uniquely identifies the latest stream for
@@ -1136,7 +1152,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) that uniquely identifies the latest stream for
      * this table.</p>
      */
-    inline void SetLatestStreamArn(Aws::String&& value) { m_latestStreamArnHasBeenSet = true; m_latestStreamArn = value; }
+    inline void SetLatestStreamArn(Aws::String&& value) { m_latestStreamArnHasBeenSet = true; m_latestStreamArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) that uniquely identifies the latest stream for
@@ -1154,7 +1170,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) that uniquely identifies the latest stream for
      * this table.</p>
      */
-    inline TableDescription& WithLatestStreamArn(Aws::String&& value) { SetLatestStreamArn(value); return *this;}
+    inline TableDescription& WithLatestStreamArn(Aws::String&& value) { SetLatestStreamArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) that uniquely identifies the latest stream for
@@ -1163,32 +1179,46 @@ namespace Model
     inline TableDescription& WithLatestStreamArn(const char* value) { SetLatestStreamArn(value); return *this;}
 
   private:
+
     Aws::Vector<AttributeDefinition> m_attributeDefinitions;
     bool m_attributeDefinitionsHasBeenSet;
+
     Aws::String m_tableName;
     bool m_tableNameHasBeenSet;
+
     Aws::Vector<KeySchemaElement> m_keySchema;
     bool m_keySchemaHasBeenSet;
+
     TableStatus m_tableStatus;
     bool m_tableStatusHasBeenSet;
+
     Aws::Utils::DateTime m_creationDateTime;
     bool m_creationDateTimeHasBeenSet;
+
     ProvisionedThroughputDescription m_provisionedThroughput;
     bool m_provisionedThroughputHasBeenSet;
+
     long long m_tableSizeBytes;
     bool m_tableSizeBytesHasBeenSet;
+
     long long m_itemCount;
     bool m_itemCountHasBeenSet;
+
     Aws::String m_tableArn;
     bool m_tableArnHasBeenSet;
+
     Aws::Vector<LocalSecondaryIndexDescription> m_localSecondaryIndexes;
     bool m_localSecondaryIndexesHasBeenSet;
+
     Aws::Vector<GlobalSecondaryIndexDescription> m_globalSecondaryIndexes;
     bool m_globalSecondaryIndexesHasBeenSet;
+
     StreamSpecification m_streamSpecification;
     bool m_streamSpecificationHasBeenSet;
+
     Aws::String m_latestStreamLabel;
     bool m_latestStreamLabelHasBeenSet;
+
     Aws::String m_latestStreamArn;
     bool m_latestStreamArnHasBeenSet;
   };

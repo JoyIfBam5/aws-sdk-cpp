@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/cognito-idp/model/UserType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,35 +44,37 @@ namespace Model
   {
   public:
     AdminCreateUserResult();
-    AdminCreateUserResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    AdminCreateUserResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    AdminCreateUserResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    AdminCreateUserResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>The user returned in the request to create a new user.</p>
+     * <p>The newly created user.</p>
      */
     inline const UserType& GetUser() const{ return m_user; }
 
     /**
-     * <p>The user returned in the request to create a new user.</p>
+     * <p>The newly created user.</p>
      */
     inline void SetUser(const UserType& value) { m_user = value; }
 
     /**
-     * <p>The user returned in the request to create a new user.</p>
+     * <p>The newly created user.</p>
      */
-    inline void SetUser(UserType&& value) { m_user = value; }
+    inline void SetUser(UserType&& value) { m_user = std::move(value); }
 
     /**
-     * <p>The user returned in the request to create a new user.</p>
+     * <p>The newly created user.</p>
      */
     inline AdminCreateUserResult& WithUser(const UserType& value) { SetUser(value); return *this;}
 
     /**
-     * <p>The user returned in the request to create a new user.</p>
+     * <p>The newly created user.</p>
      */
-    inline AdminCreateUserResult& WithUser(UserType&& value) { SetUser(value); return *this;}
+    inline AdminCreateUserResult& WithUser(UserType&& value) { SetUser(std::move(value)); return *this;}
 
   private:
+
     UserType m_user;
   };
 

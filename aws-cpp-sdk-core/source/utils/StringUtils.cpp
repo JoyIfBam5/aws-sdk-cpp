@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   * 
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -21,6 +21,10 @@
 #include <cstdlib>
 #include <cstring>
 #include <functional>
+
+#ifdef _WIN32
+#include <Windows.h>
+#endif
 
 using namespace Aws::Utils;
 
@@ -51,7 +55,8 @@ Aws::String StringUtils::ToLower(const char* source)
     Aws::String copy;
     size_t sourceLength = strlen(source);
     copy.resize(sourceLength);
-    std::transform(source, source + sourceLength, copy.begin(), ::tolower);
+    //appease the latest whims of the VC++ 2017 gods 
+    std::transform(source, source + sourceLength, copy.begin(), [](unsigned char c) { return (char)::tolower(c); });
 
     return copy;
 }
@@ -62,7 +67,8 @@ Aws::String StringUtils::ToUpper(const char* source)
     Aws::String copy;
     size_t sourceLength = strlen(source);
     copy.resize(sourceLength);
-    std::transform(source, source + sourceLength, copy.begin(), ::toupper);
+    //appease the latest whims of the VC++ 2017 gods 
+    std::transform(source, source + sourceLength, copy.begin(), [](unsigned char c) { return (char)::toupper(c); });
 
     return copy;
 }
@@ -285,21 +291,52 @@ double StringUtils::ConvertToDouble(const char* source)
 
 Aws::WString StringUtils::ToWString(const char* source)
 {
+    const auto len = static_cast<int>(std::strlen(source));
     Aws::WString outString;
-
-    outString.resize(std::strlen(source));
-    std::copy(source, source + std::strlen(source), outString.begin());
+    outString.resize(len); // there is no way UTF-16 would require _more_ code-points than UTF-8 for the _same_ string
+    const auto result = MultiByteToWideChar(CP_UTF8                             /*CodePage*/,
+                                            0                                   /*dwFlags*/,
+                                            source                              /*lpMultiByteStr*/,
+                                            len                                 /*cbMultiByte*/,
+                                            &outString[0]                       /*lpWideCharStr*/,
+                                            static_cast<int>(outString.length())/*cchWideChar*/);
+    if (!result)
+    {
+        return L"";
+    }
+    outString.resize(result);
     return outString;
 }
 
 Aws::String StringUtils::FromWString(const wchar_t* source)
 {
-    Aws::WString inWString(source);
-
-    Aws::String outString(inWString.begin(), inWString.end());
-    return outString;
+    const auto len = static_cast<int>(std::wcslen(source));
+    Aws::String output;
+    if (int requiredSizeInBytes = WideCharToMultiByte(CP_UTF8 /*CodePage*/,
+                                                      0       /*dwFlags*/,
+                                                      source  /*lpWideCharStr*/,
+                                                      len     /*cchWideChar*/,
+                                                      nullptr /*lpMultiByteStr*/,
+                                                      0       /*cbMultiByte*/,
+                                                      nullptr /*lpDefaultChar*/,
+                                                      nullptr /*lpUsedDefaultChar*/))
+    {
+        output.resize(requiredSizeInBytes);
+    }
+    const auto result = WideCharToMultiByte(CP_UTF8                           /*CodePage*/,
+                                            0                                 /*dwFlags*/,
+                                            source                            /*lpWideCharStr*/,
+                                            len                               /*cchWideChar*/,
+                                            &output[0]                        /*lpMultiByteStr*/,
+                                            static_cast<int>(output.length()) /*cbMultiByte*/,
+                                            nullptr                           /*lpDefaultChar*/,
+                                            nullptr                           /*lpUsedDefaultChar*/);
+    if (!result)
+    {
+        return "";
+    }
+    output.resize(result);
+    return output;
 }
 
 #endif
-
-

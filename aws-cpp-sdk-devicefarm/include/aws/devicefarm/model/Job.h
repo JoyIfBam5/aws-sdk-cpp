@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/devicefarm/DeviceFarm_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -22,6 +23,7 @@
 #include <aws/devicefarm/model/Counters.h>
 #include <aws/devicefarm/model/Device.h>
 #include <aws/devicefarm/model/DeviceMinutes.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,6 +52,7 @@ namespace Model
     Job& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The job's ARN.</p>
      */
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>The job's ARN.</p>
      */
-    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = value; }
+    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = std::move(value); }
 
     /**
      * <p>The job's ARN.</p>
@@ -78,12 +81,13 @@ namespace Model
     /**
      * <p>The job's ARN.</p>
      */
-    inline Job& WithArn(Aws::String&& value) { SetArn(value); return *this;}
+    inline Job& WithArn(Aws::String&& value) { SetArn(std::move(value)); return *this;}
 
     /**
      * <p>The job's ARN.</p>
      */
     inline Job& WithArn(const char* value) { SetArn(value); return *this;}
+
 
     /**
      * <p>The job's name.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>The job's name.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The job's name.</p>
@@ -113,12 +117,13 @@ namespace Model
     /**
      * <p>The job's name.</p>
      */
-    inline Job& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline Job& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The job's name.</p>
      */
     inline Job& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The job's type.</p> <p>Allowed values include the following:</p> <ul> <li>
@@ -172,7 +177,7 @@ namespace Model
      * </li> <li> <p>XCTEST: The XCode test type.</p> </li> <li> <p>XCTEST_UI: The
      * XCode UI test type.</p> </li> </ul>
      */
-    inline void SetType(TestType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(TestType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The job's type.</p> <p>Allowed values include the following:</p> <ul> <li>
@@ -208,7 +213,8 @@ namespace Model
      * </li> <li> <p>XCTEST: The XCode test type.</p> </li> <li> <p>XCTEST_UI: The
      * XCode UI test type.</p> </li> </ul>
      */
-    inline Job& WithType(TestType&& value) { SetType(value); return *this;}
+    inline Job& WithType(TestType&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p>When the job was created.</p>
@@ -223,7 +229,7 @@ namespace Model
     /**
      * <p>When the job was created.</p>
      */
-    inline void SetCreated(Aws::Utils::DateTime&& value) { m_createdHasBeenSet = true; m_created = value; }
+    inline void SetCreated(Aws::Utils::DateTime&& value) { m_createdHasBeenSet = true; m_created = std::move(value); }
 
     /**
      * <p>When the job was created.</p>
@@ -233,7 +239,8 @@ namespace Model
     /**
      * <p>When the job was created.</p>
      */
-    inline Job& WithCreated(Aws::Utils::DateTime&& value) { SetCreated(value); return *this;}
+    inline Job& WithCreated(Aws::Utils::DateTime&& value) { SetCreated(std::move(value)); return *this;}
+
 
     /**
      * <p>The job's status.</p> <p>Allowed values include:</p> <ul> <li> <p>PENDING: A
@@ -266,7 +273,7 @@ namespace Model
      * <li> <p>RUNNING: A running status.</p> </li> <li> <p>COMPLETED: A completed
      * status.</p> </li> <li> <p>STOPPING: A stopping status.</p> </li> </ul>
      */
-    inline void SetStatus(ExecutionStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(ExecutionStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The job's status.</p> <p>Allowed values include:</p> <ul> <li> <p>PENDING: A
@@ -288,7 +295,8 @@ namespace Model
      * <li> <p>RUNNING: A running status.</p> </li> <li> <p>COMPLETED: A completed
      * status.</p> </li> <li> <p>STOPPING: A stopping status.</p> </li> </ul>
      */
-    inline Job& WithStatus(ExecutionStatus&& value) { SetStatus(value); return *this;}
+    inline Job& WithStatus(ExecutionStatus&& value) { SetStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The job's result.</p> <p>Allowed values include:</p> <ul> <li> <p>PENDING: A
@@ -318,7 +326,7 @@ namespace Model
      * <p>ERRORED: An error condition.</p> </li> <li> <p>STOPPED: A stopped
      * condition.</p> </li> </ul>
      */
-    inline void SetResult(ExecutionResult&& value) { m_resultHasBeenSet = true; m_result = value; }
+    inline void SetResult(ExecutionResult&& value) { m_resultHasBeenSet = true; m_result = std::move(value); }
 
     /**
      * <p>The job's result.</p> <p>Allowed values include:</p> <ul> <li> <p>PENDING: A
@@ -338,7 +346,8 @@ namespace Model
      * <p>ERRORED: An error condition.</p> </li> <li> <p>STOPPED: A stopped
      * condition.</p> </li> </ul>
      */
-    inline Job& WithResult(ExecutionResult&& value) { SetResult(value); return *this;}
+    inline Job& WithResult(ExecutionResult&& value) { SetResult(std::move(value)); return *this;}
+
 
     /**
      * <p>The job's start time.</p>
@@ -353,7 +362,7 @@ namespace Model
     /**
      * <p>The job's start time.</p>
      */
-    inline void SetStarted(Aws::Utils::DateTime&& value) { m_startedHasBeenSet = true; m_started = value; }
+    inline void SetStarted(Aws::Utils::DateTime&& value) { m_startedHasBeenSet = true; m_started = std::move(value); }
 
     /**
      * <p>The job's start time.</p>
@@ -363,7 +372,8 @@ namespace Model
     /**
      * <p>The job's start time.</p>
      */
-    inline Job& WithStarted(Aws::Utils::DateTime&& value) { SetStarted(value); return *this;}
+    inline Job& WithStarted(Aws::Utils::DateTime&& value) { SetStarted(std::move(value)); return *this;}
+
 
     /**
      * <p>The job's stop time.</p>
@@ -378,7 +388,7 @@ namespace Model
     /**
      * <p>The job's stop time.</p>
      */
-    inline void SetStopped(Aws::Utils::DateTime&& value) { m_stoppedHasBeenSet = true; m_stopped = value; }
+    inline void SetStopped(Aws::Utils::DateTime&& value) { m_stoppedHasBeenSet = true; m_stopped = std::move(value); }
 
     /**
      * <p>The job's stop time.</p>
@@ -388,7 +398,8 @@ namespace Model
     /**
      * <p>The job's stop time.</p>
      */
-    inline Job& WithStopped(Aws::Utils::DateTime&& value) { SetStopped(value); return *this;}
+    inline Job& WithStopped(Aws::Utils::DateTime&& value) { SetStopped(std::move(value)); return *this;}
+
 
     /**
      * <p>The job's result counters.</p>
@@ -403,7 +414,7 @@ namespace Model
     /**
      * <p>The job's result counters.</p>
      */
-    inline void SetCounters(Counters&& value) { m_countersHasBeenSet = true; m_counters = value; }
+    inline void SetCounters(Counters&& value) { m_countersHasBeenSet = true; m_counters = std::move(value); }
 
     /**
      * <p>The job's result counters.</p>
@@ -413,7 +424,8 @@ namespace Model
     /**
      * <p>The job's result counters.</p>
      */
-    inline Job& WithCounters(Counters&& value) { SetCounters(value); return *this;}
+    inline Job& WithCounters(Counters&& value) { SetCounters(std::move(value)); return *this;}
+
 
     /**
      * <p>A message about the job's result.</p>
@@ -428,7 +440,7 @@ namespace Model
     /**
      * <p>A message about the job's result.</p>
      */
-    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = value; }
+    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = std::move(value); }
 
     /**
      * <p>A message about the job's result.</p>
@@ -443,27 +455,39 @@ namespace Model
     /**
      * <p>A message about the job's result.</p>
      */
-    inline Job& WithMessage(Aws::String&& value) { SetMessage(value); return *this;}
+    inline Job& WithMessage(Aws::String&& value) { SetMessage(std::move(value)); return *this;}
 
     /**
      * <p>A message about the job's result.</p>
      */
     inline Job& WithMessage(const char* value) { SetMessage(value); return *this;}
 
-    
+
+    /**
+     * <p>The device (phone or tablet).</p>
+     */
     inline const Device& GetDevice() const{ return m_device; }
 
-    
+    /**
+     * <p>The device (phone or tablet).</p>
+     */
     inline void SetDevice(const Device& value) { m_deviceHasBeenSet = true; m_device = value; }
 
-    
-    inline void SetDevice(Device&& value) { m_deviceHasBeenSet = true; m_device = value; }
+    /**
+     * <p>The device (phone or tablet).</p>
+     */
+    inline void SetDevice(Device&& value) { m_deviceHasBeenSet = true; m_device = std::move(value); }
 
-    
+    /**
+     * <p>The device (phone or tablet).</p>
+     */
     inline Job& WithDevice(const Device& value) { SetDevice(value); return *this;}
 
-    
-    inline Job& WithDevice(Device&& value) { SetDevice(value); return *this;}
+    /**
+     * <p>The device (phone or tablet).</p>
+     */
+    inline Job& WithDevice(Device&& value) { SetDevice(std::move(value)); return *this;}
+
 
     /**
      * <p>Represents the total (metered or unmetered) minutes used by the job.</p>
@@ -478,7 +502,7 @@ namespace Model
     /**
      * <p>Represents the total (metered or unmetered) minutes used by the job.</p>
      */
-    inline void SetDeviceMinutes(DeviceMinutes&& value) { m_deviceMinutesHasBeenSet = true; m_deviceMinutes = value; }
+    inline void SetDeviceMinutes(DeviceMinutes&& value) { m_deviceMinutesHasBeenSet = true; m_deviceMinutes = std::move(value); }
 
     /**
      * <p>Represents the total (metered or unmetered) minutes used by the job.</p>
@@ -488,31 +512,43 @@ namespace Model
     /**
      * <p>Represents the total (metered or unmetered) minutes used by the job.</p>
      */
-    inline Job& WithDeviceMinutes(DeviceMinutes&& value) { SetDeviceMinutes(value); return *this;}
+    inline Job& WithDeviceMinutes(DeviceMinutes&& value) { SetDeviceMinutes(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_arn;
     bool m_arnHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     TestType m_type;
     bool m_typeHasBeenSet;
+
     Aws::Utils::DateTime m_created;
     bool m_createdHasBeenSet;
+
     ExecutionStatus m_status;
     bool m_statusHasBeenSet;
+
     ExecutionResult m_result;
     bool m_resultHasBeenSet;
+
     Aws::Utils::DateTime m_started;
     bool m_startedHasBeenSet;
+
     Aws::Utils::DateTime m_stopped;
     bool m_stoppedHasBeenSet;
+
     Counters m_counters;
     bool m_countersHasBeenSet;
+
     Aws::String m_message;
     bool m_messageHasBeenSet;
+
     Device m_device;
     bool m_deviceHasBeenSet;
+
     DeviceMinutes m_deviceMinutes;
     bool m_deviceMinutesHasBeenSet;
   };

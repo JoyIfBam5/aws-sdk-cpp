@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/shield/Shield_EXPORTS.h>
 #include <aws/shield/model/Subscription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     DescribeSubscriptionResult();
-    DescribeSubscriptionResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeSubscriptionResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeSubscriptionResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeSubscriptionResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The AWS Shield Advanced subscription details for an account.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The AWS Shield Advanced subscription details for an account.</p>
      */
-    inline void SetSubscription(Subscription&& value) { m_subscription = value; }
+    inline void SetSubscription(Subscription&& value) { m_subscription = std::move(value); }
 
     /**
      * <p>The AWS Shield Advanced subscription details for an account.</p>
@@ -62,9 +65,10 @@ namespace Model
     /**
      * <p>The AWS Shield Advanced subscription details for an account.</p>
      */
-    inline DescribeSubscriptionResult& WithSubscription(Subscription&& value) { SetSubscription(value); return *this;}
+    inline DescribeSubscriptionResult& WithSubscription(Subscription&& value) { SetSubscription(std::move(value)); return *this;}
 
   private:
+
     Subscription m_subscription;
   };
 

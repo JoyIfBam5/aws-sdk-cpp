@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticloadbalancingv2/ElasticLoadBalancingv2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -21,7 +22,9 @@
 #include <aws/elasticloadbalancingv2/model/LoadBalancerState.h>
 #include <aws/elasticloadbalancingv2/model/LoadBalancerTypeEnum.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <aws/elasticloadbalancingv2/model/IpAddressType.h>
 #include <aws/elasticloadbalancingv2/model/AvailabilityZone.h>
+#include <utility>
 
 namespace Aws
 {
@@ -52,6 +55,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The Amazon Resource Name (ARN) of the load balancer.</p>
      */
@@ -65,7 +69,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the load balancer.</p>
      */
-    inline void SetLoadBalancerArn(Aws::String&& value) { m_loadBalancerArnHasBeenSet = true; m_loadBalancerArn = value; }
+    inline void SetLoadBalancerArn(Aws::String&& value) { m_loadBalancerArnHasBeenSet = true; m_loadBalancerArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the load balancer.</p>
@@ -80,12 +84,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the load balancer.</p>
      */
-    inline LoadBalancer& WithLoadBalancerArn(Aws::String&& value) { SetLoadBalancerArn(value); return *this;}
+    inline LoadBalancer& WithLoadBalancerArn(Aws::String&& value) { SetLoadBalancerArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the load balancer.</p>
      */
     inline LoadBalancer& WithLoadBalancerArn(const char* value) { SetLoadBalancerArn(value); return *this;}
+
 
     /**
      * <p>The public DNS name of the load balancer.</p>
@@ -100,7 +105,7 @@ namespace Model
     /**
      * <p>The public DNS name of the load balancer.</p>
      */
-    inline void SetDNSName(Aws::String&& value) { m_dNSNameHasBeenSet = true; m_dNSName = value; }
+    inline void SetDNSName(Aws::String&& value) { m_dNSNameHasBeenSet = true; m_dNSName = std::move(value); }
 
     /**
      * <p>The public DNS name of the load balancer.</p>
@@ -115,12 +120,13 @@ namespace Model
     /**
      * <p>The public DNS name of the load balancer.</p>
      */
-    inline LoadBalancer& WithDNSName(Aws::String&& value) { SetDNSName(value); return *this;}
+    inline LoadBalancer& WithDNSName(Aws::String&& value) { SetDNSName(std::move(value)); return *this;}
 
     /**
      * <p>The public DNS name of the load balancer.</p>
      */
     inline LoadBalancer& WithDNSName(const char* value) { SetDNSName(value); return *this;}
+
 
     /**
      * <p>The ID of the Amazon Route 53 hosted zone associated with the load
@@ -138,7 +144,7 @@ namespace Model
      * <p>The ID of the Amazon Route 53 hosted zone associated with the load
      * balancer.</p>
      */
-    inline void SetCanonicalHostedZoneId(Aws::String&& value) { m_canonicalHostedZoneIdHasBeenSet = true; m_canonicalHostedZoneId = value; }
+    inline void SetCanonicalHostedZoneId(Aws::String&& value) { m_canonicalHostedZoneIdHasBeenSet = true; m_canonicalHostedZoneId = std::move(value); }
 
     /**
      * <p>The ID of the Amazon Route 53 hosted zone associated with the load
@@ -156,13 +162,14 @@ namespace Model
      * <p>The ID of the Amazon Route 53 hosted zone associated with the load
      * balancer.</p>
      */
-    inline LoadBalancer& WithCanonicalHostedZoneId(Aws::String&& value) { SetCanonicalHostedZoneId(value); return *this;}
+    inline LoadBalancer& WithCanonicalHostedZoneId(Aws::String&& value) { SetCanonicalHostedZoneId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the Amazon Route 53 hosted zone associated with the load
      * balancer.</p>
      */
     inline LoadBalancer& WithCanonicalHostedZoneId(const char* value) { SetCanonicalHostedZoneId(value); return *this;}
+
 
     /**
      * <p>The date and time the load balancer was created.</p>
@@ -177,7 +184,7 @@ namespace Model
     /**
      * <p>The date and time the load balancer was created.</p>
      */
-    inline void SetCreatedTime(Aws::Utils::DateTime&& value) { m_createdTimeHasBeenSet = true; m_createdTime = value; }
+    inline void SetCreatedTime(Aws::Utils::DateTime&& value) { m_createdTimeHasBeenSet = true; m_createdTime = std::move(value); }
 
     /**
      * <p>The date and time the load balancer was created.</p>
@@ -187,7 +194,8 @@ namespace Model
     /**
      * <p>The date and time the load balancer was created.</p>
      */
-    inline LoadBalancer& WithCreatedTime(Aws::Utils::DateTime&& value) { SetCreatedTime(value); return *this;}
+    inline LoadBalancer& WithCreatedTime(Aws::Utils::DateTime&& value) { SetCreatedTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The name of the load balancer.</p>
@@ -202,7 +210,7 @@ namespace Model
     /**
      * <p>The name of the load balancer.</p>
      */
-    inline void SetLoadBalancerName(Aws::String&& value) { m_loadBalancerNameHasBeenSet = true; m_loadBalancerName = value; }
+    inline void SetLoadBalancerName(Aws::String&& value) { m_loadBalancerNameHasBeenSet = true; m_loadBalancerName = std::move(value); }
 
     /**
      * <p>The name of the load balancer.</p>
@@ -217,12 +225,13 @@ namespace Model
     /**
      * <p>The name of the load balancer.</p>
      */
-    inline LoadBalancer& WithLoadBalancerName(Aws::String&& value) { SetLoadBalancerName(value); return *this;}
+    inline LoadBalancer& WithLoadBalancerName(Aws::String&& value) { SetLoadBalancerName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the load balancer.</p>
      */
     inline LoadBalancer& WithLoadBalancerName(const char* value) { SetLoadBalancerName(value); return *this;}
+
 
     /**
      * <p>The nodes of an Internet-facing load balancer have public IP addresses. The
@@ -258,7 +267,7 @@ namespace Model
      * Therefore, internal load balancers can only route requests from clients with
      * access to the VPC for the load balancer.</p>
      */
-    inline void SetScheme(LoadBalancerSchemeEnum&& value) { m_schemeHasBeenSet = true; m_scheme = value; }
+    inline void SetScheme(LoadBalancerSchemeEnum&& value) { m_schemeHasBeenSet = true; m_scheme = std::move(value); }
 
     /**
      * <p>The nodes of an Internet-facing load balancer have public IP addresses. The
@@ -282,7 +291,8 @@ namespace Model
      * Therefore, internal load balancers can only route requests from clients with
      * access to the VPC for the load balancer.</p>
      */
-    inline LoadBalancer& WithScheme(LoadBalancerSchemeEnum&& value) { SetScheme(value); return *this;}
+    inline LoadBalancer& WithScheme(LoadBalancerSchemeEnum&& value) { SetScheme(std::move(value)); return *this;}
+
 
     /**
      * <p>The ID of the VPC for the load balancer.</p>
@@ -297,7 +307,7 @@ namespace Model
     /**
      * <p>The ID of the VPC for the load balancer.</p>
      */
-    inline void SetVpcId(Aws::String&& value) { m_vpcIdHasBeenSet = true; m_vpcId = value; }
+    inline void SetVpcId(Aws::String&& value) { m_vpcIdHasBeenSet = true; m_vpcId = std::move(value); }
 
     /**
      * <p>The ID of the VPC for the load balancer.</p>
@@ -312,12 +322,13 @@ namespace Model
     /**
      * <p>The ID of the VPC for the load balancer.</p>
      */
-    inline LoadBalancer& WithVpcId(Aws::String&& value) { SetVpcId(value); return *this;}
+    inline LoadBalancer& WithVpcId(Aws::String&& value) { SetVpcId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the VPC for the load balancer.</p>
      */
     inline LoadBalancer& WithVpcId(const char* value) { SetVpcId(value); return *this;}
+
 
     /**
      * <p>The state of the load balancer.</p>
@@ -332,7 +343,7 @@ namespace Model
     /**
      * <p>The state of the load balancer.</p>
      */
-    inline void SetState(LoadBalancerState&& value) { m_stateHasBeenSet = true; m_state = value; }
+    inline void SetState(LoadBalancerState&& value) { m_stateHasBeenSet = true; m_state = std::move(value); }
 
     /**
      * <p>The state of the load balancer.</p>
@@ -342,7 +353,8 @@ namespace Model
     /**
      * <p>The state of the load balancer.</p>
      */
-    inline LoadBalancer& WithState(LoadBalancerState&& value) { SetState(value); return *this;}
+    inline LoadBalancer& WithState(LoadBalancerState&& value) { SetState(std::move(value)); return *this;}
+
 
     /**
      * <p>The type of load balancer.</p>
@@ -357,7 +369,7 @@ namespace Model
     /**
      * <p>The type of load balancer.</p>
      */
-    inline void SetType(LoadBalancerTypeEnum&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(LoadBalancerTypeEnum&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The type of load balancer.</p>
@@ -367,7 +379,8 @@ namespace Model
     /**
      * <p>The type of load balancer.</p>
      */
-    inline LoadBalancer& WithType(LoadBalancerTypeEnum&& value) { SetType(value); return *this;}
+    inline LoadBalancer& WithType(LoadBalancerTypeEnum&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p>The Availability Zones for the load balancer.</p>
@@ -382,7 +395,7 @@ namespace Model
     /**
      * <p>The Availability Zones for the load balancer.</p>
      */
-    inline void SetAvailabilityZones(Aws::Vector<AvailabilityZone>&& value) { m_availabilityZonesHasBeenSet = true; m_availabilityZones = value; }
+    inline void SetAvailabilityZones(Aws::Vector<AvailabilityZone>&& value) { m_availabilityZonesHasBeenSet = true; m_availabilityZones = std::move(value); }
 
     /**
      * <p>The Availability Zones for the load balancer.</p>
@@ -392,7 +405,7 @@ namespace Model
     /**
      * <p>The Availability Zones for the load balancer.</p>
      */
-    inline LoadBalancer& WithAvailabilityZones(Aws::Vector<AvailabilityZone>&& value) { SetAvailabilityZones(value); return *this;}
+    inline LoadBalancer& WithAvailabilityZones(Aws::Vector<AvailabilityZone>&& value) { SetAvailabilityZones(std::move(value)); return *this;}
 
     /**
      * <p>The Availability Zones for the load balancer.</p>
@@ -402,7 +415,8 @@ namespace Model
     /**
      * <p>The Availability Zones for the load balancer.</p>
      */
-    inline LoadBalancer& AddAvailabilityZones(AvailabilityZone&& value) { m_availabilityZonesHasBeenSet = true; m_availabilityZones.push_back(value); return *this; }
+    inline LoadBalancer& AddAvailabilityZones(AvailabilityZone&& value) { m_availabilityZonesHasBeenSet = true; m_availabilityZones.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The IDs of the security groups for the load balancer.</p>
@@ -417,7 +431,7 @@ namespace Model
     /**
      * <p>The IDs of the security groups for the load balancer.</p>
      */
-    inline void SetSecurityGroups(Aws::Vector<Aws::String>&& value) { m_securityGroupsHasBeenSet = true; m_securityGroups = value; }
+    inline void SetSecurityGroups(Aws::Vector<Aws::String>&& value) { m_securityGroupsHasBeenSet = true; m_securityGroups = std::move(value); }
 
     /**
      * <p>The IDs of the security groups for the load balancer.</p>
@@ -427,7 +441,7 @@ namespace Model
     /**
      * <p>The IDs of the security groups for the load balancer.</p>
      */
-    inline LoadBalancer& WithSecurityGroups(Aws::Vector<Aws::String>&& value) { SetSecurityGroups(value); return *this;}
+    inline LoadBalancer& WithSecurityGroups(Aws::Vector<Aws::String>&& value) { SetSecurityGroups(std::move(value)); return *this;}
 
     /**
      * <p>The IDs of the security groups for the load balancer.</p>
@@ -437,36 +451,86 @@ namespace Model
     /**
      * <p>The IDs of the security groups for the load balancer.</p>
      */
-    inline LoadBalancer& AddSecurityGroups(Aws::String&& value) { m_securityGroupsHasBeenSet = true; m_securityGroups.push_back(value); return *this; }
+    inline LoadBalancer& AddSecurityGroups(Aws::String&& value) { m_securityGroupsHasBeenSet = true; m_securityGroups.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The IDs of the security groups for the load balancer.</p>
      */
     inline LoadBalancer& AddSecurityGroups(const char* value) { m_securityGroupsHasBeenSet = true; m_securityGroups.push_back(value); return *this; }
 
+
+    /**
+     * <p>The type of IP addresses used by the subnets for your load balancer. The
+     * possible values are <code>ipv4</code> (for IPv4 addresses) and
+     * <code>dualstack</code> (for IPv4 and IPv6 addresses).</p>
+     */
+    inline const IpAddressType& GetIpAddressType() const{ return m_ipAddressType; }
+
+    /**
+     * <p>The type of IP addresses used by the subnets for your load balancer. The
+     * possible values are <code>ipv4</code> (for IPv4 addresses) and
+     * <code>dualstack</code> (for IPv4 and IPv6 addresses).</p>
+     */
+    inline void SetIpAddressType(const IpAddressType& value) { m_ipAddressTypeHasBeenSet = true; m_ipAddressType = value; }
+
+    /**
+     * <p>The type of IP addresses used by the subnets for your load balancer. The
+     * possible values are <code>ipv4</code> (for IPv4 addresses) and
+     * <code>dualstack</code> (for IPv4 and IPv6 addresses).</p>
+     */
+    inline void SetIpAddressType(IpAddressType&& value) { m_ipAddressTypeHasBeenSet = true; m_ipAddressType = std::move(value); }
+
+    /**
+     * <p>The type of IP addresses used by the subnets for your load balancer. The
+     * possible values are <code>ipv4</code> (for IPv4 addresses) and
+     * <code>dualstack</code> (for IPv4 and IPv6 addresses).</p>
+     */
+    inline LoadBalancer& WithIpAddressType(const IpAddressType& value) { SetIpAddressType(value); return *this;}
+
+    /**
+     * <p>The type of IP addresses used by the subnets for your load balancer. The
+     * possible values are <code>ipv4</code> (for IPv4 addresses) and
+     * <code>dualstack</code> (for IPv4 and IPv6 addresses).</p>
+     */
+    inline LoadBalancer& WithIpAddressType(IpAddressType&& value) { SetIpAddressType(std::move(value)); return *this;}
+
   private:
+
     Aws::String m_loadBalancerArn;
     bool m_loadBalancerArnHasBeenSet;
+
     Aws::String m_dNSName;
     bool m_dNSNameHasBeenSet;
+
     Aws::String m_canonicalHostedZoneId;
     bool m_canonicalHostedZoneIdHasBeenSet;
+
     Aws::Utils::DateTime m_createdTime;
     bool m_createdTimeHasBeenSet;
+
     Aws::String m_loadBalancerName;
     bool m_loadBalancerNameHasBeenSet;
+
     LoadBalancerSchemeEnum m_scheme;
     bool m_schemeHasBeenSet;
+
     Aws::String m_vpcId;
     bool m_vpcIdHasBeenSet;
+
     LoadBalancerState m_state;
     bool m_stateHasBeenSet;
+
     LoadBalancerTypeEnum m_type;
     bool m_typeHasBeenSet;
+
     Aws::Vector<AvailabilityZone> m_availabilityZones;
     bool m_availabilityZonesHasBeenSet;
+
     Aws::Vector<Aws::String> m_securityGroups;
     bool m_securityGroupsHasBeenSet;
+
+    IpAddressType m_ipAddressType;
+    bool m_ipAddressTypeHasBeenSet;
   };
 
 } // namespace Model

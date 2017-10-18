@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   * 
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -16,7 +16,9 @@
 #include <aws/core/http/HttpClientFactory.h>
 
 #if ENABLE_CURL_CLIENT
-    #include <aws/core/http/curl/CurlHttpClient.h>
+#include <aws/core/http/curl/CurlHttpClient.h>
+#include <signal.h>
+
 #elif ENABLE_WINDOWS_CLIENT
 #include <aws/core/client/ClientConfiguration.h>
 #if ENABLE_WINDOWS_IXML_HTTP_REQUEST_2_CLIENT
@@ -41,8 +43,23 @@ namespace Aws
     {
         static std::shared_ptr<HttpClientFactory> s_HttpClientFactory(nullptr);
         static bool s_InitCleanupCurlFlag(false);
+        static bool s_InstallSigPipeHandler(false);
 
         static const char* HTTP_CLIENT_FACTORY_ALLOCATION_TAG = "HttpClientFactory";
+
+#if ENABLE_CURL_CLIENT
+        static void LogAndSwallowHandler(int signal)
+        {
+            switch(signal)
+            {
+                case SIGPIPE:
+                    AWS_LOGSTREAM_ERROR(HTTP_CLIENT_FACTORY_ALLOCATION_TAG, "Received a SIGPIPE error");
+                    break;
+                default:
+                    AWS_LOGSTREAM_ERROR(HTTP_CLIENT_FACTORY_ALLOCATION_TAG, "Unhandled system SIGNAL error"  << signal);
+            }
+        }
+#endif
 
         class DefaultHttpClientFactory : public HttpClientFactory
         {
@@ -96,6 +113,10 @@ namespace Aws
                 {
                     CurlHttpClient::InitGlobalState();
                 }
+                if(s_InstallSigPipeHandler)
+                {
+                    ::signal(SIGPIPE, LogAndSwallowHandler);
+                }
 #elif ENABLE_WINDOWS_IXML_HTTP_REQUEST_2_CLIENT
                 IXmlHttpRequest2HttpClient::InitCOM();
 #endif
@@ -115,6 +136,11 @@ namespace Aws
         void SetInitCleanupCurlFlag(bool initCleanupFlag)
         {
             s_InitCleanupCurlFlag = initCleanupFlag;
+        }
+
+        void SetInstallSigPipeHandlerFlag(bool install)
+        {
+            s_InstallSigPipeHandler = install;
         }
 
         void InitHttp()

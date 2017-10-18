@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ssm/model/CreatePatchBaselineRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -22,10 +23,14 @@ using namespace Aws::Utils::Json;
 using namespace Aws::Utils;
 
 CreatePatchBaselineRequest::CreatePatchBaselineRequest() : 
+    m_operatingSystem(OperatingSystem::NOT_SET),
+    m_operatingSystemHasBeenSet(false),
     m_nameHasBeenSet(false),
     m_globalFiltersHasBeenSet(false),
     m_approvalRulesHasBeenSet(false),
     m_approvedPatchesHasBeenSet(false),
+    m_approvedPatchesComplianceLevel(PatchComplianceLevel::NOT_SET),
+    m_approvedPatchesComplianceLevelHasBeenSet(false),
     m_rejectedPatchesHasBeenSet(false),
     m_descriptionHasBeenSet(false),
     m_clientToken(Aws::Utils::UUID::RandomUUID()),
@@ -36,6 +41,11 @@ CreatePatchBaselineRequest::CreatePatchBaselineRequest() :
 Aws::String CreatePatchBaselineRequest::SerializePayload() const
 {
   JsonValue payload;
+
+  if(m_operatingSystemHasBeenSet)
+  {
+   payload.WithString("OperatingSystem", OperatingSystemMapper::GetNameForOperatingSystem(m_operatingSystem));
+  }
 
   if(m_nameHasBeenSet)
   {
@@ -64,6 +74,11 @@ Aws::String CreatePatchBaselineRequest::SerializePayload() const
    }
    payload.WithArray("ApprovedPatches", std::move(approvedPatchesJsonList));
 
+  }
+
+  if(m_approvedPatchesComplianceLevelHasBeenSet)
+  {
+   payload.WithString("ApprovedPatchesComplianceLevel", PatchComplianceLevelMapper::GetNameForPatchComplianceLevel(m_approvedPatchesComplianceLevel));
   }
 
   if(m_rejectedPatchesHasBeenSet)
@@ -99,6 +114,7 @@ Aws::Http::HeaderValueCollection CreatePatchBaselineRequest::GetRequestSpecificH
   return headers;
 
 }
+
 
 
 

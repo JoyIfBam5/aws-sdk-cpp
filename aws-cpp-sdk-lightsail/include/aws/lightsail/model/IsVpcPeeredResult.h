@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 
@@ -35,8 +36,9 @@ namespace Model
   {
   public:
     IsVpcPeeredResult();
-    IsVpcPeeredResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    IsVpcPeeredResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    IsVpcPeeredResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    IsVpcPeeredResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Returns <code>true</code> if the Lightsail VPC is peered; otherwise,
@@ -57,6 +59,7 @@ namespace Model
     inline IsVpcPeeredResult& WithIsPeered(bool value) { SetIsPeered(value); return *this;}
 
   private:
+
     bool m_isPeered;
   };
 

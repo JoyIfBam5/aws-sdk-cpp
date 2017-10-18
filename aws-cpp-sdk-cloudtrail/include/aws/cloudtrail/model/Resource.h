@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudtrail/CloudTrail_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     Resource(const Aws::Utils::Json::JsonValue& jsonValue);
     Resource& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>The type of a resource referenced by the event returned. When the resource
@@ -75,7 +78,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/awscloudtrail/latest/userguide/lookup_supported_resourcetypes.html">Resource
      * Types Supported for Event Lookup</a>.</p>
      */
-    inline void SetResourceType(Aws::String&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = value; }
+    inline void SetResourceType(Aws::String&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = std::move(value); }
 
     /**
      * <p>The type of a resource referenced by the event returned. When the resource
@@ -108,7 +111,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/awscloudtrail/latest/userguide/lookup_supported_resourcetypes.html">Resource
      * Types Supported for Event Lookup</a>.</p>
      */
-    inline Resource& WithResourceType(Aws::String&& value) { SetResourceType(value); return *this;}
+    inline Resource& WithResourceType(Aws::String&& value) { SetResourceType(std::move(value)); return *this;}
 
     /**
      * <p>The type of a resource referenced by the event returned. When the resource
@@ -120,6 +123,7 @@ namespace Model
      * Types Supported for Event Lookup</a>.</p>
      */
     inline Resource& WithResourceType(const char* value) { SetResourceType(value); return *this;}
+
 
     /**
      * <p>The name of the resource referenced by the event returned. These are
@@ -143,7 +147,7 @@ namespace Model
      * resource name might be "auto-scaling-test-group" for an Auto Scaling Group or
      * "i-1234567" for an EC2 Instance.</p>
      */
-    inline void SetResourceName(Aws::String&& value) { m_resourceNameHasBeenSet = true; m_resourceName = value; }
+    inline void SetResourceName(Aws::String&& value) { m_resourceNameHasBeenSet = true; m_resourceName = std::move(value); }
 
     /**
      * <p>The name of the resource referenced by the event returned. These are
@@ -167,7 +171,7 @@ namespace Model
      * resource name might be "auto-scaling-test-group" for an Auto Scaling Group or
      * "i-1234567" for an EC2 Instance.</p>
      */
-    inline Resource& WithResourceName(Aws::String&& value) { SetResourceName(value); return *this;}
+    inline Resource& WithResourceName(Aws::String&& value) { SetResourceName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the resource referenced by the event returned. These are
@@ -178,8 +182,10 @@ namespace Model
     inline Resource& WithResourceName(const char* value) { SetResourceName(value); return *this;}
 
   private:
+
     Aws::String m_resourceType;
     bool m_resourceTypeHasBeenSet;
+
     Aws::String m_resourceName;
     bool m_resourceNameHasBeenSet;
   };

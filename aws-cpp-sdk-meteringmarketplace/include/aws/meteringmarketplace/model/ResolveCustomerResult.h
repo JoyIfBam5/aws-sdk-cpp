@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/meteringmarketplace/MarketplaceMetering_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     ResolveCustomerResult();
-    ResolveCustomerResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ResolveCustomerResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ResolveCustomerResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ResolveCustomerResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The CustomerIdentifier is used to identify an individual customer in your
@@ -64,7 +67,7 @@ namespace Model
      * application. Calls to BatchMeterUsage require CustomerIdentifiers for each
      * UsageRecord.</p>
      */
-    inline void SetCustomerIdentifier(Aws::String&& value) { m_customerIdentifier = value; }
+    inline void SetCustomerIdentifier(Aws::String&& value) { m_customerIdentifier = std::move(value); }
 
     /**
      * <p>The CustomerIdentifier is used to identify an individual customer in your
@@ -85,7 +88,7 @@ namespace Model
      * application. Calls to BatchMeterUsage require CustomerIdentifiers for each
      * UsageRecord.</p>
      */
-    inline ResolveCustomerResult& WithCustomerIdentifier(Aws::String&& value) { SetCustomerIdentifier(value); return *this;}
+    inline ResolveCustomerResult& WithCustomerIdentifier(Aws::String&& value) { SetCustomerIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The CustomerIdentifier is used to identify an individual customer in your
@@ -93,6 +96,7 @@ namespace Model
      * UsageRecord.</p>
      */
     inline ResolveCustomerResult& WithCustomerIdentifier(const char* value) { SetCustomerIdentifier(value); return *this;}
+
 
     /**
      * <p>The product code is returned to confirm that the buyer is registering for
@@ -113,7 +117,7 @@ namespace Model
      * your product. Subsequent BatchMeterUsage calls should be made using this product
      * code.</p>
      */
-    inline void SetProductCode(Aws::String&& value) { m_productCode = value; }
+    inline void SetProductCode(Aws::String&& value) { m_productCode = std::move(value); }
 
     /**
      * <p>The product code is returned to confirm that the buyer is registering for
@@ -134,7 +138,7 @@ namespace Model
      * your product. Subsequent BatchMeterUsage calls should be made using this product
      * code.</p>
      */
-    inline ResolveCustomerResult& WithProductCode(Aws::String&& value) { SetProductCode(value); return *this;}
+    inline ResolveCustomerResult& WithProductCode(Aws::String&& value) { SetProductCode(std::move(value)); return *this;}
 
     /**
      * <p>The product code is returned to confirm that the buyer is registering for
@@ -144,7 +148,9 @@ namespace Model
     inline ResolveCustomerResult& WithProductCode(const char* value) { SetProductCode(value); return *this;}
 
   private:
+
     Aws::String m_customerIdentifier;
+
     Aws::String m_productCode;
   };
 

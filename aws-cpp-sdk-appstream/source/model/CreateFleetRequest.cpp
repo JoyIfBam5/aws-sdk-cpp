@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/appstream/model/CreateFleetRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -25,6 +26,8 @@ CreateFleetRequest::CreateFleetRequest() :
     m_nameHasBeenSet(false),
     m_imageNameHasBeenSet(false),
     m_instanceTypeHasBeenSet(false),
+    m_fleetType(FleetType::NOT_SET),
+    m_fleetTypeHasBeenSet(false),
     m_computeCapacityHasBeenSet(false),
     m_vpcConfigHasBeenSet(false),
     m_maxUserDurationInSeconds(0),
@@ -32,7 +35,10 @@ CreateFleetRequest::CreateFleetRequest() :
     m_disconnectTimeoutInSeconds(0),
     m_disconnectTimeoutInSecondsHasBeenSet(false),
     m_descriptionHasBeenSet(false),
-    m_displayNameHasBeenSet(false)
+    m_displayNameHasBeenSet(false),
+    m_enableDefaultInternetAccess(false),
+    m_enableDefaultInternetAccessHasBeenSet(false),
+    m_domainJoinInfoHasBeenSet(false)
 {
 }
 
@@ -56,6 +62,11 @@ Aws::String CreateFleetRequest::SerializePayload() const
   {
    payload.WithString("InstanceType", m_instanceType);
 
+  }
+
+  if(m_fleetTypeHasBeenSet)
+  {
+   payload.WithString("FleetType", FleetTypeMapper::GetNameForFleetType(m_fleetType));
   }
 
   if(m_computeCapacityHasBeenSet)
@@ -94,6 +105,18 @@ Aws::String CreateFleetRequest::SerializePayload() const
 
   }
 
+  if(m_enableDefaultInternetAccessHasBeenSet)
+  {
+   payload.WithBool("EnableDefaultInternetAccess", m_enableDefaultInternetAccess);
+
+  }
+
+  if(m_domainJoinInfoHasBeenSet)
+  {
+   payload.WithObject("DomainJoinInfo", m_domainJoinInfo.Jsonize());
+
+  }
+
   return payload.WriteReadable();
 }
 
@@ -104,6 +127,7 @@ Aws::Http::HeaderValueCollection CreateFleetRequest::GetRequestSpecificHeaders()
   return headers;
 
 }
+
 
 
 

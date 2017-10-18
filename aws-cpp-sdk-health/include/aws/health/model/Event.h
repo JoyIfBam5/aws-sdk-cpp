@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/health/Health_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/health/model/EventTypeCategory.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/health/model/EventStatusCode.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +51,7 @@ namespace Model
     Event& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The unique identifier for the event. Format:
      * <code>arn:aws:health:<i>event-region</i>::event/<i>EVENT_TYPE_PLUS_ID</i>
@@ -71,7 +74,7 @@ namespace Model
      * </code>. Example:
      * <code>arn:aws:health:us-east-1::event/AWS_EC2_MAINTENANCE_5331</code> </p>
      */
-    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = value; }
+    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = std::move(value); }
 
     /**
      * <p>The unique identifier for the event. Format:
@@ -95,7 +98,7 @@ namespace Model
      * </code>. Example:
      * <code>arn:aws:health:us-east-1::event/AWS_EC2_MAINTENANCE_5331</code> </p>
      */
-    inline Event& WithArn(Aws::String&& value) { SetArn(value); return *this;}
+    inline Event& WithArn(Aws::String&& value) { SetArn(std::move(value)); return *this;}
 
     /**
      * <p>The unique identifier for the event. Format:
@@ -104,6 +107,7 @@ namespace Model
      * <code>arn:aws:health:us-east-1::event/AWS_EC2_MAINTENANCE_5331</code> </p>
      */
     inline Event& WithArn(const char* value) { SetArn(value); return *this;}
+
 
     /**
      * <p>The AWS service that is affected by the event. For example, <code>EC2</code>,
@@ -121,7 +125,7 @@ namespace Model
      * <p>The AWS service that is affected by the event. For example, <code>EC2</code>,
      * <code>RDS</code>.</p>
      */
-    inline void SetService(Aws::String&& value) { m_serviceHasBeenSet = true; m_service = value; }
+    inline void SetService(Aws::String&& value) { m_serviceHasBeenSet = true; m_service = std::move(value); }
 
     /**
      * <p>The AWS service that is affected by the event. For example, <code>EC2</code>,
@@ -139,13 +143,14 @@ namespace Model
      * <p>The AWS service that is affected by the event. For example, <code>EC2</code>,
      * <code>RDS</code>.</p>
      */
-    inline Event& WithService(Aws::String&& value) { SetService(value); return *this;}
+    inline Event& WithService(Aws::String&& value) { SetService(std::move(value)); return *this;}
 
     /**
      * <p>The AWS service that is affected by the event. For example, <code>EC2</code>,
      * <code>RDS</code>.</p>
      */
     inline Event& WithService(const char* value) { SetService(value); return *this;}
+
 
     /**
      * <p>The unique identifier for the event type. The format is
@@ -166,7 +171,7 @@ namespace Model
      * <code>AWS_<i>SERVICE</i>_<i>DESCRIPTION</i> </code>; for example,
      * <code>AWS_EC2_SYSTEM_MAINTENANCE_EVENT</code>.</p>
      */
-    inline void SetEventTypeCode(Aws::String&& value) { m_eventTypeCodeHasBeenSet = true; m_eventTypeCode = value; }
+    inline void SetEventTypeCode(Aws::String&& value) { m_eventTypeCodeHasBeenSet = true; m_eventTypeCode = std::move(value); }
 
     /**
      * <p>The unique identifier for the event type. The format is
@@ -187,7 +192,7 @@ namespace Model
      * <code>AWS_<i>SERVICE</i>_<i>DESCRIPTION</i> </code>; for example,
      * <code>AWS_EC2_SYSTEM_MAINTENANCE_EVENT</code>.</p>
      */
-    inline Event& WithEventTypeCode(Aws::String&& value) { SetEventTypeCode(value); return *this;}
+    inline Event& WithEventTypeCode(Aws::String&& value) { SetEventTypeCode(std::move(value)); return *this;}
 
     /**
      * <p>The unique identifier for the event type. The format is
@@ -195,6 +200,7 @@ namespace Model
      * <code>AWS_EC2_SYSTEM_MAINTENANCE_EVENT</code>.</p>
      */
     inline Event& WithEventTypeCode(const char* value) { SetEventTypeCode(value); return *this;}
+
 
     /**
      * <p>The </p>
@@ -209,7 +215,7 @@ namespace Model
     /**
      * <p>The </p>
      */
-    inline void SetEventTypeCategory(EventTypeCategory&& value) { m_eventTypeCategoryHasBeenSet = true; m_eventTypeCategory = value; }
+    inline void SetEventTypeCategory(EventTypeCategory&& value) { m_eventTypeCategoryHasBeenSet = true; m_eventTypeCategory = std::move(value); }
 
     /**
      * <p>The </p>
@@ -219,7 +225,8 @@ namespace Model
     /**
      * <p>The </p>
      */
-    inline Event& WithEventTypeCategory(EventTypeCategory&& value) { SetEventTypeCategory(value); return *this;}
+    inline Event& WithEventTypeCategory(EventTypeCategory&& value) { SetEventTypeCategory(std::move(value)); return *this;}
+
 
     /**
      * <p>The AWS region name of the event.</p>
@@ -234,7 +241,7 @@ namespace Model
     /**
      * <p>The AWS region name of the event.</p>
      */
-    inline void SetRegion(Aws::String&& value) { m_regionHasBeenSet = true; m_region = value; }
+    inline void SetRegion(Aws::String&& value) { m_regionHasBeenSet = true; m_region = std::move(value); }
 
     /**
      * <p>The AWS region name of the event.</p>
@@ -249,12 +256,13 @@ namespace Model
     /**
      * <p>The AWS region name of the event.</p>
      */
-    inline Event& WithRegion(Aws::String&& value) { SetRegion(value); return *this;}
+    inline Event& WithRegion(Aws::String&& value) { SetRegion(std::move(value)); return *this;}
 
     /**
      * <p>The AWS region name of the event.</p>
      */
     inline Event& WithRegion(const char* value) { SetRegion(value); return *this;}
+
 
     /**
      * <p>The AWS Availability Zone of the event. For example, us-east-1a.</p>
@@ -269,7 +277,7 @@ namespace Model
     /**
      * <p>The AWS Availability Zone of the event. For example, us-east-1a.</p>
      */
-    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = value; }
+    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = std::move(value); }
 
     /**
      * <p>The AWS Availability Zone of the event. For example, us-east-1a.</p>
@@ -284,12 +292,13 @@ namespace Model
     /**
      * <p>The AWS Availability Zone of the event. For example, us-east-1a.</p>
      */
-    inline Event& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(value); return *this;}
+    inline Event& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(std::move(value)); return *this;}
 
     /**
      * <p>The AWS Availability Zone of the event. For example, us-east-1a.</p>
      */
     inline Event& WithAvailabilityZone(const char* value) { SetAvailabilityZone(value); return *this;}
+
 
     /**
      * <p>The date and time that the event began.</p>
@@ -304,7 +313,7 @@ namespace Model
     /**
      * <p>The date and time that the event began.</p>
      */
-    inline void SetStartTime(Aws::Utils::DateTime&& value) { m_startTimeHasBeenSet = true; m_startTime = value; }
+    inline void SetStartTime(Aws::Utils::DateTime&& value) { m_startTimeHasBeenSet = true; m_startTime = std::move(value); }
 
     /**
      * <p>The date and time that the event began.</p>
@@ -314,7 +323,8 @@ namespace Model
     /**
      * <p>The date and time that the event began.</p>
      */
-    inline Event& WithStartTime(Aws::Utils::DateTime&& value) { SetStartTime(value); return *this;}
+    inline Event& WithStartTime(Aws::Utils::DateTime&& value) { SetStartTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The date and time that the event ended.</p>
@@ -329,7 +339,7 @@ namespace Model
     /**
      * <p>The date and time that the event ended.</p>
      */
-    inline void SetEndTime(Aws::Utils::DateTime&& value) { m_endTimeHasBeenSet = true; m_endTime = value; }
+    inline void SetEndTime(Aws::Utils::DateTime&& value) { m_endTimeHasBeenSet = true; m_endTime = std::move(value); }
 
     /**
      * <p>The date and time that the event ended.</p>
@@ -339,7 +349,8 @@ namespace Model
     /**
      * <p>The date and time that the event ended.</p>
      */
-    inline Event& WithEndTime(Aws::Utils::DateTime&& value) { SetEndTime(value); return *this;}
+    inline Event& WithEndTime(Aws::Utils::DateTime&& value) { SetEndTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The most recent date and time that the event was updated.</p>
@@ -354,7 +365,7 @@ namespace Model
     /**
      * <p>The most recent date and time that the event was updated.</p>
      */
-    inline void SetLastUpdatedTime(Aws::Utils::DateTime&& value) { m_lastUpdatedTimeHasBeenSet = true; m_lastUpdatedTime = value; }
+    inline void SetLastUpdatedTime(Aws::Utils::DateTime&& value) { m_lastUpdatedTimeHasBeenSet = true; m_lastUpdatedTime = std::move(value); }
 
     /**
      * <p>The most recent date and time that the event was updated.</p>
@@ -364,7 +375,8 @@ namespace Model
     /**
      * <p>The most recent date and time that the event was updated.</p>
      */
-    inline Event& WithLastUpdatedTime(Aws::Utils::DateTime&& value) { SetLastUpdatedTime(value); return *this;}
+    inline Event& WithLastUpdatedTime(Aws::Utils::DateTime&& value) { SetLastUpdatedTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The most recent status of the event. Possible values are <code>open</code>,
@@ -382,7 +394,7 @@ namespace Model
      * <p>The most recent status of the event. Possible values are <code>open</code>,
      * <code>closed</code>, and <code>upcoming</code>.</p>
      */
-    inline void SetStatusCode(EventStatusCode&& value) { m_statusCodeHasBeenSet = true; m_statusCode = value; }
+    inline void SetStatusCode(EventStatusCode&& value) { m_statusCodeHasBeenSet = true; m_statusCode = std::move(value); }
 
     /**
      * <p>The most recent status of the event. Possible values are <code>open</code>,
@@ -394,27 +406,37 @@ namespace Model
      * <p>The most recent status of the event. Possible values are <code>open</code>,
      * <code>closed</code>, and <code>upcoming</code>.</p>
      */
-    inline Event& WithStatusCode(EventStatusCode&& value) { SetStatusCode(value); return *this;}
+    inline Event& WithStatusCode(EventStatusCode&& value) { SetStatusCode(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_arn;
     bool m_arnHasBeenSet;
+
     Aws::String m_service;
     bool m_serviceHasBeenSet;
+
     Aws::String m_eventTypeCode;
     bool m_eventTypeCodeHasBeenSet;
+
     EventTypeCategory m_eventTypeCategory;
     bool m_eventTypeCategoryHasBeenSet;
+
     Aws::String m_region;
     bool m_regionHasBeenSet;
+
     Aws::String m_availabilityZone;
     bool m_availabilityZoneHasBeenSet;
+
     Aws::Utils::DateTime m_startTime;
     bool m_startTimeHasBeenSet;
+
     Aws::Utils::DateTime m_endTime;
     bool m_endTimeHasBeenSet;
+
     Aws::Utils::DateTime m_lastUpdatedTime;
     bool m_lastUpdatedTimeHasBeenSet;
+
     EventStatusCode m_statusCode;
     bool m_statusCodeHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     DeleteObjectTaggingResult();
-    DeleteObjectTaggingResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DeleteObjectTaggingResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DeleteObjectTaggingResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DeleteObjectTaggingResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * The versionId of the object the tag-set was removed from.
@@ -52,7 +55,7 @@ namespace Model
     /**
      * The versionId of the object the tag-set was removed from.
      */
-    inline void SetVersionId(Aws::String&& value) { m_versionId = value; }
+    inline void SetVersionId(Aws::String&& value) { m_versionId = std::move(value); }
 
     /**
      * The versionId of the object the tag-set was removed from.
@@ -67,7 +70,7 @@ namespace Model
     /**
      * The versionId of the object the tag-set was removed from.
      */
-    inline DeleteObjectTaggingResult& WithVersionId(Aws::String&& value) { SetVersionId(value); return *this;}
+    inline DeleteObjectTaggingResult& WithVersionId(Aws::String&& value) { SetVersionId(std::move(value)); return *this;}
 
     /**
      * The versionId of the object the tag-set was removed from.
@@ -75,6 +78,7 @@ namespace Model
     inline DeleteObjectTaggingResult& WithVersionId(const char* value) { SetVersionId(value); return *this;}
 
   private:
+
     Aws::String m_versionId;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/s3/model/MetricsFilter.h>
+#include <utility>
 
 namespace Aws
 {
@@ -40,6 +42,7 @@ namespace Model
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
 
+
     /**
      * The ID used to identify the metrics configuration.
      */
@@ -53,7 +56,7 @@ namespace Model
     /**
      * The ID used to identify the metrics configuration.
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * The ID used to identify the metrics configuration.
@@ -68,12 +71,13 @@ namespace Model
     /**
      * The ID used to identify the metrics configuration.
      */
-    inline MetricsConfiguration& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline MetricsConfiguration& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * The ID used to identify the metrics configuration.
      */
     inline MetricsConfiguration& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * Specifies a metrics configuration filter. The metrics configuration will only
@@ -94,7 +98,7 @@ namespace Model
      * include objects that meet the filter's criteria. A filter must be a prefix, a
      * tag, or a conjunction (MetricsAndOperator).
      */
-    inline void SetFilter(MetricsFilter&& value) { m_filterHasBeenSet = true; m_filter = value; }
+    inline void SetFilter(MetricsFilter&& value) { m_filterHasBeenSet = true; m_filter = std::move(value); }
 
     /**
      * Specifies a metrics configuration filter. The metrics configuration will only
@@ -108,11 +112,13 @@ namespace Model
      * include objects that meet the filter's criteria. A filter must be a prefix, a
      * tag, or a conjunction (MetricsAndOperator).
      */
-    inline MetricsConfiguration& WithFilter(MetricsFilter&& value) { SetFilter(value); return *this;}
+    inline MetricsConfiguration& WithFilter(MetricsFilter&& value) { SetFilter(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     MetricsFilter m_filter;
     bool m_filterHasBeenSet;
   };

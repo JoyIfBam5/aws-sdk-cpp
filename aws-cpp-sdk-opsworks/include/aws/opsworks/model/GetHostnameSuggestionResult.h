@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     GetHostnameSuggestionResult();
-    GetHostnameSuggestionResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetHostnameSuggestionResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetHostnameSuggestionResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetHostnameSuggestionResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The layer ID.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The layer ID.</p>
      */
-    inline void SetLayerId(Aws::String&& value) { m_layerId = value; }
+    inline void SetLayerId(Aws::String&& value) { m_layerId = std::move(value); }
 
     /**
      * <p>The layer ID.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The layer ID.</p>
      */
-    inline GetHostnameSuggestionResult& WithLayerId(Aws::String&& value) { SetLayerId(value); return *this;}
+    inline GetHostnameSuggestionResult& WithLayerId(Aws::String&& value) { SetLayerId(std::move(value)); return *this;}
 
     /**
      * <p>The layer ID.</p>
      */
     inline GetHostnameSuggestionResult& WithLayerId(const char* value) { SetLayerId(value); return *this;}
+
 
     /**
      * <p>The generated host name.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The generated host name.</p>
      */
-    inline void SetHostname(Aws::String&& value) { m_hostname = value; }
+    inline void SetHostname(Aws::String&& value) { m_hostname = std::move(value); }
 
     /**
      * <p>The generated host name.</p>
@@ -108,7 +112,7 @@ namespace Model
     /**
      * <p>The generated host name.</p>
      */
-    inline GetHostnameSuggestionResult& WithHostname(Aws::String&& value) { SetHostname(value); return *this;}
+    inline GetHostnameSuggestionResult& WithHostname(Aws::String&& value) { SetHostname(std::move(value)); return *this;}
 
     /**
      * <p>The generated host name.</p>
@@ -116,7 +120,9 @@ namespace Model
     inline GetHostnameSuggestionResult& WithHostname(const char* value) { SetHostname(value); return *this;}
 
   private:
+
     Aws::String m_layerId;
+
     Aws::String m_hostname;
   };
 

@@ -2,17 +2,29 @@
 For 0.12+ all applications must call the Aws::InitAPI() function before making any other SDK calls, and the Aws::ShutdownAPI function when finished using the SDK. More information can be found here:
 https://aws.amazon.com/blogs/developer/aws-sdk-for-c-simplified-configuration-and-initialization/
 
-# aws-sdk-cpp
+# AWS SDK for C++
 The AWS SDK for C++ provides a modern C++ (version C++ 11 or later) interface for Amazon Web Services (AWS). It is meant to be performant and fully functioning with low- and high-level SDKs, while minimizing dependencies and providing platform portability (Windows, OSX, Linux, and mobile).  
 
 AWS SDK for C++ is in now in General Availability and recommended for production use. We invite our customers to join
 the development efforts by submitting pull requests and sending us feedback and ideas via GitHub Issues.
 
+## Getting Help
+Please use these community resources for getting help. We use the GitHub issues for tracking bugs and feature requests.
+* Ask a question on StackOverflow and tag it with the `aws-sdk-cpp` tag. 
+* If it turns out that you may have found a bug, please open an issue
+* Open a support ticket with [AWS Support]( https://console.aws.amazon.com/support/home#/)
+ 
+ 
+## Opening Issues
+If you encounter a bug with the AWS SDK for C++ we would like to hear about it. Search the [existing issues]( https://github.com/aws/aws-sdk-cpp/issues) and see if others are also experiencing the issue before opening a new issue. Please include the version of AWS SDK for CPP, Compiler, Compiler Version, CMake version, and OS you’re using. Please also include repro case when appropriate.
+ 
+The GitHub issues are intended for bug reports and feature requests. For help and questions with using AWS SDK for C++, please make use of the resources listed in the [Getting Help]( https://github.com/aws/aws-sdk-cpp#getting-help) section. Keeping the list of open issues lean we can respond in a timely manner.
+
+
 ### Introducing the AWS SDK for C++ from AWS re:invent 2015
 The following video explains many of the core features and also high-level SDKs
 
-[![Introducing the AWS SDK for C++](https://img.youtube.com/vi/fm4Aa3Whwos/0.jpg)]
-(https://www.youtube.com/watch?v=fm4Aa3Whwos&list=PLhr1KZpdzuke5pqzTvI2ZxwP8-NwLACuU&index=9 "Introducing the AWS SDK for C++")
+[![Introducing the AWS SDK for C++](https://img.youtube.com/vi/fm4Aa3Whwos/0.jpg)](https://www.youtube.com/watch?v=fm4Aa3Whwos&list=PLhr1KZpdzuke5pqzTvI2ZxwP8-NwLACuU&index=9 "Introducing the AWS SDK for C++")
 
 ### Building the SDK:
 Use the information below to build the entire source tree for your platform, run unit tests, and build integration tests.  
@@ -130,7 +142,7 @@ CMake options are variables that can either be ON or OFF, with a controllable de
 ##### NO_HTTP_CLIENT
 (Defaults to OFF) If enabled, prevents the default platform-specific http client from being built into the library.  Turn this ON if you wish to inject your own http client implementation.
 
-#####NO_ENCRYPTION
+##### NO_ENCRYPTION
 (Defaults to OFF) If enabled, prevents the default platform-specific cryptography implementation from being built into the library.  Turn this ON if you wish to inject your own cryptography implementation.
 
 ##### ENABLE_RTTI
@@ -167,10 +179,10 @@ An override path for where the build system should find the Android NDK.  By def
 Several directories are appended with \*integration-tests. After building your project, you can run these executables to ensure everything works properly.
 
 #### Dependencies:
-To compile in Linux, you must have the header files for libcurl, libopenssl, and libuuid. The packages are typically available in your package manager.
+To compile in Linux, you must have the header files for libcurl, libopenssl. The packages are typically available in your package manager.
 
 Debian example:
-   `sudo apt-get install libcurl-dev uuid-dev`
+   `sudo apt-get install libcurl-dev`
 
 ### Using the SDK
 After they are constructed, individual service clients are very similar to other SDKs, such as Java and .NET. This section explains how core works, how to use each feature, and how to construct an individual client.
@@ -384,6 +396,7 @@ struct AWS_CORE_API ClientConfiguration
     long connectTimeoutMs;
     std::shared_ptr<RetryStrategy> retryStrategy;
     Aws::String endpointOverride;
+    Aws::Http::Scheme proxyScheme;
     Aws::String proxyHost;
     unsigned proxyPort;
     Aws::String proxyUserName;
@@ -420,7 +433,7 @@ The retry strategy defaults to exponential backoff. You can override this defaul
 ##### Endpoint Override
 Do not alter the endpoint.
 
-##### Proxy Host, Port, User Name, and Password
+##### Proxy Scheme, Host, Port, User Name, and Password
 These settings allow you to configure a proxy for all communication with AWS. Examples of when this functionality might be useful include debugging in conjunction with the Burp suite, or using a proxy to connect to the internet.
 
 ##### Executor
@@ -442,7 +455,7 @@ You can use the AWSCredentialProvider interface to provide login credentials to 
 The default credential provider chain does the following:
 * Checks your environment variables for AWS Credentials
 * Checks your $HOME/.aws/credentials file for a profile and credentials
-* Contacts the EC2MetadataInstanceProfile service to request credentials
+* Contacts the ECS TaskRoleCredentialsProvider service to request credentials if Environment variable AWS_CONTAINER_CREDENTIALS_RELATIVE_URI has been set. Otherwise contacts the EC2MetadataInstanceProfileCredentialsProvider service to request credentials
 
 The simplest way to communicate with AWS is to ensure we can find your credentials in one of these locations.
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudformation/CloudFormation_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/cloudformation/model/ResourceStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name associated with the stack.</p>
      */
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>The name associated with the stack.</p>
      */
-    inline void SetStackName(Aws::String&& value) { m_stackNameHasBeenSet = true; m_stackName = value; }
+    inline void SetStackName(Aws::String&& value) { m_stackNameHasBeenSet = true; m_stackName = std::move(value); }
 
     /**
      * <p>The name associated with the stack.</p>
@@ -76,12 +79,13 @@ namespace Model
     /**
      * <p>The name associated with the stack.</p>
      */
-    inline StackResource& WithStackName(Aws::String&& value) { SetStackName(value); return *this;}
+    inline StackResource& WithStackName(Aws::String&& value) { SetStackName(std::move(value)); return *this;}
 
     /**
      * <p>The name associated with the stack.</p>
      */
     inline StackResource& WithStackName(const char* value) { SetStackName(value); return *this;}
+
 
     /**
      * <p>Unique identifier of the stack.</p>
@@ -96,7 +100,7 @@ namespace Model
     /**
      * <p>Unique identifier of the stack.</p>
      */
-    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = value; }
+    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = std::move(value); }
 
     /**
      * <p>Unique identifier of the stack.</p>
@@ -111,12 +115,13 @@ namespace Model
     /**
      * <p>Unique identifier of the stack.</p>
      */
-    inline StackResource& WithStackId(Aws::String&& value) { SetStackId(value); return *this;}
+    inline StackResource& WithStackId(Aws::String&& value) { SetStackId(std::move(value)); return *this;}
 
     /**
      * <p>Unique identifier of the stack.</p>
      */
     inline StackResource& WithStackId(const char* value) { SetStackId(value); return *this;}
+
 
     /**
      * <p>The logical name of the resource specified in the template.</p>
@@ -131,7 +136,7 @@ namespace Model
     /**
      * <p>The logical name of the resource specified in the template.</p>
      */
-    inline void SetLogicalResourceId(Aws::String&& value) { m_logicalResourceIdHasBeenSet = true; m_logicalResourceId = value; }
+    inline void SetLogicalResourceId(Aws::String&& value) { m_logicalResourceIdHasBeenSet = true; m_logicalResourceId = std::move(value); }
 
     /**
      * <p>The logical name of the resource specified in the template.</p>
@@ -146,12 +151,13 @@ namespace Model
     /**
      * <p>The logical name of the resource specified in the template.</p>
      */
-    inline StackResource& WithLogicalResourceId(Aws::String&& value) { SetLogicalResourceId(value); return *this;}
+    inline StackResource& WithLogicalResourceId(Aws::String&& value) { SetLogicalResourceId(std::move(value)); return *this;}
 
     /**
      * <p>The logical name of the resource specified in the template.</p>
      */
     inline StackResource& WithLogicalResourceId(const char* value) { SetLogicalResourceId(value); return *this;}
+
 
     /**
      * <p>The name or unique identifier that corresponds to a physical instance ID of a
@@ -169,7 +175,7 @@ namespace Model
      * <p>The name or unique identifier that corresponds to a physical instance ID of a
      * resource supported by AWS CloudFormation.</p>
      */
-    inline void SetPhysicalResourceId(Aws::String&& value) { m_physicalResourceIdHasBeenSet = true; m_physicalResourceId = value; }
+    inline void SetPhysicalResourceId(Aws::String&& value) { m_physicalResourceIdHasBeenSet = true; m_physicalResourceId = std::move(value); }
 
     /**
      * <p>The name or unique identifier that corresponds to a physical instance ID of a
@@ -187,13 +193,14 @@ namespace Model
      * <p>The name or unique identifier that corresponds to a physical instance ID of a
      * resource supported by AWS CloudFormation.</p>
      */
-    inline StackResource& WithPhysicalResourceId(Aws::String&& value) { SetPhysicalResourceId(value); return *this;}
+    inline StackResource& WithPhysicalResourceId(Aws::String&& value) { SetPhysicalResourceId(std::move(value)); return *this;}
 
     /**
      * <p>The name or unique identifier that corresponds to a physical instance ID of a
      * resource supported by AWS CloudFormation.</p>
      */
     inline StackResource& WithPhysicalResourceId(const char* value) { SetPhysicalResourceId(value); return *this;}
+
 
     /**
      * <p>Type of resource. (For more information, go to <a
@@ -214,7 +221,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">
      * AWS Resource Types Reference</a> in the AWS CloudFormation User Guide.)</p>
      */
-    inline void SetResourceType(Aws::String&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = value; }
+    inline void SetResourceType(Aws::String&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = std::move(value); }
 
     /**
      * <p>Type of resource. (For more information, go to <a
@@ -235,7 +242,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">
      * AWS Resource Types Reference</a> in the AWS CloudFormation User Guide.)</p>
      */
-    inline StackResource& WithResourceType(Aws::String&& value) { SetResourceType(value); return *this;}
+    inline StackResource& WithResourceType(Aws::String&& value) { SetResourceType(std::move(value)); return *this;}
 
     /**
      * <p>Type of resource. (For more information, go to <a
@@ -243,6 +250,7 @@ namespace Model
      * AWS Resource Types Reference</a> in the AWS CloudFormation User Guide.)</p>
      */
     inline StackResource& WithResourceType(const char* value) { SetResourceType(value); return *this;}
+
 
     /**
      * <p>Time the status was updated.</p>
@@ -257,7 +265,7 @@ namespace Model
     /**
      * <p>Time the status was updated.</p>
      */
-    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = value; }
+    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = std::move(value); }
 
     /**
      * <p>Time the status was updated.</p>
@@ -267,7 +275,8 @@ namespace Model
     /**
      * <p>Time the status was updated.</p>
      */
-    inline StackResource& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(value); return *this;}
+    inline StackResource& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(std::move(value)); return *this;}
+
 
     /**
      * <p>Current status of the resource.</p>
@@ -282,7 +291,7 @@ namespace Model
     /**
      * <p>Current status of the resource.</p>
      */
-    inline void SetResourceStatus(ResourceStatus&& value) { m_resourceStatusHasBeenSet = true; m_resourceStatus = value; }
+    inline void SetResourceStatus(ResourceStatus&& value) { m_resourceStatusHasBeenSet = true; m_resourceStatus = std::move(value); }
 
     /**
      * <p>Current status of the resource.</p>
@@ -292,7 +301,8 @@ namespace Model
     /**
      * <p>Current status of the resource.</p>
      */
-    inline StackResource& WithResourceStatus(ResourceStatus&& value) { SetResourceStatus(value); return *this;}
+    inline StackResource& WithResourceStatus(ResourceStatus&& value) { SetResourceStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>Success/failure message associated with the resource.</p>
@@ -307,7 +317,7 @@ namespace Model
     /**
      * <p>Success/failure message associated with the resource.</p>
      */
-    inline void SetResourceStatusReason(Aws::String&& value) { m_resourceStatusReasonHasBeenSet = true; m_resourceStatusReason = value; }
+    inline void SetResourceStatusReason(Aws::String&& value) { m_resourceStatusReasonHasBeenSet = true; m_resourceStatusReason = std::move(value); }
 
     /**
      * <p>Success/failure message associated with the resource.</p>
@@ -322,12 +332,13 @@ namespace Model
     /**
      * <p>Success/failure message associated with the resource.</p>
      */
-    inline StackResource& WithResourceStatusReason(Aws::String&& value) { SetResourceStatusReason(value); return *this;}
+    inline StackResource& WithResourceStatusReason(Aws::String&& value) { SetResourceStatusReason(std::move(value)); return *this;}
 
     /**
      * <p>Success/failure message associated with the resource.</p>
      */
     inline StackResource& WithResourceStatusReason(const char* value) { SetResourceStatusReason(value); return *this;}
+
 
     /**
      * <p>User defined description associated with the resource.</p>
@@ -342,7 +353,7 @@ namespace Model
     /**
      * <p>User defined description associated with the resource.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>User defined description associated with the resource.</p>
@@ -357,7 +368,7 @@ namespace Model
     /**
      * <p>User defined description associated with the resource.</p>
      */
-    inline StackResource& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline StackResource& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>User defined description associated with the resource.</p>
@@ -365,22 +376,31 @@ namespace Model
     inline StackResource& WithDescription(const char* value) { SetDescription(value); return *this;}
 
   private:
+
     Aws::String m_stackName;
     bool m_stackNameHasBeenSet;
+
     Aws::String m_stackId;
     bool m_stackIdHasBeenSet;
+
     Aws::String m_logicalResourceId;
     bool m_logicalResourceIdHasBeenSet;
+
     Aws::String m_physicalResourceId;
     bool m_physicalResourceIdHasBeenSet;
+
     Aws::String m_resourceType;
     bool m_resourceTypeHasBeenSet;
+
     Aws::Utils::DateTime m_timestamp;
     bool m_timestampHasBeenSet;
+
     ResourceStatus m_resourceStatus;
     bool m_resourceStatusHasBeenSet;
+
     Aws::String m_resourceStatusReason;
     bool m_resourceStatusReasonHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kms/KMS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -19,6 +20,7 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/kms/model/GrantConstraints.h>
 #include <aws/kms/model/GrantOperation.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     GrantListEntry& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The unique identifier for the customer master key (CMK) to which the grant
      * applies.</p>
@@ -64,7 +67,7 @@ namespace Model
      * <p>The unique identifier for the customer master key (CMK) to which the grant
      * applies.</p>
      */
-    inline void SetKeyId(Aws::String&& value) { m_keyIdHasBeenSet = true; m_keyId = value; }
+    inline void SetKeyId(Aws::String&& value) { m_keyIdHasBeenSet = true; m_keyId = std::move(value); }
 
     /**
      * <p>The unique identifier for the customer master key (CMK) to which the grant
@@ -82,13 +85,14 @@ namespace Model
      * <p>The unique identifier for the customer master key (CMK) to which the grant
      * applies.</p>
      */
-    inline GrantListEntry& WithKeyId(Aws::String&& value) { SetKeyId(value); return *this;}
+    inline GrantListEntry& WithKeyId(Aws::String&& value) { SetKeyId(std::move(value)); return *this;}
 
     /**
      * <p>The unique identifier for the customer master key (CMK) to which the grant
      * applies.</p>
      */
     inline GrantListEntry& WithKeyId(const char* value) { SetKeyId(value); return *this;}
+
 
     /**
      * <p>The unique identifier for the grant.</p>
@@ -103,7 +107,7 @@ namespace Model
     /**
      * <p>The unique identifier for the grant.</p>
      */
-    inline void SetGrantId(Aws::String&& value) { m_grantIdHasBeenSet = true; m_grantId = value; }
+    inline void SetGrantId(Aws::String&& value) { m_grantIdHasBeenSet = true; m_grantId = std::move(value); }
 
     /**
      * <p>The unique identifier for the grant.</p>
@@ -118,12 +122,13 @@ namespace Model
     /**
      * <p>The unique identifier for the grant.</p>
      */
-    inline GrantListEntry& WithGrantId(Aws::String&& value) { SetGrantId(value); return *this;}
+    inline GrantListEntry& WithGrantId(Aws::String&& value) { SetGrantId(std::move(value)); return *this;}
 
     /**
      * <p>The unique identifier for the grant.</p>
      */
     inline GrantListEntry& WithGrantId(const char* value) { SetGrantId(value); return *this;}
+
 
     /**
      * <p>The friendly name that identifies the grant. If a name was provided in the
@@ -144,7 +149,7 @@ namespace Model
      * <a>CreateGrant</a> request, that name is returned. Otherwise this value is
      * null.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The friendly name that identifies the grant. If a name was provided in the
@@ -165,7 +170,7 @@ namespace Model
      * <a>CreateGrant</a> request, that name is returned. Otherwise this value is
      * null.</p>
      */
-    inline GrantListEntry& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline GrantListEntry& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The friendly name that identifies the grant. If a name was provided in the
@@ -173,6 +178,7 @@ namespace Model
      * null.</p>
      */
     inline GrantListEntry& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The date and time when the grant was created.</p>
@@ -187,7 +193,7 @@ namespace Model
     /**
      * <p>The date and time when the grant was created.</p>
      */
-    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDateHasBeenSet = true; m_creationDate = value; }
+    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDateHasBeenSet = true; m_creationDate = std::move(value); }
 
     /**
      * <p>The date and time when the grant was created.</p>
@@ -197,7 +203,8 @@ namespace Model
     /**
      * <p>The date and time when the grant was created.</p>
      */
-    inline GrantListEntry& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(value); return *this;}
+    inline GrantListEntry& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(std::move(value)); return *this;}
+
 
     /**
      * <p>The principal that receives the grant's permissions.</p>
@@ -212,7 +219,7 @@ namespace Model
     /**
      * <p>The principal that receives the grant's permissions.</p>
      */
-    inline void SetGranteePrincipal(Aws::String&& value) { m_granteePrincipalHasBeenSet = true; m_granteePrincipal = value; }
+    inline void SetGranteePrincipal(Aws::String&& value) { m_granteePrincipalHasBeenSet = true; m_granteePrincipal = std::move(value); }
 
     /**
      * <p>The principal that receives the grant's permissions.</p>
@@ -227,12 +234,13 @@ namespace Model
     /**
      * <p>The principal that receives the grant's permissions.</p>
      */
-    inline GrantListEntry& WithGranteePrincipal(Aws::String&& value) { SetGranteePrincipal(value); return *this;}
+    inline GrantListEntry& WithGranteePrincipal(Aws::String&& value) { SetGranteePrincipal(std::move(value)); return *this;}
 
     /**
      * <p>The principal that receives the grant's permissions.</p>
      */
     inline GrantListEntry& WithGranteePrincipal(const char* value) { SetGranteePrincipal(value); return *this;}
+
 
     /**
      * <p>The principal that can retire the grant.</p>
@@ -247,7 +255,7 @@ namespace Model
     /**
      * <p>The principal that can retire the grant.</p>
      */
-    inline void SetRetiringPrincipal(Aws::String&& value) { m_retiringPrincipalHasBeenSet = true; m_retiringPrincipal = value; }
+    inline void SetRetiringPrincipal(Aws::String&& value) { m_retiringPrincipalHasBeenSet = true; m_retiringPrincipal = std::move(value); }
 
     /**
      * <p>The principal that can retire the grant.</p>
@@ -262,12 +270,13 @@ namespace Model
     /**
      * <p>The principal that can retire the grant.</p>
      */
-    inline GrantListEntry& WithRetiringPrincipal(Aws::String&& value) { SetRetiringPrincipal(value); return *this;}
+    inline GrantListEntry& WithRetiringPrincipal(Aws::String&& value) { SetRetiringPrincipal(std::move(value)); return *this;}
 
     /**
      * <p>The principal that can retire the grant.</p>
      */
     inline GrantListEntry& WithRetiringPrincipal(const char* value) { SetRetiringPrincipal(value); return *this;}
+
 
     /**
      * <p>The AWS account under which the grant was issued.</p>
@@ -282,7 +291,7 @@ namespace Model
     /**
      * <p>The AWS account under which the grant was issued.</p>
      */
-    inline void SetIssuingAccount(Aws::String&& value) { m_issuingAccountHasBeenSet = true; m_issuingAccount = value; }
+    inline void SetIssuingAccount(Aws::String&& value) { m_issuingAccountHasBeenSet = true; m_issuingAccount = std::move(value); }
 
     /**
      * <p>The AWS account under which the grant was issued.</p>
@@ -297,12 +306,13 @@ namespace Model
     /**
      * <p>The AWS account under which the grant was issued.</p>
      */
-    inline GrantListEntry& WithIssuingAccount(Aws::String&& value) { SetIssuingAccount(value); return *this;}
+    inline GrantListEntry& WithIssuingAccount(Aws::String&& value) { SetIssuingAccount(std::move(value)); return *this;}
 
     /**
      * <p>The AWS account under which the grant was issued.</p>
      */
     inline GrantListEntry& WithIssuingAccount(const char* value) { SetIssuingAccount(value); return *this;}
+
 
     /**
      * <p>The list of operations permitted by the grant.</p>
@@ -317,7 +327,7 @@ namespace Model
     /**
      * <p>The list of operations permitted by the grant.</p>
      */
-    inline void SetOperations(Aws::Vector<GrantOperation>&& value) { m_operationsHasBeenSet = true; m_operations = value; }
+    inline void SetOperations(Aws::Vector<GrantOperation>&& value) { m_operationsHasBeenSet = true; m_operations = std::move(value); }
 
     /**
      * <p>The list of operations permitted by the grant.</p>
@@ -327,7 +337,7 @@ namespace Model
     /**
      * <p>The list of operations permitted by the grant.</p>
      */
-    inline GrantListEntry& WithOperations(Aws::Vector<GrantOperation>&& value) { SetOperations(value); return *this;}
+    inline GrantListEntry& WithOperations(Aws::Vector<GrantOperation>&& value) { SetOperations(std::move(value)); return *this;}
 
     /**
      * <p>The list of operations permitted by the grant.</p>
@@ -337,50 +347,65 @@ namespace Model
     /**
      * <p>The list of operations permitted by the grant.</p>
      */
-    inline GrantListEntry& AddOperations(GrantOperation&& value) { m_operationsHasBeenSet = true; m_operations.push_back(value); return *this; }
+    inline GrantListEntry& AddOperations(GrantOperation&& value) { m_operationsHasBeenSet = true; m_operations.push_back(std::move(value)); return *this; }
+
 
     /**
-     * <p>The conditions under which the grant's operations are allowed.</p>
+     * <p>A list of key-value pairs that must be present in the encryption context of
+     * certain subsequent operations that the grant allows.</p>
      */
     inline const GrantConstraints& GetConstraints() const{ return m_constraints; }
 
     /**
-     * <p>The conditions under which the grant's operations are allowed.</p>
+     * <p>A list of key-value pairs that must be present in the encryption context of
+     * certain subsequent operations that the grant allows.</p>
      */
     inline void SetConstraints(const GrantConstraints& value) { m_constraintsHasBeenSet = true; m_constraints = value; }
 
     /**
-     * <p>The conditions under which the grant's operations are allowed.</p>
+     * <p>A list of key-value pairs that must be present in the encryption context of
+     * certain subsequent operations that the grant allows.</p>
      */
-    inline void SetConstraints(GrantConstraints&& value) { m_constraintsHasBeenSet = true; m_constraints = value; }
+    inline void SetConstraints(GrantConstraints&& value) { m_constraintsHasBeenSet = true; m_constraints = std::move(value); }
 
     /**
-     * <p>The conditions under which the grant's operations are allowed.</p>
+     * <p>A list of key-value pairs that must be present in the encryption context of
+     * certain subsequent operations that the grant allows.</p>
      */
     inline GrantListEntry& WithConstraints(const GrantConstraints& value) { SetConstraints(value); return *this;}
 
     /**
-     * <p>The conditions under which the grant's operations are allowed.</p>
+     * <p>A list of key-value pairs that must be present in the encryption context of
+     * certain subsequent operations that the grant allows.</p>
      */
-    inline GrantListEntry& WithConstraints(GrantConstraints&& value) { SetConstraints(value); return *this;}
+    inline GrantListEntry& WithConstraints(GrantConstraints&& value) { SetConstraints(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_keyId;
     bool m_keyIdHasBeenSet;
+
     Aws::String m_grantId;
     bool m_grantIdHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::Utils::DateTime m_creationDate;
     bool m_creationDateHasBeenSet;
+
     Aws::String m_granteePrincipal;
     bool m_granteePrincipalHasBeenSet;
+
     Aws::String m_retiringPrincipal;
     bool m_retiringPrincipalHasBeenSet;
+
     Aws::String m_issuingAccount;
     bool m_issuingAccountHasBeenSet;
+
     Aws::Vector<GrantOperation> m_operations;
     bool m_operationsHasBeenSet;
+
     GrantConstraints m_constraints;
     bool m_constraintsHasBeenSet;
   };

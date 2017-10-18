@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -41,8 +43,9 @@ namespace Model
   {
   public:
     GetPolicyResult();
-    GetPolicyResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetPolicyResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetPolicyResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetPolicyResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The policy name.</p>
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The policy name.</p>
      */
-    inline void SetPolicyName(Aws::String&& value) { m_policyName = value; }
+    inline void SetPolicyName(Aws::String&& value) { m_policyName = std::move(value); }
 
     /**
      * <p>The policy name.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The policy name.</p>
      */
-    inline GetPolicyResult& WithPolicyName(Aws::String&& value) { SetPolicyName(value); return *this;}
+    inline GetPolicyResult& WithPolicyName(Aws::String&& value) { SetPolicyName(std::move(value)); return *this;}
 
     /**
      * <p>The policy name.</p>
      */
     inline GetPolicyResult& WithPolicyName(const char* value) { SetPolicyName(value); return *this;}
+
 
     /**
      * <p>The policy ARN.</p>
@@ -92,7 +96,7 @@ namespace Model
     /**
      * <p>The policy ARN.</p>
      */
-    inline void SetPolicyArn(Aws::String&& value) { m_policyArn = value; }
+    inline void SetPolicyArn(Aws::String&& value) { m_policyArn = std::move(value); }
 
     /**
      * <p>The policy ARN.</p>
@@ -107,12 +111,13 @@ namespace Model
     /**
      * <p>The policy ARN.</p>
      */
-    inline GetPolicyResult& WithPolicyArn(Aws::String&& value) { SetPolicyArn(value); return *this;}
+    inline GetPolicyResult& WithPolicyArn(Aws::String&& value) { SetPolicyArn(std::move(value)); return *this;}
 
     /**
      * <p>The policy ARN.</p>
      */
     inline GetPolicyResult& WithPolicyArn(const char* value) { SetPolicyArn(value); return *this;}
+
 
     /**
      * <p>The JSON document that describes the policy.</p>
@@ -127,7 +132,7 @@ namespace Model
     /**
      * <p>The JSON document that describes the policy.</p>
      */
-    inline void SetPolicyDocument(Aws::String&& value) { m_policyDocument = value; }
+    inline void SetPolicyDocument(Aws::String&& value) { m_policyDocument = std::move(value); }
 
     /**
      * <p>The JSON document that describes the policy.</p>
@@ -142,12 +147,13 @@ namespace Model
     /**
      * <p>The JSON document that describes the policy.</p>
      */
-    inline GetPolicyResult& WithPolicyDocument(Aws::String&& value) { SetPolicyDocument(value); return *this;}
+    inline GetPolicyResult& WithPolicyDocument(Aws::String&& value) { SetPolicyDocument(std::move(value)); return *this;}
 
     /**
      * <p>The JSON document that describes the policy.</p>
      */
     inline GetPolicyResult& WithPolicyDocument(const char* value) { SetPolicyDocument(value); return *this;}
+
 
     /**
      * <p>The default policy version ID.</p>
@@ -162,7 +168,7 @@ namespace Model
     /**
      * <p>The default policy version ID.</p>
      */
-    inline void SetDefaultVersionId(Aws::String&& value) { m_defaultVersionId = value; }
+    inline void SetDefaultVersionId(Aws::String&& value) { m_defaultVersionId = std::move(value); }
 
     /**
      * <p>The default policy version ID.</p>
@@ -177,7 +183,7 @@ namespace Model
     /**
      * <p>The default policy version ID.</p>
      */
-    inline GetPolicyResult& WithDefaultVersionId(Aws::String&& value) { SetDefaultVersionId(value); return *this;}
+    inline GetPolicyResult& WithDefaultVersionId(Aws::String&& value) { SetDefaultVersionId(std::move(value)); return *this;}
 
     /**
      * <p>The default policy version ID.</p>
@@ -185,9 +191,13 @@ namespace Model
     inline GetPolicyResult& WithDefaultVersionId(const char* value) { SetDefaultVersionId(value); return *this;}
 
   private:
+
     Aws::String m_policyName;
+
     Aws::String m_policyArn;
+
     Aws::String m_policyDocument;
+
     Aws::String m_defaultVersionId;
   };
 

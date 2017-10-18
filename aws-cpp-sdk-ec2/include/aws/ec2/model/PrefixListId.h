@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,57 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
+    /**
+     * <p>A description for the security group rule that references this prefix list
+     * ID.</p> <p>Constraints: Up to 255 characters in length. Allowed characters are
+     * a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=;{}!$*</p>
+     */
+    inline const Aws::String& GetDescription() const{ return m_description; }
+
+    /**
+     * <p>A description for the security group rule that references this prefix list
+     * ID.</p> <p>Constraints: Up to 255 characters in length. Allowed characters are
+     * a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=;{}!$*</p>
+     */
+    inline void SetDescription(const Aws::String& value) { m_descriptionHasBeenSet = true; m_description = value; }
+
+    /**
+     * <p>A description for the security group rule that references this prefix list
+     * ID.</p> <p>Constraints: Up to 255 characters in length. Allowed characters are
+     * a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=;{}!$*</p>
+     */
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
+
+    /**
+     * <p>A description for the security group rule that references this prefix list
+     * ID.</p> <p>Constraints: Up to 255 characters in length. Allowed characters are
+     * a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=;{}!$*</p>
+     */
+    inline void SetDescription(const char* value) { m_descriptionHasBeenSet = true; m_description.assign(value); }
+
+    /**
+     * <p>A description for the security group rule that references this prefix list
+     * ID.</p> <p>Constraints: Up to 255 characters in length. Allowed characters are
+     * a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=;{}!$*</p>
+     */
+    inline PrefixListId& WithDescription(const Aws::String& value) { SetDescription(value); return *this;}
+
+    /**
+     * <p>A description for the security group rule that references this prefix list
+     * ID.</p> <p>Constraints: Up to 255 characters in length. Allowed characters are
+     * a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=;{}!$*</p>
+     */
+    inline PrefixListId& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
+
+    /**
+     * <p>A description for the security group rule that references this prefix list
+     * ID.</p> <p>Constraints: Up to 255 characters in length. Allowed characters are
+     * a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=;{}!$*</p>
+     */
+    inline PrefixListId& WithDescription(const char* value) { SetDescription(value); return *this;}
+
+
     /**
      * <p>The ID of the prefix.</p>
      */
@@ -59,7 +112,7 @@ namespace Model
     /**
      * <p>The ID of the prefix.</p>
      */
-    inline void SetPrefixListId(Aws::String&& value) { m_prefixListIdHasBeenSet = true; m_prefixListId = value; }
+    inline void SetPrefixListId(Aws::String&& value) { m_prefixListIdHasBeenSet = true; m_prefixListId = std::move(value); }
 
     /**
      * <p>The ID of the prefix.</p>
@@ -74,7 +127,7 @@ namespace Model
     /**
      * <p>The ID of the prefix.</p>
      */
-    inline PrefixListId& WithPrefixListId(Aws::String&& value) { SetPrefixListId(value); return *this;}
+    inline PrefixListId& WithPrefixListId(Aws::String&& value) { SetPrefixListId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the prefix.</p>
@@ -82,6 +135,10 @@ namespace Model
     inline PrefixListId& WithPrefixListId(const char* value) { SetPrefixListId(value); return *this;}
 
   private:
+
+    Aws::String m_description;
+    bool m_descriptionHasBeenSet;
+
     Aws::String m_prefixListId;
     bool m_prefixListIdHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/ssm/model/Patch.h>
 #include <aws/ssm/model/PatchStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     EffectivePatch& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Provides metadata for a patch, including information such as the KB ID,
      * severity, classification and a URL for where more information can be obtained
@@ -67,7 +70,7 @@ namespace Model
      * severity, classification and a URL for where more information can be obtained
      * about the patch.</p>
      */
-    inline void SetPatch(Patch&& value) { m_patchHasBeenSet = true; m_patch = value; }
+    inline void SetPatch(Patch&& value) { m_patchHasBeenSet = true; m_patch = std::move(value); }
 
     /**
      * <p>Provides metadata for a patch, including information such as the KB ID,
@@ -81,7 +84,8 @@ namespace Model
      * severity, classification and a URL for where more information can be obtained
      * about the patch.</p>
      */
-    inline EffectivePatch& WithPatch(Patch&& value) { SetPatch(value); return *this;}
+    inline EffectivePatch& WithPatch(Patch&& value) { SetPatch(std::move(value)); return *this;}
+
 
     /**
      * <p>The status of the patch in a patch baseline. This includes information about
@@ -105,7 +109,7 @@ namespace Model
      * explicitly approved, or explicitly rejected and the date the patch was or will
      * be approved.</p>
      */
-    inline void SetPatchStatus(PatchStatus&& value) { m_patchStatusHasBeenSet = true; m_patchStatus = value; }
+    inline void SetPatchStatus(PatchStatus&& value) { m_patchStatusHasBeenSet = true; m_patchStatus = std::move(value); }
 
     /**
      * <p>The status of the patch in a patch baseline. This includes information about
@@ -121,11 +125,13 @@ namespace Model
      * explicitly approved, or explicitly rejected and the date the patch was or will
      * be approved.</p>
      */
-    inline EffectivePatch& WithPatchStatus(PatchStatus&& value) { SetPatchStatus(value); return *this;}
+    inline EffectivePatch& WithPatchStatus(PatchStatus&& value) { SetPatchStatus(std::move(value)); return *this;}
 
   private:
+
     Patch m_patch;
     bool m_patchHasBeenSet;
+
     PatchStatus m_patchStatus;
     bool m_patchStatusHasBeenSet;
   };

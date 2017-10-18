@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticloadbalancing/ElasticLoadBalancing_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
 
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
+
 
     /**
      * <p>The instance being checked. The protocol is either TCP, HTTP, HTTPS, or SSL.
@@ -92,7 +95,7 @@ namespace Model
      * the timeout period is considered unhealthy.</p> <p>The total length of the HTTP
      * ping target must be 1024 16-bit Unicode characters or less.</p>
      */
-    inline void SetTarget(Aws::String&& value) { m_targetHasBeenSet = true; m_target = value; }
+    inline void SetTarget(Aws::String&& value) { m_targetHasBeenSet = true; m_target = std::move(value); }
 
     /**
      * <p>The instance being checked. The protocol is either TCP, HTTP, HTTPS, or SSL.
@@ -140,7 +143,7 @@ namespace Model
      * the timeout period is considered unhealthy.</p> <p>The total length of the HTTP
      * ping target must be 1024 16-bit Unicode characters or less.</p>
      */
-    inline HealthCheck& WithTarget(Aws::String&& value) { SetTarget(value); return *this;}
+    inline HealthCheck& WithTarget(Aws::String&& value) { SetTarget(std::move(value)); return *this;}
 
     /**
      * <p>The instance being checked. The protocol is either TCP, HTTP, HTTPS, or SSL.
@@ -157,6 +160,7 @@ namespace Model
      * ping target must be 1024 16-bit Unicode characters or less.</p>
      */
     inline HealthCheck& WithTarget(const char* value) { SetTarget(value); return *this;}
+
 
     /**
      * <p>The approximate interval, in seconds, between health checks of an individual
@@ -175,6 +179,7 @@ namespace Model
      * instance.</p>
      */
     inline HealthCheck& WithInterval(int value) { SetInterval(value); return *this;}
+
 
     /**
      * <p>The amount of time, in seconds, during which no response means a failed
@@ -197,6 +202,7 @@ namespace Model
      */
     inline HealthCheck& WithTimeout(int value) { SetTimeout(value); return *this;}
 
+
     /**
      * <p>The number of consecutive health check failures required before moving the
      * instance to the <code>Unhealthy</code> state.</p>
@@ -214,6 +220,7 @@ namespace Model
      * instance to the <code>Unhealthy</code> state.</p>
      */
     inline HealthCheck& WithUnhealthyThreshold(int value) { SetUnhealthyThreshold(value); return *this;}
+
 
     /**
      * <p>The number of consecutive health checks successes required before moving the
@@ -234,14 +241,19 @@ namespace Model
     inline HealthCheck& WithHealthyThreshold(int value) { SetHealthyThreshold(value); return *this;}
 
   private:
+
     Aws::String m_target;
     bool m_targetHasBeenSet;
+
     int m_interval;
     bool m_intervalHasBeenSet;
+
     int m_timeout;
     bool m_timeoutHasBeenSet;
+
     int m_unhealthyThreshold;
     bool m_unhealthyThresholdHasBeenSet;
+
     int m_healthyThreshold;
     bool m_healthyThresholdHasBeenSet;
   };

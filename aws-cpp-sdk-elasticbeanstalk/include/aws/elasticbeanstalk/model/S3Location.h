@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The Amazon S3 bucket where the data is located.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The Amazon S3 bucket where the data is located.</p>
      */
-    inline void SetS3Bucket(Aws::String&& value) { m_s3BucketHasBeenSet = true; m_s3Bucket = value; }
+    inline void SetS3Bucket(Aws::String&& value) { m_s3BucketHasBeenSet = true; m_s3Bucket = std::move(value); }
 
     /**
      * <p>The Amazon S3 bucket where the data is located.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The Amazon S3 bucket where the data is located.</p>
      */
-    inline S3Location& WithS3Bucket(Aws::String&& value) { SetS3Bucket(value); return *this;}
+    inline S3Location& WithS3Bucket(Aws::String&& value) { SetS3Bucket(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon S3 bucket where the data is located.</p>
      */
     inline S3Location& WithS3Bucket(const char* value) { SetS3Bucket(value); return *this;}
+
 
     /**
      * <p>The Amazon S3 key where the data is located.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>The Amazon S3 key where the data is located.</p>
      */
-    inline void SetS3Key(Aws::String&& value) { m_s3KeyHasBeenSet = true; m_s3Key = value; }
+    inline void SetS3Key(Aws::String&& value) { m_s3KeyHasBeenSet = true; m_s3Key = std::move(value); }
 
     /**
      * <p>The Amazon S3 key where the data is located.</p>
@@ -110,7 +114,7 @@ namespace Model
     /**
      * <p>The Amazon S3 key where the data is located.</p>
      */
-    inline S3Location& WithS3Key(Aws::String&& value) { SetS3Key(value); return *this;}
+    inline S3Location& WithS3Key(Aws::String&& value) { SetS3Key(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon S3 key where the data is located.</p>
@@ -118,8 +122,10 @@ namespace Model
     inline S3Location& WithS3Key(const char* value) { SetS3Key(value); return *this;}
 
   private:
+
     Aws::String m_s3Bucket;
     bool m_s3BucketHasBeenSet;
+
     Aws::String m_s3Key;
     bool m_s3KeyHasBeenSet;
   };

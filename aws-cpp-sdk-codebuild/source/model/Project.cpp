@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/codebuild/model/Project.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -40,7 +41,8 @@ Project::Project() :
     m_encryptionKeyHasBeenSet(false),
     m_tagsHasBeenSet(false),
     m_createdHasBeenSet(false),
-    m_lastModifiedHasBeenSet(false)
+    m_lastModifiedHasBeenSet(false),
+    m_webhookHasBeenSet(false)
 {
 }
 
@@ -57,7 +59,8 @@ Project::Project(const JsonValue& jsonValue) :
     m_encryptionKeyHasBeenSet(false),
     m_tagsHasBeenSet(false),
     m_createdHasBeenSet(false),
-    m_lastModifiedHasBeenSet(false)
+    m_lastModifiedHasBeenSet(false),
+    m_webhookHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -151,6 +154,13 @@ Project& Project::operator =(const JsonValue& jsonValue)
     m_lastModifiedHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("webhook"))
+  {
+    m_webhook = jsonValue.GetObject("webhook");
+
+    m_webhookHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -231,6 +241,12 @@ JsonValue Project::Jsonize() const
   if(m_lastModifiedHasBeenSet)
   {
    payload.WithDouble("lastModified", m_lastModified.SecondsWithMSPrecision());
+  }
+
+  if(m_webhookHasBeenSet)
+  {
+   payload.WithObject("webhook", m_webhook.Jsonize());
+
   }
 
   return payload;

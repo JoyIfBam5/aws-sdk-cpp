@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/config/ConfigService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/config/model/RecordingGroup.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     ConfigurationRecorder& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the recorder. By default, AWS Config automatically assigns the
      * name "default" when creating the configuration recorder. You cannot change the
@@ -64,7 +67,7 @@ namespace Model
      * name "default" when creating the configuration recorder. You cannot change the
      * assigned name.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the recorder. By default, AWS Config automatically assigns the
@@ -85,7 +88,7 @@ namespace Model
      * name "default" when creating the configuration recorder. You cannot change the
      * assigned name.</p>
      */
-    inline ConfigurationRecorder& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline ConfigurationRecorder& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the recorder. By default, AWS Config automatically assigns the
@@ -93,6 +96,7 @@ namespace Model
      * assigned name.</p>
      */
     inline ConfigurationRecorder& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>Amazon Resource Name (ARN) of the IAM role used to describe the AWS resources
@@ -110,7 +114,7 @@ namespace Model
      * <p>Amazon Resource Name (ARN) of the IAM role used to describe the AWS resources
      * associated with the account.</p>
      */
-    inline void SetRoleARN(Aws::String&& value) { m_roleARNHasBeenSet = true; m_roleARN = value; }
+    inline void SetRoleARN(Aws::String&& value) { m_roleARNHasBeenSet = true; m_roleARN = std::move(value); }
 
     /**
      * <p>Amazon Resource Name (ARN) of the IAM role used to describe the AWS resources
@@ -128,13 +132,14 @@ namespace Model
      * <p>Amazon Resource Name (ARN) of the IAM role used to describe the AWS resources
      * associated with the account.</p>
      */
-    inline ConfigurationRecorder& WithRoleARN(Aws::String&& value) { SetRoleARN(value); return *this;}
+    inline ConfigurationRecorder& WithRoleARN(Aws::String&& value) { SetRoleARN(std::move(value)); return *this;}
 
     /**
      * <p>Amazon Resource Name (ARN) of the IAM role used to describe the AWS resources
      * associated with the account.</p>
      */
     inline ConfigurationRecorder& WithRoleARN(const char* value) { SetRoleARN(value); return *this;}
+
 
     /**
      * <p>Specifies the types of AWS resource for which AWS Config records
@@ -152,7 +157,7 @@ namespace Model
      * <p>Specifies the types of AWS resource for which AWS Config records
      * configuration changes.</p>
      */
-    inline void SetRecordingGroup(RecordingGroup&& value) { m_recordingGroupHasBeenSet = true; m_recordingGroup = value; }
+    inline void SetRecordingGroup(RecordingGroup&& value) { m_recordingGroupHasBeenSet = true; m_recordingGroup = std::move(value); }
 
     /**
      * <p>Specifies the types of AWS resource for which AWS Config records
@@ -164,13 +169,16 @@ namespace Model
      * <p>Specifies the types of AWS resource for which AWS Config records
      * configuration changes.</p>
      */
-    inline ConfigurationRecorder& WithRecordingGroup(RecordingGroup&& value) { SetRecordingGroup(value); return *this;}
+    inline ConfigurationRecorder& WithRecordingGroup(RecordingGroup&& value) { SetRecordingGroup(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_roleARN;
     bool m_roleARNHasBeenSet;
+
     RecordingGroup m_recordingGroup;
     bool m_recordingGroupHasBeenSet;
   };

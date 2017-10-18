@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/health/Health_EXPORTS.h>
 #include <aws/health/HealthErrors.h>
@@ -104,14 +105,15 @@ namespace Model
 
   /**
    * <fullname>AWS Health</fullname> <p>The AWS Health API provides programmatic
-   * access to the AWS Health information that is presented in the AWS Personal
-   * Health Dashboard. You can get information about events that affect your AWS
-   * resources:</p> <ul> <li> <p> <a>DescribeEvents</a>: Summary information about
-   * events.</p> </li> <li> <p> <a>DescribeEventDetails</a>: Detailed information
-   * about one or more events.</p> </li> <li> <p> <a>DescribeAffectedEntities</a>:
-   * Information about AWS resources that are affected by one or more events.</p>
-   * </li> </ul> <p>In addition, these operations provide information about event
-   * types and summary counts of events or affected entities:</p> <ul> <li> <p>
+   * access to the AWS Health information that is presented in the <a
+   * href="https://phd.aws.amazon.com/phd/home#/">AWS Personal Health Dashboard</a>.
+   * You can get information about events that affect your AWS resources:</p> <ul>
+   * <li> <p> <a>DescribeEvents</a>: Summary information about events.</p> </li> <li>
+   * <p> <a>DescribeEventDetails</a>: Detailed information about one or more
+   * events.</p> </li> <li> <p> <a>DescribeAffectedEntities</a>: Information about
+   * AWS resources that are affected by one or more events.</p> </li> </ul> <p>In
+   * addition, these operations provide information about event types and summary
+   * counts of events or affected entities:</p> <ul> <li> <p>
    * <a>DescribeEventTypes</a>: Information about the kinds of events that AWS Health
    * tracks.</p> </li> <li> <p> <a>DescribeEventAggregates</a>: A count of the number
    * of events that meet specified criteria.</p> </li> <li> <p>
@@ -138,22 +140,25 @@ namespace Model
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        HealthClient(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        HealthClient(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        HealthClient(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        HealthClient(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        HealthClient(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        HealthClient(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
         virtual ~HealthClient();
+
+        inline virtual const char* GetServiceClientName() const override { return "health"; }
+
 
         /**
          * <p>Returns a list of entities that have been affected by the specified events,
@@ -385,7 +390,7 @@ namespace Model
 
 
     private:
-      void init(const Client::ClientConfiguration& clientConfiguration);
+      void init(const Aws::Client::ClientConfiguration& clientConfiguration);
 
         /**Async helpers**/
         void DescribeAffectedEntitiesAsyncHelper(const Model::DescribeAffectedEntitiesRequest& request, const DescribeAffectedEntitiesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -396,7 +401,7 @@ namespace Model
         void DescribeEventsAsyncHelper(const Model::DescribeEventsRequest& request, const DescribeEventsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
       Aws::String m_uri;
-      std::shared_ptr<Utils::Threading::Executor> m_executor;
+      std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;
   };
 
 } // namespace Health

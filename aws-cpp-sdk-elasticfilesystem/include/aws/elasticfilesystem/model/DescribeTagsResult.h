@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticfilesystem/EFS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticfilesystem/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     DescribeTagsResult();
-    DescribeTagsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeTagsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeTagsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeTagsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>If the request included a <code>Marker</code>, the response returns that
@@ -62,7 +65,7 @@ namespace Model
      * <p>If the request included a <code>Marker</code>, the response returns that
      * value in this field.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p>If the request included a <code>Marker</code>, the response returns that
@@ -80,13 +83,14 @@ namespace Model
      * <p>If the request included a <code>Marker</code>, the response returns that
      * value in this field.</p>
      */
-    inline DescribeTagsResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeTagsResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>If the request included a <code>Marker</code>, the response returns that
      * value in this field.</p>
      */
     inline DescribeTagsResult& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>Returns tags associated with the file system as an array of <code>Tag</code>
@@ -104,7 +108,7 @@ namespace Model
      * <p>Returns tags associated with the file system as an array of <code>Tag</code>
      * objects. </p>
      */
-    inline void SetTags(Aws::Vector<Tag>&& value) { m_tags = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tags = std::move(value); }
 
     /**
      * <p>Returns tags associated with the file system as an array of <code>Tag</code>
@@ -116,7 +120,7 @@ namespace Model
      * <p>Returns tags associated with the file system as an array of <code>Tag</code>
      * objects. </p>
      */
-    inline DescribeTagsResult& WithTags(Aws::Vector<Tag>&& value) { SetTags(value); return *this;}
+    inline DescribeTagsResult& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
      * <p>Returns tags associated with the file system as an array of <code>Tag</code>
@@ -128,7 +132,8 @@ namespace Model
      * <p>Returns tags associated with the file system as an array of <code>Tag</code>
      * objects. </p>
      */
-    inline DescribeTagsResult& AddTags(Tag&& value) { m_tags.push_back(value); return *this; }
+    inline DescribeTagsResult& AddTags(Tag&& value) { m_tags.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>If a value is present, there are more tags to return. In a subsequent
@@ -152,7 +157,7 @@ namespace Model
      * the <code>Marker</code> parameter in your next request to retrieve the next set
      * of tags.</p>
      */
-    inline void SetNextMarker(Aws::String&& value) { m_nextMarker = value; }
+    inline void SetNextMarker(Aws::String&& value) { m_nextMarker = std::move(value); }
 
     /**
      * <p>If a value is present, there are more tags to return. In a subsequent
@@ -176,7 +181,7 @@ namespace Model
      * the <code>Marker</code> parameter in your next request to retrieve the next set
      * of tags.</p>
      */
-    inline DescribeTagsResult& WithNextMarker(Aws::String&& value) { SetNextMarker(value); return *this;}
+    inline DescribeTagsResult& WithNextMarker(Aws::String&& value) { SetNextMarker(std::move(value)); return *this;}
 
     /**
      * <p>If a value is present, there are more tags to return. In a subsequent
@@ -187,8 +192,11 @@ namespace Model
     inline DescribeTagsResult& WithNextMarker(const char* value) { SetNextMarker(value); return *this;}
 
   private:
+
     Aws::String m_marker;
+
     Aws::Vector<Tag> m_tags;
+
     Aws::String m_nextMarker;
   };
 

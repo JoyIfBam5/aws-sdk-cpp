@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/s3/S3Endpoint.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
 #include <aws/core/utils/HashingUtils.h>
@@ -35,6 +36,8 @@ namespace S3Endpoint
   static const int AP_SOUTHEAST_2_HASH = Aws::Utils::HashingUtils::HashString("ap-southeast-2");
   static const int AP_NORTHEAST_1_HASH = Aws::Utils::HashingUtils::HashString("ap-northeast-1");
   static const int SA_EAST_1_HASH = Aws::Utils::HashingUtils::HashString("sa-east-1");
+  static const int US_GOV_WEST_1_HASH = Aws::Utils::HashingUtils::HashString("us-gov-west-1");
+  static const int FIPS_US_GOV_WEST_1_HASH = Aws::Utils::HashingUtils::HashString("fips-us-gov-west-1");
 
   Aws::String ForRegion(const Aws::String& regionName, bool useDualStack)
   {
@@ -73,6 +76,14 @@ namespace S3Endpoint
       else if(hash == SA_EAST_1_HASH)
       {
         return "s3-sa-east-1.amazonaws.com";
+      }
+      else if(hash == US_GOV_WEST_1_HASH)
+      {
+        return "s3-us-gov-west-1.amazonaws.com";
+      }
+      else if(hash == FIPS_US_GOV_WEST_1_HASH)
+      {
+        return "s3-fips-us-gov-west-1.amazonaws.com";
       }
     }
     Aws::StringStream ss;

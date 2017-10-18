@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/AuthorizeSecurityGroupEgressRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -23,15 +24,15 @@ AuthorizeSecurityGroupEgressRequest::AuthorizeSecurityGroupEgressRequest() :
     m_dryRun(false),
     m_dryRunHasBeenSet(false),
     m_groupIdHasBeenSet(false),
-    m_sourceSecurityGroupNameHasBeenSet(false),
-    m_sourceSecurityGroupOwnerIdHasBeenSet(false),
-    m_ipProtocolHasBeenSet(false),
+    m_ipPermissionsHasBeenSet(false),
+    m_cidrIpHasBeenSet(false),
     m_fromPort(0),
     m_fromPortHasBeenSet(false),
+    m_ipProtocolHasBeenSet(false),
     m_toPort(0),
     m_toPortHasBeenSet(false),
-    m_cidrIpHasBeenSet(false),
-    m_ipPermissionsHasBeenSet(false)
+    m_sourceSecurityGroupNameHasBeenSet(false),
+    m_sourceSecurityGroupOwnerIdHasBeenSet(false)
 {
 }
 
@@ -49,36 +50,6 @@ Aws::String AuthorizeSecurityGroupEgressRequest::SerializePayload() const
     ss << "GroupId=" << StringUtils::URLEncode(m_groupId.c_str()) << "&";
   }
 
-  if(m_sourceSecurityGroupNameHasBeenSet)
-  {
-    ss << "SourceSecurityGroupName=" << StringUtils::URLEncode(m_sourceSecurityGroupName.c_str()) << "&";
-  }
-
-  if(m_sourceSecurityGroupOwnerIdHasBeenSet)
-  {
-    ss << "SourceSecurityGroupOwnerId=" << StringUtils::URLEncode(m_sourceSecurityGroupOwnerId.c_str()) << "&";
-  }
-
-  if(m_ipProtocolHasBeenSet)
-  {
-    ss << "IpProtocol=" << StringUtils::URLEncode(m_ipProtocol.c_str()) << "&";
-  }
-
-  if(m_fromPortHasBeenSet)
-  {
-    ss << "FromPort=" << m_fromPort << "&";
-  }
-
-  if(m_toPortHasBeenSet)
-  {
-    ss << "ToPort=" << m_toPort << "&";
-  }
-
-  if(m_cidrIpHasBeenSet)
-  {
-    ss << "CidrIp=" << StringUtils::URLEncode(m_cidrIp.c_str()) << "&";
-  }
-
   if(m_ipPermissionsHasBeenSet)
   {
     unsigned ipPermissionsCount = 1;
@@ -89,7 +60,42 @@ Aws::String AuthorizeSecurityGroupEgressRequest::SerializePayload() const
     }
   }
 
+  if(m_cidrIpHasBeenSet)
+  {
+    ss << "CidrIp=" << StringUtils::URLEncode(m_cidrIp.c_str()) << "&";
+  }
+
+  if(m_fromPortHasBeenSet)
+  {
+    ss << "FromPort=" << m_fromPort << "&";
+  }
+
+  if(m_ipProtocolHasBeenSet)
+  {
+    ss << "IpProtocol=" << StringUtils::URLEncode(m_ipProtocol.c_str()) << "&";
+  }
+
+  if(m_toPortHasBeenSet)
+  {
+    ss << "ToPort=" << m_toPort << "&";
+  }
+
+  if(m_sourceSecurityGroupNameHasBeenSet)
+  {
+    ss << "SourceSecurityGroupName=" << StringUtils::URLEncode(m_sourceSecurityGroupName.c_str()) << "&";
+  }
+
+  if(m_sourceSecurityGroupOwnerIdHasBeenSet)
+  {
+    ss << "SourceSecurityGroupOwnerId=" << StringUtils::URLEncode(m_sourceSecurityGroupOwnerId.c_str()) << "&";
+  }
+
   ss << "Version=2016-11-15";
   return ss.str();
 }
 
+
+void  AuthorizeSecurityGroupEgressRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

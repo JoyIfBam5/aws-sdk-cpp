@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudformation/CloudFormation_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The key associated with the parameter. If you don't specify a key and value
      * for a particular parameter, AWS CloudFormation uses the default value that is
@@ -65,7 +68,7 @@ namespace Model
      * for a particular parameter, AWS CloudFormation uses the default value that is
      * specified in your template.</p>
      */
-    inline void SetParameterKey(Aws::String&& value) { m_parameterKeyHasBeenSet = true; m_parameterKey = value; }
+    inline void SetParameterKey(Aws::String&& value) { m_parameterKeyHasBeenSet = true; m_parameterKey = std::move(value); }
 
     /**
      * <p>The key associated with the parameter. If you don't specify a key and value
@@ -86,7 +89,7 @@ namespace Model
      * for a particular parameter, AWS CloudFormation uses the default value that is
      * specified in your template.</p>
      */
-    inline Parameter& WithParameterKey(Aws::String&& value) { SetParameterKey(value); return *this;}
+    inline Parameter& WithParameterKey(Aws::String&& value) { SetParameterKey(std::move(value)); return *this;}
 
     /**
      * <p>The key associated with the parameter. If you don't specify a key and value
@@ -94,6 +97,7 @@ namespace Model
      * specified in your template.</p>
      */
     inline Parameter& WithParameterKey(const char* value) { SetParameterKey(value); return *this;}
+
 
     /**
      * <p>The value associated with the parameter.</p>
@@ -108,7 +112,7 @@ namespace Model
     /**
      * <p>The value associated with the parameter.</p>
      */
-    inline void SetParameterValue(Aws::String&& value) { m_parameterValueHasBeenSet = true; m_parameterValue = value; }
+    inline void SetParameterValue(Aws::String&& value) { m_parameterValueHasBeenSet = true; m_parameterValue = std::move(value); }
 
     /**
      * <p>The value associated with the parameter.</p>
@@ -123,12 +127,13 @@ namespace Model
     /**
      * <p>The value associated with the parameter.</p>
      */
-    inline Parameter& WithParameterValue(Aws::String&& value) { SetParameterValue(value); return *this;}
+    inline Parameter& WithParameterValue(Aws::String&& value) { SetParameterValue(std::move(value)); return *this;}
 
     /**
      * <p>The value associated with the parameter.</p>
      */
     inline Parameter& WithParameterValue(const char* value) { SetParameterValue(value); return *this;}
+
 
     /**
      * <p>During a stack update, use the existing parameter value that the stack is
@@ -152,10 +157,13 @@ namespace Model
     inline Parameter& WithUsePreviousValue(bool value) { SetUsePreviousValue(value); return *this;}
 
   private:
+
     Aws::String m_parameterKey;
     bool m_parameterKeyHasBeenSet;
+
     Aws::String m_parameterValue;
     bool m_parameterValueHasBeenSet;
+
     bool m_usePreviousValue;
     bool m_usePreviousValueHasBeenSet;
   };

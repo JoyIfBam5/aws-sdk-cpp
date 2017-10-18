@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/elasticloadbalancingv2/model/LoadBalancerStateEnum.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -31,6 +32,7 @@ namespace Aws
 
         static const int active_HASH = HashingUtils::HashString("active");
         static const int provisioning_HASH = HashingUtils::HashString("provisioning");
+        static const int active_impaired_HASH = HashingUtils::HashString("active_impaired");
         static const int failed_HASH = HashingUtils::HashString("failed");
 
 
@@ -44,6 +46,10 @@ namespace Aws
           else if (hashCode == provisioning_HASH)
           {
             return LoadBalancerStateEnum::provisioning;
+          }
+          else if (hashCode == active_impaired_HASH)
+          {
+            return LoadBalancerStateEnum::active_impaired;
           }
           else if (hashCode == failed_HASH)
           {
@@ -67,6 +73,8 @@ namespace Aws
             return "active";
           case LoadBalancerStateEnum::provisioning:
             return "provisioning";
+          case LoadBalancerStateEnum::active_impaired:
+            return "active_impaired";
           case LoadBalancerStateEnum::failed:
             return "failed";
           default:

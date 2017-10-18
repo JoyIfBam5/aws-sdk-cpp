@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/elasticmapreduce/model/AutoScalingPolicyState.h>
 #include <aws/elasticmapreduce/model/AutoScalingPolicyStateChangeReason.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,30 +46,32 @@ namespace Model
     AutoScalingPolicyStatus& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p></p>
+     * <p>Indicates the status of the automatic scaling policy.</p>
      */
     inline const AutoScalingPolicyState& GetState() const{ return m_state; }
 
     /**
-     * <p></p>
+     * <p>Indicates the status of the automatic scaling policy.</p>
      */
     inline void SetState(const AutoScalingPolicyState& value) { m_stateHasBeenSet = true; m_state = value; }
 
     /**
-     * <p></p>
+     * <p>Indicates the status of the automatic scaling policy.</p>
      */
-    inline void SetState(AutoScalingPolicyState&& value) { m_stateHasBeenSet = true; m_state = value; }
+    inline void SetState(AutoScalingPolicyState&& value) { m_stateHasBeenSet = true; m_state = std::move(value); }
 
     /**
-     * <p></p>
+     * <p>Indicates the status of the automatic scaling policy.</p>
      */
     inline AutoScalingPolicyStatus& WithState(const AutoScalingPolicyState& value) { SetState(value); return *this;}
 
     /**
-     * <p></p>
+     * <p>Indicates the status of the automatic scaling policy.</p>
      */
-    inline AutoScalingPolicyStatus& WithState(AutoScalingPolicyState&& value) { SetState(value); return *this;}
+    inline AutoScalingPolicyStatus& WithState(AutoScalingPolicyState&& value) { SetState(std::move(value)); return *this;}
+
 
     /**
      * <p>The reason for a change in status.</p>
@@ -82,7 +86,7 @@ namespace Model
     /**
      * <p>The reason for a change in status.</p>
      */
-    inline void SetStateChangeReason(AutoScalingPolicyStateChangeReason&& value) { m_stateChangeReasonHasBeenSet = true; m_stateChangeReason = value; }
+    inline void SetStateChangeReason(AutoScalingPolicyStateChangeReason&& value) { m_stateChangeReasonHasBeenSet = true; m_stateChangeReason = std::move(value); }
 
     /**
      * <p>The reason for a change in status.</p>
@@ -92,11 +96,13 @@ namespace Model
     /**
      * <p>The reason for a change in status.</p>
      */
-    inline AutoScalingPolicyStatus& WithStateChangeReason(AutoScalingPolicyStateChangeReason&& value) { SetStateChangeReason(value); return *this;}
+    inline AutoScalingPolicyStatus& WithStateChangeReason(AutoScalingPolicyStateChangeReason&& value) { SetStateChangeReason(std::move(value)); return *this;}
 
   private:
+
     AutoScalingPolicyState m_state;
     bool m_stateHasBeenSet;
+
     AutoScalingPolicyStateChangeReason m_stateChangeReason;
     bool m_stateChangeReasonHasBeenSet;
   };

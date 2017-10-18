@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/shield/Shield_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     CreateProtectionResult();
-    CreateProtectionResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateProtectionResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateProtectionResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateProtectionResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The unique identifier (ID) for the <a>Protection</a> object that is
@@ -55,7 +58,7 @@ namespace Model
      * <p>The unique identifier (ID) for the <a>Protection</a> object that is
      * created.</p>
      */
-    inline void SetProtectionId(Aws::String&& value) { m_protectionId = value; }
+    inline void SetProtectionId(Aws::String&& value) { m_protectionId = std::move(value); }
 
     /**
      * <p>The unique identifier (ID) for the <a>Protection</a> object that is
@@ -73,7 +76,7 @@ namespace Model
      * <p>The unique identifier (ID) for the <a>Protection</a> object that is
      * created.</p>
      */
-    inline CreateProtectionResult& WithProtectionId(Aws::String&& value) { SetProtectionId(value); return *this;}
+    inline CreateProtectionResult& WithProtectionId(Aws::String&& value) { SetProtectionId(std::move(value)); return *this;}
 
     /**
      * <p>The unique identifier (ID) for the <a>Protection</a> object that is
@@ -82,6 +85,7 @@ namespace Model
     inline CreateProtectionResult& WithProtectionId(const char* value) { SetProtectionId(value); return *this;}
 
   private:
+
     Aws::String m_protectionId;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/sts/STS_EXPORTS.h>
 #include <aws/sts/STSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,7 +32,19 @@ namespace Model
   {
   public:
     AssumeRoleRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "AssumeRole"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The Amazon Resource Name (ARN) of the role to assume.</p>
@@ -45,7 +59,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the role to assume.</p>
      */
-    inline void SetRoleArn(Aws::String&& value) { m_roleArnHasBeenSet = true; m_roleArn = value; }
+    inline void SetRoleArn(Aws::String&& value) { m_roleArnHasBeenSet = true; m_roleArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the role to assume.</p>
@@ -60,12 +74,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the role to assume.</p>
      */
-    inline AssumeRoleRequest& WithRoleArn(Aws::String&& value) { SetRoleArn(value); return *this;}
+    inline AssumeRoleRequest& WithRoleArn(Aws::String&& value) { SetRoleArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the role to assume.</p>
      */
     inline AssumeRoleRequest& WithRoleArn(const char* value) { SetRoleArn(value); return *this;}
+
 
     /**
      * <p>An identifier for the assumed role session.</p> <p>Use the role session name
@@ -110,7 +125,7 @@ namespace Model
      * with no spaces. You can also include underscores or any of the following
      * characters: =,.@-</p>
      */
-    inline void SetRoleSessionName(Aws::String&& value) { m_roleSessionNameHasBeenSet = true; m_roleSessionName = value; }
+    inline void SetRoleSessionName(Aws::String&& value) { m_roleSessionNameHasBeenSet = true; m_roleSessionName = std::move(value); }
 
     /**
      * <p>An identifier for the assumed role session.</p> <p>Use the role session name
@@ -155,7 +170,7 @@ namespace Model
      * with no spaces. You can also include underscores or any of the following
      * characters: =,.@-</p>
      */
-    inline AssumeRoleRequest& WithRoleSessionName(Aws::String&& value) { SetRoleSessionName(value); return *this;}
+    inline AssumeRoleRequest& WithRoleSessionName(Aws::String&& value) { SetRoleSessionName(std::move(value)); return *this;}
 
     /**
      * <p>An identifier for the assumed role session.</p> <p>Use the role session name
@@ -171,6 +186,7 @@ namespace Model
      * characters: =,.@-</p>
      */
     inline AssumeRoleRequest& WithRoleSessionName(const char* value) { SetRoleSessionName(value); return *this;}
+
 
     /**
      * <p>An IAM policy in JSON format.</p> <p>This parameter is optional. If you pass
@@ -242,7 +258,7 @@ namespace Model
      * size limit the policy is, with 100% equaling the maximum allowed size.</p>
      * </note>
      */
-    inline void SetPolicy(Aws::String&& value) { m_policyHasBeenSet = true; m_policy = value; }
+    inline void SetPolicy(Aws::String&& value) { m_policyHasBeenSet = true; m_policy = std::move(value); }
 
     /**
      * <p>An IAM policy in JSON format.</p> <p>This parameter is optional. If you pass
@@ -314,7 +330,7 @@ namespace Model
      * size limit the policy is, with 100% equaling the maximum allowed size.</p>
      * </note>
      */
-    inline AssumeRoleRequest& WithPolicy(Aws::String&& value) { SetPolicy(value); return *this;}
+    inline AssumeRoleRequest& WithPolicy(Aws::String&& value) { SetPolicy(std::move(value)); return *this;}
 
     /**
      * <p>An IAM policy in JSON format.</p> <p>This parameter is optional. If you pass
@@ -339,6 +355,7 @@ namespace Model
      * </note>
      */
     inline AssumeRoleRequest& WithPolicy(const char* value) { SetPolicy(value); return *this;}
+
 
     /**
      * <p>The duration, in seconds, of the role session. The value can range from 900
@@ -385,6 +402,7 @@ namespace Model
      */
     inline AssumeRoleRequest& WithDurationSeconds(int value) { SetDurationSeconds(value); return *this;}
 
+
     /**
      * <p>A unique identifier that is used by third parties when assuming roles in
      * their customers' accounts. For each role that the third party can assume, they
@@ -398,7 +416,7 @@ namespace Model
      * Party</a> in the <i>IAM User Guide</i>.</p> <p>The regex used to validated this
      * parameter is a string of characters consisting of upper- and lower-case
      * alphanumeric characters with no spaces. You can also include underscores or any
-     * of the following characters: =,.@:\/-</p>
+     * of the following characters: =,.@:/-</p>
      */
     inline const Aws::String& GetExternalId() const{ return m_externalId; }
 
@@ -415,7 +433,7 @@ namespace Model
      * Party</a> in the <i>IAM User Guide</i>.</p> <p>The regex used to validated this
      * parameter is a string of characters consisting of upper- and lower-case
      * alphanumeric characters with no spaces. You can also include underscores or any
-     * of the following characters: =,.@:\/-</p>
+     * of the following characters: =,.@:/-</p>
      */
     inline void SetExternalId(const Aws::String& value) { m_externalIdHasBeenSet = true; m_externalId = value; }
 
@@ -432,9 +450,9 @@ namespace Model
      * Party</a> in the <i>IAM User Guide</i>.</p> <p>The regex used to validated this
      * parameter is a string of characters consisting of upper- and lower-case
      * alphanumeric characters with no spaces. You can also include underscores or any
-     * of the following characters: =,.@:\/-</p>
+     * of the following characters: =,.@:/-</p>
      */
-    inline void SetExternalId(Aws::String&& value) { m_externalIdHasBeenSet = true; m_externalId = value; }
+    inline void SetExternalId(Aws::String&& value) { m_externalIdHasBeenSet = true; m_externalId = std::move(value); }
 
     /**
      * <p>A unique identifier that is used by third parties when assuming roles in
@@ -449,7 +467,7 @@ namespace Model
      * Party</a> in the <i>IAM User Guide</i>.</p> <p>The regex used to validated this
      * parameter is a string of characters consisting of upper- and lower-case
      * alphanumeric characters with no spaces. You can also include underscores or any
-     * of the following characters: =,.@:\/-</p>
+     * of the following characters: =,.@:/-</p>
      */
     inline void SetExternalId(const char* value) { m_externalIdHasBeenSet = true; m_externalId.assign(value); }
 
@@ -466,7 +484,7 @@ namespace Model
      * Party</a> in the <i>IAM User Guide</i>.</p> <p>The regex used to validated this
      * parameter is a string of characters consisting of upper- and lower-case
      * alphanumeric characters with no spaces. You can also include underscores or any
-     * of the following characters: =,.@:\/-</p>
+     * of the following characters: =,.@:/-</p>
      */
     inline AssumeRoleRequest& WithExternalId(const Aws::String& value) { SetExternalId(value); return *this;}
 
@@ -483,9 +501,9 @@ namespace Model
      * Party</a> in the <i>IAM User Guide</i>.</p> <p>The regex used to validated this
      * parameter is a string of characters consisting of upper- and lower-case
      * alphanumeric characters with no spaces. You can also include underscores or any
-     * of the following characters: =,.@:\/-</p>
+     * of the following characters: =,.@:/-</p>
      */
-    inline AssumeRoleRequest& WithExternalId(Aws::String&& value) { SetExternalId(value); return *this;}
+    inline AssumeRoleRequest& WithExternalId(Aws::String&& value) { SetExternalId(std::move(value)); return *this;}
 
     /**
      * <p>A unique identifier that is used by third parties when assuming roles in
@@ -500,9 +518,10 @@ namespace Model
      * Party</a> in the <i>IAM User Guide</i>.</p> <p>The regex used to validated this
      * parameter is a string of characters consisting of upper- and lower-case
      * alphanumeric characters with no spaces. You can also include underscores or any
-     * of the following characters: =,.@:\/-</p>
+     * of the following characters: =,.@:/-</p>
      */
     inline AssumeRoleRequest& WithExternalId(const char* value) { SetExternalId(value); return *this;}
+
 
     /**
      * <p>The identification number of the MFA device that is associated with the user
@@ -541,7 +560,7 @@ namespace Model
      * consisting of upper- and lower-case alphanumeric characters with no spaces. You
      * can also include underscores or any of the following characters: =,.@-</p>
      */
-    inline void SetSerialNumber(Aws::String&& value) { m_serialNumberHasBeenSet = true; m_serialNumber = value; }
+    inline void SetSerialNumber(Aws::String&& value) { m_serialNumberHasBeenSet = true; m_serialNumber = std::move(value); }
 
     /**
      * <p>The identification number of the MFA device that is associated with the user
@@ -580,7 +599,7 @@ namespace Model
      * consisting of upper- and lower-case alphanumeric characters with no spaces. You
      * can also include underscores or any of the following characters: =,.@-</p>
      */
-    inline AssumeRoleRequest& WithSerialNumber(Aws::String&& value) { SetSerialNumber(value); return *this;}
+    inline AssumeRoleRequest& WithSerialNumber(Aws::String&& value) { SetSerialNumber(std::move(value)); return *this;}
 
     /**
      * <p>The identification number of the MFA device that is associated with the user
@@ -594,6 +613,7 @@ namespace Model
      * can also include underscores or any of the following characters: =,.@-</p>
      */
     inline AssumeRoleRequest& WithSerialNumber(const char* value) { SetSerialNumber(value); return *this;}
+
 
     /**
      * <p>The value provided by the MFA device, if the trust policy of the role being
@@ -623,7 +643,7 @@ namespace Model
      * denied" error.</p> <p>The format for this parameter, as described by its regex
      * pattern, is a sequence of six numeric digits.</p>
      */
-    inline void SetTokenCode(Aws::String&& value) { m_tokenCodeHasBeenSet = true; m_tokenCode = value; }
+    inline void SetTokenCode(Aws::String&& value) { m_tokenCodeHasBeenSet = true; m_tokenCode = std::move(value); }
 
     /**
      * <p>The value provided by the MFA device, if the trust policy of the role being
@@ -653,7 +673,7 @@ namespace Model
      * denied" error.</p> <p>The format for this parameter, as described by its regex
      * pattern, is a sequence of six numeric digits.</p>
      */
-    inline AssumeRoleRequest& WithTokenCode(Aws::String&& value) { SetTokenCode(value); return *this;}
+    inline AssumeRoleRequest& WithTokenCode(Aws::String&& value) { SetTokenCode(std::move(value)); return *this;}
 
     /**
      * <p>The value provided by the MFA device, if the trust policy of the role being
@@ -666,18 +686,25 @@ namespace Model
     inline AssumeRoleRequest& WithTokenCode(const char* value) { SetTokenCode(value); return *this;}
 
   private:
+
     Aws::String m_roleArn;
     bool m_roleArnHasBeenSet;
+
     Aws::String m_roleSessionName;
     bool m_roleSessionNameHasBeenSet;
+
     Aws::String m_policy;
     bool m_policyHasBeenSet;
+
     int m_durationSeconds;
     bool m_durationSecondsHasBeenSet;
+
     Aws::String m_externalId;
     bool m_externalIdHasBeenSet;
+
     Aws::String m_serialNumber;
     bool m_serialNumberHasBeenSet;
+
     Aws::String m_tokenCode;
     bool m_tokenCodeHasBeenSet;
   };

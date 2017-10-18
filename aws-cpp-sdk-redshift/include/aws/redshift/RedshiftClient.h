@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/redshift/RedshiftErrors.h>
@@ -60,6 +61,7 @@
 #include <aws/redshift/model/DisableSnapshotCopyResult.h>
 #include <aws/redshift/model/EnableLoggingResult.h>
 #include <aws/redshift/model/EnableSnapshotCopyResult.h>
+#include <aws/redshift/model/GetClusterCredentialsResult.h>
 #include <aws/redshift/model/ModifyClusterResult.h>
 #include <aws/redshift/model/ModifyClusterIamRolesResult.h>
 #include <aws/redshift/model/ModifyClusterParameterGroupResult.h>
@@ -168,6 +170,7 @@ namespace Model
         class DisableSnapshotCopyRequest;
         class EnableLoggingRequest;
         class EnableSnapshotCopyRequest;
+        class GetClusterCredentialsRequest;
         class ModifyClusterRequest;
         class ModifyClusterIamRolesRequest;
         class ModifyClusterParameterGroupRequest;
@@ -195,17 +198,17 @@ namespace Model
         typedef Aws::Utils::Outcome<CreateHsmClientCertificateResult, Aws::Client::AWSError<RedshiftErrors>> CreateHsmClientCertificateOutcome;
         typedef Aws::Utils::Outcome<CreateHsmConfigurationResult, Aws::Client::AWSError<RedshiftErrors>> CreateHsmConfigurationOutcome;
         typedef Aws::Utils::Outcome<CreateSnapshotCopyGrantResult, Aws::Client::AWSError<RedshiftErrors>> CreateSnapshotCopyGrantOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<RedshiftErrors>> CreateTagsOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<RedshiftErrors>> CreateTagsOutcome;
         typedef Aws::Utils::Outcome<DeleteClusterResult, Aws::Client::AWSError<RedshiftErrors>> DeleteClusterOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<RedshiftErrors>> DeleteClusterParameterGroupOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<RedshiftErrors>> DeleteClusterSecurityGroupOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<RedshiftErrors>> DeleteClusterParameterGroupOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<RedshiftErrors>> DeleteClusterSecurityGroupOutcome;
         typedef Aws::Utils::Outcome<DeleteClusterSnapshotResult, Aws::Client::AWSError<RedshiftErrors>> DeleteClusterSnapshotOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<RedshiftErrors>> DeleteClusterSubnetGroupOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<RedshiftErrors>> DeleteEventSubscriptionOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<RedshiftErrors>> DeleteHsmClientCertificateOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<RedshiftErrors>> DeleteHsmConfigurationOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<RedshiftErrors>> DeleteSnapshotCopyGrantOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<RedshiftErrors>> DeleteTagsOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<RedshiftErrors>> DeleteClusterSubnetGroupOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<RedshiftErrors>> DeleteEventSubscriptionOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<RedshiftErrors>> DeleteHsmClientCertificateOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<RedshiftErrors>> DeleteHsmConfigurationOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<RedshiftErrors>> DeleteSnapshotCopyGrantOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<RedshiftErrors>> DeleteTagsOutcome;
         typedef Aws::Utils::Outcome<DescribeClusterParameterGroupsResult, Aws::Client::AWSError<RedshiftErrors>> DescribeClusterParameterGroupsOutcome;
         typedef Aws::Utils::Outcome<DescribeClusterParametersResult, Aws::Client::AWSError<RedshiftErrors>> DescribeClusterParametersOutcome;
         typedef Aws::Utils::Outcome<DescribeClusterSecurityGroupsResult, Aws::Client::AWSError<RedshiftErrors>> DescribeClusterSecurityGroupsOutcome;
@@ -231,6 +234,7 @@ namespace Model
         typedef Aws::Utils::Outcome<DisableSnapshotCopyResult, Aws::Client::AWSError<RedshiftErrors>> DisableSnapshotCopyOutcome;
         typedef Aws::Utils::Outcome<EnableLoggingResult, Aws::Client::AWSError<RedshiftErrors>> EnableLoggingOutcome;
         typedef Aws::Utils::Outcome<EnableSnapshotCopyResult, Aws::Client::AWSError<RedshiftErrors>> EnableSnapshotCopyOutcome;
+        typedef Aws::Utils::Outcome<GetClusterCredentialsResult, Aws::Client::AWSError<RedshiftErrors>> GetClusterCredentialsOutcome;
         typedef Aws::Utils::Outcome<ModifyClusterResult, Aws::Client::AWSError<RedshiftErrors>> ModifyClusterOutcome;
         typedef Aws::Utils::Outcome<ModifyClusterIamRolesResult, Aws::Client::AWSError<RedshiftErrors>> ModifyClusterIamRolesOutcome;
         typedef Aws::Utils::Outcome<ModifyClusterParameterGroupResult, Aws::Client::AWSError<RedshiftErrors>> ModifyClusterParameterGroupOutcome;
@@ -294,6 +298,7 @@ namespace Model
         typedef std::future<DisableSnapshotCopyOutcome> DisableSnapshotCopyOutcomeCallable;
         typedef std::future<EnableLoggingOutcome> EnableLoggingOutcomeCallable;
         typedef std::future<EnableSnapshotCopyOutcome> EnableSnapshotCopyOutcomeCallable;
+        typedef std::future<GetClusterCredentialsOutcome> GetClusterCredentialsOutcomeCallable;
         typedef std::future<ModifyClusterOutcome> ModifyClusterOutcomeCallable;
         typedef std::future<ModifyClusterIamRolesOutcome> ModifyClusterIamRolesOutcomeCallable;
         typedef std::future<ModifyClusterParameterGroupOutcome> ModifyClusterParameterGroupOutcomeCallable;
@@ -360,6 +365,7 @@ namespace Model
     typedef std::function<void(const RedshiftClient*, const Model::DisableSnapshotCopyRequest&, const Model::DisableSnapshotCopyOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DisableSnapshotCopyResponseReceivedHandler;
     typedef std::function<void(const RedshiftClient*, const Model::EnableLoggingRequest&, const Model::EnableLoggingOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > EnableLoggingResponseReceivedHandler;
     typedef std::function<void(const RedshiftClient*, const Model::EnableSnapshotCopyRequest&, const Model::EnableSnapshotCopyOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > EnableSnapshotCopyResponseReceivedHandler;
+    typedef std::function<void(const RedshiftClient*, const Model::GetClusterCredentialsRequest&, const Model::GetClusterCredentialsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetClusterCredentialsResponseReceivedHandler;
     typedef std::function<void(const RedshiftClient*, const Model::ModifyClusterRequest&, const Model::ModifyClusterOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ModifyClusterResponseReceivedHandler;
     typedef std::function<void(const RedshiftClient*, const Model::ModifyClusterIamRolesRequest&, const Model::ModifyClusterIamRolesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ModifyClusterIamRolesResponseReceivedHandler;
     typedef std::function<void(const RedshiftClient*, const Model::ModifyClusterParameterGroupRequest&, const Model::ModifyClusterParameterGroupOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ModifyClusterParameterGroupResponseReceivedHandler;
@@ -408,27 +414,30 @@ namespace Model
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        RedshiftClient(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        RedshiftClient(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        RedshiftClient(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        RedshiftClient(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        RedshiftClient(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        RedshiftClient(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
         virtual ~RedshiftClient();
+
+        inline virtual const char* GetServiceClientName() const override { return "redshift"; }
+
 
        /**
         * Converts any request object to a presigned URL with the GET method, using region for the signer and a timeout of 15 minutes.
         */
-        Aws::String ConvertRequestToPresignedUrl(const AmazonSerializableWebServiceRequest& requestToConvert, const char* region) const;
+        Aws::String ConvertRequestToPresignedUrl(const Aws::AmazonSerializableWebServiceRequest& requestToConvert, const char* region) const;
 
 
         /**
@@ -1937,18 +1946,34 @@ namespace Model
         virtual void DescribeEventCategoriesAsync(const Model::DescribeEventCategoriesRequest& request, const DescribeEventCategoriesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Lists descriptions of all the Amazon Redshift event notifications
-         * subscription for a customer account. If you specify a subscription name, lists
-         * the description for that subscription.</p><p><h3>See Also:</h3>   <a
+         * <p>Lists descriptions of all the Amazon Redshift event notification
+         * subscriptions for a customer account. If you specify a subscription name, lists
+         * the description for that subscription.</p> <p>If you specify both tag keys and
+         * tag values in the same request, Amazon Redshift returns all event notification
+         * subscriptions that match any combination of the specified keys and values. For
+         * example, if you have <code>owner</code> and <code>environment</code> for tag
+         * keys, and <code>admin</code> and <code>test</code> for tag values, all
+         * subscriptions that have any combination of those values are returned.</p> <p>If
+         * both tag keys and values are omitted from the request, subscriptions are
+         * returned regardless of whether they have tag keys or values associated with
+         * them.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeEventSubscriptions">AWS
          * API Reference</a></p>
          */
         virtual Model::DescribeEventSubscriptionsOutcome DescribeEventSubscriptions(const Model::DescribeEventSubscriptionsRequest& request) const;
 
         /**
-         * <p>Lists descriptions of all the Amazon Redshift event notifications
-         * subscription for a customer account. If you specify a subscription name, lists
-         * the description for that subscription.</p><p><h3>See Also:</h3>   <a
+         * <p>Lists descriptions of all the Amazon Redshift event notification
+         * subscriptions for a customer account. If you specify a subscription name, lists
+         * the description for that subscription.</p> <p>If you specify both tag keys and
+         * tag values in the same request, Amazon Redshift returns all event notification
+         * subscriptions that match any combination of the specified keys and values. For
+         * example, if you have <code>owner</code> and <code>environment</code> for tag
+         * keys, and <code>admin</code> and <code>test</code> for tag values, all
+         * subscriptions that have any combination of those values are returned.</p> <p>If
+         * both tag keys and values are omitted from the request, subscriptions are
+         * returned regardless of whether they have tag keys or values associated with
+         * them.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeEventSubscriptions">AWS
          * API Reference</a></p>
          *
@@ -1957,9 +1982,17 @@ namespace Model
         virtual Model::DescribeEventSubscriptionsOutcomeCallable DescribeEventSubscriptionsCallable(const Model::DescribeEventSubscriptionsRequest& request) const;
 
         /**
-         * <p>Lists descriptions of all the Amazon Redshift event notifications
-         * subscription for a customer account. If you specify a subscription name, lists
-         * the description for that subscription.</p><p><h3>See Also:</h3>   <a
+         * <p>Lists descriptions of all the Amazon Redshift event notification
+         * subscriptions for a customer account. If you specify a subscription name, lists
+         * the description for that subscription.</p> <p>If you specify both tag keys and
+         * tag values in the same request, Amazon Redshift returns all event notification
+         * subscriptions that match any combination of the specified keys and values. For
+         * example, if you have <code>owner</code> and <code>environment</code> for tag
+         * keys, and <code>admin</code> and <code>test</code> for tag values, all
+         * subscriptions that have any combination of those values are returned.</p> <p>If
+         * both tag keys and values are omitted from the request, subscriptions are
+         * returned regardless of whether they have tag keys or values associated with
+         * them.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeEventSubscriptions">AWS
          * API Reference</a></p>
          *
@@ -2598,6 +2631,100 @@ namespace Model
         virtual void EnableSnapshotCopyAsync(const Model::EnableSnapshotCopyRequest& request, const EnableSnapshotCopyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
+         * <p>Returns a database user name and temporary password with temporary
+         * authorization to log on to an Amazon Redshift database. The action returns the
+         * database user name prefixed with <code>IAM:</code> if <code>AutoCreate</code> is
+         * <code>False</code> or <code>IAMA:</code> if <code>AutoCreate</code> is
+         * <code>True</code>. You can optionally specify one or more database user groups
+         * that the user will join at log on. By default, the temporary credentials expire
+         * in 900 seconds. You can optionally specify a duration between 900 seconds (15
+         * minutes) and 3600 seconds (60 minutes). For more information, see <a
+         * href="http://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html">Using
+         * IAM Authentication to Generate Database User Credentials</a> in the Amazon
+         * Redshift Cluster Management Guide.</p> <p>The AWS Identity and Access Management
+         * (IAM)user or role that executes GetClusterCredentials must have an IAM policy
+         * attached that allows access to all necessary actions and resources. For more
+         * information about permissions, see <a
+         * href="http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html#redshift-policy-resources.getclustercredentials-resources">Resource
+         * Policies for GetClusterCredentials</a> in the Amazon Redshift Cluster Management
+         * Guide.</p> <p>If the <code>DbGroups</code> parameter is specified, the IAM
+         * policy must allow the <code>redshift:JoinGroup</code> action with access to the
+         * listed <code>dbgroups</code>. </p> <p>In addition, if the
+         * <code>AutoCreate</code> parameter is set to <code>True</code>, then the policy
+         * must include the <code>redshift:CreateClusterUser</code> privilege.</p> <p>If
+         * the <code>DbName</code> parameter is specified, the IAM policy must allow access
+         * to the resource <code>dbname</code> for the specified database name.
+         * </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/GetClusterCredentials">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::GetClusterCredentialsOutcome GetClusterCredentials(const Model::GetClusterCredentialsRequest& request) const;
+
+        /**
+         * <p>Returns a database user name and temporary password with temporary
+         * authorization to log on to an Amazon Redshift database. The action returns the
+         * database user name prefixed with <code>IAM:</code> if <code>AutoCreate</code> is
+         * <code>False</code> or <code>IAMA:</code> if <code>AutoCreate</code> is
+         * <code>True</code>. You can optionally specify one or more database user groups
+         * that the user will join at log on. By default, the temporary credentials expire
+         * in 900 seconds. You can optionally specify a duration between 900 seconds (15
+         * minutes) and 3600 seconds (60 minutes). For more information, see <a
+         * href="http://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html">Using
+         * IAM Authentication to Generate Database User Credentials</a> in the Amazon
+         * Redshift Cluster Management Guide.</p> <p>The AWS Identity and Access Management
+         * (IAM)user or role that executes GetClusterCredentials must have an IAM policy
+         * attached that allows access to all necessary actions and resources. For more
+         * information about permissions, see <a
+         * href="http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html#redshift-policy-resources.getclustercredentials-resources">Resource
+         * Policies for GetClusterCredentials</a> in the Amazon Redshift Cluster Management
+         * Guide.</p> <p>If the <code>DbGroups</code> parameter is specified, the IAM
+         * policy must allow the <code>redshift:JoinGroup</code> action with access to the
+         * listed <code>dbgroups</code>. </p> <p>In addition, if the
+         * <code>AutoCreate</code> parameter is set to <code>True</code>, then the policy
+         * must include the <code>redshift:CreateClusterUser</code> privilege.</p> <p>If
+         * the <code>DbName</code> parameter is specified, the IAM policy must allow access
+         * to the resource <code>dbname</code> for the specified database name.
+         * </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/GetClusterCredentials">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::GetClusterCredentialsOutcomeCallable GetClusterCredentialsCallable(const Model::GetClusterCredentialsRequest& request) const;
+
+        /**
+         * <p>Returns a database user name and temporary password with temporary
+         * authorization to log on to an Amazon Redshift database. The action returns the
+         * database user name prefixed with <code>IAM:</code> if <code>AutoCreate</code> is
+         * <code>False</code> or <code>IAMA:</code> if <code>AutoCreate</code> is
+         * <code>True</code>. You can optionally specify one or more database user groups
+         * that the user will join at log on. By default, the temporary credentials expire
+         * in 900 seconds. You can optionally specify a duration between 900 seconds (15
+         * minutes) and 3600 seconds (60 minutes). For more information, see <a
+         * href="http://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html">Using
+         * IAM Authentication to Generate Database User Credentials</a> in the Amazon
+         * Redshift Cluster Management Guide.</p> <p>The AWS Identity and Access Management
+         * (IAM)user or role that executes GetClusterCredentials must have an IAM policy
+         * attached that allows access to all necessary actions and resources. For more
+         * information about permissions, see <a
+         * href="http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html#redshift-policy-resources.getclustercredentials-resources">Resource
+         * Policies for GetClusterCredentials</a> in the Amazon Redshift Cluster Management
+         * Guide.</p> <p>If the <code>DbGroups</code> parameter is specified, the IAM
+         * policy must allow the <code>redshift:JoinGroup</code> action with access to the
+         * listed <code>dbgroups</code>. </p> <p>In addition, if the
+         * <code>AutoCreate</code> parameter is set to <code>True</code>, then the policy
+         * must include the <code>redshift:CreateClusterUser</code> privilege.</p> <p>If
+         * the <code>DbName</code> parameter is specified, the IAM policy must allow access
+         * to the resource <code>dbname</code> for the specified database name.
+         * </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/GetClusterCredentials">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void GetClusterCredentialsAsync(const Model::GetClusterCredentialsRequest& request, const GetClusterCredentialsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
          * <p>Modifies the settings for a cluster. For example, you can add another
          * security or parameter group, update the preferred maintenance window, or change
          * the master user password. Resetting a cluster password or modifying the security
@@ -3180,7 +3307,7 @@ namespace Model
 
 
   private:
-    void init(const Client::ClientConfiguration& clientConfiguration);
+    void init(const Aws::Client::ClientConfiguration& clientConfiguration);
 
         /**Async helpers**/
         void AuthorizeClusterSecurityGroupIngressAsyncHelper(const Model::AuthorizeClusterSecurityGroupIngressRequest& request, const AuthorizeClusterSecurityGroupIngressResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -3231,6 +3358,7 @@ namespace Model
         void DisableSnapshotCopyAsyncHelper(const Model::DisableSnapshotCopyRequest& request, const DisableSnapshotCopyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void EnableLoggingAsyncHelper(const Model::EnableLoggingRequest& request, const EnableLoggingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void EnableSnapshotCopyAsyncHelper(const Model::EnableSnapshotCopyRequest& request, const EnableSnapshotCopyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void GetClusterCredentialsAsyncHelper(const Model::GetClusterCredentialsRequest& request, const GetClusterCredentialsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ModifyClusterAsyncHelper(const Model::ModifyClusterRequest& request, const ModifyClusterResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ModifyClusterIamRolesAsyncHelper(const Model::ModifyClusterIamRolesRequest& request, const ModifyClusterIamRolesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ModifyClusterParameterGroupAsyncHelper(const Model::ModifyClusterParameterGroupRequest& request, const ModifyClusterParameterGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -3247,7 +3375,7 @@ namespace Model
         void RotateEncryptionKeyAsyncHelper(const Model::RotateEncryptionKeyRequest& request, const RotateEncryptionKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
     Aws::String m_uri;
-    std::shared_ptr<Utils::Threading::Executor> m_executor;
+    std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;
   };
 
 } // namespace Redshift

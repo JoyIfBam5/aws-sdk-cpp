@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codepipeline/CodePipeline_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/codepipeline/model/ActionConfigurationPropertyType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     ActionConfigurationProperty& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the action configuration property.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The name of the action configuration property.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the action configuration property.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The name of the action configuration property.</p>
      */
-    inline ActionConfigurationProperty& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline ActionConfigurationProperty& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the action configuration property.</p>
      */
     inline ActionConfigurationProperty& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>Whether the configuration property is a required value.</p>
@@ -95,6 +99,7 @@ namespace Model
      */
     inline ActionConfigurationProperty& WithRequired(bool value) { SetRequired(value); return *this;}
 
+
     /**
      * <p>Whether the configuration property is a key.</p>
      */
@@ -109,6 +114,7 @@ namespace Model
      * <p>Whether the configuration property is a key.</p>
      */
     inline ActionConfigurationProperty& WithKey(bool value) { SetKey(value); return *this;}
+
 
     /**
      * <p>Whether the configuration property is secret. Secrets are hidden from all
@@ -137,8 +143,9 @@ namespace Model
      */
     inline ActionConfigurationProperty& WithSecret(bool value) { SetSecret(value); return *this;}
 
+
     /**
-     * <p>Indicates that the proprety will be used in conjunction with PollForJobs.
+     * <p>Indicates that the property will be used in conjunction with PollForJobs.
      * When creating a custom action, an action can have up to one queryable property.
      * If it has one, that property must be both required and not secret.</p> <p>If you
      * create a pipeline with a custom action type, and that custom action contains a
@@ -150,7 +157,7 @@ namespace Model
     inline bool GetQueryable() const{ return m_queryable; }
 
     /**
-     * <p>Indicates that the proprety will be used in conjunction with PollForJobs.
+     * <p>Indicates that the property will be used in conjunction with PollForJobs.
      * When creating a custom action, an action can have up to one queryable property.
      * If it has one, that property must be both required and not secret.</p> <p>If you
      * create a pipeline with a custom action type, and that custom action contains a
@@ -162,7 +169,7 @@ namespace Model
     inline void SetQueryable(bool value) { m_queryableHasBeenSet = true; m_queryable = value; }
 
     /**
-     * <p>Indicates that the proprety will be used in conjunction with PollForJobs.
+     * <p>Indicates that the property will be used in conjunction with PollForJobs.
      * When creating a custom action, an action can have up to one queryable property.
      * If it has one, that property must be both required and not secret.</p> <p>If you
      * create a pipeline with a custom action type, and that custom action contains a
@@ -172,6 +179,7 @@ namespace Model
      * hyphens.</p>
      */
     inline ActionConfigurationProperty& WithQueryable(bool value) { SetQueryable(value); return *this;}
+
 
     /**
      * <p>The description of the action configuration property that will be displayed
@@ -189,7 +197,7 @@ namespace Model
      * <p>The description of the action configuration property that will be displayed
      * to users.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The description of the action configuration property that will be displayed
@@ -207,13 +215,14 @@ namespace Model
      * <p>The description of the action configuration property that will be displayed
      * to users.</p>
      */
-    inline ActionConfigurationProperty& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline ActionConfigurationProperty& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description of the action configuration property that will be displayed
      * to users.</p>
      */
     inline ActionConfigurationProperty& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The type of the configuration property.</p>
@@ -228,7 +237,7 @@ namespace Model
     /**
      * <p>The type of the configuration property.</p>
      */
-    inline void SetType(ActionConfigurationPropertyType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(ActionConfigurationPropertyType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The type of the configuration property.</p>
@@ -238,21 +247,28 @@ namespace Model
     /**
      * <p>The type of the configuration property.</p>
      */
-    inline ActionConfigurationProperty& WithType(ActionConfigurationPropertyType&& value) { SetType(value); return *this;}
+    inline ActionConfigurationProperty& WithType(ActionConfigurationPropertyType&& value) { SetType(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     bool m_required;
     bool m_requiredHasBeenSet;
+
     bool m_key;
     bool m_keyHasBeenSet;
+
     bool m_secret;
     bool m_secretHasBeenSet;
+
     bool m_queryable;
     bool m_queryableHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     ActionConfigurationPropertyType m_type;
     bool m_typeHasBeenSet;
   };

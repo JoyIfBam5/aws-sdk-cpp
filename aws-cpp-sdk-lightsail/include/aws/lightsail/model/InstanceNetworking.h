@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/lightsail/model/MonthlyTransfer.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/lightsail/model/InstancePortInfo.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     InstanceNetworking& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The amount of data in GB allocated for monthly data transfers.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The amount of data in GB allocated for monthly data transfers.</p>
      */
-    inline void SetMonthlyTransfer(MonthlyTransfer&& value) { m_monthlyTransferHasBeenSet = true; m_monthlyTransfer = value; }
+    inline void SetMonthlyTransfer(MonthlyTransfer&& value) { m_monthlyTransferHasBeenSet = true; m_monthlyTransfer = std::move(value); }
 
     /**
      * <p>The amount of data in GB allocated for monthly data transfers.</p>
@@ -69,7 +72,8 @@ namespace Model
     /**
      * <p>The amount of data in GB allocated for monthly data transfers.</p>
      */
-    inline InstanceNetworking& WithMonthlyTransfer(MonthlyTransfer&& value) { SetMonthlyTransfer(value); return *this;}
+    inline InstanceNetworking& WithMonthlyTransfer(MonthlyTransfer&& value) { SetMonthlyTransfer(std::move(value)); return *this;}
+
 
     /**
      * <p>An array of key-value pairs containing information about the ports on the
@@ -87,7 +91,7 @@ namespace Model
      * <p>An array of key-value pairs containing information about the ports on the
      * instance.</p>
      */
-    inline void SetPorts(Aws::Vector<InstancePortInfo>&& value) { m_portsHasBeenSet = true; m_ports = value; }
+    inline void SetPorts(Aws::Vector<InstancePortInfo>&& value) { m_portsHasBeenSet = true; m_ports = std::move(value); }
 
     /**
      * <p>An array of key-value pairs containing information about the ports on the
@@ -99,7 +103,7 @@ namespace Model
      * <p>An array of key-value pairs containing information about the ports on the
      * instance.</p>
      */
-    inline InstanceNetworking& WithPorts(Aws::Vector<InstancePortInfo>&& value) { SetPorts(value); return *this;}
+    inline InstanceNetworking& WithPorts(Aws::Vector<InstancePortInfo>&& value) { SetPorts(std::move(value)); return *this;}
 
     /**
      * <p>An array of key-value pairs containing information about the ports on the
@@ -111,11 +115,13 @@ namespace Model
      * <p>An array of key-value pairs containing information about the ports on the
      * instance.</p>
      */
-    inline InstanceNetworking& AddPorts(InstancePortInfo&& value) { m_portsHasBeenSet = true; m_ports.push_back(value); return *this; }
+    inline InstanceNetworking& AddPorts(InstancePortInfo&& value) { m_portsHasBeenSet = true; m_ports.push_back(std::move(value)); return *this; }
 
   private:
+
     MonthlyTransfer m_monthlyTransfer;
     bool m_monthlyTransferHasBeenSet;
+
     Aws::Vector<InstancePortInfo> m_ports;
     bool m_portsHasBeenSet;
   };

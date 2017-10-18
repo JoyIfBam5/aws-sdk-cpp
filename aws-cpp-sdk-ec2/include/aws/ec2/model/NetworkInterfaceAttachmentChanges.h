@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The ID of the network interface attachment.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The ID of the network interface attachment.</p>
      */
-    inline void SetAttachmentId(Aws::String&& value) { m_attachmentIdHasBeenSet = true; m_attachmentId = value; }
+    inline void SetAttachmentId(Aws::String&& value) { m_attachmentIdHasBeenSet = true; m_attachmentId = std::move(value); }
 
     /**
      * <p>The ID of the network interface attachment.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>The ID of the network interface attachment.</p>
      */
-    inline NetworkInterfaceAttachmentChanges& WithAttachmentId(Aws::String&& value) { SetAttachmentId(value); return *this;}
+    inline NetworkInterfaceAttachmentChanges& WithAttachmentId(Aws::String&& value) { SetAttachmentId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the network interface attachment.</p>
      */
     inline NetworkInterfaceAttachmentChanges& WithAttachmentId(const char* value) { SetAttachmentId(value); return *this;}
+
 
     /**
      * <p>Indicates whether the network interface is deleted when the instance is
@@ -100,8 +104,10 @@ namespace Model
     inline NetworkInterfaceAttachmentChanges& WithDeleteOnTermination(bool value) { SetDeleteOnTermination(value); return *this;}
 
   private:
+
     Aws::String m_attachmentId;
     bool m_attachmentIdHasBeenSet;
+
     bool m_deleteOnTermination;
     bool m_deleteOnTerminationHasBeenSet;
   };

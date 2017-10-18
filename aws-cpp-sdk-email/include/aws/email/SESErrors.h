@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 
 #include <aws/core/client/CoreErrors.h>
@@ -54,7 +55,7 @@ enum class SESErrors
   UNKNOWN = 100,
   ///////////////////////////////////////////////////////////////////////////////////////////
 
-  ALREADY_EXISTS= static_cast<int>(Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
+  ALREADY_EXISTS= static_cast<int>(Aws::Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
   CANNOT_DELETE,
   CONFIGURATION_SET_ALREADY_EXISTS,
   CONFIGURATION_SET_DOES_NOT_EXIST,
@@ -65,17 +66,25 @@ enum class SESErrors
   INVALID_FIREHOSE_DESTINATION,
   INVALID_LAMBDA_FUNCTION,
   INVALID_POLICY,
+  INVALID_RENDERING_PARAMETER,
   INVALID_S3_CONFIGURATION,
   INVALID_SNS_TOPIC,
+  INVALID_S_N_S_DESTINATION,
+  INVALID_TEMPLATE,
+  INVALID_TRACKING_OPTIONS,
   LIMIT_EXCEEDED,
   MAIL_FROM_DOMAIN_NOT_VERIFIED,
   MESSAGE_REJECTED,
+  MISSING_RENDERING_ATTRIBUTE,
   RULE_DOES_NOT_EXIST,
-  RULE_SET_DOES_NOT_EXIST
+  RULE_SET_DOES_NOT_EXIST,
+  TEMPLATE_DOES_NOT_EXIST,
+  TRACKING_OPTIONS_ALREADY_EXISTS,
+  TRACKING_OPTIONS_DOES_NOT_EXIST
 };
 namespace SESErrorMapper
 {
-  AWS_SES_API Client::AWSError<Client::CoreErrors> GetErrorForName(const char* errorName);
+  AWS_SES_API Aws::Client::AWSError<Aws::Client::CoreErrors> GetErrorForName(const char* errorName);
 }
 
 } // namespace SES

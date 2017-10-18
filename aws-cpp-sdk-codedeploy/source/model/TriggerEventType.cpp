@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/codedeploy/model/TriggerEventType.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -34,9 +35,11 @@ namespace Aws
         static const int DeploymentFailure_HASH = HashingUtils::HashString("DeploymentFailure");
         static const int DeploymentStop_HASH = HashingUtils::HashString("DeploymentStop");
         static const int DeploymentRollback_HASH = HashingUtils::HashString("DeploymentRollback");
+        static const int DeploymentReady_HASH = HashingUtils::HashString("DeploymentReady");
         static const int InstanceStart_HASH = HashingUtils::HashString("InstanceStart");
         static const int InstanceSuccess_HASH = HashingUtils::HashString("InstanceSuccess");
         static const int InstanceFailure_HASH = HashingUtils::HashString("InstanceFailure");
+        static const int InstanceReady_HASH = HashingUtils::HashString("InstanceReady");
 
 
         TriggerEventType GetTriggerEventTypeForName(const Aws::String& name)
@@ -62,6 +65,10 @@ namespace Aws
           {
             return TriggerEventType::DeploymentRollback;
           }
+          else if (hashCode == DeploymentReady_HASH)
+          {
+            return TriggerEventType::DeploymentReady;
+          }
           else if (hashCode == InstanceStart_HASH)
           {
             return TriggerEventType::InstanceStart;
@@ -73,6 +80,10 @@ namespace Aws
           else if (hashCode == InstanceFailure_HASH)
           {
             return TriggerEventType::InstanceFailure;
+          }
+          else if (hashCode == InstanceReady_HASH)
+          {
+            return TriggerEventType::InstanceReady;
           }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
@@ -98,12 +109,16 @@ namespace Aws
             return "DeploymentStop";
           case TriggerEventType::DeploymentRollback:
             return "DeploymentRollback";
+          case TriggerEventType::DeploymentReady:
+            return "DeploymentReady";
           case TriggerEventType::InstanceStart:
             return "InstanceStart";
           case TriggerEventType::InstanceSuccess:
             return "InstanceSuccess";
           case TriggerEventType::InstanceFailure:
             return "InstanceFailure";
+          case TriggerEventType::InstanceReady:
+            return "InstanceReady";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     GetCSVHeaderResult();
-    GetCSVHeaderResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetCSVHeaderResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetCSVHeaderResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetCSVHeaderResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The user pool ID for the user pool that the users are to be imported
@@ -63,7 +66,7 @@ namespace Model
      * <p>The user pool ID for the user pool that the users are to be imported
      * into.</p>
      */
-    inline void SetUserPoolId(Aws::String&& value) { m_userPoolId = value; }
+    inline void SetUserPoolId(Aws::String&& value) { m_userPoolId = std::move(value); }
 
     /**
      * <p>The user pool ID for the user pool that the users are to be imported
@@ -81,13 +84,14 @@ namespace Model
      * <p>The user pool ID for the user pool that the users are to be imported
      * into.</p>
      */
-    inline GetCSVHeaderResult& WithUserPoolId(Aws::String&& value) { SetUserPoolId(value); return *this;}
+    inline GetCSVHeaderResult& WithUserPoolId(Aws::String&& value) { SetUserPoolId(std::move(value)); return *this;}
 
     /**
      * <p>The user pool ID for the user pool that the users are to be imported
      * into.</p>
      */
     inline GetCSVHeaderResult& WithUserPoolId(const char* value) { SetUserPoolId(value); return *this;}
+
 
     /**
      * <p>The header information for the .csv file for the user import job.</p>
@@ -102,7 +106,7 @@ namespace Model
     /**
      * <p>The header information for the .csv file for the user import job.</p>
      */
-    inline void SetCSVHeader(Aws::Vector<Aws::String>&& value) { m_cSVHeader = value; }
+    inline void SetCSVHeader(Aws::Vector<Aws::String>&& value) { m_cSVHeader = std::move(value); }
 
     /**
      * <p>The header information for the .csv file for the user import job.</p>
@@ -112,7 +116,7 @@ namespace Model
     /**
      * <p>The header information for the .csv file for the user import job.</p>
      */
-    inline GetCSVHeaderResult& WithCSVHeader(Aws::Vector<Aws::String>&& value) { SetCSVHeader(value); return *this;}
+    inline GetCSVHeaderResult& WithCSVHeader(Aws::Vector<Aws::String>&& value) { SetCSVHeader(std::move(value)); return *this;}
 
     /**
      * <p>The header information for the .csv file for the user import job.</p>
@@ -122,7 +126,7 @@ namespace Model
     /**
      * <p>The header information for the .csv file for the user import job.</p>
      */
-    inline GetCSVHeaderResult& AddCSVHeader(Aws::String&& value) { m_cSVHeader.push_back(value); return *this; }
+    inline GetCSVHeaderResult& AddCSVHeader(Aws::String&& value) { m_cSVHeader.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The header information for the .csv file for the user import job.</p>
@@ -130,7 +134,9 @@ namespace Model
     inline GetCSVHeaderResult& AddCSVHeader(const char* value) { m_cSVHeader.push_back(value); return *this; }
 
   private:
+
     Aws::String m_userPoolId;
+
     Aws::Vector<Aws::String> m_cSVHeader;
   };
 

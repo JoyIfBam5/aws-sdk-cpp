@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticloadbalancing/ElasticLoadBalancing_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the attribute.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The name of the attribute.</p>
      */
-    inline void SetAttributeName(Aws::String&& value) { m_attributeNameHasBeenSet = true; m_attributeName = value; }
+    inline void SetAttributeName(Aws::String&& value) { m_attributeNameHasBeenSet = true; m_attributeName = std::move(value); }
 
     /**
      * <p>The name of the attribute.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>The name of the attribute.</p>
      */
-    inline PolicyAttributeDescription& WithAttributeName(Aws::String&& value) { SetAttributeName(value); return *this;}
+    inline PolicyAttributeDescription& WithAttributeName(Aws::String&& value) { SetAttributeName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the attribute.</p>
      */
     inline PolicyAttributeDescription& WithAttributeName(const char* value) { SetAttributeName(value); return *this;}
+
 
     /**
      * <p>The value of the attribute.</p>
@@ -94,7 +98,7 @@ namespace Model
     /**
      * <p>The value of the attribute.</p>
      */
-    inline void SetAttributeValue(Aws::String&& value) { m_attributeValueHasBeenSet = true; m_attributeValue = value; }
+    inline void SetAttributeValue(Aws::String&& value) { m_attributeValueHasBeenSet = true; m_attributeValue = std::move(value); }
 
     /**
      * <p>The value of the attribute.</p>
@@ -109,7 +113,7 @@ namespace Model
     /**
      * <p>The value of the attribute.</p>
      */
-    inline PolicyAttributeDescription& WithAttributeValue(Aws::String&& value) { SetAttributeValue(value); return *this;}
+    inline PolicyAttributeDescription& WithAttributeValue(Aws::String&& value) { SetAttributeValue(std::move(value)); return *this;}
 
     /**
      * <p>The value of the attribute.</p>
@@ -117,8 +121,10 @@ namespace Model
     inline PolicyAttributeDescription& WithAttributeValue(const char* value) { SetAttributeValue(value); return *this;}
 
   private:
+
     Aws::String m_attributeName;
     bool m_attributeNameHasBeenSet;
+
     Aws::String m_attributeValue;
     bool m_attributeValueHasBeenSet;
   };

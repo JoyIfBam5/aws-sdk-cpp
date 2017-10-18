@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/cognito-idp/model/DeviceType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -41,8 +43,9 @@ namespace Model
   {
   public:
     GetDeviceResult();
-    GetDeviceResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetDeviceResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDeviceResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDeviceResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The device.</p>
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The device.</p>
      */
-    inline void SetDevice(DeviceType&& value) { m_device = value; }
+    inline void SetDevice(DeviceType&& value) { m_device = std::move(value); }
 
     /**
      * <p>The device.</p>
@@ -67,9 +70,10 @@ namespace Model
     /**
      * <p>The device.</p>
      */
-    inline GetDeviceResult& WithDevice(DeviceType&& value) { SetDevice(value); return *this;}
+    inline GetDeviceResult& WithDevice(DeviceType&& value) { SetDevice(std::move(value)); return *this;}
 
   private:
+
     DeviceType m_device;
   };
 

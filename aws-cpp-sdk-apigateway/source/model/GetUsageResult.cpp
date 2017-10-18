@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/apigateway/model/GetUsageResult.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
+#include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/UnreferencedParam.h>
 
 #include <utility>
@@ -28,12 +30,12 @@ GetUsageResult::GetUsageResult()
 {
 }
 
-GetUsageResult::GetUsageResult(const AmazonWebServiceResult<JsonValue>& result)
+GetUsageResult::GetUsageResult(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
   *this = result;
 }
 
-GetUsageResult& GetUsageResult::operator =(const AmazonWebServiceResult<JsonValue>& result)
+GetUsageResult& GetUsageResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
   const JsonValue& jsonValue = result.GetPayload();
   if(jsonValue.ValueExists("usagePlanId"))
@@ -60,12 +62,12 @@ GetUsageResult& GetUsageResult::operator =(const AmazonWebServiceResult<JsonValu
 
   }
 
-  if(jsonValue.ValueExists("items"))
+  if(jsonValue.ValueExists("values"))
   {
-    Aws::Map<Aws::String, JsonValue> itemsJsonMap = jsonValue.GetObject("items").GetAllObjects();
-    for(auto& itemsItem : itemsJsonMap)
+    Aws::Map<Aws::String, JsonValue> valuesJsonMap = jsonValue.GetObject("values").GetAllObjects();
+    for(auto& valuesItem : valuesJsonMap)
     {
-      Array<JsonValue> listOfUsageJsonList = itemsItem.second.AsArray();
+      Array<JsonValue> listOfUsageJsonList = valuesItem.second.AsArray();
       Aws::Vector<Aws::Vector<long long>> listOfUsageList;
       listOfUsageList.reserve((size_t)listOfUsageJsonList.GetLength());
       for(unsigned listOfUsageIndex = 0; listOfUsageIndex < listOfUsageJsonList.GetLength(); ++listOfUsageIndex)
@@ -79,7 +81,7 @@ GetUsageResult& GetUsageResult::operator =(const AmazonWebServiceResult<JsonValu
         }
         listOfUsageList.push_back(std::move(listOfLongList));
       }
-      m_items[itemsItem.first] = std::move(listOfUsageList);
+      m_items[valuesItem.first] = std::move(listOfUsageList);
     }
   }
 

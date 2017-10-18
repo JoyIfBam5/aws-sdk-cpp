@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/cloudformation/model/CreateChangeSetRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -29,6 +30,7 @@ CreateChangeSetRequest::CreateChangeSetRequest() :
     m_capabilitiesHasBeenSet(false),
     m_resourceTypesHasBeenSet(false),
     m_roleARNHasBeenSet(false),
+    m_rollbackConfigurationHasBeenSet(false),
     m_notificationARNsHasBeenSet(false),
     m_tagsHasBeenSet(false),
     m_changeSetNameHasBeenSet(false),
@@ -100,6 +102,11 @@ Aws::String CreateChangeSetRequest::SerializePayload() const
     ss << "RoleARN=" << StringUtils::URLEncode(m_roleARN.c_str()) << "&";
   }
 
+  if(m_rollbackConfigurationHasBeenSet)
+  {
+    m_rollbackConfiguration.OutputToStream(ss, "RollbackConfiguration");
+  }
+
   if(m_notificationARNsHasBeenSet)
   {
     unsigned notificationARNsCount = 1;
@@ -145,3 +152,8 @@ Aws::String CreateChangeSetRequest::SerializePayload() const
   return ss.str();
 }
 
+
+void  CreateChangeSetRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

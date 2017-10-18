@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/devicefarm/DeviceFarm_EXPORTS.h>
 #include <aws/devicefarm/model/Upload.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     CreateUploadResult();
-    CreateUploadResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateUploadResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateUploadResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateUploadResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The newly created upload.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The newly created upload.</p>
      */
-    inline void SetUpload(Upload&& value) { m_upload = value; }
+    inline void SetUpload(Upload&& value) { m_upload = std::move(value); }
 
     /**
      * <p>The newly created upload.</p>
@@ -68,9 +71,10 @@ namespace Model
     /**
      * <p>The newly created upload.</p>
      */
-    inline CreateUploadResult& WithUpload(Upload&& value) { SetUpload(value); return *this;}
+    inline CreateUploadResult& WithUpload(Upload&& value) { SetUpload(std::move(value)); return *this;}
 
   private:
+
     Upload m_upload;
   };
 

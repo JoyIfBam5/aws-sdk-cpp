@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/storagegateway/StorageGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     DeviceiSCSIAttributes& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Specifies the unique Amazon Resource Name(ARN) that encodes the iSCSI
      * qualified name(iqn) of a tape drive or media changer target.</p>
@@ -59,7 +62,7 @@ namespace Model
      * <p>Specifies the unique Amazon Resource Name(ARN) that encodes the iSCSI
      * qualified name(iqn) of a tape drive or media changer target.</p>
      */
-    inline void SetTargetARN(Aws::String&& value) { m_targetARNHasBeenSet = true; m_targetARN = value; }
+    inline void SetTargetARN(Aws::String&& value) { m_targetARNHasBeenSet = true; m_targetARN = std::move(value); }
 
     /**
      * <p>Specifies the unique Amazon Resource Name(ARN) that encodes the iSCSI
@@ -77,13 +80,14 @@ namespace Model
      * <p>Specifies the unique Amazon Resource Name(ARN) that encodes the iSCSI
      * qualified name(iqn) of a tape drive or media changer target.</p>
      */
-    inline DeviceiSCSIAttributes& WithTargetARN(Aws::String&& value) { SetTargetARN(value); return *this;}
+    inline DeviceiSCSIAttributes& WithTargetARN(Aws::String&& value) { SetTargetARN(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the unique Amazon Resource Name(ARN) that encodes the iSCSI
      * qualified name(iqn) of a tape drive or media changer target.</p>
      */
     inline DeviceiSCSIAttributes& WithTargetARN(const char* value) { SetTargetARN(value); return *this;}
+
 
     /**
      * <p>The network interface identifier of the VTL device.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>The network interface identifier of the VTL device.</p>
      */
-    inline void SetNetworkInterfaceId(Aws::String&& value) { m_networkInterfaceIdHasBeenSet = true; m_networkInterfaceId = value; }
+    inline void SetNetworkInterfaceId(Aws::String&& value) { m_networkInterfaceIdHasBeenSet = true; m_networkInterfaceId = std::move(value); }
 
     /**
      * <p>The network interface identifier of the VTL device.</p>
@@ -113,12 +117,13 @@ namespace Model
     /**
      * <p>The network interface identifier of the VTL device.</p>
      */
-    inline DeviceiSCSIAttributes& WithNetworkInterfaceId(Aws::String&& value) { SetNetworkInterfaceId(value); return *this;}
+    inline DeviceiSCSIAttributes& WithNetworkInterfaceId(Aws::String&& value) { SetNetworkInterfaceId(std::move(value)); return *this;}
 
     /**
      * <p>The network interface identifier of the VTL device.</p>
      */
     inline DeviceiSCSIAttributes& WithNetworkInterfaceId(const char* value) { SetNetworkInterfaceId(value); return *this;}
+
 
     /**
      * <p>The port used to communicate with iSCSI VTL device targets.</p>
@@ -134,6 +139,7 @@ namespace Model
      * <p>The port used to communicate with iSCSI VTL device targets.</p>
      */
     inline DeviceiSCSIAttributes& WithNetworkInterfacePort(int value) { SetNetworkInterfacePort(value); return *this;}
+
 
     /**
      * <p>Indicates whether mutual CHAP is enabled for the iSCSI target.</p>
@@ -151,12 +157,16 @@ namespace Model
     inline DeviceiSCSIAttributes& WithChapEnabled(bool value) { SetChapEnabled(value); return *this;}
 
   private:
+
     Aws::String m_targetARN;
     bool m_targetARNHasBeenSet;
+
     Aws::String m_networkInterfaceId;
     bool m_networkInterfaceIdHasBeenSet;
+
     int m_networkInterfacePort;
     bool m_networkInterfacePortHasBeenSet;
+
     bool m_chapEnabled;
     bool m_chapEnabledHasBeenSet;
   };

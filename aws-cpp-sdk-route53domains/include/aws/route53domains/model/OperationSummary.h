@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53domains/Route53Domains_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/route53domains/model/OperationStatus.h>
 #include <aws/route53domains/model/OperationType.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,115 +49,94 @@ namespace Model
     OperationSummary& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p>Identifier returned to track the requested action.</p> <p>Type: String</p>
+     * <p>Identifier returned to track the requested action.</p>
      */
     inline const Aws::String& GetOperationId() const{ return m_operationId; }
 
     /**
-     * <p>Identifier returned to track the requested action.</p> <p>Type: String</p>
+     * <p>Identifier returned to track the requested action.</p>
      */
     inline void SetOperationId(const Aws::String& value) { m_operationIdHasBeenSet = true; m_operationId = value; }
 
     /**
-     * <p>Identifier returned to track the requested action.</p> <p>Type: String</p>
+     * <p>Identifier returned to track the requested action.</p>
      */
-    inline void SetOperationId(Aws::String&& value) { m_operationIdHasBeenSet = true; m_operationId = value; }
+    inline void SetOperationId(Aws::String&& value) { m_operationIdHasBeenSet = true; m_operationId = std::move(value); }
 
     /**
-     * <p>Identifier returned to track the requested action.</p> <p>Type: String</p>
+     * <p>Identifier returned to track the requested action.</p>
      */
     inline void SetOperationId(const char* value) { m_operationIdHasBeenSet = true; m_operationId.assign(value); }
 
     /**
-     * <p>Identifier returned to track the requested action.</p> <p>Type: String</p>
+     * <p>Identifier returned to track the requested action.</p>
      */
     inline OperationSummary& WithOperationId(const Aws::String& value) { SetOperationId(value); return *this;}
 
     /**
-     * <p>Identifier returned to track the requested action.</p> <p>Type: String</p>
+     * <p>Identifier returned to track the requested action.</p>
      */
-    inline OperationSummary& WithOperationId(Aws::String&& value) { SetOperationId(value); return *this;}
+    inline OperationSummary& WithOperationId(Aws::String&& value) { SetOperationId(std::move(value)); return *this;}
 
     /**
-     * <p>Identifier returned to track the requested action.</p> <p>Type: String</p>
+     * <p>Identifier returned to track the requested action.</p>
      */
     inline OperationSummary& WithOperationId(const char* value) { SetOperationId(value); return *this;}
 
+
     /**
-     * <p>The current status of the requested operation in the system.</p> <p>Type:
-     * String</p>
+     * <p>The current status of the requested operation in the system.</p>
      */
     inline const OperationStatus& GetStatus() const{ return m_status; }
 
     /**
-     * <p>The current status of the requested operation in the system.</p> <p>Type:
-     * String</p>
+     * <p>The current status of the requested operation in the system.</p>
      */
     inline void SetStatus(const OperationStatus& value) { m_statusHasBeenSet = true; m_status = value; }
 
     /**
-     * <p>The current status of the requested operation in the system.</p> <p>Type:
-     * String</p>
+     * <p>The current status of the requested operation in the system.</p>
      */
-    inline void SetStatus(OperationStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(OperationStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
-     * <p>The current status of the requested operation in the system.</p> <p>Type:
-     * String</p>
+     * <p>The current status of the requested operation in the system.</p>
      */
     inline OperationSummary& WithStatus(const OperationStatus& value) { SetStatus(value); return *this;}
 
     /**
-     * <p>The current status of the requested operation in the system.</p> <p>Type:
-     * String</p>
+     * <p>The current status of the requested operation in the system.</p>
      */
-    inline OperationSummary& WithStatus(OperationStatus&& value) { SetStatus(value); return *this;}
+    inline OperationSummary& WithStatus(OperationStatus&& value) { SetStatus(std::move(value)); return *this;}
+
 
     /**
-     * <p>Type of the action requested.</p> <p>Type: String</p> <p>Valid values:
-     * <code>REGISTER_DOMAIN</code> | <code>DELETE_DOMAIN</code> |
-     * <code>TRANSFER_IN_DOMAIN</code> | <code>UPDATE_DOMAIN_CONTACT</code> |
-     * <code>UPDATE_NAMESERVER</code> | <code>CHANGE_PRIVACY_PROTECTION</code> |
-     * <code>DOMAIN_LOCK</code></p>
+     * <p>Type of the action requested.</p>
      */
     inline const OperationType& GetType() const{ return m_type; }
 
     /**
-     * <p>Type of the action requested.</p> <p>Type: String</p> <p>Valid values:
-     * <code>REGISTER_DOMAIN</code> | <code>DELETE_DOMAIN</code> |
-     * <code>TRANSFER_IN_DOMAIN</code> | <code>UPDATE_DOMAIN_CONTACT</code> |
-     * <code>UPDATE_NAMESERVER</code> | <code>CHANGE_PRIVACY_PROTECTION</code> |
-     * <code>DOMAIN_LOCK</code></p>
+     * <p>Type of the action requested.</p>
      */
     inline void SetType(const OperationType& value) { m_typeHasBeenSet = true; m_type = value; }
 
     /**
-     * <p>Type of the action requested.</p> <p>Type: String</p> <p>Valid values:
-     * <code>REGISTER_DOMAIN</code> | <code>DELETE_DOMAIN</code> |
-     * <code>TRANSFER_IN_DOMAIN</code> | <code>UPDATE_DOMAIN_CONTACT</code> |
-     * <code>UPDATE_NAMESERVER</code> | <code>CHANGE_PRIVACY_PROTECTION</code> |
-     * <code>DOMAIN_LOCK</code></p>
+     * <p>Type of the action requested.</p>
      */
-    inline void SetType(OperationType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(OperationType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
-     * <p>Type of the action requested.</p> <p>Type: String</p> <p>Valid values:
-     * <code>REGISTER_DOMAIN</code> | <code>DELETE_DOMAIN</code> |
-     * <code>TRANSFER_IN_DOMAIN</code> | <code>UPDATE_DOMAIN_CONTACT</code> |
-     * <code>UPDATE_NAMESERVER</code> | <code>CHANGE_PRIVACY_PROTECTION</code> |
-     * <code>DOMAIN_LOCK</code></p>
+     * <p>Type of the action requested.</p>
      */
     inline OperationSummary& WithType(const OperationType& value) { SetType(value); return *this;}
 
     /**
-     * <p>Type of the action requested.</p> <p>Type: String</p> <p>Valid values:
-     * <code>REGISTER_DOMAIN</code> | <code>DELETE_DOMAIN</code> |
-     * <code>TRANSFER_IN_DOMAIN</code> | <code>UPDATE_DOMAIN_CONTACT</code> |
-     * <code>UPDATE_NAMESERVER</code> | <code>CHANGE_PRIVACY_PROTECTION</code> |
-     * <code>DOMAIN_LOCK</code></p>
+     * <p>Type of the action requested.</p>
      */
-    inline OperationSummary& WithType(OperationType&& value) { SetType(value); return *this;}
+    inline OperationSummary& WithType(OperationType&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p>The date when the request was submitted.</p>
@@ -170,7 +151,7 @@ namespace Model
     /**
      * <p>The date when the request was submitted.</p>
      */
-    inline void SetSubmittedDate(Aws::Utils::DateTime&& value) { m_submittedDateHasBeenSet = true; m_submittedDate = value; }
+    inline void SetSubmittedDate(Aws::Utils::DateTime&& value) { m_submittedDateHasBeenSet = true; m_submittedDate = std::move(value); }
 
     /**
      * <p>The date when the request was submitted.</p>
@@ -180,15 +161,19 @@ namespace Model
     /**
      * <p>The date when the request was submitted.</p>
      */
-    inline OperationSummary& WithSubmittedDate(Aws::Utils::DateTime&& value) { SetSubmittedDate(value); return *this;}
+    inline OperationSummary& WithSubmittedDate(Aws::Utils::DateTime&& value) { SetSubmittedDate(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_operationId;
     bool m_operationIdHasBeenSet;
+
     OperationStatus m_status;
     bool m_statusHasBeenSet;
+
     OperationType m_type;
     bool m_typeHasBeenSet;
+
     Aws::Utils::DateTime m_submittedDate;
     bool m_submittedDateHasBeenSet;
   };

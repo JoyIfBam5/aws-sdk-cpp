@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/monitoring/CloudWatch_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -19,6 +20,7 @@
 #include <aws/monitoring/model/StandardUnit.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,7 +37,7 @@ namespace Model
 {
 
   /**
-   * <p>Encapsulates the statistical data that Amazon CloudWatch computes from metric
+   * <p>Encapsulates the statistical data that CloudWatch computes from metric
    * data.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/Datapoint">AWS
    * API Reference</a></p>
@@ -50,6 +52,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The time stamp used for the data point.</p>
      */
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>The time stamp used for the data point.</p>
      */
-    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = value; }
+    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = std::move(value); }
 
     /**
      * <p>The time stamp used for the data point.</p>
@@ -73,7 +76,8 @@ namespace Model
     /**
      * <p>The time stamp used for the data point.</p>
      */
-    inline Datapoint& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(value); return *this;}
+    inline Datapoint& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(std::move(value)); return *this;}
+
 
     /**
      * <p>The number of metric values that contributed to the aggregate value of this
@@ -93,6 +97,7 @@ namespace Model
      */
     inline Datapoint& WithSampleCount(double value) { SetSampleCount(value); return *this;}
 
+
     /**
      * <p>The average of the metric values that correspond to the data point.</p>
      */
@@ -107,6 +112,7 @@ namespace Model
      * <p>The average of the metric values that correspond to the data point.</p>
      */
     inline Datapoint& WithAverage(double value) { SetAverage(value); return *this;}
+
 
     /**
      * <p>The sum of the metric values for the data point.</p>
@@ -123,6 +129,7 @@ namespace Model
      */
     inline Datapoint& WithSum(double value) { SetSum(value); return *this;}
 
+
     /**
      * <p>The minimum metric value for the data point.</p>
      */
@@ -137,6 +144,7 @@ namespace Model
      * <p>The minimum metric value for the data point.</p>
      */
     inline Datapoint& WithMinimum(double value) { SetMinimum(value); return *this;}
+
 
     /**
      * <p>The maximum metric value for the data point.</p>
@@ -153,6 +161,7 @@ namespace Model
      */
     inline Datapoint& WithMaximum(double value) { SetMaximum(value); return *this;}
 
+
     /**
      * <p>The standard unit for the data point.</p>
      */
@@ -166,7 +175,7 @@ namespace Model
     /**
      * <p>The standard unit for the data point.</p>
      */
-    inline void SetUnit(StandardUnit&& value) { m_unitHasBeenSet = true; m_unit = value; }
+    inline void SetUnit(StandardUnit&& value) { m_unitHasBeenSet = true; m_unit = std::move(value); }
 
     /**
      * <p>The standard unit for the data point.</p>
@@ -176,7 +185,8 @@ namespace Model
     /**
      * <p>The standard unit for the data point.</p>
      */
-    inline Datapoint& WithUnit(StandardUnit&& value) { SetUnit(value); return *this;}
+    inline Datapoint& WithUnit(StandardUnit&& value) { SetUnit(std::move(value)); return *this;}
+
 
     /**
      * <p>The percentile statistic for the data point.</p>
@@ -191,7 +201,7 @@ namespace Model
     /**
      * <p>The percentile statistic for the data point.</p>
      */
-    inline void SetExtendedStatistics(Aws::Map<Aws::String, double>&& value) { m_extendedStatisticsHasBeenSet = true; m_extendedStatistics = value; }
+    inline void SetExtendedStatistics(Aws::Map<Aws::String, double>&& value) { m_extendedStatisticsHasBeenSet = true; m_extendedStatistics = std::move(value); }
 
     /**
      * <p>The percentile statistic for the data point.</p>
@@ -201,38 +211,46 @@ namespace Model
     /**
      * <p>The percentile statistic for the data point.</p>
      */
-    inline Datapoint& WithExtendedStatistics(Aws::Map<Aws::String, double>&& value) { SetExtendedStatistics(value); return *this;}
+    inline Datapoint& WithExtendedStatistics(Aws::Map<Aws::String, double>&& value) { SetExtendedStatistics(std::move(value)); return *this;}
 
     /**
      * <p>The percentile statistic for the data point.</p>
      */
-    inline Datapoint& AddExtendedStatistics(const Aws::String& key, double value) { m_extendedStatisticsHasBeenSet = true; m_extendedStatistics[key] = value; return *this; }
+    inline Datapoint& AddExtendedStatistics(const Aws::String& key, double value) { m_extendedStatisticsHasBeenSet = true; m_extendedStatistics.emplace(key, value); return *this; }
 
     /**
      * <p>The percentile statistic for the data point.</p>
      */
-    inline Datapoint& AddExtendedStatistics(Aws::String&& key, double value) { m_extendedStatisticsHasBeenSet = true; m_extendedStatistics[key] = value; return *this; }
+    inline Datapoint& AddExtendedStatistics(Aws::String&& key, double value) { m_extendedStatisticsHasBeenSet = true; m_extendedStatistics.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The percentile statistic for the data point.</p>
      */
-    inline Datapoint& AddExtendedStatistics(const char* key, double value) { m_extendedStatisticsHasBeenSet = true; m_extendedStatistics[key] = value; return *this; }
+    inline Datapoint& AddExtendedStatistics(const char* key, double value) { m_extendedStatisticsHasBeenSet = true; m_extendedStatistics.emplace(key, value); return *this; }
 
   private:
+
     Aws::Utils::DateTime m_timestamp;
     bool m_timestampHasBeenSet;
+
     double m_sampleCount;
     bool m_sampleCountHasBeenSet;
+
     double m_average;
     bool m_averageHasBeenSet;
+
     double m_sum;
     bool m_sumHasBeenSet;
+
     double m_minimum;
     bool m_minimumHasBeenSet;
+
     double m_maximum;
     bool m_maximumHasBeenSet;
+
     StandardUnit m_unit;
     bool m_unitHasBeenSet;
+
     Aws::Map<Aws::String, double> m_extendedStatistics;
     bool m_extendedStatisticsHasBeenSet;
   };

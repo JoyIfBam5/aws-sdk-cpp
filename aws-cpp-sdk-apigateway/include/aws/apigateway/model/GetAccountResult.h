@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/apigateway/model/ThrottleSettings.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -72,8 +74,9 @@ namespace Model
   {
   public:
     GetAccountResult();
-    GetAccountResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetAccountResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetAccountResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetAccountResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The ARN of an Amazon CloudWatch role for the current <a>Account</a>. </p>
@@ -88,7 +91,7 @@ namespace Model
     /**
      * <p>The ARN of an Amazon CloudWatch role for the current <a>Account</a>. </p>
      */
-    inline void SetCloudwatchRoleArn(Aws::String&& value) { m_cloudwatchRoleArn = value; }
+    inline void SetCloudwatchRoleArn(Aws::String&& value) { m_cloudwatchRoleArn = std::move(value); }
 
     /**
      * <p>The ARN of an Amazon CloudWatch role for the current <a>Account</a>. </p>
@@ -103,12 +106,13 @@ namespace Model
     /**
      * <p>The ARN of an Amazon CloudWatch role for the current <a>Account</a>. </p>
      */
-    inline GetAccountResult& WithCloudwatchRoleArn(Aws::String&& value) { SetCloudwatchRoleArn(value); return *this;}
+    inline GetAccountResult& WithCloudwatchRoleArn(Aws::String&& value) { SetCloudwatchRoleArn(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of an Amazon CloudWatch role for the current <a>Account</a>. </p>
      */
     inline GetAccountResult& WithCloudwatchRoleArn(const char* value) { SetCloudwatchRoleArn(value); return *this;}
+
 
     /**
      * <p>Specifies the API request limits configured for the current
@@ -126,7 +130,7 @@ namespace Model
      * <p>Specifies the API request limits configured for the current
      * <a>Account</a>.</p>
      */
-    inline void SetThrottleSettings(ThrottleSettings&& value) { m_throttleSettings = value; }
+    inline void SetThrottleSettings(ThrottleSettings&& value) { m_throttleSettings = std::move(value); }
 
     /**
      * <p>Specifies the API request limits configured for the current
@@ -138,7 +142,8 @@ namespace Model
      * <p>Specifies the API request limits configured for the current
      * <a>Account</a>.</p>
      */
-    inline GetAccountResult& WithThrottleSettings(ThrottleSettings&& value) { SetThrottleSettings(value); return *this;}
+    inline GetAccountResult& WithThrottleSettings(ThrottleSettings&& value) { SetThrottleSettings(std::move(value)); return *this;}
+
 
     /**
      * <p>A list of features supported for the account. When usage plans are enabled,
@@ -156,7 +161,7 @@ namespace Model
      * <p>A list of features supported for the account. When usage plans are enabled,
      * the features list will include an entry of <code>"UsagePlans"</code>.</p>
      */
-    inline void SetFeatures(Aws::Vector<Aws::String>&& value) { m_features = value; }
+    inline void SetFeatures(Aws::Vector<Aws::String>&& value) { m_features = std::move(value); }
 
     /**
      * <p>A list of features supported for the account. When usage plans are enabled,
@@ -168,7 +173,7 @@ namespace Model
      * <p>A list of features supported for the account. When usage plans are enabled,
      * the features list will include an entry of <code>"UsagePlans"</code>.</p>
      */
-    inline GetAccountResult& WithFeatures(Aws::Vector<Aws::String>&& value) { SetFeatures(value); return *this;}
+    inline GetAccountResult& WithFeatures(Aws::Vector<Aws::String>&& value) { SetFeatures(std::move(value)); return *this;}
 
     /**
      * <p>A list of features supported for the account. When usage plans are enabled,
@@ -180,13 +185,14 @@ namespace Model
      * <p>A list of features supported for the account. When usage plans are enabled,
      * the features list will include an entry of <code>"UsagePlans"</code>.</p>
      */
-    inline GetAccountResult& AddFeatures(Aws::String&& value) { m_features.push_back(value); return *this; }
+    inline GetAccountResult& AddFeatures(Aws::String&& value) { m_features.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of features supported for the account. When usage plans are enabled,
      * the features list will include an entry of <code>"UsagePlans"</code>.</p>
      */
     inline GetAccountResult& AddFeatures(const char* value) { m_features.push_back(value); return *this; }
+
 
     /**
      * <p>The version of the API keys used for the account.</p>
@@ -201,7 +207,7 @@ namespace Model
     /**
      * <p>The version of the API keys used for the account.</p>
      */
-    inline void SetApiKeyVersion(Aws::String&& value) { m_apiKeyVersion = value; }
+    inline void SetApiKeyVersion(Aws::String&& value) { m_apiKeyVersion = std::move(value); }
 
     /**
      * <p>The version of the API keys used for the account.</p>
@@ -216,7 +222,7 @@ namespace Model
     /**
      * <p>The version of the API keys used for the account.</p>
      */
-    inline GetAccountResult& WithApiKeyVersion(Aws::String&& value) { SetApiKeyVersion(value); return *this;}
+    inline GetAccountResult& WithApiKeyVersion(Aws::String&& value) { SetApiKeyVersion(std::move(value)); return *this;}
 
     /**
      * <p>The version of the API keys used for the account.</p>
@@ -224,9 +230,13 @@ namespace Model
     inline GetAccountResult& WithApiKeyVersion(const char* value) { SetApiKeyVersion(value); return *this;}
 
   private:
+
     Aws::String m_cloudwatchRoleArn;
+
     ThrottleSettings m_throttleSettings;
+
     Aws::Vector<Aws::String> m_features;
+
     Aws::String m_apiKeyVersion;
   };
 

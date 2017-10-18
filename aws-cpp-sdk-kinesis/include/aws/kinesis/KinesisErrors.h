@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 
 #include <aws/core/client/CoreErrors.h>
@@ -54,15 +55,21 @@ enum class KinesisErrors
   UNKNOWN = 100,
   ///////////////////////////////////////////////////////////////////////////////////////////
 
-  EXPIRED_ITERATOR= static_cast<int>(Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
+  EXPIRED_ITERATOR= static_cast<int>(Aws::Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
   INVALID_ARGUMENT,
+  K_M_S_ACCESS_DENIED,
+  K_M_S_DISABLED,
+  K_M_S_INVALID_STATE,
+  K_M_S_NOT_FOUND,
+  K_M_S_OPT_IN_REQUIRED,
+  K_M_S_THROTTLING,
   LIMIT_EXCEEDED,
   PROVISIONED_THROUGHPUT_EXCEEDED,
   RESOURCE_IN_USE
 };
 namespace KinesisErrorMapper
 {
-  AWS_KINESIS_API Client::AWSError<Client::CoreErrors> GetErrorForName(const char* errorName);
+  AWS_KINESIS_API Aws::Client::AWSError<Aws::Client::CoreErrors> GetErrorForName(const char* errorName);
 }
 
 } // namespace Kinesis

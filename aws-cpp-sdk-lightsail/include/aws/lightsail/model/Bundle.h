@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     Bundle& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The price in US dollars (e.g., <code>5.0</code>).</p>
      */
@@ -58,6 +61,7 @@ namespace Model
      * <p>The price in US dollars (e.g., <code>5.0</code>).</p>
      */
     inline Bundle& WithPrice(double value) { SetPrice(value); return *this;}
+
 
     /**
      * <p>The number of vCPUs included in the bundle (e.g., <code>2</code>).</p>
@@ -74,6 +78,7 @@ namespace Model
      */
     inline Bundle& WithCpuCount(int value) { SetCpuCount(value); return *this;}
 
+
     /**
      * <p>The size of the SSD (e.g., <code>30</code>).</p>
      */
@@ -89,6 +94,7 @@ namespace Model
      */
     inline Bundle& WithDiskSizeInGb(int value) { SetDiskSizeInGb(value); return *this;}
 
+
     /**
      * <p>The bundle ID (e.g., <code>micro_1_0</code>).</p>
      */
@@ -102,7 +108,7 @@ namespace Model
     /**
      * <p>The bundle ID (e.g., <code>micro_1_0</code>).</p>
      */
-    inline void SetBundleId(Aws::String&& value) { m_bundleIdHasBeenSet = true; m_bundleId = value; }
+    inline void SetBundleId(Aws::String&& value) { m_bundleIdHasBeenSet = true; m_bundleId = std::move(value); }
 
     /**
      * <p>The bundle ID (e.g., <code>micro_1_0</code>).</p>
@@ -117,12 +123,13 @@ namespace Model
     /**
      * <p>The bundle ID (e.g., <code>micro_1_0</code>).</p>
      */
-    inline Bundle& WithBundleId(Aws::String&& value) { SetBundleId(value); return *this;}
+    inline Bundle& WithBundleId(Aws::String&& value) { SetBundleId(std::move(value)); return *this;}
 
     /**
      * <p>The bundle ID (e.g., <code>micro_1_0</code>).</p>
      */
     inline Bundle& WithBundleId(const char* value) { SetBundleId(value); return *this;}
+
 
     /**
      * <p>The Amazon EC2 instance type (e.g., <code>t2.micro</code>).</p>
@@ -137,7 +144,7 @@ namespace Model
     /**
      * <p>The Amazon EC2 instance type (e.g., <code>t2.micro</code>).</p>
      */
-    inline void SetInstanceType(Aws::String&& value) { m_instanceTypeHasBeenSet = true; m_instanceType = value; }
+    inline void SetInstanceType(Aws::String&& value) { m_instanceTypeHasBeenSet = true; m_instanceType = std::move(value); }
 
     /**
      * <p>The Amazon EC2 instance type (e.g., <code>t2.micro</code>).</p>
@@ -152,12 +159,13 @@ namespace Model
     /**
      * <p>The Amazon EC2 instance type (e.g., <code>t2.micro</code>).</p>
      */
-    inline Bundle& WithInstanceType(Aws::String&& value) { SetInstanceType(value); return *this;}
+    inline Bundle& WithInstanceType(Aws::String&& value) { SetInstanceType(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon EC2 instance type (e.g., <code>t2.micro</code>).</p>
      */
     inline Bundle& WithInstanceType(const char* value) { SetInstanceType(value); return *this;}
+
 
     /**
      * <p>A Boolean value indicating whether the bundle is active.</p>
@@ -174,6 +182,7 @@ namespace Model
      */
     inline Bundle& WithIsActive(bool value) { SetIsActive(value); return *this;}
 
+
     /**
      * <p>A friendly name for the bundle (e.g., <code>Micro</code>).</p>
      */
@@ -187,7 +196,7 @@ namespace Model
     /**
      * <p>A friendly name for the bundle (e.g., <code>Micro</code>).</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>A friendly name for the bundle (e.g., <code>Micro</code>).</p>
@@ -202,12 +211,13 @@ namespace Model
     /**
      * <p>A friendly name for the bundle (e.g., <code>Micro</code>).</p>
      */
-    inline Bundle& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline Bundle& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>A friendly name for the bundle (e.g., <code>Micro</code>).</p>
      */
     inline Bundle& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The power of the bundle (e.g., <code>500</code>).</p>
@@ -224,6 +234,7 @@ namespace Model
      */
     inline Bundle& WithPower(int value) { SetPower(value); return *this;}
 
+
     /**
      * <p>The amount of RAM in GB (e.g., <code>2.0</code>).</p>
      */
@@ -238,6 +249,7 @@ namespace Model
      * <p>The amount of RAM in GB (e.g., <code>2.0</code>).</p>
      */
     inline Bundle& WithRamSizeInGb(double value) { SetRamSizeInGb(value); return *this;}
+
 
     /**
      * <p>The data transfer rate per month in GB (e.g., <code>2000</code>).</p>
@@ -255,24 +267,34 @@ namespace Model
     inline Bundle& WithTransferPerMonthInGb(int value) { SetTransferPerMonthInGb(value); return *this;}
 
   private:
+
     double m_price;
     bool m_priceHasBeenSet;
+
     int m_cpuCount;
     bool m_cpuCountHasBeenSet;
+
     int m_diskSizeInGb;
     bool m_diskSizeInGbHasBeenSet;
+
     Aws::String m_bundleId;
     bool m_bundleIdHasBeenSet;
+
     Aws::String m_instanceType;
     bool m_instanceTypeHasBeenSet;
+
     bool m_isActive;
     bool m_isActiveHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     int m_power;
     bool m_powerHasBeenSet;
+
     double m_ramSizeInGb;
     bool m_ramSizeInGbHasBeenSet;
+
     int m_transferPerMonthInGb;
     bool m_transferPerMonthInGbHasBeenSet;
   };

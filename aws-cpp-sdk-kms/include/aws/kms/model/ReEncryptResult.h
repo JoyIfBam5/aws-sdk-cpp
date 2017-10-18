@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kms/KMS_EXPORTS.h>
 #include <aws/core/utils/Array.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     ReEncryptResult();
-    ReEncryptResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ReEncryptResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ReEncryptResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ReEncryptResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The reencrypted data.</p>
@@ -53,7 +56,7 @@ namespace Model
     /**
      * <p>The reencrypted data.</p>
      */
-    inline void SetCiphertextBlob(Aws::Utils::ByteBuffer&& value) { m_ciphertextBlob = value; }
+    inline void SetCiphertextBlob(Aws::Utils::ByteBuffer&& value) { m_ciphertextBlob = std::move(value); }
 
     /**
      * <p>The reencrypted data.</p>
@@ -63,7 +66,8 @@ namespace Model
     /**
      * <p>The reencrypted data.</p>
      */
-    inline ReEncryptResult& WithCiphertextBlob(Aws::Utils::ByteBuffer&& value) { SetCiphertextBlob(value); return *this;}
+    inline ReEncryptResult& WithCiphertextBlob(Aws::Utils::ByteBuffer&& value) { SetCiphertextBlob(std::move(value)); return *this;}
+
 
     /**
      * <p>Unique identifier of the CMK used to originally encrypt the data.</p>
@@ -78,7 +82,7 @@ namespace Model
     /**
      * <p>Unique identifier of the CMK used to originally encrypt the data.</p>
      */
-    inline void SetSourceKeyId(Aws::String&& value) { m_sourceKeyId = value; }
+    inline void SetSourceKeyId(Aws::String&& value) { m_sourceKeyId = std::move(value); }
 
     /**
      * <p>Unique identifier of the CMK used to originally encrypt the data.</p>
@@ -93,12 +97,13 @@ namespace Model
     /**
      * <p>Unique identifier of the CMK used to originally encrypt the data.</p>
      */
-    inline ReEncryptResult& WithSourceKeyId(Aws::String&& value) { SetSourceKeyId(value); return *this;}
+    inline ReEncryptResult& WithSourceKeyId(Aws::String&& value) { SetSourceKeyId(std::move(value)); return *this;}
 
     /**
      * <p>Unique identifier of the CMK used to originally encrypt the data.</p>
      */
     inline ReEncryptResult& WithSourceKeyId(const char* value) { SetSourceKeyId(value); return *this;}
+
 
     /**
      * <p>Unique identifier of the CMK used to reencrypt the data.</p>
@@ -113,7 +118,7 @@ namespace Model
     /**
      * <p>Unique identifier of the CMK used to reencrypt the data.</p>
      */
-    inline void SetKeyId(Aws::String&& value) { m_keyId = value; }
+    inline void SetKeyId(Aws::String&& value) { m_keyId = std::move(value); }
 
     /**
      * <p>Unique identifier of the CMK used to reencrypt the data.</p>
@@ -128,7 +133,7 @@ namespace Model
     /**
      * <p>Unique identifier of the CMK used to reencrypt the data.</p>
      */
-    inline ReEncryptResult& WithKeyId(Aws::String&& value) { SetKeyId(value); return *this;}
+    inline ReEncryptResult& WithKeyId(Aws::String&& value) { SetKeyId(std::move(value)); return *this;}
 
     /**
      * <p>Unique identifier of the CMK used to reencrypt the data.</p>
@@ -136,8 +141,11 @@ namespace Model
     inline ReEncryptResult& WithKeyId(const char* value) { SetKeyId(value); return *this;}
 
   private:
+
     Aws::Utils::ByteBuffer m_ciphertextBlob;
+
     Aws::String m_sourceKeyId;
+
     Aws::String m_keyId;
   };
 

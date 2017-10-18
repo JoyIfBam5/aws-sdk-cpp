@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the upgrade target database engine.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The name of the upgrade target database engine.</p>
      */
-    inline void SetEngine(Aws::String&& value) { m_engineHasBeenSet = true; m_engine = value; }
+    inline void SetEngine(Aws::String&& value) { m_engineHasBeenSet = true; m_engine = std::move(value); }
 
     /**
      * <p>The name of the upgrade target database engine.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The name of the upgrade target database engine.</p>
      */
-    inline UpgradeTarget& WithEngine(Aws::String&& value) { SetEngine(value); return *this;}
+    inline UpgradeTarget& WithEngine(Aws::String&& value) { SetEngine(std::move(value)); return *this;}
 
     /**
      * <p>The name of the upgrade target database engine.</p>
      */
     inline UpgradeTarget& WithEngine(const char* value) { SetEngine(value); return *this;}
+
 
     /**
      * <p>The version number of the upgrade target database engine.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>The version number of the upgrade target database engine.</p>
      */
-    inline void SetEngineVersion(Aws::String&& value) { m_engineVersionHasBeenSet = true; m_engineVersion = value; }
+    inline void SetEngineVersion(Aws::String&& value) { m_engineVersionHasBeenSet = true; m_engineVersion = std::move(value); }
 
     /**
      * <p>The version number of the upgrade target database engine.</p>
@@ -110,12 +114,13 @@ namespace Model
     /**
      * <p>The version number of the upgrade target database engine.</p>
      */
-    inline UpgradeTarget& WithEngineVersion(Aws::String&& value) { SetEngineVersion(value); return *this;}
+    inline UpgradeTarget& WithEngineVersion(Aws::String&& value) { SetEngineVersion(std::move(value)); return *this;}
 
     /**
      * <p>The version number of the upgrade target database engine.</p>
      */
     inline UpgradeTarget& WithEngineVersion(const char* value) { SetEngineVersion(value); return *this;}
+
 
     /**
      * <p>The version of the database engine that a DB instance can be upgraded to.</p>
@@ -130,7 +135,7 @@ namespace Model
     /**
      * <p>The version of the database engine that a DB instance can be upgraded to.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The version of the database engine that a DB instance can be upgraded to.</p>
@@ -145,12 +150,13 @@ namespace Model
     /**
      * <p>The version of the database engine that a DB instance can be upgraded to.</p>
      */
-    inline UpgradeTarget& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline UpgradeTarget& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The version of the database engine that a DB instance can be upgraded to.</p>
      */
     inline UpgradeTarget& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>A value that indicates whether the target version will be applied to any
@@ -169,6 +175,7 @@ namespace Model
      * source DB instances that have AutoMinorVersionUpgrade set to true.</p>
      */
     inline UpgradeTarget& WithAutoUpgrade(bool value) { SetAutoUpgrade(value); return *this;}
+
 
     /**
      * <p>A value that indicates whether a database engine will be upgraded to a major
@@ -189,14 +196,19 @@ namespace Model
     inline UpgradeTarget& WithIsMajorVersionUpgrade(bool value) { SetIsMajorVersionUpgrade(value); return *this;}
 
   private:
+
     Aws::String m_engine;
     bool m_engineHasBeenSet;
+
     Aws::String m_engineVersion;
     bool m_engineVersionHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     bool m_autoUpgrade;
     bool m_autoUpgradeHasBeenSet;
+
     bool m_isMajorVersionUpgrade;
     bool m_isMajorVersionUpgradeHasBeenSet;
   };

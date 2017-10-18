@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rekognition/Rekognition_EXPORTS.h>
 #include <aws/rekognition/RekognitionRequest.h>
 #include <aws/rekognition/model/Image.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     DetectLabelsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DetectLabels"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The input image. You can provide a blob of image bytes or an S3 object.</p>
@@ -47,7 +57,7 @@ namespace Model
     /**
      * <p>The input image. You can provide a blob of image bytes or an S3 object.</p>
      */
-    inline void SetImage(Image&& value) { m_imageHasBeenSet = true; m_image = value; }
+    inline void SetImage(Image&& value) { m_imageHasBeenSet = true; m_image = std::move(value); }
 
     /**
      * <p>The input image. You can provide a blob of image bytes or an S3 object.</p>
@@ -57,7 +67,8 @@ namespace Model
     /**
      * <p>The input image. You can provide a blob of image bytes or an S3 object.</p>
      */
-    inline DetectLabelsRequest& WithImage(Image&& value) { SetImage(value); return *this;}
+    inline DetectLabelsRequest& WithImage(Image&& value) { SetImage(std::move(value)); return *this;}
+
 
     /**
      * <p>Maximum number of labels you want the service to return in the response. The
@@ -77,10 +88,11 @@ namespace Model
      */
     inline DetectLabelsRequest& WithMaxLabels(int value) { SetMaxLabels(value); return *this;}
 
+
     /**
      * <p>Specifies the minimum confidence level for the labels to return. Amazon
      * Rekognition doesn't return any labels with confidence lower than this specified
-     * value.</p> <p>If <code>minConfidence</code> is not specified, the operation
+     * value.</p> <p>If <code>MinConfidence</code> is not specified, the operation
      * returns labels with a confidence values greater than or equal to 50 percent.</p>
      */
     inline double GetMinConfidence() const{ return m_minConfidence; }
@@ -88,7 +100,7 @@ namespace Model
     /**
      * <p>Specifies the minimum confidence level for the labels to return. Amazon
      * Rekognition doesn't return any labels with confidence lower than this specified
-     * value.</p> <p>If <code>minConfidence</code> is not specified, the operation
+     * value.</p> <p>If <code>MinConfidence</code> is not specified, the operation
      * returns labels with a confidence values greater than or equal to 50 percent.</p>
      */
     inline void SetMinConfidence(double value) { m_minConfidenceHasBeenSet = true; m_minConfidence = value; }
@@ -96,16 +108,19 @@ namespace Model
     /**
      * <p>Specifies the minimum confidence level for the labels to return. Amazon
      * Rekognition doesn't return any labels with confidence lower than this specified
-     * value.</p> <p>If <code>minConfidence</code> is not specified, the operation
+     * value.</p> <p>If <code>MinConfidence</code> is not specified, the operation
      * returns labels with a confidence values greater than or equal to 50 percent.</p>
      */
     inline DetectLabelsRequest& WithMinConfidence(double value) { SetMinConfidence(value); return *this;}
 
   private:
+
     Image m_image;
     bool m_imageHasBeenSet;
+
     int m_maxLabels;
     bool m_maxLabelsHasBeenSet;
+
     double m_minConfidence;
     bool m_minConfidenceHasBeenSet;
   };

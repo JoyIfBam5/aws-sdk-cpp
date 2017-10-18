@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/ecs/ECSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <aws/ecs/model/ContainerInstanceStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +33,17 @@ namespace Model
   {
   public:
     ListContainerInstancesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListContainerInstances"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The short name or full Amazon Resource Name (ARN) of the cluster that hosts
@@ -53,7 +64,7 @@ namespace Model
      * the container instances to list. If you do not specify a cluster, the default
      * cluster is assumed.</p>
      */
-    inline void SetCluster(Aws::String&& value) { m_clusterHasBeenSet = true; m_cluster = value; }
+    inline void SetCluster(Aws::String&& value) { m_clusterHasBeenSet = true; m_cluster = std::move(value); }
 
     /**
      * <p>The short name or full Amazon Resource Name (ARN) of the cluster that hosts
@@ -74,7 +85,7 @@ namespace Model
      * the container instances to list. If you do not specify a cluster, the default
      * cluster is assumed.</p>
      */
-    inline ListContainerInstancesRequest& WithCluster(Aws::String&& value) { SetCluster(value); return *this;}
+    inline ListContainerInstancesRequest& WithCluster(Aws::String&& value) { SetCluster(std::move(value)); return *this;}
 
     /**
      * <p>The short name or full Amazon Resource Name (ARN) of the cluster that hosts
@@ -82,6 +93,7 @@ namespace Model
      * cluster is assumed.</p>
      */
     inline ListContainerInstancesRequest& WithCluster(const char* value) { SetCluster(value); return *this;}
+
 
     /**
      * <p>You can filter the results of a <code>ListContainerInstances</code> operation
@@ -108,7 +120,7 @@ namespace Model
      * Query Language</a> in the <i>Amazon EC2 Container Service Developer
      * Guide</i>.</p>
      */
-    inline void SetFilter(Aws::String&& value) { m_filterHasBeenSet = true; m_filter = value; }
+    inline void SetFilter(Aws::String&& value) { m_filterHasBeenSet = true; m_filter = std::move(value); }
 
     /**
      * <p>You can filter the results of a <code>ListContainerInstances</code> operation
@@ -135,7 +147,7 @@ namespace Model
      * Query Language</a> in the <i>Amazon EC2 Container Service Developer
      * Guide</i>.</p>
      */
-    inline ListContainerInstancesRequest& WithFilter(Aws::String&& value) { SetFilter(value); return *this;}
+    inline ListContainerInstancesRequest& WithFilter(Aws::String&& value) { SetFilter(std::move(value)); return *this;}
 
     /**
      * <p>You can filter the results of a <code>ListContainerInstances</code> operation
@@ -145,6 +157,7 @@ namespace Model
      * Guide</i>.</p>
      */
     inline ListContainerInstancesRequest& WithFilter(const char* value) { SetFilter(value); return *this;}
+
 
     /**
      * <p>The <code>nextToken</code> value returned from a previous paginated
@@ -180,7 +193,7 @@ namespace Model
      * is only used to retrieve the next items in a list and not for other programmatic
      * purposes.</p> </note>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>The <code>nextToken</code> value returned from a previous paginated
@@ -216,7 +229,7 @@ namespace Model
      * is only used to retrieve the next items in a list and not for other programmatic
      * purposes.</p> </note>
      */
-    inline ListContainerInstancesRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListContainerInstancesRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The <code>nextToken</code> value returned from a previous paginated
@@ -229,6 +242,7 @@ namespace Model
      * purposes.</p> </note>
      */
     inline ListContainerInstancesRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     /**
      * <p>The maximum number of container instance results returned by
@@ -269,15 +283,73 @@ namespace Model
      */
     inline ListContainerInstancesRequest& WithMaxResults(int value) { SetMaxResults(value); return *this;}
 
+
+    /**
+     * <p>Filters the container instances by status. For example, if you specify the
+     * <code>DRAINING</code> status, the results include only container instances that
+     * have been set to <code>DRAINING</code> using
+     * <a>UpdateContainerInstancesState</a>. If you do not specify this parameter, the
+     * default is to include container instances set to <code>ACTIVE</code> and
+     * <code>DRAINING</code>.</p>
+     */
+    inline const ContainerInstanceStatus& GetStatus() const{ return m_status; }
+
+    /**
+     * <p>Filters the container instances by status. For example, if you specify the
+     * <code>DRAINING</code> status, the results include only container instances that
+     * have been set to <code>DRAINING</code> using
+     * <a>UpdateContainerInstancesState</a>. If you do not specify this parameter, the
+     * default is to include container instances set to <code>ACTIVE</code> and
+     * <code>DRAINING</code>.</p>
+     */
+    inline void SetStatus(const ContainerInstanceStatus& value) { m_statusHasBeenSet = true; m_status = value; }
+
+    /**
+     * <p>Filters the container instances by status. For example, if you specify the
+     * <code>DRAINING</code> status, the results include only container instances that
+     * have been set to <code>DRAINING</code> using
+     * <a>UpdateContainerInstancesState</a>. If you do not specify this parameter, the
+     * default is to include container instances set to <code>ACTIVE</code> and
+     * <code>DRAINING</code>.</p>
+     */
+    inline void SetStatus(ContainerInstanceStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
+
+    /**
+     * <p>Filters the container instances by status. For example, if you specify the
+     * <code>DRAINING</code> status, the results include only container instances that
+     * have been set to <code>DRAINING</code> using
+     * <a>UpdateContainerInstancesState</a>. If you do not specify this parameter, the
+     * default is to include container instances set to <code>ACTIVE</code> and
+     * <code>DRAINING</code>.</p>
+     */
+    inline ListContainerInstancesRequest& WithStatus(const ContainerInstanceStatus& value) { SetStatus(value); return *this;}
+
+    /**
+     * <p>Filters the container instances by status. For example, if you specify the
+     * <code>DRAINING</code> status, the results include only container instances that
+     * have been set to <code>DRAINING</code> using
+     * <a>UpdateContainerInstancesState</a>. If you do not specify this parameter, the
+     * default is to include container instances set to <code>ACTIVE</code> and
+     * <code>DRAINING</code>.</p>
+     */
+    inline ListContainerInstancesRequest& WithStatus(ContainerInstanceStatus&& value) { SetStatus(std::move(value)); return *this;}
+
   private:
+
     Aws::String m_cluster;
     bool m_clusterHasBeenSet;
+
     Aws::String m_filter;
     bool m_filterHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
+
     int m_maxResults;
     bool m_maxResultsHasBeenSet;
+
+    ContainerInstanceStatus m_status;
+    bool m_statusHasBeenSet;
   };
 
 } // namespace Model

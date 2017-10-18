@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/cloudformation/model/GetTemplateSummaryRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -22,7 +23,8 @@ using namespace Aws::Utils;
 GetTemplateSummaryRequest::GetTemplateSummaryRequest() : 
     m_templateBodyHasBeenSet(false),
     m_templateURLHasBeenSet(false),
-    m_stackNameHasBeenSet(false)
+    m_stackNameHasBeenSet(false),
+    m_stackSetNameHasBeenSet(false)
 {
 }
 
@@ -45,7 +47,17 @@ Aws::String GetTemplateSummaryRequest::SerializePayload() const
     ss << "StackName=" << StringUtils::URLEncode(m_stackName.c_str()) << "&";
   }
 
+  if(m_stackSetNameHasBeenSet)
+  {
+    ss << "StackSetName=" << StringUtils::URLEncode(m_stackSetName.c_str()) << "&";
+  }
+
   ss << "Version=2010-05-15";
   return ss.str();
 }
 
+
+void  GetTemplateSummaryRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

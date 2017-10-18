@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/workspaces/WorkSpaces_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/workspaces/model/Workspace.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     DescribeWorkspacesResult();
-    DescribeWorkspacesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeWorkspacesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeWorkspacesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeWorkspacesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>An array of structures that contain the information about the WorkSpaces.</p>
@@ -66,7 +69,7 @@ namespace Model
      * <p>Because the <a>CreateWorkspaces</a> operation is asynchronous, some of this
      * information may be incomplete for a newly-created WorkSpace.</p>
      */
-    inline void SetWorkspaces(Aws::Vector<Workspace>&& value) { m_workspaces = value; }
+    inline void SetWorkspaces(Aws::Vector<Workspace>&& value) { m_workspaces = std::move(value); }
 
     /**
      * <p>An array of structures that contain the information about the WorkSpaces.</p>
@@ -80,7 +83,7 @@ namespace Model
      * <p>Because the <a>CreateWorkspaces</a> operation is asynchronous, some of this
      * information may be incomplete for a newly-created WorkSpace.</p>
      */
-    inline DescribeWorkspacesResult& WithWorkspaces(Aws::Vector<Workspace>&& value) { SetWorkspaces(value); return *this;}
+    inline DescribeWorkspacesResult& WithWorkspaces(Aws::Vector<Workspace>&& value) { SetWorkspaces(std::move(value)); return *this;}
 
     /**
      * <p>An array of structures that contain the information about the WorkSpaces.</p>
@@ -94,7 +97,8 @@ namespace Model
      * <p>Because the <a>CreateWorkspaces</a> operation is asynchronous, some of this
      * information may be incomplete for a newly-created WorkSpace.</p>
      */
-    inline DescribeWorkspacesResult& AddWorkspaces(Workspace&& value) { m_workspaces.push_back(value); return *this; }
+    inline DescribeWorkspacesResult& AddWorkspaces(Workspace&& value) { m_workspaces.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>If not null, more results are available. Pass this value for the
@@ -118,7 +122,7 @@ namespace Model
      * retrieve the next set of items. This token is valid for one day and must be used
      * within that time frame.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>If not null, more results are available. Pass this value for the
@@ -142,7 +146,7 @@ namespace Model
      * retrieve the next set of items. This token is valid for one day and must be used
      * within that time frame.</p>
      */
-    inline DescribeWorkspacesResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeWorkspacesResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>If not null, more results are available. Pass this value for the
@@ -153,7 +157,9 @@ namespace Model
     inline DescribeWorkspacesResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Workspace> m_workspaces;
+
     Aws::String m_nextToken;
   };
 

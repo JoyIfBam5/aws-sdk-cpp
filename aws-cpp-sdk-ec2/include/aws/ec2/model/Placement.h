@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ec2/model/Tenancy.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The Availability Zone of the instance.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The Availability Zone of the instance.</p>
      */
-    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = value; }
+    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = std::move(value); }
 
     /**
      * <p>The Availability Zone of the instance.</p>
@@ -75,12 +78,56 @@ namespace Model
     /**
      * <p>The Availability Zone of the instance.</p>
      */
-    inline Placement& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(value); return *this;}
+    inline Placement& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(std::move(value)); return *this;}
 
     /**
      * <p>The Availability Zone of the instance.</p>
      */
     inline Placement& WithAvailabilityZone(const char* value) { SetAvailabilityZone(value); return *this;}
+
+
+    /**
+     * <p>The affinity setting for the instance on the Dedicated Host. This parameter
+     * is not supported for the <a>ImportInstance</a> command.</p>
+     */
+    inline const Aws::String& GetAffinity() const{ return m_affinity; }
+
+    /**
+     * <p>The affinity setting for the instance on the Dedicated Host. This parameter
+     * is not supported for the <a>ImportInstance</a> command.</p>
+     */
+    inline void SetAffinity(const Aws::String& value) { m_affinityHasBeenSet = true; m_affinity = value; }
+
+    /**
+     * <p>The affinity setting for the instance on the Dedicated Host. This parameter
+     * is not supported for the <a>ImportInstance</a> command.</p>
+     */
+    inline void SetAffinity(Aws::String&& value) { m_affinityHasBeenSet = true; m_affinity = std::move(value); }
+
+    /**
+     * <p>The affinity setting for the instance on the Dedicated Host. This parameter
+     * is not supported for the <a>ImportInstance</a> command.</p>
+     */
+    inline void SetAffinity(const char* value) { m_affinityHasBeenSet = true; m_affinity.assign(value); }
+
+    /**
+     * <p>The affinity setting for the instance on the Dedicated Host. This parameter
+     * is not supported for the <a>ImportInstance</a> command.</p>
+     */
+    inline Placement& WithAffinity(const Aws::String& value) { SetAffinity(value); return *this;}
+
+    /**
+     * <p>The affinity setting for the instance on the Dedicated Host. This parameter
+     * is not supported for the <a>ImportInstance</a> command.</p>
+     */
+    inline Placement& WithAffinity(Aws::String&& value) { SetAffinity(std::move(value)); return *this;}
+
+    /**
+     * <p>The affinity setting for the instance on the Dedicated Host. This parameter
+     * is not supported for the <a>ImportInstance</a> command.</p>
+     */
+    inline Placement& WithAffinity(const char* value) { SetAffinity(value); return *this;}
+
 
     /**
      * <p>The name of the placement group the instance is in (for cluster compute
@@ -98,7 +145,7 @@ namespace Model
      * <p>The name of the placement group the instance is in (for cluster compute
      * instances).</p>
      */
-    inline void SetGroupName(Aws::String&& value) { m_groupNameHasBeenSet = true; m_groupName = value; }
+    inline void SetGroupName(Aws::String&& value) { m_groupNameHasBeenSet = true; m_groupName = std::move(value); }
 
     /**
      * <p>The name of the placement group the instance is in (for cluster compute
@@ -116,13 +163,57 @@ namespace Model
      * <p>The name of the placement group the instance is in (for cluster compute
      * instances).</p>
      */
-    inline Placement& WithGroupName(Aws::String&& value) { SetGroupName(value); return *this;}
+    inline Placement& WithGroupName(Aws::String&& value) { SetGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the placement group the instance is in (for cluster compute
      * instances).</p>
      */
     inline Placement& WithGroupName(const char* value) { SetGroupName(value); return *this;}
+
+
+    /**
+     * <p>The ID of the Dedicated Host on which the instance resides. This parameter is
+     * not supported for the <a>ImportInstance</a> command.</p>
+     */
+    inline const Aws::String& GetHostId() const{ return m_hostId; }
+
+    /**
+     * <p>The ID of the Dedicated Host on which the instance resides. This parameter is
+     * not supported for the <a>ImportInstance</a> command.</p>
+     */
+    inline void SetHostId(const Aws::String& value) { m_hostIdHasBeenSet = true; m_hostId = value; }
+
+    /**
+     * <p>The ID of the Dedicated Host on which the instance resides. This parameter is
+     * not supported for the <a>ImportInstance</a> command.</p>
+     */
+    inline void SetHostId(Aws::String&& value) { m_hostIdHasBeenSet = true; m_hostId = std::move(value); }
+
+    /**
+     * <p>The ID of the Dedicated Host on which the instance resides. This parameter is
+     * not supported for the <a>ImportInstance</a> command.</p>
+     */
+    inline void SetHostId(const char* value) { m_hostIdHasBeenSet = true; m_hostId.assign(value); }
+
+    /**
+     * <p>The ID of the Dedicated Host on which the instance resides. This parameter is
+     * not supported for the <a>ImportInstance</a> command.</p>
+     */
+    inline Placement& WithHostId(const Aws::String& value) { SetHostId(value); return *this;}
+
+    /**
+     * <p>The ID of the Dedicated Host on which the instance resides. This parameter is
+     * not supported for the <a>ImportInstance</a> command.</p>
+     */
+    inline Placement& WithHostId(Aws::String&& value) { SetHostId(std::move(value)); return *this;}
+
+    /**
+     * <p>The ID of the Dedicated Host on which the instance resides. This parameter is
+     * not supported for the <a>ImportInstance</a> command.</p>
+     */
+    inline Placement& WithHostId(const char* value) { SetHostId(value); return *this;}
+
 
     /**
      * <p>The tenancy of the instance (if the instance is running in a VPC). An
@@ -146,7 +237,7 @@ namespace Model
      * hardware. The <code>host</code> tenancy is not supported for the
      * <a>ImportInstance</a> command.</p>
      */
-    inline void SetTenancy(Tenancy&& value) { m_tenancyHasBeenSet = true; m_tenancy = value; }
+    inline void SetTenancy(Tenancy&& value) { m_tenancyHasBeenSet = true; m_tenancy = std::move(value); }
 
     /**
      * <p>The tenancy of the instance (if the instance is running in a VPC). An
@@ -162,103 +253,63 @@ namespace Model
      * hardware. The <code>host</code> tenancy is not supported for the
      * <a>ImportInstance</a> command.</p>
      */
-    inline Placement& WithTenancy(Tenancy&& value) { SetTenancy(value); return *this;}
+    inline Placement& WithTenancy(Tenancy&& value) { SetTenancy(std::move(value)); return *this;}
+
 
     /**
-     * <p>The ID of the Dedicated Host on which the instance resides. This parameter is
-     * not supported for the <a>ImportInstance</a> command.</p>
+     * <p>Reserved for future use.</p>
      */
-    inline const Aws::String& GetHostId() const{ return m_hostId; }
+    inline const Aws::String& GetSpreadDomain() const{ return m_spreadDomain; }
 
     /**
-     * <p>The ID of the Dedicated Host on which the instance resides. This parameter is
-     * not supported for the <a>ImportInstance</a> command.</p>
+     * <p>Reserved for future use.</p>
      */
-    inline void SetHostId(const Aws::String& value) { m_hostIdHasBeenSet = true; m_hostId = value; }
+    inline void SetSpreadDomain(const Aws::String& value) { m_spreadDomainHasBeenSet = true; m_spreadDomain = value; }
 
     /**
-     * <p>The ID of the Dedicated Host on which the instance resides. This parameter is
-     * not supported for the <a>ImportInstance</a> command.</p>
+     * <p>Reserved for future use.</p>
      */
-    inline void SetHostId(Aws::String&& value) { m_hostIdHasBeenSet = true; m_hostId = value; }
+    inline void SetSpreadDomain(Aws::String&& value) { m_spreadDomainHasBeenSet = true; m_spreadDomain = std::move(value); }
 
     /**
-     * <p>The ID of the Dedicated Host on which the instance resides. This parameter is
-     * not supported for the <a>ImportInstance</a> command.</p>
+     * <p>Reserved for future use.</p>
      */
-    inline void SetHostId(const char* value) { m_hostIdHasBeenSet = true; m_hostId.assign(value); }
+    inline void SetSpreadDomain(const char* value) { m_spreadDomainHasBeenSet = true; m_spreadDomain.assign(value); }
 
     /**
-     * <p>The ID of the Dedicated Host on which the instance resides. This parameter is
-     * not supported for the <a>ImportInstance</a> command.</p>
+     * <p>Reserved for future use.</p>
      */
-    inline Placement& WithHostId(const Aws::String& value) { SetHostId(value); return *this;}
+    inline Placement& WithSpreadDomain(const Aws::String& value) { SetSpreadDomain(value); return *this;}
 
     /**
-     * <p>The ID of the Dedicated Host on which the instance resides. This parameter is
-     * not supported for the <a>ImportInstance</a> command.</p>
+     * <p>Reserved for future use.</p>
      */
-    inline Placement& WithHostId(Aws::String&& value) { SetHostId(value); return *this;}
+    inline Placement& WithSpreadDomain(Aws::String&& value) { SetSpreadDomain(std::move(value)); return *this;}
 
     /**
-     * <p>The ID of the Dedicated Host on which the instance resides. This parameter is
-     * not supported for the <a>ImportInstance</a> command.</p>
+     * <p>Reserved for future use.</p>
      */
-    inline Placement& WithHostId(const char* value) { SetHostId(value); return *this;}
-
-    /**
-     * <p>The affinity setting for the instance on the Dedicated Host. This parameter
-     * is not supported for the <a>ImportInstance</a> command.</p>
-     */
-    inline const Aws::String& GetAffinity() const{ return m_affinity; }
-
-    /**
-     * <p>The affinity setting for the instance on the Dedicated Host. This parameter
-     * is not supported for the <a>ImportInstance</a> command.</p>
-     */
-    inline void SetAffinity(const Aws::String& value) { m_affinityHasBeenSet = true; m_affinity = value; }
-
-    /**
-     * <p>The affinity setting for the instance on the Dedicated Host. This parameter
-     * is not supported for the <a>ImportInstance</a> command.</p>
-     */
-    inline void SetAffinity(Aws::String&& value) { m_affinityHasBeenSet = true; m_affinity = value; }
-
-    /**
-     * <p>The affinity setting for the instance on the Dedicated Host. This parameter
-     * is not supported for the <a>ImportInstance</a> command.</p>
-     */
-    inline void SetAffinity(const char* value) { m_affinityHasBeenSet = true; m_affinity.assign(value); }
-
-    /**
-     * <p>The affinity setting for the instance on the Dedicated Host. This parameter
-     * is not supported for the <a>ImportInstance</a> command.</p>
-     */
-    inline Placement& WithAffinity(const Aws::String& value) { SetAffinity(value); return *this;}
-
-    /**
-     * <p>The affinity setting for the instance on the Dedicated Host. This parameter
-     * is not supported for the <a>ImportInstance</a> command.</p>
-     */
-    inline Placement& WithAffinity(Aws::String&& value) { SetAffinity(value); return *this;}
-
-    /**
-     * <p>The affinity setting for the instance on the Dedicated Host. This parameter
-     * is not supported for the <a>ImportInstance</a> command.</p>
-     */
-    inline Placement& WithAffinity(const char* value) { SetAffinity(value); return *this;}
+    inline Placement& WithSpreadDomain(const char* value) { SetSpreadDomain(value); return *this;}
 
   private:
+
     Aws::String m_availabilityZone;
     bool m_availabilityZoneHasBeenSet;
-    Aws::String m_groupName;
-    bool m_groupNameHasBeenSet;
-    Tenancy m_tenancy;
-    bool m_tenancyHasBeenSet;
-    Aws::String m_hostId;
-    bool m_hostIdHasBeenSet;
+
     Aws::String m_affinity;
     bool m_affinityHasBeenSet;
+
+    Aws::String m_groupName;
+    bool m_groupNameHasBeenSet;
+
+    Aws::String m_hostId;
+    bool m_hostIdHasBeenSet;
+
+    Tenancy m_tenancy;
+    bool m_tenancyHasBeenSet;
+
+    Aws::String m_spreadDomain;
+    bool m_spreadDomainHasBeenSet;
   };
 
 } // namespace Model

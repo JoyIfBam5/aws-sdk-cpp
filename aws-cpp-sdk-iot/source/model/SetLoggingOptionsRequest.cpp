@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/iot/model/SetLoggingOptionsRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -32,12 +33,12 @@ Aws::String SetLoggingOptionsRequest::SerializePayload() const
 
   if(m_loggingOptionsPayloadHasBeenSet)
   {
-   payload.WithObject("loggingOptionsPayload", m_loggingOptionsPayload.Jsonize());
-
+   payload = m_loggingOptionsPayload.Jsonize();
   }
 
   return payload.WriteReadable();
 }
+
 
 
 

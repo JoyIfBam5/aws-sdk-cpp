@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/ec2/EC2Request.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
-#include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ec2/model/Filter.h>
+#include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,79 +38,19 @@ namespace Model
   {
   public:
     DescribeNetworkInterfacesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeNetworkInterfaces"; }
+
     Aws::String SerializePayload() const override;
 
-    /**
-     * <p>Checks whether you have the required permissions for the action, without
-     * actually making the request, and provides an error response. If you have the
-     * required permissions, the error response is <code>DryRunOperation</code>.
-     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
-     */
-    inline bool GetDryRun() const{ return m_dryRun; }
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
 
-    /**
-     * <p>Checks whether you have the required permissions for the action, without
-     * actually making the request, and provides an error response. If you have the
-     * required permissions, the error response is <code>DryRunOperation</code>.
-     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
-     */
-    inline void SetDryRun(bool value) { m_dryRunHasBeenSet = true; m_dryRun = value; }
-
-    /**
-     * <p>Checks whether you have the required permissions for the action, without
-     * actually making the request, and provides an error response. If you have the
-     * required permissions, the error response is <code>DryRunOperation</code>.
-     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
-     */
-    inline DescribeNetworkInterfacesRequest& WithDryRun(bool value) { SetDryRun(value); return *this;}
-
-    /**
-     * <p>One or more network interface IDs.</p> <p>Default: Describes all your network
-     * interfaces.</p>
-     */
-    inline const Aws::Vector<Aws::String>& GetNetworkInterfaceIds() const{ return m_networkInterfaceIds; }
-
-    /**
-     * <p>One or more network interface IDs.</p> <p>Default: Describes all your network
-     * interfaces.</p>
-     */
-    inline void SetNetworkInterfaceIds(const Aws::Vector<Aws::String>& value) { m_networkInterfaceIdsHasBeenSet = true; m_networkInterfaceIds = value; }
-
-    /**
-     * <p>One or more network interface IDs.</p> <p>Default: Describes all your network
-     * interfaces.</p>
-     */
-    inline void SetNetworkInterfaceIds(Aws::Vector<Aws::String>&& value) { m_networkInterfaceIdsHasBeenSet = true; m_networkInterfaceIds = value; }
-
-    /**
-     * <p>One or more network interface IDs.</p> <p>Default: Describes all your network
-     * interfaces.</p>
-     */
-    inline DescribeNetworkInterfacesRequest& WithNetworkInterfaceIds(const Aws::Vector<Aws::String>& value) { SetNetworkInterfaceIds(value); return *this;}
-
-    /**
-     * <p>One or more network interface IDs.</p> <p>Default: Describes all your network
-     * interfaces.</p>
-     */
-    inline DescribeNetworkInterfacesRequest& WithNetworkInterfaceIds(Aws::Vector<Aws::String>&& value) { SetNetworkInterfaceIds(value); return *this;}
-
-    /**
-     * <p>One or more network interface IDs.</p> <p>Default: Describes all your network
-     * interfaces.</p>
-     */
-    inline DescribeNetworkInterfacesRequest& AddNetworkInterfaceIds(const Aws::String& value) { m_networkInterfaceIdsHasBeenSet = true; m_networkInterfaceIds.push_back(value); return *this; }
-
-    /**
-     * <p>One or more network interface IDs.</p> <p>Default: Describes all your network
-     * interfaces.</p>
-     */
-    inline DescribeNetworkInterfacesRequest& AddNetworkInterfaceIds(Aws::String&& value) { m_networkInterfaceIdsHasBeenSet = true; m_networkInterfaceIds.push_back(value); return *this; }
-
-    /**
-     * <p>One or more network interface IDs.</p> <p>Default: Describes all your network
-     * interfaces.</p>
-     */
-    inline DescribeNetworkInterfacesRequest& AddNetworkInterfaceIds(const char* value) { m_networkInterfaceIdsHasBeenSet = true; m_networkInterfaceIds.push_back(value); return *this; }
+  public:
 
     /**
      * <p>One or more filters.</p> <ul> <li> <p>
@@ -348,7 +290,7 @@ namespace Model
      * filter.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC for the
      * network interface.</p> </li> </ul>
      */
-    inline void SetFilters(Aws::Vector<Filter>&& value) { m_filtersHasBeenSet = true; m_filters = value; }
+    inline void SetFilters(Aws::Vector<Filter>&& value) { m_filtersHasBeenSet = true; m_filters = std::move(value); }
 
     /**
      * <p>One or more filters.</p> <ul> <li> <p>
@@ -508,7 +450,7 @@ namespace Model
      * filter.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC for the
      * network interface.</p> </li> </ul>
      */
-    inline DescribeNetworkInterfacesRequest& WithFilters(Aws::Vector<Filter>&& value) { SetFilters(value); return *this;}
+    inline DescribeNetworkInterfacesRequest& WithFilters(Aws::Vector<Filter>&& value) { SetFilters(std::move(value)); return *this;}
 
     /**
      * <p>One or more filters.</p> <ul> <li> <p>
@@ -668,15 +610,92 @@ namespace Model
      * filter.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC for the
      * network interface.</p> </li> </ul>
      */
-    inline DescribeNetworkInterfacesRequest& AddFilters(Filter&& value) { m_filtersHasBeenSet = true; m_filters.push_back(value); return *this; }
+    inline DescribeNetworkInterfacesRequest& AddFilters(Filter&& value) { m_filtersHasBeenSet = true; m_filters.push_back(std::move(value)); return *this; }
+
+
+    /**
+     * <p>Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have the
+     * required permissions, the error response is <code>DryRunOperation</code>.
+     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+     */
+    inline bool GetDryRun() const{ return m_dryRun; }
+
+    /**
+     * <p>Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have the
+     * required permissions, the error response is <code>DryRunOperation</code>.
+     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+     */
+    inline void SetDryRun(bool value) { m_dryRunHasBeenSet = true; m_dryRun = value; }
+
+    /**
+     * <p>Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have the
+     * required permissions, the error response is <code>DryRunOperation</code>.
+     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+     */
+    inline DescribeNetworkInterfacesRequest& WithDryRun(bool value) { SetDryRun(value); return *this;}
+
+
+    /**
+     * <p>One or more network interface IDs.</p> <p>Default: Describes all your network
+     * interfaces.</p>
+     */
+    inline const Aws::Vector<Aws::String>& GetNetworkInterfaceIds() const{ return m_networkInterfaceIds; }
+
+    /**
+     * <p>One or more network interface IDs.</p> <p>Default: Describes all your network
+     * interfaces.</p>
+     */
+    inline void SetNetworkInterfaceIds(const Aws::Vector<Aws::String>& value) { m_networkInterfaceIdsHasBeenSet = true; m_networkInterfaceIds = value; }
+
+    /**
+     * <p>One or more network interface IDs.</p> <p>Default: Describes all your network
+     * interfaces.</p>
+     */
+    inline void SetNetworkInterfaceIds(Aws::Vector<Aws::String>&& value) { m_networkInterfaceIdsHasBeenSet = true; m_networkInterfaceIds = std::move(value); }
+
+    /**
+     * <p>One or more network interface IDs.</p> <p>Default: Describes all your network
+     * interfaces.</p>
+     */
+    inline DescribeNetworkInterfacesRequest& WithNetworkInterfaceIds(const Aws::Vector<Aws::String>& value) { SetNetworkInterfaceIds(value); return *this;}
+
+    /**
+     * <p>One or more network interface IDs.</p> <p>Default: Describes all your network
+     * interfaces.</p>
+     */
+    inline DescribeNetworkInterfacesRequest& WithNetworkInterfaceIds(Aws::Vector<Aws::String>&& value) { SetNetworkInterfaceIds(std::move(value)); return *this;}
+
+    /**
+     * <p>One or more network interface IDs.</p> <p>Default: Describes all your network
+     * interfaces.</p>
+     */
+    inline DescribeNetworkInterfacesRequest& AddNetworkInterfaceIds(const Aws::String& value) { m_networkInterfaceIdsHasBeenSet = true; m_networkInterfaceIds.push_back(value); return *this; }
+
+    /**
+     * <p>One or more network interface IDs.</p> <p>Default: Describes all your network
+     * interfaces.</p>
+     */
+    inline DescribeNetworkInterfacesRequest& AddNetworkInterfaceIds(Aws::String&& value) { m_networkInterfaceIdsHasBeenSet = true; m_networkInterfaceIds.push_back(std::move(value)); return *this; }
+
+    /**
+     * <p>One or more network interface IDs.</p> <p>Default: Describes all your network
+     * interfaces.</p>
+     */
+    inline DescribeNetworkInterfacesRequest& AddNetworkInterfaceIds(const char* value) { m_networkInterfaceIdsHasBeenSet = true; m_networkInterfaceIds.push_back(value); return *this; }
 
   private:
-    bool m_dryRun;
-    bool m_dryRunHasBeenSet;
-    Aws::Vector<Aws::String> m_networkInterfaceIds;
-    bool m_networkInterfaceIdsHasBeenSet;
+
     Aws::Vector<Filter> m_filters;
     bool m_filtersHasBeenSet;
+
+    bool m_dryRun;
+    bool m_dryRunHasBeenSet;
+
+    Aws::Vector<Aws::String> m_networkInterfaceIds;
+    bool m_networkInterfaceIdsHasBeenSet;
   };
 
 } // namespace Model

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dynamodb/DynamoDB_EXPORTS.h>
 #include <aws/dynamodb/DynamoDBErrors.h>
@@ -27,6 +28,7 @@
 #include <aws/dynamodb/model/DeleteTableResult.h>
 #include <aws/dynamodb/model/DescribeLimitsResult.h>
 #include <aws/dynamodb/model/DescribeTableResult.h>
+#include <aws/dynamodb/model/DescribeTimeToLiveResult.h>
 #include <aws/dynamodb/model/GetItemResult.h>
 #include <aws/dynamodb/model/ListTablesResult.h>
 #include <aws/dynamodb/model/ListTagsOfResourceResult.h>
@@ -35,6 +37,7 @@
 #include <aws/dynamodb/model/ScanResult.h>
 #include <aws/dynamodb/model/UpdateItemResult.h>
 #include <aws/dynamodb/model/UpdateTableResult.h>
+#include <aws/dynamodb/model/UpdateTimeToLiveResult.h>
 #include <aws/core/NoResult.h>
 #include <aws/core/client/AsyncCallerContext.h>
 #include <aws/core/http/HttpTypes.h>
@@ -88,6 +91,7 @@ namespace Model
         class DeleteTableRequest;
         class DescribeLimitsRequest;
         class DescribeTableRequest;
+        class DescribeTimeToLiveRequest;
         class GetItemRequest;
         class ListTablesRequest;
         class ListTagsOfResourceRequest;
@@ -98,6 +102,7 @@ namespace Model
         class UntagResourceRequest;
         class UpdateItemRequest;
         class UpdateTableRequest;
+        class UpdateTimeToLiveRequest;
 
         typedef Aws::Utils::Outcome<BatchGetItemResult, Aws::Client::AWSError<DynamoDBErrors>> BatchGetItemOutcome;
         typedef Aws::Utils::Outcome<BatchWriteItemResult, Aws::Client::AWSError<DynamoDBErrors>> BatchWriteItemOutcome;
@@ -106,16 +111,18 @@ namespace Model
         typedef Aws::Utils::Outcome<DeleteTableResult, Aws::Client::AWSError<DynamoDBErrors>> DeleteTableOutcome;
         typedef Aws::Utils::Outcome<DescribeLimitsResult, Aws::Client::AWSError<DynamoDBErrors>> DescribeLimitsOutcome;
         typedef Aws::Utils::Outcome<DescribeTableResult, Aws::Client::AWSError<DynamoDBErrors>> DescribeTableOutcome;
+        typedef Aws::Utils::Outcome<DescribeTimeToLiveResult, Aws::Client::AWSError<DynamoDBErrors>> DescribeTimeToLiveOutcome;
         typedef Aws::Utils::Outcome<GetItemResult, Aws::Client::AWSError<DynamoDBErrors>> GetItemOutcome;
         typedef Aws::Utils::Outcome<ListTablesResult, Aws::Client::AWSError<DynamoDBErrors>> ListTablesOutcome;
         typedef Aws::Utils::Outcome<ListTagsOfResourceResult, Aws::Client::AWSError<DynamoDBErrors>> ListTagsOfResourceOutcome;
         typedef Aws::Utils::Outcome<PutItemResult, Aws::Client::AWSError<DynamoDBErrors>> PutItemOutcome;
         typedef Aws::Utils::Outcome<QueryResult, Aws::Client::AWSError<DynamoDBErrors>> QueryOutcome;
         typedef Aws::Utils::Outcome<ScanResult, Aws::Client::AWSError<DynamoDBErrors>> ScanOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<DynamoDBErrors>> TagResourceOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<DynamoDBErrors>> UntagResourceOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<DynamoDBErrors>> TagResourceOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<DynamoDBErrors>> UntagResourceOutcome;
         typedef Aws::Utils::Outcome<UpdateItemResult, Aws::Client::AWSError<DynamoDBErrors>> UpdateItemOutcome;
         typedef Aws::Utils::Outcome<UpdateTableResult, Aws::Client::AWSError<DynamoDBErrors>> UpdateTableOutcome;
+        typedef Aws::Utils::Outcome<UpdateTimeToLiveResult, Aws::Client::AWSError<DynamoDBErrors>> UpdateTimeToLiveOutcome;
 
         typedef std::future<BatchGetItemOutcome> BatchGetItemOutcomeCallable;
         typedef std::future<BatchWriteItemOutcome> BatchWriteItemOutcomeCallable;
@@ -124,6 +131,7 @@ namespace Model
         typedef std::future<DeleteTableOutcome> DeleteTableOutcomeCallable;
         typedef std::future<DescribeLimitsOutcome> DescribeLimitsOutcomeCallable;
         typedef std::future<DescribeTableOutcome> DescribeTableOutcomeCallable;
+        typedef std::future<DescribeTimeToLiveOutcome> DescribeTimeToLiveOutcomeCallable;
         typedef std::future<GetItemOutcome> GetItemOutcomeCallable;
         typedef std::future<ListTablesOutcome> ListTablesOutcomeCallable;
         typedef std::future<ListTagsOfResourceOutcome> ListTagsOfResourceOutcomeCallable;
@@ -134,6 +142,7 @@ namespace Model
         typedef std::future<UntagResourceOutcome> UntagResourceOutcomeCallable;
         typedef std::future<UpdateItemOutcome> UpdateItemOutcomeCallable;
         typedef std::future<UpdateTableOutcome> UpdateTableOutcomeCallable;
+        typedef std::future<UpdateTimeToLiveOutcome> UpdateTimeToLiveOutcomeCallable;
 } // namespace Model
 
   class DynamoDBClient;
@@ -145,6 +154,7 @@ namespace Model
     typedef std::function<void(const DynamoDBClient*, const Model::DeleteTableRequest&, const Model::DeleteTableOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteTableResponseReceivedHandler;
     typedef std::function<void(const DynamoDBClient*, const Model::DescribeLimitsRequest&, const Model::DescribeLimitsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeLimitsResponseReceivedHandler;
     typedef std::function<void(const DynamoDBClient*, const Model::DescribeTableRequest&, const Model::DescribeTableOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeTableResponseReceivedHandler;
+    typedef std::function<void(const DynamoDBClient*, const Model::DescribeTimeToLiveRequest&, const Model::DescribeTimeToLiveOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeTimeToLiveResponseReceivedHandler;
     typedef std::function<void(const DynamoDBClient*, const Model::GetItemRequest&, const Model::GetItemOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetItemResponseReceivedHandler;
     typedef std::function<void(const DynamoDBClient*, const Model::ListTablesRequest&, const Model::ListTablesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListTablesResponseReceivedHandler;
     typedef std::function<void(const DynamoDBClient*, const Model::ListTagsOfResourceRequest&, const Model::ListTagsOfResourceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListTagsOfResourceResponseReceivedHandler;
@@ -155,6 +165,7 @@ namespace Model
     typedef std::function<void(const DynamoDBClient*, const Model::UntagResourceRequest&, const Model::UntagResourceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UntagResourceResponseReceivedHandler;
     typedef std::function<void(const DynamoDBClient*, const Model::UpdateItemRequest&, const Model::UpdateItemOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateItemResponseReceivedHandler;
     typedef std::function<void(const DynamoDBClient*, const Model::UpdateTableRequest&, const Model::UpdateTableOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateTableResponseReceivedHandler;
+    typedef std::function<void(const DynamoDBClient*, const Model::UpdateTimeToLiveRequest&, const Model::UpdateTimeToLiveOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateTimeToLiveResponseReceivedHandler;
 
   /**
    * <fullname>Amazon DynamoDB</fullname> <p>Amazon DynamoDB is a fully managed NoSQL
@@ -183,22 +194,25 @@ namespace Model
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        DynamoDBClient(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        DynamoDBClient(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        DynamoDBClient(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        DynamoDBClient(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        DynamoDBClient(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        DynamoDBClient(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
         virtual ~DynamoDBClient();
+
+        inline virtual const char* GetServiceClientName() const override { return "dynamodb"; }
+
 
         /**
          * <p>The <code>BatchGetItem</code> operation returns the attributes of one or more
@@ -934,6 +948,34 @@ namespace Model
         virtual void DescribeTableAsync(const Model::DescribeTableRequest& request, const DescribeTableResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
+         * <p>Gives a description of the Time to Live (TTL) status on the specified table.
+         * </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/dynamodb-2012-08-10/DescribeTimeToLive">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::DescribeTimeToLiveOutcome DescribeTimeToLive(const Model::DescribeTimeToLiveRequest& request) const;
+
+        /**
+         * <p>Gives a description of the Time to Live (TTL) status on the specified table.
+         * </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/dynamodb-2012-08-10/DescribeTimeToLive">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::DescribeTimeToLiveOutcomeCallable DescribeTimeToLiveCallable(const Model::DescribeTimeToLiveRequest& request) const;
+
+        /**
+         * <p>Gives a description of the Time to Live (TTL) status on the specified table.
+         * </p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/dynamodb-2012-08-10/DescribeTimeToLive">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void DescribeTimeToLiveAsync(const Model::DescribeTimeToLiveRequest& request, const DescribeTimeToLiveResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
          * <p>The <code>GetItem</code> operation returns a set of attributes for the item
          * with the given primary key. If there is no matching item, <code>GetItem</code>
          * does not return any data and there will be no <code>Item</code> element in the
@@ -1055,20 +1097,40 @@ namespace Model
          * has the same primary key as the new item already exists in the specified table,
          * the new item completely replaces the existing item. You can perform a
          * conditional put operation (add a new item if one with the specified primary key
-         * doesn't exist), or replace an existing item if it has certain attribute
-         * values.</p> <p>In addition to putting an item, you can also return the item's
-         * attribute values in the same operation, using the <code>ReturnValues</code>
-         * parameter.</p> <p>When you add an item, the primary key attribute(s) are the
-         * only required attributes. Attribute values cannot be null. String and Binary
-         * type attributes must have lengths greater than zero. Set type attributes cannot
-         * be empty. Requests with empty values will be rejected with a
-         * <code>ValidationException</code> exception.</p> <note> <p>To prevent a new item
-         * from replacing an existing item, use a conditional expression that contains the
-         * <code>attribute_not_exists</code> function with the name of the attribute being
-         * used as the partition key for the table. Since every record must contain that
-         * attribute, the <code>attribute_not_exists</code> function will only succeed if
-         * no matching item exists.</p> </note> <p>For more information about
-         * <code>PutItem</code>, see <a
+         * doesn't exist), or replace an existing item if it has certain attribute values.
+         * You can return the item's attribute values in the same operation, using the
+         * <code>ReturnValues</code> parameter.</p> <important> <p>This topic provides
+         * general information about the <code>PutItem</code> API.</p> <p>For information
+         * on how to call the <code>PutItem</code> API using the AWS SDK in specific
+         * languages, see the following:</p> <ul> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/aws-cli/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS Command Line Interface </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/DotNetSDKV3/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for .NET </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/SdkForCpp/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for C++ </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/SdkForGoV1/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for Go </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/SdkForJava/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for Java </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for JavaScript </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/SdkForPHPV3/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for PHP V3 </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/boto3/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for Python </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/SdkForRubyV2/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for Ruby V2 </a> </p> </li> </ul> </important> <p>When
+         * you add an item, the primary key attribute(s) are the only required attributes.
+         * Attribute values cannot be null. String and Binary type attributes must have
+         * lengths greater than zero. Set type attributes cannot be empty. Requests with
+         * empty values will be rejected with a <code>ValidationException</code>
+         * exception.</p> <note> <p>To prevent a new item from replacing an existing item,
+         * use a conditional expression that contains the <code>attribute_not_exists</code>
+         * function with the name of the attribute being used as the partition key for the
+         * table. Since every record must contain that attribute, the
+         * <code>attribute_not_exists</code> function will only succeed if no matching item
+         * exists.</p> </note> <p>For more information about <code>PutItem</code>, see <a
          * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html">Working
          * with Items</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p><p><h3>See
          * Also:</h3>   <a
@@ -1082,20 +1144,40 @@ namespace Model
          * has the same primary key as the new item already exists in the specified table,
          * the new item completely replaces the existing item. You can perform a
          * conditional put operation (add a new item if one with the specified primary key
-         * doesn't exist), or replace an existing item if it has certain attribute
-         * values.</p> <p>In addition to putting an item, you can also return the item's
-         * attribute values in the same operation, using the <code>ReturnValues</code>
-         * parameter.</p> <p>When you add an item, the primary key attribute(s) are the
-         * only required attributes. Attribute values cannot be null. String and Binary
-         * type attributes must have lengths greater than zero. Set type attributes cannot
-         * be empty. Requests with empty values will be rejected with a
-         * <code>ValidationException</code> exception.</p> <note> <p>To prevent a new item
-         * from replacing an existing item, use a conditional expression that contains the
-         * <code>attribute_not_exists</code> function with the name of the attribute being
-         * used as the partition key for the table. Since every record must contain that
-         * attribute, the <code>attribute_not_exists</code> function will only succeed if
-         * no matching item exists.</p> </note> <p>For more information about
-         * <code>PutItem</code>, see <a
+         * doesn't exist), or replace an existing item if it has certain attribute values.
+         * You can return the item's attribute values in the same operation, using the
+         * <code>ReturnValues</code> parameter.</p> <important> <p>This topic provides
+         * general information about the <code>PutItem</code> API.</p> <p>For information
+         * on how to call the <code>PutItem</code> API using the AWS SDK in specific
+         * languages, see the following:</p> <ul> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/aws-cli/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS Command Line Interface </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/DotNetSDKV3/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for .NET </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/SdkForCpp/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for C++ </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/SdkForGoV1/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for Go </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/SdkForJava/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for Java </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for JavaScript </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/SdkForPHPV3/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for PHP V3 </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/boto3/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for Python </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/SdkForRubyV2/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for Ruby V2 </a> </p> </li> </ul> </important> <p>When
+         * you add an item, the primary key attribute(s) are the only required attributes.
+         * Attribute values cannot be null. String and Binary type attributes must have
+         * lengths greater than zero. Set type attributes cannot be empty. Requests with
+         * empty values will be rejected with a <code>ValidationException</code>
+         * exception.</p> <note> <p>To prevent a new item from replacing an existing item,
+         * use a conditional expression that contains the <code>attribute_not_exists</code>
+         * function with the name of the attribute being used as the partition key for the
+         * table. Since every record must contain that attribute, the
+         * <code>attribute_not_exists</code> function will only succeed if no matching item
+         * exists.</p> </note> <p>For more information about <code>PutItem</code>, see <a
          * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html">Working
          * with Items</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p><p><h3>See
          * Also:</h3>   <a
@@ -1111,20 +1193,40 @@ namespace Model
          * has the same primary key as the new item already exists in the specified table,
          * the new item completely replaces the existing item. You can perform a
          * conditional put operation (add a new item if one with the specified primary key
-         * doesn't exist), or replace an existing item if it has certain attribute
-         * values.</p> <p>In addition to putting an item, you can also return the item's
-         * attribute values in the same operation, using the <code>ReturnValues</code>
-         * parameter.</p> <p>When you add an item, the primary key attribute(s) are the
-         * only required attributes. Attribute values cannot be null. String and Binary
-         * type attributes must have lengths greater than zero. Set type attributes cannot
-         * be empty. Requests with empty values will be rejected with a
-         * <code>ValidationException</code> exception.</p> <note> <p>To prevent a new item
-         * from replacing an existing item, use a conditional expression that contains the
-         * <code>attribute_not_exists</code> function with the name of the attribute being
-         * used as the partition key for the table. Since every record must contain that
-         * attribute, the <code>attribute_not_exists</code> function will only succeed if
-         * no matching item exists.</p> </note> <p>For more information about
-         * <code>PutItem</code>, see <a
+         * doesn't exist), or replace an existing item if it has certain attribute values.
+         * You can return the item's attribute values in the same operation, using the
+         * <code>ReturnValues</code> parameter.</p> <important> <p>This topic provides
+         * general information about the <code>PutItem</code> API.</p> <p>For information
+         * on how to call the <code>PutItem</code> API using the AWS SDK in specific
+         * languages, see the following:</p> <ul> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/aws-cli/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS Command Line Interface </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/DotNetSDKV3/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for .NET </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/SdkForCpp/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for C++ </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/SdkForGoV1/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for Go </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/SdkForJava/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for Java </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for JavaScript </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/SdkForPHPV3/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for PHP V3 </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/boto3/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for Python </a> </p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/goto/SdkForRubyV2/dynamodb-2012-08-10/PutItem">
+         * PutItem in the AWS SDK for Ruby V2 </a> </p> </li> </ul> </important> <p>When
+         * you add an item, the primary key attribute(s) are the only required attributes.
+         * Attribute values cannot be null. String and Binary type attributes must have
+         * lengths greater than zero. Set type attributes cannot be empty. Requests with
+         * empty values will be rejected with a <code>ValidationException</code>
+         * exception.</p> <note> <p>To prevent a new item from replacing an existing item,
+         * use a conditional expression that contains the <code>attribute_not_exists</code>
+         * function with the name of the attribute being used as the partition key for the
+         * table. Since every record must contain that attribute, the
+         * <code>attribute_not_exists</code> function will only succeed if no matching item
+         * exists.</p> </note> <p>For more information about <code>PutItem</code>, see <a
          * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html">Working
          * with Items</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p><p><h3>See
          * Also:</h3>   <a
@@ -1136,25 +1238,46 @@ namespace Model
         virtual void PutItemAsync(const Model::PutItemRequest& request, const PutItemResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>A <code>Query</code> operation uses the primary key of a table or a secondary
-         * index to directly access items from that table or index.</p> <p>Use the
+         * <p>The <code>Query</code> operation finds items based on primary key values. You
+         * can query any table or secondary index that has a composite primary key (a
+         * partition key and a sort key). </p> <p>Use the
          * <code>KeyConditionExpression</code> parameter to provide a specific value for
          * the partition key. The <code>Query</code> operation will return all of the items
          * from the table or index with that partition key value. You can optionally narrow
          * the scope of the <code>Query</code> operation by specifying a sort key value and
-         * a comparison operator in <code>KeyConditionExpression</code>. You can use the
-         * <code>ScanIndexForward</code> parameter to get results in forward or reverse
-         * order, by sort key.</p> <p>Queries that do not return results consume the
-         * minimum number of read capacity units for that type of read operation.</p> <p>If
-         * the total number of items meeting the query criteria exceeds the result set size
-         * limit of 1 MB, the query stops and results are returned to the user with the
-         * <code>LastEvaluatedKey</code> element to continue the query in a subsequent
-         * operation. Unlike a <code>Scan</code> operation, a <code>Query</code> operation
-         * never returns both an empty result set and a <code>LastEvaluatedKey</code>
-         * value. <code>LastEvaluatedKey</code> is only provided if you have used the
-         * <code>Limit</code> parameter, or if the result set exceeds 1 MB (prior to
-         * applying a filter). </p> <p>You can query a table, a local secondary index, or a
-         * global secondary index. For a query on a table or on a local secondary index,
+         * a comparison operator in <code>KeyConditionExpression</code>. To further refine
+         * the <code>Query</code> results, you can optionally provide a
+         * <code>FilterExpression</code>. A <code>FilterExpression</code> determines which
+         * items within the results should be returned to you. All of the other results are
+         * discarded. </p> <p> A <code>Query</code> operation always returns a result set.
+         * If no matching items are found, the result set will be empty. Queries that do
+         * not return results consume the minimum number of read capacity units for that
+         * type of read operation. </p> <note> <p> DynamoDB calculates the number of read
+         * capacity units consumed based on item size, not on the amount of data that is
+         * returned to an application. The number of capacity units consumed will be the
+         * same whether you request all of the attributes (the default behavior) or just
+         * some of them (using a projection expression). The number will also be the same
+         * whether or not you use a <code>FilterExpression</code>. </p> </note> <p>
+         * <code>Query</code> results are always sorted by the sort key value. If the data
+         * type of the sort key is Number, the results are returned in numeric order;
+         * otherwise, the results are returned in order of UTF-8 bytes. By default, the
+         * sort order is ascending. To reverse the order, set the
+         * <code>ScanIndexForward</code> parameter to false. </p> <p> A single
+         * <code>Query</code> operation will read up to the maximum number of items set (if
+         * using the <code>Limit</code> parameter) or a maximum of 1 MB of data and then
+         * apply any filtering to the results using <code>FilterExpression</code>. If
+         * <code>LastEvaluatedKey</code> is present in the response, you will need to
+         * paginate the result set. For more information, see <a
+         * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.Pagination">Paginating
+         * the Results</a> in the <i>Amazon DynamoDB Developer Guide</i>. </p> <p>
+         * <code>FilterExpression</code> is applied after a <code>Query</code> finishes,
+         * but before the results are returned. A <code>FilterExpression</code> cannot
+         * contain partition key or sort key attributes. You need to specify those
+         * attributes in the <code>KeyConditionExpression</code>. </p> <note> <p> A
+         * <code>Query</code> operation can return an empty result set and a
+         * <code>LastEvaluatedKey</code> if all the items read for the page of results are
+         * filtered out. </p> </note> <p>You can query a table, a local secondary index, or
+         * a global secondary index. For a query on a table or on a local secondary index,
          * you can set the <code>ConsistentRead</code> parameter to <code>true</code> and
          * obtain a strongly consistent result. Global secondary indexes support eventually
          * consistent reads only, so do not specify <code>ConsistentRead</code> when
@@ -1165,25 +1288,46 @@ namespace Model
         virtual Model::QueryOutcome Query(const Model::QueryRequest& request) const;
 
         /**
-         * <p>A <code>Query</code> operation uses the primary key of a table or a secondary
-         * index to directly access items from that table or index.</p> <p>Use the
+         * <p>The <code>Query</code> operation finds items based on primary key values. You
+         * can query any table or secondary index that has a composite primary key (a
+         * partition key and a sort key). </p> <p>Use the
          * <code>KeyConditionExpression</code> parameter to provide a specific value for
          * the partition key. The <code>Query</code> operation will return all of the items
          * from the table or index with that partition key value. You can optionally narrow
          * the scope of the <code>Query</code> operation by specifying a sort key value and
-         * a comparison operator in <code>KeyConditionExpression</code>. You can use the
-         * <code>ScanIndexForward</code> parameter to get results in forward or reverse
-         * order, by sort key.</p> <p>Queries that do not return results consume the
-         * minimum number of read capacity units for that type of read operation.</p> <p>If
-         * the total number of items meeting the query criteria exceeds the result set size
-         * limit of 1 MB, the query stops and results are returned to the user with the
-         * <code>LastEvaluatedKey</code> element to continue the query in a subsequent
-         * operation. Unlike a <code>Scan</code> operation, a <code>Query</code> operation
-         * never returns both an empty result set and a <code>LastEvaluatedKey</code>
-         * value. <code>LastEvaluatedKey</code> is only provided if you have used the
-         * <code>Limit</code> parameter, or if the result set exceeds 1 MB (prior to
-         * applying a filter). </p> <p>You can query a table, a local secondary index, or a
-         * global secondary index. For a query on a table or on a local secondary index,
+         * a comparison operator in <code>KeyConditionExpression</code>. To further refine
+         * the <code>Query</code> results, you can optionally provide a
+         * <code>FilterExpression</code>. A <code>FilterExpression</code> determines which
+         * items within the results should be returned to you. All of the other results are
+         * discarded. </p> <p> A <code>Query</code> operation always returns a result set.
+         * If no matching items are found, the result set will be empty. Queries that do
+         * not return results consume the minimum number of read capacity units for that
+         * type of read operation. </p> <note> <p> DynamoDB calculates the number of read
+         * capacity units consumed based on item size, not on the amount of data that is
+         * returned to an application. The number of capacity units consumed will be the
+         * same whether you request all of the attributes (the default behavior) or just
+         * some of them (using a projection expression). The number will also be the same
+         * whether or not you use a <code>FilterExpression</code>. </p> </note> <p>
+         * <code>Query</code> results are always sorted by the sort key value. If the data
+         * type of the sort key is Number, the results are returned in numeric order;
+         * otherwise, the results are returned in order of UTF-8 bytes. By default, the
+         * sort order is ascending. To reverse the order, set the
+         * <code>ScanIndexForward</code> parameter to false. </p> <p> A single
+         * <code>Query</code> operation will read up to the maximum number of items set (if
+         * using the <code>Limit</code> parameter) or a maximum of 1 MB of data and then
+         * apply any filtering to the results using <code>FilterExpression</code>. If
+         * <code>LastEvaluatedKey</code> is present in the response, you will need to
+         * paginate the result set. For more information, see <a
+         * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.Pagination">Paginating
+         * the Results</a> in the <i>Amazon DynamoDB Developer Guide</i>. </p> <p>
+         * <code>FilterExpression</code> is applied after a <code>Query</code> finishes,
+         * but before the results are returned. A <code>FilterExpression</code> cannot
+         * contain partition key or sort key attributes. You need to specify those
+         * attributes in the <code>KeyConditionExpression</code>. </p> <note> <p> A
+         * <code>Query</code> operation can return an empty result set and a
+         * <code>LastEvaluatedKey</code> if all the items read for the page of results are
+         * filtered out. </p> </note> <p>You can query a table, a local secondary index, or
+         * a global secondary index. For a query on a table or on a local secondary index,
          * you can set the <code>ConsistentRead</code> parameter to <code>true</code> and
          * obtain a strongly consistent result. Global secondary indexes support eventually
          * consistent reads only, so do not specify <code>ConsistentRead</code> when
@@ -1196,25 +1340,46 @@ namespace Model
         virtual Model::QueryOutcomeCallable QueryCallable(const Model::QueryRequest& request) const;
 
         /**
-         * <p>A <code>Query</code> operation uses the primary key of a table or a secondary
-         * index to directly access items from that table or index.</p> <p>Use the
+         * <p>The <code>Query</code> operation finds items based on primary key values. You
+         * can query any table or secondary index that has a composite primary key (a
+         * partition key and a sort key). </p> <p>Use the
          * <code>KeyConditionExpression</code> parameter to provide a specific value for
          * the partition key. The <code>Query</code> operation will return all of the items
          * from the table or index with that partition key value. You can optionally narrow
          * the scope of the <code>Query</code> operation by specifying a sort key value and
-         * a comparison operator in <code>KeyConditionExpression</code>. You can use the
-         * <code>ScanIndexForward</code> parameter to get results in forward or reverse
-         * order, by sort key.</p> <p>Queries that do not return results consume the
-         * minimum number of read capacity units for that type of read operation.</p> <p>If
-         * the total number of items meeting the query criteria exceeds the result set size
-         * limit of 1 MB, the query stops and results are returned to the user with the
-         * <code>LastEvaluatedKey</code> element to continue the query in a subsequent
-         * operation. Unlike a <code>Scan</code> operation, a <code>Query</code> operation
-         * never returns both an empty result set and a <code>LastEvaluatedKey</code>
-         * value. <code>LastEvaluatedKey</code> is only provided if you have used the
-         * <code>Limit</code> parameter, or if the result set exceeds 1 MB (prior to
-         * applying a filter). </p> <p>You can query a table, a local secondary index, or a
-         * global secondary index. For a query on a table or on a local secondary index,
+         * a comparison operator in <code>KeyConditionExpression</code>. To further refine
+         * the <code>Query</code> results, you can optionally provide a
+         * <code>FilterExpression</code>. A <code>FilterExpression</code> determines which
+         * items within the results should be returned to you. All of the other results are
+         * discarded. </p> <p> A <code>Query</code> operation always returns a result set.
+         * If no matching items are found, the result set will be empty. Queries that do
+         * not return results consume the minimum number of read capacity units for that
+         * type of read operation. </p> <note> <p> DynamoDB calculates the number of read
+         * capacity units consumed based on item size, not on the amount of data that is
+         * returned to an application. The number of capacity units consumed will be the
+         * same whether you request all of the attributes (the default behavior) or just
+         * some of them (using a projection expression). The number will also be the same
+         * whether or not you use a <code>FilterExpression</code>. </p> </note> <p>
+         * <code>Query</code> results are always sorted by the sort key value. If the data
+         * type of the sort key is Number, the results are returned in numeric order;
+         * otherwise, the results are returned in order of UTF-8 bytes. By default, the
+         * sort order is ascending. To reverse the order, set the
+         * <code>ScanIndexForward</code> parameter to false. </p> <p> A single
+         * <code>Query</code> operation will read up to the maximum number of items set (if
+         * using the <code>Limit</code> parameter) or a maximum of 1 MB of data and then
+         * apply any filtering to the results using <code>FilterExpression</code>. If
+         * <code>LastEvaluatedKey</code> is present in the response, you will need to
+         * paginate the result set. For more information, see <a
+         * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.Pagination">Paginating
+         * the Results</a> in the <i>Amazon DynamoDB Developer Guide</i>. </p> <p>
+         * <code>FilterExpression</code> is applied after a <code>Query</code> finishes,
+         * but before the results are returned. A <code>FilterExpression</code> cannot
+         * contain partition key or sort key attributes. You need to specify those
+         * attributes in the <code>KeyConditionExpression</code>. </p> <note> <p> A
+         * <code>Query</code> operation can return an empty result set and a
+         * <code>LastEvaluatedKey</code> if all the items read for the page of results are
+         * filtered out. </p> </note> <p>You can query a table, a local secondary index, or
+         * a global secondary index. For a query on a table or on a local secondary index,
          * you can set the <code>ConsistentRead</code> parameter to <code>true</code> and
          * obtain a strongly consistent result. Global secondary indexes support eventually
          * consistent reads only, so do not specify <code>ConsistentRead</code> when
@@ -1234,17 +1399,24 @@ namespace Model
          * of 1 MB, the scan stops and results are returned to the user as a
          * <code>LastEvaluatedKey</code> value to continue the scan in a subsequent
          * operation. The results also include the number of items exceeding the limit. A
-         * scan can result in no table data meeting the filter criteria. </p> <p>By
-         * default, <code>Scan</code> operations proceed sequentially; however, for faster
+         * scan can result in no table data meeting the filter criteria. </p> <p>A single
+         * <code>Scan</code> operation will read up to the maximum number of items set (if
+         * using the <code>Limit</code> parameter) or a maximum of 1 MB of data and then
+         * apply any filtering to the results using <code>FilterExpression</code>. If
+         * <code>LastEvaluatedKey</code> is present in the response, you will need to
+         * paginate the result set. For more information, see <a
+         * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.Pagination">Paginating
+         * the Results</a> in the <i>Amazon DynamoDB Developer Guide</i>. </p> <p>
+         * <code>Scan</code> operations proceed sequentially; however, for faster
          * performance on a large table or secondary index, applications can request a
          * parallel <code>Scan</code> operation by providing the <code>Segment</code> and
          * <code>TotalSegments</code> parameters. For more information, see <a
-         * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#QueryAndScanParallelScan">Parallel
-         * Scan</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p> <p>By default,
+         * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.ParallelScan">Parallel
+         * Scan</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p> <p>
          * <code>Scan</code> uses eventually consistent reads when accessing the data in a
          * table; therefore, the result set might not include the changes to data in the
          * table immediately before the operation began. If you need a consistent copy of
-         * the data, as of the time that the Scan begins, you can set the
+         * the data, as of the time that the <code>Scan</code> begins, you can set the
          * <code>ConsistentRead</code> parameter to <code>true</code>.</p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/dynamodb-2012-08-10/Scan">AWS API
@@ -1260,17 +1432,24 @@ namespace Model
          * of 1 MB, the scan stops and results are returned to the user as a
          * <code>LastEvaluatedKey</code> value to continue the scan in a subsequent
          * operation. The results also include the number of items exceeding the limit. A
-         * scan can result in no table data meeting the filter criteria. </p> <p>By
-         * default, <code>Scan</code> operations proceed sequentially; however, for faster
+         * scan can result in no table data meeting the filter criteria. </p> <p>A single
+         * <code>Scan</code> operation will read up to the maximum number of items set (if
+         * using the <code>Limit</code> parameter) or a maximum of 1 MB of data and then
+         * apply any filtering to the results using <code>FilterExpression</code>. If
+         * <code>LastEvaluatedKey</code> is present in the response, you will need to
+         * paginate the result set. For more information, see <a
+         * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.Pagination">Paginating
+         * the Results</a> in the <i>Amazon DynamoDB Developer Guide</i>. </p> <p>
+         * <code>Scan</code> operations proceed sequentially; however, for faster
          * performance on a large table or secondary index, applications can request a
          * parallel <code>Scan</code> operation by providing the <code>Segment</code> and
          * <code>TotalSegments</code> parameters. For more information, see <a
-         * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#QueryAndScanParallelScan">Parallel
-         * Scan</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p> <p>By default,
+         * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.ParallelScan">Parallel
+         * Scan</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p> <p>
          * <code>Scan</code> uses eventually consistent reads when accessing the data in a
          * table; therefore, the result set might not include the changes to data in the
          * table immediately before the operation began. If you need a consistent copy of
-         * the data, as of the time that the Scan begins, you can set the
+         * the data, as of the time that the <code>Scan</code> begins, you can set the
          * <code>ConsistentRead</code> parameter to <code>true</code>.</p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/dynamodb-2012-08-10/Scan">AWS API
@@ -1288,17 +1467,24 @@ namespace Model
          * of 1 MB, the scan stops and results are returned to the user as a
          * <code>LastEvaluatedKey</code> value to continue the scan in a subsequent
          * operation. The results also include the number of items exceeding the limit. A
-         * scan can result in no table data meeting the filter criteria. </p> <p>By
-         * default, <code>Scan</code> operations proceed sequentially; however, for faster
+         * scan can result in no table data meeting the filter criteria. </p> <p>A single
+         * <code>Scan</code> operation will read up to the maximum number of items set (if
+         * using the <code>Limit</code> parameter) or a maximum of 1 MB of data and then
+         * apply any filtering to the results using <code>FilterExpression</code>. If
+         * <code>LastEvaluatedKey</code> is present in the response, you will need to
+         * paginate the result set. For more information, see <a
+         * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.Pagination">Paginating
+         * the Results</a> in the <i>Amazon DynamoDB Developer Guide</i>. </p> <p>
+         * <code>Scan</code> operations proceed sequentially; however, for faster
          * performance on a large table or secondary index, applications can request a
          * parallel <code>Scan</code> operation by providing the <code>Segment</code> and
          * <code>TotalSegments</code> parameters. For more information, see <a
-         * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#QueryAndScanParallelScan">Parallel
-         * Scan</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p> <p>By default,
+         * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.ParallelScan">Parallel
+         * Scan</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p> <p>
          * <code>Scan</code> uses eventually consistent reads when accessing the data in a
          * table; therefore, the result set might not include the changes to data in the
          * table immediately before the operation began. If you need a consistent copy of
-         * the data, as of the time that the Scan begins, you can set the
+         * the data, as of the time that the <code>Scan</code> begins, you can set the
          * <code>ConsistentRead</code> parameter to <code>true</code>.</p><p><h3>See
          * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/dynamodb-2012-08-10/Scan">AWS API
@@ -1498,9 +1684,97 @@ namespace Model
          */
         virtual void UpdateTableAsync(const Model::UpdateTableRequest& request, const UpdateTableResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
+        /**
+         * <p>The UpdateTimeToLive method will enable or disable TTL for the specified
+         * table. A successful <code>UpdateTimeToLive</code> call returns the current
+         * <code>TimeToLiveSpecification</code>; it may take up to one hour for the change
+         * to fully process. Any additional <code>UpdateTimeToLive</code> calls for the
+         * same table during this one hour duration result in a
+         * <code>ValidationException</code>. </p> <p>TTL compares the current time in epoch
+         * time format to the time stored in the TTL attribute of an item. If the epoch
+         * time value stored in the attribute is less than the current time, the item is
+         * marked as expired and subsequently deleted.</p> <note> <p> The epoch time format
+         * is the number of seconds elapsed since 12:00:00 AM January 1st, 1970 UTC. </p>
+         * </note> <p>DynamoDB deletes expired items on a best-effort basis to ensure
+         * availability of throughput for other data operations. </p> <important>
+         * <p>DynamoDB typically deletes expired items within two days of expiration. The
+         * exact duration within which an item gets deleted after expiration is specific to
+         * the nature of the workload. Items that have expired and not been deleted will
+         * still show up in reads, queries, and scans.</p> </important> <p>As items are
+         * deleted, they are removed from any Local Secondary Index and Global Secondary
+         * Index immediately in the same eventually consistent way as a standard delete
+         * operation.</p> <p>For more information, see <a
+         * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html">Time
+         * To Live</a> in the Amazon DynamoDB Developer Guide. </p><p><h3>See Also:</h3>  
+         * <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/dynamodb-2012-08-10/UpdateTimeToLive">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::UpdateTimeToLiveOutcome UpdateTimeToLive(const Model::UpdateTimeToLiveRequest& request) const;
+
+        /**
+         * <p>The UpdateTimeToLive method will enable or disable TTL for the specified
+         * table. A successful <code>UpdateTimeToLive</code> call returns the current
+         * <code>TimeToLiveSpecification</code>; it may take up to one hour for the change
+         * to fully process. Any additional <code>UpdateTimeToLive</code> calls for the
+         * same table during this one hour duration result in a
+         * <code>ValidationException</code>. </p> <p>TTL compares the current time in epoch
+         * time format to the time stored in the TTL attribute of an item. If the epoch
+         * time value stored in the attribute is less than the current time, the item is
+         * marked as expired and subsequently deleted.</p> <note> <p> The epoch time format
+         * is the number of seconds elapsed since 12:00:00 AM January 1st, 1970 UTC. </p>
+         * </note> <p>DynamoDB deletes expired items on a best-effort basis to ensure
+         * availability of throughput for other data operations. </p> <important>
+         * <p>DynamoDB typically deletes expired items within two days of expiration. The
+         * exact duration within which an item gets deleted after expiration is specific to
+         * the nature of the workload. Items that have expired and not been deleted will
+         * still show up in reads, queries, and scans.</p> </important> <p>As items are
+         * deleted, they are removed from any Local Secondary Index and Global Secondary
+         * Index immediately in the same eventually consistent way as a standard delete
+         * operation.</p> <p>For more information, see <a
+         * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html">Time
+         * To Live</a> in the Amazon DynamoDB Developer Guide. </p><p><h3>See Also:</h3>  
+         * <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/dynamodb-2012-08-10/UpdateTimeToLive">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::UpdateTimeToLiveOutcomeCallable UpdateTimeToLiveCallable(const Model::UpdateTimeToLiveRequest& request) const;
+
+        /**
+         * <p>The UpdateTimeToLive method will enable or disable TTL for the specified
+         * table. A successful <code>UpdateTimeToLive</code> call returns the current
+         * <code>TimeToLiveSpecification</code>; it may take up to one hour for the change
+         * to fully process. Any additional <code>UpdateTimeToLive</code> calls for the
+         * same table during this one hour duration result in a
+         * <code>ValidationException</code>. </p> <p>TTL compares the current time in epoch
+         * time format to the time stored in the TTL attribute of an item. If the epoch
+         * time value stored in the attribute is less than the current time, the item is
+         * marked as expired and subsequently deleted.</p> <note> <p> The epoch time format
+         * is the number of seconds elapsed since 12:00:00 AM January 1st, 1970 UTC. </p>
+         * </note> <p>DynamoDB deletes expired items on a best-effort basis to ensure
+         * availability of throughput for other data operations. </p> <important>
+         * <p>DynamoDB typically deletes expired items within two days of expiration. The
+         * exact duration within which an item gets deleted after expiration is specific to
+         * the nature of the workload. Items that have expired and not been deleted will
+         * still show up in reads, queries, and scans.</p> </important> <p>As items are
+         * deleted, they are removed from any Local Secondary Index and Global Secondary
+         * Index immediately in the same eventually consistent way as a standard delete
+         * operation.</p> <p>For more information, see <a
+         * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html">Time
+         * To Live</a> in the Amazon DynamoDB Developer Guide. </p><p><h3>See Also:</h3>  
+         * <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/dynamodb-2012-08-10/UpdateTimeToLive">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void UpdateTimeToLiveAsync(const Model::UpdateTimeToLiveRequest& request, const UpdateTimeToLiveResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
 
     private:
-      void init(const Client::ClientConfiguration& clientConfiguration);
+      void init(const Aws::Client::ClientConfiguration& clientConfiguration);
 
         /**Async helpers**/
         void BatchGetItemAsyncHelper(const Model::BatchGetItemRequest& request, const BatchGetItemResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -1510,6 +1784,7 @@ namespace Model
         void DeleteTableAsyncHelper(const Model::DeleteTableRequest& request, const DeleteTableResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeLimitsAsyncHelper(const Model::DescribeLimitsRequest& request, const DescribeLimitsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeTableAsyncHelper(const Model::DescribeTableRequest& request, const DescribeTableResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void DescribeTimeToLiveAsyncHelper(const Model::DescribeTimeToLiveRequest& request, const DescribeTimeToLiveResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void GetItemAsyncHelper(const Model::GetItemRequest& request, const GetItemResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListTablesAsyncHelper(const Model::ListTablesRequest& request, const ListTablesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListTagsOfResourceAsyncHelper(const Model::ListTagsOfResourceRequest& request, const ListTagsOfResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -1520,9 +1795,10 @@ namespace Model
         void UntagResourceAsyncHelper(const Model::UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateItemAsyncHelper(const Model::UpdateItemRequest& request, const UpdateItemResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateTableAsyncHelper(const Model::UpdateTableRequest& request, const UpdateTableResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void UpdateTimeToLiveAsyncHelper(const Model::UpdateTimeToLiveRequest& request, const UpdateTimeToLiveResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
       Aws::String m_uri;
-      std::shared_ptr<Utils::Threading::Executor> m_executor;
+      std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;
   };
 
 } // namespace DynamoDB

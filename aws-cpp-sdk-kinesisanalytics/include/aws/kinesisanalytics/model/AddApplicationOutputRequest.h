@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesisanalytics/KinesisAnalytics_EXPORTS.h>
 #include <aws/kinesisanalytics/KinesisAnalyticsRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/kinesisanalytics/model/Output.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     AddApplicationOutputRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "AddApplicationOutput"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>Name of the application to which you want to add the output
@@ -54,7 +64,7 @@ namespace Model
      * <p>Name of the application to which you want to add the output
      * configuration.</p>
      */
-    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = value; }
+    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = std::move(value); }
 
     /**
      * <p>Name of the application to which you want to add the output
@@ -72,13 +82,14 @@ namespace Model
      * <p>Name of the application to which you want to add the output
      * configuration.</p>
      */
-    inline AddApplicationOutputRequest& WithApplicationName(Aws::String&& value) { SetApplicationName(value); return *this;}
+    inline AddApplicationOutputRequest& WithApplicationName(Aws::String&& value) { SetApplicationName(std::move(value)); return *this;}
 
     /**
      * <p>Name of the application to which you want to add the output
      * configuration.</p>
      */
     inline AddApplicationOutputRequest& WithApplicationName(const char* value) { SetApplicationName(value); return *this;}
+
 
     /**
      * <p>Version of the application to which you want add the output configuration.
@@ -104,6 +115,7 @@ namespace Model
      */
     inline AddApplicationOutputRequest& WithCurrentApplicationVersionId(long long value) { SetCurrentApplicationVersionId(value); return *this;}
 
+
     /**
      * <p>An array of objects, each describing one output configuration. In the output
      * configuration, you specify the name of an in-application stream, a destination
@@ -126,7 +138,7 @@ namespace Model
      * (that is, an Amazon Kinesis stream or an Amazon Kinesis Firehose delivery
      * stream), and record the formation to use when writing to the destination.</p>
      */
-    inline void SetOutput(Output&& value) { m_outputHasBeenSet = true; m_output = value; }
+    inline void SetOutput(Output&& value) { m_outputHasBeenSet = true; m_output = std::move(value); }
 
     /**
      * <p>An array of objects, each describing one output configuration. In the output
@@ -142,13 +154,16 @@ namespace Model
      * (that is, an Amazon Kinesis stream or an Amazon Kinesis Firehose delivery
      * stream), and record the formation to use when writing to the destination.</p>
      */
-    inline AddApplicationOutputRequest& WithOutput(Output&& value) { SetOutput(value); return *this;}
+    inline AddApplicationOutputRequest& WithOutput(Output&& value) { SetOutput(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_applicationName;
     bool m_applicationNameHasBeenSet;
+
     long long m_currentApplicationVersionId;
     bool m_currentApplicationVersionIdHasBeenSet;
+
     Output m_output;
     bool m_outputHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/redshift/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     ResetClusterParameterGroupResult();
-    ResetClusterParameterGroupResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    ResetClusterParameterGroupResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ResetClusterParameterGroupResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ResetClusterParameterGroupResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>The name of the cluster parameter group.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The name of the cluster parameter group.</p>
      */
-    inline void SetParameterGroupName(Aws::String&& value) { m_parameterGroupName = value; }
+    inline void SetParameterGroupName(Aws::String&& value) { m_parameterGroupName = std::move(value); }
 
     /**
      * <p>The name of the cluster parameter group.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The name of the cluster parameter group.</p>
      */
-    inline ResetClusterParameterGroupResult& WithParameterGroupName(Aws::String&& value) { SetParameterGroupName(value); return *this;}
+    inline ResetClusterParameterGroupResult& WithParameterGroupName(Aws::String&& value) { SetParameterGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the cluster parameter group.</p>
      */
     inline ResetClusterParameterGroupResult& WithParameterGroupName(const char* value) { SetParameterGroupName(value); return *this;}
+
 
     /**
      * <p>The status of the parameter group. For example, if you made a change to a
@@ -99,7 +103,7 @@ namespace Model
      * parameter group name-value pair, then the change could be pending a reboot of an
      * associated cluster.</p>
      */
-    inline void SetParameterGroupStatus(Aws::String&& value) { m_parameterGroupStatus = value; }
+    inline void SetParameterGroupStatus(Aws::String&& value) { m_parameterGroupStatus = std::move(value); }
 
     /**
      * <p>The status of the parameter group. For example, if you made a change to a
@@ -120,7 +124,7 @@ namespace Model
      * parameter group name-value pair, then the change could be pending a reboot of an
      * associated cluster.</p>
      */
-    inline ResetClusterParameterGroupResult& WithParameterGroupStatus(Aws::String&& value) { SetParameterGroupStatus(value); return *this;}
+    inline ResetClusterParameterGroupResult& WithParameterGroupStatus(Aws::String&& value) { SetParameterGroupStatus(std::move(value)); return *this;}
 
     /**
      * <p>The status of the parameter group. For example, if you made a change to a
@@ -129,6 +133,7 @@ namespace Model
      */
     inline ResetClusterParameterGroupResult& WithParameterGroupStatus(const char* value) { SetParameterGroupStatus(value); return *this;}
 
+
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
 
@@ -136,17 +141,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline ResetClusterParameterGroupResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline ResetClusterParameterGroupResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline ResetClusterParameterGroupResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_parameterGroupName;
+
     Aws::String m_parameterGroupStatus;
+
     ResponseMetadata m_responseMetadata;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/lightsail/model/BlueprintType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     Blueprint& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ID for the virtual private server image (e.g.,
      * <code>app_wordpress_4_4</code> or <code>app_lamp_7_0</code>).</p>
@@ -61,7 +64,7 @@ namespace Model
      * <p>The ID for the virtual private server image (e.g.,
      * <code>app_wordpress_4_4</code> or <code>app_lamp_7_0</code>).</p>
      */
-    inline void SetBlueprintId(Aws::String&& value) { m_blueprintIdHasBeenSet = true; m_blueprintId = value; }
+    inline void SetBlueprintId(Aws::String&& value) { m_blueprintIdHasBeenSet = true; m_blueprintId = std::move(value); }
 
     /**
      * <p>The ID for the virtual private server image (e.g.,
@@ -79,13 +82,14 @@ namespace Model
      * <p>The ID for the virtual private server image (e.g.,
      * <code>app_wordpress_4_4</code> or <code>app_lamp_7_0</code>).</p>
      */
-    inline Blueprint& WithBlueprintId(Aws::String&& value) { SetBlueprintId(value); return *this;}
+    inline Blueprint& WithBlueprintId(Aws::String&& value) { SetBlueprintId(std::move(value)); return *this;}
 
     /**
      * <p>The ID for the virtual private server image (e.g.,
      * <code>app_wordpress_4_4</code> or <code>app_lamp_7_0</code>).</p>
      */
     inline Blueprint& WithBlueprintId(const char* value) { SetBlueprintId(value); return *this;}
+
 
     /**
      * <p>The friendly name of the blueprint (e.g., <code>Amazon Linux</code>).</p>
@@ -100,7 +104,7 @@ namespace Model
     /**
      * <p>The friendly name of the blueprint (e.g., <code>Amazon Linux</code>).</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The friendly name of the blueprint (e.g., <code>Amazon Linux</code>).</p>
@@ -115,12 +119,13 @@ namespace Model
     /**
      * <p>The friendly name of the blueprint (e.g., <code>Amazon Linux</code>).</p>
      */
-    inline Blueprint& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline Blueprint& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The friendly name of the blueprint (e.g., <code>Amazon Linux</code>).</p>
      */
     inline Blueprint& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The group name of the blueprint (e.g., <code>amazon-linux</code>).</p>
@@ -135,7 +140,7 @@ namespace Model
     /**
      * <p>The group name of the blueprint (e.g., <code>amazon-linux</code>).</p>
      */
-    inline void SetGroup(Aws::String&& value) { m_groupHasBeenSet = true; m_group = value; }
+    inline void SetGroup(Aws::String&& value) { m_groupHasBeenSet = true; m_group = std::move(value); }
 
     /**
      * <p>The group name of the blueprint (e.g., <code>amazon-linux</code>).</p>
@@ -150,12 +155,13 @@ namespace Model
     /**
      * <p>The group name of the blueprint (e.g., <code>amazon-linux</code>).</p>
      */
-    inline Blueprint& WithGroup(Aws::String&& value) { SetGroup(value); return *this;}
+    inline Blueprint& WithGroup(Aws::String&& value) { SetGroup(std::move(value)); return *this;}
 
     /**
      * <p>The group name of the blueprint (e.g., <code>amazon-linux</code>).</p>
      */
     inline Blueprint& WithGroup(const char* value) { SetGroup(value); return *this;}
+
 
     /**
      * <p>The type of the blueprint (e.g., <code>os</code> or <code>app</code>).</p>
@@ -170,7 +176,7 @@ namespace Model
     /**
      * <p>The type of the blueprint (e.g., <code>os</code> or <code>app</code>).</p>
      */
-    inline void SetType(BlueprintType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(BlueprintType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The type of the blueprint (e.g., <code>os</code> or <code>app</code>).</p>
@@ -180,7 +186,8 @@ namespace Model
     /**
      * <p>The type of the blueprint (e.g., <code>os</code> or <code>app</code>).</p>
      */
-    inline Blueprint& WithType(BlueprintType&& value) { SetType(value); return *this;}
+    inline Blueprint& WithType(BlueprintType&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p>The description of the blueprint.</p>
@@ -195,7 +202,7 @@ namespace Model
     /**
      * <p>The description of the blueprint.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The description of the blueprint.</p>
@@ -210,12 +217,13 @@ namespace Model
     /**
      * <p>The description of the blueprint.</p>
      */
-    inline Blueprint& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline Blueprint& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description of the blueprint.</p>
      */
     inline Blueprint& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>A Boolean value indicating whether the blueprint is active. When you update
@@ -238,6 +246,7 @@ namespace Model
      */
     inline Blueprint& WithIsActive(bool value) { SetIsActive(value); return *this;}
 
+
     /**
      * <p>The minimum machine size required to run this blueprint. <code>0</code>
      * indicates that the blueprint runs on all instances.</p>
@@ -256,6 +265,7 @@ namespace Model
      */
     inline Blueprint& WithMinPower(int value) { SetMinPower(value); return *this;}
 
+
     /**
      * <p>The version number of the operating system, application, or stack (e.g.,
      * <code>2016.03.0</code>).</p>
@@ -272,7 +282,7 @@ namespace Model
      * <p>The version number of the operating system, application, or stack (e.g.,
      * <code>2016.03.0</code>).</p>
      */
-    inline void SetVersion(Aws::String&& value) { m_versionHasBeenSet = true; m_version = value; }
+    inline void SetVersion(Aws::String&& value) { m_versionHasBeenSet = true; m_version = std::move(value); }
 
     /**
      * <p>The version number of the operating system, application, or stack (e.g.,
@@ -290,13 +300,14 @@ namespace Model
      * <p>The version number of the operating system, application, or stack (e.g.,
      * <code>2016.03.0</code>).</p>
      */
-    inline Blueprint& WithVersion(Aws::String&& value) { SetVersion(value); return *this;}
+    inline Blueprint& WithVersion(Aws::String&& value) { SetVersion(std::move(value)); return *this;}
 
     /**
      * <p>The version number of the operating system, application, or stack (e.g.,
      * <code>2016.03.0</code>).</p>
      */
     inline Blueprint& WithVersion(const char* value) { SetVersion(value); return *this;}
+
 
     /**
      * <p>The version code.</p>
@@ -311,7 +322,7 @@ namespace Model
     /**
      * <p>The version code.</p>
      */
-    inline void SetVersionCode(Aws::String&& value) { m_versionCodeHasBeenSet = true; m_versionCode = value; }
+    inline void SetVersionCode(Aws::String&& value) { m_versionCodeHasBeenSet = true; m_versionCode = std::move(value); }
 
     /**
      * <p>The version code.</p>
@@ -326,12 +337,13 @@ namespace Model
     /**
      * <p>The version code.</p>
      */
-    inline Blueprint& WithVersionCode(Aws::String&& value) { SetVersionCode(value); return *this;}
+    inline Blueprint& WithVersionCode(Aws::String&& value) { SetVersionCode(std::move(value)); return *this;}
 
     /**
      * <p>The version code.</p>
      */
     inline Blueprint& WithVersionCode(const char* value) { SetVersionCode(value); return *this;}
+
 
     /**
      * <p>The product URL to learn more about the image or blueprint.</p>
@@ -346,7 +358,7 @@ namespace Model
     /**
      * <p>The product URL to learn more about the image or blueprint.</p>
      */
-    inline void SetProductUrl(Aws::String&& value) { m_productUrlHasBeenSet = true; m_productUrl = value; }
+    inline void SetProductUrl(Aws::String&& value) { m_productUrlHasBeenSet = true; m_productUrl = std::move(value); }
 
     /**
      * <p>The product URL to learn more about the image or blueprint.</p>
@@ -361,12 +373,13 @@ namespace Model
     /**
      * <p>The product URL to learn more about the image or blueprint.</p>
      */
-    inline Blueprint& WithProductUrl(Aws::String&& value) { SetProductUrl(value); return *this;}
+    inline Blueprint& WithProductUrl(Aws::String&& value) { SetProductUrl(std::move(value)); return *this;}
 
     /**
      * <p>The product URL to learn more about the image or blueprint.</p>
      */
     inline Blueprint& WithProductUrl(const char* value) { SetProductUrl(value); return *this;}
+
 
     /**
      * <p>The end-user license agreement URL for the image or blueprint.</p>
@@ -381,7 +394,7 @@ namespace Model
     /**
      * <p>The end-user license agreement URL for the image or blueprint.</p>
      */
-    inline void SetLicenseUrl(Aws::String&& value) { m_licenseUrlHasBeenSet = true; m_licenseUrl = value; }
+    inline void SetLicenseUrl(Aws::String&& value) { m_licenseUrlHasBeenSet = true; m_licenseUrl = std::move(value); }
 
     /**
      * <p>The end-user license agreement URL for the image or blueprint.</p>
@@ -396,7 +409,7 @@ namespace Model
     /**
      * <p>The end-user license agreement URL for the image or blueprint.</p>
      */
-    inline Blueprint& WithLicenseUrl(Aws::String&& value) { SetLicenseUrl(value); return *this;}
+    inline Blueprint& WithLicenseUrl(Aws::String&& value) { SetLicenseUrl(std::move(value)); return *this;}
 
     /**
      * <p>The end-user license agreement URL for the image or blueprint.</p>
@@ -404,26 +417,37 @@ namespace Model
     inline Blueprint& WithLicenseUrl(const char* value) { SetLicenseUrl(value); return *this;}
 
   private:
+
     Aws::String m_blueprintId;
     bool m_blueprintIdHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_group;
     bool m_groupHasBeenSet;
+
     BlueprintType m_type;
     bool m_typeHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     bool m_isActive;
     bool m_isActiveHasBeenSet;
+
     int m_minPower;
     bool m_minPowerHasBeenSet;
+
     Aws::String m_version;
     bool m_versionHasBeenSet;
+
     Aws::String m_versionCode;
     bool m_versionCodeHasBeenSet;
+
     Aws::String m_productUrl;
     bool m_productUrlHasBeenSet;
+
     Aws::String m_licenseUrl;
     bool m_licenseUrlHasBeenSet;
   };

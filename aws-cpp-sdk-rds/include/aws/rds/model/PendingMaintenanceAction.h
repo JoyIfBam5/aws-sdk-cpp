@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The type of pending maintenance action that is available for the
      * resource.</p>
@@ -64,7 +67,7 @@ namespace Model
      * <p>The type of pending maintenance action that is available for the
      * resource.</p>
      */
-    inline void SetAction(Aws::String&& value) { m_actionHasBeenSet = true; m_action = value; }
+    inline void SetAction(Aws::String&& value) { m_actionHasBeenSet = true; m_action = std::move(value); }
 
     /**
      * <p>The type of pending maintenance action that is available for the
@@ -82,13 +85,14 @@ namespace Model
      * <p>The type of pending maintenance action that is available for the
      * resource.</p>
      */
-    inline PendingMaintenanceAction& WithAction(Aws::String&& value) { SetAction(value); return *this;}
+    inline PendingMaintenanceAction& WithAction(Aws::String&& value) { SetAction(std::move(value)); return *this;}
 
     /**
      * <p>The type of pending maintenance action that is available for the
      * resource.</p>
      */
     inline PendingMaintenanceAction& WithAction(const char* value) { SetAction(value); return *this;}
+
 
     /**
      * <p>The date of the maintenance window when the action will be applied. The
@@ -112,7 +116,7 @@ namespace Model
      * window after this date. If this date is specified, any
      * <code>next-maintenance</code> opt-in requests are ignored.</p>
      */
-    inline void SetAutoAppliedAfterDate(Aws::Utils::DateTime&& value) { m_autoAppliedAfterDateHasBeenSet = true; m_autoAppliedAfterDate = value; }
+    inline void SetAutoAppliedAfterDate(Aws::Utils::DateTime&& value) { m_autoAppliedAfterDateHasBeenSet = true; m_autoAppliedAfterDate = std::move(value); }
 
     /**
      * <p>The date of the maintenance window when the action will be applied. The
@@ -128,7 +132,8 @@ namespace Model
      * window after this date. If this date is specified, any
      * <code>next-maintenance</code> opt-in requests are ignored.</p>
      */
-    inline PendingMaintenanceAction& WithAutoAppliedAfterDate(Aws::Utils::DateTime&& value) { SetAutoAppliedAfterDate(value); return *this;}
+    inline PendingMaintenanceAction& WithAutoAppliedAfterDate(Aws::Utils::DateTime&& value) { SetAutoAppliedAfterDate(std::move(value)); return *this;}
+
 
     /**
      * <p>The date when the maintenance action will be automatically applied. The
@@ -152,7 +157,7 @@ namespace Model
      * the maintenance window for the resource. If this date is specified, any
      * <code>immediate</code> opt-in requests are ignored.</p>
      */
-    inline void SetForcedApplyDate(Aws::Utils::DateTime&& value) { m_forcedApplyDateHasBeenSet = true; m_forcedApplyDate = value; }
+    inline void SetForcedApplyDate(Aws::Utils::DateTime&& value) { m_forcedApplyDateHasBeenSet = true; m_forcedApplyDate = std::move(value); }
 
     /**
      * <p>The date when the maintenance action will be automatically applied. The
@@ -168,7 +173,8 @@ namespace Model
      * the maintenance window for the resource. If this date is specified, any
      * <code>immediate</code> opt-in requests are ignored.</p>
      */
-    inline PendingMaintenanceAction& WithForcedApplyDate(Aws::Utils::DateTime&& value) { SetForcedApplyDate(value); return *this;}
+    inline PendingMaintenanceAction& WithForcedApplyDate(Aws::Utils::DateTime&& value) { SetForcedApplyDate(std::move(value)); return *this;}
+
 
     /**
      * <p>Indicates the type of opt-in request that has been received for the
@@ -186,7 +192,7 @@ namespace Model
      * <p>Indicates the type of opt-in request that has been received for the
      * resource.</p>
      */
-    inline void SetOptInStatus(Aws::String&& value) { m_optInStatusHasBeenSet = true; m_optInStatus = value; }
+    inline void SetOptInStatus(Aws::String&& value) { m_optInStatusHasBeenSet = true; m_optInStatus = std::move(value); }
 
     /**
      * <p>Indicates the type of opt-in request that has been received for the
@@ -204,13 +210,14 @@ namespace Model
      * <p>Indicates the type of opt-in request that has been received for the
      * resource.</p>
      */
-    inline PendingMaintenanceAction& WithOptInStatus(Aws::String&& value) { SetOptInStatus(value); return *this;}
+    inline PendingMaintenanceAction& WithOptInStatus(Aws::String&& value) { SetOptInStatus(std::move(value)); return *this;}
 
     /**
      * <p>Indicates the type of opt-in request that has been received for the
      * resource.</p>
      */
     inline PendingMaintenanceAction& WithOptInStatus(const char* value) { SetOptInStatus(value); return *this;}
+
 
     /**
      * <p>The effective date when the pending maintenance action will be applied to the
@@ -240,7 +247,7 @@ namespace Model
      * has not been received and nothing has been specified as
      * <code>AutoAppliedAfterDate</code> or <code>ForcedApplyDate</code>.</p>
      */
-    inline void SetCurrentApplyDate(Aws::Utils::DateTime&& value) { m_currentApplyDateHasBeenSet = true; m_currentApplyDate = value; }
+    inline void SetCurrentApplyDate(Aws::Utils::DateTime&& value) { m_currentApplyDateHasBeenSet = true; m_currentApplyDate = std::move(value); }
 
     /**
      * <p>The effective date when the pending maintenance action will be applied to the
@@ -260,7 +267,8 @@ namespace Model
      * has not been received and nothing has been specified as
      * <code>AutoAppliedAfterDate</code> or <code>ForcedApplyDate</code>.</p>
      */
-    inline PendingMaintenanceAction& WithCurrentApplyDate(Aws::Utils::DateTime&& value) { SetCurrentApplyDate(value); return *this;}
+    inline PendingMaintenanceAction& WithCurrentApplyDate(Aws::Utils::DateTime&& value) { SetCurrentApplyDate(std::move(value)); return *this;}
+
 
     /**
      * <p>A description providing more detail about the maintenance action.</p>
@@ -275,7 +283,7 @@ namespace Model
     /**
      * <p>A description providing more detail about the maintenance action.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>A description providing more detail about the maintenance action.</p>
@@ -290,7 +298,7 @@ namespace Model
     /**
      * <p>A description providing more detail about the maintenance action.</p>
      */
-    inline PendingMaintenanceAction& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline PendingMaintenanceAction& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>A description providing more detail about the maintenance action.</p>
@@ -298,16 +306,22 @@ namespace Model
     inline PendingMaintenanceAction& WithDescription(const char* value) { SetDescription(value); return *this;}
 
   private:
+
     Aws::String m_action;
     bool m_actionHasBeenSet;
+
     Aws::Utils::DateTime m_autoAppliedAfterDate;
     bool m_autoAppliedAfterDateHasBeenSet;
+
     Aws::Utils::DateTime m_forcedApplyDate;
     bool m_forcedApplyDateHasBeenSet;
+
     Aws::String m_optInStatus;
     bool m_optInStatusHasBeenSet;
+
     Aws::Utils::DateTime m_currentApplyDate;
     bool m_currentApplyDateHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
   };

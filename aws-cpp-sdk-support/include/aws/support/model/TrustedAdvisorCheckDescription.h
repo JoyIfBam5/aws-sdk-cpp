@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/support/Support_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     TrustedAdvisorCheckDescription& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The unique identifier for the Trusted Advisor check.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The unique identifier for the Trusted Advisor check.</p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>The unique identifier for the Trusted Advisor check.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The unique identifier for the Trusted Advisor check.</p>
      */
-    inline TrustedAdvisorCheckDescription& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline TrustedAdvisorCheckDescription& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The unique identifier for the Trusted Advisor check.</p>
      */
     inline TrustedAdvisorCheckDescription& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>The display name for the Trusted Advisor check.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The display name for the Trusted Advisor check.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The display name for the Trusted Advisor check.</p>
@@ -108,12 +112,13 @@ namespace Model
     /**
      * <p>The display name for the Trusted Advisor check.</p>
      */
-    inline TrustedAdvisorCheckDescription& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline TrustedAdvisorCheckDescription& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The display name for the Trusted Advisor check.</p>
      */
     inline TrustedAdvisorCheckDescription& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The description of the Trusted Advisor check, which includes the alert
@@ -131,7 +136,7 @@ namespace Model
      * <p>The description of the Trusted Advisor check, which includes the alert
      * criteria and recommended actions (contains HTML markup).</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The description of the Trusted Advisor check, which includes the alert
@@ -149,13 +154,14 @@ namespace Model
      * <p>The description of the Trusted Advisor check, which includes the alert
      * criteria and recommended actions (contains HTML markup).</p>
      */
-    inline TrustedAdvisorCheckDescription& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline TrustedAdvisorCheckDescription& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description of the Trusted Advisor check, which includes the alert
      * criteria and recommended actions (contains HTML markup).</p>
      */
     inline TrustedAdvisorCheckDescription& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The category of the Trusted Advisor check.</p>
@@ -170,7 +176,7 @@ namespace Model
     /**
      * <p>The category of the Trusted Advisor check.</p>
      */
-    inline void SetCategory(Aws::String&& value) { m_categoryHasBeenSet = true; m_category = value; }
+    inline void SetCategory(Aws::String&& value) { m_categoryHasBeenSet = true; m_category = std::move(value); }
 
     /**
      * <p>The category of the Trusted Advisor check.</p>
@@ -185,12 +191,13 @@ namespace Model
     /**
      * <p>The category of the Trusted Advisor check.</p>
      */
-    inline TrustedAdvisorCheckDescription& WithCategory(Aws::String&& value) { SetCategory(value); return *this;}
+    inline TrustedAdvisorCheckDescription& WithCategory(Aws::String&& value) { SetCategory(std::move(value)); return *this;}
 
     /**
      * <p>The category of the Trusted Advisor check.</p>
      */
     inline TrustedAdvisorCheckDescription& WithCategory(const char* value) { SetCategory(value); return *this;}
+
 
     /**
      * <p>The column headings for the data returned by the Trusted Advisor check. The
@@ -217,7 +224,7 @@ namespace Model
      * check. <b>Metadata</b> contains all the data that is shown in the Excel
      * download, even in those cases where the UI shows just summary data. </p>
      */
-    inline void SetMetadata(Aws::Vector<Aws::String>&& value) { m_metadataHasBeenSet = true; m_metadata = value; }
+    inline void SetMetadata(Aws::Vector<Aws::String>&& value) { m_metadataHasBeenSet = true; m_metadata = std::move(value); }
 
     /**
      * <p>The column headings for the data returned by the Trusted Advisor check. The
@@ -235,7 +242,7 @@ namespace Model
      * check. <b>Metadata</b> contains all the data that is shown in the Excel
      * download, even in those cases where the UI shows just summary data. </p>
      */
-    inline TrustedAdvisorCheckDescription& WithMetadata(Aws::Vector<Aws::String>&& value) { SetMetadata(value); return *this;}
+    inline TrustedAdvisorCheckDescription& WithMetadata(Aws::Vector<Aws::String>&& value) { SetMetadata(std::move(value)); return *this;}
 
     /**
      * <p>The column headings for the data returned by the Trusted Advisor check. The
@@ -253,7 +260,7 @@ namespace Model
      * check. <b>Metadata</b> contains all the data that is shown in the Excel
      * download, even in those cases where the UI shows just summary data. </p>
      */
-    inline TrustedAdvisorCheckDescription& AddMetadata(Aws::String&& value) { m_metadataHasBeenSet = true; m_metadata.push_back(value); return *this; }
+    inline TrustedAdvisorCheckDescription& AddMetadata(Aws::String&& value) { m_metadataHasBeenSet = true; m_metadata.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The column headings for the data returned by the Trusted Advisor check. The
@@ -265,14 +272,19 @@ namespace Model
     inline TrustedAdvisorCheckDescription& AddMetadata(const char* value) { m_metadataHasBeenSet = true; m_metadata.push_back(value); return *this; }
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     Aws::String m_category;
     bool m_categoryHasBeenSet;
+
     Aws::Vector<Aws::String> m_metadata;
     bool m_metadataHasBeenSet;
   };

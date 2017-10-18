@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-sync/CognitoSync_EXPORTS.h>
 #include <aws/cognito-sync/model/IdentityUsage.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     DescribeIdentityUsageResult();
-    DescribeIdentityUsageResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeIdentityUsageResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeIdentityUsageResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeIdentityUsageResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * Usage information for the identity.
@@ -58,7 +61,7 @@ namespace Model
     /**
      * Usage information for the identity.
      */
-    inline void SetIdentityUsage(IdentityUsage&& value) { m_identityUsage = value; }
+    inline void SetIdentityUsage(IdentityUsage&& value) { m_identityUsage = std::move(value); }
 
     /**
      * Usage information for the identity.
@@ -68,9 +71,10 @@ namespace Model
     /**
      * Usage information for the identity.
      */
-    inline DescribeIdentityUsageResult& WithIdentityUsage(IdentityUsage&& value) { SetIdentityUsage(value); return *this;}
+    inline DescribeIdentityUsageResult& WithIdentityUsage(IdentityUsage&& value) { SetIdentityUsage(std::move(value)); return *this;}
 
   private:
+
     IdentityUsage m_identityUsage;
   };
 

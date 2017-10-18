@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/rds/model/ResponseMetadata.h>
 #include <aws/rds/model/ReservedDBInstance.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,8 +47,9 @@ namespace Model
   {
   public:
     DescribeReservedDBInstancesResult();
-    DescribeReservedDBInstancesResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeReservedDBInstancesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeReservedDBInstancesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeReservedDBInstancesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p> An optional pagination token provided by a previous request. If this
@@ -67,7 +70,7 @@ namespace Model
      * parameter is specified, the response includes only records beyond the marker, up
      * to the value specified by <code>MaxRecords</code>. </p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p> An optional pagination token provided by a previous request. If this
@@ -88,7 +91,7 @@ namespace Model
      * parameter is specified, the response includes only records beyond the marker, up
      * to the value specified by <code>MaxRecords</code>. </p>
      */
-    inline DescribeReservedDBInstancesResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeReservedDBInstancesResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p> An optional pagination token provided by a previous request. If this
@@ -96,6 +99,7 @@ namespace Model
      * to the value specified by <code>MaxRecords</code>. </p>
      */
     inline DescribeReservedDBInstancesResult& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>A list of reserved DB instances.</p>
@@ -110,7 +114,7 @@ namespace Model
     /**
      * <p>A list of reserved DB instances.</p>
      */
-    inline void SetReservedDBInstances(Aws::Vector<ReservedDBInstance>&& value) { m_reservedDBInstances = value; }
+    inline void SetReservedDBInstances(Aws::Vector<ReservedDBInstance>&& value) { m_reservedDBInstances = std::move(value); }
 
     /**
      * <p>A list of reserved DB instances.</p>
@@ -120,7 +124,7 @@ namespace Model
     /**
      * <p>A list of reserved DB instances.</p>
      */
-    inline DescribeReservedDBInstancesResult& WithReservedDBInstances(Aws::Vector<ReservedDBInstance>&& value) { SetReservedDBInstances(value); return *this;}
+    inline DescribeReservedDBInstancesResult& WithReservedDBInstances(Aws::Vector<ReservedDBInstance>&& value) { SetReservedDBInstances(std::move(value)); return *this;}
 
     /**
      * <p>A list of reserved DB instances.</p>
@@ -130,7 +134,8 @@ namespace Model
     /**
      * <p>A list of reserved DB instances.</p>
      */
-    inline DescribeReservedDBInstancesResult& AddReservedDBInstances(ReservedDBInstance&& value) { m_reservedDBInstances.push_back(value); return *this; }
+    inline DescribeReservedDBInstancesResult& AddReservedDBInstances(ReservedDBInstance&& value) { m_reservedDBInstances.push_back(std::move(value)); return *this; }
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -139,17 +144,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeReservedDBInstancesResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeReservedDBInstancesResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeReservedDBInstancesResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_marker;
+
     Aws::Vector<ReservedDBInstance> m_reservedDBInstances;
+
     ResponseMetadata m_responseMetadata;
   };
 

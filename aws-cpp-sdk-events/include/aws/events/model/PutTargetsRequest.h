@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/events/CloudWatchEvents_EXPORTS.h>
 #include <aws/events/CloudWatchEventsRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/events/model/Target.h>
+#include <utility>
 
 namespace Aws
 {
@@ -27,92 +29,99 @@ namespace Model
 {
 
   /**
-   * <p>Container for the parameters to the <a>PutTargets</a>
-   * operation.</p><p><h3>See Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/PutTargetsRequest">AWS
-   * API Reference</a></p>
    */
   class AWS_CLOUDWATCHEVENTS_API PutTargetsRequest : public CloudWatchEventsRequest
   {
   public:
     PutTargetsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "PutTargets"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
 
+
     /**
-     * <p>The name of the rule you want to add targets to.</p>
+     * <p>The name of the rule.</p>
      */
     inline const Aws::String& GetRule() const{ return m_rule; }
 
     /**
-     * <p>The name of the rule you want to add targets to.</p>
+     * <p>The name of the rule.</p>
      */
     inline void SetRule(const Aws::String& value) { m_ruleHasBeenSet = true; m_rule = value; }
 
     /**
-     * <p>The name of the rule you want to add targets to.</p>
+     * <p>The name of the rule.</p>
      */
-    inline void SetRule(Aws::String&& value) { m_ruleHasBeenSet = true; m_rule = value; }
+    inline void SetRule(Aws::String&& value) { m_ruleHasBeenSet = true; m_rule = std::move(value); }
 
     /**
-     * <p>The name of the rule you want to add targets to.</p>
+     * <p>The name of the rule.</p>
      */
     inline void SetRule(const char* value) { m_ruleHasBeenSet = true; m_rule.assign(value); }
 
     /**
-     * <p>The name of the rule you want to add targets to.</p>
+     * <p>The name of the rule.</p>
      */
     inline PutTargetsRequest& WithRule(const Aws::String& value) { SetRule(value); return *this;}
 
     /**
-     * <p>The name of the rule you want to add targets to.</p>
+     * <p>The name of the rule.</p>
      */
-    inline PutTargetsRequest& WithRule(Aws::String&& value) { SetRule(value); return *this;}
+    inline PutTargetsRequest& WithRule(Aws::String&& value) { SetRule(std::move(value)); return *this;}
 
     /**
-     * <p>The name of the rule you want to add targets to.</p>
+     * <p>The name of the rule.</p>
      */
     inline PutTargetsRequest& WithRule(const char* value) { SetRule(value); return *this;}
 
+
     /**
-     * <p>List of targets you want to update or add to the rule.</p>
+     * <p>The targets to update or add to the rule.</p>
      */
     inline const Aws::Vector<Target>& GetTargets() const{ return m_targets; }
 
     /**
-     * <p>List of targets you want to update or add to the rule.</p>
+     * <p>The targets to update or add to the rule.</p>
      */
     inline void SetTargets(const Aws::Vector<Target>& value) { m_targetsHasBeenSet = true; m_targets = value; }
 
     /**
-     * <p>List of targets you want to update or add to the rule.</p>
+     * <p>The targets to update or add to the rule.</p>
      */
-    inline void SetTargets(Aws::Vector<Target>&& value) { m_targetsHasBeenSet = true; m_targets = value; }
+    inline void SetTargets(Aws::Vector<Target>&& value) { m_targetsHasBeenSet = true; m_targets = std::move(value); }
 
     /**
-     * <p>List of targets you want to update or add to the rule.</p>
+     * <p>The targets to update or add to the rule.</p>
      */
     inline PutTargetsRequest& WithTargets(const Aws::Vector<Target>& value) { SetTargets(value); return *this;}
 
     /**
-     * <p>List of targets you want to update or add to the rule.</p>
+     * <p>The targets to update or add to the rule.</p>
      */
-    inline PutTargetsRequest& WithTargets(Aws::Vector<Target>&& value) { SetTargets(value); return *this;}
+    inline PutTargetsRequest& WithTargets(Aws::Vector<Target>&& value) { SetTargets(std::move(value)); return *this;}
 
     /**
-     * <p>List of targets you want to update or add to the rule.</p>
+     * <p>The targets to update or add to the rule.</p>
      */
     inline PutTargetsRequest& AddTargets(const Target& value) { m_targetsHasBeenSet = true; m_targets.push_back(value); return *this; }
 
     /**
-     * <p>List of targets you want to update or add to the rule.</p>
+     * <p>The targets to update or add to the rule.</p>
      */
-    inline PutTargetsRequest& AddTargets(Target&& value) { m_targetsHasBeenSet = true; m_targets.push_back(value); return *this; }
+    inline PutTargetsRequest& AddTargets(Target&& value) { m_targetsHasBeenSet = true; m_targets.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_rule;
     bool m_ruleHasBeenSet;
+
     Aws::Vector<Target> m_targets;
     bool m_targetsHasBeenSet;
   };

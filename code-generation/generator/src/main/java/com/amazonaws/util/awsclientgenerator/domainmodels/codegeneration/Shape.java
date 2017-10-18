@@ -1,5 +1,5 @@
 /*
-* Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -42,6 +42,9 @@ public class Shape {
     private boolean isReferenced;
     private boolean flattened;
     private boolean computeContentMd5;
+    private boolean supportsPresigning;
+    private boolean signBody;
+    private String signerName;
 
     public boolean isMap() {
         return "map".equals(type.toLowerCase());
@@ -96,7 +99,7 @@ public class Shape {
 
     public boolean hasStreamMembers() {
       return members.values().parallelStream()
-              .anyMatch(member -> member.isStreaming()) || (payload != null && members.get(payload) != null && !members.get(payload).getShape().isStructure());
+              .anyMatch(member -> member.isStreaming()) || (payload != null && members.get(payload) != null && !members.get(payload).getShape().isStructure() && !members.get(payload).getShape().isList());
     }
 
     public boolean hasPayloadMembers() {

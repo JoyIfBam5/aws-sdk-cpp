@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/elasticbeanstalk/model/DescribeEnvironmentsRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -26,7 +27,10 @@ DescribeEnvironmentsRequest::DescribeEnvironmentsRequest() :
     m_environmentNamesHasBeenSet(false),
     m_includeDeleted(false),
     m_includeDeletedHasBeenSet(false),
-    m_includedDeletedBackToHasBeenSet(false)
+    m_includedDeletedBackToHasBeenSet(false),
+    m_maxRecords(0),
+    m_maxRecordsHasBeenSet(false),
+    m_nextTokenHasBeenSet(false)
 {
 }
 
@@ -76,7 +80,22 @@ Aws::String DescribeEnvironmentsRequest::SerializePayload() const
     ss << "IncludedDeletedBackTo=" << StringUtils::URLEncode(m_includedDeletedBackTo.ToGmtString(DateFormat::ISO_8601).c_str()) << "&";
   }
 
+  if(m_maxRecordsHasBeenSet)
+  {
+    ss << "MaxRecords=" << m_maxRecords << "&";
+  }
+
+  if(m_nextTokenHasBeenSet)
+  {
+    ss << "NextToken=" << StringUtils::URLEncode(m_nextToken.c_str()) << "&";
+  }
+
   ss << "Version=2010-12-01";
   return ss.str();
 }
 
+
+void  DescribeEnvironmentsRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

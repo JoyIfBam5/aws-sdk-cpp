@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/ssm/SSMRequest.h>
@@ -21,6 +22,7 @@
 #include <aws/core/utils/memory/stl/AWSMap.h>
 #include <aws/ssm/model/NotificationConfig.h>
 #include <aws/ssm/model/Target.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,183 +37,212 @@ namespace Model
   {
   public:
     SendCommandRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "SendCommand"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
 
+
     /**
-     * <p>Required. The instance IDs where the command should execute. You can specify
-     * a maximum of 50 IDs.</p>
+     * <p>The instance IDs where the command should execute. You can specify a maximum
+     * of 50 IDs. If you prefer not to list individual instance IDs, you can instead
+     * send commands to a fleet of instances using the Targets parameter, which accepts
+     * EC2 tags. For more information about how to use Targets, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html">Sending
+     * Commands to a Fleet</a>.</p>
      */
     inline const Aws::Vector<Aws::String>& GetInstanceIds() const{ return m_instanceIds; }
 
     /**
-     * <p>Required. The instance IDs where the command should execute. You can specify
-     * a maximum of 50 IDs.</p>
+     * <p>The instance IDs where the command should execute. You can specify a maximum
+     * of 50 IDs. If you prefer not to list individual instance IDs, you can instead
+     * send commands to a fleet of instances using the Targets parameter, which accepts
+     * EC2 tags. For more information about how to use Targets, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html">Sending
+     * Commands to a Fleet</a>.</p>
      */
     inline void SetInstanceIds(const Aws::Vector<Aws::String>& value) { m_instanceIdsHasBeenSet = true; m_instanceIds = value; }
 
     /**
-     * <p>Required. The instance IDs where the command should execute. You can specify
-     * a maximum of 50 IDs.</p>
+     * <p>The instance IDs where the command should execute. You can specify a maximum
+     * of 50 IDs. If you prefer not to list individual instance IDs, you can instead
+     * send commands to a fleet of instances using the Targets parameter, which accepts
+     * EC2 tags. For more information about how to use Targets, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html">Sending
+     * Commands to a Fleet</a>.</p>
      */
-    inline void SetInstanceIds(Aws::Vector<Aws::String>&& value) { m_instanceIdsHasBeenSet = true; m_instanceIds = value; }
+    inline void SetInstanceIds(Aws::Vector<Aws::String>&& value) { m_instanceIdsHasBeenSet = true; m_instanceIds = std::move(value); }
 
     /**
-     * <p>Required. The instance IDs where the command should execute. You can specify
-     * a maximum of 50 IDs.</p>
+     * <p>The instance IDs where the command should execute. You can specify a maximum
+     * of 50 IDs. If you prefer not to list individual instance IDs, you can instead
+     * send commands to a fleet of instances using the Targets parameter, which accepts
+     * EC2 tags. For more information about how to use Targets, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html">Sending
+     * Commands to a Fleet</a>.</p>
      */
     inline SendCommandRequest& WithInstanceIds(const Aws::Vector<Aws::String>& value) { SetInstanceIds(value); return *this;}
 
     /**
-     * <p>Required. The instance IDs where the command should execute. You can specify
-     * a maximum of 50 IDs.</p>
+     * <p>The instance IDs where the command should execute. You can specify a maximum
+     * of 50 IDs. If you prefer not to list individual instance IDs, you can instead
+     * send commands to a fleet of instances using the Targets parameter, which accepts
+     * EC2 tags. For more information about how to use Targets, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html">Sending
+     * Commands to a Fleet</a>.</p>
      */
-    inline SendCommandRequest& WithInstanceIds(Aws::Vector<Aws::String>&& value) { SetInstanceIds(value); return *this;}
+    inline SendCommandRequest& WithInstanceIds(Aws::Vector<Aws::String>&& value) { SetInstanceIds(std::move(value)); return *this;}
 
     /**
-     * <p>Required. The instance IDs where the command should execute. You can specify
-     * a maximum of 50 IDs.</p>
+     * <p>The instance IDs where the command should execute. You can specify a maximum
+     * of 50 IDs. If you prefer not to list individual instance IDs, you can instead
+     * send commands to a fleet of instances using the Targets parameter, which accepts
+     * EC2 tags. For more information about how to use Targets, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html">Sending
+     * Commands to a Fleet</a>.</p>
      */
     inline SendCommandRequest& AddInstanceIds(const Aws::String& value) { m_instanceIdsHasBeenSet = true; m_instanceIds.push_back(value); return *this; }
 
     /**
-     * <p>Required. The instance IDs where the command should execute. You can specify
-     * a maximum of 50 IDs.</p>
+     * <p>The instance IDs where the command should execute. You can specify a maximum
+     * of 50 IDs. If you prefer not to list individual instance IDs, you can instead
+     * send commands to a fleet of instances using the Targets parameter, which accepts
+     * EC2 tags. For more information about how to use Targets, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html">Sending
+     * Commands to a Fleet</a>.</p>
      */
-    inline SendCommandRequest& AddInstanceIds(Aws::String&& value) { m_instanceIdsHasBeenSet = true; m_instanceIds.push_back(value); return *this; }
+    inline SendCommandRequest& AddInstanceIds(Aws::String&& value) { m_instanceIdsHasBeenSet = true; m_instanceIds.push_back(std::move(value)); return *this; }
 
     /**
-     * <p>Required. The instance IDs where the command should execute. You can specify
-     * a maximum of 50 IDs.</p>
+     * <p>The instance IDs where the command should execute. You can specify a maximum
+     * of 50 IDs. If you prefer not to list individual instance IDs, you can instead
+     * send commands to a fleet of instances using the Targets parameter, which accepts
+     * EC2 tags. For more information about how to use Targets, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html">Sending
+     * Commands to a Fleet</a>.</p>
      */
     inline SendCommandRequest& AddInstanceIds(const char* value) { m_instanceIdsHasBeenSet = true; m_instanceIds.push_back(value); return *this; }
 
+
     /**
      * <p>(Optional) An array of search criteria that targets instances using a
-     * <code>Key</code>;<code>Value</code> combination that you specify.
-     * <code>Targets</code> is required if you don't provide one or more instance IDs
-     * in the call. For more information about how to use <code>Targets</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * Key,Value combination that you specify. Targets is required if you don't provide
+     * one or more instance IDs in the call. For more information about how to use
+     * Targets, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html">Sending
+     * Commands to a Fleet</a>.</p>
      */
     inline const Aws::Vector<Target>& GetTargets() const{ return m_targets; }
 
     /**
      * <p>(Optional) An array of search criteria that targets instances using a
-     * <code>Key</code>;<code>Value</code> combination that you specify.
-     * <code>Targets</code> is required if you don't provide one or more instance IDs
-     * in the call. For more information about how to use <code>Targets</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * Key,Value combination that you specify. Targets is required if you don't provide
+     * one or more instance IDs in the call. For more information about how to use
+     * Targets, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html">Sending
+     * Commands to a Fleet</a>.</p>
      */
     inline void SetTargets(const Aws::Vector<Target>& value) { m_targetsHasBeenSet = true; m_targets = value; }
 
     /**
      * <p>(Optional) An array of search criteria that targets instances using a
-     * <code>Key</code>;<code>Value</code> combination that you specify.
-     * <code>Targets</code> is required if you don't provide one or more instance IDs
-     * in the call. For more information about how to use <code>Targets</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * Key,Value combination that you specify. Targets is required if you don't provide
+     * one or more instance IDs in the call. For more information about how to use
+     * Targets, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html">Sending
+     * Commands to a Fleet</a>.</p>
      */
-    inline void SetTargets(Aws::Vector<Target>&& value) { m_targetsHasBeenSet = true; m_targets = value; }
+    inline void SetTargets(Aws::Vector<Target>&& value) { m_targetsHasBeenSet = true; m_targets = std::move(value); }
 
     /**
      * <p>(Optional) An array of search criteria that targets instances using a
-     * <code>Key</code>;<code>Value</code> combination that you specify.
-     * <code>Targets</code> is required if you don't provide one or more instance IDs
-     * in the call. For more information about how to use <code>Targets</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * Key,Value combination that you specify. Targets is required if you don't provide
+     * one or more instance IDs in the call. For more information about how to use
+     * Targets, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html">Sending
+     * Commands to a Fleet</a>.</p>
      */
     inline SendCommandRequest& WithTargets(const Aws::Vector<Target>& value) { SetTargets(value); return *this;}
 
     /**
      * <p>(Optional) An array of search criteria that targets instances using a
-     * <code>Key</code>;<code>Value</code> combination that you specify.
-     * <code>Targets</code> is required if you don't provide one or more instance IDs
-     * in the call. For more information about how to use <code>Targets</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * Key,Value combination that you specify. Targets is required if you don't provide
+     * one or more instance IDs in the call. For more information about how to use
+     * Targets, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html">Sending
+     * Commands to a Fleet</a>.</p>
      */
-    inline SendCommandRequest& WithTargets(Aws::Vector<Target>&& value) { SetTargets(value); return *this;}
+    inline SendCommandRequest& WithTargets(Aws::Vector<Target>&& value) { SetTargets(std::move(value)); return *this;}
 
     /**
      * <p>(Optional) An array of search criteria that targets instances using a
-     * <code>Key</code>;<code>Value</code> combination that you specify.
-     * <code>Targets</code> is required if you don't provide one or more instance IDs
-     * in the call. For more information about how to use <code>Targets</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * Key,Value combination that you specify. Targets is required if you don't provide
+     * one or more instance IDs in the call. For more information about how to use
+     * Targets, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html">Sending
+     * Commands to a Fleet</a>.</p>
      */
     inline SendCommandRequest& AddTargets(const Target& value) { m_targetsHasBeenSet = true; m_targets.push_back(value); return *this; }
 
     /**
      * <p>(Optional) An array of search criteria that targets instances using a
-     * <code>Key</code>;<code>Value</code> combination that you specify.
-     * <code>Targets</code> is required if you don't provide one or more instance IDs
-     * in the call. For more information about how to use <code>Targets</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * Key,Value combination that you specify. Targets is required if you don't provide
+     * one or more instance IDs in the call. For more information about how to use
+     * Targets, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html">Sending
+     * Commands to a Fleet</a>.</p>
      */
-    inline SendCommandRequest& AddTargets(Target&& value) { m_targetsHasBeenSet = true; m_targets.push_back(value); return *this; }
+    inline SendCommandRequest& AddTargets(Target&& value) { m_targetsHasBeenSet = true; m_targets.push_back(std::move(value)); return *this; }
+
 
     /**
-     * <p>Required. The name of the SSM document to execute. This can be an SSM public
-     * document or a custom document.</p>
+     * <p>Required. The name of the Systems Manager document to execute. This can be a
+     * public document or a custom document.</p>
      */
     inline const Aws::String& GetDocumentName() const{ return m_documentName; }
 
     /**
-     * <p>Required. The name of the SSM document to execute. This can be an SSM public
-     * document or a custom document.</p>
+     * <p>Required. The name of the Systems Manager document to execute. This can be a
+     * public document or a custom document.</p>
      */
     inline void SetDocumentName(const Aws::String& value) { m_documentNameHasBeenSet = true; m_documentName = value; }
 
     /**
-     * <p>Required. The name of the SSM document to execute. This can be an SSM public
-     * document or a custom document.</p>
+     * <p>Required. The name of the Systems Manager document to execute. This can be a
+     * public document or a custom document.</p>
      */
-    inline void SetDocumentName(Aws::String&& value) { m_documentNameHasBeenSet = true; m_documentName = value; }
+    inline void SetDocumentName(Aws::String&& value) { m_documentNameHasBeenSet = true; m_documentName = std::move(value); }
 
     /**
-     * <p>Required. The name of the SSM document to execute. This can be an SSM public
-     * document or a custom document.</p>
+     * <p>Required. The name of the Systems Manager document to execute. This can be a
+     * public document or a custom document.</p>
      */
     inline void SetDocumentName(const char* value) { m_documentNameHasBeenSet = true; m_documentName.assign(value); }
 
     /**
-     * <p>Required. The name of the SSM document to execute. This can be an SSM public
-     * document or a custom document.</p>
+     * <p>Required. The name of the Systems Manager document to execute. This can be a
+     * public document or a custom document.</p>
      */
     inline SendCommandRequest& WithDocumentName(const Aws::String& value) { SetDocumentName(value); return *this;}
 
     /**
-     * <p>Required. The name of the SSM document to execute. This can be an SSM public
-     * document or a custom document.</p>
+     * <p>Required. The name of the Systems Manager document to execute. This can be a
+     * public document or a custom document.</p>
      */
-    inline SendCommandRequest& WithDocumentName(Aws::String&& value) { SetDocumentName(value); return *this;}
+    inline SendCommandRequest& WithDocumentName(Aws::String&& value) { SetDocumentName(std::move(value)); return *this;}
 
     /**
-     * <p>Required. The name of the SSM document to execute. This can be an SSM public
-     * document or a custom document.</p>
+     * <p>Required. The name of the Systems Manager document to execute. This can be a
+     * public document or a custom document.</p>
      */
     inline SendCommandRequest& WithDocumentName(const char* value) { SetDocumentName(value); return *this;}
+
 
     /**
      * <p>The Sha256 or Sha1 hash created by the system when the document was created.
@@ -229,7 +260,7 @@ namespace Model
      * <p>The Sha256 or Sha1 hash created by the system when the document was created.
      * </p> <note> <p>Sha1 hashes have been deprecated.</p> </note>
      */
-    inline void SetDocumentHash(Aws::String&& value) { m_documentHashHasBeenSet = true; m_documentHash = value; }
+    inline void SetDocumentHash(Aws::String&& value) { m_documentHashHasBeenSet = true; m_documentHash = std::move(value); }
 
     /**
      * <p>The Sha256 or Sha1 hash created by the system when the document was created.
@@ -247,13 +278,14 @@ namespace Model
      * <p>The Sha256 or Sha1 hash created by the system when the document was created.
      * </p> <note> <p>Sha1 hashes have been deprecated.</p> </note>
      */
-    inline SendCommandRequest& WithDocumentHash(Aws::String&& value) { SetDocumentHash(value); return *this;}
+    inline SendCommandRequest& WithDocumentHash(Aws::String&& value) { SetDocumentHash(std::move(value)); return *this;}
 
     /**
      * <p>The Sha256 or Sha1 hash created by the system when the document was created.
      * </p> <note> <p>Sha1 hashes have been deprecated.</p> </note>
      */
     inline SendCommandRequest& WithDocumentHash(const char* value) { SetDocumentHash(value); return *this;}
+
 
     /**
      * <p>Sha256 or Sha1.</p> <note> <p>Sha1 hashes have been deprecated.</p> </note>
@@ -268,7 +300,7 @@ namespace Model
     /**
      * <p>Sha256 or Sha1.</p> <note> <p>Sha1 hashes have been deprecated.</p> </note>
      */
-    inline void SetDocumentHashType(DocumentHashType&& value) { m_documentHashTypeHasBeenSet = true; m_documentHashType = value; }
+    inline void SetDocumentHashType(DocumentHashType&& value) { m_documentHashTypeHasBeenSet = true; m_documentHashType = std::move(value); }
 
     /**
      * <p>Sha256 or Sha1.</p> <note> <p>Sha1 hashes have been deprecated.</p> </note>
@@ -278,7 +310,8 @@ namespace Model
     /**
      * <p>Sha256 or Sha1.</p> <note> <p>Sha1 hashes have been deprecated.</p> </note>
      */
-    inline SendCommandRequest& WithDocumentHashType(DocumentHashType&& value) { SetDocumentHashType(value); return *this;}
+    inline SendCommandRequest& WithDocumentHashType(DocumentHashType&& value) { SetDocumentHashType(std::move(value)); return *this;}
+
 
     /**
      * <p>If this time is reached and the command has not already started executing, it
@@ -298,6 +331,7 @@ namespace Model
      */
     inline SendCommandRequest& WithTimeoutSeconds(int value) { SetTimeoutSeconds(value); return *this;}
 
+
     /**
      * <p>User-specified information about the command, such as a brief description of
      * what the command should do.</p>
@@ -314,7 +348,7 @@ namespace Model
      * <p>User-specified information about the command, such as a brief description of
      * what the command should do.</p>
      */
-    inline void SetComment(Aws::String&& value) { m_commentHasBeenSet = true; m_comment = value; }
+    inline void SetComment(Aws::String&& value) { m_commentHasBeenSet = true; m_comment = std::move(value); }
 
     /**
      * <p>User-specified information about the command, such as a brief description of
@@ -332,7 +366,7 @@ namespace Model
      * <p>User-specified information about the command, such as a brief description of
      * what the command should do.</p>
      */
-    inline SendCommandRequest& WithComment(Aws::String&& value) { SetComment(value); return *this;}
+    inline SendCommandRequest& WithComment(Aws::String&& value) { SetComment(std::move(value)); return *this;}
 
     /**
      * <p>User-specified information about the command, such as a brief description of
@@ -340,120 +374,123 @@ namespace Model
      */
     inline SendCommandRequest& WithComment(const char* value) { SetComment(value); return *this;}
 
+
     /**
-     * <p>The required and optional parameters specified in the SSM document being
+     * <p>The required and optional parameters specified in the document being
      * executed.</p>
      */
     inline const Aws::Map<Aws::String, Aws::Vector<Aws::String>>& GetParameters() const{ return m_parameters; }
 
     /**
-     * <p>The required and optional parameters specified in the SSM document being
+     * <p>The required and optional parameters specified in the document being
      * executed.</p>
      */
     inline void SetParameters(const Aws::Map<Aws::String, Aws::Vector<Aws::String>>& value) { m_parametersHasBeenSet = true; m_parameters = value; }
 
     /**
-     * <p>The required and optional parameters specified in the SSM document being
+     * <p>The required and optional parameters specified in the document being
      * executed.</p>
      */
-    inline void SetParameters(Aws::Map<Aws::String, Aws::Vector<Aws::String>>&& value) { m_parametersHasBeenSet = true; m_parameters = value; }
+    inline void SetParameters(Aws::Map<Aws::String, Aws::Vector<Aws::String>>&& value) { m_parametersHasBeenSet = true; m_parameters = std::move(value); }
 
     /**
-     * <p>The required and optional parameters specified in the SSM document being
+     * <p>The required and optional parameters specified in the document being
      * executed.</p>
      */
     inline SendCommandRequest& WithParameters(const Aws::Map<Aws::String, Aws::Vector<Aws::String>>& value) { SetParameters(value); return *this;}
 
     /**
-     * <p>The required and optional parameters specified in the SSM document being
+     * <p>The required and optional parameters specified in the document being
      * executed.</p>
      */
-    inline SendCommandRequest& WithParameters(Aws::Map<Aws::String, Aws::Vector<Aws::String>>&& value) { SetParameters(value); return *this;}
+    inline SendCommandRequest& WithParameters(Aws::Map<Aws::String, Aws::Vector<Aws::String>>&& value) { SetParameters(std::move(value)); return *this;}
 
     /**
-     * <p>The required and optional parameters specified in the SSM document being
+     * <p>The required and optional parameters specified in the document being
      * executed.</p>
      */
-    inline SendCommandRequest& AddParameters(const Aws::String& key, const Aws::Vector<Aws::String>& value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline SendCommandRequest& AddParameters(const Aws::String& key, const Aws::Vector<Aws::String>& value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, value); return *this; }
 
     /**
-     * <p>The required and optional parameters specified in the SSM document being
+     * <p>The required and optional parameters specified in the document being
      * executed.</p>
      */
-    inline SendCommandRequest& AddParameters(Aws::String&& key, const Aws::Vector<Aws::String>& value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline SendCommandRequest& AddParameters(Aws::String&& key, const Aws::Vector<Aws::String>& value) { m_parametersHasBeenSet = true; m_parameters.emplace(std::move(key), value); return *this; }
 
     /**
-     * <p>The required and optional parameters specified in the SSM document being
+     * <p>The required and optional parameters specified in the document being
      * executed.</p>
      */
-    inline SendCommandRequest& AddParameters(const Aws::String& key, Aws::Vector<Aws::String>&& value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline SendCommandRequest& AddParameters(const Aws::String& key, Aws::Vector<Aws::String>&& value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, std::move(value)); return *this; }
 
     /**
-     * <p>The required and optional parameters specified in the SSM document being
+     * <p>The required and optional parameters specified in the document being
      * executed.</p>
      */
-    inline SendCommandRequest& AddParameters(Aws::String&& key, Aws::Vector<Aws::String>&& value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline SendCommandRequest& AddParameters(Aws::String&& key, Aws::Vector<Aws::String>&& value) { m_parametersHasBeenSet = true; m_parameters.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
-     * <p>The required and optional parameters specified in the SSM document being
+     * <p>The required and optional parameters specified in the document being
      * executed.</p>
      */
-    inline SendCommandRequest& AddParameters(const char* key, Aws::Vector<Aws::String>&& value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline SendCommandRequest& AddParameters(const char* key, Aws::Vector<Aws::String>&& value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, std::move(value)); return *this; }
 
     /**
-     * <p>The required and optional parameters specified in the SSM document being
+     * <p>The required and optional parameters specified in the document being
      * executed.</p>
      */
-    inline SendCommandRequest& AddParameters(const char* key, const Aws::Vector<Aws::String>& value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline SendCommandRequest& AddParameters(const char* key, const Aws::Vector<Aws::String>& value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, value); return *this; }
+
 
     /**
-     * <p>(Optional) The region where the Amazon Simple Storage Service (Amazon S3)
-     * output bucket is located. The default value is the region where Run Command is
-     * being called.</p>
+     * <p>(Deprecated) You can no longer specify this parameter. The system ignores it.
+     * Instead, Systems Manager automatically determines the Amazon S3 bucket
+     * region.</p>
      */
     inline const Aws::String& GetOutputS3Region() const{ return m_outputS3Region; }
 
     /**
-     * <p>(Optional) The region where the Amazon Simple Storage Service (Amazon S3)
-     * output bucket is located. The default value is the region where Run Command is
-     * being called.</p>
+     * <p>(Deprecated) You can no longer specify this parameter. The system ignores it.
+     * Instead, Systems Manager automatically determines the Amazon S3 bucket
+     * region.</p>
      */
     inline void SetOutputS3Region(const Aws::String& value) { m_outputS3RegionHasBeenSet = true; m_outputS3Region = value; }
 
     /**
-     * <p>(Optional) The region where the Amazon Simple Storage Service (Amazon S3)
-     * output bucket is located. The default value is the region where Run Command is
-     * being called.</p>
+     * <p>(Deprecated) You can no longer specify this parameter. The system ignores it.
+     * Instead, Systems Manager automatically determines the Amazon S3 bucket
+     * region.</p>
      */
-    inline void SetOutputS3Region(Aws::String&& value) { m_outputS3RegionHasBeenSet = true; m_outputS3Region = value; }
+    inline void SetOutputS3Region(Aws::String&& value) { m_outputS3RegionHasBeenSet = true; m_outputS3Region = std::move(value); }
 
     /**
-     * <p>(Optional) The region where the Amazon Simple Storage Service (Amazon S3)
-     * output bucket is located. The default value is the region where Run Command is
-     * being called.</p>
+     * <p>(Deprecated) You can no longer specify this parameter. The system ignores it.
+     * Instead, Systems Manager automatically determines the Amazon S3 bucket
+     * region.</p>
      */
     inline void SetOutputS3Region(const char* value) { m_outputS3RegionHasBeenSet = true; m_outputS3Region.assign(value); }
 
     /**
-     * <p>(Optional) The region where the Amazon Simple Storage Service (Amazon S3)
-     * output bucket is located. The default value is the region where Run Command is
-     * being called.</p>
+     * <p>(Deprecated) You can no longer specify this parameter. The system ignores it.
+     * Instead, Systems Manager automatically determines the Amazon S3 bucket
+     * region.</p>
      */
     inline SendCommandRequest& WithOutputS3Region(const Aws::String& value) { SetOutputS3Region(value); return *this;}
 
     /**
-     * <p>(Optional) The region where the Amazon Simple Storage Service (Amazon S3)
-     * output bucket is located. The default value is the region where Run Command is
-     * being called.</p>
+     * <p>(Deprecated) You can no longer specify this parameter. The system ignores it.
+     * Instead, Systems Manager automatically determines the Amazon S3 bucket
+     * region.</p>
      */
-    inline SendCommandRequest& WithOutputS3Region(Aws::String&& value) { SetOutputS3Region(value); return *this;}
+    inline SendCommandRequest& WithOutputS3Region(Aws::String&& value) { SetOutputS3Region(std::move(value)); return *this;}
 
     /**
-     * <p>(Optional) The region where the Amazon Simple Storage Service (Amazon S3)
-     * output bucket is located. The default value is the region where Run Command is
-     * being called.</p>
+     * <p>(Deprecated) You can no longer specify this parameter. The system ignores it.
+     * Instead, Systems Manager automatically determines the Amazon S3 bucket
+     * region.</p>
      */
     inline SendCommandRequest& WithOutputS3Region(const char* value) { SetOutputS3Region(value); return *this;}
+
 
     /**
      * <p>The name of the S3 bucket where command execution responses should be
@@ -471,7 +508,7 @@ namespace Model
      * <p>The name of the S3 bucket where command execution responses should be
      * stored.</p>
      */
-    inline void SetOutputS3BucketName(Aws::String&& value) { m_outputS3BucketNameHasBeenSet = true; m_outputS3BucketName = value; }
+    inline void SetOutputS3BucketName(Aws::String&& value) { m_outputS3BucketNameHasBeenSet = true; m_outputS3BucketName = std::move(value); }
 
     /**
      * <p>The name of the S3 bucket where command execution responses should be
@@ -489,13 +526,14 @@ namespace Model
      * <p>The name of the S3 bucket where command execution responses should be
      * stored.</p>
      */
-    inline SendCommandRequest& WithOutputS3BucketName(Aws::String&& value) { SetOutputS3BucketName(value); return *this;}
+    inline SendCommandRequest& WithOutputS3BucketName(Aws::String&& value) { SetOutputS3BucketName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the S3 bucket where command execution responses should be
      * stored.</p>
      */
     inline SendCommandRequest& WithOutputS3BucketName(const char* value) { SetOutputS3BucketName(value); return *this;}
+
 
     /**
      * <p>The directory structure within the S3 bucket where the responses should be
@@ -513,7 +551,7 @@ namespace Model
      * <p>The directory structure within the S3 bucket where the responses should be
      * stored.</p>
      */
-    inline void SetOutputS3KeyPrefix(Aws::String&& value) { m_outputS3KeyPrefixHasBeenSet = true; m_outputS3KeyPrefix = value; }
+    inline void SetOutputS3KeyPrefix(Aws::String&& value) { m_outputS3KeyPrefixHasBeenSet = true; m_outputS3KeyPrefix = std::move(value); }
 
     /**
      * <p>The directory structure within the S3 bucket where the responses should be
@@ -531,7 +569,7 @@ namespace Model
      * <p>The directory structure within the S3 bucket where the responses should be
      * stored.</p>
      */
-    inline SendCommandRequest& WithOutputS3KeyPrefix(Aws::String&& value) { SetOutputS3KeyPrefix(value); return *this;}
+    inline SendCommandRequest& WithOutputS3KeyPrefix(Aws::String&& value) { SetOutputS3KeyPrefix(std::move(value)); return *this;}
 
     /**
      * <p>The directory structure within the S3 bucket where the responses should be
@@ -539,180 +577,155 @@ namespace Model
      */
     inline SendCommandRequest& WithOutputS3KeyPrefix(const char* value) { SetOutputS3KeyPrefix(value); return *this;}
 
+
     /**
      * <p>(Optional) The maximum number of instances that are allowed to execute the
-     * command at the same time. You can specify a number such as “10” or a percentage
-     * such as “10%”. The default value is 50. For more information about how to use
-     * <code>MaxConcurrency</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * command at the same time. You can specify a number such as 10 or a percentage
+     * such as 10%. The default value is 50. For more information about how to use
+     * MaxConcurrency, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-velocity.html">Using
+     * Concurrency Controls</a>.</p>
      */
     inline const Aws::String& GetMaxConcurrency() const{ return m_maxConcurrency; }
 
     /**
      * <p>(Optional) The maximum number of instances that are allowed to execute the
-     * command at the same time. You can specify a number such as “10” or a percentage
-     * such as “10%”. The default value is 50. For more information about how to use
-     * <code>MaxConcurrency</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * command at the same time. You can specify a number such as 10 or a percentage
+     * such as 10%. The default value is 50. For more information about how to use
+     * MaxConcurrency, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-velocity.html">Using
+     * Concurrency Controls</a>.</p>
      */
     inline void SetMaxConcurrency(const Aws::String& value) { m_maxConcurrencyHasBeenSet = true; m_maxConcurrency = value; }
 
     /**
      * <p>(Optional) The maximum number of instances that are allowed to execute the
-     * command at the same time. You can specify a number such as “10” or a percentage
-     * such as “10%”. The default value is 50. For more information about how to use
-     * <code>MaxConcurrency</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * command at the same time. You can specify a number such as 10 or a percentage
+     * such as 10%. The default value is 50. For more information about how to use
+     * MaxConcurrency, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-velocity.html">Using
+     * Concurrency Controls</a>.</p>
      */
-    inline void SetMaxConcurrency(Aws::String&& value) { m_maxConcurrencyHasBeenSet = true; m_maxConcurrency = value; }
+    inline void SetMaxConcurrency(Aws::String&& value) { m_maxConcurrencyHasBeenSet = true; m_maxConcurrency = std::move(value); }
 
     /**
      * <p>(Optional) The maximum number of instances that are allowed to execute the
-     * command at the same time. You can specify a number such as “10” or a percentage
-     * such as “10%”. The default value is 50. For more information about how to use
-     * <code>MaxConcurrency</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * command at the same time. You can specify a number such as 10 or a percentage
+     * such as 10%. The default value is 50. For more information about how to use
+     * MaxConcurrency, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-velocity.html">Using
+     * Concurrency Controls</a>.</p>
      */
     inline void SetMaxConcurrency(const char* value) { m_maxConcurrencyHasBeenSet = true; m_maxConcurrency.assign(value); }
 
     /**
      * <p>(Optional) The maximum number of instances that are allowed to execute the
-     * command at the same time. You can specify a number such as “10” or a percentage
-     * such as “10%”. The default value is 50. For more information about how to use
-     * <code>MaxConcurrency</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * command at the same time. You can specify a number such as 10 or a percentage
+     * such as 10%. The default value is 50. For more information about how to use
+     * MaxConcurrency, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-velocity.html">Using
+     * Concurrency Controls</a>.</p>
      */
     inline SendCommandRequest& WithMaxConcurrency(const Aws::String& value) { SetMaxConcurrency(value); return *this;}
 
     /**
      * <p>(Optional) The maximum number of instances that are allowed to execute the
-     * command at the same time. You can specify a number such as “10” or a percentage
-     * such as “10%”. The default value is 50. For more information about how to use
-     * <code>MaxConcurrency</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * command at the same time. You can specify a number such as 10 or a percentage
+     * such as 10%. The default value is 50. For more information about how to use
+     * MaxConcurrency, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-velocity.html">Using
+     * Concurrency Controls</a>.</p>
      */
-    inline SendCommandRequest& WithMaxConcurrency(Aws::String&& value) { SetMaxConcurrency(value); return *this;}
+    inline SendCommandRequest& WithMaxConcurrency(Aws::String&& value) { SetMaxConcurrency(std::move(value)); return *this;}
 
     /**
      * <p>(Optional) The maximum number of instances that are allowed to execute the
-     * command at the same time. You can specify a number such as “10” or a percentage
-     * such as “10%”. The default value is 50. For more information about how to use
-     * <code>MaxConcurrency</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * command at the same time. You can specify a number such as 10 or a percentage
+     * such as 10%. The default value is 50. For more information about how to use
+     * MaxConcurrency, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-velocity.html">Using
+     * Concurrency Controls</a>.</p>
      */
     inline SendCommandRequest& WithMaxConcurrency(const char* value) { SetMaxConcurrency(value); return *this;}
 
+
     /**
      * <p>The maximum number of errors allowed without the command failing. When the
-     * command fails one more time beyond the value of <code>MaxErrors</code>, the
-     * systems stops sending the command to additional targets. You can specify a
-     * number like “10” or a percentage like “10%”. The default value is 50. For more
-     * information about how to use <code>MaxErrors</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * command fails one more time beyond the value of MaxErrors, the systems stops
+     * sending the command to additional targets. You can specify a number like 10 or a
+     * percentage like 10%. The default value is 50. For more information about how to
+     * use MaxErrors, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-maxerrors.html">Using
+     * Error Controls</a>.</p>
      */
     inline const Aws::String& GetMaxErrors() const{ return m_maxErrors; }
 
     /**
      * <p>The maximum number of errors allowed without the command failing. When the
-     * command fails one more time beyond the value of <code>MaxErrors</code>, the
-     * systems stops sending the command to additional targets. You can specify a
-     * number like “10” or a percentage like “10%”. The default value is 50. For more
-     * information about how to use <code>MaxErrors</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * command fails one more time beyond the value of MaxErrors, the systems stops
+     * sending the command to additional targets. You can specify a number like 10 or a
+     * percentage like 10%. The default value is 50. For more information about how to
+     * use MaxErrors, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-maxerrors.html">Using
+     * Error Controls</a>.</p>
      */
     inline void SetMaxErrors(const Aws::String& value) { m_maxErrorsHasBeenSet = true; m_maxErrors = value; }
 
     /**
      * <p>The maximum number of errors allowed without the command failing. When the
-     * command fails one more time beyond the value of <code>MaxErrors</code>, the
-     * systems stops sending the command to additional targets. You can specify a
-     * number like “10” or a percentage like “10%”. The default value is 50. For more
-     * information about how to use <code>MaxErrors</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * command fails one more time beyond the value of MaxErrors, the systems stops
+     * sending the command to additional targets. You can specify a number like 10 or a
+     * percentage like 10%. The default value is 50. For more information about how to
+     * use MaxErrors, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-maxerrors.html">Using
+     * Error Controls</a>.</p>
      */
-    inline void SetMaxErrors(Aws::String&& value) { m_maxErrorsHasBeenSet = true; m_maxErrors = value; }
+    inline void SetMaxErrors(Aws::String&& value) { m_maxErrorsHasBeenSet = true; m_maxErrors = std::move(value); }
 
     /**
      * <p>The maximum number of errors allowed without the command failing. When the
-     * command fails one more time beyond the value of <code>MaxErrors</code>, the
-     * systems stops sending the command to additional targets. You can specify a
-     * number like “10” or a percentage like “10%”. The default value is 50. For more
-     * information about how to use <code>MaxErrors</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * command fails one more time beyond the value of MaxErrors, the systems stops
+     * sending the command to additional targets. You can specify a number like 10 or a
+     * percentage like 10%. The default value is 50. For more information about how to
+     * use MaxErrors, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-maxerrors.html">Using
+     * Error Controls</a>.</p>
      */
     inline void SetMaxErrors(const char* value) { m_maxErrorsHasBeenSet = true; m_maxErrors.assign(value); }
 
     /**
      * <p>The maximum number of errors allowed without the command failing. When the
-     * command fails one more time beyond the value of <code>MaxErrors</code>, the
-     * systems stops sending the command to additional targets. You can specify a
-     * number like “10” or a percentage like “10%”. The default value is 50. For more
-     * information about how to use <code>MaxErrors</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * command fails one more time beyond the value of MaxErrors, the systems stops
+     * sending the command to additional targets. You can specify a number like 10 or a
+     * percentage like 10%. The default value is 50. For more information about how to
+     * use MaxErrors, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-maxerrors.html">Using
+     * Error Controls</a>.</p>
      */
     inline SendCommandRequest& WithMaxErrors(const Aws::String& value) { SetMaxErrors(value); return *this;}
 
     /**
      * <p>The maximum number of errors allowed without the command failing. When the
-     * command fails one more time beyond the value of <code>MaxErrors</code>, the
-     * systems stops sending the command to additional targets. You can specify a
-     * number like “10” or a percentage like “10%”. The default value is 50. For more
-     * information about how to use <code>MaxErrors</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * command fails one more time beyond the value of MaxErrors, the systems stops
+     * sending the command to additional targets. You can specify a number like 10 or a
+     * percentage like 10%. The default value is 50. For more information about how to
+     * use MaxErrors, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-maxerrors.html">Using
+     * Error Controls</a>.</p>
      */
-    inline SendCommandRequest& WithMaxErrors(Aws::String&& value) { SetMaxErrors(value); return *this;}
+    inline SendCommandRequest& WithMaxErrors(Aws::String&& value) { SetMaxErrors(std::move(value)); return *this;}
 
     /**
      * <p>The maximum number of errors allowed without the command failing. When the
-     * command fails one more time beyond the value of <code>MaxErrors</code>, the
-     * systems stops sending the command to additional targets. You can specify a
-     * number like “10” or a percentage like “10%”. The default value is 50. For more
-     * information about how to use <code>MaxErrors</code>, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Linux) or <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/run-command.html">Executing
-     * a Command Using Amazon EC2 Run Command</a> (Windows).</p>
+     * command fails one more time beyond the value of MaxErrors, the systems stops
+     * sending the command to additional targets. You can specify a number like 10 or a
+     * percentage like 10%. The default value is 50. For more information about how to
+     * use MaxErrors, see <a
+     * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-maxerrors.html">Using
+     * Error Controls</a>.</p>
      */
     inline SendCommandRequest& WithMaxErrors(const char* value) { SetMaxErrors(value); return *this;}
+
 
     /**
      * <p>The IAM role that Systems Manager uses to send notifications. </p>
@@ -727,7 +740,7 @@ namespace Model
     /**
      * <p>The IAM role that Systems Manager uses to send notifications. </p>
      */
-    inline void SetServiceRoleArn(Aws::String&& value) { m_serviceRoleArnHasBeenSet = true; m_serviceRoleArn = value; }
+    inline void SetServiceRoleArn(Aws::String&& value) { m_serviceRoleArnHasBeenSet = true; m_serviceRoleArn = std::move(value); }
 
     /**
      * <p>The IAM role that Systems Manager uses to send notifications. </p>
@@ -742,12 +755,13 @@ namespace Model
     /**
      * <p>The IAM role that Systems Manager uses to send notifications. </p>
      */
-    inline SendCommandRequest& WithServiceRoleArn(Aws::String&& value) { SetServiceRoleArn(value); return *this;}
+    inline SendCommandRequest& WithServiceRoleArn(Aws::String&& value) { SetServiceRoleArn(std::move(value)); return *this;}
 
     /**
      * <p>The IAM role that Systems Manager uses to send notifications. </p>
      */
     inline SendCommandRequest& WithServiceRoleArn(const char* value) { SetServiceRoleArn(value); return *this;}
+
 
     /**
      * <p>Configurations for sending notifications.</p>
@@ -762,7 +776,7 @@ namespace Model
     /**
      * <p>Configurations for sending notifications.</p>
      */
-    inline void SetNotificationConfig(NotificationConfig&& value) { m_notificationConfigHasBeenSet = true; m_notificationConfig = value; }
+    inline void SetNotificationConfig(NotificationConfig&& value) { m_notificationConfigHasBeenSet = true; m_notificationConfig = std::move(value); }
 
     /**
      * <p>Configurations for sending notifications.</p>
@@ -772,37 +786,52 @@ namespace Model
     /**
      * <p>Configurations for sending notifications.</p>
      */
-    inline SendCommandRequest& WithNotificationConfig(NotificationConfig&& value) { SetNotificationConfig(value); return *this;}
+    inline SendCommandRequest& WithNotificationConfig(NotificationConfig&& value) { SetNotificationConfig(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_instanceIds;
     bool m_instanceIdsHasBeenSet;
+
     Aws::Vector<Target> m_targets;
     bool m_targetsHasBeenSet;
+
     Aws::String m_documentName;
     bool m_documentNameHasBeenSet;
+
     Aws::String m_documentHash;
     bool m_documentHashHasBeenSet;
+
     DocumentHashType m_documentHashType;
     bool m_documentHashTypeHasBeenSet;
+
     int m_timeoutSeconds;
     bool m_timeoutSecondsHasBeenSet;
+
     Aws::String m_comment;
     bool m_commentHasBeenSet;
+
     Aws::Map<Aws::String, Aws::Vector<Aws::String>> m_parameters;
     bool m_parametersHasBeenSet;
+
     Aws::String m_outputS3Region;
     bool m_outputS3RegionHasBeenSet;
+
     Aws::String m_outputS3BucketName;
     bool m_outputS3BucketNameHasBeenSet;
+
     Aws::String m_outputS3KeyPrefix;
     bool m_outputS3KeyPrefixHasBeenSet;
+
     Aws::String m_maxConcurrency;
     bool m_maxConcurrencyHasBeenSet;
+
     Aws::String m_maxErrors;
     bool m_maxErrorsHasBeenSet;
+
     Aws::String m_serviceRoleArn;
     bool m_serviceRoleArnHasBeenSet;
+
     NotificationConfig m_notificationConfig;
     bool m_notificationConfigHasBeenSet;
   };

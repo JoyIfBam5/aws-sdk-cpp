@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/model/Rule.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     GetRuleResult();
-    GetRuleResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetRuleResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetRuleResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetRuleResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the <a>Rule</a> that you specified in the
@@ -70,7 +73,7 @@ namespace Model
      * <code>Predicate</code> object contains <code>DataId</code>,
      * <code>Negated</code>, and <code>Type</code> </p> </li> </ul>
      */
-    inline void SetRule(Rule&& value) { m_rule = value; }
+    inline void SetRule(Rule&& value) { m_rule = std::move(value); }
 
     /**
      * <p>Information about the <a>Rule</a> that you specified in the
@@ -92,9 +95,10 @@ namespace Model
      * <code>Predicate</code> object contains <code>DataId</code>,
      * <code>Negated</code>, and <code>Type</code> </p> </li> </ul>
      */
-    inline GetRuleResult& WithRule(Rule&& value) { SetRule(value); return *this;}
+    inline GetRuleResult& WithRule(Rule&& value) { SetRule(std::move(value)); return *this;}
 
   private:
+
     Rule m_rule;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/SpotInstanceState.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -34,6 +35,7 @@ namespace Aws
         static const int closed_HASH = HashingUtils::HashString("closed");
         static const int cancelled_HASH = HashingUtils::HashString("cancelled");
         static const int failed_HASH = HashingUtils::HashString("failed");
+        static const int disabled_HASH = HashingUtils::HashString("disabled");
 
 
         SpotInstanceState GetSpotInstanceStateForName(const Aws::String& name)
@@ -59,6 +61,10 @@ namespace Aws
           {
             return SpotInstanceState::failed;
           }
+          else if (hashCode == disabled_HASH)
+          {
+            return SpotInstanceState::disabled;
+          }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
           {
@@ -83,6 +89,8 @@ namespace Aws
             return "cancelled";
           case SpotInstanceState::failed:
             return "failed";
+          case SpotInstanceState::disabled:
+            return "disabled";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

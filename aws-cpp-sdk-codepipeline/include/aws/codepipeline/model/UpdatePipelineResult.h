@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codepipeline/CodePipeline_EXPORTS.h>
 #include <aws/codepipeline/model/PipelineDeclaration.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,7 @@ namespace CodePipeline
 namespace Model
 {
   /**
-   * <p>Represents the output of an update pipeline action.</p><p><h3>See Also:</h3> 
+   * <p>Represents the output of an UpdatePipeline action.</p><p><h3>See Also:</h3>  
    * <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/UpdatePipelineOutput">AWS
    * API Reference</a></p>
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     UpdatePipelineResult();
-    UpdatePipelineResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    UpdatePipelineResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdatePipelineResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdatePipelineResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The structure of the updated pipeline.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The structure of the updated pipeline.</p>
      */
-    inline void SetPipeline(PipelineDeclaration&& value) { m_pipeline = value; }
+    inline void SetPipeline(PipelineDeclaration&& value) { m_pipeline = std::move(value); }
 
     /**
      * <p>The structure of the updated pipeline.</p>
@@ -68,9 +71,10 @@ namespace Model
     /**
      * <p>The structure of the updated pipeline.</p>
      */
-    inline UpdatePipelineResult& WithPipeline(PipelineDeclaration&& value) { SetPipeline(value); return *this;}
+    inline UpdatePipelineResult& WithPipeline(PipelineDeclaration&& value) { SetPipeline(std::move(value)); return *this;}
 
   private:
+
     PipelineDeclaration m_pipeline;
   };
 

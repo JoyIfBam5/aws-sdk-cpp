@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rekognition/Rekognition_EXPORTS.h>
 #include <aws/rekognition/model/Face.h>
 #include <aws/rekognition/model/FaceDetail.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,39 +48,68 @@ namespace Model
     FaceRecord& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
-    
+
+    /**
+     * <p>Describes the face properties such as the bounding box, face ID, image ID of
+     * the input image, and external image ID that you assigned. </p>
+     */
     inline const Face& GetFace() const{ return m_face; }
 
-    
+    /**
+     * <p>Describes the face properties such as the bounding box, face ID, image ID of
+     * the input image, and external image ID that you assigned. </p>
+     */
     inline void SetFace(const Face& value) { m_faceHasBeenSet = true; m_face = value; }
 
-    
-    inline void SetFace(Face&& value) { m_faceHasBeenSet = true; m_face = value; }
+    /**
+     * <p>Describes the face properties such as the bounding box, face ID, image ID of
+     * the input image, and external image ID that you assigned. </p>
+     */
+    inline void SetFace(Face&& value) { m_faceHasBeenSet = true; m_face = std::move(value); }
 
-    
+    /**
+     * <p>Describes the face properties such as the bounding box, face ID, image ID of
+     * the input image, and external image ID that you assigned. </p>
+     */
     inline FaceRecord& WithFace(const Face& value) { SetFace(value); return *this;}
 
-    
-    inline FaceRecord& WithFace(Face&& value) { SetFace(value); return *this;}
+    /**
+     * <p>Describes the face properties such as the bounding box, face ID, image ID of
+     * the input image, and external image ID that you assigned. </p>
+     */
+    inline FaceRecord& WithFace(Face&& value) { SetFace(std::move(value)); return *this;}
 
-    
+
+    /**
+     * <p>Structure containing attributes of the face that the algorithm detected.</p>
+     */
     inline const FaceDetail& GetFaceDetail() const{ return m_faceDetail; }
 
-    
+    /**
+     * <p>Structure containing attributes of the face that the algorithm detected.</p>
+     */
     inline void SetFaceDetail(const FaceDetail& value) { m_faceDetailHasBeenSet = true; m_faceDetail = value; }
 
-    
-    inline void SetFaceDetail(FaceDetail&& value) { m_faceDetailHasBeenSet = true; m_faceDetail = value; }
+    /**
+     * <p>Structure containing attributes of the face that the algorithm detected.</p>
+     */
+    inline void SetFaceDetail(FaceDetail&& value) { m_faceDetailHasBeenSet = true; m_faceDetail = std::move(value); }
 
-    
+    /**
+     * <p>Structure containing attributes of the face that the algorithm detected.</p>
+     */
     inline FaceRecord& WithFaceDetail(const FaceDetail& value) { SetFaceDetail(value); return *this;}
 
-    
-    inline FaceRecord& WithFaceDetail(FaceDetail&& value) { SetFaceDetail(value); return *this;}
+    /**
+     * <p>Structure containing attributes of the face that the algorithm detected.</p>
+     */
+    inline FaceRecord& WithFaceDetail(FaceDetail&& value) { SetFaceDetail(std::move(value)); return *this;}
 
   private:
+
     Face m_face;
     bool m_faceHasBeenSet;
+
     FaceDetail m_faceDetail;
     bool m_faceDetailHasBeenSet;
   };

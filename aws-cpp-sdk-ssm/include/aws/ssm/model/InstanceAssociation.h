@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     InstanceAssociation& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The association ID.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The association ID.</p>
      */
-    inline void SetAssociationId(Aws::String&& value) { m_associationIdHasBeenSet = true; m_associationId = value; }
+    inline void SetAssociationId(Aws::String&& value) { m_associationIdHasBeenSet = true; m_associationId = std::move(value); }
 
     /**
      * <p>The association ID.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The association ID.</p>
      */
-    inline InstanceAssociation& WithAssociationId(Aws::String&& value) { SetAssociationId(value); return *this;}
+    inline InstanceAssociation& WithAssociationId(Aws::String&& value) { SetAssociationId(std::move(value)); return *this;}
 
     /**
      * <p>The association ID.</p>
      */
     inline InstanceAssociation& WithAssociationId(const char* value) { SetAssociationId(value); return *this;}
+
 
     /**
      * <p>The instance ID.</p>
@@ -92,7 +96,7 @@ namespace Model
     /**
      * <p>The instance ID.</p>
      */
-    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = value; }
+    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = std::move(value); }
 
     /**
      * <p>The instance ID.</p>
@@ -107,12 +111,13 @@ namespace Model
     /**
      * <p>The instance ID.</p>
      */
-    inline InstanceAssociation& WithInstanceId(Aws::String&& value) { SetInstanceId(value); return *this;}
+    inline InstanceAssociation& WithInstanceId(Aws::String&& value) { SetInstanceId(std::move(value)); return *this;}
 
     /**
      * <p>The instance ID.</p>
      */
     inline InstanceAssociation& WithInstanceId(const char* value) { SetInstanceId(value); return *this;}
+
 
     /**
      * <p>The content of the association document for the instance(s).</p>
@@ -127,7 +132,7 @@ namespace Model
     /**
      * <p>The content of the association document for the instance(s).</p>
      */
-    inline void SetContent(Aws::String&& value) { m_contentHasBeenSet = true; m_content = value; }
+    inline void SetContent(Aws::String&& value) { m_contentHasBeenSet = true; m_content = std::move(value); }
 
     /**
      * <p>The content of the association document for the instance(s).</p>
@@ -142,20 +147,62 @@ namespace Model
     /**
      * <p>The content of the association document for the instance(s).</p>
      */
-    inline InstanceAssociation& WithContent(Aws::String&& value) { SetContent(value); return *this;}
+    inline InstanceAssociation& WithContent(Aws::String&& value) { SetContent(std::move(value)); return *this;}
 
     /**
      * <p>The content of the association document for the instance(s).</p>
      */
     inline InstanceAssociation& WithContent(const char* value) { SetContent(value); return *this;}
 
+
+    /**
+     * <p>Version information for the association on the instance.</p>
+     */
+    inline const Aws::String& GetAssociationVersion() const{ return m_associationVersion; }
+
+    /**
+     * <p>Version information for the association on the instance.</p>
+     */
+    inline void SetAssociationVersion(const Aws::String& value) { m_associationVersionHasBeenSet = true; m_associationVersion = value; }
+
+    /**
+     * <p>Version information for the association on the instance.</p>
+     */
+    inline void SetAssociationVersion(Aws::String&& value) { m_associationVersionHasBeenSet = true; m_associationVersion = std::move(value); }
+
+    /**
+     * <p>Version information for the association on the instance.</p>
+     */
+    inline void SetAssociationVersion(const char* value) { m_associationVersionHasBeenSet = true; m_associationVersion.assign(value); }
+
+    /**
+     * <p>Version information for the association on the instance.</p>
+     */
+    inline InstanceAssociation& WithAssociationVersion(const Aws::String& value) { SetAssociationVersion(value); return *this;}
+
+    /**
+     * <p>Version information for the association on the instance.</p>
+     */
+    inline InstanceAssociation& WithAssociationVersion(Aws::String&& value) { SetAssociationVersion(std::move(value)); return *this;}
+
+    /**
+     * <p>Version information for the association on the instance.</p>
+     */
+    inline InstanceAssociation& WithAssociationVersion(const char* value) { SetAssociationVersion(value); return *this;}
+
   private:
+
     Aws::String m_associationId;
     bool m_associationIdHasBeenSet;
+
     Aws::String m_instanceId;
     bool m_instanceIdHasBeenSet;
+
     Aws::String m_content;
     bool m_contentHasBeenSet;
+
+    Aws::String m_associationVersion;
+    bool m_associationVersionHasBeenSet;
   };
 
 } // namespace Model

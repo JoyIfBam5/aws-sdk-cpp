@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ssm/model/PatchStatus.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -30,6 +31,8 @@ namespace Model
 PatchStatus::PatchStatus() : 
     m_deploymentStatus(PatchDeploymentStatus::NOT_SET),
     m_deploymentStatusHasBeenSet(false),
+    m_complianceLevel(PatchComplianceLevel::NOT_SET),
+    m_complianceLevelHasBeenSet(false),
     m_approvalDateHasBeenSet(false)
 {
 }
@@ -37,6 +40,8 @@ PatchStatus::PatchStatus() :
 PatchStatus::PatchStatus(const JsonValue& jsonValue) : 
     m_deploymentStatus(PatchDeploymentStatus::NOT_SET),
     m_deploymentStatusHasBeenSet(false),
+    m_complianceLevel(PatchComplianceLevel::NOT_SET),
+    m_complianceLevelHasBeenSet(false),
     m_approvalDateHasBeenSet(false)
 {
   *this = jsonValue;
@@ -49,6 +54,13 @@ PatchStatus& PatchStatus::operator =(const JsonValue& jsonValue)
     m_deploymentStatus = PatchDeploymentStatusMapper::GetPatchDeploymentStatusForName(jsonValue.GetString("DeploymentStatus"));
 
     m_deploymentStatusHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("ComplianceLevel"))
+  {
+    m_complianceLevel = PatchComplianceLevelMapper::GetPatchComplianceLevelForName(jsonValue.GetString("ComplianceLevel"));
+
+    m_complianceLevelHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("ApprovalDate"))
@@ -68,6 +80,11 @@ JsonValue PatchStatus::Jsonize() const
   if(m_deploymentStatusHasBeenSet)
   {
    payload.WithString("DeploymentStatus", PatchDeploymentStatusMapper::GetNameForPatchDeploymentStatus(m_deploymentStatus));
+  }
+
+  if(m_complianceLevelHasBeenSet)
+  {
+   payload.WithString("ComplianceLevel", PatchComplianceLevelMapper::GetNameForPatchComplianceLevel(m_complianceLevel));
   }
 
   if(m_approvalDateHasBeenSet)

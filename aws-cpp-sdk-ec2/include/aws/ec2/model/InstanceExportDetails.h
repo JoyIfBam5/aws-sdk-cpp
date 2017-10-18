@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ec2/model/ExportEnvironment.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The ID of the resource being exported.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The ID of the resource being exported.</p>
      */
-    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = value; }
+    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = std::move(value); }
 
     /**
      * <p>The ID of the resource being exported.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The ID of the resource being exported.</p>
      */
-    inline InstanceExportDetails& WithInstanceId(Aws::String&& value) { SetInstanceId(value); return *this;}
+    inline InstanceExportDetails& WithInstanceId(Aws::String&& value) { SetInstanceId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the resource being exported.</p>
      */
     inline InstanceExportDetails& WithInstanceId(const char* value) { SetInstanceId(value); return *this;}
+
 
     /**
      * <p>The target virtualization environment.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>The target virtualization environment.</p>
      */
-    inline void SetTargetEnvironment(ExportEnvironment&& value) { m_targetEnvironmentHasBeenSet = true; m_targetEnvironment = value; }
+    inline void SetTargetEnvironment(ExportEnvironment&& value) { m_targetEnvironmentHasBeenSet = true; m_targetEnvironment = std::move(value); }
 
     /**
      * <p>The target virtualization environment.</p>
@@ -105,11 +109,13 @@ namespace Model
     /**
      * <p>The target virtualization environment.</p>
      */
-    inline InstanceExportDetails& WithTargetEnvironment(ExportEnvironment&& value) { SetTargetEnvironment(value); return *this;}
+    inline InstanceExportDetails& WithTargetEnvironment(ExportEnvironment&& value) { SetTargetEnvironment(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_instanceId;
     bool m_instanceIdHasBeenSet;
+
     ExportEnvironment m_targetEnvironment;
     bool m_targetEnvironmentHasBeenSet;
   };

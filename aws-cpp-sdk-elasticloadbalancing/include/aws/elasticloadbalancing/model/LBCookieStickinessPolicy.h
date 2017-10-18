@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticloadbalancing/ElasticLoadBalancing_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the policy. This name must be unique within the set of policies
      * for this load balancer.</p>
@@ -63,7 +66,7 @@ namespace Model
      * <p>The name of the policy. This name must be unique within the set of policies
      * for this load balancer.</p>
      */
-    inline void SetPolicyName(Aws::String&& value) { m_policyNameHasBeenSet = true; m_policyName = value; }
+    inline void SetPolicyName(Aws::String&& value) { m_policyNameHasBeenSet = true; m_policyName = std::move(value); }
 
     /**
      * <p>The name of the policy. This name must be unique within the set of policies
@@ -81,13 +84,14 @@ namespace Model
      * <p>The name of the policy. This name must be unique within the set of policies
      * for this load balancer.</p>
      */
-    inline LBCookieStickinessPolicy& WithPolicyName(Aws::String&& value) { SetPolicyName(value); return *this;}
+    inline LBCookieStickinessPolicy& WithPolicyName(Aws::String&& value) { SetPolicyName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the policy. This name must be unique within the set of policies
      * for this load balancer.</p>
      */
     inline LBCookieStickinessPolicy& WithPolicyName(const char* value) { SetPolicyName(value); return *this;}
+
 
     /**
      * <p>The time period, in seconds, after which the cookie should be considered
@@ -111,8 +115,10 @@ namespace Model
     inline LBCookieStickinessPolicy& WithCookieExpirationPeriod(long long value) { SetCookieExpirationPeriod(value); return *this;}
 
   private:
+
     Aws::String m_policyName;
     bool m_policyNameHasBeenSet;
+
     long long m_cookieExpirationPeriod;
     bool m_cookieExpirationPeriodHasBeenSet;
   };

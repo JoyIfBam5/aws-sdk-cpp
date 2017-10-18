@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 
 #include <aws/core/client/CoreErrors.h>
@@ -54,15 +55,17 @@ enum class CognitoIdentityProviderErrors
   UNKNOWN = 100,
   ///////////////////////////////////////////////////////////////////////////////////////////
 
-  ALIAS_EXISTS= static_cast<int>(Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
+  ALIAS_EXISTS= static_cast<int>(Aws::Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
   CODE_DELIVERY_FAILURE,
   CODE_MISMATCH,
   CONCURRENT_MODIFICATION,
+  DUPLICATE_PROVIDER,
   EXPIRED_CODE,
   GROUP_EXISTS,
   INTERNAL_ERROR,
   INVALID_EMAIL_ROLE_ACCESS_POLICY,
   INVALID_LAMBDA_RESPONSE,
+  INVALID_O_AUTH_FLOW,
   INVALID_PARAMETER,
   INVALID_PASSWORD,
   INVALID_SMS_ROLE_ACCESS_POLICY,
@@ -73,9 +76,11 @@ enum class CognitoIdentityProviderErrors
   NOT_AUTHORIZED,
   PASSWORD_RESET_REQUIRED,
   PRECONDITION_NOT_MET,
+  SCOPE_DOES_NOT_EXIST,
   TOO_MANY_FAILED_ATTEMPTS,
   TOO_MANY_REQUESTS,
   UNEXPECTED_LAMBDA,
+  UNSUPPORTED_IDENTITY_PROVIDER,
   UNSUPPORTED_USER_STATE,
   USERNAME_EXISTS,
   USER_IMPORT_IN_PROGRESS,
@@ -86,7 +91,7 @@ enum class CognitoIdentityProviderErrors
 };
 namespace CognitoIdentityProviderErrorMapper
 {
-  AWS_COGNITOIDENTITYPROVIDER_API Client::AWSError<Client::CoreErrors> GetErrorForName(const char* errorName);
+  AWS_COGNITOIDENTITYPROVIDER_API Aws::Client::AWSError<Aws::Client::CoreErrors> GetErrorForName(const char* errorName);
 }
 
 } // namespace CognitoIdentityProvider

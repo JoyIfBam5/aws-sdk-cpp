@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     TransferCertificateResult();
-    TransferCertificateResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    TransferCertificateResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    TransferCertificateResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    TransferCertificateResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The ARN of the certificate.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The ARN of the certificate.</p>
      */
-    inline void SetTransferredCertificateArn(Aws::String&& value) { m_transferredCertificateArn = value; }
+    inline void SetTransferredCertificateArn(Aws::String&& value) { m_transferredCertificateArn = std::move(value); }
 
     /**
      * <p>The ARN of the certificate.</p>
@@ -73,7 +76,7 @@ namespace Model
     /**
      * <p>The ARN of the certificate.</p>
      */
-    inline TransferCertificateResult& WithTransferredCertificateArn(Aws::String&& value) { SetTransferredCertificateArn(value); return *this;}
+    inline TransferCertificateResult& WithTransferredCertificateArn(Aws::String&& value) { SetTransferredCertificateArn(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of the certificate.</p>
@@ -81,6 +84,7 @@ namespace Model
     inline TransferCertificateResult& WithTransferredCertificateArn(const char* value) { SetTransferredCertificateArn(value); return *this;}
 
   private:
+
     Aws::String m_transferredCertificateArn;
   };
 

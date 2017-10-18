@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/appstream/AppStream_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/appstream/model/Image.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,45 +39,47 @@ namespace Model
   {
   public:
     DescribeImagesResult();
-    DescribeImagesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeImagesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeImagesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeImagesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>The list of images.</p>
+     * <p>Information about the images.</p>
      */
     inline const Aws::Vector<Image>& GetImages() const{ return m_images; }
 
     /**
-     * <p>The list of images.</p>
+     * <p>Information about the images.</p>
      */
     inline void SetImages(const Aws::Vector<Image>& value) { m_images = value; }
 
     /**
-     * <p>The list of images.</p>
+     * <p>Information about the images.</p>
      */
-    inline void SetImages(Aws::Vector<Image>&& value) { m_images = value; }
+    inline void SetImages(Aws::Vector<Image>&& value) { m_images = std::move(value); }
 
     /**
-     * <p>The list of images.</p>
+     * <p>Information about the images.</p>
      */
     inline DescribeImagesResult& WithImages(const Aws::Vector<Image>& value) { SetImages(value); return *this;}
 
     /**
-     * <p>The list of images.</p>
+     * <p>Information about the images.</p>
      */
-    inline DescribeImagesResult& WithImages(Aws::Vector<Image>&& value) { SetImages(value); return *this;}
+    inline DescribeImagesResult& WithImages(Aws::Vector<Image>&& value) { SetImages(std::move(value)); return *this;}
 
     /**
-     * <p>The list of images.</p>
+     * <p>Information about the images.</p>
      */
     inline DescribeImagesResult& AddImages(const Image& value) { m_images.push_back(value); return *this; }
 
     /**
-     * <p>The list of images.</p>
+     * <p>Information about the images.</p>
      */
-    inline DescribeImagesResult& AddImages(Image&& value) { m_images.push_back(value); return *this; }
+    inline DescribeImagesResult& AddImages(Image&& value) { m_images.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<Image> m_images;
   };
 

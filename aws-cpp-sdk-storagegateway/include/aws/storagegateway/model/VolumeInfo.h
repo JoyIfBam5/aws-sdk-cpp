@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/storagegateway/StorageGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,10 +45,11 @@ namespace Model
     VolumeInfo& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The Amazon Resource Name (ARN) for the storage volume. For example, the
      * following is a valid ARN:</p> <p>
-     * <code>arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB</code>
+     * <code>arn:aws:storagegateway:us-east-2:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB</code>
      * </p> <p> Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and
      * hyphens (-).</p>
      */
@@ -55,7 +58,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) for the storage volume. For example, the
      * following is a valid ARN:</p> <p>
-     * <code>arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB</code>
+     * <code>arn:aws:storagegateway:us-east-2:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB</code>
      * </p> <p> Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and
      * hyphens (-).</p>
      */
@@ -64,16 +67,16 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) for the storage volume. For example, the
      * following is a valid ARN:</p> <p>
-     * <code>arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB</code>
+     * <code>arn:aws:storagegateway:us-east-2:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB</code>
      * </p> <p> Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and
      * hyphens (-).</p>
      */
-    inline void SetVolumeARN(Aws::String&& value) { m_volumeARNHasBeenSet = true; m_volumeARN = value; }
+    inline void SetVolumeARN(Aws::String&& value) { m_volumeARNHasBeenSet = true; m_volumeARN = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) for the storage volume. For example, the
      * following is a valid ARN:</p> <p>
-     * <code>arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB</code>
+     * <code>arn:aws:storagegateway:us-east-2:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB</code>
      * </p> <p> Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and
      * hyphens (-).</p>
      */
@@ -82,7 +85,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) for the storage volume. For example, the
      * following is a valid ARN:</p> <p>
-     * <code>arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB</code>
+     * <code>arn:aws:storagegateway:us-east-2:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB</code>
      * </p> <p> Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and
      * hyphens (-).</p>
      */
@@ -91,20 +94,21 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) for the storage volume. For example, the
      * following is a valid ARN:</p> <p>
-     * <code>arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB</code>
+     * <code>arn:aws:storagegateway:us-east-2:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB</code>
      * </p> <p> Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and
      * hyphens (-).</p>
      */
-    inline VolumeInfo& WithVolumeARN(Aws::String&& value) { SetVolumeARN(value); return *this;}
+    inline VolumeInfo& WithVolumeARN(Aws::String&& value) { SetVolumeARN(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) for the storage volume. For example, the
      * following is a valid ARN:</p> <p>
-     * <code>arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB</code>
+     * <code>arn:aws:storagegateway:us-east-2:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB</code>
      * </p> <p> Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and
      * hyphens (-).</p>
      */
     inline VolumeInfo& WithVolumeARN(const char* value) { SetVolumeARN(value); return *this;}
+
 
     /**
      * <p>The unique identifier assigned to the volume. This ID becomes part of the
@@ -128,7 +132,7 @@ namespace Model
      * operations.</p> <p> Valid Values: 50 to 500 lowercase letters, numbers, periods
      * (.), and hyphens (-).</p>
      */
-    inline void SetVolumeId(Aws::String&& value) { m_volumeIdHasBeenSet = true; m_volumeId = value; }
+    inline void SetVolumeId(Aws::String&& value) { m_volumeIdHasBeenSet = true; m_volumeId = std::move(value); }
 
     /**
      * <p>The unique identifier assigned to the volume. This ID becomes part of the
@@ -152,7 +156,7 @@ namespace Model
      * operations.</p> <p> Valid Values: 50 to 500 lowercase letters, numbers, periods
      * (.), and hyphens (-).</p>
      */
-    inline VolumeInfo& WithVolumeId(Aws::String&& value) { SetVolumeId(value); return *this;}
+    inline VolumeInfo& WithVolumeId(Aws::String&& value) { SetVolumeId(std::move(value)); return *this;}
 
     /**
      * <p>The unique identifier assigned to the volume. This ID becomes part of the
@@ -162,6 +166,7 @@ namespace Model
      */
     inline VolumeInfo& WithVolumeId(const char* value) { SetVolumeId(value); return *this;}
 
+
     
     inline const Aws::String& GetGatewayARN() const{ return m_gatewayARN; }
 
@@ -169,7 +174,7 @@ namespace Model
     inline void SetGatewayARN(const Aws::String& value) { m_gatewayARNHasBeenSet = true; m_gatewayARN = value; }
 
     
-    inline void SetGatewayARN(Aws::String&& value) { m_gatewayARNHasBeenSet = true; m_gatewayARN = value; }
+    inline void SetGatewayARN(Aws::String&& value) { m_gatewayARNHasBeenSet = true; m_gatewayARN = std::move(value); }
 
     
     inline void SetGatewayARN(const char* value) { m_gatewayARNHasBeenSet = true; m_gatewayARN.assign(value); }
@@ -178,10 +183,11 @@ namespace Model
     inline VolumeInfo& WithGatewayARN(const Aws::String& value) { SetGatewayARN(value); return *this;}
 
     
-    inline VolumeInfo& WithGatewayARN(Aws::String&& value) { SetGatewayARN(value); return *this;}
+    inline VolumeInfo& WithGatewayARN(Aws::String&& value) { SetGatewayARN(std::move(value)); return *this;}
 
     
     inline VolumeInfo& WithGatewayARN(const char* value) { SetGatewayARN(value); return *this;}
+
 
     /**
      * <p>The unique identifier assigned to your gateway during activation. This ID
@@ -205,7 +211,7 @@ namespace Model
      * for other operations.</p> <p> Valid Values: 50 to 500 lowercase letters,
      * numbers, periods (.), and hyphens (-).</p>
      */
-    inline void SetGatewayId(Aws::String&& value) { m_gatewayIdHasBeenSet = true; m_gatewayId = value; }
+    inline void SetGatewayId(Aws::String&& value) { m_gatewayIdHasBeenSet = true; m_gatewayId = std::move(value); }
 
     /**
      * <p>The unique identifier assigned to your gateway during activation. This ID
@@ -229,7 +235,7 @@ namespace Model
      * for other operations.</p> <p> Valid Values: 50 to 500 lowercase letters,
      * numbers, periods (.), and hyphens (-).</p>
      */
-    inline VolumeInfo& WithGatewayId(Aws::String&& value) { SetGatewayId(value); return *this;}
+    inline VolumeInfo& WithGatewayId(Aws::String&& value) { SetGatewayId(std::move(value)); return *this;}
 
     /**
      * <p>The unique identifier assigned to your gateway during activation. This ID
@@ -239,6 +245,7 @@ namespace Model
      */
     inline VolumeInfo& WithGatewayId(const char* value) { SetGatewayId(value); return *this;}
 
+
     
     inline const Aws::String& GetVolumeType() const{ return m_volumeType; }
 
@@ -246,7 +253,7 @@ namespace Model
     inline void SetVolumeType(const Aws::String& value) { m_volumeTypeHasBeenSet = true; m_volumeType = value; }
 
     
-    inline void SetVolumeType(Aws::String&& value) { m_volumeTypeHasBeenSet = true; m_volumeType = value; }
+    inline void SetVolumeType(Aws::String&& value) { m_volumeTypeHasBeenSet = true; m_volumeType = std::move(value); }
 
     
     inline void SetVolumeType(const char* value) { m_volumeTypeHasBeenSet = true; m_volumeType.assign(value); }
@@ -255,10 +262,11 @@ namespace Model
     inline VolumeInfo& WithVolumeType(const Aws::String& value) { SetVolumeType(value); return *this;}
 
     
-    inline VolumeInfo& WithVolumeType(Aws::String&& value) { SetVolumeType(value); return *this;}
+    inline VolumeInfo& WithVolumeType(Aws::String&& value) { SetVolumeType(std::move(value)); return *this;}
 
     
     inline VolumeInfo& WithVolumeType(const char* value) { SetVolumeType(value); return *this;}
+
 
     /**
      * <p>The size of the volume in bytes.</p> <p>Valid Values: 50 to 500 lowercase
@@ -279,16 +287,22 @@ namespace Model
     inline VolumeInfo& WithVolumeSizeInBytes(long long value) { SetVolumeSizeInBytes(value); return *this;}
 
   private:
+
     Aws::String m_volumeARN;
     bool m_volumeARNHasBeenSet;
+
     Aws::String m_volumeId;
     bool m_volumeIdHasBeenSet;
+
     Aws::String m_gatewayARN;
     bool m_gatewayARNHasBeenSet;
+
     Aws::String m_gatewayId;
     bool m_gatewayIdHasBeenSet;
+
     Aws::String m_volumeType;
     bool m_volumeTypeHasBeenSet;
+
     long long m_volumeSizeInBytes;
     bool m_volumeSizeInBytesHasBeenSet;
   };

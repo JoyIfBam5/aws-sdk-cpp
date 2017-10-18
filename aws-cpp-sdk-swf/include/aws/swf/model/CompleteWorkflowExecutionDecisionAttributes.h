@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,19 +33,21 @@ namespace Model
 {
 
   /**
-   * <p>Provides details of the <code>CompleteWorkflowExecution</code> decision.</p>
-   * <p><b>Access Control</b></p> <p>You can use IAM policies to control this
-   * decision's access to Amazon SWF resources as follows:</p> <ul> <li>Use a
-   * <code>Resource</code> element with the domain name to limit the action to only
-   * specified domains.</li> <li>Use an <code>Action</code> element to allow or deny
-   * permission to call this action.</li> <li>You cannot use an IAM policy to
-   * constrain this action's parameters.</li> </ul> <p>If the caller does not have
-   * sufficient permissions to invoke the action, or the parameter values fall
-   * outside the specified constraints, the action fails. The associated event
-   * attribute's <b>cause</b> parameter will be set to OPERATION_NOT_PERMITTED. For
-   * details and example IAM policies, see <a
+   * <p>Provides the details of the <code>CompleteWorkflowExecution</code>
+   * decision.</p> <p> <b>Access Control</b> </p> <p>You can use IAM policies to
+   * control this decision's access to Amazon SWF resources as follows:</p> <ul> <li>
+   * <p>Use a <code>Resource</code> element with the domain name to limit the action
+   * to only specified domains.</p> </li> <li> <p>Use an <code>Action</code> element
+   * to allow or deny permission to call this action.</p> </li> <li> <p>You cannot
+   * use an IAM policy to constrain this action's parameters.</p> </li> </ul> <p>If
+   * the caller doesn't have sufficient permissions to invoke the action, or the
+   * parameter values fall outside the specified constraints, the action fails. The
+   * associated event attribute's <code>cause</code> parameter is set to
+   * <code>OPERATION_NOT_PERMITTED</code>. For details and example IAM policies, see
+   * <a
    * href="http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html">Using
-   * IAM to Manage Access to Amazon SWF Workflows</a>.</p><p><h3>See Also:</h3>   <a
+   * IAM to Manage Access to Amazon SWF Workflows</a> in the <i>Amazon SWF Developer
+   * Guide</i>.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/swf-2012-01-25/CompleteWorkflowExecutionDecisionAttributes">AWS
    * API Reference</a></p>
    */
@@ -54,6 +58,7 @@ namespace Model
     CompleteWorkflowExecutionDecisionAttributes(const Aws::Utils::Json::JsonValue& jsonValue);
     CompleteWorkflowExecutionDecisionAttributes& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>The result of the workflow execution. The form of the result is
@@ -71,7 +76,7 @@ namespace Model
      * <p>The result of the workflow execution. The form of the result is
      * implementation defined.</p>
      */
-    inline void SetResult(Aws::String&& value) { m_resultHasBeenSet = true; m_result = value; }
+    inline void SetResult(Aws::String&& value) { m_resultHasBeenSet = true; m_result = std::move(value); }
 
     /**
      * <p>The result of the workflow execution. The form of the result is
@@ -89,7 +94,7 @@ namespace Model
      * <p>The result of the workflow execution. The form of the result is
      * implementation defined.</p>
      */
-    inline CompleteWorkflowExecutionDecisionAttributes& WithResult(Aws::String&& value) { SetResult(value); return *this;}
+    inline CompleteWorkflowExecutionDecisionAttributes& WithResult(Aws::String&& value) { SetResult(std::move(value)); return *this;}
 
     /**
      * <p>The result of the workflow execution. The form of the result is
@@ -98,6 +103,7 @@ namespace Model
     inline CompleteWorkflowExecutionDecisionAttributes& WithResult(const char* value) { SetResult(value); return *this;}
 
   private:
+
     Aws::String m_result;
     bool m_resultHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/budgets/Budgets_EXPORTS.h>
 #include <aws/budgets/model/SubscriptionType.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     Subscriber& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     
     inline const SubscriptionType& GetSubscriptionType() const{ return m_subscriptionType; }
 
@@ -52,13 +55,14 @@ namespace Model
     inline void SetSubscriptionType(const SubscriptionType& value) { m_subscriptionTypeHasBeenSet = true; m_subscriptionType = value; }
 
     
-    inline void SetSubscriptionType(SubscriptionType&& value) { m_subscriptionTypeHasBeenSet = true; m_subscriptionType = value; }
+    inline void SetSubscriptionType(SubscriptionType&& value) { m_subscriptionTypeHasBeenSet = true; m_subscriptionType = std::move(value); }
 
     
     inline Subscriber& WithSubscriptionType(const SubscriptionType& value) { SetSubscriptionType(value); return *this;}
 
     
-    inline Subscriber& WithSubscriptionType(SubscriptionType&& value) { SetSubscriptionType(value); return *this;}
+    inline Subscriber& WithSubscriptionType(SubscriptionType&& value) { SetSubscriptionType(std::move(value)); return *this;}
+
 
     
     inline const Aws::String& GetAddress() const{ return m_address; }
@@ -67,7 +71,7 @@ namespace Model
     inline void SetAddress(const Aws::String& value) { m_addressHasBeenSet = true; m_address = value; }
 
     
-    inline void SetAddress(Aws::String&& value) { m_addressHasBeenSet = true; m_address = value; }
+    inline void SetAddress(Aws::String&& value) { m_addressHasBeenSet = true; m_address = std::move(value); }
 
     
     inline void SetAddress(const char* value) { m_addressHasBeenSet = true; m_address.assign(value); }
@@ -76,14 +80,16 @@ namespace Model
     inline Subscriber& WithAddress(const Aws::String& value) { SetAddress(value); return *this;}
 
     
-    inline Subscriber& WithAddress(Aws::String&& value) { SetAddress(value); return *this;}
+    inline Subscriber& WithAddress(Aws::String&& value) { SetAddress(std::move(value)); return *this;}
 
     
     inline Subscriber& WithAddress(const char* value) { SetAddress(value); return *this;}
 
   private:
+
     SubscriptionType m_subscriptionType;
     bool m_subscriptionTypeHasBeenSet;
+
     Aws::String m_address;
     bool m_addressHasBeenSet;
   };

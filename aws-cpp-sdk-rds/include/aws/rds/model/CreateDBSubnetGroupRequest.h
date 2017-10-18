@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/rds/RDSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/rds/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,63 +37,76 @@ namespace Model
   {
   public:
     CreateDBSubnetGroupRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateDBSubnetGroup"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The name for the DB subnet group. This value is stored as a lowercase
-     * string.</p> <p>Constraints: Must contain no more than 255 alphanumeric
-     * characters, periods, underscores, spaces, or hyphens. Must not be default.</p>
-     * <p>Example: <code>mySubnetgroup</code> </p>
+     * string.</p> <p>Constraints: Must contain no more than 255 letters, numbers,
+     * periods, underscores, spaces, or hyphens. Must not be default.</p> <p>Example:
+     * <code>mySubnetgroup</code> </p>
      */
     inline const Aws::String& GetDBSubnetGroupName() const{ return m_dBSubnetGroupName; }
 
     /**
      * <p>The name for the DB subnet group. This value is stored as a lowercase
-     * string.</p> <p>Constraints: Must contain no more than 255 alphanumeric
-     * characters, periods, underscores, spaces, or hyphens. Must not be default.</p>
-     * <p>Example: <code>mySubnetgroup</code> </p>
+     * string.</p> <p>Constraints: Must contain no more than 255 letters, numbers,
+     * periods, underscores, spaces, or hyphens. Must not be default.</p> <p>Example:
+     * <code>mySubnetgroup</code> </p>
      */
     inline void SetDBSubnetGroupName(const Aws::String& value) { m_dBSubnetGroupNameHasBeenSet = true; m_dBSubnetGroupName = value; }
 
     /**
      * <p>The name for the DB subnet group. This value is stored as a lowercase
-     * string.</p> <p>Constraints: Must contain no more than 255 alphanumeric
-     * characters, periods, underscores, spaces, or hyphens. Must not be default.</p>
-     * <p>Example: <code>mySubnetgroup</code> </p>
+     * string.</p> <p>Constraints: Must contain no more than 255 letters, numbers,
+     * periods, underscores, spaces, or hyphens. Must not be default.</p> <p>Example:
+     * <code>mySubnetgroup</code> </p>
      */
-    inline void SetDBSubnetGroupName(Aws::String&& value) { m_dBSubnetGroupNameHasBeenSet = true; m_dBSubnetGroupName = value; }
+    inline void SetDBSubnetGroupName(Aws::String&& value) { m_dBSubnetGroupNameHasBeenSet = true; m_dBSubnetGroupName = std::move(value); }
 
     /**
      * <p>The name for the DB subnet group. This value is stored as a lowercase
-     * string.</p> <p>Constraints: Must contain no more than 255 alphanumeric
-     * characters, periods, underscores, spaces, or hyphens. Must not be default.</p>
-     * <p>Example: <code>mySubnetgroup</code> </p>
+     * string.</p> <p>Constraints: Must contain no more than 255 letters, numbers,
+     * periods, underscores, spaces, or hyphens. Must not be default.</p> <p>Example:
+     * <code>mySubnetgroup</code> </p>
      */
     inline void SetDBSubnetGroupName(const char* value) { m_dBSubnetGroupNameHasBeenSet = true; m_dBSubnetGroupName.assign(value); }
 
     /**
      * <p>The name for the DB subnet group. This value is stored as a lowercase
-     * string.</p> <p>Constraints: Must contain no more than 255 alphanumeric
-     * characters, periods, underscores, spaces, or hyphens. Must not be default.</p>
-     * <p>Example: <code>mySubnetgroup</code> </p>
+     * string.</p> <p>Constraints: Must contain no more than 255 letters, numbers,
+     * periods, underscores, spaces, or hyphens. Must not be default.</p> <p>Example:
+     * <code>mySubnetgroup</code> </p>
      */
     inline CreateDBSubnetGroupRequest& WithDBSubnetGroupName(const Aws::String& value) { SetDBSubnetGroupName(value); return *this;}
 
     /**
      * <p>The name for the DB subnet group. This value is stored as a lowercase
-     * string.</p> <p>Constraints: Must contain no more than 255 alphanumeric
-     * characters, periods, underscores, spaces, or hyphens. Must not be default.</p>
-     * <p>Example: <code>mySubnetgroup</code> </p>
+     * string.</p> <p>Constraints: Must contain no more than 255 letters, numbers,
+     * periods, underscores, spaces, or hyphens. Must not be default.</p> <p>Example:
+     * <code>mySubnetgroup</code> </p>
      */
-    inline CreateDBSubnetGroupRequest& WithDBSubnetGroupName(Aws::String&& value) { SetDBSubnetGroupName(value); return *this;}
+    inline CreateDBSubnetGroupRequest& WithDBSubnetGroupName(Aws::String&& value) { SetDBSubnetGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name for the DB subnet group. This value is stored as a lowercase
-     * string.</p> <p>Constraints: Must contain no more than 255 alphanumeric
-     * characters, periods, underscores, spaces, or hyphens. Must not be default.</p>
-     * <p>Example: <code>mySubnetgroup</code> </p>
+     * string.</p> <p>Constraints: Must contain no more than 255 letters, numbers,
+     * periods, underscores, spaces, or hyphens. Must not be default.</p> <p>Example:
+     * <code>mySubnetgroup</code> </p>
      */
     inline CreateDBSubnetGroupRequest& WithDBSubnetGroupName(const char* value) { SetDBSubnetGroupName(value); return *this;}
+
 
     /**
      * <p>The description for the DB subnet group.</p>
@@ -106,7 +121,7 @@ namespace Model
     /**
      * <p>The description for the DB subnet group.</p>
      */
-    inline void SetDBSubnetGroupDescription(Aws::String&& value) { m_dBSubnetGroupDescriptionHasBeenSet = true; m_dBSubnetGroupDescription = value; }
+    inline void SetDBSubnetGroupDescription(Aws::String&& value) { m_dBSubnetGroupDescriptionHasBeenSet = true; m_dBSubnetGroupDescription = std::move(value); }
 
     /**
      * <p>The description for the DB subnet group.</p>
@@ -121,12 +136,13 @@ namespace Model
     /**
      * <p>The description for the DB subnet group.</p>
      */
-    inline CreateDBSubnetGroupRequest& WithDBSubnetGroupDescription(Aws::String&& value) { SetDBSubnetGroupDescription(value); return *this;}
+    inline CreateDBSubnetGroupRequest& WithDBSubnetGroupDescription(Aws::String&& value) { SetDBSubnetGroupDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description for the DB subnet group.</p>
      */
     inline CreateDBSubnetGroupRequest& WithDBSubnetGroupDescription(const char* value) { SetDBSubnetGroupDescription(value); return *this;}
+
 
     /**
      * <p>The EC2 Subnet IDs for the DB subnet group.</p>
@@ -141,7 +157,7 @@ namespace Model
     /**
      * <p>The EC2 Subnet IDs for the DB subnet group.</p>
      */
-    inline void SetSubnetIds(Aws::Vector<Aws::String>&& value) { m_subnetIdsHasBeenSet = true; m_subnetIds = value; }
+    inline void SetSubnetIds(Aws::Vector<Aws::String>&& value) { m_subnetIdsHasBeenSet = true; m_subnetIds = std::move(value); }
 
     /**
      * <p>The EC2 Subnet IDs for the DB subnet group.</p>
@@ -151,7 +167,7 @@ namespace Model
     /**
      * <p>The EC2 Subnet IDs for the DB subnet group.</p>
      */
-    inline CreateDBSubnetGroupRequest& WithSubnetIds(Aws::Vector<Aws::String>&& value) { SetSubnetIds(value); return *this;}
+    inline CreateDBSubnetGroupRequest& WithSubnetIds(Aws::Vector<Aws::String>&& value) { SetSubnetIds(std::move(value)); return *this;}
 
     /**
      * <p>The EC2 Subnet IDs for the DB subnet group.</p>
@@ -161,12 +177,13 @@ namespace Model
     /**
      * <p>The EC2 Subnet IDs for the DB subnet group.</p>
      */
-    inline CreateDBSubnetGroupRequest& AddSubnetIds(Aws::String&& value) { m_subnetIdsHasBeenSet = true; m_subnetIds.push_back(value); return *this; }
+    inline CreateDBSubnetGroupRequest& AddSubnetIds(Aws::String&& value) { m_subnetIdsHasBeenSet = true; m_subnetIds.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The EC2 Subnet IDs for the DB subnet group.</p>
      */
     inline CreateDBSubnetGroupRequest& AddSubnetIds(const char* value) { m_subnetIdsHasBeenSet = true; m_subnetIds.push_back(value); return *this; }
+
 
     
     inline const Aws::Vector<Tag>& GetTags() const{ return m_tags; }
@@ -175,27 +192,31 @@ namespace Model
     inline void SetTags(const Aws::Vector<Tag>& value) { m_tagsHasBeenSet = true; m_tags = value; }
 
     
-    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = std::move(value); }
 
     
     inline CreateDBSubnetGroupRequest& WithTags(const Aws::Vector<Tag>& value) { SetTags(value); return *this;}
 
     
-    inline CreateDBSubnetGroupRequest& WithTags(Aws::Vector<Tag>&& value) { SetTags(value); return *this;}
+    inline CreateDBSubnetGroupRequest& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     
     inline CreateDBSubnetGroupRequest& AddTags(const Tag& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
 
     
-    inline CreateDBSubnetGroupRequest& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
+    inline CreateDBSubnetGroupRequest& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_dBSubnetGroupName;
     bool m_dBSubnetGroupNameHasBeenSet;
+
     Aws::String m_dBSubnetGroupDescription;
     bool m_dBSubnetGroupDescriptionHasBeenSet;
+
     Aws::Vector<Aws::String> m_subnetIds;
     bool m_subnetIdsHasBeenSet;
+
     Aws::Vector<Tag> m_tags;
     bool m_tagsHasBeenSet;
   };

@@ -15,9 +15,9 @@ file(GLOB UTILS_CRYPTO_SRC "${CMAKE_CURRENT_SOURCE_DIR}/utils/crypto/*.cpp")
 file(GLOB UTILS_JSON_SRC "${CMAKE_CURRENT_SOURCE_DIR}/utils/json/*.cpp")
 file(GLOB UTILS_STREAM_SRC "${CMAKE_CURRENT_SOURCE_DIR}/utils/stream/*.cpp")
 file(GLOB UTILS_LOGGING_SRC "${CMAKE_CURRENT_SOURCE_DIR}/utils/logging/*.cpp")
-file(GLOB UTILS_MEMORY_SRC "${CMAKE_CURRENT_SOURCE_DIR}/utils/memory/*.cpp")
 file(GLOB UTILS_RATE_LIMITER_SRC "${CMAKE_CURRENT_SOURCE_DIR}/utils/ratelimiter/*.cpp")
 file(GLOB UTILS_XML_SRC "${CMAKE_CURRENT_SOURCE_DIR}/utils/xml/*.cpp")
+file(GLOB UTILS_XML_SRC "${CMAKE_CURRENT_SOURCE_DIR}/utils/threading/*.cpp")
 
 file(GLOB AWS_CPP_SDK_CORE_TESTS_SRC
   "${CMAKE_CURRENT_SOURCE_DIR}/RunTests.cpp"
@@ -32,7 +32,6 @@ file(GLOB AWS_CPP_SDK_CORE_TESTS_SRC
   ${UTILS_STREAM_SRC}
   ${UTILS_XML_SRC}
   ${UTILS_LOGGING_SRC}
-  ${UTILS_MEMORY_SRC}
   ${UTILS_RATE_LIMITER_SRC}
 )
 
@@ -49,7 +48,6 @@ if(PLATFORM_WINDOWS)
     source_group("Source Files\\utils\\stream" FILES ${UTILS_STREAM_SRC})
     source_group("Source Files\\utils\\xml" FILES ${UTILS_XML_SRC})
     source_group("Source Files\\utils\\logging" FILES ${UTILS_LOGGING_SRC})
-    source_group("Source Files\\utils\\memory" FILES ${UTILS_MEMORY_SRC})
     source_group("Source Files\\utils\\ratelimiter" FILES ${UTILS_RATE_LIMITER_SRC})
   endif()
 endif()
@@ -60,7 +58,13 @@ if(PLATFORM_CUSTOM)
     endif()
 endif()
 
-enable_testing()
+if (CMAKE_CROSSCOMPILING)
+    set(AUTORUN_UNIT_TESTS OFF)
+endif()
+
+if (AUTORUN_UNIT_TESTS)
+    enable_testing()
+endif()
 
 if(USE_WINDOWS_DLL_SEMANTICS AND BUILD_SHARED_LIBS)
     add_definitions(-DGTEST_LINKED_AS_SHARED_LIBRARY=1)
@@ -80,8 +84,10 @@ add_custom_command(TARGET aws-cpp-sdk-core-tests PRE_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
                    ${CMAKE_CURRENT_SOURCE_DIR}/resources ${CMAKE_CURRENT_BINARY_DIR})
 
-if(NOT CMAKE_CROSSCOMPILING)
+if (AUTORUN_UNIT_TESTS)
     ADD_CUSTOM_COMMAND( TARGET ${PROJECT_NAME} POST_BUILD COMMAND $<TARGET_FILE:${PROJECT_NAME}>)
-    SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 endif()
 
+if(NOT CMAKE_CROSSCOMPILING)
+    SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
+endif()

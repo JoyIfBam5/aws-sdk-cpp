@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   *
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -37,6 +37,7 @@ namespace Aws
         static const char* const AP_NORTHEAST_2 = "ap-northeast-2";
         static const char* const SA_EAST_1 = "sa-east-1";
         static const char* const AP_SOUTH_1 = "ap-south-1";
+        static const char* const CN_NORTH_1 = "cn-north-1";
     }
 
 } // namespace Aws

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/glacier/model/DescribeJobResult.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
+#include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/UnreferencedParam.h>
 
 #include <utility>
@@ -33,7 +35,7 @@ DescribeJobResult::DescribeJobResult() :
 {
 }
 
-DescribeJobResult::DescribeJobResult(const AmazonWebServiceResult<JsonValue>& result) : 
+DescribeJobResult::DescribeJobResult(const Aws::AmazonWebServiceResult<JsonValue>& result) : 
     m_action(ActionCode::NOT_SET),
     m_completed(false),
     m_statusCode(StatusCode::NOT_SET),
@@ -43,7 +45,7 @@ DescribeJobResult::DescribeJobResult(const AmazonWebServiceResult<JsonValue>& re
   *this = result;
 }
 
-DescribeJobResult& DescribeJobResult::operator =(const AmazonWebServiceResult<JsonValue>& result)
+DescribeJobResult& DescribeJobResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
   const JsonValue& jsonValue = result.GetPayload();
   if(jsonValue.ValueExists("JobId"))

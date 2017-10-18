@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/workspaces/WorkSpaces_EXPORTS.h>
 #include <aws/workspaces/model/RunningMode.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     WorkspaceProperties& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The running mode of the WorkSpace. AlwaysOn WorkSpaces are billed monthly.
      * AutoStop WorkSpaces are billed by the hour and stopped when no longer being used
@@ -62,7 +65,7 @@ namespace Model
      * AutoStop WorkSpaces are billed by the hour and stopped when no longer being used
      * in order to save on costs.</p>
      */
-    inline void SetRunningMode(RunningMode&& value) { m_runningModeHasBeenSet = true; m_runningMode = value; }
+    inline void SetRunningMode(RunningMode&& value) { m_runningModeHasBeenSet = true; m_runningMode = std::move(value); }
 
     /**
      * <p>The running mode of the WorkSpace. AlwaysOn WorkSpaces are billed monthly.
@@ -76,7 +79,8 @@ namespace Model
      * AutoStop WorkSpaces are billed by the hour and stopped when no longer being used
      * in order to save on costs.</p>
      */
-    inline WorkspaceProperties& WithRunningMode(RunningMode&& value) { SetRunningMode(value); return *this;}
+    inline WorkspaceProperties& WithRunningMode(RunningMode&& value) { SetRunningMode(std::move(value)); return *this;}
+
 
     /**
      * <p>The time after a user logs off when WorkSpaces are automatically stopped.
@@ -97,8 +101,10 @@ namespace Model
     inline WorkspaceProperties& WithRunningModeAutoStopTimeoutInMinutes(int value) { SetRunningModeAutoStopTimeoutInMinutes(value); return *this;}
 
   private:
+
     RunningMode m_runningMode;
     bool m_runningModeHasBeenSet;
+
     int m_runningModeAutoStopTimeoutInMinutes;
     bool m_runningModeAutoStopTimeoutInMinutesHasBeenSet;
   };

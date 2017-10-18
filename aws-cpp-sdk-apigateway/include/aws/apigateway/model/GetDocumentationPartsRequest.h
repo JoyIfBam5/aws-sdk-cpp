@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/apigateway/APIGatewayRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/apigateway/model/DocumentationPartType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -39,51 +41,53 @@ namespace Model
   {
   public:
     GetDocumentationPartsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "GetDocumentationParts"; }
+
     Aws::String SerializePayload() const override;
 
     void AddQueryStringParameters(Aws::Http::URI& uri) const override;
 
+
     /**
-     * <p>[Required] The identifier of the API of the to-be-retrieved documentation
-     * parts.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline const Aws::String& GetRestApiId() const{ return m_restApiId; }
 
     /**
-     * <p>[Required] The identifier of the API of the to-be-retrieved documentation
-     * parts.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline void SetRestApiId(const Aws::String& value) { m_restApiIdHasBeenSet = true; m_restApiId = value; }
 
     /**
-     * <p>[Required] The identifier of the API of the to-be-retrieved documentation
-     * parts.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
-    inline void SetRestApiId(Aws::String&& value) { m_restApiIdHasBeenSet = true; m_restApiId = value; }
+    inline void SetRestApiId(Aws::String&& value) { m_restApiIdHasBeenSet = true; m_restApiId = std::move(value); }
 
     /**
-     * <p>[Required] The identifier of the API of the to-be-retrieved documentation
-     * parts.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline void SetRestApiId(const char* value) { m_restApiIdHasBeenSet = true; m_restApiId.assign(value); }
 
     /**
-     * <p>[Required] The identifier of the API of the to-be-retrieved documentation
-     * parts.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline GetDocumentationPartsRequest& WithRestApiId(const Aws::String& value) { SetRestApiId(value); return *this;}
 
     /**
-     * <p>[Required] The identifier of the API of the to-be-retrieved documentation
-     * parts.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
-    inline GetDocumentationPartsRequest& WithRestApiId(Aws::String&& value) { SetRestApiId(value); return *this;}
+    inline GetDocumentationPartsRequest& WithRestApiId(Aws::String&& value) { SetRestApiId(std::move(value)); return *this;}
 
     /**
-     * <p>[Required] The identifier of the API of the to-be-retrieved documentation
-     * parts.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline GetDocumentationPartsRequest& WithRestApiId(const char* value) { SetRestApiId(value); return *this;}
+
 
     /**
      * <p>The type of API entities of the to-be-retrieved documentation parts. </p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>The type of API entities of the to-be-retrieved documentation parts. </p>
      */
-    inline void SetType(DocumentationPartType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(DocumentationPartType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The type of API entities of the to-be-retrieved documentation parts. </p>
@@ -108,7 +112,8 @@ namespace Model
     /**
      * <p>The type of API entities of the to-be-retrieved documentation parts. </p>
      */
-    inline GetDocumentationPartsRequest& WithType(DocumentationPartType&& value) { SetType(value); return *this;}
+    inline GetDocumentationPartsRequest& WithType(DocumentationPartType&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p>The name of API entities of the to-be-retrieved documentation parts.</p>
@@ -123,7 +128,7 @@ namespace Model
     /**
      * <p>The name of API entities of the to-be-retrieved documentation parts.</p>
      */
-    inline void SetNameQuery(Aws::String&& value) { m_nameQueryHasBeenSet = true; m_nameQuery = value; }
+    inline void SetNameQuery(Aws::String&& value) { m_nameQueryHasBeenSet = true; m_nameQuery = std::move(value); }
 
     /**
      * <p>The name of API entities of the to-be-retrieved documentation parts.</p>
@@ -138,12 +143,13 @@ namespace Model
     /**
      * <p>The name of API entities of the to-be-retrieved documentation parts.</p>
      */
-    inline GetDocumentationPartsRequest& WithNameQuery(Aws::String&& value) { SetNameQuery(value); return *this;}
+    inline GetDocumentationPartsRequest& WithNameQuery(Aws::String&& value) { SetNameQuery(std::move(value)); return *this;}
 
     /**
      * <p>The name of API entities of the to-be-retrieved documentation parts.</p>
      */
     inline GetDocumentationPartsRequest& WithNameQuery(const char* value) { SetNameQuery(value); return *this;}
+
 
     /**
      * <p>The path of API entities of the to-be-retrieved documentation parts.</p>
@@ -158,7 +164,7 @@ namespace Model
     /**
      * <p>The path of API entities of the to-be-retrieved documentation parts.</p>
      */
-    inline void SetPath(Aws::String&& value) { m_pathHasBeenSet = true; m_path = value; }
+    inline void SetPath(Aws::String&& value) { m_pathHasBeenSet = true; m_path = std::move(value); }
 
     /**
      * <p>The path of API entities of the to-be-retrieved documentation parts.</p>
@@ -173,81 +179,82 @@ namespace Model
     /**
      * <p>The path of API entities of the to-be-retrieved documentation parts.</p>
      */
-    inline GetDocumentationPartsRequest& WithPath(Aws::String&& value) { SetPath(value); return *this;}
+    inline GetDocumentationPartsRequest& WithPath(Aws::String&& value) { SetPath(std::move(value)); return *this;}
 
     /**
      * <p>The path of API entities of the to-be-retrieved documentation parts.</p>
      */
     inline GetDocumentationPartsRequest& WithPath(const char* value) { SetPath(value); return *this;}
 
+
     /**
-     * <p>The position of the to-be-retrieved documentation part in the
-     * <a>DocumentationParts</a> collection.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
     inline const Aws::String& GetPosition() const{ return m_position; }
 
     /**
-     * <p>The position of the to-be-retrieved documentation part in the
-     * <a>DocumentationParts</a> collection.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
     inline void SetPosition(const Aws::String& value) { m_positionHasBeenSet = true; m_position = value; }
 
     /**
-     * <p>The position of the to-be-retrieved documentation part in the
-     * <a>DocumentationParts</a> collection.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
-    inline void SetPosition(Aws::String&& value) { m_positionHasBeenSet = true; m_position = value; }
+    inline void SetPosition(Aws::String&& value) { m_positionHasBeenSet = true; m_position = std::move(value); }
 
     /**
-     * <p>The position of the to-be-retrieved documentation part in the
-     * <a>DocumentationParts</a> collection.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
     inline void SetPosition(const char* value) { m_positionHasBeenSet = true; m_position.assign(value); }
 
     /**
-     * <p>The position of the to-be-retrieved documentation part in the
-     * <a>DocumentationParts</a> collection.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
     inline GetDocumentationPartsRequest& WithPosition(const Aws::String& value) { SetPosition(value); return *this;}
 
     /**
-     * <p>The position of the to-be-retrieved documentation part in the
-     * <a>DocumentationParts</a> collection.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
-    inline GetDocumentationPartsRequest& WithPosition(Aws::String&& value) { SetPosition(value); return *this;}
+    inline GetDocumentationPartsRequest& WithPosition(Aws::String&& value) { SetPosition(std::move(value)); return *this;}
 
     /**
-     * <p>The position of the to-be-retrieved documentation part in the
-     * <a>DocumentationParts</a> collection.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
     inline GetDocumentationPartsRequest& WithPosition(const char* value) { SetPosition(value); return *this;}
 
+
     /**
-     * <p>The size of the paged results.</p>
+     * <p>The maximum number of returned results per page.</p>
      */
     inline int GetLimit() const{ return m_limit; }
 
     /**
-     * <p>The size of the paged results.</p>
+     * <p>The maximum number of returned results per page.</p>
      */
     inline void SetLimit(int value) { m_limitHasBeenSet = true; m_limit = value; }
 
     /**
-     * <p>The size of the paged results.</p>
+     * <p>The maximum number of returned results per page.</p>
      */
     inline GetDocumentationPartsRequest& WithLimit(int value) { SetLimit(value); return *this;}
 
   private:
+
     Aws::String m_restApiId;
     bool m_restApiIdHasBeenSet;
+
     DocumentationPartType m_type;
     bool m_typeHasBeenSet;
+
     Aws::String m_nameQuery;
     bool m_nameQueryHasBeenSet;
+
     Aws::String m_path;
     bool m_pathHasBeenSet;
+
     Aws::String m_position;
     bool m_positionHasBeenSet;
+
     int m_limit;
     bool m_limitHasBeenSet;
   };

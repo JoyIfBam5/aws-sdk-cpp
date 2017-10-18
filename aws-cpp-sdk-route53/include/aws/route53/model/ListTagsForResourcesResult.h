@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53/Route53_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/route53/model/ResourceTagSet.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     ListTagsForResourcesResult();
-    ListTagsForResourcesResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    ListTagsForResourcesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ListTagsForResourcesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ListTagsForResourcesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>A list of <code>ResourceTagSet</code>s containing tags associated with the
@@ -62,7 +65,7 @@ namespace Model
      * <p>A list of <code>ResourceTagSet</code>s containing tags associated with the
      * specified resources.</p>
      */
-    inline void SetResourceTagSets(Aws::Vector<ResourceTagSet>&& value) { m_resourceTagSets = value; }
+    inline void SetResourceTagSets(Aws::Vector<ResourceTagSet>&& value) { m_resourceTagSets = std::move(value); }
 
     /**
      * <p>A list of <code>ResourceTagSet</code>s containing tags associated with the
@@ -74,7 +77,7 @@ namespace Model
      * <p>A list of <code>ResourceTagSet</code>s containing tags associated with the
      * specified resources.</p>
      */
-    inline ListTagsForResourcesResult& WithResourceTagSets(Aws::Vector<ResourceTagSet>&& value) { SetResourceTagSets(value); return *this;}
+    inline ListTagsForResourcesResult& WithResourceTagSets(Aws::Vector<ResourceTagSet>&& value) { SetResourceTagSets(std::move(value)); return *this;}
 
     /**
      * <p>A list of <code>ResourceTagSet</code>s containing tags associated with the
@@ -86,9 +89,10 @@ namespace Model
      * <p>A list of <code>ResourceTagSet</code>s containing tags associated with the
      * specified resources.</p>
      */
-    inline ListTagsForResourcesResult& AddResourceTagSets(ResourceTagSet&& value) { m_resourceTagSets.push_back(value); return *this; }
+    inline ListTagsForResourcesResult& AddResourceTagSets(ResourceTagSet&& value) { m_resourceTagSets.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<ResourceTagSet> m_resourceTagSets;
   };
 

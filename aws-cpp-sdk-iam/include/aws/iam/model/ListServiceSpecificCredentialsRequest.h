@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/iam/IAMRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,7 +32,19 @@ namespace Model
   {
   public:
     ListServiceSpecificCredentialsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListServiceSpecificCredentials"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The name of the user whose service-specific credentials you want information
@@ -60,7 +74,7 @@ namespace Model
      * characters consisting of upper and lowercase alphanumeric characters with no
      * spaces. You can also include any of the following characters: =,.@-</p>
      */
-    inline void SetUserName(Aws::String&& value) { m_userNameHasBeenSet = true; m_userName = value; }
+    inline void SetUserName(Aws::String&& value) { m_userNameHasBeenSet = true; m_userName = std::move(value); }
 
     /**
      * <p>The name of the user whose service-specific credentials you want information
@@ -90,7 +104,7 @@ namespace Model
      * characters consisting of upper and lowercase alphanumeric characters with no
      * spaces. You can also include any of the following characters: =,.@-</p>
      */
-    inline ListServiceSpecificCredentialsRequest& WithUserName(Aws::String&& value) { SetUserName(value); return *this;}
+    inline ListServiceSpecificCredentialsRequest& WithUserName(Aws::String&& value) { SetUserName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the user whose service-specific credentials you want information
@@ -101,6 +115,7 @@ namespace Model
      * spaces. You can also include any of the following characters: =,.@-</p>
      */
     inline ListServiceSpecificCredentialsRequest& WithUserName(const char* value) { SetUserName(value); return *this;}
+
 
     /**
      * <p>Filters the returned results to only those for the specified AWS service. If
@@ -121,7 +136,7 @@ namespace Model
      * not specified, then AWS returns service-specific credentials for all
      * services.</p>
      */
-    inline void SetServiceName(Aws::String&& value) { m_serviceNameHasBeenSet = true; m_serviceName = value; }
+    inline void SetServiceName(Aws::String&& value) { m_serviceNameHasBeenSet = true; m_serviceName = std::move(value); }
 
     /**
      * <p>Filters the returned results to only those for the specified AWS service. If
@@ -142,7 +157,7 @@ namespace Model
      * not specified, then AWS returns service-specific credentials for all
      * services.</p>
      */
-    inline ListServiceSpecificCredentialsRequest& WithServiceName(Aws::String&& value) { SetServiceName(value); return *this;}
+    inline ListServiceSpecificCredentialsRequest& WithServiceName(Aws::String&& value) { SetServiceName(std::move(value)); return *this;}
 
     /**
      * <p>Filters the returned results to only those for the specified AWS service. If
@@ -152,8 +167,10 @@ namespace Model
     inline ListServiceSpecificCredentialsRequest& WithServiceName(const char* value) { SetServiceName(value); return *this;}
 
   private:
+
     Aws::String m_userName;
     bool m_userNameHasBeenSet;
+
     Aws::String m_serviceName;
     bool m_serviceNameHasBeenSet;
   };

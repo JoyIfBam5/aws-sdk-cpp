@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dynamodb/DynamoDB_EXPORTS.h>
 #include <aws/dynamodb/model/UpdateGlobalSecondaryIndexAction.h>
 #include <aws/dynamodb/model/CreateGlobalSecondaryIndexAction.h>
 #include <aws/dynamodb/model/DeleteGlobalSecondaryIndexAction.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +51,7 @@ namespace Model
     GlobalSecondaryIndexUpdate& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of an existing global secondary index, along with new provisioned
      * throughput settings to be applied to that index.</p>
@@ -65,7 +68,7 @@ namespace Model
      * <p>The name of an existing global secondary index, along with new provisioned
      * throughput settings to be applied to that index.</p>
      */
-    inline void SetUpdate(UpdateGlobalSecondaryIndexAction&& value) { m_updateHasBeenSet = true; m_update = value; }
+    inline void SetUpdate(UpdateGlobalSecondaryIndexAction&& value) { m_updateHasBeenSet = true; m_update = std::move(value); }
 
     /**
      * <p>The name of an existing global secondary index, along with new provisioned
@@ -77,7 +80,8 @@ namespace Model
      * <p>The name of an existing global secondary index, along with new provisioned
      * throughput settings to be applied to that index.</p>
      */
-    inline GlobalSecondaryIndexUpdate& WithUpdate(UpdateGlobalSecondaryIndexAction&& value) { SetUpdate(value); return *this;}
+    inline GlobalSecondaryIndexUpdate& WithUpdate(UpdateGlobalSecondaryIndexAction&& value) { SetUpdate(std::move(value)); return *this;}
+
 
     /**
      * <p>The parameters required for creating a global secondary index on an existing
@@ -104,7 +108,7 @@ namespace Model
      * </p> </li> <li> <p> <code>Projection </code> </p> </li> <li> <p>
      * <code>ProvisionedThroughput </code> </p> </li> </ul>
      */
-    inline void SetCreate(CreateGlobalSecondaryIndexAction&& value) { m_createHasBeenSet = true; m_create = value; }
+    inline void SetCreate(CreateGlobalSecondaryIndexAction&& value) { m_createHasBeenSet = true; m_create = std::move(value); }
 
     /**
      * <p>The parameters required for creating a global secondary index on an existing
@@ -122,7 +126,8 @@ namespace Model
      * </p> </li> <li> <p> <code>Projection </code> </p> </li> <li> <p>
      * <code>ProvisionedThroughput </code> </p> </li> </ul>
      */
-    inline GlobalSecondaryIndexUpdate& WithCreate(CreateGlobalSecondaryIndexAction&& value) { SetCreate(value); return *this;}
+    inline GlobalSecondaryIndexUpdate& WithCreate(CreateGlobalSecondaryIndexAction&& value) { SetCreate(std::move(value)); return *this;}
+
 
     /**
      * <p>The name of an existing global secondary index to be removed.</p>
@@ -137,7 +142,7 @@ namespace Model
     /**
      * <p>The name of an existing global secondary index to be removed.</p>
      */
-    inline void SetDelete(DeleteGlobalSecondaryIndexAction&& value) { m_deleteHasBeenSet = true; m_delete = value; }
+    inline void SetDelete(DeleteGlobalSecondaryIndexAction&& value) { m_deleteHasBeenSet = true; m_delete = std::move(value); }
 
     /**
      * <p>The name of an existing global secondary index to be removed.</p>
@@ -147,13 +152,16 @@ namespace Model
     /**
      * <p>The name of an existing global secondary index to be removed.</p>
      */
-    inline GlobalSecondaryIndexUpdate& WithDelete(DeleteGlobalSecondaryIndexAction&& value) { SetDelete(value); return *this;}
+    inline GlobalSecondaryIndexUpdate& WithDelete(DeleteGlobalSecondaryIndexAction&& value) { SetDelete(std::move(value)); return *this;}
 
   private:
+
     UpdateGlobalSecondaryIndexAction m_update;
     bool m_updateHasBeenSet;
+
     CreateGlobalSecondaryIndexAction m_create;
     bool m_createHasBeenSet;
+
     DeleteGlobalSecondaryIndexAction m_delete;
     bool m_deleteHasBeenSet;
   };

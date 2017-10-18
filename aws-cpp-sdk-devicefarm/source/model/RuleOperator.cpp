@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/devicefarm/model/RuleOperator.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -34,6 +35,7 @@ namespace Aws
         static const int GREATER_THAN_HASH = HashingUtils::HashString("GREATER_THAN");
         static const int IN_HASH = HashingUtils::HashString("IN");
         static const int NOT_IN_HASH = HashingUtils::HashString("NOT_IN");
+        static const int CONTAINS_HASH = HashingUtils::HashString("CONTAINS");
 
 
         RuleOperator GetRuleOperatorForName(const Aws::String& name)
@@ -59,6 +61,10 @@ namespace Aws
           {
             return RuleOperator::NOT_IN;
           }
+          else if (hashCode == CONTAINS_HASH)
+          {
+            return RuleOperator::CONTAINS;
+          }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
           {
@@ -83,6 +89,8 @@ namespace Aws
             return "IN";
           case RuleOperator::NOT_IN:
             return "NOT_IN";
+          case RuleOperator::CONTAINS:
+            return "CONTAINS";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

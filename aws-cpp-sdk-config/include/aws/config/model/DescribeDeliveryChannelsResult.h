@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/config/ConfigService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/config/model/DeliveryChannel.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     DescribeDeliveryChannelsResult();
-    DescribeDeliveryChannelsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeDeliveryChannelsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeDeliveryChannelsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeDeliveryChannelsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A list that contains the descriptions of the specified delivery channel.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>A list that contains the descriptions of the specified delivery channel.</p>
      */
-    inline void SetDeliveryChannels(Aws::Vector<DeliveryChannel>&& value) { m_deliveryChannels = value; }
+    inline void SetDeliveryChannels(Aws::Vector<DeliveryChannel>&& value) { m_deliveryChannels = std::move(value); }
 
     /**
      * <p>A list that contains the descriptions of the specified delivery channel.</p>
@@ -69,7 +72,7 @@ namespace Model
     /**
      * <p>A list that contains the descriptions of the specified delivery channel.</p>
      */
-    inline DescribeDeliveryChannelsResult& WithDeliveryChannels(Aws::Vector<DeliveryChannel>&& value) { SetDeliveryChannels(value); return *this;}
+    inline DescribeDeliveryChannelsResult& WithDeliveryChannels(Aws::Vector<DeliveryChannel>&& value) { SetDeliveryChannels(std::move(value)); return *this;}
 
     /**
      * <p>A list that contains the descriptions of the specified delivery channel.</p>
@@ -79,9 +82,10 @@ namespace Model
     /**
      * <p>A list that contains the descriptions of the specified delivery channel.</p>
      */
-    inline DescribeDeliveryChannelsResult& AddDeliveryChannels(DeliveryChannel&& value) { m_deliveryChannels.push_back(value); return *this; }
+    inline DescribeDeliveryChannelsResult& AddDeliveryChannels(DeliveryChannel&& value) { m_deliveryChannels.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<DeliveryChannel> m_deliveryChannels;
   };
 

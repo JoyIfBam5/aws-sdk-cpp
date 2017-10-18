@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/devicefarm/DeviceFarm_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/devicefarm/model/UploadType.h>
 #include <aws/devicefarm/model/UploadStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     Upload& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The upload's ARN.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The upload's ARN.</p>
      */
-    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = value; }
+    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = std::move(value); }
 
     /**
      * <p>The upload's ARN.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The upload's ARN.</p>
      */
-    inline Upload& WithArn(Aws::String&& value) { SetArn(value); return *this;}
+    inline Upload& WithArn(Aws::String&& value) { SetArn(std::move(value)); return *this;}
 
     /**
      * <p>The upload's ARN.</p>
      */
     inline Upload& WithArn(const char* value) { SetArn(value); return *this;}
+
 
     /**
      * <p>The upload's file name.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>The upload's file name.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The upload's file name.</p>
@@ -110,12 +114,13 @@ namespace Model
     /**
      * <p>The upload's file name.</p>
      */
-    inline Upload& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline Upload& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The upload's file name.</p>
      */
     inline Upload& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>When the upload was created.</p>
@@ -130,7 +135,7 @@ namespace Model
     /**
      * <p>When the upload was created.</p>
      */
-    inline void SetCreated(Aws::Utils::DateTime&& value) { m_createdHasBeenSet = true; m_created = value; }
+    inline void SetCreated(Aws::Utils::DateTime&& value) { m_createdHasBeenSet = true; m_created = std::move(value); }
 
     /**
      * <p>When the upload was created.</p>
@@ -140,7 +145,8 @@ namespace Model
     /**
      * <p>When the upload was created.</p>
      */
-    inline Upload& WithCreated(Aws::Utils::DateTime&& value) { SetCreated(value); return *this;}
+    inline Upload& WithCreated(Aws::Utils::DateTime&& value) { SetCreated(std::move(value)); return *this;}
+
 
     /**
      * <p>The upload's type.</p> <p>Must be one of the following values:</p> <ul> <li>
@@ -206,7 +212,7 @@ namespace Model
      * </li> <li> <p>XCTEST_UI_TEST_PACKAGE: An XCode UI test package upload.</p> </li>
      * </ul>
      */
-    inline void SetType(UploadType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(UploadType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The upload's type.</p> <p>Must be one of the following values:</p> <ul> <li>
@@ -250,7 +256,8 @@ namespace Model
      * </li> <li> <p>XCTEST_UI_TEST_PACKAGE: An XCode UI test package upload.</p> </li>
      * </ul>
      */
-    inline Upload& WithType(UploadType&& value) { SetType(value); return *this;}
+    inline Upload& WithType(UploadType&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p>The upload's status.</p> <p>Must be one of the following values:</p> <ul>
@@ -274,7 +281,7 @@ namespace Model
      * status.</p> </li> <li> <p>PROCESSING: A processing status.</p> </li> <li>
      * <p>SUCCEEDED: A succeeded status.</p> </li> </ul>
      */
-    inline void SetStatus(UploadStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(UploadStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The upload's status.</p> <p>Must be one of the following values:</p> <ul>
@@ -290,7 +297,8 @@ namespace Model
      * status.</p> </li> <li> <p>PROCESSING: A processing status.</p> </li> <li>
      * <p>SUCCEEDED: A succeeded status.</p> </li> </ul>
      */
-    inline Upload& WithStatus(UploadStatus&& value) { SetStatus(value); return *this;}
+    inline Upload& WithStatus(UploadStatus&& value) { SetStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The pre-signed Amazon S3 URL that was used to store a file through a
@@ -308,7 +316,7 @@ namespace Model
      * <p>The pre-signed Amazon S3 URL that was used to store a file through a
      * corresponding PUT request.</p>
      */
-    inline void SetUrl(Aws::String&& value) { m_urlHasBeenSet = true; m_url = value; }
+    inline void SetUrl(Aws::String&& value) { m_urlHasBeenSet = true; m_url = std::move(value); }
 
     /**
      * <p>The pre-signed Amazon S3 URL that was used to store a file through a
@@ -326,13 +334,14 @@ namespace Model
      * <p>The pre-signed Amazon S3 URL that was used to store a file through a
      * corresponding PUT request.</p>
      */
-    inline Upload& WithUrl(Aws::String&& value) { SetUrl(value); return *this;}
+    inline Upload& WithUrl(Aws::String&& value) { SetUrl(std::move(value)); return *this;}
 
     /**
      * <p>The pre-signed Amazon S3 URL that was used to store a file through a
      * corresponding PUT request.</p>
      */
     inline Upload& WithUrl(const char* value) { SetUrl(value); return *this;}
+
 
     /**
      * <p>The upload's metadata. For example, for Android, this contains information
@@ -353,7 +362,7 @@ namespace Model
      * that is parsed from the manifest and is displayed in the AWS Device Farm console
      * after the associated app is uploaded.</p>
      */
-    inline void SetMetadata(Aws::String&& value) { m_metadataHasBeenSet = true; m_metadata = value; }
+    inline void SetMetadata(Aws::String&& value) { m_metadataHasBeenSet = true; m_metadata = std::move(value); }
 
     /**
      * <p>The upload's metadata. For example, for Android, this contains information
@@ -374,7 +383,7 @@ namespace Model
      * that is parsed from the manifest and is displayed in the AWS Device Farm console
      * after the associated app is uploaded.</p>
      */
-    inline Upload& WithMetadata(Aws::String&& value) { SetMetadata(value); return *this;}
+    inline Upload& WithMetadata(Aws::String&& value) { SetMetadata(std::move(value)); return *this;}
 
     /**
      * <p>The upload's metadata. For example, for Android, this contains information
@@ -382,6 +391,7 @@ namespace Model
      * after the associated app is uploaded.</p>
      */
     inline Upload& WithMetadata(const char* value) { SetMetadata(value); return *this;}
+
 
     /**
      * <p>The upload's content type (for example, "application/octet-stream").</p>
@@ -396,7 +406,7 @@ namespace Model
     /**
      * <p>The upload's content type (for example, "application/octet-stream").</p>
      */
-    inline void SetContentType(Aws::String&& value) { m_contentTypeHasBeenSet = true; m_contentType = value; }
+    inline void SetContentType(Aws::String&& value) { m_contentTypeHasBeenSet = true; m_contentType = std::move(value); }
 
     /**
      * <p>The upload's content type (for example, "application/octet-stream").</p>
@@ -411,12 +421,13 @@ namespace Model
     /**
      * <p>The upload's content type (for example, "application/octet-stream").</p>
      */
-    inline Upload& WithContentType(Aws::String&& value) { SetContentType(value); return *this;}
+    inline Upload& WithContentType(Aws::String&& value) { SetContentType(std::move(value)); return *this;}
 
     /**
      * <p>The upload's content type (for example, "application/octet-stream").</p>
      */
     inline Upload& WithContentType(const char* value) { SetContentType(value); return *this;}
+
 
     /**
      * <p>A message about the upload's result.</p>
@@ -431,7 +442,7 @@ namespace Model
     /**
      * <p>A message about the upload's result.</p>
      */
-    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = value; }
+    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = std::move(value); }
 
     /**
      * <p>A message about the upload's result.</p>
@@ -446,7 +457,7 @@ namespace Model
     /**
      * <p>A message about the upload's result.</p>
      */
-    inline Upload& WithMessage(Aws::String&& value) { SetMessage(value); return *this;}
+    inline Upload& WithMessage(Aws::String&& value) { SetMessage(std::move(value)); return *this;}
 
     /**
      * <p>A message about the upload's result.</p>
@@ -454,22 +465,31 @@ namespace Model
     inline Upload& WithMessage(const char* value) { SetMessage(value); return *this;}
 
   private:
+
     Aws::String m_arn;
     bool m_arnHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::Utils::DateTime m_created;
     bool m_createdHasBeenSet;
+
     UploadType m_type;
     bool m_typeHasBeenSet;
+
     UploadStatus m_status;
     bool m_statusHasBeenSet;
+
     Aws::String m_url;
     bool m_urlHasBeenSet;
+
     Aws::String m_metadata;
     bool m_metadataHasBeenSet;
+
     Aws::String m_contentType;
     bool m_contentTypeHasBeenSet;
+
     Aws::String m_message;
     bool m_messageHasBeenSet;
   };

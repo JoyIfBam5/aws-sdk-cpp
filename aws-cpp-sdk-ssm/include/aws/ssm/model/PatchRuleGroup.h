@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/ssm/model/PatchRule.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     PatchRuleGroup& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The rules that make up the rule group.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The rules that make up the rule group.</p>
      */
-    inline void SetPatchRules(Aws::Vector<PatchRule>&& value) { m_patchRulesHasBeenSet = true; m_patchRules = value; }
+    inline void SetPatchRules(Aws::Vector<PatchRule>&& value) { m_patchRulesHasBeenSet = true; m_patchRules = std::move(value); }
 
     /**
      * <p>The rules that make up the rule group.</p>
@@ -68,7 +71,7 @@ namespace Model
     /**
      * <p>The rules that make up the rule group.</p>
      */
-    inline PatchRuleGroup& WithPatchRules(Aws::Vector<PatchRule>&& value) { SetPatchRules(value); return *this;}
+    inline PatchRuleGroup& WithPatchRules(Aws::Vector<PatchRule>&& value) { SetPatchRules(std::move(value)); return *this;}
 
     /**
      * <p>The rules that make up the rule group.</p>
@@ -78,9 +81,10 @@ namespace Model
     /**
      * <p>The rules that make up the rule group.</p>
      */
-    inline PatchRuleGroup& AddPatchRules(PatchRule&& value) { m_patchRulesHasBeenSet = true; m_patchRules.push_back(value); return *this; }
+    inline PatchRuleGroup& AddPatchRules(PatchRule&& value) { m_patchRulesHasBeenSet = true; m_patchRules.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<PatchRule> m_patchRules;
     bool m_patchRulesHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudsearchdomain/CloudSearchDomain_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/cloudsearchdomain/model/Hit.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     Hits& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The total number of documents that match the search request.</p>
      */
@@ -61,6 +64,7 @@ namespace Model
      */
     inline Hits& WithFound(long long value) { SetFound(value); return *this;}
 
+
     /**
      * <p>The index of the first matching document.</p>
      */
@@ -75,6 +79,7 @@ namespace Model
      * <p>The index of the first matching document.</p>
      */
     inline Hits& WithStart(long long value) { SetStart(value); return *this;}
+
 
     /**
      * <p>A cursor that can be used to retrieve the next set of matching documents when
@@ -92,7 +97,7 @@ namespace Model
      * <p>A cursor that can be used to retrieve the next set of matching documents when
      * you want to page through a large result set.</p>
      */
-    inline void SetCursor(Aws::String&& value) { m_cursorHasBeenSet = true; m_cursor = value; }
+    inline void SetCursor(Aws::String&& value) { m_cursorHasBeenSet = true; m_cursor = std::move(value); }
 
     /**
      * <p>A cursor that can be used to retrieve the next set of matching documents when
@@ -110,13 +115,14 @@ namespace Model
      * <p>A cursor that can be used to retrieve the next set of matching documents when
      * you want to page through a large result set.</p>
      */
-    inline Hits& WithCursor(Aws::String&& value) { SetCursor(value); return *this;}
+    inline Hits& WithCursor(Aws::String&& value) { SetCursor(std::move(value)); return *this;}
 
     /**
      * <p>A cursor that can be used to retrieve the next set of matching documents when
      * you want to page through a large result set.</p>
      */
     inline Hits& WithCursor(const char* value) { SetCursor(value); return *this;}
+
 
     /**
      * <p>A document that matches the search request.</p>
@@ -131,7 +137,7 @@ namespace Model
     /**
      * <p>A document that matches the search request.</p>
      */
-    inline void SetHit(Aws::Vector<Hit>&& value) { m_hitHasBeenSet = true; m_hit = value; }
+    inline void SetHit(Aws::Vector<Hit>&& value) { m_hitHasBeenSet = true; m_hit = std::move(value); }
 
     /**
      * <p>A document that matches the search request.</p>
@@ -141,7 +147,7 @@ namespace Model
     /**
      * <p>A document that matches the search request.</p>
      */
-    inline Hits& WithHit(Aws::Vector<Hit>&& value) { SetHit(value); return *this;}
+    inline Hits& WithHit(Aws::Vector<Hit>&& value) { SetHit(std::move(value)); return *this;}
 
     /**
      * <p>A document that matches the search request.</p>
@@ -151,15 +157,19 @@ namespace Model
     /**
      * <p>A document that matches the search request.</p>
      */
-    inline Hits& AddHit(Hit&& value) { m_hitHasBeenSet = true; m_hit.push_back(value); return *this; }
+    inline Hits& AddHit(Hit&& value) { m_hitHasBeenSet = true; m_hit.push_back(std::move(value)); return *this; }
 
   private:
+
     long long m_found;
     bool m_foundHasBeenSet;
+
     long long m_start;
     bool m_startHasBeenSet;
+
     Aws::String m_cursor;
     bool m_cursorHasBeenSet;
+
     Aws::Vector<Hit> m_hit;
     bool m_hitHasBeenSet;
   };

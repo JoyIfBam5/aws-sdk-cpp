@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/config/model/ResourceType.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -63,6 +64,13 @@ namespace Aws
         static const int AWS_Redshift_ClusterSecurityGroup_HASH = HashingUtils::HashString("AWS::Redshift::ClusterSecurityGroup");
         static const int AWS_Redshift_ClusterSubnetGroup_HASH = HashingUtils::HashString("AWS::Redshift::ClusterSubnetGroup");
         static const int AWS_Redshift_EventSubscription_HASH = HashingUtils::HashString("AWS::Redshift::EventSubscription");
+        static const int AWS_CloudWatch_Alarm_HASH = HashingUtils::HashString("AWS::CloudWatch::Alarm");
+        static const int AWS_CloudFormation_Stack_HASH = HashingUtils::HashString("AWS::CloudFormation::Stack");
+        static const int AWS_DynamoDB_Table_HASH = HashingUtils::HashString("AWS::DynamoDB::Table");
+        static const int AWS_AutoScaling_AutoScalingGroup_HASH = HashingUtils::HashString("AWS::AutoScaling::AutoScalingGroup");
+        static const int AWS_AutoScaling_LaunchConfiguration_HASH = HashingUtils::HashString("AWS::AutoScaling::LaunchConfiguration");
+        static const int AWS_AutoScaling_ScalingPolicy_HASH = HashingUtils::HashString("AWS::AutoScaling::ScalingPolicy");
+        static const int AWS_AutoScaling_ScheduledAction_HASH = HashingUtils::HashString("AWS::AutoScaling::ScheduledAction");
 
 
         ResourceType GetResourceTypeForName(const Aws::String& name)
@@ -204,6 +212,34 @@ namespace Aws
           {
             return ResourceType::AWS_Redshift_EventSubscription;
           }
+          else if (hashCode == AWS_CloudWatch_Alarm_HASH)
+          {
+            return ResourceType::AWS_CloudWatch_Alarm;
+          }
+          else if (hashCode == AWS_CloudFormation_Stack_HASH)
+          {
+            return ResourceType::AWS_CloudFormation_Stack;
+          }
+          else if (hashCode == AWS_DynamoDB_Table_HASH)
+          {
+            return ResourceType::AWS_DynamoDB_Table;
+          }
+          else if (hashCode == AWS_AutoScaling_AutoScalingGroup_HASH)
+          {
+            return ResourceType::AWS_AutoScaling_AutoScalingGroup;
+          }
+          else if (hashCode == AWS_AutoScaling_LaunchConfiguration_HASH)
+          {
+            return ResourceType::AWS_AutoScaling_LaunchConfiguration;
+          }
+          else if (hashCode == AWS_AutoScaling_ScalingPolicy_HASH)
+          {
+            return ResourceType::AWS_AutoScaling_ScalingPolicy;
+          }
+          else if (hashCode == AWS_AutoScaling_ScheduledAction_HASH)
+          {
+            return ResourceType::AWS_AutoScaling_ScheduledAction;
+          }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
           {
@@ -286,6 +322,20 @@ namespace Aws
             return "AWS::Redshift::ClusterSubnetGroup";
           case ResourceType::AWS_Redshift_EventSubscription:
             return "AWS::Redshift::EventSubscription";
+          case ResourceType::AWS_CloudWatch_Alarm:
+            return "AWS::CloudWatch::Alarm";
+          case ResourceType::AWS_CloudFormation_Stack:
+            return "AWS::CloudFormation::Stack";
+          case ResourceType::AWS_DynamoDB_Table:
+            return "AWS::DynamoDB::Table";
+          case ResourceType::AWS_AutoScaling_AutoScalingGroup:
+            return "AWS::AutoScaling::AutoScalingGroup";
+          case ResourceType::AWS_AutoScaling_LaunchConfiguration:
+            return "AWS::AutoScaling::LaunchConfiguration";
+          case ResourceType::AWS_AutoScaling_ScalingPolicy:
+            return "AWS::AutoScaling::ScalingPolicy";
+          case ResourceType::AWS_AutoScaling_ScheduledAction:
+            return "AWS::AutoScaling::ScheduledAction";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codebuild/CodeBuild_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/codebuild/model/Build.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     BatchGetBuildsResult();
-    BatchGetBuildsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    BatchGetBuildsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    BatchGetBuildsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    BatchGetBuildsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the requested builds.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>Information about the requested builds.</p>
      */
-    inline void SetBuilds(Aws::Vector<Build>&& value) { m_builds = value; }
+    inline void SetBuilds(Aws::Vector<Build>&& value) { m_builds = std::move(value); }
 
     /**
      * <p>Information about the requested builds.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>Information about the requested builds.</p>
      */
-    inline BatchGetBuildsResult& WithBuilds(Aws::Vector<Build>&& value) { SetBuilds(value); return *this;}
+    inline BatchGetBuildsResult& WithBuilds(Aws::Vector<Build>&& value) { SetBuilds(std::move(value)); return *this;}
 
     /**
      * <p>Information about the requested builds.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>Information about the requested builds.</p>
      */
-    inline BatchGetBuildsResult& AddBuilds(Build&& value) { m_builds.push_back(value); return *this; }
+    inline BatchGetBuildsResult& AddBuilds(Build&& value) { m_builds.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The IDs of builds for which information could not be found.</p>
@@ -89,7 +93,7 @@ namespace Model
     /**
      * <p>The IDs of builds for which information could not be found.</p>
      */
-    inline void SetBuildsNotFound(Aws::Vector<Aws::String>&& value) { m_buildsNotFound = value; }
+    inline void SetBuildsNotFound(Aws::Vector<Aws::String>&& value) { m_buildsNotFound = std::move(value); }
 
     /**
      * <p>The IDs of builds for which information could not be found.</p>
@@ -99,7 +103,7 @@ namespace Model
     /**
      * <p>The IDs of builds for which information could not be found.</p>
      */
-    inline BatchGetBuildsResult& WithBuildsNotFound(Aws::Vector<Aws::String>&& value) { SetBuildsNotFound(value); return *this;}
+    inline BatchGetBuildsResult& WithBuildsNotFound(Aws::Vector<Aws::String>&& value) { SetBuildsNotFound(std::move(value)); return *this;}
 
     /**
      * <p>The IDs of builds for which information could not be found.</p>
@@ -109,7 +113,7 @@ namespace Model
     /**
      * <p>The IDs of builds for which information could not be found.</p>
      */
-    inline BatchGetBuildsResult& AddBuildsNotFound(Aws::String&& value) { m_buildsNotFound.push_back(value); return *this; }
+    inline BatchGetBuildsResult& AddBuildsNotFound(Aws::String&& value) { m_buildsNotFound.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The IDs of builds for which information could not be found.</p>
@@ -117,7 +121,9 @@ namespace Model
     inline BatchGetBuildsResult& AddBuildsNotFound(const char* value) { m_buildsNotFound.push_back(value); return *this; }
 
   private:
+
     Aws::Vector<Build> m_builds;
+
     Aws::Vector<Aws::String> m_buildsNotFound;
   };
 

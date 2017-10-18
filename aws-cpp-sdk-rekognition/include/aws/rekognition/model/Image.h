@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rekognition/Rekognition_EXPORTS.h>
 #include <aws/core/utils/Array.h>
 #include <aws/rekognition/model/S3Object.h>
+#include <utility>
 
 namespace Aws
 {
@@ -32,16 +34,22 @@ namespace Model
 {
 
   /**
-   * <p>Provides the source image either as bytes or an S3 object.</p> <p>The region
-   * for the S3 bucket containing the S3 object must match the region you use for
-   * Amazon Rekognition operations.</p> <p>You may need to Base64-encode the image
-   * bytes depending on the language you are using and whether or not you are using
-   * the AWS SDK. For more information, see <a>example4</a>.</p> <p>If you use the
-   * Amazon CLI to call Amazon Rekognition operations, passing image bytes using the
-   * Bytes property is not supported. You must first upload the image to an Amazon S3
-   * bucket and then call the operation using the S3Object property.</p> <p>For
-   * Amazon Rekognition to process an S3 object, the user must have permission to
-   * access the S3 object. For more information, see
+   * <p>Provides the input image either as bytes or an S3 object.</p> <p>You pass
+   * image bytes to a Rekognition API operation by using the <code>Bytes</code>
+   * property. For example, you would use the <code>Bytes</code> property to pass an
+   * image loaded from a local file system. Image bytes passed by using the
+   * <code>Bytes</code> property must be base64-encoded. Your code may not need to
+   * encode image bytes if you are using an AWS SDK to call Rekognition API
+   * operations. For more information, see <a>example4</a>.</p> <p> You pass images
+   * stored in an S3 bucket to a Rekognition API operation by using the
+   * <code>S3Object</code> property. Images stored in an S3 bucket do not need to be
+   * base64-encoded.</p> <p>The region for the S3 bucket containing the S3 object
+   * must match the region you use for Amazon Rekognition operations.</p> <p>If you
+   * use the Amazon CLI to call Amazon Rekognition operations, passing image bytes
+   * using the Bytes property is not supported. You must first upload the image to an
+   * Amazon S3 bucket and then call the operation using the S3Object property.</p>
+   * <p>For Amazon Rekognition to process an S3 object, the user must have permission
+   * to access the S3 object. For more information, see
    * <a>manage-access-resource-policies</a>. </p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/Image">AWS
    * API Reference</a></p>
@@ -53,6 +61,7 @@ namespace Model
     Image(const Aws::Utils::Json::JsonValue& jsonValue);
     Image& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>Blob of image bytes up to 5 MBs.</p>
@@ -67,7 +76,7 @@ namespace Model
     /**
      * <p>Blob of image bytes up to 5 MBs.</p>
      */
-    inline void SetBytes(Aws::Utils::ByteBuffer&& value) { m_bytesHasBeenSet = true; m_bytes = value; }
+    inline void SetBytes(Aws::Utils::ByteBuffer&& value) { m_bytesHasBeenSet = true; m_bytes = std::move(value); }
 
     /**
      * <p>Blob of image bytes up to 5 MBs.</p>
@@ -77,7 +86,8 @@ namespace Model
     /**
      * <p>Blob of image bytes up to 5 MBs.</p>
      */
-    inline Image& WithBytes(Aws::Utils::ByteBuffer&& value) { SetBytes(value); return *this;}
+    inline Image& WithBytes(Aws::Utils::ByteBuffer&& value) { SetBytes(std::move(value)); return *this;}
+
 
     /**
      * <p>Identifies an S3 object as the image source.</p>
@@ -92,7 +102,7 @@ namespace Model
     /**
      * <p>Identifies an S3 object as the image source.</p>
      */
-    inline void SetS3Object(S3Object&& value) { m_s3ObjectHasBeenSet = true; m_s3Object = value; }
+    inline void SetS3Object(S3Object&& value) { m_s3ObjectHasBeenSet = true; m_s3Object = std::move(value); }
 
     /**
      * <p>Identifies an S3 object as the image source.</p>
@@ -102,11 +112,13 @@ namespace Model
     /**
      * <p>Identifies an S3 object as the image source.</p>
      */
-    inline Image& WithS3Object(S3Object&& value) { SetS3Object(value); return *this;}
+    inline Image& WithS3Object(S3Object&& value) { SetS3Object(std::move(value)); return *this;}
 
   private:
+
     Aws::Utils::ByteBuffer m_bytes;
     bool m_bytesHasBeenSet;
+
     S3Object m_s3Object;
     bool m_s3ObjectHasBeenSet;
   };

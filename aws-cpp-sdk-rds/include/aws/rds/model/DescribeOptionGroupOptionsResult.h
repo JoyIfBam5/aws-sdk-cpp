@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/rds/model/ResponseMetadata.h>
 #include <aws/rds/model/OptionGroupOption.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     DescribeOptionGroupOptionsResult();
-    DescribeOptionGroupOptionsResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeOptionGroupOptionsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeOptionGroupOptionsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeOptionGroupOptionsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     
     inline const Aws::Vector<OptionGroupOption>& GetOptionGroupOptions() const{ return m_optionGroupOptions; }
@@ -54,19 +57,20 @@ namespace Model
     inline void SetOptionGroupOptions(const Aws::Vector<OptionGroupOption>& value) { m_optionGroupOptions = value; }
 
     
-    inline void SetOptionGroupOptions(Aws::Vector<OptionGroupOption>&& value) { m_optionGroupOptions = value; }
+    inline void SetOptionGroupOptions(Aws::Vector<OptionGroupOption>&& value) { m_optionGroupOptions = std::move(value); }
 
     
     inline DescribeOptionGroupOptionsResult& WithOptionGroupOptions(const Aws::Vector<OptionGroupOption>& value) { SetOptionGroupOptions(value); return *this;}
 
     
-    inline DescribeOptionGroupOptionsResult& WithOptionGroupOptions(Aws::Vector<OptionGroupOption>&& value) { SetOptionGroupOptions(value); return *this;}
+    inline DescribeOptionGroupOptionsResult& WithOptionGroupOptions(Aws::Vector<OptionGroupOption>&& value) { SetOptionGroupOptions(std::move(value)); return *this;}
 
     
     inline DescribeOptionGroupOptionsResult& AddOptionGroupOptions(const OptionGroupOption& value) { m_optionGroupOptions.push_back(value); return *this; }
 
     
-    inline DescribeOptionGroupOptionsResult& AddOptionGroupOptions(OptionGroupOption&& value) { m_optionGroupOptions.push_back(value); return *this; }
+    inline DescribeOptionGroupOptionsResult& AddOptionGroupOptions(OptionGroupOption&& value) { m_optionGroupOptions.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>An optional pagination token provided by a previous request. If this
@@ -87,7 +91,7 @@ namespace Model
      * parameter is specified, the response includes only records beyond the marker, up
      * to the value specified by <code>MaxRecords</code>.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p>An optional pagination token provided by a previous request. If this
@@ -108,7 +112,7 @@ namespace Model
      * parameter is specified, the response includes only records beyond the marker, up
      * to the value specified by <code>MaxRecords</code>.</p>
      */
-    inline DescribeOptionGroupOptionsResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeOptionGroupOptionsResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>An optional pagination token provided by a previous request. If this
@@ -117,6 +121,7 @@ namespace Model
      */
     inline DescribeOptionGroupOptionsResult& WithMarker(const char* value) { SetMarker(value); return *this;}
 
+
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
 
@@ -124,17 +129,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeOptionGroupOptionsResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeOptionGroupOptionsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeOptionGroupOptionsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<OptionGroupOption> m_optionGroupOptions;
+
     Aws::String m_marker;
+
     ResponseMetadata m_responseMetadata;
   };
 

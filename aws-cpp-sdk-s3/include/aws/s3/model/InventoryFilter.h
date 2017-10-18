@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -39,6 +41,7 @@ namespace Model
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
 
+
     /**
      * The prefix that an object must have to be included in the inventory results.
      */
@@ -52,7 +55,7 @@ namespace Model
     /**
      * The prefix that an object must have to be included in the inventory results.
      */
-    inline void SetPrefix(Aws::String&& value) { m_prefixHasBeenSet = true; m_prefix = value; }
+    inline void SetPrefix(Aws::String&& value) { m_prefixHasBeenSet = true; m_prefix = std::move(value); }
 
     /**
      * The prefix that an object must have to be included in the inventory results.
@@ -67,7 +70,7 @@ namespace Model
     /**
      * The prefix that an object must have to be included in the inventory results.
      */
-    inline InventoryFilter& WithPrefix(Aws::String&& value) { SetPrefix(value); return *this;}
+    inline InventoryFilter& WithPrefix(Aws::String&& value) { SetPrefix(std::move(value)); return *this;}
 
     /**
      * The prefix that an object must have to be included in the inventory results.
@@ -75,6 +78,7 @@ namespace Model
     inline InventoryFilter& WithPrefix(const char* value) { SetPrefix(value); return *this;}
 
   private:
+
     Aws::String m_prefix;
     bool m_prefixHasBeenSet;
   };

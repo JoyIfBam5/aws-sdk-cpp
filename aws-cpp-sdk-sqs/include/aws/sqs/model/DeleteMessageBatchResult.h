@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/sqs/SQS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/sqs/model/ResponseMetadata.h>
 #include <aws/sqs/model/DeleteMessageBatchResultEntry.h>
 #include <aws/sqs/model/BatchResultErrorEntry.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,8 +49,9 @@ namespace Model
   {
   public:
     DeleteMessageBatchResult();
-    DeleteMessageBatchResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DeleteMessageBatchResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DeleteMessageBatchResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DeleteMessageBatchResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>A list of <code> <a>DeleteMessageBatchResultEntry</a> </code> items.</p>
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>A list of <code> <a>DeleteMessageBatchResultEntry</a> </code> items.</p>
      */
-    inline void SetSuccessful(Aws::Vector<DeleteMessageBatchResultEntry>&& value) { m_successful = value; }
+    inline void SetSuccessful(Aws::Vector<DeleteMessageBatchResultEntry>&& value) { m_successful = std::move(value); }
 
     /**
      * <p>A list of <code> <a>DeleteMessageBatchResultEntry</a> </code> items.</p>
@@ -73,7 +76,7 @@ namespace Model
     /**
      * <p>A list of <code> <a>DeleteMessageBatchResultEntry</a> </code> items.</p>
      */
-    inline DeleteMessageBatchResult& WithSuccessful(Aws::Vector<DeleteMessageBatchResultEntry>&& value) { SetSuccessful(value); return *this;}
+    inline DeleteMessageBatchResult& WithSuccessful(Aws::Vector<DeleteMessageBatchResultEntry>&& value) { SetSuccessful(std::move(value)); return *this;}
 
     /**
      * <p>A list of <code> <a>DeleteMessageBatchResultEntry</a> </code> items.</p>
@@ -83,7 +86,8 @@ namespace Model
     /**
      * <p>A list of <code> <a>DeleteMessageBatchResultEntry</a> </code> items.</p>
      */
-    inline DeleteMessageBatchResult& AddSuccessful(DeleteMessageBatchResultEntry&& value) { m_successful.push_back(value); return *this; }
+    inline DeleteMessageBatchResult& AddSuccessful(DeleteMessageBatchResultEntry&& value) { m_successful.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>A list of <code> <a>BatchResultErrorEntry</a> </code> items.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>A list of <code> <a>BatchResultErrorEntry</a> </code> items.</p>
      */
-    inline void SetFailed(Aws::Vector<BatchResultErrorEntry>&& value) { m_failed = value; }
+    inline void SetFailed(Aws::Vector<BatchResultErrorEntry>&& value) { m_failed = std::move(value); }
 
     /**
      * <p>A list of <code> <a>BatchResultErrorEntry</a> </code> items.</p>
@@ -108,7 +112,7 @@ namespace Model
     /**
      * <p>A list of <code> <a>BatchResultErrorEntry</a> </code> items.</p>
      */
-    inline DeleteMessageBatchResult& WithFailed(Aws::Vector<BatchResultErrorEntry>&& value) { SetFailed(value); return *this;}
+    inline DeleteMessageBatchResult& WithFailed(Aws::Vector<BatchResultErrorEntry>&& value) { SetFailed(std::move(value)); return *this;}
 
     /**
      * <p>A list of <code> <a>BatchResultErrorEntry</a> </code> items.</p>
@@ -118,7 +122,8 @@ namespace Model
     /**
      * <p>A list of <code> <a>BatchResultErrorEntry</a> </code> items.</p>
      */
-    inline DeleteMessageBatchResult& AddFailed(BatchResultErrorEntry&& value) { m_failed.push_back(value); return *this; }
+    inline DeleteMessageBatchResult& AddFailed(BatchResultErrorEntry&& value) { m_failed.push_back(std::move(value)); return *this; }
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -127,17 +132,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DeleteMessageBatchResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DeleteMessageBatchResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DeleteMessageBatchResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<DeleteMessageBatchResultEntry> m_successful;
+
     Aws::Vector<BatchResultErrorEntry> m_failed;
+
     ResponseMetadata m_responseMetadata;
   };
 

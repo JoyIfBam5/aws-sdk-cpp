@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/firehose/Firehose_EXPORTS.h>
 #include <aws/firehose/model/ProcessorParameterName.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     ProcessorParameter& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the parameter.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The name of the parameter.</p>
      */
-    inline void SetParameterName(ProcessorParameterName&& value) { m_parameterNameHasBeenSet = true; m_parameterName = value; }
+    inline void SetParameterName(ProcessorParameterName&& value) { m_parameterNameHasBeenSet = true; m_parameterName = std::move(value); }
 
     /**
      * <p>The name of the parameter.</p>
@@ -67,7 +70,8 @@ namespace Model
     /**
      * <p>The name of the parameter.</p>
      */
-    inline ProcessorParameter& WithParameterName(ProcessorParameterName&& value) { SetParameterName(value); return *this;}
+    inline ProcessorParameter& WithParameterName(ProcessorParameterName&& value) { SetParameterName(std::move(value)); return *this;}
+
 
     /**
      * <p>The parameter value.</p>
@@ -82,7 +86,7 @@ namespace Model
     /**
      * <p>The parameter value.</p>
      */
-    inline void SetParameterValue(Aws::String&& value) { m_parameterValueHasBeenSet = true; m_parameterValue = value; }
+    inline void SetParameterValue(Aws::String&& value) { m_parameterValueHasBeenSet = true; m_parameterValue = std::move(value); }
 
     /**
      * <p>The parameter value.</p>
@@ -97,7 +101,7 @@ namespace Model
     /**
      * <p>The parameter value.</p>
      */
-    inline ProcessorParameter& WithParameterValue(Aws::String&& value) { SetParameterValue(value); return *this;}
+    inline ProcessorParameter& WithParameterValue(Aws::String&& value) { SetParameterValue(std::move(value)); return *this;}
 
     /**
      * <p>The parameter value.</p>
@@ -105,8 +109,10 @@ namespace Model
     inline ProcessorParameter& WithParameterValue(const char* value) { SetParameterValue(value); return *this;}
 
   private:
+
     ProcessorParameterName m_parameterName;
     bool m_parameterNameHasBeenSet;
+
     Aws::String m_parameterValue;
     bool m_parameterValueHasBeenSet;
   };

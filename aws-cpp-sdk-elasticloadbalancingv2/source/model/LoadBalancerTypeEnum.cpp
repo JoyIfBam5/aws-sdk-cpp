@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/elasticloadbalancingv2/model/LoadBalancerTypeEnum.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -30,6 +31,7 @@ namespace Aws
       {
 
         static const int application_HASH = HashingUtils::HashString("application");
+        static const int network_HASH = HashingUtils::HashString("network");
 
 
         LoadBalancerTypeEnum GetLoadBalancerTypeEnumForName(const Aws::String& name)
@@ -38,6 +40,10 @@ namespace Aws
           if (hashCode == application_HASH)
           {
             return LoadBalancerTypeEnum::application;
+          }
+          else if (hashCode == network_HASH)
+          {
+            return LoadBalancerTypeEnum::network;
           }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
@@ -55,6 +61,8 @@ namespace Aws
           {
           case LoadBalancerTypeEnum::application:
             return "application";
+          case LoadBalancerTypeEnum::network:
+            return "network";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ec2/model/EbsInstanceBlockDevice.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The device name exposed to the instance (for example, <code>/dev/sdh</code>
      * or <code>xvdh</code>).</p>
@@ -63,7 +66,7 @@ namespace Model
      * <p>The device name exposed to the instance (for example, <code>/dev/sdh</code>
      * or <code>xvdh</code>).</p>
      */
-    inline void SetDeviceName(Aws::String&& value) { m_deviceNameHasBeenSet = true; m_deviceName = value; }
+    inline void SetDeviceName(Aws::String&& value) { m_deviceNameHasBeenSet = true; m_deviceName = std::move(value); }
 
     /**
      * <p>The device name exposed to the instance (for example, <code>/dev/sdh</code>
@@ -81,13 +84,14 @@ namespace Model
      * <p>The device name exposed to the instance (for example, <code>/dev/sdh</code>
      * or <code>xvdh</code>).</p>
      */
-    inline InstanceBlockDeviceMapping& WithDeviceName(Aws::String&& value) { SetDeviceName(value); return *this;}
+    inline InstanceBlockDeviceMapping& WithDeviceName(Aws::String&& value) { SetDeviceName(std::move(value)); return *this;}
 
     /**
      * <p>The device name exposed to the instance (for example, <code>/dev/sdh</code>
      * or <code>xvdh</code>).</p>
      */
     inline InstanceBlockDeviceMapping& WithDeviceName(const char* value) { SetDeviceName(value); return *this;}
+
 
     /**
      * <p>Parameters used to automatically set up EBS volumes when the instance is
@@ -105,7 +109,7 @@ namespace Model
      * <p>Parameters used to automatically set up EBS volumes when the instance is
      * launched.</p>
      */
-    inline void SetEbs(EbsInstanceBlockDevice&& value) { m_ebsHasBeenSet = true; m_ebs = value; }
+    inline void SetEbs(EbsInstanceBlockDevice&& value) { m_ebsHasBeenSet = true; m_ebs = std::move(value); }
 
     /**
      * <p>Parameters used to automatically set up EBS volumes when the instance is
@@ -117,11 +121,13 @@ namespace Model
      * <p>Parameters used to automatically set up EBS volumes when the instance is
      * launched.</p>
      */
-    inline InstanceBlockDeviceMapping& WithEbs(EbsInstanceBlockDevice&& value) { SetEbs(value); return *this;}
+    inline InstanceBlockDeviceMapping& WithEbs(EbsInstanceBlockDevice&& value) { SetEbs(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_deviceName;
     bool m_deviceNameHasBeenSet;
+
     EbsInstanceBlockDevice m_ebs;
     bool m_ebsHasBeenSet;
   };

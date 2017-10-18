@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/elasticbeanstalk/ElasticBeanstalkErrors.h>
@@ -28,7 +29,9 @@
 #include <aws/elasticbeanstalk/model/CreateApplicationVersionResult.h>
 #include <aws/elasticbeanstalk/model/CreateConfigurationTemplateResult.h>
 #include <aws/elasticbeanstalk/model/CreateEnvironmentResult.h>
+#include <aws/elasticbeanstalk/model/CreatePlatformVersionResult.h>
 #include <aws/elasticbeanstalk/model/CreateStorageLocationResult.h>
+#include <aws/elasticbeanstalk/model/DeletePlatformVersionResult.h>
 #include <aws/elasticbeanstalk/model/DescribeApplicationVersionsResult.h>
 #include <aws/elasticbeanstalk/model/DescribeApplicationsResult.h>
 #include <aws/elasticbeanstalk/model/DescribeConfigurationOptionsResult.h>
@@ -40,7 +43,10 @@
 #include <aws/elasticbeanstalk/model/DescribeEnvironmentsResult.h>
 #include <aws/elasticbeanstalk/model/DescribeEventsResult.h>
 #include <aws/elasticbeanstalk/model/DescribeInstancesHealthResult.h>
+#include <aws/elasticbeanstalk/model/DescribePlatformVersionResult.h>
 #include <aws/elasticbeanstalk/model/ListAvailableSolutionStacksResult.h>
+#include <aws/elasticbeanstalk/model/ListPlatformVersionsResult.h>
+#include <aws/elasticbeanstalk/model/ListTagsForResourceResult.h>
 #include <aws/elasticbeanstalk/model/RetrieveEnvironmentInfoResult.h>
 #include <aws/elasticbeanstalk/model/TerminateEnvironmentResult.h>
 #include <aws/elasticbeanstalk/model/UpdateApplicationResult.h>
@@ -103,11 +109,13 @@ namespace Model
         class CreateApplicationVersionRequest;
         class CreateConfigurationTemplateRequest;
         class CreateEnvironmentRequest;
+        class CreatePlatformVersionRequest;
         class CreateStorageLocationRequest;
         class DeleteApplicationRequest;
         class DeleteApplicationVersionRequest;
         class DeleteConfigurationTemplateRequest;
         class DeleteEnvironmentConfigurationRequest;
+        class DeletePlatformVersionRequest;
         class DescribeApplicationVersionsRequest;
         class DescribeApplicationsRequest;
         class DescribeConfigurationOptionsRequest;
@@ -119,7 +127,10 @@ namespace Model
         class DescribeEnvironmentsRequest;
         class DescribeEventsRequest;
         class DescribeInstancesHealthRequest;
+        class DescribePlatformVersionRequest;
         class ListAvailableSolutionStacksRequest;
+        class ListPlatformVersionsRequest;
+        class ListTagsForResourceRequest;
         class RebuildEnvironmentRequest;
         class RequestEnvironmentInfoRequest;
         class RestartAppServerRequest;
@@ -131,9 +142,10 @@ namespace Model
         class UpdateApplicationVersionRequest;
         class UpdateConfigurationTemplateRequest;
         class UpdateEnvironmentRequest;
+        class UpdateTagsForResourceRequest;
         class ValidateConfigurationSettingsRequest;
 
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> AbortEnvironmentUpdateOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> AbortEnvironmentUpdateOutcome;
         typedef Aws::Utils::Outcome<ApplyEnvironmentManagedActionResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> ApplyEnvironmentManagedActionOutcome;
         typedef Aws::Utils::Outcome<CheckDNSAvailabilityResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> CheckDNSAvailabilityOutcome;
         typedef Aws::Utils::Outcome<ComposeEnvironmentsResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> ComposeEnvironmentsOutcome;
@@ -141,11 +153,13 @@ namespace Model
         typedef Aws::Utils::Outcome<CreateApplicationVersionResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> CreateApplicationVersionOutcome;
         typedef Aws::Utils::Outcome<CreateConfigurationTemplateResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> CreateConfigurationTemplateOutcome;
         typedef Aws::Utils::Outcome<CreateEnvironmentResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> CreateEnvironmentOutcome;
+        typedef Aws::Utils::Outcome<CreatePlatformVersionResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> CreatePlatformVersionOutcome;
         typedef Aws::Utils::Outcome<CreateStorageLocationResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> CreateStorageLocationOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> DeleteApplicationOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> DeleteApplicationVersionOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> DeleteConfigurationTemplateOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> DeleteEnvironmentConfigurationOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> DeleteApplicationOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> DeleteApplicationVersionOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> DeleteConfigurationTemplateOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> DeleteEnvironmentConfigurationOutcome;
+        typedef Aws::Utils::Outcome<DeletePlatformVersionResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> DeletePlatformVersionOutcome;
         typedef Aws::Utils::Outcome<DescribeApplicationVersionsResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> DescribeApplicationVersionsOutcome;
         typedef Aws::Utils::Outcome<DescribeApplicationsResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> DescribeApplicationsOutcome;
         typedef Aws::Utils::Outcome<DescribeConfigurationOptionsResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> DescribeConfigurationOptionsOutcome;
@@ -157,18 +171,22 @@ namespace Model
         typedef Aws::Utils::Outcome<DescribeEnvironmentsResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> DescribeEnvironmentsOutcome;
         typedef Aws::Utils::Outcome<DescribeEventsResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> DescribeEventsOutcome;
         typedef Aws::Utils::Outcome<DescribeInstancesHealthResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> DescribeInstancesHealthOutcome;
+        typedef Aws::Utils::Outcome<DescribePlatformVersionResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> DescribePlatformVersionOutcome;
         typedef Aws::Utils::Outcome<ListAvailableSolutionStacksResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> ListAvailableSolutionStacksOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> RebuildEnvironmentOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> RequestEnvironmentInfoOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> RestartAppServerOutcome;
+        typedef Aws::Utils::Outcome<ListPlatformVersionsResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> ListPlatformVersionsOutcome;
+        typedef Aws::Utils::Outcome<ListTagsForResourceResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> ListTagsForResourceOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> RebuildEnvironmentOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> RequestEnvironmentInfoOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> RestartAppServerOutcome;
         typedef Aws::Utils::Outcome<RetrieveEnvironmentInfoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> RetrieveEnvironmentInfoOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> SwapEnvironmentCNAMEsOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> SwapEnvironmentCNAMEsOutcome;
         typedef Aws::Utils::Outcome<TerminateEnvironmentResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> TerminateEnvironmentOutcome;
         typedef Aws::Utils::Outcome<UpdateApplicationResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> UpdateApplicationOutcome;
         typedef Aws::Utils::Outcome<UpdateApplicationResourceLifecycleResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> UpdateApplicationResourceLifecycleOutcome;
         typedef Aws::Utils::Outcome<UpdateApplicationVersionResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> UpdateApplicationVersionOutcome;
         typedef Aws::Utils::Outcome<UpdateConfigurationTemplateResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> UpdateConfigurationTemplateOutcome;
         typedef Aws::Utils::Outcome<UpdateEnvironmentResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> UpdateEnvironmentOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> UpdateTagsForResourceOutcome;
         typedef Aws::Utils::Outcome<ValidateConfigurationSettingsResult, Aws::Client::AWSError<ElasticBeanstalkErrors>> ValidateConfigurationSettingsOutcome;
 
         typedef std::future<AbortEnvironmentUpdateOutcome> AbortEnvironmentUpdateOutcomeCallable;
@@ -179,11 +197,13 @@ namespace Model
         typedef std::future<CreateApplicationVersionOutcome> CreateApplicationVersionOutcomeCallable;
         typedef std::future<CreateConfigurationTemplateOutcome> CreateConfigurationTemplateOutcomeCallable;
         typedef std::future<CreateEnvironmentOutcome> CreateEnvironmentOutcomeCallable;
+        typedef std::future<CreatePlatformVersionOutcome> CreatePlatformVersionOutcomeCallable;
         typedef std::future<CreateStorageLocationOutcome> CreateStorageLocationOutcomeCallable;
         typedef std::future<DeleteApplicationOutcome> DeleteApplicationOutcomeCallable;
         typedef std::future<DeleteApplicationVersionOutcome> DeleteApplicationVersionOutcomeCallable;
         typedef std::future<DeleteConfigurationTemplateOutcome> DeleteConfigurationTemplateOutcomeCallable;
         typedef std::future<DeleteEnvironmentConfigurationOutcome> DeleteEnvironmentConfigurationOutcomeCallable;
+        typedef std::future<DeletePlatformVersionOutcome> DeletePlatformVersionOutcomeCallable;
         typedef std::future<DescribeApplicationVersionsOutcome> DescribeApplicationVersionsOutcomeCallable;
         typedef std::future<DescribeApplicationsOutcome> DescribeApplicationsOutcomeCallable;
         typedef std::future<DescribeConfigurationOptionsOutcome> DescribeConfigurationOptionsOutcomeCallable;
@@ -195,7 +215,10 @@ namespace Model
         typedef std::future<DescribeEnvironmentsOutcome> DescribeEnvironmentsOutcomeCallable;
         typedef std::future<DescribeEventsOutcome> DescribeEventsOutcomeCallable;
         typedef std::future<DescribeInstancesHealthOutcome> DescribeInstancesHealthOutcomeCallable;
+        typedef std::future<DescribePlatformVersionOutcome> DescribePlatformVersionOutcomeCallable;
         typedef std::future<ListAvailableSolutionStacksOutcome> ListAvailableSolutionStacksOutcomeCallable;
+        typedef std::future<ListPlatformVersionsOutcome> ListPlatformVersionsOutcomeCallable;
+        typedef std::future<ListTagsForResourceOutcome> ListTagsForResourceOutcomeCallable;
         typedef std::future<RebuildEnvironmentOutcome> RebuildEnvironmentOutcomeCallable;
         typedef std::future<RequestEnvironmentInfoOutcome> RequestEnvironmentInfoOutcomeCallable;
         typedef std::future<RestartAppServerOutcome> RestartAppServerOutcomeCallable;
@@ -207,6 +230,7 @@ namespace Model
         typedef std::future<UpdateApplicationVersionOutcome> UpdateApplicationVersionOutcomeCallable;
         typedef std::future<UpdateConfigurationTemplateOutcome> UpdateConfigurationTemplateOutcomeCallable;
         typedef std::future<UpdateEnvironmentOutcome> UpdateEnvironmentOutcomeCallable;
+        typedef std::future<UpdateTagsForResourceOutcome> UpdateTagsForResourceOutcomeCallable;
         typedef std::future<ValidateConfigurationSettingsOutcome> ValidateConfigurationSettingsOutcomeCallable;
 } // namespace Model
 
@@ -220,11 +244,13 @@ namespace Model
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::CreateApplicationVersionRequest&, const Model::CreateApplicationVersionOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateApplicationVersionResponseReceivedHandler;
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::CreateConfigurationTemplateRequest&, const Model::CreateConfigurationTemplateOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateConfigurationTemplateResponseReceivedHandler;
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::CreateEnvironmentRequest&, const Model::CreateEnvironmentOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateEnvironmentResponseReceivedHandler;
+    typedef std::function<void(const ElasticBeanstalkClient*, const Model::CreatePlatformVersionRequest&, const Model::CreatePlatformVersionOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreatePlatformVersionResponseReceivedHandler;
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::CreateStorageLocationRequest&, const Model::CreateStorageLocationOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateStorageLocationResponseReceivedHandler;
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::DeleteApplicationRequest&, const Model::DeleteApplicationOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteApplicationResponseReceivedHandler;
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::DeleteApplicationVersionRequest&, const Model::DeleteApplicationVersionOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteApplicationVersionResponseReceivedHandler;
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::DeleteConfigurationTemplateRequest&, const Model::DeleteConfigurationTemplateOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteConfigurationTemplateResponseReceivedHandler;
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::DeleteEnvironmentConfigurationRequest&, const Model::DeleteEnvironmentConfigurationOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteEnvironmentConfigurationResponseReceivedHandler;
+    typedef std::function<void(const ElasticBeanstalkClient*, const Model::DeletePlatformVersionRequest&, const Model::DeletePlatformVersionOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeletePlatformVersionResponseReceivedHandler;
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::DescribeApplicationVersionsRequest&, const Model::DescribeApplicationVersionsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeApplicationVersionsResponseReceivedHandler;
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::DescribeApplicationsRequest&, const Model::DescribeApplicationsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeApplicationsResponseReceivedHandler;
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::DescribeConfigurationOptionsRequest&, const Model::DescribeConfigurationOptionsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeConfigurationOptionsResponseReceivedHandler;
@@ -236,7 +262,10 @@ namespace Model
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::DescribeEnvironmentsRequest&, const Model::DescribeEnvironmentsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeEnvironmentsResponseReceivedHandler;
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::DescribeEventsRequest&, const Model::DescribeEventsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeEventsResponseReceivedHandler;
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::DescribeInstancesHealthRequest&, const Model::DescribeInstancesHealthOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeInstancesHealthResponseReceivedHandler;
+    typedef std::function<void(const ElasticBeanstalkClient*, const Model::DescribePlatformVersionRequest&, const Model::DescribePlatformVersionOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribePlatformVersionResponseReceivedHandler;
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::ListAvailableSolutionStacksRequest&, const Model::ListAvailableSolutionStacksOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListAvailableSolutionStacksResponseReceivedHandler;
+    typedef std::function<void(const ElasticBeanstalkClient*, const Model::ListPlatformVersionsRequest&, const Model::ListPlatformVersionsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListPlatformVersionsResponseReceivedHandler;
+    typedef std::function<void(const ElasticBeanstalkClient*, const Model::ListTagsForResourceRequest&, const Model::ListTagsForResourceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListTagsForResourceResponseReceivedHandler;
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::RebuildEnvironmentRequest&, const Model::RebuildEnvironmentOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > RebuildEnvironmentResponseReceivedHandler;
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::RequestEnvironmentInfoRequest&, const Model::RequestEnvironmentInfoOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > RequestEnvironmentInfoResponseReceivedHandler;
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::RestartAppServerRequest&, const Model::RestartAppServerOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > RestartAppServerResponseReceivedHandler;
@@ -248,6 +277,7 @@ namespace Model
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::UpdateApplicationVersionRequest&, const Model::UpdateApplicationVersionOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateApplicationVersionResponseReceivedHandler;
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::UpdateConfigurationTemplateRequest&, const Model::UpdateConfigurationTemplateOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateConfigurationTemplateResponseReceivedHandler;
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::UpdateEnvironmentRequest&, const Model::UpdateEnvironmentOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateEnvironmentResponseReceivedHandler;
+    typedef std::function<void(const ElasticBeanstalkClient*, const Model::UpdateTagsForResourceRequest&, const Model::UpdateTagsForResourceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateTagsForResourceResponseReceivedHandler;
     typedef std::function<void(const ElasticBeanstalkClient*, const Model::ValidateConfigurationSettingsRequest&, const Model::ValidateConfigurationSettingsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ValidateConfigurationSettingsResponseReceivedHandler;
 
   /**
@@ -275,27 +305,30 @@ namespace Model
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        ElasticBeanstalkClient(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        ElasticBeanstalkClient(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        ElasticBeanstalkClient(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        ElasticBeanstalkClient(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        ElasticBeanstalkClient(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        ElasticBeanstalkClient(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
         virtual ~ElasticBeanstalkClient();
+
+        inline virtual const char* GetServiceClientName() const override { return "elasticbeanstalk"; }
+
 
        /**
         * Converts any request object to a presigned URL with the GET method, using region for the signer and a timeout of 15 minutes.
         */
-        Aws::String ConvertRequestToPresignedUrl(const AmazonSerializableWebServiceRequest& requestToConvert, const char* region) const;
+        Aws::String ConvertRequestToPresignedUrl(const Aws::AmazonSerializableWebServiceRequest& requestToConvert, const char* region) const;
 
 
         /**
@@ -586,6 +619,31 @@ namespace Model
         virtual void CreateEnvironmentAsync(const Model::CreateEnvironmentRequest& request, const CreateEnvironmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
+         * <p>Create a new version of your custom platform.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreatePlatformVersion">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::CreatePlatformVersionOutcome CreatePlatformVersion(const Model::CreatePlatformVersionRequest& request) const;
+
+        /**
+         * <p>Create a new version of your custom platform.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreatePlatformVersion">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::CreatePlatformVersionOutcomeCallable CreatePlatformVersionCallable(const Model::CreatePlatformVersionRequest& request) const;
+
+        /**
+         * <p>Create a new version of your custom platform.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreatePlatformVersion">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void CreatePlatformVersionAsync(const Model::CreatePlatformVersionRequest& request, const CreatePlatformVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
          * <p>Creates the Amazon S3 storage location for the account.</p> <p>This location
          * is used to store user log files.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateStorageLocation">AWS
@@ -757,6 +815,34 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void DeleteEnvironmentConfigurationAsync(const Model::DeleteEnvironmentConfigurationRequest& request, const DeleteEnvironmentConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Deletes the specified version of a custom platform.</p><p><h3>See Also:</h3> 
+         * <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeletePlatformVersion">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::DeletePlatformVersionOutcome DeletePlatformVersion(const Model::DeletePlatformVersionRequest& request) const;
+
+        /**
+         * <p>Deletes the specified version of a custom platform.</p><p><h3>See Also:</h3> 
+         * <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeletePlatformVersion">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::DeletePlatformVersionOutcomeCallable DeletePlatformVersionCallable(const Model::DeletePlatformVersionRequest& request) const;
+
+        /**
+         * <p>Deletes the specified version of a custom platform.</p><p><h3>See Also:</h3> 
+         * <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeletePlatformVersion">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void DeletePlatformVersionAsync(const Model::DeletePlatformVersionRequest& request, const DeletePlatformVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Retrieve a list of application versions.</p><p><h3>See Also:</h3>   <a
@@ -1100,16 +1186,41 @@ namespace Model
         virtual void DescribeInstancesHealthAsync(const Model::DescribeInstancesHealthRequest& request, const DescribeInstancesHealthResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Returns a list of the available solution stack names.</p><p><h3>See
-         * Also:</h3>   <a
+         * <p>Describes the version of the platform.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribePlatformVersion">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::DescribePlatformVersionOutcome DescribePlatformVersion(const Model::DescribePlatformVersionRequest& request) const;
+
+        /**
+         * <p>Describes the version of the platform.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribePlatformVersion">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::DescribePlatformVersionOutcomeCallable DescribePlatformVersionCallable(const Model::DescribePlatformVersionRequest& request) const;
+
+        /**
+         * <p>Describes the version of the platform.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribePlatformVersion">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void DescribePlatformVersionAsync(const Model::DescribePlatformVersionRequest& request, const DescribePlatformVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Returns a list of the available solution stack names, with the public version
+         * first and then in reverse chronological order.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ListAvailableSolutionStacks">AWS
          * API Reference</a></p>
          */
         virtual Model::ListAvailableSolutionStacksOutcome ListAvailableSolutionStacks(const Model::ListAvailableSolutionStacksRequest& request) const;
 
         /**
-         * <p>Returns a list of the available solution stack names.</p><p><h3>See
-         * Also:</h3>   <a
+         * <p>Returns a list of the available solution stack names, with the public version
+         * first and then in reverse chronological order.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ListAvailableSolutionStacks">AWS
          * API Reference</a></p>
          *
@@ -1118,14 +1229,70 @@ namespace Model
         virtual Model::ListAvailableSolutionStacksOutcomeCallable ListAvailableSolutionStacksCallable(const Model::ListAvailableSolutionStacksRequest& request) const;
 
         /**
-         * <p>Returns a list of the available solution stack names.</p><p><h3>See
-         * Also:</h3>   <a
+         * <p>Returns a list of the available solution stack names, with the public version
+         * first and then in reverse chronological order.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ListAvailableSolutionStacks">AWS
          * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void ListAvailableSolutionStacksAsync(const Model::ListAvailableSolutionStacksRequest& request, const ListAvailableSolutionStacksResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Lists the available platforms.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ListPlatformVersions">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::ListPlatformVersionsOutcome ListPlatformVersions(const Model::ListPlatformVersionsRequest& request) const;
+
+        /**
+         * <p>Lists the available platforms.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ListPlatformVersions">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::ListPlatformVersionsOutcomeCallable ListPlatformVersionsCallable(const Model::ListPlatformVersionsRequest& request) const;
+
+        /**
+         * <p>Lists the available platforms.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ListPlatformVersions">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void ListPlatformVersionsAsync(const Model::ListPlatformVersionsRequest& request, const ListPlatformVersionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Returns the tags applied to an AWS Elastic Beanstalk resource. The response
+         * contains a list of tag key-value pairs.</p> <p>Currently, Elastic Beanstalk only
+         * supports tagging Elastic Beanstalk environments.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ListTagsForResource">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::ListTagsForResourceOutcome ListTagsForResource(const Model::ListTagsForResourceRequest& request) const;
+
+        /**
+         * <p>Returns the tags applied to an AWS Elastic Beanstalk resource. The response
+         * contains a list of tag key-value pairs.</p> <p>Currently, Elastic Beanstalk only
+         * supports tagging Elastic Beanstalk environments.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ListTagsForResource">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::ListTagsForResourceOutcomeCallable ListTagsForResourceCallable(const Model::ListTagsForResourceRequest& request) const;
+
+        /**
+         * <p>Returns the tags applied to an AWS Elastic Beanstalk resource. The response
+         * contains a list of tag key-value pairs.</p> <p>Currently, Elastic Beanstalk only
+         * supports tagging Elastic Beanstalk environments.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ListTagsForResource">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void ListTagsForResourceAsync(const Model::ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Deletes and recreates all of the AWS resources (for example: the Auto Scaling
@@ -1505,6 +1672,40 @@ namespace Model
         virtual void UpdateEnvironmentAsync(const Model::UpdateEnvironmentRequest& request, const UpdateEnvironmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
+         * <p>Update the list of tags applied to an AWS Elastic Beanstalk resource. Two
+         * lists can be passed: <code>TagsToAdd</code> for tags to add or update, and
+         * <code>TagsToRemove</code>.</p> <p>Currently, Elastic Beanstalk only supports
+         * tagging of Elastic Beanstalk environments.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateTagsForResource">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::UpdateTagsForResourceOutcome UpdateTagsForResource(const Model::UpdateTagsForResourceRequest& request) const;
+
+        /**
+         * <p>Update the list of tags applied to an AWS Elastic Beanstalk resource. Two
+         * lists can be passed: <code>TagsToAdd</code> for tags to add or update, and
+         * <code>TagsToRemove</code>.</p> <p>Currently, Elastic Beanstalk only supports
+         * tagging of Elastic Beanstalk environments.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateTagsForResource">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::UpdateTagsForResourceOutcomeCallable UpdateTagsForResourceCallable(const Model::UpdateTagsForResourceRequest& request) const;
+
+        /**
+         * <p>Update the list of tags applied to an AWS Elastic Beanstalk resource. Two
+         * lists can be passed: <code>TagsToAdd</code> for tags to add or update, and
+         * <code>TagsToRemove</code>.</p> <p>Currently, Elastic Beanstalk only supports
+         * tagging of Elastic Beanstalk environments.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateTagsForResource">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void UpdateTagsForResourceAsync(const Model::UpdateTagsForResourceRequest& request, const UpdateTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
          * <p>Takes a set of configuration settings and either a configuration template or
          * environment, and determines whether those values are valid.</p> <p>This action
          * returns a list of messages indicating any errors or warnings associated with the
@@ -1540,7 +1741,7 @@ namespace Model
 
 
   private:
-    void init(const Client::ClientConfiguration& clientConfiguration);
+    void init(const Aws::Client::ClientConfiguration& clientConfiguration);
 
         /**Async helpers**/
         void AbortEnvironmentUpdateAsyncHelper(const Model::AbortEnvironmentUpdateRequest& request, const AbortEnvironmentUpdateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -1551,11 +1752,13 @@ namespace Model
         void CreateApplicationVersionAsyncHelper(const Model::CreateApplicationVersionRequest& request, const CreateApplicationVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void CreateConfigurationTemplateAsyncHelper(const Model::CreateConfigurationTemplateRequest& request, const CreateConfigurationTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void CreateEnvironmentAsyncHelper(const Model::CreateEnvironmentRequest& request, const CreateEnvironmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void CreatePlatformVersionAsyncHelper(const Model::CreatePlatformVersionRequest& request, const CreatePlatformVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void CreateStorageLocationAsyncHelper(const Model::CreateStorageLocationRequest& request, const CreateStorageLocationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteApplicationAsyncHelper(const Model::DeleteApplicationRequest& request, const DeleteApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteApplicationVersionAsyncHelper(const Model::DeleteApplicationVersionRequest& request, const DeleteApplicationVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteConfigurationTemplateAsyncHelper(const Model::DeleteConfigurationTemplateRequest& request, const DeleteConfigurationTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteEnvironmentConfigurationAsyncHelper(const Model::DeleteEnvironmentConfigurationRequest& request, const DeleteEnvironmentConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void DeletePlatformVersionAsyncHelper(const Model::DeletePlatformVersionRequest& request, const DeletePlatformVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeApplicationVersionsAsyncHelper(const Model::DescribeApplicationVersionsRequest& request, const DescribeApplicationVersionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeApplicationsAsyncHelper(const Model::DescribeApplicationsRequest& request, const DescribeApplicationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeConfigurationOptionsAsyncHelper(const Model::DescribeConfigurationOptionsRequest& request, const DescribeConfigurationOptionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -1567,7 +1770,10 @@ namespace Model
         void DescribeEnvironmentsAsyncHelper(const Model::DescribeEnvironmentsRequest& request, const DescribeEnvironmentsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeEventsAsyncHelper(const Model::DescribeEventsRequest& request, const DescribeEventsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeInstancesHealthAsyncHelper(const Model::DescribeInstancesHealthRequest& request, const DescribeInstancesHealthResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void DescribePlatformVersionAsyncHelper(const Model::DescribePlatformVersionRequest& request, const DescribePlatformVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListAvailableSolutionStacksAsyncHelper(const Model::ListAvailableSolutionStacksRequest& request, const ListAvailableSolutionStacksResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void ListPlatformVersionsAsyncHelper(const Model::ListPlatformVersionsRequest& request, const ListPlatformVersionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void ListTagsForResourceAsyncHelper(const Model::ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void RebuildEnvironmentAsyncHelper(const Model::RebuildEnvironmentRequest& request, const RebuildEnvironmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void RequestEnvironmentInfoAsyncHelper(const Model::RequestEnvironmentInfoRequest& request, const RequestEnvironmentInfoResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void RestartAppServerAsyncHelper(const Model::RestartAppServerRequest& request, const RestartAppServerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -1579,10 +1785,11 @@ namespace Model
         void UpdateApplicationVersionAsyncHelper(const Model::UpdateApplicationVersionRequest& request, const UpdateApplicationVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateConfigurationTemplateAsyncHelper(const Model::UpdateConfigurationTemplateRequest& request, const UpdateConfigurationTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateEnvironmentAsyncHelper(const Model::UpdateEnvironmentRequest& request, const UpdateEnvironmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void UpdateTagsForResourceAsyncHelper(const Model::UpdateTagsForResourceRequest& request, const UpdateTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ValidateConfigurationSettingsAsyncHelper(const Model::ValidateConfigurationSettingsRequest& request, const ValidateConfigurationSettingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
     Aws::String m_uri;
-    std::shared_ptr<Utils::Threading::Executor> m_executor;
+    std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;
   };
 
 } // namespace ElasticBeanstalk

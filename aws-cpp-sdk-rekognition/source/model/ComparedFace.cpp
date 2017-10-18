@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/rekognition/model/ComparedFace.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -30,14 +31,20 @@ namespace Model
 ComparedFace::ComparedFace() : 
     m_boundingBoxHasBeenSet(false),
     m_confidence(0.0),
-    m_confidenceHasBeenSet(false)
+    m_confidenceHasBeenSet(false),
+    m_landmarksHasBeenSet(false),
+    m_poseHasBeenSet(false),
+    m_qualityHasBeenSet(false)
 {
 }
 
 ComparedFace::ComparedFace(const JsonValue& jsonValue) : 
     m_boundingBoxHasBeenSet(false),
     m_confidence(0.0),
-    m_confidenceHasBeenSet(false)
+    m_confidenceHasBeenSet(false),
+    m_landmarksHasBeenSet(false),
+    m_poseHasBeenSet(false),
+    m_qualityHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -58,6 +65,30 @@ ComparedFace& ComparedFace::operator =(const JsonValue& jsonValue)
     m_confidenceHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("Landmarks"))
+  {
+    Array<JsonValue> landmarksJsonList = jsonValue.GetArray("Landmarks");
+    for(unsigned landmarksIndex = 0; landmarksIndex < landmarksJsonList.GetLength(); ++landmarksIndex)
+    {
+      m_landmarks.push_back(landmarksJsonList[landmarksIndex].AsObject());
+    }
+    m_landmarksHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("Pose"))
+  {
+    m_pose = jsonValue.GetObject("Pose");
+
+    m_poseHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("Quality"))
+  {
+    m_quality = jsonValue.GetObject("Quality");
+
+    m_qualityHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -74,6 +105,29 @@ JsonValue ComparedFace::Jsonize() const
   if(m_confidenceHasBeenSet)
   {
    payload.WithDouble("Confidence", m_confidence);
+
+  }
+
+  if(m_landmarksHasBeenSet)
+  {
+   Array<JsonValue> landmarksJsonList(m_landmarks.size());
+   for(unsigned landmarksIndex = 0; landmarksIndex < landmarksJsonList.GetLength(); ++landmarksIndex)
+   {
+     landmarksJsonList[landmarksIndex].AsObject(m_landmarks[landmarksIndex].Jsonize());
+   }
+   payload.WithArray("Landmarks", std::move(landmarksJsonList));
+
+  }
+
+  if(m_poseHasBeenSet)
+  {
+   payload.WithObject("Pose", m_pose.Jsonize());
+
+  }
+
+  if(m_qualityHasBeenSet)
+  {
+   payload.WithObject("Quality", m_quality.Jsonize());
 
   }
 

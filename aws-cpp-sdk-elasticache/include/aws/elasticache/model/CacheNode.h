@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticache/ElastiCache_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/elasticache/model/Endpoint.h>
+#include <utility>
 
 namespace Aws
 {
@@ -79,6 +81,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The cache node identifier. A node ID is a numeric identifier (0001, 0002,
      * etc.). The combination of cluster ID and node ID uniquely identifies every cache
@@ -98,7 +101,7 @@ namespace Model
      * etc.). The combination of cluster ID and node ID uniquely identifies every cache
      * node used in a customer's AWS account.</p>
      */
-    inline void SetCacheNodeId(Aws::String&& value) { m_cacheNodeIdHasBeenSet = true; m_cacheNodeId = value; }
+    inline void SetCacheNodeId(Aws::String&& value) { m_cacheNodeIdHasBeenSet = true; m_cacheNodeId = std::move(value); }
 
     /**
      * <p>The cache node identifier. A node ID is a numeric identifier (0001, 0002,
@@ -119,7 +122,7 @@ namespace Model
      * etc.). The combination of cluster ID and node ID uniquely identifies every cache
      * node used in a customer's AWS account.</p>
      */
-    inline CacheNode& WithCacheNodeId(Aws::String&& value) { SetCacheNodeId(value); return *this;}
+    inline CacheNode& WithCacheNodeId(Aws::String&& value) { SetCacheNodeId(std::move(value)); return *this;}
 
     /**
      * <p>The cache node identifier. A node ID is a numeric identifier (0001, 0002,
@@ -127,6 +130,7 @@ namespace Model
      * node used in a customer's AWS account.</p>
      */
     inline CacheNode& WithCacheNodeId(const char* value) { SetCacheNodeId(value); return *this;}
+
 
     /**
      * <p>The current state of this cache node.</p>
@@ -141,7 +145,7 @@ namespace Model
     /**
      * <p>The current state of this cache node.</p>
      */
-    inline void SetCacheNodeStatus(Aws::String&& value) { m_cacheNodeStatusHasBeenSet = true; m_cacheNodeStatus = value; }
+    inline void SetCacheNodeStatus(Aws::String&& value) { m_cacheNodeStatusHasBeenSet = true; m_cacheNodeStatus = std::move(value); }
 
     /**
      * <p>The current state of this cache node.</p>
@@ -156,12 +160,13 @@ namespace Model
     /**
      * <p>The current state of this cache node.</p>
      */
-    inline CacheNode& WithCacheNodeStatus(Aws::String&& value) { SetCacheNodeStatus(value); return *this;}
+    inline CacheNode& WithCacheNodeStatus(Aws::String&& value) { SetCacheNodeStatus(std::move(value)); return *this;}
 
     /**
      * <p>The current state of this cache node.</p>
      */
     inline CacheNode& WithCacheNodeStatus(const char* value) { SetCacheNodeStatus(value); return *this;}
+
 
     /**
      * <p>The date and time when the cache node was created.</p>
@@ -176,7 +181,7 @@ namespace Model
     /**
      * <p>The date and time when the cache node was created.</p>
      */
-    inline void SetCacheNodeCreateTime(Aws::Utils::DateTime&& value) { m_cacheNodeCreateTimeHasBeenSet = true; m_cacheNodeCreateTime = value; }
+    inline void SetCacheNodeCreateTime(Aws::Utils::DateTime&& value) { m_cacheNodeCreateTimeHasBeenSet = true; m_cacheNodeCreateTime = std::move(value); }
 
     /**
      * <p>The date and time when the cache node was created.</p>
@@ -186,7 +191,8 @@ namespace Model
     /**
      * <p>The date and time when the cache node was created.</p>
      */
-    inline CacheNode& WithCacheNodeCreateTime(Aws::Utils::DateTime&& value) { SetCacheNodeCreateTime(value); return *this;}
+    inline CacheNode& WithCacheNodeCreateTime(Aws::Utils::DateTime&& value) { SetCacheNodeCreateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The hostname for connecting to this cache node.</p>
@@ -201,7 +207,7 @@ namespace Model
     /**
      * <p>The hostname for connecting to this cache node.</p>
      */
-    inline void SetEndpoint(Endpoint&& value) { m_endpointHasBeenSet = true; m_endpoint = value; }
+    inline void SetEndpoint(Endpoint&& value) { m_endpointHasBeenSet = true; m_endpoint = std::move(value); }
 
     /**
      * <p>The hostname for connecting to this cache node.</p>
@@ -211,7 +217,8 @@ namespace Model
     /**
      * <p>The hostname for connecting to this cache node.</p>
      */
-    inline CacheNode& WithEndpoint(Endpoint&& value) { SetEndpoint(value); return *this;}
+    inline CacheNode& WithEndpoint(Endpoint&& value) { SetEndpoint(std::move(value)); return *this;}
+
 
     /**
      * <p>The status of the parameter group applied to this cache node.</p>
@@ -226,7 +233,7 @@ namespace Model
     /**
      * <p>The status of the parameter group applied to this cache node.</p>
      */
-    inline void SetParameterGroupStatus(Aws::String&& value) { m_parameterGroupStatusHasBeenSet = true; m_parameterGroupStatus = value; }
+    inline void SetParameterGroupStatus(Aws::String&& value) { m_parameterGroupStatusHasBeenSet = true; m_parameterGroupStatus = std::move(value); }
 
     /**
      * <p>The status of the parameter group applied to this cache node.</p>
@@ -241,12 +248,13 @@ namespace Model
     /**
      * <p>The status of the parameter group applied to this cache node.</p>
      */
-    inline CacheNode& WithParameterGroupStatus(Aws::String&& value) { SetParameterGroupStatus(value); return *this;}
+    inline CacheNode& WithParameterGroupStatus(Aws::String&& value) { SetParameterGroupStatus(std::move(value)); return *this;}
 
     /**
      * <p>The status of the parameter group applied to this cache node.</p>
      */
     inline CacheNode& WithParameterGroupStatus(const char* value) { SetParameterGroupStatus(value); return *this;}
+
 
     /**
      * <p>The ID of the primary node to which this read replica node is synchronized.
@@ -267,7 +275,7 @@ namespace Model
      * If this field is empty, this node is not associated with a primary cache
      * cluster.</p>
      */
-    inline void SetSourceCacheNodeId(Aws::String&& value) { m_sourceCacheNodeIdHasBeenSet = true; m_sourceCacheNodeId = value; }
+    inline void SetSourceCacheNodeId(Aws::String&& value) { m_sourceCacheNodeIdHasBeenSet = true; m_sourceCacheNodeId = std::move(value); }
 
     /**
      * <p>The ID of the primary node to which this read replica node is synchronized.
@@ -288,7 +296,7 @@ namespace Model
      * If this field is empty, this node is not associated with a primary cache
      * cluster.</p>
      */
-    inline CacheNode& WithSourceCacheNodeId(Aws::String&& value) { SetSourceCacheNodeId(value); return *this;}
+    inline CacheNode& WithSourceCacheNodeId(Aws::String&& value) { SetSourceCacheNodeId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the primary node to which this read replica node is synchronized.
@@ -296,6 +304,7 @@ namespace Model
      * cluster.</p>
      */
     inline CacheNode& WithSourceCacheNodeId(const char* value) { SetSourceCacheNodeId(value); return *this;}
+
 
     /**
      * <p>The Availability Zone where this node was created and now resides.</p>
@@ -310,7 +319,7 @@ namespace Model
     /**
      * <p>The Availability Zone where this node was created and now resides.</p>
      */
-    inline void SetCustomerAvailabilityZone(Aws::String&& value) { m_customerAvailabilityZoneHasBeenSet = true; m_customerAvailabilityZone = value; }
+    inline void SetCustomerAvailabilityZone(Aws::String&& value) { m_customerAvailabilityZoneHasBeenSet = true; m_customerAvailabilityZone = std::move(value); }
 
     /**
      * <p>The Availability Zone where this node was created and now resides.</p>
@@ -325,7 +334,7 @@ namespace Model
     /**
      * <p>The Availability Zone where this node was created and now resides.</p>
      */
-    inline CacheNode& WithCustomerAvailabilityZone(Aws::String&& value) { SetCustomerAvailabilityZone(value); return *this;}
+    inline CacheNode& WithCustomerAvailabilityZone(Aws::String&& value) { SetCustomerAvailabilityZone(std::move(value)); return *this;}
 
     /**
      * <p>The Availability Zone where this node was created and now resides.</p>
@@ -333,18 +342,25 @@ namespace Model
     inline CacheNode& WithCustomerAvailabilityZone(const char* value) { SetCustomerAvailabilityZone(value); return *this;}
 
   private:
+
     Aws::String m_cacheNodeId;
     bool m_cacheNodeIdHasBeenSet;
+
     Aws::String m_cacheNodeStatus;
     bool m_cacheNodeStatusHasBeenSet;
+
     Aws::Utils::DateTime m_cacheNodeCreateTime;
     bool m_cacheNodeCreateTimeHasBeenSet;
+
     Endpoint m_endpoint;
     bool m_endpointHasBeenSet;
+
     Aws::String m_parameterGroupStatus;
     bool m_parameterGroupStatusHasBeenSet;
+
     Aws::String m_sourceCacheNodeId;
     bool m_sourceCacheNodeIdHasBeenSet;
+
     Aws::String m_customerAvailabilityZone;
     bool m_customerAvailabilityZoneHasBeenSet;
   };

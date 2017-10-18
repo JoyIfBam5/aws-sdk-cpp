@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/autoscaling/AutoScaling_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/autoscaling/model/ResponseMetadata.h>
 #include <aws/autoscaling/model/AutoScalingInstanceDetails.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,18 +37,13 @@ namespace AutoScaling
 {
 namespace Model
 {
-  /**
-   * <p>Contains the output of DescribeAutoScalingInstances.</p><p><h3>See Also:</h3>
-   * <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/autoscaling-2011-01-01/AutoScalingInstancesType">AWS
-   * API Reference</a></p>
-   */
   class AWS_AUTOSCALING_API DescribeAutoScalingInstancesResult
   {
   public:
     DescribeAutoScalingInstancesResult();
-    DescribeAutoScalingInstancesResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeAutoScalingInstancesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeAutoScalingInstancesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeAutoScalingInstancesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>The instances.</p>
@@ -61,7 +58,7 @@ namespace Model
     /**
      * <p>The instances.</p>
      */
-    inline void SetAutoScalingInstances(Aws::Vector<AutoScalingInstanceDetails>&& value) { m_autoScalingInstances = value; }
+    inline void SetAutoScalingInstances(Aws::Vector<AutoScalingInstanceDetails>&& value) { m_autoScalingInstances = std::move(value); }
 
     /**
      * <p>The instances.</p>
@@ -71,7 +68,7 @@ namespace Model
     /**
      * <p>The instances.</p>
      */
-    inline DescribeAutoScalingInstancesResult& WithAutoScalingInstances(Aws::Vector<AutoScalingInstanceDetails>&& value) { SetAutoScalingInstances(value); return *this;}
+    inline DescribeAutoScalingInstancesResult& WithAutoScalingInstances(Aws::Vector<AutoScalingInstanceDetails>&& value) { SetAutoScalingInstances(std::move(value)); return *this;}
 
     /**
      * <p>The instances.</p>
@@ -81,7 +78,8 @@ namespace Model
     /**
      * <p>The instances.</p>
      */
-    inline DescribeAutoScalingInstancesResult& AddAutoScalingInstances(AutoScalingInstanceDetails&& value) { m_autoScalingInstances.push_back(value); return *this; }
+    inline DescribeAutoScalingInstancesResult& AddAutoScalingInstances(AutoScalingInstanceDetails&& value) { m_autoScalingInstances.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
@@ -99,7 +97,7 @@ namespace Model
      * <p>The token to use when requesting the next set of items. If there are no
      * additional items to return, the string is empty.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
@@ -117,13 +115,14 @@ namespace Model
      * <p>The token to use when requesting the next set of items. If there are no
      * additional items to return, the string is empty.</p>
      */
-    inline DescribeAutoScalingInstancesResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeAutoScalingInstancesResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
      * additional items to return, the string is empty.</p>
      */
     inline DescribeAutoScalingInstancesResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -132,17 +131,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeAutoScalingInstancesResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeAutoScalingInstancesResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeAutoScalingInstancesResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<AutoScalingInstanceDetails> m_autoScalingInstances;
+
     Aws::String m_nextToken;
+
     ResponseMetadata m_responseMetadata;
   };
 

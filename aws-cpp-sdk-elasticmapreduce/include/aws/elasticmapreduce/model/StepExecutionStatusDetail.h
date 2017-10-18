@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/elasticmapreduce/model/StepExecutionState.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,30 +47,32 @@ namespace Model
     StepExecutionStatusDetail& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p>The state of the job flow step.</p>
+     * <p>The state of the step.</p>
      */
     inline const StepExecutionState& GetState() const{ return m_state; }
 
     /**
-     * <p>The state of the job flow step.</p>
+     * <p>The state of the step.</p>
      */
     inline void SetState(const StepExecutionState& value) { m_stateHasBeenSet = true; m_state = value; }
 
     /**
-     * <p>The state of the job flow step.</p>
+     * <p>The state of the step.</p>
      */
-    inline void SetState(StepExecutionState&& value) { m_stateHasBeenSet = true; m_state = value; }
+    inline void SetState(StepExecutionState&& value) { m_stateHasBeenSet = true; m_state = std::move(value); }
 
     /**
-     * <p>The state of the job flow step.</p>
+     * <p>The state of the step.</p>
      */
     inline StepExecutionStatusDetail& WithState(const StepExecutionState& value) { SetState(value); return *this;}
 
     /**
-     * <p>The state of the job flow step.</p>
+     * <p>The state of the step.</p>
      */
-    inline StepExecutionStatusDetail& WithState(StepExecutionState&& value) { SetState(value); return *this;}
+    inline StepExecutionStatusDetail& WithState(StepExecutionState&& value) { SetState(std::move(value)); return *this;}
+
 
     /**
      * <p>The creation date and time of the step.</p>
@@ -83,7 +87,7 @@ namespace Model
     /**
      * <p>The creation date and time of the step.</p>
      */
-    inline void SetCreationDateTime(Aws::Utils::DateTime&& value) { m_creationDateTimeHasBeenSet = true; m_creationDateTime = value; }
+    inline void SetCreationDateTime(Aws::Utils::DateTime&& value) { m_creationDateTimeHasBeenSet = true; m_creationDateTime = std::move(value); }
 
     /**
      * <p>The creation date and time of the step.</p>
@@ -93,7 +97,8 @@ namespace Model
     /**
      * <p>The creation date and time of the step.</p>
      */
-    inline StepExecutionStatusDetail& WithCreationDateTime(Aws::Utils::DateTime&& value) { SetCreationDateTime(value); return *this;}
+    inline StepExecutionStatusDetail& WithCreationDateTime(Aws::Utils::DateTime&& value) { SetCreationDateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The start date and time of the step.</p>
@@ -108,7 +113,7 @@ namespace Model
     /**
      * <p>The start date and time of the step.</p>
      */
-    inline void SetStartDateTime(Aws::Utils::DateTime&& value) { m_startDateTimeHasBeenSet = true; m_startDateTime = value; }
+    inline void SetStartDateTime(Aws::Utils::DateTime&& value) { m_startDateTimeHasBeenSet = true; m_startDateTime = std::move(value); }
 
     /**
      * <p>The start date and time of the step.</p>
@@ -118,7 +123,8 @@ namespace Model
     /**
      * <p>The start date and time of the step.</p>
      */
-    inline StepExecutionStatusDetail& WithStartDateTime(Aws::Utils::DateTime&& value) { SetStartDateTime(value); return *this;}
+    inline StepExecutionStatusDetail& WithStartDateTime(Aws::Utils::DateTime&& value) { SetStartDateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The completion date and time of the step.</p>
@@ -133,7 +139,7 @@ namespace Model
     /**
      * <p>The completion date and time of the step.</p>
      */
-    inline void SetEndDateTime(Aws::Utils::DateTime&& value) { m_endDateTimeHasBeenSet = true; m_endDateTime = value; }
+    inline void SetEndDateTime(Aws::Utils::DateTime&& value) { m_endDateTimeHasBeenSet = true; m_endDateTime = std::move(value); }
 
     /**
      * <p>The completion date and time of the step.</p>
@@ -143,7 +149,8 @@ namespace Model
     /**
      * <p>The completion date and time of the step.</p>
      */
-    inline StepExecutionStatusDetail& WithEndDateTime(Aws::Utils::DateTime&& value) { SetEndDateTime(value); return *this;}
+    inline StepExecutionStatusDetail& WithEndDateTime(Aws::Utils::DateTime&& value) { SetEndDateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>A description of the step's current state.</p>
@@ -158,7 +165,7 @@ namespace Model
     /**
      * <p>A description of the step's current state.</p>
      */
-    inline void SetLastStateChangeReason(Aws::String&& value) { m_lastStateChangeReasonHasBeenSet = true; m_lastStateChangeReason = value; }
+    inline void SetLastStateChangeReason(Aws::String&& value) { m_lastStateChangeReasonHasBeenSet = true; m_lastStateChangeReason = std::move(value); }
 
     /**
      * <p>A description of the step's current state.</p>
@@ -173,7 +180,7 @@ namespace Model
     /**
      * <p>A description of the step's current state.</p>
      */
-    inline StepExecutionStatusDetail& WithLastStateChangeReason(Aws::String&& value) { SetLastStateChangeReason(value); return *this;}
+    inline StepExecutionStatusDetail& WithLastStateChangeReason(Aws::String&& value) { SetLastStateChangeReason(std::move(value)); return *this;}
 
     /**
      * <p>A description of the step's current state.</p>
@@ -181,14 +188,19 @@ namespace Model
     inline StepExecutionStatusDetail& WithLastStateChangeReason(const char* value) { SetLastStateChangeReason(value); return *this;}
 
   private:
+
     StepExecutionState m_state;
     bool m_stateHasBeenSet;
+
     Aws::Utils::DateTime m_creationDateTime;
     bool m_creationDateTimeHasBeenSet;
+
     Aws::Utils::DateTime m_startDateTime;
     bool m_startDateTimeHasBeenSet;
+
     Aws::Utils::DateTime m_endDateTime;
     bool m_endDateTimeHasBeenSet;
+
     Aws::String m_lastStateChangeReason;
     bool m_lastStateChangeReasonHasBeenSet;
   };

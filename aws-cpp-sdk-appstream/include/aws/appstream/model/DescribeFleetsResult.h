@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/appstream/AppStream_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/appstream/model/Fleet.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,43 +40,45 @@ namespace Model
   {
   public:
     DescribeFleetsResult();
-    DescribeFleetsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeFleetsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeFleetsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeFleetsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>The list of fleet details.</p>
+     * <p>Information about the fleets.</p>
      */
     inline const Aws::Vector<Fleet>& GetFleets() const{ return m_fleets; }
 
     /**
-     * <p>The list of fleet details.</p>
+     * <p>Information about the fleets.</p>
      */
     inline void SetFleets(const Aws::Vector<Fleet>& value) { m_fleets = value; }
 
     /**
-     * <p>The list of fleet details.</p>
+     * <p>Information about the fleets.</p>
      */
-    inline void SetFleets(Aws::Vector<Fleet>&& value) { m_fleets = value; }
+    inline void SetFleets(Aws::Vector<Fleet>&& value) { m_fleets = std::move(value); }
 
     /**
-     * <p>The list of fleet details.</p>
+     * <p>Information about the fleets.</p>
      */
     inline DescribeFleetsResult& WithFleets(const Aws::Vector<Fleet>& value) { SetFleets(value); return *this;}
 
     /**
-     * <p>The list of fleet details.</p>
+     * <p>Information about the fleets.</p>
      */
-    inline DescribeFleetsResult& WithFleets(Aws::Vector<Fleet>&& value) { SetFleets(value); return *this;}
+    inline DescribeFleetsResult& WithFleets(Aws::Vector<Fleet>&& value) { SetFleets(std::move(value)); return *this;}
 
     /**
-     * <p>The list of fleet details.</p>
+     * <p>Information about the fleets.</p>
      */
     inline DescribeFleetsResult& AddFleets(const Fleet& value) { m_fleets.push_back(value); return *this; }
 
     /**
-     * <p>The list of fleet details.</p>
+     * <p>Information about the fleets.</p>
      */
-    inline DescribeFleetsResult& AddFleets(Fleet&& value) { m_fleets.push_back(value); return *this; }
+    inline DescribeFleetsResult& AddFleets(Fleet&& value) { m_fleets.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The pagination token to use to retrieve the next page of results for this
@@ -92,7 +96,7 @@ namespace Model
      * <p>The pagination token to use to retrieve the next page of results for this
      * operation. If there are no more pages, this value is null.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The pagination token to use to retrieve the next page of results for this
@@ -110,7 +114,7 @@ namespace Model
      * <p>The pagination token to use to retrieve the next page of results for this
      * operation. If there are no more pages, this value is null.</p>
      */
-    inline DescribeFleetsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeFleetsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The pagination token to use to retrieve the next page of results for this
@@ -119,7 +123,9 @@ namespace Model
     inline DescribeFleetsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Fleet> m_fleets;
+
     Aws::String m_nextToken;
   };
 

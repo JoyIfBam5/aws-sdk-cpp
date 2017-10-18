@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/devicefarm/DeviceFarm_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -19,6 +20,7 @@
 #include <aws/devicefarm/model/DevicePlatform.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/devicefarm/model/RecurringCharge.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     Offering& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ID that corresponds to a device offering.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The ID that corresponds to a device offering.</p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>The ID that corresponds to a device offering.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The ID that corresponds to a device offering.</p>
      */
-    inline Offering& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline Offering& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The ID that corresponds to a device offering.</p>
      */
     inline Offering& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>A string describing the offering.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>A string describing the offering.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>A string describing the offering.</p>
@@ -110,12 +114,13 @@ namespace Model
     /**
      * <p>A string describing the offering.</p>
      */
-    inline Offering& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline Offering& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>A string describing the offering.</p>
      */
     inline Offering& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The type of offering (e.g., "RECURRING") for a device.</p>
@@ -130,7 +135,7 @@ namespace Model
     /**
      * <p>The type of offering (e.g., "RECURRING") for a device.</p>
      */
-    inline void SetType(OfferingType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(OfferingType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The type of offering (e.g., "RECURRING") for a device.</p>
@@ -140,7 +145,8 @@ namespace Model
     /**
      * <p>The type of offering (e.g., "RECURRING") for a device.</p>
      */
-    inline Offering& WithType(OfferingType&& value) { SetType(value); return *this;}
+    inline Offering& WithType(OfferingType&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p>The platform of the device (e.g., ANDROID or IOS).</p>
@@ -155,7 +161,7 @@ namespace Model
     /**
      * <p>The platform of the device (e.g., ANDROID or IOS).</p>
      */
-    inline void SetPlatform(DevicePlatform&& value) { m_platformHasBeenSet = true; m_platform = value; }
+    inline void SetPlatform(DevicePlatform&& value) { m_platformHasBeenSet = true; m_platform = std::move(value); }
 
     /**
      * <p>The platform of the device (e.g., ANDROID or IOS).</p>
@@ -165,7 +171,8 @@ namespace Model
     /**
      * <p>The platform of the device (e.g., ANDROID or IOS).</p>
      */
-    inline Offering& WithPlatform(DevicePlatform&& value) { SetPlatform(value); return *this;}
+    inline Offering& WithPlatform(DevicePlatform&& value) { SetPlatform(std::move(value)); return *this;}
+
 
     /**
      * <p>Specifies whether there are recurring charges for the offering.</p>
@@ -180,7 +187,7 @@ namespace Model
     /**
      * <p>Specifies whether there are recurring charges for the offering.</p>
      */
-    inline void SetRecurringCharges(Aws::Vector<RecurringCharge>&& value) { m_recurringChargesHasBeenSet = true; m_recurringCharges = value; }
+    inline void SetRecurringCharges(Aws::Vector<RecurringCharge>&& value) { m_recurringChargesHasBeenSet = true; m_recurringCharges = std::move(value); }
 
     /**
      * <p>Specifies whether there are recurring charges for the offering.</p>
@@ -190,7 +197,7 @@ namespace Model
     /**
      * <p>Specifies whether there are recurring charges for the offering.</p>
      */
-    inline Offering& WithRecurringCharges(Aws::Vector<RecurringCharge>&& value) { SetRecurringCharges(value); return *this;}
+    inline Offering& WithRecurringCharges(Aws::Vector<RecurringCharge>&& value) { SetRecurringCharges(std::move(value)); return *this;}
 
     /**
      * <p>Specifies whether there are recurring charges for the offering.</p>
@@ -200,17 +207,22 @@ namespace Model
     /**
      * <p>Specifies whether there are recurring charges for the offering.</p>
      */
-    inline Offering& AddRecurringCharges(RecurringCharge&& value) { m_recurringChargesHasBeenSet = true; m_recurringCharges.push_back(value); return *this; }
+    inline Offering& AddRecurringCharges(RecurringCharge&& value) { m_recurringChargesHasBeenSet = true; m_recurringCharges.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     OfferingType m_type;
     bool m_typeHasBeenSet;
+
     DevicePlatform m_platform;
     bool m_platformHasBeenSet;
+
     Aws::Vector<RecurringCharge> m_recurringCharges;
     bool m_recurringChargesHasBeenSet;
   };

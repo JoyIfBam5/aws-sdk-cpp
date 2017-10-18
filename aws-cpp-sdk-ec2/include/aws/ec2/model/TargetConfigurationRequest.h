@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,40 +48,6 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
-    /**
-     * <p>The Convertible Reserved Instance offering ID.</p>
-     */
-    inline const Aws::String& GetOfferingId() const{ return m_offeringId; }
-
-    /**
-     * <p>The Convertible Reserved Instance offering ID.</p>
-     */
-    inline void SetOfferingId(const Aws::String& value) { m_offeringIdHasBeenSet = true; m_offeringId = value; }
-
-    /**
-     * <p>The Convertible Reserved Instance offering ID.</p>
-     */
-    inline void SetOfferingId(Aws::String&& value) { m_offeringIdHasBeenSet = true; m_offeringId = value; }
-
-    /**
-     * <p>The Convertible Reserved Instance offering ID.</p>
-     */
-    inline void SetOfferingId(const char* value) { m_offeringIdHasBeenSet = true; m_offeringId.assign(value); }
-
-    /**
-     * <p>The Convertible Reserved Instance offering ID.</p>
-     */
-    inline TargetConfigurationRequest& WithOfferingId(const Aws::String& value) { SetOfferingId(value); return *this;}
-
-    /**
-     * <p>The Convertible Reserved Instance offering ID.</p>
-     */
-    inline TargetConfigurationRequest& WithOfferingId(Aws::String&& value) { SetOfferingId(value); return *this;}
-
-    /**
-     * <p>The Convertible Reserved Instance offering ID.</p>
-     */
-    inline TargetConfigurationRequest& WithOfferingId(const char* value) { SetOfferingId(value); return *this;}
 
     /**
      * <p>The number of instances the Covertible Reserved Instance offering can be
@@ -99,11 +67,49 @@ namespace Model
      */
     inline TargetConfigurationRequest& WithInstanceCount(int value) { SetInstanceCount(value); return *this;}
 
+
+    /**
+     * <p>The Convertible Reserved Instance offering ID.</p>
+     */
+    inline const Aws::String& GetOfferingId() const{ return m_offeringId; }
+
+    /**
+     * <p>The Convertible Reserved Instance offering ID.</p>
+     */
+    inline void SetOfferingId(const Aws::String& value) { m_offeringIdHasBeenSet = true; m_offeringId = value; }
+
+    /**
+     * <p>The Convertible Reserved Instance offering ID.</p>
+     */
+    inline void SetOfferingId(Aws::String&& value) { m_offeringIdHasBeenSet = true; m_offeringId = std::move(value); }
+
+    /**
+     * <p>The Convertible Reserved Instance offering ID.</p>
+     */
+    inline void SetOfferingId(const char* value) { m_offeringIdHasBeenSet = true; m_offeringId.assign(value); }
+
+    /**
+     * <p>The Convertible Reserved Instance offering ID.</p>
+     */
+    inline TargetConfigurationRequest& WithOfferingId(const Aws::String& value) { SetOfferingId(value); return *this;}
+
+    /**
+     * <p>The Convertible Reserved Instance offering ID.</p>
+     */
+    inline TargetConfigurationRequest& WithOfferingId(Aws::String&& value) { SetOfferingId(std::move(value)); return *this;}
+
+    /**
+     * <p>The Convertible Reserved Instance offering ID.</p>
+     */
+    inline TargetConfigurationRequest& WithOfferingId(const char* value) { SetOfferingId(value); return *this;}
+
   private:
-    Aws::String m_offeringId;
-    bool m_offeringIdHasBeenSet;
+
     int m_instanceCount;
     bool m_instanceCountHasBeenSet;
+
+    Aws::String m_offeringId;
+    bool m_offeringIdHasBeenSet;
   };
 
 } // namespace Model

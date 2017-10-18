@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   * 
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -619,7 +619,13 @@ public:
                         stateStartIndex = index + 1;
                         m_parsedTimestamp.tm_year -= 1900;
                     }
-                    else if(isdigit(c))
+                    else if (isspace(c) && index - stateStartIndex == 2)
+                    {
+                        m_state = 5;
+                        stateStartIndex = index + 1;
+                        m_parsedTimestamp.tm_year += 2000 - 1900;
+                    }
+                    else if (isdigit(c))
                     {
                         m_parsedTimestamp.tm_year = m_parsedTimestamp.tm_year * 10 + (c - '0');
                     }
@@ -1122,6 +1128,29 @@ void DateTime::ConvertTimestampStringToTimePoint(const char* timestamp, DateForm
         isUtc = parser.ShouldIAssumeThisIsUTC();
         timeStruct = parser.GetParsedTimestamp();
         break;      
+    }
+    case DateFormat::AutoDetect:
+    {
+        RFC822DateParser rfcParser(timestamp);
+        rfcParser.Parse();
+        if(rfcParser.WasParseSuccessful())
+        {
+            m_valid = true;
+            isUtc = rfcParser.ShouldIAssumeThisIsUTC();
+            timeStruct = rfcParser.GetParsedTimestamp();
+            break;
+        }
+        ISO_8601DateParser isoParser(timestamp);
+        isoParser.Parse();
+        if (isoParser.WasParseSuccessful())
+        {
+            m_valid = true;
+            isUtc = isoParser.ShouldIAssumeThisIsUTC();
+            timeStruct = isoParser.GetParsedTimestamp();
+            break;
+        }
+        m_valid = false;
+        break;
     }
     default:       
         assert(0);

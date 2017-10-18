@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/autoscaling/AutoScaling_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the group.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The name of the group.</p>
      */
-    inline void SetAutoScalingGroupName(Aws::String&& value) { m_autoScalingGroupNameHasBeenSet = true; m_autoScalingGroupName = value; }
+    inline void SetAutoScalingGroupName(Aws::String&& value) { m_autoScalingGroupNameHasBeenSet = true; m_autoScalingGroupName = std::move(value); }
 
     /**
      * <p>The name of the group.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>The name of the group.</p>
      */
-    inline NotificationConfiguration& WithAutoScalingGroupName(Aws::String&& value) { SetAutoScalingGroupName(value); return *this;}
+    inline NotificationConfiguration& WithAutoScalingGroupName(Aws::String&& value) { SetAutoScalingGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the group.</p>
      */
     inline NotificationConfiguration& WithAutoScalingGroupName(const char* value) { SetAutoScalingGroupName(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
@@ -97,7 +101,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
      * (SNS) topic.</p>
      */
-    inline void SetTopicARN(Aws::String&& value) { m_topicARNHasBeenSet = true; m_topicARN = value; }
+    inline void SetTopicARN(Aws::String&& value) { m_topicARNHasBeenSet = true; m_topicARN = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
@@ -115,13 +119,14 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
      * (SNS) topic.</p>
      */
-    inline NotificationConfiguration& WithTopicARN(Aws::String&& value) { SetTopicARN(value); return *this;}
+    inline NotificationConfiguration& WithTopicARN(Aws::String&& value) { SetTopicARN(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
      * (SNS) topic.</p>
      */
     inline NotificationConfiguration& WithTopicARN(const char* value) { SetTopicARN(value); return *this;}
+
 
     /**
      * <p>One of the following event notification types:</p> <ul> <li> <p>
@@ -151,7 +156,7 @@ namespace Model
      * <code>autoscaling:EC2_INSTANCE_TERMINATE_ERROR</code> </p> </li> <li> <p>
      * <code>autoscaling:TEST_NOTIFICATION</code> </p> </li> </ul>
      */
-    inline void SetNotificationType(Aws::String&& value) { m_notificationTypeHasBeenSet = true; m_notificationType = value; }
+    inline void SetNotificationType(Aws::String&& value) { m_notificationTypeHasBeenSet = true; m_notificationType = std::move(value); }
 
     /**
      * <p>One of the following event notification types:</p> <ul> <li> <p>
@@ -181,7 +186,7 @@ namespace Model
      * <code>autoscaling:EC2_INSTANCE_TERMINATE_ERROR</code> </p> </li> <li> <p>
      * <code>autoscaling:TEST_NOTIFICATION</code> </p> </li> </ul>
      */
-    inline NotificationConfiguration& WithNotificationType(Aws::String&& value) { SetNotificationType(value); return *this;}
+    inline NotificationConfiguration& WithNotificationType(Aws::String&& value) { SetNotificationType(std::move(value)); return *this;}
 
     /**
      * <p>One of the following event notification types:</p> <ul> <li> <p>
@@ -194,10 +199,13 @@ namespace Model
     inline NotificationConfiguration& WithNotificationType(const char* value) { SetNotificationType(value); return *this;}
 
   private:
+
     Aws::String m_autoScalingGroupName;
     bool m_autoScalingGroupNameHasBeenSet;
+
     Aws::String m_topicARN;
     bool m_topicARNHasBeenSet;
+
     Aws::String m_notificationType;
     bool m_notificationTypeHasBeenSet;
   };

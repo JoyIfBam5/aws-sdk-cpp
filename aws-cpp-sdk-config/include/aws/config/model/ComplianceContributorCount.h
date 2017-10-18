@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/config/ConfigService_EXPORTS.h>
 
@@ -43,6 +44,7 @@ namespace Model
     ComplianceContributorCount& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The number of AWS resources or AWS Config rules responsible for the current
      * compliance of the item.</p>
@@ -61,6 +63,7 @@ namespace Model
      */
     inline ComplianceContributorCount& WithCappedCount(int value) { SetCappedCount(value); return *this;}
 
+
     /**
      * <p>Indicates whether the maximum count is reached.</p>
      */
@@ -77,8 +80,10 @@ namespace Model
     inline ComplianceContributorCount& WithCapExceeded(bool value) { SetCapExceeded(value); return *this;}
 
   private:
+
     int m_cappedCount;
     bool m_cappedCountHasBeenSet;
+
     bool m_capExceeded;
     bool m_capExceededHasBeenSet;
   };

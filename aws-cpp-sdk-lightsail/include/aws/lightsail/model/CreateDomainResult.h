@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/lightsail/model/Operation.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     CreateDomainResult();
-    CreateDomainResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateDomainResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateDomainResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateDomainResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>An array of key-value pairs containing information about the domain resource
@@ -55,7 +58,7 @@ namespace Model
      * <p>An array of key-value pairs containing information about the domain resource
      * you created.</p>
      */
-    inline void SetOperation(Operation&& value) { m_operation = value; }
+    inline void SetOperation(Operation&& value) { m_operation = std::move(value); }
 
     /**
      * <p>An array of key-value pairs containing information about the domain resource
@@ -67,9 +70,10 @@ namespace Model
      * <p>An array of key-value pairs containing information about the domain resource
      * you created.</p>
      */
-    inline CreateDomainResult& WithOperation(Operation&& value) { SetOperation(value); return *this;}
+    inline CreateDomainResult& WithOperation(Operation&& value) { SetOperation(std::move(value)); return *this;}
 
   private:
+
     Operation m_operation;
   };
 

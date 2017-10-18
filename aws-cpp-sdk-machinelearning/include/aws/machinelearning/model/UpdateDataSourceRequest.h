@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/machinelearning/MachineLearning_EXPORTS.h>
 #include <aws/machinelearning/MachineLearningRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     UpdateDataSourceRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateDataSource"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The ID assigned to the <code>DataSource</code> during creation.</p>
@@ -47,7 +57,7 @@ namespace Model
     /**
      * <p>The ID assigned to the <code>DataSource</code> during creation.</p>
      */
-    inline void SetDataSourceId(Aws::String&& value) { m_dataSourceIdHasBeenSet = true; m_dataSourceId = value; }
+    inline void SetDataSourceId(Aws::String&& value) { m_dataSourceIdHasBeenSet = true; m_dataSourceId = std::move(value); }
 
     /**
      * <p>The ID assigned to the <code>DataSource</code> during creation.</p>
@@ -62,12 +72,13 @@ namespace Model
     /**
      * <p>The ID assigned to the <code>DataSource</code> during creation.</p>
      */
-    inline UpdateDataSourceRequest& WithDataSourceId(Aws::String&& value) { SetDataSourceId(value); return *this;}
+    inline UpdateDataSourceRequest& WithDataSourceId(Aws::String&& value) { SetDataSourceId(std::move(value)); return *this;}
 
     /**
      * <p>The ID assigned to the <code>DataSource</code> during creation.</p>
      */
     inline UpdateDataSourceRequest& WithDataSourceId(const char* value) { SetDataSourceId(value); return *this;}
+
 
     /**
      * <p>A new user-supplied name or description of the <code>DataSource</code> that
@@ -85,7 +96,7 @@ namespace Model
      * <p>A new user-supplied name or description of the <code>DataSource</code> that
      * will replace the current description. </p>
      */
-    inline void SetDataSourceName(Aws::String&& value) { m_dataSourceNameHasBeenSet = true; m_dataSourceName = value; }
+    inline void SetDataSourceName(Aws::String&& value) { m_dataSourceNameHasBeenSet = true; m_dataSourceName = std::move(value); }
 
     /**
      * <p>A new user-supplied name or description of the <code>DataSource</code> that
@@ -103,7 +114,7 @@ namespace Model
      * <p>A new user-supplied name or description of the <code>DataSource</code> that
      * will replace the current description. </p>
      */
-    inline UpdateDataSourceRequest& WithDataSourceName(Aws::String&& value) { SetDataSourceName(value); return *this;}
+    inline UpdateDataSourceRequest& WithDataSourceName(Aws::String&& value) { SetDataSourceName(std::move(value)); return *this;}
 
     /**
      * <p>A new user-supplied name or description of the <code>DataSource</code> that
@@ -112,8 +123,10 @@ namespace Model
     inline UpdateDataSourceRequest& WithDataSourceName(const char* value) { SetDataSourceName(value); return *this;}
 
   private:
+
     Aws::String m_dataSourceId;
     bool m_dataSourceIdHasBeenSet;
+
     Aws::String m_dataSourceName;
     bool m_dataSourceNameHasBeenSet;
   };

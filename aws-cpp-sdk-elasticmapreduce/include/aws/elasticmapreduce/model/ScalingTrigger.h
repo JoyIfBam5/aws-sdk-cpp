@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/elasticmapreduce/model/CloudWatchAlarmDefinition.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     ScalingTrigger& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The definition of a CloudWatch metric alarm. When the defined alarm
      * conditions are met along with other trigger parameters, scaling activity
@@ -63,7 +66,7 @@ namespace Model
      * conditions are met along with other trigger parameters, scaling activity
      * begins.</p>
      */
-    inline void SetCloudWatchAlarmDefinition(CloudWatchAlarmDefinition&& value) { m_cloudWatchAlarmDefinitionHasBeenSet = true; m_cloudWatchAlarmDefinition = value; }
+    inline void SetCloudWatchAlarmDefinition(CloudWatchAlarmDefinition&& value) { m_cloudWatchAlarmDefinitionHasBeenSet = true; m_cloudWatchAlarmDefinition = std::move(value); }
 
     /**
      * <p>The definition of a CloudWatch metric alarm. When the defined alarm
@@ -77,9 +80,10 @@ namespace Model
      * conditions are met along with other trigger parameters, scaling activity
      * begins.</p>
      */
-    inline ScalingTrigger& WithCloudWatchAlarmDefinition(CloudWatchAlarmDefinition&& value) { SetCloudWatchAlarmDefinition(value); return *this;}
+    inline ScalingTrigger& WithCloudWatchAlarmDefinition(CloudWatchAlarmDefinition&& value) { SetCloudWatchAlarmDefinition(std::move(value)); return *this;}
 
   private:
+
     CloudWatchAlarmDefinition m_cloudWatchAlarmDefinition;
     bool m_cloudWatchAlarmDefinitionHasBeenSet;
   };

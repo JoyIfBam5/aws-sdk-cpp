@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dynamodb/DynamoDB_EXPORTS.h>
 #include <aws/dynamodb/model/TableDescription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     CreateTableResult();
-    CreateTableResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateTableResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateTableResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateTableResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Represents the properties of the table.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>Represents the properties of the table.</p>
      */
-    inline void SetTableDescription(TableDescription&& value) { m_tableDescription = value; }
+    inline void SetTableDescription(TableDescription&& value) { m_tableDescription = std::move(value); }
 
     /**
      * <p>Represents the properties of the table.</p>
@@ -68,9 +71,10 @@ namespace Model
     /**
      * <p>Represents the properties of the table.</p>
      */
-    inline CreateTableResult& WithTableDescription(TableDescription&& value) { SetTableDescription(value); return *this;}
+    inline CreateTableResult& WithTableDescription(TableDescription&& value) { SetTableDescription(std::move(value)); return *this;}
 
   private:
+
     TableDescription m_tableDescription;
   };
 

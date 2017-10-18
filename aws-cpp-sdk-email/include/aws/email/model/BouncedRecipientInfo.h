@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/email/model/BounceType.h>
 #include <aws/email/model/RecipientDsnFields.h>
+#include <utility>
 
 namespace Aws
 {
@@ -52,6 +54,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The email address of the recipient of the bounced email.</p>
      */
@@ -65,7 +68,7 @@ namespace Model
     /**
      * <p>The email address of the recipient of the bounced email.</p>
      */
-    inline void SetRecipient(Aws::String&& value) { m_recipientHasBeenSet = true; m_recipient = value; }
+    inline void SetRecipient(Aws::String&& value) { m_recipientHasBeenSet = true; m_recipient = std::move(value); }
 
     /**
      * <p>The email address of the recipient of the bounced email.</p>
@@ -80,12 +83,13 @@ namespace Model
     /**
      * <p>The email address of the recipient of the bounced email.</p>
      */
-    inline BouncedRecipientInfo& WithRecipient(Aws::String&& value) { SetRecipient(value); return *this;}
+    inline BouncedRecipientInfo& WithRecipient(Aws::String&& value) { SetRecipient(std::move(value)); return *this;}
 
     /**
      * <p>The email address of the recipient of the bounced email.</p>
      */
     inline BouncedRecipientInfo& WithRecipient(const char* value) { SetRecipient(value); return *this;}
+
 
     /**
      * <p>This parameter is used only for sending authorization. It is the ARN of the
@@ -115,7 +119,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html">Amazon
      * SES Developer Guide</a>.</p>
      */
-    inline void SetRecipientArn(Aws::String&& value) { m_recipientArnHasBeenSet = true; m_recipientArn = value; }
+    inline void SetRecipientArn(Aws::String&& value) { m_recipientArnHasBeenSet = true; m_recipientArn = std::move(value); }
 
     /**
      * <p>This parameter is used only for sending authorization. It is the ARN of the
@@ -145,7 +149,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html">Amazon
      * SES Developer Guide</a>.</p>
      */
-    inline BouncedRecipientInfo& WithRecipientArn(Aws::String&& value) { SetRecipientArn(value); return *this;}
+    inline BouncedRecipientInfo& WithRecipientArn(Aws::String&& value) { SetRecipientArn(std::move(value)); return *this;}
 
     /**
      * <p>This parameter is used only for sending authorization. It is the ARN of the
@@ -156,6 +160,7 @@ namespace Model
      * SES Developer Guide</a>.</p>
      */
     inline BouncedRecipientInfo& WithRecipientArn(const char* value) { SetRecipientArn(value); return *this;}
+
 
     /**
      * <p>The reason for the bounce. You must provide either this parameter or
@@ -173,7 +178,7 @@ namespace Model
      * <p>The reason for the bounce. You must provide either this parameter or
      * <code>RecipientDsnFields</code>.</p>
      */
-    inline void SetBounceType(BounceType&& value) { m_bounceTypeHasBeenSet = true; m_bounceType = value; }
+    inline void SetBounceType(BounceType&& value) { m_bounceTypeHasBeenSet = true; m_bounceType = std::move(value); }
 
     /**
      * <p>The reason for the bounce. You must provide either this parameter or
@@ -185,7 +190,8 @@ namespace Model
      * <p>The reason for the bounce. You must provide either this parameter or
      * <code>RecipientDsnFields</code>.</p>
      */
-    inline BouncedRecipientInfo& WithBounceType(BounceType&& value) { SetBounceType(value); return *this;}
+    inline BouncedRecipientInfo& WithBounceType(BounceType&& value) { SetBounceType(std::move(value)); return *this;}
+
 
     /**
      * <p>Recipient-related DSN fields, most of which would normally be filled in
@@ -206,7 +212,7 @@ namespace Model
      * automatically when provided with a <code>BounceType</code>. You must provide
      * either this parameter or <code>BounceType</code>.</p>
      */
-    inline void SetRecipientDsnFields(RecipientDsnFields&& value) { m_recipientDsnFieldsHasBeenSet = true; m_recipientDsnFields = value; }
+    inline void SetRecipientDsnFields(RecipientDsnFields&& value) { m_recipientDsnFieldsHasBeenSet = true; m_recipientDsnFields = std::move(value); }
 
     /**
      * <p>Recipient-related DSN fields, most of which would normally be filled in
@@ -220,15 +226,19 @@ namespace Model
      * automatically when provided with a <code>BounceType</code>. You must provide
      * either this parameter or <code>BounceType</code>.</p>
      */
-    inline BouncedRecipientInfo& WithRecipientDsnFields(RecipientDsnFields&& value) { SetRecipientDsnFields(value); return *this;}
+    inline BouncedRecipientInfo& WithRecipientDsnFields(RecipientDsnFields&& value) { SetRecipientDsnFields(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_recipient;
     bool m_recipientHasBeenSet;
+
     Aws::String m_recipientArn;
     bool m_recipientArnHasBeenSet;
+
     BounceType m_bounceType;
     bool m_bounceTypeHasBeenSet;
+
     RecipientDsnFields m_recipientDsnFields;
     bool m_recipientDsnFieldsHasBeenSet;
   };

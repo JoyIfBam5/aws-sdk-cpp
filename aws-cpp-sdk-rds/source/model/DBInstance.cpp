@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/rds/model/DBInstance.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -88,7 +89,12 @@ DBInstance::DBInstance() :
     m_promotionTier(0),
     m_promotionTierHasBeenSet(false),
     m_dBInstanceArnHasBeenSet(false),
-    m_timezoneHasBeenSet(false)
+    m_timezoneHasBeenSet(false),
+    m_iAMDatabaseAuthenticationEnabled(false),
+    m_iAMDatabaseAuthenticationEnabledHasBeenSet(false),
+    m_performanceInsightsEnabled(false),
+    m_performanceInsightsEnabledHasBeenSet(false),
+    m_performanceInsightsKMSKeyIdHasBeenSet(false)
 {
 }
 
@@ -151,7 +157,12 @@ DBInstance::DBInstance(const XmlNode& xmlNode) :
     m_promotionTier(0),
     m_promotionTierHasBeenSet(false),
     m_dBInstanceArnHasBeenSet(false),
-    m_timezoneHasBeenSet(false)
+    m_timezoneHasBeenSet(false),
+    m_iAMDatabaseAuthenticationEnabled(false),
+    m_iAMDatabaseAuthenticationEnabledHasBeenSet(false),
+    m_performanceInsightsEnabled(false),
+    m_performanceInsightsEnabledHasBeenSet(false),
+    m_performanceInsightsKMSKeyIdHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -498,6 +509,24 @@ DBInstance& DBInstance::operator =(const XmlNode& xmlNode)
       m_timezone = StringUtils::Trim(timezoneNode.GetText().c_str());
       m_timezoneHasBeenSet = true;
     }
+    XmlNode iAMDatabaseAuthenticationEnabledNode = resultNode.FirstChild("IAMDatabaseAuthenticationEnabled");
+    if(!iAMDatabaseAuthenticationEnabledNode.IsNull())
+    {
+      m_iAMDatabaseAuthenticationEnabled = StringUtils::ConvertToBool(StringUtils::Trim(iAMDatabaseAuthenticationEnabledNode.GetText().c_str()).c_str());
+      m_iAMDatabaseAuthenticationEnabledHasBeenSet = true;
+    }
+    XmlNode performanceInsightsEnabledNode = resultNode.FirstChild("PerformanceInsightsEnabled");
+    if(!performanceInsightsEnabledNode.IsNull())
+    {
+      m_performanceInsightsEnabled = StringUtils::ConvertToBool(StringUtils::Trim(performanceInsightsEnabledNode.GetText().c_str()).c_str());
+      m_performanceInsightsEnabledHasBeenSet = true;
+    }
+    XmlNode performanceInsightsKMSKeyIdNode = resultNode.FirstChild("PerformanceInsightsKMSKeyId");
+    if(!performanceInsightsKMSKeyIdNode.IsNull())
+    {
+      m_performanceInsightsKMSKeyId = StringUtils::Trim(performanceInsightsKMSKeyIdNode.GetText().c_str());
+      m_performanceInsightsKMSKeyIdHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -795,6 +824,21 @@ void DBInstance::OutputToStream(Aws::OStream& oStream, const char* location, uns
       oStream << location << index << locationValue << ".Timezone=" << StringUtils::URLEncode(m_timezone.c_str()) << "&";
   }
 
+  if(m_iAMDatabaseAuthenticationEnabledHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".IAMDatabaseAuthenticationEnabled=" << std::boolalpha << m_iAMDatabaseAuthenticationEnabled << "&";
+  }
+
+  if(m_performanceInsightsEnabledHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".PerformanceInsightsEnabled=" << std::boolalpha << m_performanceInsightsEnabled << "&";
+  }
+
+  if(m_performanceInsightsKMSKeyIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".PerformanceInsightsKMSKeyId=" << StringUtils::URLEncode(m_performanceInsightsKMSKeyId.c_str()) << "&";
+  }
+
 }
 
 void DBInstance::OutputToStream(Aws::OStream& oStream, const char* location) const
@@ -1040,6 +1084,18 @@ void DBInstance::OutputToStream(Aws::OStream& oStream, const char* location) con
   if(m_timezoneHasBeenSet)
   {
       oStream << location << ".Timezone=" << StringUtils::URLEncode(m_timezone.c_str()) << "&";
+  }
+  if(m_iAMDatabaseAuthenticationEnabledHasBeenSet)
+  {
+      oStream << location << ".IAMDatabaseAuthenticationEnabled=" << std::boolalpha << m_iAMDatabaseAuthenticationEnabled << "&";
+  }
+  if(m_performanceInsightsEnabledHasBeenSet)
+  {
+      oStream << location << ".PerformanceInsightsEnabled=" << std::boolalpha << m_performanceInsightsEnabled << "&";
+  }
+  if(m_performanceInsightsKMSKeyIdHasBeenSet)
+  {
+      oStream << location << ".PerformanceInsightsKMSKeyId=" << StringUtils::URLEncode(m_performanceInsightsKMSKeyId.c_str()) << "&";
   }
 }
 

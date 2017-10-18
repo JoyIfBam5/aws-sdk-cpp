@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/CreateVolumePermission.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,16 +31,16 @@ namespace Model
 {
 
 CreateVolumePermission::CreateVolumePermission() : 
-    m_userIdHasBeenSet(false),
     m_group(PermissionGroup::NOT_SET),
-    m_groupHasBeenSet(false)
+    m_groupHasBeenSet(false),
+    m_userIdHasBeenSet(false)
 {
 }
 
 CreateVolumePermission::CreateVolumePermission(const XmlNode& xmlNode) : 
-    m_userIdHasBeenSet(false),
     m_group(PermissionGroup::NOT_SET),
-    m_groupHasBeenSet(false)
+    m_groupHasBeenSet(false),
+    m_userIdHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -50,17 +51,17 @@ CreateVolumePermission& CreateVolumePermission::operator =(const XmlNode& xmlNod
 
   if(!resultNode.IsNull())
   {
-    XmlNode userIdNode = resultNode.FirstChild("userId");
-    if(!userIdNode.IsNull())
-    {
-      m_userId = StringUtils::Trim(userIdNode.GetText().c_str());
-      m_userIdHasBeenSet = true;
-    }
     XmlNode groupNode = resultNode.FirstChild("group");
     if(!groupNode.IsNull())
     {
       m_group = PermissionGroupMapper::GetPermissionGroupForName(StringUtils::Trim(groupNode.GetText().c_str()).c_str());
       m_groupHasBeenSet = true;
+    }
+    XmlNode userIdNode = resultNode.FirstChild("userId");
+    if(!userIdNode.IsNull())
+    {
+      m_userId = StringUtils::Trim(userIdNode.GetText().c_str());
+      m_userIdHasBeenSet = true;
     }
   }
 
@@ -69,27 +70,27 @@ CreateVolumePermission& CreateVolumePermission::operator =(const XmlNode& xmlNod
 
 void CreateVolumePermission::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
-  if(m_userIdHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".UserId=" << StringUtils::URLEncode(m_userId.c_str()) << "&";
-  }
-
   if(m_groupHasBeenSet)
   {
       oStream << location << index << locationValue << ".Group=" << PermissionGroupMapper::GetNameForPermissionGroup(m_group) << "&";
+  }
+
+  if(m_userIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".UserId=" << StringUtils::URLEncode(m_userId.c_str()) << "&";
   }
 
 }
 
 void CreateVolumePermission::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
-  if(m_userIdHasBeenSet)
-  {
-      oStream << location << ".UserId=" << StringUtils::URLEncode(m_userId.c_str()) << "&";
-  }
   if(m_groupHasBeenSet)
   {
       oStream << location << ".Group=" << PermissionGroupMapper::GetNameForPermissionGroup(m_group) << "&";
+  }
+  if(m_userIdHasBeenSet)
+  {
+      oStream << location << ".UserId=" << StringUtils::URLEncode(m_userId.c_str()) << "&";
   }
 }
 

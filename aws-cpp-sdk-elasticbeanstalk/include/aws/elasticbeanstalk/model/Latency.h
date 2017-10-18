@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -46,6 +47,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The average latency for the slowest 0.1 percent of requests over the last 10
      * seconds.</p>
@@ -63,6 +65,7 @@ namespace Model
      * seconds.</p>
      */
     inline Latency& WithP999(double value) { SetP999(value); return *this;}
+
 
     /**
      * <p>The average latency for the slowest 1 percent of requests over the last 10
@@ -82,6 +85,7 @@ namespace Model
      */
     inline Latency& WithP99(double value) { SetP99(value); return *this;}
 
+
     /**
      * <p>The average latency for the slowest 5 percent of requests over the last 10
      * seconds.</p>
@@ -99,6 +103,7 @@ namespace Model
      * seconds.</p>
      */
     inline Latency& WithP95(double value) { SetP95(value); return *this;}
+
 
     /**
      * <p>The average latency for the slowest 10 percent of requests over the last 10
@@ -118,6 +123,7 @@ namespace Model
      */
     inline Latency& WithP90(double value) { SetP90(value); return *this;}
 
+
     /**
      * <p>The average latency for the slowest 15 percent of requests over the last 10
      * seconds.</p>
@@ -135,6 +141,7 @@ namespace Model
      * seconds.</p>
      */
     inline Latency& WithP85(double value) { SetP85(value); return *this;}
+
 
     /**
      * <p>The average latency for the slowest 25 percent of requests over the last 10
@@ -154,6 +161,7 @@ namespace Model
      */
     inline Latency& WithP75(double value) { SetP75(value); return *this;}
 
+
     /**
      * <p>The average latency for the slowest 50 percent of requests over the last 10
      * seconds.</p>
@@ -171,6 +179,7 @@ namespace Model
      * seconds.</p>
      */
     inline Latency& WithP50(double value) { SetP50(value); return *this;}
+
 
     /**
      * <p>The average latency for the slowest 90 percent of requests over the last 10
@@ -191,20 +200,28 @@ namespace Model
     inline Latency& WithP10(double value) { SetP10(value); return *this;}
 
   private:
+
     double m_p999;
     bool m_p999HasBeenSet;
+
     double m_p99;
     bool m_p99HasBeenSet;
+
     double m_p95;
     bool m_p95HasBeenSet;
+
     double m_p90;
     bool m_p90HasBeenSet;
+
     double m_p85;
     bool m_p85HasBeenSet;
+
     double m_p75;
     bool m_p75HasBeenSet;
+
     double m_p50;
     bool m_p50HasBeenSet;
+
     double m_p10;
     bool m_p10HasBeenSet;
   };

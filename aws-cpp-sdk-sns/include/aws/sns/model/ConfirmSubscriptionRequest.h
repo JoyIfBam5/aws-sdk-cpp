@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/sns/SNS_EXPORTS.h>
 #include <aws/sns/SNSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,19 @@ namespace Model
   {
   public:
     ConfirmSubscriptionRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ConfirmSubscription"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The ARN of the topic for which you wish to confirm a subscription.</p>
@@ -48,7 +62,7 @@ namespace Model
     /**
      * <p>The ARN of the topic for which you wish to confirm a subscription.</p>
      */
-    inline void SetTopicArn(Aws::String&& value) { m_topicArnHasBeenSet = true; m_topicArn = value; }
+    inline void SetTopicArn(Aws::String&& value) { m_topicArnHasBeenSet = true; m_topicArn = std::move(value); }
 
     /**
      * <p>The ARN of the topic for which you wish to confirm a subscription.</p>
@@ -63,12 +77,13 @@ namespace Model
     /**
      * <p>The ARN of the topic for which you wish to confirm a subscription.</p>
      */
-    inline ConfirmSubscriptionRequest& WithTopicArn(Aws::String&& value) { SetTopicArn(value); return *this;}
+    inline ConfirmSubscriptionRequest& WithTopicArn(Aws::String&& value) { SetTopicArn(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of the topic for which you wish to confirm a subscription.</p>
      */
     inline ConfirmSubscriptionRequest& WithTopicArn(const char* value) { SetTopicArn(value); return *this;}
+
 
     /**
      * <p>Short-lived token sent to an endpoint during the <code>Subscribe</code>
@@ -86,7 +101,7 @@ namespace Model
      * <p>Short-lived token sent to an endpoint during the <code>Subscribe</code>
      * action.</p>
      */
-    inline void SetToken(Aws::String&& value) { m_tokenHasBeenSet = true; m_token = value; }
+    inline void SetToken(Aws::String&& value) { m_tokenHasBeenSet = true; m_token = std::move(value); }
 
     /**
      * <p>Short-lived token sent to an endpoint during the <code>Subscribe</code>
@@ -104,13 +119,14 @@ namespace Model
      * <p>Short-lived token sent to an endpoint during the <code>Subscribe</code>
      * action.</p>
      */
-    inline ConfirmSubscriptionRequest& WithToken(Aws::String&& value) { SetToken(value); return *this;}
+    inline ConfirmSubscriptionRequest& WithToken(Aws::String&& value) { SetToken(std::move(value)); return *this;}
 
     /**
      * <p>Short-lived token sent to an endpoint during the <code>Subscribe</code>
      * action.</p>
      */
     inline ConfirmSubscriptionRequest& WithToken(const char* value) { SetToken(value); return *this;}
+
 
     /**
      * <p>Disallows unauthenticated unsubscribes of the subscription. If the value of
@@ -134,7 +150,7 @@ namespace Model
      * only the topic owner and the subscription owner can unsubscribe the endpoint.
      * The unsubscribe action requires AWS authentication. </p>
      */
-    inline void SetAuthenticateOnUnsubscribe(Aws::String&& value) { m_authenticateOnUnsubscribeHasBeenSet = true; m_authenticateOnUnsubscribe = value; }
+    inline void SetAuthenticateOnUnsubscribe(Aws::String&& value) { m_authenticateOnUnsubscribeHasBeenSet = true; m_authenticateOnUnsubscribe = std::move(value); }
 
     /**
      * <p>Disallows unauthenticated unsubscribes of the subscription. If the value of
@@ -158,7 +174,7 @@ namespace Model
      * only the topic owner and the subscription owner can unsubscribe the endpoint.
      * The unsubscribe action requires AWS authentication. </p>
      */
-    inline ConfirmSubscriptionRequest& WithAuthenticateOnUnsubscribe(Aws::String&& value) { SetAuthenticateOnUnsubscribe(value); return *this;}
+    inline ConfirmSubscriptionRequest& WithAuthenticateOnUnsubscribe(Aws::String&& value) { SetAuthenticateOnUnsubscribe(std::move(value)); return *this;}
 
     /**
      * <p>Disallows unauthenticated unsubscribes of the subscription. If the value of
@@ -169,10 +185,13 @@ namespace Model
     inline ConfirmSubscriptionRequest& WithAuthenticateOnUnsubscribe(const char* value) { SetAuthenticateOnUnsubscribe(value); return *this;}
 
   private:
+
     Aws::String m_topicArn;
     bool m_topicArnHasBeenSet;
+
     Aws::String m_token;
     bool m_tokenHasBeenSet;
+
     Aws::String m_authenticateOnUnsubscribe;
     bool m_authenticateOnUnsubscribeHasBeenSet;
   };

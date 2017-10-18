@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     DescribeSecurityConfigurationResult();
-    DescribeSecurityConfigurationResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeSecurityConfigurationResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeSecurityConfigurationResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeSecurityConfigurationResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The name of the security configuration.</p>
@@ -53,7 +56,7 @@ namespace Model
     /**
      * <p>The name of the security configuration.</p>
      */
-    inline void SetName(Aws::String&& value) { m_name = value; }
+    inline void SetName(Aws::String&& value) { m_name = std::move(value); }
 
     /**
      * <p>The name of the security configuration.</p>
@@ -68,12 +71,13 @@ namespace Model
     /**
      * <p>The name of the security configuration.</p>
      */
-    inline DescribeSecurityConfigurationResult& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline DescribeSecurityConfigurationResult& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the security configuration.</p>
      */
     inline DescribeSecurityConfigurationResult& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The security configuration details in JSON format.</p>
@@ -88,7 +92,7 @@ namespace Model
     /**
      * <p>The security configuration details in JSON format.</p>
      */
-    inline void SetSecurityConfiguration(Aws::String&& value) { m_securityConfiguration = value; }
+    inline void SetSecurityConfiguration(Aws::String&& value) { m_securityConfiguration = std::move(value); }
 
     /**
      * <p>The security configuration details in JSON format.</p>
@@ -103,12 +107,13 @@ namespace Model
     /**
      * <p>The security configuration details in JSON format.</p>
      */
-    inline DescribeSecurityConfigurationResult& WithSecurityConfiguration(Aws::String&& value) { SetSecurityConfiguration(value); return *this;}
+    inline DescribeSecurityConfigurationResult& WithSecurityConfiguration(Aws::String&& value) { SetSecurityConfiguration(std::move(value)); return *this;}
 
     /**
      * <p>The security configuration details in JSON format.</p>
      */
     inline DescribeSecurityConfigurationResult& WithSecurityConfiguration(const char* value) { SetSecurityConfiguration(value); return *this;}
+
 
     /**
      * <p>The date and time the security configuration was created</p>
@@ -123,7 +128,7 @@ namespace Model
     /**
      * <p>The date and time the security configuration was created</p>
      */
-    inline void SetCreationDateTime(Aws::Utils::DateTime&& value) { m_creationDateTime = value; }
+    inline void SetCreationDateTime(Aws::Utils::DateTime&& value) { m_creationDateTime = std::move(value); }
 
     /**
      * <p>The date and time the security configuration was created</p>
@@ -133,11 +138,14 @@ namespace Model
     /**
      * <p>The date and time the security configuration was created</p>
      */
-    inline DescribeSecurityConfigurationResult& WithCreationDateTime(Aws::Utils::DateTime&& value) { SetCreationDateTime(value); return *this;}
+    inline DescribeSecurityConfigurationResult& WithCreationDateTime(Aws::Utils::DateTime&& value) { SetCreationDateTime(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_name;
+
     Aws::String m_securityConfiguration;
+
     Aws::Utils::DateTime m_creationDateTime;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/WAFRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/waf/model/ByteMatchSetUpdate.h>
+#include <utility>
 
 namespace Aws
 {
@@ -32,9 +34,17 @@ namespace Model
   {
   public:
     UpdateByteMatchSetRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateByteMatchSet"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The <code>ByteMatchSetId</code> of the <a>ByteMatchSet</a> that you want to
@@ -55,7 +65,7 @@ namespace Model
      * update. <code>ByteMatchSetId</code> is returned by <a>CreateByteMatchSet</a> and
      * by <a>ListByteMatchSets</a>.</p>
      */
-    inline void SetByteMatchSetId(Aws::String&& value) { m_byteMatchSetIdHasBeenSet = true; m_byteMatchSetId = value; }
+    inline void SetByteMatchSetId(Aws::String&& value) { m_byteMatchSetIdHasBeenSet = true; m_byteMatchSetId = std::move(value); }
 
     /**
      * <p>The <code>ByteMatchSetId</code> of the <a>ByteMatchSet</a> that you want to
@@ -76,7 +86,7 @@ namespace Model
      * update. <code>ByteMatchSetId</code> is returned by <a>CreateByteMatchSet</a> and
      * by <a>ListByteMatchSets</a>.</p>
      */
-    inline UpdateByteMatchSetRequest& WithByteMatchSetId(Aws::String&& value) { SetByteMatchSetId(value); return *this;}
+    inline UpdateByteMatchSetRequest& WithByteMatchSetId(Aws::String&& value) { SetByteMatchSetId(std::move(value)); return *this;}
 
     /**
      * <p>The <code>ByteMatchSetId</code> of the <a>ByteMatchSet</a> that you want to
@@ -84,6 +94,7 @@ namespace Model
      * by <a>ListByteMatchSets</a>.</p>
      */
     inline UpdateByteMatchSetRequest& WithByteMatchSetId(const char* value) { SetByteMatchSetId(value); return *this;}
+
 
     /**
      * <p>The value returned by the most recent call to <a>GetChangeToken</a>.</p>
@@ -98,7 +109,7 @@ namespace Model
     /**
      * <p>The value returned by the most recent call to <a>GetChangeToken</a>.</p>
      */
-    inline void SetChangeToken(Aws::String&& value) { m_changeTokenHasBeenSet = true; m_changeToken = value; }
+    inline void SetChangeToken(Aws::String&& value) { m_changeTokenHasBeenSet = true; m_changeToken = std::move(value); }
 
     /**
      * <p>The value returned by the most recent call to <a>GetChangeToken</a>.</p>
@@ -113,12 +124,13 @@ namespace Model
     /**
      * <p>The value returned by the most recent call to <a>GetChangeToken</a>.</p>
      */
-    inline UpdateByteMatchSetRequest& WithChangeToken(Aws::String&& value) { SetChangeToken(value); return *this;}
+    inline UpdateByteMatchSetRequest& WithChangeToken(Aws::String&& value) { SetChangeToken(std::move(value)); return *this;}
 
     /**
      * <p>The value returned by the most recent call to <a>GetChangeToken</a>.</p>
      */
     inline UpdateByteMatchSetRequest& WithChangeToken(const char* value) { SetChangeToken(value); return *this;}
+
 
     /**
      * <p>An array of <code>ByteMatchSetUpdate</code> objects that you want to insert
@@ -154,7 +166,7 @@ namespace Model
      * <code>TextTransformation</code> </p> </li> <li> <p> <a>FieldToMatch</a>:
      * Contains <code>Data</code> and <code>Type</code> </p> </li> </ul>
      */
-    inline void SetUpdates(Aws::Vector<ByteMatchSetUpdate>&& value) { m_updatesHasBeenSet = true; m_updates = value; }
+    inline void SetUpdates(Aws::Vector<ByteMatchSetUpdate>&& value) { m_updatesHasBeenSet = true; m_updates = std::move(value); }
 
     /**
      * <p>An array of <code>ByteMatchSetUpdate</code> objects that you want to insert
@@ -178,7 +190,7 @@ namespace Model
      * <code>TextTransformation</code> </p> </li> <li> <p> <a>FieldToMatch</a>:
      * Contains <code>Data</code> and <code>Type</code> </p> </li> </ul>
      */
-    inline UpdateByteMatchSetRequest& WithUpdates(Aws::Vector<ByteMatchSetUpdate>&& value) { SetUpdates(value); return *this;}
+    inline UpdateByteMatchSetRequest& WithUpdates(Aws::Vector<ByteMatchSetUpdate>&& value) { SetUpdates(std::move(value)); return *this;}
 
     /**
      * <p>An array of <code>ByteMatchSetUpdate</code> objects that you want to insert
@@ -202,13 +214,16 @@ namespace Model
      * <code>TextTransformation</code> </p> </li> <li> <p> <a>FieldToMatch</a>:
      * Contains <code>Data</code> and <code>Type</code> </p> </li> </ul>
      */
-    inline UpdateByteMatchSetRequest& AddUpdates(ByteMatchSetUpdate&& value) { m_updatesHasBeenSet = true; m_updates.push_back(value); return *this; }
+    inline UpdateByteMatchSetRequest& AddUpdates(ByteMatchSetUpdate&& value) { m_updatesHasBeenSet = true; m_updates.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_byteMatchSetId;
     bool m_byteMatchSetIdHasBeenSet;
+
     Aws::String m_changeToken;
     bool m_changeTokenHasBeenSet;
+
     Aws::Vector<ByteMatchSetUpdate> m_updates;
     bool m_updatesHasBeenSet;
   };

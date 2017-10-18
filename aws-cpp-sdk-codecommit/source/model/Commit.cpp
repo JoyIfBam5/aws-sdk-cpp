@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/codecommit/model/Commit.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -28,6 +29,7 @@ namespace Model
 {
 
 Commit::Commit() : 
+    m_commitIdHasBeenSet(false),
     m_treeIdHasBeenSet(false),
     m_parentsHasBeenSet(false),
     m_messageHasBeenSet(false),
@@ -38,6 +40,7 @@ Commit::Commit() :
 }
 
 Commit::Commit(const JsonValue& jsonValue) : 
+    m_commitIdHasBeenSet(false),
     m_treeIdHasBeenSet(false),
     m_parentsHasBeenSet(false),
     m_messageHasBeenSet(false),
@@ -50,6 +53,13 @@ Commit::Commit(const JsonValue& jsonValue) :
 
 Commit& Commit::operator =(const JsonValue& jsonValue)
 {
+  if(jsonValue.ValueExists("commitId"))
+  {
+    m_commitId = jsonValue.GetString("commitId");
+
+    m_commitIdHasBeenSet = true;
+  }
+
   if(jsonValue.ValueExists("treeId"))
   {
     m_treeId = jsonValue.GetString("treeId");
@@ -101,6 +111,12 @@ Commit& Commit::operator =(const JsonValue& jsonValue)
 JsonValue Commit::Jsonize() const
 {
   JsonValue payload;
+
+  if(m_commitIdHasBeenSet)
+  {
+   payload.WithString("commitId", m_commitId);
+
+  }
 
   if(m_treeIdHasBeenSet)
   {

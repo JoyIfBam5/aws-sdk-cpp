@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/elasticbeanstalk/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     CheckDNSAvailabilityResult();
-    CheckDNSAvailabilityResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    CheckDNSAvailabilityResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CheckDNSAvailabilityResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CheckDNSAvailabilityResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>Indicates if the specified CNAME is available:</p> <ul> <li> <p>
@@ -66,6 +69,7 @@ namespace Model
      */
     inline CheckDNSAvailabilityResult& WithAvailable(bool value) { SetAvailable(value); return *this;}
 
+
     /**
      * <p>The fully qualified CNAME to reserve when <a>CreateEnvironment</a> is called
      * with the provided prefix.</p>
@@ -82,7 +86,7 @@ namespace Model
      * <p>The fully qualified CNAME to reserve when <a>CreateEnvironment</a> is called
      * with the provided prefix.</p>
      */
-    inline void SetFullyQualifiedCNAME(Aws::String&& value) { m_fullyQualifiedCNAME = value; }
+    inline void SetFullyQualifiedCNAME(Aws::String&& value) { m_fullyQualifiedCNAME = std::move(value); }
 
     /**
      * <p>The fully qualified CNAME to reserve when <a>CreateEnvironment</a> is called
@@ -100,13 +104,14 @@ namespace Model
      * <p>The fully qualified CNAME to reserve when <a>CreateEnvironment</a> is called
      * with the provided prefix.</p>
      */
-    inline CheckDNSAvailabilityResult& WithFullyQualifiedCNAME(Aws::String&& value) { SetFullyQualifiedCNAME(value); return *this;}
+    inline CheckDNSAvailabilityResult& WithFullyQualifiedCNAME(Aws::String&& value) { SetFullyQualifiedCNAME(std::move(value)); return *this;}
 
     /**
      * <p>The fully qualified CNAME to reserve when <a>CreateEnvironment</a> is called
      * with the provided prefix.</p>
      */
     inline CheckDNSAvailabilityResult& WithFullyQualifiedCNAME(const char* value) { SetFullyQualifiedCNAME(value); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -115,17 +120,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline CheckDNSAvailabilityResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline CheckDNSAvailabilityResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline CheckDNSAvailabilityResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     bool m_available;
+
     Aws::String m_fullyQualifiedCNAME;
+
     ResponseMetadata m_responseMetadata;
   };
 

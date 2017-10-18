@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/apigateway/APIGatewayRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/apigateway/model/PutMode.h>
 #include <aws/core/utils/Array.h>
+#include <utility>
 
 namespace Aws
 {
@@ -40,49 +42,51 @@ namespace Model
   {
   public:
     ImportDocumentationPartsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ImportDocumentationParts"; }
+
     void AddQueryStringParameters(Aws::Http::URI& uri) const override;
 
+
     /**
-     * <p>[Required] The identifier of an API of the to-be-imported documentation
-     * parts.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline const Aws::String& GetRestApiId() const{ return m_restApiId; }
 
     /**
-     * <p>[Required] The identifier of an API of the to-be-imported documentation
-     * parts.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline void SetRestApiId(const Aws::String& value) { m_restApiIdHasBeenSet = true; m_restApiId = value; }
 
     /**
-     * <p>[Required] The identifier of an API of the to-be-imported documentation
-     * parts.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
-    inline void SetRestApiId(Aws::String&& value) { m_restApiIdHasBeenSet = true; m_restApiId = value; }
+    inline void SetRestApiId(Aws::String&& value) { m_restApiIdHasBeenSet = true; m_restApiId = std::move(value); }
 
     /**
-     * <p>[Required] The identifier of an API of the to-be-imported documentation
-     * parts.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline void SetRestApiId(const char* value) { m_restApiIdHasBeenSet = true; m_restApiId.assign(value); }
 
     /**
-     * <p>[Required] The identifier of an API of the to-be-imported documentation
-     * parts.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline ImportDocumentationPartsRequest& WithRestApiId(const Aws::String& value) { SetRestApiId(value); return *this;}
 
     /**
-     * <p>[Required] The identifier of an API of the to-be-imported documentation
-     * parts.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
-    inline ImportDocumentationPartsRequest& WithRestApiId(Aws::String&& value) { SetRestApiId(value); return *this;}
+    inline ImportDocumentationPartsRequest& WithRestApiId(Aws::String&& value) { SetRestApiId(std::move(value)); return *this;}
 
     /**
-     * <p>[Required] The identifier of an API of the to-be-imported documentation
-     * parts.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline ImportDocumentationPartsRequest& WithRestApiId(const char* value) { SetRestApiId(value); return *this;}
+
 
     /**
      * <p>A query parameter to indicate whether to overwrite (<code>OVERWRITE</code>)
@@ -106,7 +110,7 @@ namespace Model
      * (<code>MERGE</code>) the new definition into the existing one. The default value
      * is <code>MERGE</code>.</p>
      */
-    inline void SetMode(PutMode&& value) { m_modeHasBeenSet = true; m_mode = value; }
+    inline void SetMode(PutMode&& value) { m_modeHasBeenSet = true; m_mode = std::move(value); }
 
     /**
      * <p>A query parameter to indicate whether to overwrite (<code>OVERWRITE</code>)
@@ -122,7 +126,8 @@ namespace Model
      * (<code>MERGE</code>) the new definition into the existing one. The default value
      * is <code>MERGE</code>.</p>
      */
-    inline ImportDocumentationPartsRequest& WithMode(PutMode&& value) { SetMode(value); return *this;}
+    inline ImportDocumentationPartsRequest& WithMode(PutMode&& value) { SetMode(std::move(value)); return *this;}
+
 
     /**
      * <p>A query parameter to specify whether to rollback the documentation
@@ -146,12 +151,16 @@ namespace Model
     inline ImportDocumentationPartsRequest& WithFailOnWarnings(bool value) { SetFailOnWarnings(value); return *this;}
 
   private:
+
     Aws::String m_restApiId;
     bool m_restApiIdHasBeenSet;
+
     PutMode m_mode;
     bool m_modeHasBeenSet;
+
     bool m_failOnWarnings;
     bool m_failOnWarningsHasBeenSet;
+
   };
 
 } // namespace Model

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/model/SizeConstraintSet.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     GetSizeConstraintSetResult();
-    GetSizeConstraintSetResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetSizeConstraintSetResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetSizeConstraintSetResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetSizeConstraintSetResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the <a>SizeConstraintSet</a> that you specified in the
@@ -79,7 +82,7 @@ namespace Model
      * <a>FieldToMatch</a>: Contains <code>Data</code> and <code>Type</code> </p> </li>
      * </ul>
      */
-    inline void SetSizeConstraintSet(SizeConstraintSet&& value) { m_sizeConstraintSet = value; }
+    inline void SetSizeConstraintSet(SizeConstraintSet&& value) { m_sizeConstraintSet = std::move(value); }
 
     /**
      * <p>Information about the <a>SizeConstraintSet</a> that you specified in the
@@ -107,9 +110,10 @@ namespace Model
      * <a>FieldToMatch</a>: Contains <code>Data</code> and <code>Type</code> </p> </li>
      * </ul>
      */
-    inline GetSizeConstraintSetResult& WithSizeConstraintSet(SizeConstraintSet&& value) { SetSizeConstraintSet(value); return *this;}
+    inline GetSizeConstraintSetResult& WithSizeConstraintSet(SizeConstraintSet&& value) { SetSizeConstraintSet(std::move(value)); return *this;}
 
   private:
+
     SizeConstraintSet m_sizeConstraintSet;
   };
 

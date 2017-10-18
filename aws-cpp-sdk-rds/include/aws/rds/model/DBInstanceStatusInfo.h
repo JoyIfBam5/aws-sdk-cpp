@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>This value is currently "read replication."</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>This value is currently "read replication."</p>
      */
-    inline void SetStatusType(Aws::String&& value) { m_statusTypeHasBeenSet = true; m_statusType = value; }
+    inline void SetStatusType(Aws::String&& value) { m_statusTypeHasBeenSet = true; m_statusType = std::move(value); }
 
     /**
      * <p>This value is currently "read replication."</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>This value is currently "read replication."</p>
      */
-    inline DBInstanceStatusInfo& WithStatusType(Aws::String&& value) { SetStatusType(value); return *this;}
+    inline DBInstanceStatusInfo& WithStatusType(Aws::String&& value) { SetStatusType(std::move(value)); return *this;}
 
     /**
      * <p>This value is currently "read replication."</p>
      */
     inline DBInstanceStatusInfo& WithStatusType(const char* value) { SetStatusType(value); return *this;}
+
 
     /**
      * <p>Boolean value that is true if the instance is operating normally, or false if
@@ -100,6 +104,7 @@ namespace Model
      */
     inline DBInstanceStatusInfo& WithNormal(bool value) { SetNormal(value); return *this;}
 
+
     /**
      * <p>Status of the DB instance. For a StatusType of read replica, the values can
      * be replicating, error, stopped, or terminated.</p>
@@ -116,7 +121,7 @@ namespace Model
      * <p>Status of the DB instance. For a StatusType of read replica, the values can
      * be replicating, error, stopped, or terminated.</p>
      */
-    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>Status of the DB instance. For a StatusType of read replica, the values can
@@ -134,13 +139,14 @@ namespace Model
      * <p>Status of the DB instance. For a StatusType of read replica, the values can
      * be replicating, error, stopped, or terminated.</p>
      */
-    inline DBInstanceStatusInfo& WithStatus(Aws::String&& value) { SetStatus(value); return *this;}
+    inline DBInstanceStatusInfo& WithStatus(Aws::String&& value) { SetStatus(std::move(value)); return *this;}
 
     /**
      * <p>Status of the DB instance. For a StatusType of read replica, the values can
      * be replicating, error, stopped, or terminated.</p>
      */
     inline DBInstanceStatusInfo& WithStatus(const char* value) { SetStatus(value); return *this;}
+
 
     /**
      * <p>Details of the error if there is an error for the instance. If the instance
@@ -158,7 +164,7 @@ namespace Model
      * <p>Details of the error if there is an error for the instance. If the instance
      * is not in an error state, this value is blank.</p>
      */
-    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = value; }
+    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = std::move(value); }
 
     /**
      * <p>Details of the error if there is an error for the instance. If the instance
@@ -176,7 +182,7 @@ namespace Model
      * <p>Details of the error if there is an error for the instance. If the instance
      * is not in an error state, this value is blank.</p>
      */
-    inline DBInstanceStatusInfo& WithMessage(Aws::String&& value) { SetMessage(value); return *this;}
+    inline DBInstanceStatusInfo& WithMessage(Aws::String&& value) { SetMessage(std::move(value)); return *this;}
 
     /**
      * <p>Details of the error if there is an error for the instance. If the instance
@@ -185,12 +191,16 @@ namespace Model
     inline DBInstanceStatusInfo& WithMessage(const char* value) { SetMessage(value); return *this;}
 
   private:
+
     Aws::String m_statusType;
     bool m_statusTypeHasBeenSet;
+
     bool m_normal;
     bool m_normalHasBeenSet;
+
     Aws::String m_status;
     bool m_statusHasBeenSet;
+
     Aws::String m_message;
     bool m_messageHasBeenSet;
   };

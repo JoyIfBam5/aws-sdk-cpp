@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/support/Support_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     AddAttachmentsToSetResult();
-    AddAttachmentsToSetResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    AddAttachmentsToSetResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    AddAttachmentsToSetResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    AddAttachmentsToSetResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The ID of the attachment set. If an <code>attachmentSetId</code> was not
@@ -67,7 +70,7 @@ namespace Model
      * the response. If an <code>attachmentSetId</code> was specified, the attachments
      * are added to the specified set, if it exists.</p>
      */
-    inline void SetAttachmentSetId(Aws::String&& value) { m_attachmentSetId = value; }
+    inline void SetAttachmentSetId(Aws::String&& value) { m_attachmentSetId = std::move(value); }
 
     /**
      * <p>The ID of the attachment set. If an <code>attachmentSetId</code> was not
@@ -91,7 +94,7 @@ namespace Model
      * the response. If an <code>attachmentSetId</code> was specified, the attachments
      * are added to the specified set, if it exists.</p>
      */
-    inline AddAttachmentsToSetResult& WithAttachmentSetId(Aws::String&& value) { SetAttachmentSetId(value); return *this;}
+    inline AddAttachmentsToSetResult& WithAttachmentSetId(Aws::String&& value) { SetAttachmentSetId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the attachment set. If an <code>attachmentSetId</code> was not
@@ -100,6 +103,7 @@ namespace Model
      * are added to the specified set, if it exists.</p>
      */
     inline AddAttachmentsToSetResult& WithAttachmentSetId(const char* value) { SetAttachmentSetId(value); return *this;}
+
 
     /**
      * <p>The time and date when the attachment set expires.</p>
@@ -114,7 +118,7 @@ namespace Model
     /**
      * <p>The time and date when the attachment set expires.</p>
      */
-    inline void SetExpiryTime(Aws::String&& value) { m_expiryTime = value; }
+    inline void SetExpiryTime(Aws::String&& value) { m_expiryTime = std::move(value); }
 
     /**
      * <p>The time and date when the attachment set expires.</p>
@@ -129,7 +133,7 @@ namespace Model
     /**
      * <p>The time and date when the attachment set expires.</p>
      */
-    inline AddAttachmentsToSetResult& WithExpiryTime(Aws::String&& value) { SetExpiryTime(value); return *this;}
+    inline AddAttachmentsToSetResult& WithExpiryTime(Aws::String&& value) { SetExpiryTime(std::move(value)); return *this;}
 
     /**
      * <p>The time and date when the attachment set expires.</p>
@@ -137,7 +141,9 @@ namespace Model
     inline AddAttachmentsToSetResult& WithExpiryTime(const char* value) { SetExpiryTime(value); return *this;}
 
   private:
+
     Aws::String m_attachmentSetId;
+
     Aws::String m_expiryTime;
   };
 

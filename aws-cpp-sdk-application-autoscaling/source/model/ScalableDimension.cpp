@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/application-autoscaling/model/ScalableDimension.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -32,6 +33,11 @@ namespace Aws
         static const int ecs_service_DesiredCount_HASH = HashingUtils::HashString("ecs:service:DesiredCount");
         static const int ec2_spot_fleet_request_TargetCapacity_HASH = HashingUtils::HashString("ec2:spot-fleet-request:TargetCapacity");
         static const int elasticmapreduce_instancegroup_InstanceCount_HASH = HashingUtils::HashString("elasticmapreduce:instancegroup:InstanceCount");
+        static const int appstream_fleet_DesiredCapacity_HASH = HashingUtils::HashString("appstream:fleet:DesiredCapacity");
+        static const int dynamodb_table_ReadCapacityUnits_HASH = HashingUtils::HashString("dynamodb:table:ReadCapacityUnits");
+        static const int dynamodb_table_WriteCapacityUnits_HASH = HashingUtils::HashString("dynamodb:table:WriteCapacityUnits");
+        static const int dynamodb_index_ReadCapacityUnits_HASH = HashingUtils::HashString("dynamodb:index:ReadCapacityUnits");
+        static const int dynamodb_index_WriteCapacityUnits_HASH = HashingUtils::HashString("dynamodb:index:WriteCapacityUnits");
 
 
         ScalableDimension GetScalableDimensionForName(const Aws::String& name)
@@ -48,6 +54,26 @@ namespace Aws
           else if (hashCode == elasticmapreduce_instancegroup_InstanceCount_HASH)
           {
             return ScalableDimension::elasticmapreduce_instancegroup_InstanceCount;
+          }
+          else if (hashCode == appstream_fleet_DesiredCapacity_HASH)
+          {
+            return ScalableDimension::appstream_fleet_DesiredCapacity;
+          }
+          else if (hashCode == dynamodb_table_ReadCapacityUnits_HASH)
+          {
+            return ScalableDimension::dynamodb_table_ReadCapacityUnits;
+          }
+          else if (hashCode == dynamodb_table_WriteCapacityUnits_HASH)
+          {
+            return ScalableDimension::dynamodb_table_WriteCapacityUnits;
+          }
+          else if (hashCode == dynamodb_index_ReadCapacityUnits_HASH)
+          {
+            return ScalableDimension::dynamodb_index_ReadCapacityUnits;
+          }
+          else if (hashCode == dynamodb_index_WriteCapacityUnits_HASH)
+          {
+            return ScalableDimension::dynamodb_index_WriteCapacityUnits;
           }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
@@ -69,6 +95,16 @@ namespace Aws
             return "ec2:spot-fleet-request:TargetCapacity";
           case ScalableDimension::elasticmapreduce_instancegroup_InstanceCount:
             return "elasticmapreduce:instancegroup:InstanceCount";
+          case ScalableDimension::appstream_fleet_DesiredCapacity:
+            return "appstream:fleet:DesiredCapacity";
+          case ScalableDimension::dynamodb_table_ReadCapacityUnits:
+            return "dynamodb:table:ReadCapacityUnits";
+          case ScalableDimension::dynamodb_table_WriteCapacityUnits:
+            return "dynamodb:table:WriteCapacityUnits";
+          case ScalableDimension::dynamodb_index_ReadCapacityUnits:
+            return "dynamodb:index:ReadCapacityUnits";
+          case ScalableDimension::dynamodb_index_WriteCapacityUnits:
+            return "dynamodb:index:WriteCapacityUnits";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

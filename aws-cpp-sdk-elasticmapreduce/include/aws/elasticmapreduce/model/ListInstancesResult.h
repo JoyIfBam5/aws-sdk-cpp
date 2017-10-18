@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/elasticmapreduce/model/Instance.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     ListInstancesResult();
-    ListInstancesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListInstancesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListInstancesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListInstancesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The list of instances for the cluster and given filters.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The list of instances for the cluster and given filters.</p>
      */
-    inline void SetInstances(Aws::Vector<Instance>&& value) { m_instances = value; }
+    inline void SetInstances(Aws::Vector<Instance>&& value) { m_instances = std::move(value); }
 
     /**
      * <p>The list of instances for the cluster and given filters.</p>
@@ -69,7 +72,7 @@ namespace Model
     /**
      * <p>The list of instances for the cluster and given filters.</p>
      */
-    inline ListInstancesResult& WithInstances(Aws::Vector<Instance>&& value) { SetInstances(value); return *this;}
+    inline ListInstancesResult& WithInstances(Aws::Vector<Instance>&& value) { SetInstances(std::move(value)); return *this;}
 
     /**
      * <p>The list of instances for the cluster and given filters.</p>
@@ -79,7 +82,8 @@ namespace Model
     /**
      * <p>The list of instances for the cluster and given filters.</p>
      */
-    inline ListInstancesResult& AddInstances(Instance&& value) { m_instances.push_back(value); return *this; }
+    inline ListInstancesResult& AddInstances(Instance&& value) { m_instances.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
@@ -94,7 +98,7 @@ namespace Model
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
@@ -109,7 +113,7 @@ namespace Model
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
      */
-    inline ListInstancesResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline ListInstancesResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
@@ -117,7 +121,9 @@ namespace Model
     inline ListInstancesResult& WithMarker(const char* value) { SetMarker(value); return *this;}
 
   private:
+
     Aws::Vector<Instance> m_instances;
+
     Aws::String m_marker;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/glacier/Glacier_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/glacier/model/DescribeVaultOutput.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     ListVaultsResult();
-    ListVaultsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListVaultsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListVaultsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListVaultsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>List of vaults.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>List of vaults.</p>
      */
-    inline void SetVaultList(Aws::Vector<DescribeVaultOutput>&& value) { m_vaultList = value; }
+    inline void SetVaultList(Aws::Vector<DescribeVaultOutput>&& value) { m_vaultList = std::move(value); }
 
     /**
      * <p>List of vaults.</p>
@@ -70,7 +73,7 @@ namespace Model
     /**
      * <p>List of vaults.</p>
      */
-    inline ListVaultsResult& WithVaultList(Aws::Vector<DescribeVaultOutput>&& value) { SetVaultList(value); return *this;}
+    inline ListVaultsResult& WithVaultList(Aws::Vector<DescribeVaultOutput>&& value) { SetVaultList(std::move(value)); return *this;}
 
     /**
      * <p>List of vaults.</p>
@@ -80,7 +83,8 @@ namespace Model
     /**
      * <p>List of vaults.</p>
      */
-    inline ListVaultsResult& AddVaultList(DescribeVaultOutput&& value) { m_vaultList.push_back(value); return *this; }
+    inline ListVaultsResult& AddVaultList(DescribeVaultOutput&& value) { m_vaultList.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The vault ARN at which to continue pagination of the results. You use the
@@ -98,7 +102,7 @@ namespace Model
      * <p>The vault ARN at which to continue pagination of the results. You use the
      * marker in another List Vaults request to obtain more vaults in the list.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p>The vault ARN at which to continue pagination of the results. You use the
@@ -116,7 +120,7 @@ namespace Model
      * <p>The vault ARN at which to continue pagination of the results. You use the
      * marker in another List Vaults request to obtain more vaults in the list.</p>
      */
-    inline ListVaultsResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline ListVaultsResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>The vault ARN at which to continue pagination of the results. You use the
@@ -125,7 +129,9 @@ namespace Model
     inline ListVaultsResult& WithMarker(const char* value) { SetMarker(value); return *this;}
 
   private:
+
     Aws::Vector<DescribeVaultOutput> m_vaultList;
+
     Aws::String m_marker;
   };
 

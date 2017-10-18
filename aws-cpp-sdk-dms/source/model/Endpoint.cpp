@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/dms/model/Endpoint.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -43,7 +44,11 @@ Endpoint::Endpoint() :
     m_endpointArnHasBeenSet(false),
     m_certificateArnHasBeenSet(false),
     m_sslMode(DmsSslModeValue::NOT_SET),
-    m_sslModeHasBeenSet(false)
+    m_sslModeHasBeenSet(false),
+    m_externalIdHasBeenSet(false),
+    m_dynamoDbSettingsHasBeenSet(false),
+    m_s3SettingsHasBeenSet(false),
+    m_mongoDbSettingsHasBeenSet(false)
 {
 }
 
@@ -63,7 +68,11 @@ Endpoint::Endpoint(const JsonValue& jsonValue) :
     m_endpointArnHasBeenSet(false),
     m_certificateArnHasBeenSet(false),
     m_sslMode(DmsSslModeValue::NOT_SET),
-    m_sslModeHasBeenSet(false)
+    m_sslModeHasBeenSet(false),
+    m_externalIdHasBeenSet(false),
+    m_dynamoDbSettingsHasBeenSet(false),
+    m_s3SettingsHasBeenSet(false),
+    m_mongoDbSettingsHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -161,6 +170,34 @@ Endpoint& Endpoint::operator =(const JsonValue& jsonValue)
     m_sslModeHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("ExternalId"))
+  {
+    m_externalId = jsonValue.GetString("ExternalId");
+
+    m_externalIdHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("DynamoDbSettings"))
+  {
+    m_dynamoDbSettings = jsonValue.GetObject("DynamoDbSettings");
+
+    m_dynamoDbSettingsHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("S3Settings"))
+  {
+    m_s3Settings = jsonValue.GetObject("S3Settings");
+
+    m_s3SettingsHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("MongoDbSettings"))
+  {
+    m_mongoDbSettings = jsonValue.GetObject("MongoDbSettings");
+
+    m_mongoDbSettingsHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -242,6 +279,30 @@ JsonValue Endpoint::Jsonize() const
   if(m_sslModeHasBeenSet)
   {
    payload.WithString("SslMode", DmsSslModeValueMapper::GetNameForDmsSslModeValue(m_sslMode));
+  }
+
+  if(m_externalIdHasBeenSet)
+  {
+   payload.WithString("ExternalId", m_externalId);
+
+  }
+
+  if(m_dynamoDbSettingsHasBeenSet)
+  {
+   payload.WithObject("DynamoDbSettings", m_dynamoDbSettings.Jsonize());
+
+  }
+
+  if(m_s3SettingsHasBeenSet)
+  {
+   payload.WithObject("S3Settings", m_s3Settings.Jsonize());
+
+  }
+
+  if(m_mongoDbSettingsHasBeenSet)
+  {
+   payload.WithObject("MongoDbSettings", m_mongoDbSettings.Jsonize());
+
   }
 
   return payload;

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/core/utils/stream/ResponseStream.h>
@@ -23,6 +24,7 @@
 #include <aws/s3/model/StorageClass.h>
 #include <aws/s3/model/RequestCharged.h>
 #include <aws/s3/model/ReplicationStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,8 +48,9 @@ namespace Model
     GetObjectResult& operator=(const GetObjectResult&) = delete;
 
 
-    GetObjectResult(AmazonWebServiceResult<Utils::Stream::ResponseStream>&& result);
-    GetObjectResult& operator=(AmazonWebServiceResult<Utils::Stream::ResponseStream>&& result);
+    GetObjectResult(Aws::AmazonWebServiceResult<Aws::Utils::Stream::ResponseStream>&& result);
+    GetObjectResult& operator=(Aws::AmazonWebServiceResult<Aws::Utils::Stream::ResponseStream>&& result);
+
 
 
     /**
@@ -60,6 +63,7 @@ namespace Model
      */
     inline void ReplaceBody(Aws::IOStream* body) { m_body = Aws::Utils::Stream::ResponseStream(body); }
     
+
     /**
      * Specifies whether the object retrieved was (true) or was not (false) a Delete
      * Marker. If false, this response header does not appear in the response.
@@ -78,6 +82,7 @@ namespace Model
      */
     inline GetObjectResult& WithDeleteMarker(bool value) { SetDeleteMarker(value); return *this;}
 
+
     
     inline const Aws::String& GetAcceptRanges() const{ return m_acceptRanges; }
 
@@ -85,7 +90,7 @@ namespace Model
     inline void SetAcceptRanges(const Aws::String& value) { m_acceptRanges = value; }
 
     
-    inline void SetAcceptRanges(Aws::String&& value) { m_acceptRanges = value; }
+    inline void SetAcceptRanges(Aws::String&& value) { m_acceptRanges = std::move(value); }
 
     
     inline void SetAcceptRanges(const char* value) { m_acceptRanges.assign(value); }
@@ -94,10 +99,11 @@ namespace Model
     inline GetObjectResult& WithAcceptRanges(const Aws::String& value) { SetAcceptRanges(value); return *this;}
 
     
-    inline GetObjectResult& WithAcceptRanges(Aws::String&& value) { SetAcceptRanges(value); return *this;}
+    inline GetObjectResult& WithAcceptRanges(Aws::String&& value) { SetAcceptRanges(std::move(value)); return *this;}
 
     
     inline GetObjectResult& WithAcceptRanges(const char* value) { SetAcceptRanges(value); return *this;}
+
 
     /**
      * If the object expiration is configured (see PUT Bucket lifecycle), the response
@@ -121,7 +127,7 @@ namespace Model
      * providing object expiration information. The value of the rule-id is URL
      * encoded.
      */
-    inline void SetExpiration(Aws::String&& value) { m_expiration = value; }
+    inline void SetExpiration(Aws::String&& value) { m_expiration = std::move(value); }
 
     /**
      * If the object expiration is configured (see PUT Bucket lifecycle), the response
@@ -145,7 +151,7 @@ namespace Model
      * providing object expiration information. The value of the rule-id is URL
      * encoded.
      */
-    inline GetObjectResult& WithExpiration(Aws::String&& value) { SetExpiration(value); return *this;}
+    inline GetObjectResult& WithExpiration(Aws::String&& value) { SetExpiration(std::move(value)); return *this;}
 
     /**
      * If the object expiration is configured (see PUT Bucket lifecycle), the response
@@ -154,6 +160,7 @@ namespace Model
      * encoded.
      */
     inline GetObjectResult& WithExpiration(const char* value) { SetExpiration(value); return *this;}
+
 
     /**
      * Provides information about object restoration operation and expiration time of
@@ -171,7 +178,7 @@ namespace Model
      * Provides information about object restoration operation and expiration time of
      * the restored object copy.
      */
-    inline void SetRestore(Aws::String&& value) { m_restore = value; }
+    inline void SetRestore(Aws::String&& value) { m_restore = std::move(value); }
 
     /**
      * Provides information about object restoration operation and expiration time of
@@ -189,13 +196,14 @@ namespace Model
      * Provides information about object restoration operation and expiration time of
      * the restored object copy.
      */
-    inline GetObjectResult& WithRestore(Aws::String&& value) { SetRestore(value); return *this;}
+    inline GetObjectResult& WithRestore(Aws::String&& value) { SetRestore(std::move(value)); return *this;}
 
     /**
      * Provides information about object restoration operation and expiration time of
      * the restored object copy.
      */
     inline GetObjectResult& WithRestore(const char* value) { SetRestore(value); return *this;}
+
 
     /**
      * Last modified date of the object
@@ -210,7 +218,7 @@ namespace Model
     /**
      * Last modified date of the object
      */
-    inline void SetLastModified(Aws::Utils::DateTime&& value) { m_lastModified = value; }
+    inline void SetLastModified(Aws::Utils::DateTime&& value) { m_lastModified = std::move(value); }
 
     /**
      * Last modified date of the object
@@ -220,7 +228,8 @@ namespace Model
     /**
      * Last modified date of the object
      */
-    inline GetObjectResult& WithLastModified(Aws::Utils::DateTime&& value) { SetLastModified(value); return *this;}
+    inline GetObjectResult& WithLastModified(Aws::Utils::DateTime&& value) { SetLastModified(std::move(value)); return *this;}
+
 
     /**
      * Size of the body in bytes.
@@ -236,6 +245,7 @@ namespace Model
      * Size of the body in bytes.
      */
     inline GetObjectResult& WithContentLength(long long value) { SetContentLength(value); return *this;}
+
 
     /**
      * An ETag is an opaque identifier assigned by a web server to a specific version
@@ -253,7 +263,7 @@ namespace Model
      * An ETag is an opaque identifier assigned by a web server to a specific version
      * of a resource found at a URL
      */
-    inline void SetETag(Aws::String&& value) { m_eTag = value; }
+    inline void SetETag(Aws::String&& value) { m_eTag = std::move(value); }
 
     /**
      * An ETag is an opaque identifier assigned by a web server to a specific version
@@ -271,13 +281,14 @@ namespace Model
      * An ETag is an opaque identifier assigned by a web server to a specific version
      * of a resource found at a URL
      */
-    inline GetObjectResult& WithETag(Aws::String&& value) { SetETag(value); return *this;}
+    inline GetObjectResult& WithETag(Aws::String&& value) { SetETag(std::move(value)); return *this;}
 
     /**
      * An ETag is an opaque identifier assigned by a web server to a specific version
      * of a resource found at a URL
      */
     inline GetObjectResult& WithETag(const char* value) { SetETag(value); return *this;}
+
 
     /**
      * This is set to the number of metadata entries not returned in x-amz-meta
@@ -303,6 +314,7 @@ namespace Model
      */
     inline GetObjectResult& WithMissingMeta(int value) { SetMissingMeta(value); return *this;}
 
+
     /**
      * Version of the object.
      */
@@ -316,7 +328,7 @@ namespace Model
     /**
      * Version of the object.
      */
-    inline void SetVersionId(Aws::String&& value) { m_versionId = value; }
+    inline void SetVersionId(Aws::String&& value) { m_versionId = std::move(value); }
 
     /**
      * Version of the object.
@@ -331,12 +343,13 @@ namespace Model
     /**
      * Version of the object.
      */
-    inline GetObjectResult& WithVersionId(Aws::String&& value) { SetVersionId(value); return *this;}
+    inline GetObjectResult& WithVersionId(Aws::String&& value) { SetVersionId(std::move(value)); return *this;}
 
     /**
      * Version of the object.
      */
     inline GetObjectResult& WithVersionId(const char* value) { SetVersionId(value); return *this;}
+
 
     /**
      * Specifies caching behavior along the request/reply chain.
@@ -351,7 +364,7 @@ namespace Model
     /**
      * Specifies caching behavior along the request/reply chain.
      */
-    inline void SetCacheControl(Aws::String&& value) { m_cacheControl = value; }
+    inline void SetCacheControl(Aws::String&& value) { m_cacheControl = std::move(value); }
 
     /**
      * Specifies caching behavior along the request/reply chain.
@@ -366,12 +379,13 @@ namespace Model
     /**
      * Specifies caching behavior along the request/reply chain.
      */
-    inline GetObjectResult& WithCacheControl(Aws::String&& value) { SetCacheControl(value); return *this;}
+    inline GetObjectResult& WithCacheControl(Aws::String&& value) { SetCacheControl(std::move(value)); return *this;}
 
     /**
      * Specifies caching behavior along the request/reply chain.
      */
     inline GetObjectResult& WithCacheControl(const char* value) { SetCacheControl(value); return *this;}
+
 
     /**
      * Specifies presentational information for the object.
@@ -386,7 +400,7 @@ namespace Model
     /**
      * Specifies presentational information for the object.
      */
-    inline void SetContentDisposition(Aws::String&& value) { m_contentDisposition = value; }
+    inline void SetContentDisposition(Aws::String&& value) { m_contentDisposition = std::move(value); }
 
     /**
      * Specifies presentational information for the object.
@@ -401,12 +415,13 @@ namespace Model
     /**
      * Specifies presentational information for the object.
      */
-    inline GetObjectResult& WithContentDisposition(Aws::String&& value) { SetContentDisposition(value); return *this;}
+    inline GetObjectResult& WithContentDisposition(Aws::String&& value) { SetContentDisposition(std::move(value)); return *this;}
 
     /**
      * Specifies presentational information for the object.
      */
     inline GetObjectResult& WithContentDisposition(const char* value) { SetContentDisposition(value); return *this;}
+
 
     /**
      * Specifies what content encodings have been applied to the object and thus what
@@ -427,7 +442,7 @@ namespace Model
      * decoding mechanisms must be applied to obtain the media-type referenced by the
      * Content-Type header field.
      */
-    inline void SetContentEncoding(Aws::String&& value) { m_contentEncoding = value; }
+    inline void SetContentEncoding(Aws::String&& value) { m_contentEncoding = std::move(value); }
 
     /**
      * Specifies what content encodings have been applied to the object and thus what
@@ -448,7 +463,7 @@ namespace Model
      * decoding mechanisms must be applied to obtain the media-type referenced by the
      * Content-Type header field.
      */
-    inline GetObjectResult& WithContentEncoding(Aws::String&& value) { SetContentEncoding(value); return *this;}
+    inline GetObjectResult& WithContentEncoding(Aws::String&& value) { SetContentEncoding(std::move(value)); return *this;}
 
     /**
      * Specifies what content encodings have been applied to the object and thus what
@@ -456,6 +471,7 @@ namespace Model
      * Content-Type header field.
      */
     inline GetObjectResult& WithContentEncoding(const char* value) { SetContentEncoding(value); return *this;}
+
 
     /**
      * The language the content is in.
@@ -470,7 +486,7 @@ namespace Model
     /**
      * The language the content is in.
      */
-    inline void SetContentLanguage(Aws::String&& value) { m_contentLanguage = value; }
+    inline void SetContentLanguage(Aws::String&& value) { m_contentLanguage = std::move(value); }
 
     /**
      * The language the content is in.
@@ -485,12 +501,13 @@ namespace Model
     /**
      * The language the content is in.
      */
-    inline GetObjectResult& WithContentLanguage(Aws::String&& value) { SetContentLanguage(value); return *this;}
+    inline GetObjectResult& WithContentLanguage(Aws::String&& value) { SetContentLanguage(std::move(value)); return *this;}
 
     /**
      * The language the content is in.
      */
     inline GetObjectResult& WithContentLanguage(const char* value) { SetContentLanguage(value); return *this;}
+
 
     /**
      * The portion of the object returned in the response.
@@ -505,7 +522,7 @@ namespace Model
     /**
      * The portion of the object returned in the response.
      */
-    inline void SetContentRange(Aws::String&& value) { m_contentRange = value; }
+    inline void SetContentRange(Aws::String&& value) { m_contentRange = std::move(value); }
 
     /**
      * The portion of the object returned in the response.
@@ -520,12 +537,13 @@ namespace Model
     /**
      * The portion of the object returned in the response.
      */
-    inline GetObjectResult& WithContentRange(Aws::String&& value) { SetContentRange(value); return *this;}
+    inline GetObjectResult& WithContentRange(Aws::String&& value) { SetContentRange(std::move(value)); return *this;}
 
     /**
      * The portion of the object returned in the response.
      */
     inline GetObjectResult& WithContentRange(const char* value) { SetContentRange(value); return *this;}
+
 
     /**
      * A standard MIME type describing the format of the object data.
@@ -540,7 +558,7 @@ namespace Model
     /**
      * A standard MIME type describing the format of the object data.
      */
-    inline void SetContentType(Aws::String&& value) { m_contentType = value; }
+    inline void SetContentType(Aws::String&& value) { m_contentType = std::move(value); }
 
     /**
      * A standard MIME type describing the format of the object data.
@@ -555,12 +573,13 @@ namespace Model
     /**
      * A standard MIME type describing the format of the object data.
      */
-    inline GetObjectResult& WithContentType(Aws::String&& value) { SetContentType(value); return *this;}
+    inline GetObjectResult& WithContentType(Aws::String&& value) { SetContentType(std::move(value)); return *this;}
 
     /**
      * A standard MIME type describing the format of the object data.
      */
     inline GetObjectResult& WithContentType(const char* value) { SetContentType(value); return *this;}
+
 
     /**
      * The date and time at which the object is no longer cacheable.
@@ -575,7 +594,7 @@ namespace Model
     /**
      * The date and time at which the object is no longer cacheable.
      */
-    inline void SetExpires(Aws::Utils::DateTime&& value) { m_expires = value; }
+    inline void SetExpires(Aws::Utils::DateTime&& value) { m_expires = std::move(value); }
 
     /**
      * The date and time at which the object is no longer cacheable.
@@ -585,7 +604,8 @@ namespace Model
     /**
      * The date and time at which the object is no longer cacheable.
      */
-    inline GetObjectResult& WithExpires(Aws::Utils::DateTime&& value) { SetExpires(value); return *this;}
+    inline GetObjectResult& WithExpires(Aws::Utils::DateTime&& value) { SetExpires(std::move(value)); return *this;}
+
 
     /**
      * If the bucket is configured as a website, redirects requests for this object to
@@ -606,7 +626,7 @@ namespace Model
      * another object in the same bucket or to an external URL. Amazon S3 stores the
      * value of this header in the object metadata.
      */
-    inline void SetWebsiteRedirectLocation(Aws::String&& value) { m_websiteRedirectLocation = value; }
+    inline void SetWebsiteRedirectLocation(Aws::String&& value) { m_websiteRedirectLocation = std::move(value); }
 
     /**
      * If the bucket is configured as a website, redirects requests for this object to
@@ -627,7 +647,7 @@ namespace Model
      * another object in the same bucket or to an external URL. Amazon S3 stores the
      * value of this header in the object metadata.
      */
-    inline GetObjectResult& WithWebsiteRedirectLocation(Aws::String&& value) { SetWebsiteRedirectLocation(value); return *this;}
+    inline GetObjectResult& WithWebsiteRedirectLocation(Aws::String&& value) { SetWebsiteRedirectLocation(std::move(value)); return *this;}
 
     /**
      * If the bucket is configured as a website, redirects requests for this object to
@@ -635,6 +655,7 @@ namespace Model
      * value of this header in the object metadata.
      */
     inline GetObjectResult& WithWebsiteRedirectLocation(const char* value) { SetWebsiteRedirectLocation(value); return *this;}
+
 
     /**
      * The Server-side encryption algorithm used when storing this object in S3 (e.g.,
@@ -652,7 +673,7 @@ namespace Model
      * The Server-side encryption algorithm used when storing this object in S3 (e.g.,
      * AES256, aws:kms).
      */
-    inline void SetServerSideEncryption(ServerSideEncryption&& value) { m_serverSideEncryption = value; }
+    inline void SetServerSideEncryption(ServerSideEncryption&& value) { m_serverSideEncryption = std::move(value); }
 
     /**
      * The Server-side encryption algorithm used when storing this object in S3 (e.g.,
@@ -664,7 +685,8 @@ namespace Model
      * The Server-side encryption algorithm used when storing this object in S3 (e.g.,
      * AES256, aws:kms).
      */
-    inline GetObjectResult& WithServerSideEncryption(ServerSideEncryption&& value) { SetServerSideEncryption(value); return *this;}
+    inline GetObjectResult& WithServerSideEncryption(ServerSideEncryption&& value) { SetServerSideEncryption(std::move(value)); return *this;}
+
 
     /**
      * A map of metadata to store with the object in S3.
@@ -679,7 +701,7 @@ namespace Model
     /**
      * A map of metadata to store with the object in S3.
      */
-    inline void SetMetadata(Aws::Map<Aws::String, Aws::String>&& value) { m_metadata = value; }
+    inline void SetMetadata(Aws::Map<Aws::String, Aws::String>&& value) { m_metadata = std::move(value); }
 
     /**
      * A map of metadata to store with the object in S3.
@@ -689,42 +711,43 @@ namespace Model
     /**
      * A map of metadata to store with the object in S3.
      */
-    inline GetObjectResult& WithMetadata(Aws::Map<Aws::String, Aws::String>&& value) { SetMetadata(value); return *this;}
+    inline GetObjectResult& WithMetadata(Aws::Map<Aws::String, Aws::String>&& value) { SetMetadata(std::move(value)); return *this;}
 
     /**
      * A map of metadata to store with the object in S3.
      */
-    inline GetObjectResult& AddMetadata(const Aws::String& key, const Aws::String& value) { m_metadata[key] = value; return *this; }
+    inline GetObjectResult& AddMetadata(const Aws::String& key, const Aws::String& value) { m_metadata.emplace(key, value); return *this; }
 
     /**
      * A map of metadata to store with the object in S3.
      */
-    inline GetObjectResult& AddMetadata(Aws::String&& key, const Aws::String& value) { m_metadata[key] = value; return *this; }
+    inline GetObjectResult& AddMetadata(Aws::String&& key, const Aws::String& value) { m_metadata.emplace(std::move(key), value); return *this; }
 
     /**
      * A map of metadata to store with the object in S3.
      */
-    inline GetObjectResult& AddMetadata(const Aws::String& key, Aws::String&& value) { m_metadata[key] = value; return *this; }
+    inline GetObjectResult& AddMetadata(const Aws::String& key, Aws::String&& value) { m_metadata.emplace(key, std::move(value)); return *this; }
 
     /**
      * A map of metadata to store with the object in S3.
      */
-    inline GetObjectResult& AddMetadata(Aws::String&& key, Aws::String&& value) { m_metadata[key] = value; return *this; }
+    inline GetObjectResult& AddMetadata(Aws::String&& key, Aws::String&& value) { m_metadata.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * A map of metadata to store with the object in S3.
      */
-    inline GetObjectResult& AddMetadata(const char* key, Aws::String&& value) { m_metadata[key] = value; return *this; }
+    inline GetObjectResult& AddMetadata(const char* key, Aws::String&& value) { m_metadata.emplace(key, std::move(value)); return *this; }
 
     /**
      * A map of metadata to store with the object in S3.
      */
-    inline GetObjectResult& AddMetadata(Aws::String&& key, const char* value) { m_metadata[key] = value; return *this; }
+    inline GetObjectResult& AddMetadata(Aws::String&& key, const char* value) { m_metadata.emplace(std::move(key), value); return *this; }
 
     /**
      * A map of metadata to store with the object in S3.
      */
-    inline GetObjectResult& AddMetadata(const char* key, const char* value) { m_metadata[key] = value; return *this; }
+    inline GetObjectResult& AddMetadata(const char* key, const char* value) { m_metadata.emplace(key, value); return *this; }
+
 
     /**
      * If server-side encryption with a customer-provided encryption key was requested,
@@ -742,7 +765,7 @@ namespace Model
      * If server-side encryption with a customer-provided encryption key was requested,
      * the response will include this header confirming the encryption algorithm used.
      */
-    inline void SetSSECustomerAlgorithm(Aws::String&& value) { m_sSECustomerAlgorithm = value; }
+    inline void SetSSECustomerAlgorithm(Aws::String&& value) { m_sSECustomerAlgorithm = std::move(value); }
 
     /**
      * If server-side encryption with a customer-provided encryption key was requested,
@@ -760,13 +783,14 @@ namespace Model
      * If server-side encryption with a customer-provided encryption key was requested,
      * the response will include this header confirming the encryption algorithm used.
      */
-    inline GetObjectResult& WithSSECustomerAlgorithm(Aws::String&& value) { SetSSECustomerAlgorithm(value); return *this;}
+    inline GetObjectResult& WithSSECustomerAlgorithm(Aws::String&& value) { SetSSECustomerAlgorithm(std::move(value)); return *this;}
 
     /**
      * If server-side encryption with a customer-provided encryption key was requested,
      * the response will include this header confirming the encryption algorithm used.
      */
     inline GetObjectResult& WithSSECustomerAlgorithm(const char* value) { SetSSECustomerAlgorithm(value); return *this;}
+
 
     /**
      * If server-side encryption with a customer-provided encryption key was requested,
@@ -787,7 +811,7 @@ namespace Model
      * the response will include this header to provide round trip message integrity
      * verification of the customer-provided encryption key.
      */
-    inline void SetSSECustomerKeyMD5(Aws::String&& value) { m_sSECustomerKeyMD5 = value; }
+    inline void SetSSECustomerKeyMD5(Aws::String&& value) { m_sSECustomerKeyMD5 = std::move(value); }
 
     /**
      * If server-side encryption with a customer-provided encryption key was requested,
@@ -808,7 +832,7 @@ namespace Model
      * the response will include this header to provide round trip message integrity
      * verification of the customer-provided encryption key.
      */
-    inline GetObjectResult& WithSSECustomerKeyMD5(Aws::String&& value) { SetSSECustomerKeyMD5(value); return *this;}
+    inline GetObjectResult& WithSSECustomerKeyMD5(Aws::String&& value) { SetSSECustomerKeyMD5(std::move(value)); return *this;}
 
     /**
      * If server-side encryption with a customer-provided encryption key was requested,
@@ -816,6 +840,7 @@ namespace Model
      * verification of the customer-provided encryption key.
      */
     inline GetObjectResult& WithSSECustomerKeyMD5(const char* value) { SetSSECustomerKeyMD5(value); return *this;}
+
 
     /**
      * If present, specifies the ID of the AWS Key Management Service (KMS) master
@@ -833,7 +858,7 @@ namespace Model
      * If present, specifies the ID of the AWS Key Management Service (KMS) master
      * encryption key that was used for the object.
      */
-    inline void SetSSEKMSKeyId(Aws::String&& value) { m_sSEKMSKeyId = value; }
+    inline void SetSSEKMSKeyId(Aws::String&& value) { m_sSEKMSKeyId = std::move(value); }
 
     /**
      * If present, specifies the ID of the AWS Key Management Service (KMS) master
@@ -851,13 +876,14 @@ namespace Model
      * If present, specifies the ID of the AWS Key Management Service (KMS) master
      * encryption key that was used for the object.
      */
-    inline GetObjectResult& WithSSEKMSKeyId(Aws::String&& value) { SetSSEKMSKeyId(value); return *this;}
+    inline GetObjectResult& WithSSEKMSKeyId(Aws::String&& value) { SetSSEKMSKeyId(std::move(value)); return *this;}
 
     /**
      * If present, specifies the ID of the AWS Key Management Service (KMS) master
      * encryption key that was used for the object.
      */
     inline GetObjectResult& WithSSEKMSKeyId(const char* value) { SetSSEKMSKeyId(value); return *this;}
+
 
     
     inline const StorageClass& GetStorageClass() const{ return m_storageClass; }
@@ -866,13 +892,14 @@ namespace Model
     inline void SetStorageClass(const StorageClass& value) { m_storageClass = value; }
 
     
-    inline void SetStorageClass(StorageClass&& value) { m_storageClass = value; }
+    inline void SetStorageClass(StorageClass&& value) { m_storageClass = std::move(value); }
 
     
     inline GetObjectResult& WithStorageClass(const StorageClass& value) { SetStorageClass(value); return *this;}
 
     
-    inline GetObjectResult& WithStorageClass(StorageClass&& value) { SetStorageClass(value); return *this;}
+    inline GetObjectResult& WithStorageClass(StorageClass&& value) { SetStorageClass(std::move(value)); return *this;}
+
 
     
     inline const RequestCharged& GetRequestCharged() const{ return m_requestCharged; }
@@ -881,13 +908,14 @@ namespace Model
     inline void SetRequestCharged(const RequestCharged& value) { m_requestCharged = value; }
 
     
-    inline void SetRequestCharged(RequestCharged&& value) { m_requestCharged = value; }
+    inline void SetRequestCharged(RequestCharged&& value) { m_requestCharged = std::move(value); }
 
     
     inline GetObjectResult& WithRequestCharged(const RequestCharged& value) { SetRequestCharged(value); return *this;}
 
     
-    inline GetObjectResult& WithRequestCharged(RequestCharged&& value) { SetRequestCharged(value); return *this;}
+    inline GetObjectResult& WithRequestCharged(RequestCharged&& value) { SetRequestCharged(std::move(value)); return *this;}
+
 
     
     inline const ReplicationStatus& GetReplicationStatus() const{ return m_replicationStatus; }
@@ -896,13 +924,14 @@ namespace Model
     inline void SetReplicationStatus(const ReplicationStatus& value) { m_replicationStatus = value; }
 
     
-    inline void SetReplicationStatus(ReplicationStatus&& value) { m_replicationStatus = value; }
+    inline void SetReplicationStatus(ReplicationStatus&& value) { m_replicationStatus = std::move(value); }
 
     
     inline GetObjectResult& WithReplicationStatus(const ReplicationStatus& value) { SetReplicationStatus(value); return *this;}
 
     
-    inline GetObjectResult& WithReplicationStatus(ReplicationStatus&& value) { SetReplicationStatus(value); return *this;}
+    inline GetObjectResult& WithReplicationStatus(ReplicationStatus&& value) { SetReplicationStatus(std::move(value)); return *this;}
+
 
     /**
      * The count of parts this object has.
@@ -919,6 +948,7 @@ namespace Model
      */
     inline GetObjectResult& WithPartsCount(int value) { SetPartsCount(value); return *this;}
 
+
     /**
      * The number of tags, if any, on the object.
      */
@@ -934,35 +964,111 @@ namespace Model
      */
     inline GetObjectResult& WithTagCount(int value) { SetTagCount(value); return *this;}
 
+
+    
+    inline const Aws::String& GetId2() const{ return m_id2; }
+
+    
+    inline void SetId2(const Aws::String& value) { m_id2 = value; }
+
+    
+    inline void SetId2(Aws::String&& value) { m_id2 = std::move(value); }
+
+    
+    inline void SetId2(const char* value) { m_id2.assign(value); }
+
+    
+    inline GetObjectResult& WithId2(const Aws::String& value) { SetId2(value); return *this;}
+
+    
+    inline GetObjectResult& WithId2(Aws::String&& value) { SetId2(std::move(value)); return *this;}
+
+    
+    inline GetObjectResult& WithId2(const char* value) { SetId2(value); return *this;}
+
+
+    
+    inline const Aws::String& GetRequestId() const{ return m_requestId; }
+
+    
+    inline void SetRequestId(const Aws::String& value) { m_requestId = value; }
+
+    
+    inline void SetRequestId(Aws::String&& value) { m_requestId = std::move(value); }
+
+    
+    inline void SetRequestId(const char* value) { m_requestId.assign(value); }
+
+    
+    inline GetObjectResult& WithRequestId(const Aws::String& value) { SetRequestId(value); return *this;}
+
+    
+    inline GetObjectResult& WithRequestId(Aws::String&& value) { SetRequestId(std::move(value)); return *this;}
+
+    
+    inline GetObjectResult& WithRequestId(const char* value) { SetRequestId(value); return *this;}
+
   private:
-    Utils::Stream::ResponseStream m_body;
+
+  Aws::Utils::Stream::ResponseStream m_body;
+
     bool m_deleteMarker;
+
     Aws::String m_acceptRanges;
+
     Aws::String m_expiration;
+
     Aws::String m_restore;
+
     Aws::Utils::DateTime m_lastModified;
+
     long long m_contentLength;
+
     Aws::String m_eTag;
+
     int m_missingMeta;
+
     Aws::String m_versionId;
+
     Aws::String m_cacheControl;
+
     Aws::String m_contentDisposition;
+
     Aws::String m_contentEncoding;
+
     Aws::String m_contentLanguage;
+
     Aws::String m_contentRange;
+
     Aws::String m_contentType;
+
     Aws::Utils::DateTime m_expires;
+
     Aws::String m_websiteRedirectLocation;
+
     ServerSideEncryption m_serverSideEncryption;
+
     Aws::Map<Aws::String, Aws::String> m_metadata;
+
     Aws::String m_sSECustomerAlgorithm;
+
     Aws::String m_sSECustomerKeyMD5;
+
     Aws::String m_sSEKMSKeyId;
+
     StorageClass m_storageClass;
+
     RequestCharged m_requestCharged;
+
     ReplicationStatus m_replicationStatus;
+
     int m_partsCount;
+
     int m_tagCount;
+
+    Aws::String m_id2;
+
+    Aws::String m_requestId;
   };
 
 } // namespace Model

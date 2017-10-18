@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/polly/Polly_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     Lexicon& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Lexicon content in string format. The content of a lexicon must be in PLS
      * format.</p>
@@ -62,7 +65,7 @@ namespace Model
      * <p>Lexicon content in string format. The content of a lexicon must be in PLS
      * format.</p>
      */
-    inline void SetContent(Aws::String&& value) { m_contentHasBeenSet = true; m_content = value; }
+    inline void SetContent(Aws::String&& value) { m_contentHasBeenSet = true; m_content = std::move(value); }
 
     /**
      * <p>Lexicon content in string format. The content of a lexicon must be in PLS
@@ -80,13 +83,14 @@ namespace Model
      * <p>Lexicon content in string format. The content of a lexicon must be in PLS
      * format.</p>
      */
-    inline Lexicon& WithContent(Aws::String&& value) { SetContent(value); return *this;}
+    inline Lexicon& WithContent(Aws::String&& value) { SetContent(std::move(value)); return *this;}
 
     /**
      * <p>Lexicon content in string format. The content of a lexicon must be in PLS
      * format.</p>
      */
     inline Lexicon& WithContent(const char* value) { SetContent(value); return *this;}
+
 
     /**
      * <p>Name of the lexicon.</p>
@@ -101,7 +105,7 @@ namespace Model
     /**
      * <p>Name of the lexicon.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>Name of the lexicon.</p>
@@ -116,7 +120,7 @@ namespace Model
     /**
      * <p>Name of the lexicon.</p>
      */
-    inline Lexicon& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline Lexicon& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>Name of the lexicon.</p>
@@ -124,8 +128,10 @@ namespace Model
     inline Lexicon& WithName(const char* value) { SetName(value); return *this;}
 
   private:
+
     Aws::String m_content;
     bool m_contentHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/autoscaling/AutoScaling_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/autoscaling/model/ScalingActivityStatusCode.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,6 +52,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The ID of the activity.</p>
      */
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>The ID of the activity.</p>
      */
-    inline void SetActivityId(Aws::String&& value) { m_activityIdHasBeenSet = true; m_activityId = value; }
+    inline void SetActivityId(Aws::String&& value) { m_activityIdHasBeenSet = true; m_activityId = std::move(value); }
 
     /**
      * <p>The ID of the activity.</p>
@@ -78,12 +81,13 @@ namespace Model
     /**
      * <p>The ID of the activity.</p>
      */
-    inline Activity& WithActivityId(Aws::String&& value) { SetActivityId(value); return *this;}
+    inline Activity& WithActivityId(Aws::String&& value) { SetActivityId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the activity.</p>
      */
     inline Activity& WithActivityId(const char* value) { SetActivityId(value); return *this;}
+
 
     /**
      * <p>The name of the Auto Scaling group.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>The name of the Auto Scaling group.</p>
      */
-    inline void SetAutoScalingGroupName(Aws::String&& value) { m_autoScalingGroupNameHasBeenSet = true; m_autoScalingGroupName = value; }
+    inline void SetAutoScalingGroupName(Aws::String&& value) { m_autoScalingGroupNameHasBeenSet = true; m_autoScalingGroupName = std::move(value); }
 
     /**
      * <p>The name of the Auto Scaling group.</p>
@@ -113,12 +117,13 @@ namespace Model
     /**
      * <p>The name of the Auto Scaling group.</p>
      */
-    inline Activity& WithAutoScalingGroupName(Aws::String&& value) { SetAutoScalingGroupName(value); return *this;}
+    inline Activity& WithAutoScalingGroupName(Aws::String&& value) { SetAutoScalingGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the Auto Scaling group.</p>
      */
     inline Activity& WithAutoScalingGroupName(const char* value) { SetAutoScalingGroupName(value); return *this;}
+
 
     /**
      * <p>A friendly, more verbose description of the activity.</p>
@@ -133,7 +138,7 @@ namespace Model
     /**
      * <p>A friendly, more verbose description of the activity.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>A friendly, more verbose description of the activity.</p>
@@ -148,12 +153,13 @@ namespace Model
     /**
      * <p>A friendly, more verbose description of the activity.</p>
      */
-    inline Activity& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline Activity& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>A friendly, more verbose description of the activity.</p>
      */
     inline Activity& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The reason the activity began.</p>
@@ -168,7 +174,7 @@ namespace Model
     /**
      * <p>The reason the activity began.</p>
      */
-    inline void SetCause(Aws::String&& value) { m_causeHasBeenSet = true; m_cause = value; }
+    inline void SetCause(Aws::String&& value) { m_causeHasBeenSet = true; m_cause = std::move(value); }
 
     /**
      * <p>The reason the activity began.</p>
@@ -183,12 +189,13 @@ namespace Model
     /**
      * <p>The reason the activity began.</p>
      */
-    inline Activity& WithCause(Aws::String&& value) { SetCause(value); return *this;}
+    inline Activity& WithCause(Aws::String&& value) { SetCause(std::move(value)); return *this;}
 
     /**
      * <p>The reason the activity began.</p>
      */
     inline Activity& WithCause(const char* value) { SetCause(value); return *this;}
+
 
     /**
      * <p>The start time of the activity.</p>
@@ -203,7 +210,7 @@ namespace Model
     /**
      * <p>The start time of the activity.</p>
      */
-    inline void SetStartTime(Aws::Utils::DateTime&& value) { m_startTimeHasBeenSet = true; m_startTime = value; }
+    inline void SetStartTime(Aws::Utils::DateTime&& value) { m_startTimeHasBeenSet = true; m_startTime = std::move(value); }
 
     /**
      * <p>The start time of the activity.</p>
@@ -213,7 +220,8 @@ namespace Model
     /**
      * <p>The start time of the activity.</p>
      */
-    inline Activity& WithStartTime(Aws::Utils::DateTime&& value) { SetStartTime(value); return *this;}
+    inline Activity& WithStartTime(Aws::Utils::DateTime&& value) { SetStartTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The end time of the activity.</p>
@@ -228,7 +236,7 @@ namespace Model
     /**
      * <p>The end time of the activity.</p>
      */
-    inline void SetEndTime(Aws::Utils::DateTime&& value) { m_endTimeHasBeenSet = true; m_endTime = value; }
+    inline void SetEndTime(Aws::Utils::DateTime&& value) { m_endTimeHasBeenSet = true; m_endTime = std::move(value); }
 
     /**
      * <p>The end time of the activity.</p>
@@ -238,7 +246,8 @@ namespace Model
     /**
      * <p>The end time of the activity.</p>
      */
-    inline Activity& WithEndTime(Aws::Utils::DateTime&& value) { SetEndTime(value); return *this;}
+    inline Activity& WithEndTime(Aws::Utils::DateTime&& value) { SetEndTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The current status of the activity.</p>
@@ -253,7 +262,7 @@ namespace Model
     /**
      * <p>The current status of the activity.</p>
      */
-    inline void SetStatusCode(ScalingActivityStatusCode&& value) { m_statusCodeHasBeenSet = true; m_statusCode = value; }
+    inline void SetStatusCode(ScalingActivityStatusCode&& value) { m_statusCodeHasBeenSet = true; m_statusCode = std::move(value); }
 
     /**
      * <p>The current status of the activity.</p>
@@ -263,7 +272,8 @@ namespace Model
     /**
      * <p>The current status of the activity.</p>
      */
-    inline Activity& WithStatusCode(ScalingActivityStatusCode&& value) { SetStatusCode(value); return *this;}
+    inline Activity& WithStatusCode(ScalingActivityStatusCode&& value) { SetStatusCode(std::move(value)); return *this;}
+
 
     /**
      * <p>A friendly, more verbose description of the activity status.</p>
@@ -278,7 +288,7 @@ namespace Model
     /**
      * <p>A friendly, more verbose description of the activity status.</p>
      */
-    inline void SetStatusMessage(Aws::String&& value) { m_statusMessageHasBeenSet = true; m_statusMessage = value; }
+    inline void SetStatusMessage(Aws::String&& value) { m_statusMessageHasBeenSet = true; m_statusMessage = std::move(value); }
 
     /**
      * <p>A friendly, more verbose description of the activity status.</p>
@@ -293,12 +303,13 @@ namespace Model
     /**
      * <p>A friendly, more verbose description of the activity status.</p>
      */
-    inline Activity& WithStatusMessage(Aws::String&& value) { SetStatusMessage(value); return *this;}
+    inline Activity& WithStatusMessage(Aws::String&& value) { SetStatusMessage(std::move(value)); return *this;}
 
     /**
      * <p>A friendly, more verbose description of the activity status.</p>
      */
     inline Activity& WithStatusMessage(const char* value) { SetStatusMessage(value); return *this;}
+
 
     /**
      * <p>A value between 0 and 100 that indicates the progress of the activity.</p>
@@ -315,6 +326,7 @@ namespace Model
      */
     inline Activity& WithProgress(int value) { SetProgress(value); return *this;}
 
+
     /**
      * <p>The details about the activity.</p>
      */
@@ -328,7 +340,7 @@ namespace Model
     /**
      * <p>The details about the activity.</p>
      */
-    inline void SetDetails(Aws::String&& value) { m_detailsHasBeenSet = true; m_details = value; }
+    inline void SetDetails(Aws::String&& value) { m_detailsHasBeenSet = true; m_details = std::move(value); }
 
     /**
      * <p>The details about the activity.</p>
@@ -343,7 +355,7 @@ namespace Model
     /**
      * <p>The details about the activity.</p>
      */
-    inline Activity& WithDetails(Aws::String&& value) { SetDetails(value); return *this;}
+    inline Activity& WithDetails(Aws::String&& value) { SetDetails(std::move(value)); return *this;}
 
     /**
      * <p>The details about the activity.</p>
@@ -351,24 +363,34 @@ namespace Model
     inline Activity& WithDetails(const char* value) { SetDetails(value); return *this;}
 
   private:
+
     Aws::String m_activityId;
     bool m_activityIdHasBeenSet;
+
     Aws::String m_autoScalingGroupName;
     bool m_autoScalingGroupNameHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     Aws::String m_cause;
     bool m_causeHasBeenSet;
+
     Aws::Utils::DateTime m_startTime;
     bool m_startTimeHasBeenSet;
+
     Aws::Utils::DateTime m_endTime;
     bool m_endTimeHasBeenSet;
+
     ScalingActivityStatusCode m_statusCode;
     bool m_statusCodeHasBeenSet;
+
     Aws::String m_statusMessage;
     bool m_statusMessageHasBeenSet;
+
     int m_progress;
     bool m_progressHasBeenSet;
+
     Aws::String m_details;
     bool m_detailsHasBeenSet;
   };

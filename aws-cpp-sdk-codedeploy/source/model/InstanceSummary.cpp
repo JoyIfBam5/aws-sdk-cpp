@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/codedeploy/model/InstanceSummary.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -33,7 +34,9 @@ InstanceSummary::InstanceSummary() :
     m_status(InstanceStatus::NOT_SET),
     m_statusHasBeenSet(false),
     m_lastUpdatedAtHasBeenSet(false),
-    m_lifecycleEventsHasBeenSet(false)
+    m_lifecycleEventsHasBeenSet(false),
+    m_instanceType(InstanceType::NOT_SET),
+    m_instanceTypeHasBeenSet(false)
 {
 }
 
@@ -43,7 +46,9 @@ InstanceSummary::InstanceSummary(const JsonValue& jsonValue) :
     m_status(InstanceStatus::NOT_SET),
     m_statusHasBeenSet(false),
     m_lastUpdatedAtHasBeenSet(false),
-    m_lifecycleEventsHasBeenSet(false)
+    m_lifecycleEventsHasBeenSet(false),
+    m_instanceType(InstanceType::NOT_SET),
+    m_instanceTypeHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -88,6 +93,13 @@ InstanceSummary& InstanceSummary::operator =(const JsonValue& jsonValue)
     m_lifecycleEventsHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("instanceType"))
+  {
+    m_instanceType = InstanceTypeMapper::GetInstanceTypeForName(jsonValue.GetString("instanceType"));
+
+    m_instanceTypeHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -126,6 +138,11 @@ JsonValue InstanceSummary::Jsonize() const
    }
    payload.WithArray("lifecycleEvents", std::move(lifecycleEventsJsonList));
 
+  }
+
+  if(m_instanceTypeHasBeenSet)
+  {
+   payload.WithString("instanceType", InstanceTypeMapper::GetNameForInstanceType(m_instanceType));
   }
 
   return payload;

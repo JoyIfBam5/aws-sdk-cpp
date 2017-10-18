@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codepipeline/CodePipeline_EXPORTS.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,8 +35,8 @@ namespace CodePipeline
 namespace Model
 {
   /**
-   * <p>Represents the output of a put approval result action.</p><p><h3>See
-   * Also:</h3>   <a
+   * <p>Represents the output of a PutApprovalResult action.</p><p><h3>See Also:</h3>
+   * <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/codepipeline-2015-07-09/PutApprovalResultOutput">AWS
    * API Reference</a></p>
    */
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     PutApprovalResultResult();
-    PutApprovalResultResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    PutApprovalResultResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PutApprovalResultResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PutApprovalResultResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The timestamp showing when the approval or rejection was submitted.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The timestamp showing when the approval or rejection was submitted.</p>
      */
-    inline void SetApprovedAt(Aws::Utils::DateTime&& value) { m_approvedAt = value; }
+    inline void SetApprovedAt(Aws::Utils::DateTime&& value) { m_approvedAt = std::move(value); }
 
     /**
      * <p>The timestamp showing when the approval or rejection was submitted.</p>
@@ -68,9 +71,10 @@ namespace Model
     /**
      * <p>The timestamp showing when the approval or rejection was submitted.</p>
      */
-    inline PutApprovalResultResult& WithApprovedAt(Aws::Utils::DateTime&& value) { SetApprovedAt(value); return *this;}
+    inline PutApprovalResultResult& WithApprovedAt(Aws::Utils::DateTime&& value) { SetApprovedAt(std::move(value)); return *this;}
 
   private:
+
     Aws::Utils::DateTime m_approvedAt;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/glacier/Glacier_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     DataRetrievalRule& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The type of data retrieval policy to set.</p> <p>Valid values:
      * BytesPerHour|FreeTier|None</p>
@@ -59,7 +62,7 @@ namespace Model
      * <p>The type of data retrieval policy to set.</p> <p>Valid values:
      * BytesPerHour|FreeTier|None</p>
      */
-    inline void SetStrategy(Aws::String&& value) { m_strategyHasBeenSet = true; m_strategy = value; }
+    inline void SetStrategy(Aws::String&& value) { m_strategyHasBeenSet = true; m_strategy = std::move(value); }
 
     /**
      * <p>The type of data retrieval policy to set.</p> <p>Valid values:
@@ -77,13 +80,14 @@ namespace Model
      * <p>The type of data retrieval policy to set.</p> <p>Valid values:
      * BytesPerHour|FreeTier|None</p>
      */
-    inline DataRetrievalRule& WithStrategy(Aws::String&& value) { SetStrategy(value); return *this;}
+    inline DataRetrievalRule& WithStrategy(Aws::String&& value) { SetStrategy(std::move(value)); return *this;}
 
     /**
      * <p>The type of data retrieval policy to set.</p> <p>Valid values:
      * BytesPerHour|FreeTier|None</p>
      */
     inline DataRetrievalRule& WithStrategy(const char* value) { SetStrategy(value); return *this;}
+
 
     /**
      * <p>The maximum number of bytes that can be retrieved in an hour.</p> <p>This
@@ -110,8 +114,10 @@ namespace Model
     inline DataRetrievalRule& WithBytesPerHour(long long value) { SetBytesPerHour(value); return *this;}
 
   private:
+
     Aws::String m_strategy;
     bool m_strategyHasBeenSet;
+
     long long m_bytesPerHour;
     bool m_bytesPerHourHasBeenSet;
   };

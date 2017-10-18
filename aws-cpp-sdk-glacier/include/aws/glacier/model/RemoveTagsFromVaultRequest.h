@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/glacier/Glacier_EXPORTS.h>
 #include <aws/glacier/GlacierRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,7 +37,15 @@ namespace Model
   {
   public:
     RemoveTagsFromVaultRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "RemoveTagsFromVault"; }
+
     Aws::String SerializePayload() const override;
+
 
     /**
      * <p>The <code>AccountId</code> value is the AWS account ID of the account that
@@ -62,7 +72,7 @@ namespace Model
      * associated with the credentials used to sign the request. If you use an account
      * ID, do not include any hyphens ('-') in the ID.</p>
      */
-    inline void SetAccountId(Aws::String&& value) { m_accountIdHasBeenSet = true; m_accountId = value; }
+    inline void SetAccountId(Aws::String&& value) { m_accountIdHasBeenSet = true; m_accountId = std::move(value); }
 
     /**
      * <p>The <code>AccountId</code> value is the AWS account ID of the account that
@@ -89,7 +99,7 @@ namespace Model
      * associated with the credentials used to sign the request. If you use an account
      * ID, do not include any hyphens ('-') in the ID.</p>
      */
-    inline RemoveTagsFromVaultRequest& WithAccountId(Aws::String&& value) { SetAccountId(value); return *this;}
+    inline RemoveTagsFromVaultRequest& WithAccountId(Aws::String&& value) { SetAccountId(std::move(value)); return *this;}
 
     /**
      * <p>The <code>AccountId</code> value is the AWS account ID of the account that
@@ -99,6 +109,7 @@ namespace Model
      * ID, do not include any hyphens ('-') in the ID.</p>
      */
     inline RemoveTagsFromVaultRequest& WithAccountId(const char* value) { SetAccountId(value); return *this;}
+
 
     /**
      * <p>The name of the vault.</p>
@@ -113,7 +124,7 @@ namespace Model
     /**
      * <p>The name of the vault.</p>
      */
-    inline void SetVaultName(Aws::String&& value) { m_vaultNameHasBeenSet = true; m_vaultName = value; }
+    inline void SetVaultName(Aws::String&& value) { m_vaultNameHasBeenSet = true; m_vaultName = std::move(value); }
 
     /**
      * <p>The name of the vault.</p>
@@ -128,12 +139,13 @@ namespace Model
     /**
      * <p>The name of the vault.</p>
      */
-    inline RemoveTagsFromVaultRequest& WithVaultName(Aws::String&& value) { SetVaultName(value); return *this;}
+    inline RemoveTagsFromVaultRequest& WithVaultName(Aws::String&& value) { SetVaultName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the vault.</p>
      */
     inline RemoveTagsFromVaultRequest& WithVaultName(const char* value) { SetVaultName(value); return *this;}
+
 
     /**
      * <p>A list of tag keys. Each corresponding tag is removed from the vault.</p>
@@ -148,7 +160,7 @@ namespace Model
     /**
      * <p>A list of tag keys. Each corresponding tag is removed from the vault.</p>
      */
-    inline void SetTagKeys(Aws::Vector<Aws::String>&& value) { m_tagKeysHasBeenSet = true; m_tagKeys = value; }
+    inline void SetTagKeys(Aws::Vector<Aws::String>&& value) { m_tagKeysHasBeenSet = true; m_tagKeys = std::move(value); }
 
     /**
      * <p>A list of tag keys. Each corresponding tag is removed from the vault.</p>
@@ -158,7 +170,7 @@ namespace Model
     /**
      * <p>A list of tag keys. Each corresponding tag is removed from the vault.</p>
      */
-    inline RemoveTagsFromVaultRequest& WithTagKeys(Aws::Vector<Aws::String>&& value) { SetTagKeys(value); return *this;}
+    inline RemoveTagsFromVaultRequest& WithTagKeys(Aws::Vector<Aws::String>&& value) { SetTagKeys(std::move(value)); return *this;}
 
     /**
      * <p>A list of tag keys. Each corresponding tag is removed from the vault.</p>
@@ -168,7 +180,7 @@ namespace Model
     /**
      * <p>A list of tag keys. Each corresponding tag is removed from the vault.</p>
      */
-    inline RemoveTagsFromVaultRequest& AddTagKeys(Aws::String&& value) { m_tagKeysHasBeenSet = true; m_tagKeys.push_back(value); return *this; }
+    inline RemoveTagsFromVaultRequest& AddTagKeys(Aws::String&& value) { m_tagKeysHasBeenSet = true; m_tagKeys.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of tag keys. Each corresponding tag is removed from the vault.</p>
@@ -176,10 +188,13 @@ namespace Model
     inline RemoveTagsFromVaultRequest& AddTagKeys(const char* value) { m_tagKeysHasBeenSet = true; m_tagKeys.push_back(value); return *this; }
 
   private:
+
     Aws::String m_accountId;
     bool m_accountIdHasBeenSet;
+
     Aws::String m_vaultName;
     bool m_vaultNameHasBeenSet;
+
     Aws::Vector<Aws::String> m_tagKeys;
     bool m_tagKeysHasBeenSet;
   };

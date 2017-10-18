@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/rds/RDSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,7 +36,19 @@ namespace Model
   {
   public:
     ModifyEventSubscriptionRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ModifyEventSubscription"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The name of the RDS event notification subscription.</p>
@@ -49,7 +63,7 @@ namespace Model
     /**
      * <p>The name of the RDS event notification subscription.</p>
      */
-    inline void SetSubscriptionName(Aws::String&& value) { m_subscriptionNameHasBeenSet = true; m_subscriptionName = value; }
+    inline void SetSubscriptionName(Aws::String&& value) { m_subscriptionNameHasBeenSet = true; m_subscriptionName = std::move(value); }
 
     /**
      * <p>The name of the RDS event notification subscription.</p>
@@ -64,12 +78,13 @@ namespace Model
     /**
      * <p>The name of the RDS event notification subscription.</p>
      */
-    inline ModifyEventSubscriptionRequest& WithSubscriptionName(Aws::String&& value) { SetSubscriptionName(value); return *this;}
+    inline ModifyEventSubscriptionRequest& WithSubscriptionName(Aws::String&& value) { SetSubscriptionName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the RDS event notification subscription.</p>
      */
     inline ModifyEventSubscriptionRequest& WithSubscriptionName(const char* value) { SetSubscriptionName(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the SNS topic created for event
@@ -90,7 +105,7 @@ namespace Model
      * notification. The ARN is created by Amazon SNS when you create a topic and
      * subscribe to it.</p>
      */
-    inline void SetSnsTopicArn(Aws::String&& value) { m_snsTopicArnHasBeenSet = true; m_snsTopicArn = value; }
+    inline void SetSnsTopicArn(Aws::String&& value) { m_snsTopicArnHasBeenSet = true; m_snsTopicArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the SNS topic created for event
@@ -111,7 +126,7 @@ namespace Model
      * notification. The ARN is created by Amazon SNS when you create a topic and
      * subscribe to it.</p>
      */
-    inline ModifyEventSubscriptionRequest& WithSnsTopicArn(Aws::String&& value) { SetSnsTopicArn(value); return *this;}
+    inline ModifyEventSubscriptionRequest& WithSnsTopicArn(Aws::String&& value) { SetSnsTopicArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the SNS topic created for event
@@ -119,6 +134,7 @@ namespace Model
      * subscribe to it.</p>
      */
     inline ModifyEventSubscriptionRequest& WithSnsTopicArn(const char* value) { SetSnsTopicArn(value); return *this;}
+
 
     /**
      * <p>The type of source that will be generating the events. For example, if you
@@ -145,7 +161,7 @@ namespace Model
      * returned.</p> <p>Valid values: db-instance | db-parameter-group |
      * db-security-group | db-snapshot</p>
      */
-    inline void SetSourceType(Aws::String&& value) { m_sourceTypeHasBeenSet = true; m_sourceType = value; }
+    inline void SetSourceType(Aws::String&& value) { m_sourceTypeHasBeenSet = true; m_sourceType = std::move(value); }
 
     /**
      * <p>The type of source that will be generating the events. For example, if you
@@ -172,7 +188,7 @@ namespace Model
      * returned.</p> <p>Valid values: db-instance | db-parameter-group |
      * db-security-group | db-snapshot</p>
      */
-    inline ModifyEventSubscriptionRequest& WithSourceType(Aws::String&& value) { SetSourceType(value); return *this;}
+    inline ModifyEventSubscriptionRequest& WithSourceType(Aws::String&& value) { SetSourceType(std::move(value)); return *this;}
 
     /**
      * <p>The type of source that will be generating the events. For example, if you
@@ -182,6 +198,7 @@ namespace Model
      * db-security-group | db-snapshot</p>
      */
     inline ModifyEventSubscriptionRequest& WithSourceType(const char* value) { SetSourceType(value); return *this;}
+
 
     /**
      * <p> A list of event categories for a SourceType that you want to subscribe to.
@@ -208,7 +225,7 @@ namespace Model
      * topic in the Amazon RDS User Guide or by using the
      * <b>DescribeEventCategories</b> action. </p>
      */
-    inline void SetEventCategories(Aws::Vector<Aws::String>&& value) { m_eventCategoriesHasBeenSet = true; m_eventCategories = value; }
+    inline void SetEventCategories(Aws::Vector<Aws::String>&& value) { m_eventCategoriesHasBeenSet = true; m_eventCategories = std::move(value); }
 
     /**
      * <p> A list of event categories for a SourceType that you want to subscribe to.
@@ -226,7 +243,7 @@ namespace Model
      * topic in the Amazon RDS User Guide or by using the
      * <b>DescribeEventCategories</b> action. </p>
      */
-    inline ModifyEventSubscriptionRequest& WithEventCategories(Aws::Vector<Aws::String>&& value) { SetEventCategories(value); return *this;}
+    inline ModifyEventSubscriptionRequest& WithEventCategories(Aws::Vector<Aws::String>&& value) { SetEventCategories(std::move(value)); return *this;}
 
     /**
      * <p> A list of event categories for a SourceType that you want to subscribe to.
@@ -244,7 +261,7 @@ namespace Model
      * topic in the Amazon RDS User Guide or by using the
      * <b>DescribeEventCategories</b> action. </p>
      */
-    inline ModifyEventSubscriptionRequest& AddEventCategories(Aws::String&& value) { m_eventCategoriesHasBeenSet = true; m_eventCategories.push_back(value); return *this; }
+    inline ModifyEventSubscriptionRequest& AddEventCategories(Aws::String&& value) { m_eventCategoriesHasBeenSet = true; m_eventCategories.push_back(std::move(value)); return *this; }
 
     /**
      * <p> A list of event categories for a SourceType that you want to subscribe to.
@@ -254,6 +271,7 @@ namespace Model
      * <b>DescribeEventCategories</b> action. </p>
      */
     inline ModifyEventSubscriptionRequest& AddEventCategories(const char* value) { m_eventCategoriesHasBeenSet = true; m_eventCategories.push_back(value); return *this; }
+
 
     /**
      * <p> A Boolean value; set to <b>true</b> to activate the subscription. </p>
@@ -271,14 +289,19 @@ namespace Model
     inline ModifyEventSubscriptionRequest& WithEnabled(bool value) { SetEnabled(value); return *this;}
 
   private:
+
     Aws::String m_subscriptionName;
     bool m_subscriptionNameHasBeenSet;
+
     Aws::String m_snsTopicArn;
     bool m_snsTopicArnHasBeenSet;
+
     Aws::String m_sourceType;
     bool m_sourceTypeHasBeenSet;
+
     Aws::Vector<Aws::String> m_eventCategories;
     bool m_eventCategoriesHasBeenSet;
+
     bool m_enabled;
     bool m_enabledHasBeenSet;
   };

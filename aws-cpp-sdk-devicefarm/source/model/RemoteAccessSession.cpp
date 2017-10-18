@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/devicefarm/model/RemoteAccessSession.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -39,10 +40,15 @@ RemoteAccessSession::RemoteAccessSession() :
     m_startedHasBeenSet(false),
     m_stoppedHasBeenSet(false),
     m_deviceHasBeenSet(false),
+    m_remoteDebugEnabled(false),
+    m_remoteDebugEnabledHasBeenSet(false),
+    m_hostAddressHasBeenSet(false),
+    m_clientIdHasBeenSet(false),
     m_billingMethod(BillingMethod::NOT_SET),
     m_billingMethodHasBeenSet(false),
     m_deviceMinutesHasBeenSet(false),
-    m_endpointHasBeenSet(false)
+    m_endpointHasBeenSet(false),
+    m_deviceUdidHasBeenSet(false)
 {
 }
 
@@ -58,10 +64,15 @@ RemoteAccessSession::RemoteAccessSession(const JsonValue& jsonValue) :
     m_startedHasBeenSet(false),
     m_stoppedHasBeenSet(false),
     m_deviceHasBeenSet(false),
+    m_remoteDebugEnabled(false),
+    m_remoteDebugEnabledHasBeenSet(false),
+    m_hostAddressHasBeenSet(false),
+    m_clientIdHasBeenSet(false),
     m_billingMethod(BillingMethod::NOT_SET),
     m_billingMethodHasBeenSet(false),
     m_deviceMinutesHasBeenSet(false),
-    m_endpointHasBeenSet(false)
+    m_endpointHasBeenSet(false),
+    m_deviceUdidHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -131,6 +142,27 @@ RemoteAccessSession& RemoteAccessSession::operator =(const JsonValue& jsonValue)
     m_deviceHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("remoteDebugEnabled"))
+  {
+    m_remoteDebugEnabled = jsonValue.GetBool("remoteDebugEnabled");
+
+    m_remoteDebugEnabledHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("hostAddress"))
+  {
+    m_hostAddress = jsonValue.GetString("hostAddress");
+
+    m_hostAddressHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("clientId"))
+  {
+    m_clientId = jsonValue.GetString("clientId");
+
+    m_clientIdHasBeenSet = true;
+  }
+
   if(jsonValue.ValueExists("billingMethod"))
   {
     m_billingMethod = BillingMethodMapper::GetBillingMethodForName(jsonValue.GetString("billingMethod"));
@@ -150,6 +182,13 @@ RemoteAccessSession& RemoteAccessSession::operator =(const JsonValue& jsonValue)
     m_endpoint = jsonValue.GetString("endpoint");
 
     m_endpointHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("deviceUdid"))
+  {
+    m_deviceUdid = jsonValue.GetString("deviceUdid");
+
+    m_deviceUdidHasBeenSet = true;
   }
 
   return *this;
@@ -208,6 +247,24 @@ JsonValue RemoteAccessSession::Jsonize() const
 
   }
 
+  if(m_remoteDebugEnabledHasBeenSet)
+  {
+   payload.WithBool("remoteDebugEnabled", m_remoteDebugEnabled);
+
+  }
+
+  if(m_hostAddressHasBeenSet)
+  {
+   payload.WithString("hostAddress", m_hostAddress);
+
+  }
+
+  if(m_clientIdHasBeenSet)
+  {
+   payload.WithString("clientId", m_clientId);
+
+  }
+
   if(m_billingMethodHasBeenSet)
   {
    payload.WithString("billingMethod", BillingMethodMapper::GetNameForBillingMethod(m_billingMethod));
@@ -222,6 +279,12 @@ JsonValue RemoteAccessSession::Jsonize() const
   if(m_endpointHasBeenSet)
   {
    payload.WithString("endpoint", m_endpoint);
+
+  }
+
+  if(m_deviceUdidHasBeenSet)
+  {
+   payload.WithString("deviceUdid", m_deviceUdid);
 
   }
 

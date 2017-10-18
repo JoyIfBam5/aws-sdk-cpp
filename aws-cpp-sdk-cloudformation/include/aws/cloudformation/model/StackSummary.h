@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudformation/CloudFormation_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/cloudformation/model/StackStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>Unique stack identifier.</p>
      */
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>Unique stack identifier.</p>
      */
-    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = value; }
+    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = std::move(value); }
 
     /**
      * <p>Unique stack identifier.</p>
@@ -76,12 +79,13 @@ namespace Model
     /**
      * <p>Unique stack identifier.</p>
      */
-    inline StackSummary& WithStackId(Aws::String&& value) { SetStackId(value); return *this;}
+    inline StackSummary& WithStackId(Aws::String&& value) { SetStackId(std::move(value)); return *this;}
 
     /**
      * <p>Unique stack identifier.</p>
      */
     inline StackSummary& WithStackId(const char* value) { SetStackId(value); return *this;}
+
 
     /**
      * <p>The name associated with the stack.</p>
@@ -96,7 +100,7 @@ namespace Model
     /**
      * <p>The name associated with the stack.</p>
      */
-    inline void SetStackName(Aws::String&& value) { m_stackNameHasBeenSet = true; m_stackName = value; }
+    inline void SetStackName(Aws::String&& value) { m_stackNameHasBeenSet = true; m_stackName = std::move(value); }
 
     /**
      * <p>The name associated with the stack.</p>
@@ -111,12 +115,13 @@ namespace Model
     /**
      * <p>The name associated with the stack.</p>
      */
-    inline StackSummary& WithStackName(Aws::String&& value) { SetStackName(value); return *this;}
+    inline StackSummary& WithStackName(Aws::String&& value) { SetStackName(std::move(value)); return *this;}
 
     /**
      * <p>The name associated with the stack.</p>
      */
     inline StackSummary& WithStackName(const char* value) { SetStackName(value); return *this;}
+
 
     /**
      * <p>The template description of the template used to create the stack.</p>
@@ -131,7 +136,7 @@ namespace Model
     /**
      * <p>The template description of the template used to create the stack.</p>
      */
-    inline void SetTemplateDescription(Aws::String&& value) { m_templateDescriptionHasBeenSet = true; m_templateDescription = value; }
+    inline void SetTemplateDescription(Aws::String&& value) { m_templateDescriptionHasBeenSet = true; m_templateDescription = std::move(value); }
 
     /**
      * <p>The template description of the template used to create the stack.</p>
@@ -146,12 +151,13 @@ namespace Model
     /**
      * <p>The template description of the template used to create the stack.</p>
      */
-    inline StackSummary& WithTemplateDescription(Aws::String&& value) { SetTemplateDescription(value); return *this;}
+    inline StackSummary& WithTemplateDescription(Aws::String&& value) { SetTemplateDescription(std::move(value)); return *this;}
 
     /**
      * <p>The template description of the template used to create the stack.</p>
      */
     inline StackSummary& WithTemplateDescription(const char* value) { SetTemplateDescription(value); return *this;}
+
 
     /**
      * <p>The time the stack was created.</p>
@@ -166,7 +172,7 @@ namespace Model
     /**
      * <p>The time the stack was created.</p>
      */
-    inline void SetCreationTime(Aws::Utils::DateTime&& value) { m_creationTimeHasBeenSet = true; m_creationTime = value; }
+    inline void SetCreationTime(Aws::Utils::DateTime&& value) { m_creationTimeHasBeenSet = true; m_creationTime = std::move(value); }
 
     /**
      * <p>The time the stack was created.</p>
@@ -176,7 +182,8 @@ namespace Model
     /**
      * <p>The time the stack was created.</p>
      */
-    inline StackSummary& WithCreationTime(Aws::Utils::DateTime&& value) { SetCreationTime(value); return *this;}
+    inline StackSummary& WithCreationTime(Aws::Utils::DateTime&& value) { SetCreationTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The time the stack was last updated. This field will only be returned if the
@@ -194,7 +201,7 @@ namespace Model
      * <p>The time the stack was last updated. This field will only be returned if the
      * stack has been updated at least once.</p>
      */
-    inline void SetLastUpdatedTime(Aws::Utils::DateTime&& value) { m_lastUpdatedTimeHasBeenSet = true; m_lastUpdatedTime = value; }
+    inline void SetLastUpdatedTime(Aws::Utils::DateTime&& value) { m_lastUpdatedTimeHasBeenSet = true; m_lastUpdatedTime = std::move(value); }
 
     /**
      * <p>The time the stack was last updated. This field will only be returned if the
@@ -206,7 +213,8 @@ namespace Model
      * <p>The time the stack was last updated. This field will only be returned if the
      * stack has been updated at least once.</p>
      */
-    inline StackSummary& WithLastUpdatedTime(Aws::Utils::DateTime&& value) { SetLastUpdatedTime(value); return *this;}
+    inline StackSummary& WithLastUpdatedTime(Aws::Utils::DateTime&& value) { SetLastUpdatedTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The time the stack was deleted.</p>
@@ -221,7 +229,7 @@ namespace Model
     /**
      * <p>The time the stack was deleted.</p>
      */
-    inline void SetDeletionTime(Aws::Utils::DateTime&& value) { m_deletionTimeHasBeenSet = true; m_deletionTime = value; }
+    inline void SetDeletionTime(Aws::Utils::DateTime&& value) { m_deletionTimeHasBeenSet = true; m_deletionTime = std::move(value); }
 
     /**
      * <p>The time the stack was deleted.</p>
@@ -231,7 +239,8 @@ namespace Model
     /**
      * <p>The time the stack was deleted.</p>
      */
-    inline StackSummary& WithDeletionTime(Aws::Utils::DateTime&& value) { SetDeletionTime(value); return *this;}
+    inline StackSummary& WithDeletionTime(Aws::Utils::DateTime&& value) { SetDeletionTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The current status of the stack.</p>
@@ -246,7 +255,7 @@ namespace Model
     /**
      * <p>The current status of the stack.</p>
      */
-    inline void SetStackStatus(StackStatus&& value) { m_stackStatusHasBeenSet = true; m_stackStatus = value; }
+    inline void SetStackStatus(StackStatus&& value) { m_stackStatusHasBeenSet = true; m_stackStatus = std::move(value); }
 
     /**
      * <p>The current status of the stack.</p>
@@ -256,7 +265,8 @@ namespace Model
     /**
      * <p>The current status of the stack.</p>
      */
-    inline StackSummary& WithStackStatus(StackStatus&& value) { SetStackStatus(value); return *this;}
+    inline StackSummary& WithStackStatus(StackStatus&& value) { SetStackStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>Success/Failure message associated with the stack status.</p>
@@ -271,7 +281,7 @@ namespace Model
     /**
      * <p>Success/Failure message associated with the stack status.</p>
      */
-    inline void SetStackStatusReason(Aws::String&& value) { m_stackStatusReasonHasBeenSet = true; m_stackStatusReason = value; }
+    inline void SetStackStatusReason(Aws::String&& value) { m_stackStatusReasonHasBeenSet = true; m_stackStatusReason = std::move(value); }
 
     /**
      * <p>Success/Failure message associated with the stack status.</p>
@@ -286,30 +296,172 @@ namespace Model
     /**
      * <p>Success/Failure message associated with the stack status.</p>
      */
-    inline StackSummary& WithStackStatusReason(Aws::String&& value) { SetStackStatusReason(value); return *this;}
+    inline StackSummary& WithStackStatusReason(Aws::String&& value) { SetStackStatusReason(std::move(value)); return *this;}
 
     /**
      * <p>Success/Failure message associated with the stack status.</p>
      */
     inline StackSummary& WithStackStatusReason(const char* value) { SetStackStatusReason(value); return *this;}
 
+
+    /**
+     * <p>For nested stacks--stacks created as resources for another stack--the stack
+     * ID of the direct parent of this stack. For the first level of nested stacks, the
+     * root stack is also the parent stack.</p> <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Working
+     * with Nested Stacks</a> in the <i>AWS CloudFormation User Guide</i>.</p>
+     */
+    inline const Aws::String& GetParentId() const{ return m_parentId; }
+
+    /**
+     * <p>For nested stacks--stacks created as resources for another stack--the stack
+     * ID of the direct parent of this stack. For the first level of nested stacks, the
+     * root stack is also the parent stack.</p> <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Working
+     * with Nested Stacks</a> in the <i>AWS CloudFormation User Guide</i>.</p>
+     */
+    inline void SetParentId(const Aws::String& value) { m_parentIdHasBeenSet = true; m_parentId = value; }
+
+    /**
+     * <p>For nested stacks--stacks created as resources for another stack--the stack
+     * ID of the direct parent of this stack. For the first level of nested stacks, the
+     * root stack is also the parent stack.</p> <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Working
+     * with Nested Stacks</a> in the <i>AWS CloudFormation User Guide</i>.</p>
+     */
+    inline void SetParentId(Aws::String&& value) { m_parentIdHasBeenSet = true; m_parentId = std::move(value); }
+
+    /**
+     * <p>For nested stacks--stacks created as resources for another stack--the stack
+     * ID of the direct parent of this stack. For the first level of nested stacks, the
+     * root stack is also the parent stack.</p> <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Working
+     * with Nested Stacks</a> in the <i>AWS CloudFormation User Guide</i>.</p>
+     */
+    inline void SetParentId(const char* value) { m_parentIdHasBeenSet = true; m_parentId.assign(value); }
+
+    /**
+     * <p>For nested stacks--stacks created as resources for another stack--the stack
+     * ID of the direct parent of this stack. For the first level of nested stacks, the
+     * root stack is also the parent stack.</p> <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Working
+     * with Nested Stacks</a> in the <i>AWS CloudFormation User Guide</i>.</p>
+     */
+    inline StackSummary& WithParentId(const Aws::String& value) { SetParentId(value); return *this;}
+
+    /**
+     * <p>For nested stacks--stacks created as resources for another stack--the stack
+     * ID of the direct parent of this stack. For the first level of nested stacks, the
+     * root stack is also the parent stack.</p> <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Working
+     * with Nested Stacks</a> in the <i>AWS CloudFormation User Guide</i>.</p>
+     */
+    inline StackSummary& WithParentId(Aws::String&& value) { SetParentId(std::move(value)); return *this;}
+
+    /**
+     * <p>For nested stacks--stacks created as resources for another stack--the stack
+     * ID of the direct parent of this stack. For the first level of nested stacks, the
+     * root stack is also the parent stack.</p> <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Working
+     * with Nested Stacks</a> in the <i>AWS CloudFormation User Guide</i>.</p>
+     */
+    inline StackSummary& WithParentId(const char* value) { SetParentId(value); return *this;}
+
+
+    /**
+     * <p>For nested stacks--stacks created as resources for another stack--the stack
+     * ID of the the top-level stack to which the nested stack ultimately belongs.</p>
+     * <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Working
+     * with Nested Stacks</a> in the <i>AWS CloudFormation User Guide</i>.</p>
+     */
+    inline const Aws::String& GetRootId() const{ return m_rootId; }
+
+    /**
+     * <p>For nested stacks--stacks created as resources for another stack--the stack
+     * ID of the the top-level stack to which the nested stack ultimately belongs.</p>
+     * <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Working
+     * with Nested Stacks</a> in the <i>AWS CloudFormation User Guide</i>.</p>
+     */
+    inline void SetRootId(const Aws::String& value) { m_rootIdHasBeenSet = true; m_rootId = value; }
+
+    /**
+     * <p>For nested stacks--stacks created as resources for another stack--the stack
+     * ID of the the top-level stack to which the nested stack ultimately belongs.</p>
+     * <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Working
+     * with Nested Stacks</a> in the <i>AWS CloudFormation User Guide</i>.</p>
+     */
+    inline void SetRootId(Aws::String&& value) { m_rootIdHasBeenSet = true; m_rootId = std::move(value); }
+
+    /**
+     * <p>For nested stacks--stacks created as resources for another stack--the stack
+     * ID of the the top-level stack to which the nested stack ultimately belongs.</p>
+     * <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Working
+     * with Nested Stacks</a> in the <i>AWS CloudFormation User Guide</i>.</p>
+     */
+    inline void SetRootId(const char* value) { m_rootIdHasBeenSet = true; m_rootId.assign(value); }
+
+    /**
+     * <p>For nested stacks--stacks created as resources for another stack--the stack
+     * ID of the the top-level stack to which the nested stack ultimately belongs.</p>
+     * <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Working
+     * with Nested Stacks</a> in the <i>AWS CloudFormation User Guide</i>.</p>
+     */
+    inline StackSummary& WithRootId(const Aws::String& value) { SetRootId(value); return *this;}
+
+    /**
+     * <p>For nested stacks--stacks created as resources for another stack--the stack
+     * ID of the the top-level stack to which the nested stack ultimately belongs.</p>
+     * <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Working
+     * with Nested Stacks</a> in the <i>AWS CloudFormation User Guide</i>.</p>
+     */
+    inline StackSummary& WithRootId(Aws::String&& value) { SetRootId(std::move(value)); return *this;}
+
+    /**
+     * <p>For nested stacks--stacks created as resources for another stack--the stack
+     * ID of the the top-level stack to which the nested stack ultimately belongs.</p>
+     * <p>For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Working
+     * with Nested Stacks</a> in the <i>AWS CloudFormation User Guide</i>.</p>
+     */
+    inline StackSummary& WithRootId(const char* value) { SetRootId(value); return *this;}
+
   private:
+
     Aws::String m_stackId;
     bool m_stackIdHasBeenSet;
+
     Aws::String m_stackName;
     bool m_stackNameHasBeenSet;
+
     Aws::String m_templateDescription;
     bool m_templateDescriptionHasBeenSet;
+
     Aws::Utils::DateTime m_creationTime;
     bool m_creationTimeHasBeenSet;
+
     Aws::Utils::DateTime m_lastUpdatedTime;
     bool m_lastUpdatedTimeHasBeenSet;
+
     Aws::Utils::DateTime m_deletionTime;
     bool m_deletionTimeHasBeenSet;
+
     StackStatus m_stackStatus;
     bool m_stackStatusHasBeenSet;
+
     Aws::String m_stackStatusReason;
     bool m_stackStatusReasonHasBeenSet;
+
+    Aws::String m_parentId;
+    bool m_parentIdHasBeenSet;
+
+    Aws::String m_rootId;
+    bool m_rootIdHasBeenSet;
   };
 
 } // namespace Model

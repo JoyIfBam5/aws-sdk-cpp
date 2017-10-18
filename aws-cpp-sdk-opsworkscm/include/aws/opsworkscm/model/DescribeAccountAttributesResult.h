@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworkscm/OpsWorksCM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/opsworkscm/model/AccountAttribute.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     DescribeAccountAttributesResult();
-    DescribeAccountAttributesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeAccountAttributesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeAccountAttributesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeAccountAttributesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p> The attributes that are currently set for the account. </p>
@@ -53,7 +56,7 @@ namespace Model
     /**
      * <p> The attributes that are currently set for the account. </p>
      */
-    inline void SetAttributes(Aws::Vector<AccountAttribute>&& value) { m_attributes = value; }
+    inline void SetAttributes(Aws::Vector<AccountAttribute>&& value) { m_attributes = std::move(value); }
 
     /**
      * <p> The attributes that are currently set for the account. </p>
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p> The attributes that are currently set for the account. </p>
      */
-    inline DescribeAccountAttributesResult& WithAttributes(Aws::Vector<AccountAttribute>&& value) { SetAttributes(value); return *this;}
+    inline DescribeAccountAttributesResult& WithAttributes(Aws::Vector<AccountAttribute>&& value) { SetAttributes(std::move(value)); return *this;}
 
     /**
      * <p> The attributes that are currently set for the account. </p>
@@ -73,9 +76,10 @@ namespace Model
     /**
      * <p> The attributes that are currently set for the account. </p>
      */
-    inline DescribeAccountAttributesResult& AddAttributes(AccountAttribute&& value) { m_attributes.push_back(value); return *this; }
+    inline DescribeAccountAttributesResult& AddAttributes(AccountAttribute&& value) { m_attributes.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<AccountAttribute> m_attributes;
   };
 

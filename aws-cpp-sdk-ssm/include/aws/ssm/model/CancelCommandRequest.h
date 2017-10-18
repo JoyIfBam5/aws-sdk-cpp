@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/ssm/SSMRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     CancelCommandRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CancelCommand"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The ID of the command you want to cancel.</p>
@@ -51,7 +61,7 @@ namespace Model
     /**
      * <p>The ID of the command you want to cancel.</p>
      */
-    inline void SetCommandId(Aws::String&& value) { m_commandIdHasBeenSet = true; m_commandId = value; }
+    inline void SetCommandId(Aws::String&& value) { m_commandIdHasBeenSet = true; m_commandId = std::move(value); }
 
     /**
      * <p>The ID of the command you want to cancel.</p>
@@ -66,12 +76,13 @@ namespace Model
     /**
      * <p>The ID of the command you want to cancel.</p>
      */
-    inline CancelCommandRequest& WithCommandId(Aws::String&& value) { SetCommandId(value); return *this;}
+    inline CancelCommandRequest& WithCommandId(Aws::String&& value) { SetCommandId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the command you want to cancel.</p>
      */
     inline CancelCommandRequest& WithCommandId(const char* value) { SetCommandId(value); return *this;}
+
 
     /**
      * <p>(Optional) A list of instance IDs on which you want to cancel the command. If
@@ -92,7 +103,7 @@ namespace Model
      * not provided, the command is canceled on every instance on which it was
      * requested.</p>
      */
-    inline void SetInstanceIds(Aws::Vector<Aws::String>&& value) { m_instanceIdsHasBeenSet = true; m_instanceIds = value; }
+    inline void SetInstanceIds(Aws::Vector<Aws::String>&& value) { m_instanceIdsHasBeenSet = true; m_instanceIds = std::move(value); }
 
     /**
      * <p>(Optional) A list of instance IDs on which you want to cancel the command. If
@@ -106,7 +117,7 @@ namespace Model
      * not provided, the command is canceled on every instance on which it was
      * requested.</p>
      */
-    inline CancelCommandRequest& WithInstanceIds(Aws::Vector<Aws::String>&& value) { SetInstanceIds(value); return *this;}
+    inline CancelCommandRequest& WithInstanceIds(Aws::Vector<Aws::String>&& value) { SetInstanceIds(std::move(value)); return *this;}
 
     /**
      * <p>(Optional) A list of instance IDs on which you want to cancel the command. If
@@ -120,7 +131,7 @@ namespace Model
      * not provided, the command is canceled on every instance on which it was
      * requested.</p>
      */
-    inline CancelCommandRequest& AddInstanceIds(Aws::String&& value) { m_instanceIdsHasBeenSet = true; m_instanceIds.push_back(value); return *this; }
+    inline CancelCommandRequest& AddInstanceIds(Aws::String&& value) { m_instanceIdsHasBeenSet = true; m_instanceIds.push_back(std::move(value)); return *this; }
 
     /**
      * <p>(Optional) A list of instance IDs on which you want to cancel the command. If
@@ -130,8 +141,10 @@ namespace Model
     inline CancelCommandRequest& AddInstanceIds(const char* value) { m_instanceIdsHasBeenSet = true; m_instanceIds.push_back(value); return *this; }
 
   private:
+
     Aws::String m_commandId;
     bool m_commandIdHasBeenSet;
+
     Aws::Vector<Aws::String> m_instanceIds;
     bool m_instanceIdsHasBeenSet;
   };

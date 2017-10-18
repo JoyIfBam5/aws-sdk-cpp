@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     ElasticIp& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The IP address.</p>
      */
@@ -56,7 +59,7 @@ namespace Model
     /**
      * <p>The IP address.</p>
      */
-    inline void SetIp(Aws::String&& value) { m_ipHasBeenSet = true; m_ip = value; }
+    inline void SetIp(Aws::String&& value) { m_ipHasBeenSet = true; m_ip = std::move(value); }
 
     /**
      * <p>The IP address.</p>
@@ -71,12 +74,13 @@ namespace Model
     /**
      * <p>The IP address.</p>
      */
-    inline ElasticIp& WithIp(Aws::String&& value) { SetIp(value); return *this;}
+    inline ElasticIp& WithIp(Aws::String&& value) { SetIp(std::move(value)); return *this;}
 
     /**
      * <p>The IP address.</p>
      */
     inline ElasticIp& WithIp(const char* value) { SetIp(value); return *this;}
+
 
     /**
      * <p>The name.</p>
@@ -91,7 +95,7 @@ namespace Model
     /**
      * <p>The name.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name.</p>
@@ -106,12 +110,13 @@ namespace Model
     /**
      * <p>The name.</p>
      */
-    inline ElasticIp& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline ElasticIp& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name.</p>
      */
     inline ElasticIp& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The domain.</p>
@@ -126,7 +131,7 @@ namespace Model
     /**
      * <p>The domain.</p>
      */
-    inline void SetDomain(Aws::String&& value) { m_domainHasBeenSet = true; m_domain = value; }
+    inline void SetDomain(Aws::String&& value) { m_domainHasBeenSet = true; m_domain = std::move(value); }
 
     /**
      * <p>The domain.</p>
@@ -141,12 +146,13 @@ namespace Model
     /**
      * <p>The domain.</p>
      */
-    inline ElasticIp& WithDomain(Aws::String&& value) { SetDomain(value); return *this;}
+    inline ElasticIp& WithDomain(Aws::String&& value) { SetDomain(std::move(value)); return *this;}
 
     /**
      * <p>The domain.</p>
      */
     inline ElasticIp& WithDomain(const char* value) { SetDomain(value); return *this;}
+
 
     /**
      * <p>The AWS region. For more information, see <a
@@ -167,7 +173,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html">Regions and
      * Endpoints</a>.</p>
      */
-    inline void SetRegion(Aws::String&& value) { m_regionHasBeenSet = true; m_region = value; }
+    inline void SetRegion(Aws::String&& value) { m_regionHasBeenSet = true; m_region = std::move(value); }
 
     /**
      * <p>The AWS region. For more information, see <a
@@ -188,7 +194,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html">Regions and
      * Endpoints</a>.</p>
      */
-    inline ElasticIp& WithRegion(Aws::String&& value) { SetRegion(value); return *this;}
+    inline ElasticIp& WithRegion(Aws::String&& value) { SetRegion(std::move(value)); return *this;}
 
     /**
      * <p>The AWS region. For more information, see <a
@@ -196,6 +202,7 @@ namespace Model
      * Endpoints</a>.</p>
      */
     inline ElasticIp& WithRegion(const char* value) { SetRegion(value); return *this;}
+
 
     /**
      * <p>The ID of the instance that the address is attached to.</p>
@@ -210,7 +217,7 @@ namespace Model
     /**
      * <p>The ID of the instance that the address is attached to.</p>
      */
-    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = value; }
+    inline void SetInstanceId(Aws::String&& value) { m_instanceIdHasBeenSet = true; m_instanceId = std::move(value); }
 
     /**
      * <p>The ID of the instance that the address is attached to.</p>
@@ -225,7 +232,7 @@ namespace Model
     /**
      * <p>The ID of the instance that the address is attached to.</p>
      */
-    inline ElasticIp& WithInstanceId(Aws::String&& value) { SetInstanceId(value); return *this;}
+    inline ElasticIp& WithInstanceId(Aws::String&& value) { SetInstanceId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the instance that the address is attached to.</p>
@@ -233,14 +240,19 @@ namespace Model
     inline ElasticIp& WithInstanceId(const char* value) { SetInstanceId(value); return *this;}
 
   private:
+
     Aws::String m_ip;
     bool m_ipHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_domain;
     bool m_domainHasBeenSet;
+
     Aws::String m_region;
     bool m_regionHasBeenSet;
+
     Aws::String m_instanceId;
     bool m_instanceIdHasBeenSet;
   };

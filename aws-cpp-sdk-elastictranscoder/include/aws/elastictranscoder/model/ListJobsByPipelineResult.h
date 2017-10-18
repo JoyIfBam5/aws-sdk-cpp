@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elastictranscoder/ElasticTranscoder_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/elastictranscoder/model/Job.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     ListJobsByPipelineResult();
-    ListJobsByPipelineResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListJobsByPipelineResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListJobsByPipelineResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListJobsByPipelineResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>An array of <code>Job</code> objects that are in the specified pipeline.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>An array of <code>Job</code> objects that are in the specified pipeline.</p>
      */
-    inline void SetJobs(Aws::Vector<Job>&& value) { m_jobs = value; }
+    inline void SetJobs(Aws::Vector<Job>&& value) { m_jobs = std::move(value); }
 
     /**
      * <p>An array of <code>Job</code> objects that are in the specified pipeline.</p>
@@ -70,7 +73,7 @@ namespace Model
     /**
      * <p>An array of <code>Job</code> objects that are in the specified pipeline.</p>
      */
-    inline ListJobsByPipelineResult& WithJobs(Aws::Vector<Job>&& value) { SetJobs(value); return *this;}
+    inline ListJobsByPipelineResult& WithJobs(Aws::Vector<Job>&& value) { SetJobs(std::move(value)); return *this;}
 
     /**
      * <p>An array of <code>Job</code> objects that are in the specified pipeline.</p>
@@ -80,7 +83,8 @@ namespace Model
     /**
      * <p>An array of <code>Job</code> objects that are in the specified pipeline.</p>
      */
-    inline ListJobsByPipelineResult& AddJobs(Job&& value) { m_jobs.push_back(value); return *this; }
+    inline ListJobsByPipelineResult& AddJobs(Job&& value) { m_jobs.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p> A value that you use to access the second and subsequent pages of results,
@@ -104,7 +108,7 @@ namespace Model
      * reached the last page of results, the value of <code>NextPageToken</code> is
      * <code>null</code>. </p>
      */
-    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = value; }
+    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = std::move(value); }
 
     /**
      * <p> A value that you use to access the second and subsequent pages of results,
@@ -128,7 +132,7 @@ namespace Model
      * reached the last page of results, the value of <code>NextPageToken</code> is
      * <code>null</code>. </p>
      */
-    inline ListJobsByPipelineResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(value); return *this;}
+    inline ListJobsByPipelineResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(std::move(value)); return *this;}
 
     /**
      * <p> A value that you use to access the second and subsequent pages of results,
@@ -139,7 +143,9 @@ namespace Model
     inline ListJobsByPipelineResult& WithNextPageToken(const char* value) { SetNextPageToken(value); return *this;}
 
   private:
+
     Aws::Vector<Job> m_jobs;
+
     Aws::String m_nextPageToken;
   };
 

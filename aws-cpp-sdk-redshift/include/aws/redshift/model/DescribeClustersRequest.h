@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/redshift/RedshiftRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,7 +36,19 @@ namespace Model
   {
   public:
     DescribeClustersRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeClusters"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The unique identifier of a cluster whose properties you are requesting. This
@@ -55,7 +69,7 @@ namespace Model
      * parameter is case sensitive.</p> <p>The default is that all clusters defined for
      * an account are returned.</p>
      */
-    inline void SetClusterIdentifier(Aws::String&& value) { m_clusterIdentifierHasBeenSet = true; m_clusterIdentifier = value; }
+    inline void SetClusterIdentifier(Aws::String&& value) { m_clusterIdentifierHasBeenSet = true; m_clusterIdentifier = std::move(value); }
 
     /**
      * <p>The unique identifier of a cluster whose properties you are requesting. This
@@ -76,7 +90,7 @@ namespace Model
      * parameter is case sensitive.</p> <p>The default is that all clusters defined for
      * an account are returned.</p>
      */
-    inline DescribeClustersRequest& WithClusterIdentifier(Aws::String&& value) { SetClusterIdentifier(value); return *this;}
+    inline DescribeClustersRequest& WithClusterIdentifier(Aws::String&& value) { SetClusterIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The unique identifier of a cluster whose properties you are requesting. This
@@ -84,6 +98,7 @@ namespace Model
      * an account are returned.</p>
      */
     inline DescribeClustersRequest& WithClusterIdentifier(const char* value) { SetClusterIdentifier(value); return *this;}
+
 
     /**
      * <p>The maximum number of response records to return in each call. If the number
@@ -114,6 +129,7 @@ namespace Model
      * maximum 100.</p>
      */
     inline DescribeClustersRequest& WithMaxRecords(int value) { SetMaxRecords(value); return *this;}
+
 
     /**
      * <p>An optional parameter that specifies the starting point to return a set of
@@ -149,7 +165,7 @@ namespace Model
      * can specify either the <b>ClusterIdentifier</b> parameter or the <b>Marker</b>
      * parameter, but not both. </p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p>An optional parameter that specifies the starting point to return a set of
@@ -185,7 +201,7 @@ namespace Model
      * can specify either the <b>ClusterIdentifier</b> parameter or the <b>Marker</b>
      * parameter, but not both. </p>
      */
-    inline DescribeClustersRequest& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeClustersRequest& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>An optional parameter that specifies the starting point to return a set of
@@ -198,6 +214,7 @@ namespace Model
      * parameter, but not both. </p>
      */
     inline DescribeClustersRequest& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>A tag key or keys for which you want to return all matching clusters that are
@@ -227,7 +244,7 @@ namespace Model
      * Amazon Redshift returns a response with the clusters that have either or both of
      * these tag keys associated with them.</p>
      */
-    inline void SetTagKeys(Aws::Vector<Aws::String>&& value) { m_tagKeysHasBeenSet = true; m_tagKeys = value; }
+    inline void SetTagKeys(Aws::Vector<Aws::String>&& value) { m_tagKeysHasBeenSet = true; m_tagKeys = std::move(value); }
 
     /**
      * <p>A tag key or keys for which you want to return all matching clusters that are
@@ -247,7 +264,7 @@ namespace Model
      * Amazon Redshift returns a response with the clusters that have either or both of
      * these tag keys associated with them.</p>
      */
-    inline DescribeClustersRequest& WithTagKeys(Aws::Vector<Aws::String>&& value) { SetTagKeys(value); return *this;}
+    inline DescribeClustersRequest& WithTagKeys(Aws::Vector<Aws::String>&& value) { SetTagKeys(std::move(value)); return *this;}
 
     /**
      * <p>A tag key or keys for which you want to return all matching clusters that are
@@ -267,7 +284,7 @@ namespace Model
      * Amazon Redshift returns a response with the clusters that have either or both of
      * these tag keys associated with them.</p>
      */
-    inline DescribeClustersRequest& AddTagKeys(Aws::String&& value) { m_tagKeysHasBeenSet = true; m_tagKeys.push_back(value); return *this; }
+    inline DescribeClustersRequest& AddTagKeys(Aws::String&& value) { m_tagKeysHasBeenSet = true; m_tagKeys.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A tag key or keys for which you want to return all matching clusters that are
@@ -278,6 +295,7 @@ namespace Model
      * these tag keys associated with them.</p>
      */
     inline DescribeClustersRequest& AddTagKeys(const char* value) { m_tagKeysHasBeenSet = true; m_tagKeys.push_back(value); return *this; }
+
 
     /**
      * <p>A tag value or values for which you want to return all matching clusters that
@@ -307,7 +325,7 @@ namespace Model
      * Amazon Redshift returns a response with the clusters that have either or both of
      * these tag values associated with them.</p>
      */
-    inline void SetTagValues(Aws::Vector<Aws::String>&& value) { m_tagValuesHasBeenSet = true; m_tagValues = value; }
+    inline void SetTagValues(Aws::Vector<Aws::String>&& value) { m_tagValuesHasBeenSet = true; m_tagValues = std::move(value); }
 
     /**
      * <p>A tag value or values for which you want to return all matching clusters that
@@ -327,7 +345,7 @@ namespace Model
      * Amazon Redshift returns a response with the clusters that have either or both of
      * these tag values associated with them.</p>
      */
-    inline DescribeClustersRequest& WithTagValues(Aws::Vector<Aws::String>&& value) { SetTagValues(value); return *this;}
+    inline DescribeClustersRequest& WithTagValues(Aws::Vector<Aws::String>&& value) { SetTagValues(std::move(value)); return *this;}
 
     /**
      * <p>A tag value or values for which you want to return all matching clusters that
@@ -347,7 +365,7 @@ namespace Model
      * Amazon Redshift returns a response with the clusters that have either or both of
      * these tag values associated with them.</p>
      */
-    inline DescribeClustersRequest& AddTagValues(Aws::String&& value) { m_tagValuesHasBeenSet = true; m_tagValues.push_back(value); return *this; }
+    inline DescribeClustersRequest& AddTagValues(Aws::String&& value) { m_tagValuesHasBeenSet = true; m_tagValues.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A tag value or values for which you want to return all matching clusters that
@@ -360,14 +378,19 @@ namespace Model
     inline DescribeClustersRequest& AddTagValues(const char* value) { m_tagValuesHasBeenSet = true; m_tagValues.push_back(value); return *this; }
 
   private:
+
     Aws::String m_clusterIdentifier;
     bool m_clusterIdentifierHasBeenSet;
+
     int m_maxRecords;
     bool m_maxRecordsHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
+
     Aws::Vector<Aws::String> m_tagKeys;
     bool m_tagKeysHasBeenSet;
+
     Aws::Vector<Aws::String> m_tagValues;
     bool m_tagValuesHasBeenSet;
   };

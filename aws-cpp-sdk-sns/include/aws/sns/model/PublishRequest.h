@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/sns/SNS_EXPORTS.h>
 #include <aws/sns/SNSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
 #include <aws/sns/model/MessageAttributeValue.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,7 +37,19 @@ namespace Model
   {
   public:
     PublishRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "Publish"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The topic you want to publish to.</p> <p>If you don't specify a value for the
@@ -56,7 +70,7 @@ namespace Model
      * <code>TopicArn</code> parameter, you must specify a value for the
      * <code>PhoneNumber</code> or <code>TargetArn</code> parameters.</p>
      */
-    inline void SetTopicArn(Aws::String&& value) { m_topicArnHasBeenSet = true; m_topicArn = value; }
+    inline void SetTopicArn(Aws::String&& value) { m_topicArnHasBeenSet = true; m_topicArn = std::move(value); }
 
     /**
      * <p>The topic you want to publish to.</p> <p>If you don't specify a value for the
@@ -77,7 +91,7 @@ namespace Model
      * <code>TopicArn</code> parameter, you must specify a value for the
      * <code>PhoneNumber</code> or <code>TargetArn</code> parameters.</p>
      */
-    inline PublishRequest& WithTopicArn(Aws::String&& value) { SetTopicArn(value); return *this;}
+    inline PublishRequest& WithTopicArn(Aws::String&& value) { SetTopicArn(std::move(value)); return *this;}
 
     /**
      * <p>The topic you want to publish to.</p> <p>If you don't specify a value for the
@@ -85,6 +99,7 @@ namespace Model
      * <code>PhoneNumber</code> or <code>TargetArn</code> parameters.</p>
      */
     inline PublishRequest& WithTopicArn(const char* value) { SetTopicArn(value); return *this;}
+
 
     /**
      * <p>Either TopicArn or EndpointArn, but not both.</p> <p>If you don't specify a
@@ -105,7 +120,7 @@ namespace Model
      * value for the <code>TargetArn</code> parameter, you must specify a value for the
      * <code>PhoneNumber</code> or <code>TopicArn</code> parameters.</p>
      */
-    inline void SetTargetArn(Aws::String&& value) { m_targetArnHasBeenSet = true; m_targetArn = value; }
+    inline void SetTargetArn(Aws::String&& value) { m_targetArnHasBeenSet = true; m_targetArn = std::move(value); }
 
     /**
      * <p>Either TopicArn or EndpointArn, but not both.</p> <p>If you don't specify a
@@ -126,7 +141,7 @@ namespace Model
      * value for the <code>TargetArn</code> parameter, you must specify a value for the
      * <code>PhoneNumber</code> or <code>TopicArn</code> parameters.</p>
      */
-    inline PublishRequest& WithTargetArn(Aws::String&& value) { SetTargetArn(value); return *this;}
+    inline PublishRequest& WithTargetArn(Aws::String&& value) { SetTargetArn(std::move(value)); return *this;}
 
     /**
      * <p>Either TopicArn or EndpointArn, but not both.</p> <p>If you don't specify a
@@ -134,6 +149,7 @@ namespace Model
      * <code>PhoneNumber</code> or <code>TopicArn</code> parameters.</p>
      */
     inline PublishRequest& WithTargetArn(const char* value) { SetTargetArn(value); return *this;}
+
 
     /**
      * <p>The phone number to which you want to deliver an SMS message. Use E.164
@@ -157,7 +173,7 @@ namespace Model
      * parameter, you must specify a value for the <code>TargetArn</code> or
      * <code>TopicArn</code> parameters.</p>
      */
-    inline void SetPhoneNumber(Aws::String&& value) { m_phoneNumberHasBeenSet = true; m_phoneNumber = value; }
+    inline void SetPhoneNumber(Aws::String&& value) { m_phoneNumberHasBeenSet = true; m_phoneNumber = std::move(value); }
 
     /**
      * <p>The phone number to which you want to deliver an SMS message. Use E.164
@@ -181,7 +197,7 @@ namespace Model
      * parameter, you must specify a value for the <code>TargetArn</code> or
      * <code>TopicArn</code> parameters.</p>
      */
-    inline PublishRequest& WithPhoneNumber(Aws::String&& value) { SetPhoneNumber(value); return *this;}
+    inline PublishRequest& WithPhoneNumber(Aws::String&& value) { SetPhoneNumber(std::move(value)); return *this;}
 
     /**
      * <p>The phone number to which you want to deliver an SMS message. Use E.164
@@ -190,6 +206,7 @@ namespace Model
      * <code>TopicArn</code> parameters.</p>
      */
     inline PublishRequest& WithPhoneNumber(const char* value) { SetPhoneNumber(value); return *this;}
+
 
     /**
      * <p>The message you want to send to the topic.</p> <p>If you want to send the
@@ -261,7 +278,7 @@ namespace Model
      * validate any key or value in the message will cause the <code>Publish</code>
      * call to return an error (no partial delivery).</p> </li> </ul>
      */
-    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = value; }
+    inline void SetMessage(Aws::String&& value) { m_messageHasBeenSet = true; m_message = std::move(value); }
 
     /**
      * <p>The message you want to send to the topic.</p> <p>If you want to send the
@@ -333,7 +350,7 @@ namespace Model
      * validate any key or value in the message will cause the <code>Publish</code>
      * call to return an error (no partial delivery).</p> </li> </ul>
      */
-    inline PublishRequest& WithMessage(Aws::String&& value) { SetMessage(value); return *this;}
+    inline PublishRequest& WithMessage(Aws::String&& value) { SetMessage(std::move(value)); return *this;}
 
     /**
      * <p>The message you want to send to the topic.</p> <p>If you want to send the
@@ -358,6 +375,7 @@ namespace Model
      * call to return an error (no partial delivery).</p> </li> </ul>
      */
     inline PublishRequest& WithMessage(const char* value) { SetMessage(value); return *this;}
+
 
     /**
      * <p>Optional parameter to be used as the "Subject" line when the message is
@@ -387,7 +405,7 @@ namespace Model
      * mark; must not include line breaks or control characters; and must be less than
      * 100 characters long.</p>
      */
-    inline void SetSubject(Aws::String&& value) { m_subjectHasBeenSet = true; m_subject = value; }
+    inline void SetSubject(Aws::String&& value) { m_subjectHasBeenSet = true; m_subject = std::move(value); }
 
     /**
      * <p>Optional parameter to be used as the "Subject" line when the message is
@@ -417,7 +435,7 @@ namespace Model
      * mark; must not include line breaks or control characters; and must be less than
      * 100 characters long.</p>
      */
-    inline PublishRequest& WithSubject(Aws::String&& value) { SetSubject(value); return *this;}
+    inline PublishRequest& WithSubject(Aws::String&& value) { SetSubject(std::move(value)); return *this;}
 
     /**
      * <p>Optional parameter to be used as the "Subject" line when the message is
@@ -428,6 +446,7 @@ namespace Model
      * 100 characters long.</p>
      */
     inline PublishRequest& WithSubject(const char* value) { SetSubject(value); return *this;}
+
 
     /**
      * <p>Set <code>MessageStructure</code> to <code>json</code> if you want to send a
@@ -481,7 +500,7 @@ namespace Model
      * Different Messages for Each Protocol</a> in the <i>Amazon Simple Notification
      * Service Getting Started Guide</i>. </p> <p>Valid value: <code>json</code> </p>
      */
-    inline void SetMessageStructure(Aws::String&& value) { m_messageStructureHasBeenSet = true; m_messageStructure = value; }
+    inline void SetMessageStructure(Aws::String&& value) { m_messageStructureHasBeenSet = true; m_messageStructure = std::move(value); }
 
     /**
      * <p>Set <code>MessageStructure</code> to <code>json</code> if you want to send a
@@ -535,7 +554,7 @@ namespace Model
      * Different Messages for Each Protocol</a> in the <i>Amazon Simple Notification
      * Service Getting Started Guide</i>. </p> <p>Valid value: <code>json</code> </p>
      */
-    inline PublishRequest& WithMessageStructure(Aws::String&& value) { SetMessageStructure(value); return *this;}
+    inline PublishRequest& WithMessageStructure(Aws::String&& value) { SetMessageStructure(std::move(value)); return *this;}
 
     /**
      * <p>Set <code>MessageStructure</code> to <code>json</code> if you want to send a
@@ -555,6 +574,7 @@ namespace Model
      */
     inline PublishRequest& WithMessageStructure(const char* value) { SetMessageStructure(value); return *this;}
 
+
     /**
      * <p>Message attributes for Publish action.</p>
      */
@@ -568,7 +588,7 @@ namespace Model
     /**
      * <p>Message attributes for Publish action.</p>
      */
-    inline void SetMessageAttributes(Aws::Map<Aws::String, MessageAttributeValue>&& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes = value; }
+    inline void SetMessageAttributes(Aws::Map<Aws::String, MessageAttributeValue>&& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes = std::move(value); }
 
     /**
      * <p>Message attributes for Publish action.</p>
@@ -578,51 +598,58 @@ namespace Model
     /**
      * <p>Message attributes for Publish action.</p>
      */
-    inline PublishRequest& WithMessageAttributes(Aws::Map<Aws::String, MessageAttributeValue>&& value) { SetMessageAttributes(value); return *this;}
+    inline PublishRequest& WithMessageAttributes(Aws::Map<Aws::String, MessageAttributeValue>&& value) { SetMessageAttributes(std::move(value)); return *this;}
 
     /**
      * <p>Message attributes for Publish action.</p>
      */
-    inline PublishRequest& AddMessageAttributes(const Aws::String& key, const MessageAttributeValue& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes[key] = value; return *this; }
+    inline PublishRequest& AddMessageAttributes(const Aws::String& key, const MessageAttributeValue& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes.emplace(key, value); return *this; }
 
     /**
      * <p>Message attributes for Publish action.</p>
      */
-    inline PublishRequest& AddMessageAttributes(Aws::String&& key, const MessageAttributeValue& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes[key] = value; return *this; }
+    inline PublishRequest& AddMessageAttributes(Aws::String&& key, const MessageAttributeValue& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>Message attributes for Publish action.</p>
      */
-    inline PublishRequest& AddMessageAttributes(const Aws::String& key, MessageAttributeValue&& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes[key] = value; return *this; }
+    inline PublishRequest& AddMessageAttributes(const Aws::String& key, MessageAttributeValue&& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>Message attributes for Publish action.</p>
      */
-    inline PublishRequest& AddMessageAttributes(Aws::String&& key, MessageAttributeValue&& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes[key] = value; return *this; }
+    inline PublishRequest& AddMessageAttributes(Aws::String&& key, MessageAttributeValue&& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>Message attributes for Publish action.</p>
      */
-    inline PublishRequest& AddMessageAttributes(const char* key, MessageAttributeValue&& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes[key] = value; return *this; }
+    inline PublishRequest& AddMessageAttributes(const char* key, MessageAttributeValue&& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>Message attributes for Publish action.</p>
      */
-    inline PublishRequest& AddMessageAttributes(const char* key, const MessageAttributeValue& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes[key] = value; return *this; }
+    inline PublishRequest& AddMessageAttributes(const char* key, const MessageAttributeValue& value) { m_messageAttributesHasBeenSet = true; m_messageAttributes.emplace(key, value); return *this; }
 
   private:
+
     Aws::String m_topicArn;
     bool m_topicArnHasBeenSet;
+
     Aws::String m_targetArn;
     bool m_targetArnHasBeenSet;
+
     Aws::String m_phoneNumber;
     bool m_phoneNumberHasBeenSet;
+
     Aws::String m_message;
     bool m_messageHasBeenSet;
+
     Aws::String m_subject;
     bool m_subjectHasBeenSet;
+
     Aws::String m_messageStructure;
     bool m_messageStructureHasBeenSet;
+
     Aws::Map<Aws::String, MessageAttributeValue> m_messageAttributes;
     bool m_messageAttributesHasBeenSet;
   };

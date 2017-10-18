@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/config/ConfigService_EXPORTS.h>
 #include <aws/config/model/ComplianceContributorCount.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     ComplianceSummary& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The number of AWS Config rules or AWS resources that are compliant, up to a
      * maximum of 25 for rules and 100 for resources.</p>
@@ -61,7 +64,7 @@ namespace Model
      * <p>The number of AWS Config rules or AWS resources that are compliant, up to a
      * maximum of 25 for rules and 100 for resources.</p>
      */
-    inline void SetCompliantResourceCount(ComplianceContributorCount&& value) { m_compliantResourceCountHasBeenSet = true; m_compliantResourceCount = value; }
+    inline void SetCompliantResourceCount(ComplianceContributorCount&& value) { m_compliantResourceCountHasBeenSet = true; m_compliantResourceCount = std::move(value); }
 
     /**
      * <p>The number of AWS Config rules or AWS resources that are compliant, up to a
@@ -73,7 +76,8 @@ namespace Model
      * <p>The number of AWS Config rules or AWS resources that are compliant, up to a
      * maximum of 25 for rules and 100 for resources.</p>
      */
-    inline ComplianceSummary& WithCompliantResourceCount(ComplianceContributorCount&& value) { SetCompliantResourceCount(value); return *this;}
+    inline ComplianceSummary& WithCompliantResourceCount(ComplianceContributorCount&& value) { SetCompliantResourceCount(std::move(value)); return *this;}
+
 
     /**
      * <p>The number of AWS Config rules or AWS resources that are noncompliant, up to
@@ -91,7 +95,7 @@ namespace Model
      * <p>The number of AWS Config rules or AWS resources that are noncompliant, up to
      * a maximum of 25 for rules and 100 for resources.</p>
      */
-    inline void SetNonCompliantResourceCount(ComplianceContributorCount&& value) { m_nonCompliantResourceCountHasBeenSet = true; m_nonCompliantResourceCount = value; }
+    inline void SetNonCompliantResourceCount(ComplianceContributorCount&& value) { m_nonCompliantResourceCountHasBeenSet = true; m_nonCompliantResourceCount = std::move(value); }
 
     /**
      * <p>The number of AWS Config rules or AWS resources that are noncompliant, up to
@@ -103,7 +107,8 @@ namespace Model
      * <p>The number of AWS Config rules or AWS resources that are noncompliant, up to
      * a maximum of 25 for rules and 100 for resources.</p>
      */
-    inline ComplianceSummary& WithNonCompliantResourceCount(ComplianceContributorCount&& value) { SetNonCompliantResourceCount(value); return *this;}
+    inline ComplianceSummary& WithNonCompliantResourceCount(ComplianceContributorCount&& value) { SetNonCompliantResourceCount(std::move(value)); return *this;}
+
 
     /**
      * <p>The time that AWS Config created the compliance summary.</p>
@@ -118,7 +123,7 @@ namespace Model
     /**
      * <p>The time that AWS Config created the compliance summary.</p>
      */
-    inline void SetComplianceSummaryTimestamp(Aws::Utils::DateTime&& value) { m_complianceSummaryTimestampHasBeenSet = true; m_complianceSummaryTimestamp = value; }
+    inline void SetComplianceSummaryTimestamp(Aws::Utils::DateTime&& value) { m_complianceSummaryTimestampHasBeenSet = true; m_complianceSummaryTimestamp = std::move(value); }
 
     /**
      * <p>The time that AWS Config created the compliance summary.</p>
@@ -128,13 +133,16 @@ namespace Model
     /**
      * <p>The time that AWS Config created the compliance summary.</p>
      */
-    inline ComplianceSummary& WithComplianceSummaryTimestamp(Aws::Utils::DateTime&& value) { SetComplianceSummaryTimestamp(value); return *this;}
+    inline ComplianceSummary& WithComplianceSummaryTimestamp(Aws::Utils::DateTime&& value) { SetComplianceSummaryTimestamp(std::move(value)); return *this;}
 
   private:
+
     ComplianceContributorCount m_compliantResourceCount;
     bool m_compliantResourceCountHasBeenSet;
+
     ComplianceContributorCount m_nonCompliantResourceCount;
     bool m_nonCompliantResourceCountHasBeenSet;
+
     Aws::Utils::DateTime m_complianceSummaryTimestamp;
     bool m_complianceSummaryTimestampHasBeenSet;
   };

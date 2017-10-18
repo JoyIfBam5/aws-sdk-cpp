@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/elasticloadbalancingv2/model/LoadBalancer.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -42,7 +43,9 @@ LoadBalancer::LoadBalancer() :
     m_type(LoadBalancerTypeEnum::NOT_SET),
     m_typeHasBeenSet(false),
     m_availabilityZonesHasBeenSet(false),
-    m_securityGroupsHasBeenSet(false)
+    m_securityGroupsHasBeenSet(false),
+    m_ipAddressType(IpAddressType::NOT_SET),
+    m_ipAddressTypeHasBeenSet(false)
 {
 }
 
@@ -59,7 +62,9 @@ LoadBalancer::LoadBalancer(const XmlNode& xmlNode) :
     m_type(LoadBalancerTypeEnum::NOT_SET),
     m_typeHasBeenSet(false),
     m_availabilityZonesHasBeenSet(false),
-    m_securityGroupsHasBeenSet(false)
+    m_securityGroupsHasBeenSet(false),
+    m_ipAddressType(IpAddressType::NOT_SET),
+    m_ipAddressTypeHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -148,6 +153,12 @@ LoadBalancer& LoadBalancer::operator =(const XmlNode& xmlNode)
 
       m_securityGroupsHasBeenSet = true;
     }
+    XmlNode ipAddressTypeNode = resultNode.FirstChild("IpAddressType");
+    if(!ipAddressTypeNode.IsNull())
+    {
+      m_ipAddressType = IpAddressTypeMapper::GetIpAddressTypeForName(StringUtils::Trim(ipAddressTypeNode.GetText().c_str()).c_str());
+      m_ipAddressTypeHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -222,6 +233,11 @@ void LoadBalancer::OutputToStream(Aws::OStream& oStream, const char* location, u
       }
   }
 
+  if(m_ipAddressTypeHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".IpAddressType=" << IpAddressTypeMapper::GetNameForIpAddressType(m_ipAddressType) << "&";
+  }
+
 }
 
 void LoadBalancer::OutputToStream(Aws::OStream& oStream, const char* location) const
@@ -281,6 +297,10 @@ void LoadBalancer::OutputToStream(Aws::OStream& oStream, const char* location) c
       {
         oStream << location << ".SecurityGroups.member." << securityGroupsIdx++ << "=" << StringUtils::URLEncode(item.c_str()) << "&";
       }
+  }
+  if(m_ipAddressTypeHasBeenSet)
+  {
+      oStream << location << ".IpAddressType=" << IpAddressTypeMapper::GetNameForIpAddressType(m_ipAddressType) << "&";
   }
 }
 

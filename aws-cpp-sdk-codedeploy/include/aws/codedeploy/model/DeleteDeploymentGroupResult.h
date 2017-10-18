@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codedeploy/CodeDeploy_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/codedeploy/model/AutoScalingGroup.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,7 +36,7 @@ namespace CodeDeploy
 namespace Model
 {
   /**
-   * <p>Represents the output of a delete deployment group operation.</p><p><h3>See
+   * <p>Represents the output of a DeleteDeploymentGroup operation.</p><p><h3>See
    * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/DeleteDeploymentGroupOutput">AWS
    * API Reference</a></p>
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     DeleteDeploymentGroupResult();
-    DeleteDeploymentGroupResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DeleteDeploymentGroupResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DeleteDeploymentGroupResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DeleteDeploymentGroupResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>If the output contains no data, and the corresponding deployment group
@@ -74,7 +77,7 @@ namespace Model
      * could not remove some Auto Scaling lifecycle event hooks from the Amazon EC2
      * instances in the Auto Scaling group.</p>
      */
-    inline void SetHooksNotCleanedUp(Aws::Vector<AutoScalingGroup>&& value) { m_hooksNotCleanedUp = value; }
+    inline void SetHooksNotCleanedUp(Aws::Vector<AutoScalingGroup>&& value) { m_hooksNotCleanedUp = std::move(value); }
 
     /**
      * <p>If the output contains no data, and the corresponding deployment group
@@ -94,7 +97,7 @@ namespace Model
      * could not remove some Auto Scaling lifecycle event hooks from the Amazon EC2
      * instances in the Auto Scaling group.</p>
      */
-    inline DeleteDeploymentGroupResult& WithHooksNotCleanedUp(Aws::Vector<AutoScalingGroup>&& value) { SetHooksNotCleanedUp(value); return *this;}
+    inline DeleteDeploymentGroupResult& WithHooksNotCleanedUp(Aws::Vector<AutoScalingGroup>&& value) { SetHooksNotCleanedUp(std::move(value)); return *this;}
 
     /**
      * <p>If the output contains no data, and the corresponding deployment group
@@ -114,9 +117,10 @@ namespace Model
      * could not remove some Auto Scaling lifecycle event hooks from the Amazon EC2
      * instances in the Auto Scaling group.</p>
      */
-    inline DeleteDeploymentGroupResult& AddHooksNotCleanedUp(AutoScalingGroup&& value) { m_hooksNotCleanedUp.push_back(value); return *this; }
+    inline DeleteDeploymentGroupResult& AddHooksNotCleanedUp(AutoScalingGroup&& value) { m_hooksNotCleanedUp.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<AutoScalingGroup> m_hooksNotCleanedUp;
   };
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@
 
 #include <memory>
 #include <cstdlib>
+#include <algorithm>
 
 namespace Aws
 {
@@ -66,7 +67,7 @@ namespace Aws
     T* New(const char* allocationTag, ArgTypes&&... args)
     {
         void *rawMemory = Malloc(allocationTag, sizeof(T));
-
+        // http://stackoverflow.com/questions/6783993/placement-new-and-delete
         T *constructedMemory = new (rawMemory) T(std::forward<ArgTypes>(args)...);
         return constructedMemory;
     }
@@ -82,7 +83,7 @@ namespace Aws
         {
             return;
         }
-
+        //http://stackoverflow.com/questions/6783993/placement-new-and-delete
         pointerToT->~T();
         Free(pointerToT);
     }
@@ -113,9 +114,15 @@ namespace Aws
 
             // if we need to remember the # of items in the array (because we need to call their destructors) then allocate extra memory and keep the # of items in the extra slot
             std::size_t allocationSize = amount * sizeof(T);
+#if defined(_MSC_VER) && _MSC_VER < 1900
+            std::size_t headerSize = (std::max)(sizeof(std::size_t), __alignof(T));
+#else
+            std::size_t headerSize = (std::max)(sizeof(std::size_t), alignof(T));
+#endif
+
             if (trackMemberCount)
             {
-                allocationSize += sizeof(std::size_t);
+                allocationSize += headerSize;
             }
 
             void* rawMemory = Malloc(allocationTag, allocationSize);
@@ -125,7 +132,8 @@ namespace Aws
             {
                 std::size_t* pointerToAmount = reinterpret_cast<std::size_t*>(rawMemory);
                 *pointerToAmount = amount;
-                pointerToT = reinterpret_cast<T*>(reinterpret_cast<void*>(pointerToAmount + 1));
+                pointerToT = reinterpret_cast<T*>(reinterpret_cast<char*>(pointerToAmount) + headerSize);
+
             }
             else
             {
@@ -163,7 +171,13 @@ namespace Aws
 
         if (destroyMembers)
         {
-            std::size_t *pointerToAmount = reinterpret_cast<std::size_t *>(reinterpret_cast<void *>(pointerToTArray)) - 1;
+#if defined(_MSC_VER) && _MSC_VER < 1900
+            std::size_t headerSize = (std::max)(sizeof(std::size_t), __alignof(T));
+#else
+            std::size_t headerSize = (std::max)(sizeof(std::size_t), alignof(T));
+#endif
+
+            std::size_t *pointerToAmount = reinterpret_cast<std::size_t*>(reinterpret_cast<char*>(pointerToTArray) - headerSize);
             std::size_t amount = *pointerToAmount;
 
             for (std::size_t i = amount; i > 0; --i)

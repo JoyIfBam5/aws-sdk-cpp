@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/gamelift/model/EventCode.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -54,6 +55,13 @@ namespace Aws
         static const int SERVER_PROCESS_TERMINATED_UNHEALTHY_HASH = HashingUtils::HashString("SERVER_PROCESS_TERMINATED_UNHEALTHY");
         static const int SERVER_PROCESS_FORCE_TERMINATED_HASH = HashingUtils::HashString("SERVER_PROCESS_FORCE_TERMINATED");
         static const int SERVER_PROCESS_PROCESS_EXIT_TIMEOUT_HASH = HashingUtils::HashString("SERVER_PROCESS_PROCESS_EXIT_TIMEOUT");
+        static const int GAME_SESSION_ACTIVATION_TIMEOUT_HASH = HashingUtils::HashString("GAME_SESSION_ACTIVATION_TIMEOUT");
+        static const int FLEET_CREATION_EXTRACTING_BUILD_HASH = HashingUtils::HashString("FLEET_CREATION_EXTRACTING_BUILD");
+        static const int FLEET_CREATION_RUNNING_INSTALLER_HASH = HashingUtils::HashString("FLEET_CREATION_RUNNING_INSTALLER");
+        static const int FLEET_CREATION_VALIDATING_RUNTIME_CONFIG_HASH = HashingUtils::HashString("FLEET_CREATION_VALIDATING_RUNTIME_CONFIG");
+        static const int FLEET_VPC_PEERING_SUCCEEDED_HASH = HashingUtils::HashString("FLEET_VPC_PEERING_SUCCEEDED");
+        static const int FLEET_VPC_PEERING_FAILED_HASH = HashingUtils::HashString("FLEET_VPC_PEERING_FAILED");
+        static const int FLEET_VPC_PEERING_DELETED_HASH = HashingUtils::HashString("FLEET_VPC_PEERING_DELETED");
 
 
         EventCode GetEventCodeForName(const Aws::String& name)
@@ -159,6 +167,34 @@ namespace Aws
           {
             return EventCode::SERVER_PROCESS_PROCESS_EXIT_TIMEOUT;
           }
+          else if (hashCode == GAME_SESSION_ACTIVATION_TIMEOUT_HASH)
+          {
+            return EventCode::GAME_SESSION_ACTIVATION_TIMEOUT;
+          }
+          else if (hashCode == FLEET_CREATION_EXTRACTING_BUILD_HASH)
+          {
+            return EventCode::FLEET_CREATION_EXTRACTING_BUILD;
+          }
+          else if (hashCode == FLEET_CREATION_RUNNING_INSTALLER_HASH)
+          {
+            return EventCode::FLEET_CREATION_RUNNING_INSTALLER;
+          }
+          else if (hashCode == FLEET_CREATION_VALIDATING_RUNTIME_CONFIG_HASH)
+          {
+            return EventCode::FLEET_CREATION_VALIDATING_RUNTIME_CONFIG;
+          }
+          else if (hashCode == FLEET_VPC_PEERING_SUCCEEDED_HASH)
+          {
+            return EventCode::FLEET_VPC_PEERING_SUCCEEDED;
+          }
+          else if (hashCode == FLEET_VPC_PEERING_FAILED_HASH)
+          {
+            return EventCode::FLEET_VPC_PEERING_FAILED;
+          }
+          else if (hashCode == FLEET_VPC_PEERING_DELETED_HASH)
+          {
+            return EventCode::FLEET_VPC_PEERING_DELETED;
+          }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
           {
@@ -223,6 +259,20 @@ namespace Aws
             return "SERVER_PROCESS_FORCE_TERMINATED";
           case EventCode::SERVER_PROCESS_PROCESS_EXIT_TIMEOUT:
             return "SERVER_PROCESS_PROCESS_EXIT_TIMEOUT";
+          case EventCode::GAME_SESSION_ACTIVATION_TIMEOUT:
+            return "GAME_SESSION_ACTIVATION_TIMEOUT";
+          case EventCode::FLEET_CREATION_EXTRACTING_BUILD:
+            return "FLEET_CREATION_EXTRACTING_BUILD";
+          case EventCode::FLEET_CREATION_RUNNING_INSTALLER:
+            return "FLEET_CREATION_RUNNING_INSTALLER";
+          case EventCode::FLEET_CREATION_VALIDATING_RUNTIME_CONFIG:
+            return "FLEET_CREATION_VALIDATING_RUNTIME_CONFIG";
+          case EventCode::FLEET_VPC_PEERING_SUCCEEDED:
+            return "FLEET_VPC_PEERING_SUCCEEDED";
+          case EventCode::FLEET_VPC_PEERING_FAILED:
+            return "FLEET_VPC_PEERING_FAILED";
+          case EventCode::FLEET_VPC_PEERING_DELETED:
+            return "FLEET_VPC_PEERING_DELETED";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

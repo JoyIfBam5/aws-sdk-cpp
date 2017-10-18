@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticache/ElastiCache_EXPORTS.h>
 #include <aws/elasticache/ElastiCacheRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,7 +36,19 @@ namespace Model
   {
   public:
     PurchaseReservedCacheNodesOfferingRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "PurchaseReservedCacheNodesOffering"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The ID of the reserved cache node offering to purchase.</p> <p>Example:
@@ -52,7 +66,7 @@ namespace Model
      * <p>The ID of the reserved cache node offering to purchase.</p> <p>Example:
      * <code>438012d3-4052-4cc7-b2e3-8d3372e0e706</code> </p>
      */
-    inline void SetReservedCacheNodesOfferingId(Aws::String&& value) { m_reservedCacheNodesOfferingIdHasBeenSet = true; m_reservedCacheNodesOfferingId = value; }
+    inline void SetReservedCacheNodesOfferingId(Aws::String&& value) { m_reservedCacheNodesOfferingIdHasBeenSet = true; m_reservedCacheNodesOfferingId = std::move(value); }
 
     /**
      * <p>The ID of the reserved cache node offering to purchase.</p> <p>Example:
@@ -70,13 +84,14 @@ namespace Model
      * <p>The ID of the reserved cache node offering to purchase.</p> <p>Example:
      * <code>438012d3-4052-4cc7-b2e3-8d3372e0e706</code> </p>
      */
-    inline PurchaseReservedCacheNodesOfferingRequest& WithReservedCacheNodesOfferingId(Aws::String&& value) { SetReservedCacheNodesOfferingId(value); return *this;}
+    inline PurchaseReservedCacheNodesOfferingRequest& WithReservedCacheNodesOfferingId(Aws::String&& value) { SetReservedCacheNodesOfferingId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the reserved cache node offering to purchase.</p> <p>Example:
      * <code>438012d3-4052-4cc7-b2e3-8d3372e0e706</code> </p>
      */
     inline PurchaseReservedCacheNodesOfferingRequest& WithReservedCacheNodesOfferingId(const char* value) { SetReservedCacheNodesOfferingId(value); return *this;}
+
 
     /**
      * <p>A customer-specified identifier to track this reservation.</p> <note> <p>The
@@ -103,7 +118,7 @@ namespace Model
      * generates an identifier for the reservation.</p> </note> <p>Example:
      * myreservationID</p>
      */
-    inline void SetReservedCacheNodeId(Aws::String&& value) { m_reservedCacheNodeIdHasBeenSet = true; m_reservedCacheNodeId = value; }
+    inline void SetReservedCacheNodeId(Aws::String&& value) { m_reservedCacheNodeIdHasBeenSet = true; m_reservedCacheNodeId = std::move(value); }
 
     /**
      * <p>A customer-specified identifier to track this reservation.</p> <note> <p>The
@@ -130,7 +145,7 @@ namespace Model
      * generates an identifier for the reservation.</p> </note> <p>Example:
      * myreservationID</p>
      */
-    inline PurchaseReservedCacheNodesOfferingRequest& WithReservedCacheNodeId(Aws::String&& value) { SetReservedCacheNodeId(value); return *this;}
+    inline PurchaseReservedCacheNodesOfferingRequest& WithReservedCacheNodeId(Aws::String&& value) { SetReservedCacheNodeId(std::move(value)); return *this;}
 
     /**
      * <p>A customer-specified identifier to track this reservation.</p> <note> <p>The
@@ -140,6 +155,7 @@ namespace Model
      * myreservationID</p>
      */
     inline PurchaseReservedCacheNodesOfferingRequest& WithReservedCacheNodeId(const char* value) { SetReservedCacheNodeId(value); return *this;}
+
 
     /**
      * <p>The number of cache node instances to reserve.</p> <p>Default: <code>1</code>
@@ -160,10 +176,13 @@ namespace Model
     inline PurchaseReservedCacheNodesOfferingRequest& WithCacheNodeCount(int value) { SetCacheNodeCount(value); return *this;}
 
   private:
+
     Aws::String m_reservedCacheNodesOfferingId;
     bool m_reservedCacheNodesOfferingIdHasBeenSet;
+
     Aws::String m_reservedCacheNodeId;
     bool m_reservedCacheNodeIdHasBeenSet;
+
     int m_cacheNodeCount;
     bool m_cacheNodeCountHasBeenSet;
   };

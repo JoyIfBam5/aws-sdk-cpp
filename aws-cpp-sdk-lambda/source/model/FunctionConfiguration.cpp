@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/lambda/model/FunctionConfiguration.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -47,7 +48,9 @@ FunctionConfiguration::FunctionConfiguration() :
     m_vpcConfigHasBeenSet(false),
     m_deadLetterConfigHasBeenSet(false),
     m_environmentHasBeenSet(false),
-    m_kMSKeyArnHasBeenSet(false)
+    m_kMSKeyArnHasBeenSet(false),
+    m_tracingConfigHasBeenSet(false),
+    m_masterArnHasBeenSet(false)
 {
 }
 
@@ -71,7 +74,9 @@ FunctionConfiguration::FunctionConfiguration(const JsonValue& jsonValue) :
     m_vpcConfigHasBeenSet(false),
     m_deadLetterConfigHasBeenSet(false),
     m_environmentHasBeenSet(false),
-    m_kMSKeyArnHasBeenSet(false)
+    m_kMSKeyArnHasBeenSet(false),
+    m_tracingConfigHasBeenSet(false),
+    m_masterArnHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -190,6 +195,20 @@ FunctionConfiguration& FunctionConfiguration::operator =(const JsonValue& jsonVa
     m_kMSKeyArnHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("TracingConfig"))
+  {
+    m_tracingConfig = jsonValue.GetObject("TracingConfig");
+
+    m_tracingConfigHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("MasterArn"))
+  {
+    m_masterArn = jsonValue.GetString("MasterArn");
+
+    m_masterArnHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -289,6 +308,18 @@ JsonValue FunctionConfiguration::Jsonize() const
   if(m_kMSKeyArnHasBeenSet)
   {
    payload.WithString("KMSKeyArn", m_kMSKeyArn);
+
+  }
+
+  if(m_tracingConfigHasBeenSet)
+  {
+   payload.WithObject("TracingConfig", m_tracingConfig.Jsonize());
+
+  }
+
+  if(m_masterArnHasBeenSet)
+  {
+   payload.WithString("MasterArn", m_masterArn);
 
   }
 

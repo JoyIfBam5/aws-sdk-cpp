@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     EcsCluster& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The cluster's ARN.</p>
      */
@@ -56,7 +59,7 @@ namespace Model
     /**
      * <p>The cluster's ARN.</p>
      */
-    inline void SetEcsClusterArn(Aws::String&& value) { m_ecsClusterArnHasBeenSet = true; m_ecsClusterArn = value; }
+    inline void SetEcsClusterArn(Aws::String&& value) { m_ecsClusterArnHasBeenSet = true; m_ecsClusterArn = std::move(value); }
 
     /**
      * <p>The cluster's ARN.</p>
@@ -71,12 +74,13 @@ namespace Model
     /**
      * <p>The cluster's ARN.</p>
      */
-    inline EcsCluster& WithEcsClusterArn(Aws::String&& value) { SetEcsClusterArn(value); return *this;}
+    inline EcsCluster& WithEcsClusterArn(Aws::String&& value) { SetEcsClusterArn(std::move(value)); return *this;}
 
     /**
      * <p>The cluster's ARN.</p>
      */
     inline EcsCluster& WithEcsClusterArn(const char* value) { SetEcsClusterArn(value); return *this;}
+
 
     /**
      * <p>The cluster name.</p>
@@ -91,7 +95,7 @@ namespace Model
     /**
      * <p>The cluster name.</p>
      */
-    inline void SetEcsClusterName(Aws::String&& value) { m_ecsClusterNameHasBeenSet = true; m_ecsClusterName = value; }
+    inline void SetEcsClusterName(Aws::String&& value) { m_ecsClusterNameHasBeenSet = true; m_ecsClusterName = std::move(value); }
 
     /**
      * <p>The cluster name.</p>
@@ -106,12 +110,13 @@ namespace Model
     /**
      * <p>The cluster name.</p>
      */
-    inline EcsCluster& WithEcsClusterName(Aws::String&& value) { SetEcsClusterName(value); return *this;}
+    inline EcsCluster& WithEcsClusterName(Aws::String&& value) { SetEcsClusterName(std::move(value)); return *this;}
 
     /**
      * <p>The cluster name.</p>
      */
     inline EcsCluster& WithEcsClusterName(const char* value) { SetEcsClusterName(value); return *this;}
+
 
     /**
      * <p>The stack ID.</p>
@@ -126,7 +131,7 @@ namespace Model
     /**
      * <p>The stack ID.</p>
      */
-    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = value; }
+    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = std::move(value); }
 
     /**
      * <p>The stack ID.</p>
@@ -141,12 +146,13 @@ namespace Model
     /**
      * <p>The stack ID.</p>
      */
-    inline EcsCluster& WithStackId(Aws::String&& value) { SetStackId(value); return *this;}
+    inline EcsCluster& WithStackId(Aws::String&& value) { SetStackId(std::move(value)); return *this;}
 
     /**
      * <p>The stack ID.</p>
      */
     inline EcsCluster& WithStackId(const char* value) { SetStackId(value); return *this;}
+
 
     /**
      * <p>The time and date that the cluster was registered with the stack.</p>
@@ -161,7 +167,7 @@ namespace Model
     /**
      * <p>The time and date that the cluster was registered with the stack.</p>
      */
-    inline void SetRegisteredAt(Aws::String&& value) { m_registeredAtHasBeenSet = true; m_registeredAt = value; }
+    inline void SetRegisteredAt(Aws::String&& value) { m_registeredAtHasBeenSet = true; m_registeredAt = std::move(value); }
 
     /**
      * <p>The time and date that the cluster was registered with the stack.</p>
@@ -176,7 +182,7 @@ namespace Model
     /**
      * <p>The time and date that the cluster was registered with the stack.</p>
      */
-    inline EcsCluster& WithRegisteredAt(Aws::String&& value) { SetRegisteredAt(value); return *this;}
+    inline EcsCluster& WithRegisteredAt(Aws::String&& value) { SetRegisteredAt(std::move(value)); return *this;}
 
     /**
      * <p>The time and date that the cluster was registered with the stack.</p>
@@ -184,12 +190,16 @@ namespace Model
     inline EcsCluster& WithRegisteredAt(const char* value) { SetRegisteredAt(value); return *this;}
 
   private:
+
     Aws::String m_ecsClusterArn;
     bool m_ecsClusterArnHasBeenSet;
+
     Aws::String m_ecsClusterName;
     bool m_ecsClusterNameHasBeenSet;
+
     Aws::String m_stackId;
     bool m_stackIdHasBeenSet;
+
     Aws::String m_registeredAt;
     bool m_registeredAtHasBeenSet;
   };

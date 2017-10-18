@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesis/Kinesis_EXPORTS.h>
 #include <aws/kinesis/KinesisRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     ListStreamsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListStreams"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The maximum number of streams to list.</p>
@@ -53,6 +63,7 @@ namespace Model
      */
     inline ListStreamsRequest& WithLimit(int value) { SetLimit(value); return *this;}
 
+
     /**
      * <p>The name of the stream to start the list with.</p>
      */
@@ -66,7 +77,7 @@ namespace Model
     /**
      * <p>The name of the stream to start the list with.</p>
      */
-    inline void SetExclusiveStartStreamName(Aws::String&& value) { m_exclusiveStartStreamNameHasBeenSet = true; m_exclusiveStartStreamName = value; }
+    inline void SetExclusiveStartStreamName(Aws::String&& value) { m_exclusiveStartStreamNameHasBeenSet = true; m_exclusiveStartStreamName = std::move(value); }
 
     /**
      * <p>The name of the stream to start the list with.</p>
@@ -81,7 +92,7 @@ namespace Model
     /**
      * <p>The name of the stream to start the list with.</p>
      */
-    inline ListStreamsRequest& WithExclusiveStartStreamName(Aws::String&& value) { SetExclusiveStartStreamName(value); return *this;}
+    inline ListStreamsRequest& WithExclusiveStartStreamName(Aws::String&& value) { SetExclusiveStartStreamName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the stream to start the list with.</p>
@@ -89,8 +100,10 @@ namespace Model
     inline ListStreamsRequest& WithExclusiveStartStreamName(const char* value) { SetExclusiveStartStreamName(value); return *this;}
 
   private:
+
     int m_limit;
     bool m_limitHasBeenSet;
+
     Aws::String m_exclusiveStartStreamName;
     bool m_exclusiveStartStreamNameHasBeenSet;
   };

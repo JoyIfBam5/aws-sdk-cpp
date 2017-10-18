@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/iam/IAMRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,13 +32,25 @@ namespace Model
   {
   public:
     CreatePolicyRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreatePolicy"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The friendly name of the policy.</p> <p>This parameter allows (per its <a
      * href="http://wikipedia.org/wiki/regex">regex pattern</a>) a string of characters
      * consisting of upper and lowercase alphanumeric characters with no spaces. You
-     * can also include any of the following characters: =,.@-</p>
+     * can also include any of the following characters: =,.@-+</p>
      */
     inline const Aws::String& GetPolicyName() const{ return m_policyName; }
 
@@ -44,7 +58,7 @@ namespace Model
      * <p>The friendly name of the policy.</p> <p>This parameter allows (per its <a
      * href="http://wikipedia.org/wiki/regex">regex pattern</a>) a string of characters
      * consisting of upper and lowercase alphanumeric characters with no spaces. You
-     * can also include any of the following characters: =,.@-</p>
+     * can also include any of the following characters: =,.@-+</p>
      */
     inline void SetPolicyName(const Aws::String& value) { m_policyNameHasBeenSet = true; m_policyName = value; }
 
@@ -52,15 +66,15 @@ namespace Model
      * <p>The friendly name of the policy.</p> <p>This parameter allows (per its <a
      * href="http://wikipedia.org/wiki/regex">regex pattern</a>) a string of characters
      * consisting of upper and lowercase alphanumeric characters with no spaces. You
-     * can also include any of the following characters: =,.@-</p>
+     * can also include any of the following characters: =,.@-+</p>
      */
-    inline void SetPolicyName(Aws::String&& value) { m_policyNameHasBeenSet = true; m_policyName = value; }
+    inline void SetPolicyName(Aws::String&& value) { m_policyNameHasBeenSet = true; m_policyName = std::move(value); }
 
     /**
      * <p>The friendly name of the policy.</p> <p>This parameter allows (per its <a
      * href="http://wikipedia.org/wiki/regex">regex pattern</a>) a string of characters
      * consisting of upper and lowercase alphanumeric characters with no spaces. You
-     * can also include any of the following characters: =,.@-</p>
+     * can also include any of the following characters: =,.@-+</p>
      */
     inline void SetPolicyName(const char* value) { m_policyNameHasBeenSet = true; m_policyName.assign(value); }
 
@@ -68,7 +82,7 @@ namespace Model
      * <p>The friendly name of the policy.</p> <p>This parameter allows (per its <a
      * href="http://wikipedia.org/wiki/regex">regex pattern</a>) a string of characters
      * consisting of upper and lowercase alphanumeric characters with no spaces. You
-     * can also include any of the following characters: =,.@-</p>
+     * can also include any of the following characters: =,.@-+</p>
      */
     inline CreatePolicyRequest& WithPolicyName(const Aws::String& value) { SetPolicyName(value); return *this;}
 
@@ -76,17 +90,18 @@ namespace Model
      * <p>The friendly name of the policy.</p> <p>This parameter allows (per its <a
      * href="http://wikipedia.org/wiki/regex">regex pattern</a>) a string of characters
      * consisting of upper and lowercase alphanumeric characters with no spaces. You
-     * can also include any of the following characters: =,.@-</p>
+     * can also include any of the following characters: =,.@-+</p>
      */
-    inline CreatePolicyRequest& WithPolicyName(Aws::String&& value) { SetPolicyName(value); return *this;}
+    inline CreatePolicyRequest& WithPolicyName(Aws::String&& value) { SetPolicyName(std::move(value)); return *this;}
 
     /**
      * <p>The friendly name of the policy.</p> <p>This parameter allows (per its <a
      * href="http://wikipedia.org/wiki/regex">regex pattern</a>) a string of characters
      * consisting of upper and lowercase alphanumeric characters with no spaces. You
-     * can also include any of the following characters: =,.@-</p>
+     * can also include any of the following characters: =,.@-+</p>
      */
     inline CreatePolicyRequest& WithPolicyName(const char* value) { SetPolicyName(value); return *this;}
+
 
     /**
      * <p>The path for the policy.</p> <p>For more information about paths, see <a
@@ -125,7 +140,7 @@ namespace Model
      * from the ! (\u0021) thru the DEL character (\u007F), including most punctuation
      * characters, digits, and upper and lowercased letters.</p>
      */
-    inline void SetPath(Aws::String&& value) { m_pathHasBeenSet = true; m_path = value; }
+    inline void SetPath(Aws::String&& value) { m_pathHasBeenSet = true; m_path = std::move(value); }
 
     /**
      * <p>The path for the policy.</p> <p>For more information about paths, see <a
@@ -164,7 +179,7 @@ namespace Model
      * from the ! (\u0021) thru the DEL character (\u007F), including most punctuation
      * characters, digits, and upper and lowercased letters.</p>
      */
-    inline CreatePolicyRequest& WithPath(Aws::String&& value) { SetPath(value); return *this;}
+    inline CreatePolicyRequest& WithPath(Aws::String&& value) { SetPath(std::move(value)); return *this;}
 
     /**
      * <p>The path for the policy.</p> <p>For more information about paths, see <a
@@ -178,6 +193,7 @@ namespace Model
      * characters, digits, and upper and lowercased letters.</p>
      */
     inline CreatePolicyRequest& WithPath(const char* value) { SetPath(value); return *this;}
+
 
     /**
      * <p>The JSON policy document that you want to use as the content for the new
@@ -213,7 +229,7 @@ namespace Model
      * the special characters tab (\u0009), line feed (\u000A), and carriage return
      * (\u000D).</p>
      */
-    inline void SetPolicyDocument(Aws::String&& value) { m_policyDocumentHasBeenSet = true; m_policyDocument = value; }
+    inline void SetPolicyDocument(Aws::String&& value) { m_policyDocumentHasBeenSet = true; m_policyDocument = std::move(value); }
 
     /**
      * <p>The JSON policy document that you want to use as the content for the new
@@ -249,7 +265,7 @@ namespace Model
      * the special characters tab (\u0009), line feed (\u000A), and carriage return
      * (\u000D).</p>
      */
-    inline CreatePolicyRequest& WithPolicyDocument(Aws::String&& value) { SetPolicyDocument(value); return *this;}
+    inline CreatePolicyRequest& WithPolicyDocument(Aws::String&& value) { SetPolicyDocument(std::move(value)); return *this;}
 
     /**
      * <p>The JSON policy document that you want to use as the content for the new
@@ -262,6 +278,7 @@ namespace Model
      * (\u000D).</p>
      */
     inline CreatePolicyRequest& WithPolicyDocument(const char* value) { SetPolicyDocument(value); return *this;}
+
 
     /**
      * <p>A friendly description of the policy.</p> <p>Typically used to store
@@ -285,7 +302,7 @@ namespace Model
      * access to production DynamoDB tables."</p> <p>The policy description is
      * immutable. After a value is assigned, it cannot be changed.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>A friendly description of the policy.</p> <p>Typically used to store
@@ -309,7 +326,7 @@ namespace Model
      * access to production DynamoDB tables."</p> <p>The policy description is
      * immutable. After a value is assigned, it cannot be changed.</p>
      */
-    inline CreatePolicyRequest& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline CreatePolicyRequest& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>A friendly description of the policy.</p> <p>Typically used to store
@@ -320,12 +337,16 @@ namespace Model
     inline CreatePolicyRequest& WithDescription(const char* value) { SetDescription(value); return *this;}
 
   private:
+
     Aws::String m_policyName;
     bool m_policyNameHasBeenSet;
+
     Aws::String m_path;
     bool m_pathHasBeenSet;
+
     Aws::String m_policyDocument;
     bool m_policyDocumentHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
   };

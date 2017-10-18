@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/apigateway/model/Method.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -33,6 +34,7 @@ Method::Method() :
     m_authorizerIdHasBeenSet(false),
     m_apiKeyRequired(false),
     m_apiKeyRequiredHasBeenSet(false),
+    m_requestValidatorIdHasBeenSet(false),
     m_operationNameHasBeenSet(false),
     m_requestParametersHasBeenSet(false),
     m_requestModelsHasBeenSet(false),
@@ -47,6 +49,7 @@ Method::Method(const JsonValue& jsonValue) :
     m_authorizerIdHasBeenSet(false),
     m_apiKeyRequired(false),
     m_apiKeyRequiredHasBeenSet(false),
+    m_requestValidatorIdHasBeenSet(false),
     m_operationNameHasBeenSet(false),
     m_requestParametersHasBeenSet(false),
     m_requestModelsHasBeenSet(false),
@@ -84,6 +87,13 @@ Method& Method::operator =(const JsonValue& jsonValue)
     m_apiKeyRequired = jsonValue.GetBool("apiKeyRequired");
 
     m_apiKeyRequiredHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("requestValidatorId"))
+  {
+    m_requestValidatorId = jsonValue.GetString("requestValidatorId");
+
+    m_requestValidatorIdHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("operationName"))
@@ -158,6 +168,12 @@ JsonValue Method::Jsonize() const
   if(m_apiKeyRequiredHasBeenSet)
   {
    payload.WithBool("apiKeyRequired", m_apiKeyRequired);
+
+  }
+
+  if(m_requestValidatorIdHasBeenSet)
+  {
+   payload.WithString("requestValidatorId", m_requestValidatorId);
 
   }
 

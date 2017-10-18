@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p> Contains the new <code>DBInstanceClass</code> for the DB instance that will
      * be applied or is in progress. </p>
@@ -63,7 +66,7 @@ namespace Model
      * <p> Contains the new <code>DBInstanceClass</code> for the DB instance that will
      * be applied or is in progress. </p>
      */
-    inline void SetDBInstanceClass(Aws::String&& value) { m_dBInstanceClassHasBeenSet = true; m_dBInstanceClass = value; }
+    inline void SetDBInstanceClass(Aws::String&& value) { m_dBInstanceClassHasBeenSet = true; m_dBInstanceClass = std::move(value); }
 
     /**
      * <p> Contains the new <code>DBInstanceClass</code> for the DB instance that will
@@ -81,13 +84,14 @@ namespace Model
      * <p> Contains the new <code>DBInstanceClass</code> for the DB instance that will
      * be applied or is in progress. </p>
      */
-    inline PendingModifiedValues& WithDBInstanceClass(Aws::String&& value) { SetDBInstanceClass(value); return *this;}
+    inline PendingModifiedValues& WithDBInstanceClass(Aws::String&& value) { SetDBInstanceClass(std::move(value)); return *this;}
 
     /**
      * <p> Contains the new <code>DBInstanceClass</code> for the DB instance that will
      * be applied or is in progress. </p>
      */
     inline PendingModifiedValues& WithDBInstanceClass(const char* value) { SetDBInstanceClass(value); return *this;}
+
 
     /**
      * <p> Contains the new <code>AllocatedStorage</code> size for the DB instance that
@@ -107,6 +111,7 @@ namespace Model
      */
     inline PendingModifiedValues& WithAllocatedStorage(int value) { SetAllocatedStorage(value); return *this;}
 
+
     /**
      * <p>Contains the pending or in-progress change of the master credentials for the
      * DB instance.</p>
@@ -123,7 +128,7 @@ namespace Model
      * <p>Contains the pending or in-progress change of the master credentials for the
      * DB instance.</p>
      */
-    inline void SetMasterUserPassword(Aws::String&& value) { m_masterUserPasswordHasBeenSet = true; m_masterUserPassword = value; }
+    inline void SetMasterUserPassword(Aws::String&& value) { m_masterUserPasswordHasBeenSet = true; m_masterUserPassword = std::move(value); }
 
     /**
      * <p>Contains the pending or in-progress change of the master credentials for the
@@ -141,13 +146,14 @@ namespace Model
      * <p>Contains the pending or in-progress change of the master credentials for the
      * DB instance.</p>
      */
-    inline PendingModifiedValues& WithMasterUserPassword(Aws::String&& value) { SetMasterUserPassword(value); return *this;}
+    inline PendingModifiedValues& WithMasterUserPassword(Aws::String&& value) { SetMasterUserPassword(std::move(value)); return *this;}
 
     /**
      * <p>Contains the pending or in-progress change of the master credentials for the
      * DB instance.</p>
      */
     inline PendingModifiedValues& WithMasterUserPassword(const char* value) { SetMasterUserPassword(value); return *this;}
+
 
     /**
      * <p>Specifies the pending port for the DB instance.</p>
@@ -163,6 +169,7 @@ namespace Model
      * <p>Specifies the pending port for the DB instance.</p>
      */
     inline PendingModifiedValues& WithPort(int value) { SetPort(value); return *this;}
+
 
     /**
      * <p>Specifies the pending number of days for which automated backups are
@@ -182,6 +189,7 @@ namespace Model
      */
     inline PendingModifiedValues& WithBackupRetentionPeriod(int value) { SetBackupRetentionPeriod(value); return *this;}
 
+
     /**
      * <p>Indicates that the Single-AZ DB instance is to change to a Multi-AZ
      * deployment.</p>
@@ -200,6 +208,7 @@ namespace Model
      */
     inline PendingModifiedValues& WithMultiAZ(bool value) { SetMultiAZ(value); return *this;}
 
+
     /**
      * <p>Indicates the database engine version.</p>
      */
@@ -213,7 +222,7 @@ namespace Model
     /**
      * <p>Indicates the database engine version.</p>
      */
-    inline void SetEngineVersion(Aws::String&& value) { m_engineVersionHasBeenSet = true; m_engineVersion = value; }
+    inline void SetEngineVersion(Aws::String&& value) { m_engineVersionHasBeenSet = true; m_engineVersion = std::move(value); }
 
     /**
      * <p>Indicates the database engine version.</p>
@@ -228,12 +237,13 @@ namespace Model
     /**
      * <p>Indicates the database engine version.</p>
      */
-    inline PendingModifiedValues& WithEngineVersion(Aws::String&& value) { SetEngineVersion(value); return *this;}
+    inline PendingModifiedValues& WithEngineVersion(Aws::String&& value) { SetEngineVersion(std::move(value)); return *this;}
 
     /**
      * <p>Indicates the database engine version.</p>
      */
     inline PendingModifiedValues& WithEngineVersion(const char* value) { SetEngineVersion(value); return *this;}
+
 
     /**
      * <p>The license model for the DB instance.</p> <p>Valid values:
@@ -254,7 +264,7 @@ namespace Model
      * <code>license-included</code> | <code>bring-your-own-license</code> |
      * <code>general-public-license</code> </p>
      */
-    inline void SetLicenseModel(Aws::String&& value) { m_licenseModelHasBeenSet = true; m_licenseModel = value; }
+    inline void SetLicenseModel(Aws::String&& value) { m_licenseModelHasBeenSet = true; m_licenseModel = std::move(value); }
 
     /**
      * <p>The license model for the DB instance.</p> <p>Valid values:
@@ -275,7 +285,7 @@ namespace Model
      * <code>license-included</code> | <code>bring-your-own-license</code> |
      * <code>general-public-license</code> </p>
      */
-    inline PendingModifiedValues& WithLicenseModel(Aws::String&& value) { SetLicenseModel(value); return *this;}
+    inline PendingModifiedValues& WithLicenseModel(Aws::String&& value) { SetLicenseModel(std::move(value)); return *this;}
 
     /**
      * <p>The license model for the DB instance.</p> <p>Valid values:
@@ -283,6 +293,7 @@ namespace Model
      * <code>general-public-license</code> </p>
      */
     inline PendingModifiedValues& WithLicenseModel(const char* value) { SetLicenseModel(value); return *this;}
+
 
     /**
      * <p>Specifies the new Provisioned IOPS value for the DB instance that will be
@@ -302,6 +313,7 @@ namespace Model
      */
     inline PendingModifiedValues& WithIops(int value) { SetIops(value); return *this;}
 
+
     /**
      * <p> Contains the new <code>DBInstanceIdentifier</code> for the DB instance that
      * will be applied or is in progress. </p>
@@ -318,7 +330,7 @@ namespace Model
      * <p> Contains the new <code>DBInstanceIdentifier</code> for the DB instance that
      * will be applied or is in progress. </p>
      */
-    inline void SetDBInstanceIdentifier(Aws::String&& value) { m_dBInstanceIdentifierHasBeenSet = true; m_dBInstanceIdentifier = value; }
+    inline void SetDBInstanceIdentifier(Aws::String&& value) { m_dBInstanceIdentifierHasBeenSet = true; m_dBInstanceIdentifier = std::move(value); }
 
     /**
      * <p> Contains the new <code>DBInstanceIdentifier</code> for the DB instance that
@@ -336,13 +348,14 @@ namespace Model
      * <p> Contains the new <code>DBInstanceIdentifier</code> for the DB instance that
      * will be applied or is in progress. </p>
      */
-    inline PendingModifiedValues& WithDBInstanceIdentifier(Aws::String&& value) { SetDBInstanceIdentifier(value); return *this;}
+    inline PendingModifiedValues& WithDBInstanceIdentifier(Aws::String&& value) { SetDBInstanceIdentifier(std::move(value)); return *this;}
 
     /**
      * <p> Contains the new <code>DBInstanceIdentifier</code> for the DB instance that
      * will be applied or is in progress. </p>
      */
     inline PendingModifiedValues& WithDBInstanceIdentifier(const char* value) { SetDBInstanceIdentifier(value); return *this;}
+
 
     /**
      * <p>Specifies the storage type to be associated with the DB instance.</p>
@@ -357,7 +370,7 @@ namespace Model
     /**
      * <p>Specifies the storage type to be associated with the DB instance.</p>
      */
-    inline void SetStorageType(Aws::String&& value) { m_storageTypeHasBeenSet = true; m_storageType = value; }
+    inline void SetStorageType(Aws::String&& value) { m_storageTypeHasBeenSet = true; m_storageType = std::move(value); }
 
     /**
      * <p>Specifies the storage type to be associated with the DB instance.</p>
@@ -372,12 +385,13 @@ namespace Model
     /**
      * <p>Specifies the storage type to be associated with the DB instance.</p>
      */
-    inline PendingModifiedValues& WithStorageType(Aws::String&& value) { SetStorageType(value); return *this;}
+    inline PendingModifiedValues& WithStorageType(Aws::String&& value) { SetStorageType(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the storage type to be associated with the DB instance.</p>
      */
     inline PendingModifiedValues& WithStorageType(const char* value) { SetStorageType(value); return *this;}
+
 
     /**
      * <p>Specifies the identifier of the CA certificate for the DB instance.</p>
@@ -392,7 +406,7 @@ namespace Model
     /**
      * <p>Specifies the identifier of the CA certificate for the DB instance.</p>
      */
-    inline void SetCACertificateIdentifier(Aws::String&& value) { m_cACertificateIdentifierHasBeenSet = true; m_cACertificateIdentifier = value; }
+    inline void SetCACertificateIdentifier(Aws::String&& value) { m_cACertificateIdentifierHasBeenSet = true; m_cACertificateIdentifier = std::move(value); }
 
     /**
      * <p>Specifies the identifier of the CA certificate for the DB instance.</p>
@@ -407,12 +421,13 @@ namespace Model
     /**
      * <p>Specifies the identifier of the CA certificate for the DB instance.</p>
      */
-    inline PendingModifiedValues& WithCACertificateIdentifier(Aws::String&& value) { SetCACertificateIdentifier(value); return *this;}
+    inline PendingModifiedValues& WithCACertificateIdentifier(Aws::String&& value) { SetCACertificateIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the identifier of the CA certificate for the DB instance.</p>
      */
     inline PendingModifiedValues& WithCACertificateIdentifier(const char* value) { SetCACertificateIdentifier(value); return *this;}
+
 
     /**
      * <p>The new DB subnet group for the DB instance. </p>
@@ -427,7 +442,7 @@ namespace Model
     /**
      * <p>The new DB subnet group for the DB instance. </p>
      */
-    inline void SetDBSubnetGroupName(Aws::String&& value) { m_dBSubnetGroupNameHasBeenSet = true; m_dBSubnetGroupName = value; }
+    inline void SetDBSubnetGroupName(Aws::String&& value) { m_dBSubnetGroupNameHasBeenSet = true; m_dBSubnetGroupName = std::move(value); }
 
     /**
      * <p>The new DB subnet group for the DB instance. </p>
@@ -442,7 +457,7 @@ namespace Model
     /**
      * <p>The new DB subnet group for the DB instance. </p>
      */
-    inline PendingModifiedValues& WithDBSubnetGroupName(Aws::String&& value) { SetDBSubnetGroupName(value); return *this;}
+    inline PendingModifiedValues& WithDBSubnetGroupName(Aws::String&& value) { SetDBSubnetGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The new DB subnet group for the DB instance. </p>
@@ -450,30 +465,43 @@ namespace Model
     inline PendingModifiedValues& WithDBSubnetGroupName(const char* value) { SetDBSubnetGroupName(value); return *this;}
 
   private:
+
     Aws::String m_dBInstanceClass;
     bool m_dBInstanceClassHasBeenSet;
+
     int m_allocatedStorage;
     bool m_allocatedStorageHasBeenSet;
+
     Aws::String m_masterUserPassword;
     bool m_masterUserPasswordHasBeenSet;
+
     int m_port;
     bool m_portHasBeenSet;
+
     int m_backupRetentionPeriod;
     bool m_backupRetentionPeriodHasBeenSet;
+
     bool m_multiAZ;
     bool m_multiAZHasBeenSet;
+
     Aws::String m_engineVersion;
     bool m_engineVersionHasBeenSet;
+
     Aws::String m_licenseModel;
     bool m_licenseModelHasBeenSet;
+
     int m_iops;
     bool m_iopsHasBeenSet;
+
     Aws::String m_dBInstanceIdentifier;
     bool m_dBInstanceIdentifierHasBeenSet;
+
     Aws::String m_storageType;
     bool m_storageTypeHasBeenSet;
+
     Aws::String m_cACertificateIdentifier;
     bool m_cACertificateIdentifierHasBeenSet;
+
     Aws::String m_dBSubnetGroupName;
     bool m_dBSubnetGroupNameHasBeenSet;
   };

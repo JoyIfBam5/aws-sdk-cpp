@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/iot/IoTErrors.h>
@@ -164,35 +165,35 @@ namespace Model
         class UpdateCertificateRequest;
         class UpdateThingRequest;
 
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IoTErrors>> AcceptCertificateTransferOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IoTErrors>> AttachPrincipalPolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IoTErrors>> AcceptCertificateTransferOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IoTErrors>> AttachPrincipalPolicyOutcome;
         typedef Aws::Utils::Outcome<AttachThingPrincipalResult, Aws::Client::AWSError<IoTErrors>> AttachThingPrincipalOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IoTErrors>> CancelCertificateTransferOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IoTErrors>> CancelCertificateTransferOutcome;
         typedef Aws::Utils::Outcome<CreateCertificateFromCsrResult, Aws::Client::AWSError<IoTErrors>> CreateCertificateFromCsrOutcome;
         typedef Aws::Utils::Outcome<CreateKeysAndCertificateResult, Aws::Client::AWSError<IoTErrors>> CreateKeysAndCertificateOutcome;
         typedef Aws::Utils::Outcome<CreatePolicyResult, Aws::Client::AWSError<IoTErrors>> CreatePolicyOutcome;
         typedef Aws::Utils::Outcome<CreatePolicyVersionResult, Aws::Client::AWSError<IoTErrors>> CreatePolicyVersionOutcome;
         typedef Aws::Utils::Outcome<CreateThingResult, Aws::Client::AWSError<IoTErrors>> CreateThingOutcome;
         typedef Aws::Utils::Outcome<CreateThingTypeResult, Aws::Client::AWSError<IoTErrors>> CreateThingTypeOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IoTErrors>> CreateTopicRuleOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IoTErrors>> CreateTopicRuleOutcome;
         typedef Aws::Utils::Outcome<DeleteCACertificateResult, Aws::Client::AWSError<IoTErrors>> DeleteCACertificateOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IoTErrors>> DeleteCertificateOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IoTErrors>> DeletePolicyOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IoTErrors>> DeletePolicyVersionOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IoTErrors>> DeleteCertificateOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IoTErrors>> DeletePolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IoTErrors>> DeletePolicyVersionOutcome;
         typedef Aws::Utils::Outcome<DeleteRegistrationCodeResult, Aws::Client::AWSError<IoTErrors>> DeleteRegistrationCodeOutcome;
         typedef Aws::Utils::Outcome<DeleteThingResult, Aws::Client::AWSError<IoTErrors>> DeleteThingOutcome;
         typedef Aws::Utils::Outcome<DeleteThingTypeResult, Aws::Client::AWSError<IoTErrors>> DeleteThingTypeOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IoTErrors>> DeleteTopicRuleOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IoTErrors>> DeleteTopicRuleOutcome;
         typedef Aws::Utils::Outcome<DeprecateThingTypeResult, Aws::Client::AWSError<IoTErrors>> DeprecateThingTypeOutcome;
         typedef Aws::Utils::Outcome<DescribeCACertificateResult, Aws::Client::AWSError<IoTErrors>> DescribeCACertificateOutcome;
         typedef Aws::Utils::Outcome<DescribeCertificateResult, Aws::Client::AWSError<IoTErrors>> DescribeCertificateOutcome;
         typedef Aws::Utils::Outcome<DescribeEndpointResult, Aws::Client::AWSError<IoTErrors>> DescribeEndpointOutcome;
         typedef Aws::Utils::Outcome<DescribeThingResult, Aws::Client::AWSError<IoTErrors>> DescribeThingOutcome;
         typedef Aws::Utils::Outcome<DescribeThingTypeResult, Aws::Client::AWSError<IoTErrors>> DescribeThingTypeOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IoTErrors>> DetachPrincipalPolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IoTErrors>> DetachPrincipalPolicyOutcome;
         typedef Aws::Utils::Outcome<DetachThingPrincipalResult, Aws::Client::AWSError<IoTErrors>> DetachThingPrincipalOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IoTErrors>> DisableTopicRuleOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IoTErrors>> EnableTopicRuleOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IoTErrors>> DisableTopicRuleOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IoTErrors>> EnableTopicRuleOutcome;
         typedef Aws::Utils::Outcome<GetLoggingOptionsResult, Aws::Client::AWSError<IoTErrors>> GetLoggingOptionsOutcome;
         typedef Aws::Utils::Outcome<GetPolicyResult, Aws::Client::AWSError<IoTErrors>> GetPolicyOutcome;
         typedef Aws::Utils::Outcome<GetPolicyVersionResult, Aws::Client::AWSError<IoTErrors>> GetPolicyVersionOutcome;
@@ -213,13 +214,13 @@ namespace Model
         typedef Aws::Utils::Outcome<ListTopicRulesResult, Aws::Client::AWSError<IoTErrors>> ListTopicRulesOutcome;
         typedef Aws::Utils::Outcome<RegisterCACertificateResult, Aws::Client::AWSError<IoTErrors>> RegisterCACertificateOutcome;
         typedef Aws::Utils::Outcome<RegisterCertificateResult, Aws::Client::AWSError<IoTErrors>> RegisterCertificateOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IoTErrors>> RejectCertificateTransferOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IoTErrors>> ReplaceTopicRuleOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IoTErrors>> SetDefaultPolicyVersionOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IoTErrors>> SetLoggingOptionsOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IoTErrors>> RejectCertificateTransferOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IoTErrors>> ReplaceTopicRuleOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IoTErrors>> SetDefaultPolicyVersionOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IoTErrors>> SetLoggingOptionsOutcome;
         typedef Aws::Utils::Outcome<TransferCertificateResult, Aws::Client::AWSError<IoTErrors>> TransferCertificateOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IoTErrors>> UpdateCACertificateOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<IoTErrors>> UpdateCertificateOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IoTErrors>> UpdateCACertificateOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<IoTErrors>> UpdateCertificateOutcome;
         typedef Aws::Utils::Outcome<UpdateThingResult, Aws::Client::AWSError<IoTErrors>> UpdateThingOutcome;
 
         typedef std::future<AcceptCertificateTransferOutcome> AcceptCertificateTransferOutcomeCallable;
@@ -362,22 +363,25 @@ namespace Model
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        IoTClient(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        IoTClient(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        IoTClient(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        IoTClient(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        IoTClient(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        IoTClient(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
         virtual ~IoTClient();
+
+        inline virtual const char* GetServiceClientName() const override { return "execute-api"; }
+
 
         /**
          * <p>Accepts a pending certificate transfer. The default state of the certificate
@@ -470,7 +474,7 @@ namespace Model
         virtual void AttachThingPrincipalAsync(const Model::AttachThingPrincipalRequest& request, const AttachThingPrincipalResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Cancels a pending transfer for the specified certificate.</p> <p><b>Note</b>
+         * <p>Cancels a pending transfer for the specified certificate.</p> <p> <b>Note</b>
          * Only the transfer source account can use this operation to cancel a transfer.
          * (Transfer destinations can use <a>RejectCertificateTransfer</a> instead.) After
          * transfer, AWS IoT returns the certificate to the source account in the INACTIVE
@@ -484,7 +488,7 @@ namespace Model
         virtual Model::CancelCertificateTransferOutcome CancelCertificateTransfer(const Model::CancelCertificateTransferRequest& request) const;
 
         /**
-         * <p>Cancels a pending transfer for the specified certificate.</p> <p><b>Note</b>
+         * <p>Cancels a pending transfer for the specified certificate.</p> <p> <b>Note</b>
          * Only the transfer source account can use this operation to cancel a transfer.
          * (Transfer destinations can use <a>RejectCertificateTransfer</a> instead.) After
          * transfer, AWS IoT returns the certificate to the source account in the INACTIVE
@@ -500,7 +504,7 @@ namespace Model
         virtual Model::CancelCertificateTransferOutcomeCallable CancelCertificateTransferCallable(const Model::CancelCertificateTransferRequest& request) const;
 
         /**
-         * <p>Cancels a pending transfer for the specified certificate.</p> <p><b>Note</b>
+         * <p>Cancels a pending transfer for the specified certificate.</p> <p> <b>Note</b>
          * Only the transfer source account can use this operation to cancel a transfer.
          * (Transfer destinations can use <a>RejectCertificateTransfer</a> instead.) After
          * transfer, AWS IoT returns the certificate to the source account in the INACTIVE
@@ -517,28 +521,30 @@ namespace Model
 
         /**
          * <p>Creates an X.509 certificate using the specified certificate signing
-         * request.</p> <p><b>Note</b> Reusing the same certificate signing request (CSR)
-         * results in a distinct certificate.</p> <p>You can create multiple certificates
-         * in a batch by creating a directory, copying multiple .csr files into that
-         * directory, and then specifying that directory on the command line. The following
-         * commands show how to create a batch of certificates given a batch of CSRs. </p>
-         * <p>Assuming a set of CSRs are located inside of the directory
+         * request.</p> <p> <b>Note:</b> The CSR must include a public key that is either
+         * an RSA key with a length of at least 2048 bits or an ECC key from NIST P-256 or
+         * NIST P-384 curves. </p> <p> <b>Note:</b> Reusing the same certificate signing
+         * request (CSR) results in a distinct certificate.</p> <p>You can create multiple
+         * certificates in a batch by creating a directory, copying multiple .csr files
+         * into that directory, and then specifying that directory on the command line. The
+         * following commands show how to create a batch of certificates given a batch of
+         * CSRs.</p> <p>Assuming a set of CSRs are located inside of the directory
          * my-csr-directory:</p> <p>On Linux and OS X, the command is:</p> <p>$ ls
          * my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr
-         * --certificate-signing-request file://my-csr-directory/{}</p> <p> This command
+         * --certificate-signing-request file://my-csr-directory/{}</p> <p>This command
          * lists all of the CSRs in my-csr-directory and pipes each CSR file name to the
          * aws iot create-certificate-from-csr AWS CLI command to create a certificate for
-         * the corresponding CSR. </p> <p> The aws iot create-certificate-from-csr part of
+         * the corresponding CSR.</p> <p>The aws iot create-certificate-from-csr part of
          * the command can also be run in parallel to speed up the certificate creation
-         * process: </p> <p> $ ls my-csr-directory/ | xargs -P 10 -I {} aws iot
+         * process:</p> <p>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot
          * create-certificate-from-csr --certificate-signing-request
-         * file://my-csr-directory/{} </p> <p> On Windows PowerShell, the command to create
-         * certificates for all CSRs in my-csr-directory is: </p> <p> &gt; ls -Name
+         * file://my-csr-directory/{}</p> <p>On Windows PowerShell, the command to create
+         * certificates for all CSRs in my-csr-directory is:</p> <p>&gt; ls -Name
          * my-csr-directory | %{aws iot create-certificate-from-csr
-         * --certificate-signing-request file://my-csr-directory/$_} </p> <p> On a Windows
+         * --certificate-signing-request file://my-csr-directory/$_}</p> <p>On a Windows
          * command prompt, the command to create certificates for all CSRs in
-         * my-csr-directory is: </p> <p> &gt; forfiles /p my-csr-directory /c "cmd /c aws
-         * iot create-certificate-from-csr --certificate-signing-request
+         * my-csr-directory is:</p> <p>&gt; forfiles /p my-csr-directory /c "cmd /c aws iot
+         * create-certificate-from-csr --certificate-signing-request
          * file://@path"</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateCertificateFromCsr">AWS
          * API Reference</a></p>
@@ -547,28 +553,30 @@ namespace Model
 
         /**
          * <p>Creates an X.509 certificate using the specified certificate signing
-         * request.</p> <p><b>Note</b> Reusing the same certificate signing request (CSR)
-         * results in a distinct certificate.</p> <p>You can create multiple certificates
-         * in a batch by creating a directory, copying multiple .csr files into that
-         * directory, and then specifying that directory on the command line. The following
-         * commands show how to create a batch of certificates given a batch of CSRs. </p>
-         * <p>Assuming a set of CSRs are located inside of the directory
+         * request.</p> <p> <b>Note:</b> The CSR must include a public key that is either
+         * an RSA key with a length of at least 2048 bits or an ECC key from NIST P-256 or
+         * NIST P-384 curves. </p> <p> <b>Note:</b> Reusing the same certificate signing
+         * request (CSR) results in a distinct certificate.</p> <p>You can create multiple
+         * certificates in a batch by creating a directory, copying multiple .csr files
+         * into that directory, and then specifying that directory on the command line. The
+         * following commands show how to create a batch of certificates given a batch of
+         * CSRs.</p> <p>Assuming a set of CSRs are located inside of the directory
          * my-csr-directory:</p> <p>On Linux and OS X, the command is:</p> <p>$ ls
          * my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr
-         * --certificate-signing-request file://my-csr-directory/{}</p> <p> This command
+         * --certificate-signing-request file://my-csr-directory/{}</p> <p>This command
          * lists all of the CSRs in my-csr-directory and pipes each CSR file name to the
          * aws iot create-certificate-from-csr AWS CLI command to create a certificate for
-         * the corresponding CSR. </p> <p> The aws iot create-certificate-from-csr part of
+         * the corresponding CSR.</p> <p>The aws iot create-certificate-from-csr part of
          * the command can also be run in parallel to speed up the certificate creation
-         * process: </p> <p> $ ls my-csr-directory/ | xargs -P 10 -I {} aws iot
+         * process:</p> <p>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot
          * create-certificate-from-csr --certificate-signing-request
-         * file://my-csr-directory/{} </p> <p> On Windows PowerShell, the command to create
-         * certificates for all CSRs in my-csr-directory is: </p> <p> &gt; ls -Name
+         * file://my-csr-directory/{}</p> <p>On Windows PowerShell, the command to create
+         * certificates for all CSRs in my-csr-directory is:</p> <p>&gt; ls -Name
          * my-csr-directory | %{aws iot create-certificate-from-csr
-         * --certificate-signing-request file://my-csr-directory/$_} </p> <p> On a Windows
+         * --certificate-signing-request file://my-csr-directory/$_}</p> <p>On a Windows
          * command prompt, the command to create certificates for all CSRs in
-         * my-csr-directory is: </p> <p> &gt; forfiles /p my-csr-directory /c "cmd /c aws
-         * iot create-certificate-from-csr --certificate-signing-request
+         * my-csr-directory is:</p> <p>&gt; forfiles /p my-csr-directory /c "cmd /c aws iot
+         * create-certificate-from-csr --certificate-signing-request
          * file://@path"</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateCertificateFromCsr">AWS
          * API Reference</a></p>
@@ -579,28 +587,30 @@ namespace Model
 
         /**
          * <p>Creates an X.509 certificate using the specified certificate signing
-         * request.</p> <p><b>Note</b> Reusing the same certificate signing request (CSR)
-         * results in a distinct certificate.</p> <p>You can create multiple certificates
-         * in a batch by creating a directory, copying multiple .csr files into that
-         * directory, and then specifying that directory on the command line. The following
-         * commands show how to create a batch of certificates given a batch of CSRs. </p>
-         * <p>Assuming a set of CSRs are located inside of the directory
+         * request.</p> <p> <b>Note:</b> The CSR must include a public key that is either
+         * an RSA key with a length of at least 2048 bits or an ECC key from NIST P-256 or
+         * NIST P-384 curves. </p> <p> <b>Note:</b> Reusing the same certificate signing
+         * request (CSR) results in a distinct certificate.</p> <p>You can create multiple
+         * certificates in a batch by creating a directory, copying multiple .csr files
+         * into that directory, and then specifying that directory on the command line. The
+         * following commands show how to create a batch of certificates given a batch of
+         * CSRs.</p> <p>Assuming a set of CSRs are located inside of the directory
          * my-csr-directory:</p> <p>On Linux and OS X, the command is:</p> <p>$ ls
          * my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr
-         * --certificate-signing-request file://my-csr-directory/{}</p> <p> This command
+         * --certificate-signing-request file://my-csr-directory/{}</p> <p>This command
          * lists all of the CSRs in my-csr-directory and pipes each CSR file name to the
          * aws iot create-certificate-from-csr AWS CLI command to create a certificate for
-         * the corresponding CSR. </p> <p> The aws iot create-certificate-from-csr part of
+         * the corresponding CSR.</p> <p>The aws iot create-certificate-from-csr part of
          * the command can also be run in parallel to speed up the certificate creation
-         * process: </p> <p> $ ls my-csr-directory/ | xargs -P 10 -I {} aws iot
+         * process:</p> <p>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot
          * create-certificate-from-csr --certificate-signing-request
-         * file://my-csr-directory/{} </p> <p> On Windows PowerShell, the command to create
-         * certificates for all CSRs in my-csr-directory is: </p> <p> &gt; ls -Name
+         * file://my-csr-directory/{}</p> <p>On Windows PowerShell, the command to create
+         * certificates for all CSRs in my-csr-directory is:</p> <p>&gt; ls -Name
          * my-csr-directory | %{aws iot create-certificate-from-csr
-         * --certificate-signing-request file://my-csr-directory/$_} </p> <p> On a Windows
+         * --certificate-signing-request file://my-csr-directory/$_}</p> <p>On a Windows
          * command prompt, the command to create certificates for all CSRs in
-         * my-csr-directory is: </p> <p> &gt; forfiles /p my-csr-directory /c "cmd /c aws
-         * iot create-certificate-from-csr --certificate-signing-request
+         * my-csr-directory is:</p> <p>&gt; forfiles /p my-csr-directory /c "cmd /c aws iot
+         * create-certificate-from-csr --certificate-signing-request
          * file://@path"</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateCertificateFromCsr">AWS
          * API Reference</a></p>
@@ -611,7 +621,7 @@ namespace Model
 
         /**
          * <p>Creates a 2048-bit RSA key pair and issues an X.509 certificate using the
-         * issued public key.</p> <p><b>Note</b> This is the only time AWS IoT issues the
+         * issued public key.</p> <p> <b>Note</b> This is the only time AWS IoT issues the
          * private key for this certificate, so it is important to keep it in a secure
          * location.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateKeysAndCertificate">AWS
@@ -621,7 +631,7 @@ namespace Model
 
         /**
          * <p>Creates a 2048-bit RSA key pair and issues an X.509 certificate using the
-         * issued public key.</p> <p><b>Note</b> This is the only time AWS IoT issues the
+         * issued public key.</p> <p> <b>Note</b> This is the only time AWS IoT issues the
          * private key for this certificate, so it is important to keep it in a secure
          * location.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateKeysAndCertificate">AWS
@@ -633,7 +643,7 @@ namespace Model
 
         /**
          * <p>Creates a 2048-bit RSA key pair and issues an X.509 certificate using the
-         * issued public key.</p> <p><b>Note</b> This is the only time AWS IoT issues the
+         * issued public key.</p> <p> <b>Note</b> This is the only time AWS IoT issues the
          * private key for this certificate, so it is important to keep it in a secure
          * location.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateKeysAndCertificate">AWS
@@ -1837,10 +1847,10 @@ namespace Model
          * <p>Registers a CA certificate with AWS IoT. This CA certificate can then be used
          * to sign device certificates, which can be then registered with AWS IoT. You can
          * register up to 10 CA certificates per AWS account that have the same subject
-         * field and public key. This enables you to have up to 10 certificate authorities
-         * sign your device certificates. If you have more than one CA certificate
-         * registered, make sure you pass the CA certificate when you register your device
-         * certificates with the RegisterCertificate API.</p><p><h3>See Also:</h3>   <a
+         * field. This enables you to have up to 10 certificate authorities sign your
+         * device certificates. If you have more than one CA certificate registered, make
+         * sure you pass the CA certificate when you register your device certificates with
+         * the RegisterCertificate API.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/RegisterCACertificate">AWS
          * API Reference</a></p>
          */
@@ -1850,10 +1860,10 @@ namespace Model
          * <p>Registers a CA certificate with AWS IoT. This CA certificate can then be used
          * to sign device certificates, which can be then registered with AWS IoT. You can
          * register up to 10 CA certificates per AWS account that have the same subject
-         * field and public key. This enables you to have up to 10 certificate authorities
-         * sign your device certificates. If you have more than one CA certificate
-         * registered, make sure you pass the CA certificate when you register your device
-         * certificates with the RegisterCertificate API.</p><p><h3>See Also:</h3>   <a
+         * field. This enables you to have up to 10 certificate authorities sign your
+         * device certificates. If you have more than one CA certificate registered, make
+         * sure you pass the CA certificate when you register your device certificates with
+         * the RegisterCertificate API.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/RegisterCACertificate">AWS
          * API Reference</a></p>
          *
@@ -1865,10 +1875,10 @@ namespace Model
          * <p>Registers a CA certificate with AWS IoT. This CA certificate can then be used
          * to sign device certificates, which can be then registered with AWS IoT. You can
          * register up to 10 CA certificates per AWS account that have the same subject
-         * field and public key. This enables you to have up to 10 certificate authorities
-         * sign your device certificates. If you have more than one CA certificate
-         * registered, make sure you pass the CA certificate when you register your device
-         * certificates with the RegisterCertificate API.</p><p><h3>See Also:</h3>   <a
+         * field. This enables you to have up to 10 certificate authorities sign your
+         * device certificates. If you have more than one CA certificate registered, make
+         * sure you pass the CA certificate when you register your device certificates with
+         * the RegisterCertificate API.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/RegisterCACertificate">AWS
          * API Reference</a></p>
          *
@@ -2181,7 +2191,7 @@ namespace Model
 
 
     private:
-      void init(const Client::ClientConfiguration& clientConfiguration);
+      void init(const Aws::Client::ClientConfiguration& clientConfiguration);
 
         /**Async helpers**/
         void AcceptCertificateTransferAsyncHelper(const Model::AcceptCertificateTransferRequest& request, const AcceptCertificateTransferResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -2243,7 +2253,7 @@ namespace Model
         void UpdateThingAsyncHelper(const Model::UpdateThingRequest& request, const UpdateThingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
       Aws::String m_uri;
-      std::shared_ptr<Utils::Threading::Executor> m_executor;
+      std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;
   };
 
 } // namespace IoT

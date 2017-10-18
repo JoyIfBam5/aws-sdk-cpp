@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/opsworks/model/EcsCluster.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     DescribeEcsClustersResult();
-    DescribeEcsClustersResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeEcsClustersResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeEcsClustersResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeEcsClustersResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A list of <code>EcsCluster</code> objects containing the cluster
@@ -63,7 +66,7 @@ namespace Model
      * <p>A list of <code>EcsCluster</code> objects containing the cluster
      * descriptions.</p>
      */
-    inline void SetEcsClusters(Aws::Vector<EcsCluster>&& value) { m_ecsClusters = value; }
+    inline void SetEcsClusters(Aws::Vector<EcsCluster>&& value) { m_ecsClusters = std::move(value); }
 
     /**
      * <p>A list of <code>EcsCluster</code> objects containing the cluster
@@ -75,7 +78,7 @@ namespace Model
      * <p>A list of <code>EcsCluster</code> objects containing the cluster
      * descriptions.</p>
      */
-    inline DescribeEcsClustersResult& WithEcsClusters(Aws::Vector<EcsCluster>&& value) { SetEcsClusters(value); return *this;}
+    inline DescribeEcsClustersResult& WithEcsClusters(Aws::Vector<EcsCluster>&& value) { SetEcsClusters(std::move(value)); return *this;}
 
     /**
      * <p>A list of <code>EcsCluster</code> objects containing the cluster
@@ -87,7 +90,8 @@ namespace Model
      * <p>A list of <code>EcsCluster</code> objects containing the cluster
      * descriptions.</p>
      */
-    inline DescribeEcsClustersResult& AddEcsClusters(EcsCluster&& value) { m_ecsClusters.push_back(value); return *this; }
+    inline DescribeEcsClustersResult& AddEcsClusters(EcsCluster&& value) { m_ecsClusters.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>If a paginated request does not return all of the remaining results, this
@@ -114,7 +118,7 @@ namespace Model
      * previous paginated request returned all of the remaining results, this parameter
      * is set to <code>null</code>.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>If a paginated request does not return all of the remaining results, this
@@ -141,7 +145,7 @@ namespace Model
      * previous paginated request returned all of the remaining results, this parameter
      * is set to <code>null</code>.</p>
      */
-    inline DescribeEcsClustersResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeEcsClustersResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>If a paginated request does not return all of the remaining results, this
@@ -153,7 +157,9 @@ namespace Model
     inline DescribeEcsClustersResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<EcsCluster> m_ecsClusters;
+
     Aws::String m_nextToken;
   };
 

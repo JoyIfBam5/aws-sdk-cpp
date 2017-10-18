@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 
 #include <aws/route53domains/Route53Domains_EXPORTS.h>
@@ -22,14 +23,11 @@ namespace Aws
 namespace Client
 {
 
-class AWS_ROUTE53DOMAINS_API Route53DomainsErrorMarshaller : public Client::AWSErrorMarshaller
+class AWS_ROUTE53DOMAINS_API Route53DomainsErrorMarshaller : public Aws::Client::JsonErrorMarshaller
 {
 public:
-  Route53DomainsErrorMarshaller() {}
-  virtual ~Route53DomainsErrorMarshaller() {}
-
-  virtual Client::AWSError<Client::CoreErrors> FindErrorByName(const char* exceptionName) const;
+  Aws::Client::AWSError<Aws::Client::CoreErrors> FindErrorByName(const char* exceptionName) const override;
 };
 
-} // namespace Route53Domains
+} // namespace Client
 } // namespace Aws

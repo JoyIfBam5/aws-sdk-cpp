@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/rds/RDSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,42 +32,55 @@ namespace Model
   {
   public:
     RemoveRoleFromDBClusterRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "RemoveRoleFromDBCluster"; }
+
     Aws::String SerializePayload() const override;
 
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
+
     /**
-     * <p>The name of the DB cluster to disassociate the IAM role rom.</p>
+     * <p>The name of the DB cluster to disassociate the IAM role from.</p>
      */
     inline const Aws::String& GetDBClusterIdentifier() const{ return m_dBClusterIdentifier; }
 
     /**
-     * <p>The name of the DB cluster to disassociate the IAM role rom.</p>
+     * <p>The name of the DB cluster to disassociate the IAM role from.</p>
      */
     inline void SetDBClusterIdentifier(const Aws::String& value) { m_dBClusterIdentifierHasBeenSet = true; m_dBClusterIdentifier = value; }
 
     /**
-     * <p>The name of the DB cluster to disassociate the IAM role rom.</p>
+     * <p>The name of the DB cluster to disassociate the IAM role from.</p>
      */
-    inline void SetDBClusterIdentifier(Aws::String&& value) { m_dBClusterIdentifierHasBeenSet = true; m_dBClusterIdentifier = value; }
+    inline void SetDBClusterIdentifier(Aws::String&& value) { m_dBClusterIdentifierHasBeenSet = true; m_dBClusterIdentifier = std::move(value); }
 
     /**
-     * <p>The name of the DB cluster to disassociate the IAM role rom.</p>
+     * <p>The name of the DB cluster to disassociate the IAM role from.</p>
      */
     inline void SetDBClusterIdentifier(const char* value) { m_dBClusterIdentifierHasBeenSet = true; m_dBClusterIdentifier.assign(value); }
 
     /**
-     * <p>The name of the DB cluster to disassociate the IAM role rom.</p>
+     * <p>The name of the DB cluster to disassociate the IAM role from.</p>
      */
     inline RemoveRoleFromDBClusterRequest& WithDBClusterIdentifier(const Aws::String& value) { SetDBClusterIdentifier(value); return *this;}
 
     /**
-     * <p>The name of the DB cluster to disassociate the IAM role rom.</p>
+     * <p>The name of the DB cluster to disassociate the IAM role from.</p>
      */
-    inline RemoveRoleFromDBClusterRequest& WithDBClusterIdentifier(Aws::String&& value) { SetDBClusterIdentifier(value); return *this;}
+    inline RemoveRoleFromDBClusterRequest& WithDBClusterIdentifier(Aws::String&& value) { SetDBClusterIdentifier(std::move(value)); return *this;}
 
     /**
-     * <p>The name of the DB cluster to disassociate the IAM role rom.</p>
+     * <p>The name of the DB cluster to disassociate the IAM role from.</p>
      */
     inline RemoveRoleFromDBClusterRequest& WithDBClusterIdentifier(const char* value) { SetDBClusterIdentifier(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role to disassociate from the
@@ -86,7 +101,7 @@ namespace Model
      * Aurora DB cluster, for example
      * <code>arn:aws:iam::123456789012:role/AuroraAccessRole</code>.</p>
      */
-    inline void SetRoleArn(Aws::String&& value) { m_roleArnHasBeenSet = true; m_roleArn = value; }
+    inline void SetRoleArn(Aws::String&& value) { m_roleArnHasBeenSet = true; m_roleArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role to disassociate from the
@@ -107,7 +122,7 @@ namespace Model
      * Aurora DB cluster, for example
      * <code>arn:aws:iam::123456789012:role/AuroraAccessRole</code>.</p>
      */
-    inline RemoveRoleFromDBClusterRequest& WithRoleArn(Aws::String&& value) { SetRoleArn(value); return *this;}
+    inline RemoveRoleFromDBClusterRequest& WithRoleArn(Aws::String&& value) { SetRoleArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role to disassociate from the
@@ -117,8 +132,10 @@ namespace Model
     inline RemoveRoleFromDBClusterRequest& WithRoleArn(const char* value) { SetRoleArn(value); return *this;}
 
   private:
+
     Aws::String m_dBClusterIdentifier;
     bool m_dBClusterIdentifierHasBeenSet;
+
     Aws::String m_roleArn;
     bool m_roleArnHasBeenSet;
   };

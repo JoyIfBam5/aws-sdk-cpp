@@ -72,6 +72,7 @@ file(GLOB UTILS_THREADING_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/source/utils/threa
 file(GLOB UTILS_XML_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/source/utils/xml/*.cpp")
 file(GLOB UTILS_LOGGING_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/source/utils/logging/*.cpp")
 file(GLOB UTILS_MEMORY_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/source/utils/memory/*.cpp")
+file(GLOB UTILS_MEMORY_STL_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/source/utils/memory/stl/*.cpp")
 file(GLOB UTILS_STREAM_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/source/utils/stream/*.cpp")
 file(GLOB UTILS_CRYPTO_FACTORY_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/source/utils/crypto/factory/*.cpp")
 
@@ -121,6 +122,7 @@ file(GLOB AWS_NATIVE_SDK_COMMON_SRC
     ${UTILS_STREAM_SOURCE}
     ${UTILS_LOGGING_SOURCE}
     ${UTILS_MEMORY_SOURCE}
+    ${UTILS_MEMORY_STL_SOURCE}
     ${UTILS_CRYPTO_OPENSSL_SOURCE}
     ${UTILS_CRYPTO_COMMONCRYPTO_SOURCE}
 )
@@ -286,6 +288,7 @@ if(MSVC)
     source_group("Source Files\\utils\\stream" FILES ${UTILS_STREAM_SOURCE})
     source_group("Source Files\\utils\\logging" FILES ${UTILS_LOGGING_SOURCE})
     source_group("Source Files\\utils\\memory" FILES ${UTILS_MEMORY_SOURCE})
+    source_group("Source Files\\utils\\memory\\stl" FILES ${UTILS_MEMORY_STL_SOURCE})
 
     # http client conditional source
     if(ENABLE_CURL_CLIENT)
@@ -306,42 +309,39 @@ if(MSVC)
 
 endif(MSVC)
 
+add_library(${PROJECT_NAME} ${LIBTYPE} ${AWS_NATIVE_SDK_SRC})
+add_library(AWS::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
+
 set(Core_INCLUDES "${CMAKE_CURRENT_SOURCE_DIR}/include/")
 
 if(PLATFORM_CUSTOM)
   if(COMMAND add_custom_core_include_directories)
     add_custom_core_include_directories(CORE_CUSTOM_INCLUDE)
     SET(Core_INCLUDES ${Core_INCLUDES} ${CORE_CUSTOM_INCLUDE})
+    target_include_directories(${PROJECT_NAME} PRIVATE "${Core_INCLUDES}")
   endif()
   if(COMMAND add_custom_definitions)
     add_custom_definitions()
   endif()
 endif()
 
-include_directories(${Core_INCLUDES})
 
 if(NOT PLATFORM_CUSTOM)
-    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/aws/core/platform/refs)
-endif()
-
-if(USE_WINDOWS_DLL_SEMANTICS AND BUILD_SHARED_LIBS)
-    add_definitions(-DAWS_CORE_EXPORTS=1)
+    target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include/aws/core/platform/refs")
 endif()
 
 if(BUILD_CURL)
-  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${CURL_INCLUDE_DIR}" )
+    target_include_directories(${PROJECT_NAME} PRIVATE "${CURL_INCLUDE_DIR}")
 endif()
 
 if(BUILD_OPENSSL)
-  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${OPENSSL_INCLUDE_DIR}" )
+    target_include_directories(${PROJECT_NAME} PRIVATE "${OPENSSL_INCLUDE_DIR}")
 endif()
 
 if(BUILD_ZLIB)
-  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I${ZLIB_INCLUDE_DIR}" )
+    target_include_directories(${PROJECT_NAME} PRIVATE "${ZLIB_INCLUDE_DIR}")
 endif()
 
-add_library(${PROJECT_NAME} ${LIBTYPE} ${AWS_NATIVE_SDK_SRC})
-add_library(AWS::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 set(PKG_CONFIG_LIB "-l${PROJECT_NAME}")
 
@@ -365,25 +365,16 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 target_link_libraries(${PROJECT_NAME} ${PLATFORM_DEP_LIBS} ${CLIENT_LIBS} ${CRYPTO_LIBS} ${AWS_SDK_ADDITIONAL_LIBRARIES})
 
 if(USE_WINDOWS_DLL_SEMANTICS)
-    target_compile_definitions(${PROJECT_NAME} PUBLIC -DUSE_WINDOWS_DLL_SEMANTICS)
+    target_compile_definitions(${PROJECT_NAME} PUBLIC "USE_WINDOWS_DLL_SEMANTICS")
 
     if(BUILD_SHARED_LIBS)
-        target_compile_definitions(${PROJECT_NAME} PUBLIC -DUSE_IMPORT_EXPORT=1)
+        target_compile_definitions(${PROJECT_NAME} PUBLIC "USE_IMPORT_EXPORT=1")
+        target_compile_definitions(${PROJECT_NAME} PRIVATE "AWS_CORE_EXPORTS=1")
     endif()
 endif()
 
-if(USE_GCC_FLAGS)
-    target_compile_options(${PROJECT_NAME} PUBLIC -std=c++${CPP_STANDARD})
-
-    if(NOT ENABLE_RTTI)
-        target_compile_options(${PROJECT_NAME} PUBLIC -fno-rtti)
-    endif()
-else()
-
-    if(NOT ENABLE_RTTI)
-        target_compile_options(${PROJECT_NAME} PUBLIC /GR-)
-    endif()
-endif()
+set_compiler_flags(${PROJECT_NAME})
+set_compiler_warnings(${PROJECT_NAME})
 
 if(SIMPLE_INSTALL)
     install (
@@ -404,7 +395,7 @@ else()
 endif()
 
 if(SIMPLE_INSTALL)
-    configure_file("${CMAKE_SOURCE_DIR}/toolchains/pkg-config.pc.in" "${PROJECT_NAME}.pc" @ONLY)
+    configure_file("${AWS_NATIVE_SDK_ROOT}/toolchains/pkg-config.pc.in" "${PROJECT_NAME}.pc" @ONLY)
 
     if(BUILD_SHARED_LIBS)
         install(
@@ -419,6 +410,7 @@ install (FILES ${AWS_CLIENT_HEADERS} DESTINATION ${INCLUDE_DIRECTORY}/aws/core/c
 install (FILES ${AWS_INTERNAL_HEADERS} DESTINATION ${INCLUDE_DIRECTORY}/aws/core/internal)
 install (FILES ${HTTP_HEADERS} DESTINATION ${INCLUDE_DIRECTORY}/aws/core/http)
 install (FILES ${HTTP_STANDARD_HEADERS} DESTINATION ${INCLUDE_DIRECTORY}/aws/core/http/standard)
+install (FILES ${CONFIG_HEADERS} DESTINATION ${INCLUDE_DIRECTORY}/aws/core/config/)
 install (FILES ${PLATFORM_HEADERS} DESTINATION ${INCLUDE_DIRECTORY}/aws/core/platform)
 install (FILES ${UTILS_HEADERS} DESTINATION ${INCLUDE_DIRECTORY}/aws/core/utils)
 install (FILES ${UTILS_EVENT_HEADERS} DESTINATION ${INCLUDE_DIRECTORY}/aws/core/utils/event)

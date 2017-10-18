@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesisanalytics/KinesisAnalytics_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     S3ReferenceDataSourceUpdate& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Amazon Resource Name (ARN) of the S3 bucket.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>Amazon Resource Name (ARN) of the S3 bucket.</p>
      */
-    inline void SetBucketARNUpdate(Aws::String&& value) { m_bucketARNUpdateHasBeenSet = true; m_bucketARNUpdate = value; }
+    inline void SetBucketARNUpdate(Aws::String&& value) { m_bucketARNUpdateHasBeenSet = true; m_bucketARNUpdate = std::move(value); }
 
     /**
      * <p>Amazon Resource Name (ARN) of the S3 bucket.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>Amazon Resource Name (ARN) of the S3 bucket.</p>
      */
-    inline S3ReferenceDataSourceUpdate& WithBucketARNUpdate(Aws::String&& value) { SetBucketARNUpdate(value); return *this;}
+    inline S3ReferenceDataSourceUpdate& WithBucketARNUpdate(Aws::String&& value) { SetBucketARNUpdate(std::move(value)); return *this;}
 
     /**
      * <p>Amazon Resource Name (ARN) of the S3 bucket.</p>
      */
     inline S3ReferenceDataSourceUpdate& WithBucketARNUpdate(const char* value) { SetBucketARNUpdate(value); return *this;}
+
 
     /**
      * <p>Object key name.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>Object key name.</p>
      */
-    inline void SetFileKeyUpdate(Aws::String&& value) { m_fileKeyUpdateHasBeenSet = true; m_fileKeyUpdate = value; }
+    inline void SetFileKeyUpdate(Aws::String&& value) { m_fileKeyUpdateHasBeenSet = true; m_fileKeyUpdate = std::move(value); }
 
     /**
      * <p>Object key name.</p>
@@ -108,12 +112,13 @@ namespace Model
     /**
      * <p>Object key name.</p>
      */
-    inline S3ReferenceDataSourceUpdate& WithFileKeyUpdate(Aws::String&& value) { SetFileKeyUpdate(value); return *this;}
+    inline S3ReferenceDataSourceUpdate& WithFileKeyUpdate(Aws::String&& value) { SetFileKeyUpdate(std::move(value)); return *this;}
 
     /**
      * <p>Object key name.</p>
      */
     inline S3ReferenceDataSourceUpdate& WithFileKeyUpdate(const char* value) { SetFileKeyUpdate(value); return *this;}
+
 
     /**
      * <p>ARN of the IAM role that Amazon Kinesis Analytics can assume to read the
@@ -131,7 +136,7 @@ namespace Model
      * <p>ARN of the IAM role that Amazon Kinesis Analytics can assume to read the
      * Amazon S3 object and populate the in-application.</p>
      */
-    inline void SetReferenceRoleARNUpdate(Aws::String&& value) { m_referenceRoleARNUpdateHasBeenSet = true; m_referenceRoleARNUpdate = value; }
+    inline void SetReferenceRoleARNUpdate(Aws::String&& value) { m_referenceRoleARNUpdateHasBeenSet = true; m_referenceRoleARNUpdate = std::move(value); }
 
     /**
      * <p>ARN of the IAM role that Amazon Kinesis Analytics can assume to read the
@@ -149,7 +154,7 @@ namespace Model
      * <p>ARN of the IAM role that Amazon Kinesis Analytics can assume to read the
      * Amazon S3 object and populate the in-application.</p>
      */
-    inline S3ReferenceDataSourceUpdate& WithReferenceRoleARNUpdate(Aws::String&& value) { SetReferenceRoleARNUpdate(value); return *this;}
+    inline S3ReferenceDataSourceUpdate& WithReferenceRoleARNUpdate(Aws::String&& value) { SetReferenceRoleARNUpdate(std::move(value)); return *this;}
 
     /**
      * <p>ARN of the IAM role that Amazon Kinesis Analytics can assume to read the
@@ -158,10 +163,13 @@ namespace Model
     inline S3ReferenceDataSourceUpdate& WithReferenceRoleARNUpdate(const char* value) { SetReferenceRoleARNUpdate(value); return *this;}
 
   private:
+
     Aws::String m_bucketARNUpdate;
     bool m_bucketARNUpdateHasBeenSet;
+
     Aws::String m_fileKeyUpdate;
     bool m_fileKeyUpdateHasBeenSet;
+
     Aws::String m_referenceRoleARNUpdate;
     bool m_referenceRoleARNUpdateHasBeenSet;
   };

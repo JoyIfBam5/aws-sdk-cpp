@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codebuild/CodeBuild_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     ListBuildsResult();
-    ListBuildsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListBuildsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListBuildsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListBuildsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A list of build IDs, with each build ID representing a single build.</p>
@@ -53,7 +56,7 @@ namespace Model
     /**
      * <p>A list of build IDs, with each build ID representing a single build.</p>
      */
-    inline void SetIds(Aws::Vector<Aws::String>&& value) { m_ids = value; }
+    inline void SetIds(Aws::Vector<Aws::String>&& value) { m_ids = std::move(value); }
 
     /**
      * <p>A list of build IDs, with each build ID representing a single build.</p>
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>A list of build IDs, with each build ID representing a single build.</p>
      */
-    inline ListBuildsResult& WithIds(Aws::Vector<Aws::String>&& value) { SetIds(value); return *this;}
+    inline ListBuildsResult& WithIds(Aws::Vector<Aws::String>&& value) { SetIds(std::move(value)); return *this;}
 
     /**
      * <p>A list of build IDs, with each build ID representing a single build.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>A list of build IDs, with each build ID representing a single build.</p>
      */
-    inline ListBuildsResult& AddIds(Aws::String&& value) { m_ids.push_back(value); return *this; }
+    inline ListBuildsResult& AddIds(Aws::String&& value) { m_ids.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of build IDs, with each build ID representing a single build.</p>
      */
     inline ListBuildsResult& AddIds(const char* value) { m_ids.push_back(value); return *this; }
+
 
     /**
      * <p>If there are more than 100 items in the list, only the first 100 items are
@@ -102,7 +106,7 @@ namespace Model
      * batch of items in the list, call this operation again, adding the next token to
      * the call.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>If there are more than 100 items in the list, only the first 100 items are
@@ -126,7 +130,7 @@ namespace Model
      * batch of items in the list, call this operation again, adding the next token to
      * the call.</p>
      */
-    inline ListBuildsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListBuildsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>If there are more than 100 items in the list, only the first 100 items are
@@ -137,7 +141,9 @@ namespace Model
     inline ListBuildsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_ids;
+
     Aws::String m_nextToken;
   };
 

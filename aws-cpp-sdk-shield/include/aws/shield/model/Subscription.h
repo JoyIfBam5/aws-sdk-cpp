@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/shield/Shield_EXPORTS.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     Subscription& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The start time of the subscription, in the format "2016-12-16T13:50Z".</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The start time of the subscription, in the format "2016-12-16T13:50Z".</p>
      */
-    inline void SetStartTime(Aws::Utils::DateTime&& value) { m_startTimeHasBeenSet = true; m_startTime = value; }
+    inline void SetStartTime(Aws::Utils::DateTime&& value) { m_startTimeHasBeenSet = true; m_startTime = std::move(value); }
 
     /**
      * <p>The start time of the subscription, in the format "2016-12-16T13:50Z".</p>
@@ -67,7 +70,8 @@ namespace Model
     /**
      * <p>The start time of the subscription, in the format "2016-12-16T13:50Z".</p>
      */
-    inline Subscription& WithStartTime(Aws::Utils::DateTime&& value) { SetStartTime(value); return *this;}
+    inline Subscription& WithStartTime(Aws::Utils::DateTime&& value) { SetStartTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The length, in seconds, of the AWS Shield Advanced subscription for the
@@ -88,8 +92,10 @@ namespace Model
     inline Subscription& WithTimeCommitmentInSeconds(long long value) { SetTimeCommitmentInSeconds(value); return *this;}
 
   private:
+
     Aws::Utils::DateTime m_startTime;
     bool m_startTimeHasBeenSet;
+
     long long m_timeCommitmentInSeconds;
     bool m_timeCommitmentInSecondsHasBeenSet;
   };

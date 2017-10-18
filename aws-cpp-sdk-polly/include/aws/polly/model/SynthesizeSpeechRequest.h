@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/polly/Polly_EXPORTS.h>
 #include <aws/polly/PollyRequest.h>
@@ -20,6 +21,8 @@
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/polly/model/TextType.h>
 #include <aws/polly/model/VoiceId.h>
+#include <aws/polly/model/SpeechMarkType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,7 +37,19 @@ namespace Model
   {
   public:
     SynthesizeSpeechRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "SynthesizeSpeech"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>List of one or more pronunciation lexicon names you want the service to apply
@@ -61,7 +76,7 @@ namespace Model
      * see <a
      * href="http://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html">PutLexicon</a>.</p>
      */
-    inline void SetLexiconNames(Aws::Vector<Aws::String>&& value) { m_lexiconNamesHasBeenSet = true; m_lexiconNames = value; }
+    inline void SetLexiconNames(Aws::Vector<Aws::String>&& value) { m_lexiconNamesHasBeenSet = true; m_lexiconNames = std::move(value); }
 
     /**
      * <p>List of one or more pronunciation lexicon names you want the service to apply
@@ -79,7 +94,7 @@ namespace Model
      * see <a
      * href="http://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html">PutLexicon</a>.</p>
      */
-    inline SynthesizeSpeechRequest& WithLexiconNames(Aws::Vector<Aws::String>&& value) { SetLexiconNames(value); return *this;}
+    inline SynthesizeSpeechRequest& WithLexiconNames(Aws::Vector<Aws::String>&& value) { SetLexiconNames(std::move(value)); return *this;}
 
     /**
      * <p>List of one or more pronunciation lexicon names you want the service to apply
@@ -97,7 +112,7 @@ namespace Model
      * see <a
      * href="http://docs.aws.amazon.com/polly/latest/dg/API_PutLexicon.html">PutLexicon</a>.</p>
      */
-    inline SynthesizeSpeechRequest& AddLexiconNames(Aws::String&& value) { m_lexiconNamesHasBeenSet = true; m_lexiconNames.push_back(value); return *this; }
+    inline SynthesizeSpeechRequest& AddLexiconNames(Aws::String&& value) { m_lexiconNamesHasBeenSet = true; m_lexiconNames.push_back(std::move(value)); return *this; }
 
     /**
      * <p>List of one or more pronunciation lexicon names you want the service to apply
@@ -108,30 +123,37 @@ namespace Model
      */
     inline SynthesizeSpeechRequest& AddLexiconNames(const char* value) { m_lexiconNamesHasBeenSet = true; m_lexiconNames.push_back(value); return *this; }
 
+
     /**
-     * <p> The audio format in which the resulting stream will be encoded. </p>
+     * <p> The format in which the returned output will be encoded. For audio stream,
+     * this will be mp3, ogg_vorbis, or pcm. For speech marks, this will be json. </p>
      */
     inline const OutputFormat& GetOutputFormat() const{ return m_outputFormat; }
 
     /**
-     * <p> The audio format in which the resulting stream will be encoded. </p>
+     * <p> The format in which the returned output will be encoded. For audio stream,
+     * this will be mp3, ogg_vorbis, or pcm. For speech marks, this will be json. </p>
      */
     inline void SetOutputFormat(const OutputFormat& value) { m_outputFormatHasBeenSet = true; m_outputFormat = value; }
 
     /**
-     * <p> The audio format in which the resulting stream will be encoded. </p>
+     * <p> The format in which the returned output will be encoded. For audio stream,
+     * this will be mp3, ogg_vorbis, or pcm. For speech marks, this will be json. </p>
      */
-    inline void SetOutputFormat(OutputFormat&& value) { m_outputFormatHasBeenSet = true; m_outputFormat = value; }
+    inline void SetOutputFormat(OutputFormat&& value) { m_outputFormatHasBeenSet = true; m_outputFormat = std::move(value); }
 
     /**
-     * <p> The audio format in which the resulting stream will be encoded. </p>
+     * <p> The format in which the returned output will be encoded. For audio stream,
+     * this will be mp3, ogg_vorbis, or pcm. For speech marks, this will be json. </p>
      */
     inline SynthesizeSpeechRequest& WithOutputFormat(const OutputFormat& value) { SetOutputFormat(value); return *this;}
 
     /**
-     * <p> The audio format in which the resulting stream will be encoded. </p>
+     * <p> The format in which the returned output will be encoded. For audio stream,
+     * this will be mp3, ogg_vorbis, or pcm. For speech marks, this will be json. </p>
      */
-    inline SynthesizeSpeechRequest& WithOutputFormat(OutputFormat&& value) { SetOutputFormat(value); return *this;}
+    inline SynthesizeSpeechRequest& WithOutputFormat(OutputFormat&& value) { SetOutputFormat(std::move(value)); return *this;}
+
 
     /**
      * <p> The audio frequency specified in Hz. </p> <p>The valid values for
@@ -155,7 +177,7 @@ namespace Model
      * The default value is "22050". </p> <p> Valid values for <code>pcm</code> are
      * "8000" and "16000" The default value is "16000". </p>
      */
-    inline void SetSampleRate(Aws::String&& value) { m_sampleRateHasBeenSet = true; m_sampleRate = value; }
+    inline void SetSampleRate(Aws::String&& value) { m_sampleRateHasBeenSet = true; m_sampleRate = std::move(value); }
 
     /**
      * <p> The audio frequency specified in Hz. </p> <p>The valid values for
@@ -179,7 +201,7 @@ namespace Model
      * The default value is "22050". </p> <p> Valid values for <code>pcm</code> are
      * "8000" and "16000" The default value is "16000". </p>
      */
-    inline SynthesizeSpeechRequest& WithSampleRate(Aws::String&& value) { SetSampleRate(value); return *this;}
+    inline SynthesizeSpeechRequest& WithSampleRate(Aws::String&& value) { SetSampleRate(std::move(value)); return *this;}
 
     /**
      * <p> The audio frequency specified in Hz. </p> <p>The valid values for
@@ -188,6 +210,43 @@ namespace Model
      * "8000" and "16000" The default value is "16000". </p>
      */
     inline SynthesizeSpeechRequest& WithSampleRate(const char* value) { SetSampleRate(value); return *this;}
+
+
+    /**
+     * <p>The type of speech marks returned for the input text.</p>
+     */
+    inline const Aws::Vector<SpeechMarkType>& GetSpeechMarkTypes() const{ return m_speechMarkTypes; }
+
+    /**
+     * <p>The type of speech marks returned for the input text.</p>
+     */
+    inline void SetSpeechMarkTypes(const Aws::Vector<SpeechMarkType>& value) { m_speechMarkTypesHasBeenSet = true; m_speechMarkTypes = value; }
+
+    /**
+     * <p>The type of speech marks returned for the input text.</p>
+     */
+    inline void SetSpeechMarkTypes(Aws::Vector<SpeechMarkType>&& value) { m_speechMarkTypesHasBeenSet = true; m_speechMarkTypes = std::move(value); }
+
+    /**
+     * <p>The type of speech marks returned for the input text.</p>
+     */
+    inline SynthesizeSpeechRequest& WithSpeechMarkTypes(const Aws::Vector<SpeechMarkType>& value) { SetSpeechMarkTypes(value); return *this;}
+
+    /**
+     * <p>The type of speech marks returned for the input text.</p>
+     */
+    inline SynthesizeSpeechRequest& WithSpeechMarkTypes(Aws::Vector<SpeechMarkType>&& value) { SetSpeechMarkTypes(std::move(value)); return *this;}
+
+    /**
+     * <p>The type of speech marks returned for the input text.</p>
+     */
+    inline SynthesizeSpeechRequest& AddSpeechMarkTypes(const SpeechMarkType& value) { m_speechMarkTypesHasBeenSet = true; m_speechMarkTypes.push_back(value); return *this; }
+
+    /**
+     * <p>The type of speech marks returned for the input text.</p>
+     */
+    inline SynthesizeSpeechRequest& AddSpeechMarkTypes(SpeechMarkType&& value) { m_speechMarkTypesHasBeenSet = true; m_speechMarkTypes.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p> Input text to synthesize. If you specify <code>ssml</code> as the
@@ -205,7 +264,7 @@ namespace Model
      * <p> Input text to synthesize. If you specify <code>ssml</code> as the
      * <code>TextType</code>, follow the SSML format for the input text. </p>
      */
-    inline void SetText(Aws::String&& value) { m_textHasBeenSet = true; m_text = value; }
+    inline void SetText(Aws::String&& value) { m_textHasBeenSet = true; m_text = std::move(value); }
 
     /**
      * <p> Input text to synthesize. If you specify <code>ssml</code> as the
@@ -223,13 +282,14 @@ namespace Model
      * <p> Input text to synthesize. If you specify <code>ssml</code> as the
      * <code>TextType</code>, follow the SSML format for the input text. </p>
      */
-    inline SynthesizeSpeechRequest& WithText(Aws::String&& value) { SetText(value); return *this;}
+    inline SynthesizeSpeechRequest& WithText(Aws::String&& value) { SetText(std::move(value)); return *this;}
 
     /**
      * <p> Input text to synthesize. If you specify <code>ssml</code> as the
      * <code>TextType</code>, follow the SSML format for the input text. </p>
      */
     inline SynthesizeSpeechRequest& WithText(const char* value) { SetText(value); return *this;}
+
 
     /**
      * <p> Specifies whether the input text is plain text or SSML. The default value is
@@ -250,7 +310,7 @@ namespace Model
      * plain text. For more information, see <a
      * href="http://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using SSML</a>.</p>
      */
-    inline void SetTextType(TextType&& value) { m_textTypeHasBeenSet = true; m_textType = value; }
+    inline void SetTextType(TextType&& value) { m_textTypeHasBeenSet = true; m_textType = std::move(value); }
 
     /**
      * <p> Specifies whether the input text is plain text or SSML. The default value is
@@ -264,7 +324,8 @@ namespace Model
      * plain text. For more information, see <a
      * href="http://docs.aws.amazon.com/polly/latest/dg/ssml.html">Using SSML</a>.</p>
      */
-    inline SynthesizeSpeechRequest& WithTextType(TextType&& value) { SetTextType(value); return *this;}
+    inline SynthesizeSpeechRequest& WithTextType(TextType&& value) { SetTextType(std::move(value)); return *this;}
+
 
     /**
      * <p> Voice ID to use for the synthesis. You can get a list of available voice IDs
@@ -288,7 +349,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html">DescribeVoices</a>
      * operation. </p>
      */
-    inline void SetVoiceId(VoiceId&& value) { m_voiceIdHasBeenSet = true; m_voiceId = value; }
+    inline void SetVoiceId(VoiceId&& value) { m_voiceIdHasBeenSet = true; m_voiceId = std::move(value); }
 
     /**
      * <p> Voice ID to use for the synthesis. You can get a list of available voice IDs
@@ -304,19 +365,28 @@ namespace Model
      * href="http://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html">DescribeVoices</a>
      * operation. </p>
      */
-    inline SynthesizeSpeechRequest& WithVoiceId(VoiceId&& value) { SetVoiceId(value); return *this;}
+    inline SynthesizeSpeechRequest& WithVoiceId(VoiceId&& value) { SetVoiceId(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_lexiconNames;
     bool m_lexiconNamesHasBeenSet;
+
     OutputFormat m_outputFormat;
     bool m_outputFormatHasBeenSet;
+
     Aws::String m_sampleRate;
     bool m_sampleRateHasBeenSet;
+
+    Aws::Vector<SpeechMarkType> m_speechMarkTypes;
+    bool m_speechMarkTypesHasBeenSet;
+
     Aws::String m_text;
     bool m_textHasBeenSet;
+
     TextType m_textType;
     bool m_textTypeHasBeenSet;
+
     VoiceId m_voiceId;
     bool m_voiceIdHasBeenSet;
   };

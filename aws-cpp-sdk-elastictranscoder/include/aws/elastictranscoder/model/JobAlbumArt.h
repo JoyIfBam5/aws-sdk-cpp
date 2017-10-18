@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elastictranscoder/ElasticTranscoder_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elastictranscoder/model/Artwork.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     JobAlbumArt(const Aws::Utils::Json::JsonValue& jsonValue);
     JobAlbumArt& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>A policy that determines how Elastic Transcoder handles the existence of
@@ -83,7 +86,7 @@ namespace Model
      * artwork for the output. If the original input does not contain artwork, Elastic
      * Transcoder uses the specified album art file.</p> </li> </ul>
      */
-    inline void SetMergePolicy(Aws::String&& value) { m_mergePolicyHasBeenSet = true; m_mergePolicy = value; }
+    inline void SetMergePolicy(Aws::String&& value) { m_mergePolicyHasBeenSet = true; m_mergePolicy = std::move(value); }
 
     /**
      * <p>A policy that determines how Elastic Transcoder handles the existence of
@@ -122,7 +125,7 @@ namespace Model
      * artwork for the output. If the original input does not contain artwork, Elastic
      * Transcoder uses the specified album art file.</p> </li> </ul>
      */
-    inline JobAlbumArt& WithMergePolicy(Aws::String&& value) { SetMergePolicy(value); return *this;}
+    inline JobAlbumArt& WithMergePolicy(Aws::String&& value) { SetMergePolicy(std::move(value)); return *this;}
 
     /**
      * <p>A policy that determines how Elastic Transcoder handles the existence of
@@ -136,6 +139,7 @@ namespace Model
      * Transcoder uses the specified album art file.</p> </li> </ul>
      */
     inline JobAlbumArt& WithMergePolicy(const char* value) { SetMergePolicy(value); return *this;}
+
 
     /**
      * <p>The file to be used as album art. There can be multiple artworks associated
@@ -156,7 +160,7 @@ namespace Model
      * with an audio file, to a maximum of 20. Valid formats are <code>.jpg</code> and
      * <code>.png</code> </p>
      */
-    inline void SetArtwork(Aws::Vector<Artwork>&& value) { m_artworkHasBeenSet = true; m_artwork = value; }
+    inline void SetArtwork(Aws::Vector<Artwork>&& value) { m_artworkHasBeenSet = true; m_artwork = std::move(value); }
 
     /**
      * <p>The file to be used as album art. There can be multiple artworks associated
@@ -170,7 +174,7 @@ namespace Model
      * with an audio file, to a maximum of 20. Valid formats are <code>.jpg</code> and
      * <code>.png</code> </p>
      */
-    inline JobAlbumArt& WithArtwork(Aws::Vector<Artwork>&& value) { SetArtwork(value); return *this;}
+    inline JobAlbumArt& WithArtwork(Aws::Vector<Artwork>&& value) { SetArtwork(std::move(value)); return *this;}
 
     /**
      * <p>The file to be used as album art. There can be multiple artworks associated
@@ -184,11 +188,13 @@ namespace Model
      * with an audio file, to a maximum of 20. Valid formats are <code>.jpg</code> and
      * <code>.png</code> </p>
      */
-    inline JobAlbumArt& AddArtwork(Artwork&& value) { m_artworkHasBeenSet = true; m_artwork.push_back(value); return *this; }
+    inline JobAlbumArt& AddArtwork(Artwork&& value) { m_artworkHasBeenSet = true; m_artwork.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_mergePolicy;
     bool m_mergePolicyHasBeenSet;
+
     Aws::Vector<Artwork> m_artwork;
     bool m_artworkHasBeenSet;
   };

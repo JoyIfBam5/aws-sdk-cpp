@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/model/ChangeTokenStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     GetChangeTokenStatusResult();
-    GetChangeTokenStatusResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetChangeTokenStatusResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetChangeTokenStatusResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetChangeTokenStatusResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The status of the change token.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The status of the change token.</p>
      */
-    inline void SetChangeTokenStatus(ChangeTokenStatus&& value) { m_changeTokenStatus = value; }
+    inline void SetChangeTokenStatus(ChangeTokenStatus&& value) { m_changeTokenStatus = std::move(value); }
 
     /**
      * <p>The status of the change token.</p>
@@ -62,9 +65,10 @@ namespace Model
     /**
      * <p>The status of the change token.</p>
      */
-    inline GetChangeTokenStatusResult& WithChangeTokenStatus(ChangeTokenStatus&& value) { SetChangeTokenStatus(value); return *this;}
+    inline GetChangeTokenStatusResult& WithChangeTokenStatus(ChangeTokenStatus&& value) { SetChangeTokenStatus(std::move(value)); return *this;}
 
   private:
+
     ChangeTokenStatus m_changeTokenStatus;
   };
 

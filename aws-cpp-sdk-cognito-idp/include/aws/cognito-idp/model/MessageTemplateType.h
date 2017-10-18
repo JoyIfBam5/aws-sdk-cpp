@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     MessageTemplateType& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The message template for SMS messages.</p>
      */
@@ -56,7 +59,7 @@ namespace Model
     /**
      * <p>The message template for SMS messages.</p>
      */
-    inline void SetSMSMessage(Aws::String&& value) { m_sMSMessageHasBeenSet = true; m_sMSMessage = value; }
+    inline void SetSMSMessage(Aws::String&& value) { m_sMSMessageHasBeenSet = true; m_sMSMessage = std::move(value); }
 
     /**
      * <p>The message template for SMS messages.</p>
@@ -71,12 +74,13 @@ namespace Model
     /**
      * <p>The message template for SMS messages.</p>
      */
-    inline MessageTemplateType& WithSMSMessage(Aws::String&& value) { SetSMSMessage(value); return *this;}
+    inline MessageTemplateType& WithSMSMessage(Aws::String&& value) { SetSMSMessage(std::move(value)); return *this;}
 
     /**
      * <p>The message template for SMS messages.</p>
      */
     inline MessageTemplateType& WithSMSMessage(const char* value) { SetSMSMessage(value); return *this;}
+
 
     /**
      * <p>The message template for email messages.</p>
@@ -91,7 +95,7 @@ namespace Model
     /**
      * <p>The message template for email messages.</p>
      */
-    inline void SetEmailMessage(Aws::String&& value) { m_emailMessageHasBeenSet = true; m_emailMessage = value; }
+    inline void SetEmailMessage(Aws::String&& value) { m_emailMessageHasBeenSet = true; m_emailMessage = std::move(value); }
 
     /**
      * <p>The message template for email messages.</p>
@@ -106,12 +110,13 @@ namespace Model
     /**
      * <p>The message template for email messages.</p>
      */
-    inline MessageTemplateType& WithEmailMessage(Aws::String&& value) { SetEmailMessage(value); return *this;}
+    inline MessageTemplateType& WithEmailMessage(Aws::String&& value) { SetEmailMessage(std::move(value)); return *this;}
 
     /**
      * <p>The message template for email messages.</p>
      */
     inline MessageTemplateType& WithEmailMessage(const char* value) { SetEmailMessage(value); return *this;}
+
 
     /**
      * <p>The subject line for email messages.</p>
@@ -126,7 +131,7 @@ namespace Model
     /**
      * <p>The subject line for email messages.</p>
      */
-    inline void SetEmailSubject(Aws::String&& value) { m_emailSubjectHasBeenSet = true; m_emailSubject = value; }
+    inline void SetEmailSubject(Aws::String&& value) { m_emailSubjectHasBeenSet = true; m_emailSubject = std::move(value); }
 
     /**
      * <p>The subject line for email messages.</p>
@@ -141,7 +146,7 @@ namespace Model
     /**
      * <p>The subject line for email messages.</p>
      */
-    inline MessageTemplateType& WithEmailSubject(Aws::String&& value) { SetEmailSubject(value); return *this;}
+    inline MessageTemplateType& WithEmailSubject(Aws::String&& value) { SetEmailSubject(std::move(value)); return *this;}
 
     /**
      * <p>The subject line for email messages.</p>
@@ -149,10 +154,13 @@ namespace Model
     inline MessageTemplateType& WithEmailSubject(const char* value) { SetEmailSubject(value); return *this;}
 
   private:
+
     Aws::String m_sMSMessage;
     bool m_sMSMessageHasBeenSet;
+
     Aws::String m_emailMessage;
     bool m_emailMessageHasBeenSet;
+
     Aws::String m_emailSubject;
     bool m_emailSubjectHasBeenSet;
   };

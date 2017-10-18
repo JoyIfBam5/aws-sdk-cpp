@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/directconnect/DirectConnect_EXPORTS.h>
 #include <aws/directconnect/DirectConnectRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/directconnect/model/NewBGPPeer.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,9 +37,17 @@ namespace Model
   {
   public:
     CreateBGPPeerRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateBGPPeer"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The ID of the virtual interface on which the BGP peer will be
@@ -55,7 +65,7 @@ namespace Model
      * <p>The ID of the virtual interface on which the BGP peer will be
      * provisioned.</p> <p>Example: dxvif-456abc78</p> <p>Default: None</p>
      */
-    inline void SetVirtualInterfaceId(Aws::String&& value) { m_virtualInterfaceIdHasBeenSet = true; m_virtualInterfaceId = value; }
+    inline void SetVirtualInterfaceId(Aws::String&& value) { m_virtualInterfaceIdHasBeenSet = true; m_virtualInterfaceId = std::move(value); }
 
     /**
      * <p>The ID of the virtual interface on which the BGP peer will be
@@ -73,13 +83,14 @@ namespace Model
      * <p>The ID of the virtual interface on which the BGP peer will be
      * provisioned.</p> <p>Example: dxvif-456abc78</p> <p>Default: None</p>
      */
-    inline CreateBGPPeerRequest& WithVirtualInterfaceId(Aws::String&& value) { SetVirtualInterfaceId(value); return *this;}
+    inline CreateBGPPeerRequest& WithVirtualInterfaceId(Aws::String&& value) { SetVirtualInterfaceId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the virtual interface on which the BGP peer will be
      * provisioned.</p> <p>Example: dxvif-456abc78</p> <p>Default: None</p>
      */
     inline CreateBGPPeerRequest& WithVirtualInterfaceId(const char* value) { SetVirtualInterfaceId(value); return *this;}
+
 
     /**
      * <p>Detailed information for the BGP peer to be created.</p> <p>Default: None</p>
@@ -94,7 +105,7 @@ namespace Model
     /**
      * <p>Detailed information for the BGP peer to be created.</p> <p>Default: None</p>
      */
-    inline void SetNewBGPPeer(NewBGPPeer&& value) { m_newBGPPeerHasBeenSet = true; m_newBGPPeer = value; }
+    inline void SetNewBGPPeer(NewBGPPeer&& value) { m_newBGPPeerHasBeenSet = true; m_newBGPPeer = std::move(value); }
 
     /**
      * <p>Detailed information for the BGP peer to be created.</p> <p>Default: None</p>
@@ -104,11 +115,13 @@ namespace Model
     /**
      * <p>Detailed information for the BGP peer to be created.</p> <p>Default: None</p>
      */
-    inline CreateBGPPeerRequest& WithNewBGPPeer(NewBGPPeer&& value) { SetNewBGPPeer(value); return *this;}
+    inline CreateBGPPeerRequest& WithNewBGPPeer(NewBGPPeer&& value) { SetNewBGPPeer(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_virtualInterfaceId;
     bool m_virtualInterfaceIdHasBeenSet;
+
     NewBGPPeer m_newBGPPeer;
     bool m_newBGPPeerHasBeenSet;
   };

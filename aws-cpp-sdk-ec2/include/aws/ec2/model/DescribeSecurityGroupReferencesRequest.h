@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/ec2/EC2Request.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,7 +33,19 @@ namespace Model
   {
   public:
     DescribeSecurityGroupReferencesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeSecurityGroupReferences"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>Checks whether you have the required permissions for the operation, without
@@ -57,6 +71,7 @@ namespace Model
      */
     inline DescribeSecurityGroupReferencesRequest& WithDryRun(bool value) { SetDryRun(value); return *this;}
 
+
     /**
      * <p>One or more security group IDs in your account.</p>
      */
@@ -70,7 +85,7 @@ namespace Model
     /**
      * <p>One or more security group IDs in your account.</p>
      */
-    inline void SetGroupId(Aws::Vector<Aws::String>&& value) { m_groupIdHasBeenSet = true; m_groupId = value; }
+    inline void SetGroupId(Aws::Vector<Aws::String>&& value) { m_groupIdHasBeenSet = true; m_groupId = std::move(value); }
 
     /**
      * <p>One or more security group IDs in your account.</p>
@@ -80,7 +95,7 @@ namespace Model
     /**
      * <p>One or more security group IDs in your account.</p>
      */
-    inline DescribeSecurityGroupReferencesRequest& WithGroupId(Aws::Vector<Aws::String>&& value) { SetGroupId(value); return *this;}
+    inline DescribeSecurityGroupReferencesRequest& WithGroupId(Aws::Vector<Aws::String>&& value) { SetGroupId(std::move(value)); return *this;}
 
     /**
      * <p>One or more security group IDs in your account.</p>
@@ -90,7 +105,7 @@ namespace Model
     /**
      * <p>One or more security group IDs in your account.</p>
      */
-    inline DescribeSecurityGroupReferencesRequest& AddGroupId(Aws::String&& value) { m_groupIdHasBeenSet = true; m_groupId.push_back(value); return *this; }
+    inline DescribeSecurityGroupReferencesRequest& AddGroupId(Aws::String&& value) { m_groupIdHasBeenSet = true; m_groupId.push_back(std::move(value)); return *this; }
 
     /**
      * <p>One or more security group IDs in your account.</p>
@@ -98,8 +113,10 @@ namespace Model
     inline DescribeSecurityGroupReferencesRequest& AddGroupId(const char* value) { m_groupIdHasBeenSet = true; m_groupId.push_back(value); return *this; }
 
   private:
+
     bool m_dryRun;
     bool m_dryRunHasBeenSet;
+
     Aws::Vector<Aws::String> m_groupId;
     bool m_groupIdHasBeenSet;
   };

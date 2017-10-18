@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dynamodb/DynamoDB_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/dynamodb/model/KeyType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -53,6 +55,7 @@ namespace Model
     KeySchemaElement& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of a key attribute.</p>
      */
@@ -66,7 +69,7 @@ namespace Model
     /**
      * <p>The name of a key attribute.</p>
      */
-    inline void SetAttributeName(Aws::String&& value) { m_attributeNameHasBeenSet = true; m_attributeName = value; }
+    inline void SetAttributeName(Aws::String&& value) { m_attributeNameHasBeenSet = true; m_attributeName = std::move(value); }
 
     /**
      * <p>The name of a key attribute.</p>
@@ -81,12 +84,13 @@ namespace Model
     /**
      * <p>The name of a key attribute.</p>
      */
-    inline KeySchemaElement& WithAttributeName(Aws::String&& value) { SetAttributeName(value); return *this;}
+    inline KeySchemaElement& WithAttributeName(Aws::String&& value) { SetAttributeName(std::move(value)); return *this;}
 
     /**
      * <p>The name of a key attribute.</p>
      */
     inline KeySchemaElement& WithAttributeName(const char* value) { SetAttributeName(value); return *this;}
+
 
     /**
      * <p>The role that this key attribute will assume:</p> <ul> <li> <p>
@@ -125,7 +129,7 @@ namespace Model
      * way DynamoDB stores items with the same partition key physically close together,
      * in sorted order by the sort key value.</p> </note>
      */
-    inline void SetKeyType(KeyType&& value) { m_keyTypeHasBeenSet = true; m_keyType = value; }
+    inline void SetKeyType(KeyType&& value) { m_keyTypeHasBeenSet = true; m_keyType = std::move(value); }
 
     /**
      * <p>The role that this key attribute will assume:</p> <ul> <li> <p>
@@ -151,11 +155,13 @@ namespace Model
      * way DynamoDB stores items with the same partition key physically close together,
      * in sorted order by the sort key value.</p> </note>
      */
-    inline KeySchemaElement& WithKeyType(KeyType&& value) { SetKeyType(value); return *this;}
+    inline KeySchemaElement& WithKeyType(KeyType&& value) { SetKeyType(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_attributeName;
     bool m_attributeNameHasBeenSet;
+
     KeyType m_keyType;
     bool m_keyTypeHasBeenSet;
   };

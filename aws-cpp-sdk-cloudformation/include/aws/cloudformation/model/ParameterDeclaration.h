@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudformation/CloudFormation_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/cloudformation/model/ParameterConstraints.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name that is associated with the parameter.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The name that is associated with the parameter.</p>
      */
-    inline void SetParameterKey(Aws::String&& value) { m_parameterKeyHasBeenSet = true; m_parameterKey = value; }
+    inline void SetParameterKey(Aws::String&& value) { m_parameterKeyHasBeenSet = true; m_parameterKey = std::move(value); }
 
     /**
      * <p>The name that is associated with the parameter.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The name that is associated with the parameter.</p>
      */
-    inline ParameterDeclaration& WithParameterKey(Aws::String&& value) { SetParameterKey(value); return *this;}
+    inline ParameterDeclaration& WithParameterKey(Aws::String&& value) { SetParameterKey(std::move(value)); return *this;}
 
     /**
      * <p>The name that is associated with the parameter.</p>
      */
     inline ParameterDeclaration& WithParameterKey(const char* value) { SetParameterKey(value); return *this;}
+
 
     /**
      * <p>The default value of the parameter.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>The default value of the parameter.</p>
      */
-    inline void SetDefaultValue(Aws::String&& value) { m_defaultValueHasBeenSet = true; m_defaultValue = value; }
+    inline void SetDefaultValue(Aws::String&& value) { m_defaultValueHasBeenSet = true; m_defaultValue = std::move(value); }
 
     /**
      * <p>The default value of the parameter.</p>
@@ -110,12 +114,13 @@ namespace Model
     /**
      * <p>The default value of the parameter.</p>
      */
-    inline ParameterDeclaration& WithDefaultValue(Aws::String&& value) { SetDefaultValue(value); return *this;}
+    inline ParameterDeclaration& WithDefaultValue(Aws::String&& value) { SetDefaultValue(std::move(value)); return *this;}
 
     /**
      * <p>The default value of the parameter.</p>
      */
     inline ParameterDeclaration& WithDefaultValue(const char* value) { SetDefaultValue(value); return *this;}
+
 
     /**
      * <p>The type of parameter.</p>
@@ -130,7 +135,7 @@ namespace Model
     /**
      * <p>The type of parameter.</p>
      */
-    inline void SetParameterType(Aws::String&& value) { m_parameterTypeHasBeenSet = true; m_parameterType = value; }
+    inline void SetParameterType(Aws::String&& value) { m_parameterTypeHasBeenSet = true; m_parameterType = std::move(value); }
 
     /**
      * <p>The type of parameter.</p>
@@ -145,12 +150,13 @@ namespace Model
     /**
      * <p>The type of parameter.</p>
      */
-    inline ParameterDeclaration& WithParameterType(Aws::String&& value) { SetParameterType(value); return *this;}
+    inline ParameterDeclaration& WithParameterType(Aws::String&& value) { SetParameterType(std::move(value)); return *this;}
 
     /**
      * <p>The type of parameter.</p>
      */
     inline ParameterDeclaration& WithParameterType(const char* value) { SetParameterType(value); return *this;}
+
 
     /**
      * <p>Flag that indicates whether the parameter value is shown as plain text in
@@ -170,6 +176,7 @@ namespace Model
      */
     inline ParameterDeclaration& WithNoEcho(bool value) { SetNoEcho(value); return *this;}
 
+
     /**
      * <p>The description that is associate with the parameter.</p>
      */
@@ -183,7 +190,7 @@ namespace Model
     /**
      * <p>The description that is associate with the parameter.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The description that is associate with the parameter.</p>
@@ -198,12 +205,13 @@ namespace Model
     /**
      * <p>The description that is associate with the parameter.</p>
      */
-    inline ParameterDeclaration& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline ParameterDeclaration& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description that is associate with the parameter.</p>
      */
     inline ParameterDeclaration& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The criteria that AWS CloudFormation uses to validate parameter values.</p>
@@ -218,7 +226,7 @@ namespace Model
     /**
      * <p>The criteria that AWS CloudFormation uses to validate parameter values.</p>
      */
-    inline void SetParameterConstraints(ParameterConstraints&& value) { m_parameterConstraintsHasBeenSet = true; m_parameterConstraints = value; }
+    inline void SetParameterConstraints(ParameterConstraints&& value) { m_parameterConstraintsHasBeenSet = true; m_parameterConstraints = std::move(value); }
 
     /**
      * <p>The criteria that AWS CloudFormation uses to validate parameter values.</p>
@@ -228,19 +236,25 @@ namespace Model
     /**
      * <p>The criteria that AWS CloudFormation uses to validate parameter values.</p>
      */
-    inline ParameterDeclaration& WithParameterConstraints(ParameterConstraints&& value) { SetParameterConstraints(value); return *this;}
+    inline ParameterDeclaration& WithParameterConstraints(ParameterConstraints&& value) { SetParameterConstraints(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_parameterKey;
     bool m_parameterKeyHasBeenSet;
+
     Aws::String m_defaultValue;
     bool m_defaultValueHasBeenSet;
+
     Aws::String m_parameterType;
     bool m_parameterTypeHasBeenSet;
+
     bool m_noEcho;
     bool m_noEchoHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     ParameterConstraints m_parameterConstraints;
     bool m_parameterConstraintsHasBeenSet;
   };

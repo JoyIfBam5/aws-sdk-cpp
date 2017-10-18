@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/glacier/Glacier_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     PurchaseProvisionedCapacityResult();
-    PurchaseProvisionedCapacityResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    PurchaseProvisionedCapacityResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PurchaseProvisionedCapacityResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PurchaseProvisionedCapacityResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The ID that identifies the provisioned capacity unit.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The ID that identifies the provisioned capacity unit.</p>
      */
-    inline void SetCapacityId(Aws::String&& value) { m_capacityId = value; }
+    inline void SetCapacityId(Aws::String&& value) { m_capacityId = std::move(value); }
 
     /**
      * <p>The ID that identifies the provisioned capacity unit.</p>
@@ -67,7 +70,7 @@ namespace Model
     /**
      * <p>The ID that identifies the provisioned capacity unit.</p>
      */
-    inline PurchaseProvisionedCapacityResult& WithCapacityId(Aws::String&& value) { SetCapacityId(value); return *this;}
+    inline PurchaseProvisionedCapacityResult& WithCapacityId(Aws::String&& value) { SetCapacityId(std::move(value)); return *this;}
 
     /**
      * <p>The ID that identifies the provisioned capacity unit.</p>
@@ -75,6 +78,7 @@ namespace Model
     inline PurchaseProvisionedCapacityResult& WithCapacityId(const char* value) { SetCapacityId(value); return *this;}
 
   private:
+
     Aws::String m_capacityId;
   };
 

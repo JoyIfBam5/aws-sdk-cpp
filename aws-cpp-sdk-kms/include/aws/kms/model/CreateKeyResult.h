@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kms/KMS_EXPORTS.h>
 #include <aws/kms/model/KeyMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     CreateKeyResult();
-    CreateKeyResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateKeyResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateKeyResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateKeyResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Metadata associated with the CMK.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>Metadata associated with the CMK.</p>
      */
-    inline void SetKeyMetadata(KeyMetadata&& value) { m_keyMetadata = value; }
+    inline void SetKeyMetadata(KeyMetadata&& value) { m_keyMetadata = std::move(value); }
 
     /**
      * <p>Metadata associated with the CMK.</p>
@@ -62,9 +65,10 @@ namespace Model
     /**
      * <p>Metadata associated with the CMK.</p>
      */
-    inline CreateKeyResult& WithKeyMetadata(KeyMetadata&& value) { SetKeyMetadata(value); return *this;}
+    inline CreateKeyResult& WithKeyMetadata(KeyMetadata&& value) { SetKeyMetadata(std::move(value)); return *this;}
 
   private:
+
     KeyMetadata m_keyMetadata;
   };
 

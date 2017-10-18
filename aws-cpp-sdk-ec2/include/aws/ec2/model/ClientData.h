@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
-#include <aws/core/utils/DateTime.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,30 +49,42 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
-    /**
-     * <p>The time that the disk upload starts.</p>
-     */
-    inline const Aws::Utils::DateTime& GetUploadStart() const{ return m_uploadStart; }
 
     /**
-     * <p>The time that the disk upload starts.</p>
+     * <p>A user-defined comment about the disk upload.</p>
      */
-    inline void SetUploadStart(const Aws::Utils::DateTime& value) { m_uploadStartHasBeenSet = true; m_uploadStart = value; }
+    inline const Aws::String& GetComment() const{ return m_comment; }
 
     /**
-     * <p>The time that the disk upload starts.</p>
+     * <p>A user-defined comment about the disk upload.</p>
      */
-    inline void SetUploadStart(Aws::Utils::DateTime&& value) { m_uploadStartHasBeenSet = true; m_uploadStart = value; }
+    inline void SetComment(const Aws::String& value) { m_commentHasBeenSet = true; m_comment = value; }
 
     /**
-     * <p>The time that the disk upload starts.</p>
+     * <p>A user-defined comment about the disk upload.</p>
      */
-    inline ClientData& WithUploadStart(const Aws::Utils::DateTime& value) { SetUploadStart(value); return *this;}
+    inline void SetComment(Aws::String&& value) { m_commentHasBeenSet = true; m_comment = std::move(value); }
 
     /**
-     * <p>The time that the disk upload starts.</p>
+     * <p>A user-defined comment about the disk upload.</p>
      */
-    inline ClientData& WithUploadStart(Aws::Utils::DateTime&& value) { SetUploadStart(value); return *this;}
+    inline void SetComment(const char* value) { m_commentHasBeenSet = true; m_comment.assign(value); }
+
+    /**
+     * <p>A user-defined comment about the disk upload.</p>
+     */
+    inline ClientData& WithComment(const Aws::String& value) { SetComment(value); return *this;}
+
+    /**
+     * <p>A user-defined comment about the disk upload.</p>
+     */
+    inline ClientData& WithComment(Aws::String&& value) { SetComment(std::move(value)); return *this;}
+
+    /**
+     * <p>A user-defined comment about the disk upload.</p>
+     */
+    inline ClientData& WithComment(const char* value) { SetComment(value); return *this;}
+
 
     /**
      * <p>The time that the disk upload ends.</p>
@@ -85,7 +99,7 @@ namespace Model
     /**
      * <p>The time that the disk upload ends.</p>
      */
-    inline void SetUploadEnd(Aws::Utils::DateTime&& value) { m_uploadEndHasBeenSet = true; m_uploadEnd = value; }
+    inline void SetUploadEnd(Aws::Utils::DateTime&& value) { m_uploadEndHasBeenSet = true; m_uploadEnd = std::move(value); }
 
     /**
      * <p>The time that the disk upload ends.</p>
@@ -95,7 +109,8 @@ namespace Model
     /**
      * <p>The time that the disk upload ends.</p>
      */
-    inline ClientData& WithUploadEnd(Aws::Utils::DateTime&& value) { SetUploadEnd(value); return *this;}
+    inline ClientData& WithUploadEnd(Aws::Utils::DateTime&& value) { SetUploadEnd(std::move(value)); return *this;}
+
 
     /**
      * <p>The size of the uploaded disk image, in GiB.</p>
@@ -112,50 +127,45 @@ namespace Model
      */
     inline ClientData& WithUploadSize(double value) { SetUploadSize(value); return *this;}
 
-    /**
-     * <p>A user-defined comment about the disk upload.</p>
-     */
-    inline const Aws::String& GetComment() const{ return m_comment; }
 
     /**
-     * <p>A user-defined comment about the disk upload.</p>
+     * <p>The time that the disk upload starts.</p>
      */
-    inline void SetComment(const Aws::String& value) { m_commentHasBeenSet = true; m_comment = value; }
+    inline const Aws::Utils::DateTime& GetUploadStart() const{ return m_uploadStart; }
 
     /**
-     * <p>A user-defined comment about the disk upload.</p>
+     * <p>The time that the disk upload starts.</p>
      */
-    inline void SetComment(Aws::String&& value) { m_commentHasBeenSet = true; m_comment = value; }
+    inline void SetUploadStart(const Aws::Utils::DateTime& value) { m_uploadStartHasBeenSet = true; m_uploadStart = value; }
 
     /**
-     * <p>A user-defined comment about the disk upload.</p>
+     * <p>The time that the disk upload starts.</p>
      */
-    inline void SetComment(const char* value) { m_commentHasBeenSet = true; m_comment.assign(value); }
+    inline void SetUploadStart(Aws::Utils::DateTime&& value) { m_uploadStartHasBeenSet = true; m_uploadStart = std::move(value); }
 
     /**
-     * <p>A user-defined comment about the disk upload.</p>
+     * <p>The time that the disk upload starts.</p>
      */
-    inline ClientData& WithComment(const Aws::String& value) { SetComment(value); return *this;}
+    inline ClientData& WithUploadStart(const Aws::Utils::DateTime& value) { SetUploadStart(value); return *this;}
 
     /**
-     * <p>A user-defined comment about the disk upload.</p>
+     * <p>The time that the disk upload starts.</p>
      */
-    inline ClientData& WithComment(Aws::String&& value) { SetComment(value); return *this;}
-
-    /**
-     * <p>A user-defined comment about the disk upload.</p>
-     */
-    inline ClientData& WithComment(const char* value) { SetComment(value); return *this;}
+    inline ClientData& WithUploadStart(Aws::Utils::DateTime&& value) { SetUploadStart(std::move(value)); return *this;}
 
   private:
-    Aws::Utils::DateTime m_uploadStart;
-    bool m_uploadStartHasBeenSet;
-    Aws::Utils::DateTime m_uploadEnd;
-    bool m_uploadEndHasBeenSet;
-    double m_uploadSize;
-    bool m_uploadSizeHasBeenSet;
+
     Aws::String m_comment;
     bool m_commentHasBeenSet;
+
+    Aws::Utils::DateTime m_uploadEnd;
+    bool m_uploadEndHasBeenSet;
+
+    double m_uploadSize;
+    bool m_uploadSizeHasBeenSet;
+
+    Aws::Utils::DateTime m_uploadStart;
+    bool m_uploadStartHasBeenSet;
   };
 
 } // namespace Model

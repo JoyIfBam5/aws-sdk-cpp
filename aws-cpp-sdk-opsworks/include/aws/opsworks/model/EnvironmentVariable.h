@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     EnvironmentVariable& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>(Required) The environment variable's name, which can consist of up to 64
      * characters and must be specified. The name can contain upper- and lowercase
@@ -65,7 +68,7 @@ namespace Model
      * letters, numbers, and underscores (_), but it must start with a letter or
      * underscore.</p>
      */
-    inline void SetKey(Aws::String&& value) { m_keyHasBeenSet = true; m_key = value; }
+    inline void SetKey(Aws::String&& value) { m_keyHasBeenSet = true; m_key = std::move(value); }
 
     /**
      * <p>(Required) The environment variable's name, which can consist of up to 64
@@ -89,7 +92,7 @@ namespace Model
      * letters, numbers, and underscores (_), but it must start with a letter or
      * underscore.</p>
      */
-    inline EnvironmentVariable& WithKey(Aws::String&& value) { SetKey(value); return *this;}
+    inline EnvironmentVariable& WithKey(Aws::String&& value) { SetKey(std::move(value)); return *this;}
 
     /**
      * <p>(Required) The environment variable's name, which can consist of up to 64
@@ -98,6 +101,7 @@ namespace Model
      * underscore.</p>
      */
     inline EnvironmentVariable& WithKey(const char* value) { SetKey(value); return *this;}
+
 
     /**
      * <p>(Optional) The environment variable's value, which can be left empty. If you
@@ -118,7 +122,7 @@ namespace Model
      * specify a value, it can contain up to 256 characters, which must all be
      * printable.</p>
      */
-    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = value; }
+    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = std::move(value); }
 
     /**
      * <p>(Optional) The environment variable's value, which can be left empty. If you
@@ -139,7 +143,7 @@ namespace Model
      * specify a value, it can contain up to 256 characters, which must all be
      * printable.</p>
      */
-    inline EnvironmentVariable& WithValue(Aws::String&& value) { SetValue(value); return *this;}
+    inline EnvironmentVariable& WithValue(Aws::String&& value) { SetValue(std::move(value)); return *this;}
 
     /**
      * <p>(Optional) The environment variable's value, which can be left empty. If you
@@ -147,6 +151,7 @@ namespace Model
      * printable.</p>
      */
     inline EnvironmentVariable& WithValue(const char* value) { SetValue(value); return *this;}
+
 
     /**
      * <p>(Optional) Whether the variable's value will be returned by the
@@ -176,10 +181,13 @@ namespace Model
     inline EnvironmentVariable& WithSecure(bool value) { SetSecure(value); return *this;}
 
   private:
+
     Aws::String m_key;
     bool m_keyHasBeenSet;
+
     Aws::String m_value;
     bool m_valueHasBeenSet;
+
     bool m_secure;
     bool m_secureHasBeenSet;
   };

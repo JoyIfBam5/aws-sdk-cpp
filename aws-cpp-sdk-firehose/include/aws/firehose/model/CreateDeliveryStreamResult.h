@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/firehose/Firehose_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     CreateDeliveryStreamResult();
-    CreateDeliveryStreamResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateDeliveryStreamResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateDeliveryStreamResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateDeliveryStreamResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The ARN of the delivery stream.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The ARN of the delivery stream.</p>
      */
-    inline void SetDeliveryStreamARN(Aws::String&& value) { m_deliveryStreamARN = value; }
+    inline void SetDeliveryStreamARN(Aws::String&& value) { m_deliveryStreamARN = std::move(value); }
 
     /**
      * <p>The ARN of the delivery stream.</p>
@@ -67,7 +70,7 @@ namespace Model
     /**
      * <p>The ARN of the delivery stream.</p>
      */
-    inline CreateDeliveryStreamResult& WithDeliveryStreamARN(Aws::String&& value) { SetDeliveryStreamARN(value); return *this;}
+    inline CreateDeliveryStreamResult& WithDeliveryStreamARN(Aws::String&& value) { SetDeliveryStreamARN(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of the delivery stream.</p>
@@ -75,6 +78,7 @@ namespace Model
     inline CreateDeliveryStreamResult& WithDeliveryStreamARN(const char* value) { SetDeliveryStreamARN(value); return *this;}
 
   private:
+
     Aws::String m_deliveryStreamARN;
   };
 

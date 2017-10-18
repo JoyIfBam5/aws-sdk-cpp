@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/email/SESRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,7 +40,19 @@ namespace Model
   {
   public:
     ReorderReceiptRuleSetRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ReorderReceiptRuleSet"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The name of the receipt rule set to reorder.</p>
@@ -53,7 +67,7 @@ namespace Model
     /**
      * <p>The name of the receipt rule set to reorder.</p>
      */
-    inline void SetRuleSetName(Aws::String&& value) { m_ruleSetNameHasBeenSet = true; m_ruleSetName = value; }
+    inline void SetRuleSetName(Aws::String&& value) { m_ruleSetNameHasBeenSet = true; m_ruleSetName = std::move(value); }
 
     /**
      * <p>The name of the receipt rule set to reorder.</p>
@@ -68,12 +82,13 @@ namespace Model
     /**
      * <p>The name of the receipt rule set to reorder.</p>
      */
-    inline ReorderReceiptRuleSetRequest& WithRuleSetName(Aws::String&& value) { SetRuleSetName(value); return *this;}
+    inline ReorderReceiptRuleSetRequest& WithRuleSetName(Aws::String&& value) { SetRuleSetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the receipt rule set to reorder.</p>
      */
     inline ReorderReceiptRuleSetRequest& WithRuleSetName(const char* value) { SetRuleSetName(value); return *this;}
+
 
     /**
      * <p>A list of the specified receipt rule set's receipt rules in the order that
@@ -91,7 +106,7 @@ namespace Model
      * <p>A list of the specified receipt rule set's receipt rules in the order that
      * you want to put them.</p>
      */
-    inline void SetRuleNames(Aws::Vector<Aws::String>&& value) { m_ruleNamesHasBeenSet = true; m_ruleNames = value; }
+    inline void SetRuleNames(Aws::Vector<Aws::String>&& value) { m_ruleNamesHasBeenSet = true; m_ruleNames = std::move(value); }
 
     /**
      * <p>A list of the specified receipt rule set's receipt rules in the order that
@@ -103,7 +118,7 @@ namespace Model
      * <p>A list of the specified receipt rule set's receipt rules in the order that
      * you want to put them.</p>
      */
-    inline ReorderReceiptRuleSetRequest& WithRuleNames(Aws::Vector<Aws::String>&& value) { SetRuleNames(value); return *this;}
+    inline ReorderReceiptRuleSetRequest& WithRuleNames(Aws::Vector<Aws::String>&& value) { SetRuleNames(std::move(value)); return *this;}
 
     /**
      * <p>A list of the specified receipt rule set's receipt rules in the order that
@@ -115,7 +130,7 @@ namespace Model
      * <p>A list of the specified receipt rule set's receipt rules in the order that
      * you want to put them.</p>
      */
-    inline ReorderReceiptRuleSetRequest& AddRuleNames(Aws::String&& value) { m_ruleNamesHasBeenSet = true; m_ruleNames.push_back(value); return *this; }
+    inline ReorderReceiptRuleSetRequest& AddRuleNames(Aws::String&& value) { m_ruleNamesHasBeenSet = true; m_ruleNames.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of the specified receipt rule set's receipt rules in the order that
@@ -124,8 +139,10 @@ namespace Model
     inline ReorderReceiptRuleSetRequest& AddRuleNames(const char* value) { m_ruleNamesHasBeenSet = true; m_ruleNames.push_back(value); return *this; }
 
   private:
+
     Aws::String m_ruleSetName;
     bool m_ruleSetNameHasBeenSet;
+
     Aws::Vector<Aws::String> m_ruleNames;
     bool m_ruleNamesHasBeenSet;
   };

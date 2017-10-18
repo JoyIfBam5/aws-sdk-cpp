@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/storagegateway/StorageGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     TapeInfo& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The Amazon Resource Name (ARN) of a virtual tape.</p>
      */
@@ -56,7 +59,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of a virtual tape.</p>
      */
-    inline void SetTapeARN(Aws::String&& value) { m_tapeARNHasBeenSet = true; m_tapeARN = value; }
+    inline void SetTapeARN(Aws::String&& value) { m_tapeARNHasBeenSet = true; m_tapeARN = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of a virtual tape.</p>
@@ -71,12 +74,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of a virtual tape.</p>
      */
-    inline TapeInfo& WithTapeARN(Aws::String&& value) { SetTapeARN(value); return *this;}
+    inline TapeInfo& WithTapeARN(Aws::String&& value) { SetTapeARN(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of a virtual tape.</p>
      */
     inline TapeInfo& WithTapeARN(const char* value) { SetTapeARN(value); return *this;}
+
 
     /**
      * <p>The barcode that identifies a specific virtual tape.</p>
@@ -91,7 +95,7 @@ namespace Model
     /**
      * <p>The barcode that identifies a specific virtual tape.</p>
      */
-    inline void SetTapeBarcode(Aws::String&& value) { m_tapeBarcodeHasBeenSet = true; m_tapeBarcode = value; }
+    inline void SetTapeBarcode(Aws::String&& value) { m_tapeBarcodeHasBeenSet = true; m_tapeBarcode = std::move(value); }
 
     /**
      * <p>The barcode that identifies a specific virtual tape.</p>
@@ -106,12 +110,13 @@ namespace Model
     /**
      * <p>The barcode that identifies a specific virtual tape.</p>
      */
-    inline TapeInfo& WithTapeBarcode(Aws::String&& value) { SetTapeBarcode(value); return *this;}
+    inline TapeInfo& WithTapeBarcode(Aws::String&& value) { SetTapeBarcode(std::move(value)); return *this;}
 
     /**
      * <p>The barcode that identifies a specific virtual tape.</p>
      */
     inline TapeInfo& WithTapeBarcode(const char* value) { SetTapeBarcode(value); return *this;}
+
 
     /**
      * <p>The size, in bytes, of a virtual tape.</p>
@@ -128,6 +133,7 @@ namespace Model
      */
     inline TapeInfo& WithTapeSizeInBytes(long long value) { SetTapeSizeInBytes(value); return *this;}
 
+
     /**
      * <p>The status of the tape.</p>
      */
@@ -141,7 +147,7 @@ namespace Model
     /**
      * <p>The status of the tape.</p>
      */
-    inline void SetTapeStatus(Aws::String&& value) { m_tapeStatusHasBeenSet = true; m_tapeStatus = value; }
+    inline void SetTapeStatus(Aws::String&& value) { m_tapeStatusHasBeenSet = true; m_tapeStatus = std::move(value); }
 
     /**
      * <p>The status of the tape.</p>
@@ -156,12 +162,13 @@ namespace Model
     /**
      * <p>The status of the tape.</p>
      */
-    inline TapeInfo& WithTapeStatus(Aws::String&& value) { SetTapeStatus(value); return *this;}
+    inline TapeInfo& WithTapeStatus(Aws::String&& value) { SetTapeStatus(std::move(value)); return *this;}
 
     /**
      * <p>The status of the tape.</p>
      */
     inline TapeInfo& WithTapeStatus(const char* value) { SetTapeStatus(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the gateway. Use the <a>ListGateways</a>
@@ -179,7 +186,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the gateway. Use the <a>ListGateways</a>
      * operation to return a list of gateways for your account and region.</p>
      */
-    inline void SetGatewayARN(Aws::String&& value) { m_gatewayARNHasBeenSet = true; m_gatewayARN = value; }
+    inline void SetGatewayARN(Aws::String&& value) { m_gatewayARNHasBeenSet = true; m_gatewayARN = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the gateway. Use the <a>ListGateways</a>
@@ -197,7 +204,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the gateway. Use the <a>ListGateways</a>
      * operation to return a list of gateways for your account and region.</p>
      */
-    inline TapeInfo& WithGatewayARN(Aws::String&& value) { SetGatewayARN(value); return *this;}
+    inline TapeInfo& WithGatewayARN(Aws::String&& value) { SetGatewayARN(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the gateway. Use the <a>ListGateways</a>
@@ -206,14 +213,19 @@ namespace Model
     inline TapeInfo& WithGatewayARN(const char* value) { SetGatewayARN(value); return *this;}
 
   private:
+
     Aws::String m_tapeARN;
     bool m_tapeARNHasBeenSet;
+
     Aws::String m_tapeBarcode;
     bool m_tapeBarcodeHasBeenSet;
+
     long long m_tapeSizeInBytes;
     bool m_tapeSizeInBytesHasBeenSet;
+
     Aws::String m_tapeStatus;
     bool m_tapeStatusHasBeenSet;
+
     Aws::String m_gatewayARN;
     bool m_gatewayARNHasBeenSet;
   };

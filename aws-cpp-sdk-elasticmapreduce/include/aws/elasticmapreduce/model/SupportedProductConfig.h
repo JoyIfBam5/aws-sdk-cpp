@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     SupportedProductConfig& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the product configuration.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The name of the product configuration.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the product configuration.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>The name of the product configuration.</p>
      */
-    inline SupportedProductConfig& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline SupportedProductConfig& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the product configuration.</p>
      */
     inline SupportedProductConfig& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The list of user-supplied arguments.</p>
@@ -94,7 +98,7 @@ namespace Model
     /**
      * <p>The list of user-supplied arguments.</p>
      */
-    inline void SetArgs(Aws::Vector<Aws::String>&& value) { m_argsHasBeenSet = true; m_args = value; }
+    inline void SetArgs(Aws::Vector<Aws::String>&& value) { m_argsHasBeenSet = true; m_args = std::move(value); }
 
     /**
      * <p>The list of user-supplied arguments.</p>
@@ -104,7 +108,7 @@ namespace Model
     /**
      * <p>The list of user-supplied arguments.</p>
      */
-    inline SupportedProductConfig& WithArgs(Aws::Vector<Aws::String>&& value) { SetArgs(value); return *this;}
+    inline SupportedProductConfig& WithArgs(Aws::Vector<Aws::String>&& value) { SetArgs(std::move(value)); return *this;}
 
     /**
      * <p>The list of user-supplied arguments.</p>
@@ -114,7 +118,7 @@ namespace Model
     /**
      * <p>The list of user-supplied arguments.</p>
      */
-    inline SupportedProductConfig& AddArgs(Aws::String&& value) { m_argsHasBeenSet = true; m_args.push_back(value); return *this; }
+    inline SupportedProductConfig& AddArgs(Aws::String&& value) { m_argsHasBeenSet = true; m_args.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The list of user-supplied arguments.</p>
@@ -122,8 +126,10 @@ namespace Model
     inline SupportedProductConfig& AddArgs(const char* value) { m_argsHasBeenSet = true; m_args.push_back(value); return *this; }
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::Vector<Aws::String> m_args;
     bool m_argsHasBeenSet;
   };

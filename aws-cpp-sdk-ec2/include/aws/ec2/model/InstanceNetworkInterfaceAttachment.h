@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
+#include <aws/core/utils/DateTime.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ec2/model/AttachmentStatus.h>
-#include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,83 +50,6 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
-    /**
-     * <p>The ID of the network interface attachment.</p>
-     */
-    inline const Aws::String& GetAttachmentId() const{ return m_attachmentId; }
-
-    /**
-     * <p>The ID of the network interface attachment.</p>
-     */
-    inline void SetAttachmentId(const Aws::String& value) { m_attachmentIdHasBeenSet = true; m_attachmentId = value; }
-
-    /**
-     * <p>The ID of the network interface attachment.</p>
-     */
-    inline void SetAttachmentId(Aws::String&& value) { m_attachmentIdHasBeenSet = true; m_attachmentId = value; }
-
-    /**
-     * <p>The ID of the network interface attachment.</p>
-     */
-    inline void SetAttachmentId(const char* value) { m_attachmentIdHasBeenSet = true; m_attachmentId.assign(value); }
-
-    /**
-     * <p>The ID of the network interface attachment.</p>
-     */
-    inline InstanceNetworkInterfaceAttachment& WithAttachmentId(const Aws::String& value) { SetAttachmentId(value); return *this;}
-
-    /**
-     * <p>The ID of the network interface attachment.</p>
-     */
-    inline InstanceNetworkInterfaceAttachment& WithAttachmentId(Aws::String&& value) { SetAttachmentId(value); return *this;}
-
-    /**
-     * <p>The ID of the network interface attachment.</p>
-     */
-    inline InstanceNetworkInterfaceAttachment& WithAttachmentId(const char* value) { SetAttachmentId(value); return *this;}
-
-    /**
-     * <p>The index of the device on the instance for the network interface
-     * attachment.</p>
-     */
-    inline int GetDeviceIndex() const{ return m_deviceIndex; }
-
-    /**
-     * <p>The index of the device on the instance for the network interface
-     * attachment.</p>
-     */
-    inline void SetDeviceIndex(int value) { m_deviceIndexHasBeenSet = true; m_deviceIndex = value; }
-
-    /**
-     * <p>The index of the device on the instance for the network interface
-     * attachment.</p>
-     */
-    inline InstanceNetworkInterfaceAttachment& WithDeviceIndex(int value) { SetDeviceIndex(value); return *this;}
-
-    /**
-     * <p>The attachment state.</p>
-     */
-    inline const AttachmentStatus& GetStatus() const{ return m_status; }
-
-    /**
-     * <p>The attachment state.</p>
-     */
-    inline void SetStatus(const AttachmentStatus& value) { m_statusHasBeenSet = true; m_status = value; }
-
-    /**
-     * <p>The attachment state.</p>
-     */
-    inline void SetStatus(AttachmentStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
-
-    /**
-     * <p>The attachment state.</p>
-     */
-    inline InstanceNetworkInterfaceAttachment& WithStatus(const AttachmentStatus& value) { SetStatus(value); return *this;}
-
-    /**
-     * <p>The attachment state.</p>
-     */
-    inline InstanceNetworkInterfaceAttachment& WithStatus(AttachmentStatus&& value) { SetStatus(value); return *this;}
 
     /**
      * <p>The time stamp when the attachment initiated.</p>
@@ -139,7 +64,7 @@ namespace Model
     /**
      * <p>The time stamp when the attachment initiated.</p>
      */
-    inline void SetAttachTime(Aws::Utils::DateTime&& value) { m_attachTimeHasBeenSet = true; m_attachTime = value; }
+    inline void SetAttachTime(Aws::Utils::DateTime&& value) { m_attachTimeHasBeenSet = true; m_attachTime = std::move(value); }
 
     /**
      * <p>The time stamp when the attachment initiated.</p>
@@ -149,7 +74,44 @@ namespace Model
     /**
      * <p>The time stamp when the attachment initiated.</p>
      */
-    inline InstanceNetworkInterfaceAttachment& WithAttachTime(Aws::Utils::DateTime&& value) { SetAttachTime(value); return *this;}
+    inline InstanceNetworkInterfaceAttachment& WithAttachTime(Aws::Utils::DateTime&& value) { SetAttachTime(std::move(value)); return *this;}
+
+
+    /**
+     * <p>The ID of the network interface attachment.</p>
+     */
+    inline const Aws::String& GetAttachmentId() const{ return m_attachmentId; }
+
+    /**
+     * <p>The ID of the network interface attachment.</p>
+     */
+    inline void SetAttachmentId(const Aws::String& value) { m_attachmentIdHasBeenSet = true; m_attachmentId = value; }
+
+    /**
+     * <p>The ID of the network interface attachment.</p>
+     */
+    inline void SetAttachmentId(Aws::String&& value) { m_attachmentIdHasBeenSet = true; m_attachmentId = std::move(value); }
+
+    /**
+     * <p>The ID of the network interface attachment.</p>
+     */
+    inline void SetAttachmentId(const char* value) { m_attachmentIdHasBeenSet = true; m_attachmentId.assign(value); }
+
+    /**
+     * <p>The ID of the network interface attachment.</p>
+     */
+    inline InstanceNetworkInterfaceAttachment& WithAttachmentId(const Aws::String& value) { SetAttachmentId(value); return *this;}
+
+    /**
+     * <p>The ID of the network interface attachment.</p>
+     */
+    inline InstanceNetworkInterfaceAttachment& WithAttachmentId(Aws::String&& value) { SetAttachmentId(std::move(value)); return *this;}
+
+    /**
+     * <p>The ID of the network interface attachment.</p>
+     */
+    inline InstanceNetworkInterfaceAttachment& WithAttachmentId(const char* value) { SetAttachmentId(value); return *this;}
+
 
     /**
      * <p>Indicates whether the network interface is deleted when the instance is
@@ -169,17 +131,67 @@ namespace Model
      */
     inline InstanceNetworkInterfaceAttachment& WithDeleteOnTermination(bool value) { SetDeleteOnTermination(value); return *this;}
 
+
+    /**
+     * <p>The index of the device on the instance for the network interface
+     * attachment.</p>
+     */
+    inline int GetDeviceIndex() const{ return m_deviceIndex; }
+
+    /**
+     * <p>The index of the device on the instance for the network interface
+     * attachment.</p>
+     */
+    inline void SetDeviceIndex(int value) { m_deviceIndexHasBeenSet = true; m_deviceIndex = value; }
+
+    /**
+     * <p>The index of the device on the instance for the network interface
+     * attachment.</p>
+     */
+    inline InstanceNetworkInterfaceAttachment& WithDeviceIndex(int value) { SetDeviceIndex(value); return *this;}
+
+
+    /**
+     * <p>The attachment state.</p>
+     */
+    inline const AttachmentStatus& GetStatus() const{ return m_status; }
+
+    /**
+     * <p>The attachment state.</p>
+     */
+    inline void SetStatus(const AttachmentStatus& value) { m_statusHasBeenSet = true; m_status = value; }
+
+    /**
+     * <p>The attachment state.</p>
+     */
+    inline void SetStatus(AttachmentStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
+
+    /**
+     * <p>The attachment state.</p>
+     */
+    inline InstanceNetworkInterfaceAttachment& WithStatus(const AttachmentStatus& value) { SetStatus(value); return *this;}
+
+    /**
+     * <p>The attachment state.</p>
+     */
+    inline InstanceNetworkInterfaceAttachment& WithStatus(AttachmentStatus&& value) { SetStatus(std::move(value)); return *this;}
+
   private:
-    Aws::String m_attachmentId;
-    bool m_attachmentIdHasBeenSet;
-    int m_deviceIndex;
-    bool m_deviceIndexHasBeenSet;
-    AttachmentStatus m_status;
-    bool m_statusHasBeenSet;
+
     Aws::Utils::DateTime m_attachTime;
     bool m_attachTimeHasBeenSet;
+
+    Aws::String m_attachmentId;
+    bool m_attachmentIdHasBeenSet;
+
     bool m_deleteOnTermination;
     bool m_deleteOnTerminationHasBeenSet;
+
+    int m_deviceIndex;
+    bool m_deviceIndexHasBeenSet;
+
+    AttachmentStatus m_status;
+    bool m_statusHasBeenSet;
   };
 
 } // namespace Model

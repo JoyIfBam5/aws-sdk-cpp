@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ds/DirectoryService_EXPORTS.h>
 #include <aws/ds/DirectoryServiceRequest.h>
@@ -19,6 +20,7 @@
 #include <aws/ds/model/TrustDirection.h>
 #include <aws/ds/model/TrustType.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,9 +44,17 @@ namespace Model
   {
   public:
     CreateTrustRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateTrust"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The Directory ID of the Microsoft AD in the AWS cloud for which to establish
@@ -62,7 +72,7 @@ namespace Model
      * <p>The Directory ID of the Microsoft AD in the AWS cloud for which to establish
      * the trust relationship.</p>
      */
-    inline void SetDirectoryId(Aws::String&& value) { m_directoryIdHasBeenSet = true; m_directoryId = value; }
+    inline void SetDirectoryId(Aws::String&& value) { m_directoryIdHasBeenSet = true; m_directoryId = std::move(value); }
 
     /**
      * <p>The Directory ID of the Microsoft AD in the AWS cloud for which to establish
@@ -80,13 +90,14 @@ namespace Model
      * <p>The Directory ID of the Microsoft AD in the AWS cloud for which to establish
      * the trust relationship.</p>
      */
-    inline CreateTrustRequest& WithDirectoryId(Aws::String&& value) { SetDirectoryId(value); return *this;}
+    inline CreateTrustRequest& WithDirectoryId(Aws::String&& value) { SetDirectoryId(std::move(value)); return *this;}
 
     /**
      * <p>The Directory ID of the Microsoft AD in the AWS cloud for which to establish
      * the trust relationship.</p>
      */
     inline CreateTrustRequest& WithDirectoryId(const char* value) { SetDirectoryId(value); return *this;}
+
 
     /**
      * <p>The Fully Qualified Domain Name (FQDN) of the external domain for which to
@@ -104,7 +115,7 @@ namespace Model
      * <p>The Fully Qualified Domain Name (FQDN) of the external domain for which to
      * create the trust relationship.</p>
      */
-    inline void SetRemoteDomainName(Aws::String&& value) { m_remoteDomainNameHasBeenSet = true; m_remoteDomainName = value; }
+    inline void SetRemoteDomainName(Aws::String&& value) { m_remoteDomainNameHasBeenSet = true; m_remoteDomainName = std::move(value); }
 
     /**
      * <p>The Fully Qualified Domain Name (FQDN) of the external domain for which to
@@ -122,13 +133,14 @@ namespace Model
      * <p>The Fully Qualified Domain Name (FQDN) of the external domain for which to
      * create the trust relationship.</p>
      */
-    inline CreateTrustRequest& WithRemoteDomainName(Aws::String&& value) { SetRemoteDomainName(value); return *this;}
+    inline CreateTrustRequest& WithRemoteDomainName(Aws::String&& value) { SetRemoteDomainName(std::move(value)); return *this;}
 
     /**
      * <p>The Fully Qualified Domain Name (FQDN) of the external domain for which to
      * create the trust relationship.</p>
      */
     inline CreateTrustRequest& WithRemoteDomainName(const char* value) { SetRemoteDomainName(value); return *this;}
+
 
     /**
      * <p>The trust password. The must be the same password that was used when creating
@@ -146,7 +158,7 @@ namespace Model
      * <p>The trust password. The must be the same password that was used when creating
      * the trust relationship on the external domain.</p>
      */
-    inline void SetTrustPassword(Aws::String&& value) { m_trustPasswordHasBeenSet = true; m_trustPassword = value; }
+    inline void SetTrustPassword(Aws::String&& value) { m_trustPasswordHasBeenSet = true; m_trustPassword = std::move(value); }
 
     /**
      * <p>The trust password. The must be the same password that was used when creating
@@ -164,13 +176,14 @@ namespace Model
      * <p>The trust password. The must be the same password that was used when creating
      * the trust relationship on the external domain.</p>
      */
-    inline CreateTrustRequest& WithTrustPassword(Aws::String&& value) { SetTrustPassword(value); return *this;}
+    inline CreateTrustRequest& WithTrustPassword(Aws::String&& value) { SetTrustPassword(std::move(value)); return *this;}
 
     /**
      * <p>The trust password. The must be the same password that was used when creating
      * the trust relationship on the external domain.</p>
      */
     inline CreateTrustRequest& WithTrustPassword(const char* value) { SetTrustPassword(value); return *this;}
+
 
     /**
      * <p>The direction of the trust relationship.</p>
@@ -185,7 +198,7 @@ namespace Model
     /**
      * <p>The direction of the trust relationship.</p>
      */
-    inline void SetTrustDirection(TrustDirection&& value) { m_trustDirectionHasBeenSet = true; m_trustDirection = value; }
+    inline void SetTrustDirection(TrustDirection&& value) { m_trustDirectionHasBeenSet = true; m_trustDirection = std::move(value); }
 
     /**
      * <p>The direction of the trust relationship.</p>
@@ -195,7 +208,8 @@ namespace Model
     /**
      * <p>The direction of the trust relationship.</p>
      */
-    inline CreateTrustRequest& WithTrustDirection(TrustDirection&& value) { SetTrustDirection(value); return *this;}
+    inline CreateTrustRequest& WithTrustDirection(TrustDirection&& value) { SetTrustDirection(std::move(value)); return *this;}
+
 
     /**
      * <p>The trust relationship type.</p>
@@ -210,7 +224,7 @@ namespace Model
     /**
      * <p>The trust relationship type.</p>
      */
-    inline void SetTrustType(TrustType&& value) { m_trustTypeHasBeenSet = true; m_trustType = value; }
+    inline void SetTrustType(TrustType&& value) { m_trustTypeHasBeenSet = true; m_trustType = std::move(value); }
 
     /**
      * <p>The trust relationship type.</p>
@@ -220,7 +234,8 @@ namespace Model
     /**
      * <p>The trust relationship type.</p>
      */
-    inline CreateTrustRequest& WithTrustType(TrustType&& value) { SetTrustType(value); return *this;}
+    inline CreateTrustRequest& WithTrustType(TrustType&& value) { SetTrustType(std::move(value)); return *this;}
+
 
     /**
      * <p>The IP addresses of the remote DNS server associated with
@@ -238,7 +253,7 @@ namespace Model
      * <p>The IP addresses of the remote DNS server associated with
      * RemoteDomainName.</p>
      */
-    inline void SetConditionalForwarderIpAddrs(Aws::Vector<Aws::String>&& value) { m_conditionalForwarderIpAddrsHasBeenSet = true; m_conditionalForwarderIpAddrs = value; }
+    inline void SetConditionalForwarderIpAddrs(Aws::Vector<Aws::String>&& value) { m_conditionalForwarderIpAddrsHasBeenSet = true; m_conditionalForwarderIpAddrs = std::move(value); }
 
     /**
      * <p>The IP addresses of the remote DNS server associated with
@@ -250,7 +265,7 @@ namespace Model
      * <p>The IP addresses of the remote DNS server associated with
      * RemoteDomainName.</p>
      */
-    inline CreateTrustRequest& WithConditionalForwarderIpAddrs(Aws::Vector<Aws::String>&& value) { SetConditionalForwarderIpAddrs(value); return *this;}
+    inline CreateTrustRequest& WithConditionalForwarderIpAddrs(Aws::Vector<Aws::String>&& value) { SetConditionalForwarderIpAddrs(std::move(value)); return *this;}
 
     /**
      * <p>The IP addresses of the remote DNS server associated with
@@ -262,7 +277,7 @@ namespace Model
      * <p>The IP addresses of the remote DNS server associated with
      * RemoteDomainName.</p>
      */
-    inline CreateTrustRequest& AddConditionalForwarderIpAddrs(Aws::String&& value) { m_conditionalForwarderIpAddrsHasBeenSet = true; m_conditionalForwarderIpAddrs.push_back(value); return *this; }
+    inline CreateTrustRequest& AddConditionalForwarderIpAddrs(Aws::String&& value) { m_conditionalForwarderIpAddrsHasBeenSet = true; m_conditionalForwarderIpAddrs.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The IP addresses of the remote DNS server associated with
@@ -271,16 +286,22 @@ namespace Model
     inline CreateTrustRequest& AddConditionalForwarderIpAddrs(const char* value) { m_conditionalForwarderIpAddrsHasBeenSet = true; m_conditionalForwarderIpAddrs.push_back(value); return *this; }
 
   private:
+
     Aws::String m_directoryId;
     bool m_directoryIdHasBeenSet;
+
     Aws::String m_remoteDomainName;
     bool m_remoteDomainNameHasBeenSet;
+
     Aws::String m_trustPassword;
     bool m_trustPasswordHasBeenSet;
+
     TrustDirection m_trustDirection;
     bool m_trustDirectionHasBeenSet;
+
     TrustType m_trustType;
     bool m_trustTypeHasBeenSet;
+
     Aws::Vector<Aws::String> m_conditionalForwarderIpAddrs;
     bool m_conditionalForwarderIpAddrsHasBeenSet;
   };

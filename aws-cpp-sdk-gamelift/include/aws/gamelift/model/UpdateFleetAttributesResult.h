@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/gamelift/GameLift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,45 +44,47 @@ namespace Model
   {
   public:
     UpdateFleetAttributesResult();
-    UpdateFleetAttributesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    UpdateFleetAttributesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdateFleetAttributesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdateFleetAttributesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>Unique identifier for the updated fleet.</p>
+     * <p>Unique identifier for a fleet that was updated.</p>
      */
     inline const Aws::String& GetFleetId() const{ return m_fleetId; }
 
     /**
-     * <p>Unique identifier for the updated fleet.</p>
+     * <p>Unique identifier for a fleet that was updated.</p>
      */
     inline void SetFleetId(const Aws::String& value) { m_fleetId = value; }
 
     /**
-     * <p>Unique identifier for the updated fleet.</p>
+     * <p>Unique identifier for a fleet that was updated.</p>
      */
-    inline void SetFleetId(Aws::String&& value) { m_fleetId = value; }
+    inline void SetFleetId(Aws::String&& value) { m_fleetId = std::move(value); }
 
     /**
-     * <p>Unique identifier for the updated fleet.</p>
+     * <p>Unique identifier for a fleet that was updated.</p>
      */
     inline void SetFleetId(const char* value) { m_fleetId.assign(value); }
 
     /**
-     * <p>Unique identifier for the updated fleet.</p>
+     * <p>Unique identifier for a fleet that was updated.</p>
      */
     inline UpdateFleetAttributesResult& WithFleetId(const Aws::String& value) { SetFleetId(value); return *this;}
 
     /**
-     * <p>Unique identifier for the updated fleet.</p>
+     * <p>Unique identifier for a fleet that was updated.</p>
      */
-    inline UpdateFleetAttributesResult& WithFleetId(Aws::String&& value) { SetFleetId(value); return *this;}
+    inline UpdateFleetAttributesResult& WithFleetId(Aws::String&& value) { SetFleetId(std::move(value)); return *this;}
 
     /**
-     * <p>Unique identifier for the updated fleet.</p>
+     * <p>Unique identifier for a fleet that was updated.</p>
      */
     inline UpdateFleetAttributesResult& WithFleetId(const char* value) { SetFleetId(value); return *this;}
 
   private:
+
     Aws::String m_fleetId;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/devicefarm/DeviceFarm_EXPORTS.h>
 #include <aws/devicefarm/DeviceFarmRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/devicefarm/model/UploadType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,9 +37,17 @@ namespace Model
   {
   public:
     CreateUploadRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateUpload"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The ARN of the project for the upload.</p>
@@ -52,7 +62,7 @@ namespace Model
     /**
      * <p>The ARN of the project for the upload.</p>
      */
-    inline void SetProjectArn(Aws::String&& value) { m_projectArnHasBeenSet = true; m_projectArn = value; }
+    inline void SetProjectArn(Aws::String&& value) { m_projectArnHasBeenSet = true; m_projectArn = std::move(value); }
 
     /**
      * <p>The ARN of the project for the upload.</p>
@@ -67,12 +77,13 @@ namespace Model
     /**
      * <p>The ARN of the project for the upload.</p>
      */
-    inline CreateUploadRequest& WithProjectArn(Aws::String&& value) { SetProjectArn(value); return *this;}
+    inline CreateUploadRequest& WithProjectArn(Aws::String&& value) { SetProjectArn(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of the project for the upload.</p>
      */
     inline CreateUploadRequest& WithProjectArn(const char* value) { SetProjectArn(value); return *this;}
+
 
     /**
      * <p>The upload's file name. The name should not contain the '/' character. If
@@ -99,7 +110,7 @@ namespace Model
      * <code>.apk</code> extension. For all others, the file name must end with the
      * <code>.zip</code> file extension.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The upload's file name. The name should not contain the '/' character. If
@@ -126,7 +137,7 @@ namespace Model
      * <code>.apk</code> extension. For all others, the file name must end with the
      * <code>.zip</code> file extension.</p>
      */
-    inline CreateUploadRequest& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline CreateUploadRequest& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The upload's file name. The name should not contain the '/' character. If
@@ -136,6 +147,7 @@ namespace Model
      * <code>.zip</code> file extension.</p>
      */
     inline CreateUploadRequest& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The upload's upload type.</p> <p>Must be one of the following values:</p>
@@ -207,7 +219,7 @@ namespace Model
      * <code>WEB_APP</code> specified, AWS Device Farm throws an
      * <code>ArgumentException</code> error.</p>
      */
-    inline void SetType(UploadType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(UploadType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The upload's upload type.</p> <p>Must be one of the following values:</p>
@@ -255,7 +267,8 @@ namespace Model
      * <code>WEB_APP</code> specified, AWS Device Farm throws an
      * <code>ArgumentException</code> error.</p>
      */
-    inline CreateUploadRequest& WithType(UploadType&& value) { SetType(value); return *this;}
+    inline CreateUploadRequest& WithType(UploadType&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p>The upload's content type (for example, "application/octet-stream").</p>
@@ -270,7 +283,7 @@ namespace Model
     /**
      * <p>The upload's content type (for example, "application/octet-stream").</p>
      */
-    inline void SetContentType(Aws::String&& value) { m_contentTypeHasBeenSet = true; m_contentType = value; }
+    inline void SetContentType(Aws::String&& value) { m_contentTypeHasBeenSet = true; m_contentType = std::move(value); }
 
     /**
      * <p>The upload's content type (for example, "application/octet-stream").</p>
@@ -285,7 +298,7 @@ namespace Model
     /**
      * <p>The upload's content type (for example, "application/octet-stream").</p>
      */
-    inline CreateUploadRequest& WithContentType(Aws::String&& value) { SetContentType(value); return *this;}
+    inline CreateUploadRequest& WithContentType(Aws::String&& value) { SetContentType(std::move(value)); return *this;}
 
     /**
      * <p>The upload's content type (for example, "application/octet-stream").</p>
@@ -293,12 +306,16 @@ namespace Model
     inline CreateUploadRequest& WithContentType(const char* value) { SetContentType(value); return *this;}
 
   private:
+
     Aws::String m_projectArn;
     bool m_projectArnHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     UploadType m_type;
     bool m_typeHasBeenSet;
+
     Aws::String m_contentType;
     bool m_contentTypeHasBeenSet;
   };

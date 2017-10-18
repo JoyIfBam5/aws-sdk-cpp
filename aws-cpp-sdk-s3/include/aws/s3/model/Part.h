@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -40,6 +42,7 @@ namespace Model
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
 
+
     /**
      * Part number identifying the part. This is a positive integer between 1 and
      * 10,000.
@@ -58,6 +61,7 @@ namespace Model
      */
     inline Part& WithPartNumber(int value) { SetPartNumber(value); return *this;}
 
+
     /**
      * Date and time at which the part was uploaded.
      */
@@ -71,7 +75,7 @@ namespace Model
     /**
      * Date and time at which the part was uploaded.
      */
-    inline void SetLastModified(Aws::Utils::DateTime&& value) { m_lastModifiedHasBeenSet = true; m_lastModified = value; }
+    inline void SetLastModified(Aws::Utils::DateTime&& value) { m_lastModifiedHasBeenSet = true; m_lastModified = std::move(value); }
 
     /**
      * Date and time at which the part was uploaded.
@@ -81,7 +85,8 @@ namespace Model
     /**
      * Date and time at which the part was uploaded.
      */
-    inline Part& WithLastModified(Aws::Utils::DateTime&& value) { SetLastModified(value); return *this;}
+    inline Part& WithLastModified(Aws::Utils::DateTime&& value) { SetLastModified(std::move(value)); return *this;}
+
 
     /**
      * Entity tag returned when the part was uploaded.
@@ -96,7 +101,7 @@ namespace Model
     /**
      * Entity tag returned when the part was uploaded.
      */
-    inline void SetETag(Aws::String&& value) { m_eTagHasBeenSet = true; m_eTag = value; }
+    inline void SetETag(Aws::String&& value) { m_eTagHasBeenSet = true; m_eTag = std::move(value); }
 
     /**
      * Entity tag returned when the part was uploaded.
@@ -111,12 +116,13 @@ namespace Model
     /**
      * Entity tag returned when the part was uploaded.
      */
-    inline Part& WithETag(Aws::String&& value) { SetETag(value); return *this;}
+    inline Part& WithETag(Aws::String&& value) { SetETag(std::move(value)); return *this;}
 
     /**
      * Entity tag returned when the part was uploaded.
      */
     inline Part& WithETag(const char* value) { SetETag(value); return *this;}
+
 
     /**
      * Size of the uploaded part data.
@@ -134,12 +140,16 @@ namespace Model
     inline Part& WithSize(long long value) { SetSize(value); return *this;}
 
   private:
+
     int m_partNumber;
     bool m_partNumberHasBeenSet;
+
     Aws::Utils::DateTime m_lastModified;
     bool m_lastModifiedHasBeenSet;
+
     Aws::String m_eTag;
     bool m_eTagHasBeenSet;
+
     long long m_size;
     bool m_sizeHasBeenSet;
   };

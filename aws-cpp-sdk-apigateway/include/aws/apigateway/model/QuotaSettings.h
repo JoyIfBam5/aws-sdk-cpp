@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/apigateway/model/QuotaPeriodType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     QuotaSettings& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The maximum number of requests that can be made in a given time period.</p>
      */
@@ -57,6 +60,7 @@ namespace Model
      * <p>The maximum number of requests that can be made in a given time period.</p>
      */
     inline QuotaSettings& WithLimit(int value) { SetLimit(value); return *this;}
+
 
     /**
      * <p>The number of requests subtracted from the given limit in the initial time
@@ -76,6 +80,7 @@ namespace Model
      */
     inline QuotaSettings& WithOffset(int value) { SetOffset(value); return *this;}
 
+
     /**
      * <p>The time period in which the limit applies. Valid values are "DAY", "WEEK" or
      * "MONTH".</p>
@@ -92,7 +97,7 @@ namespace Model
      * <p>The time period in which the limit applies. Valid values are "DAY", "WEEK" or
      * "MONTH".</p>
      */
-    inline void SetPeriod(QuotaPeriodType&& value) { m_periodHasBeenSet = true; m_period = value; }
+    inline void SetPeriod(QuotaPeriodType&& value) { m_periodHasBeenSet = true; m_period = std::move(value); }
 
     /**
      * <p>The time period in which the limit applies. Valid values are "DAY", "WEEK" or
@@ -104,13 +109,16 @@ namespace Model
      * <p>The time period in which the limit applies. Valid values are "DAY", "WEEK" or
      * "MONTH".</p>
      */
-    inline QuotaSettings& WithPeriod(QuotaPeriodType&& value) { SetPeriod(value); return *this;}
+    inline QuotaSettings& WithPeriod(QuotaPeriodType&& value) { SetPeriod(std::move(value)); return *this;}
 
   private:
+
     int m_limit;
     bool m_limitHasBeenSet;
+
     int m_offset;
     bool m_offsetHasBeenSet;
+
     QuotaPeriodType m_period;
     bool m_periodHasBeenSet;
   };

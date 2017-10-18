@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/snowball/Snowball_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/snowball/model/ClusterState.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     ClusterListEntry& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The 39-character ID for the cluster that you want to list, for example
      * <code>CID123e4567-e89b-12d3-a456-426655440000</code>.</p>
@@ -62,7 +65,7 @@ namespace Model
      * <p>The 39-character ID for the cluster that you want to list, for example
      * <code>CID123e4567-e89b-12d3-a456-426655440000</code>.</p>
      */
-    inline void SetClusterId(Aws::String&& value) { m_clusterIdHasBeenSet = true; m_clusterId = value; }
+    inline void SetClusterId(Aws::String&& value) { m_clusterIdHasBeenSet = true; m_clusterId = std::move(value); }
 
     /**
      * <p>The 39-character ID for the cluster that you want to list, for example
@@ -80,13 +83,14 @@ namespace Model
      * <p>The 39-character ID for the cluster that you want to list, for example
      * <code>CID123e4567-e89b-12d3-a456-426655440000</code>.</p>
      */
-    inline ClusterListEntry& WithClusterId(Aws::String&& value) { SetClusterId(value); return *this;}
+    inline ClusterListEntry& WithClusterId(Aws::String&& value) { SetClusterId(std::move(value)); return *this;}
 
     /**
      * <p>The 39-character ID for the cluster that you want to list, for example
      * <code>CID123e4567-e89b-12d3-a456-426655440000</code>.</p>
      */
     inline ClusterListEntry& WithClusterId(const char* value) { SetClusterId(value); return *this;}
+
 
     /**
      * <p>The current state of this cluster. For information about the state of a
@@ -104,7 +108,7 @@ namespace Model
      * <p>The current state of this cluster. For information about the state of a
      * specific node, see <a>JobListEntry$JobState</a>.</p>
      */
-    inline void SetClusterState(ClusterState&& value) { m_clusterStateHasBeenSet = true; m_clusterState = value; }
+    inline void SetClusterState(ClusterState&& value) { m_clusterStateHasBeenSet = true; m_clusterState = std::move(value); }
 
     /**
      * <p>The current state of this cluster. For information about the state of a
@@ -116,7 +120,8 @@ namespace Model
      * <p>The current state of this cluster. For information about the state of a
      * specific node, see <a>JobListEntry$JobState</a>.</p>
      */
-    inline ClusterListEntry& WithClusterState(ClusterState&& value) { SetClusterState(value); return *this;}
+    inline ClusterListEntry& WithClusterState(ClusterState&& value) { SetClusterState(std::move(value)); return *this;}
+
 
     /**
      * <p>The creation date for this cluster.</p>
@@ -131,7 +136,7 @@ namespace Model
     /**
      * <p>The creation date for this cluster.</p>
      */
-    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDateHasBeenSet = true; m_creationDate = value; }
+    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDateHasBeenSet = true; m_creationDate = std::move(value); }
 
     /**
      * <p>The creation date for this cluster.</p>
@@ -141,7 +146,8 @@ namespace Model
     /**
      * <p>The creation date for this cluster.</p>
      */
-    inline ClusterListEntry& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(value); return *this;}
+    inline ClusterListEntry& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(std::move(value)); return *this;}
+
 
     /**
      * <p>Defines an optional description of the cluster, for example
@@ -159,7 +165,7 @@ namespace Model
      * <p>Defines an optional description of the cluster, for example
      * <code>Environmental Data Cluster-01</code>.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>Defines an optional description of the cluster, for example
@@ -177,7 +183,7 @@ namespace Model
      * <p>Defines an optional description of the cluster, for example
      * <code>Environmental Data Cluster-01</code>.</p>
      */
-    inline ClusterListEntry& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline ClusterListEntry& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>Defines an optional description of the cluster, for example
@@ -186,12 +192,16 @@ namespace Model
     inline ClusterListEntry& WithDescription(const char* value) { SetDescription(value); return *this;}
 
   private:
+
     Aws::String m_clusterId;
     bool m_clusterIdHasBeenSet;
+
     ClusterState m_clusterState;
     bool m_clusterStateHasBeenSet;
+
     Aws::Utils::DateTime m_creationDate;
     bool m_creationDateHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
   };

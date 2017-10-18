@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/firehose/Firehose_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     CopyCommand& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the target table. The table must already exist in the
      * database.</p>
@@ -60,7 +63,7 @@ namespace Model
      * <p>The name of the target table. The table must already exist in the
      * database.</p>
      */
-    inline void SetDataTableName(Aws::String&& value) { m_dataTableNameHasBeenSet = true; m_dataTableName = value; }
+    inline void SetDataTableName(Aws::String&& value) { m_dataTableNameHasBeenSet = true; m_dataTableName = std::move(value); }
 
     /**
      * <p>The name of the target table. The table must already exist in the
@@ -78,13 +81,14 @@ namespace Model
      * <p>The name of the target table. The table must already exist in the
      * database.</p>
      */
-    inline CopyCommand& WithDataTableName(Aws::String&& value) { SetDataTableName(value); return *this;}
+    inline CopyCommand& WithDataTableName(Aws::String&& value) { SetDataTableName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the target table. The table must already exist in the
      * database.</p>
      */
     inline CopyCommand& WithDataTableName(const char* value) { SetDataTableName(value); return *this;}
+
 
     /**
      * <p>A comma-separated list of column names.</p>
@@ -99,7 +103,7 @@ namespace Model
     /**
      * <p>A comma-separated list of column names.</p>
      */
-    inline void SetDataTableColumns(Aws::String&& value) { m_dataTableColumnsHasBeenSet = true; m_dataTableColumns = value; }
+    inline void SetDataTableColumns(Aws::String&& value) { m_dataTableColumnsHasBeenSet = true; m_dataTableColumns = std::move(value); }
 
     /**
      * <p>A comma-separated list of column names.</p>
@@ -114,21 +118,22 @@ namespace Model
     /**
      * <p>A comma-separated list of column names.</p>
      */
-    inline CopyCommand& WithDataTableColumns(Aws::String&& value) { SetDataTableColumns(value); return *this;}
+    inline CopyCommand& WithDataTableColumns(Aws::String&& value) { SetDataTableColumns(std::move(value)); return *this;}
 
     /**
      * <p>A comma-separated list of column names.</p>
      */
     inline CopyCommand& WithDataTableColumns(const char* value) { SetDataTableColumns(value); return *this;}
 
+
     /**
      * <p>Optional parameters to use with the Amazon Redshift <code>COPY</code>
      * command. For more information, see the "Optional Parameters" section of <a
      * href="http://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html">Amazon Redshift
-     * COPY command</a>. Some possible examples that would apply to Firehose are as
-     * follows:</p> <p> <code>delimiter '\t' lzop;</code> - fields are delimited with
-     * "\t" (TAB character) and compressed using lzop.</p> <p> <code>delimiter
-     * '|</code> - fields are delimited with "|" (this is the default delimiter).</p>
+     * COPY command</a>. Some possible examples that would apply to Kinesis Firehose
+     * are as follows:</p> <p> <code>delimiter '\t' lzop;</code> - fields are delimited
+     * with "\t" (TAB character) and compressed using lzop.</p> <p> <code>delimiter
+     * '|'</code> - fields are delimited with "|" (this is the default delimiter).</p>
      * <p> <code>delimiter '|' escape</code> - the delimiter should be escaped.</p> <p>
      * <code>fixedwidth
      * 'venueid:3,venuename:25,venuecity:12,venuestate:2,venueseats:6'</code> - fields
@@ -145,10 +150,10 @@ namespace Model
      * <p>Optional parameters to use with the Amazon Redshift <code>COPY</code>
      * command. For more information, see the "Optional Parameters" section of <a
      * href="http://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html">Amazon Redshift
-     * COPY command</a>. Some possible examples that would apply to Firehose are as
-     * follows:</p> <p> <code>delimiter '\t' lzop;</code> - fields are delimited with
-     * "\t" (TAB character) and compressed using lzop.</p> <p> <code>delimiter
-     * '|</code> - fields are delimited with "|" (this is the default delimiter).</p>
+     * COPY command</a>. Some possible examples that would apply to Kinesis Firehose
+     * are as follows:</p> <p> <code>delimiter '\t' lzop;</code> - fields are delimited
+     * with "\t" (TAB character) and compressed using lzop.</p> <p> <code>delimiter
+     * '|'</code> - fields are delimited with "|" (this is the default delimiter).</p>
      * <p> <code>delimiter '|' escape</code> - the delimiter should be escaped.</p> <p>
      * <code>fixedwidth
      * 'venueid:3,venuename:25,venuecity:12,venuestate:2,venueseats:6'</code> - fields
@@ -165,10 +170,10 @@ namespace Model
      * <p>Optional parameters to use with the Amazon Redshift <code>COPY</code>
      * command. For more information, see the "Optional Parameters" section of <a
      * href="http://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html">Amazon Redshift
-     * COPY command</a>. Some possible examples that would apply to Firehose are as
-     * follows:</p> <p> <code>delimiter '\t' lzop;</code> - fields are delimited with
-     * "\t" (TAB character) and compressed using lzop.</p> <p> <code>delimiter
-     * '|</code> - fields are delimited with "|" (this is the default delimiter).</p>
+     * COPY command</a>. Some possible examples that would apply to Kinesis Firehose
+     * are as follows:</p> <p> <code>delimiter '\t' lzop;</code> - fields are delimited
+     * with "\t" (TAB character) and compressed using lzop.</p> <p> <code>delimiter
+     * '|'</code> - fields are delimited with "|" (this is the default delimiter).</p>
      * <p> <code>delimiter '|' escape</code> - the delimiter should be escaped.</p> <p>
      * <code>fixedwidth
      * 'venueid:3,venuename:25,venuecity:12,venuestate:2,venueseats:6'</code> - fields
@@ -179,16 +184,16 @@ namespace Model
      * href="http://docs.aws.amazon.com/redshift/latest/dg/r_COPY_command_examples.html">Amazon
      * Redshift COPY command examples</a>.</p>
      */
-    inline void SetCopyOptions(Aws::String&& value) { m_copyOptionsHasBeenSet = true; m_copyOptions = value; }
+    inline void SetCopyOptions(Aws::String&& value) { m_copyOptionsHasBeenSet = true; m_copyOptions = std::move(value); }
 
     /**
      * <p>Optional parameters to use with the Amazon Redshift <code>COPY</code>
      * command. For more information, see the "Optional Parameters" section of <a
      * href="http://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html">Amazon Redshift
-     * COPY command</a>. Some possible examples that would apply to Firehose are as
-     * follows:</p> <p> <code>delimiter '\t' lzop;</code> - fields are delimited with
-     * "\t" (TAB character) and compressed using lzop.</p> <p> <code>delimiter
-     * '|</code> - fields are delimited with "|" (this is the default delimiter).</p>
+     * COPY command</a>. Some possible examples that would apply to Kinesis Firehose
+     * are as follows:</p> <p> <code>delimiter '\t' lzop;</code> - fields are delimited
+     * with "\t" (TAB character) and compressed using lzop.</p> <p> <code>delimiter
+     * '|'</code> - fields are delimited with "|" (this is the default delimiter).</p>
      * <p> <code>delimiter '|' escape</code> - the delimiter should be escaped.</p> <p>
      * <code>fixedwidth
      * 'venueid:3,venuename:25,venuecity:12,venuestate:2,venueseats:6'</code> - fields
@@ -205,10 +210,10 @@ namespace Model
      * <p>Optional parameters to use with the Amazon Redshift <code>COPY</code>
      * command. For more information, see the "Optional Parameters" section of <a
      * href="http://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html">Amazon Redshift
-     * COPY command</a>. Some possible examples that would apply to Firehose are as
-     * follows:</p> <p> <code>delimiter '\t' lzop;</code> - fields are delimited with
-     * "\t" (TAB character) and compressed using lzop.</p> <p> <code>delimiter
-     * '|</code> - fields are delimited with "|" (this is the default delimiter).</p>
+     * COPY command</a>. Some possible examples that would apply to Kinesis Firehose
+     * are as follows:</p> <p> <code>delimiter '\t' lzop;</code> - fields are delimited
+     * with "\t" (TAB character) and compressed using lzop.</p> <p> <code>delimiter
+     * '|'</code> - fields are delimited with "|" (this is the default delimiter).</p>
      * <p> <code>delimiter '|' escape</code> - the delimiter should be escaped.</p> <p>
      * <code>fixedwidth
      * 'venueid:3,venuename:25,venuecity:12,venuestate:2,venueseats:6'</code> - fields
@@ -225,10 +230,10 @@ namespace Model
      * <p>Optional parameters to use with the Amazon Redshift <code>COPY</code>
      * command. For more information, see the "Optional Parameters" section of <a
      * href="http://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html">Amazon Redshift
-     * COPY command</a>. Some possible examples that would apply to Firehose are as
-     * follows:</p> <p> <code>delimiter '\t' lzop;</code> - fields are delimited with
-     * "\t" (TAB character) and compressed using lzop.</p> <p> <code>delimiter
-     * '|</code> - fields are delimited with "|" (this is the default delimiter).</p>
+     * COPY command</a>. Some possible examples that would apply to Kinesis Firehose
+     * are as follows:</p> <p> <code>delimiter '\t' lzop;</code> - fields are delimited
+     * with "\t" (TAB character) and compressed using lzop.</p> <p> <code>delimiter
+     * '|'</code> - fields are delimited with "|" (this is the default delimiter).</p>
      * <p> <code>delimiter '|' escape</code> - the delimiter should be escaped.</p> <p>
      * <code>fixedwidth
      * 'venueid:3,venuename:25,venuecity:12,venuestate:2,venueseats:6'</code> - fields
@@ -239,16 +244,16 @@ namespace Model
      * href="http://docs.aws.amazon.com/redshift/latest/dg/r_COPY_command_examples.html">Amazon
      * Redshift COPY command examples</a>.</p>
      */
-    inline CopyCommand& WithCopyOptions(Aws::String&& value) { SetCopyOptions(value); return *this;}
+    inline CopyCommand& WithCopyOptions(Aws::String&& value) { SetCopyOptions(std::move(value)); return *this;}
 
     /**
      * <p>Optional parameters to use with the Amazon Redshift <code>COPY</code>
      * command. For more information, see the "Optional Parameters" section of <a
      * href="http://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html">Amazon Redshift
-     * COPY command</a>. Some possible examples that would apply to Firehose are as
-     * follows:</p> <p> <code>delimiter '\t' lzop;</code> - fields are delimited with
-     * "\t" (TAB character) and compressed using lzop.</p> <p> <code>delimiter
-     * '|</code> - fields are delimited with "|" (this is the default delimiter).</p>
+     * COPY command</a>. Some possible examples that would apply to Kinesis Firehose
+     * are as follows:</p> <p> <code>delimiter '\t' lzop;</code> - fields are delimited
+     * with "\t" (TAB character) and compressed using lzop.</p> <p> <code>delimiter
+     * '|'</code> - fields are delimited with "|" (this is the default delimiter).</p>
      * <p> <code>delimiter '|' escape</code> - the delimiter should be escaped.</p> <p>
      * <code>fixedwidth
      * 'venueid:3,venuename:25,venuecity:12,venuestate:2,venueseats:6'</code> - fields
@@ -262,10 +267,13 @@ namespace Model
     inline CopyCommand& WithCopyOptions(const char* value) { SetCopyOptions(value); return *this;}
 
   private:
+
     Aws::String m_dataTableName;
     bool m_dataTableNameHasBeenSet;
+
     Aws::String m_dataTableColumns;
     bool m_dataTableColumnsHasBeenSet;
+
     Aws::String m_copyOptions;
     bool m_copyOptionsHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/servicecatalog/model/PrincipalType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     Principal& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ARN representing the principal (IAM user, role, or group).</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The ARN representing the principal (IAM user, role, or group).</p>
      */
-    inline void SetPrincipalARN(Aws::String&& value) { m_principalARNHasBeenSet = true; m_principalARN = value; }
+    inline void SetPrincipalARN(Aws::String&& value) { m_principalARNHasBeenSet = true; m_principalARN = std::move(value); }
 
     /**
      * <p>The ARN representing the principal (IAM user, role, or group).</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The ARN representing the principal (IAM user, role, or group).</p>
      */
-    inline Principal& WithPrincipalARN(Aws::String&& value) { SetPrincipalARN(value); return *this;}
+    inline Principal& WithPrincipalARN(Aws::String&& value) { SetPrincipalARN(std::move(value)); return *this;}
 
     /**
      * <p>The ARN representing the principal (IAM user, role, or group).</p>
      */
     inline Principal& WithPrincipalARN(const char* value) { SetPrincipalARN(value); return *this;}
+
 
     /**
      * <p>The principal type. Must be <code>IAM</code> </p>
@@ -92,7 +96,7 @@ namespace Model
     /**
      * <p>The principal type. Must be <code>IAM</code> </p>
      */
-    inline void SetPrincipalType(PrincipalType&& value) { m_principalTypeHasBeenSet = true; m_principalType = value; }
+    inline void SetPrincipalType(PrincipalType&& value) { m_principalTypeHasBeenSet = true; m_principalType = std::move(value); }
 
     /**
      * <p>The principal type. Must be <code>IAM</code> </p>
@@ -102,11 +106,13 @@ namespace Model
     /**
      * <p>The principal type. Must be <code>IAM</code> </p>
      */
-    inline Principal& WithPrincipalType(PrincipalType&& value) { SetPrincipalType(value); return *this;}
+    inline Principal& WithPrincipalType(PrincipalType&& value) { SetPrincipalType(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_principalARN;
     bool m_principalARNHasBeenSet;
+
     PrincipalType m_principalType;
     bool m_principalTypeHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/snowball/Snowball_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     CreateClusterResult();
-    CreateClusterResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateClusterResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateClusterResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateClusterResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The automatically generated ID for a cluster.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The automatically generated ID for a cluster.</p>
      */
-    inline void SetClusterId(Aws::String&& value) { m_clusterId = value; }
+    inline void SetClusterId(Aws::String&& value) { m_clusterId = std::move(value); }
 
     /**
      * <p>The automatically generated ID for a cluster.</p>
@@ -67,7 +70,7 @@ namespace Model
     /**
      * <p>The automatically generated ID for a cluster.</p>
      */
-    inline CreateClusterResult& WithClusterId(Aws::String&& value) { SetClusterId(value); return *this;}
+    inline CreateClusterResult& WithClusterId(Aws::String&& value) { SetClusterId(std::move(value)); return *this;}
 
     /**
      * <p>The automatically generated ID for a cluster.</p>
@@ -75,6 +78,7 @@ namespace Model
     inline CreateClusterResult& WithClusterId(const char* value) { SetClusterId(value); return *this;}
 
   private:
+
     Aws::String m_clusterId;
   };
 

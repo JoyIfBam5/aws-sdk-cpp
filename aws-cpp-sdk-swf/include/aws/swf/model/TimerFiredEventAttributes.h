@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,7 +33,7 @@ namespace Model
 {
 
   /**
-   * <p>Provides details of the <code>TimerFired</code> event.</p><p><h3>See
+   * <p>Provides the details of the <code>TimerFired</code> event.</p><p><h3>See
    * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/swf-2012-01-25/TimerFiredEventAttributes">AWS
    * API Reference</a></p>
@@ -43,6 +45,7 @@ namespace Model
     TimerFiredEventAttributes(const Aws::Utils::Json::JsonValue& jsonValue);
     TimerFiredEventAttributes& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>The unique ID of the timer that fired.</p>
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The unique ID of the timer that fired.</p>
      */
-    inline void SetTimerId(Aws::String&& value) { m_timerIdHasBeenSet = true; m_timerId = value; }
+    inline void SetTimerId(Aws::String&& value) { m_timerIdHasBeenSet = true; m_timerId = std::move(value); }
 
     /**
      * <p>The unique ID of the timer that fired.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The unique ID of the timer that fired.</p>
      */
-    inline TimerFiredEventAttributes& WithTimerId(Aws::String&& value) { SetTimerId(value); return *this;}
+    inline TimerFiredEventAttributes& WithTimerId(Aws::String&& value) { SetTimerId(std::move(value)); return *this;}
 
     /**
      * <p>The unique ID of the timer that fired.</p>
      */
     inline TimerFiredEventAttributes& WithTimerId(const char* value) { SetTimerId(value); return *this;}
+
 
     /**
      * <p>The ID of the <code>TimerStarted</code> event that was recorded when this
@@ -101,8 +105,10 @@ namespace Model
     inline TimerFiredEventAttributes& WithStartedEventId(long long value) { SetStartedEventId(value); return *this;}
 
   private:
+
     Aws::String m_timerId;
     bool m_timerIdHasBeenSet;
+
     long long m_startedEventId;
     bool m_startedEventIdHasBeenSet;
   };

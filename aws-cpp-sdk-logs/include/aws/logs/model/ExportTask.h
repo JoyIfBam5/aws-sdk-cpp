@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/logs/CloudWatchLogs_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/logs/model/ExportTaskStatus.h>
 #include <aws/logs/model/ExportTaskExecutionInfo.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     ExportTask& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ID of the export task.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The ID of the export task.</p>
      */
-    inline void SetTaskId(Aws::String&& value) { m_taskIdHasBeenSet = true; m_taskId = value; }
+    inline void SetTaskId(Aws::String&& value) { m_taskIdHasBeenSet = true; m_taskId = std::move(value); }
 
     /**
      * <p>The ID of the export task.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The ID of the export task.</p>
      */
-    inline ExportTask& WithTaskId(Aws::String&& value) { SetTaskId(value); return *this;}
+    inline ExportTask& WithTaskId(Aws::String&& value) { SetTaskId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the export task.</p>
      */
     inline ExportTask& WithTaskId(const char* value) { SetTaskId(value); return *this;}
+
 
     /**
      * <p>The name of the export task.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The name of the export task.</p>
      */
-    inline void SetTaskName(Aws::String&& value) { m_taskNameHasBeenSet = true; m_taskName = value; }
+    inline void SetTaskName(Aws::String&& value) { m_taskNameHasBeenSet = true; m_taskName = std::move(value); }
 
     /**
      * <p>The name of the export task.</p>
@@ -108,12 +112,13 @@ namespace Model
     /**
      * <p>The name of the export task.</p>
      */
-    inline ExportTask& WithTaskName(Aws::String&& value) { SetTaskName(value); return *this;}
+    inline ExportTask& WithTaskName(Aws::String&& value) { SetTaskName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the export task.</p>
      */
     inline ExportTask& WithTaskName(const char* value) { SetTaskName(value); return *this;}
+
 
     /**
      * <p>The name of the log group from which logs data was exported.</p>
@@ -128,7 +133,7 @@ namespace Model
     /**
      * <p>The name of the log group from which logs data was exported.</p>
      */
-    inline void SetLogGroupName(Aws::String&& value) { m_logGroupNameHasBeenSet = true; m_logGroupName = value; }
+    inline void SetLogGroupName(Aws::String&& value) { m_logGroupNameHasBeenSet = true; m_logGroupName = std::move(value); }
 
     /**
      * <p>The name of the log group from which logs data was exported.</p>
@@ -143,48 +148,54 @@ namespace Model
     /**
      * <p>The name of the log group from which logs data was exported.</p>
      */
-    inline ExportTask& WithLogGroupName(Aws::String&& value) { SetLogGroupName(value); return *this;}
+    inline ExportTask& WithLogGroupName(Aws::String&& value) { SetLogGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the log group from which logs data was exported.</p>
      */
     inline ExportTask& WithLogGroupName(const char* value) { SetLogGroupName(value); return *this;}
 
+
     /**
-     * <p>The start time, expressed as the number of milliseconds since Jan 1, 1970
-     * 00:00:00 UTC. Events with a timestamp prior to this time are not exported.</p>
+     * <p>The start time, expressed as the number of milliseconds after Jan 1, 1970
+     * 00:00:00 UTC. Events with a time stamp before this time are not exported.</p>
      */
     inline long long GetFrom() const{ return m_from; }
 
     /**
-     * <p>The start time, expressed as the number of milliseconds since Jan 1, 1970
-     * 00:00:00 UTC. Events with a timestamp prior to this time are not exported.</p>
+     * <p>The start time, expressed as the number of milliseconds after Jan 1, 1970
+     * 00:00:00 UTC. Events with a time stamp before this time are not exported.</p>
      */
     inline void SetFrom(long long value) { m_fromHasBeenSet = true; m_from = value; }
 
     /**
-     * <p>The start time, expressed as the number of milliseconds since Jan 1, 1970
-     * 00:00:00 UTC. Events with a timestamp prior to this time are not exported.</p>
+     * <p>The start time, expressed as the number of milliseconds after Jan 1, 1970
+     * 00:00:00 UTC. Events with a time stamp before this time are not exported.</p>
      */
     inline ExportTask& WithFrom(long long value) { SetFrom(value); return *this;}
 
+
     /**
-     * <p>The end time, expressed as the number of milliseconds since Jan 1, 1970
-     * 00:00:00 UTC. Events with a timestamp later than this time are not exported.</p>
+     * <p>The end time, expressed as the number of milliseconds after Jan 1, 1970
+     * 00:00:00 UTC. Events with a time stamp later than this time are not
+     * exported.</p>
      */
     inline long long GetTo() const{ return m_to; }
 
     /**
-     * <p>The end time, expressed as the number of milliseconds since Jan 1, 1970
-     * 00:00:00 UTC. Events with a timestamp later than this time are not exported.</p>
+     * <p>The end time, expressed as the number of milliseconds after Jan 1, 1970
+     * 00:00:00 UTC. Events with a time stamp later than this time are not
+     * exported.</p>
      */
     inline void SetTo(long long value) { m_toHasBeenSet = true; m_to = value; }
 
     /**
-     * <p>The end time, expressed as the number of milliseconds since Jan 1, 1970
-     * 00:00:00 UTC. Events with a timestamp later than this time are not exported.</p>
+     * <p>The end time, expressed as the number of milliseconds after Jan 1, 1970
+     * 00:00:00 UTC. Events with a time stamp later than this time are not
+     * exported.</p>
      */
     inline ExportTask& WithTo(long long value) { SetTo(value); return *this;}
+
 
     /**
      * <p>The name of Amazon S3 bucket to which the log data was exported.</p>
@@ -199,7 +210,7 @@ namespace Model
     /**
      * <p>The name of Amazon S3 bucket to which the log data was exported.</p>
      */
-    inline void SetDestination(Aws::String&& value) { m_destinationHasBeenSet = true; m_destination = value; }
+    inline void SetDestination(Aws::String&& value) { m_destinationHasBeenSet = true; m_destination = std::move(value); }
 
     /**
      * <p>The name of Amazon S3 bucket to which the log data was exported.</p>
@@ -214,12 +225,13 @@ namespace Model
     /**
      * <p>The name of Amazon S3 bucket to which the log data was exported.</p>
      */
-    inline ExportTask& WithDestination(Aws::String&& value) { SetDestination(value); return *this;}
+    inline ExportTask& WithDestination(Aws::String&& value) { SetDestination(std::move(value)); return *this;}
 
     /**
      * <p>The name of Amazon S3 bucket to which the log data was exported.</p>
      */
     inline ExportTask& WithDestination(const char* value) { SetDestination(value); return *this;}
+
 
     /**
      * <p>The prefix that was used as the start of Amazon S3 key for every object
@@ -237,7 +249,7 @@ namespace Model
      * <p>The prefix that was used as the start of Amazon S3 key for every object
      * exported.</p>
      */
-    inline void SetDestinationPrefix(Aws::String&& value) { m_destinationPrefixHasBeenSet = true; m_destinationPrefix = value; }
+    inline void SetDestinationPrefix(Aws::String&& value) { m_destinationPrefixHasBeenSet = true; m_destinationPrefix = std::move(value); }
 
     /**
      * <p>The prefix that was used as the start of Amazon S3 key for every object
@@ -255,13 +267,14 @@ namespace Model
      * <p>The prefix that was used as the start of Amazon S3 key for every object
      * exported.</p>
      */
-    inline ExportTask& WithDestinationPrefix(Aws::String&& value) { SetDestinationPrefix(value); return *this;}
+    inline ExportTask& WithDestinationPrefix(Aws::String&& value) { SetDestinationPrefix(std::move(value)); return *this;}
 
     /**
      * <p>The prefix that was used as the start of Amazon S3 key for every object
      * exported.</p>
      */
     inline ExportTask& WithDestinationPrefix(const char* value) { SetDestinationPrefix(value); return *this;}
+
 
     /**
      * <p>The status of the export task.</p>
@@ -276,7 +289,7 @@ namespace Model
     /**
      * <p>The status of the export task.</p>
      */
-    inline void SetStatus(ExportTaskStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(ExportTaskStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The status of the export task.</p>
@@ -286,7 +299,8 @@ namespace Model
     /**
      * <p>The status of the export task.</p>
      */
-    inline ExportTask& WithStatus(ExportTaskStatus&& value) { SetStatus(value); return *this;}
+    inline ExportTask& WithStatus(ExportTaskStatus&& value) { SetStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>Execution info about the export task.</p>
@@ -301,7 +315,7 @@ namespace Model
     /**
      * <p>Execution info about the export task.</p>
      */
-    inline void SetExecutionInfo(ExportTaskExecutionInfo&& value) { m_executionInfoHasBeenSet = true; m_executionInfo = value; }
+    inline void SetExecutionInfo(ExportTaskExecutionInfo&& value) { m_executionInfoHasBeenSet = true; m_executionInfo = std::move(value); }
 
     /**
      * <p>Execution info about the export task.</p>
@@ -311,25 +325,34 @@ namespace Model
     /**
      * <p>Execution info about the export task.</p>
      */
-    inline ExportTask& WithExecutionInfo(ExportTaskExecutionInfo&& value) { SetExecutionInfo(value); return *this;}
+    inline ExportTask& WithExecutionInfo(ExportTaskExecutionInfo&& value) { SetExecutionInfo(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_taskId;
     bool m_taskIdHasBeenSet;
+
     Aws::String m_taskName;
     bool m_taskNameHasBeenSet;
+
     Aws::String m_logGroupName;
     bool m_logGroupNameHasBeenSet;
+
     long long m_from;
     bool m_fromHasBeenSet;
+
     long long m_to;
     bool m_toHasBeenSet;
+
     Aws::String m_destination;
     bool m_destinationHasBeenSet;
+
     Aws::String m_destinationPrefix;
     bool m_destinationPrefixHasBeenSet;
+
     ExportTaskStatus m_status;
     bool m_statusHasBeenSet;
+
     ExportTaskExecutionInfo m_executionInfo;
     bool m_executionInfoHasBeenSet;
   };

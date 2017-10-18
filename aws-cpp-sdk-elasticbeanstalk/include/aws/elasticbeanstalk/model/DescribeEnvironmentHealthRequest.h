@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/elasticbeanstalk/ElasticBeanstalkRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticbeanstalk/model/EnvironmentHealthAttribute.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,7 +38,19 @@ namespace Model
   {
   public:
     DescribeEnvironmentHealthRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeEnvironmentHealth"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>Specify the environment by name.</p> <p>You must specify either this or an
@@ -54,7 +68,7 @@ namespace Model
      * <p>Specify the environment by name.</p> <p>You must specify either this or an
      * EnvironmentName, or both.</p>
      */
-    inline void SetEnvironmentName(Aws::String&& value) { m_environmentNameHasBeenSet = true; m_environmentName = value; }
+    inline void SetEnvironmentName(Aws::String&& value) { m_environmentNameHasBeenSet = true; m_environmentName = std::move(value); }
 
     /**
      * <p>Specify the environment by name.</p> <p>You must specify either this or an
@@ -72,13 +86,14 @@ namespace Model
      * <p>Specify the environment by name.</p> <p>You must specify either this or an
      * EnvironmentName, or both.</p>
      */
-    inline DescribeEnvironmentHealthRequest& WithEnvironmentName(Aws::String&& value) { SetEnvironmentName(value); return *this;}
+    inline DescribeEnvironmentHealthRequest& WithEnvironmentName(Aws::String&& value) { SetEnvironmentName(std::move(value)); return *this;}
 
     /**
      * <p>Specify the environment by name.</p> <p>You must specify either this or an
      * EnvironmentName, or both.</p>
      */
     inline DescribeEnvironmentHealthRequest& WithEnvironmentName(const char* value) { SetEnvironmentName(value); return *this;}
+
 
     /**
      * <p>Specify the environment by ID.</p> <p>You must specify either this or an
@@ -96,7 +111,7 @@ namespace Model
      * <p>Specify the environment by ID.</p> <p>You must specify either this or an
      * EnvironmentName, or both.</p>
      */
-    inline void SetEnvironmentId(Aws::String&& value) { m_environmentIdHasBeenSet = true; m_environmentId = value; }
+    inline void SetEnvironmentId(Aws::String&& value) { m_environmentIdHasBeenSet = true; m_environmentId = std::move(value); }
 
     /**
      * <p>Specify the environment by ID.</p> <p>You must specify either this or an
@@ -114,13 +129,14 @@ namespace Model
      * <p>Specify the environment by ID.</p> <p>You must specify either this or an
      * EnvironmentName, or both.</p>
      */
-    inline DescribeEnvironmentHealthRequest& WithEnvironmentId(Aws::String&& value) { SetEnvironmentId(value); return *this;}
+    inline DescribeEnvironmentHealthRequest& WithEnvironmentId(Aws::String&& value) { SetEnvironmentId(std::move(value)); return *this;}
 
     /**
      * <p>Specify the environment by ID.</p> <p>You must specify either this or an
      * EnvironmentName, or both.</p>
      */
     inline DescribeEnvironmentHealthRequest& WithEnvironmentId(const char* value) { SetEnvironmentId(value); return *this;}
+
 
     /**
      * <p>Specify the response elements to return. To retrieve all attributes, set to
@@ -141,7 +157,7 @@ namespace Model
      * <code>All</code>. If no attribute names are specified, returns the name of the
      * environment.</p>
      */
-    inline void SetAttributeNames(Aws::Vector<EnvironmentHealthAttribute>&& value) { m_attributeNamesHasBeenSet = true; m_attributeNames = value; }
+    inline void SetAttributeNames(Aws::Vector<EnvironmentHealthAttribute>&& value) { m_attributeNamesHasBeenSet = true; m_attributeNames = std::move(value); }
 
     /**
      * <p>Specify the response elements to return. To retrieve all attributes, set to
@@ -155,7 +171,7 @@ namespace Model
      * <code>All</code>. If no attribute names are specified, returns the name of the
      * environment.</p>
      */
-    inline DescribeEnvironmentHealthRequest& WithAttributeNames(Aws::Vector<EnvironmentHealthAttribute>&& value) { SetAttributeNames(value); return *this;}
+    inline DescribeEnvironmentHealthRequest& WithAttributeNames(Aws::Vector<EnvironmentHealthAttribute>&& value) { SetAttributeNames(std::move(value)); return *this;}
 
     /**
      * <p>Specify the response elements to return. To retrieve all attributes, set to
@@ -169,13 +185,16 @@ namespace Model
      * <code>All</code>. If no attribute names are specified, returns the name of the
      * environment.</p>
      */
-    inline DescribeEnvironmentHealthRequest& AddAttributeNames(EnvironmentHealthAttribute&& value) { m_attributeNamesHasBeenSet = true; m_attributeNames.push_back(value); return *this; }
+    inline DescribeEnvironmentHealthRequest& AddAttributeNames(EnvironmentHealthAttribute&& value) { m_attributeNamesHasBeenSet = true; m_attributeNames.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_environmentName;
     bool m_environmentNameHasBeenSet;
+
     Aws::String m_environmentId;
     bool m_environmentIdHasBeenSet;
+
     Aws::Vector<EnvironmentHealthAttribute> m_attributeNames;
     bool m_attributeNamesHasBeenSet;
   };

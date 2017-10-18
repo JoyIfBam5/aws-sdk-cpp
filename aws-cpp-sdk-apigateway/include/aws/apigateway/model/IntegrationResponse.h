@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
 #include <aws/apigateway/model/ContentHandlingStrategy.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +51,7 @@ namespace Model
     IntegrationResponse& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Specifies the status code that is used to map the integration response to an
      * existing <a>MethodResponse</a>.</p>
@@ -65,7 +68,7 @@ namespace Model
      * <p>Specifies the status code that is used to map the integration response to an
      * existing <a>MethodResponse</a>.</p>
      */
-    inline void SetStatusCode(Aws::String&& value) { m_statusCodeHasBeenSet = true; m_statusCode = value; }
+    inline void SetStatusCode(Aws::String&& value) { m_statusCodeHasBeenSet = true; m_statusCode = std::move(value); }
 
     /**
      * <p>Specifies the status code that is used to map the integration response to an
@@ -83,13 +86,14 @@ namespace Model
      * <p>Specifies the status code that is used to map the integration response to an
      * existing <a>MethodResponse</a>.</p>
      */
-    inline IntegrationResponse& WithStatusCode(Aws::String&& value) { SetStatusCode(value); return *this;}
+    inline IntegrationResponse& WithStatusCode(Aws::String&& value) { SetStatusCode(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the status code that is used to map the integration response to an
      * existing <a>MethodResponse</a>.</p>
      */
     inline IntegrationResponse& WithStatusCode(const char* value) { SetStatusCode(value); return *this;}
+
 
     /**
      * <p>Specifies the regular expression (regex) pattern used to choose an
@@ -125,7 +129,7 @@ namespace Model
      * Lambda function error header is matched. For all other HTTP and AWS back ends,
      * the HTTP status code is matched.</p>
      */
-    inline void SetSelectionPattern(Aws::String&& value) { m_selectionPatternHasBeenSet = true; m_selectionPattern = value; }
+    inline void SetSelectionPattern(Aws::String&& value) { m_selectionPatternHasBeenSet = true; m_selectionPattern = std::move(value); }
 
     /**
      * <p>Specifies the regular expression (regex) pattern used to choose an
@@ -161,7 +165,7 @@ namespace Model
      * Lambda function error header is matched. For all other HTTP and AWS back ends,
      * the HTTP status code is matched.</p>
      */
-    inline IntegrationResponse& WithSelectionPattern(Aws::String&& value) { SetSelectionPattern(value); return *this;}
+    inline IntegrationResponse& WithSelectionPattern(Aws::String&& value) { SetSelectionPattern(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the regular expression (regex) pattern used to choose an
@@ -174,6 +178,7 @@ namespace Model
      * the HTTP status code is matched.</p>
      */
     inline IntegrationResponse& WithSelectionPattern(const char* value) { SetSelectionPattern(value); return *this;}
+
 
     /**
      * <p>A key-value map specifying response parameters that are passed to the method
@@ -221,7 +226,7 @@ namespace Model
      * <code>JSON-expression</code> is a valid JSON expression without the
      * <code>$</code> prefix.</p>
      */
-    inline void SetResponseParameters(Aws::Map<Aws::String, Aws::String>&& value) { m_responseParametersHasBeenSet = true; m_responseParameters = value; }
+    inline void SetResponseParameters(Aws::Map<Aws::String, Aws::String>&& value) { m_responseParametersHasBeenSet = true; m_responseParameters = std::move(value); }
 
     /**
      * <p>A key-value map specifying response parameters that are passed to the method
@@ -253,7 +258,7 @@ namespace Model
      * <code>JSON-expression</code> is a valid JSON expression without the
      * <code>$</code> prefix.</p>
      */
-    inline IntegrationResponse& WithResponseParameters(Aws::Map<Aws::String, Aws::String>&& value) { SetResponseParameters(value); return *this;}
+    inline IntegrationResponse& WithResponseParameters(Aws::Map<Aws::String, Aws::String>&& value) { SetResponseParameters(std::move(value)); return *this;}
 
     /**
      * <p>A key-value map specifying response parameters that are passed to the method
@@ -269,7 +274,7 @@ namespace Model
      * <code>JSON-expression</code> is a valid JSON expression without the
      * <code>$</code> prefix.</p>
      */
-    inline IntegrationResponse& AddResponseParameters(const Aws::String& key, const Aws::String& value) { m_responseParametersHasBeenSet = true; m_responseParameters[key] = value; return *this; }
+    inline IntegrationResponse& AddResponseParameters(const Aws::String& key, const Aws::String& value) { m_responseParametersHasBeenSet = true; m_responseParameters.emplace(key, value); return *this; }
 
     /**
      * <p>A key-value map specifying response parameters that are passed to the method
@@ -285,7 +290,7 @@ namespace Model
      * <code>JSON-expression</code> is a valid JSON expression without the
      * <code>$</code> prefix.</p>
      */
-    inline IntegrationResponse& AddResponseParameters(Aws::String&& key, const Aws::String& value) { m_responseParametersHasBeenSet = true; m_responseParameters[key] = value; return *this; }
+    inline IntegrationResponse& AddResponseParameters(Aws::String&& key, const Aws::String& value) { m_responseParametersHasBeenSet = true; m_responseParameters.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A key-value map specifying response parameters that are passed to the method
@@ -301,7 +306,7 @@ namespace Model
      * <code>JSON-expression</code> is a valid JSON expression without the
      * <code>$</code> prefix.</p>
      */
-    inline IntegrationResponse& AddResponseParameters(const Aws::String& key, Aws::String&& value) { m_responseParametersHasBeenSet = true; m_responseParameters[key] = value; return *this; }
+    inline IntegrationResponse& AddResponseParameters(const Aws::String& key, Aws::String&& value) { m_responseParametersHasBeenSet = true; m_responseParameters.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A key-value map specifying response parameters that are passed to the method
@@ -317,7 +322,7 @@ namespace Model
      * <code>JSON-expression</code> is a valid JSON expression without the
      * <code>$</code> prefix.</p>
      */
-    inline IntegrationResponse& AddResponseParameters(Aws::String&& key, Aws::String&& value) { m_responseParametersHasBeenSet = true; m_responseParameters[key] = value; return *this; }
+    inline IntegrationResponse& AddResponseParameters(Aws::String&& key, Aws::String&& value) { m_responseParametersHasBeenSet = true; m_responseParameters.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>A key-value map specifying response parameters that are passed to the method
@@ -333,7 +338,7 @@ namespace Model
      * <code>JSON-expression</code> is a valid JSON expression without the
      * <code>$</code> prefix.</p>
      */
-    inline IntegrationResponse& AddResponseParameters(const char* key, Aws::String&& value) { m_responseParametersHasBeenSet = true; m_responseParameters[key] = value; return *this; }
+    inline IntegrationResponse& AddResponseParameters(const char* key, Aws::String&& value) { m_responseParametersHasBeenSet = true; m_responseParameters.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A key-value map specifying response parameters that are passed to the method
@@ -349,7 +354,7 @@ namespace Model
      * <code>JSON-expression</code> is a valid JSON expression without the
      * <code>$</code> prefix.</p>
      */
-    inline IntegrationResponse& AddResponseParameters(Aws::String&& key, const char* value) { m_responseParametersHasBeenSet = true; m_responseParameters[key] = value; return *this; }
+    inline IntegrationResponse& AddResponseParameters(Aws::String&& key, const char* value) { m_responseParametersHasBeenSet = true; m_responseParameters.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A key-value map specifying response parameters that are passed to the method
@@ -365,7 +370,8 @@ namespace Model
      * <code>JSON-expression</code> is a valid JSON expression without the
      * <code>$</code> prefix.</p>
      */
-    inline IntegrationResponse& AddResponseParameters(const char* key, const char* value) { m_responseParametersHasBeenSet = true; m_responseParameters[key] = value; return *this; }
+    inline IntegrationResponse& AddResponseParameters(const char* key, const char* value) { m_responseParametersHasBeenSet = true; m_responseParameters.emplace(key, value); return *this; }
+
 
     /**
      * <p>Specifies the templates used to transform the integration response body.
@@ -386,7 +392,7 @@ namespace Model
      * Response templates are represented as a key/value map, with a content-type as
      * the key and a template as the value.</p>
      */
-    inline void SetResponseTemplates(Aws::Map<Aws::String, Aws::String>&& value) { m_responseTemplatesHasBeenSet = true; m_responseTemplates = value; }
+    inline void SetResponseTemplates(Aws::Map<Aws::String, Aws::String>&& value) { m_responseTemplatesHasBeenSet = true; m_responseTemplates = std::move(value); }
 
     /**
      * <p>Specifies the templates used to transform the integration response body.
@@ -400,56 +406,57 @@ namespace Model
      * Response templates are represented as a key/value map, with a content-type as
      * the key and a template as the value.</p>
      */
-    inline IntegrationResponse& WithResponseTemplates(Aws::Map<Aws::String, Aws::String>&& value) { SetResponseTemplates(value); return *this;}
+    inline IntegrationResponse& WithResponseTemplates(Aws::Map<Aws::String, Aws::String>&& value) { SetResponseTemplates(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the templates used to transform the integration response body.
      * Response templates are represented as a key/value map, with a content-type as
      * the key and a template as the value.</p>
      */
-    inline IntegrationResponse& AddResponseTemplates(const Aws::String& key, const Aws::String& value) { m_responseTemplatesHasBeenSet = true; m_responseTemplates[key] = value; return *this; }
+    inline IntegrationResponse& AddResponseTemplates(const Aws::String& key, const Aws::String& value) { m_responseTemplatesHasBeenSet = true; m_responseTemplates.emplace(key, value); return *this; }
 
     /**
      * <p>Specifies the templates used to transform the integration response body.
      * Response templates are represented as a key/value map, with a content-type as
      * the key and a template as the value.</p>
      */
-    inline IntegrationResponse& AddResponseTemplates(Aws::String&& key, const Aws::String& value) { m_responseTemplatesHasBeenSet = true; m_responseTemplates[key] = value; return *this; }
+    inline IntegrationResponse& AddResponseTemplates(Aws::String&& key, const Aws::String& value) { m_responseTemplatesHasBeenSet = true; m_responseTemplates.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>Specifies the templates used to transform the integration response body.
      * Response templates are represented as a key/value map, with a content-type as
      * the key and a template as the value.</p>
      */
-    inline IntegrationResponse& AddResponseTemplates(const Aws::String& key, Aws::String&& value) { m_responseTemplatesHasBeenSet = true; m_responseTemplates[key] = value; return *this; }
+    inline IntegrationResponse& AddResponseTemplates(const Aws::String& key, Aws::String&& value) { m_responseTemplatesHasBeenSet = true; m_responseTemplates.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>Specifies the templates used to transform the integration response body.
      * Response templates are represented as a key/value map, with a content-type as
      * the key and a template as the value.</p>
      */
-    inline IntegrationResponse& AddResponseTemplates(Aws::String&& key, Aws::String&& value) { m_responseTemplatesHasBeenSet = true; m_responseTemplates[key] = value; return *this; }
+    inline IntegrationResponse& AddResponseTemplates(Aws::String&& key, Aws::String&& value) { m_responseTemplatesHasBeenSet = true; m_responseTemplates.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>Specifies the templates used to transform the integration response body.
      * Response templates are represented as a key/value map, with a content-type as
      * the key and a template as the value.</p>
      */
-    inline IntegrationResponse& AddResponseTemplates(const char* key, Aws::String&& value) { m_responseTemplatesHasBeenSet = true; m_responseTemplates[key] = value; return *this; }
+    inline IntegrationResponse& AddResponseTemplates(const char* key, Aws::String&& value) { m_responseTemplatesHasBeenSet = true; m_responseTemplates.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>Specifies the templates used to transform the integration response body.
      * Response templates are represented as a key/value map, with a content-type as
      * the key and a template as the value.</p>
      */
-    inline IntegrationResponse& AddResponseTemplates(Aws::String&& key, const char* value) { m_responseTemplatesHasBeenSet = true; m_responseTemplates[key] = value; return *this; }
+    inline IntegrationResponse& AddResponseTemplates(Aws::String&& key, const char* value) { m_responseTemplatesHasBeenSet = true; m_responseTemplates.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>Specifies the templates used to transform the integration response body.
      * Response templates are represented as a key/value map, with a content-type as
      * the key and a template as the value.</p>
      */
-    inline IntegrationResponse& AddResponseTemplates(const char* key, const char* value) { m_responseTemplatesHasBeenSet = true; m_responseTemplates[key] = value; return *this; }
+    inline IntegrationResponse& AddResponseTemplates(const char* key, const char* value) { m_responseTemplatesHasBeenSet = true; m_responseTemplates.emplace(key, value); return *this; }
+
 
     /**
      * <p>Specifies how to handle response payload content type conversions. Supported
@@ -485,7 +492,7 @@ namespace Model
      * property is not defined, the response payload will be passed through from the
      * integration response to the method response without modification.</p>
      */
-    inline void SetContentHandling(ContentHandlingStrategy&& value) { m_contentHandlingHasBeenSet = true; m_contentHandling = value; }
+    inline void SetContentHandling(ContentHandlingStrategy&& value) { m_contentHandlingHasBeenSet = true; m_contentHandling = std::move(value); }
 
     /**
      * <p>Specifies how to handle response payload content type conversions. Supported
@@ -509,17 +516,22 @@ namespace Model
      * property is not defined, the response payload will be passed through from the
      * integration response to the method response without modification.</p>
      */
-    inline IntegrationResponse& WithContentHandling(ContentHandlingStrategy&& value) { SetContentHandling(value); return *this;}
+    inline IntegrationResponse& WithContentHandling(ContentHandlingStrategy&& value) { SetContentHandling(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_statusCode;
     bool m_statusCodeHasBeenSet;
+
     Aws::String m_selectionPattern;
     bool m_selectionPatternHasBeenSet;
+
     Aws::Map<Aws::String, Aws::String> m_responseParameters;
     bool m_responseParametersHasBeenSet;
+
     Aws::Map<Aws::String, Aws::String> m_responseTemplates;
     bool m_responseTemplatesHasBeenSet;
+
     ContentHandlingStrategy m_contentHandling;
     bool m_contentHandlingHasBeenSet;
   };

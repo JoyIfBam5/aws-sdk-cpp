@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 
@@ -43,20 +44,22 @@ namespace Model
     WorkflowExecutionOpenCounts& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p>The count of activity tasks whose status is OPEN.</p>
+     * <p>The count of activity tasks whose status is <code>OPEN</code>.</p>
      */
     inline int GetOpenActivityTasks() const{ return m_openActivityTasks; }
 
     /**
-     * <p>The count of activity tasks whose status is OPEN.</p>
+     * <p>The count of activity tasks whose status is <code>OPEN</code>.</p>
      */
     inline void SetOpenActivityTasks(int value) { m_openActivityTasksHasBeenSet = true; m_openActivityTasks = value; }
 
     /**
-     * <p>The count of activity tasks whose status is OPEN.</p>
+     * <p>The count of activity tasks whose status is <code>OPEN</code>.</p>
      */
     inline WorkflowExecutionOpenCounts& WithOpenActivityTasks(int value) { SetOpenActivityTasks(value); return *this;}
+
 
     /**
      * <p>The count of decision tasks whose status is OPEN. A workflow execution can
@@ -76,6 +79,7 @@ namespace Model
      */
     inline WorkflowExecutionOpenCounts& WithOpenDecisionTasks(int value) { SetOpenDecisionTasks(value); return *this;}
 
+
     /**
      * <p>The count of timers started by this workflow execution that have not fired
      * yet.</p>
@@ -94,45 +98,52 @@ namespace Model
      */
     inline WorkflowExecutionOpenCounts& WithOpenTimers(int value) { SetOpenTimers(value); return *this;}
 
+
     /**
-     * <p>The count of child workflow executions whose status is OPEN.</p>
+     * <p>The count of child workflow executions whose status is <code>OPEN</code>.</p>
      */
     inline int GetOpenChildWorkflowExecutions() const{ return m_openChildWorkflowExecutions; }
 
     /**
-     * <p>The count of child workflow executions whose status is OPEN.</p>
+     * <p>The count of child workflow executions whose status is <code>OPEN</code>.</p>
      */
     inline void SetOpenChildWorkflowExecutions(int value) { m_openChildWorkflowExecutionsHasBeenSet = true; m_openChildWorkflowExecutions = value; }
 
     /**
-     * <p>The count of child workflow executions whose status is OPEN.</p>
+     * <p>The count of child workflow executions whose status is <code>OPEN</code>.</p>
      */
     inline WorkflowExecutionOpenCounts& WithOpenChildWorkflowExecutions(int value) { SetOpenChildWorkflowExecutions(value); return *this;}
 
+
     /**
-     * <p>The count of AWS Lambda functions that are currently executing.</p>
+     * <p>The count of Lambda tasks whose status is <code>OPEN</code>.</p>
      */
     inline int GetOpenLambdaFunctions() const{ return m_openLambdaFunctions; }
 
     /**
-     * <p>The count of AWS Lambda functions that are currently executing.</p>
+     * <p>The count of Lambda tasks whose status is <code>OPEN</code>.</p>
      */
     inline void SetOpenLambdaFunctions(int value) { m_openLambdaFunctionsHasBeenSet = true; m_openLambdaFunctions = value; }
 
     /**
-     * <p>The count of AWS Lambda functions that are currently executing.</p>
+     * <p>The count of Lambda tasks whose status is <code>OPEN</code>.</p>
      */
     inline WorkflowExecutionOpenCounts& WithOpenLambdaFunctions(int value) { SetOpenLambdaFunctions(value); return *this;}
 
   private:
+
     int m_openActivityTasks;
     bool m_openActivityTasksHasBeenSet;
+
     int m_openDecisionTasks;
     bool m_openDecisionTasksHasBeenSet;
+
     int m_openTimers;
     bool m_openTimersHasBeenSet;
+
     int m_openChildWorkflowExecutions;
     bool m_openChildWorkflowExecutionsHasBeenSet;
+
     int m_openLambdaFunctions;
     bool m_openLambdaFunctionsHasBeenSet;
   };

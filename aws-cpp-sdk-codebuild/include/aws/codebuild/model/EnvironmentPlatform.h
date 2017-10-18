@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codebuild/CodeBuild_EXPORTS.h>
 #include <aws/codebuild/model/PlatformType.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/codebuild/model/EnvironmentLanguage.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     EnvironmentPlatform& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The platform's name.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The platform's name.</p>
      */
-    inline void SetPlatform(PlatformType&& value) { m_platformHasBeenSet = true; m_platform = value; }
+    inline void SetPlatform(PlatformType&& value) { m_platformHasBeenSet = true; m_platform = std::move(value); }
 
     /**
      * <p>The platform's name.</p>
@@ -69,7 +72,8 @@ namespace Model
     /**
      * <p>The platform's name.</p>
      */
-    inline EnvironmentPlatform& WithPlatform(PlatformType&& value) { SetPlatform(value); return *this;}
+    inline EnvironmentPlatform& WithPlatform(PlatformType&& value) { SetPlatform(std::move(value)); return *this;}
+
 
     /**
      * <p>The list of programming languages that are available for the specified
@@ -87,7 +91,7 @@ namespace Model
      * <p>The list of programming languages that are available for the specified
      * platform.</p>
      */
-    inline void SetLanguages(Aws::Vector<EnvironmentLanguage>&& value) { m_languagesHasBeenSet = true; m_languages = value; }
+    inline void SetLanguages(Aws::Vector<EnvironmentLanguage>&& value) { m_languagesHasBeenSet = true; m_languages = std::move(value); }
 
     /**
      * <p>The list of programming languages that are available for the specified
@@ -99,7 +103,7 @@ namespace Model
      * <p>The list of programming languages that are available for the specified
      * platform.</p>
      */
-    inline EnvironmentPlatform& WithLanguages(Aws::Vector<EnvironmentLanguage>&& value) { SetLanguages(value); return *this;}
+    inline EnvironmentPlatform& WithLanguages(Aws::Vector<EnvironmentLanguage>&& value) { SetLanguages(std::move(value)); return *this;}
 
     /**
      * <p>The list of programming languages that are available for the specified
@@ -111,11 +115,13 @@ namespace Model
      * <p>The list of programming languages that are available for the specified
      * platform.</p>
      */
-    inline EnvironmentPlatform& AddLanguages(EnvironmentLanguage&& value) { m_languagesHasBeenSet = true; m_languages.push_back(value); return *this; }
+    inline EnvironmentPlatform& AddLanguages(EnvironmentLanguage&& value) { m_languagesHasBeenSet = true; m_languages.push_back(std::move(value)); return *this; }
 
   private:
+
     PlatformType m_platform;
     bool m_platformHasBeenSet;
+
     Aws::Vector<EnvironmentLanguage> m_languages;
     bool m_languagesHasBeenSet;
   };

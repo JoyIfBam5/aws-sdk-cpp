@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codedeploy/CodeDeploy_EXPORTS.h>
 #include <aws/codedeploy/model/DeploymentGroupInfo.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,7 @@ namespace CodeDeploy
 namespace Model
 {
   /**
-   * <p>Represents the output of a get deployment group operation.</p><p><h3>See
+   * <p>Represents the output of a GetDeploymentGroup operation.</p><p><h3>See
    * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/GetDeploymentGroupOutput">AWS
    * API Reference</a></p>
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     GetDeploymentGroupResult();
-    GetDeploymentGroupResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetDeploymentGroupResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDeploymentGroupResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDeploymentGroupResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the deployment group.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>Information about the deployment group.</p>
      */
-    inline void SetDeploymentGroupInfo(DeploymentGroupInfo&& value) { m_deploymentGroupInfo = value; }
+    inline void SetDeploymentGroupInfo(DeploymentGroupInfo&& value) { m_deploymentGroupInfo = std::move(value); }
 
     /**
      * <p>Information about the deployment group.</p>
@@ -68,9 +71,10 @@ namespace Model
     /**
      * <p>Information about the deployment group.</p>
      */
-    inline GetDeploymentGroupResult& WithDeploymentGroupInfo(DeploymentGroupInfo&& value) { SetDeploymentGroupInfo(value); return *this;}
+    inline GetDeploymentGroupResult& WithDeploymentGroupInfo(DeploymentGroupInfo&& value) { SetDeploymentGroupInfo(std::move(value)); return *this;}
 
   private:
+
     DeploymentGroupInfo m_deploymentGroupInfo;
   };
 

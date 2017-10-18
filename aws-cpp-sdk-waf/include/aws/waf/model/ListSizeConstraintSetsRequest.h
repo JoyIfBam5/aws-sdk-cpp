@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/WAFRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     ListSizeConstraintSetsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListSizeConstraintSets"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>If you specify a value for <code>Limit</code> and you have more
@@ -65,7 +75,7 @@ namespace Model
      * <code>NextMarker</code> from the previous response to get information about
      * another batch of <code>SizeConstraintSets</code>.</p>
      */
-    inline void SetNextMarker(Aws::String&& value) { m_nextMarkerHasBeenSet = true; m_nextMarker = value; }
+    inline void SetNextMarker(Aws::String&& value) { m_nextMarkerHasBeenSet = true; m_nextMarker = std::move(value); }
 
     /**
      * <p>If you specify a value for <code>Limit</code> and you have more
@@ -98,7 +108,7 @@ namespace Model
      * <code>NextMarker</code> from the previous response to get information about
      * another batch of <code>SizeConstraintSets</code>.</p>
      */
-    inline ListSizeConstraintSetsRequest& WithNextMarker(Aws::String&& value) { SetNextMarker(value); return *this;}
+    inline ListSizeConstraintSetsRequest& WithNextMarker(Aws::String&& value) { SetNextMarker(std::move(value)); return *this;}
 
     /**
      * <p>If you specify a value for <code>Limit</code> and you have more
@@ -110,6 +120,7 @@ namespace Model
      * another batch of <code>SizeConstraintSets</code>.</p>
      */
     inline ListSizeConstraintSetsRequest& WithNextMarker(const char* value) { SetNextMarker(value); return *this;}
+
 
     /**
      * <p>Specifies the number of <code>SizeConstraintSet</code> objects that you want
@@ -139,8 +150,10 @@ namespace Model
     inline ListSizeConstraintSetsRequest& WithLimit(int value) { SetLimit(value); return *this;}
 
   private:
+
     Aws::String m_nextMarker;
     bool m_nextMarkerHasBeenSet;
+
     int m_limit;
     bool m_limitHasBeenSet;
   };

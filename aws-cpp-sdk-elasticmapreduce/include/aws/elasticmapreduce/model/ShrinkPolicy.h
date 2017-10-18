@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/elasticmapreduce/model/InstanceResizePolicy.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     ShrinkPolicy& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The desired timeout for decommissioning an instance. Overrides the default
      * YARN decommissioning timeout.</p>
@@ -63,6 +66,7 @@ namespace Model
      */
     inline ShrinkPolicy& WithDecommissionTimeout(int value) { SetDecommissionTimeout(value); return *this;}
 
+
     /**
      * <p>Custom policy for requesting termination protection or termination of
      * specific instances when shrinking an instance group.</p>
@@ -79,7 +83,7 @@ namespace Model
      * <p>Custom policy for requesting termination protection or termination of
      * specific instances when shrinking an instance group.</p>
      */
-    inline void SetInstanceResizePolicy(InstanceResizePolicy&& value) { m_instanceResizePolicyHasBeenSet = true; m_instanceResizePolicy = value; }
+    inline void SetInstanceResizePolicy(InstanceResizePolicy&& value) { m_instanceResizePolicyHasBeenSet = true; m_instanceResizePolicy = std::move(value); }
 
     /**
      * <p>Custom policy for requesting termination protection or termination of
@@ -91,11 +95,13 @@ namespace Model
      * <p>Custom policy for requesting termination protection or termination of
      * specific instances when shrinking an instance group.</p>
      */
-    inline ShrinkPolicy& WithInstanceResizePolicy(InstanceResizePolicy&& value) { SetInstanceResizePolicy(value); return *this;}
+    inline ShrinkPolicy& WithInstanceResizePolicy(InstanceResizePolicy&& value) { SetInstanceResizePolicy(std::move(value)); return *this;}
 
   private:
+
     int m_decommissionTimeout;
     bool m_decommissionTimeoutHasBeenSet;
+
     InstanceResizePolicy m_instanceResizePolicy;
     bool m_instanceResizePolicyHasBeenSet;
   };

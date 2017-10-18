@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/meteringmarketplace/MarketplaceMetering_EXPORTS.h>
 #include <aws/meteringmarketplace/model/UsageRecord.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/meteringmarketplace/model/UsageRecordResultStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     UsageRecordResult& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The UsageRecord that was part of the BatchMeterUsage request.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The UsageRecord that was part of the BatchMeterUsage request.</p>
      */
-    inline void SetUsageRecord(UsageRecord&& value) { m_usageRecordHasBeenSet = true; m_usageRecord = value; }
+    inline void SetUsageRecord(UsageRecord&& value) { m_usageRecordHasBeenSet = true; m_usageRecord = std::move(value); }
 
     /**
      * <p>The UsageRecord that was part of the BatchMeterUsage request.</p>
@@ -69,7 +72,8 @@ namespace Model
     /**
      * <p>The UsageRecord that was part of the BatchMeterUsage request.</p>
      */
-    inline UsageRecordResult& WithUsageRecord(UsageRecord&& value) { SetUsageRecord(value); return *this;}
+    inline UsageRecordResult& WithUsageRecord(UsageRecord&& value) { SetUsageRecord(std::move(value)); return *this;}
+
 
     /**
      * <p>The MeteringRecordId is a unique identifier for this metering event.</p>
@@ -84,7 +88,7 @@ namespace Model
     /**
      * <p>The MeteringRecordId is a unique identifier for this metering event.</p>
      */
-    inline void SetMeteringRecordId(Aws::String&& value) { m_meteringRecordIdHasBeenSet = true; m_meteringRecordId = value; }
+    inline void SetMeteringRecordId(Aws::String&& value) { m_meteringRecordIdHasBeenSet = true; m_meteringRecordId = std::move(value); }
 
     /**
      * <p>The MeteringRecordId is a unique identifier for this metering event.</p>
@@ -99,12 +103,13 @@ namespace Model
     /**
      * <p>The MeteringRecordId is a unique identifier for this metering event.</p>
      */
-    inline UsageRecordResult& WithMeteringRecordId(Aws::String&& value) { SetMeteringRecordId(value); return *this;}
+    inline UsageRecordResult& WithMeteringRecordId(Aws::String&& value) { SetMeteringRecordId(std::move(value)); return *this;}
 
     /**
      * <p>The MeteringRecordId is a unique identifier for this metering event.</p>
      */
     inline UsageRecordResult& WithMeteringRecordId(const char* value) { SetMeteringRecordId(value); return *this;}
+
 
     /**
      * <p>The UsageRecordResult Status indicates the status of an individual
@@ -143,7 +148,7 @@ namespace Model
      * honored. A previously metered UsageRecord had the same customer, dimension, and
      * time, but a different quantity.</p> </li> </ul>
      */
-    inline void SetStatus(UsageRecordResultStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(UsageRecordResultStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The UsageRecordResult Status indicates the status of an individual
@@ -169,13 +174,16 @@ namespace Model
      * honored. A previously metered UsageRecord had the same customer, dimension, and
      * time, but a different quantity.</p> </li> </ul>
      */
-    inline UsageRecordResult& WithStatus(UsageRecordResultStatus&& value) { SetStatus(value); return *this;}
+    inline UsageRecordResult& WithStatus(UsageRecordResultStatus&& value) { SetStatus(std::move(value)); return *this;}
 
   private:
+
     UsageRecord m_usageRecord;
     bool m_usageRecordHasBeenSet;
+
     Aws::String m_meteringRecordId;
     bool m_meteringRecordIdHasBeenSet;
+
     UsageRecordResultStatus m_status;
     bool m_statusHasBeenSet;
   };

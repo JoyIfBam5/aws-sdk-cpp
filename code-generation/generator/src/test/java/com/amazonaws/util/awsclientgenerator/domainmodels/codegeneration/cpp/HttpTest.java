@@ -1,5 +1,5 @@
 /*
-* Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -82,5 +82,44 @@ public class HttpTest {
         http.setRequestUri("/");
         vars = http.getRequestParameters();
         assertEquals(0, vars.size());
+    }
+
+    @Test
+    public void testSplitUriPartIntoPathAndQuery() {
+        Http http = new Http();
+        String requestUri = "/test?varParam=var";
+
+        List<String> pathAndQuery = http.splitUriPartIntoPathAndQuery(requestUri);
+        assertEquals(2, pathAndQuery.size());
+        assertEquals("/test", pathAndQuery.get(0));
+        assertEquals("?varParam=var", pathAndQuery.get(1));
+
+        requestUri = "?varParam=var";
+        pathAndQuery = http.splitUriPartIntoPathAndQuery(requestUri);
+        assertEquals(2, pathAndQuery.size());
+        assertEquals("", pathAndQuery.get(0));
+        assertEquals("?varParam=var", pathAndQuery.get(1));
+
+        requestUri = "/test?";
+        pathAndQuery = http.splitUriPartIntoPathAndQuery(requestUri);
+        assertEquals(2, pathAndQuery.size());
+        assertEquals("/test", pathAndQuery.get(0));
+        assertEquals("?", pathAndQuery.get(1));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNoQuestionMarkInRequestUri() {
+        Http http = new Http();
+        String requestUri = "/testvarParam=var";
+
+        http.splitUriPartIntoPathAndQuery(requestUri);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testMoreThanOneQuestionMarkInRequestUri() {
+        Http http = new Http();
+        String requestUri = "/test?test1?varParam=var";
+
+        http.splitUriPartIntoPathAndQuery(requestUri);
     }
 }

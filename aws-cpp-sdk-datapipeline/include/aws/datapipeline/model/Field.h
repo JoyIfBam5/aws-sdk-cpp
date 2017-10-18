@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/datapipeline/DataPipeline_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     Field& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The field identifier.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The field identifier.</p>
      */
-    inline void SetKey(Aws::String&& value) { m_keyHasBeenSet = true; m_key = value; }
+    inline void SetKey(Aws::String&& value) { m_keyHasBeenSet = true; m_key = std::move(value); }
 
     /**
      * <p>The field identifier.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>The field identifier.</p>
      */
-    inline Field& WithKey(Aws::String&& value) { SetKey(value); return *this;}
+    inline Field& WithKey(Aws::String&& value) { SetKey(std::move(value)); return *this;}
 
     /**
      * <p>The field identifier.</p>
      */
     inline Field& WithKey(const char* value) { SetKey(value); return *this;}
+
 
     /**
      * <p>The field value, expressed as a String.</p>
@@ -94,7 +98,7 @@ namespace Model
     /**
      * <p>The field value, expressed as a String.</p>
      */
-    inline void SetStringValue(Aws::String&& value) { m_stringValueHasBeenSet = true; m_stringValue = value; }
+    inline void SetStringValue(Aws::String&& value) { m_stringValueHasBeenSet = true; m_stringValue = std::move(value); }
 
     /**
      * <p>The field value, expressed as a String.</p>
@@ -109,12 +113,13 @@ namespace Model
     /**
      * <p>The field value, expressed as a String.</p>
      */
-    inline Field& WithStringValue(Aws::String&& value) { SetStringValue(value); return *this;}
+    inline Field& WithStringValue(Aws::String&& value) { SetStringValue(std::move(value)); return *this;}
 
     /**
      * <p>The field value, expressed as a String.</p>
      */
     inline Field& WithStringValue(const char* value) { SetStringValue(value); return *this;}
+
 
     /**
      * <p>The field value, expressed as the identifier of another object.</p>
@@ -129,7 +134,7 @@ namespace Model
     /**
      * <p>The field value, expressed as the identifier of another object.</p>
      */
-    inline void SetRefValue(Aws::String&& value) { m_refValueHasBeenSet = true; m_refValue = value; }
+    inline void SetRefValue(Aws::String&& value) { m_refValueHasBeenSet = true; m_refValue = std::move(value); }
 
     /**
      * <p>The field value, expressed as the identifier of another object.</p>
@@ -144,7 +149,7 @@ namespace Model
     /**
      * <p>The field value, expressed as the identifier of another object.</p>
      */
-    inline Field& WithRefValue(Aws::String&& value) { SetRefValue(value); return *this;}
+    inline Field& WithRefValue(Aws::String&& value) { SetRefValue(std::move(value)); return *this;}
 
     /**
      * <p>The field value, expressed as the identifier of another object.</p>
@@ -152,10 +157,13 @@ namespace Model
     inline Field& WithRefValue(const char* value) { SetRefValue(value); return *this;}
 
   private:
+
     Aws::String m_key;
     bool m_keyHasBeenSet;
+
     Aws::String m_stringValue;
     bool m_stringValueHasBeenSet;
+
     Aws::String m_refValue;
     bool m_refValueHasBeenSet;
   };

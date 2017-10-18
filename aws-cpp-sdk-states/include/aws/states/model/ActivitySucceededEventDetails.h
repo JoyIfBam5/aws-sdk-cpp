@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/states/SFN_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,6 +40,7 @@ namespace Model
     ActivitySucceededEventDetails& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The JSON data output by the activity task.</p>
      */
@@ -51,7 +54,7 @@ namespace Model
     /**
      * <p>The JSON data output by the activity task.</p>
      */
-    inline void SetOutput(Aws::String&& value) { m_outputHasBeenSet = true; m_output = value; }
+    inline void SetOutput(Aws::String&& value) { m_outputHasBeenSet = true; m_output = std::move(value); }
 
     /**
      * <p>The JSON data output by the activity task.</p>
@@ -66,7 +69,7 @@ namespace Model
     /**
      * <p>The JSON data output by the activity task.</p>
      */
-    inline ActivitySucceededEventDetails& WithOutput(Aws::String&& value) { SetOutput(value); return *this;}
+    inline ActivitySucceededEventDetails& WithOutput(Aws::String&& value) { SetOutput(std::move(value)); return *this;}
 
     /**
      * <p>The JSON data output by the activity task.</p>
@@ -74,6 +77,7 @@ namespace Model
     inline ActivitySucceededEventDetails& WithOutput(const char* value) { SetOutput(value); return *this;}
 
   private:
+
     Aws::String m_output;
     bool m_outputHasBeenSet;
   };

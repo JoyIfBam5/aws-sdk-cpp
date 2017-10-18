@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
-#include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ec2/model/PermissionGroup.h>
+#include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,47 +50,6 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
-    /**
-     * <p>The specific AWS account ID that is to be added or removed from a volume's
-     * list of create volume permissions.</p>
-     */
-    inline const Aws::String& GetUserId() const{ return m_userId; }
-
-    /**
-     * <p>The specific AWS account ID that is to be added or removed from a volume's
-     * list of create volume permissions.</p>
-     */
-    inline void SetUserId(const Aws::String& value) { m_userIdHasBeenSet = true; m_userId = value; }
-
-    /**
-     * <p>The specific AWS account ID that is to be added or removed from a volume's
-     * list of create volume permissions.</p>
-     */
-    inline void SetUserId(Aws::String&& value) { m_userIdHasBeenSet = true; m_userId = value; }
-
-    /**
-     * <p>The specific AWS account ID that is to be added or removed from a volume's
-     * list of create volume permissions.</p>
-     */
-    inline void SetUserId(const char* value) { m_userIdHasBeenSet = true; m_userId.assign(value); }
-
-    /**
-     * <p>The specific AWS account ID that is to be added or removed from a volume's
-     * list of create volume permissions.</p>
-     */
-    inline CreateVolumePermission& WithUserId(const Aws::String& value) { SetUserId(value); return *this;}
-
-    /**
-     * <p>The specific AWS account ID that is to be added or removed from a volume's
-     * list of create volume permissions.</p>
-     */
-    inline CreateVolumePermission& WithUserId(Aws::String&& value) { SetUserId(value); return *this;}
-
-    /**
-     * <p>The specific AWS account ID that is to be added or removed from a volume's
-     * list of create volume permissions.</p>
-     */
-    inline CreateVolumePermission& WithUserId(const char* value) { SetUserId(value); return *this;}
 
     /**
      * <p>The specific group that is to be added or removed from a volume's list of
@@ -106,7 +67,7 @@ namespace Model
      * <p>The specific group that is to be added or removed from a volume's list of
      * create volume permissions.</p>
      */
-    inline void SetGroup(PermissionGroup&& value) { m_groupHasBeenSet = true; m_group = value; }
+    inline void SetGroup(PermissionGroup&& value) { m_groupHasBeenSet = true; m_group = std::move(value); }
 
     /**
      * <p>The specific group that is to be added or removed from a volume's list of
@@ -118,13 +79,58 @@ namespace Model
      * <p>The specific group that is to be added or removed from a volume's list of
      * create volume permissions.</p>
      */
-    inline CreateVolumePermission& WithGroup(PermissionGroup&& value) { SetGroup(value); return *this;}
+    inline CreateVolumePermission& WithGroup(PermissionGroup&& value) { SetGroup(std::move(value)); return *this;}
+
+
+    /**
+     * <p>The specific AWS account ID that is to be added or removed from a volume's
+     * list of create volume permissions.</p>
+     */
+    inline const Aws::String& GetUserId() const{ return m_userId; }
+
+    /**
+     * <p>The specific AWS account ID that is to be added or removed from a volume's
+     * list of create volume permissions.</p>
+     */
+    inline void SetUserId(const Aws::String& value) { m_userIdHasBeenSet = true; m_userId = value; }
+
+    /**
+     * <p>The specific AWS account ID that is to be added or removed from a volume's
+     * list of create volume permissions.</p>
+     */
+    inline void SetUserId(Aws::String&& value) { m_userIdHasBeenSet = true; m_userId = std::move(value); }
+
+    /**
+     * <p>The specific AWS account ID that is to be added or removed from a volume's
+     * list of create volume permissions.</p>
+     */
+    inline void SetUserId(const char* value) { m_userIdHasBeenSet = true; m_userId.assign(value); }
+
+    /**
+     * <p>The specific AWS account ID that is to be added or removed from a volume's
+     * list of create volume permissions.</p>
+     */
+    inline CreateVolumePermission& WithUserId(const Aws::String& value) { SetUserId(value); return *this;}
+
+    /**
+     * <p>The specific AWS account ID that is to be added or removed from a volume's
+     * list of create volume permissions.</p>
+     */
+    inline CreateVolumePermission& WithUserId(Aws::String&& value) { SetUserId(std::move(value)); return *this;}
+
+    /**
+     * <p>The specific AWS account ID that is to be added or removed from a volume's
+     * list of create volume permissions.</p>
+     */
+    inline CreateVolumePermission& WithUserId(const char* value) { SetUserId(value); return *this;}
 
   private:
-    Aws::String m_userId;
-    bool m_userIdHasBeenSet;
+
     PermissionGroup m_group;
     bool m_groupHasBeenSet;
+
+    Aws::String m_userId;
+    bool m_userIdHasBeenSet;
   };
 
 } // namespace Model

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     ListTasksResult();
-    ListTasksResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListTasksResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListTasksResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListTasksResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The list of task Amazon Resource Name (ARN) entries for the
@@ -56,7 +59,7 @@ namespace Model
      * <p>The list of task Amazon Resource Name (ARN) entries for the
      * <code>ListTasks</code> request.</p>
      */
-    inline void SetTaskArns(Aws::Vector<Aws::String>&& value) { m_taskArns = value; }
+    inline void SetTaskArns(Aws::Vector<Aws::String>&& value) { m_taskArns = std::move(value); }
 
     /**
      * <p>The list of task Amazon Resource Name (ARN) entries for the
@@ -68,7 +71,7 @@ namespace Model
      * <p>The list of task Amazon Resource Name (ARN) entries for the
      * <code>ListTasks</code> request.</p>
      */
-    inline ListTasksResult& WithTaskArns(Aws::Vector<Aws::String>&& value) { SetTaskArns(value); return *this;}
+    inline ListTasksResult& WithTaskArns(Aws::Vector<Aws::String>&& value) { SetTaskArns(std::move(value)); return *this;}
 
     /**
      * <p>The list of task Amazon Resource Name (ARN) entries for the
@@ -80,13 +83,14 @@ namespace Model
      * <p>The list of task Amazon Resource Name (ARN) entries for the
      * <code>ListTasks</code> request.</p>
      */
-    inline ListTasksResult& AddTaskArns(Aws::String&& value) { m_taskArns.push_back(value); return *this; }
+    inline ListTasksResult& AddTaskArns(Aws::String&& value) { m_taskArns.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The list of task Amazon Resource Name (ARN) entries for the
      * <code>ListTasks</code> request.</p>
      */
     inline ListTasksResult& AddTaskArns(const char* value) { m_taskArns.push_back(value); return *this; }
+
 
     /**
      * <p>The <code>nextToken</code> value to include in a future
@@ -113,7 +117,7 @@ namespace Model
      * next page of results. This value is <code>null</code> when there are no more
      * results to return.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The <code>nextToken</code> value to include in a future
@@ -140,7 +144,7 @@ namespace Model
      * next page of results. This value is <code>null</code> when there are no more
      * results to return.</p>
      */
-    inline ListTasksResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListTasksResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The <code>nextToken</code> value to include in a future
@@ -152,7 +156,9 @@ namespace Model
     inline ListTasksResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_taskArns;
+
     Aws::String m_nextToken;
   };
 

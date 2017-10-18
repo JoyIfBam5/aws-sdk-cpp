@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/monitoring/CloudWatch_EXPORTS.h>
 #include <aws/monitoring/CloudWatchRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/monitoring/model/DimensionFilter.h>
+#include <utility>
 
 namespace Aws
 {
@@ -32,7 +34,19 @@ namespace Model
   {
   public:
     ListMetricsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListMetrics"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The namespace to filter against.</p>
@@ -47,7 +61,7 @@ namespace Model
     /**
      * <p>The namespace to filter against.</p>
      */
-    inline void SetNamespace(Aws::String&& value) { m_namespaceHasBeenSet = true; m_namespace = value; }
+    inline void SetNamespace(Aws::String&& value) { m_namespaceHasBeenSet = true; m_namespace = std::move(value); }
 
     /**
      * <p>The namespace to filter against.</p>
@@ -62,12 +76,13 @@ namespace Model
     /**
      * <p>The namespace to filter against.</p>
      */
-    inline ListMetricsRequest& WithNamespace(Aws::String&& value) { SetNamespace(value); return *this;}
+    inline ListMetricsRequest& WithNamespace(Aws::String&& value) { SetNamespace(std::move(value)); return *this;}
 
     /**
      * <p>The namespace to filter against.</p>
      */
     inline ListMetricsRequest& WithNamespace(const char* value) { SetNamespace(value); return *this;}
+
 
     /**
      * <p>The name of the metric to filter against.</p>
@@ -82,7 +97,7 @@ namespace Model
     /**
      * <p>The name of the metric to filter against.</p>
      */
-    inline void SetMetricName(Aws::String&& value) { m_metricNameHasBeenSet = true; m_metricName = value; }
+    inline void SetMetricName(Aws::String&& value) { m_metricNameHasBeenSet = true; m_metricName = std::move(value); }
 
     /**
      * <p>The name of the metric to filter against.</p>
@@ -97,12 +112,13 @@ namespace Model
     /**
      * <p>The name of the metric to filter against.</p>
      */
-    inline ListMetricsRequest& WithMetricName(Aws::String&& value) { SetMetricName(value); return *this;}
+    inline ListMetricsRequest& WithMetricName(Aws::String&& value) { SetMetricName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the metric to filter against.</p>
      */
     inline ListMetricsRequest& WithMetricName(const char* value) { SetMetricName(value); return *this;}
+
 
     /**
      * <p>The dimensions to filter against.</p>
@@ -117,7 +133,7 @@ namespace Model
     /**
      * <p>The dimensions to filter against.</p>
      */
-    inline void SetDimensions(Aws::Vector<DimensionFilter>&& value) { m_dimensionsHasBeenSet = true; m_dimensions = value; }
+    inline void SetDimensions(Aws::Vector<DimensionFilter>&& value) { m_dimensionsHasBeenSet = true; m_dimensions = std::move(value); }
 
     /**
      * <p>The dimensions to filter against.</p>
@@ -127,7 +143,7 @@ namespace Model
     /**
      * <p>The dimensions to filter against.</p>
      */
-    inline ListMetricsRequest& WithDimensions(Aws::Vector<DimensionFilter>&& value) { SetDimensions(value); return *this;}
+    inline ListMetricsRequest& WithDimensions(Aws::Vector<DimensionFilter>&& value) { SetDimensions(std::move(value)); return *this;}
 
     /**
      * <p>The dimensions to filter against.</p>
@@ -137,7 +153,8 @@ namespace Model
     /**
      * <p>The dimensions to filter against.</p>
      */
-    inline ListMetricsRequest& AddDimensions(DimensionFilter&& value) { m_dimensionsHasBeenSet = true; m_dimensions.push_back(value); return *this; }
+    inline ListMetricsRequest& AddDimensions(DimensionFilter&& value) { m_dimensionsHasBeenSet = true; m_dimensions.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The token returned by a previous call to indicate that there is more data
@@ -155,7 +172,7 @@ namespace Model
      * <p>The token returned by a previous call to indicate that there is more data
      * available.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>The token returned by a previous call to indicate that there is more data
@@ -173,7 +190,7 @@ namespace Model
      * <p>The token returned by a previous call to indicate that there is more data
      * available.</p>
      */
-    inline ListMetricsRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListMetricsRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The token returned by a previous call to indicate that there is more data
@@ -182,12 +199,16 @@ namespace Model
     inline ListMetricsRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::String m_namespace;
     bool m_namespaceHasBeenSet;
+
     Aws::String m_metricName;
     bool m_metricNameHasBeenSet;
+
     Aws::Vector<DimensionFilter> m_dimensions;
     bool m_dimensionsHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
   };

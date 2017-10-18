@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lambda/Lambda_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,7 +33,7 @@ namespace Model
 {
 
   /**
-   * <p>The parent object that contains the target Amazon Resource Name (ARN) of an
+   * <p>The parent object that contains the target ARN (Amazon Resource Name) of an
    * Amazon SQS queue or Amazon SNS topic.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/DeadLetterConfig">AWS
    * API Reference</a></p>
@@ -43,6 +45,7 @@ namespace Model
     DeadLetterConfig(const Aws::Utils::Json::JsonValue& jsonValue);
     DeadLetterConfig& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of an Amazon SQS queue or Amazon SNS topic you
@@ -60,7 +63,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of an Amazon SQS queue or Amazon SNS topic you
      * specify as your Dead Letter Queue (DLQ).</p>
      */
-    inline void SetTargetArn(Aws::String&& value) { m_targetArnHasBeenSet = true; m_targetArn = value; }
+    inline void SetTargetArn(Aws::String&& value) { m_targetArnHasBeenSet = true; m_targetArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of an Amazon SQS queue or Amazon SNS topic you
@@ -78,7 +81,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of an Amazon SQS queue or Amazon SNS topic you
      * specify as your Dead Letter Queue (DLQ).</p>
      */
-    inline DeadLetterConfig& WithTargetArn(Aws::String&& value) { SetTargetArn(value); return *this;}
+    inline DeadLetterConfig& WithTargetArn(Aws::String&& value) { SetTargetArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of an Amazon SQS queue or Amazon SNS topic you
@@ -87,6 +90,7 @@ namespace Model
     inline DeadLetterConfig& WithTargetArn(const char* value) { SetTargetArn(value); return *this;}
 
   private:
+
     Aws::String m_targetArn;
     bool m_targetArnHasBeenSet;
   };

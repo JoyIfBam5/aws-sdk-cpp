@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/appstream/model/Fleet.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -34,6 +35,8 @@ Fleet::Fleet() :
     m_descriptionHasBeenSet(false),
     m_imageNameHasBeenSet(false),
     m_instanceTypeHasBeenSet(false),
+    m_fleetType(FleetType::NOT_SET),
+    m_fleetTypeHasBeenSet(false),
     m_computeCapacityStatusHasBeenSet(false),
     m_maxUserDurationInSeconds(0),
     m_maxUserDurationInSecondsHasBeenSet(false),
@@ -43,7 +46,10 @@ Fleet::Fleet() :
     m_stateHasBeenSet(false),
     m_vpcConfigHasBeenSet(false),
     m_createdTimeHasBeenSet(false),
-    m_fleetErrorsHasBeenSet(false)
+    m_fleetErrorsHasBeenSet(false),
+    m_enableDefaultInternetAccess(false),
+    m_enableDefaultInternetAccessHasBeenSet(false),
+    m_domainJoinInfoHasBeenSet(false)
 {
 }
 
@@ -54,6 +60,8 @@ Fleet::Fleet(const JsonValue& jsonValue) :
     m_descriptionHasBeenSet(false),
     m_imageNameHasBeenSet(false),
     m_instanceTypeHasBeenSet(false),
+    m_fleetType(FleetType::NOT_SET),
+    m_fleetTypeHasBeenSet(false),
     m_computeCapacityStatusHasBeenSet(false),
     m_maxUserDurationInSeconds(0),
     m_maxUserDurationInSecondsHasBeenSet(false),
@@ -63,7 +71,10 @@ Fleet::Fleet(const JsonValue& jsonValue) :
     m_stateHasBeenSet(false),
     m_vpcConfigHasBeenSet(false),
     m_createdTimeHasBeenSet(false),
-    m_fleetErrorsHasBeenSet(false)
+    m_fleetErrorsHasBeenSet(false),
+    m_enableDefaultInternetAccess(false),
+    m_enableDefaultInternetAccessHasBeenSet(false),
+    m_domainJoinInfoHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -110,6 +121,13 @@ Fleet& Fleet::operator =(const JsonValue& jsonValue)
     m_instanceType = jsonValue.GetString("InstanceType");
 
     m_instanceTypeHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("FleetType"))
+  {
+    m_fleetType = FleetTypeMapper::GetFleetTypeForName(jsonValue.GetString("FleetType"));
+
+    m_fleetTypeHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("ComputeCapacityStatus"))
@@ -164,6 +182,20 @@ Fleet& Fleet::operator =(const JsonValue& jsonValue)
     m_fleetErrorsHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("EnableDefaultInternetAccess"))
+  {
+    m_enableDefaultInternetAccess = jsonValue.GetBool("EnableDefaultInternetAccess");
+
+    m_enableDefaultInternetAccessHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("DomainJoinInfo"))
+  {
+    m_domainJoinInfo = jsonValue.GetObject("DomainJoinInfo");
+
+    m_domainJoinInfoHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -205,6 +237,11 @@ JsonValue Fleet::Jsonize() const
   {
    payload.WithString("InstanceType", m_instanceType);
 
+  }
+
+  if(m_fleetTypeHasBeenSet)
+  {
+   payload.WithString("FleetType", FleetTypeMapper::GetNameForFleetType(m_fleetType));
   }
 
   if(m_computeCapacityStatusHasBeenSet)
@@ -249,6 +286,18 @@ JsonValue Fleet::Jsonize() const
      fleetErrorsJsonList[fleetErrorsIndex].AsObject(m_fleetErrors[fleetErrorsIndex].Jsonize());
    }
    payload.WithArray("FleetErrors", std::move(fleetErrorsJsonList));
+
+  }
+
+  if(m_enableDefaultInternetAccessHasBeenSet)
+  {
+   payload.WithBool("EnableDefaultInternetAccess", m_enableDefaultInternetAccess);
+
+  }
+
+  if(m_domainJoinInfoHasBeenSet)
+  {
+   payload.WithObject("DomainJoinInfo", m_domainJoinInfo.Jsonize());
 
   }
 

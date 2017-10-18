@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/xray/XRay_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/xray/model/ServiceId.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     TraceUser& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The user's name.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The user's name.</p>
      */
-    inline void SetUserName(Aws::String&& value) { m_userNameHasBeenSet = true; m_userName = value; }
+    inline void SetUserName(Aws::String&& value) { m_userNameHasBeenSet = true; m_userName = std::move(value); }
 
     /**
      * <p>The user's name.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>The user's name.</p>
      */
-    inline TraceUser& WithUserName(Aws::String&& value) { SetUserName(value); return *this;}
+    inline TraceUser& WithUserName(Aws::String&& value) { SetUserName(std::move(value)); return *this;}
 
     /**
      * <p>The user's name.</p>
      */
     inline TraceUser& WithUserName(const char* value) { SetUserName(value); return *this;}
+
 
     /**
      * <p>Services that the user's request hit.</p>
@@ -94,7 +98,7 @@ namespace Model
     /**
      * <p>Services that the user's request hit.</p>
      */
-    inline void SetServiceIds(Aws::Vector<ServiceId>&& value) { m_serviceIdsHasBeenSet = true; m_serviceIds = value; }
+    inline void SetServiceIds(Aws::Vector<ServiceId>&& value) { m_serviceIdsHasBeenSet = true; m_serviceIds = std::move(value); }
 
     /**
      * <p>Services that the user's request hit.</p>
@@ -104,7 +108,7 @@ namespace Model
     /**
      * <p>Services that the user's request hit.</p>
      */
-    inline TraceUser& WithServiceIds(Aws::Vector<ServiceId>&& value) { SetServiceIds(value); return *this;}
+    inline TraceUser& WithServiceIds(Aws::Vector<ServiceId>&& value) { SetServiceIds(std::move(value)); return *this;}
 
     /**
      * <p>Services that the user's request hit.</p>
@@ -114,11 +118,13 @@ namespace Model
     /**
      * <p>Services that the user's request hit.</p>
      */
-    inline TraceUser& AddServiceIds(ServiceId&& value) { m_serviceIdsHasBeenSet = true; m_serviceIds.push_back(value); return *this; }
+    inline TraceUser& AddServiceIds(ServiceId&& value) { m_serviceIdsHasBeenSet = true; m_serviceIds.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_userName;
     bool m_userNameHasBeenSet;
+
     Aws::Vector<ServiceId> m_serviceIds;
     bool m_serviceIdsHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -19,6 +20,7 @@
 #include <aws/lightsail/model/ResourceLocation.h>
 #include <aws/lightsail/model/ResourceType.h>
 #include <aws/lightsail/model/InstanceSnapshotState.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     InstanceSnapshot& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the snapshot.</p>
      */
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>The name of the snapshot.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the snapshot.</p>
@@ -76,12 +79,13 @@ namespace Model
     /**
      * <p>The name of the snapshot.</p>
      */
-    inline InstanceSnapshot& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline InstanceSnapshot& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the snapshot.</p>
      */
     inline InstanceSnapshot& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the snapshot (e.g.,
@@ -99,7 +103,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the snapshot (e.g.,
      * <code>arn:aws:lightsail:us-east-1:123456789101:InstanceSnapshot/d23b5706-3322-4d83-81e5-12345EXAMPLE</code>).</p>
      */
-    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = value; }
+    inline void SetArn(Aws::String&& value) { m_arnHasBeenSet = true; m_arn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the snapshot (e.g.,
@@ -117,13 +121,14 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the snapshot (e.g.,
      * <code>arn:aws:lightsail:us-east-1:123456789101:InstanceSnapshot/d23b5706-3322-4d83-81e5-12345EXAMPLE</code>).</p>
      */
-    inline InstanceSnapshot& WithArn(Aws::String&& value) { SetArn(value); return *this;}
+    inline InstanceSnapshot& WithArn(Aws::String&& value) { SetArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the snapshot (e.g.,
      * <code>arn:aws:lightsail:us-east-1:123456789101:InstanceSnapshot/d23b5706-3322-4d83-81e5-12345EXAMPLE</code>).</p>
      */
     inline InstanceSnapshot& WithArn(const char* value) { SetArn(value); return *this;}
+
 
     /**
      * <p>The support code. Include this code in your email to support when you have
@@ -144,7 +149,7 @@ namespace Model
      * questions about an instance or another resource in Lightsail. This code enables
      * our support team to look up your Lightsail information more easily.</p>
      */
-    inline void SetSupportCode(Aws::String&& value) { m_supportCodeHasBeenSet = true; m_supportCode = value; }
+    inline void SetSupportCode(Aws::String&& value) { m_supportCodeHasBeenSet = true; m_supportCode = std::move(value); }
 
     /**
      * <p>The support code. Include this code in your email to support when you have
@@ -165,7 +170,7 @@ namespace Model
      * questions about an instance or another resource in Lightsail. This code enables
      * our support team to look up your Lightsail information more easily.</p>
      */
-    inline InstanceSnapshot& WithSupportCode(Aws::String&& value) { SetSupportCode(value); return *this;}
+    inline InstanceSnapshot& WithSupportCode(Aws::String&& value) { SetSupportCode(std::move(value)); return *this;}
 
     /**
      * <p>The support code. Include this code in your email to support when you have
@@ -173,6 +178,7 @@ namespace Model
      * our support team to look up your Lightsail information more easily.</p>
      */
     inline InstanceSnapshot& WithSupportCode(const char* value) { SetSupportCode(value); return *this;}
+
 
     /**
      * <p>The timestamp when the snapshot was created (e.g.,
@@ -190,7 +196,7 @@ namespace Model
      * <p>The timestamp when the snapshot was created (e.g.,
      * <code>1479907467.024</code>).</p>
      */
-    inline void SetCreatedAt(Aws::Utils::DateTime&& value) { m_createdAtHasBeenSet = true; m_createdAt = value; }
+    inline void SetCreatedAt(Aws::Utils::DateTime&& value) { m_createdAtHasBeenSet = true; m_createdAt = std::move(value); }
 
     /**
      * <p>The timestamp when the snapshot was created (e.g.,
@@ -202,7 +208,8 @@ namespace Model
      * <p>The timestamp when the snapshot was created (e.g.,
      * <code>1479907467.024</code>).</p>
      */
-    inline InstanceSnapshot& WithCreatedAt(Aws::Utils::DateTime&& value) { SetCreatedAt(value); return *this;}
+    inline InstanceSnapshot& WithCreatedAt(Aws::Utils::DateTime&& value) { SetCreatedAt(std::move(value)); return *this;}
+
 
     /**
      * <p>The region name and availability zone where you created the snapshot.</p>
@@ -217,7 +224,7 @@ namespace Model
     /**
      * <p>The region name and availability zone where you created the snapshot.</p>
      */
-    inline void SetLocation(ResourceLocation&& value) { m_locationHasBeenSet = true; m_location = value; }
+    inline void SetLocation(ResourceLocation&& value) { m_locationHasBeenSet = true; m_location = std::move(value); }
 
     /**
      * <p>The region name and availability zone where you created the snapshot.</p>
@@ -227,7 +234,8 @@ namespace Model
     /**
      * <p>The region name and availability zone where you created the snapshot.</p>
      */
-    inline InstanceSnapshot& WithLocation(ResourceLocation&& value) { SetLocation(value); return *this;}
+    inline InstanceSnapshot& WithLocation(ResourceLocation&& value) { SetLocation(std::move(value)); return *this;}
+
 
     /**
      * <p>The type of resource (usually <code>InstanceSnapshot</code>).</p>
@@ -242,7 +250,7 @@ namespace Model
     /**
      * <p>The type of resource (usually <code>InstanceSnapshot</code>).</p>
      */
-    inline void SetResourceType(ResourceType&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = value; }
+    inline void SetResourceType(ResourceType&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = std::move(value); }
 
     /**
      * <p>The type of resource (usually <code>InstanceSnapshot</code>).</p>
@@ -252,7 +260,8 @@ namespace Model
     /**
      * <p>The type of resource (usually <code>InstanceSnapshot</code>).</p>
      */
-    inline InstanceSnapshot& WithResourceType(ResourceType&& value) { SetResourceType(value); return *this;}
+    inline InstanceSnapshot& WithResourceType(ResourceType&& value) { SetResourceType(std::move(value)); return *this;}
+
 
     /**
      * <p>The state the snapshot is in.</p>
@@ -267,7 +276,7 @@ namespace Model
     /**
      * <p>The state the snapshot is in.</p>
      */
-    inline void SetState(InstanceSnapshotState&& value) { m_stateHasBeenSet = true; m_state = value; }
+    inline void SetState(InstanceSnapshotState&& value) { m_stateHasBeenSet = true; m_state = std::move(value); }
 
     /**
      * <p>The state the snapshot is in.</p>
@@ -277,7 +286,8 @@ namespace Model
     /**
      * <p>The state the snapshot is in.</p>
      */
-    inline InstanceSnapshot& WithState(InstanceSnapshotState&& value) { SetState(value); return *this;}
+    inline InstanceSnapshot& WithState(InstanceSnapshotState&& value) { SetState(std::move(value)); return *this;}
+
 
     /**
      * <p>The progress of the snapshot.</p>
@@ -292,7 +302,7 @@ namespace Model
     /**
      * <p>The progress of the snapshot.</p>
      */
-    inline void SetProgress(Aws::String&& value) { m_progressHasBeenSet = true; m_progress = value; }
+    inline void SetProgress(Aws::String&& value) { m_progressHasBeenSet = true; m_progress = std::move(value); }
 
     /**
      * <p>The progress of the snapshot.</p>
@@ -307,12 +317,13 @@ namespace Model
     /**
      * <p>The progress of the snapshot.</p>
      */
-    inline InstanceSnapshot& WithProgress(Aws::String&& value) { SetProgress(value); return *this;}
+    inline InstanceSnapshot& WithProgress(Aws::String&& value) { SetProgress(std::move(value)); return *this;}
 
     /**
      * <p>The progress of the snapshot.</p>
      */
     inline InstanceSnapshot& WithProgress(const char* value) { SetProgress(value); return *this;}
+
 
     /**
      * <p>The instance from which the snapshot was created.</p>
@@ -327,7 +338,7 @@ namespace Model
     /**
      * <p>The instance from which the snapshot was created.</p>
      */
-    inline void SetFromInstanceName(Aws::String&& value) { m_fromInstanceNameHasBeenSet = true; m_fromInstanceName = value; }
+    inline void SetFromInstanceName(Aws::String&& value) { m_fromInstanceNameHasBeenSet = true; m_fromInstanceName = std::move(value); }
 
     /**
      * <p>The instance from which the snapshot was created.</p>
@@ -342,12 +353,13 @@ namespace Model
     /**
      * <p>The instance from which the snapshot was created.</p>
      */
-    inline InstanceSnapshot& WithFromInstanceName(Aws::String&& value) { SetFromInstanceName(value); return *this;}
+    inline InstanceSnapshot& WithFromInstanceName(Aws::String&& value) { SetFromInstanceName(std::move(value)); return *this;}
 
     /**
      * <p>The instance from which the snapshot was created.</p>
      */
     inline InstanceSnapshot& WithFromInstanceName(const char* value) { SetFromInstanceName(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the instance from which the snapshot was
@@ -368,7 +380,7 @@ namespace Model
      * created (e.g.,
      * <code>arn:aws:lightsail:us-east-1:123456789101:Instance/64b8404c-ccb1-430b-8daf-12345EXAMPLE</code>).</p>
      */
-    inline void SetFromInstanceArn(Aws::String&& value) { m_fromInstanceArnHasBeenSet = true; m_fromInstanceArn = value; }
+    inline void SetFromInstanceArn(Aws::String&& value) { m_fromInstanceArnHasBeenSet = true; m_fromInstanceArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the instance from which the snapshot was
@@ -389,7 +401,7 @@ namespace Model
      * created (e.g.,
      * <code>arn:aws:lightsail:us-east-1:123456789101:Instance/64b8404c-ccb1-430b-8daf-12345EXAMPLE</code>).</p>
      */
-    inline InstanceSnapshot& WithFromInstanceArn(Aws::String&& value) { SetFromInstanceArn(value); return *this;}
+    inline InstanceSnapshot& WithFromInstanceArn(Aws::String&& value) { SetFromInstanceArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the instance from which the snapshot was
@@ -397,6 +409,7 @@ namespace Model
      * <code>arn:aws:lightsail:us-east-1:123456789101:Instance/64b8404c-ccb1-430b-8daf-12345EXAMPLE</code>).</p>
      */
     inline InstanceSnapshot& WithFromInstanceArn(const char* value) { SetFromInstanceArn(value); return *this;}
+
 
     /**
      * <p>The blueprint ID from which you created the snapshot (e.g.,
@@ -417,7 +430,7 @@ namespace Model
      * <code>os_debian_8_3</code>). A blueprint is a virtual private server (or
      * <i>instance</i>) image used to create instances quickly.</p>
      */
-    inline void SetFromBlueprintId(Aws::String&& value) { m_fromBlueprintIdHasBeenSet = true; m_fromBlueprintId = value; }
+    inline void SetFromBlueprintId(Aws::String&& value) { m_fromBlueprintIdHasBeenSet = true; m_fromBlueprintId = std::move(value); }
 
     /**
      * <p>The blueprint ID from which you created the snapshot (e.g.,
@@ -438,7 +451,7 @@ namespace Model
      * <code>os_debian_8_3</code>). A blueprint is a virtual private server (or
      * <i>instance</i>) image used to create instances quickly.</p>
      */
-    inline InstanceSnapshot& WithFromBlueprintId(Aws::String&& value) { SetFromBlueprintId(value); return *this;}
+    inline InstanceSnapshot& WithFromBlueprintId(Aws::String&& value) { SetFromBlueprintId(std::move(value)); return *this;}
 
     /**
      * <p>The blueprint ID from which you created the snapshot (e.g.,
@@ -446,6 +459,7 @@ namespace Model
      * <i>instance</i>) image used to create instances quickly.</p>
      */
     inline InstanceSnapshot& WithFromBlueprintId(const char* value) { SetFromBlueprintId(value); return *this;}
+
 
     /**
      * <p>The bundle ID from which you created the snapshot (e.g.,
@@ -463,7 +477,7 @@ namespace Model
      * <p>The bundle ID from which you created the snapshot (e.g.,
      * <code>micro_1_0</code>).</p>
      */
-    inline void SetFromBundleId(Aws::String&& value) { m_fromBundleIdHasBeenSet = true; m_fromBundleId = value; }
+    inline void SetFromBundleId(Aws::String&& value) { m_fromBundleIdHasBeenSet = true; m_fromBundleId = std::move(value); }
 
     /**
      * <p>The bundle ID from which you created the snapshot (e.g.,
@@ -481,13 +495,14 @@ namespace Model
      * <p>The bundle ID from which you created the snapshot (e.g.,
      * <code>micro_1_0</code>).</p>
      */
-    inline InstanceSnapshot& WithFromBundleId(Aws::String&& value) { SetFromBundleId(value); return *this;}
+    inline InstanceSnapshot& WithFromBundleId(Aws::String&& value) { SetFromBundleId(std::move(value)); return *this;}
 
     /**
      * <p>The bundle ID from which you created the snapshot (e.g.,
      * <code>micro_1_0</code>).</p>
      */
     inline InstanceSnapshot& WithFromBundleId(const char* value) { SetFromBundleId(value); return *this;}
+
 
     /**
      * <p>The size in GB of the SSD.</p>
@@ -505,30 +520,43 @@ namespace Model
     inline InstanceSnapshot& WithSizeInGb(int value) { SetSizeInGb(value); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_arn;
     bool m_arnHasBeenSet;
+
     Aws::String m_supportCode;
     bool m_supportCodeHasBeenSet;
+
     Aws::Utils::DateTime m_createdAt;
     bool m_createdAtHasBeenSet;
+
     ResourceLocation m_location;
     bool m_locationHasBeenSet;
+
     ResourceType m_resourceType;
     bool m_resourceTypeHasBeenSet;
+
     InstanceSnapshotState m_state;
     bool m_stateHasBeenSet;
+
     Aws::String m_progress;
     bool m_progressHasBeenSet;
+
     Aws::String m_fromInstanceName;
     bool m_fromInstanceNameHasBeenSet;
+
     Aws::String m_fromInstanceArn;
     bool m_fromInstanceArnHasBeenSet;
+
     Aws::String m_fromBlueprintId;
     bool m_fromBlueprintIdHasBeenSet;
+
     Aws::String m_fromBundleId;
     bool m_fromBundleIdHasBeenSet;
+
     int m_sizeInGb;
     bool m_sizeInGbHasBeenSet;
   };

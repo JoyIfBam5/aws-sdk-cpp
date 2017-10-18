@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticfilesystem/EFS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticfilesystem/model/FileSystemDescription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     DescribeFileSystemsResult();
-    DescribeFileSystemsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeFileSystemsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeFileSystemsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeFileSystemsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Present if provided by caller in the request (String).</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>Present if provided by caller in the request (String).</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p>Present if provided by caller in the request (String).</p>
@@ -69,12 +72,13 @@ namespace Model
     /**
      * <p>Present if provided by caller in the request (String).</p>
      */
-    inline DescribeFileSystemsResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeFileSystemsResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>Present if provided by caller in the request (String).</p>
      */
     inline DescribeFileSystemsResult& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>Array of file system descriptions.</p>
@@ -89,7 +93,7 @@ namespace Model
     /**
      * <p>Array of file system descriptions.</p>
      */
-    inline void SetFileSystems(Aws::Vector<FileSystemDescription>&& value) { m_fileSystems = value; }
+    inline void SetFileSystems(Aws::Vector<FileSystemDescription>&& value) { m_fileSystems = std::move(value); }
 
     /**
      * <p>Array of file system descriptions.</p>
@@ -99,7 +103,7 @@ namespace Model
     /**
      * <p>Array of file system descriptions.</p>
      */
-    inline DescribeFileSystemsResult& WithFileSystems(Aws::Vector<FileSystemDescription>&& value) { SetFileSystems(value); return *this;}
+    inline DescribeFileSystemsResult& WithFileSystems(Aws::Vector<FileSystemDescription>&& value) { SetFileSystems(std::move(value)); return *this;}
 
     /**
      * <p>Array of file system descriptions.</p>
@@ -109,7 +113,8 @@ namespace Model
     /**
      * <p>Array of file system descriptions.</p>
      */
-    inline DescribeFileSystemsResult& AddFileSystems(FileSystemDescription&& value) { m_fileSystems.push_back(value); return *this; }
+    inline DescribeFileSystemsResult& AddFileSystems(FileSystemDescription&& value) { m_fileSystems.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Present if there are more file systems than returned in the response
@@ -130,7 +135,7 @@ namespace Model
      * (String). You can use the <code>NextMarker</code> in the subsequent request to
      * fetch the descriptions.</p>
      */
-    inline void SetNextMarker(Aws::String&& value) { m_nextMarker = value; }
+    inline void SetNextMarker(Aws::String&& value) { m_nextMarker = std::move(value); }
 
     /**
      * <p>Present if there are more file systems than returned in the response
@@ -151,7 +156,7 @@ namespace Model
      * (String). You can use the <code>NextMarker</code> in the subsequent request to
      * fetch the descriptions.</p>
      */
-    inline DescribeFileSystemsResult& WithNextMarker(Aws::String&& value) { SetNextMarker(value); return *this;}
+    inline DescribeFileSystemsResult& WithNextMarker(Aws::String&& value) { SetNextMarker(std::move(value)); return *this;}
 
     /**
      * <p>Present if there are more file systems than returned in the response
@@ -161,8 +166,11 @@ namespace Model
     inline DescribeFileSystemsResult& WithNextMarker(const char* value) { SetNextMarker(value); return *this;}
 
   private:
+
     Aws::String m_marker;
+
     Aws::Vector<FileSystemDescription> m_fileSystems;
+
     Aws::String m_nextMarker;
   };
 

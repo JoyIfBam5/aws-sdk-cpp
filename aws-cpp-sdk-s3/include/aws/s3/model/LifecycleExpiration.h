@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -39,6 +41,7 @@ namespace Model
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
 
+
     /**
      * Indicates at what date the object is to be moved or deleted. Should be in GMT
      * ISO 8601 Format.
@@ -55,7 +58,7 @@ namespace Model
      * Indicates at what date the object is to be moved or deleted. Should be in GMT
      * ISO 8601 Format.
      */
-    inline void SetDate(Aws::Utils::DateTime&& value) { m_dateHasBeenSet = true; m_date = value; }
+    inline void SetDate(Aws::Utils::DateTime&& value) { m_dateHasBeenSet = true; m_date = std::move(value); }
 
     /**
      * Indicates at what date the object is to be moved or deleted. Should be in GMT
@@ -67,7 +70,8 @@ namespace Model
      * Indicates at what date the object is to be moved or deleted. Should be in GMT
      * ISO 8601 Format.
      */
-    inline LifecycleExpiration& WithDate(Aws::Utils::DateTime&& value) { SetDate(value); return *this;}
+    inline LifecycleExpiration& WithDate(Aws::Utils::DateTime&& value) { SetDate(std::move(value)); return *this;}
+
 
     /**
      * Indicates the lifetime, in days, of the objects that are subject to the rule.
@@ -86,6 +90,7 @@ namespace Model
      * The value must be a non-zero positive integer.
      */
     inline LifecycleExpiration& WithDays(int value) { SetDays(value); return *this;}
+
 
     /**
      * Indicates whether Amazon S3 will remove a delete marker with no noncurrent
@@ -112,10 +117,13 @@ namespace Model
     inline LifecycleExpiration& WithExpiredObjectDeleteMarker(bool value) { SetExpiredObjectDeleteMarker(value); return *this;}
 
   private:
+
     Aws::Utils::DateTime m_date;
     bool m_dateHasBeenSet;
+
     int m_days;
     bool m_daysHasBeenSet;
+
     bool m_expiredObjectDeleteMarker;
     bool m_expiredObjectDeleteMarkerHasBeenSet;
   };

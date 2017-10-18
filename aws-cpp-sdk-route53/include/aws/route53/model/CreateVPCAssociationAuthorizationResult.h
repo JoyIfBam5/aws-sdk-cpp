@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53/Route53_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/route53/model/VPC.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,7 +37,8 @@ namespace Model
 {
   /**
    * <p>A complex type that contains the response information from a
-   * CreateVPCAssociationAuthorization request.</p><p><h3>See Also:</h3>   <a
+   * <code>CreateVPCAssociationAuthorization</code> request.</p><p><h3>See Also:</h3>
+   * <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateVPCAssociationAuthorizationResponse">AWS
    * API Reference</a></p>
    */
@@ -43,8 +46,9 @@ namespace Model
   {
   public:
     CreateVPCAssociationAuthorizationResult();
-    CreateVPCAssociationAuthorizationResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    CreateVPCAssociationAuthorizationResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CreateVPCAssociationAuthorizationResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CreateVPCAssociationAuthorizationResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>The ID of the hosted zone that you authorized associating a VPC with.</p>
@@ -59,7 +63,7 @@ namespace Model
     /**
      * <p>The ID of the hosted zone that you authorized associating a VPC with.</p>
      */
-    inline void SetHostedZoneId(Aws::String&& value) { m_hostedZoneId = value; }
+    inline void SetHostedZoneId(Aws::String&& value) { m_hostedZoneId = std::move(value); }
 
     /**
      * <p>The ID of the hosted zone that you authorized associating a VPC with.</p>
@@ -74,12 +78,13 @@ namespace Model
     /**
      * <p>The ID of the hosted zone that you authorized associating a VPC with.</p>
      */
-    inline CreateVPCAssociationAuthorizationResult& WithHostedZoneId(Aws::String&& value) { SetHostedZoneId(value); return *this;}
+    inline CreateVPCAssociationAuthorizationResult& WithHostedZoneId(Aws::String&& value) { SetHostedZoneId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the hosted zone that you authorized associating a VPC with.</p>
      */
     inline CreateVPCAssociationAuthorizationResult& WithHostedZoneId(const char* value) { SetHostedZoneId(value); return *this;}
+
 
     /**
      * <p>The VPC that you authorized associating with a hosted zone.</p>
@@ -94,7 +99,7 @@ namespace Model
     /**
      * <p>The VPC that you authorized associating with a hosted zone.</p>
      */
-    inline void SetVPC(VPC&& value) { m_vPC = value; }
+    inline void SetVPC(VPC&& value) { m_vPC = std::move(value); }
 
     /**
      * <p>The VPC that you authorized associating with a hosted zone.</p>
@@ -104,10 +109,12 @@ namespace Model
     /**
      * <p>The VPC that you authorized associating with a hosted zone.</p>
      */
-    inline CreateVPCAssociationAuthorizationResult& WithVPC(VPC&& value) { SetVPC(value); return *this;}
+    inline CreateVPCAssociationAuthorizationResult& WithVPC(VPC&& value) { SetVPC(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_hostedZoneId;
+
     VPC m_vPC;
   };
 

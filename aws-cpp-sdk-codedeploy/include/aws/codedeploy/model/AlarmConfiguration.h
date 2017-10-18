@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codedeploy/CodeDeploy_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/codedeploy/model/Alarm.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     AlarmConfiguration& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Indicates whether the alarm configuration is enabled.</p>
      */
@@ -59,6 +62,7 @@ namespace Model
      * <p>Indicates whether the alarm configuration is enabled.</p>
      */
     inline AlarmConfiguration& WithEnabled(bool value) { SetEnabled(value); return *this;}
+
 
     /**
      * <p>Indicates whether a deployment should continue if information about the
@@ -90,6 +94,7 @@ namespace Model
      */
     inline AlarmConfiguration& WithIgnorePollAlarmFailure(bool value) { SetIgnorePollAlarmFailure(value); return *this;}
 
+
     /**
      * <p>A list of alarms configured for the deployment group. A maximum of 10 alarms
      * can be added to a deployment group.</p>
@@ -106,7 +111,7 @@ namespace Model
      * <p>A list of alarms configured for the deployment group. A maximum of 10 alarms
      * can be added to a deployment group.</p>
      */
-    inline void SetAlarms(Aws::Vector<Alarm>&& value) { m_alarmsHasBeenSet = true; m_alarms = value; }
+    inline void SetAlarms(Aws::Vector<Alarm>&& value) { m_alarmsHasBeenSet = true; m_alarms = std::move(value); }
 
     /**
      * <p>A list of alarms configured for the deployment group. A maximum of 10 alarms
@@ -118,7 +123,7 @@ namespace Model
      * <p>A list of alarms configured for the deployment group. A maximum of 10 alarms
      * can be added to a deployment group.</p>
      */
-    inline AlarmConfiguration& WithAlarms(Aws::Vector<Alarm>&& value) { SetAlarms(value); return *this;}
+    inline AlarmConfiguration& WithAlarms(Aws::Vector<Alarm>&& value) { SetAlarms(std::move(value)); return *this;}
 
     /**
      * <p>A list of alarms configured for the deployment group. A maximum of 10 alarms
@@ -130,13 +135,16 @@ namespace Model
      * <p>A list of alarms configured for the deployment group. A maximum of 10 alarms
      * can be added to a deployment group.</p>
      */
-    inline AlarmConfiguration& AddAlarms(Alarm&& value) { m_alarmsHasBeenSet = true; m_alarms.push_back(value); return *this; }
+    inline AlarmConfiguration& AddAlarms(Alarm&& value) { m_alarmsHasBeenSet = true; m_alarms.push_back(std::move(value)); return *this; }
 
   private:
+
     bool m_enabled;
     bool m_enabledHasBeenSet;
+
     bool m_ignorePollAlarmFailure;
     bool m_ignorePollAlarmFailureHasBeenSet;
+
     Aws::Vector<Alarm> m_alarms;
     bool m_alarmsHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/application-autoscaling/model/ScalingPolicy.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -38,6 +39,7 @@ ScalingPolicy::ScalingPolicy() :
     m_policyType(PolicyType::NOT_SET),
     m_policyTypeHasBeenSet(false),
     m_stepScalingPolicyConfigurationHasBeenSet(false),
+    m_targetTrackingScalingPolicyConfigurationHasBeenSet(false),
     m_alarmsHasBeenSet(false),
     m_creationTimeHasBeenSet(false)
 {
@@ -54,6 +56,7 @@ ScalingPolicy::ScalingPolicy(const JsonValue& jsonValue) :
     m_policyType(PolicyType::NOT_SET),
     m_policyTypeHasBeenSet(false),
     m_stepScalingPolicyConfigurationHasBeenSet(false),
+    m_targetTrackingScalingPolicyConfigurationHasBeenSet(false),
     m_alarmsHasBeenSet(false),
     m_creationTimeHasBeenSet(false)
 {
@@ -109,6 +112,13 @@ ScalingPolicy& ScalingPolicy::operator =(const JsonValue& jsonValue)
     m_stepScalingPolicyConfiguration = jsonValue.GetObject("StepScalingPolicyConfiguration");
 
     m_stepScalingPolicyConfigurationHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("TargetTrackingScalingPolicyConfiguration"))
+  {
+    m_targetTrackingScalingPolicyConfiguration = jsonValue.GetObject("TargetTrackingScalingPolicyConfiguration");
+
+    m_targetTrackingScalingPolicyConfigurationHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("Alarms"))
@@ -171,6 +181,12 @@ JsonValue ScalingPolicy::Jsonize() const
   if(m_stepScalingPolicyConfigurationHasBeenSet)
   {
    payload.WithObject("StepScalingPolicyConfiguration", m_stepScalingPolicyConfiguration.Jsonize());
+
+  }
+
+  if(m_targetTrackingScalingPolicyConfigurationHasBeenSet)
+  {
+   payload.WithObject("TargetTrackingScalingPolicyConfiguration", m_targetTrackingScalingPolicyConfiguration.Jsonize());
 
   }
 

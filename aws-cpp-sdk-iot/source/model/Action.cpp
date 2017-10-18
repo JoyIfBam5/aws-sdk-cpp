@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/iot/model/Action.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -39,7 +40,8 @@ Action::Action() :
     m_firehoseHasBeenSet(false),
     m_cloudwatchMetricHasBeenSet(false),
     m_cloudwatchAlarmHasBeenSet(false),
-    m_elasticsearchHasBeenSet(false)
+    m_elasticsearchHasBeenSet(false),
+    m_salesforceHasBeenSet(false)
 {
 }
 
@@ -55,7 +57,8 @@ Action::Action(const JsonValue& jsonValue) :
     m_firehoseHasBeenSet(false),
     m_cloudwatchMetricHasBeenSet(false),
     m_cloudwatchAlarmHasBeenSet(false),
-    m_elasticsearchHasBeenSet(false)
+    m_elasticsearchHasBeenSet(false),
+    m_salesforceHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -146,6 +149,13 @@ Action& Action::operator =(const JsonValue& jsonValue)
     m_elasticsearchHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("salesforce"))
+  {
+    m_salesforce = jsonValue.GetObject("salesforce");
+
+    m_salesforceHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -222,6 +232,12 @@ JsonValue Action::Jsonize() const
   if(m_elasticsearchHasBeenSet)
   {
    payload.WithObject("elasticsearch", m_elasticsearch.Jsonize());
+
+  }
+
+  if(m_salesforceHasBeenSet)
+  {
+   payload.WithObject("salesforce", m_salesforce.Jsonize());
 
   }
 

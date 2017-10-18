@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53/Route53_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/route53/model/GeoLocationDetails.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     ListGeoLocationsResult();
-    ListGeoLocationsResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    ListGeoLocationsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ListGeoLocationsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ListGeoLocationsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>A complex type that contains one <code>GeoLocationDetails</code> element for
@@ -63,7 +66,7 @@ namespace Model
      * <p>A complex type that contains one <code>GeoLocationDetails</code> element for
      * each location that Amazon Route 53 supports for geolocation.</p>
      */
-    inline void SetGeoLocationDetailsList(Aws::Vector<GeoLocationDetails>&& value) { m_geoLocationDetailsList = value; }
+    inline void SetGeoLocationDetailsList(Aws::Vector<GeoLocationDetails>&& value) { m_geoLocationDetailsList = std::move(value); }
 
     /**
      * <p>A complex type that contains one <code>GeoLocationDetails</code> element for
@@ -75,7 +78,7 @@ namespace Model
      * <p>A complex type that contains one <code>GeoLocationDetails</code> element for
      * each location that Amazon Route 53 supports for geolocation.</p>
      */
-    inline ListGeoLocationsResult& WithGeoLocationDetailsList(Aws::Vector<GeoLocationDetails>&& value) { SetGeoLocationDetailsList(value); return *this;}
+    inline ListGeoLocationsResult& WithGeoLocationDetailsList(Aws::Vector<GeoLocationDetails>&& value) { SetGeoLocationDetailsList(std::move(value)); return *this;}
 
     /**
      * <p>A complex type that contains one <code>GeoLocationDetails</code> element for
@@ -87,7 +90,8 @@ namespace Model
      * <p>A complex type that contains one <code>GeoLocationDetails</code> element for
      * each location that Amazon Route 53 supports for geolocation.</p>
      */
-    inline ListGeoLocationsResult& AddGeoLocationDetailsList(GeoLocationDetails&& value) { m_geoLocationDetailsList.push_back(value); return *this; }
+    inline ListGeoLocationsResult& AddGeoLocationDetailsList(GeoLocationDetails&& value) { m_geoLocationDetailsList.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>A value that indicates whether more locations remain to be listed after the
@@ -122,11 +126,12 @@ namespace Model
      */
     inline ListGeoLocationsResult& WithIsTruncated(bool value) { SetIsTruncated(value); return *this;}
 
+
     /**
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextContinentCode</code> in the <code>StartContinentCode</code> parameter
-     * in another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * in another <code>ListGeoLocations</code> request.</p>
      */
     inline const Aws::String& GetNextContinentCode() const{ return m_nextContinentCode; }
 
@@ -134,7 +139,7 @@ namespace Model
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextContinentCode</code> in the <code>StartContinentCode</code> parameter
-     * in another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * in another <code>ListGeoLocations</code> request.</p>
      */
     inline void SetNextContinentCode(const Aws::String& value) { m_nextContinentCode = value; }
 
@@ -142,15 +147,15 @@ namespace Model
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextContinentCode</code> in the <code>StartContinentCode</code> parameter
-     * in another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * in another <code>ListGeoLocations</code> request.</p>
      */
-    inline void SetNextContinentCode(Aws::String&& value) { m_nextContinentCode = value; }
+    inline void SetNextContinentCode(Aws::String&& value) { m_nextContinentCode = std::move(value); }
 
     /**
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextContinentCode</code> in the <code>StartContinentCode</code> parameter
-     * in another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * in another <code>ListGeoLocations</code> request.</p>
      */
     inline void SetNextContinentCode(const char* value) { m_nextContinentCode.assign(value); }
 
@@ -158,7 +163,7 @@ namespace Model
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextContinentCode</code> in the <code>StartContinentCode</code> parameter
-     * in another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * in another <code>ListGeoLocations</code> request.</p>
      */
     inline ListGeoLocationsResult& WithNextContinentCode(const Aws::String& value) { SetNextContinentCode(value); return *this;}
 
@@ -166,23 +171,24 @@ namespace Model
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextContinentCode</code> in the <code>StartContinentCode</code> parameter
-     * in another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * in another <code>ListGeoLocations</code> request.</p>
      */
-    inline ListGeoLocationsResult& WithNextContinentCode(Aws::String&& value) { SetNextContinentCode(value); return *this;}
+    inline ListGeoLocationsResult& WithNextContinentCode(Aws::String&& value) { SetNextContinentCode(std::move(value)); return *this;}
 
     /**
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextContinentCode</code> in the <code>StartContinentCode</code> parameter
-     * in another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * in another <code>ListGeoLocations</code> request.</p>
      */
     inline ListGeoLocationsResult& WithNextContinentCode(const char* value) { SetNextContinentCode(value); return *this;}
+
 
     /**
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextCountryCode</code> in the <code>StartCountryCode</code> parameter in
-     * another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * another <code>ListGeoLocations</code> request.</p>
      */
     inline const Aws::String& GetNextCountryCode() const{ return m_nextCountryCode; }
 
@@ -190,7 +196,7 @@ namespace Model
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextCountryCode</code> in the <code>StartCountryCode</code> parameter in
-     * another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * another <code>ListGeoLocations</code> request.</p>
      */
     inline void SetNextCountryCode(const Aws::String& value) { m_nextCountryCode = value; }
 
@@ -198,15 +204,15 @@ namespace Model
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextCountryCode</code> in the <code>StartCountryCode</code> parameter in
-     * another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * another <code>ListGeoLocations</code> request.</p>
      */
-    inline void SetNextCountryCode(Aws::String&& value) { m_nextCountryCode = value; }
+    inline void SetNextCountryCode(Aws::String&& value) { m_nextCountryCode = std::move(value); }
 
     /**
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextCountryCode</code> in the <code>StartCountryCode</code> parameter in
-     * another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * another <code>ListGeoLocations</code> request.</p>
      */
     inline void SetNextCountryCode(const char* value) { m_nextCountryCode.assign(value); }
 
@@ -214,7 +220,7 @@ namespace Model
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextCountryCode</code> in the <code>StartCountryCode</code> parameter in
-     * another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * another <code>ListGeoLocations</code> request.</p>
      */
     inline ListGeoLocationsResult& WithNextCountryCode(const Aws::String& value) { SetNextCountryCode(value); return *this;}
 
@@ -222,23 +228,24 @@ namespace Model
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextCountryCode</code> in the <code>StartCountryCode</code> parameter in
-     * another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * another <code>ListGeoLocations</code> request.</p>
      */
-    inline ListGeoLocationsResult& WithNextCountryCode(Aws::String&& value) { SetNextCountryCode(value); return *this;}
+    inline ListGeoLocationsResult& WithNextCountryCode(Aws::String&& value) { SetNextCountryCode(std::move(value)); return *this;}
 
     /**
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextCountryCode</code> in the <code>StartCountryCode</code> parameter in
-     * another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * another <code>ListGeoLocations</code> request.</p>
      */
     inline ListGeoLocationsResult& WithNextCountryCode(const char* value) { SetNextCountryCode(value); return *this;}
+
 
     /**
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextSubdivisionCode</code> in the <code>StartSubdivisionCode</code>
-     * parameter in another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * parameter in another <code>ListGeoLocations</code> request.</p>
      */
     inline const Aws::String& GetNextSubdivisionCode() const{ return m_nextSubdivisionCode; }
 
@@ -246,7 +253,7 @@ namespace Model
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextSubdivisionCode</code> in the <code>StartSubdivisionCode</code>
-     * parameter in another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * parameter in another <code>ListGeoLocations</code> request.</p>
      */
     inline void SetNextSubdivisionCode(const Aws::String& value) { m_nextSubdivisionCode = value; }
 
@@ -254,15 +261,15 @@ namespace Model
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextSubdivisionCode</code> in the <code>StartSubdivisionCode</code>
-     * parameter in another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * parameter in another <code>ListGeoLocations</code> request.</p>
      */
-    inline void SetNextSubdivisionCode(Aws::String&& value) { m_nextSubdivisionCode = value; }
+    inline void SetNextSubdivisionCode(Aws::String&& value) { m_nextSubdivisionCode = std::move(value); }
 
     /**
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextSubdivisionCode</code> in the <code>StartSubdivisionCode</code>
-     * parameter in another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * parameter in another <code>ListGeoLocations</code> request.</p>
      */
     inline void SetNextSubdivisionCode(const char* value) { m_nextSubdivisionCode.assign(value); }
 
@@ -270,7 +277,7 @@ namespace Model
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextSubdivisionCode</code> in the <code>StartSubdivisionCode</code>
-     * parameter in another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * parameter in another <code>ListGeoLocations</code> request.</p>
      */
     inline ListGeoLocationsResult& WithNextSubdivisionCode(const Aws::String& value) { SetNextSubdivisionCode(value); return *this;}
 
@@ -278,17 +285,18 @@ namespace Model
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextSubdivisionCode</code> in the <code>StartSubdivisionCode</code>
-     * parameter in another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * parameter in another <code>ListGeoLocations</code> request.</p>
      */
-    inline ListGeoLocationsResult& WithNextSubdivisionCode(Aws::String&& value) { SetNextSubdivisionCode(value); return *this;}
+    inline ListGeoLocationsResult& WithNextSubdivisionCode(Aws::String&& value) { SetNextSubdivisionCode(std::move(value)); return *this;}
 
     /**
      * <p>If <code>IsTruncated</code> is <code>true</code>, you can make a follow-up
      * request to display more locations. Enter the value of
      * <code>NextSubdivisionCode</code> in the <code>StartSubdivisionCode</code>
-     * parameter in another <code>GET</code> <code>ListGeoLocations</code> request.</p>
+     * parameter in another <code>ListGeoLocations</code> request.</p>
      */
     inline ListGeoLocationsResult& WithNextSubdivisionCode(const char* value) { SetNextSubdivisionCode(value); return *this;}
+
 
     /**
      * <p>The value that you specified for <code>MaxItems</code> in the request.</p>
@@ -303,7 +311,7 @@ namespace Model
     /**
      * <p>The value that you specified for <code>MaxItems</code> in the request.</p>
      */
-    inline void SetMaxItems(Aws::String&& value) { m_maxItems = value; }
+    inline void SetMaxItems(Aws::String&& value) { m_maxItems = std::move(value); }
 
     /**
      * <p>The value that you specified for <code>MaxItems</code> in the request.</p>
@@ -318,7 +326,7 @@ namespace Model
     /**
      * <p>The value that you specified for <code>MaxItems</code> in the request.</p>
      */
-    inline ListGeoLocationsResult& WithMaxItems(Aws::String&& value) { SetMaxItems(value); return *this;}
+    inline ListGeoLocationsResult& WithMaxItems(Aws::String&& value) { SetMaxItems(std::move(value)); return *this;}
 
     /**
      * <p>The value that you specified for <code>MaxItems</code> in the request.</p>
@@ -326,11 +334,17 @@ namespace Model
     inline ListGeoLocationsResult& WithMaxItems(const char* value) { SetMaxItems(value); return *this;}
 
   private:
+
     Aws::Vector<GeoLocationDetails> m_geoLocationDetailsList;
+
     bool m_isTruncated;
+
     Aws::String m_nextContinentCode;
+
     Aws::String m_nextCountryCode;
+
     Aws::String m_nextSubdivisionCode;
+
     Aws::String m_maxItems;
   };
 

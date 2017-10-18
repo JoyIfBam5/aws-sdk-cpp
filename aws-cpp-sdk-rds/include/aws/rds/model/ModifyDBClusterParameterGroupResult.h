@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/rds/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,13 +44,14 @@ namespace Model
   {
   public:
     ModifyDBClusterParameterGroupResult();
-    ModifyDBClusterParameterGroupResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    ModifyDBClusterParameterGroupResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ModifyDBClusterParameterGroupResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ModifyDBClusterParameterGroupResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>The name of the DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li>
-     * <p>Must be 1 to 255 alphanumeric characters</p> </li> <li> <p>First character
-     * must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
+     * <p>Must be 1 to 255 letters or numbers.</p> </li> <li> <p>First character must
+     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
      * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
      * lowercase string.</p> </note>
      */
@@ -56,8 +59,8 @@ namespace Model
 
     /**
      * <p>The name of the DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li>
-     * <p>Must be 1 to 255 alphanumeric characters</p> </li> <li> <p>First character
-     * must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
+     * <p>Must be 1 to 255 letters or numbers.</p> </li> <li> <p>First character must
+     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
      * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
      * lowercase string.</p> </note>
      */
@@ -65,17 +68,17 @@ namespace Model
 
     /**
      * <p>The name of the DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li>
-     * <p>Must be 1 to 255 alphanumeric characters</p> </li> <li> <p>First character
-     * must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
+     * <p>Must be 1 to 255 letters or numbers.</p> </li> <li> <p>First character must
+     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
      * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
      * lowercase string.</p> </note>
      */
-    inline void SetDBClusterParameterGroupName(Aws::String&& value) { m_dBClusterParameterGroupName = value; }
+    inline void SetDBClusterParameterGroupName(Aws::String&& value) { m_dBClusterParameterGroupName = std::move(value); }
 
     /**
      * <p>The name of the DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li>
-     * <p>Must be 1 to 255 alphanumeric characters</p> </li> <li> <p>First character
-     * must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
+     * <p>Must be 1 to 255 letters or numbers.</p> </li> <li> <p>First character must
+     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
      * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
      * lowercase string.</p> </note>
      */
@@ -83,8 +86,8 @@ namespace Model
 
     /**
      * <p>The name of the DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li>
-     * <p>Must be 1 to 255 alphanumeric characters</p> </li> <li> <p>First character
-     * must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
+     * <p>Must be 1 to 255 letters or numbers.</p> </li> <li> <p>First character must
+     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
      * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
      * lowercase string.</p> </note>
      */
@@ -92,21 +95,22 @@ namespace Model
 
     /**
      * <p>The name of the DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li>
-     * <p>Must be 1 to 255 alphanumeric characters</p> </li> <li> <p>First character
-     * must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
+     * <p>Must be 1 to 255 letters or numbers.</p> </li> <li> <p>First character must
+     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
      * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
      * lowercase string.</p> </note>
      */
-    inline ModifyDBClusterParameterGroupResult& WithDBClusterParameterGroupName(Aws::String&& value) { SetDBClusterParameterGroupName(value); return *this;}
+    inline ModifyDBClusterParameterGroupResult& WithDBClusterParameterGroupName(Aws::String&& value) { SetDBClusterParameterGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li>
-     * <p>Must be 1 to 255 alphanumeric characters</p> </li> <li> <p>First character
-     * must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
+     * <p>Must be 1 to 255 letters or numbers.</p> </li> <li> <p>First character must
+     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
      * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
      * lowercase string.</p> </note>
      */
     inline ModifyDBClusterParameterGroupResult& WithDBClusterParameterGroupName(const char* value) { SetDBClusterParameterGroupName(value); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -115,16 +119,18 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline ModifyDBClusterParameterGroupResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline ModifyDBClusterParameterGroupResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline ModifyDBClusterParameterGroupResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_dBClusterParameterGroupName;
+
     ResponseMetadata m_responseMetadata;
   };
 

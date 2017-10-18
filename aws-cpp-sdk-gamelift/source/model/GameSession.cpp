@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/gamelift/model/GameSession.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -45,7 +46,8 @@ GameSession::GameSession() :
     m_portHasBeenSet(false),
     m_playerSessionCreationPolicy(PlayerSessionCreationPolicy::NOT_SET),
     m_playerSessionCreationPolicyHasBeenSet(false),
-    m_creatorIdHasBeenSet(false)
+    m_creatorIdHasBeenSet(false),
+    m_gameSessionDataHasBeenSet(false)
 {
 }
 
@@ -67,7 +69,8 @@ GameSession::GameSession(const JsonValue& jsonValue) :
     m_portHasBeenSet(false),
     m_playerSessionCreationPolicy(PlayerSessionCreationPolicy::NOT_SET),
     m_playerSessionCreationPolicyHasBeenSet(false),
-    m_creatorIdHasBeenSet(false)
+    m_creatorIdHasBeenSet(false),
+    m_gameSessionDataHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -168,6 +171,13 @@ GameSession& GameSession::operator =(const JsonValue& jsonValue)
     m_creatorIdHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("GameSessionData"))
+  {
+    m_gameSessionData = jsonValue.GetString("GameSessionData");
+
+    m_gameSessionDataHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -251,6 +261,12 @@ JsonValue GameSession::Jsonize() const
   if(m_creatorIdHasBeenSet)
   {
    payload.WithString("CreatorId", m_creatorId);
+
+  }
+
+  if(m_gameSessionDataHasBeenSet)
+  {
+   payload.WithString("GameSessionData", m_gameSessionData);
 
   }
 

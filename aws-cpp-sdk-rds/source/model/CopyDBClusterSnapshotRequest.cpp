@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/rds/model/CopyDBClusterSnapshotRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -22,6 +23,10 @@ using namespace Aws::Utils;
 CopyDBClusterSnapshotRequest::CopyDBClusterSnapshotRequest() : 
     m_sourceDBClusterSnapshotIdentifierHasBeenSet(false),
     m_targetDBClusterSnapshotIdentifierHasBeenSet(false),
+    m_kmsKeyIdHasBeenSet(false),
+    m_preSignedUrlHasBeenSet(false),
+    m_copyTags(false),
+    m_copyTagsHasBeenSet(false),
     m_tagsHasBeenSet(false)
 {
 }
@@ -40,6 +45,21 @@ Aws::String CopyDBClusterSnapshotRequest::SerializePayload() const
     ss << "TargetDBClusterSnapshotIdentifier=" << StringUtils::URLEncode(m_targetDBClusterSnapshotIdentifier.c_str()) << "&";
   }
 
+  if(m_kmsKeyIdHasBeenSet)
+  {
+    ss << "KmsKeyId=" << StringUtils::URLEncode(m_kmsKeyId.c_str()) << "&";
+  }
+
+  if(m_preSignedUrlHasBeenSet)
+  {
+    ss << "PreSignedUrl=" << StringUtils::URLEncode(m_preSignedUrl.c_str()) << "&";
+  }
+
+  if(m_copyTagsHasBeenSet)
+  {
+    ss << "CopyTags=" << std::boolalpha << m_copyTags << "&";
+  }
+
   if(m_tagsHasBeenSet)
   {
     unsigned tagsCount = 1;
@@ -54,3 +74,8 @@ Aws::String CopyDBClusterSnapshotRequest::SerializePayload() const
   return ss.str();
 }
 
+
+void  CopyDBClusterSnapshotRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

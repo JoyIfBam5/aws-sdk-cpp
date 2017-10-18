@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/elasticmapreduce/model/RunJobFlowRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -42,7 +43,12 @@ RunJobFlowRequest::RunJobFlowRequest() :
     m_securityConfigurationHasBeenSet(false),
     m_autoScalingRoleHasBeenSet(false),
     m_scaleDownBehavior(ScaleDownBehavior::NOT_SET),
-    m_scaleDownBehaviorHasBeenSet(false)
+    m_scaleDownBehaviorHasBeenSet(false),
+    m_customAmiIdHasBeenSet(false),
+    m_ebsRootVolumeSize(0),
+    m_ebsRootVolumeSizeHasBeenSet(false),
+    m_repoUpgradeOnBoot(RepoUpgradeOnBoot::NOT_SET),
+    m_repoUpgradeOnBootHasBeenSet(false)
 {
 }
 
@@ -198,6 +204,23 @@ Aws::String RunJobFlowRequest::SerializePayload() const
    payload.WithString("ScaleDownBehavior", ScaleDownBehaviorMapper::GetNameForScaleDownBehavior(m_scaleDownBehavior));
   }
 
+  if(m_customAmiIdHasBeenSet)
+  {
+   payload.WithString("CustomAmiId", m_customAmiId);
+
+  }
+
+  if(m_ebsRootVolumeSizeHasBeenSet)
+  {
+   payload.WithInteger("EbsRootVolumeSize", m_ebsRootVolumeSize);
+
+  }
+
+  if(m_repoUpgradeOnBootHasBeenSet)
+  {
+   payload.WithString("RepoUpgradeOnBoot", RepoUpgradeOnBootMapper::GetNameForRepoUpgradeOnBoot(m_repoUpgradeOnBoot));
+  }
+
   return payload.WriteReadable();
 }
 
@@ -208,6 +231,7 @@ Aws::Http::HeaderValueCollection RunJobFlowRequest::GetRequestSpecificHeaders() 
   return headers;
 
 }
+
 
 
 

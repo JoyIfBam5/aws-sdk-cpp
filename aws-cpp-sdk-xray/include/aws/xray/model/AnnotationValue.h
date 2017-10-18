@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/xray/XRay_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     AnnotationValue& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Value for a Number annotation.</p>
      */
@@ -58,6 +61,7 @@ namespace Model
      * <p>Value for a Number annotation.</p>
      */
     inline AnnotationValue& WithNumberValue(double value) { SetNumberValue(value); return *this;}
+
 
     /**
      * <p>Value for a Boolean annotation.</p>
@@ -74,6 +78,7 @@ namespace Model
      */
     inline AnnotationValue& WithBooleanValue(bool value) { SetBooleanValue(value); return *this;}
 
+
     /**
      * <p>Value for a String annotation.</p>
      */
@@ -87,7 +92,7 @@ namespace Model
     /**
      * <p>Value for a String annotation.</p>
      */
-    inline void SetStringValue(Aws::String&& value) { m_stringValueHasBeenSet = true; m_stringValue = value; }
+    inline void SetStringValue(Aws::String&& value) { m_stringValueHasBeenSet = true; m_stringValue = std::move(value); }
 
     /**
      * <p>Value for a String annotation.</p>
@@ -102,7 +107,7 @@ namespace Model
     /**
      * <p>Value for a String annotation.</p>
      */
-    inline AnnotationValue& WithStringValue(Aws::String&& value) { SetStringValue(value); return *this;}
+    inline AnnotationValue& WithStringValue(Aws::String&& value) { SetStringValue(std::move(value)); return *this;}
 
     /**
      * <p>Value for a String annotation.</p>
@@ -110,10 +115,13 @@ namespace Model
     inline AnnotationValue& WithStringValue(const char* value) { SetStringValue(value); return *this;}
 
   private:
+
     double m_numberValue;
     bool m_numberValueHasBeenSet;
+
     bool m_booleanValue;
     bool m_booleanValueHasBeenSet;
+
     Aws::String m_stringValue;
     bool m_stringValueHasBeenSet;
   };

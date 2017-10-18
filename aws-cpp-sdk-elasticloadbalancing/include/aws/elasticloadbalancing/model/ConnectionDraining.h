@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticloadbalancing/ElasticLoadBalancing_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -46,6 +47,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>Specifies whether connection draining is enabled for the load balancer.</p>
      */
@@ -60,6 +62,7 @@ namespace Model
      * <p>Specifies whether connection draining is enabled for the load balancer.</p>
      */
     inline ConnectionDraining& WithEnabled(bool value) { SetEnabled(value); return *this;}
+
 
     /**
      * <p>The maximum time, in seconds, to keep the existing connections open before
@@ -80,8 +83,10 @@ namespace Model
     inline ConnectionDraining& WithTimeout(int value) { SetTimeout(value); return *this;}
 
   private:
+
     bool m_enabled;
     bool m_enabledHasBeenSet;
+
     int m_timeout;
     bool m_timeoutHasBeenSet;
   };

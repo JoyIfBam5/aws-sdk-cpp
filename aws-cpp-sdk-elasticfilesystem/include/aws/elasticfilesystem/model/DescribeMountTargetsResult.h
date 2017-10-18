@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticfilesystem/EFS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticfilesystem/model/MountTargetDescription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     DescribeMountTargetsResult();
-    DescribeMountTargetsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeMountTargetsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeMountTargetsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeMountTargetsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>If the request included the <code>Marker</code>, the response returns that
@@ -62,7 +65,7 @@ namespace Model
      * <p>If the request included the <code>Marker</code>, the response returns that
      * value in this field.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p>If the request included the <code>Marker</code>, the response returns that
@@ -80,13 +83,14 @@ namespace Model
      * <p>If the request included the <code>Marker</code>, the response returns that
      * value in this field.</p>
      */
-    inline DescribeMountTargetsResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeMountTargetsResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>If the request included the <code>Marker</code>, the response returns that
      * value in this field.</p>
      */
     inline DescribeMountTargetsResult& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>Returns the file system's mount targets as an array of
@@ -104,7 +108,7 @@ namespace Model
      * <p>Returns the file system's mount targets as an array of
      * <code>MountTargetDescription</code> objects.</p>
      */
-    inline void SetMountTargets(Aws::Vector<MountTargetDescription>&& value) { m_mountTargets = value; }
+    inline void SetMountTargets(Aws::Vector<MountTargetDescription>&& value) { m_mountTargets = std::move(value); }
 
     /**
      * <p>Returns the file system's mount targets as an array of
@@ -116,7 +120,7 @@ namespace Model
      * <p>Returns the file system's mount targets as an array of
      * <code>MountTargetDescription</code> objects.</p>
      */
-    inline DescribeMountTargetsResult& WithMountTargets(Aws::Vector<MountTargetDescription>&& value) { SetMountTargets(value); return *this;}
+    inline DescribeMountTargetsResult& WithMountTargets(Aws::Vector<MountTargetDescription>&& value) { SetMountTargets(std::move(value)); return *this;}
 
     /**
      * <p>Returns the file system's mount targets as an array of
@@ -128,7 +132,8 @@ namespace Model
      * <p>Returns the file system's mount targets as an array of
      * <code>MountTargetDescription</code> objects.</p>
      */
-    inline DescribeMountTargetsResult& AddMountTargets(MountTargetDescription&& value) { m_mountTargets.push_back(value); return *this; }
+    inline DescribeMountTargetsResult& AddMountTargets(MountTargetDescription&& value) { m_mountTargets.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>If a value is present, there are more mount targets to return. In a
@@ -149,7 +154,7 @@ namespace Model
      * subsequent request, you can provide <code>Marker</code> in your request with
      * this value to retrieve the next set of mount targets.</p>
      */
-    inline void SetNextMarker(Aws::String&& value) { m_nextMarker = value; }
+    inline void SetNextMarker(Aws::String&& value) { m_nextMarker = std::move(value); }
 
     /**
      * <p>If a value is present, there are more mount targets to return. In a
@@ -170,7 +175,7 @@ namespace Model
      * subsequent request, you can provide <code>Marker</code> in your request with
      * this value to retrieve the next set of mount targets.</p>
      */
-    inline DescribeMountTargetsResult& WithNextMarker(Aws::String&& value) { SetNextMarker(value); return *this;}
+    inline DescribeMountTargetsResult& WithNextMarker(Aws::String&& value) { SetNextMarker(std::move(value)); return *this;}
 
     /**
      * <p>If a value is present, there are more mount targets to return. In a
@@ -180,8 +185,11 @@ namespace Model
     inline DescribeMountTargetsResult& WithNextMarker(const char* value) { SetNextMarker(value); return *this;}
 
   private:
+
     Aws::String m_marker;
+
     Aws::Vector<MountTargetDescription> m_mountTargets;
+
     Aws::String m_nextMarker;
   };
 

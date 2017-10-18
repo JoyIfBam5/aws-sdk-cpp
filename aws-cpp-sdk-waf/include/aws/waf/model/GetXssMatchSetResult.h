@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/model/XssMatchSet.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     GetXssMatchSetResult();
-    GetXssMatchSetResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetXssMatchSetResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetXssMatchSetResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetXssMatchSetResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the <a>XssMatchSet</a> that you specified in the
@@ -79,7 +82,7 @@ namespace Model
      * </p> </li> <li> <p> <a>FieldToMatch</a>: Contains <code>Data</code> and
      * <code>Type</code> </p> </li> </ul>
      */
-    inline void SetXssMatchSet(XssMatchSet&& value) { m_xssMatchSet = value; }
+    inline void SetXssMatchSet(XssMatchSet&& value) { m_xssMatchSet = std::move(value); }
 
     /**
      * <p>Information about the <a>XssMatchSet</a> that you specified in the
@@ -103,9 +106,10 @@ namespace Model
      * </p> </li> <li> <p> <a>FieldToMatch</a>: Contains <code>Data</code> and
      * <code>Type</code> </p> </li> </ul>
      */
-    inline GetXssMatchSetResult& WithXssMatchSet(XssMatchSet&& value) { SetXssMatchSet(value); return *this;}
+    inline GetXssMatchSetResult& WithXssMatchSet(XssMatchSet&& value) { SetXssMatchSet(std::move(value)); return *this;}
 
   private:
+
     XssMatchSet m_xssMatchSet;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -20,6 +21,7 @@
 #include <aws/elasticbeanstalk/model/S3Location.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/elasticbeanstalk/model/ApplicationVersionStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -51,6 +53,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the application to which the application version belongs.</p>
      */
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>The name of the application to which the application version belongs.</p>
      */
-    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = value; }
+    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = std::move(value); }
 
     /**
      * <p>The name of the application to which the application version belongs.</p>
@@ -79,12 +82,13 @@ namespace Model
     /**
      * <p>The name of the application to which the application version belongs.</p>
      */
-    inline ApplicationVersionDescription& WithApplicationName(Aws::String&& value) { SetApplicationName(value); return *this;}
+    inline ApplicationVersionDescription& WithApplicationName(Aws::String&& value) { SetApplicationName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the application to which the application version belongs.</p>
      */
     inline ApplicationVersionDescription& WithApplicationName(const char* value) { SetApplicationName(value); return *this;}
+
 
     /**
      * <p>The description of the application version.</p>
@@ -99,7 +103,7 @@ namespace Model
     /**
      * <p>The description of the application version.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The description of the application version.</p>
@@ -114,12 +118,13 @@ namespace Model
     /**
      * <p>The description of the application version.</p>
      */
-    inline ApplicationVersionDescription& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline ApplicationVersionDescription& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description of the application version.</p>
      */
     inline ApplicationVersionDescription& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>A unique identifier for the application version.</p>
@@ -134,7 +139,7 @@ namespace Model
     /**
      * <p>A unique identifier for the application version.</p>
      */
-    inline void SetVersionLabel(Aws::String&& value) { m_versionLabelHasBeenSet = true; m_versionLabel = value; }
+    inline void SetVersionLabel(Aws::String&& value) { m_versionLabelHasBeenSet = true; m_versionLabel = std::move(value); }
 
     /**
      * <p>A unique identifier for the application version.</p>
@@ -149,12 +154,13 @@ namespace Model
     /**
      * <p>A unique identifier for the application version.</p>
      */
-    inline ApplicationVersionDescription& WithVersionLabel(Aws::String&& value) { SetVersionLabel(value); return *this;}
+    inline ApplicationVersionDescription& WithVersionLabel(Aws::String&& value) { SetVersionLabel(std::move(value)); return *this;}
 
     /**
      * <p>A unique identifier for the application version.</p>
      */
     inline ApplicationVersionDescription& WithVersionLabel(const char* value) { SetVersionLabel(value); return *this;}
+
 
     /**
      * <p>If the version's source code was retrieved from AWS CodeCommit, the location
@@ -172,7 +178,7 @@ namespace Model
      * <p>If the version's source code was retrieved from AWS CodeCommit, the location
      * of the source code for the application version.</p>
      */
-    inline void SetSourceBuildInformation(SourceBuildInformation&& value) { m_sourceBuildInformationHasBeenSet = true; m_sourceBuildInformation = value; }
+    inline void SetSourceBuildInformation(SourceBuildInformation&& value) { m_sourceBuildInformationHasBeenSet = true; m_sourceBuildInformation = std::move(value); }
 
     /**
      * <p>If the version's source code was retrieved from AWS CodeCommit, the location
@@ -184,7 +190,8 @@ namespace Model
      * <p>If the version's source code was retrieved from AWS CodeCommit, the location
      * of the source code for the application version.</p>
      */
-    inline ApplicationVersionDescription& WithSourceBuildInformation(SourceBuildInformation&& value) { SetSourceBuildInformation(value); return *this;}
+    inline ApplicationVersionDescription& WithSourceBuildInformation(SourceBuildInformation&& value) { SetSourceBuildInformation(std::move(value)); return *this;}
+
 
     /**
      * <p>Reference to the artifact from the AWS CodeBuild build.</p>
@@ -199,7 +206,7 @@ namespace Model
     /**
      * <p>Reference to the artifact from the AWS CodeBuild build.</p>
      */
-    inline void SetBuildArn(Aws::String&& value) { m_buildArnHasBeenSet = true; m_buildArn = value; }
+    inline void SetBuildArn(Aws::String&& value) { m_buildArnHasBeenSet = true; m_buildArn = std::move(value); }
 
     /**
      * <p>Reference to the artifact from the AWS CodeBuild build.</p>
@@ -214,12 +221,13 @@ namespace Model
     /**
      * <p>Reference to the artifact from the AWS CodeBuild build.</p>
      */
-    inline ApplicationVersionDescription& WithBuildArn(Aws::String&& value) { SetBuildArn(value); return *this;}
+    inline ApplicationVersionDescription& WithBuildArn(Aws::String&& value) { SetBuildArn(std::move(value)); return *this;}
 
     /**
      * <p>Reference to the artifact from the AWS CodeBuild build.</p>
      */
     inline ApplicationVersionDescription& WithBuildArn(const char* value) { SetBuildArn(value); return *this;}
+
 
     /**
      * <p>The storage location of the application version's source bundle in Amazon
@@ -237,7 +245,7 @@ namespace Model
      * <p>The storage location of the application version's source bundle in Amazon
      * S3.</p>
      */
-    inline void SetSourceBundle(S3Location&& value) { m_sourceBundleHasBeenSet = true; m_sourceBundle = value; }
+    inline void SetSourceBundle(S3Location&& value) { m_sourceBundleHasBeenSet = true; m_sourceBundle = std::move(value); }
 
     /**
      * <p>The storage location of the application version's source bundle in Amazon
@@ -249,7 +257,8 @@ namespace Model
      * <p>The storage location of the application version's source bundle in Amazon
      * S3.</p>
      */
-    inline ApplicationVersionDescription& WithSourceBundle(S3Location&& value) { SetSourceBundle(value); return *this;}
+    inline ApplicationVersionDescription& WithSourceBundle(S3Location&& value) { SetSourceBundle(std::move(value)); return *this;}
+
 
     /**
      * <p>The creation date of the application version.</p>
@@ -264,7 +273,7 @@ namespace Model
     /**
      * <p>The creation date of the application version.</p>
      */
-    inline void SetDateCreated(Aws::Utils::DateTime&& value) { m_dateCreatedHasBeenSet = true; m_dateCreated = value; }
+    inline void SetDateCreated(Aws::Utils::DateTime&& value) { m_dateCreatedHasBeenSet = true; m_dateCreated = std::move(value); }
 
     /**
      * <p>The creation date of the application version.</p>
@@ -274,7 +283,8 @@ namespace Model
     /**
      * <p>The creation date of the application version.</p>
      */
-    inline ApplicationVersionDescription& WithDateCreated(Aws::Utils::DateTime&& value) { SetDateCreated(value); return *this;}
+    inline ApplicationVersionDescription& WithDateCreated(Aws::Utils::DateTime&& value) { SetDateCreated(std::move(value)); return *this;}
+
 
     /**
      * <p>The last modified date of the application version.</p>
@@ -289,7 +299,7 @@ namespace Model
     /**
      * <p>The last modified date of the application version.</p>
      */
-    inline void SetDateUpdated(Aws::Utils::DateTime&& value) { m_dateUpdatedHasBeenSet = true; m_dateUpdated = value; }
+    inline void SetDateUpdated(Aws::Utils::DateTime&& value) { m_dateUpdatedHasBeenSet = true; m_dateUpdated = std::move(value); }
 
     /**
      * <p>The last modified date of the application version.</p>
@@ -299,7 +309,8 @@ namespace Model
     /**
      * <p>The last modified date of the application version.</p>
      */
-    inline ApplicationVersionDescription& WithDateUpdated(Aws::Utils::DateTime&& value) { SetDateUpdated(value); return *this;}
+    inline ApplicationVersionDescription& WithDateUpdated(Aws::Utils::DateTime&& value) { SetDateUpdated(std::move(value)); return *this;}
+
 
     /**
      * <p>The processing status of the application version.</p>
@@ -314,7 +325,7 @@ namespace Model
     /**
      * <p>The processing status of the application version.</p>
      */
-    inline void SetStatus(ApplicationVersionStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(ApplicationVersionStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The processing status of the application version.</p>
@@ -324,25 +335,34 @@ namespace Model
     /**
      * <p>The processing status of the application version.</p>
      */
-    inline ApplicationVersionDescription& WithStatus(ApplicationVersionStatus&& value) { SetStatus(value); return *this;}
+    inline ApplicationVersionDescription& WithStatus(ApplicationVersionStatus&& value) { SetStatus(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_applicationName;
     bool m_applicationNameHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     Aws::String m_versionLabel;
     bool m_versionLabelHasBeenSet;
+
     SourceBuildInformation m_sourceBuildInformation;
     bool m_sourceBuildInformationHasBeenSet;
+
     Aws::String m_buildArn;
     bool m_buildArnHasBeenSet;
+
     S3Location m_sourceBundle;
     bool m_sourceBundleHasBeenSet;
+
     Aws::Utils::DateTime m_dateCreated;
     bool m_dateCreatedHasBeenSet;
+
     Aws::Utils::DateTime m_dateUpdated;
     bool m_dateUpdatedHasBeenSet;
+
     ApplicationVersionStatus m_status;
     bool m_statusHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ecs/model/ContainerDefinition.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -45,6 +46,7 @@ ContainerDefinition::ContainerDefinition() :
     m_environmentHasBeenSet(false),
     m_mountPointsHasBeenSet(false),
     m_volumesFromHasBeenSet(false),
+    m_linuxParametersHasBeenSet(false),
     m_hostnameHasBeenSet(false),
     m_userHasBeenSet(false),
     m_workingDirectoryHasBeenSet(false),
@@ -82,6 +84,7 @@ ContainerDefinition::ContainerDefinition(const JsonValue& jsonValue) :
     m_environmentHasBeenSet(false),
     m_mountPointsHasBeenSet(false),
     m_volumesFromHasBeenSet(false),
+    m_linuxParametersHasBeenSet(false),
     m_hostnameHasBeenSet(false),
     m_userHasBeenSet(false),
     m_workingDirectoryHasBeenSet(false),
@@ -214,6 +217,13 @@ ContainerDefinition& ContainerDefinition::operator =(const JsonValue& jsonValue)
       m_volumesFrom.push_back(volumesFromJsonList[volumesFromIndex].AsObject());
     }
     m_volumesFromHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("linuxParameters"))
+  {
+    m_linuxParameters = jsonValue.GetObject("linuxParameters");
+
+    m_linuxParametersHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("hostname"))
@@ -442,6 +452,12 @@ JsonValue ContainerDefinition::Jsonize() const
      volumesFromJsonList[volumesFromIndex].AsObject(m_volumesFrom[volumesFromIndex].Jsonize());
    }
    payload.WithArray("volumesFrom", std::move(volumesFromJsonList));
+
+  }
+
+  if(m_linuxParametersHasBeenSet)
+  {
+   payload.WithObject("linuxParameters", m_linuxParameters.Jsonize());
 
   }
 

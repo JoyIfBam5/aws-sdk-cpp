@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elastictranscoder/ElasticTranscoder_EXPORTS.h>
 
@@ -42,6 +43,7 @@ namespace Model
     Timing& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The time the job was submitted to Elastic Transcoder, in epoch
      * milliseconds.</p>
@@ -60,6 +62,7 @@ namespace Model
      */
     inline Timing& WithSubmitTimeMillis(long long value) { SetSubmitTimeMillis(value); return *this;}
 
+
     /**
      * <p>The time the job began transcoding, in epoch milliseconds.</p>
      */
@@ -74,6 +77,7 @@ namespace Model
      * <p>The time the job began transcoding, in epoch milliseconds.</p>
      */
     inline Timing& WithStartTimeMillis(long long value) { SetStartTimeMillis(value); return *this;}
+
 
     /**
      * <p>The time the job finished transcoding, in epoch milliseconds.</p>
@@ -91,10 +95,13 @@ namespace Model
     inline Timing& WithFinishTimeMillis(long long value) { SetFinishTimeMillis(value); return *this;}
 
   private:
+
     long long m_submitTimeMillis;
     bool m_submitTimeMillisHasBeenSet;
+
     long long m_startTimeMillis;
     bool m_startTimeMillisHasBeenSet;
+
     long long m_finishTimeMillis;
     bool m_finishTimeMillisHasBeenSet;
   };

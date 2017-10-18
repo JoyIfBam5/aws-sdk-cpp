@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53domains/Route53Domains_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -19,6 +20,7 @@
 #include <aws/route53domains/model/ContactDetail.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/route53domains/model/Nameserver.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,267 +48,181 @@ namespace Model
   {
   public:
     GetDomainDetailResult();
-    GetDomainDetailResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetDomainDetailResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDomainDetailResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDomainDetailResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>The name of a domain.</p> <p>Type: String</p>
+     * <p>The name of a domain.</p>
      */
     inline const Aws::String& GetDomainName() const{ return m_domainName; }
 
     /**
-     * <p>The name of a domain.</p> <p>Type: String</p>
+     * <p>The name of a domain.</p>
      */
     inline void SetDomainName(const Aws::String& value) { m_domainName = value; }
 
     /**
-     * <p>The name of a domain.</p> <p>Type: String</p>
+     * <p>The name of a domain.</p>
      */
-    inline void SetDomainName(Aws::String&& value) { m_domainName = value; }
+    inline void SetDomainName(Aws::String&& value) { m_domainName = std::move(value); }
 
     /**
-     * <p>The name of a domain.</p> <p>Type: String</p>
+     * <p>The name of a domain.</p>
      */
     inline void SetDomainName(const char* value) { m_domainName.assign(value); }
 
     /**
-     * <p>The name of a domain.</p> <p>Type: String</p>
+     * <p>The name of a domain.</p>
      */
     inline GetDomainDetailResult& WithDomainName(const Aws::String& value) { SetDomainName(value); return *this;}
 
     /**
-     * <p>The name of a domain.</p> <p>Type: String</p>
+     * <p>The name of a domain.</p>
      */
-    inline GetDomainDetailResult& WithDomainName(Aws::String&& value) { SetDomainName(value); return *this;}
+    inline GetDomainDetailResult& WithDomainName(Aws::String&& value) { SetDomainName(std::move(value)); return *this;}
 
     /**
-     * <p>The name of a domain.</p> <p>Type: String</p>
+     * <p>The name of a domain.</p>
      */
     inline GetDomainDetailResult& WithDomainName(const char* value) { SetDomainName(value); return *this;}
 
+
     /**
-     * <p>The name of the domain.</p> <p>Type: String</p>
+     * <p>The name of the domain.</p>
      */
     inline const Aws::Vector<Nameserver>& GetNameservers() const{ return m_nameservers; }
 
     /**
-     * <p>The name of the domain.</p> <p>Type: String</p>
+     * <p>The name of the domain.</p>
      */
     inline void SetNameservers(const Aws::Vector<Nameserver>& value) { m_nameservers = value; }
 
     /**
-     * <p>The name of the domain.</p> <p>Type: String</p>
+     * <p>The name of the domain.</p>
      */
-    inline void SetNameservers(Aws::Vector<Nameserver>&& value) { m_nameservers = value; }
+    inline void SetNameservers(Aws::Vector<Nameserver>&& value) { m_nameservers = std::move(value); }
 
     /**
-     * <p>The name of the domain.</p> <p>Type: String</p>
+     * <p>The name of the domain.</p>
      */
     inline GetDomainDetailResult& WithNameservers(const Aws::Vector<Nameserver>& value) { SetNameservers(value); return *this;}
 
     /**
-     * <p>The name of the domain.</p> <p>Type: String</p>
+     * <p>The name of the domain.</p>
      */
-    inline GetDomainDetailResult& WithNameservers(Aws::Vector<Nameserver>&& value) { SetNameservers(value); return *this;}
+    inline GetDomainDetailResult& WithNameservers(Aws::Vector<Nameserver>&& value) { SetNameservers(std::move(value)); return *this;}
 
     /**
-     * <p>The name of the domain.</p> <p>Type: String</p>
+     * <p>The name of the domain.</p>
      */
     inline GetDomainDetailResult& AddNameservers(const Nameserver& value) { m_nameservers.push_back(value); return *this; }
 
     /**
-     * <p>The name of the domain.</p> <p>Type: String</p>
+     * <p>The name of the domain.</p>
      */
-    inline GetDomainDetailResult& AddNameservers(Nameserver&& value) { m_nameservers.push_back(value); return *this; }
+    inline GetDomainDetailResult& AddNameservers(Nameserver&& value) { m_nameservers.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Specifies whether the domain registration is set to renew automatically.</p>
-     * <p>Type: Boolean</p>
      */
     inline bool GetAutoRenew() const{ return m_autoRenew; }
 
     /**
      * <p>Specifies whether the domain registration is set to renew automatically.</p>
-     * <p>Type: Boolean</p>
      */
     inline void SetAutoRenew(bool value) { m_autoRenew = value; }
 
     /**
      * <p>Specifies whether the domain registration is set to renew automatically.</p>
-     * <p>Type: Boolean</p>
      */
     inline GetDomainDetailResult& WithAutoRenew(bool value) { SetAutoRenew(value); return *this;}
 
+
     /**
-     * <p>Provides details about the domain administrative contact. </p> <p>Type:
-     * Complex</p> <p>Children: <code>FirstName</code>, <code>MiddleName</code>,
-     * <code>LastName</code>, <code>ContactType</code>, <code>OrganizationName</code>,
-     * <code>AddressLine1</code>, <code>AddressLine2</code>, <code>City</code>,
-     * <code>State</code>, <code>CountryCode</code>, <code>ZipCode</code>,
-     * <code>PhoneNumber</code>, <code>Email</code>, <code>Fax</code>,
-     * <code>ExtraParams</code></p>
+     * <p>Provides details about the domain administrative contact.</p>
      */
     inline const ContactDetail& GetAdminContact() const{ return m_adminContact; }
 
     /**
-     * <p>Provides details about the domain administrative contact. </p> <p>Type:
-     * Complex</p> <p>Children: <code>FirstName</code>, <code>MiddleName</code>,
-     * <code>LastName</code>, <code>ContactType</code>, <code>OrganizationName</code>,
-     * <code>AddressLine1</code>, <code>AddressLine2</code>, <code>City</code>,
-     * <code>State</code>, <code>CountryCode</code>, <code>ZipCode</code>,
-     * <code>PhoneNumber</code>, <code>Email</code>, <code>Fax</code>,
-     * <code>ExtraParams</code></p>
+     * <p>Provides details about the domain administrative contact.</p>
      */
     inline void SetAdminContact(const ContactDetail& value) { m_adminContact = value; }
 
     /**
-     * <p>Provides details about the domain administrative contact. </p> <p>Type:
-     * Complex</p> <p>Children: <code>FirstName</code>, <code>MiddleName</code>,
-     * <code>LastName</code>, <code>ContactType</code>, <code>OrganizationName</code>,
-     * <code>AddressLine1</code>, <code>AddressLine2</code>, <code>City</code>,
-     * <code>State</code>, <code>CountryCode</code>, <code>ZipCode</code>,
-     * <code>PhoneNumber</code>, <code>Email</code>, <code>Fax</code>,
-     * <code>ExtraParams</code></p>
+     * <p>Provides details about the domain administrative contact.</p>
      */
-    inline void SetAdminContact(ContactDetail&& value) { m_adminContact = value; }
+    inline void SetAdminContact(ContactDetail&& value) { m_adminContact = std::move(value); }
 
     /**
-     * <p>Provides details about the domain administrative contact. </p> <p>Type:
-     * Complex</p> <p>Children: <code>FirstName</code>, <code>MiddleName</code>,
-     * <code>LastName</code>, <code>ContactType</code>, <code>OrganizationName</code>,
-     * <code>AddressLine1</code>, <code>AddressLine2</code>, <code>City</code>,
-     * <code>State</code>, <code>CountryCode</code>, <code>ZipCode</code>,
-     * <code>PhoneNumber</code>, <code>Email</code>, <code>Fax</code>,
-     * <code>ExtraParams</code></p>
+     * <p>Provides details about the domain administrative contact.</p>
      */
     inline GetDomainDetailResult& WithAdminContact(const ContactDetail& value) { SetAdminContact(value); return *this;}
 
     /**
-     * <p>Provides details about the domain administrative contact. </p> <p>Type:
-     * Complex</p> <p>Children: <code>FirstName</code>, <code>MiddleName</code>,
-     * <code>LastName</code>, <code>ContactType</code>, <code>OrganizationName</code>,
-     * <code>AddressLine1</code>, <code>AddressLine2</code>, <code>City</code>,
-     * <code>State</code>, <code>CountryCode</code>, <code>ZipCode</code>,
-     * <code>PhoneNumber</code>, <code>Email</code>, <code>Fax</code>,
-     * <code>ExtraParams</code></p>
+     * <p>Provides details about the domain administrative contact.</p>
      */
-    inline GetDomainDetailResult& WithAdminContact(ContactDetail&& value) { SetAdminContact(value); return *this;}
+    inline GetDomainDetailResult& WithAdminContact(ContactDetail&& value) { SetAdminContact(std::move(value)); return *this;}
+
 
     /**
-     * <p>Provides details about the domain registrant. </p> <p>Type: Complex</p>
-     * <p>Children: <code>FirstName</code>, <code>MiddleName</code>,
-     * <code>LastName</code>, <code>ContactType</code>, <code>OrganizationName</code>,
-     * <code>AddressLine1</code>, <code>AddressLine2</code>, <code>City</code>,
-     * <code>State</code>, <code>CountryCode</code>, <code>ZipCode</code>,
-     * <code>PhoneNumber</code>, <code>Email</code>, <code>Fax</code>,
-     * <code>ExtraParams</code></p>
+     * <p>Provides details about the domain registrant.</p>
      */
     inline const ContactDetail& GetRegistrantContact() const{ return m_registrantContact; }
 
     /**
-     * <p>Provides details about the domain registrant. </p> <p>Type: Complex</p>
-     * <p>Children: <code>FirstName</code>, <code>MiddleName</code>,
-     * <code>LastName</code>, <code>ContactType</code>, <code>OrganizationName</code>,
-     * <code>AddressLine1</code>, <code>AddressLine2</code>, <code>City</code>,
-     * <code>State</code>, <code>CountryCode</code>, <code>ZipCode</code>,
-     * <code>PhoneNumber</code>, <code>Email</code>, <code>Fax</code>,
-     * <code>ExtraParams</code></p>
+     * <p>Provides details about the domain registrant.</p>
      */
     inline void SetRegistrantContact(const ContactDetail& value) { m_registrantContact = value; }
 
     /**
-     * <p>Provides details about the domain registrant. </p> <p>Type: Complex</p>
-     * <p>Children: <code>FirstName</code>, <code>MiddleName</code>,
-     * <code>LastName</code>, <code>ContactType</code>, <code>OrganizationName</code>,
-     * <code>AddressLine1</code>, <code>AddressLine2</code>, <code>City</code>,
-     * <code>State</code>, <code>CountryCode</code>, <code>ZipCode</code>,
-     * <code>PhoneNumber</code>, <code>Email</code>, <code>Fax</code>,
-     * <code>ExtraParams</code></p>
+     * <p>Provides details about the domain registrant.</p>
      */
-    inline void SetRegistrantContact(ContactDetail&& value) { m_registrantContact = value; }
+    inline void SetRegistrantContact(ContactDetail&& value) { m_registrantContact = std::move(value); }
 
     /**
-     * <p>Provides details about the domain registrant. </p> <p>Type: Complex</p>
-     * <p>Children: <code>FirstName</code>, <code>MiddleName</code>,
-     * <code>LastName</code>, <code>ContactType</code>, <code>OrganizationName</code>,
-     * <code>AddressLine1</code>, <code>AddressLine2</code>, <code>City</code>,
-     * <code>State</code>, <code>CountryCode</code>, <code>ZipCode</code>,
-     * <code>PhoneNumber</code>, <code>Email</code>, <code>Fax</code>,
-     * <code>ExtraParams</code></p>
+     * <p>Provides details about the domain registrant.</p>
      */
     inline GetDomainDetailResult& WithRegistrantContact(const ContactDetail& value) { SetRegistrantContact(value); return *this;}
 
     /**
-     * <p>Provides details about the domain registrant. </p> <p>Type: Complex</p>
-     * <p>Children: <code>FirstName</code>, <code>MiddleName</code>,
-     * <code>LastName</code>, <code>ContactType</code>, <code>OrganizationName</code>,
-     * <code>AddressLine1</code>, <code>AddressLine2</code>, <code>City</code>,
-     * <code>State</code>, <code>CountryCode</code>, <code>ZipCode</code>,
-     * <code>PhoneNumber</code>, <code>Email</code>, <code>Fax</code>,
-     * <code>ExtraParams</code></p>
+     * <p>Provides details about the domain registrant.</p>
      */
-    inline GetDomainDetailResult& WithRegistrantContact(ContactDetail&& value) { SetRegistrantContact(value); return *this;}
+    inline GetDomainDetailResult& WithRegistrantContact(ContactDetail&& value) { SetRegistrantContact(std::move(value)); return *this;}
+
 
     /**
-     * <p>Provides details about the domain technical contact.</p> <p>Type: Complex</p>
-     * <p>Children: <code>FirstName</code>, <code>MiddleName</code>,
-     * <code>LastName</code>, <code>ContactType</code>, <code>OrganizationName</code>,
-     * <code>AddressLine1</code>, <code>AddressLine2</code>, <code>City</code>,
-     * <code>State</code>, <code>CountryCode</code>, <code>ZipCode</code>,
-     * <code>PhoneNumber</code>, <code>Email</code>, <code>Fax</code>,
-     * <code>ExtraParams</code></p>
+     * <p>Provides details about the domain technical contact.</p>
      */
     inline const ContactDetail& GetTechContact() const{ return m_techContact; }
 
     /**
-     * <p>Provides details about the domain technical contact.</p> <p>Type: Complex</p>
-     * <p>Children: <code>FirstName</code>, <code>MiddleName</code>,
-     * <code>LastName</code>, <code>ContactType</code>, <code>OrganizationName</code>,
-     * <code>AddressLine1</code>, <code>AddressLine2</code>, <code>City</code>,
-     * <code>State</code>, <code>CountryCode</code>, <code>ZipCode</code>,
-     * <code>PhoneNumber</code>, <code>Email</code>, <code>Fax</code>,
-     * <code>ExtraParams</code></p>
+     * <p>Provides details about the domain technical contact.</p>
      */
     inline void SetTechContact(const ContactDetail& value) { m_techContact = value; }
 
     /**
-     * <p>Provides details about the domain technical contact.</p> <p>Type: Complex</p>
-     * <p>Children: <code>FirstName</code>, <code>MiddleName</code>,
-     * <code>LastName</code>, <code>ContactType</code>, <code>OrganizationName</code>,
-     * <code>AddressLine1</code>, <code>AddressLine2</code>, <code>City</code>,
-     * <code>State</code>, <code>CountryCode</code>, <code>ZipCode</code>,
-     * <code>PhoneNumber</code>, <code>Email</code>, <code>Fax</code>,
-     * <code>ExtraParams</code></p>
+     * <p>Provides details about the domain technical contact.</p>
      */
-    inline void SetTechContact(ContactDetail&& value) { m_techContact = value; }
+    inline void SetTechContact(ContactDetail&& value) { m_techContact = std::move(value); }
 
     /**
-     * <p>Provides details about the domain technical contact.</p> <p>Type: Complex</p>
-     * <p>Children: <code>FirstName</code>, <code>MiddleName</code>,
-     * <code>LastName</code>, <code>ContactType</code>, <code>OrganizationName</code>,
-     * <code>AddressLine1</code>, <code>AddressLine2</code>, <code>City</code>,
-     * <code>State</code>, <code>CountryCode</code>, <code>ZipCode</code>,
-     * <code>PhoneNumber</code>, <code>Email</code>, <code>Fax</code>,
-     * <code>ExtraParams</code></p>
+     * <p>Provides details about the domain technical contact.</p>
      */
     inline GetDomainDetailResult& WithTechContact(const ContactDetail& value) { SetTechContact(value); return *this;}
 
     /**
-     * <p>Provides details about the domain technical contact.</p> <p>Type: Complex</p>
-     * <p>Children: <code>FirstName</code>, <code>MiddleName</code>,
-     * <code>LastName</code>, <code>ContactType</code>, <code>OrganizationName</code>,
-     * <code>AddressLine1</code>, <code>AddressLine2</code>, <code>City</code>,
-     * <code>State</code>, <code>CountryCode</code>, <code>ZipCode</code>,
-     * <code>PhoneNumber</code>, <code>Email</code>, <code>Fax</code>,
-     * <code>ExtraParams</code></p>
+     * <p>Provides details about the domain technical contact.</p>
      */
-    inline GetDomainDetailResult& WithTechContact(ContactDetail&& value) { SetTechContact(value); return *this;}
+    inline GetDomainDetailResult& WithTechContact(ContactDetail&& value) { SetTechContact(std::move(value)); return *this;}
+
 
     /**
      * <p>Specifies whether contact information for the admin contact is concealed from
      * WHOIS queries. If the value is <code>true</code>, WHOIS ("who is") queries will
      * return contact information for our registrar partner, Gandi, instead of the
-     * contact information that you enter.</p> <p>Type: Boolean</p>
+     * contact information that you enter.</p>
      */
     inline bool GetAdminPrivacy() const{ return m_adminPrivacy; }
 
@@ -314,7 +230,7 @@ namespace Model
      * <p>Specifies whether contact information for the admin contact is concealed from
      * WHOIS queries. If the value is <code>true</code>, WHOIS ("who is") queries will
      * return contact information for our registrar partner, Gandi, instead of the
-     * contact information that you enter.</p> <p>Type: Boolean</p>
+     * contact information that you enter.</p>
      */
     inline void SetAdminPrivacy(bool value) { m_adminPrivacy = value; }
 
@@ -322,15 +238,16 @@ namespace Model
      * <p>Specifies whether contact information for the admin contact is concealed from
      * WHOIS queries. If the value is <code>true</code>, WHOIS ("who is") queries will
      * return contact information for our registrar partner, Gandi, instead of the
-     * contact information that you enter.</p> <p>Type: Boolean</p>
+     * contact information that you enter.</p>
      */
     inline GetDomainDetailResult& WithAdminPrivacy(bool value) { SetAdminPrivacy(value); return *this;}
+
 
     /**
      * <p>Specifies whether contact information for the registrant contact is concealed
      * from WHOIS queries. If the value is <code>true</code>, WHOIS ("who is") queries
      * will return contact information for our registrar partner, Gandi, instead of the
-     * contact information that you enter.</p> <p>Type: Boolean</p>
+     * contact information that you enter.</p>
      */
     inline bool GetRegistrantPrivacy() const{ return m_registrantPrivacy; }
 
@@ -338,7 +255,7 @@ namespace Model
      * <p>Specifies whether contact information for the registrant contact is concealed
      * from WHOIS queries. If the value is <code>true</code>, WHOIS ("who is") queries
      * will return contact information for our registrar partner, Gandi, instead of the
-     * contact information that you enter.</p> <p>Type: Boolean</p>
+     * contact information that you enter.</p>
      */
     inline void SetRegistrantPrivacy(bool value) { m_registrantPrivacy = value; }
 
@@ -346,15 +263,16 @@ namespace Model
      * <p>Specifies whether contact information for the registrant contact is concealed
      * from WHOIS queries. If the value is <code>true</code>, WHOIS ("who is") queries
      * will return contact information for our registrar partner, Gandi, instead of the
-     * contact information that you enter.</p> <p>Type: Boolean</p>
+     * contact information that you enter.</p>
      */
     inline GetDomainDetailResult& WithRegistrantPrivacy(bool value) { SetRegistrantPrivacy(value); return *this;}
+
 
     /**
      * <p>Specifies whether contact information for the tech contact is concealed from
      * WHOIS queries. If the value is <code>true</code>, WHOIS ("who is") queries will
      * return contact information for our registrar partner, Gandi, instead of the
-     * contact information that you enter.</p> <p>Type: Boolean</p>
+     * contact information that you enter.</p>
      */
     inline bool GetTechPrivacy() const{ return m_techPrivacy; }
 
@@ -362,7 +280,7 @@ namespace Model
      * <p>Specifies whether contact information for the tech contact is concealed from
      * WHOIS queries. If the value is <code>true</code>, WHOIS ("who is") queries will
      * return contact information for our registrar partner, Gandi, instead of the
-     * contact information that you enter.</p> <p>Type: Boolean</p>
+     * contact information that you enter.</p>
      */
     inline void SetTechPrivacy(bool value) { m_techPrivacy = value; }
 
@@ -370,226 +288,232 @@ namespace Model
      * <p>Specifies whether contact information for the tech contact is concealed from
      * WHOIS queries. If the value is <code>true</code>, WHOIS ("who is") queries will
      * return contact information for our registrar partner, Gandi, instead of the
-     * contact information that you enter.</p> <p>Type: Boolean</p>
+     * contact information that you enter.</p>
      */
     inline GetDomainDetailResult& WithTechPrivacy(bool value) { SetTechPrivacy(value); return *this;}
+
 
     /**
      * <p>Name of the registrar of the domain as identified in the registry. Amazon
      * Route 53 domains are registered by registrar Gandi. The value is <code>"GANDI
-     * SAS"</code>. </p> <p>Type: String</p>
+     * SAS"</code>. </p>
      */
     inline const Aws::String& GetRegistrarName() const{ return m_registrarName; }
 
     /**
      * <p>Name of the registrar of the domain as identified in the registry. Amazon
      * Route 53 domains are registered by registrar Gandi. The value is <code>"GANDI
-     * SAS"</code>. </p> <p>Type: String</p>
+     * SAS"</code>. </p>
      */
     inline void SetRegistrarName(const Aws::String& value) { m_registrarName = value; }
 
     /**
      * <p>Name of the registrar of the domain as identified in the registry. Amazon
      * Route 53 domains are registered by registrar Gandi. The value is <code>"GANDI
-     * SAS"</code>. </p> <p>Type: String</p>
+     * SAS"</code>. </p>
      */
-    inline void SetRegistrarName(Aws::String&& value) { m_registrarName = value; }
+    inline void SetRegistrarName(Aws::String&& value) { m_registrarName = std::move(value); }
 
     /**
      * <p>Name of the registrar of the domain as identified in the registry. Amazon
      * Route 53 domains are registered by registrar Gandi. The value is <code>"GANDI
-     * SAS"</code>. </p> <p>Type: String</p>
+     * SAS"</code>. </p>
      */
     inline void SetRegistrarName(const char* value) { m_registrarName.assign(value); }
 
     /**
      * <p>Name of the registrar of the domain as identified in the registry. Amazon
      * Route 53 domains are registered by registrar Gandi. The value is <code>"GANDI
-     * SAS"</code>. </p> <p>Type: String</p>
+     * SAS"</code>. </p>
      */
     inline GetDomainDetailResult& WithRegistrarName(const Aws::String& value) { SetRegistrarName(value); return *this;}
 
     /**
      * <p>Name of the registrar of the domain as identified in the registry. Amazon
      * Route 53 domains are registered by registrar Gandi. The value is <code>"GANDI
-     * SAS"</code>. </p> <p>Type: String</p>
+     * SAS"</code>. </p>
      */
-    inline GetDomainDetailResult& WithRegistrarName(Aws::String&& value) { SetRegistrarName(value); return *this;}
+    inline GetDomainDetailResult& WithRegistrarName(Aws::String&& value) { SetRegistrarName(std::move(value)); return *this;}
 
     /**
      * <p>Name of the registrar of the domain as identified in the registry. Amazon
      * Route 53 domains are registered by registrar Gandi. The value is <code>"GANDI
-     * SAS"</code>. </p> <p>Type: String</p>
+     * SAS"</code>. </p>
      */
     inline GetDomainDetailResult& WithRegistrarName(const char* value) { SetRegistrarName(value); return *this;}
 
+
     /**
      * <p>The fully qualified name of the WHOIS server that can answer the WHOIS query
-     * for the domain.</p> <p>Type: String</p>
+     * for the domain.</p>
      */
     inline const Aws::String& GetWhoIsServer() const{ return m_whoIsServer; }
 
     /**
      * <p>The fully qualified name of the WHOIS server that can answer the WHOIS query
-     * for the domain.</p> <p>Type: String</p>
+     * for the domain.</p>
      */
     inline void SetWhoIsServer(const Aws::String& value) { m_whoIsServer = value; }
 
     /**
      * <p>The fully qualified name of the WHOIS server that can answer the WHOIS query
-     * for the domain.</p> <p>Type: String</p>
+     * for the domain.</p>
      */
-    inline void SetWhoIsServer(Aws::String&& value) { m_whoIsServer = value; }
+    inline void SetWhoIsServer(Aws::String&& value) { m_whoIsServer = std::move(value); }
 
     /**
      * <p>The fully qualified name of the WHOIS server that can answer the WHOIS query
-     * for the domain.</p> <p>Type: String</p>
+     * for the domain.</p>
      */
     inline void SetWhoIsServer(const char* value) { m_whoIsServer.assign(value); }
 
     /**
      * <p>The fully qualified name of the WHOIS server that can answer the WHOIS query
-     * for the domain.</p> <p>Type: String</p>
+     * for the domain.</p>
      */
     inline GetDomainDetailResult& WithWhoIsServer(const Aws::String& value) { SetWhoIsServer(value); return *this;}
 
     /**
      * <p>The fully qualified name of the WHOIS server that can answer the WHOIS query
-     * for the domain.</p> <p>Type: String</p>
+     * for the domain.</p>
      */
-    inline GetDomainDetailResult& WithWhoIsServer(Aws::String&& value) { SetWhoIsServer(value); return *this;}
+    inline GetDomainDetailResult& WithWhoIsServer(Aws::String&& value) { SetWhoIsServer(std::move(value)); return *this;}
 
     /**
      * <p>The fully qualified name of the WHOIS server that can answer the WHOIS query
-     * for the domain.</p> <p>Type: String</p>
+     * for the domain.</p>
      */
     inline GetDomainDetailResult& WithWhoIsServer(const char* value) { SetWhoIsServer(value); return *this;}
 
+
     /**
-     * <p>Web address of the registrar.</p> <p>Type: String</p>
+     * <p>Web address of the registrar.</p>
      */
     inline const Aws::String& GetRegistrarUrl() const{ return m_registrarUrl; }
 
     /**
-     * <p>Web address of the registrar.</p> <p>Type: String</p>
+     * <p>Web address of the registrar.</p>
      */
     inline void SetRegistrarUrl(const Aws::String& value) { m_registrarUrl = value; }
 
     /**
-     * <p>Web address of the registrar.</p> <p>Type: String</p>
+     * <p>Web address of the registrar.</p>
      */
-    inline void SetRegistrarUrl(Aws::String&& value) { m_registrarUrl = value; }
+    inline void SetRegistrarUrl(Aws::String&& value) { m_registrarUrl = std::move(value); }
 
     /**
-     * <p>Web address of the registrar.</p> <p>Type: String</p>
+     * <p>Web address of the registrar.</p>
      */
     inline void SetRegistrarUrl(const char* value) { m_registrarUrl.assign(value); }
 
     /**
-     * <p>Web address of the registrar.</p> <p>Type: String</p>
+     * <p>Web address of the registrar.</p>
      */
     inline GetDomainDetailResult& WithRegistrarUrl(const Aws::String& value) { SetRegistrarUrl(value); return *this;}
 
     /**
-     * <p>Web address of the registrar.</p> <p>Type: String</p>
+     * <p>Web address of the registrar.</p>
      */
-    inline GetDomainDetailResult& WithRegistrarUrl(Aws::String&& value) { SetRegistrarUrl(value); return *this;}
+    inline GetDomainDetailResult& WithRegistrarUrl(Aws::String&& value) { SetRegistrarUrl(std::move(value)); return *this;}
 
     /**
-     * <p>Web address of the registrar.</p> <p>Type: String</p>
+     * <p>Web address of the registrar.</p>
      */
     inline GetDomainDetailResult& WithRegistrarUrl(const char* value) { SetRegistrarUrl(value); return *this;}
+
 
     /**
      * <p>Email address to contact to report incorrect contact information for a
      * domain, to report that the domain is being used to send spam, to report that
-     * someone is cybersquatting on a domain name, or report some other type of abuse.
-     * </p> <p>Type: String</p>
+     * someone is cybersquatting on a domain name, or report some other type of
+     * abuse.</p>
      */
     inline const Aws::String& GetAbuseContactEmail() const{ return m_abuseContactEmail; }
 
     /**
      * <p>Email address to contact to report incorrect contact information for a
      * domain, to report that the domain is being used to send spam, to report that
-     * someone is cybersquatting on a domain name, or report some other type of abuse.
-     * </p> <p>Type: String</p>
+     * someone is cybersquatting on a domain name, or report some other type of
+     * abuse.</p>
      */
     inline void SetAbuseContactEmail(const Aws::String& value) { m_abuseContactEmail = value; }
 
     /**
      * <p>Email address to contact to report incorrect contact information for a
      * domain, to report that the domain is being used to send spam, to report that
-     * someone is cybersquatting on a domain name, or report some other type of abuse.
-     * </p> <p>Type: String</p>
+     * someone is cybersquatting on a domain name, or report some other type of
+     * abuse.</p>
      */
-    inline void SetAbuseContactEmail(Aws::String&& value) { m_abuseContactEmail = value; }
+    inline void SetAbuseContactEmail(Aws::String&& value) { m_abuseContactEmail = std::move(value); }
 
     /**
      * <p>Email address to contact to report incorrect contact information for a
      * domain, to report that the domain is being used to send spam, to report that
-     * someone is cybersquatting on a domain name, or report some other type of abuse.
-     * </p> <p>Type: String</p>
+     * someone is cybersquatting on a domain name, or report some other type of
+     * abuse.</p>
      */
     inline void SetAbuseContactEmail(const char* value) { m_abuseContactEmail.assign(value); }
 
     /**
      * <p>Email address to contact to report incorrect contact information for a
      * domain, to report that the domain is being used to send spam, to report that
-     * someone is cybersquatting on a domain name, or report some other type of abuse.
-     * </p> <p>Type: String</p>
+     * someone is cybersquatting on a domain name, or report some other type of
+     * abuse.</p>
      */
     inline GetDomainDetailResult& WithAbuseContactEmail(const Aws::String& value) { SetAbuseContactEmail(value); return *this;}
 
     /**
      * <p>Email address to contact to report incorrect contact information for a
      * domain, to report that the domain is being used to send spam, to report that
-     * someone is cybersquatting on a domain name, or report some other type of abuse.
-     * </p> <p>Type: String</p>
+     * someone is cybersquatting on a domain name, or report some other type of
+     * abuse.</p>
      */
-    inline GetDomainDetailResult& WithAbuseContactEmail(Aws::String&& value) { SetAbuseContactEmail(value); return *this;}
+    inline GetDomainDetailResult& WithAbuseContactEmail(Aws::String&& value) { SetAbuseContactEmail(std::move(value)); return *this;}
 
     /**
      * <p>Email address to contact to report incorrect contact information for a
      * domain, to report that the domain is being used to send spam, to report that
-     * someone is cybersquatting on a domain name, or report some other type of abuse.
-     * </p> <p>Type: String</p>
+     * someone is cybersquatting on a domain name, or report some other type of
+     * abuse.</p>
      */
     inline GetDomainDetailResult& WithAbuseContactEmail(const char* value) { SetAbuseContactEmail(value); return *this;}
 
+
     /**
-     * <p>Phone number for reporting abuse. </p> <p>Type: String</p>
+     * <p>Phone number for reporting abuse.</p>
      */
     inline const Aws::String& GetAbuseContactPhone() const{ return m_abuseContactPhone; }
 
     /**
-     * <p>Phone number for reporting abuse. </p> <p>Type: String</p>
+     * <p>Phone number for reporting abuse.</p>
      */
     inline void SetAbuseContactPhone(const Aws::String& value) { m_abuseContactPhone = value; }
 
     /**
-     * <p>Phone number for reporting abuse. </p> <p>Type: String</p>
+     * <p>Phone number for reporting abuse.</p>
      */
-    inline void SetAbuseContactPhone(Aws::String&& value) { m_abuseContactPhone = value; }
+    inline void SetAbuseContactPhone(Aws::String&& value) { m_abuseContactPhone = std::move(value); }
 
     /**
-     * <p>Phone number for reporting abuse. </p> <p>Type: String</p>
+     * <p>Phone number for reporting abuse.</p>
      */
     inline void SetAbuseContactPhone(const char* value) { m_abuseContactPhone.assign(value); }
 
     /**
-     * <p>Phone number for reporting abuse. </p> <p>Type: String</p>
+     * <p>Phone number for reporting abuse.</p>
      */
     inline GetDomainDetailResult& WithAbuseContactPhone(const Aws::String& value) { SetAbuseContactPhone(value); return *this;}
 
     /**
-     * <p>Phone number for reporting abuse. </p> <p>Type: String</p>
+     * <p>Phone number for reporting abuse.</p>
      */
-    inline GetDomainDetailResult& WithAbuseContactPhone(Aws::String&& value) { SetAbuseContactPhone(value); return *this;}
+    inline GetDomainDetailResult& WithAbuseContactPhone(Aws::String&& value) { SetAbuseContactPhone(std::move(value)); return *this;}
 
     /**
-     * <p>Phone number for reporting abuse. </p> <p>Type: String</p>
+     * <p>Phone number for reporting abuse.</p>
      */
     inline GetDomainDetailResult& WithAbuseContactPhone(const char* value) { SetAbuseContactPhone(value); return *this;}
+
 
     /**
      * <p>Reserved for future use.</p>
@@ -604,7 +528,7 @@ namespace Model
     /**
      * <p>Reserved for future use.</p>
      */
-    inline void SetRegistryDomainId(Aws::String&& value) { m_registryDomainId = value; }
+    inline void SetRegistryDomainId(Aws::String&& value) { m_registryDomainId = std::move(value); }
 
     /**
      * <p>Reserved for future use.</p>
@@ -619,12 +543,13 @@ namespace Model
     /**
      * <p>Reserved for future use.</p>
      */
-    inline GetDomainDetailResult& WithRegistryDomainId(Aws::String&& value) { SetRegistryDomainId(value); return *this;}
+    inline GetDomainDetailResult& WithRegistryDomainId(Aws::String&& value) { SetRegistryDomainId(std::move(value)); return *this;}
 
     /**
      * <p>Reserved for future use.</p>
      */
     inline GetDomainDetailResult& WithRegistryDomainId(const char* value) { SetRegistryDomainId(value); return *this;}
+
 
     /**
      * <p>The date when the domain was created as found in the response to a WHOIS
@@ -642,7 +567,7 @@ namespace Model
      * <p>The date when the domain was created as found in the response to a WHOIS
      * query. The date format is Unix time.</p>
      */
-    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDate = value; }
+    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDate = std::move(value); }
 
     /**
      * <p>The date when the domain was created as found in the response to a WHOIS
@@ -654,7 +579,8 @@ namespace Model
      * <p>The date when the domain was created as found in the response to a WHOIS
      * query. The date format is Unix time.</p>
      */
-    inline GetDomainDetailResult& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(value); return *this;}
+    inline GetDomainDetailResult& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(std::move(value)); return *this;}
+
 
     /**
      * <p>The last updated date of the domain as found in the response to a WHOIS
@@ -672,7 +598,7 @@ namespace Model
      * <p>The last updated date of the domain as found in the response to a WHOIS
      * query. The date format is Unix time.</p>
      */
-    inline void SetUpdatedDate(Aws::Utils::DateTime&& value) { m_updatedDate = value; }
+    inline void SetUpdatedDate(Aws::Utils::DateTime&& value) { m_updatedDate = std::move(value); }
 
     /**
      * <p>The last updated date of the domain as found in the response to a WHOIS
@@ -684,7 +610,8 @@ namespace Model
      * <p>The last updated date of the domain as found in the response to a WHOIS
      * query. The date format is Unix time.</p>
      */
-    inline GetDomainDetailResult& WithUpdatedDate(Aws::Utils::DateTime&& value) { SetUpdatedDate(value); return *this;}
+    inline GetDomainDetailResult& WithUpdatedDate(Aws::Utils::DateTime&& value) { SetUpdatedDate(std::move(value)); return *this;}
+
 
     /**
      * <p>The date when the registration for the domain is set to expire. The date
@@ -702,7 +629,7 @@ namespace Model
      * <p>The date when the registration for the domain is set to expire. The date
      * format is Unix time.</p>
      */
-    inline void SetExpirationDate(Aws::Utils::DateTime&& value) { m_expirationDate = value; }
+    inline void SetExpirationDate(Aws::Utils::DateTime&& value) { m_expirationDate = std::move(value); }
 
     /**
      * <p>The date when the registration for the domain is set to expire. The date
@@ -714,56 +641,51 @@ namespace Model
      * <p>The date when the registration for the domain is set to expire. The date
      * format is Unix time.</p>
      */
-    inline GetDomainDetailResult& WithExpirationDate(Aws::Utils::DateTime&& value) { SetExpirationDate(value); return *this;}
+    inline GetDomainDetailResult& WithExpirationDate(Aws::Utils::DateTime&& value) { SetExpirationDate(std::move(value)); return *this;}
+
 
     /**
      * <p>Reseller of the domain. Domains registered or transferred using Amazon Route
-     * 53 domains will have <code>"Amazon"</code> as the reseller. </p> <p>Type:
-     * String</p>
+     * 53 domains will have <code>"Amazon"</code> as the reseller. </p>
      */
     inline const Aws::String& GetReseller() const{ return m_reseller; }
 
     /**
      * <p>Reseller of the domain. Domains registered or transferred using Amazon Route
-     * 53 domains will have <code>"Amazon"</code> as the reseller. </p> <p>Type:
-     * String</p>
+     * 53 domains will have <code>"Amazon"</code> as the reseller. </p>
      */
     inline void SetReseller(const Aws::String& value) { m_reseller = value; }
 
     /**
      * <p>Reseller of the domain. Domains registered or transferred using Amazon Route
-     * 53 domains will have <code>"Amazon"</code> as the reseller. </p> <p>Type:
-     * String</p>
+     * 53 domains will have <code>"Amazon"</code> as the reseller. </p>
      */
-    inline void SetReseller(Aws::String&& value) { m_reseller = value; }
+    inline void SetReseller(Aws::String&& value) { m_reseller = std::move(value); }
 
     /**
      * <p>Reseller of the domain. Domains registered or transferred using Amazon Route
-     * 53 domains will have <code>"Amazon"</code> as the reseller. </p> <p>Type:
-     * String</p>
+     * 53 domains will have <code>"Amazon"</code> as the reseller. </p>
      */
     inline void SetReseller(const char* value) { m_reseller.assign(value); }
 
     /**
      * <p>Reseller of the domain. Domains registered or transferred using Amazon Route
-     * 53 domains will have <code>"Amazon"</code> as the reseller. </p> <p>Type:
-     * String</p>
+     * 53 domains will have <code>"Amazon"</code> as the reseller. </p>
      */
     inline GetDomainDetailResult& WithReseller(const Aws::String& value) { SetReseller(value); return *this;}
 
     /**
      * <p>Reseller of the domain. Domains registered or transferred using Amazon Route
-     * 53 domains will have <code>"Amazon"</code> as the reseller. </p> <p>Type:
-     * String</p>
+     * 53 domains will have <code>"Amazon"</code> as the reseller. </p>
      */
-    inline GetDomainDetailResult& WithReseller(Aws::String&& value) { SetReseller(value); return *this;}
+    inline GetDomainDetailResult& WithReseller(Aws::String&& value) { SetReseller(std::move(value)); return *this;}
 
     /**
      * <p>Reseller of the domain. Domains registered or transferred using Amazon Route
-     * 53 domains will have <code>"Amazon"</code> as the reseller. </p> <p>Type:
-     * String</p>
+     * 53 domains will have <code>"Amazon"</code> as the reseller. </p>
      */
     inline GetDomainDetailResult& WithReseller(const char* value) { SetReseller(value); return *this;}
+
 
     /**
      * <p>Reserved for future use.</p>
@@ -778,7 +700,7 @@ namespace Model
     /**
      * <p>Reserved for future use.</p>
      */
-    inline void SetDnsSec(Aws::String&& value) { m_dnsSec = value; }
+    inline void SetDnsSec(Aws::String&& value) { m_dnsSec = std::move(value); }
 
     /**
      * <p>Reserved for future use.</p>
@@ -793,12 +715,13 @@ namespace Model
     /**
      * <p>Reserved for future use.</p>
      */
-    inline GetDomainDetailResult& WithDnsSec(Aws::String&& value) { SetDnsSec(value); return *this;}
+    inline GetDomainDetailResult& WithDnsSec(Aws::String&& value) { SetDnsSec(std::move(value)); return *this;}
 
     /**
      * <p>Reserved for future use.</p>
      */
     inline GetDomainDetailResult& WithDnsSec(const char* value) { SetDnsSec(value); return *this;}
+
 
     /**
      * <p>An array of domain name status codes, also known as Extensible Provisioning
@@ -811,7 +734,7 @@ namespace Model
      * domain name status codes and an explanation of what each code means, go to the
      * <a href="https://www.icann.org/">ICANN website</a> and search for <code>epp
      * status codes</code>. (Search on the ICANN website; web searches sometimes return
-     * an old version of the document.)</p> <p>Type: Array of String</p>
+     * an old version of the document.)</p>
      */
     inline const Aws::Vector<Aws::String>& GetStatusList() const{ return m_statusList; }
 
@@ -826,7 +749,7 @@ namespace Model
      * domain name status codes and an explanation of what each code means, go to the
      * <a href="https://www.icann.org/">ICANN website</a> and search for <code>epp
      * status codes</code>. (Search on the ICANN website; web searches sometimes return
-     * an old version of the document.)</p> <p>Type: Array of String</p>
+     * an old version of the document.)</p>
      */
     inline void SetStatusList(const Aws::Vector<Aws::String>& value) { m_statusList = value; }
 
@@ -841,9 +764,9 @@ namespace Model
      * domain name status codes and an explanation of what each code means, go to the
      * <a href="https://www.icann.org/">ICANN website</a> and search for <code>epp
      * status codes</code>. (Search on the ICANN website; web searches sometimes return
-     * an old version of the document.)</p> <p>Type: Array of String</p>
+     * an old version of the document.)</p>
      */
-    inline void SetStatusList(Aws::Vector<Aws::String>&& value) { m_statusList = value; }
+    inline void SetStatusList(Aws::Vector<Aws::String>&& value) { m_statusList = std::move(value); }
 
     /**
      * <p>An array of domain name status codes, also known as Extensible Provisioning
@@ -856,7 +779,7 @@ namespace Model
      * domain name status codes and an explanation of what each code means, go to the
      * <a href="https://www.icann.org/">ICANN website</a> and search for <code>epp
      * status codes</code>. (Search on the ICANN website; web searches sometimes return
-     * an old version of the document.)</p> <p>Type: Array of String</p>
+     * an old version of the document.)</p>
      */
     inline GetDomainDetailResult& WithStatusList(const Aws::Vector<Aws::String>& value) { SetStatusList(value); return *this;}
 
@@ -871,9 +794,9 @@ namespace Model
      * domain name status codes and an explanation of what each code means, go to the
      * <a href="https://www.icann.org/">ICANN website</a> and search for <code>epp
      * status codes</code>. (Search on the ICANN website; web searches sometimes return
-     * an old version of the document.)</p> <p>Type: Array of String</p>
+     * an old version of the document.)</p>
      */
-    inline GetDomainDetailResult& WithStatusList(Aws::Vector<Aws::String>&& value) { SetStatusList(value); return *this;}
+    inline GetDomainDetailResult& WithStatusList(Aws::Vector<Aws::String>&& value) { SetStatusList(std::move(value)); return *this;}
 
     /**
      * <p>An array of domain name status codes, also known as Extensible Provisioning
@@ -886,7 +809,7 @@ namespace Model
      * domain name status codes and an explanation of what each code means, go to the
      * <a href="https://www.icann.org/">ICANN website</a> and search for <code>epp
      * status codes</code>. (Search on the ICANN website; web searches sometimes return
-     * an old version of the document.)</p> <p>Type: Array of String</p>
+     * an old version of the document.)</p>
      */
     inline GetDomainDetailResult& AddStatusList(const Aws::String& value) { m_statusList.push_back(value); return *this; }
 
@@ -901,9 +824,9 @@ namespace Model
      * domain name status codes and an explanation of what each code means, go to the
      * <a href="https://www.icann.org/">ICANN website</a> and search for <code>epp
      * status codes</code>. (Search on the ICANN website; web searches sometimes return
-     * an old version of the document.)</p> <p>Type: Array of String</p>
+     * an old version of the document.)</p>
      */
-    inline GetDomainDetailResult& AddStatusList(Aws::String&& value) { m_statusList.push_back(value); return *this; }
+    inline GetDomainDetailResult& AddStatusList(Aws::String&& value) { m_statusList.push_back(std::move(value)); return *this; }
 
     /**
      * <p>An array of domain name status codes, also known as Extensible Provisioning
@@ -916,31 +839,52 @@ namespace Model
      * domain name status codes and an explanation of what each code means, go to the
      * <a href="https://www.icann.org/">ICANN website</a> and search for <code>epp
      * status codes</code>. (Search on the ICANN website; web searches sometimes return
-     * an old version of the document.)</p> <p>Type: Array of String</p>
+     * an old version of the document.)</p>
      */
     inline GetDomainDetailResult& AddStatusList(const char* value) { m_statusList.push_back(value); return *this; }
 
   private:
+
     Aws::String m_domainName;
+
     Aws::Vector<Nameserver> m_nameservers;
+
     bool m_autoRenew;
+
     ContactDetail m_adminContact;
+
     ContactDetail m_registrantContact;
+
     ContactDetail m_techContact;
+
     bool m_adminPrivacy;
+
     bool m_registrantPrivacy;
+
     bool m_techPrivacy;
+
     Aws::String m_registrarName;
+
     Aws::String m_whoIsServer;
+
     Aws::String m_registrarUrl;
+
     Aws::String m_abuseContactEmail;
+
     Aws::String m_abuseContactPhone;
+
     Aws::String m_registryDomainId;
+
     Aws::Utils::DateTime m_creationDate;
+
     Aws::Utils::DateTime m_updatedDate;
+
     Aws::Utils::DateTime m_expirationDate;
+
     Aws::String m_reseller;
+
     Aws::String m_dnsSec;
+
     Aws::Vector<Aws::String> m_statusList;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The user data. If you are using an AWS SDK or command line tool,
      * Base64-encoding is performed for you, and you can load the text from a file.
@@ -65,7 +68,7 @@ namespace Model
      * Base64-encoding is performed for you, and you can load the text from a file.
      * Otherwise, you must provide Base64-encoded text.</p>
      */
-    inline void SetData(Aws::String&& value) { m_dataHasBeenSet = true; m_data = value; }
+    inline void SetData(Aws::String&& value) { m_dataHasBeenSet = true; m_data = std::move(value); }
 
     /**
      * <p>The user data. If you are using an AWS SDK or command line tool,
@@ -86,7 +89,7 @@ namespace Model
      * Base64-encoding is performed for you, and you can load the text from a file.
      * Otherwise, you must provide Base64-encoded text.</p>
      */
-    inline UserData& WithData(Aws::String&& value) { SetData(value); return *this;}
+    inline UserData& WithData(Aws::String&& value) { SetData(std::move(value)); return *this;}
 
     /**
      * <p>The user data. If you are using an AWS SDK or command line tool,
@@ -96,6 +99,7 @@ namespace Model
     inline UserData& WithData(const char* value) { SetData(value); return *this;}
 
   private:
+
     Aws::String m_data;
     bool m_dataHasBeenSet;
   };

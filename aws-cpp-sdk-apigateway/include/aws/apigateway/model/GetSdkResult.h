@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/core/utils/stream/ResponseStream.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/Array.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,8 +48,9 @@ namespace Model
     GetSdkResult& operator=(const GetSdkResult&) = delete;
 
 
-    GetSdkResult(AmazonWebServiceResult<Utils::Stream::ResponseStream>&& result);
-    GetSdkResult& operator=(AmazonWebServiceResult<Utils::Stream::ResponseStream>&& result);
+    GetSdkResult(Aws::AmazonWebServiceResult<Aws::Utils::Stream::ResponseStream>&& result);
+    GetSdkResult& operator=(Aws::AmazonWebServiceResult<Aws::Utils::Stream::ResponseStream>&& result);
+
 
 
     /**
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>The content-type header value in the HTTP response.</p>
      */
-    inline void SetContentType(Aws::String&& value) { m_contentType = value; }
+    inline void SetContentType(Aws::String&& value) { m_contentType = std::move(value); }
 
     /**
      * <p>The content-type header value in the HTTP response.</p>
@@ -78,12 +81,13 @@ namespace Model
     /**
      * <p>The content-type header value in the HTTP response.</p>
      */
-    inline GetSdkResult& WithContentType(Aws::String&& value) { SetContentType(value); return *this;}
+    inline GetSdkResult& WithContentType(Aws::String&& value) { SetContentType(std::move(value)); return *this;}
 
     /**
      * <p>The content-type header value in the HTTP response.</p>
      */
     inline GetSdkResult& WithContentType(const char* value) { SetContentType(value); return *this;}
+
 
     /**
      * <p>The content-disposition header value in the HTTP response.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>The content-disposition header value in the HTTP response.</p>
      */
-    inline void SetContentDisposition(Aws::String&& value) { m_contentDisposition = value; }
+    inline void SetContentDisposition(Aws::String&& value) { m_contentDisposition = std::move(value); }
 
     /**
      * <p>The content-disposition header value in the HTTP response.</p>
@@ -113,12 +117,13 @@ namespace Model
     /**
      * <p>The content-disposition header value in the HTTP response.</p>
      */
-    inline GetSdkResult& WithContentDisposition(Aws::String&& value) { SetContentDisposition(value); return *this;}
+    inline GetSdkResult& WithContentDisposition(Aws::String&& value) { SetContentDisposition(std::move(value)); return *this;}
 
     /**
      * <p>The content-disposition header value in the HTTP response.</p>
      */
     inline GetSdkResult& WithContentDisposition(const char* value) { SetContentDisposition(value); return *this;}
+
 
     /**
      * <p>The binary blob response to <a>GetSdk</a>, which contains the generated
@@ -133,9 +138,12 @@ namespace Model
     inline void ReplaceBody(Aws::IOStream* body) { m_body = Aws::Utils::Stream::ResponseStream(body); }
     
   private:
+
     Aws::String m_contentType;
+
     Aws::String m_contentDisposition;
-    Utils::Stream::ResponseStream m_body;
+
+  Aws::Utils::Stream::ResponseStream m_body;
   };
 
 } // namespace Model

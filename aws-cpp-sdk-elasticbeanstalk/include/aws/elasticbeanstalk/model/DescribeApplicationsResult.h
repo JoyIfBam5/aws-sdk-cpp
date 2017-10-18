@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticbeanstalk/model/ResponseMetadata.h>
 #include <aws/elasticbeanstalk/model/ApplicationDescription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     DescribeApplicationsResult();
-    DescribeApplicationsResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeApplicationsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeApplicationsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeApplicationsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>This parameter contains a list of <a>ApplicationDescription</a>.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>This parameter contains a list of <a>ApplicationDescription</a>.</p>
      */
-    inline void SetApplications(Aws::Vector<ApplicationDescription>&& value) { m_applications = value; }
+    inline void SetApplications(Aws::Vector<ApplicationDescription>&& value) { m_applications = std::move(value); }
 
     /**
      * <p>This parameter contains a list of <a>ApplicationDescription</a>.</p>
@@ -70,7 +73,7 @@ namespace Model
     /**
      * <p>This parameter contains a list of <a>ApplicationDescription</a>.</p>
      */
-    inline DescribeApplicationsResult& WithApplications(Aws::Vector<ApplicationDescription>&& value) { SetApplications(value); return *this;}
+    inline DescribeApplicationsResult& WithApplications(Aws::Vector<ApplicationDescription>&& value) { SetApplications(std::move(value)); return *this;}
 
     /**
      * <p>This parameter contains a list of <a>ApplicationDescription</a>.</p>
@@ -80,7 +83,8 @@ namespace Model
     /**
      * <p>This parameter contains a list of <a>ApplicationDescription</a>.</p>
      */
-    inline DescribeApplicationsResult& AddApplications(ApplicationDescription&& value) { m_applications.push_back(value); return *this; }
+    inline DescribeApplicationsResult& AddApplications(ApplicationDescription&& value) { m_applications.push_back(std::move(value)); return *this; }
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -89,16 +93,18 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeApplicationsResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeApplicationsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeApplicationsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<ApplicationDescription> m_applications;
+
     ResponseMetadata m_responseMetadata;
   };
 

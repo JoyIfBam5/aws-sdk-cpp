@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/model/IPSet.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     CreateIPSetResult();
-    CreateIPSetResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateIPSetResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateIPSetResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateIPSetResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The <a>IPSet</a> returned in the <code>CreateIPSet</code> response.</p>
@@ -53,7 +56,7 @@ namespace Model
     /**
      * <p>The <a>IPSet</a> returned in the <code>CreateIPSet</code> response.</p>
      */
-    inline void SetIPSet(IPSet&& value) { m_iPSet = value; }
+    inline void SetIPSet(IPSet&& value) { m_iPSet = std::move(value); }
 
     /**
      * <p>The <a>IPSet</a> returned in the <code>CreateIPSet</code> response.</p>
@@ -63,7 +66,8 @@ namespace Model
     /**
      * <p>The <a>IPSet</a> returned in the <code>CreateIPSet</code> response.</p>
      */
-    inline CreateIPSetResult& WithIPSet(IPSet&& value) { SetIPSet(value); return *this;}
+    inline CreateIPSetResult& WithIPSet(IPSet&& value) { SetIPSet(std::move(value)); return *this;}
+
 
     /**
      * <p>The <code>ChangeToken</code> that you used to submit the
@@ -87,7 +91,7 @@ namespace Model
      * status of the request. For more information, see
      * <a>GetChangeTokenStatus</a>.</p>
      */
-    inline void SetChangeToken(Aws::String&& value) { m_changeToken = value; }
+    inline void SetChangeToken(Aws::String&& value) { m_changeToken = std::move(value); }
 
     /**
      * <p>The <code>ChangeToken</code> that you used to submit the
@@ -111,7 +115,7 @@ namespace Model
      * status of the request. For more information, see
      * <a>GetChangeTokenStatus</a>.</p>
      */
-    inline CreateIPSetResult& WithChangeToken(Aws::String&& value) { SetChangeToken(value); return *this;}
+    inline CreateIPSetResult& WithChangeToken(Aws::String&& value) { SetChangeToken(std::move(value)); return *this;}
 
     /**
      * <p>The <code>ChangeToken</code> that you used to submit the
@@ -122,7 +126,9 @@ namespace Model
     inline CreateIPSetResult& WithChangeToken(const char* value) { SetChangeToken(value); return *this;}
 
   private:
+
     IPSet m_iPSet;
+
     Aws::String m_changeToken;
   };
 

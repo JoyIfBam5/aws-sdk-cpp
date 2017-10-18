@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/redshift/model/SnapshotCopyGrant.h>
 #include <aws/redshift/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     CreateSnapshotCopyGrantResult();
-    CreateSnapshotCopyGrantResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    CreateSnapshotCopyGrantResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CreateSnapshotCopyGrantResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CreateSnapshotCopyGrantResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     
     inline const SnapshotCopyGrant& GetSnapshotCopyGrant() const{ return m_snapshotCopyGrant; }
@@ -47,13 +50,14 @@ namespace Model
     inline void SetSnapshotCopyGrant(const SnapshotCopyGrant& value) { m_snapshotCopyGrant = value; }
 
     
-    inline void SetSnapshotCopyGrant(SnapshotCopyGrant&& value) { m_snapshotCopyGrant = value; }
+    inline void SetSnapshotCopyGrant(SnapshotCopyGrant&& value) { m_snapshotCopyGrant = std::move(value); }
 
     
     inline CreateSnapshotCopyGrantResult& WithSnapshotCopyGrant(const SnapshotCopyGrant& value) { SetSnapshotCopyGrant(value); return *this;}
 
     
-    inline CreateSnapshotCopyGrantResult& WithSnapshotCopyGrant(SnapshotCopyGrant&& value) { SetSnapshotCopyGrant(value); return *this;}
+    inline CreateSnapshotCopyGrantResult& WithSnapshotCopyGrant(SnapshotCopyGrant&& value) { SetSnapshotCopyGrant(std::move(value)); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -62,16 +66,18 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline CreateSnapshotCopyGrantResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline CreateSnapshotCopyGrantResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline CreateSnapshotCopyGrantResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     SnapshotCopyGrant m_snapshotCopyGrant;
+
     ResponseMetadata m_responseMetadata;
   };
 

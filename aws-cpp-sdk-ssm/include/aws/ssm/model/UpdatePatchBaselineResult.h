@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,13 +12,17 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <aws/ssm/model/OperatingSystem.h>
 #include <aws/ssm/model/PatchFilterGroup.h>
 #include <aws/ssm/model/PatchRuleGroup.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <aws/ssm/model/PatchComplianceLevel.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -40,8 +44,9 @@ namespace Model
   {
   public:
     UpdatePatchBaselineResult();
-    UpdatePatchBaselineResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    UpdatePatchBaselineResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdatePatchBaselineResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdatePatchBaselineResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The ID of the deleted patch baseline.</p>
@@ -56,7 +61,7 @@ namespace Model
     /**
      * <p>The ID of the deleted patch baseline.</p>
      */
-    inline void SetBaselineId(Aws::String&& value) { m_baselineId = value; }
+    inline void SetBaselineId(Aws::String&& value) { m_baselineId = std::move(value); }
 
     /**
      * <p>The ID of the deleted patch baseline.</p>
@@ -71,12 +76,13 @@ namespace Model
     /**
      * <p>The ID of the deleted patch baseline.</p>
      */
-    inline UpdatePatchBaselineResult& WithBaselineId(Aws::String&& value) { SetBaselineId(value); return *this;}
+    inline UpdatePatchBaselineResult& WithBaselineId(Aws::String&& value) { SetBaselineId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the deleted patch baseline.</p>
      */
     inline UpdatePatchBaselineResult& WithBaselineId(const char* value) { SetBaselineId(value); return *this;}
+
 
     /**
      * <p>The name of the patch baseline.</p>
@@ -91,7 +97,7 @@ namespace Model
     /**
      * <p>The name of the patch baseline.</p>
      */
-    inline void SetName(Aws::String&& value) { m_name = value; }
+    inline void SetName(Aws::String&& value) { m_name = std::move(value); }
 
     /**
      * <p>The name of the patch baseline.</p>
@@ -106,12 +112,39 @@ namespace Model
     /**
      * <p>The name of the patch baseline.</p>
      */
-    inline UpdatePatchBaselineResult& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline UpdatePatchBaselineResult& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the patch baseline.</p>
      */
     inline UpdatePatchBaselineResult& WithName(const char* value) { SetName(value); return *this;}
+
+
+    /**
+     * <p>The operating system rule used by the updated patch baseline.</p>
+     */
+    inline const OperatingSystem& GetOperatingSystem() const{ return m_operatingSystem; }
+
+    /**
+     * <p>The operating system rule used by the updated patch baseline.</p>
+     */
+    inline void SetOperatingSystem(const OperatingSystem& value) { m_operatingSystem = value; }
+
+    /**
+     * <p>The operating system rule used by the updated patch baseline.</p>
+     */
+    inline void SetOperatingSystem(OperatingSystem&& value) { m_operatingSystem = std::move(value); }
+
+    /**
+     * <p>The operating system rule used by the updated patch baseline.</p>
+     */
+    inline UpdatePatchBaselineResult& WithOperatingSystem(const OperatingSystem& value) { SetOperatingSystem(value); return *this;}
+
+    /**
+     * <p>The operating system rule used by the updated patch baseline.</p>
+     */
+    inline UpdatePatchBaselineResult& WithOperatingSystem(OperatingSystem&& value) { SetOperatingSystem(std::move(value)); return *this;}
+
 
     /**
      * <p>A set of global filters used to exclude patches from the baseline.</p>
@@ -126,7 +159,7 @@ namespace Model
     /**
      * <p>A set of global filters used to exclude patches from the baseline.</p>
      */
-    inline void SetGlobalFilters(PatchFilterGroup&& value) { m_globalFilters = value; }
+    inline void SetGlobalFilters(PatchFilterGroup&& value) { m_globalFilters = std::move(value); }
 
     /**
      * <p>A set of global filters used to exclude patches from the baseline.</p>
@@ -136,7 +169,8 @@ namespace Model
     /**
      * <p>A set of global filters used to exclude patches from the baseline.</p>
      */
-    inline UpdatePatchBaselineResult& WithGlobalFilters(PatchFilterGroup&& value) { SetGlobalFilters(value); return *this;}
+    inline UpdatePatchBaselineResult& WithGlobalFilters(PatchFilterGroup&& value) { SetGlobalFilters(std::move(value)); return *this;}
+
 
     /**
      * <p>A set of rules used to include patches in the baseline.</p>
@@ -151,7 +185,7 @@ namespace Model
     /**
      * <p>A set of rules used to include patches in the baseline.</p>
      */
-    inline void SetApprovalRules(PatchRuleGroup&& value) { m_approvalRules = value; }
+    inline void SetApprovalRules(PatchRuleGroup&& value) { m_approvalRules = std::move(value); }
 
     /**
      * <p>A set of rules used to include patches in the baseline.</p>
@@ -161,7 +195,8 @@ namespace Model
     /**
      * <p>A set of rules used to include patches in the baseline.</p>
      */
-    inline UpdatePatchBaselineResult& WithApprovalRules(PatchRuleGroup&& value) { SetApprovalRules(value); return *this;}
+    inline UpdatePatchBaselineResult& WithApprovalRules(PatchRuleGroup&& value) { SetApprovalRules(std::move(value)); return *this;}
+
 
     /**
      * <p>A list of explicitly approved patches for the baseline.</p>
@@ -176,7 +211,7 @@ namespace Model
     /**
      * <p>A list of explicitly approved patches for the baseline.</p>
      */
-    inline void SetApprovedPatches(Aws::Vector<Aws::String>&& value) { m_approvedPatches = value; }
+    inline void SetApprovedPatches(Aws::Vector<Aws::String>&& value) { m_approvedPatches = std::move(value); }
 
     /**
      * <p>A list of explicitly approved patches for the baseline.</p>
@@ -186,7 +221,7 @@ namespace Model
     /**
      * <p>A list of explicitly approved patches for the baseline.</p>
      */
-    inline UpdatePatchBaselineResult& WithApprovedPatches(Aws::Vector<Aws::String>&& value) { SetApprovedPatches(value); return *this;}
+    inline UpdatePatchBaselineResult& WithApprovedPatches(Aws::Vector<Aws::String>&& value) { SetApprovedPatches(std::move(value)); return *this;}
 
     /**
      * <p>A list of explicitly approved patches for the baseline.</p>
@@ -196,12 +231,44 @@ namespace Model
     /**
      * <p>A list of explicitly approved patches for the baseline.</p>
      */
-    inline UpdatePatchBaselineResult& AddApprovedPatches(Aws::String&& value) { m_approvedPatches.push_back(value); return *this; }
+    inline UpdatePatchBaselineResult& AddApprovedPatches(Aws::String&& value) { m_approvedPatches.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of explicitly approved patches for the baseline.</p>
      */
     inline UpdatePatchBaselineResult& AddApprovedPatches(const char* value) { m_approvedPatches.push_back(value); return *this; }
+
+
+    /**
+     * <p>The compliance severity level assigned to the patch baseline after the update
+     * completed.</p>
+     */
+    inline const PatchComplianceLevel& GetApprovedPatchesComplianceLevel() const{ return m_approvedPatchesComplianceLevel; }
+
+    /**
+     * <p>The compliance severity level assigned to the patch baseline after the update
+     * completed.</p>
+     */
+    inline void SetApprovedPatchesComplianceLevel(const PatchComplianceLevel& value) { m_approvedPatchesComplianceLevel = value; }
+
+    /**
+     * <p>The compliance severity level assigned to the patch baseline after the update
+     * completed.</p>
+     */
+    inline void SetApprovedPatchesComplianceLevel(PatchComplianceLevel&& value) { m_approvedPatchesComplianceLevel = std::move(value); }
+
+    /**
+     * <p>The compliance severity level assigned to the patch baseline after the update
+     * completed.</p>
+     */
+    inline UpdatePatchBaselineResult& WithApprovedPatchesComplianceLevel(const PatchComplianceLevel& value) { SetApprovedPatchesComplianceLevel(value); return *this;}
+
+    /**
+     * <p>The compliance severity level assigned to the patch baseline after the update
+     * completed.</p>
+     */
+    inline UpdatePatchBaselineResult& WithApprovedPatchesComplianceLevel(PatchComplianceLevel&& value) { SetApprovedPatchesComplianceLevel(std::move(value)); return *this;}
+
 
     /**
      * <p>A list of explicitly rejected patches for the baseline.</p>
@@ -216,7 +283,7 @@ namespace Model
     /**
      * <p>A list of explicitly rejected patches for the baseline.</p>
      */
-    inline void SetRejectedPatches(Aws::Vector<Aws::String>&& value) { m_rejectedPatches = value; }
+    inline void SetRejectedPatches(Aws::Vector<Aws::String>&& value) { m_rejectedPatches = std::move(value); }
 
     /**
      * <p>A list of explicitly rejected patches for the baseline.</p>
@@ -226,7 +293,7 @@ namespace Model
     /**
      * <p>A list of explicitly rejected patches for the baseline.</p>
      */
-    inline UpdatePatchBaselineResult& WithRejectedPatches(Aws::Vector<Aws::String>&& value) { SetRejectedPatches(value); return *this;}
+    inline UpdatePatchBaselineResult& WithRejectedPatches(Aws::Vector<Aws::String>&& value) { SetRejectedPatches(std::move(value)); return *this;}
 
     /**
      * <p>A list of explicitly rejected patches for the baseline.</p>
@@ -236,12 +303,13 @@ namespace Model
     /**
      * <p>A list of explicitly rejected patches for the baseline.</p>
      */
-    inline UpdatePatchBaselineResult& AddRejectedPatches(Aws::String&& value) { m_rejectedPatches.push_back(value); return *this; }
+    inline UpdatePatchBaselineResult& AddRejectedPatches(Aws::String&& value) { m_rejectedPatches.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of explicitly rejected patches for the baseline.</p>
      */
     inline UpdatePatchBaselineResult& AddRejectedPatches(const char* value) { m_rejectedPatches.push_back(value); return *this; }
+
 
     /**
      * <p>The date when the patch baseline was created.</p>
@@ -256,7 +324,7 @@ namespace Model
     /**
      * <p>The date when the patch baseline was created.</p>
      */
-    inline void SetCreatedDate(Aws::Utils::DateTime&& value) { m_createdDate = value; }
+    inline void SetCreatedDate(Aws::Utils::DateTime&& value) { m_createdDate = std::move(value); }
 
     /**
      * <p>The date when the patch baseline was created.</p>
@@ -266,7 +334,8 @@ namespace Model
     /**
      * <p>The date when the patch baseline was created.</p>
      */
-    inline UpdatePatchBaselineResult& WithCreatedDate(Aws::Utils::DateTime&& value) { SetCreatedDate(value); return *this;}
+    inline UpdatePatchBaselineResult& WithCreatedDate(Aws::Utils::DateTime&& value) { SetCreatedDate(std::move(value)); return *this;}
+
 
     /**
      * <p>The date when the patch baseline was last modified.</p>
@@ -281,7 +350,7 @@ namespace Model
     /**
      * <p>The date when the patch baseline was last modified.</p>
      */
-    inline void SetModifiedDate(Aws::Utils::DateTime&& value) { m_modifiedDate = value; }
+    inline void SetModifiedDate(Aws::Utils::DateTime&& value) { m_modifiedDate = std::move(value); }
 
     /**
      * <p>The date when the patch baseline was last modified.</p>
@@ -291,7 +360,8 @@ namespace Model
     /**
      * <p>The date when the patch baseline was last modified.</p>
      */
-    inline UpdatePatchBaselineResult& WithModifiedDate(Aws::Utils::DateTime&& value) { SetModifiedDate(value); return *this;}
+    inline UpdatePatchBaselineResult& WithModifiedDate(Aws::Utils::DateTime&& value) { SetModifiedDate(std::move(value)); return *this;}
+
 
     /**
      * <p>A description of the Patch Baseline.</p>
@@ -306,7 +376,7 @@ namespace Model
     /**
      * <p>A description of the Patch Baseline.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_description = std::move(value); }
 
     /**
      * <p>A description of the Patch Baseline.</p>
@@ -321,7 +391,7 @@ namespace Model
     /**
      * <p>A description of the Patch Baseline.</p>
      */
-    inline UpdatePatchBaselineResult& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline UpdatePatchBaselineResult& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>A description of the Patch Baseline.</p>
@@ -329,14 +399,27 @@ namespace Model
     inline UpdatePatchBaselineResult& WithDescription(const char* value) { SetDescription(value); return *this;}
 
   private:
+
     Aws::String m_baselineId;
+
     Aws::String m_name;
+
+    OperatingSystem m_operatingSystem;
+
     PatchFilterGroup m_globalFilters;
+
     PatchRuleGroup m_approvalRules;
+
     Aws::Vector<Aws::String> m_approvedPatches;
+
+    PatchComplianceLevel m_approvedPatchesComplianceLevel;
+
     Aws::Vector<Aws::String> m_rejectedPatches;
+
     Aws::Utils::DateTime m_createdDate;
+
     Aws::Utils::DateTime m_modifiedDate;
+
     Aws::String m_description;
   };
 

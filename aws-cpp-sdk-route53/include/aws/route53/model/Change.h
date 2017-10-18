@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53/Route53_EXPORTS.h>
 #include <aws/route53/model/ChangeAction.h>
 #include <aws/route53/model/ResourceRecordSet.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     Change& operator=(const Aws::Utils::Xml::XmlNode& xmlNode);
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
+
 
     /**
      * <p>The action to perform:</p> <ul> <li> <p> <code>CREATE</code>: Creates a
@@ -140,7 +143,7 @@ namespace Model
      * failover, geolocation, latency, and weighted resource record sets)</p> </li>
      * </ul>
      */
-    inline void SetAction(ChangeAction&& value) { m_actionHasBeenSet = true; m_action = value; }
+    inline void SetAction(ChangeAction&& value) { m_actionHasBeenSet = true; m_action = std::move(value); }
 
     /**
      * <p>The action to perform:</p> <ul> <li> <p> <code>CREATE</code>: Creates a
@@ -204,7 +207,8 @@ namespace Model
      * failover, geolocation, latency, and weighted resource record sets)</p> </li>
      * </ul>
      */
-    inline Change& WithAction(ChangeAction&& value) { SetAction(value); return *this;}
+    inline Change& WithAction(ChangeAction&& value) { SetAction(std::move(value)); return *this;}
+
 
     /**
      * <p>Information about the resource record set to create, delete, or update.</p>
@@ -219,7 +223,7 @@ namespace Model
     /**
      * <p>Information about the resource record set to create, delete, or update.</p>
      */
-    inline void SetResourceRecordSet(ResourceRecordSet&& value) { m_resourceRecordSetHasBeenSet = true; m_resourceRecordSet = value; }
+    inline void SetResourceRecordSet(ResourceRecordSet&& value) { m_resourceRecordSetHasBeenSet = true; m_resourceRecordSet = std::move(value); }
 
     /**
      * <p>Information about the resource record set to create, delete, or update.</p>
@@ -229,11 +233,13 @@ namespace Model
     /**
      * <p>Information about the resource record set to create, delete, or update.</p>
      */
-    inline Change& WithResourceRecordSet(ResourceRecordSet&& value) { SetResourceRecordSet(value); return *this;}
+    inline Change& WithResourceRecordSet(ResourceRecordSet&& value) { SetResourceRecordSet(std::move(value)); return *this;}
 
   private:
+
     ChangeAction m_action;
     bool m_actionHasBeenSet;
+
     ResourceRecordSet m_resourceRecordSet;
     bool m_resourceRecordSetHasBeenSet;
   };

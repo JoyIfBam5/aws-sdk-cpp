@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/gamelift/GameLift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -49,7 +50,14 @@ namespace Model
     SERVER_PROCESS_CRASHED,
     SERVER_PROCESS_TERMINATED_UNHEALTHY,
     SERVER_PROCESS_FORCE_TERMINATED,
-    SERVER_PROCESS_PROCESS_EXIT_TIMEOUT
+    SERVER_PROCESS_PROCESS_EXIT_TIMEOUT,
+    GAME_SESSION_ACTIVATION_TIMEOUT,
+    FLEET_CREATION_EXTRACTING_BUILD,
+    FLEET_CREATION_RUNNING_INSTALLER,
+    FLEET_CREATION_VALIDATING_RUNTIME_CONFIG,
+    FLEET_VPC_PEERING_SUCCEEDED,
+    FLEET_VPC_PEERING_FAILED,
+    FLEET_VPC_PEERING_DELETED
   };
 
 namespace EventCodeMapper

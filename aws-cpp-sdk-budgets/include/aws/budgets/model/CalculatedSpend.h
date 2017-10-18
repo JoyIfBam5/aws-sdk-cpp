@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/budgets/Budgets_EXPORTS.h>
 #include <aws/budgets/model/Spend.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,7 +33,7 @@ namespace Model
 {
 
   /**
-   * A structure holds the actual and forecasted spend for a budget.<p><h3>See
+   * A structure that holds the actual and forecasted spend for a budget.<p><h3>See
    * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/CalculatedSpend">AWS
    * API Reference</a></p>
@@ -44,6 +46,7 @@ namespace Model
     CalculatedSpend& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     
     inline const Spend& GetActualSpend() const{ return m_actualSpend; }
 
@@ -51,13 +54,14 @@ namespace Model
     inline void SetActualSpend(const Spend& value) { m_actualSpendHasBeenSet = true; m_actualSpend = value; }
 
     
-    inline void SetActualSpend(Spend&& value) { m_actualSpendHasBeenSet = true; m_actualSpend = value; }
+    inline void SetActualSpend(Spend&& value) { m_actualSpendHasBeenSet = true; m_actualSpend = std::move(value); }
 
     
     inline CalculatedSpend& WithActualSpend(const Spend& value) { SetActualSpend(value); return *this;}
 
     
-    inline CalculatedSpend& WithActualSpend(Spend&& value) { SetActualSpend(value); return *this;}
+    inline CalculatedSpend& WithActualSpend(Spend&& value) { SetActualSpend(std::move(value)); return *this;}
+
 
     
     inline const Spend& GetForecastedSpend() const{ return m_forecastedSpend; }
@@ -66,17 +70,19 @@ namespace Model
     inline void SetForecastedSpend(const Spend& value) { m_forecastedSpendHasBeenSet = true; m_forecastedSpend = value; }
 
     
-    inline void SetForecastedSpend(Spend&& value) { m_forecastedSpendHasBeenSet = true; m_forecastedSpend = value; }
+    inline void SetForecastedSpend(Spend&& value) { m_forecastedSpendHasBeenSet = true; m_forecastedSpend = std::move(value); }
 
     
     inline CalculatedSpend& WithForecastedSpend(const Spend& value) { SetForecastedSpend(value); return *this;}
 
     
-    inline CalculatedSpend& WithForecastedSpend(Spend&& value) { SetForecastedSpend(value); return *this;}
+    inline CalculatedSpend& WithForecastedSpend(Spend&& value) { SetForecastedSpend(std::move(value)); return *this;}
 
   private:
+
     Spend m_actualSpend;
     bool m_actualSpendHasBeenSet;
+
     Spend m_forecastedSpend;
     bool m_forecastedSpendHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/lightsail/model/NetworkProtocol.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     PortInfo& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The first port in the range.</p>
      */
@@ -58,6 +61,7 @@ namespace Model
      * <p>The first port in the range.</p>
      */
     inline PortInfo& WithFromPort(int value) { SetFromPort(value); return *this;}
+
 
     /**
      * <p>The last port in the range.</p>
@@ -74,6 +78,7 @@ namespace Model
      */
     inline PortInfo& WithToPort(int value) { SetToPort(value); return *this;}
 
+
     /**
      * <p>The protocol. </p>
      */
@@ -87,7 +92,7 @@ namespace Model
     /**
      * <p>The protocol. </p>
      */
-    inline void SetProtocol(NetworkProtocol&& value) { m_protocolHasBeenSet = true; m_protocol = value; }
+    inline void SetProtocol(NetworkProtocol&& value) { m_protocolHasBeenSet = true; m_protocol = std::move(value); }
 
     /**
      * <p>The protocol. </p>
@@ -97,13 +102,16 @@ namespace Model
     /**
      * <p>The protocol. </p>
      */
-    inline PortInfo& WithProtocol(NetworkProtocol&& value) { SetProtocol(value); return *this;}
+    inline PortInfo& WithProtocol(NetworkProtocol&& value) { SetProtocol(std::move(value)); return *this;}
 
   private:
+
     int m_fromPort;
     bool m_fromPortHasBeenSet;
+
     int m_toPort;
     bool m_toPortHasBeenSet;
+
     NetworkProtocol m_protocol;
     bool m_protocolHasBeenSet;
   };

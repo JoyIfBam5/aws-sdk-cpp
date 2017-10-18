@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/cognito-idp/CognitoIdentityProviderRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     ForgotPasswordRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ForgotPassword"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The ID of the client associated with the user pool.</p>
@@ -51,7 +61,7 @@ namespace Model
     /**
      * <p>The ID of the client associated with the user pool.</p>
      */
-    inline void SetClientId(Aws::String&& value) { m_clientIdHasBeenSet = true; m_clientId = value; }
+    inline void SetClientId(Aws::String&& value) { m_clientIdHasBeenSet = true; m_clientId = std::move(value); }
 
     /**
      * <p>The ID of the client associated with the user pool.</p>
@@ -66,12 +76,13 @@ namespace Model
     /**
      * <p>The ID of the client associated with the user pool.</p>
      */
-    inline ForgotPasswordRequest& WithClientId(Aws::String&& value) { SetClientId(value); return *this;}
+    inline ForgotPasswordRequest& WithClientId(Aws::String&& value) { SetClientId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the client associated with the user pool.</p>
      */
     inline ForgotPasswordRequest& WithClientId(const char* value) { SetClientId(value); return *this;}
+
 
     /**
      * <p>A keyed-hash message authentication code (HMAC) calculated using the secret
@@ -89,7 +100,7 @@ namespace Model
      * <p>A keyed-hash message authentication code (HMAC) calculated using the secret
      * key of a user pool client and username plus the client ID in the message.</p>
      */
-    inline void SetSecretHash(Aws::String&& value) { m_secretHashHasBeenSet = true; m_secretHash = value; }
+    inline void SetSecretHash(Aws::String&& value) { m_secretHashHasBeenSet = true; m_secretHash = std::move(value); }
 
     /**
      * <p>A keyed-hash message authentication code (HMAC) calculated using the secret
@@ -107,13 +118,14 @@ namespace Model
      * <p>A keyed-hash message authentication code (HMAC) calculated using the secret
      * key of a user pool client and username plus the client ID in the message.</p>
      */
-    inline ForgotPasswordRequest& WithSecretHash(Aws::String&& value) { SetSecretHash(value); return *this;}
+    inline ForgotPasswordRequest& WithSecretHash(Aws::String&& value) { SetSecretHash(std::move(value)); return *this;}
 
     /**
      * <p>A keyed-hash message authentication code (HMAC) calculated using the secret
      * key of a user pool client and username plus the client ID in the message.</p>
      */
     inline ForgotPasswordRequest& WithSecretHash(const char* value) { SetSecretHash(value); return *this;}
+
 
     /**
      * <p>The user name of the user for whom you want to enter a code to reset a
@@ -131,7 +143,7 @@ namespace Model
      * <p>The user name of the user for whom you want to enter a code to reset a
      * forgotten password.</p>
      */
-    inline void SetUsername(Aws::String&& value) { m_usernameHasBeenSet = true; m_username = value; }
+    inline void SetUsername(Aws::String&& value) { m_usernameHasBeenSet = true; m_username = std::move(value); }
 
     /**
      * <p>The user name of the user for whom you want to enter a code to reset a
@@ -149,7 +161,7 @@ namespace Model
      * <p>The user name of the user for whom you want to enter a code to reset a
      * forgotten password.</p>
      */
-    inline ForgotPasswordRequest& WithUsername(Aws::String&& value) { SetUsername(value); return *this;}
+    inline ForgotPasswordRequest& WithUsername(Aws::String&& value) { SetUsername(std::move(value)); return *this;}
 
     /**
      * <p>The user name of the user for whom you want to enter a code to reset a
@@ -158,10 +170,13 @@ namespace Model
     inline ForgotPasswordRequest& WithUsername(const char* value) { SetUsername(value); return *this;}
 
   private:
+
     Aws::String m_clientId;
     bool m_clientIdHasBeenSet;
+
     Aws::String m_secretHash;
     bool m_secretHashHasBeenSet;
+
     Aws::String m_username;
     bool m_usernameHasBeenSet;
   };

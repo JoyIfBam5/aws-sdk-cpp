@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/ecs/ECSErrors.h>
@@ -49,6 +50,7 @@
 #include <aws/ecs/model/SubmitContainerStateChangeResult.h>
 #include <aws/ecs/model/SubmitTaskStateChangeResult.h>
 #include <aws/ecs/model/UpdateContainerAgentResult.h>
+#include <aws/ecs/model/UpdateContainerInstancesStateResult.h>
 #include <aws/ecs/model/UpdateServiceResult.h>
 #include <aws/core/client/AsyncCallerContext.h>
 #include <aws/core/http/HttpTypes.h>
@@ -124,6 +126,7 @@ namespace Model
         class SubmitContainerStateChangeRequest;
         class SubmitTaskStateChangeRequest;
         class UpdateContainerAgentRequest;
+        class UpdateContainerInstancesStateRequest;
         class UpdateServiceRequest;
 
         typedef Aws::Utils::Outcome<CreateClusterResult, Aws::Client::AWSError<ECSErrors>> CreateClusterOutcome;
@@ -155,6 +158,7 @@ namespace Model
         typedef Aws::Utils::Outcome<SubmitContainerStateChangeResult, Aws::Client::AWSError<ECSErrors>> SubmitContainerStateChangeOutcome;
         typedef Aws::Utils::Outcome<SubmitTaskStateChangeResult, Aws::Client::AWSError<ECSErrors>> SubmitTaskStateChangeOutcome;
         typedef Aws::Utils::Outcome<UpdateContainerAgentResult, Aws::Client::AWSError<ECSErrors>> UpdateContainerAgentOutcome;
+        typedef Aws::Utils::Outcome<UpdateContainerInstancesStateResult, Aws::Client::AWSError<ECSErrors>> UpdateContainerInstancesStateOutcome;
         typedef Aws::Utils::Outcome<UpdateServiceResult, Aws::Client::AWSError<ECSErrors>> UpdateServiceOutcome;
 
         typedef std::future<CreateClusterOutcome> CreateClusterOutcomeCallable;
@@ -186,6 +190,7 @@ namespace Model
         typedef std::future<SubmitContainerStateChangeOutcome> SubmitContainerStateChangeOutcomeCallable;
         typedef std::future<SubmitTaskStateChangeOutcome> SubmitTaskStateChangeOutcomeCallable;
         typedef std::future<UpdateContainerAgentOutcome> UpdateContainerAgentOutcomeCallable;
+        typedef std::future<UpdateContainerInstancesStateOutcome> UpdateContainerInstancesStateOutcomeCallable;
         typedef std::future<UpdateServiceOutcome> UpdateServiceOutcomeCallable;
 } // namespace Model
 
@@ -220,6 +225,7 @@ namespace Model
     typedef std::function<void(const ECSClient*, const Model::SubmitContainerStateChangeRequest&, const Model::SubmitContainerStateChangeOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > SubmitContainerStateChangeResponseReceivedHandler;
     typedef std::function<void(const ECSClient*, const Model::SubmitTaskStateChangeRequest&, const Model::SubmitTaskStateChangeOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > SubmitTaskStateChangeResponseReceivedHandler;
     typedef std::function<void(const ECSClient*, const Model::UpdateContainerAgentRequest&, const Model::UpdateContainerAgentOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateContainerAgentResponseReceivedHandler;
+    typedef std::function<void(const ECSClient*, const Model::UpdateContainerInstancesStateRequest&, const Model::UpdateContainerInstancesStateOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateContainerInstancesStateResponseReceivedHandler;
     typedef std::function<void(const ECSClient*, const Model::UpdateServiceRequest&, const Model::UpdateServiceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateServiceResponseReceivedHandler;
 
   /**
@@ -244,22 +250,25 @@ namespace Model
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        ECSClient(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        ECSClient(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        ECSClient(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        ECSClient(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        ECSClient(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        ECSClient(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
         virtual ~ECSClient();
+
+        inline virtual const char* GetServiceClientName() const override { return "ecs"; }
+
 
         /**
          * <p>Creates a new Amazon ECS cluster. By default, your account receives a
@@ -317,11 +326,11 @@ namespace Model
          * up to the nearest integer). This parameter enables you to deploy without using
          * additional cluster capacity. For example, if your service has a
          * <code>desiredCount</code> of four tasks and a <code>minimumHealthyPercent</code>
-         * of 50%, the scheduler may stop two existing tasks to free up cluster capacity
+         * of 50%, the scheduler can stop two existing tasks to free up cluster capacity
          * before starting two new tasks. Tasks for services that <i>do not</i> use a load
-         * balancer are considered healthy if they are in the <code>RUNNING</code> state;
-         * tasks for services that <i>do</i> use a load balancer are considered healthy if
-         * they are in the <code>RUNNING</code> state and the container instance it is
+         * balancer are considered healthy if they are in the <code>RUNNING</code> state.
+         * Tasks for services that <i>do</i> use a load balancer are considered healthy if
+         * they are in the <code>RUNNING</code> state and the container instance they are
          * hosted on is reported as healthy by the load balancer. The default value for
          * <code>minimumHealthyPercent</code> is 50% in the console and 100% for the AWS
          * CLI, the AWS SDKs, and the APIs.</p> <p>The <code>maximumPercent</code>
@@ -330,17 +339,17 @@ namespace Model
          * deployment, as a percentage of the <code>desiredCount</code> (rounded down to
          * the nearest integer). This parameter enables you to define the deployment batch
          * size. For example, if your service has a <code>desiredCount</code> of four tasks
-         * and a <code>maximumPercent</code> value of 200%, the scheduler may start four
+         * and a <code>maximumPercent</code> value of 200%, the scheduler can start four
          * new tasks before stopping the four older tasks (provided that the cluster
          * resources required to do this are available). The default value for
          * <code>maximumPercent</code> is 200%.</p> <p>When the service scheduler launches
-         * new tasks, it determines task placement in your cluster with the following
+         * new tasks, it determines task placement in your cluster using the following
          * logic:</p> <ul> <li> <p>Determine which of the container instances in your
          * cluster can support your service's task definition (for example, they have the
          * required CPU, memory, ports, and container instance attributes).</p> </li> <li>
          * <p>By default, the service scheduler attempts to balance tasks across
          * Availability Zones in this manner (although you can choose a different placement
-         * strategy with the <code>placementStrategy</code> parameter):</p> <ul> <li>
+         * strategy) with the <code>placementStrategy</code> parameter):</p> <ul> <li>
          * <p>Sort the valid container instances by the fewest number of running tasks for
          * this service in the same Availability Zone as the instance. For example, if zone
          * A has one running service task and zones B and C each have zero, valid container
@@ -376,11 +385,11 @@ namespace Model
          * up to the nearest integer). This parameter enables you to deploy without using
          * additional cluster capacity. For example, if your service has a
          * <code>desiredCount</code> of four tasks and a <code>minimumHealthyPercent</code>
-         * of 50%, the scheduler may stop two existing tasks to free up cluster capacity
+         * of 50%, the scheduler can stop two existing tasks to free up cluster capacity
          * before starting two new tasks. Tasks for services that <i>do not</i> use a load
-         * balancer are considered healthy if they are in the <code>RUNNING</code> state;
-         * tasks for services that <i>do</i> use a load balancer are considered healthy if
-         * they are in the <code>RUNNING</code> state and the container instance it is
+         * balancer are considered healthy if they are in the <code>RUNNING</code> state.
+         * Tasks for services that <i>do</i> use a load balancer are considered healthy if
+         * they are in the <code>RUNNING</code> state and the container instance they are
          * hosted on is reported as healthy by the load balancer. The default value for
          * <code>minimumHealthyPercent</code> is 50% in the console and 100% for the AWS
          * CLI, the AWS SDKs, and the APIs.</p> <p>The <code>maximumPercent</code>
@@ -389,17 +398,17 @@ namespace Model
          * deployment, as a percentage of the <code>desiredCount</code> (rounded down to
          * the nearest integer). This parameter enables you to define the deployment batch
          * size. For example, if your service has a <code>desiredCount</code> of four tasks
-         * and a <code>maximumPercent</code> value of 200%, the scheduler may start four
+         * and a <code>maximumPercent</code> value of 200%, the scheduler can start four
          * new tasks before stopping the four older tasks (provided that the cluster
          * resources required to do this are available). The default value for
          * <code>maximumPercent</code> is 200%.</p> <p>When the service scheduler launches
-         * new tasks, it determines task placement in your cluster with the following
+         * new tasks, it determines task placement in your cluster using the following
          * logic:</p> <ul> <li> <p>Determine which of the container instances in your
          * cluster can support your service's task definition (for example, they have the
          * required CPU, memory, ports, and container instance attributes).</p> </li> <li>
          * <p>By default, the service scheduler attempts to balance tasks across
          * Availability Zones in this manner (although you can choose a different placement
-         * strategy with the <code>placementStrategy</code> parameter):</p> <ul> <li>
+         * strategy) with the <code>placementStrategy</code> parameter):</p> <ul> <li>
          * <p>Sort the valid container instances by the fewest number of running tasks for
          * this service in the same Availability Zone as the instance. For example, if zone
          * A has one running service task and zones B and C each have zero, valid container
@@ -437,11 +446,11 @@ namespace Model
          * up to the nearest integer). This parameter enables you to deploy without using
          * additional cluster capacity. For example, if your service has a
          * <code>desiredCount</code> of four tasks and a <code>minimumHealthyPercent</code>
-         * of 50%, the scheduler may stop two existing tasks to free up cluster capacity
+         * of 50%, the scheduler can stop two existing tasks to free up cluster capacity
          * before starting two new tasks. Tasks for services that <i>do not</i> use a load
-         * balancer are considered healthy if they are in the <code>RUNNING</code> state;
-         * tasks for services that <i>do</i> use a load balancer are considered healthy if
-         * they are in the <code>RUNNING</code> state and the container instance it is
+         * balancer are considered healthy if they are in the <code>RUNNING</code> state.
+         * Tasks for services that <i>do</i> use a load balancer are considered healthy if
+         * they are in the <code>RUNNING</code> state and the container instance they are
          * hosted on is reported as healthy by the load balancer. The default value for
          * <code>minimumHealthyPercent</code> is 50% in the console and 100% for the AWS
          * CLI, the AWS SDKs, and the APIs.</p> <p>The <code>maximumPercent</code>
@@ -450,17 +459,17 @@ namespace Model
          * deployment, as a percentage of the <code>desiredCount</code> (rounded down to
          * the nearest integer). This parameter enables you to define the deployment batch
          * size. For example, if your service has a <code>desiredCount</code> of four tasks
-         * and a <code>maximumPercent</code> value of 200%, the scheduler may start four
+         * and a <code>maximumPercent</code> value of 200%, the scheduler can start four
          * new tasks before stopping the four older tasks (provided that the cluster
          * resources required to do this are available). The default value for
          * <code>maximumPercent</code> is 200%.</p> <p>When the service scheduler launches
-         * new tasks, it determines task placement in your cluster with the following
+         * new tasks, it determines task placement in your cluster using the following
          * logic:</p> <ul> <li> <p>Determine which of the container instances in your
          * cluster can support your service's task definition (for example, they have the
          * required CPU, memory, ports, and container instance attributes).</p> </li> <li>
          * <p>By default, the service scheduler attempts to balance tasks across
          * Availability Zones in this manner (although you can choose a different placement
-         * strategy with the <code>placementStrategy</code> parameter):</p> <ul> <li>
+         * strategy) with the <code>placementStrategy</code> parameter):</p> <ul> <li>
          * <p>Sort the valid container instances by the fewest number of running tasks for
          * this service in the same Availability Zone as the instance. For example, if zone
          * A has one running service task and zones B and C each have zero, valid container
@@ -477,16 +486,16 @@ namespace Model
         virtual void CreateServiceAsync(const Model::CreateServiceRequest& request, const CreateServiceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Deletes one or more attributes from an Amazon ECS resource.</p><p><h3>See
-         * Also:</h3>   <a
+         * <p>Deletes one or more custom attributes from an Amazon ECS
+         * resource.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DeleteAttributes">AWS
          * API Reference</a></p>
          */
         virtual Model::DeleteAttributesOutcome DeleteAttributes(const Model::DeleteAttributesRequest& request) const;
 
         /**
-         * <p>Deletes one or more attributes from an Amazon ECS resource.</p><p><h3>See
-         * Also:</h3>   <a
+         * <p>Deletes one or more custom attributes from an Amazon ECS
+         * resource.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DeleteAttributes">AWS
          * API Reference</a></p>
          *
@@ -495,8 +504,8 @@ namespace Model
         virtual Model::DeleteAttributesOutcomeCallable DeleteAttributesCallable(const Model::DeleteAttributesRequest& request) const;
 
         /**
-         * <p>Deletes one or more attributes from an Amazon ECS resource.</p><p><h3>See
-         * Also:</h3>   <a
+         * <p>Deletes one or more custom attributes from an Amazon ECS
+         * resource.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DeleteAttributes">AWS
          * API Reference</a></p>
          *
@@ -676,7 +685,12 @@ namespace Model
          * definition to run new tasks or create new services, and you cannot update an
          * existing service to reference an <code>INACTIVE</code> task definition (although
          * there may be up to a 10 minute window following deregistration where these
-         * restrictions have not yet taken effect).</p><p><h3>See Also:</h3>   <a
+         * restrictions have not yet taken effect).</p> <note> <p>At this time,
+         * <code>INACTIVE</code> task definitions remain discoverable in your account
+         * indefinitely; however, this behavior is subject to change in the future, so you
+         * should not rely on <code>INACTIVE</code> task definitions persisting beyond the
+         * life cycle of any associated tasks and services.</p> </note><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DeregisterTaskDefinition">AWS
          * API Reference</a></p>
          */
@@ -692,7 +706,12 @@ namespace Model
          * definition to run new tasks or create new services, and you cannot update an
          * existing service to reference an <code>INACTIVE</code> task definition (although
          * there may be up to a 10 minute window following deregistration where these
-         * restrictions have not yet taken effect).</p><p><h3>See Also:</h3>   <a
+         * restrictions have not yet taken effect).</p> <note> <p>At this time,
+         * <code>INACTIVE</code> task definitions remain discoverable in your account
+         * indefinitely; however, this behavior is subject to change in the future, so you
+         * should not rely on <code>INACTIVE</code> task definitions persisting beyond the
+         * life cycle of any associated tasks and services.</p> </note><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DeregisterTaskDefinition">AWS
          * API Reference</a></p>
          *
@@ -710,7 +729,12 @@ namespace Model
          * definition to run new tasks or create new services, and you cannot update an
          * existing service to reference an <code>INACTIVE</code> task definition (although
          * there may be up to a 10 minute window following deregistration where these
-         * restrictions have not yet taken effect).</p><p><h3>See Also:</h3>   <a
+         * restrictions have not yet taken effect).</p> <note> <p>At this time,
+         * <code>INACTIVE</code> task definitions remain discoverable in your account
+         * indefinitely; however, this behavior is subject to change in the future, so you
+         * should not rely on <code>INACTIVE</code> task definitions persisting beyond the
+         * life cycle of any associated tasks and services.</p> </note><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DeregisterTaskDefinition">AWS
          * API Reference</a></p>
          *
@@ -904,7 +928,7 @@ namespace Model
         /**
          * <p>Lists the attributes for Amazon ECS resources within a specified target type
          * and cluster. When you specify a target type and cluster,
-         * <code>LisAttributes</code> returns a list of attribute objects, one for each
+         * <code>ListAttributes</code> returns a list of attribute objects, one for each
          * attribute on each resource. You can filter the list of results to a single
          * attribute name to only return results that have that name. You can also filter
          * the results by attribute name and value, for example, to see which container
@@ -918,7 +942,7 @@ namespace Model
         /**
          * <p>Lists the attributes for Amazon ECS resources within a specified target type
          * and cluster. When you specify a target type and cluster,
-         * <code>LisAttributes</code> returns a list of attribute objects, one for each
+         * <code>ListAttributes</code> returns a list of attribute objects, one for each
          * attribute on each resource. You can filter the list of results to a single
          * attribute name to only return results that have that name. You can also filter
          * the results by attribute name and value, for example, to see which container
@@ -934,7 +958,7 @@ namespace Model
         /**
          * <p>Lists the attributes for Amazon ECS resources within a specified target type
          * and cluster. When you specify a target type and cluster,
-         * <code>LisAttributes</code> returns a list of attribute objects, one for each
+         * <code>ListAttributes</code> returns a list of attribute objects, one for each
          * attribute on each resource. You can filter the list of results to a single
          * attribute name to only return results that have that name. You can also filter
          * the results by attribute name and value, for example, to see which container
@@ -1162,8 +1186,12 @@ namespace Model
 
         /**
          * <p>Create or update an attribute on an Amazon ECS resource. If the attribute
-         * does not already exist on the given target, it is created; if it does exist, it
-         * is replaced with the new value.</p><p><h3>See Also:</h3>   <a
+         * does not exist, it is created. If the attribute exists, its value is replaced
+         * with the specified value. To delete an attribute, use <a>DeleteAttributes</a>.
+         * For more information, see <a
+         * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-constraints.html#attributes">Attributes</a>
+         * in the <i>Amazon EC2 Container Service Developer Guide</i>.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/PutAttributes">AWS
          * API Reference</a></p>
          */
@@ -1171,8 +1199,12 @@ namespace Model
 
         /**
          * <p>Create or update an attribute on an Amazon ECS resource. If the attribute
-         * does not already exist on the given target, it is created; if it does exist, it
-         * is replaced with the new value.</p><p><h3>See Also:</h3>   <a
+         * does not exist, it is created. If the attribute exists, its value is replaced
+         * with the specified value. To delete an attribute, use <a>DeleteAttributes</a>.
+         * For more information, see <a
+         * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-constraints.html#attributes">Attributes</a>
+         * in the <i>Amazon EC2 Container Service Developer Guide</i>.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/PutAttributes">AWS
          * API Reference</a></p>
          *
@@ -1182,8 +1214,12 @@ namespace Model
 
         /**
          * <p>Create or update an attribute on an Amazon ECS resource. If the attribute
-         * does not already exist on the given target, it is created; if it does exist, it
-         * is replaced with the new value.</p><p><h3>See Also:</h3>   <a
+         * does not exist, it is created. If the attribute exists, its value is replaced
+         * with the specified value. To delete an attribute, use <a>DeleteAttributes</a>.
+         * For more information, see <a
+         * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-constraints.html#attributes">Attributes</a>
+         * in the <i>Amazon EC2 Container Service Developer Guide</i>.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/PutAttributes">AWS
          * API Reference</a></p>
          *
@@ -1390,11 +1426,16 @@ namespace Model
         /**
          * <p>Stops a running task.</p> <p>When <a>StopTask</a> is called on a task, the
          * equivalent of <code>docker stop</code> is issued to the containers running in
-         * the task. This results in a <code>SIGTERM</code> and a 30-second timeout, after
-         * which <code>SIGKILL</code> is sent and the containers are forcibly stopped. If
-         * the container handles the <code>SIGTERM</code> gracefully and exits within 30
-         * seconds from receiving it, no <code>SIGKILL</code> is sent.</p><p><h3>See
-         * Also:</h3>   <a
+         * the task. This results in a <code>SIGTERM</code> and a default 30-second
+         * timeout, after which <code>SIGKILL</code> is sent and the containers are
+         * forcibly stopped. If the container handles the <code>SIGTERM</code> gracefully
+         * and exits within 30 seconds from receiving it, no <code>SIGKILL</code> is
+         * sent.</p> <note> <p>The default 30-second timeout can be configured on the
+         * Amazon ECS container agent with the <code>ECS_CONTAINER_STOP_TIMEOUT</code>
+         * variable. For more information, see <a
+         * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html">Amazon
+         * ECS Container Agent Configuration</a> in the <i>Amazon EC2 Container Service
+         * Developer Guide</i>.</p> </note><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/StopTask">AWS API
          * Reference</a></p>
          */
@@ -1403,11 +1444,16 @@ namespace Model
         /**
          * <p>Stops a running task.</p> <p>When <a>StopTask</a> is called on a task, the
          * equivalent of <code>docker stop</code> is issued to the containers running in
-         * the task. This results in a <code>SIGTERM</code> and a 30-second timeout, after
-         * which <code>SIGKILL</code> is sent and the containers are forcibly stopped. If
-         * the container handles the <code>SIGTERM</code> gracefully and exits within 30
-         * seconds from receiving it, no <code>SIGKILL</code> is sent.</p><p><h3>See
-         * Also:</h3>   <a
+         * the task. This results in a <code>SIGTERM</code> and a default 30-second
+         * timeout, after which <code>SIGKILL</code> is sent and the containers are
+         * forcibly stopped. If the container handles the <code>SIGTERM</code> gracefully
+         * and exits within 30 seconds from receiving it, no <code>SIGKILL</code> is
+         * sent.</p> <note> <p>The default 30-second timeout can be configured on the
+         * Amazon ECS container agent with the <code>ECS_CONTAINER_STOP_TIMEOUT</code>
+         * variable. For more information, see <a
+         * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html">Amazon
+         * ECS Container Agent Configuration</a> in the <i>Amazon EC2 Container Service
+         * Developer Guide</i>.</p> </note><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/StopTask">AWS API
          * Reference</a></p>
          *
@@ -1418,11 +1464,16 @@ namespace Model
         /**
          * <p>Stops a running task.</p> <p>When <a>StopTask</a> is called on a task, the
          * equivalent of <code>docker stop</code> is issued to the containers running in
-         * the task. This results in a <code>SIGTERM</code> and a 30-second timeout, after
-         * which <code>SIGKILL</code> is sent and the containers are forcibly stopped. If
-         * the container handles the <code>SIGTERM</code> gracefully and exits within 30
-         * seconds from receiving it, no <code>SIGKILL</code> is sent.</p><p><h3>See
-         * Also:</h3>   <a
+         * the task. This results in a <code>SIGTERM</code> and a default 30-second
+         * timeout, after which <code>SIGKILL</code> is sent and the containers are
+         * forcibly stopped. If the container handles the <code>SIGTERM</code> gracefully
+         * and exits within 30 seconds from receiving it, no <code>SIGKILL</code> is
+         * sent.</p> <note> <p>The default 30-second timeout can be configured on the
+         * Amazon ECS container agent with the <code>ECS_CONTAINER_STOP_TIMEOUT</code>
+         * variable. For more information, see <a
+         * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html">Amazon
+         * ECS Container Agent Configuration</a> in the <i>Amazon EC2 Container Service
+         * Developer Guide</i>.</p> </note><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/StopTask">AWS API
          * Reference</a></p>
          *
@@ -1548,6 +1599,139 @@ namespace Model
         virtual void UpdateContainerAgentAsync(const Model::UpdateContainerAgentRequest& request, const UpdateContainerAgentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
+         * <p>Modifies the status of an Amazon ECS container instance.</p> <p>You can
+         * change the status of a container instance to <code>DRAINING</code> to manually
+         * remove an instance from a cluster, for example to perform system updates, update
+         * the Docker daemon, or scale down the cluster size. </p> <p>When you set a
+         * container instance to <code>DRAINING</code>, Amazon ECS prevents new tasks from
+         * being scheduled for placement on the container instance and replacement service
+         * tasks are started on other container instances in the cluster if the resources
+         * are available. Service tasks on the container instance that are in the
+         * <code>PENDING</code> state are stopped immediately.</p> <p>Service tasks on the
+         * container instance that are in the <code>RUNNING</code> state are stopped and
+         * replaced according the service's deployment configuration parameters,
+         * <code>minimumHealthyPercent</code> and <code>maximumPercent</code>. Note that
+         * you can change the deployment configuration of your service using
+         * <a>UpdateService</a>.</p> <ul> <li> <p>If <code>minimumHealthyPercent</code> is
+         * below 100%, the scheduler can ignore <code>desiredCount</code> temporarily
+         * during task replacement. For example, <code>desiredCount</code> is four tasks, a
+         * minimum of 50% allows the scheduler to stop two existing tasks before starting
+         * two new tasks. If the minimum is 100%, the service scheduler can't remove
+         * existing tasks until the replacement tasks are considered healthy. Tasks for
+         * services that do not use a load balancer are considered healthy if they are in
+         * the <code>RUNNING</code> state. Tasks for services that use a load balancer are
+         * considered healthy if they are in the <code>RUNNING</code> state and the
+         * container instance they are hosted on is reported as healthy by the load
+         * balancer.</p> </li> <li> <p>The <code>maximumPercent</code> parameter represents
+         * an upper limit on the number of running tasks during task replacement, which
+         * enables you to define the replacement batch size. For example, if
+         * <code>desiredCount</code> of four tasks, a maximum of 200% starts four new tasks
+         * before stopping the four tasks to be drained (provided that the cluster
+         * resources required to do this are available). If the maximum is 100%, then
+         * replacement tasks can't start until the draining tasks have stopped.</p> </li>
+         * </ul> <p>Any <code>PENDING</code> or <code>RUNNING</code> tasks that do not
+         * belong to a service are not affected; you must wait for them to finish or stop
+         * them manually.</p> <p>A container instance has completed draining when it has no
+         * more <code>RUNNING</code> tasks. You can verify this using <a>ListTasks</a>.</p>
+         * <p>When you set a container instance to <code>ACTIVE</code>, the Amazon ECS
+         * scheduler can begin scheduling tasks on the instance again.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/UpdateContainerInstancesState">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::UpdateContainerInstancesStateOutcome UpdateContainerInstancesState(const Model::UpdateContainerInstancesStateRequest& request) const;
+
+        /**
+         * <p>Modifies the status of an Amazon ECS container instance.</p> <p>You can
+         * change the status of a container instance to <code>DRAINING</code> to manually
+         * remove an instance from a cluster, for example to perform system updates, update
+         * the Docker daemon, or scale down the cluster size. </p> <p>When you set a
+         * container instance to <code>DRAINING</code>, Amazon ECS prevents new tasks from
+         * being scheduled for placement on the container instance and replacement service
+         * tasks are started on other container instances in the cluster if the resources
+         * are available. Service tasks on the container instance that are in the
+         * <code>PENDING</code> state are stopped immediately.</p> <p>Service tasks on the
+         * container instance that are in the <code>RUNNING</code> state are stopped and
+         * replaced according the service's deployment configuration parameters,
+         * <code>minimumHealthyPercent</code> and <code>maximumPercent</code>. Note that
+         * you can change the deployment configuration of your service using
+         * <a>UpdateService</a>.</p> <ul> <li> <p>If <code>minimumHealthyPercent</code> is
+         * below 100%, the scheduler can ignore <code>desiredCount</code> temporarily
+         * during task replacement. For example, <code>desiredCount</code> is four tasks, a
+         * minimum of 50% allows the scheduler to stop two existing tasks before starting
+         * two new tasks. If the minimum is 100%, the service scheduler can't remove
+         * existing tasks until the replacement tasks are considered healthy. Tasks for
+         * services that do not use a load balancer are considered healthy if they are in
+         * the <code>RUNNING</code> state. Tasks for services that use a load balancer are
+         * considered healthy if they are in the <code>RUNNING</code> state and the
+         * container instance they are hosted on is reported as healthy by the load
+         * balancer.</p> </li> <li> <p>The <code>maximumPercent</code> parameter represents
+         * an upper limit on the number of running tasks during task replacement, which
+         * enables you to define the replacement batch size. For example, if
+         * <code>desiredCount</code> of four tasks, a maximum of 200% starts four new tasks
+         * before stopping the four tasks to be drained (provided that the cluster
+         * resources required to do this are available). If the maximum is 100%, then
+         * replacement tasks can't start until the draining tasks have stopped.</p> </li>
+         * </ul> <p>Any <code>PENDING</code> or <code>RUNNING</code> tasks that do not
+         * belong to a service are not affected; you must wait for them to finish or stop
+         * them manually.</p> <p>A container instance has completed draining when it has no
+         * more <code>RUNNING</code> tasks. You can verify this using <a>ListTasks</a>.</p>
+         * <p>When you set a container instance to <code>ACTIVE</code>, the Amazon ECS
+         * scheduler can begin scheduling tasks on the instance again.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/UpdateContainerInstancesState">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::UpdateContainerInstancesStateOutcomeCallable UpdateContainerInstancesStateCallable(const Model::UpdateContainerInstancesStateRequest& request) const;
+
+        /**
+         * <p>Modifies the status of an Amazon ECS container instance.</p> <p>You can
+         * change the status of a container instance to <code>DRAINING</code> to manually
+         * remove an instance from a cluster, for example to perform system updates, update
+         * the Docker daemon, or scale down the cluster size. </p> <p>When you set a
+         * container instance to <code>DRAINING</code>, Amazon ECS prevents new tasks from
+         * being scheduled for placement on the container instance and replacement service
+         * tasks are started on other container instances in the cluster if the resources
+         * are available. Service tasks on the container instance that are in the
+         * <code>PENDING</code> state are stopped immediately.</p> <p>Service tasks on the
+         * container instance that are in the <code>RUNNING</code> state are stopped and
+         * replaced according the service's deployment configuration parameters,
+         * <code>minimumHealthyPercent</code> and <code>maximumPercent</code>. Note that
+         * you can change the deployment configuration of your service using
+         * <a>UpdateService</a>.</p> <ul> <li> <p>If <code>minimumHealthyPercent</code> is
+         * below 100%, the scheduler can ignore <code>desiredCount</code> temporarily
+         * during task replacement. For example, <code>desiredCount</code> is four tasks, a
+         * minimum of 50% allows the scheduler to stop two existing tasks before starting
+         * two new tasks. If the minimum is 100%, the service scheduler can't remove
+         * existing tasks until the replacement tasks are considered healthy. Tasks for
+         * services that do not use a load balancer are considered healthy if they are in
+         * the <code>RUNNING</code> state. Tasks for services that use a load balancer are
+         * considered healthy if they are in the <code>RUNNING</code> state and the
+         * container instance they are hosted on is reported as healthy by the load
+         * balancer.</p> </li> <li> <p>The <code>maximumPercent</code> parameter represents
+         * an upper limit on the number of running tasks during task replacement, which
+         * enables you to define the replacement batch size. For example, if
+         * <code>desiredCount</code> of four tasks, a maximum of 200% starts four new tasks
+         * before stopping the four tasks to be drained (provided that the cluster
+         * resources required to do this are available). If the maximum is 100%, then
+         * replacement tasks can't start until the draining tasks have stopped.</p> </li>
+         * </ul> <p>Any <code>PENDING</code> or <code>RUNNING</code> tasks that do not
+         * belong to a service are not affected; you must wait for them to finish or stop
+         * them manually.</p> <p>A container instance has completed draining when it has no
+         * more <code>RUNNING</code> tasks. You can verify this using <a>ListTasks</a>.</p>
+         * <p>When you set a container instance to <code>ACTIVE</code>, the Amazon ECS
+         * scheduler can begin scheduling tasks on the instance again.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/UpdateContainerInstancesState">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void UpdateContainerInstancesStateAsync(const Model::UpdateContainerInstancesStateRequest& request, const UpdateContainerInstancesStateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
          * <p>Modifies the desired count, deployment configuration, or task definition used
          * in a service.</p> <p>You can add to or subtract from the number of
          * instantiations of a task definition in a service by specifying the cluster that
@@ -1557,36 +1741,34 @@ namespace Model
          * configuration of a service. When a deployment is triggered by updating the task
          * definition of a service, the service scheduler uses the deployment configuration
          * parameters, <code>minimumHealthyPercent</code> and <code>maximumPercent</code>,
-         * to determine the deployment strategy.</p> <p>If the
-         * <code>minimumHealthyPercent</code> is below 100%, the scheduler can ignore the
-         * <code>desiredCount</code> temporarily during a deployment. For example, if your
-         * service has a <code>desiredCount</code> of four tasks, a
-         * <code>minimumHealthyPercent</code> of 50% allows the scheduler to stop two
-         * existing tasks before starting two new tasks. Tasks for services that <i>do
-         * not</i> use a load balancer are considered healthy if they are in the
-         * <code>RUNNING</code> state; tasks for services that <i>do</i> use a load
-         * balancer are considered healthy if they are in the <code>RUNNING</code> state
-         * and the container instance it is hosted on is reported as healthy by the load
-         * balancer.</p> <p>The <code>maximumPercent</code> parameter represents an upper
-         * limit on the number of running tasks during a deployment, which enables you to
-         * define the deployment batch size. For example, if your service has a
-         * <code>desiredCount</code> of four tasks, a <code>maximumPercent</code> value of
-         * 200% starts four new tasks before stopping the four older tasks (provided that
-         * the cluster resources required to do this are available).</p> <p>When
-         * <a>UpdateService</a> stops a task during a deployment, the equivalent of
-         * <code>docker stop</code> is issued to the containers running in the task. This
-         * results in a <code>SIGTERM</code> and a 30-second timeout, after which
-         * <code>SIGKILL</code> is sent and the containers are forcibly stopped. If the
-         * container handles the <code>SIGTERM</code> gracefully and exits within 30
-         * seconds from receiving it, no <code>SIGKILL</code> is sent.</p> <p>When the
-         * service scheduler launches new tasks, it determines task placement in your
-         * cluster with the following logic:</p> <ul> <li> <p>Determine which of the
-         * container instances in your cluster can support your service's task definition
-         * (for example, they have the required CPU, memory, ports, and container instance
-         * attributes).</p> </li> <li> <p>By default, the service scheduler attempts to
-         * balance tasks across Availability Zones in this manner (although you can choose
-         * a different placement strategy with the <code>placementStrategy</code>
-         * parameter):</p> <ul> <li> <p>Sort the valid container instances by the fewest
+         * to determine the deployment strategy.</p> <ul> <li> <p>If
+         * <code>minimumHealthyPercent</code> is below 100%, the scheduler can ignore
+         * <code>desiredCount</code> temporarily during a deployment. For example, if
+         * <code>desiredCount</code> is four tasks, a minimum of 50% allows the scheduler
+         * to stop two existing tasks before starting two new tasks. Tasks for services
+         * that do not use a load balancer are considered healthy if they are in the
+         * <code>RUNNING</code> state. Tasks for services that use a load balancer are
+         * considered healthy if they are in the <code>RUNNING</code> state and the
+         * container instance they are hosted on is reported as healthy by the load
+         * balancer.</p> </li> <li> <p>The <code>maximumPercent</code> parameter represents
+         * an upper limit on the number of running tasks during a deployment, which enables
+         * you to define the deployment batch size. For example, if
+         * <code>desiredCount</code> is four tasks, a maximum of 200% starts four new tasks
+         * before stopping the four older tasks (provided that the cluster resources
+         * required to do this are available).</p> </li> </ul> <p>When <a>UpdateService</a>
+         * stops a task during a deployment, the equivalent of <code>docker stop</code> is
+         * issued to the containers running in the task. This results in a
+         * <code>SIGTERM</code> and a 30-second timeout, after which <code>SIGKILL</code>
+         * is sent and the containers are forcibly stopped. If the container handles the
+         * <code>SIGTERM</code> gracefully and exits within 30 seconds from receiving it,
+         * no <code>SIGKILL</code> is sent.</p> <p>When the service scheduler launches new
+         * tasks, it determines task placement in your cluster with the following
+         * logic:</p> <ul> <li> <p>Determine which of the container instances in your
+         * cluster can support your service's task definition (for example, they have the
+         * required CPU, memory, ports, and container instance attributes).</p> </li> <li>
+         * <p>By default, the service scheduler attempts to balance tasks across
+         * Availability Zones in this manner (although you can choose a different placement
+         * strategy):</p> <ul> <li> <p>Sort the valid container instances by the fewest
          * number of running tasks for this service in the same Availability Zone as the
          * instance. For example, if zone A has one running service task and zones B and C
          * each have zero, valid container instances in either zone B or C are considered
@@ -1595,7 +1777,7 @@ namespace Model
          * steps), favoring container instances with the fewest number of running tasks for
          * this service.</p> </li> </ul> </li> </ul> <p>When the service scheduler stops
          * running tasks, it attempts to maintain balance across the Availability Zones in
-         * your cluster with the following logic: </p> <ul> <li> <p>Sort the container
+         * your cluster using the following logic: </p> <ul> <li> <p>Sort the container
          * instances by the largest number of running tasks for this service in the same
          * Availability Zone as the instance. For example, if zone A has one running
          * service task and zones B and C each have two, container instances in either zone
@@ -1618,36 +1800,34 @@ namespace Model
          * configuration of a service. When a deployment is triggered by updating the task
          * definition of a service, the service scheduler uses the deployment configuration
          * parameters, <code>minimumHealthyPercent</code> and <code>maximumPercent</code>,
-         * to determine the deployment strategy.</p> <p>If the
-         * <code>minimumHealthyPercent</code> is below 100%, the scheduler can ignore the
-         * <code>desiredCount</code> temporarily during a deployment. For example, if your
-         * service has a <code>desiredCount</code> of four tasks, a
-         * <code>minimumHealthyPercent</code> of 50% allows the scheduler to stop two
-         * existing tasks before starting two new tasks. Tasks for services that <i>do
-         * not</i> use a load balancer are considered healthy if they are in the
-         * <code>RUNNING</code> state; tasks for services that <i>do</i> use a load
-         * balancer are considered healthy if they are in the <code>RUNNING</code> state
-         * and the container instance it is hosted on is reported as healthy by the load
-         * balancer.</p> <p>The <code>maximumPercent</code> parameter represents an upper
-         * limit on the number of running tasks during a deployment, which enables you to
-         * define the deployment batch size. For example, if your service has a
-         * <code>desiredCount</code> of four tasks, a <code>maximumPercent</code> value of
-         * 200% starts four new tasks before stopping the four older tasks (provided that
-         * the cluster resources required to do this are available).</p> <p>When
-         * <a>UpdateService</a> stops a task during a deployment, the equivalent of
-         * <code>docker stop</code> is issued to the containers running in the task. This
-         * results in a <code>SIGTERM</code> and a 30-second timeout, after which
-         * <code>SIGKILL</code> is sent and the containers are forcibly stopped. If the
-         * container handles the <code>SIGTERM</code> gracefully and exits within 30
-         * seconds from receiving it, no <code>SIGKILL</code> is sent.</p> <p>When the
-         * service scheduler launches new tasks, it determines task placement in your
-         * cluster with the following logic:</p> <ul> <li> <p>Determine which of the
-         * container instances in your cluster can support your service's task definition
-         * (for example, they have the required CPU, memory, ports, and container instance
-         * attributes).</p> </li> <li> <p>By default, the service scheduler attempts to
-         * balance tasks across Availability Zones in this manner (although you can choose
-         * a different placement strategy with the <code>placementStrategy</code>
-         * parameter):</p> <ul> <li> <p>Sort the valid container instances by the fewest
+         * to determine the deployment strategy.</p> <ul> <li> <p>If
+         * <code>minimumHealthyPercent</code> is below 100%, the scheduler can ignore
+         * <code>desiredCount</code> temporarily during a deployment. For example, if
+         * <code>desiredCount</code> is four tasks, a minimum of 50% allows the scheduler
+         * to stop two existing tasks before starting two new tasks. Tasks for services
+         * that do not use a load balancer are considered healthy if they are in the
+         * <code>RUNNING</code> state. Tasks for services that use a load balancer are
+         * considered healthy if they are in the <code>RUNNING</code> state and the
+         * container instance they are hosted on is reported as healthy by the load
+         * balancer.</p> </li> <li> <p>The <code>maximumPercent</code> parameter represents
+         * an upper limit on the number of running tasks during a deployment, which enables
+         * you to define the deployment batch size. For example, if
+         * <code>desiredCount</code> is four tasks, a maximum of 200% starts four new tasks
+         * before stopping the four older tasks (provided that the cluster resources
+         * required to do this are available).</p> </li> </ul> <p>When <a>UpdateService</a>
+         * stops a task during a deployment, the equivalent of <code>docker stop</code> is
+         * issued to the containers running in the task. This results in a
+         * <code>SIGTERM</code> and a 30-second timeout, after which <code>SIGKILL</code>
+         * is sent and the containers are forcibly stopped. If the container handles the
+         * <code>SIGTERM</code> gracefully and exits within 30 seconds from receiving it,
+         * no <code>SIGKILL</code> is sent.</p> <p>When the service scheduler launches new
+         * tasks, it determines task placement in your cluster with the following
+         * logic:</p> <ul> <li> <p>Determine which of the container instances in your
+         * cluster can support your service's task definition (for example, they have the
+         * required CPU, memory, ports, and container instance attributes).</p> </li> <li>
+         * <p>By default, the service scheduler attempts to balance tasks across
+         * Availability Zones in this manner (although you can choose a different placement
+         * strategy):</p> <ul> <li> <p>Sort the valid container instances by the fewest
          * number of running tasks for this service in the same Availability Zone as the
          * instance. For example, if zone A has one running service task and zones B and C
          * each have zero, valid container instances in either zone B or C are considered
@@ -1656,7 +1836,7 @@ namespace Model
          * steps), favoring container instances with the fewest number of running tasks for
          * this service.</p> </li> </ul> </li> </ul> <p>When the service scheduler stops
          * running tasks, it attempts to maintain balance across the Availability Zones in
-         * your cluster with the following logic: </p> <ul> <li> <p>Sort the container
+         * your cluster using the following logic: </p> <ul> <li> <p>Sort the container
          * instances by the largest number of running tasks for this service in the same
          * Availability Zone as the instance. For example, if zone A has one running
          * service task and zones B and C each have two, container instances in either zone
@@ -1681,36 +1861,34 @@ namespace Model
          * configuration of a service. When a deployment is triggered by updating the task
          * definition of a service, the service scheduler uses the deployment configuration
          * parameters, <code>minimumHealthyPercent</code> and <code>maximumPercent</code>,
-         * to determine the deployment strategy.</p> <p>If the
-         * <code>minimumHealthyPercent</code> is below 100%, the scheduler can ignore the
-         * <code>desiredCount</code> temporarily during a deployment. For example, if your
-         * service has a <code>desiredCount</code> of four tasks, a
-         * <code>minimumHealthyPercent</code> of 50% allows the scheduler to stop two
-         * existing tasks before starting two new tasks. Tasks for services that <i>do
-         * not</i> use a load balancer are considered healthy if they are in the
-         * <code>RUNNING</code> state; tasks for services that <i>do</i> use a load
-         * balancer are considered healthy if they are in the <code>RUNNING</code> state
-         * and the container instance it is hosted on is reported as healthy by the load
-         * balancer.</p> <p>The <code>maximumPercent</code> parameter represents an upper
-         * limit on the number of running tasks during a deployment, which enables you to
-         * define the deployment batch size. For example, if your service has a
-         * <code>desiredCount</code> of four tasks, a <code>maximumPercent</code> value of
-         * 200% starts four new tasks before stopping the four older tasks (provided that
-         * the cluster resources required to do this are available).</p> <p>When
-         * <a>UpdateService</a> stops a task during a deployment, the equivalent of
-         * <code>docker stop</code> is issued to the containers running in the task. This
-         * results in a <code>SIGTERM</code> and a 30-second timeout, after which
-         * <code>SIGKILL</code> is sent and the containers are forcibly stopped. If the
-         * container handles the <code>SIGTERM</code> gracefully and exits within 30
-         * seconds from receiving it, no <code>SIGKILL</code> is sent.</p> <p>When the
-         * service scheduler launches new tasks, it determines task placement in your
-         * cluster with the following logic:</p> <ul> <li> <p>Determine which of the
-         * container instances in your cluster can support your service's task definition
-         * (for example, they have the required CPU, memory, ports, and container instance
-         * attributes).</p> </li> <li> <p>By default, the service scheduler attempts to
-         * balance tasks across Availability Zones in this manner (although you can choose
-         * a different placement strategy with the <code>placementStrategy</code>
-         * parameter):</p> <ul> <li> <p>Sort the valid container instances by the fewest
+         * to determine the deployment strategy.</p> <ul> <li> <p>If
+         * <code>minimumHealthyPercent</code> is below 100%, the scheduler can ignore
+         * <code>desiredCount</code> temporarily during a deployment. For example, if
+         * <code>desiredCount</code> is four tasks, a minimum of 50% allows the scheduler
+         * to stop two existing tasks before starting two new tasks. Tasks for services
+         * that do not use a load balancer are considered healthy if they are in the
+         * <code>RUNNING</code> state. Tasks for services that use a load balancer are
+         * considered healthy if they are in the <code>RUNNING</code> state and the
+         * container instance they are hosted on is reported as healthy by the load
+         * balancer.</p> </li> <li> <p>The <code>maximumPercent</code> parameter represents
+         * an upper limit on the number of running tasks during a deployment, which enables
+         * you to define the deployment batch size. For example, if
+         * <code>desiredCount</code> is four tasks, a maximum of 200% starts four new tasks
+         * before stopping the four older tasks (provided that the cluster resources
+         * required to do this are available).</p> </li> </ul> <p>When <a>UpdateService</a>
+         * stops a task during a deployment, the equivalent of <code>docker stop</code> is
+         * issued to the containers running in the task. This results in a
+         * <code>SIGTERM</code> and a 30-second timeout, after which <code>SIGKILL</code>
+         * is sent and the containers are forcibly stopped. If the container handles the
+         * <code>SIGTERM</code> gracefully and exits within 30 seconds from receiving it,
+         * no <code>SIGKILL</code> is sent.</p> <p>When the service scheduler launches new
+         * tasks, it determines task placement in your cluster with the following
+         * logic:</p> <ul> <li> <p>Determine which of the container instances in your
+         * cluster can support your service's task definition (for example, they have the
+         * required CPU, memory, ports, and container instance attributes).</p> </li> <li>
+         * <p>By default, the service scheduler attempts to balance tasks across
+         * Availability Zones in this manner (although you can choose a different placement
+         * strategy):</p> <ul> <li> <p>Sort the valid container instances by the fewest
          * number of running tasks for this service in the same Availability Zone as the
          * instance. For example, if zone A has one running service task and zones B and C
          * each have zero, valid container instances in either zone B or C are considered
@@ -1719,7 +1897,7 @@ namespace Model
          * steps), favoring container instances with the fewest number of running tasks for
          * this service.</p> </li> </ul> </li> </ul> <p>When the service scheduler stops
          * running tasks, it attempts to maintain balance across the Availability Zones in
-         * your cluster with the following logic: </p> <ul> <li> <p>Sort the container
+         * your cluster using the following logic: </p> <ul> <li> <p>Sort the container
          * instances by the largest number of running tasks for this service in the same
          * Availability Zone as the instance. For example, if zone A has one running
          * service task and zones B and C each have two, container instances in either zone
@@ -1736,7 +1914,7 @@ namespace Model
 
 
     private:
-      void init(const Client::ClientConfiguration& clientConfiguration);
+      void init(const Aws::Client::ClientConfiguration& clientConfiguration);
 
         /**Async helpers**/
         void CreateClusterAsyncHelper(const Model::CreateClusterRequest& request, const CreateClusterResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -1768,10 +1946,11 @@ namespace Model
         void SubmitContainerStateChangeAsyncHelper(const Model::SubmitContainerStateChangeRequest& request, const SubmitContainerStateChangeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void SubmitTaskStateChangeAsyncHelper(const Model::SubmitTaskStateChangeRequest& request, const SubmitTaskStateChangeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateContainerAgentAsyncHelper(const Model::UpdateContainerAgentRequest& request, const UpdateContainerAgentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void UpdateContainerInstancesStateAsyncHelper(const Model::UpdateContainerInstancesStateRequest& request, const UpdateContainerInstancesStateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateServiceAsyncHelper(const Model::UpdateServiceRequest& request, const UpdateServiceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
       Aws::String m_uri;
-      std::shared_ptr<Utils::Threading::Executor> m_executor;
+      std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;
   };
 
 } // namespace ECS

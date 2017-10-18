@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/s3/model/InventoryConfiguration.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -127,9 +128,9 @@ void InventoryConfiguration::AddToNode(XmlNode& parentNode) const
   if(m_isEnabledHasBeenSet)
   {
    XmlNode isEnabledNode = parentNode.CreateChildElement("IsEnabled");
-  ss << m_isEnabled;
+   ss << std::boolalpha << m_isEnabled;
    isEnabledNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_filterHasBeenSet)

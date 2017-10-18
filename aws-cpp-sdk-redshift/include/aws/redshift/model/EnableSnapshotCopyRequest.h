@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/redshift/RedshiftRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,19 @@ namespace Model
   {
   public:
     EnableSnapshotCopyRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "EnableSnapshotCopy"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The unique identifier of the source cluster to copy snapshots from.</p>
@@ -54,7 +68,7 @@ namespace Model
      * <p>Constraints: Must be the valid name of an existing cluster that does not
      * already have cross-region snapshot copy enabled.</p>
      */
-    inline void SetClusterIdentifier(Aws::String&& value) { m_clusterIdentifierHasBeenSet = true; m_clusterIdentifier = value; }
+    inline void SetClusterIdentifier(Aws::String&& value) { m_clusterIdentifierHasBeenSet = true; m_clusterIdentifier = std::move(value); }
 
     /**
      * <p>The unique identifier of the source cluster to copy snapshots from.</p>
@@ -75,7 +89,7 @@ namespace Model
      * <p>Constraints: Must be the valid name of an existing cluster that does not
      * already have cross-region snapshot copy enabled.</p>
      */
-    inline EnableSnapshotCopyRequest& WithClusterIdentifier(Aws::String&& value) { SetClusterIdentifier(value); return *this;}
+    inline EnableSnapshotCopyRequest& WithClusterIdentifier(Aws::String&& value) { SetClusterIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The unique identifier of the source cluster to copy snapshots from.</p>
@@ -83,6 +97,7 @@ namespace Model
      * already have cross-region snapshot copy enabled.</p>
      */
     inline EnableSnapshotCopyRequest& WithClusterIdentifier(const char* value) { SetClusterIdentifier(value); return *this;}
+
 
     /**
      * <p>The destination region that you want to copy snapshots to.</p>
@@ -106,7 +121,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html#redshift_region">Regions
      * and Endpoints</a> in the Amazon Web Services General Reference. </p>
      */
-    inline void SetDestinationRegion(Aws::String&& value) { m_destinationRegionHasBeenSet = true; m_destinationRegion = value; }
+    inline void SetDestinationRegion(Aws::String&& value) { m_destinationRegionHasBeenSet = true; m_destinationRegion = std::move(value); }
 
     /**
      * <p>The destination region that you want to copy snapshots to.</p>
@@ -130,7 +145,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html#redshift_region">Regions
      * and Endpoints</a> in the Amazon Web Services General Reference. </p>
      */
-    inline EnableSnapshotCopyRequest& WithDestinationRegion(Aws::String&& value) { SetDestinationRegion(value); return *this;}
+    inline EnableSnapshotCopyRequest& WithDestinationRegion(Aws::String&& value) { SetDestinationRegion(std::move(value)); return *this;}
 
     /**
      * <p>The destination region that you want to copy snapshots to.</p>
@@ -139,6 +154,7 @@ namespace Model
      * and Endpoints</a> in the Amazon Web Services General Reference. </p>
      */
     inline EnableSnapshotCopyRequest& WithDestinationRegion(const char* value) { SetDestinationRegion(value); return *this;}
+
 
     /**
      * <p>The number of days to retain automated snapshots in the destination region
@@ -161,6 +177,7 @@ namespace Model
      */
     inline EnableSnapshotCopyRequest& WithRetentionPeriod(int value) { SetRetentionPeriod(value); return *this;}
 
+
     /**
      * <p>The name of the snapshot copy grant to use when snapshots of an AWS
      * KMS-encrypted cluster are copied to the destination region.</p>
@@ -177,7 +194,7 @@ namespace Model
      * <p>The name of the snapshot copy grant to use when snapshots of an AWS
      * KMS-encrypted cluster are copied to the destination region.</p>
      */
-    inline void SetSnapshotCopyGrantName(Aws::String&& value) { m_snapshotCopyGrantNameHasBeenSet = true; m_snapshotCopyGrantName = value; }
+    inline void SetSnapshotCopyGrantName(Aws::String&& value) { m_snapshotCopyGrantNameHasBeenSet = true; m_snapshotCopyGrantName = std::move(value); }
 
     /**
      * <p>The name of the snapshot copy grant to use when snapshots of an AWS
@@ -195,7 +212,7 @@ namespace Model
      * <p>The name of the snapshot copy grant to use when snapshots of an AWS
      * KMS-encrypted cluster are copied to the destination region.</p>
      */
-    inline EnableSnapshotCopyRequest& WithSnapshotCopyGrantName(Aws::String&& value) { SetSnapshotCopyGrantName(value); return *this;}
+    inline EnableSnapshotCopyRequest& WithSnapshotCopyGrantName(Aws::String&& value) { SetSnapshotCopyGrantName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the snapshot copy grant to use when snapshots of an AWS
@@ -204,12 +221,16 @@ namespace Model
     inline EnableSnapshotCopyRequest& WithSnapshotCopyGrantName(const char* value) { SetSnapshotCopyGrantName(value); return *this;}
 
   private:
+
     Aws::String m_clusterIdentifier;
     bool m_clusterIdentifierHasBeenSet;
+
     Aws::String m_destinationRegion;
     bool m_destinationRegionHasBeenSet;
+
     int m_retentionPeriod;
     bool m_retentionPeriodHasBeenSet;
+
     Aws::String m_snapshotCopyGrantName;
     bool m_snapshotCopyGrantNameHasBeenSet;
   };

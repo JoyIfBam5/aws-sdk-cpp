@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/sqs/SQS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,7 @@ namespace Model
 
   /**
    * <p>Encloses a receipt handle and an entry id for each message in <code>
-   * <a>ChangeMessageVisibilityBatch</a> </code>.</p> <important> <p>All of the
+   * <a>ChangeMessageVisibilityBatch</a>.</code> </p> <important> <p>All of the
    * following list parameters must be prefixed with
    * <code>ChangeMessageVisibilityBatchRequestEntry.n</code>, where <code>n</code> is
    * an integer value starting with <code>1</code>. For example, a parameter list for
@@ -57,6 +59,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>An identifier for this particular receipt handle used to communicate the
      * result.</p> <note> <p>The <code>Id</code>s of a batch request need to be unique
@@ -76,7 +79,7 @@ namespace Model
      * result.</p> <note> <p>The <code>Id</code>s of a batch request need to be unique
      * within a request</p> </note>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>An identifier for this particular receipt handle used to communicate the
@@ -97,7 +100,7 @@ namespace Model
      * result.</p> <note> <p>The <code>Id</code>s of a batch request need to be unique
      * within a request</p> </note>
      */
-    inline ChangeMessageVisibilityBatchRequestEntry& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline ChangeMessageVisibilityBatchRequestEntry& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>An identifier for this particular receipt handle used to communicate the
@@ -105,6 +108,7 @@ namespace Model
      * within a request</p> </note>
      */
     inline ChangeMessageVisibilityBatchRequestEntry& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>A receipt handle.</p>
@@ -119,7 +123,7 @@ namespace Model
     /**
      * <p>A receipt handle.</p>
      */
-    inline void SetReceiptHandle(Aws::String&& value) { m_receiptHandleHasBeenSet = true; m_receiptHandle = value; }
+    inline void SetReceiptHandle(Aws::String&& value) { m_receiptHandleHasBeenSet = true; m_receiptHandle = std::move(value); }
 
     /**
      * <p>A receipt handle.</p>
@@ -134,12 +138,13 @@ namespace Model
     /**
      * <p>A receipt handle.</p>
      */
-    inline ChangeMessageVisibilityBatchRequestEntry& WithReceiptHandle(Aws::String&& value) { SetReceiptHandle(value); return *this;}
+    inline ChangeMessageVisibilityBatchRequestEntry& WithReceiptHandle(Aws::String&& value) { SetReceiptHandle(std::move(value)); return *this;}
 
     /**
      * <p>A receipt handle.</p>
      */
     inline ChangeMessageVisibilityBatchRequestEntry& WithReceiptHandle(const char* value) { SetReceiptHandle(value); return *this;}
+
 
     /**
      * <p>The new value (in seconds) for the message's visibility timeout.</p>
@@ -157,10 +162,13 @@ namespace Model
     inline ChangeMessageVisibilityBatchRequestEntry& WithVisibilityTimeout(int value) { SetVisibilityTimeout(value); return *this;}
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     Aws::String m_receiptHandle;
     bool m_receiptHandleHasBeenSet;
+
     int m_visibilityTimeout;
     bool m_visibilityTimeoutHasBeenSet;
   };

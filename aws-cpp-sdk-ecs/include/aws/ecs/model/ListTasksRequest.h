@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/ecs/ECSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ecs/model/DesiredStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,9 +33,17 @@ namespace Model
   {
   public:
     ListTasksRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListTasks"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The short name or full Amazon Resource Name (ARN) of the cluster that hosts
@@ -54,7 +64,7 @@ namespace Model
      * the tasks to list. If you do not specify a cluster, the default cluster is
      * assumed.</p>
      */
-    inline void SetCluster(Aws::String&& value) { m_clusterHasBeenSet = true; m_cluster = value; }
+    inline void SetCluster(Aws::String&& value) { m_clusterHasBeenSet = true; m_cluster = std::move(value); }
 
     /**
      * <p>The short name or full Amazon Resource Name (ARN) of the cluster that hosts
@@ -75,7 +85,7 @@ namespace Model
      * the tasks to list. If you do not specify a cluster, the default cluster is
      * assumed.</p>
      */
-    inline ListTasksRequest& WithCluster(Aws::String&& value) { SetCluster(value); return *this;}
+    inline ListTasksRequest& WithCluster(Aws::String&& value) { SetCluster(std::move(value)); return *this;}
 
     /**
      * <p>The short name or full Amazon Resource Name (ARN) of the cluster that hosts
@@ -83,6 +93,7 @@ namespace Model
      * assumed.</p>
      */
     inline ListTasksRequest& WithCluster(const char* value) { SetCluster(value); return *this;}
+
 
     /**
      * <p>The container instance ID or full Amazon Resource Name (ARN) of the container
@@ -106,7 +117,7 @@ namespace Model
      * <code>containerInstance</code> limits the results to tasks that belong to that
      * container instance.</p>
      */
-    inline void SetContainerInstance(Aws::String&& value) { m_containerInstanceHasBeenSet = true; m_containerInstance = value; }
+    inline void SetContainerInstance(Aws::String&& value) { m_containerInstanceHasBeenSet = true; m_containerInstance = std::move(value); }
 
     /**
      * <p>The container instance ID or full Amazon Resource Name (ARN) of the container
@@ -130,7 +141,7 @@ namespace Model
      * <code>containerInstance</code> limits the results to tasks that belong to that
      * container instance.</p>
      */
-    inline ListTasksRequest& WithContainerInstance(Aws::String&& value) { SetContainerInstance(value); return *this;}
+    inline ListTasksRequest& WithContainerInstance(Aws::String&& value) { SetContainerInstance(std::move(value)); return *this;}
 
     /**
      * <p>The container instance ID or full Amazon Resource Name (ARN) of the container
@@ -139,6 +150,7 @@ namespace Model
      * container instance.</p>
      */
     inline ListTasksRequest& WithContainerInstance(const char* value) { SetContainerInstance(value); return *this;}
+
 
     /**
      * <p>The name of the family with which to filter the <code>ListTasks</code>
@@ -159,7 +171,7 @@ namespace Model
      * results. Specifying a <code>family</code> limits the results to tasks that
      * belong to that family.</p>
      */
-    inline void SetFamily(Aws::String&& value) { m_familyHasBeenSet = true; m_family = value; }
+    inline void SetFamily(Aws::String&& value) { m_familyHasBeenSet = true; m_family = std::move(value); }
 
     /**
      * <p>The name of the family with which to filter the <code>ListTasks</code>
@@ -180,7 +192,7 @@ namespace Model
      * results. Specifying a <code>family</code> limits the results to tasks that
      * belong to that family.</p>
      */
-    inline ListTasksRequest& WithFamily(Aws::String&& value) { SetFamily(value); return *this;}
+    inline ListTasksRequest& WithFamily(Aws::String&& value) { SetFamily(std::move(value)); return *this;}
 
     /**
      * <p>The name of the family with which to filter the <code>ListTasks</code>
@@ -188,6 +200,7 @@ namespace Model
      * belong to that family.</p>
      */
     inline ListTasksRequest& WithFamily(const char* value) { SetFamily(value); return *this;}
+
 
     /**
      * <p>The <code>nextToken</code> value returned from a previous paginated
@@ -223,7 +236,7 @@ namespace Model
      * retrieve the next items in a list and not for other programmatic purposes.</p>
      * </note>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>The <code>nextToken</code> value returned from a previous paginated
@@ -259,7 +272,7 @@ namespace Model
      * retrieve the next items in a list and not for other programmatic purposes.</p>
      * </note>
      */
-    inline ListTasksRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListTasksRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The <code>nextToken</code> value returned from a previous paginated
@@ -272,6 +285,7 @@ namespace Model
      * </note>
      */
     inline ListTasksRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     /**
      * <p>The maximum number of task results returned by <code>ListTasks</code> in
@@ -309,6 +323,7 @@ namespace Model
      */
     inline ListTasksRequest& WithMaxResults(int value) { SetMaxResults(value); return *this;}
 
+
     /**
      * <p>The <code>startedBy</code> value with which to filter the task results.
      * Specifying a <code>startedBy</code> value limits the results to tasks that were
@@ -328,7 +343,7 @@ namespace Model
      * Specifying a <code>startedBy</code> value limits the results to tasks that were
      * started with that value.</p>
      */
-    inline void SetStartedBy(Aws::String&& value) { m_startedByHasBeenSet = true; m_startedBy = value; }
+    inline void SetStartedBy(Aws::String&& value) { m_startedByHasBeenSet = true; m_startedBy = std::move(value); }
 
     /**
      * <p>The <code>startedBy</code> value with which to filter the task results.
@@ -349,7 +364,7 @@ namespace Model
      * Specifying a <code>startedBy</code> value limits the results to tasks that were
      * started with that value.</p>
      */
-    inline ListTasksRequest& WithStartedBy(Aws::String&& value) { SetStartedBy(value); return *this;}
+    inline ListTasksRequest& WithStartedBy(Aws::String&& value) { SetStartedBy(std::move(value)); return *this;}
 
     /**
      * <p>The <code>startedBy</code> value with which to filter the task results.
@@ -357,6 +372,7 @@ namespace Model
      * started with that value.</p>
      */
     inline ListTasksRequest& WithStartedBy(const char* value) { SetStartedBy(value); return *this;}
+
 
     /**
      * <p>The name of the service with which to filter the <code>ListTasks</code>
@@ -377,7 +393,7 @@ namespace Model
      * results. Specifying a <code>serviceName</code> limits the results to tasks that
      * belong to that service.</p>
      */
-    inline void SetServiceName(Aws::String&& value) { m_serviceNameHasBeenSet = true; m_serviceName = value; }
+    inline void SetServiceName(Aws::String&& value) { m_serviceNameHasBeenSet = true; m_serviceName = std::move(value); }
 
     /**
      * <p>The name of the service with which to filter the <code>ListTasks</code>
@@ -398,7 +414,7 @@ namespace Model
      * results. Specifying a <code>serviceName</code> limits the results to tasks that
      * belong to that service.</p>
      */
-    inline ListTasksRequest& WithServiceName(Aws::String&& value) { SetServiceName(value); return *this;}
+    inline ListTasksRequest& WithServiceName(Aws::String&& value) { SetServiceName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the service with which to filter the <code>ListTasks</code>
@@ -406,6 +422,7 @@ namespace Model
      * belong to that service.</p>
      */
     inline ListTasksRequest& WithServiceName(const char* value) { SetServiceName(value); return *this;}
+
 
     /**
      * <p>The task desired status with which to filter the <code>ListTasks</code>
@@ -447,7 +464,7 @@ namespace Model
      * ECS never sets the desired status of a task to that value (only a task's
      * <code>lastStatus</code> may have a value of <code>PENDING</code>).</p> </note>
      */
-    inline void SetDesiredStatus(DesiredStatus&& value) { m_desiredStatusHasBeenSet = true; m_desiredStatus = value; }
+    inline void SetDesiredStatus(DesiredStatus&& value) { m_desiredStatusHasBeenSet = true; m_desiredStatus = std::move(value); }
 
     /**
      * <p>The task desired status with which to filter the <code>ListTasks</code>
@@ -475,23 +492,31 @@ namespace Model
      * ECS never sets the desired status of a task to that value (only a task's
      * <code>lastStatus</code> may have a value of <code>PENDING</code>).</p> </note>
      */
-    inline ListTasksRequest& WithDesiredStatus(DesiredStatus&& value) { SetDesiredStatus(value); return *this;}
+    inline ListTasksRequest& WithDesiredStatus(DesiredStatus&& value) { SetDesiredStatus(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_cluster;
     bool m_clusterHasBeenSet;
+
     Aws::String m_containerInstance;
     bool m_containerInstanceHasBeenSet;
+
     Aws::String m_family;
     bool m_familyHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
+
     int m_maxResults;
     bool m_maxResultsHasBeenSet;
+
     Aws::String m_startedBy;
     bool m_startedByHasBeenSet;
+
     Aws::String m_serviceName;
     bool m_serviceNameHasBeenSet;
+
     DesiredStatus m_desiredStatus;
     bool m_desiredStatusHasBeenSet;
   };

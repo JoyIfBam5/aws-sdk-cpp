@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>Specifies the instance identifier for this member of the DB cluster.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>Specifies the instance identifier for this member of the DB cluster.</p>
      */
-    inline void SetDBInstanceIdentifier(Aws::String&& value) { m_dBInstanceIdentifierHasBeenSet = true; m_dBInstanceIdentifier = value; }
+    inline void SetDBInstanceIdentifier(Aws::String&& value) { m_dBInstanceIdentifierHasBeenSet = true; m_dBInstanceIdentifier = std::move(value); }
 
     /**
      * <p>Specifies the instance identifier for this member of the DB cluster.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>Specifies the instance identifier for this member of the DB cluster.</p>
      */
-    inline DBClusterMember& WithDBInstanceIdentifier(Aws::String&& value) { SetDBInstanceIdentifier(value); return *this;}
+    inline DBClusterMember& WithDBInstanceIdentifier(Aws::String&& value) { SetDBInstanceIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the instance identifier for this member of the DB cluster.</p>
      */
     inline DBClusterMember& WithDBInstanceIdentifier(const char* value) { SetDBInstanceIdentifier(value); return *this;}
+
 
     /**
      * <p>Value that is <code>true</code> if the cluster member is the primary instance
@@ -100,6 +104,7 @@ namespace Model
      */
     inline DBClusterMember& WithIsClusterWriter(bool value) { SetIsClusterWriter(value); return *this;}
 
+
     /**
      * <p>Specifies the status of the DB cluster parameter group for this member of the
      * DB cluster.</p>
@@ -116,7 +121,7 @@ namespace Model
      * <p>Specifies the status of the DB cluster parameter group for this member of the
      * DB cluster.</p>
      */
-    inline void SetDBClusterParameterGroupStatus(Aws::String&& value) { m_dBClusterParameterGroupStatusHasBeenSet = true; m_dBClusterParameterGroupStatus = value; }
+    inline void SetDBClusterParameterGroupStatus(Aws::String&& value) { m_dBClusterParameterGroupStatusHasBeenSet = true; m_dBClusterParameterGroupStatus = std::move(value); }
 
     /**
      * <p>Specifies the status of the DB cluster parameter group for this member of the
@@ -134,13 +139,14 @@ namespace Model
      * <p>Specifies the status of the DB cluster parameter group for this member of the
      * DB cluster.</p>
      */
-    inline DBClusterMember& WithDBClusterParameterGroupStatus(Aws::String&& value) { SetDBClusterParameterGroupStatus(value); return *this;}
+    inline DBClusterMember& WithDBClusterParameterGroupStatus(Aws::String&& value) { SetDBClusterParameterGroupStatus(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the status of the DB cluster parameter group for this member of the
      * DB cluster.</p>
      */
     inline DBClusterMember& WithDBClusterParameterGroupStatus(const char* value) { SetDBClusterParameterGroupStatus(value); return *this;}
+
 
     /**
      * <p>A value that specifies the order in which an Aurora Replica is promoted to
@@ -170,12 +176,16 @@ namespace Model
     inline DBClusterMember& WithPromotionTier(int value) { SetPromotionTier(value); return *this;}
 
   private:
+
     Aws::String m_dBInstanceIdentifier;
     bool m_dBInstanceIdentifierHasBeenSet;
+
     bool m_isClusterWriter;
     bool m_isClusterWriterHasBeenSet;
+
     Aws::String m_dBClusterParameterGroupStatus;
     bool m_dBClusterParameterGroupStatusHasBeenSet;
+
     int m_promotionTier;
     bool m_promotionTierHasBeenSet;
   };

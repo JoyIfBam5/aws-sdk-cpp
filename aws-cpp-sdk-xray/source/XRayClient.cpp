@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/core/utils/Outcome.h>
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
@@ -100,9 +101,10 @@ void XRayClient::init(const ClientConfiguration& config)
 BatchGetTracesOutcome XRayClient::BatchGetTraces(const BatchGetTracesRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/Traces";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/Traces";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return BatchGetTracesOutcome(BatchGetTracesResult(outcome.GetResult()));
@@ -134,9 +136,10 @@ void XRayClient::BatchGetTracesAsyncHelper(const BatchGetTracesRequest& request,
 GetServiceGraphOutcome XRayClient::GetServiceGraph(const GetServiceGraphRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/ServiceGraph";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/ServiceGraph";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return GetServiceGraphOutcome(GetServiceGraphResult(outcome.GetResult()));
@@ -168,9 +171,10 @@ void XRayClient::GetServiceGraphAsyncHelper(const GetServiceGraphRequest& reques
 GetTraceGraphOutcome XRayClient::GetTraceGraph(const GetTraceGraphRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/TraceGraph";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/TraceGraph";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return GetTraceGraphOutcome(GetTraceGraphResult(outcome.GetResult()));
@@ -202,9 +206,10 @@ void XRayClient::GetTraceGraphAsyncHelper(const GetTraceGraphRequest& request, c
 GetTraceSummariesOutcome XRayClient::GetTraceSummaries(const GetTraceSummariesRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/TraceSummaries";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/TraceSummaries";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return GetTraceSummariesOutcome(GetTraceSummariesResult(outcome.GetResult()));
@@ -236,9 +241,10 @@ void XRayClient::GetTraceSummariesAsyncHelper(const GetTraceSummariesRequest& re
 PutTelemetryRecordsOutcome XRayClient::PutTelemetryRecords(const PutTelemetryRecordsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/TelemetryRecords";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/TelemetryRecords";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return PutTelemetryRecordsOutcome(PutTelemetryRecordsResult(outcome.GetResult()));
@@ -270,9 +276,10 @@ void XRayClient::PutTelemetryRecordsAsyncHelper(const PutTelemetryRecordsRequest
 PutTraceSegmentsOutcome XRayClient::PutTraceSegments(const PutTraceSegmentsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/TraceSegments";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/TraceSegments";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return PutTraceSegmentsOutcome(PutTraceSegmentsResult(outcome.GetResult()));

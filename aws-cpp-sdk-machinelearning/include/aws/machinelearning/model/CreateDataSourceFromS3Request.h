@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/machinelearning/MachineLearning_EXPORTS.h>
 #include <aws/machinelearning/MachineLearningRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/machinelearning/model/S3DataSpec.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,9 +33,17 @@ namespace Model
   {
   public:
     CreateDataSourceFromS3Request();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateDataSourceFromS3"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>A user-supplied identifier that uniquely identifies the
@@ -51,7 +61,7 @@ namespace Model
      * <p>A user-supplied identifier that uniquely identifies the
      * <code>DataSource</code>. </p>
      */
-    inline void SetDataSourceId(Aws::String&& value) { m_dataSourceIdHasBeenSet = true; m_dataSourceId = value; }
+    inline void SetDataSourceId(Aws::String&& value) { m_dataSourceIdHasBeenSet = true; m_dataSourceId = std::move(value); }
 
     /**
      * <p>A user-supplied identifier that uniquely identifies the
@@ -69,13 +79,14 @@ namespace Model
      * <p>A user-supplied identifier that uniquely identifies the
      * <code>DataSource</code>. </p>
      */
-    inline CreateDataSourceFromS3Request& WithDataSourceId(Aws::String&& value) { SetDataSourceId(value); return *this;}
+    inline CreateDataSourceFromS3Request& WithDataSourceId(Aws::String&& value) { SetDataSourceId(std::move(value)); return *this;}
 
     /**
      * <p>A user-supplied identifier that uniquely identifies the
      * <code>DataSource</code>. </p>
      */
     inline CreateDataSourceFromS3Request& WithDataSourceId(const char* value) { SetDataSourceId(value); return *this;}
+
 
     /**
      * <p>A user-supplied name or description of the <code>DataSource</code>. </p>
@@ -90,7 +101,7 @@ namespace Model
     /**
      * <p>A user-supplied name or description of the <code>DataSource</code>. </p>
      */
-    inline void SetDataSourceName(Aws::String&& value) { m_dataSourceNameHasBeenSet = true; m_dataSourceName = value; }
+    inline void SetDataSourceName(Aws::String&& value) { m_dataSourceNameHasBeenSet = true; m_dataSourceName = std::move(value); }
 
     /**
      * <p>A user-supplied name or description of the <code>DataSource</code>. </p>
@@ -105,12 +116,13 @@ namespace Model
     /**
      * <p>A user-supplied name or description of the <code>DataSource</code>. </p>
      */
-    inline CreateDataSourceFromS3Request& WithDataSourceName(Aws::String&& value) { SetDataSourceName(value); return *this;}
+    inline CreateDataSourceFromS3Request& WithDataSourceName(Aws::String&& value) { SetDataSourceName(std::move(value)); return *this;}
 
     /**
      * <p>A user-supplied name or description of the <code>DataSource</code>. </p>
      */
     inline CreateDataSourceFromS3Request& WithDataSourceName(const char* value) { SetDataSourceName(value); return *this;}
+
 
     /**
      * <p>The data specification of a <code>DataSource</code>:</p> <ul>
@@ -152,7 +164,7 @@ namespace Model
      * "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"</code> </p> </li>
      * </ul>
      */
-    inline void SetDataSpec(S3DataSpec&& value) { m_dataSpecHasBeenSet = true; m_dataSpec = value; }
+    inline void SetDataSpec(S3DataSpec&& value) { m_dataSpecHasBeenSet = true; m_dataSpec = std::move(value); }
 
     /**
      * <p>The data specification of a <code>DataSource</code>:</p> <ul>
@@ -180,7 +192,8 @@ namespace Model
      * "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"</code> </p> </li>
      * </ul>
      */
-    inline CreateDataSourceFromS3Request& WithDataSpec(S3DataSpec&& value) { SetDataSpec(value); return *this;}
+    inline CreateDataSourceFromS3Request& WithDataSpec(S3DataSpec&& value) { SetDataSpec(std::move(value)); return *this;}
+
 
     /**
      * <p>The compute statistics for a <code>DataSource</code>. The statistics are
@@ -213,12 +226,16 @@ namespace Model
     inline CreateDataSourceFromS3Request& WithComputeStatistics(bool value) { SetComputeStatistics(value); return *this;}
 
   private:
+
     Aws::String m_dataSourceId;
     bool m_dataSourceIdHasBeenSet;
+
     Aws::String m_dataSourceName;
     bool m_dataSourceNameHasBeenSet;
+
     S3DataSpec m_dataSpec;
     bool m_dataSpecHasBeenSet;
+
     bool m_computeStatistics;
     bool m_computeStatisticsHasBeenSet;
   };

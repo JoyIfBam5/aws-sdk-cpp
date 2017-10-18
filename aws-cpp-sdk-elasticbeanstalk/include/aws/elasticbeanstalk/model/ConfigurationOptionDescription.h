@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -19,6 +20,7 @@
 #include <aws/elasticbeanstalk/model/ConfigurationOptionValueType.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticbeanstalk/model/OptionRestrictionRegex.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,6 +52,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>A unique namespace identifying the option's associated AWS resource.</p>
      */
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>A unique namespace identifying the option's associated AWS resource.</p>
      */
-    inline void SetNamespace(Aws::String&& value) { m_namespaceHasBeenSet = true; m_namespace = value; }
+    inline void SetNamespace(Aws::String&& value) { m_namespaceHasBeenSet = true; m_namespace = std::move(value); }
 
     /**
      * <p>A unique namespace identifying the option's associated AWS resource.</p>
@@ -78,12 +81,13 @@ namespace Model
     /**
      * <p>A unique namespace identifying the option's associated AWS resource.</p>
      */
-    inline ConfigurationOptionDescription& WithNamespace(Aws::String&& value) { SetNamespace(value); return *this;}
+    inline ConfigurationOptionDescription& WithNamespace(Aws::String&& value) { SetNamespace(std::move(value)); return *this;}
 
     /**
      * <p>A unique namespace identifying the option's associated AWS resource.</p>
      */
     inline ConfigurationOptionDescription& WithNamespace(const char* value) { SetNamespace(value); return *this;}
+
 
     /**
      * <p>The name of the configuration option.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>The name of the configuration option.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the configuration option.</p>
@@ -113,12 +117,13 @@ namespace Model
     /**
      * <p>The name of the configuration option.</p>
      */
-    inline ConfigurationOptionDescription& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline ConfigurationOptionDescription& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the configuration option.</p>
      */
     inline ConfigurationOptionDescription& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The default value for this configuration option.</p>
@@ -133,7 +138,7 @@ namespace Model
     /**
      * <p>The default value for this configuration option.</p>
      */
-    inline void SetDefaultValue(Aws::String&& value) { m_defaultValueHasBeenSet = true; m_defaultValue = value; }
+    inline void SetDefaultValue(Aws::String&& value) { m_defaultValueHasBeenSet = true; m_defaultValue = std::move(value); }
 
     /**
      * <p>The default value for this configuration option.</p>
@@ -148,12 +153,13 @@ namespace Model
     /**
      * <p>The default value for this configuration option.</p>
      */
-    inline ConfigurationOptionDescription& WithDefaultValue(Aws::String&& value) { SetDefaultValue(value); return *this;}
+    inline ConfigurationOptionDescription& WithDefaultValue(Aws::String&& value) { SetDefaultValue(std::move(value)); return *this;}
 
     /**
      * <p>The default value for this configuration option.</p>
      */
     inline ConfigurationOptionDescription& WithDefaultValue(const char* value) { SetDefaultValue(value); return *this;}
+
 
     /**
      * <p>An indication of which action is required if the value for this configuration
@@ -192,7 +198,7 @@ namespace Model
      * occurs when the application servers on the running Amazon EC2 instances are
      * restarted.</p> </li> </ul>
      */
-    inline void SetChangeSeverity(Aws::String&& value) { m_changeSeverityHasBeenSet = true; m_changeSeverity = value; }
+    inline void SetChangeSeverity(Aws::String&& value) { m_changeSeverityHasBeenSet = true; m_changeSeverity = std::move(value); }
 
     /**
      * <p>An indication of which action is required if the value for this configuration
@@ -231,7 +237,7 @@ namespace Model
      * occurs when the application servers on the running Amazon EC2 instances are
      * restarted.</p> </li> </ul>
      */
-    inline ConfigurationOptionDescription& WithChangeSeverity(Aws::String&& value) { SetChangeSeverity(value); return *this;}
+    inline ConfigurationOptionDescription& WithChangeSeverity(Aws::String&& value) { SetChangeSeverity(std::move(value)); return *this;}
 
     /**
      * <p>An indication of which action is required if the value for this configuration
@@ -245,6 +251,7 @@ namespace Model
      * restarted.</p> </li> </ul>
      */
     inline ConfigurationOptionDescription& WithChangeSeverity(const char* value) { SetChangeSeverity(value); return *this;}
+
 
     /**
      * <p>An indication of whether the user defined this configuration option:</p> <ul>
@@ -278,6 +285,7 @@ namespace Model
      * <p> Valid Values: <code>true</code> | <code>false</code> </p>
      */
     inline ConfigurationOptionDescription& WithUserDefined(bool value) { SetUserDefined(value); return *this;}
+
 
     /**
      * <p>An indication of which type of values this option has and whether it is
@@ -319,7 +327,7 @@ namespace Model
      * Values for this option are a JSON representation of a
      * <code>ConfigDocument</code>.</p> </li> </ul>
      */
-    inline void SetValueType(ConfigurationOptionValueType&& value) { m_valueTypeHasBeenSet = true; m_valueType = value; }
+    inline void SetValueType(ConfigurationOptionValueType&& value) { m_valueTypeHasBeenSet = true; m_valueType = std::move(value); }
 
     /**
      * <p>An indication of which type of values this option has and whether it is
@@ -347,7 +355,8 @@ namespace Model
      * Values for this option are a JSON representation of a
      * <code>ConfigDocument</code>.</p> </li> </ul>
      */
-    inline ConfigurationOptionDescription& WithValueType(ConfigurationOptionValueType&& value) { SetValueType(value); return *this;}
+    inline ConfigurationOptionDescription& WithValueType(ConfigurationOptionValueType&& value) { SetValueType(std::move(value)); return *this;}
+
 
     /**
      * <p>If specified, values for the configuration option are selected from this
@@ -365,7 +374,7 @@ namespace Model
      * <p>If specified, values for the configuration option are selected from this
      * list.</p>
      */
-    inline void SetValueOptions(Aws::Vector<Aws::String>&& value) { m_valueOptionsHasBeenSet = true; m_valueOptions = value; }
+    inline void SetValueOptions(Aws::Vector<Aws::String>&& value) { m_valueOptionsHasBeenSet = true; m_valueOptions = std::move(value); }
 
     /**
      * <p>If specified, values for the configuration option are selected from this
@@ -377,7 +386,7 @@ namespace Model
      * <p>If specified, values for the configuration option are selected from this
      * list.</p>
      */
-    inline ConfigurationOptionDescription& WithValueOptions(Aws::Vector<Aws::String>&& value) { SetValueOptions(value); return *this;}
+    inline ConfigurationOptionDescription& WithValueOptions(Aws::Vector<Aws::String>&& value) { SetValueOptions(std::move(value)); return *this;}
 
     /**
      * <p>If specified, values for the configuration option are selected from this
@@ -389,13 +398,14 @@ namespace Model
      * <p>If specified, values for the configuration option are selected from this
      * list.</p>
      */
-    inline ConfigurationOptionDescription& AddValueOptions(Aws::String&& value) { m_valueOptionsHasBeenSet = true; m_valueOptions.push_back(value); return *this; }
+    inline ConfigurationOptionDescription& AddValueOptions(Aws::String&& value) { m_valueOptionsHasBeenSet = true; m_valueOptions.push_back(std::move(value)); return *this; }
 
     /**
      * <p>If specified, values for the configuration option are selected from this
      * list.</p>
      */
     inline ConfigurationOptionDescription& AddValueOptions(const char* value) { m_valueOptionsHasBeenSet = true; m_valueOptions.push_back(value); return *this; }
+
 
     /**
      * <p>If specified, the configuration option must be a numeric value greater than
@@ -415,6 +425,7 @@ namespace Model
      */
     inline ConfigurationOptionDescription& WithMinValue(int value) { SetMinValue(value); return *this;}
 
+
     /**
      * <p>If specified, the configuration option must be a numeric value less than this
      * value.</p>
@@ -432,6 +443,7 @@ namespace Model
      * value.</p>
      */
     inline ConfigurationOptionDescription& WithMaxValue(int value) { SetMaxValue(value); return *this;}
+
 
     /**
      * <p>If specified, the configuration option must be a string value no longer than
@@ -451,6 +463,7 @@ namespace Model
      */
     inline ConfigurationOptionDescription& WithMaxLength(int value) { SetMaxLength(value); return *this;}
 
+
     /**
      * <p>If specified, the configuration option must be a string value that satisfies
      * this regular expression.</p>
@@ -467,7 +480,7 @@ namespace Model
      * <p>If specified, the configuration option must be a string value that satisfies
      * this regular expression.</p>
      */
-    inline void SetRegex(OptionRestrictionRegex&& value) { m_regexHasBeenSet = true; m_regex = value; }
+    inline void SetRegex(OptionRestrictionRegex&& value) { m_regexHasBeenSet = true; m_regex = std::move(value); }
 
     /**
      * <p>If specified, the configuration option must be a string value that satisfies
@@ -479,29 +492,40 @@ namespace Model
      * <p>If specified, the configuration option must be a string value that satisfies
      * this regular expression.</p>
      */
-    inline ConfigurationOptionDescription& WithRegex(OptionRestrictionRegex&& value) { SetRegex(value); return *this;}
+    inline ConfigurationOptionDescription& WithRegex(OptionRestrictionRegex&& value) { SetRegex(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_namespace;
     bool m_namespaceHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_defaultValue;
     bool m_defaultValueHasBeenSet;
+
     Aws::String m_changeSeverity;
     bool m_changeSeverityHasBeenSet;
+
     bool m_userDefined;
     bool m_userDefinedHasBeenSet;
+
     ConfigurationOptionValueType m_valueType;
     bool m_valueTypeHasBeenSet;
+
     Aws::Vector<Aws::String> m_valueOptions;
     bool m_valueOptionsHasBeenSet;
+
     int m_minValue;
     bool m_minValueHasBeenSet;
+
     int m_maxValue;
     bool m_maxValueHasBeenSet;
+
     int m_maxLength;
     bool m_maxLengthHasBeenSet;
+
     OptionRestrictionRegex m_regex;
     bool m_regexHasBeenSet;
   };

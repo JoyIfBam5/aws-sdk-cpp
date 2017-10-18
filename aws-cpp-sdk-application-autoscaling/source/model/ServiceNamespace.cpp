@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/application-autoscaling/model/ServiceNamespace.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -32,6 +33,8 @@ namespace Aws
         static const int ecs_HASH = HashingUtils::HashString("ecs");
         static const int elasticmapreduce_HASH = HashingUtils::HashString("elasticmapreduce");
         static const int ec2_HASH = HashingUtils::HashString("ec2");
+        static const int appstream_HASH = HashingUtils::HashString("appstream");
+        static const int dynamodb_HASH = HashingUtils::HashString("dynamodb");
 
 
         ServiceNamespace GetServiceNamespaceForName(const Aws::String& name)
@@ -48,6 +51,14 @@ namespace Aws
           else if (hashCode == ec2_HASH)
           {
             return ServiceNamespace::ec2;
+          }
+          else if (hashCode == appstream_HASH)
+          {
+            return ServiceNamespace::appstream;
+          }
+          else if (hashCode == dynamodb_HASH)
+          {
+            return ServiceNamespace::dynamodb;
           }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
@@ -69,6 +80,10 @@ namespace Aws
             return "elasticmapreduce";
           case ServiceNamespace::ec2:
             return "ec2";
+          case ServiceNamespace::appstream:
+            return "appstream";
+          case ServiceNamespace::dynamodb:
+            return "dynamodb";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

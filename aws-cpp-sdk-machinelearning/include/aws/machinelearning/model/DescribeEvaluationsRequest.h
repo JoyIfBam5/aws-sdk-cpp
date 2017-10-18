@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/machinelearning/MachineLearning_EXPORTS.h>
 #include <aws/machinelearning/MachineLearningRequest.h>
 #include <aws/machinelearning/model/EvaluationFilterVariable.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/machinelearning/model/SortOrder.h>
+#include <utility>
 
 namespace Aws
 {
@@ -32,9 +34,17 @@ namespace Model
   {
   public:
     DescribeEvaluationsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeEvaluations"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>Use one of the following variable to filter a list of <code>Evaluation</code>
@@ -88,7 +98,7 @@ namespace Model
      * <code>Evaluation</code>. The URL can identify either a file or an Amazon Simple
      * Storage Solution (Amazon S3) bucket or directory.</li> </ul>
      */
-    inline void SetFilterVariable(EvaluationFilterVariable&& value) { m_filterVariableHasBeenSet = true; m_filterVariable = value; }
+    inline void SetFilterVariable(EvaluationFilterVariable&& value) { m_filterVariableHasBeenSet = true; m_filterVariable = std::move(value); }
 
     /**
      * <p>Use one of the following variable to filter a list of <code>Evaluation</code>
@@ -124,7 +134,8 @@ namespace Model
      * <code>Evaluation</code>. The URL can identify either a file or an Amazon Simple
      * Storage Solution (Amazon S3) bucket or directory.</li> </ul>
      */
-    inline DescribeEvaluationsRequest& WithFilterVariable(EvaluationFilterVariable&& value) { SetFilterVariable(value); return *this;}
+    inline DescribeEvaluationsRequest& WithFilterVariable(EvaluationFilterVariable&& value) { SetFilterVariable(std::move(value)); return *this;}
+
 
     /**
      * <p>The equal to operator. The <code>Evaluation</code> results will have
@@ -145,7 +156,7 @@ namespace Model
      * <code>FilterVariable</code> values that exactly match the value specified with
      * <code>EQ</code>.</p>
      */
-    inline void SetEQ(Aws::String&& value) { m_eQHasBeenSet = true; m_eQ = value; }
+    inline void SetEQ(Aws::String&& value) { m_eQHasBeenSet = true; m_eQ = std::move(value); }
 
     /**
      * <p>The equal to operator. The <code>Evaluation</code> results will have
@@ -166,7 +177,7 @@ namespace Model
      * <code>FilterVariable</code> values that exactly match the value specified with
      * <code>EQ</code>.</p>
      */
-    inline DescribeEvaluationsRequest& WithEQ(Aws::String&& value) { SetEQ(value); return *this;}
+    inline DescribeEvaluationsRequest& WithEQ(Aws::String&& value) { SetEQ(std::move(value)); return *this;}
 
     /**
      * <p>The equal to operator. The <code>Evaluation</code> results will have
@@ -174,6 +185,7 @@ namespace Model
      * <code>EQ</code>.</p>
      */
     inline DescribeEvaluationsRequest& WithEQ(const char* value) { SetEQ(value); return *this;}
+
 
     /**
      * <p>The greater than operator. The <code>Evaluation</code> results will have
@@ -194,7 +206,7 @@ namespace Model
      * <code>FilterVariable</code> values that are greater than the value specified
      * with <code>GT</code>.</p>
      */
-    inline void SetGT(Aws::String&& value) { m_gTHasBeenSet = true; m_gT = value; }
+    inline void SetGT(Aws::String&& value) { m_gTHasBeenSet = true; m_gT = std::move(value); }
 
     /**
      * <p>The greater than operator. The <code>Evaluation</code> results will have
@@ -215,7 +227,7 @@ namespace Model
      * <code>FilterVariable</code> values that are greater than the value specified
      * with <code>GT</code>.</p>
      */
-    inline DescribeEvaluationsRequest& WithGT(Aws::String&& value) { SetGT(value); return *this;}
+    inline DescribeEvaluationsRequest& WithGT(Aws::String&& value) { SetGT(std::move(value)); return *this;}
 
     /**
      * <p>The greater than operator. The <code>Evaluation</code> results will have
@@ -223,6 +235,7 @@ namespace Model
      * with <code>GT</code>.</p>
      */
     inline DescribeEvaluationsRequest& WithGT(const char* value) { SetGT(value); return *this;}
+
 
     /**
      * <p>The less than operator. The <code>Evaluation</code> results will have
@@ -243,7 +256,7 @@ namespace Model
      * <code>FilterVariable</code> values that are less than the value specified with
      * <code>LT</code>.</p>
      */
-    inline void SetLT(Aws::String&& value) { m_lTHasBeenSet = true; m_lT = value; }
+    inline void SetLT(Aws::String&& value) { m_lTHasBeenSet = true; m_lT = std::move(value); }
 
     /**
      * <p>The less than operator. The <code>Evaluation</code> results will have
@@ -264,7 +277,7 @@ namespace Model
      * <code>FilterVariable</code> values that are less than the value specified with
      * <code>LT</code>.</p>
      */
-    inline DescribeEvaluationsRequest& WithLT(Aws::String&& value) { SetLT(value); return *this;}
+    inline DescribeEvaluationsRequest& WithLT(Aws::String&& value) { SetLT(std::move(value)); return *this;}
 
     /**
      * <p>The less than operator. The <code>Evaluation</code> results will have
@@ -272,6 +285,7 @@ namespace Model
      * <code>LT</code>.</p>
      */
     inline DescribeEvaluationsRequest& WithLT(const char* value) { SetLT(value); return *this;}
+
 
     /**
      * <p>The greater than or equal to operator. The <code>Evaluation</code> results
@@ -292,7 +306,7 @@ namespace Model
      * will have <code>FilterVariable</code> values that are greater than or equal to
      * the value specified with <code>GE</code>. </p>
      */
-    inline void SetGE(Aws::String&& value) { m_gEHasBeenSet = true; m_gE = value; }
+    inline void SetGE(Aws::String&& value) { m_gEHasBeenSet = true; m_gE = std::move(value); }
 
     /**
      * <p>The greater than or equal to operator. The <code>Evaluation</code> results
@@ -313,7 +327,7 @@ namespace Model
      * will have <code>FilterVariable</code> values that are greater than or equal to
      * the value specified with <code>GE</code>. </p>
      */
-    inline DescribeEvaluationsRequest& WithGE(Aws::String&& value) { SetGE(value); return *this;}
+    inline DescribeEvaluationsRequest& WithGE(Aws::String&& value) { SetGE(std::move(value)); return *this;}
 
     /**
      * <p>The greater than or equal to operator. The <code>Evaluation</code> results
@@ -321,6 +335,7 @@ namespace Model
      * the value specified with <code>GE</code>. </p>
      */
     inline DescribeEvaluationsRequest& WithGE(const char* value) { SetGE(value); return *this;}
+
 
     /**
      * <p>The less than or equal to operator. The <code>Evaluation</code> results will
@@ -341,7 +356,7 @@ namespace Model
      * have <code>FilterVariable</code> values that are less than or equal to the value
      * specified with <code>LE</code>.</p>
      */
-    inline void SetLE(Aws::String&& value) { m_lEHasBeenSet = true; m_lE = value; }
+    inline void SetLE(Aws::String&& value) { m_lEHasBeenSet = true; m_lE = std::move(value); }
 
     /**
      * <p>The less than or equal to operator. The <code>Evaluation</code> results will
@@ -362,7 +377,7 @@ namespace Model
      * have <code>FilterVariable</code> values that are less than or equal to the value
      * specified with <code>LE</code>.</p>
      */
-    inline DescribeEvaluationsRequest& WithLE(Aws::String&& value) { SetLE(value); return *this;}
+    inline DescribeEvaluationsRequest& WithLE(Aws::String&& value) { SetLE(std::move(value)); return *this;}
 
     /**
      * <p>The less than or equal to operator. The <code>Evaluation</code> results will
@@ -370,6 +385,7 @@ namespace Model
      * specified with <code>LE</code>.</p>
      */
     inline DescribeEvaluationsRequest& WithLE(const char* value) { SetLE(value); return *this;}
+
 
     /**
      * <p>The not equal to operator. The <code>Evaluation</code> results will have
@@ -390,7 +406,7 @@ namespace Model
      * <code>FilterVariable</code> values not equal to the value specified with
      * <code>NE</code>.</p>
      */
-    inline void SetNE(Aws::String&& value) { m_nEHasBeenSet = true; m_nE = value; }
+    inline void SetNE(Aws::String&& value) { m_nEHasBeenSet = true; m_nE = std::move(value); }
 
     /**
      * <p>The not equal to operator. The <code>Evaluation</code> results will have
@@ -411,7 +427,7 @@ namespace Model
      * <code>FilterVariable</code> values not equal to the value specified with
      * <code>NE</code>.</p>
      */
-    inline DescribeEvaluationsRequest& WithNE(Aws::String&& value) { SetNE(value); return *this;}
+    inline DescribeEvaluationsRequest& WithNE(Aws::String&& value) { SetNE(std::move(value)); return *this;}
 
     /**
      * <p>The not equal to operator. The <code>Evaluation</code> results will have
@@ -419,6 +435,7 @@ namespace Model
      * <code>NE</code>.</p>
      */
     inline DescribeEvaluationsRequest& WithNE(const char* value) { SetNE(value); return *this;}
+
 
     /**
      * <p>A string that is found at the beginning of a variable, such as
@@ -454,7 +471,7 @@ namespace Model
      * <code>Prefix</code>: </p> <ul> <li><p>2014-09</p></li>
      * <li><p>2014-09-09</p></li> <li><p>2014-09-09-Holiday</p></li> </ul>
      */
-    inline void SetPrefix(Aws::String&& value) { m_prefixHasBeenSet = true; m_prefix = value; }
+    inline void SetPrefix(Aws::String&& value) { m_prefixHasBeenSet = true; m_prefix = std::move(value); }
 
     /**
      * <p>A string that is found at the beginning of a variable, such as
@@ -490,7 +507,7 @@ namespace Model
      * <code>Prefix</code>: </p> <ul> <li><p>2014-09</p></li>
      * <li><p>2014-09-09</p></li> <li><p>2014-09-09-Holiday</p></li> </ul>
      */
-    inline DescribeEvaluationsRequest& WithPrefix(Aws::String&& value) { SetPrefix(value); return *this;}
+    inline DescribeEvaluationsRequest& WithPrefix(Aws::String&& value) { SetPrefix(std::move(value)); return *this;}
 
     /**
      * <p>A string that is found at the beginning of a variable, such as
@@ -503,6 +520,7 @@ namespace Model
      * <li><p>2014-09-09</p></li> <li><p>2014-09-09-Holiday</p></li> </ul>
      */
     inline DescribeEvaluationsRequest& WithPrefix(const char* value) { SetPrefix(value); return *this;}
+
 
     /**
      * <p>A two-value parameter that determines the sequence of the resulting list of
@@ -529,7 +547,7 @@ namespace Model
      * descending order (Z-A, 9-0).</li> </ul> <p>Results are sorted by
      * <code>FilterVariable</code>.</p>
      */
-    inline void SetSortOrder(SortOrder&& value) { m_sortOrderHasBeenSet = true; m_sortOrder = value; }
+    inline void SetSortOrder(SortOrder&& value) { m_sortOrderHasBeenSet = true; m_sortOrder = std::move(value); }
 
     /**
      * <p>A two-value parameter that determines the sequence of the resulting list of
@@ -547,7 +565,8 @@ namespace Model
      * descending order (Z-A, 9-0).</li> </ul> <p>Results are sorted by
      * <code>FilterVariable</code>.</p>
      */
-    inline DescribeEvaluationsRequest& WithSortOrder(SortOrder&& value) { SetSortOrder(value); return *this;}
+    inline DescribeEvaluationsRequest& WithSortOrder(SortOrder&& value) { SetSortOrder(std::move(value)); return *this;}
+
 
     /**
      * <p>The ID of the page in the paginated results.</p>
@@ -562,7 +581,7 @@ namespace Model
     /**
      * <p>The ID of the page in the paginated results.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>The ID of the page in the paginated results.</p>
@@ -577,12 +596,13 @@ namespace Model
     /**
      * <p>The ID of the page in the paginated results.</p>
      */
-    inline DescribeEvaluationsRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeEvaluationsRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the page in the paginated results.</p>
      */
     inline DescribeEvaluationsRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     /**
      * <p> The maximum number of <code>Evaluation</code> to include in the result.</p>
@@ -600,26 +620,37 @@ namespace Model
     inline DescribeEvaluationsRequest& WithLimit(int value) { SetLimit(value); return *this;}
 
   private:
+
     EvaluationFilterVariable m_filterVariable;
     bool m_filterVariableHasBeenSet;
+
     Aws::String m_eQ;
     bool m_eQHasBeenSet;
+
     Aws::String m_gT;
     bool m_gTHasBeenSet;
+
     Aws::String m_lT;
     bool m_lTHasBeenSet;
+
     Aws::String m_gE;
     bool m_gEHasBeenSet;
+
     Aws::String m_lE;
     bool m_lEHasBeenSet;
+
     Aws::String m_nE;
     bool m_nEHasBeenSet;
+
     Aws::String m_prefix;
     bool m_prefixHasBeenSet;
+
     SortOrder m_sortOrder;
     bool m_sortOrderHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
+
     int m_limit;
     bool m_limitHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dms/DatabaseMigrationService_EXPORTS.h>
 #include <aws/dms/DatabaseMigrationServiceRequest.h>
@@ -20,6 +21,7 @@
 #include <aws/core/utils/DateTime.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/dms/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,65 +39,74 @@ namespace Model
   {
   public:
     CreateReplicationTaskRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateReplicationTask"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
 
+
     /**
      * <p>The replication task identifier.</p> <p>Constraints:</p> <ul> <li> <p>Must
-     * contain from 1 to 63 alphanumeric characters or hyphens.</p> </li> <li> <p>First
-     * character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or
-     * contain two consecutive hyphens.</p> </li> </ul>
+     * contain from 1 to 255 alphanumeric characters or hyphens.</p> </li> <li>
+     * <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen
+     * or contain two consecutive hyphens.</p> </li> </ul>
      */
     inline const Aws::String& GetReplicationTaskIdentifier() const{ return m_replicationTaskIdentifier; }
 
     /**
      * <p>The replication task identifier.</p> <p>Constraints:</p> <ul> <li> <p>Must
-     * contain from 1 to 63 alphanumeric characters or hyphens.</p> </li> <li> <p>First
-     * character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or
-     * contain two consecutive hyphens.</p> </li> </ul>
+     * contain from 1 to 255 alphanumeric characters or hyphens.</p> </li> <li>
+     * <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen
+     * or contain two consecutive hyphens.</p> </li> </ul>
      */
     inline void SetReplicationTaskIdentifier(const Aws::String& value) { m_replicationTaskIdentifierHasBeenSet = true; m_replicationTaskIdentifier = value; }
 
     /**
      * <p>The replication task identifier.</p> <p>Constraints:</p> <ul> <li> <p>Must
-     * contain from 1 to 63 alphanumeric characters or hyphens.</p> </li> <li> <p>First
-     * character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or
-     * contain two consecutive hyphens.</p> </li> </ul>
+     * contain from 1 to 255 alphanumeric characters or hyphens.</p> </li> <li>
+     * <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen
+     * or contain two consecutive hyphens.</p> </li> </ul>
      */
-    inline void SetReplicationTaskIdentifier(Aws::String&& value) { m_replicationTaskIdentifierHasBeenSet = true; m_replicationTaskIdentifier = value; }
+    inline void SetReplicationTaskIdentifier(Aws::String&& value) { m_replicationTaskIdentifierHasBeenSet = true; m_replicationTaskIdentifier = std::move(value); }
 
     /**
      * <p>The replication task identifier.</p> <p>Constraints:</p> <ul> <li> <p>Must
-     * contain from 1 to 63 alphanumeric characters or hyphens.</p> </li> <li> <p>First
-     * character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or
-     * contain two consecutive hyphens.</p> </li> </ul>
+     * contain from 1 to 255 alphanumeric characters or hyphens.</p> </li> <li>
+     * <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen
+     * or contain two consecutive hyphens.</p> </li> </ul>
      */
     inline void SetReplicationTaskIdentifier(const char* value) { m_replicationTaskIdentifierHasBeenSet = true; m_replicationTaskIdentifier.assign(value); }
 
     /**
      * <p>The replication task identifier.</p> <p>Constraints:</p> <ul> <li> <p>Must
-     * contain from 1 to 63 alphanumeric characters or hyphens.</p> </li> <li> <p>First
-     * character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or
-     * contain two consecutive hyphens.</p> </li> </ul>
+     * contain from 1 to 255 alphanumeric characters or hyphens.</p> </li> <li>
+     * <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen
+     * or contain two consecutive hyphens.</p> </li> </ul>
      */
     inline CreateReplicationTaskRequest& WithReplicationTaskIdentifier(const Aws::String& value) { SetReplicationTaskIdentifier(value); return *this;}
 
     /**
      * <p>The replication task identifier.</p> <p>Constraints:</p> <ul> <li> <p>Must
-     * contain from 1 to 63 alphanumeric characters or hyphens.</p> </li> <li> <p>First
-     * character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or
-     * contain two consecutive hyphens.</p> </li> </ul>
+     * contain from 1 to 255 alphanumeric characters or hyphens.</p> </li> <li>
+     * <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen
+     * or contain two consecutive hyphens.</p> </li> </ul>
      */
-    inline CreateReplicationTaskRequest& WithReplicationTaskIdentifier(Aws::String&& value) { SetReplicationTaskIdentifier(value); return *this;}
+    inline CreateReplicationTaskRequest& WithReplicationTaskIdentifier(Aws::String&& value) { SetReplicationTaskIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>The replication task identifier.</p> <p>Constraints:</p> <ul> <li> <p>Must
-     * contain from 1 to 63 alphanumeric characters or hyphens.</p> </li> <li> <p>First
-     * character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or
-     * contain two consecutive hyphens.</p> </li> </ul>
+     * contain from 1 to 255 alphanumeric characters or hyphens.</p> </li> <li>
+     * <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen
+     * or contain two consecutive hyphens.</p> </li> </ul>
      */
     inline CreateReplicationTaskRequest& WithReplicationTaskIdentifier(const char* value) { SetReplicationTaskIdentifier(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) string that uniquely identifies the
@@ -113,7 +124,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) string that uniquely identifies the
      * endpoint.</p>
      */
-    inline void SetSourceEndpointArn(Aws::String&& value) { m_sourceEndpointArnHasBeenSet = true; m_sourceEndpointArn = value; }
+    inline void SetSourceEndpointArn(Aws::String&& value) { m_sourceEndpointArnHasBeenSet = true; m_sourceEndpointArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) string that uniquely identifies the
@@ -131,13 +142,14 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) string that uniquely identifies the
      * endpoint.</p>
      */
-    inline CreateReplicationTaskRequest& WithSourceEndpointArn(Aws::String&& value) { SetSourceEndpointArn(value); return *this;}
+    inline CreateReplicationTaskRequest& WithSourceEndpointArn(Aws::String&& value) { SetSourceEndpointArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) string that uniquely identifies the
      * endpoint.</p>
      */
     inline CreateReplicationTaskRequest& WithSourceEndpointArn(const char* value) { SetSourceEndpointArn(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) string that uniquely identifies the
@@ -155,7 +167,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) string that uniquely identifies the
      * endpoint.</p>
      */
-    inline void SetTargetEndpointArn(Aws::String&& value) { m_targetEndpointArnHasBeenSet = true; m_targetEndpointArn = value; }
+    inline void SetTargetEndpointArn(Aws::String&& value) { m_targetEndpointArnHasBeenSet = true; m_targetEndpointArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) string that uniquely identifies the
@@ -173,13 +185,14 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) string that uniquely identifies the
      * endpoint.</p>
      */
-    inline CreateReplicationTaskRequest& WithTargetEndpointArn(Aws::String&& value) { SetTargetEndpointArn(value); return *this;}
+    inline CreateReplicationTaskRequest& WithTargetEndpointArn(Aws::String&& value) { SetTargetEndpointArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) string that uniquely identifies the
      * endpoint.</p>
      */
     inline CreateReplicationTaskRequest& WithTargetEndpointArn(const char* value) { SetTargetEndpointArn(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the replication instance.</p>
@@ -194,7 +207,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the replication instance.</p>
      */
-    inline void SetReplicationInstanceArn(Aws::String&& value) { m_replicationInstanceArnHasBeenSet = true; m_replicationInstanceArn = value; }
+    inline void SetReplicationInstanceArn(Aws::String&& value) { m_replicationInstanceArnHasBeenSet = true; m_replicationInstanceArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the replication instance.</p>
@@ -209,12 +222,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the replication instance.</p>
      */
-    inline CreateReplicationTaskRequest& WithReplicationInstanceArn(Aws::String&& value) { SetReplicationInstanceArn(value); return *this;}
+    inline CreateReplicationTaskRequest& WithReplicationInstanceArn(Aws::String&& value) { SetReplicationInstanceArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the replication instance.</p>
      */
     inline CreateReplicationTaskRequest& WithReplicationInstanceArn(const char* value) { SetReplicationInstanceArn(value); return *this;}
+
 
     /**
      * <p>The migration type.</p>
@@ -229,7 +243,7 @@ namespace Model
     /**
      * <p>The migration type.</p>
      */
-    inline void SetMigrationType(MigrationTypeValue&& value) { m_migrationTypeHasBeenSet = true; m_migrationType = value; }
+    inline void SetMigrationType(MigrationTypeValue&& value) { m_migrationTypeHasBeenSet = true; m_migrationType = std::move(value); }
 
     /**
      * <p>The migration type.</p>
@@ -239,49 +253,65 @@ namespace Model
     /**
      * <p>The migration type.</p>
      */
-    inline CreateReplicationTaskRequest& WithMigrationType(MigrationTypeValue&& value) { SetMigrationType(value); return *this;}
+    inline CreateReplicationTaskRequest& WithMigrationType(MigrationTypeValue&& value) { SetMigrationType(std::move(value)); return *this;}
+
 
     /**
-     * <p>The path of the JSON file that contains the table mappings. Preceed the path
-     * with "file://".</p> <p>For example, --table-mappings file://mappingfile.json</p>
+     * <p>When using the AWS CLI or boto3, provide the path of the JSON file that
+     * contains the table mappings. Precede the path with "file://". When working with
+     * the DMS API, provide the JSON as the parameter value.</p> <p>For example,
+     * --table-mappings file://mappingfile.json</p>
      */
     inline const Aws::String& GetTableMappings() const{ return m_tableMappings; }
 
     /**
-     * <p>The path of the JSON file that contains the table mappings. Preceed the path
-     * with "file://".</p> <p>For example, --table-mappings file://mappingfile.json</p>
+     * <p>When using the AWS CLI or boto3, provide the path of the JSON file that
+     * contains the table mappings. Precede the path with "file://". When working with
+     * the DMS API, provide the JSON as the parameter value.</p> <p>For example,
+     * --table-mappings file://mappingfile.json</p>
      */
     inline void SetTableMappings(const Aws::String& value) { m_tableMappingsHasBeenSet = true; m_tableMappings = value; }
 
     /**
-     * <p>The path of the JSON file that contains the table mappings. Preceed the path
-     * with "file://".</p> <p>For example, --table-mappings file://mappingfile.json</p>
+     * <p>When using the AWS CLI or boto3, provide the path of the JSON file that
+     * contains the table mappings. Precede the path with "file://". When working with
+     * the DMS API, provide the JSON as the parameter value.</p> <p>For example,
+     * --table-mappings file://mappingfile.json</p>
      */
-    inline void SetTableMappings(Aws::String&& value) { m_tableMappingsHasBeenSet = true; m_tableMappings = value; }
+    inline void SetTableMappings(Aws::String&& value) { m_tableMappingsHasBeenSet = true; m_tableMappings = std::move(value); }
 
     /**
-     * <p>The path of the JSON file that contains the table mappings. Preceed the path
-     * with "file://".</p> <p>For example, --table-mappings file://mappingfile.json</p>
+     * <p>When using the AWS CLI or boto3, provide the path of the JSON file that
+     * contains the table mappings. Precede the path with "file://". When working with
+     * the DMS API, provide the JSON as the parameter value.</p> <p>For example,
+     * --table-mappings file://mappingfile.json</p>
      */
     inline void SetTableMappings(const char* value) { m_tableMappingsHasBeenSet = true; m_tableMappings.assign(value); }
 
     /**
-     * <p>The path of the JSON file that contains the table mappings. Preceed the path
-     * with "file://".</p> <p>For example, --table-mappings file://mappingfile.json</p>
+     * <p>When using the AWS CLI or boto3, provide the path of the JSON file that
+     * contains the table mappings. Precede the path with "file://". When working with
+     * the DMS API, provide the JSON as the parameter value.</p> <p>For example,
+     * --table-mappings file://mappingfile.json</p>
      */
     inline CreateReplicationTaskRequest& WithTableMappings(const Aws::String& value) { SetTableMappings(value); return *this;}
 
     /**
-     * <p>The path of the JSON file that contains the table mappings. Preceed the path
-     * with "file://".</p> <p>For example, --table-mappings file://mappingfile.json</p>
+     * <p>When using the AWS CLI or boto3, provide the path of the JSON file that
+     * contains the table mappings. Precede the path with "file://". When working with
+     * the DMS API, provide the JSON as the parameter value.</p> <p>For example,
+     * --table-mappings file://mappingfile.json</p>
      */
-    inline CreateReplicationTaskRequest& WithTableMappings(Aws::String&& value) { SetTableMappings(value); return *this;}
+    inline CreateReplicationTaskRequest& WithTableMappings(Aws::String&& value) { SetTableMappings(std::move(value)); return *this;}
 
     /**
-     * <p>The path of the JSON file that contains the table mappings. Preceed the path
-     * with "file://".</p> <p>For example, --table-mappings file://mappingfile.json</p>
+     * <p>When using the AWS CLI or boto3, provide the path of the JSON file that
+     * contains the table mappings. Precede the path with "file://". When working with
+     * the DMS API, provide the JSON as the parameter value.</p> <p>For example,
+     * --table-mappings file://mappingfile.json</p>
      */
     inline CreateReplicationTaskRequest& WithTableMappings(const char* value) { SetTableMappings(value); return *this;}
+
 
     /**
      * <p>Settings for the task, such as target metadata settings. For a complete list
@@ -305,7 +335,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.html">Task
      * Settings for AWS Database Migration Service Tasks</a>.</p>
      */
-    inline void SetReplicationTaskSettings(Aws::String&& value) { m_replicationTaskSettingsHasBeenSet = true; m_replicationTaskSettings = value; }
+    inline void SetReplicationTaskSettings(Aws::String&& value) { m_replicationTaskSettingsHasBeenSet = true; m_replicationTaskSettings = std::move(value); }
 
     /**
      * <p>Settings for the task, such as target metadata settings. For a complete list
@@ -329,7 +359,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.html">Task
      * Settings for AWS Database Migration Service Tasks</a>.</p>
      */
-    inline CreateReplicationTaskRequest& WithReplicationTaskSettings(Aws::String&& value) { SetReplicationTaskSettings(value); return *this;}
+    inline CreateReplicationTaskRequest& WithReplicationTaskSettings(Aws::String&& value) { SetReplicationTaskSettings(std::move(value)); return *this;}
 
     /**
      * <p>Settings for the task, such as target metadata settings. For a complete list
@@ -338,6 +368,7 @@ namespace Model
      * Settings for AWS Database Migration Service Tasks</a>.</p>
      */
     inline CreateReplicationTaskRequest& WithReplicationTaskSettings(const char* value) { SetReplicationTaskSettings(value); return *this;}
+
 
     /**
      * <p>The start time for the Change Data Capture (CDC) operation.</p>
@@ -352,7 +383,7 @@ namespace Model
     /**
      * <p>The start time for the Change Data Capture (CDC) operation.</p>
      */
-    inline void SetCdcStartTime(Aws::Utils::DateTime&& value) { m_cdcStartTimeHasBeenSet = true; m_cdcStartTime = value; }
+    inline void SetCdcStartTime(Aws::Utils::DateTime&& value) { m_cdcStartTimeHasBeenSet = true; m_cdcStartTime = std::move(value); }
 
     /**
      * <p>The start time for the Change Data Capture (CDC) operation.</p>
@@ -362,7 +393,8 @@ namespace Model
     /**
      * <p>The start time for the Change Data Capture (CDC) operation.</p>
      */
-    inline CreateReplicationTaskRequest& WithCdcStartTime(Aws::Utils::DateTime&& value) { SetCdcStartTime(value); return *this;}
+    inline CreateReplicationTaskRequest& WithCdcStartTime(Aws::Utils::DateTime&& value) { SetCdcStartTime(std::move(value)); return *this;}
+
 
     /**
      * <p>Tags to be added to the replication instance.</p>
@@ -377,7 +409,7 @@ namespace Model
     /**
      * <p>Tags to be added to the replication instance.</p>
      */
-    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = std::move(value); }
 
     /**
      * <p>Tags to be added to the replication instance.</p>
@@ -387,7 +419,7 @@ namespace Model
     /**
      * <p>Tags to be added to the replication instance.</p>
      */
-    inline CreateReplicationTaskRequest& WithTags(Aws::Vector<Tag>&& value) { SetTags(value); return *this;}
+    inline CreateReplicationTaskRequest& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
      * <p>Tags to be added to the replication instance.</p>
@@ -397,25 +429,34 @@ namespace Model
     /**
      * <p>Tags to be added to the replication instance.</p>
      */
-    inline CreateReplicationTaskRequest& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
+    inline CreateReplicationTaskRequest& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_replicationTaskIdentifier;
     bool m_replicationTaskIdentifierHasBeenSet;
+
     Aws::String m_sourceEndpointArn;
     bool m_sourceEndpointArnHasBeenSet;
+
     Aws::String m_targetEndpointArn;
     bool m_targetEndpointArnHasBeenSet;
+
     Aws::String m_replicationInstanceArn;
     bool m_replicationInstanceArnHasBeenSet;
+
     MigrationTypeValue m_migrationType;
     bool m_migrationTypeHasBeenSet;
+
     Aws::String m_tableMappings;
     bool m_tableMappingsHasBeenSet;
+
     Aws::String m_replicationTaskSettings;
     bool m_replicationTaskSettingsHasBeenSet;
+
     Aws::Utils::DateTime m_cdcStartTime;
     bool m_cdcStartTimeHasBeenSet;
+
     Aws::Vector<Tag> m_tags;
     bool m_tagsHasBeenSet;
   };

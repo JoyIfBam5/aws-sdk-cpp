@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/states/SFN_EXPORTS.h>
 #include <aws/states/SFNRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/states/model/ExecutionStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,9 +33,17 @@ namespace Model
   {
   public:
     ListExecutionsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListExecutions"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the state machine whose executions will be
@@ -51,7 +61,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the state machine whose executions will be
      * listed.</p>
      */
-    inline void SetStateMachineArn(Aws::String&& value) { m_stateMachineArnHasBeenSet = true; m_stateMachineArn = value; }
+    inline void SetStateMachineArn(Aws::String&& value) { m_stateMachineArnHasBeenSet = true; m_stateMachineArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the state machine whose executions will be
@@ -69,13 +79,14 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the state machine whose executions will be
      * listed.</p>
      */
-    inline ListExecutionsRequest& WithStateMachineArn(Aws::String&& value) { SetStateMachineArn(value); return *this;}
+    inline ListExecutionsRequest& WithStateMachineArn(Aws::String&& value) { SetStateMachineArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the state machine whose executions will be
      * listed.</p>
      */
     inline ListExecutionsRequest& WithStateMachineArn(const char* value) { SetStateMachineArn(value); return *this;}
+
 
     /**
      * <p>If specified, only list the executions whose current execution status matches
@@ -93,7 +104,7 @@ namespace Model
      * <p>If specified, only list the executions whose current execution status matches
      * the given filter.</p>
      */
-    inline void SetStatusFilter(ExecutionStatus&& value) { m_statusFilterHasBeenSet = true; m_statusFilter = value; }
+    inline void SetStatusFilter(ExecutionStatus&& value) { m_statusFilterHasBeenSet = true; m_statusFilter = std::move(value); }
 
     /**
      * <p>If specified, only list the executions whose current execution status matches
@@ -105,7 +116,8 @@ namespace Model
      * <p>If specified, only list the executions whose current execution status matches
      * the given filter.</p>
      */
-    inline ListExecutionsRequest& WithStatusFilter(ExecutionStatus&& value) { SetStatusFilter(value); return *this;}
+    inline ListExecutionsRequest& WithStatusFilter(ExecutionStatus&& value) { SetStatusFilter(std::move(value)); return *this;}
+
 
     /**
      * <p>The maximum number of results that will be returned per call.
@@ -134,6 +146,7 @@ namespace Model
      */
     inline ListExecutionsRequest& WithMaxResults(int value) { SetMaxResults(value); return *this;}
 
+
     /**
      * <p>If a <code>nextToken</code> was returned by a previous call, there are more
      * results available. To retrieve the next page of results, make the call again
@@ -159,7 +172,7 @@ namespace Model
      * unchanged.</p> <p>The configured <code>maxResults</code> determines how many
      * results can be returned in a single call.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>If a <code>nextToken</code> was returned by a previous call, there are more
@@ -186,7 +199,7 @@ namespace Model
      * unchanged.</p> <p>The configured <code>maxResults</code> determines how many
      * results can be returned in a single call.</p>
      */
-    inline ListExecutionsRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListExecutionsRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>If a <code>nextToken</code> was returned by a previous call, there are more
@@ -198,12 +211,16 @@ namespace Model
     inline ListExecutionsRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::String m_stateMachineArn;
     bool m_stateMachineArnHasBeenSet;
+
     ExecutionStatus m_statusFilter;
     bool m_statusFilterHasBeenSet;
+
     int m_maxResults;
     bool m_maxResultsHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
   };

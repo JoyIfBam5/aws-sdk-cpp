@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticmapreduce/model/CancelStepsInfo.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     CancelStepsResult();
-    CancelStepsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CancelStepsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CancelStepsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CancelStepsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A list of <a>CancelStepsInfo</a>, which shows the status of specified cancel
@@ -62,7 +65,7 @@ namespace Model
      * <p>A list of <a>CancelStepsInfo</a>, which shows the status of specified cancel
      * requests for each <code>StepID</code> specified.</p>
      */
-    inline void SetCancelStepsInfoList(Aws::Vector<CancelStepsInfo>&& value) { m_cancelStepsInfoList = value; }
+    inline void SetCancelStepsInfoList(Aws::Vector<CancelStepsInfo>&& value) { m_cancelStepsInfoList = std::move(value); }
 
     /**
      * <p>A list of <a>CancelStepsInfo</a>, which shows the status of specified cancel
@@ -74,7 +77,7 @@ namespace Model
      * <p>A list of <a>CancelStepsInfo</a>, which shows the status of specified cancel
      * requests for each <code>StepID</code> specified.</p>
      */
-    inline CancelStepsResult& WithCancelStepsInfoList(Aws::Vector<CancelStepsInfo>&& value) { SetCancelStepsInfoList(value); return *this;}
+    inline CancelStepsResult& WithCancelStepsInfoList(Aws::Vector<CancelStepsInfo>&& value) { SetCancelStepsInfoList(std::move(value)); return *this;}
 
     /**
      * <p>A list of <a>CancelStepsInfo</a>, which shows the status of specified cancel
@@ -86,9 +89,10 @@ namespace Model
      * <p>A list of <a>CancelStepsInfo</a>, which shows the status of specified cancel
      * requests for each <code>StepID</code> specified.</p>
      */
-    inline CancelStepsResult& AddCancelStepsInfoList(CancelStepsInfo&& value) { m_cancelStepsInfoList.push_back(value); return *this; }
+    inline CancelStepsResult& AddCancelStepsInfoList(CancelStepsInfo&& value) { m_cancelStepsInfoList.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<CancelStepsInfo> m_cancelStepsInfoList;
   };
 

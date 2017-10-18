@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -47,6 +48,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The line containing the specified position in the document.</p>
      */
@@ -61,6 +63,7 @@ namespace Model
      * <p>The line containing the specified position in the document.</p>
      */
     inline Position& WithLine(int value) { SetLine(value); return *this;}
+
 
     /**
      * <p>The column in the line containing the specified position in the document.</p>
@@ -78,8 +81,10 @@ namespace Model
     inline Position& WithColumn(int value) { SetColumn(value); return *this;}
 
   private:
+
     int m_line;
     bool m_lineHasBeenSet;
+
     int m_column;
     bool m_columnHasBeenSet;
   };

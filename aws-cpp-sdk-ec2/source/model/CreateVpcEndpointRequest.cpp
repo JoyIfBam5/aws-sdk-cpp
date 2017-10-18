@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/CreateVpcEndpointRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -20,13 +21,13 @@ using namespace Aws::EC2::Model;
 using namespace Aws::Utils;
 
 CreateVpcEndpointRequest::CreateVpcEndpointRequest() : 
+    m_clientTokenHasBeenSet(false),
     m_dryRun(false),
     m_dryRunHasBeenSet(false),
-    m_vpcIdHasBeenSet(false),
-    m_serviceNameHasBeenSet(false),
     m_policyDocumentHasBeenSet(false),
     m_routeTableIdsHasBeenSet(false),
-    m_clientTokenHasBeenSet(false)
+    m_serviceNameHasBeenSet(false),
+    m_vpcIdHasBeenSet(false)
 {
 }
 
@@ -34,19 +35,14 @@ Aws::String CreateVpcEndpointRequest::SerializePayload() const
 {
   Aws::StringStream ss;
   ss << "Action=CreateVpcEndpoint&";
+  if(m_clientTokenHasBeenSet)
+  {
+    ss << "ClientToken=" << StringUtils::URLEncode(m_clientToken.c_str()) << "&";
+  }
+
   if(m_dryRunHasBeenSet)
   {
     ss << "DryRun=" << std::boolalpha << m_dryRun << "&";
-  }
-
-  if(m_vpcIdHasBeenSet)
-  {
-    ss << "VpcId=" << StringUtils::URLEncode(m_vpcId.c_str()) << "&";
-  }
-
-  if(m_serviceNameHasBeenSet)
-  {
-    ss << "ServiceName=" << StringUtils::URLEncode(m_serviceName.c_str()) << "&";
   }
 
   if(m_policyDocumentHasBeenSet)
@@ -65,12 +61,22 @@ Aws::String CreateVpcEndpointRequest::SerializePayload() const
     }
   }
 
-  if(m_clientTokenHasBeenSet)
+  if(m_serviceNameHasBeenSet)
   {
-    ss << "ClientToken=" << StringUtils::URLEncode(m_clientToken.c_str()) << "&";
+    ss << "ServiceName=" << StringUtils::URLEncode(m_serviceName.c_str()) << "&";
+  }
+
+  if(m_vpcIdHasBeenSet)
+  {
+    ss << "VpcId=" << StringUtils::URLEncode(m_vpcId.c_str()) << "&";
   }
 
   ss << "Version=2016-11-15";
   return ss.str();
 }
 
+
+void  CreateVpcEndpointRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codedeploy/CodeDeploy_EXPORTS.h>
 #include <aws/codedeploy/model/InstanceInfo.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,7 @@ namespace CodeDeploy
 namespace Model
 {
   /**
-   * <p>Represents the output of a get on-premises instance operation.</p><p><h3>See
+   * <p>Represents the output of a GetOnPremisesInstance operation.</p><p><h3>See
    * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/GetOnPremisesInstanceOutput">AWS
    * API Reference</a></p>
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     GetOnPremisesInstanceResult();
-    GetOnPremisesInstanceResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetOnPremisesInstanceResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetOnPremisesInstanceResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetOnPremisesInstanceResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the on-premises instance.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>Information about the on-premises instance.</p>
      */
-    inline void SetInstanceInfo(InstanceInfo&& value) { m_instanceInfo = value; }
+    inline void SetInstanceInfo(InstanceInfo&& value) { m_instanceInfo = std::move(value); }
 
     /**
      * <p>Information about the on-premises instance.</p>
@@ -68,9 +71,10 @@ namespace Model
     /**
      * <p>Information about the on-premises instance.</p>
      */
-    inline GetOnPremisesInstanceResult& WithInstanceInfo(InstanceInfo&& value) { SetInstanceInfo(value); return *this;}
+    inline GetOnPremisesInstanceResult& WithInstanceInfo(InstanceInfo&& value) { SetInstanceInfo(std::move(value)); return *this;}
 
   private:
+
     InstanceInfo m_instanceInfo;
   };
 

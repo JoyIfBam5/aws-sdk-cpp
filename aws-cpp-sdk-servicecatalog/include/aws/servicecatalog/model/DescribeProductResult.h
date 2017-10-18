@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/servicecatalog/model/ProductViewSummary.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/servicecatalog/model/ProvisioningArtifact.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     DescribeProductResult();
-    DescribeProductResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeProductResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeProductResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeProductResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The summary metadata about the specified product.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>The summary metadata about the specified product.</p>
      */
-    inline void SetProductViewSummary(ProductViewSummary&& value) { m_productViewSummary = value; }
+    inline void SetProductViewSummary(ProductViewSummary&& value) { m_productViewSummary = std::move(value); }
 
     /**
      * <p>The summary metadata about the specified product.</p>
@@ -64,7 +67,8 @@ namespace Model
     /**
      * <p>The summary metadata about the specified product.</p>
      */
-    inline DescribeProductResult& WithProductViewSummary(ProductViewSummary&& value) { SetProductViewSummary(value); return *this;}
+    inline DescribeProductResult& WithProductViewSummary(ProductViewSummary&& value) { SetProductViewSummary(std::move(value)); return *this;}
+
 
     /**
      * <p>A list of provisioning artifact objects for the specified product. The
@@ -85,7 +89,7 @@ namespace Model
      * <code>ProvisioningArtifacts</code> parameter represent the ways the specified
      * product can be provisioned.</p>
      */
-    inline void SetProvisioningArtifacts(Aws::Vector<ProvisioningArtifact>&& value) { m_provisioningArtifacts = value; }
+    inline void SetProvisioningArtifacts(Aws::Vector<ProvisioningArtifact>&& value) { m_provisioningArtifacts = std::move(value); }
 
     /**
      * <p>A list of provisioning artifact objects for the specified product. The
@@ -99,7 +103,7 @@ namespace Model
      * <code>ProvisioningArtifacts</code> parameter represent the ways the specified
      * product can be provisioned.</p>
      */
-    inline DescribeProductResult& WithProvisioningArtifacts(Aws::Vector<ProvisioningArtifact>&& value) { SetProvisioningArtifacts(value); return *this;}
+    inline DescribeProductResult& WithProvisioningArtifacts(Aws::Vector<ProvisioningArtifact>&& value) { SetProvisioningArtifacts(std::move(value)); return *this;}
 
     /**
      * <p>A list of provisioning artifact objects for the specified product. The
@@ -113,10 +117,12 @@ namespace Model
      * <code>ProvisioningArtifacts</code> parameter represent the ways the specified
      * product can be provisioned.</p>
      */
-    inline DescribeProductResult& AddProvisioningArtifacts(ProvisioningArtifact&& value) { m_provisioningArtifacts.push_back(value); return *this; }
+    inline DescribeProductResult& AddProvisioningArtifacts(ProvisioningArtifact&& value) { m_provisioningArtifacts.push_back(std::move(value)); return *this; }
 
   private:
+
     ProductViewSummary m_productViewSummary;
+
     Aws::Vector<ProvisioningArtifact> m_provisioningArtifacts;
   };
 

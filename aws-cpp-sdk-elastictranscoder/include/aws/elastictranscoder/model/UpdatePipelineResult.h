@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elastictranscoder/ElasticTranscoder_EXPORTS.h>
 #include <aws/elastictranscoder/model/Pipeline.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elastictranscoder/model/Warning.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     UpdatePipelineResult();
-    UpdatePipelineResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    UpdatePipelineResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdatePipelineResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdatePipelineResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The pipeline updated by this <code>UpdatePipelineResponse</code> call.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The pipeline updated by this <code>UpdatePipelineResponse</code> call.</p>
      */
-    inline void SetPipeline(Pipeline&& value) { m_pipeline = value; }
+    inline void SetPipeline(Pipeline&& value) { m_pipeline = std::move(value); }
 
     /**
      * <p>The pipeline updated by this <code>UpdatePipelineResponse</code> call.</p>
@@ -70,7 +73,8 @@ namespace Model
     /**
      * <p>The pipeline updated by this <code>UpdatePipelineResponse</code> call.</p>
      */
-    inline UpdatePipelineResult& WithPipeline(Pipeline&& value) { SetPipeline(value); return *this;}
+    inline UpdatePipelineResult& WithPipeline(Pipeline&& value) { SetPipeline(std::move(value)); return *this;}
+
 
     /**
      * <p>Elastic Transcoder returns a warning if the resources used by your pipeline
@@ -94,7 +98,7 @@ namespace Model
      * region, such as your Amazon S3 buckets, Amazon SNS notification topics, and AWS
      * KMS key, reduces processing time and prevents cross-regional charges.</p>
      */
-    inline void SetWarnings(Aws::Vector<Warning>&& value) { m_warnings = value; }
+    inline void SetWarnings(Aws::Vector<Warning>&& value) { m_warnings = std::move(value); }
 
     /**
      * <p>Elastic Transcoder returns a warning if the resources used by your pipeline
@@ -110,7 +114,7 @@ namespace Model
      * region, such as your Amazon S3 buckets, Amazon SNS notification topics, and AWS
      * KMS key, reduces processing time and prevents cross-regional charges.</p>
      */
-    inline UpdatePipelineResult& WithWarnings(Aws::Vector<Warning>&& value) { SetWarnings(value); return *this;}
+    inline UpdatePipelineResult& WithWarnings(Aws::Vector<Warning>&& value) { SetWarnings(std::move(value)); return *this;}
 
     /**
      * <p>Elastic Transcoder returns a warning if the resources used by your pipeline
@@ -126,10 +130,12 @@ namespace Model
      * region, such as your Amazon S3 buckets, Amazon SNS notification topics, and AWS
      * KMS key, reduces processing time and prevents cross-regional charges.</p>
      */
-    inline UpdatePipelineResult& AddWarnings(Warning&& value) { m_warnings.push_back(value); return *this; }
+    inline UpdatePipelineResult& AddWarnings(Warning&& value) { m_warnings.push_back(std::move(value)); return *this; }
 
   private:
+
     Pipeline m_pipeline;
+
     Aws::Vector<Warning> m_warnings;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/model/WebACL.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     GetWebACLResult();
-    GetWebACLResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetWebACLResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetWebACLResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetWebACLResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the <a>WebACL</a> that you specified in the
@@ -79,7 +82,7 @@ namespace Model
      * <code>Priority</code>, and <code>RuleId</code> </p> </li> <li> <p>
      * <code>Action</code>: Contains <code>Type</code> </p> </li> </ul>
      */
-    inline void SetWebACL(WebACL&& value) { m_webACL = value; }
+    inline void SetWebACL(WebACL&& value) { m_webACL = std::move(value); }
 
     /**
      * <p>Information about the <a>WebACL</a> that you specified in the
@@ -107,9 +110,10 @@ namespace Model
      * <code>Priority</code>, and <code>RuleId</code> </p> </li> <li> <p>
      * <code>Action</code>: Contains <code>Type</code> </p> </li> </ul>
      */
-    inline GetWebACLResult& WithWebACL(WebACL&& value) { SetWebACL(value); return *this;}
+    inline GetWebACLResult& WithWebACL(WebACL&& value) { SetWebACL(std::move(value)); return *this;}
 
   private:
+
     WebACL m_webACL;
   };
 

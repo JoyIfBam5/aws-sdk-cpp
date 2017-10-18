@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ecs/model/TransportProtocol.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     NetworkBinding& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The IP address that the container is bound to on the container instance.</p>
      */
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>The IP address that the container is bound to on the container instance.</p>
      */
-    inline void SetBindIP(Aws::String&& value) { m_bindIPHasBeenSet = true; m_bindIP = value; }
+    inline void SetBindIP(Aws::String&& value) { m_bindIPHasBeenSet = true; m_bindIP = std::move(value); }
 
     /**
      * <p>The IP address that the container is bound to on the container instance.</p>
@@ -76,12 +79,13 @@ namespace Model
     /**
      * <p>The IP address that the container is bound to on the container instance.</p>
      */
-    inline NetworkBinding& WithBindIP(Aws::String&& value) { SetBindIP(value); return *this;}
+    inline NetworkBinding& WithBindIP(Aws::String&& value) { SetBindIP(std::move(value)); return *this;}
 
     /**
      * <p>The IP address that the container is bound to on the container instance.</p>
      */
     inline NetworkBinding& WithBindIP(const char* value) { SetBindIP(value); return *this;}
+
 
     /**
      * <p>The port number on the container that is be used with the network
@@ -101,6 +105,7 @@ namespace Model
      */
     inline NetworkBinding& WithContainerPort(int value) { SetContainerPort(value); return *this;}
 
+
     /**
      * <p>The port number on the host that is used with the network binding.</p>
      */
@@ -116,6 +121,7 @@ namespace Model
      */
     inline NetworkBinding& WithHostPort(int value) { SetHostPort(value); return *this;}
 
+
     /**
      * <p>The protocol used for the network binding.</p>
      */
@@ -129,7 +135,7 @@ namespace Model
     /**
      * <p>The protocol used for the network binding.</p>
      */
-    inline void SetProtocol(TransportProtocol&& value) { m_protocolHasBeenSet = true; m_protocol = value; }
+    inline void SetProtocol(TransportProtocol&& value) { m_protocolHasBeenSet = true; m_protocol = std::move(value); }
 
     /**
      * <p>The protocol used for the network binding.</p>
@@ -139,15 +145,19 @@ namespace Model
     /**
      * <p>The protocol used for the network binding.</p>
      */
-    inline NetworkBinding& WithProtocol(TransportProtocol&& value) { SetProtocol(value); return *this;}
+    inline NetworkBinding& WithProtocol(TransportProtocol&& value) { SetProtocol(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_bindIP;
     bool m_bindIPHasBeenSet;
+
     int m_containerPort;
     bool m_containerPortHasBeenSet;
+
     int m_hostPort;
     bool m_hostPortHasBeenSet;
+
     TransportProtocol m_protocol;
     bool m_protocolHasBeenSet;
   };

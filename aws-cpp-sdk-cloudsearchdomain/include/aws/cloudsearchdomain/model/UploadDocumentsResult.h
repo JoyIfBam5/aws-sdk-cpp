@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudsearchdomain/CloudSearchDomain_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/cloudsearchdomain/model/DocumentServiceWarning.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     UploadDocumentsResult();
-    UploadDocumentsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    UploadDocumentsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UploadDocumentsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UploadDocumentsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The status of an <code>UploadDocumentsRequest</code>.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The status of an <code>UploadDocumentsRequest</code>.</p>
      */
-    inline void SetStatus(Aws::String&& value) { m_status = value; }
+    inline void SetStatus(Aws::String&& value) { m_status = std::move(value); }
 
     /**
      * <p>The status of an <code>UploadDocumentsRequest</code>.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The status of an <code>UploadDocumentsRequest</code>.</p>
      */
-    inline UploadDocumentsResult& WithStatus(Aws::String&& value) { SetStatus(value); return *this;}
+    inline UploadDocumentsResult& WithStatus(Aws::String&& value) { SetStatus(std::move(value)); return *this;}
 
     /**
      * <p>The status of an <code>UploadDocumentsRequest</code>.</p>
      */
     inline UploadDocumentsResult& WithStatus(const char* value) { SetStatus(value); return *this;}
+
 
     /**
      * <p>The number of documents that were added to the search domain.</p>
@@ -97,6 +101,7 @@ namespace Model
      */
     inline UploadDocumentsResult& WithAdds(long long value) { SetAdds(value); return *this;}
 
+
     /**
      * <p>The number of documents that were deleted from the search domain.</p>
      */
@@ -111,6 +116,7 @@ namespace Model
      * <p>The number of documents that were deleted from the search domain.</p>
      */
     inline UploadDocumentsResult& WithDeletes(long long value) { SetDeletes(value); return *this;}
+
 
     /**
      * <p>Any warnings returned by the document service about the documents being
@@ -128,7 +134,7 @@ namespace Model
      * <p>Any warnings returned by the document service about the documents being
      * uploaded.</p>
      */
-    inline void SetWarnings(Aws::Vector<DocumentServiceWarning>&& value) { m_warnings = value; }
+    inline void SetWarnings(Aws::Vector<DocumentServiceWarning>&& value) { m_warnings = std::move(value); }
 
     /**
      * <p>Any warnings returned by the document service about the documents being
@@ -140,7 +146,7 @@ namespace Model
      * <p>Any warnings returned by the document service about the documents being
      * uploaded.</p>
      */
-    inline UploadDocumentsResult& WithWarnings(Aws::Vector<DocumentServiceWarning>&& value) { SetWarnings(value); return *this;}
+    inline UploadDocumentsResult& WithWarnings(Aws::Vector<DocumentServiceWarning>&& value) { SetWarnings(std::move(value)); return *this;}
 
     /**
      * <p>Any warnings returned by the document service about the documents being
@@ -152,12 +158,16 @@ namespace Model
      * <p>Any warnings returned by the document service about the documents being
      * uploaded.</p>
      */
-    inline UploadDocumentsResult& AddWarnings(DocumentServiceWarning&& value) { m_warnings.push_back(value); return *this; }
+    inline UploadDocumentsResult& AddWarnings(DocumentServiceWarning&& value) { m_warnings.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_status;
+
     long long m_adds;
+
     long long m_deletes;
+
     Aws::Vector<DocumentServiceWarning> m_warnings;
   };
 

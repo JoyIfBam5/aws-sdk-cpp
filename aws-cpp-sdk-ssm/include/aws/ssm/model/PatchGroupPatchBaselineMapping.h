@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ssm/model/PatchBaselineIdentity.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     PatchGroupPatchBaselineMapping& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the patch group registered with the patch baseline.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The name of the patch group registered with the patch baseline.</p>
      */
-    inline void SetPatchGroup(Aws::String&& value) { m_patchGroupHasBeenSet = true; m_patchGroup = value; }
+    inline void SetPatchGroup(Aws::String&& value) { m_patchGroupHasBeenSet = true; m_patchGroup = std::move(value); }
 
     /**
      * <p>The name of the patch group registered with the patch baseline.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The name of the patch group registered with the patch baseline.</p>
      */
-    inline PatchGroupPatchBaselineMapping& WithPatchGroup(Aws::String&& value) { SetPatchGroup(value); return *this;}
+    inline PatchGroupPatchBaselineMapping& WithPatchGroup(Aws::String&& value) { SetPatchGroup(std::move(value)); return *this;}
 
     /**
      * <p>The name of the patch group registered with the patch baseline.</p>
      */
     inline PatchGroupPatchBaselineMapping& WithPatchGroup(const char* value) { SetPatchGroup(value); return *this;}
+
 
     /**
      * <p>The patch baseline the patch group is registered with.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The patch baseline the patch group is registered with.</p>
      */
-    inline void SetBaselineIdentity(PatchBaselineIdentity&& value) { m_baselineIdentityHasBeenSet = true; m_baselineIdentity = value; }
+    inline void SetBaselineIdentity(PatchBaselineIdentity&& value) { m_baselineIdentityHasBeenSet = true; m_baselineIdentity = std::move(value); }
 
     /**
      * <p>The patch baseline the patch group is registered with.</p>
@@ -103,11 +107,13 @@ namespace Model
     /**
      * <p>The patch baseline the patch group is registered with.</p>
      */
-    inline PatchGroupPatchBaselineMapping& WithBaselineIdentity(PatchBaselineIdentity&& value) { SetBaselineIdentity(value); return *this;}
+    inline PatchGroupPatchBaselineMapping& WithBaselineIdentity(PatchBaselineIdentity&& value) { SetBaselineIdentity(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_patchGroup;
     bool m_patchGroupHasBeenSet;
+
     PatchBaselineIdentity m_baselineIdentity;
     bool m_baselineIdentityHasBeenSet;
   };

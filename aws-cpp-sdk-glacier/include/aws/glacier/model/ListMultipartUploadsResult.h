@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/glacier/Glacier_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/glacier/model/UploadListElement.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     ListMultipartUploadsResult();
-    ListMultipartUploadsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListMultipartUploadsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListMultipartUploadsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListMultipartUploadsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A list of in-progress multipart uploads.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>A list of in-progress multipart uploads.</p>
      */
-    inline void SetUploadsList(Aws::Vector<UploadListElement>&& value) { m_uploadsList = value; }
+    inline void SetUploadsList(Aws::Vector<UploadListElement>&& value) { m_uploadsList = std::move(value); }
 
     /**
      * <p>A list of in-progress multipart uploads.</p>
@@ -70,7 +73,7 @@ namespace Model
     /**
      * <p>A list of in-progress multipart uploads.</p>
      */
-    inline ListMultipartUploadsResult& WithUploadsList(Aws::Vector<UploadListElement>&& value) { SetUploadsList(value); return *this;}
+    inline ListMultipartUploadsResult& WithUploadsList(Aws::Vector<UploadListElement>&& value) { SetUploadsList(std::move(value)); return *this;}
 
     /**
      * <p>A list of in-progress multipart uploads.</p>
@@ -80,7 +83,8 @@ namespace Model
     /**
      * <p>A list of in-progress multipart uploads.</p>
      */
-    inline ListMultipartUploadsResult& AddUploadsList(UploadListElement&& value) { m_uploadsList.push_back(value); return *this; }
+    inline ListMultipartUploadsResult& AddUploadsList(UploadListElement&& value) { m_uploadsList.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>An opaque string that represents where to continue pagination of the results.
@@ -104,7 +108,7 @@ namespace Model
      * uploads in the list. If there are no more uploads, this value is
      * <code>null</code>.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p>An opaque string that represents where to continue pagination of the results.
@@ -128,7 +132,7 @@ namespace Model
      * uploads in the list. If there are no more uploads, this value is
      * <code>null</code>.</p>
      */
-    inline ListMultipartUploadsResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline ListMultipartUploadsResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>An opaque string that represents where to continue pagination of the results.
@@ -139,7 +143,9 @@ namespace Model
     inline ListMultipartUploadsResult& WithMarker(const char* value) { SetMarker(value); return *this;}
 
   private:
+
     Aws::Vector<UploadListElement> m_uploadsList;
+
     Aws::String m_marker;
   };
 

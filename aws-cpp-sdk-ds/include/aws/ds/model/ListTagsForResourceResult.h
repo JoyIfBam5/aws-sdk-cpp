@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ds/DirectoryService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ds/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     ListTagsForResourceResult();
-    ListTagsForResourceResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListTagsForResourceResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListTagsForResourceResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListTagsForResourceResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>List of tags returned by the ListTagsForResource operation.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>List of tags returned by the ListTagsForResource operation.</p>
      */
-    inline void SetTags(Aws::Vector<Tag>&& value) { m_tags = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tags = std::move(value); }
 
     /**
      * <p>List of tags returned by the ListTagsForResource operation.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>List of tags returned by the ListTagsForResource operation.</p>
      */
-    inline ListTagsForResourceResult& WithTags(Aws::Vector<Tag>&& value) { SetTags(value); return *this;}
+    inline ListTagsForResourceResult& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
      * <p>List of tags returned by the ListTagsForResource operation.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>List of tags returned by the ListTagsForResource operation.</p>
      */
-    inline ListTagsForResourceResult& AddTags(Tag&& value) { m_tags.push_back(value); return *this; }
+    inline ListTagsForResourceResult& AddTags(Tag&& value) { m_tags.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Reserved for future use.</p>
@@ -89,7 +93,7 @@ namespace Model
     /**
      * <p>Reserved for future use.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>Reserved for future use.</p>
@@ -104,7 +108,7 @@ namespace Model
     /**
      * <p>Reserved for future use.</p>
      */
-    inline ListTagsForResourceResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListTagsForResourceResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>Reserved for future use.</p>
@@ -112,7 +116,9 @@ namespace Model
     inline ListTagsForResourceResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Tag> m_tags;
+
     Aws::String m_nextToken;
   };
 

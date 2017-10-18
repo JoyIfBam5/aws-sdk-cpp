@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/monitoring/CloudWatch_EXPORTS.h>
 #include <aws/monitoring/CloudWatchRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/monitoring/model/StateValue.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,7 +33,19 @@ namespace Model
   {
   public:
     SetAlarmStateRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "SetAlarmState"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The name for the alarm. This name must be unique within the AWS account. The
@@ -49,7 +63,7 @@ namespace Model
      * <p>The name for the alarm. This name must be unique within the AWS account. The
      * maximum length is 255 characters.</p>
      */
-    inline void SetAlarmName(Aws::String&& value) { m_alarmNameHasBeenSet = true; m_alarmName = value; }
+    inline void SetAlarmName(Aws::String&& value) { m_alarmNameHasBeenSet = true; m_alarmName = std::move(value); }
 
     /**
      * <p>The name for the alarm. This name must be unique within the AWS account. The
@@ -67,13 +81,14 @@ namespace Model
      * <p>The name for the alarm. This name must be unique within the AWS account. The
      * maximum length is 255 characters.</p>
      */
-    inline SetAlarmStateRequest& WithAlarmName(Aws::String&& value) { SetAlarmName(value); return *this;}
+    inline SetAlarmStateRequest& WithAlarmName(Aws::String&& value) { SetAlarmName(std::move(value)); return *this;}
 
     /**
      * <p>The name for the alarm. This name must be unique within the AWS account. The
      * maximum length is 255 characters.</p>
      */
     inline SetAlarmStateRequest& WithAlarmName(const char* value) { SetAlarmName(value); return *this;}
+
 
     /**
      * <p>The value of the state.</p>
@@ -88,7 +103,7 @@ namespace Model
     /**
      * <p>The value of the state.</p>
      */
-    inline void SetStateValue(StateValue&& value) { m_stateValueHasBeenSet = true; m_stateValue = value; }
+    inline void SetStateValue(StateValue&& value) { m_stateValueHasBeenSet = true; m_stateValue = std::move(value); }
 
     /**
      * <p>The value of the state.</p>
@@ -98,7 +113,8 @@ namespace Model
     /**
      * <p>The value of the state.</p>
      */
-    inline SetAlarmStateRequest& WithStateValue(StateValue&& value) { SetStateValue(value); return *this;}
+    inline SetAlarmStateRequest& WithStateValue(StateValue&& value) { SetStateValue(std::move(value)); return *this;}
+
 
     /**
      * <p>The reason that this alarm is set to this specific state, in text format.</p>
@@ -113,7 +129,7 @@ namespace Model
     /**
      * <p>The reason that this alarm is set to this specific state, in text format.</p>
      */
-    inline void SetStateReason(Aws::String&& value) { m_stateReasonHasBeenSet = true; m_stateReason = value; }
+    inline void SetStateReason(Aws::String&& value) { m_stateReasonHasBeenSet = true; m_stateReason = std::move(value); }
 
     /**
      * <p>The reason that this alarm is set to this specific state, in text format.</p>
@@ -128,12 +144,13 @@ namespace Model
     /**
      * <p>The reason that this alarm is set to this specific state, in text format.</p>
      */
-    inline SetAlarmStateRequest& WithStateReason(Aws::String&& value) { SetStateReason(value); return *this;}
+    inline SetAlarmStateRequest& WithStateReason(Aws::String&& value) { SetStateReason(std::move(value)); return *this;}
 
     /**
      * <p>The reason that this alarm is set to this specific state, in text format.</p>
      */
     inline SetAlarmStateRequest& WithStateReason(const char* value) { SetStateReason(value); return *this;}
+
 
     /**
      * <p>The reason that this alarm is set to this specific state, in JSON format.</p>
@@ -148,7 +165,7 @@ namespace Model
     /**
      * <p>The reason that this alarm is set to this specific state, in JSON format.</p>
      */
-    inline void SetStateReasonData(Aws::String&& value) { m_stateReasonDataHasBeenSet = true; m_stateReasonData = value; }
+    inline void SetStateReasonData(Aws::String&& value) { m_stateReasonDataHasBeenSet = true; m_stateReasonData = std::move(value); }
 
     /**
      * <p>The reason that this alarm is set to this specific state, in JSON format.</p>
@@ -163,7 +180,7 @@ namespace Model
     /**
      * <p>The reason that this alarm is set to this specific state, in JSON format.</p>
      */
-    inline SetAlarmStateRequest& WithStateReasonData(Aws::String&& value) { SetStateReasonData(value); return *this;}
+    inline SetAlarmStateRequest& WithStateReasonData(Aws::String&& value) { SetStateReasonData(std::move(value)); return *this;}
 
     /**
      * <p>The reason that this alarm is set to this specific state, in JSON format.</p>
@@ -171,12 +188,16 @@ namespace Model
     inline SetAlarmStateRequest& WithStateReasonData(const char* value) { SetStateReasonData(value); return *this;}
 
   private:
+
     Aws::String m_alarmName;
     bool m_alarmNameHasBeenSet;
+
     StateValue m_stateValue;
     bool m_stateValueHasBeenSet;
+
     Aws::String m_stateReason;
     bool m_stateReasonHasBeenSet;
+
     Aws::String m_stateReasonData;
     bool m_stateReasonDataHasBeenSet;
   };

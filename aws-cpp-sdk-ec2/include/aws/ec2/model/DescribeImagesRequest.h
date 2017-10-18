@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/ec2/EC2Request.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ec2/model/Filter.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,151 +37,19 @@ namespace Model
   {
   public:
     DescribeImagesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeImages"; }
+
     Aws::String SerializePayload() const override;
 
-    /**
-     * <p>Checks whether you have the required permissions for the action, without
-     * actually making the request, and provides an error response. If you have the
-     * required permissions, the error response is <code>DryRunOperation</code>.
-     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
-     */
-    inline bool GetDryRun() const{ return m_dryRun; }
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
 
-    /**
-     * <p>Checks whether you have the required permissions for the action, without
-     * actually making the request, and provides an error response. If you have the
-     * required permissions, the error response is <code>DryRunOperation</code>.
-     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
-     */
-    inline void SetDryRun(bool value) { m_dryRunHasBeenSet = true; m_dryRun = value; }
-
-    /**
-     * <p>Checks whether you have the required permissions for the action, without
-     * actually making the request, and provides an error response. If you have the
-     * required permissions, the error response is <code>DryRunOperation</code>.
-     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
-     */
-    inline DescribeImagesRequest& WithDryRun(bool value) { SetDryRun(value); return *this;}
-
-    /**
-     * <p>One or more image IDs.</p> <p>Default: Describes all images available to
-     * you.</p>
-     */
-    inline const Aws::Vector<Aws::String>& GetImageIds() const{ return m_imageIds; }
-
-    /**
-     * <p>One or more image IDs.</p> <p>Default: Describes all images available to
-     * you.</p>
-     */
-    inline void SetImageIds(const Aws::Vector<Aws::String>& value) { m_imageIdsHasBeenSet = true; m_imageIds = value; }
-
-    /**
-     * <p>One or more image IDs.</p> <p>Default: Describes all images available to
-     * you.</p>
-     */
-    inline void SetImageIds(Aws::Vector<Aws::String>&& value) { m_imageIdsHasBeenSet = true; m_imageIds = value; }
-
-    /**
-     * <p>One or more image IDs.</p> <p>Default: Describes all images available to
-     * you.</p>
-     */
-    inline DescribeImagesRequest& WithImageIds(const Aws::Vector<Aws::String>& value) { SetImageIds(value); return *this;}
-
-    /**
-     * <p>One or more image IDs.</p> <p>Default: Describes all images available to
-     * you.</p>
-     */
-    inline DescribeImagesRequest& WithImageIds(Aws::Vector<Aws::String>&& value) { SetImageIds(value); return *this;}
-
-    /**
-     * <p>One or more image IDs.</p> <p>Default: Describes all images available to
-     * you.</p>
-     */
-    inline DescribeImagesRequest& AddImageIds(const Aws::String& value) { m_imageIdsHasBeenSet = true; m_imageIds.push_back(value); return *this; }
-
-    /**
-     * <p>One or more image IDs.</p> <p>Default: Describes all images available to
-     * you.</p>
-     */
-    inline DescribeImagesRequest& AddImageIds(Aws::String&& value) { m_imageIdsHasBeenSet = true; m_imageIds.push_back(value); return *this; }
-
-    /**
-     * <p>One or more image IDs.</p> <p>Default: Describes all images available to
-     * you.</p>
-     */
-    inline DescribeImagesRequest& AddImageIds(const char* value) { m_imageIdsHasBeenSet = true; m_imageIds.push_back(value); return *this; }
-
-    /**
-     * <p>Filters the images by the owner. Specify an AWS account ID, <code>self</code>
-     * (owner is the sender of the request), or an AWS owner alias (valid values are
-     * <code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>).
-     * Omitting this option returns all images for which you have launch permissions,
-     * regardless of ownership.</p>
-     */
-    inline const Aws::Vector<Aws::String>& GetOwners() const{ return m_owners; }
-
-    /**
-     * <p>Filters the images by the owner. Specify an AWS account ID, <code>self</code>
-     * (owner is the sender of the request), or an AWS owner alias (valid values are
-     * <code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>).
-     * Omitting this option returns all images for which you have launch permissions,
-     * regardless of ownership.</p>
-     */
-    inline void SetOwners(const Aws::Vector<Aws::String>& value) { m_ownersHasBeenSet = true; m_owners = value; }
-
-    /**
-     * <p>Filters the images by the owner. Specify an AWS account ID, <code>self</code>
-     * (owner is the sender of the request), or an AWS owner alias (valid values are
-     * <code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>).
-     * Omitting this option returns all images for which you have launch permissions,
-     * regardless of ownership.</p>
-     */
-    inline void SetOwners(Aws::Vector<Aws::String>&& value) { m_ownersHasBeenSet = true; m_owners = value; }
-
-    /**
-     * <p>Filters the images by the owner. Specify an AWS account ID, <code>self</code>
-     * (owner is the sender of the request), or an AWS owner alias (valid values are
-     * <code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>).
-     * Omitting this option returns all images for which you have launch permissions,
-     * regardless of ownership.</p>
-     */
-    inline DescribeImagesRequest& WithOwners(const Aws::Vector<Aws::String>& value) { SetOwners(value); return *this;}
-
-    /**
-     * <p>Filters the images by the owner. Specify an AWS account ID, <code>self</code>
-     * (owner is the sender of the request), or an AWS owner alias (valid values are
-     * <code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>).
-     * Omitting this option returns all images for which you have launch permissions,
-     * regardless of ownership.</p>
-     */
-    inline DescribeImagesRequest& WithOwners(Aws::Vector<Aws::String>&& value) { SetOwners(value); return *this;}
-
-    /**
-     * <p>Filters the images by the owner. Specify an AWS account ID, <code>self</code>
-     * (owner is the sender of the request), or an AWS owner alias (valid values are
-     * <code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>).
-     * Omitting this option returns all images for which you have launch permissions,
-     * regardless of ownership.</p>
-     */
-    inline DescribeImagesRequest& AddOwners(const Aws::String& value) { m_ownersHasBeenSet = true; m_owners.push_back(value); return *this; }
-
-    /**
-     * <p>Filters the images by the owner. Specify an AWS account ID, <code>self</code>
-     * (owner is the sender of the request), or an AWS owner alias (valid values are
-     * <code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>).
-     * Omitting this option returns all images for which you have launch permissions,
-     * regardless of ownership.</p>
-     */
-    inline DescribeImagesRequest& AddOwners(Aws::String&& value) { m_ownersHasBeenSet = true; m_owners.push_back(value); return *this; }
-
-    /**
-     * <p>Filters the images by the owner. Specify an AWS account ID, <code>self</code>
-     * (owner is the sender of the request), or an AWS owner alias (valid values are
-     * <code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>).
-     * Omitting this option returns all images for which you have launch permissions,
-     * regardless of ownership.</p>
-     */
-    inline DescribeImagesRequest& AddOwners(const char* value) { m_ownersHasBeenSet = true; m_owners.push_back(value); return *this; }
+  public:
 
     /**
      * <p>Scopes the images by users with explicit launch permissions. Specify an AWS
@@ -200,7 +70,7 @@ namespace Model
      * account ID, <code>self</code> (the sender of the request), or <code>all</code>
      * (public AMIs).</p>
      */
-    inline void SetExecutableUsers(Aws::Vector<Aws::String>&& value) { m_executableUsersHasBeenSet = true; m_executableUsers = value; }
+    inline void SetExecutableUsers(Aws::Vector<Aws::String>&& value) { m_executableUsersHasBeenSet = true; m_executableUsers = std::move(value); }
 
     /**
      * <p>Scopes the images by users with explicit launch permissions. Specify an AWS
@@ -214,7 +84,7 @@ namespace Model
      * account ID, <code>self</code> (the sender of the request), or <code>all</code>
      * (public AMIs).</p>
      */
-    inline DescribeImagesRequest& WithExecutableUsers(Aws::Vector<Aws::String>&& value) { SetExecutableUsers(value); return *this;}
+    inline DescribeImagesRequest& WithExecutableUsers(Aws::Vector<Aws::String>&& value) { SetExecutableUsers(std::move(value)); return *this;}
 
     /**
      * <p>Scopes the images by users with explicit launch permissions. Specify an AWS
@@ -228,7 +98,7 @@ namespace Model
      * account ID, <code>self</code> (the sender of the request), or <code>all</code>
      * (public AMIs).</p>
      */
-    inline DescribeImagesRequest& AddExecutableUsers(Aws::String&& value) { m_executableUsersHasBeenSet = true; m_executableUsers.push_back(value); return *this; }
+    inline DescribeImagesRequest& AddExecutableUsers(Aws::String&& value) { m_executableUsersHasBeenSet = true; m_executableUsers.push_back(std::move(value)); return *this; }
 
     /**
      * <p>Scopes the images by users with explicit launch permissions. Specify an AWS
@@ -236,6 +106,7 @@ namespace Model
      * (public AMIs).</p>
      */
     inline DescribeImagesRequest& AddExecutableUsers(const char* value) { m_executableUsersHasBeenSet = true; m_executableUsers.push_back(value); return *this; }
+
 
     /**
      * <p>One or more filters.</p> <ul> <li> <p> <code>architecture</code> - The image
@@ -418,7 +289,7 @@ namespace Model
      * <code>virtualization-type</code> - The virtualization type
      * (<code>paravirtual</code> | <code>hvm</code>).</p> </li> </ul>
      */
-    inline void SetFilters(Aws::Vector<Filter>&& value) { m_filtersHasBeenSet = true; m_filters = value; }
+    inline void SetFilters(Aws::Vector<Filter>&& value) { m_filtersHasBeenSet = true; m_filters = std::move(value); }
 
     /**
      * <p>One or more filters.</p> <ul> <li> <p> <code>architecture</code> - The image
@@ -540,7 +411,7 @@ namespace Model
      * <code>virtualization-type</code> - The virtualization type
      * (<code>paravirtual</code> | <code>hvm</code>).</p> </li> </ul>
      */
-    inline DescribeImagesRequest& WithFilters(Aws::Vector<Filter>&& value) { SetFilters(value); return *this;}
+    inline DescribeImagesRequest& WithFilters(Aws::Vector<Filter>&& value) { SetFilters(std::move(value)); return *this;}
 
     /**
      * <p>One or more filters.</p> <ul> <li> <p> <code>architecture</code> - The image
@@ -662,19 +533,171 @@ namespace Model
      * <code>virtualization-type</code> - The virtualization type
      * (<code>paravirtual</code> | <code>hvm</code>).</p> </li> </ul>
      */
-    inline DescribeImagesRequest& AddFilters(Filter&& value) { m_filtersHasBeenSet = true; m_filters.push_back(value); return *this; }
+    inline DescribeImagesRequest& AddFilters(Filter&& value) { m_filtersHasBeenSet = true; m_filters.push_back(std::move(value)); return *this; }
+
+
+    /**
+     * <p>One or more image IDs.</p> <p>Default: Describes all images available to
+     * you.</p>
+     */
+    inline const Aws::Vector<Aws::String>& GetImageIds() const{ return m_imageIds; }
+
+    /**
+     * <p>One or more image IDs.</p> <p>Default: Describes all images available to
+     * you.</p>
+     */
+    inline void SetImageIds(const Aws::Vector<Aws::String>& value) { m_imageIdsHasBeenSet = true; m_imageIds = value; }
+
+    /**
+     * <p>One or more image IDs.</p> <p>Default: Describes all images available to
+     * you.</p>
+     */
+    inline void SetImageIds(Aws::Vector<Aws::String>&& value) { m_imageIdsHasBeenSet = true; m_imageIds = std::move(value); }
+
+    /**
+     * <p>One or more image IDs.</p> <p>Default: Describes all images available to
+     * you.</p>
+     */
+    inline DescribeImagesRequest& WithImageIds(const Aws::Vector<Aws::String>& value) { SetImageIds(value); return *this;}
+
+    /**
+     * <p>One or more image IDs.</p> <p>Default: Describes all images available to
+     * you.</p>
+     */
+    inline DescribeImagesRequest& WithImageIds(Aws::Vector<Aws::String>&& value) { SetImageIds(std::move(value)); return *this;}
+
+    /**
+     * <p>One or more image IDs.</p> <p>Default: Describes all images available to
+     * you.</p>
+     */
+    inline DescribeImagesRequest& AddImageIds(const Aws::String& value) { m_imageIdsHasBeenSet = true; m_imageIds.push_back(value); return *this; }
+
+    /**
+     * <p>One or more image IDs.</p> <p>Default: Describes all images available to
+     * you.</p>
+     */
+    inline DescribeImagesRequest& AddImageIds(Aws::String&& value) { m_imageIdsHasBeenSet = true; m_imageIds.push_back(std::move(value)); return *this; }
+
+    /**
+     * <p>One or more image IDs.</p> <p>Default: Describes all images available to
+     * you.</p>
+     */
+    inline DescribeImagesRequest& AddImageIds(const char* value) { m_imageIdsHasBeenSet = true; m_imageIds.push_back(value); return *this; }
+
+
+    /**
+     * <p>Filters the images by the owner. Specify an AWS account ID, <code>self</code>
+     * (owner is the sender of the request), or an AWS owner alias (valid values are
+     * <code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>).
+     * Omitting this option returns all images for which you have launch permissions,
+     * regardless of ownership.</p>
+     */
+    inline const Aws::Vector<Aws::String>& GetOwners() const{ return m_owners; }
+
+    /**
+     * <p>Filters the images by the owner. Specify an AWS account ID, <code>self</code>
+     * (owner is the sender of the request), or an AWS owner alias (valid values are
+     * <code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>).
+     * Omitting this option returns all images for which you have launch permissions,
+     * regardless of ownership.</p>
+     */
+    inline void SetOwners(const Aws::Vector<Aws::String>& value) { m_ownersHasBeenSet = true; m_owners = value; }
+
+    /**
+     * <p>Filters the images by the owner. Specify an AWS account ID, <code>self</code>
+     * (owner is the sender of the request), or an AWS owner alias (valid values are
+     * <code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>).
+     * Omitting this option returns all images for which you have launch permissions,
+     * regardless of ownership.</p>
+     */
+    inline void SetOwners(Aws::Vector<Aws::String>&& value) { m_ownersHasBeenSet = true; m_owners = std::move(value); }
+
+    /**
+     * <p>Filters the images by the owner. Specify an AWS account ID, <code>self</code>
+     * (owner is the sender of the request), or an AWS owner alias (valid values are
+     * <code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>).
+     * Omitting this option returns all images for which you have launch permissions,
+     * regardless of ownership.</p>
+     */
+    inline DescribeImagesRequest& WithOwners(const Aws::Vector<Aws::String>& value) { SetOwners(value); return *this;}
+
+    /**
+     * <p>Filters the images by the owner. Specify an AWS account ID, <code>self</code>
+     * (owner is the sender of the request), or an AWS owner alias (valid values are
+     * <code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>).
+     * Omitting this option returns all images for which you have launch permissions,
+     * regardless of ownership.</p>
+     */
+    inline DescribeImagesRequest& WithOwners(Aws::Vector<Aws::String>&& value) { SetOwners(std::move(value)); return *this;}
+
+    /**
+     * <p>Filters the images by the owner. Specify an AWS account ID, <code>self</code>
+     * (owner is the sender of the request), or an AWS owner alias (valid values are
+     * <code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>).
+     * Omitting this option returns all images for which you have launch permissions,
+     * regardless of ownership.</p>
+     */
+    inline DescribeImagesRequest& AddOwners(const Aws::String& value) { m_ownersHasBeenSet = true; m_owners.push_back(value); return *this; }
+
+    /**
+     * <p>Filters the images by the owner. Specify an AWS account ID, <code>self</code>
+     * (owner is the sender of the request), or an AWS owner alias (valid values are
+     * <code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>).
+     * Omitting this option returns all images for which you have launch permissions,
+     * regardless of ownership.</p>
+     */
+    inline DescribeImagesRequest& AddOwners(Aws::String&& value) { m_ownersHasBeenSet = true; m_owners.push_back(std::move(value)); return *this; }
+
+    /**
+     * <p>Filters the images by the owner. Specify an AWS account ID, <code>self</code>
+     * (owner is the sender of the request), or an AWS owner alias (valid values are
+     * <code>amazon</code> | <code>aws-marketplace</code> | <code>microsoft</code>).
+     * Omitting this option returns all images for which you have launch permissions,
+     * regardless of ownership.</p>
+     */
+    inline DescribeImagesRequest& AddOwners(const char* value) { m_ownersHasBeenSet = true; m_owners.push_back(value); return *this; }
+
+
+    /**
+     * <p>Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have the
+     * required permissions, the error response is <code>DryRunOperation</code>.
+     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+     */
+    inline bool GetDryRun() const{ return m_dryRun; }
+
+    /**
+     * <p>Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have the
+     * required permissions, the error response is <code>DryRunOperation</code>.
+     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+     */
+    inline void SetDryRun(bool value) { m_dryRunHasBeenSet = true; m_dryRun = value; }
+
+    /**
+     * <p>Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have the
+     * required permissions, the error response is <code>DryRunOperation</code>.
+     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+     */
+    inline DescribeImagesRequest& WithDryRun(bool value) { SetDryRun(value); return *this;}
 
   private:
-    bool m_dryRun;
-    bool m_dryRunHasBeenSet;
-    Aws::Vector<Aws::String> m_imageIds;
-    bool m_imageIdsHasBeenSet;
-    Aws::Vector<Aws::String> m_owners;
-    bool m_ownersHasBeenSet;
+
     Aws::Vector<Aws::String> m_executableUsers;
     bool m_executableUsersHasBeenSet;
+
     Aws::Vector<Filter> m_filters;
     bool m_filtersHasBeenSet;
+
+    Aws::Vector<Aws::String> m_imageIds;
+    bool m_imageIdsHasBeenSet;
+
+    Aws::Vector<Aws::String> m_owners;
+    bool m_ownersHasBeenSet;
+
+    bool m_dryRun;
+    bool m_dryRunHasBeenSet;
   };
 
 } // namespace Model

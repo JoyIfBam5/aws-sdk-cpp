@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticloadbalancingv2/ElasticLoadBalancingv2_EXPORTS.h>
 #include <aws/elasticloadbalancingv2/ElasticLoadBalancingv2Request.h>
@@ -19,6 +20,7 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticloadbalancingv2/model/RuleCondition.h>
 #include <aws/elasticloadbalancingv2/model/Action.h>
+#include <utility>
 
 namespace Aws
 {
@@ -28,15 +30,24 @@ namespace Model
 {
 
   /**
-   * <p>Contains the parameters for CreateRule.</p><p><h3>See Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/CreateRuleInput">AWS
-   * API Reference</a></p>
    */
   class AWS_ELASTICLOADBALANCINGV2_API CreateRuleRequest : public ElasticLoadBalancingv2Request
   {
   public:
     CreateRuleRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateRule"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The Amazon Resource Name (ARN) of the listener.</p>
@@ -51,7 +62,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the listener.</p>
      */
-    inline void SetListenerArn(Aws::String&& value) { m_listenerArnHasBeenSet = true; m_listenerArn = value; }
+    inline void SetListenerArn(Aws::String&& value) { m_listenerArnHasBeenSet = true; m_listenerArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the listener.</p>
@@ -66,82 +77,140 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the listener.</p>
      */
-    inline CreateRuleRequest& WithListenerArn(Aws::String&& value) { SetListenerArn(value); return *this;}
+    inline CreateRuleRequest& WithListenerArn(Aws::String&& value) { SetListenerArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the listener.</p>
      */
     inline CreateRuleRequest& WithListenerArn(const char* value) { SetListenerArn(value); return *this;}
 
+
     /**
-     * <p>A condition. Each condition has the field <code>path-pattern</code> and
-     * specifies one path pattern. A path pattern is case sensitive, can be up to 255
-     * characters in length, and can contain any of the following characters:</p> <ul>
-     * <li> <p>A-Z, a-z, 0-9</p> </li> <li> <p>_ - . $ / ~ " ' @ : +</p> </li> <li>
-     * <p>&amp; (using &amp;amp;)</p> </li> <li> <p>* (matches 0 or more
+     * <p>The conditions. Each condition specifies a field name and a single value.</p>
+     * <p>If the field name is <code>host-header</code>, you can specify a single host
+     * name (for example, my.example.com). A host name is case insensitive, can be up
+     * to 128 characters in length, and can contain any of the following characters.
+     * Note that you can include up to three wildcard characters.</p> <ul> <li> <p>A-Z,
+     * a-z, 0-9</p> </li> <li> <p>- .</p> </li> <li> <p>* (matches 0 or more
      * characters)</p> </li> <li> <p>? (matches exactly 1 character)</p> </li> </ul>
+     * <p>If the field name is <code>path-pattern</code>, you can specify a single path
+     * pattern. A path pattern is case sensitive, can be up to 128 characters in
+     * length, and can contain any of the following characters. Note that you can
+     * include up to three wildcard characters.</p> <ul> <li> <p>A-Z, a-z, 0-9</p>
+     * </li> <li> <p>_ - . $ / ~ " ' @ : +</p> </li> <li> <p>&amp; (using
+     * &amp;amp;)</p> </li> <li> <p>* (matches 0 or more characters)</p> </li> <li>
+     * <p>? (matches exactly 1 character)</p> </li> </ul>
      */
     inline const Aws::Vector<RuleCondition>& GetConditions() const{ return m_conditions; }
 
     /**
-     * <p>A condition. Each condition has the field <code>path-pattern</code> and
-     * specifies one path pattern. A path pattern is case sensitive, can be up to 255
-     * characters in length, and can contain any of the following characters:</p> <ul>
-     * <li> <p>A-Z, a-z, 0-9</p> </li> <li> <p>_ - . $ / ~ " ' @ : +</p> </li> <li>
-     * <p>&amp; (using &amp;amp;)</p> </li> <li> <p>* (matches 0 or more
+     * <p>The conditions. Each condition specifies a field name and a single value.</p>
+     * <p>If the field name is <code>host-header</code>, you can specify a single host
+     * name (for example, my.example.com). A host name is case insensitive, can be up
+     * to 128 characters in length, and can contain any of the following characters.
+     * Note that you can include up to three wildcard characters.</p> <ul> <li> <p>A-Z,
+     * a-z, 0-9</p> </li> <li> <p>- .</p> </li> <li> <p>* (matches 0 or more
      * characters)</p> </li> <li> <p>? (matches exactly 1 character)</p> </li> </ul>
+     * <p>If the field name is <code>path-pattern</code>, you can specify a single path
+     * pattern. A path pattern is case sensitive, can be up to 128 characters in
+     * length, and can contain any of the following characters. Note that you can
+     * include up to three wildcard characters.</p> <ul> <li> <p>A-Z, a-z, 0-9</p>
+     * </li> <li> <p>_ - . $ / ~ " ' @ : +</p> </li> <li> <p>&amp; (using
+     * &amp;amp;)</p> </li> <li> <p>* (matches 0 or more characters)</p> </li> <li>
+     * <p>? (matches exactly 1 character)</p> </li> </ul>
      */
     inline void SetConditions(const Aws::Vector<RuleCondition>& value) { m_conditionsHasBeenSet = true; m_conditions = value; }
 
     /**
-     * <p>A condition. Each condition has the field <code>path-pattern</code> and
-     * specifies one path pattern. A path pattern is case sensitive, can be up to 255
-     * characters in length, and can contain any of the following characters:</p> <ul>
-     * <li> <p>A-Z, a-z, 0-9</p> </li> <li> <p>_ - . $ / ~ " ' @ : +</p> </li> <li>
-     * <p>&amp; (using &amp;amp;)</p> </li> <li> <p>* (matches 0 or more
+     * <p>The conditions. Each condition specifies a field name and a single value.</p>
+     * <p>If the field name is <code>host-header</code>, you can specify a single host
+     * name (for example, my.example.com). A host name is case insensitive, can be up
+     * to 128 characters in length, and can contain any of the following characters.
+     * Note that you can include up to three wildcard characters.</p> <ul> <li> <p>A-Z,
+     * a-z, 0-9</p> </li> <li> <p>- .</p> </li> <li> <p>* (matches 0 or more
      * characters)</p> </li> <li> <p>? (matches exactly 1 character)</p> </li> </ul>
+     * <p>If the field name is <code>path-pattern</code>, you can specify a single path
+     * pattern. A path pattern is case sensitive, can be up to 128 characters in
+     * length, and can contain any of the following characters. Note that you can
+     * include up to three wildcard characters.</p> <ul> <li> <p>A-Z, a-z, 0-9</p>
+     * </li> <li> <p>_ - . $ / ~ " ' @ : +</p> </li> <li> <p>&amp; (using
+     * &amp;amp;)</p> </li> <li> <p>* (matches 0 or more characters)</p> </li> <li>
+     * <p>? (matches exactly 1 character)</p> </li> </ul>
      */
-    inline void SetConditions(Aws::Vector<RuleCondition>&& value) { m_conditionsHasBeenSet = true; m_conditions = value; }
+    inline void SetConditions(Aws::Vector<RuleCondition>&& value) { m_conditionsHasBeenSet = true; m_conditions = std::move(value); }
 
     /**
-     * <p>A condition. Each condition has the field <code>path-pattern</code> and
-     * specifies one path pattern. A path pattern is case sensitive, can be up to 255
-     * characters in length, and can contain any of the following characters:</p> <ul>
-     * <li> <p>A-Z, a-z, 0-9</p> </li> <li> <p>_ - . $ / ~ " ' @ : +</p> </li> <li>
-     * <p>&amp; (using &amp;amp;)</p> </li> <li> <p>* (matches 0 or more
+     * <p>The conditions. Each condition specifies a field name and a single value.</p>
+     * <p>If the field name is <code>host-header</code>, you can specify a single host
+     * name (for example, my.example.com). A host name is case insensitive, can be up
+     * to 128 characters in length, and can contain any of the following characters.
+     * Note that you can include up to three wildcard characters.</p> <ul> <li> <p>A-Z,
+     * a-z, 0-9</p> </li> <li> <p>- .</p> </li> <li> <p>* (matches 0 or more
      * characters)</p> </li> <li> <p>? (matches exactly 1 character)</p> </li> </ul>
+     * <p>If the field name is <code>path-pattern</code>, you can specify a single path
+     * pattern. A path pattern is case sensitive, can be up to 128 characters in
+     * length, and can contain any of the following characters. Note that you can
+     * include up to three wildcard characters.</p> <ul> <li> <p>A-Z, a-z, 0-9</p>
+     * </li> <li> <p>_ - . $ / ~ " ' @ : +</p> </li> <li> <p>&amp; (using
+     * &amp;amp;)</p> </li> <li> <p>* (matches 0 or more characters)</p> </li> <li>
+     * <p>? (matches exactly 1 character)</p> </li> </ul>
      */
     inline CreateRuleRequest& WithConditions(const Aws::Vector<RuleCondition>& value) { SetConditions(value); return *this;}
 
     /**
-     * <p>A condition. Each condition has the field <code>path-pattern</code> and
-     * specifies one path pattern. A path pattern is case sensitive, can be up to 255
-     * characters in length, and can contain any of the following characters:</p> <ul>
-     * <li> <p>A-Z, a-z, 0-9</p> </li> <li> <p>_ - . $ / ~ " ' @ : +</p> </li> <li>
-     * <p>&amp; (using &amp;amp;)</p> </li> <li> <p>* (matches 0 or more
+     * <p>The conditions. Each condition specifies a field name and a single value.</p>
+     * <p>If the field name is <code>host-header</code>, you can specify a single host
+     * name (for example, my.example.com). A host name is case insensitive, can be up
+     * to 128 characters in length, and can contain any of the following characters.
+     * Note that you can include up to three wildcard characters.</p> <ul> <li> <p>A-Z,
+     * a-z, 0-9</p> </li> <li> <p>- .</p> </li> <li> <p>* (matches 0 or more
      * characters)</p> </li> <li> <p>? (matches exactly 1 character)</p> </li> </ul>
+     * <p>If the field name is <code>path-pattern</code>, you can specify a single path
+     * pattern. A path pattern is case sensitive, can be up to 128 characters in
+     * length, and can contain any of the following characters. Note that you can
+     * include up to three wildcard characters.</p> <ul> <li> <p>A-Z, a-z, 0-9</p>
+     * </li> <li> <p>_ - . $ / ~ " ' @ : +</p> </li> <li> <p>&amp; (using
+     * &amp;amp;)</p> </li> <li> <p>* (matches 0 or more characters)</p> </li> <li>
+     * <p>? (matches exactly 1 character)</p> </li> </ul>
      */
-    inline CreateRuleRequest& WithConditions(Aws::Vector<RuleCondition>&& value) { SetConditions(value); return *this;}
+    inline CreateRuleRequest& WithConditions(Aws::Vector<RuleCondition>&& value) { SetConditions(std::move(value)); return *this;}
 
     /**
-     * <p>A condition. Each condition has the field <code>path-pattern</code> and
-     * specifies one path pattern. A path pattern is case sensitive, can be up to 255
-     * characters in length, and can contain any of the following characters:</p> <ul>
-     * <li> <p>A-Z, a-z, 0-9</p> </li> <li> <p>_ - . $ / ~ " ' @ : +</p> </li> <li>
-     * <p>&amp; (using &amp;amp;)</p> </li> <li> <p>* (matches 0 or more
+     * <p>The conditions. Each condition specifies a field name and a single value.</p>
+     * <p>If the field name is <code>host-header</code>, you can specify a single host
+     * name (for example, my.example.com). A host name is case insensitive, can be up
+     * to 128 characters in length, and can contain any of the following characters.
+     * Note that you can include up to three wildcard characters.</p> <ul> <li> <p>A-Z,
+     * a-z, 0-9</p> </li> <li> <p>- .</p> </li> <li> <p>* (matches 0 or more
      * characters)</p> </li> <li> <p>? (matches exactly 1 character)</p> </li> </ul>
+     * <p>If the field name is <code>path-pattern</code>, you can specify a single path
+     * pattern. A path pattern is case sensitive, can be up to 128 characters in
+     * length, and can contain any of the following characters. Note that you can
+     * include up to three wildcard characters.</p> <ul> <li> <p>A-Z, a-z, 0-9</p>
+     * </li> <li> <p>_ - . $ / ~ " ' @ : +</p> </li> <li> <p>&amp; (using
+     * &amp;amp;)</p> </li> <li> <p>* (matches 0 or more characters)</p> </li> <li>
+     * <p>? (matches exactly 1 character)</p> </li> </ul>
      */
     inline CreateRuleRequest& AddConditions(const RuleCondition& value) { m_conditionsHasBeenSet = true; m_conditions.push_back(value); return *this; }
 
     /**
-     * <p>A condition. Each condition has the field <code>path-pattern</code> and
-     * specifies one path pattern. A path pattern is case sensitive, can be up to 255
-     * characters in length, and can contain any of the following characters:</p> <ul>
-     * <li> <p>A-Z, a-z, 0-9</p> </li> <li> <p>_ - . $ / ~ " ' @ : +</p> </li> <li>
-     * <p>&amp; (using &amp;amp;)</p> </li> <li> <p>* (matches 0 or more
+     * <p>The conditions. Each condition specifies a field name and a single value.</p>
+     * <p>If the field name is <code>host-header</code>, you can specify a single host
+     * name (for example, my.example.com). A host name is case insensitive, can be up
+     * to 128 characters in length, and can contain any of the following characters.
+     * Note that you can include up to three wildcard characters.</p> <ul> <li> <p>A-Z,
+     * a-z, 0-9</p> </li> <li> <p>- .</p> </li> <li> <p>* (matches 0 or more
      * characters)</p> </li> <li> <p>? (matches exactly 1 character)</p> </li> </ul>
+     * <p>If the field name is <code>path-pattern</code>, you can specify a single path
+     * pattern. A path pattern is case sensitive, can be up to 128 characters in
+     * length, and can contain any of the following characters. Note that you can
+     * include up to three wildcard characters.</p> <ul> <li> <p>A-Z, a-z, 0-9</p>
+     * </li> <li> <p>_ - . $ / ~ " ' @ : +</p> </li> <li> <p>&amp; (using
+     * &amp;amp;)</p> </li> <li> <p>* (matches 0 or more characters)</p> </li> <li>
+     * <p>? (matches exactly 1 character)</p> </li> </ul>
      */
-    inline CreateRuleRequest& AddConditions(RuleCondition&& value) { m_conditionsHasBeenSet = true; m_conditions.push_back(value); return *this; }
+    inline CreateRuleRequest& AddConditions(RuleCondition&& value) { m_conditionsHasBeenSet = true; m_conditions.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The priority for the rule. A listener can't have multiple rules with the same
@@ -161,6 +230,7 @@ namespace Model
      */
     inline CreateRuleRequest& WithPriority(int value) { SetPriority(value); return *this;}
 
+
     /**
      * <p>An action. Each action has the type <code>forward</code> and specifies a
      * target group.</p>
@@ -177,7 +247,7 @@ namespace Model
      * <p>An action. Each action has the type <code>forward</code> and specifies a
      * target group.</p>
      */
-    inline void SetActions(Aws::Vector<Action>&& value) { m_actionsHasBeenSet = true; m_actions = value; }
+    inline void SetActions(Aws::Vector<Action>&& value) { m_actionsHasBeenSet = true; m_actions = std::move(value); }
 
     /**
      * <p>An action. Each action has the type <code>forward</code> and specifies a
@@ -189,7 +259,7 @@ namespace Model
      * <p>An action. Each action has the type <code>forward</code> and specifies a
      * target group.</p>
      */
-    inline CreateRuleRequest& WithActions(Aws::Vector<Action>&& value) { SetActions(value); return *this;}
+    inline CreateRuleRequest& WithActions(Aws::Vector<Action>&& value) { SetActions(std::move(value)); return *this;}
 
     /**
      * <p>An action. Each action has the type <code>forward</code> and specifies a
@@ -201,15 +271,19 @@ namespace Model
      * <p>An action. Each action has the type <code>forward</code> and specifies a
      * target group.</p>
      */
-    inline CreateRuleRequest& AddActions(Action&& value) { m_actionsHasBeenSet = true; m_actions.push_back(value); return *this; }
+    inline CreateRuleRequest& AddActions(Action&& value) { m_actionsHasBeenSet = true; m_actions.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_listenerArn;
     bool m_listenerArnHasBeenSet;
+
     Aws::Vector<RuleCondition> m_conditions;
     bool m_conditionsHasBeenSet;
+
     int m_priority;
     bool m_priorityHasBeenSet;
+
     Aws::Vector<Action> m_actions;
     bool m_actionsHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/elasticbeanstalk/ElasticBeanstalkRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,19 @@ namespace Model
   {
   public:
     UpdateApplicationRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateApplication"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The name of the application to update. If no such application is found,
@@ -54,7 +68,7 @@ namespace Model
      * <code>UpdateApplication</code> returns an <code>InvalidParameterValue</code>
      * error. </p>
      */
-    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = value; }
+    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = std::move(value); }
 
     /**
      * <p>The name of the application to update. If no such application is found,
@@ -75,7 +89,7 @@ namespace Model
      * <code>UpdateApplication</code> returns an <code>InvalidParameterValue</code>
      * error. </p>
      */
-    inline UpdateApplicationRequest& WithApplicationName(Aws::String&& value) { SetApplicationName(value); return *this;}
+    inline UpdateApplicationRequest& WithApplicationName(Aws::String&& value) { SetApplicationName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the application to update. If no such application is found,
@@ -83,6 +97,7 @@ namespace Model
      * error. </p>
      */
     inline UpdateApplicationRequest& WithApplicationName(const char* value) { SetApplicationName(value); return *this;}
+
 
     /**
      * <p>A new description for the application.</p> <p>Default: If not specified, AWS
@@ -100,7 +115,7 @@ namespace Model
      * <p>A new description for the application.</p> <p>Default: If not specified, AWS
      * Elastic Beanstalk does not update the description.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>A new description for the application.</p> <p>Default: If not specified, AWS
@@ -118,7 +133,7 @@ namespace Model
      * <p>A new description for the application.</p> <p>Default: If not specified, AWS
      * Elastic Beanstalk does not update the description.</p>
      */
-    inline UpdateApplicationRequest& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline UpdateApplicationRequest& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>A new description for the application.</p> <p>Default: If not specified, AWS
@@ -127,8 +142,10 @@ namespace Model
     inline UpdateApplicationRequest& WithDescription(const char* value) { SetDescription(value); return *this;}
 
   private:
+
     Aws::String m_applicationName;
     bool m_applicationNameHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
   };

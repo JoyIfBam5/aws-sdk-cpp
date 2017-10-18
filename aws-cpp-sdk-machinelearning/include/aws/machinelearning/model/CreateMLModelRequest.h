@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/machinelearning/MachineLearning_EXPORTS.h>
 #include <aws/machinelearning/MachineLearningRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/machinelearning/model/MLModelType.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
+#include <utility>
 
 namespace Aws
 {
@@ -32,9 +34,17 @@ namespace Model
   {
   public:
     CreateMLModelRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateMLModel"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>A user-supplied ID that uniquely identifies the <code>MLModel</code>.</p>
@@ -49,7 +59,7 @@ namespace Model
     /**
      * <p>A user-supplied ID that uniquely identifies the <code>MLModel</code>.</p>
      */
-    inline void SetMLModelId(Aws::String&& value) { m_mLModelIdHasBeenSet = true; m_mLModelId = value; }
+    inline void SetMLModelId(Aws::String&& value) { m_mLModelIdHasBeenSet = true; m_mLModelId = std::move(value); }
 
     /**
      * <p>A user-supplied ID that uniquely identifies the <code>MLModel</code>.</p>
@@ -64,12 +74,13 @@ namespace Model
     /**
      * <p>A user-supplied ID that uniquely identifies the <code>MLModel</code>.</p>
      */
-    inline CreateMLModelRequest& WithMLModelId(Aws::String&& value) { SetMLModelId(value); return *this;}
+    inline CreateMLModelRequest& WithMLModelId(Aws::String&& value) { SetMLModelId(std::move(value)); return *this;}
 
     /**
      * <p>A user-supplied ID that uniquely identifies the <code>MLModel</code>.</p>
      */
     inline CreateMLModelRequest& WithMLModelId(const char* value) { SetMLModelId(value); return *this;}
+
 
     /**
      * <p>A user-supplied name or description of the <code>MLModel</code>.</p>
@@ -84,7 +95,7 @@ namespace Model
     /**
      * <p>A user-supplied name or description of the <code>MLModel</code>.</p>
      */
-    inline void SetMLModelName(Aws::String&& value) { m_mLModelNameHasBeenSet = true; m_mLModelName = value; }
+    inline void SetMLModelName(Aws::String&& value) { m_mLModelNameHasBeenSet = true; m_mLModelName = std::move(value); }
 
     /**
      * <p>A user-supplied name or description of the <code>MLModel</code>.</p>
@@ -99,12 +110,13 @@ namespace Model
     /**
      * <p>A user-supplied name or description of the <code>MLModel</code>.</p>
      */
-    inline CreateMLModelRequest& WithMLModelName(Aws::String&& value) { SetMLModelName(value); return *this;}
+    inline CreateMLModelRequest& WithMLModelName(Aws::String&& value) { SetMLModelName(std::move(value)); return *this;}
 
     /**
      * <p>A user-supplied name or description of the <code>MLModel</code>.</p>
      */
     inline CreateMLModelRequest& WithMLModelName(const char* value) { SetMLModelName(value); return *this;}
+
 
     /**
      * <p>The category of supervised learning that this <code>MLModel</code> will
@@ -143,7 +155,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/machine-learning/latest/dg">Amazon Machine
      * Learning Developer Guide</a>.</p>
      */
-    inline void SetMLModelType(MLModelType&& value) { m_mLModelTypeHasBeenSet = true; m_mLModelType = value; }
+    inline void SetMLModelType(MLModelType&& value) { m_mLModelTypeHasBeenSet = true; m_mLModelType = std::move(value); }
 
     /**
      * <p>The category of supervised learning that this <code>MLModel</code> will
@@ -169,7 +181,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/machine-learning/latest/dg">Amazon Machine
      * Learning Developer Guide</a>.</p>
      */
-    inline CreateMLModelRequest& WithMLModelType(MLModelType&& value) { SetMLModelType(value); return *this;}
+    inline CreateMLModelRequest& WithMLModelType(MLModelType&& value) { SetMLModelType(std::move(value)); return *this;}
+
 
     /**
      * <p>A list of the training parameters in the <code>MLModel</code>. The list is
@@ -274,7 +287,7 @@ namespace Model
      * The default is to not use L2 normalization. This parameter can't be used when
      * <code>L1</code> is specified. Use this parameter sparingly.</p> </li> </ul>
      */
-    inline void SetParameters(Aws::Map<Aws::String, Aws::String>&& value) { m_parametersHasBeenSet = true; m_parameters = value; }
+    inline void SetParameters(Aws::Map<Aws::String, Aws::String>&& value) { m_parametersHasBeenSet = true; m_parameters = std::move(value); }
 
     /**
      * <p>A list of the training parameters in the <code>MLModel</code>. The list is
@@ -344,7 +357,7 @@ namespace Model
      * The default is to not use L2 normalization. This parameter can't be used when
      * <code>L1</code> is specified. Use this parameter sparingly.</p> </li> </ul>
      */
-    inline CreateMLModelRequest& WithParameters(Aws::Map<Aws::String, Aws::String>&& value) { SetParameters(value); return *this;}
+    inline CreateMLModelRequest& WithParameters(Aws::Map<Aws::String, Aws::String>&& value) { SetParameters(std::move(value)); return *this;}
 
     /**
      * <p>A list of the training parameters in the <code>MLModel</code>. The list is
@@ -379,7 +392,7 @@ namespace Model
      * The default is to not use L2 normalization. This parameter can't be used when
      * <code>L1</code> is specified. Use this parameter sparingly.</p> </li> </ul>
      */
-    inline CreateMLModelRequest& AddParameters(const Aws::String& key, const Aws::String& value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline CreateMLModelRequest& AddParameters(const Aws::String& key, const Aws::String& value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, value); return *this; }
 
     /**
      * <p>A list of the training parameters in the <code>MLModel</code>. The list is
@@ -414,7 +427,7 @@ namespace Model
      * The default is to not use L2 normalization. This parameter can't be used when
      * <code>L1</code> is specified. Use this parameter sparingly.</p> </li> </ul>
      */
-    inline CreateMLModelRequest& AddParameters(Aws::String&& key, const Aws::String& value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline CreateMLModelRequest& AddParameters(Aws::String&& key, const Aws::String& value) { m_parametersHasBeenSet = true; m_parameters.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A list of the training parameters in the <code>MLModel</code>. The list is
@@ -449,7 +462,7 @@ namespace Model
      * The default is to not use L2 normalization. This parameter can't be used when
      * <code>L1</code> is specified. Use this parameter sparingly.</p> </li> </ul>
      */
-    inline CreateMLModelRequest& AddParameters(const Aws::String& key, Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline CreateMLModelRequest& AddParameters(const Aws::String& key, Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A list of the training parameters in the <code>MLModel</code>. The list is
@@ -484,7 +497,7 @@ namespace Model
      * The default is to not use L2 normalization. This parameter can't be used when
      * <code>L1</code> is specified. Use this parameter sparingly.</p> </li> </ul>
      */
-    inline CreateMLModelRequest& AddParameters(Aws::String&& key, Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline CreateMLModelRequest& AddParameters(Aws::String&& key, Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>A list of the training parameters in the <code>MLModel</code>. The list is
@@ -519,7 +532,7 @@ namespace Model
      * The default is to not use L2 normalization. This parameter can't be used when
      * <code>L1</code> is specified. Use this parameter sparingly.</p> </li> </ul>
      */
-    inline CreateMLModelRequest& AddParameters(const char* key, Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline CreateMLModelRequest& AddParameters(const char* key, Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A list of the training parameters in the <code>MLModel</code>. The list is
@@ -554,7 +567,7 @@ namespace Model
      * The default is to not use L2 normalization. This parameter can't be used when
      * <code>L1</code> is specified. Use this parameter sparingly.</p> </li> </ul>
      */
-    inline CreateMLModelRequest& AddParameters(Aws::String&& key, const char* value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline CreateMLModelRequest& AddParameters(Aws::String&& key, const char* value) { m_parametersHasBeenSet = true; m_parameters.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A list of the training parameters in the <code>MLModel</code>. The list is
@@ -589,7 +602,8 @@ namespace Model
      * The default is to not use L2 normalization. This parameter can't be used when
      * <code>L1</code> is specified. Use this parameter sparingly.</p> </li> </ul>
      */
-    inline CreateMLModelRequest& AddParameters(const char* key, const char* value) { m_parametersHasBeenSet = true; m_parameters[key] = value; return *this; }
+    inline CreateMLModelRequest& AddParameters(const char* key, const char* value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, value); return *this; }
+
 
     /**
      * <p>The <code>DataSource</code> that points to the training data.</p>
@@ -604,7 +618,7 @@ namespace Model
     /**
      * <p>The <code>DataSource</code> that points to the training data.</p>
      */
-    inline void SetTrainingDataSourceId(Aws::String&& value) { m_trainingDataSourceIdHasBeenSet = true; m_trainingDataSourceId = value; }
+    inline void SetTrainingDataSourceId(Aws::String&& value) { m_trainingDataSourceIdHasBeenSet = true; m_trainingDataSourceId = std::move(value); }
 
     /**
      * <p>The <code>DataSource</code> that points to the training data.</p>
@@ -619,12 +633,13 @@ namespace Model
     /**
      * <p>The <code>DataSource</code> that points to the training data.</p>
      */
-    inline CreateMLModelRequest& WithTrainingDataSourceId(Aws::String&& value) { SetTrainingDataSourceId(value); return *this;}
+    inline CreateMLModelRequest& WithTrainingDataSourceId(Aws::String&& value) { SetTrainingDataSourceId(std::move(value)); return *this;}
 
     /**
      * <p>The <code>DataSource</code> that points to the training data.</p>
      */
     inline CreateMLModelRequest& WithTrainingDataSourceId(const char* value) { SetTrainingDataSourceId(value); return *this;}
+
 
     /**
      * <p>The data recipe for creating the <code>MLModel</code>. You must specify
@@ -645,7 +660,7 @@ namespace Model
      * either the recipe or its URI. If you don't specify a recipe or its URI, Amazon
      * ML creates a default.</p>
      */
-    inline void SetRecipe(Aws::String&& value) { m_recipeHasBeenSet = true; m_recipe = value; }
+    inline void SetRecipe(Aws::String&& value) { m_recipeHasBeenSet = true; m_recipe = std::move(value); }
 
     /**
      * <p>The data recipe for creating the <code>MLModel</code>. You must specify
@@ -666,7 +681,7 @@ namespace Model
      * either the recipe or its URI. If you don't specify a recipe or its URI, Amazon
      * ML creates a default.</p>
      */
-    inline CreateMLModelRequest& WithRecipe(Aws::String&& value) { SetRecipe(value); return *this;}
+    inline CreateMLModelRequest& WithRecipe(Aws::String&& value) { SetRecipe(std::move(value)); return *this;}
 
     /**
      * <p>The data recipe for creating the <code>MLModel</code>. You must specify
@@ -674,6 +689,7 @@ namespace Model
      * ML creates a default.</p>
      */
     inline CreateMLModelRequest& WithRecipe(const char* value) { SetRecipe(value); return *this;}
+
 
     /**
      * <p>The Amazon Simple Storage Service (Amazon S3) location and file name that
@@ -697,7 +713,7 @@ namespace Model
      * its URI. If you don't specify a recipe or its URI, Amazon ML creates a
      * default.</p>
      */
-    inline void SetRecipeUri(Aws::String&& value) { m_recipeUriHasBeenSet = true; m_recipeUri = value; }
+    inline void SetRecipeUri(Aws::String&& value) { m_recipeUriHasBeenSet = true; m_recipeUri = std::move(value); }
 
     /**
      * <p>The Amazon Simple Storage Service (Amazon S3) location and file name that
@@ -721,7 +737,7 @@ namespace Model
      * its URI. If you don't specify a recipe or its URI, Amazon ML creates a
      * default.</p>
      */
-    inline CreateMLModelRequest& WithRecipeUri(Aws::String&& value) { SetRecipeUri(value); return *this;}
+    inline CreateMLModelRequest& WithRecipeUri(Aws::String&& value) { SetRecipeUri(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Simple Storage Service (Amazon S3) location and file name that
@@ -732,18 +748,25 @@ namespace Model
     inline CreateMLModelRequest& WithRecipeUri(const char* value) { SetRecipeUri(value); return *this;}
 
   private:
+
     Aws::String m_mLModelId;
     bool m_mLModelIdHasBeenSet;
+
     Aws::String m_mLModelName;
     bool m_mLModelNameHasBeenSet;
+
     MLModelType m_mLModelType;
     bool m_mLModelTypeHasBeenSet;
+
     Aws::Map<Aws::String, Aws::String> m_parameters;
     bool m_parametersHasBeenSet;
+
     Aws::String m_trainingDataSourceId;
     bool m_trainingDataSourceIdHasBeenSet;
+
     Aws::String m_recipe;
     bool m_recipeHasBeenSet;
+
     Aws::String m_recipeUri;
     bool m_recipeUriHasBeenSet;
   };

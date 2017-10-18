@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     StartAutomationExecutionResult();
-    StartAutomationExecutionResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    StartAutomationExecutionResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    StartAutomationExecutionResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    StartAutomationExecutionResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The unique ID of a newly scheduled automation execution.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The unique ID of a newly scheduled automation execution.</p>
      */
-    inline void SetAutomationExecutionId(Aws::String&& value) { m_automationExecutionId = value; }
+    inline void SetAutomationExecutionId(Aws::String&& value) { m_automationExecutionId = std::move(value); }
 
     /**
      * <p>The unique ID of a newly scheduled automation execution.</p>
@@ -67,7 +70,7 @@ namespace Model
     /**
      * <p>The unique ID of a newly scheduled automation execution.</p>
      */
-    inline StartAutomationExecutionResult& WithAutomationExecutionId(Aws::String&& value) { SetAutomationExecutionId(value); return *this;}
+    inline StartAutomationExecutionResult& WithAutomationExecutionId(Aws::String&& value) { SetAutomationExecutionId(std::move(value)); return *this;}
 
     /**
      * <p>The unique ID of a newly scheduled automation execution.</p>
@@ -75,6 +78,7 @@ namespace Model
     inline StartAutomationExecutionResult& WithAutomationExecutionId(const char* value) { SetAutomationExecutionId(value); return *this;}
 
   private:
+
     Aws::String m_automationExecutionId;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/inspector/Inspector_EXPORTS.h>
+#include <aws/core/utils/memory/stl/AWSMap.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <aws/inspector/model/FailedItemDetails.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,46 +40,79 @@ namespace Model
   {
   public:
     RemoveAttributesFromFindingsResult();
-    RemoveAttributesFromFindingsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    RemoveAttributesFromFindingsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    RemoveAttributesFromFindingsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    RemoveAttributesFromFindingsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>Confirmation details of the action performed.</p>
+     * <p>Attributes details that cannot be described. An error code is provided for
+     * each failed item.</p>
      */
-    inline const Aws::String& GetMessage() const{ return m_message; }
+    inline const Aws::Map<Aws::String, FailedItemDetails>& GetFailedItems() const{ return m_failedItems; }
 
     /**
-     * <p>Confirmation details of the action performed.</p>
+     * <p>Attributes details that cannot be described. An error code is provided for
+     * each failed item.</p>
      */
-    inline void SetMessage(const Aws::String& value) { m_message = value; }
+    inline void SetFailedItems(const Aws::Map<Aws::String, FailedItemDetails>& value) { m_failedItems = value; }
 
     /**
-     * <p>Confirmation details of the action performed.</p>
+     * <p>Attributes details that cannot be described. An error code is provided for
+     * each failed item.</p>
      */
-    inline void SetMessage(Aws::String&& value) { m_message = value; }
+    inline void SetFailedItems(Aws::Map<Aws::String, FailedItemDetails>&& value) { m_failedItems = std::move(value); }
 
     /**
-     * <p>Confirmation details of the action performed.</p>
+     * <p>Attributes details that cannot be described. An error code is provided for
+     * each failed item.</p>
      */
-    inline void SetMessage(const char* value) { m_message.assign(value); }
+    inline RemoveAttributesFromFindingsResult& WithFailedItems(const Aws::Map<Aws::String, FailedItemDetails>& value) { SetFailedItems(value); return *this;}
 
     /**
-     * <p>Confirmation details of the action performed.</p>
+     * <p>Attributes details that cannot be described. An error code is provided for
+     * each failed item.</p>
      */
-    inline RemoveAttributesFromFindingsResult& WithMessage(const Aws::String& value) { SetMessage(value); return *this;}
+    inline RemoveAttributesFromFindingsResult& WithFailedItems(Aws::Map<Aws::String, FailedItemDetails>&& value) { SetFailedItems(std::move(value)); return *this;}
 
     /**
-     * <p>Confirmation details of the action performed.</p>
+     * <p>Attributes details that cannot be described. An error code is provided for
+     * each failed item.</p>
      */
-    inline RemoveAttributesFromFindingsResult& WithMessage(Aws::String&& value) { SetMessage(value); return *this;}
+    inline RemoveAttributesFromFindingsResult& AddFailedItems(const Aws::String& key, const FailedItemDetails& value) { m_failedItems.emplace(key, value); return *this; }
 
     /**
-     * <p>Confirmation details of the action performed.</p>
+     * <p>Attributes details that cannot be described. An error code is provided for
+     * each failed item.</p>
      */
-    inline RemoveAttributesFromFindingsResult& WithMessage(const char* value) { SetMessage(value); return *this;}
+    inline RemoveAttributesFromFindingsResult& AddFailedItems(Aws::String&& key, const FailedItemDetails& value) { m_failedItems.emplace(std::move(key), value); return *this; }
+
+    /**
+     * <p>Attributes details that cannot be described. An error code is provided for
+     * each failed item.</p>
+     */
+    inline RemoveAttributesFromFindingsResult& AddFailedItems(const Aws::String& key, FailedItemDetails&& value) { m_failedItems.emplace(key, std::move(value)); return *this; }
+
+    /**
+     * <p>Attributes details that cannot be described. An error code is provided for
+     * each failed item.</p>
+     */
+    inline RemoveAttributesFromFindingsResult& AddFailedItems(Aws::String&& key, FailedItemDetails&& value) { m_failedItems.emplace(std::move(key), std::move(value)); return *this; }
+
+    /**
+     * <p>Attributes details that cannot be described. An error code is provided for
+     * each failed item.</p>
+     */
+    inline RemoveAttributesFromFindingsResult& AddFailedItems(const char* key, FailedItemDetails&& value) { m_failedItems.emplace(key, std::move(value)); return *this; }
+
+    /**
+     * <p>Attributes details that cannot be described. An error code is provided for
+     * each failed item.</p>
+     */
+    inline RemoveAttributesFromFindingsResult& AddFailedItems(const char* key, const FailedItemDetails& value) { m_failedItems.emplace(key, value); return *this; }
 
   private:
-    Aws::String m_message;
+
+    Aws::Map<Aws::String, FailedItemDetails> m_failedItems;
   };
 
 } // namespace Model

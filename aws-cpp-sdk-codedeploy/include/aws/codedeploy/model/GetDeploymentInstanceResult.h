@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codedeploy/CodeDeploy_EXPORTS.h>
 #include <aws/codedeploy/model/InstanceSummary.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,7 +35,7 @@ namespace CodeDeploy
 namespace Model
 {
   /**
-   * <p>Represents the output of a get deployment instance operation.</p><p><h3>See
+   * <p>Represents the output of a GetDeploymentInstance operation.</p><p><h3>See
    * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/GetDeploymentInstanceOutput">AWS
    * API Reference</a></p>
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     GetDeploymentInstanceResult();
-    GetDeploymentInstanceResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetDeploymentInstanceResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDeploymentInstanceResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDeploymentInstanceResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the instance.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>Information about the instance.</p>
      */
-    inline void SetInstanceSummary(InstanceSummary&& value) { m_instanceSummary = value; }
+    inline void SetInstanceSummary(InstanceSummary&& value) { m_instanceSummary = std::move(value); }
 
     /**
      * <p>Information about the instance.</p>
@@ -68,9 +71,10 @@ namespace Model
     /**
      * <p>Information about the instance.</p>
      */
-    inline GetDeploymentInstanceResult& WithInstanceSummary(InstanceSummary&& value) { SetInstanceSummary(value); return *this;}
+    inline GetDeploymentInstanceResult& WithInstanceSummary(InstanceSummary&& value) { SetInstanceSummary(std::move(value)); return *this;}
 
   private:
+
     InstanceSummary m_instanceSummary;
   };
 

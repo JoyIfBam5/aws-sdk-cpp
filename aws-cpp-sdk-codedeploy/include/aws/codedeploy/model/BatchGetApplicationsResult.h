@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codedeploy/CodeDeploy_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/codedeploy/model/ApplicationInfo.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,7 +36,7 @@ namespace CodeDeploy
 namespace Model
 {
   /**
-   * <p>Represents the output of a batch get applications operation.</p><p><h3>See
+   * <p>Represents the output of a BatchGetApplications operation.</p><p><h3>See
    * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/BatchGetApplicationsOutput">AWS
    * API Reference</a></p>
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     BatchGetApplicationsResult();
-    BatchGetApplicationsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    BatchGetApplicationsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    BatchGetApplicationsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    BatchGetApplicationsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the applications.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>Information about the applications.</p>
      */
-    inline void SetApplicationsInfo(Aws::Vector<ApplicationInfo>&& value) { m_applicationsInfo = value; }
+    inline void SetApplicationsInfo(Aws::Vector<ApplicationInfo>&& value) { m_applicationsInfo = std::move(value); }
 
     /**
      * <p>Information about the applications.</p>
@@ -69,7 +72,7 @@ namespace Model
     /**
      * <p>Information about the applications.</p>
      */
-    inline BatchGetApplicationsResult& WithApplicationsInfo(Aws::Vector<ApplicationInfo>&& value) { SetApplicationsInfo(value); return *this;}
+    inline BatchGetApplicationsResult& WithApplicationsInfo(Aws::Vector<ApplicationInfo>&& value) { SetApplicationsInfo(std::move(value)); return *this;}
 
     /**
      * <p>Information about the applications.</p>
@@ -79,9 +82,10 @@ namespace Model
     /**
      * <p>Information about the applications.</p>
      */
-    inline BatchGetApplicationsResult& AddApplicationsInfo(ApplicationInfo&& value) { m_applicationsInfo.push_back(value); return *this; }
+    inline BatchGetApplicationsResult& AddApplicationsInfo(ApplicationInfo&& value) { m_applicationsInfo.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<ApplicationInfo> m_applicationsInfo;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/codebuild/model/ProjectEnvironment.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -33,7 +34,9 @@ ProjectEnvironment::ProjectEnvironment() :
     m_imageHasBeenSet(false),
     m_computeType(ComputeType::NOT_SET),
     m_computeTypeHasBeenSet(false),
-    m_environmentVariablesHasBeenSet(false)
+    m_environmentVariablesHasBeenSet(false),
+    m_privilegedMode(false),
+    m_privilegedModeHasBeenSet(false)
 {
 }
 
@@ -43,7 +46,9 @@ ProjectEnvironment::ProjectEnvironment(const JsonValue& jsonValue) :
     m_imageHasBeenSet(false),
     m_computeType(ComputeType::NOT_SET),
     m_computeTypeHasBeenSet(false),
-    m_environmentVariablesHasBeenSet(false)
+    m_environmentVariablesHasBeenSet(false),
+    m_privilegedMode(false),
+    m_privilegedModeHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -81,6 +86,13 @@ ProjectEnvironment& ProjectEnvironment::operator =(const JsonValue& jsonValue)
     m_environmentVariablesHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("privilegedMode"))
+  {
+    m_privilegedMode = jsonValue.GetBool("privilegedMode");
+
+    m_privilegedModeHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -112,6 +124,12 @@ JsonValue ProjectEnvironment::Jsonize() const
      environmentVariablesJsonList[environmentVariablesIndex].AsObject(m_environmentVariables[environmentVariablesIndex].Jsonize());
    }
    payload.WithArray("environmentVariables", std::move(environmentVariablesJsonList));
+
+  }
+
+  if(m_privilegedModeHasBeenSet)
+  {
+   payload.WithBool("privilegedMode", m_privilegedMode);
 
   }
 

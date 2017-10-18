@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ssm/model/RegisterTargetWithMaintenanceWindowRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -27,6 +28,8 @@ RegisterTargetWithMaintenanceWindowRequest::RegisterTargetWithMaintenanceWindowR
     m_resourceTypeHasBeenSet(false),
     m_targetsHasBeenSet(false),
     m_ownerInformationHasBeenSet(false),
+    m_nameHasBeenSet(false),
+    m_descriptionHasBeenSet(false),
     m_clientToken(Aws::Utils::UUID::RandomUUID()),
     m_clientTokenHasBeenSet(true)
 {
@@ -64,6 +67,18 @@ Aws::String RegisterTargetWithMaintenanceWindowRequest::SerializePayload() const
 
   }
 
+  if(m_nameHasBeenSet)
+  {
+   payload.WithString("Name", m_name);
+
+  }
+
+  if(m_descriptionHasBeenSet)
+  {
+   payload.WithString("Description", m_description);
+
+  }
+
   if(m_clientTokenHasBeenSet)
   {
    payload.WithString("ClientToken", m_clientToken);
@@ -80,6 +95,7 @@ Aws::Http::HeaderValueCollection RegisterTargetWithMaintenanceWindowRequest::Get
   return headers;
 
 }
+
 
 
 

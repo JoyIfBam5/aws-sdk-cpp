@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/snowball/Snowball_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,47 +46,42 @@ namespace Model
     Shipment& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p>Status information for a shipment. Valid statuses include <code>NEW</code>,
-     * <code>IN_TRANSIT</code>, and <code>DELIVERED</code>.</p>
+     * <p>Status information for a shipment.</p>
      */
     inline const Aws::String& GetStatus() const{ return m_status; }
 
     /**
-     * <p>Status information for a shipment. Valid statuses include <code>NEW</code>,
-     * <code>IN_TRANSIT</code>, and <code>DELIVERED</code>.</p>
+     * <p>Status information for a shipment.</p>
      */
     inline void SetStatus(const Aws::String& value) { m_statusHasBeenSet = true; m_status = value; }
 
     /**
-     * <p>Status information for a shipment. Valid statuses include <code>NEW</code>,
-     * <code>IN_TRANSIT</code>, and <code>DELIVERED</code>.</p>
+     * <p>Status information for a shipment.</p>
      */
-    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
-     * <p>Status information for a shipment. Valid statuses include <code>NEW</code>,
-     * <code>IN_TRANSIT</code>, and <code>DELIVERED</code>.</p>
+     * <p>Status information for a shipment.</p>
      */
     inline void SetStatus(const char* value) { m_statusHasBeenSet = true; m_status.assign(value); }
 
     /**
-     * <p>Status information for a shipment. Valid statuses include <code>NEW</code>,
-     * <code>IN_TRANSIT</code>, and <code>DELIVERED</code>.</p>
+     * <p>Status information for a shipment.</p>
      */
     inline Shipment& WithStatus(const Aws::String& value) { SetStatus(value); return *this;}
 
     /**
-     * <p>Status information for a shipment. Valid statuses include <code>NEW</code>,
-     * <code>IN_TRANSIT</code>, and <code>DELIVERED</code>.</p>
+     * <p>Status information for a shipment.</p>
      */
-    inline Shipment& WithStatus(Aws::String&& value) { SetStatus(value); return *this;}
+    inline Shipment& WithStatus(Aws::String&& value) { SetStatus(std::move(value)); return *this;}
 
     /**
-     * <p>Status information for a shipment. Valid statuses include <code>NEW</code>,
-     * <code>IN_TRANSIT</code>, and <code>DELIVERED</code>.</p>
+     * <p>Status information for a shipment.</p>
      */
     inline Shipment& WithStatus(const char* value) { SetStatus(value); return *this;}
+
 
     /**
      * <p>The tracking number for this job. Using this tracking number with your
@@ -108,7 +105,7 @@ namespace Model
      * it.</p> <p>For India, the carrier is Amazon Logistics. For all other regions,
      * UPS is the carrier.</p>
      */
-    inline void SetTrackingNumber(Aws::String&& value) { m_trackingNumberHasBeenSet = true; m_trackingNumber = value; }
+    inline void SetTrackingNumber(Aws::String&& value) { m_trackingNumberHasBeenSet = true; m_trackingNumber = std::move(value); }
 
     /**
      * <p>The tracking number for this job. Using this tracking number with your
@@ -132,7 +129,7 @@ namespace Model
      * it.</p> <p>For India, the carrier is Amazon Logistics. For all other regions,
      * UPS is the carrier.</p>
      */
-    inline Shipment& WithTrackingNumber(Aws::String&& value) { SetTrackingNumber(value); return *this;}
+    inline Shipment& WithTrackingNumber(Aws::String&& value) { SetTrackingNumber(std::move(value)); return *this;}
 
     /**
      * <p>The tracking number for this job. Using this tracking number with your
@@ -143,8 +140,10 @@ namespace Model
     inline Shipment& WithTrackingNumber(const char* value) { SetTrackingNumber(value); return *this;}
 
   private:
+
     Aws::String m_status;
     bool m_statusHasBeenSet;
+
     Aws::String m_trackingNumber;
     bool m_trackingNumberHasBeenSet;
   };

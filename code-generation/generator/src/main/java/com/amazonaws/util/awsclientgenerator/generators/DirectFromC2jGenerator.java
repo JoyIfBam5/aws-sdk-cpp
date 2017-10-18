@@ -1,5 +1,5 @@
 /*
-* Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -30,12 +30,12 @@ public class DirectFromC2jGenerator {
        this.mainClientGenerator = mainClientGenerator;
     }
 
-    public File generateSourceFromJson(String rawJson, String languageBinding, String serviceName) throws Exception {
+    public File generateSourceFromJson(String rawJson, String languageBinding, String serviceName, String namespace, boolean generateStandalonePackage) throws Exception {
         GsonBuilder gsonBuilder = new GsonBuilder();
         Gson gson = gsonBuilder.create();
 
         C2jServiceModel c2jServiceModel = gson.fromJson(rawJson, C2jServiceModel.class);
         c2jServiceModel.setServiceName(serviceName);
-        return mainClientGenerator.generateSourceFromC2jModel(c2jServiceModel, serviceName, languageBinding);
+        return mainClientGenerator.generateSourceFromC2jModel(c2jServiceModel, serviceName, languageBinding, namespace, generateStandalonePackage);
     }
 }

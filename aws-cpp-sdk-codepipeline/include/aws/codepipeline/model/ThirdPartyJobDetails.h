@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codepipeline/CodePipeline_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/codepipeline/model/ThirdPartyJobData.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     ThirdPartyJobDetails& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The identifier used to identify the job details in AWS CodePipeline.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The identifier used to identify the job details in AWS CodePipeline.</p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>The identifier used to identify the job details in AWS CodePipeline.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The identifier used to identify the job details in AWS CodePipeline.</p>
      */
-    inline ThirdPartyJobDetails& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline ThirdPartyJobDetails& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier used to identify the job details in AWS CodePipeline.</p>
      */
     inline ThirdPartyJobDetails& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>The data to be returned by the third party job worker.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The data to be returned by the third party job worker.</p>
      */
-    inline void SetData(ThirdPartyJobData&& value) { m_dataHasBeenSet = true; m_data = value; }
+    inline void SetData(ThirdPartyJobData&& value) { m_dataHasBeenSet = true; m_data = std::move(value); }
 
     /**
      * <p>The data to be returned by the third party job worker.</p>
@@ -103,7 +107,8 @@ namespace Model
     /**
      * <p>The data to be returned by the third party job worker.</p>
      */
-    inline ThirdPartyJobDetails& WithData(ThirdPartyJobData&& value) { SetData(value); return *this;}
+    inline ThirdPartyJobDetails& WithData(ThirdPartyJobData&& value) { SetData(std::move(value)); return *this;}
+
 
     /**
      * <p>A system-generated random number that AWS CodePipeline uses to ensure that
@@ -124,7 +129,7 @@ namespace Model
      * the job is being worked on by only one job worker. Use this number in an
      * <a>AcknowledgeThirdPartyJob</a> request.</p>
      */
-    inline void SetNonce(Aws::String&& value) { m_nonceHasBeenSet = true; m_nonce = value; }
+    inline void SetNonce(Aws::String&& value) { m_nonceHasBeenSet = true; m_nonce = std::move(value); }
 
     /**
      * <p>A system-generated random number that AWS CodePipeline uses to ensure that
@@ -145,7 +150,7 @@ namespace Model
      * the job is being worked on by only one job worker. Use this number in an
      * <a>AcknowledgeThirdPartyJob</a> request.</p>
      */
-    inline ThirdPartyJobDetails& WithNonce(Aws::String&& value) { SetNonce(value); return *this;}
+    inline ThirdPartyJobDetails& WithNonce(Aws::String&& value) { SetNonce(std::move(value)); return *this;}
 
     /**
      * <p>A system-generated random number that AWS CodePipeline uses to ensure that
@@ -155,10 +160,13 @@ namespace Model
     inline ThirdPartyJobDetails& WithNonce(const char* value) { SetNonce(value); return *this;}
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     ThirdPartyJobData m_data;
     bool m_dataHasBeenSet;
+
     Aws::String m_nonce;
     bool m_nonceHasBeenSet;
   };

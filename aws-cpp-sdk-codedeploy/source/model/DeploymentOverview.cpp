@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/codedeploy/model/DeploymentOverview.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -37,7 +38,9 @@ DeploymentOverview::DeploymentOverview() :
     m_failed(0),
     m_failedHasBeenSet(false),
     m_skipped(0),
-    m_skippedHasBeenSet(false)
+    m_skippedHasBeenSet(false),
+    m_ready(0),
+    m_readyHasBeenSet(false)
 {
 }
 
@@ -51,7 +54,9 @@ DeploymentOverview::DeploymentOverview(const JsonValue& jsonValue) :
     m_failed(0),
     m_failedHasBeenSet(false),
     m_skipped(0),
-    m_skippedHasBeenSet(false)
+    m_skippedHasBeenSet(false),
+    m_ready(0),
+    m_readyHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -93,6 +98,13 @@ DeploymentOverview& DeploymentOverview::operator =(const JsonValue& jsonValue)
     m_skippedHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("Ready"))
+  {
+    m_ready = jsonValue.GetInt64("Ready");
+
+    m_readyHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -127,6 +139,12 @@ JsonValue DeploymentOverview::Jsonize() const
   if(m_skippedHasBeenSet)
   {
    payload.WithInt64("Skipped", m_skipped);
+
+  }
+
+  if(m_readyHasBeenSet)
+  {
+   payload.WithInt64("Ready", m_ready);
 
   }
 

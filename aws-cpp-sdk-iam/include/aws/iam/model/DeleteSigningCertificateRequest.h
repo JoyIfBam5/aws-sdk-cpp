@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/iam/IAMRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,7 +32,19 @@ namespace Model
   {
   public:
     DeleteSigningCertificateRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DeleteSigningCertificate"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The name of the user the signing certificate belongs to.</p> <p>This
@@ -57,7 +71,7 @@ namespace Model
      * alphanumeric characters with no spaces. You can also include any of the
      * following characters: =,.@-</p>
      */
-    inline void SetUserName(Aws::String&& value) { m_userNameHasBeenSet = true; m_userName = value; }
+    inline void SetUserName(Aws::String&& value) { m_userNameHasBeenSet = true; m_userName = std::move(value); }
 
     /**
      * <p>The name of the user the signing certificate belongs to.</p> <p>This
@@ -84,7 +98,7 @@ namespace Model
      * alphanumeric characters with no spaces. You can also include any of the
      * following characters: =,.@-</p>
      */
-    inline DeleteSigningCertificateRequest& WithUserName(Aws::String&& value) { SetUserName(value); return *this;}
+    inline DeleteSigningCertificateRequest& WithUserName(Aws::String&& value) { SetUserName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the user the signing certificate belongs to.</p> <p>This
@@ -94,6 +108,7 @@ namespace Model
      * following characters: =,.@-</p>
      */
     inline DeleteSigningCertificateRequest& WithUserName(const char* value) { SetUserName(value); return *this;}
+
 
     /**
      * <p>The ID of the signing certificate to delete.</p> <p>The format of this
@@ -117,7 +132,7 @@ namespace Model
      * href="http://wikipedia.org/wiki/regex">regex</a> pattern, is a string of
      * characters that can be upper- or lower-cased letters or digits.</p>
      */
-    inline void SetCertificateId(Aws::String&& value) { m_certificateIdHasBeenSet = true; m_certificateId = value; }
+    inline void SetCertificateId(Aws::String&& value) { m_certificateIdHasBeenSet = true; m_certificateId = std::move(value); }
 
     /**
      * <p>The ID of the signing certificate to delete.</p> <p>The format of this
@@ -141,7 +156,7 @@ namespace Model
      * href="http://wikipedia.org/wiki/regex">regex</a> pattern, is a string of
      * characters that can be upper- or lower-cased letters or digits.</p>
      */
-    inline DeleteSigningCertificateRequest& WithCertificateId(Aws::String&& value) { SetCertificateId(value); return *this;}
+    inline DeleteSigningCertificateRequest& WithCertificateId(Aws::String&& value) { SetCertificateId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the signing certificate to delete.</p> <p>The format of this
@@ -152,8 +167,10 @@ namespace Model
     inline DeleteSigningCertificateRequest& WithCertificateId(const char* value) { SetCertificateId(value); return *this;}
 
   private:
+
     Aws::String m_userName;
     bool m_userNameHasBeenSet;
+
     Aws::String m_certificateId;
     bool m_certificateIdHasBeenSet;
   };

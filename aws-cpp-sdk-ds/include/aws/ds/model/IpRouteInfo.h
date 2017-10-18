@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ds/DirectoryService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ds/model/IpRouteStatusMsg.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     IpRouteInfo& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Identifier (ID) of the directory associated with the IP addresses.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>Identifier (ID) of the directory associated with the IP addresses.</p>
      */
-    inline void SetDirectoryId(Aws::String&& value) { m_directoryIdHasBeenSet = true; m_directoryId = value; }
+    inline void SetDirectoryId(Aws::String&& value) { m_directoryIdHasBeenSet = true; m_directoryId = std::move(value); }
 
     /**
      * <p>Identifier (ID) of the directory associated with the IP addresses.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>Identifier (ID) of the directory associated with the IP addresses.</p>
      */
-    inline IpRouteInfo& WithDirectoryId(Aws::String&& value) { SetDirectoryId(value); return *this;}
+    inline IpRouteInfo& WithDirectoryId(Aws::String&& value) { SetDirectoryId(std::move(value)); return *this;}
 
     /**
      * <p>Identifier (ID) of the directory associated with the IP addresses.</p>
      */
     inline IpRouteInfo& WithDirectoryId(const char* value) { SetDirectoryId(value); return *this;}
+
 
     /**
      * <p>IP address block in the <a>IpRoute</a>.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>IP address block in the <a>IpRoute</a>.</p>
      */
-    inline void SetCidrIp(Aws::String&& value) { m_cidrIpHasBeenSet = true; m_cidrIp = value; }
+    inline void SetCidrIp(Aws::String&& value) { m_cidrIpHasBeenSet = true; m_cidrIp = std::move(value); }
 
     /**
      * <p>IP address block in the <a>IpRoute</a>.</p>
@@ -108,12 +112,13 @@ namespace Model
     /**
      * <p>IP address block in the <a>IpRoute</a>.</p>
      */
-    inline IpRouteInfo& WithCidrIp(Aws::String&& value) { SetCidrIp(value); return *this;}
+    inline IpRouteInfo& WithCidrIp(Aws::String&& value) { SetCidrIp(std::move(value)); return *this;}
 
     /**
      * <p>IP address block in the <a>IpRoute</a>.</p>
      */
     inline IpRouteInfo& WithCidrIp(const char* value) { SetCidrIp(value); return *this;}
+
 
     /**
      * <p>The status of the IP address block.</p>
@@ -128,7 +133,7 @@ namespace Model
     /**
      * <p>The status of the IP address block.</p>
      */
-    inline void SetIpRouteStatusMsg(IpRouteStatusMsg&& value) { m_ipRouteStatusMsgHasBeenSet = true; m_ipRouteStatusMsg = value; }
+    inline void SetIpRouteStatusMsg(IpRouteStatusMsg&& value) { m_ipRouteStatusMsgHasBeenSet = true; m_ipRouteStatusMsg = std::move(value); }
 
     /**
      * <p>The status of the IP address block.</p>
@@ -138,7 +143,8 @@ namespace Model
     /**
      * <p>The status of the IP address block.</p>
      */
-    inline IpRouteInfo& WithIpRouteStatusMsg(IpRouteStatusMsg&& value) { SetIpRouteStatusMsg(value); return *this;}
+    inline IpRouteInfo& WithIpRouteStatusMsg(IpRouteStatusMsg&& value) { SetIpRouteStatusMsg(std::move(value)); return *this;}
+
 
     /**
      * <p>The date and time the address block was added to the directory.</p>
@@ -153,7 +159,7 @@ namespace Model
     /**
      * <p>The date and time the address block was added to the directory.</p>
      */
-    inline void SetAddedDateTime(Aws::Utils::DateTime&& value) { m_addedDateTimeHasBeenSet = true; m_addedDateTime = value; }
+    inline void SetAddedDateTime(Aws::Utils::DateTime&& value) { m_addedDateTimeHasBeenSet = true; m_addedDateTime = std::move(value); }
 
     /**
      * <p>The date and time the address block was added to the directory.</p>
@@ -163,7 +169,8 @@ namespace Model
     /**
      * <p>The date and time the address block was added to the directory.</p>
      */
-    inline IpRouteInfo& WithAddedDateTime(Aws::Utils::DateTime&& value) { SetAddedDateTime(value); return *this;}
+    inline IpRouteInfo& WithAddedDateTime(Aws::Utils::DateTime&& value) { SetAddedDateTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The reason for the IpRouteStatusMsg.</p>
@@ -178,7 +185,7 @@ namespace Model
     /**
      * <p>The reason for the IpRouteStatusMsg.</p>
      */
-    inline void SetIpRouteStatusReason(Aws::String&& value) { m_ipRouteStatusReasonHasBeenSet = true; m_ipRouteStatusReason = value; }
+    inline void SetIpRouteStatusReason(Aws::String&& value) { m_ipRouteStatusReasonHasBeenSet = true; m_ipRouteStatusReason = std::move(value); }
 
     /**
      * <p>The reason for the IpRouteStatusMsg.</p>
@@ -193,12 +200,13 @@ namespace Model
     /**
      * <p>The reason for the IpRouteStatusMsg.</p>
      */
-    inline IpRouteInfo& WithIpRouteStatusReason(Aws::String&& value) { SetIpRouteStatusReason(value); return *this;}
+    inline IpRouteInfo& WithIpRouteStatusReason(Aws::String&& value) { SetIpRouteStatusReason(std::move(value)); return *this;}
 
     /**
      * <p>The reason for the IpRouteStatusMsg.</p>
      */
     inline IpRouteInfo& WithIpRouteStatusReason(const char* value) { SetIpRouteStatusReason(value); return *this;}
+
 
     /**
      * <p>Description of the <a>IpRouteInfo</a>.</p>
@@ -213,7 +221,7 @@ namespace Model
     /**
      * <p>Description of the <a>IpRouteInfo</a>.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>Description of the <a>IpRouteInfo</a>.</p>
@@ -228,7 +236,7 @@ namespace Model
     /**
      * <p>Description of the <a>IpRouteInfo</a>.</p>
      */
-    inline IpRouteInfo& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline IpRouteInfo& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>Description of the <a>IpRouteInfo</a>.</p>
@@ -236,16 +244,22 @@ namespace Model
     inline IpRouteInfo& WithDescription(const char* value) { SetDescription(value); return *this;}
 
   private:
+
     Aws::String m_directoryId;
     bool m_directoryIdHasBeenSet;
+
     Aws::String m_cidrIp;
     bool m_cidrIpHasBeenSet;
+
     IpRouteStatusMsg m_ipRouteStatusMsg;
     bool m_ipRouteStatusMsgHasBeenSet;
+
     Aws::Utils::DateTime m_addedDateTime;
     bool m_addedDateTimeHasBeenSet;
+
     Aws::String m_ipRouteStatusReason;
     bool m_ipRouteStatusReasonHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
   };

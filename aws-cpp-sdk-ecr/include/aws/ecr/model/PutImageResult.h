@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecr/ECR_EXPORTS.h>
 #include <aws/ecr/model/Image.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     PutImageResult();
-    PutImageResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    PutImageResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PutImageResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PutImageResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Details of the image uploaded.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>Details of the image uploaded.</p>
      */
-    inline void SetImage(Image&& value) { m_image = value; }
+    inline void SetImage(Image&& value) { m_image = std::move(value); }
 
     /**
      * <p>Details of the image uploaded.</p>
@@ -62,9 +65,10 @@ namespace Model
     /**
      * <p>Details of the image uploaded.</p>
      */
-    inline PutImageResult& WithImage(Image&& value) { SetImage(value); return *this;}
+    inline PutImageResult& WithImage(Image&& value) { SetImage(std::move(value)); return *this;}
 
   private:
+
     Image m_image;
   };
 

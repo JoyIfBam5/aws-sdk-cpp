@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53/Route53_EXPORTS.h>
 #include <aws/route53/model/DelegationSet.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     GetReusableDelegationSetResult();
-    GetReusableDelegationSetResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    GetReusableDelegationSetResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    GetReusableDelegationSetResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    GetReusableDelegationSetResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>A complex type that contains information about the reusable delegation
@@ -61,7 +64,7 @@ namespace Model
      * <p>A complex type that contains information about the reusable delegation
      * set.</p>
      */
-    inline void SetDelegationSet(DelegationSet&& value) { m_delegationSet = value; }
+    inline void SetDelegationSet(DelegationSet&& value) { m_delegationSet = std::move(value); }
 
     /**
      * <p>A complex type that contains information about the reusable delegation
@@ -73,9 +76,10 @@ namespace Model
      * <p>A complex type that contains information about the reusable delegation
      * set.</p>
      */
-    inline GetReusableDelegationSetResult& WithDelegationSet(DelegationSet&& value) { SetDelegationSet(value); return *this;}
+    inline GetReusableDelegationSetResult& WithDelegationSet(DelegationSet&& value) { SetDelegationSet(std::move(value)); return *this;}
 
   private:
+
     DelegationSet m_delegationSet;
   };
 

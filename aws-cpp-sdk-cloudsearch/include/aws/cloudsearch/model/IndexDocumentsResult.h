@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudsearch/CloudSearch_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/cloudsearch/model/ResponseMetadata.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,8 +47,9 @@ namespace Model
   {
   public:
     IndexDocumentsResult();
-    IndexDocumentsResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    IndexDocumentsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    IndexDocumentsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    IndexDocumentsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>The names of the fields that are currently being indexed.</p>
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>The names of the fields that are currently being indexed.</p>
      */
-    inline void SetFieldNames(Aws::Vector<Aws::String>&& value) { m_fieldNames = value; }
+    inline void SetFieldNames(Aws::Vector<Aws::String>&& value) { m_fieldNames = std::move(value); }
 
     /**
      * <p>The names of the fields that are currently being indexed.</p>
@@ -71,7 +74,7 @@ namespace Model
     /**
      * <p>The names of the fields that are currently being indexed.</p>
      */
-    inline IndexDocumentsResult& WithFieldNames(Aws::Vector<Aws::String>&& value) { SetFieldNames(value); return *this;}
+    inline IndexDocumentsResult& WithFieldNames(Aws::Vector<Aws::String>&& value) { SetFieldNames(std::move(value)); return *this;}
 
     /**
      * <p>The names of the fields that are currently being indexed.</p>
@@ -81,12 +84,13 @@ namespace Model
     /**
      * <p>The names of the fields that are currently being indexed.</p>
      */
-    inline IndexDocumentsResult& AddFieldNames(Aws::String&& value) { m_fieldNames.push_back(value); return *this; }
+    inline IndexDocumentsResult& AddFieldNames(Aws::String&& value) { m_fieldNames.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The names of the fields that are currently being indexed.</p>
      */
     inline IndexDocumentsResult& AddFieldNames(const char* value) { m_fieldNames.push_back(value); return *this; }
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -95,16 +99,18 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline IndexDocumentsResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline IndexDocumentsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline IndexDocumentsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_fieldNames;
+
     ResponseMetadata m_responseMetadata;
   };
 

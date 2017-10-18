@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesisanalytics/KinesisAnalytics_EXPORTS.h>
 #include <aws/kinesisanalytics/model/RecordFormat.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/kinesisanalytics/model/RecordColumn.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     SourceSchema& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Specifies the format of the records on the streaming source.</p>
      */
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>Specifies the format of the records on the streaming source.</p>
      */
-    inline void SetRecordFormat(RecordFormat&& value) { m_recordFormatHasBeenSet = true; m_recordFormat = value; }
+    inline void SetRecordFormat(RecordFormat&& value) { m_recordFormatHasBeenSet = true; m_recordFormat = std::move(value); }
 
     /**
      * <p>Specifies the format of the records on the streaming source.</p>
@@ -71,7 +74,8 @@ namespace Model
     /**
      * <p>Specifies the format of the records on the streaming source.</p>
      */
-    inline SourceSchema& WithRecordFormat(RecordFormat&& value) { SetRecordFormat(value); return *this;}
+    inline SourceSchema& WithRecordFormat(RecordFormat&& value) { SetRecordFormat(std::move(value)); return *this;}
+
 
     /**
      * <p>Specifies the encoding of the records in the streaming source. For example,
@@ -89,7 +93,7 @@ namespace Model
      * <p>Specifies the encoding of the records in the streaming source. For example,
      * UTF-8.</p>
      */
-    inline void SetRecordEncoding(Aws::String&& value) { m_recordEncodingHasBeenSet = true; m_recordEncoding = value; }
+    inline void SetRecordEncoding(Aws::String&& value) { m_recordEncodingHasBeenSet = true; m_recordEncoding = std::move(value); }
 
     /**
      * <p>Specifies the encoding of the records in the streaming source. For example,
@@ -107,13 +111,14 @@ namespace Model
      * <p>Specifies the encoding of the records in the streaming source. For example,
      * UTF-8.</p>
      */
-    inline SourceSchema& WithRecordEncoding(Aws::String&& value) { SetRecordEncoding(value); return *this;}
+    inline SourceSchema& WithRecordEncoding(Aws::String&& value) { SetRecordEncoding(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the encoding of the records in the streaming source. For example,
      * UTF-8.</p>
      */
     inline SourceSchema& WithRecordEncoding(const char* value) { SetRecordEncoding(value); return *this;}
+
 
     /**
      * <p>A list of <code>RecordColumn</code> objects.</p>
@@ -128,7 +133,7 @@ namespace Model
     /**
      * <p>A list of <code>RecordColumn</code> objects.</p>
      */
-    inline void SetRecordColumns(Aws::Vector<RecordColumn>&& value) { m_recordColumnsHasBeenSet = true; m_recordColumns = value; }
+    inline void SetRecordColumns(Aws::Vector<RecordColumn>&& value) { m_recordColumnsHasBeenSet = true; m_recordColumns = std::move(value); }
 
     /**
      * <p>A list of <code>RecordColumn</code> objects.</p>
@@ -138,7 +143,7 @@ namespace Model
     /**
      * <p>A list of <code>RecordColumn</code> objects.</p>
      */
-    inline SourceSchema& WithRecordColumns(Aws::Vector<RecordColumn>&& value) { SetRecordColumns(value); return *this;}
+    inline SourceSchema& WithRecordColumns(Aws::Vector<RecordColumn>&& value) { SetRecordColumns(std::move(value)); return *this;}
 
     /**
      * <p>A list of <code>RecordColumn</code> objects.</p>
@@ -148,13 +153,16 @@ namespace Model
     /**
      * <p>A list of <code>RecordColumn</code> objects.</p>
      */
-    inline SourceSchema& AddRecordColumns(RecordColumn&& value) { m_recordColumnsHasBeenSet = true; m_recordColumns.push_back(value); return *this; }
+    inline SourceSchema& AddRecordColumns(RecordColumn&& value) { m_recordColumnsHasBeenSet = true; m_recordColumns.push_back(std::move(value)); return *this; }
 
   private:
+
     RecordFormat m_recordFormat;
     bool m_recordFormatHasBeenSet;
+
     Aws::String m_recordEncoding;
     bool m_recordEncodingHasBeenSet;
+
     Aws::Vector<RecordColumn> m_recordColumns;
     bool m_recordColumnsHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/sqs/SQS_EXPORTS.h>
 #include <aws/sqs/SQSErrors.h>
@@ -95,23 +96,23 @@ namespace Model
         class SendMessageBatchRequest;
         class SetQueueAttributesRequest;
 
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<SQSErrors>> AddPermissionOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<SQSErrors>> ChangeMessageVisibilityOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<SQSErrors>> AddPermissionOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<SQSErrors>> ChangeMessageVisibilityOutcome;
         typedef Aws::Utils::Outcome<ChangeMessageVisibilityBatchResult, Aws::Client::AWSError<SQSErrors>> ChangeMessageVisibilityBatchOutcome;
         typedef Aws::Utils::Outcome<CreateQueueResult, Aws::Client::AWSError<SQSErrors>> CreateQueueOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<SQSErrors>> DeleteMessageOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<SQSErrors>> DeleteMessageOutcome;
         typedef Aws::Utils::Outcome<DeleteMessageBatchResult, Aws::Client::AWSError<SQSErrors>> DeleteMessageBatchOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<SQSErrors>> DeleteQueueOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<SQSErrors>> DeleteQueueOutcome;
         typedef Aws::Utils::Outcome<GetQueueAttributesResult, Aws::Client::AWSError<SQSErrors>> GetQueueAttributesOutcome;
         typedef Aws::Utils::Outcome<GetQueueUrlResult, Aws::Client::AWSError<SQSErrors>> GetQueueUrlOutcome;
         typedef Aws::Utils::Outcome<ListDeadLetterSourceQueuesResult, Aws::Client::AWSError<SQSErrors>> ListDeadLetterSourceQueuesOutcome;
         typedef Aws::Utils::Outcome<ListQueuesResult, Aws::Client::AWSError<SQSErrors>> ListQueuesOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<SQSErrors>> PurgeQueueOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<SQSErrors>> PurgeQueueOutcome;
         typedef Aws::Utils::Outcome<ReceiveMessageResult, Aws::Client::AWSError<SQSErrors>> ReceiveMessageOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<SQSErrors>> RemovePermissionOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<SQSErrors>> RemovePermissionOutcome;
         typedef Aws::Utils::Outcome<SendMessageResult, Aws::Client::AWSError<SQSErrors>> SendMessageOutcome;
         typedef Aws::Utils::Outcome<SendMessageBatchResult, Aws::Client::AWSError<SQSErrors>> SendMessageBatchOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<SQSErrors>> SetQueueAttributesOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<SQSErrors>> SetQueueAttributesOutcome;
 
         typedef std::future<AddPermissionOutcome> AddPermissionOutcomeCallable;
         typedef std::future<ChangeMessageVisibilityOutcome> ChangeMessageVisibilityOutcomeCallable;
@@ -161,20 +162,21 @@ namespace Model
    * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues.html">Standard
    * queues</a> are available in all regions. <a
    * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html">FIFO
-   * queues</a> are available in US West (Oregon) and US East (Ohio).</p> </note>
-   * <p>You can use <a href="http://aws.amazon.com/tools/#sdk">AWS SDKs</a> to access
-   * Amazon SQS using your favorite programming language. The SDKs perform tasks such
-   * as the following automatically:</p> <ul> <li> <p>Cryptographically sign your
-   * service requests</p> </li> <li> <p>Retry requests</p> </li> <li> <p>Handle error
-   * responses</p> </li> </ul> <p> <b>Additional Information</b> </p> <ul> <li> <p>
-   * <a href="http://aws.amazon.com/sqs/">Amazon SQS Product Page</a> </p> </li> <li>
+   * queues</a> are available in the US East (N. Virginia), US East (Ohio), US West
+   * (Oregon), and EU (Ireland) regions.</p> </note> <p>You can use <a
+   * href="http://aws.amazon.com/tools/#sdk">AWS SDKs</a> to access Amazon SQS using
+   * your favorite programming language. The SDKs perform tasks such as the following
+   * automatically:</p> <ul> <li> <p>Cryptographically sign your service requests</p>
+   * </li> <li> <p>Retry requests</p> </li> <li> <p>Handle error responses</p> </li>
+   * </ul> <p> <b>Additional Information</b> </p> <ul> <li> <p> <a
+   * href="http://aws.amazon.com/sqs/">Amazon SQS Product Page</a> </p> </li> <li>
    * <p> <i>Amazon SQS Developer Guide</i> </p> <ul> <li> <p> <a
    * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/MakingRequestsArticle.html">Making
    * API Requests</a> </p> </li> <li> <p> <a
    * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html">Using
    * Amazon SQS Message Attributes</a> </p> </li> <li> <p> <a
    * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html">Using
-   * Amazon SQS Dead Letter Queues</a> </p> </li> </ul> </li> <li> <p> <i>Amazon Web
+   * Amazon SQS Dead-Letter Queues</a> </p> </li> </ul> </li> <li> <p> <i>Amazon Web
    * Services General Reference</i> </p> <ul> <li> <p> <a
    * href="http://docs.aws.amazon.com/general/latest/gr/rande.html#sqs_region">Regions
    * and Endpoints</a> </p> </li> </ul> </li> </ul>
@@ -188,27 +190,30 @@ namespace Model
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        SQSClient(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        SQSClient(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        SQSClient(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        SQSClient(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        SQSClient(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        SQSClient(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
         virtual ~SQSClient();
+
+        inline virtual const char* GetServiceClientName() const override { return "sqs"; }
+
 
        /**
         * Converts any request object to a presigned URL with the GET method, using region for the signer and a timeout of 15 minutes.
         */
-        Aws::String ConvertRequestToPresignedUrl(const AmazonSerializableWebServiceRequest& requestToConvert, const char* region) const;
+        Aws::String ConvertRequestToPresignedUrl(const Aws::AmazonSerializableWebServiceRequest& requestToConvert, const char* region) const;
 
 
         /**
@@ -294,11 +299,11 @@ namespace Model
          * timeout of 12 hours. For more information, see <a
          * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html">Visibility
          * Timeout</a> in the <i>Amazon SQS Developer Guide</i>.</p> <p>For example, you
-         * have a message and with the default visibility timeout of 5 minutes. After 3
-         * minutes, you call <code>ChangeMessageVisiblity</code> with a timeout of 10
-         * minutes. At that time, the timeout for the message is extended by 10 minutes
-         * beyond the time of the <code>ChangeMessageVisibility</code> action. This results
-         * in a total visibility timeout of 13 minutes. You can continue to call the
+         * have a message with a visibility timeout of 5 minutes. After 3 minutes, you call
+         * <code>ChangeMessageVisiblity</code> with a timeout of 10 minutes. At that time,
+         * the timeout for the message is extended by 10 minutes beyond the time of the
+         * <code>ChangeMessageVisibility</code> action. This results in a total visibility
+         * timeout of 13 minutes. You can continue to call the
          * <code>ChangeMessageVisibility</code> to extend the visibility timeout to a
          * maximum of 12 hours. If you try to extend the visibility timeout beyond 12
          * hours, your request is rejected.</p> <p>A message is considered to be <i>in
@@ -331,11 +336,11 @@ namespace Model
          * timeout of 12 hours. For more information, see <a
          * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html">Visibility
          * Timeout</a> in the <i>Amazon SQS Developer Guide</i>.</p> <p>For example, you
-         * have a message and with the default visibility timeout of 5 minutes. After 3
-         * minutes, you call <code>ChangeMessageVisiblity</code> with a timeout of 10
-         * minutes. At that time, the timeout for the message is extended by 10 minutes
-         * beyond the time of the <code>ChangeMessageVisibility</code> action. This results
-         * in a total visibility timeout of 13 minutes. You can continue to call the
+         * have a message with a visibility timeout of 5 minutes. After 3 minutes, you call
+         * <code>ChangeMessageVisiblity</code> with a timeout of 10 minutes. At that time,
+         * the timeout for the message is extended by 10 minutes beyond the time of the
+         * <code>ChangeMessageVisibility</code> action. This results in a total visibility
+         * timeout of 13 minutes. You can continue to call the
          * <code>ChangeMessageVisibility</code> to extend the visibility timeout to a
          * maximum of 12 hours. If you try to extend the visibility timeout beyond 12
          * hours, your request is rejected.</p> <p>A message is considered to be <i>in
@@ -370,11 +375,11 @@ namespace Model
          * timeout of 12 hours. For more information, see <a
          * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html">Visibility
          * Timeout</a> in the <i>Amazon SQS Developer Guide</i>.</p> <p>For example, you
-         * have a message and with the default visibility timeout of 5 minutes. After 3
-         * minutes, you call <code>ChangeMessageVisiblity</code> with a timeout of 10
-         * minutes. At that time, the timeout for the message is extended by 10 minutes
-         * beyond the time of the <code>ChangeMessageVisibility</code> action. This results
-         * in a total visibility timeout of 13 minutes. You can continue to call the
+         * have a message with a visibility timeout of 5 minutes. After 3 minutes, you call
+         * <code>ChangeMessageVisiblity</code> with a timeout of 10 minutes. At that time,
+         * the timeout for the message is extended by 10 minutes beyond the time of the
+         * <code>ChangeMessageVisibility</code> action. This results in a total visibility
+         * timeout of 13 minutes. You can continue to call the
          * <code>ChangeMessageVisibility</code> to extend the visibility timeout to a
          * maximum of 12 hours. If you try to extend the visibility timeout beyond 12
          * hours, your request is rejected.</p> <p>A message is considered to be <i>in
@@ -404,7 +409,7 @@ namespace Model
 
         /**
          * <p>Changes the visibility timeout of multiple messages. This is a batch version
-         * of <code> <a>ChangeMessageVisibility</a> </code>. The result of the action on
+         * of <code> <a>ChangeMessageVisibility</a>.</code> The result of the action on
          * each message is reported individually in the response. You can send up to 10
          * <code> <a>ChangeMessageVisibility</a> </code> requests with each
          * <code>ChangeMessageVisibilityBatch</code> action.</p> <important> <p>Because the
@@ -423,7 +428,7 @@ namespace Model
 
         /**
          * <p>Changes the visibility timeout of multiple messages. This is a batch version
-         * of <code> <a>ChangeMessageVisibility</a> </code>. The result of the action on
+         * of <code> <a>ChangeMessageVisibility</a>.</code> The result of the action on
          * each message is reported individually in the response. You can send up to 10
          * <code> <a>ChangeMessageVisibility</a> </code> requests with each
          * <code>ChangeMessageVisibilityBatch</code> action.</p> <important> <p>Because the
@@ -444,7 +449,7 @@ namespace Model
 
         /**
          * <p>Changes the visibility timeout of multiple messages. This is a batch version
-         * of <code> <a>ChangeMessageVisibility</a> </code>. The result of the action on
+         * of <code> <a>ChangeMessageVisibility</a>.</code> The result of the action on
          * each message is reported individually in the response. You can send up to 10
          * <code> <a>ChangeMessageVisibility</a> </code> requests with each
          * <code>ChangeMessageVisibilityBatch</code> action.</p> <important> <p>Because the
@@ -464,14 +469,13 @@ namespace Model
         virtual void ChangeMessageVisibilityBatchAsync(const Model::ChangeMessageVisibilityBatchRequest& request, const ChangeMessageVisibilityBatchResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Creates a new standard or FIFO queue or returns the URL of an existing queue.
-         * You can pass one or more attributes in the request. Keep the following caveats
-         * in mind:</p> <ul> <li> <p>If you don't specify the <code>FifoQueue</code>
-         * attribute, Amazon SQS creates a standard queue.</p> <note> <p> You can't change
-         * the queue type after you create it and you can't convert an existing standard
-         * queue into a FIFO queue. You must either create a new FIFO queue for your
-         * application or delete your existing standard queue and recreate it as a FIFO
-         * queue. For more information, see <a
+         * <p>Creates a new standard or FIFO queue. You can pass one or more attributes in
+         * the request. Keep the following caveats in mind:</p> <ul> <li> <p>If you don't
+         * specify the <code>FifoQueue</code> attribute, Amazon SQS creates a standard
+         * queue.</p> <note> <p> You can't change the queue type after you create it and
+         * you can't convert an existing standard queue into a FIFO queue. You must either
+         * create a new FIFO queue for your application or delete your existing standard
+         * queue and recreate it as a FIFO queue. For more information, see <a
          * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-moving">
          * Moving From a Standard Queue to a FIFO Queue</a> in the <i>Amazon SQS Developer
          * Guide</i>. </p> </note> </li> <li> <p>If you don't provide a value for an
@@ -499,14 +503,13 @@ namespace Model
         virtual Model::CreateQueueOutcome CreateQueue(const Model::CreateQueueRequest& request) const;
 
         /**
-         * <p>Creates a new standard or FIFO queue or returns the URL of an existing queue.
-         * You can pass one or more attributes in the request. Keep the following caveats
-         * in mind:</p> <ul> <li> <p>If you don't specify the <code>FifoQueue</code>
-         * attribute, Amazon SQS creates a standard queue.</p> <note> <p> You can't change
-         * the queue type after you create it and you can't convert an existing standard
-         * queue into a FIFO queue. You must either create a new FIFO queue for your
-         * application or delete your existing standard queue and recreate it as a FIFO
-         * queue. For more information, see <a
+         * <p>Creates a new standard or FIFO queue. You can pass one or more attributes in
+         * the request. Keep the following caveats in mind:</p> <ul> <li> <p>If you don't
+         * specify the <code>FifoQueue</code> attribute, Amazon SQS creates a standard
+         * queue.</p> <note> <p> You can't change the queue type after you create it and
+         * you can't convert an existing standard queue into a FIFO queue. You must either
+         * create a new FIFO queue for your application or delete your existing standard
+         * queue and recreate it as a FIFO queue. For more information, see <a
          * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-moving">
          * Moving From a Standard Queue to a FIFO Queue</a> in the <i>Amazon SQS Developer
          * Guide</i>. </p> </note> </li> <li> <p>If you don't provide a value for an
@@ -536,14 +539,13 @@ namespace Model
         virtual Model::CreateQueueOutcomeCallable CreateQueueCallable(const Model::CreateQueueRequest& request) const;
 
         /**
-         * <p>Creates a new standard or FIFO queue or returns the URL of an existing queue.
-         * You can pass one or more attributes in the request. Keep the following caveats
-         * in mind:</p> <ul> <li> <p>If you don't specify the <code>FifoQueue</code>
-         * attribute, Amazon SQS creates a standard queue.</p> <note> <p> You can't change
-         * the queue type after you create it and you can't convert an existing standard
-         * queue into a FIFO queue. You must either create a new FIFO queue for your
-         * application or delete your existing standard queue and recreate it as a FIFO
-         * queue. For more information, see <a
+         * <p>Creates a new standard or FIFO queue. You can pass one or more attributes in
+         * the request. Keep the following caveats in mind:</p> <ul> <li> <p>If you don't
+         * specify the <code>FifoQueue</code> attribute, Amazon SQS creates a standard
+         * queue.</p> <note> <p> You can't change the queue type after you create it and
+         * you can't convert an existing standard queue into a FIFO queue. You must either
+         * create a new FIFO queue for your application or delete your existing standard
+         * queue and recreate it as a FIFO queue. For more information, see <a
          * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-moving">
          * Moving From a Standard Queue to a FIFO Queue</a> in the <i>Amazon SQS Developer
          * Guide</i>. </p> </note> </li> <li> <p>If you don't provide a value for an
@@ -585,8 +587,8 @@ namespace Model
          * don't provide the most recently received receipt handle for the message when you
          * use the <code>DeleteMessage</code> action, the request succeeds, but the message
          * might not be deleted.</p> <p>For standard queues, it is possible to receive a
-         * message even after you deleting it. This might happen on rare occasions if one
-         * of the servers storing a copy of the message is unavailable when you send the
+         * message even after you delete it. This might happen on rare occasions if one of
+         * the servers storing a copy of the message is unavailable when you send the
          * request to delete the message. The copy remains on the server and might be
          * returned to you on a subsequent receive request. You should ensure that your
          * application is idempotent, so that receiving a message more than once does not
@@ -609,8 +611,8 @@ namespace Model
          * don't provide the most recently received receipt handle for the message when you
          * use the <code>DeleteMessage</code> action, the request succeeds, but the message
          * might not be deleted.</p> <p>For standard queues, it is possible to receive a
-         * message even after you deleting it. This might happen on rare occasions if one
-         * of the servers storing a copy of the message is unavailable when you send the
+         * message even after you delete it. This might happen on rare occasions if one of
+         * the servers storing a copy of the message is unavailable when you send the
          * request to delete the message. The copy remains on the server and might be
          * returned to you on a subsequent receive request. You should ensure that your
          * application is idempotent, so that receiving a message more than once does not
@@ -635,8 +637,8 @@ namespace Model
          * don't provide the most recently received receipt handle for the message when you
          * use the <code>DeleteMessage</code> action, the request succeeds, but the message
          * might not be deleted.</p> <p>For standard queues, it is possible to receive a
-         * message even after you deleting it. This might happen on rare occasions if one
-         * of the servers storing a copy of the message is unavailable when you send the
+         * message even after you delete it. This might happen on rare occasions if one of
+         * the servers storing a copy of the message is unavailable when you send the
          * request to delete the message. The copy remains on the server and might be
          * returned to you on a subsequent receive request. You should ensure that your
          * application is idempotent, so that receiving a message more than once does not
@@ -650,7 +652,7 @@ namespace Model
 
         /**
          * <p>Deletes up to ten messages from the specified queue. This is a batch version
-         * of <code> <a>DeleteMessage</a> </code>. The result of the action on each message
+         * of <code> <a>DeleteMessage</a>.</code> The result of the action on each message
          * is reported individually in the response.</p> <important> <p>Because the batch
          * request can result in a combination of successful and unsuccessful actions, you
          * should check for batch errors even when the call returns an HTTP status code of
@@ -667,7 +669,7 @@ namespace Model
 
         /**
          * <p>Deletes up to ten messages from the specified queue. This is a batch version
-         * of <code> <a>DeleteMessage</a> </code>. The result of the action on each message
+         * of <code> <a>DeleteMessage</a>.</code> The result of the action on each message
          * is reported individually in the response.</p> <important> <p>Because the batch
          * request can result in a combination of successful and unsuccessful actions, you
          * should check for batch errors even when the call returns an HTTP status code of
@@ -686,7 +688,7 @@ namespace Model
 
         /**
          * <p>Deletes up to ten messages from the specified queue. This is a batch version
-         * of <code> <a>DeleteMessage</a> </code>. The result of the action on each message
+         * of <code> <a>DeleteMessage</a>.</code> The result of the action on each message
          * is reported individually in the response.</p> <important> <p>Because the batch
          * request can result in a combination of successful and unsuccessful actions, you
          * should check for batch errors even when the call returns an HTTP status code of
@@ -704,76 +706,82 @@ namespace Model
         virtual void DeleteMessageBatchAsync(const Model::DeleteMessageBatchRequest& request, const DeleteMessageBatchResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Deletes the queue specified by the <code>QueueUrl</code>, even if the queue
-         * is empty. If the specified queue doesn't exist, Amazon SQS returns a successful
-         * response.</p> <important> <p>Be careful with the <code>DeleteQueue</code>
-         * action: When you delete a queue, any messages in the queue are no longer
-         * available. </p> </important> <p>When you delete a queue, the deletion process
-         * takes up to 60 seconds. Requests you send involving that queue during the 60
-         * seconds might succeed. For example, a <code> <a>SendMessage</a> </code> request
-         * might succeed, but after 60 seconds the queue and the message you sent no longer
-         * exist.</p> <p>When you delete a queue, you must wait at least 60 seconds before
-         * creating a queue with the same name. </p><p><h3>See Also:</h3>   <a
-         * href="http://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteQueue">AWS API
-         * Reference</a></p>
+         * <p>Deletes the queue specified by the <code>QueueUrl</code>, regardless of the
+         * queue's contents. If the specified queue doesn't exist, Amazon SQS returns a
+         * successful response.</p> <important> <p>Be careful with the
+         * <code>DeleteQueue</code> action: When you delete a queue, any messages in the
+         * queue are no longer available. </p> </important> <p>When you delete a queue, the
+         * deletion process takes up to 60 seconds. Requests you send involving that queue
+         * during the 60 seconds might succeed. For example, a <code> <a>SendMessage</a>
+         * </code> request might succeed, but after 60 seconds the queue and the message
+         * you sent no longer exist.</p> <p>When you delete a queue, you must wait at least
+         * 60 seconds before creating a queue with the same name. </p><p><h3>See Also:</h3>
+         * <a href="http://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteQueue">AWS
+         * API Reference</a></p>
          */
         virtual Model::DeleteQueueOutcome DeleteQueue(const Model::DeleteQueueRequest& request) const;
 
         /**
-         * <p>Deletes the queue specified by the <code>QueueUrl</code>, even if the queue
-         * is empty. If the specified queue doesn't exist, Amazon SQS returns a successful
-         * response.</p> <important> <p>Be careful with the <code>DeleteQueue</code>
-         * action: When you delete a queue, any messages in the queue are no longer
-         * available. </p> </important> <p>When you delete a queue, the deletion process
-         * takes up to 60 seconds. Requests you send involving that queue during the 60
-         * seconds might succeed. For example, a <code> <a>SendMessage</a> </code> request
-         * might succeed, but after 60 seconds the queue and the message you sent no longer
-         * exist.</p> <p>When you delete a queue, you must wait at least 60 seconds before
-         * creating a queue with the same name. </p><p><h3>See Also:</h3>   <a
-         * href="http://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteQueue">AWS API
-         * Reference</a></p>
+         * <p>Deletes the queue specified by the <code>QueueUrl</code>, regardless of the
+         * queue's contents. If the specified queue doesn't exist, Amazon SQS returns a
+         * successful response.</p> <important> <p>Be careful with the
+         * <code>DeleteQueue</code> action: When you delete a queue, any messages in the
+         * queue are no longer available. </p> </important> <p>When you delete a queue, the
+         * deletion process takes up to 60 seconds. Requests you send involving that queue
+         * during the 60 seconds might succeed. For example, a <code> <a>SendMessage</a>
+         * </code> request might succeed, but after 60 seconds the queue and the message
+         * you sent no longer exist.</p> <p>When you delete a queue, you must wait at least
+         * 60 seconds before creating a queue with the same name. </p><p><h3>See Also:</h3>
+         * <a href="http://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteQueue">AWS
+         * API Reference</a></p>
          *
          * returns a future to the operation so that it can be executed in parallel to other requests.
          */
         virtual Model::DeleteQueueOutcomeCallable DeleteQueueCallable(const Model::DeleteQueueRequest& request) const;
 
         /**
-         * <p>Deletes the queue specified by the <code>QueueUrl</code>, even if the queue
-         * is empty. If the specified queue doesn't exist, Amazon SQS returns a successful
-         * response.</p> <important> <p>Be careful with the <code>DeleteQueue</code>
-         * action: When you delete a queue, any messages in the queue are no longer
-         * available. </p> </important> <p>When you delete a queue, the deletion process
-         * takes up to 60 seconds. Requests you send involving that queue during the 60
-         * seconds might succeed. For example, a <code> <a>SendMessage</a> </code> request
-         * might succeed, but after 60 seconds the queue and the message you sent no longer
-         * exist.</p> <p>When you delete a queue, you must wait at least 60 seconds before
-         * creating a queue with the same name. </p><p><h3>See Also:</h3>   <a
-         * href="http://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteQueue">AWS API
-         * Reference</a></p>
+         * <p>Deletes the queue specified by the <code>QueueUrl</code>, regardless of the
+         * queue's contents. If the specified queue doesn't exist, Amazon SQS returns a
+         * successful response.</p> <important> <p>Be careful with the
+         * <code>DeleteQueue</code> action: When you delete a queue, any messages in the
+         * queue are no longer available. </p> </important> <p>When you delete a queue, the
+         * deletion process takes up to 60 seconds. Requests you send involving that queue
+         * during the 60 seconds might succeed. For example, a <code> <a>SendMessage</a>
+         * </code> request might succeed, but after 60 seconds the queue and the message
+         * you sent no longer exist.</p> <p>When you delete a queue, you must wait at least
+         * 60 seconds before creating a queue with the same name. </p><p><h3>See Also:</h3>
+         * <a href="http://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteQueue">AWS
+         * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void DeleteQueueAsync(const Model::DeleteQueueRequest& request, const DeleteQueueResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Gets attributes for the specified queue.</p> <note> <p>Some actions take
-         * lists of parameters. These lists are specified using the <code>param.n</code>
-         * notation. Values of <code>n</code> are integers starting from 1. For example, a
-         * parameter list with two elements looks like this:</p> <p>
-         * <code>&amp;Attribute.1=this</code> </p> <p> <code>&amp;Attribute.2=that</code>
-         * </p> </note><p><h3>See Also:</h3>   <a
+         * <p>Gets attributes for the specified queue.</p> <note> <p>To determine whether a
+         * queue is <a
+         * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html">FIFO</a>,
+         * you can check whether <code>QueueName</code> ends with the <code>.fifo</code>
+         * suffix.</p> </note> <note> <p>Some actions take lists of parameters. These lists
+         * are specified using the <code>param.n</code> notation. Values of <code>n</code>
+         * are integers starting from 1. For example, a parameter list with two elements
+         * looks like this:</p> <p> <code>&amp;Attribute.1=this</code> </p> <p>
+         * <code>&amp;Attribute.2=that</code> </p> </note><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/GetQueueAttributes">AWS
          * API Reference</a></p>
          */
         virtual Model::GetQueueAttributesOutcome GetQueueAttributes(const Model::GetQueueAttributesRequest& request) const;
 
         /**
-         * <p>Gets attributes for the specified queue.</p> <note> <p>Some actions take
-         * lists of parameters. These lists are specified using the <code>param.n</code>
-         * notation. Values of <code>n</code> are integers starting from 1. For example, a
-         * parameter list with two elements looks like this:</p> <p>
-         * <code>&amp;Attribute.1=this</code> </p> <p> <code>&amp;Attribute.2=that</code>
-         * </p> </note><p><h3>See Also:</h3>   <a
+         * <p>Gets attributes for the specified queue.</p> <note> <p>To determine whether a
+         * queue is <a
+         * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html">FIFO</a>,
+         * you can check whether <code>QueueName</code> ends with the <code>.fifo</code>
+         * suffix.</p> </note> <note> <p>Some actions take lists of parameters. These lists
+         * are specified using the <code>param.n</code> notation. Values of <code>n</code>
+         * are integers starting from 1. For example, a parameter list with two elements
+         * looks like this:</p> <p> <code>&amp;Attribute.1=this</code> </p> <p>
+         * <code>&amp;Attribute.2=that</code> </p> </note><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/GetQueueAttributes">AWS
          * API Reference</a></p>
          *
@@ -782,12 +790,15 @@ namespace Model
         virtual Model::GetQueueAttributesOutcomeCallable GetQueueAttributesCallable(const Model::GetQueueAttributesRequest& request) const;
 
         /**
-         * <p>Gets attributes for the specified queue.</p> <note> <p>Some actions take
-         * lists of parameters. These lists are specified using the <code>param.n</code>
-         * notation. Values of <code>n</code> are integers starting from 1. For example, a
-         * parameter list with two elements looks like this:</p> <p>
-         * <code>&amp;Attribute.1=this</code> </p> <p> <code>&amp;Attribute.2=that</code>
-         * </p> </note><p><h3>See Also:</h3>   <a
+         * <p>Gets attributes for the specified queue.</p> <note> <p>To determine whether a
+         * queue is <a
+         * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html">FIFO</a>,
+         * you can check whether <code>QueueName</code> ends with the <code>.fifo</code>
+         * suffix.</p> </note> <note> <p>Some actions take lists of parameters. These lists
+         * are specified using the <code>param.n</code> notation. Values of <code>n</code>
+         * are integers starting from 1. For example, a parameter list with two elements
+         * looks like this:</p> <p> <code>&amp;Attribute.1=this</code> </p> <p>
+         * <code>&amp;Attribute.2=that</code> </p> </note><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/GetQueueAttributes">AWS
          * API Reference</a></p>
          *
@@ -843,10 +854,10 @@ namespace Model
 
         /**
          * <p>Returns a list of your queues that have the <code>RedrivePolicy</code> queue
-         * attribute configured with a dead letter queue.</p> <p>For more information about
-         * using dead letter queues, see <a
+         * attribute configured with a dead-letter queue.</p> <p>For more information about
+         * using dead-letter queues, see <a
          * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html">Using
-         * Amazon SQS Dead Letter Queues</a> in the <i>Amazon SQS Developer
+         * Amazon SQS Dead-Letter Queues</a> in the <i>Amazon SQS Developer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ListDeadLetterSourceQueues">AWS
          * API Reference</a></p>
@@ -855,10 +866,10 @@ namespace Model
 
         /**
          * <p>Returns a list of your queues that have the <code>RedrivePolicy</code> queue
-         * attribute configured with a dead letter queue.</p> <p>For more information about
-         * using dead letter queues, see <a
+         * attribute configured with a dead-letter queue.</p> <p>For more information about
+         * using dead-letter queues, see <a
          * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html">Using
-         * Amazon SQS Dead Letter Queues</a> in the <i>Amazon SQS Developer
+         * Amazon SQS Dead-Letter Queues</a> in the <i>Amazon SQS Developer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ListDeadLetterSourceQueues">AWS
          * API Reference</a></p>
@@ -869,10 +880,10 @@ namespace Model
 
         /**
          * <p>Returns a list of your queues that have the <code>RedrivePolicy</code> queue
-         * attribute configured with a dead letter queue.</p> <p>For more information about
-         * using dead letter queues, see <a
+         * attribute configured with a dead-letter queue.</p> <p>For more information about
+         * using dead-letter queues, see <a
          * href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html">Using
-         * Amazon SQS Dead Letter Queues</a> in the <i>Amazon SQS Developer
+         * Amazon SQS Dead-Letter Queues</a> in the <i>Amazon SQS Developer
          * Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ListDeadLetterSourceQueues">AWS
          * API Reference</a></p>
@@ -979,7 +990,7 @@ namespace Model
          * <code>ReceiveMessage</code> response. If this happens, repeat the request. </p>
          * <p>For each message returned, the response includes the following:</p> <ul> <li>
          * <p>The message body.</p> </li> <li> <p>An MD5 digest of the message body. For
-         * information on MD5, see <a
+         * information about MD5, see <a
          * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.</p> </li> <li> <p>The
          * <code>MessageId</code> you received when you sent the message to the queue.</p>
          * </li> <li> <p>The receipt handle.</p> </li> <li> <p>The message attributes.</p>
@@ -996,7 +1007,7 @@ namespace Model
          * Timeout</a> in the <i>Amazon SQS Developer Guide</i>.</p> <p>A message that
          * isn't deleted or a message whose visibility isn't extended before the visibility
          * timeout expires counts as a failed receive. Depending on the configuration of
-         * the queue, the message might be sent to the dead letter queue.</p> <note> <p>In
+         * the queue, the message might be sent to the dead-letter queue.</p> <note> <p>In
          * the future, new attributes might be added. If you write code that calls this
          * action, we recommend that you structure your code so that it can handle new
          * attributes gracefully.</p> </note><p><h3>See Also:</h3>   <a
@@ -1020,7 +1031,7 @@ namespace Model
          * <code>ReceiveMessage</code> response. If this happens, repeat the request. </p>
          * <p>For each message returned, the response includes the following:</p> <ul> <li>
          * <p>The message body.</p> </li> <li> <p>An MD5 digest of the message body. For
-         * information on MD5, see <a
+         * information about MD5, see <a
          * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.</p> </li> <li> <p>The
          * <code>MessageId</code> you received when you sent the message to the queue.</p>
          * </li> <li> <p>The receipt handle.</p> </li> <li> <p>The message attributes.</p>
@@ -1037,7 +1048,7 @@ namespace Model
          * Timeout</a> in the <i>Amazon SQS Developer Guide</i>.</p> <p>A message that
          * isn't deleted or a message whose visibility isn't extended before the visibility
          * timeout expires counts as a failed receive. Depending on the configuration of
-         * the queue, the message might be sent to the dead letter queue.</p> <note> <p>In
+         * the queue, the message might be sent to the dead-letter queue.</p> <note> <p>In
          * the future, new attributes might be added. If you write code that calls this
          * action, we recommend that you structure your code so that it can handle new
          * attributes gracefully.</p> </note><p><h3>See Also:</h3>   <a
@@ -1063,7 +1074,7 @@ namespace Model
          * <code>ReceiveMessage</code> response. If this happens, repeat the request. </p>
          * <p>For each message returned, the response includes the following:</p> <ul> <li>
          * <p>The message body.</p> </li> <li> <p>An MD5 digest of the message body. For
-         * information on MD5, see <a
+         * information about MD5, see <a
          * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.</p> </li> <li> <p>The
          * <code>MessageId</code> you received when you sent the message to the queue.</p>
          * </li> <li> <p>The receipt handle.</p> </li> <li> <p>The message attributes.</p>
@@ -1080,7 +1091,7 @@ namespace Model
          * Timeout</a> in the <i>Amazon SQS Developer Guide</i>.</p> <p>A message that
          * isn't deleted or a message whose visibility isn't extended before the visibility
          * timeout expires counts as a failed receive. Depending on the configuration of
-         * the queue, the message might be sent to the dead letter queue.</p> <note> <p>In
+         * the queue, the message might be sent to the dead-letter queue.</p> <note> <p>In
          * the future, new attributes might be added. If you write code that calls this
          * action, we recommend that you structure your code so that it can handle new
          * attributes gracefully.</p> </note><p><h3>See Also:</h3>   <a
@@ -1123,32 +1134,28 @@ namespace Model
         virtual void RemovePermissionAsync(const Model::RemovePermissionRequest& request, const RemovePermissionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Delivers a message to the specified queue.</p> <important> <p>The following
-         * list shows the characters (in Unicode) that are allowed in your message,
-         * according to the W3C XML specification:</p> <ul> <li> <p> <code>#x9</code> </p>
-         * </li> <li> <p> <code>#xA</code> </p> </li> <li> <p> <code>#xD</code> </p> </li>
-         * <li> <p> <code>#x20</code> to <code>#xD7FF</code> </p> </li> <li> <p>
-         * <code>#xE000</code> to <code>#xFFFD</code> </p> </li> <li> <p>
-         * <code>#x10000</code> to <code>#x10FFFF</code> </p> </li> </ul> <p>For more
-         * information, see <a href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>. If
-         * you send any characters that aren't included in this list, your request is
-         * rejected.</p> </important><p><h3>See Also:</h3>   <a
+         * <p>Delivers a message to the specified queue.</p> <important> <p>A message can
+         * include only XML, JSON, and unformatted text. The following Unicode characters
+         * are allowed:</p> <p> <code>#x9</code> | <code>#xA</code> | <code>#xD</code> |
+         * <code>#x20</code> to <code>#xD7FF</code> | <code>#xE000</code> to
+         * <code>#xFFFD</code> | <code>#x10000</code> to <code>#x10FFFF</code> </p> <p>Any
+         * characters not included in this list will be rejected. For more information, see
+         * the <a href="http://www.w3.org/TR/REC-xml/#charsets">W3C specification for
+         * characters</a>.</p> </important><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SendMessage">AWS API
          * Reference</a></p>
          */
         virtual Model::SendMessageOutcome SendMessage(const Model::SendMessageRequest& request) const;
 
         /**
-         * <p>Delivers a message to the specified queue.</p> <important> <p>The following
-         * list shows the characters (in Unicode) that are allowed in your message,
-         * according to the W3C XML specification:</p> <ul> <li> <p> <code>#x9</code> </p>
-         * </li> <li> <p> <code>#xA</code> </p> </li> <li> <p> <code>#xD</code> </p> </li>
-         * <li> <p> <code>#x20</code> to <code>#xD7FF</code> </p> </li> <li> <p>
-         * <code>#xE000</code> to <code>#xFFFD</code> </p> </li> <li> <p>
-         * <code>#x10000</code> to <code>#x10FFFF</code> </p> </li> </ul> <p>For more
-         * information, see <a href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>. If
-         * you send any characters that aren't included in this list, your request is
-         * rejected.</p> </important><p><h3>See Also:</h3>   <a
+         * <p>Delivers a message to the specified queue.</p> <important> <p>A message can
+         * include only XML, JSON, and unformatted text. The following Unicode characters
+         * are allowed:</p> <p> <code>#x9</code> | <code>#xA</code> | <code>#xD</code> |
+         * <code>#x20</code> to <code>#xD7FF</code> | <code>#xE000</code> to
+         * <code>#xFFFD</code> | <code>#x10000</code> to <code>#x10FFFF</code> </p> <p>Any
+         * characters not included in this list will be rejected. For more information, see
+         * the <a href="http://www.w3.org/TR/REC-xml/#charsets">W3C specification for
+         * characters</a>.</p> </important><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SendMessage">AWS API
          * Reference</a></p>
          *
@@ -1157,16 +1164,14 @@ namespace Model
         virtual Model::SendMessageOutcomeCallable SendMessageCallable(const Model::SendMessageRequest& request) const;
 
         /**
-         * <p>Delivers a message to the specified queue.</p> <important> <p>The following
-         * list shows the characters (in Unicode) that are allowed in your message,
-         * according to the W3C XML specification:</p> <ul> <li> <p> <code>#x9</code> </p>
-         * </li> <li> <p> <code>#xA</code> </p> </li> <li> <p> <code>#xD</code> </p> </li>
-         * <li> <p> <code>#x20</code> to <code>#xD7FF</code> </p> </li> <li> <p>
-         * <code>#xE000</code> to <code>#xFFFD</code> </p> </li> <li> <p>
-         * <code>#x10000</code> to <code>#x10FFFF</code> </p> </li> </ul> <p>For more
-         * information, see <a href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>. If
-         * you send any characters that aren't included in this list, your request is
-         * rejected.</p> </important><p><h3>See Also:</h3>   <a
+         * <p>Delivers a message to the specified queue.</p> <important> <p>A message can
+         * include only XML, JSON, and unformatted text. The following Unicode characters
+         * are allowed:</p> <p> <code>#x9</code> | <code>#xA</code> | <code>#xD</code> |
+         * <code>#x20</code> to <code>#xD7FF</code> | <code>#xE000</code> to
+         * <code>#xFFFD</code> | <code>#x10000</code> to <code>#x10FFFF</code> </p> <p>Any
+         * characters not included in this list will be rejected. For more information, see
+         * the <a href="http://www.w3.org/TR/REC-xml/#charsets">W3C specification for
+         * characters</a>.</p> </important><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SendMessage">AWS API
          * Reference</a></p>
          *
@@ -1176,29 +1181,28 @@ namespace Model
 
         /**
          * <p>Delivers up to ten messages to the specified queue. This is a batch version
-         * of <code> <a>SendMessage</a> </code>. For a FIFO queue, multiple messages within
+         * of <code> <a>SendMessage</a>.</code> For a FIFO queue, multiple messages within
          * a single batch are enqueued in the order they are sent.</p> <p>The result of
          * sending each message is reported individually in the response. Because the batch
          * request can result in a combination of successful and unsuccessful actions, you
          * should check for batch errors even when the call returns an HTTP status code of
          * <code>200</code>.</p> <p>The maximum allowed individual message size and the
          * maximum total payload size (the sum of the individual lengths of all of the
-         * batched messages) are both 256 KB (262,144 bytes).</p> <important> <p>The
-         * following list shows the characters (in Unicode) that are allowed in your
-         * message, according to the W3C XML specification:</p> <ul> <li> <p>
-         * <code>#x9</code> </p> </li> <li> <p> <code>#xA</code> </p> </li> <li> <p>
-         * <code>#xD</code> </p> </li> <li> <p> <code>#x20</code> to <code>#xD7FF</code>
-         * </p> </li> <li> <p> <code>#xE000</code> to <code>#xFFFD</code> </p> </li> <li>
-         * <p> <code>#x10000</code> to <code>#x10FFFF</code> </p> </li> </ul> <p>For more
-         * information, see <a href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>. If
-         * you send any characters that aren't included in this list, your request is
-         * rejected.</p> </important> <p>If you don't specify the <code>DelaySeconds</code>
-         * parameter for an entry, Amazon SQS uses the default value for the queue.</p>
-         * <note> <p>Some actions take lists of parameters. These lists are specified using
-         * the <code>param.n</code> notation. Values of <code>n</code> are integers
-         * starting from 1. For example, a parameter list with two elements looks like
-         * this:</p> <p> <code>&amp;Attribute.1=this</code> </p> <p>
-         * <code>&amp;Attribute.2=that</code> </p> </note><p><h3>See Also:</h3>   <a
+         * batched messages) are both 256 KB (262,144 bytes).</p> <important> <p>A message
+         * can include only XML, JSON, and unformatted text. The following Unicode
+         * characters are allowed:</p> <p> <code>#x9</code> | <code>#xA</code> |
+         * <code>#xD</code> | <code>#x20</code> to <code>#xD7FF</code> |
+         * <code>#xE000</code> to <code>#xFFFD</code> | <code>#x10000</code> to
+         * <code>#x10FFFF</code> </p> <p>Any characters not included in this list will be
+         * rejected. For more information, see the <a
+         * href="http://www.w3.org/TR/REC-xml/#charsets">W3C specification for
+         * characters</a>.</p> </important> <p>If you don't specify the
+         * <code>DelaySeconds</code> parameter for an entry, Amazon SQS uses the default
+         * value for the queue.</p> <note> <p>Some actions take lists of parameters. These
+         * lists are specified using the <code>param.n</code> notation. Values of
+         * <code>n</code> are integers starting from 1. For example, a parameter list with
+         * two elements looks like this:</p> <p> <code>&amp;Attribute.1=this</code> </p>
+         * <p> <code>&amp;Attribute.2=that</code> </p> </note><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SendMessageBatch">AWS
          * API Reference</a></p>
          */
@@ -1206,29 +1210,28 @@ namespace Model
 
         /**
          * <p>Delivers up to ten messages to the specified queue. This is a batch version
-         * of <code> <a>SendMessage</a> </code>. For a FIFO queue, multiple messages within
+         * of <code> <a>SendMessage</a>.</code> For a FIFO queue, multiple messages within
          * a single batch are enqueued in the order they are sent.</p> <p>The result of
          * sending each message is reported individually in the response. Because the batch
          * request can result in a combination of successful and unsuccessful actions, you
          * should check for batch errors even when the call returns an HTTP status code of
          * <code>200</code>.</p> <p>The maximum allowed individual message size and the
          * maximum total payload size (the sum of the individual lengths of all of the
-         * batched messages) are both 256 KB (262,144 bytes).</p> <important> <p>The
-         * following list shows the characters (in Unicode) that are allowed in your
-         * message, according to the W3C XML specification:</p> <ul> <li> <p>
-         * <code>#x9</code> </p> </li> <li> <p> <code>#xA</code> </p> </li> <li> <p>
-         * <code>#xD</code> </p> </li> <li> <p> <code>#x20</code> to <code>#xD7FF</code>
-         * </p> </li> <li> <p> <code>#xE000</code> to <code>#xFFFD</code> </p> </li> <li>
-         * <p> <code>#x10000</code> to <code>#x10FFFF</code> </p> </li> </ul> <p>For more
-         * information, see <a href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>. If
-         * you send any characters that aren't included in this list, your request is
-         * rejected.</p> </important> <p>If you don't specify the <code>DelaySeconds</code>
-         * parameter for an entry, Amazon SQS uses the default value for the queue.</p>
-         * <note> <p>Some actions take lists of parameters. These lists are specified using
-         * the <code>param.n</code> notation. Values of <code>n</code> are integers
-         * starting from 1. For example, a parameter list with two elements looks like
-         * this:</p> <p> <code>&amp;Attribute.1=this</code> </p> <p>
-         * <code>&amp;Attribute.2=that</code> </p> </note><p><h3>See Also:</h3>   <a
+         * batched messages) are both 256 KB (262,144 bytes).</p> <important> <p>A message
+         * can include only XML, JSON, and unformatted text. The following Unicode
+         * characters are allowed:</p> <p> <code>#x9</code> | <code>#xA</code> |
+         * <code>#xD</code> | <code>#x20</code> to <code>#xD7FF</code> |
+         * <code>#xE000</code> to <code>#xFFFD</code> | <code>#x10000</code> to
+         * <code>#x10FFFF</code> </p> <p>Any characters not included in this list will be
+         * rejected. For more information, see the <a
+         * href="http://www.w3.org/TR/REC-xml/#charsets">W3C specification for
+         * characters</a>.</p> </important> <p>If you don't specify the
+         * <code>DelaySeconds</code> parameter for an entry, Amazon SQS uses the default
+         * value for the queue.</p> <note> <p>Some actions take lists of parameters. These
+         * lists are specified using the <code>param.n</code> notation. Values of
+         * <code>n</code> are integers starting from 1. For example, a parameter list with
+         * two elements looks like this:</p> <p> <code>&amp;Attribute.1=this</code> </p>
+         * <p> <code>&amp;Attribute.2=that</code> </p> </note><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SendMessageBatch">AWS
          * API Reference</a></p>
          *
@@ -1238,29 +1241,28 @@ namespace Model
 
         /**
          * <p>Delivers up to ten messages to the specified queue. This is a batch version
-         * of <code> <a>SendMessage</a> </code>. For a FIFO queue, multiple messages within
+         * of <code> <a>SendMessage</a>.</code> For a FIFO queue, multiple messages within
          * a single batch are enqueued in the order they are sent.</p> <p>The result of
          * sending each message is reported individually in the response. Because the batch
          * request can result in a combination of successful and unsuccessful actions, you
          * should check for batch errors even when the call returns an HTTP status code of
          * <code>200</code>.</p> <p>The maximum allowed individual message size and the
          * maximum total payload size (the sum of the individual lengths of all of the
-         * batched messages) are both 256 KB (262,144 bytes).</p> <important> <p>The
-         * following list shows the characters (in Unicode) that are allowed in your
-         * message, according to the W3C XML specification:</p> <ul> <li> <p>
-         * <code>#x9</code> </p> </li> <li> <p> <code>#xA</code> </p> </li> <li> <p>
-         * <code>#xD</code> </p> </li> <li> <p> <code>#x20</code> to <code>#xD7FF</code>
-         * </p> </li> <li> <p> <code>#xE000</code> to <code>#xFFFD</code> </p> </li> <li>
-         * <p> <code>#x10000</code> to <code>#x10FFFF</code> </p> </li> </ul> <p>For more
-         * information, see <a href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>. If
-         * you send any characters that aren't included in this list, your request is
-         * rejected.</p> </important> <p>If you don't specify the <code>DelaySeconds</code>
-         * parameter for an entry, Amazon SQS uses the default value for the queue.</p>
-         * <note> <p>Some actions take lists of parameters. These lists are specified using
-         * the <code>param.n</code> notation. Values of <code>n</code> are integers
-         * starting from 1. For example, a parameter list with two elements looks like
-         * this:</p> <p> <code>&amp;Attribute.1=this</code> </p> <p>
-         * <code>&amp;Attribute.2=that</code> </p> </note><p><h3>See Also:</h3>   <a
+         * batched messages) are both 256 KB (262,144 bytes).</p> <important> <p>A message
+         * can include only XML, JSON, and unformatted text. The following Unicode
+         * characters are allowed:</p> <p> <code>#x9</code> | <code>#xA</code> |
+         * <code>#xD</code> | <code>#x20</code> to <code>#xD7FF</code> |
+         * <code>#xE000</code> to <code>#xFFFD</code> | <code>#x10000</code> to
+         * <code>#x10FFFF</code> </p> <p>Any characters not included in this list will be
+         * rejected. For more information, see the <a
+         * href="http://www.w3.org/TR/REC-xml/#charsets">W3C specification for
+         * characters</a>.</p> </important> <p>If you don't specify the
+         * <code>DelaySeconds</code> parameter for an entry, Amazon SQS uses the default
+         * value for the queue.</p> <note> <p>Some actions take lists of parameters. These
+         * lists are specified using the <code>param.n</code> notation. Values of
+         * <code>n</code> are integers starting from 1. For example, a parameter list with
+         * two elements looks like this:</p> <p> <code>&amp;Attribute.1=this</code> </p>
+         * <p> <code>&amp;Attribute.2=that</code> </p> </note><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SendMessageBatch">AWS
          * API Reference</a></p>
          *
@@ -1313,7 +1315,7 @@ namespace Model
 
 
   private:
-    void init(const Client::ClientConfiguration& clientConfiguration);
+    void init(const Aws::Client::ClientConfiguration& clientConfiguration);
 
         /**Async helpers**/
         void AddPermissionAsyncHelper(const Model::AddPermissionRequest& request, const AddPermissionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -1335,7 +1337,7 @@ namespace Model
         void SetQueueAttributesAsyncHelper(const Model::SetQueueAttributesRequest& request, const SetQueueAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
     Aws::String m_uri;
-    std::shared_ptr<Utils::Threading::Executor> m_executor;
+    std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;
   };
 
 } // namespace SQS

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/ssm/model/AssociationDescription.h>
 #include <aws/ssm/model/FailedCreateAssociation.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     CreateAssociationBatchResult();
-    CreateAssociationBatchResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateAssociationBatchResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateAssociationBatchResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateAssociationBatchResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the associations that succeeded.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>Information about the associations that succeeded.</p>
      */
-    inline void SetSuccessful(Aws::Vector<AssociationDescription>&& value) { m_successful = value; }
+    inline void SetSuccessful(Aws::Vector<AssociationDescription>&& value) { m_successful = std::move(value); }
 
     /**
      * <p>Information about the associations that succeeded.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>Information about the associations that succeeded.</p>
      */
-    inline CreateAssociationBatchResult& WithSuccessful(Aws::Vector<AssociationDescription>&& value) { SetSuccessful(value); return *this;}
+    inline CreateAssociationBatchResult& WithSuccessful(Aws::Vector<AssociationDescription>&& value) { SetSuccessful(std::move(value)); return *this;}
 
     /**
      * <p>Information about the associations that succeeded.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>Information about the associations that succeeded.</p>
      */
-    inline CreateAssociationBatchResult& AddSuccessful(AssociationDescription&& value) { m_successful.push_back(value); return *this; }
+    inline CreateAssociationBatchResult& AddSuccessful(AssociationDescription&& value) { m_successful.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Information about the associations that failed.</p>
@@ -89,7 +93,7 @@ namespace Model
     /**
      * <p>Information about the associations that failed.</p>
      */
-    inline void SetFailed(Aws::Vector<FailedCreateAssociation>&& value) { m_failed = value; }
+    inline void SetFailed(Aws::Vector<FailedCreateAssociation>&& value) { m_failed = std::move(value); }
 
     /**
      * <p>Information about the associations that failed.</p>
@@ -99,7 +103,7 @@ namespace Model
     /**
      * <p>Information about the associations that failed.</p>
      */
-    inline CreateAssociationBatchResult& WithFailed(Aws::Vector<FailedCreateAssociation>&& value) { SetFailed(value); return *this;}
+    inline CreateAssociationBatchResult& WithFailed(Aws::Vector<FailedCreateAssociation>&& value) { SetFailed(std::move(value)); return *this;}
 
     /**
      * <p>Information about the associations that failed.</p>
@@ -109,10 +113,12 @@ namespace Model
     /**
      * <p>Information about the associations that failed.</p>
      */
-    inline CreateAssociationBatchResult& AddFailed(FailedCreateAssociation&& value) { m_failed.push_back(value); return *this; }
+    inline CreateAssociationBatchResult& AddFailed(FailedCreateAssociation&& value) { m_failed.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<AssociationDescription> m_successful;
+
     Aws::Vector<FailedCreateAssociation> m_failed;
   };
 

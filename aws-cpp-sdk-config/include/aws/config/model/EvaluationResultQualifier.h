@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/config/ConfigService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     EvaluationResultQualifier& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the AWS Config rule that was used in the evaluation.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The name of the AWS Config rule that was used in the evaluation.</p>
      */
-    inline void SetConfigRuleName(Aws::String&& value) { m_configRuleNameHasBeenSet = true; m_configRuleName = value; }
+    inline void SetConfigRuleName(Aws::String&& value) { m_configRuleNameHasBeenSet = true; m_configRuleName = std::move(value); }
 
     /**
      * <p>The name of the AWS Config rule that was used in the evaluation.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The name of the AWS Config rule that was used in the evaluation.</p>
      */
-    inline EvaluationResultQualifier& WithConfigRuleName(Aws::String&& value) { SetConfigRuleName(value); return *this;}
+    inline EvaluationResultQualifier& WithConfigRuleName(Aws::String&& value) { SetConfigRuleName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the AWS Config rule that was used in the evaluation.</p>
      */
     inline EvaluationResultQualifier& WithConfigRuleName(const char* value) { SetConfigRuleName(value); return *this;}
+
 
     /**
      * <p>The type of AWS resource that was evaluated.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The type of AWS resource that was evaluated.</p>
      */
-    inline void SetResourceType(Aws::String&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = value; }
+    inline void SetResourceType(Aws::String&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = std::move(value); }
 
     /**
      * <p>The type of AWS resource that was evaluated.</p>
@@ -108,12 +112,13 @@ namespace Model
     /**
      * <p>The type of AWS resource that was evaluated.</p>
      */
-    inline EvaluationResultQualifier& WithResourceType(Aws::String&& value) { SetResourceType(value); return *this;}
+    inline EvaluationResultQualifier& WithResourceType(Aws::String&& value) { SetResourceType(std::move(value)); return *this;}
 
     /**
      * <p>The type of AWS resource that was evaluated.</p>
      */
     inline EvaluationResultQualifier& WithResourceType(const char* value) { SetResourceType(value); return *this;}
+
 
     /**
      * <p>The ID of the evaluated AWS resource.</p>
@@ -128,7 +133,7 @@ namespace Model
     /**
      * <p>The ID of the evaluated AWS resource.</p>
      */
-    inline void SetResourceId(Aws::String&& value) { m_resourceIdHasBeenSet = true; m_resourceId = value; }
+    inline void SetResourceId(Aws::String&& value) { m_resourceIdHasBeenSet = true; m_resourceId = std::move(value); }
 
     /**
      * <p>The ID of the evaluated AWS resource.</p>
@@ -143,7 +148,7 @@ namespace Model
     /**
      * <p>The ID of the evaluated AWS resource.</p>
      */
-    inline EvaluationResultQualifier& WithResourceId(Aws::String&& value) { SetResourceId(value); return *this;}
+    inline EvaluationResultQualifier& WithResourceId(Aws::String&& value) { SetResourceId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the evaluated AWS resource.</p>
@@ -151,10 +156,13 @@ namespace Model
     inline EvaluationResultQualifier& WithResourceId(const char* value) { SetResourceId(value); return *this;}
 
   private:
+
     Aws::String m_configRuleName;
     bool m_configRuleNameHasBeenSet;
+
     Aws::String m_resourceType;
     bool m_resourceTypeHasBeenSet;
+
     Aws::String m_resourceId;
     bool m_resourceIdHasBeenSet;
   };

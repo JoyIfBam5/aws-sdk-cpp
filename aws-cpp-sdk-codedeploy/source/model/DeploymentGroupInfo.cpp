@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/codedeploy/model/DeploymentGroupInfo.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -39,7 +40,14 @@ DeploymentGroupInfo::DeploymentGroupInfo() :
     m_targetRevisionHasBeenSet(false),
     m_triggerConfigurationsHasBeenSet(false),
     m_alarmConfigurationHasBeenSet(false),
-    m_autoRollbackConfigurationHasBeenSet(false)
+    m_autoRollbackConfigurationHasBeenSet(false),
+    m_deploymentStyleHasBeenSet(false),
+    m_blueGreenDeploymentConfigurationHasBeenSet(false),
+    m_loadBalancerInfoHasBeenSet(false),
+    m_lastSuccessfulDeploymentHasBeenSet(false),
+    m_lastAttemptedDeploymentHasBeenSet(false),
+    m_ec2TagSetHasBeenSet(false),
+    m_onPremisesTagSetHasBeenSet(false)
 {
 }
 
@@ -55,7 +63,14 @@ DeploymentGroupInfo::DeploymentGroupInfo(const JsonValue& jsonValue) :
     m_targetRevisionHasBeenSet(false),
     m_triggerConfigurationsHasBeenSet(false),
     m_alarmConfigurationHasBeenSet(false),
-    m_autoRollbackConfigurationHasBeenSet(false)
+    m_autoRollbackConfigurationHasBeenSet(false),
+    m_deploymentStyleHasBeenSet(false),
+    m_blueGreenDeploymentConfigurationHasBeenSet(false),
+    m_loadBalancerInfoHasBeenSet(false),
+    m_lastSuccessfulDeploymentHasBeenSet(false),
+    m_lastAttemptedDeploymentHasBeenSet(false),
+    m_ec2TagSetHasBeenSet(false),
+    m_onPremisesTagSetHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -158,6 +173,55 @@ DeploymentGroupInfo& DeploymentGroupInfo::operator =(const JsonValue& jsonValue)
     m_autoRollbackConfigurationHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("deploymentStyle"))
+  {
+    m_deploymentStyle = jsonValue.GetObject("deploymentStyle");
+
+    m_deploymentStyleHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("blueGreenDeploymentConfiguration"))
+  {
+    m_blueGreenDeploymentConfiguration = jsonValue.GetObject("blueGreenDeploymentConfiguration");
+
+    m_blueGreenDeploymentConfigurationHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("loadBalancerInfo"))
+  {
+    m_loadBalancerInfo = jsonValue.GetObject("loadBalancerInfo");
+
+    m_loadBalancerInfoHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("lastSuccessfulDeployment"))
+  {
+    m_lastSuccessfulDeployment = jsonValue.GetObject("lastSuccessfulDeployment");
+
+    m_lastSuccessfulDeploymentHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("lastAttemptedDeployment"))
+  {
+    m_lastAttemptedDeployment = jsonValue.GetObject("lastAttemptedDeployment");
+
+    m_lastAttemptedDeploymentHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("ec2TagSet"))
+  {
+    m_ec2TagSet = jsonValue.GetObject("ec2TagSet");
+
+    m_ec2TagSetHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("onPremisesTagSet"))
+  {
+    m_onPremisesTagSet = jsonValue.GetObject("onPremisesTagSet");
+
+    m_onPremisesTagSetHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -254,6 +318,48 @@ JsonValue DeploymentGroupInfo::Jsonize() const
   if(m_autoRollbackConfigurationHasBeenSet)
   {
    payload.WithObject("autoRollbackConfiguration", m_autoRollbackConfiguration.Jsonize());
+
+  }
+
+  if(m_deploymentStyleHasBeenSet)
+  {
+   payload.WithObject("deploymentStyle", m_deploymentStyle.Jsonize());
+
+  }
+
+  if(m_blueGreenDeploymentConfigurationHasBeenSet)
+  {
+   payload.WithObject("blueGreenDeploymentConfiguration", m_blueGreenDeploymentConfiguration.Jsonize());
+
+  }
+
+  if(m_loadBalancerInfoHasBeenSet)
+  {
+   payload.WithObject("loadBalancerInfo", m_loadBalancerInfo.Jsonize());
+
+  }
+
+  if(m_lastSuccessfulDeploymentHasBeenSet)
+  {
+   payload.WithObject("lastSuccessfulDeployment", m_lastSuccessfulDeployment.Jsonize());
+
+  }
+
+  if(m_lastAttemptedDeploymentHasBeenSet)
+  {
+   payload.WithObject("lastAttemptedDeployment", m_lastAttemptedDeployment.Jsonize());
+
+  }
+
+  if(m_ec2TagSetHasBeenSet)
+  {
+   payload.WithObject("ec2TagSet", m_ec2TagSet.Jsonize());
+
+  }
+
+  if(m_onPremisesTagSetHasBeenSet)
+  {
+   payload.WithObject("onPremisesTagSet", m_onPremisesTagSet.Jsonize());
 
   }
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/opsworks/model/SelfUserProfile.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     DescribeMyUserProfileResult();
-    DescribeMyUserProfileResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeMyUserProfileResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeMyUserProfileResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeMyUserProfileResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A <code>UserProfile</code> object that describes the user's SSH
@@ -61,7 +64,7 @@ namespace Model
      * <p>A <code>UserProfile</code> object that describes the user's SSH
      * information.</p>
      */
-    inline void SetUserProfile(SelfUserProfile&& value) { m_userProfile = value; }
+    inline void SetUserProfile(SelfUserProfile&& value) { m_userProfile = std::move(value); }
 
     /**
      * <p>A <code>UserProfile</code> object that describes the user's SSH
@@ -73,9 +76,10 @@ namespace Model
      * <p>A <code>UserProfile</code> object that describes the user's SSH
      * information.</p>
      */
-    inline DescribeMyUserProfileResult& WithUserProfile(SelfUserProfile&& value) { SetUserProfile(value); return *this;}
+    inline DescribeMyUserProfileResult& WithUserProfile(SelfUserProfile&& value) { SetUserProfile(std::move(value)); return *this;}
 
   private:
+
     SelfUserProfile m_userProfile;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/rekognition/model/GenderType.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -29,20 +30,20 @@ namespace Aws
       namespace GenderTypeMapper
       {
 
-        static const int MALE_HASH = HashingUtils::HashString("MALE");
-        static const int FEMALE_HASH = HashingUtils::HashString("FEMALE");
+        static const int Male_HASH = HashingUtils::HashString("Male");
+        static const int Female_HASH = HashingUtils::HashString("Female");
 
 
         GenderType GetGenderTypeForName(const Aws::String& name)
         {
           int hashCode = HashingUtils::HashString(name.c_str());
-          if (hashCode == MALE_HASH)
+          if (hashCode == Male_HASH)
           {
-            return GenderType::MALE;
+            return GenderType::Male;
           }
-          else if (hashCode == FEMALE_HASH)
+          else if (hashCode == Female_HASH)
           {
-            return GenderType::FEMALE;
+            return GenderType::Female;
           }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
@@ -58,10 +59,10 @@ namespace Aws
         {
           switch(enumValue)
           {
-          case GenderType::MALE:
-            return "MALE";
-          case GenderType::FEMALE:
-            return "FEMALE";
+          case GenderType::Male:
+            return "Male";
+          case GenderType::Female:
+            return "Female";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

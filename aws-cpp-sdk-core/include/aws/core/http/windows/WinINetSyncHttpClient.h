@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   *
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -62,6 +62,10 @@ namespace Aws
             void* GetClientModule() const override;
 
             WinINetSyncHttpClient &operator =(const WinINetSyncHttpClient &rhs);
+
+            bool m_usingProxy;
+            Aws::String m_proxyUserName;
+            Aws::String m_proxyPassword;
         };
 
     } // namespace Http

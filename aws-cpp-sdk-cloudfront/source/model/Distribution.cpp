@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/cloudfront/model/Distribution.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -31,6 +32,7 @@ namespace Model
 
 Distribution::Distribution() : 
     m_idHasBeenSet(false),
+    m_aRNHasBeenSet(false),
     m_statusHasBeenSet(false),
     m_lastModifiedTimeHasBeenSet(false),
     m_inProgressInvalidationBatches(0),
@@ -43,6 +45,7 @@ Distribution::Distribution() :
 
 Distribution::Distribution(const XmlNode& xmlNode) : 
     m_idHasBeenSet(false),
+    m_aRNHasBeenSet(false),
     m_statusHasBeenSet(false),
     m_lastModifiedTimeHasBeenSet(false),
     m_inProgressInvalidationBatches(0),
@@ -65,6 +68,12 @@ Distribution& Distribution::operator =(const XmlNode& xmlNode)
     {
       m_id = StringUtils::Trim(idNode.GetText().c_str());
       m_idHasBeenSet = true;
+    }
+    XmlNode aRNNode = resultNode.FirstChild("ARN");
+    if(!aRNNode.IsNull())
+    {
+      m_aRN = StringUtils::Trim(aRNNode.GetText().c_str());
+      m_aRNHasBeenSet = true;
     }
     XmlNode statusNode = resultNode.FirstChild("Status");
     if(!statusNode.IsNull())
@@ -116,6 +125,12 @@ void Distribution::AddToNode(XmlNode& parentNode) const
    idNode.SetText(m_id);
   }
 
+  if(m_aRNHasBeenSet)
+  {
+   XmlNode aRNNode = parentNode.CreateChildElement("ARN");
+   aRNNode.SetText(m_aRN);
+  }
+
   if(m_statusHasBeenSet)
   {
    XmlNode statusNode = parentNode.CreateChildElement("Status");
@@ -124,16 +139,16 @@ void Distribution::AddToNode(XmlNode& parentNode) const
 
   if(m_lastModifiedTimeHasBeenSet)
   {
-     XmlNode lastModifiedTimeNode = parentNode.CreateChildElement("LastModifiedTime");
-     lastModifiedTimeNode.SetText(m_lastModifiedTime.ToGmtString(DateFormat::ISO_8601));
+   XmlNode lastModifiedTimeNode = parentNode.CreateChildElement("LastModifiedTime");
+   lastModifiedTimeNode.SetText(m_lastModifiedTime.ToGmtString(DateFormat::ISO_8601));
   }
 
   if(m_inProgressInvalidationBatchesHasBeenSet)
   {
    XmlNode inProgressInvalidationBatchesNode = parentNode.CreateChildElement("InProgressInvalidationBatches");
-  ss << m_inProgressInvalidationBatches;
+   ss << m_inProgressInvalidationBatches;
    inProgressInvalidationBatchesNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_domainNameHasBeenSet)

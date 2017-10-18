@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticloadbalancing/ElasticLoadBalancing_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/elasticloadbalancing/model/ResponseMetadata.h>
 #include <aws/elasticloadbalancing/model/LoadBalancerDescription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,8 +47,9 @@ namespace Model
   {
   public:
     DescribeLoadBalancersResult();
-    DescribeLoadBalancersResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeLoadBalancersResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeLoadBalancersResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeLoadBalancersResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>Information about the load balancers.</p>
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>Information about the load balancers.</p>
      */
-    inline void SetLoadBalancerDescriptions(Aws::Vector<LoadBalancerDescription>&& value) { m_loadBalancerDescriptions = value; }
+    inline void SetLoadBalancerDescriptions(Aws::Vector<LoadBalancerDescription>&& value) { m_loadBalancerDescriptions = std::move(value); }
 
     /**
      * <p>Information about the load balancers.</p>
@@ -71,7 +74,7 @@ namespace Model
     /**
      * <p>Information about the load balancers.</p>
      */
-    inline DescribeLoadBalancersResult& WithLoadBalancerDescriptions(Aws::Vector<LoadBalancerDescription>&& value) { SetLoadBalancerDescriptions(value); return *this;}
+    inline DescribeLoadBalancersResult& WithLoadBalancerDescriptions(Aws::Vector<LoadBalancerDescription>&& value) { SetLoadBalancerDescriptions(std::move(value)); return *this;}
 
     /**
      * <p>Information about the load balancers.</p>
@@ -81,7 +84,8 @@ namespace Model
     /**
      * <p>Information about the load balancers.</p>
      */
-    inline DescribeLoadBalancersResult& AddLoadBalancerDescriptions(LoadBalancerDescription&& value) { m_loadBalancerDescriptions.push_back(value); return *this; }
+    inline DescribeLoadBalancersResult& AddLoadBalancerDescriptions(LoadBalancerDescription&& value) { m_loadBalancerDescriptions.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The marker to use when requesting the next set of results. If there are no
@@ -99,7 +103,7 @@ namespace Model
      * <p>The marker to use when requesting the next set of results. If there are no
      * additional results, the string is empty.</p>
      */
-    inline void SetNextMarker(Aws::String&& value) { m_nextMarker = value; }
+    inline void SetNextMarker(Aws::String&& value) { m_nextMarker = std::move(value); }
 
     /**
      * <p>The marker to use when requesting the next set of results. If there are no
@@ -117,13 +121,14 @@ namespace Model
      * <p>The marker to use when requesting the next set of results. If there are no
      * additional results, the string is empty.</p>
      */
-    inline DescribeLoadBalancersResult& WithNextMarker(Aws::String&& value) { SetNextMarker(value); return *this;}
+    inline DescribeLoadBalancersResult& WithNextMarker(Aws::String&& value) { SetNextMarker(std::move(value)); return *this;}
 
     /**
      * <p>The marker to use when requesting the next set of results. If there are no
      * additional results, the string is empty.</p>
      */
     inline DescribeLoadBalancersResult& WithNextMarker(const char* value) { SetNextMarker(value); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -132,17 +137,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeLoadBalancersResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeLoadBalancersResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeLoadBalancersResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<LoadBalancerDescription> m_loadBalancerDescriptions;
+
     Aws::String m_nextMarker;
+
     ResponseMetadata m_responseMetadata;
   };
 

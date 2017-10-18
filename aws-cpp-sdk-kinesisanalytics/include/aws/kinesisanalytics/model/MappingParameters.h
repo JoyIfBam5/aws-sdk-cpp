@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesisanalytics/KinesisAnalytics_EXPORTS.h>
 #include <aws/kinesisanalytics/model/JSONMappingParameters.h>
 #include <aws/kinesisanalytics/model/CSVMappingParameters.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     MappingParameters& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Provides additional mapping information when JSON is the record format on the
      * streaming source.</p>
@@ -63,7 +66,7 @@ namespace Model
      * <p>Provides additional mapping information when JSON is the record format on the
      * streaming source.</p>
      */
-    inline void SetJSONMappingParameters(JSONMappingParameters&& value) { m_jSONMappingParametersHasBeenSet = true; m_jSONMappingParameters = value; }
+    inline void SetJSONMappingParameters(JSONMappingParameters&& value) { m_jSONMappingParametersHasBeenSet = true; m_jSONMappingParameters = std::move(value); }
 
     /**
      * <p>Provides additional mapping information when JSON is the record format on the
@@ -75,7 +78,8 @@ namespace Model
      * <p>Provides additional mapping information when JSON is the record format on the
      * streaming source.</p>
      */
-    inline MappingParameters& WithJSONMappingParameters(JSONMappingParameters&& value) { SetJSONMappingParameters(value); return *this;}
+    inline MappingParameters& WithJSONMappingParameters(JSONMappingParameters&& value) { SetJSONMappingParameters(std::move(value)); return *this;}
+
 
     /**
      * <p>Provides additional mapping information when the record format uses
@@ -93,7 +97,7 @@ namespace Model
      * <p>Provides additional mapping information when the record format uses
      * delimiters (for example, CSV).</p>
      */
-    inline void SetCSVMappingParameters(CSVMappingParameters&& value) { m_cSVMappingParametersHasBeenSet = true; m_cSVMappingParameters = value; }
+    inline void SetCSVMappingParameters(CSVMappingParameters&& value) { m_cSVMappingParametersHasBeenSet = true; m_cSVMappingParameters = std::move(value); }
 
     /**
      * <p>Provides additional mapping information when the record format uses
@@ -105,11 +109,13 @@ namespace Model
      * <p>Provides additional mapping information when the record format uses
      * delimiters (for example, CSV).</p>
      */
-    inline MappingParameters& WithCSVMappingParameters(CSVMappingParameters&& value) { SetCSVMappingParameters(value); return *this;}
+    inline MappingParameters& WithCSVMappingParameters(CSVMappingParameters&& value) { SetCSVMappingParameters(std::move(value)); return *this;}
 
   private:
+
     JSONMappingParameters m_jSONMappingParameters;
     bool m_jSONMappingParametersHasBeenSet;
+
     CSVMappingParameters m_cSVMappingParameters;
     bool m_cSVMappingParametersHasBeenSet;
   };

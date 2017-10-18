@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/iam/model/ReportStateType.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/iam/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     GenerateCredentialReportResult();
-    GenerateCredentialReportResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    GenerateCredentialReportResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    GenerateCredentialReportResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    GenerateCredentialReportResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>Information about the state of the credential report.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>Information about the state of the credential report.</p>
      */
-    inline void SetState(ReportStateType&& value) { m_state = value; }
+    inline void SetState(ReportStateType&& value) { m_state = std::move(value); }
 
     /**
      * <p>Information about the state of the credential report.</p>
@@ -70,7 +73,8 @@ namespace Model
     /**
      * <p>Information about the state of the credential report.</p>
      */
-    inline GenerateCredentialReportResult& WithState(ReportStateType&& value) { SetState(value); return *this;}
+    inline GenerateCredentialReportResult& WithState(ReportStateType&& value) { SetState(std::move(value)); return *this;}
+
 
     /**
      * <p>Information about the credential report.</p>
@@ -85,7 +89,7 @@ namespace Model
     /**
      * <p>Information about the credential report.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_description = std::move(value); }
 
     /**
      * <p>Information about the credential report.</p>
@@ -100,12 +104,13 @@ namespace Model
     /**
      * <p>Information about the credential report.</p>
      */
-    inline GenerateCredentialReportResult& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline GenerateCredentialReportResult& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>Information about the credential report.</p>
      */
     inline GenerateCredentialReportResult& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -114,17 +119,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline GenerateCredentialReportResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline GenerateCredentialReportResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline GenerateCredentialReportResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     ReportStateType m_state;
+
     Aws::String m_description;
+
     ResponseMetadata m_responseMetadata;
   };
 

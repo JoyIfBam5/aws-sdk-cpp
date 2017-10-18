@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/ssm/model/ParametersFilterKey.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     ParametersFilter& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the filter.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The name of the filter.</p>
      */
-    inline void SetKey(ParametersFilterKey&& value) { m_keyHasBeenSet = true; m_key = value; }
+    inline void SetKey(ParametersFilterKey&& value) { m_keyHasBeenSet = true; m_key = std::move(value); }
 
     /**
      * <p>The name of the filter.</p>
@@ -69,7 +72,8 @@ namespace Model
     /**
      * <p>The name of the filter.</p>
      */
-    inline ParametersFilter& WithKey(ParametersFilterKey&& value) { SetKey(value); return *this;}
+    inline ParametersFilter& WithKey(ParametersFilterKey&& value) { SetKey(std::move(value)); return *this;}
+
 
     /**
      * <p>The filter values.</p>
@@ -84,7 +88,7 @@ namespace Model
     /**
      * <p>The filter values.</p>
      */
-    inline void SetValues(Aws::Vector<Aws::String>&& value) { m_valuesHasBeenSet = true; m_values = value; }
+    inline void SetValues(Aws::Vector<Aws::String>&& value) { m_valuesHasBeenSet = true; m_values = std::move(value); }
 
     /**
      * <p>The filter values.</p>
@@ -94,7 +98,7 @@ namespace Model
     /**
      * <p>The filter values.</p>
      */
-    inline ParametersFilter& WithValues(Aws::Vector<Aws::String>&& value) { SetValues(value); return *this;}
+    inline ParametersFilter& WithValues(Aws::Vector<Aws::String>&& value) { SetValues(std::move(value)); return *this;}
 
     /**
      * <p>The filter values.</p>
@@ -104,7 +108,7 @@ namespace Model
     /**
      * <p>The filter values.</p>
      */
-    inline ParametersFilter& AddValues(Aws::String&& value) { m_valuesHasBeenSet = true; m_values.push_back(value); return *this; }
+    inline ParametersFilter& AddValues(Aws::String&& value) { m_valuesHasBeenSet = true; m_values.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The filter values.</p>
@@ -112,8 +116,10 @@ namespace Model
     inline ParametersFilter& AddValues(const char* value) { m_valuesHasBeenSet = true; m_values.push_back(value); return *this; }
 
   private:
+
     ParametersFilterKey m_key;
     bool m_keyHasBeenSet;
+
     Aws::Vector<Aws::String> m_values;
     bool m_valuesHasBeenSet;
   };

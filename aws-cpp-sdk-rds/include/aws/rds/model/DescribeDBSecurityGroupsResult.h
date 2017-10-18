@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/rds/model/ResponseMetadata.h>
 #include <aws/rds/model/DBSecurityGroup.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,8 +47,9 @@ namespace Model
   {
   public:
     DescribeDBSecurityGroupsResult();
-    DescribeDBSecurityGroupsResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeDBSecurityGroupsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeDBSecurityGroupsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeDBSecurityGroupsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p> An optional pagination token provided by a previous request. If this
@@ -67,7 +70,7 @@ namespace Model
      * parameter is specified, the response includes only records beyond the marker, up
      * to the value specified by <code>MaxRecords</code>. </p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p> An optional pagination token provided by a previous request. If this
@@ -88,7 +91,7 @@ namespace Model
      * parameter is specified, the response includes only records beyond the marker, up
      * to the value specified by <code>MaxRecords</code>. </p>
      */
-    inline DescribeDBSecurityGroupsResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DescribeDBSecurityGroupsResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p> An optional pagination token provided by a previous request. If this
@@ -96,6 +99,7 @@ namespace Model
      * to the value specified by <code>MaxRecords</code>. </p>
      */
     inline DescribeDBSecurityGroupsResult& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p> A list of <a>DBSecurityGroup</a> instances. </p>
@@ -110,7 +114,7 @@ namespace Model
     /**
      * <p> A list of <a>DBSecurityGroup</a> instances. </p>
      */
-    inline void SetDBSecurityGroups(Aws::Vector<DBSecurityGroup>&& value) { m_dBSecurityGroups = value; }
+    inline void SetDBSecurityGroups(Aws::Vector<DBSecurityGroup>&& value) { m_dBSecurityGroups = std::move(value); }
 
     /**
      * <p> A list of <a>DBSecurityGroup</a> instances. </p>
@@ -120,7 +124,7 @@ namespace Model
     /**
      * <p> A list of <a>DBSecurityGroup</a> instances. </p>
      */
-    inline DescribeDBSecurityGroupsResult& WithDBSecurityGroups(Aws::Vector<DBSecurityGroup>&& value) { SetDBSecurityGroups(value); return *this;}
+    inline DescribeDBSecurityGroupsResult& WithDBSecurityGroups(Aws::Vector<DBSecurityGroup>&& value) { SetDBSecurityGroups(std::move(value)); return *this;}
 
     /**
      * <p> A list of <a>DBSecurityGroup</a> instances. </p>
@@ -130,7 +134,8 @@ namespace Model
     /**
      * <p> A list of <a>DBSecurityGroup</a> instances. </p>
      */
-    inline DescribeDBSecurityGroupsResult& AddDBSecurityGroups(DBSecurityGroup&& value) { m_dBSecurityGroups.push_back(value); return *this; }
+    inline DescribeDBSecurityGroupsResult& AddDBSecurityGroups(DBSecurityGroup&& value) { m_dBSecurityGroups.push_back(std::move(value)); return *this; }
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -139,17 +144,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeDBSecurityGroupsResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeDBSecurityGroupsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeDBSecurityGroupsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_marker;
+
     Aws::Vector<DBSecurityGroup> m_dBSecurityGroups;
+
     ResponseMetadata m_responseMetadata;
   };
 

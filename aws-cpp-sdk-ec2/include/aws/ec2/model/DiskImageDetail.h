@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/ec2/model/DiskImageFormat.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,30 +49,6 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
-    /**
-     * <p>The disk image format.</p>
-     */
-    inline const DiskImageFormat& GetFormat() const{ return m_format; }
-
-    /**
-     * <p>The disk image format.</p>
-     */
-    inline void SetFormat(const DiskImageFormat& value) { m_formatHasBeenSet = true; m_format = value; }
-
-    /**
-     * <p>The disk image format.</p>
-     */
-    inline void SetFormat(DiskImageFormat&& value) { m_formatHasBeenSet = true; m_format = value; }
-
-    /**
-     * <p>The disk image format.</p>
-     */
-    inline DiskImageDetail& WithFormat(const DiskImageFormat& value) { SetFormat(value); return *this;}
-
-    /**
-     * <p>The disk image format.</p>
-     */
-    inline DiskImageDetail& WithFormat(DiskImageFormat&& value) { SetFormat(value); return *this;}
 
     /**
      * <p>The size of the disk image, in GiB.</p>
@@ -86,6 +64,33 @@ namespace Model
      * <p>The size of the disk image, in GiB.</p>
      */
     inline DiskImageDetail& WithBytes(long long value) { SetBytes(value); return *this;}
+
+
+    /**
+     * <p>The disk image format.</p>
+     */
+    inline const DiskImageFormat& GetFormat() const{ return m_format; }
+
+    /**
+     * <p>The disk image format.</p>
+     */
+    inline void SetFormat(const DiskImageFormat& value) { m_formatHasBeenSet = true; m_format = value; }
+
+    /**
+     * <p>The disk image format.</p>
+     */
+    inline void SetFormat(DiskImageFormat&& value) { m_formatHasBeenSet = true; m_format = std::move(value); }
+
+    /**
+     * <p>The disk image format.</p>
+     */
+    inline DiskImageDetail& WithFormat(const DiskImageFormat& value) { SetFormat(value); return *this;}
+
+    /**
+     * <p>The disk image format.</p>
+     */
+    inline DiskImageDetail& WithFormat(DiskImageFormat&& value) { SetFormat(std::move(value)); return *this;}
+
 
     /**
      * <p>A presigned URL for the import manifest stored in Amazon S3 and presented
@@ -127,7 +132,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html">VM
      * Import Manifest</a>.</p>
      */
-    inline void SetImportManifestUrl(Aws::String&& value) { m_importManifestUrlHasBeenSet = true; m_importManifestUrl = value; }
+    inline void SetImportManifestUrl(Aws::String&& value) { m_importManifestUrlHasBeenSet = true; m_importManifestUrl = std::move(value); }
 
     /**
      * <p>A presigned URL for the import manifest stored in Amazon S3 and presented
@@ -169,7 +174,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html">VM
      * Import Manifest</a>.</p>
      */
-    inline DiskImageDetail& WithImportManifestUrl(Aws::String&& value) { SetImportManifestUrl(value); return *this;}
+    inline DiskImageDetail& WithImportManifestUrl(Aws::String&& value) { SetImportManifestUrl(std::move(value)); return *this;}
 
     /**
      * <p>A presigned URL for the import manifest stored in Amazon S3 and presented
@@ -186,10 +191,13 @@ namespace Model
     inline DiskImageDetail& WithImportManifestUrl(const char* value) { SetImportManifestUrl(value); return *this;}
 
   private:
-    DiskImageFormat m_format;
-    bool m_formatHasBeenSet;
+
     long long m_bytes;
     bool m_bytesHasBeenSet;
+
+    DiskImageFormat m_format;
+    bool m_formatHasBeenSet;
+
     Aws::String m_importManifestUrl;
     bool m_importManifestUrlHasBeenSet;
   };

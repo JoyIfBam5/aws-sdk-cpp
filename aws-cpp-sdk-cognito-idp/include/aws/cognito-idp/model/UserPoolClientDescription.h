@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     UserPoolClientDescription& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ID of the client associated with the user pool.</p>
      */
@@ -56,7 +59,7 @@ namespace Model
     /**
      * <p>The ID of the client associated with the user pool.</p>
      */
-    inline void SetClientId(Aws::String&& value) { m_clientIdHasBeenSet = true; m_clientId = value; }
+    inline void SetClientId(Aws::String&& value) { m_clientIdHasBeenSet = true; m_clientId = std::move(value); }
 
     /**
      * <p>The ID of the client associated with the user pool.</p>
@@ -71,12 +74,13 @@ namespace Model
     /**
      * <p>The ID of the client associated with the user pool.</p>
      */
-    inline UserPoolClientDescription& WithClientId(Aws::String&& value) { SetClientId(value); return *this;}
+    inline UserPoolClientDescription& WithClientId(Aws::String&& value) { SetClientId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the client associated with the user pool.</p>
      */
     inline UserPoolClientDescription& WithClientId(const char* value) { SetClientId(value); return *this;}
+
 
     /**
      * <p>The user pool ID for the user pool where you want to describe the user pool
@@ -94,7 +98,7 @@ namespace Model
      * <p>The user pool ID for the user pool where you want to describe the user pool
      * client.</p>
      */
-    inline void SetUserPoolId(Aws::String&& value) { m_userPoolIdHasBeenSet = true; m_userPoolId = value; }
+    inline void SetUserPoolId(Aws::String&& value) { m_userPoolIdHasBeenSet = true; m_userPoolId = std::move(value); }
 
     /**
      * <p>The user pool ID for the user pool where you want to describe the user pool
@@ -112,13 +116,14 @@ namespace Model
      * <p>The user pool ID for the user pool where you want to describe the user pool
      * client.</p>
      */
-    inline UserPoolClientDescription& WithUserPoolId(Aws::String&& value) { SetUserPoolId(value); return *this;}
+    inline UserPoolClientDescription& WithUserPoolId(Aws::String&& value) { SetUserPoolId(std::move(value)); return *this;}
 
     /**
      * <p>The user pool ID for the user pool where you want to describe the user pool
      * client.</p>
      */
     inline UserPoolClientDescription& WithUserPoolId(const char* value) { SetUserPoolId(value); return *this;}
+
 
     /**
      * <p>The client name from the user pool client description.</p>
@@ -133,7 +138,7 @@ namespace Model
     /**
      * <p>The client name from the user pool client description.</p>
      */
-    inline void SetClientName(Aws::String&& value) { m_clientNameHasBeenSet = true; m_clientName = value; }
+    inline void SetClientName(Aws::String&& value) { m_clientNameHasBeenSet = true; m_clientName = std::move(value); }
 
     /**
      * <p>The client name from the user pool client description.</p>
@@ -148,7 +153,7 @@ namespace Model
     /**
      * <p>The client name from the user pool client description.</p>
      */
-    inline UserPoolClientDescription& WithClientName(Aws::String&& value) { SetClientName(value); return *this;}
+    inline UserPoolClientDescription& WithClientName(Aws::String&& value) { SetClientName(std::move(value)); return *this;}
 
     /**
      * <p>The client name from the user pool client description.</p>
@@ -156,10 +161,13 @@ namespace Model
     inline UserPoolClientDescription& WithClientName(const char* value) { SetClientName(value); return *this;}
 
   private:
+
     Aws::String m_clientId;
     bool m_clientIdHasBeenSet;
+
     Aws::String m_userPoolId;
     bool m_userPoolIdHasBeenSet;
+
     Aws::String m_clientName;
     bool m_clientNameHasBeenSet;
   };

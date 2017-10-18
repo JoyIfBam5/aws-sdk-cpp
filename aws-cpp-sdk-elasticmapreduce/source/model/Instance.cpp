@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/elasticmapreduce/model/Instance.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -36,6 +37,10 @@ Instance::Instance() :
     m_privateIpAddressHasBeenSet(false),
     m_statusHasBeenSet(false),
     m_instanceGroupIdHasBeenSet(false),
+    m_instanceFleetIdHasBeenSet(false),
+    m_market(MarketType::NOT_SET),
+    m_marketHasBeenSet(false),
+    m_instanceTypeHasBeenSet(false),
     m_ebsVolumesHasBeenSet(false)
 {
 }
@@ -49,6 +54,10 @@ Instance::Instance(const JsonValue& jsonValue) :
     m_privateIpAddressHasBeenSet(false),
     m_statusHasBeenSet(false),
     m_instanceGroupIdHasBeenSet(false),
+    m_instanceFleetIdHasBeenSet(false),
+    m_market(MarketType::NOT_SET),
+    m_marketHasBeenSet(false),
+    m_instanceTypeHasBeenSet(false),
     m_ebsVolumesHasBeenSet(false)
 {
   *this = jsonValue;
@@ -110,6 +119,27 @@ Instance& Instance::operator =(const JsonValue& jsonValue)
     m_instanceGroupId = jsonValue.GetString("InstanceGroupId");
 
     m_instanceGroupIdHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("InstanceFleetId"))
+  {
+    m_instanceFleetId = jsonValue.GetString("InstanceFleetId");
+
+    m_instanceFleetIdHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("Market"))
+  {
+    m_market = MarketTypeMapper::GetMarketTypeForName(jsonValue.GetString("Market"));
+
+    m_marketHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("InstanceType"))
+  {
+    m_instanceType = jsonValue.GetString("InstanceType");
+
+    m_instanceTypeHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("EbsVolumes"))
@@ -174,6 +204,23 @@ JsonValue Instance::Jsonize() const
   if(m_instanceGroupIdHasBeenSet)
   {
    payload.WithString("InstanceGroupId", m_instanceGroupId);
+
+  }
+
+  if(m_instanceFleetIdHasBeenSet)
+  {
+   payload.WithString("InstanceFleetId", m_instanceFleetId);
+
+  }
+
+  if(m_marketHasBeenSet)
+  {
+   payload.WithString("Market", MarketTypeMapper::GetNameForMarketType(m_market));
+  }
+
+  if(m_instanceTypeHasBeenSet)
+  {
+   payload.WithString("InstanceType", m_instanceType);
 
   }
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/elasticfilesystem/model/FileSystemDescription.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -39,7 +40,10 @@ FileSystemDescription::FileSystemDescription() :
     m_numberOfMountTargetsHasBeenSet(false),
     m_sizeInBytesHasBeenSet(false),
     m_performanceMode(PerformanceMode::NOT_SET),
-    m_performanceModeHasBeenSet(false)
+    m_performanceModeHasBeenSet(false),
+    m_encrypted(false),
+    m_encryptedHasBeenSet(false),
+    m_kmsKeyIdHasBeenSet(false)
 {
 }
 
@@ -55,7 +59,10 @@ FileSystemDescription::FileSystemDescription(const JsonValue& jsonValue) :
     m_numberOfMountTargetsHasBeenSet(false),
     m_sizeInBytesHasBeenSet(false),
     m_performanceMode(PerformanceMode::NOT_SET),
-    m_performanceModeHasBeenSet(false)
+    m_performanceModeHasBeenSet(false),
+    m_encrypted(false),
+    m_encryptedHasBeenSet(false),
+    m_kmsKeyIdHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -125,6 +132,20 @@ FileSystemDescription& FileSystemDescription::operator =(const JsonValue& jsonVa
     m_performanceModeHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("Encrypted"))
+  {
+    m_encrypted = jsonValue.GetBool("Encrypted");
+
+    m_encryptedHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("KmsKeyId"))
+  {
+    m_kmsKeyId = jsonValue.GetString("KmsKeyId");
+
+    m_kmsKeyIdHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -181,6 +202,18 @@ JsonValue FileSystemDescription::Jsonize() const
   if(m_performanceModeHasBeenSet)
   {
    payload.WithString("PerformanceMode", PerformanceModeMapper::GetNameForPerformanceMode(m_performanceMode));
+  }
+
+  if(m_encryptedHasBeenSet)
+  {
+   payload.WithBool("Encrypted", m_encrypted);
+
+  }
+
+  if(m_kmsKeyIdHasBeenSet)
+  {
+   payload.WithString("KmsKeyId", m_kmsKeyId);
+
   }
 
   return payload;

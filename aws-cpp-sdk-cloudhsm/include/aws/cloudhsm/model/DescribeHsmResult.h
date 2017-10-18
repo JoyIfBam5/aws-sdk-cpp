@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudhsm/CloudHSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/cloudhsm/model/HsmStatus.h>
 #include <aws/cloudhsm/model/SubscriptionType.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,8 +47,9 @@ namespace Model
   {
   public:
     DescribeHsmResult();
-    DescribeHsmResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeHsmResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeHsmResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeHsmResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The ARN of the HSM.</p>
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>The ARN of the HSM.</p>
      */
-    inline void SetHsmArn(Aws::String&& value) { m_hsmArn = value; }
+    inline void SetHsmArn(Aws::String&& value) { m_hsmArn = std::move(value); }
 
     /**
      * <p>The ARN of the HSM.</p>
@@ -76,12 +79,13 @@ namespace Model
     /**
      * <p>The ARN of the HSM.</p>
      */
-    inline DescribeHsmResult& WithHsmArn(Aws::String&& value) { SetHsmArn(value); return *this;}
+    inline DescribeHsmResult& WithHsmArn(Aws::String&& value) { SetHsmArn(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of the HSM.</p>
      */
     inline DescribeHsmResult& WithHsmArn(const char* value) { SetHsmArn(value); return *this;}
+
 
     /**
      * <p>The status of the HSM.</p>
@@ -96,7 +100,7 @@ namespace Model
     /**
      * <p>The status of the HSM.</p>
      */
-    inline void SetStatus(HsmStatus&& value) { m_status = value; }
+    inline void SetStatus(HsmStatus&& value) { m_status = std::move(value); }
 
     /**
      * <p>The status of the HSM.</p>
@@ -106,7 +110,8 @@ namespace Model
     /**
      * <p>The status of the HSM.</p>
      */
-    inline DescribeHsmResult& WithStatus(HsmStatus&& value) { SetStatus(value); return *this;}
+    inline DescribeHsmResult& WithStatus(HsmStatus&& value) { SetStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>Contains additional information about the status of the HSM.</p>
@@ -121,7 +126,7 @@ namespace Model
     /**
      * <p>Contains additional information about the status of the HSM.</p>
      */
-    inline void SetStatusDetails(Aws::String&& value) { m_statusDetails = value; }
+    inline void SetStatusDetails(Aws::String&& value) { m_statusDetails = std::move(value); }
 
     /**
      * <p>Contains additional information about the status of the HSM.</p>
@@ -136,12 +141,13 @@ namespace Model
     /**
      * <p>Contains additional information about the status of the HSM.</p>
      */
-    inline DescribeHsmResult& WithStatusDetails(Aws::String&& value) { SetStatusDetails(value); return *this;}
+    inline DescribeHsmResult& WithStatusDetails(Aws::String&& value) { SetStatusDetails(std::move(value)); return *this;}
 
     /**
      * <p>Contains additional information about the status of the HSM.</p>
      */
     inline DescribeHsmResult& WithStatusDetails(const char* value) { SetStatusDetails(value); return *this;}
+
 
     /**
      * <p>The Availability Zone that the HSM is in.</p>
@@ -156,7 +162,7 @@ namespace Model
     /**
      * <p>The Availability Zone that the HSM is in.</p>
      */
-    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZone = value; }
+    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZone = std::move(value); }
 
     /**
      * <p>The Availability Zone that the HSM is in.</p>
@@ -171,12 +177,13 @@ namespace Model
     /**
      * <p>The Availability Zone that the HSM is in.</p>
      */
-    inline DescribeHsmResult& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(value); return *this;}
+    inline DescribeHsmResult& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(std::move(value)); return *this;}
 
     /**
      * <p>The Availability Zone that the HSM is in.</p>
      */
     inline DescribeHsmResult& WithAvailabilityZone(const char* value) { SetAvailabilityZone(value); return *this;}
+
 
     /**
      * <p>The identifier of the elastic network interface (ENI) attached to the
@@ -194,7 +201,7 @@ namespace Model
      * <p>The identifier of the elastic network interface (ENI) attached to the
      * HSM.</p>
      */
-    inline void SetEniId(Aws::String&& value) { m_eniId = value; }
+    inline void SetEniId(Aws::String&& value) { m_eniId = std::move(value); }
 
     /**
      * <p>The identifier of the elastic network interface (ENI) attached to the
@@ -212,13 +219,14 @@ namespace Model
      * <p>The identifier of the elastic network interface (ENI) attached to the
      * HSM.</p>
      */
-    inline DescribeHsmResult& WithEniId(Aws::String&& value) { SetEniId(value); return *this;}
+    inline DescribeHsmResult& WithEniId(Aws::String&& value) { SetEniId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the elastic network interface (ENI) attached to the
      * HSM.</p>
      */
     inline DescribeHsmResult& WithEniId(const char* value) { SetEniId(value); return *this;}
+
 
     /**
      * <p>The IP address assigned to the HSM's ENI.</p>
@@ -233,7 +241,7 @@ namespace Model
     /**
      * <p>The IP address assigned to the HSM's ENI.</p>
      */
-    inline void SetEniIp(Aws::String&& value) { m_eniIp = value; }
+    inline void SetEniIp(Aws::String&& value) { m_eniIp = std::move(value); }
 
     /**
      * <p>The IP address assigned to the HSM's ENI.</p>
@@ -248,12 +256,13 @@ namespace Model
     /**
      * <p>The IP address assigned to the HSM's ENI.</p>
      */
-    inline DescribeHsmResult& WithEniIp(Aws::String&& value) { SetEniIp(value); return *this;}
+    inline DescribeHsmResult& WithEniIp(Aws::String&& value) { SetEniIp(std::move(value)); return *this;}
 
     /**
      * <p>The IP address assigned to the HSM's ENI.</p>
      */
     inline DescribeHsmResult& WithEniIp(const char* value) { SetEniIp(value); return *this;}
+
 
     
     inline const SubscriptionType& GetSubscriptionType() const{ return m_subscriptionType; }
@@ -262,13 +271,14 @@ namespace Model
     inline void SetSubscriptionType(const SubscriptionType& value) { m_subscriptionType = value; }
 
     
-    inline void SetSubscriptionType(SubscriptionType&& value) { m_subscriptionType = value; }
+    inline void SetSubscriptionType(SubscriptionType&& value) { m_subscriptionType = std::move(value); }
 
     
     inline DescribeHsmResult& WithSubscriptionType(const SubscriptionType& value) { SetSubscriptionType(value); return *this;}
 
     
-    inline DescribeHsmResult& WithSubscriptionType(SubscriptionType&& value) { SetSubscriptionType(value); return *this;}
+    inline DescribeHsmResult& WithSubscriptionType(SubscriptionType&& value) { SetSubscriptionType(std::move(value)); return *this;}
+
 
     /**
      * <p>The subscription start date.</p>
@@ -283,7 +293,7 @@ namespace Model
     /**
      * <p>The subscription start date.</p>
      */
-    inline void SetSubscriptionStartDate(Aws::String&& value) { m_subscriptionStartDate = value; }
+    inline void SetSubscriptionStartDate(Aws::String&& value) { m_subscriptionStartDate = std::move(value); }
 
     /**
      * <p>The subscription start date.</p>
@@ -298,12 +308,13 @@ namespace Model
     /**
      * <p>The subscription start date.</p>
      */
-    inline DescribeHsmResult& WithSubscriptionStartDate(Aws::String&& value) { SetSubscriptionStartDate(value); return *this;}
+    inline DescribeHsmResult& WithSubscriptionStartDate(Aws::String&& value) { SetSubscriptionStartDate(std::move(value)); return *this;}
 
     /**
      * <p>The subscription start date.</p>
      */
     inline DescribeHsmResult& WithSubscriptionStartDate(const char* value) { SetSubscriptionStartDate(value); return *this;}
+
 
     /**
      * <p>The subscription end date.</p>
@@ -318,7 +329,7 @@ namespace Model
     /**
      * <p>The subscription end date.</p>
      */
-    inline void SetSubscriptionEndDate(Aws::String&& value) { m_subscriptionEndDate = value; }
+    inline void SetSubscriptionEndDate(Aws::String&& value) { m_subscriptionEndDate = std::move(value); }
 
     /**
      * <p>The subscription end date.</p>
@@ -333,12 +344,13 @@ namespace Model
     /**
      * <p>The subscription end date.</p>
      */
-    inline DescribeHsmResult& WithSubscriptionEndDate(Aws::String&& value) { SetSubscriptionEndDate(value); return *this;}
+    inline DescribeHsmResult& WithSubscriptionEndDate(Aws::String&& value) { SetSubscriptionEndDate(std::move(value)); return *this;}
 
     /**
      * <p>The subscription end date.</p>
      */
     inline DescribeHsmResult& WithSubscriptionEndDate(const char* value) { SetSubscriptionEndDate(value); return *this;}
+
 
     /**
      * <p>The identifier of the VPC that the HSM is in.</p>
@@ -353,7 +365,7 @@ namespace Model
     /**
      * <p>The identifier of the VPC that the HSM is in.</p>
      */
-    inline void SetVpcId(Aws::String&& value) { m_vpcId = value; }
+    inline void SetVpcId(Aws::String&& value) { m_vpcId = std::move(value); }
 
     /**
      * <p>The identifier of the VPC that the HSM is in.</p>
@@ -368,12 +380,13 @@ namespace Model
     /**
      * <p>The identifier of the VPC that the HSM is in.</p>
      */
-    inline DescribeHsmResult& WithVpcId(Aws::String&& value) { SetVpcId(value); return *this;}
+    inline DescribeHsmResult& WithVpcId(Aws::String&& value) { SetVpcId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the VPC that the HSM is in.</p>
      */
     inline DescribeHsmResult& WithVpcId(const char* value) { SetVpcId(value); return *this;}
+
 
     /**
      * <p>The identifier of the subnet that the HSM is in.</p>
@@ -388,7 +401,7 @@ namespace Model
     /**
      * <p>The identifier of the subnet that the HSM is in.</p>
      */
-    inline void SetSubnetId(Aws::String&& value) { m_subnetId = value; }
+    inline void SetSubnetId(Aws::String&& value) { m_subnetId = std::move(value); }
 
     /**
      * <p>The identifier of the subnet that the HSM is in.</p>
@@ -403,12 +416,13 @@ namespace Model
     /**
      * <p>The identifier of the subnet that the HSM is in.</p>
      */
-    inline DescribeHsmResult& WithSubnetId(Aws::String&& value) { SetSubnetId(value); return *this;}
+    inline DescribeHsmResult& WithSubnetId(Aws::String&& value) { SetSubnetId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the subnet that the HSM is in.</p>
      */
     inline DescribeHsmResult& WithSubnetId(const char* value) { SetSubnetId(value); return *this;}
+
 
     /**
      * <p>The ARN of the IAM role assigned to the HSM.</p>
@@ -423,7 +437,7 @@ namespace Model
     /**
      * <p>The ARN of the IAM role assigned to the HSM.</p>
      */
-    inline void SetIamRoleArn(Aws::String&& value) { m_iamRoleArn = value; }
+    inline void SetIamRoleArn(Aws::String&& value) { m_iamRoleArn = std::move(value); }
 
     /**
      * <p>The ARN of the IAM role assigned to the HSM.</p>
@@ -438,12 +452,13 @@ namespace Model
     /**
      * <p>The ARN of the IAM role assigned to the HSM.</p>
      */
-    inline DescribeHsmResult& WithIamRoleArn(Aws::String&& value) { SetIamRoleArn(value); return *this;}
+    inline DescribeHsmResult& WithIamRoleArn(Aws::String&& value) { SetIamRoleArn(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of the IAM role assigned to the HSM.</p>
      */
     inline DescribeHsmResult& WithIamRoleArn(const char* value) { SetIamRoleArn(value); return *this;}
+
 
     /**
      * <p>The serial number of the HSM.</p>
@@ -458,7 +473,7 @@ namespace Model
     /**
      * <p>The serial number of the HSM.</p>
      */
-    inline void SetSerialNumber(Aws::String&& value) { m_serialNumber = value; }
+    inline void SetSerialNumber(Aws::String&& value) { m_serialNumber = std::move(value); }
 
     /**
      * <p>The serial number of the HSM.</p>
@@ -473,12 +488,13 @@ namespace Model
     /**
      * <p>The serial number of the HSM.</p>
      */
-    inline DescribeHsmResult& WithSerialNumber(Aws::String&& value) { SetSerialNumber(value); return *this;}
+    inline DescribeHsmResult& WithSerialNumber(Aws::String&& value) { SetSerialNumber(std::move(value)); return *this;}
 
     /**
      * <p>The serial number of the HSM.</p>
      */
     inline DescribeHsmResult& WithSerialNumber(const char* value) { SetSerialNumber(value); return *this;}
+
 
     /**
      * <p>The name of the HSM vendor.</p>
@@ -493,7 +509,7 @@ namespace Model
     /**
      * <p>The name of the HSM vendor.</p>
      */
-    inline void SetVendorName(Aws::String&& value) { m_vendorName = value; }
+    inline void SetVendorName(Aws::String&& value) { m_vendorName = std::move(value); }
 
     /**
      * <p>The name of the HSM vendor.</p>
@@ -508,12 +524,13 @@ namespace Model
     /**
      * <p>The name of the HSM vendor.</p>
      */
-    inline DescribeHsmResult& WithVendorName(Aws::String&& value) { SetVendorName(value); return *this;}
+    inline DescribeHsmResult& WithVendorName(Aws::String&& value) { SetVendorName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the HSM vendor.</p>
      */
     inline DescribeHsmResult& WithVendorName(const char* value) { SetVendorName(value); return *this;}
+
 
     /**
      * <p>The HSM model type.</p>
@@ -528,7 +545,7 @@ namespace Model
     /**
      * <p>The HSM model type.</p>
      */
-    inline void SetHsmType(Aws::String&& value) { m_hsmType = value; }
+    inline void SetHsmType(Aws::String&& value) { m_hsmType = std::move(value); }
 
     /**
      * <p>The HSM model type.</p>
@@ -543,12 +560,13 @@ namespace Model
     /**
      * <p>The HSM model type.</p>
      */
-    inline DescribeHsmResult& WithHsmType(Aws::String&& value) { SetHsmType(value); return *this;}
+    inline DescribeHsmResult& WithHsmType(Aws::String&& value) { SetHsmType(std::move(value)); return *this;}
 
     /**
      * <p>The HSM model type.</p>
      */
     inline DescribeHsmResult& WithHsmType(const char* value) { SetHsmType(value); return *this;}
+
 
     /**
      * <p>The HSM software version.</p>
@@ -563,7 +581,7 @@ namespace Model
     /**
      * <p>The HSM software version.</p>
      */
-    inline void SetSoftwareVersion(Aws::String&& value) { m_softwareVersion = value; }
+    inline void SetSoftwareVersion(Aws::String&& value) { m_softwareVersion = std::move(value); }
 
     /**
      * <p>The HSM software version.</p>
@@ -578,12 +596,13 @@ namespace Model
     /**
      * <p>The HSM software version.</p>
      */
-    inline DescribeHsmResult& WithSoftwareVersion(Aws::String&& value) { SetSoftwareVersion(value); return *this;}
+    inline DescribeHsmResult& WithSoftwareVersion(Aws::String&& value) { SetSoftwareVersion(std::move(value)); return *this;}
 
     /**
      * <p>The HSM software version.</p>
      */
     inline DescribeHsmResult& WithSoftwareVersion(const char* value) { SetSoftwareVersion(value); return *this;}
+
 
     /**
      * <p>The public SSH key.</p>
@@ -598,7 +617,7 @@ namespace Model
     /**
      * <p>The public SSH key.</p>
      */
-    inline void SetSshPublicKey(Aws::String&& value) { m_sshPublicKey = value; }
+    inline void SetSshPublicKey(Aws::String&& value) { m_sshPublicKey = std::move(value); }
 
     /**
      * <p>The public SSH key.</p>
@@ -613,12 +632,13 @@ namespace Model
     /**
      * <p>The public SSH key.</p>
      */
-    inline DescribeHsmResult& WithSshPublicKey(Aws::String&& value) { SetSshPublicKey(value); return *this;}
+    inline DescribeHsmResult& WithSshPublicKey(Aws::String&& value) { SetSshPublicKey(std::move(value)); return *this;}
 
     /**
      * <p>The public SSH key.</p>
      */
     inline DescribeHsmResult& WithSshPublicKey(const char* value) { SetSshPublicKey(value); return *this;}
+
 
     /**
      * <p>The date and time that the SSH key was last updated.</p>
@@ -633,7 +653,7 @@ namespace Model
     /**
      * <p>The date and time that the SSH key was last updated.</p>
      */
-    inline void SetSshKeyLastUpdated(Aws::String&& value) { m_sshKeyLastUpdated = value; }
+    inline void SetSshKeyLastUpdated(Aws::String&& value) { m_sshKeyLastUpdated = std::move(value); }
 
     /**
      * <p>The date and time that the SSH key was last updated.</p>
@@ -648,12 +668,13 @@ namespace Model
     /**
      * <p>The date and time that the SSH key was last updated.</p>
      */
-    inline DescribeHsmResult& WithSshKeyLastUpdated(Aws::String&& value) { SetSshKeyLastUpdated(value); return *this;}
+    inline DescribeHsmResult& WithSshKeyLastUpdated(Aws::String&& value) { SetSshKeyLastUpdated(std::move(value)); return *this;}
 
     /**
      * <p>The date and time that the SSH key was last updated.</p>
      */
     inline DescribeHsmResult& WithSshKeyLastUpdated(const char* value) { SetSshKeyLastUpdated(value); return *this;}
+
 
     /**
      * <p>The URI of the certificate server.</p>
@@ -668,7 +689,7 @@ namespace Model
     /**
      * <p>The URI of the certificate server.</p>
      */
-    inline void SetServerCertUri(Aws::String&& value) { m_serverCertUri = value; }
+    inline void SetServerCertUri(Aws::String&& value) { m_serverCertUri = std::move(value); }
 
     /**
      * <p>The URI of the certificate server.</p>
@@ -683,12 +704,13 @@ namespace Model
     /**
      * <p>The URI of the certificate server.</p>
      */
-    inline DescribeHsmResult& WithServerCertUri(Aws::String&& value) { SetServerCertUri(value); return *this;}
+    inline DescribeHsmResult& WithServerCertUri(Aws::String&& value) { SetServerCertUri(std::move(value)); return *this;}
 
     /**
      * <p>The URI of the certificate server.</p>
      */
     inline DescribeHsmResult& WithServerCertUri(const char* value) { SetServerCertUri(value); return *this;}
+
 
     /**
      * <p>The date and time that the server certificate was last updated.</p>
@@ -703,7 +725,7 @@ namespace Model
     /**
      * <p>The date and time that the server certificate was last updated.</p>
      */
-    inline void SetServerCertLastUpdated(Aws::String&& value) { m_serverCertLastUpdated = value; }
+    inline void SetServerCertLastUpdated(Aws::String&& value) { m_serverCertLastUpdated = std::move(value); }
 
     /**
      * <p>The date and time that the server certificate was last updated.</p>
@@ -718,12 +740,13 @@ namespace Model
     /**
      * <p>The date and time that the server certificate was last updated.</p>
      */
-    inline DescribeHsmResult& WithServerCertLastUpdated(Aws::String&& value) { SetServerCertLastUpdated(value); return *this;}
+    inline DescribeHsmResult& WithServerCertLastUpdated(Aws::String&& value) { SetServerCertLastUpdated(std::move(value)); return *this;}
 
     /**
      * <p>The date and time that the server certificate was last updated.</p>
      */
     inline DescribeHsmResult& WithServerCertLastUpdated(const char* value) { SetServerCertLastUpdated(value); return *this;}
+
 
     /**
      * <p>The list of partitions on the HSM.</p>
@@ -738,7 +761,7 @@ namespace Model
     /**
      * <p>The list of partitions on the HSM.</p>
      */
-    inline void SetPartitions(Aws::Vector<Aws::String>&& value) { m_partitions = value; }
+    inline void SetPartitions(Aws::Vector<Aws::String>&& value) { m_partitions = std::move(value); }
 
     /**
      * <p>The list of partitions on the HSM.</p>
@@ -748,7 +771,7 @@ namespace Model
     /**
      * <p>The list of partitions on the HSM.</p>
      */
-    inline DescribeHsmResult& WithPartitions(Aws::Vector<Aws::String>&& value) { SetPartitions(value); return *this;}
+    inline DescribeHsmResult& WithPartitions(Aws::Vector<Aws::String>&& value) { SetPartitions(std::move(value)); return *this;}
 
     /**
      * <p>The list of partitions on the HSM.</p>
@@ -758,7 +781,7 @@ namespace Model
     /**
      * <p>The list of partitions on the HSM.</p>
      */
-    inline DescribeHsmResult& AddPartitions(Aws::String&& value) { m_partitions.push_back(value); return *this; }
+    inline DescribeHsmResult& AddPartitions(Aws::String&& value) { m_partitions.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The list of partitions on the HSM.</p>
@@ -766,26 +789,47 @@ namespace Model
     inline DescribeHsmResult& AddPartitions(const char* value) { m_partitions.push_back(value); return *this; }
 
   private:
+
     Aws::String m_hsmArn;
+
     HsmStatus m_status;
+
     Aws::String m_statusDetails;
+
     Aws::String m_availabilityZone;
+
     Aws::String m_eniId;
+
     Aws::String m_eniIp;
+
     SubscriptionType m_subscriptionType;
+
     Aws::String m_subscriptionStartDate;
+
     Aws::String m_subscriptionEndDate;
+
     Aws::String m_vpcId;
+
     Aws::String m_subnetId;
+
     Aws::String m_iamRoleArn;
+
     Aws::String m_serialNumber;
+
     Aws::String m_vendorName;
+
     Aws::String m_hsmType;
+
     Aws::String m_softwareVersion;
+
     Aws::String m_sshPublicKey;
+
     Aws::String m_sshKeyLastUpdated;
+
     Aws::String m_serverCertUri;
+
     Aws::String m_serverCertLastUpdated;
+
     Aws::Vector<Aws::String> m_partitions;
   };
 

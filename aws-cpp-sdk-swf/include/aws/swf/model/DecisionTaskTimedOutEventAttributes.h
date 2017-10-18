@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 #include <aws/swf/model/DecisionTaskTimeoutType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,7 +33,7 @@ namespace Model
 {
 
   /**
-   * <p>Provides details of the <code>DecisionTaskTimedOut</code>
+   * <p>Provides the details of the <code>DecisionTaskTimedOut</code>
    * event.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/swf-2012-01-25/DecisionTaskTimedOutEventAttributes">AWS
    * API Reference</a></p>
@@ -43,6 +45,7 @@ namespace Model
     DecisionTaskTimedOutEventAttributes(const Aws::Utils::Json::JsonValue& jsonValue);
     DecisionTaskTimedOutEventAttributes& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>The type of timeout that expired before the decision task could be
@@ -60,7 +63,7 @@ namespace Model
      * <p>The type of timeout that expired before the decision task could be
      * completed.</p>
      */
-    inline void SetTimeoutType(DecisionTaskTimeoutType&& value) { m_timeoutTypeHasBeenSet = true; m_timeoutType = value; }
+    inline void SetTimeoutType(DecisionTaskTimeoutType&& value) { m_timeoutTypeHasBeenSet = true; m_timeoutType = std::move(value); }
 
     /**
      * <p>The type of timeout that expired before the decision task could be
@@ -72,7 +75,8 @@ namespace Model
      * <p>The type of timeout that expired before the decision task could be
      * completed.</p>
      */
-    inline DecisionTaskTimedOutEventAttributes& WithTimeoutType(DecisionTaskTimeoutType&& value) { SetTimeoutType(value); return *this;}
+    inline DecisionTaskTimedOutEventAttributes& WithTimeoutType(DecisionTaskTimeoutType&& value) { SetTimeoutType(std::move(value)); return *this;}
+
 
     /**
      * <p>The ID of the <code>DecisionTaskScheduled</code> event that was recorded when
@@ -94,6 +98,7 @@ namespace Model
      * problems by tracing back the chain of events leading up to this event.</p>
      */
     inline DecisionTaskTimedOutEventAttributes& WithScheduledEventId(long long value) { SetScheduledEventId(value); return *this;}
+
 
     /**
      * <p>The ID of the <code>DecisionTaskStarted</code> event recorded when this
@@ -117,10 +122,13 @@ namespace Model
     inline DecisionTaskTimedOutEventAttributes& WithStartedEventId(long long value) { SetStartedEventId(value); return *this;}
 
   private:
+
     DecisionTaskTimeoutType m_timeoutType;
     bool m_timeoutTypeHasBeenSet;
+
     long long m_scheduledEventId;
     bool m_scheduledEventIdHasBeenSet;
+
     long long m_startedEventId;
     bool m_startedEventIdHasBeenSet;
   };

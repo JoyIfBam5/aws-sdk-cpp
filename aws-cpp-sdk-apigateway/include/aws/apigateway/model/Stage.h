@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -20,6 +21,7 @@
 #include <aws/core/utils/memory/stl/AWSMap.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/apigateway/model/MethodSetting.h>
+#include <utility>
 
 namespace Aws
 {
@@ -51,6 +53,7 @@ namespace Model
     Stage& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The identifier of the <a>Deployment</a> that the stage points to.</p>
      */
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>The identifier of the <a>Deployment</a> that the stage points to.</p>
      */
-    inline void SetDeploymentId(Aws::String&& value) { m_deploymentIdHasBeenSet = true; m_deploymentId = value; }
+    inline void SetDeploymentId(Aws::String&& value) { m_deploymentIdHasBeenSet = true; m_deploymentId = std::move(value); }
 
     /**
      * <p>The identifier of the <a>Deployment</a> that the stage points to.</p>
@@ -79,12 +82,13 @@ namespace Model
     /**
      * <p>The identifier of the <a>Deployment</a> that the stage points to.</p>
      */
-    inline Stage& WithDeploymentId(Aws::String&& value) { SetDeploymentId(value); return *this;}
+    inline Stage& WithDeploymentId(Aws::String&& value) { SetDeploymentId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the <a>Deployment</a> that the stage points to.</p>
      */
     inline Stage& WithDeploymentId(const char* value) { SetDeploymentId(value); return *this;}
+
 
     /**
      * <p>The identifier of a client certificate for an API stage.</p>
@@ -99,7 +103,7 @@ namespace Model
     /**
      * <p>The identifier of a client certificate for an API stage.</p>
      */
-    inline void SetClientCertificateId(Aws::String&& value) { m_clientCertificateIdHasBeenSet = true; m_clientCertificateId = value; }
+    inline void SetClientCertificateId(Aws::String&& value) { m_clientCertificateIdHasBeenSet = true; m_clientCertificateId = std::move(value); }
 
     /**
      * <p>The identifier of a client certificate for an API stage.</p>
@@ -114,12 +118,13 @@ namespace Model
     /**
      * <p>The identifier of a client certificate for an API stage.</p>
      */
-    inline Stage& WithClientCertificateId(Aws::String&& value) { SetClientCertificateId(value); return *this;}
+    inline Stage& WithClientCertificateId(Aws::String&& value) { SetClientCertificateId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of a client certificate for an API stage.</p>
      */
     inline Stage& WithClientCertificateId(const char* value) { SetClientCertificateId(value); return *this;}
+
 
     /**
      * <p>The name of the stage is the first path segment in the Uniform Resource
@@ -137,7 +142,7 @@ namespace Model
      * <p>The name of the stage is the first path segment in the Uniform Resource
      * Identifier (URI) of a call to Amazon API Gateway.</p>
      */
-    inline void SetStageName(Aws::String&& value) { m_stageNameHasBeenSet = true; m_stageName = value; }
+    inline void SetStageName(Aws::String&& value) { m_stageNameHasBeenSet = true; m_stageName = std::move(value); }
 
     /**
      * <p>The name of the stage is the first path segment in the Uniform Resource
@@ -155,13 +160,14 @@ namespace Model
      * <p>The name of the stage is the first path segment in the Uniform Resource
      * Identifier (URI) of a call to Amazon API Gateway.</p>
      */
-    inline Stage& WithStageName(Aws::String&& value) { SetStageName(value); return *this;}
+    inline Stage& WithStageName(Aws::String&& value) { SetStageName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the stage is the first path segment in the Uniform Resource
      * Identifier (URI) of a call to Amazon API Gateway.</p>
      */
     inline Stage& WithStageName(const char* value) { SetStageName(value); return *this;}
+
 
     /**
      * <p>The stage's description.</p>
@@ -176,7 +182,7 @@ namespace Model
     /**
      * <p>The stage's description.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The stage's description.</p>
@@ -191,12 +197,13 @@ namespace Model
     /**
      * <p>The stage's description.</p>
      */
-    inline Stage& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline Stage& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The stage's description.</p>
      */
     inline Stage& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>Specifies whether a cache cluster is enabled for the stage.</p>
@@ -213,6 +220,7 @@ namespace Model
      */
     inline Stage& WithCacheClusterEnabled(bool value) { SetCacheClusterEnabled(value); return *this;}
 
+
     /**
      * <p>The size of the cache cluster for the stage, if enabled.</p>
      */
@@ -226,7 +234,7 @@ namespace Model
     /**
      * <p>The size of the cache cluster for the stage, if enabled.</p>
      */
-    inline void SetCacheClusterSize(CacheClusterSize&& value) { m_cacheClusterSizeHasBeenSet = true; m_cacheClusterSize = value; }
+    inline void SetCacheClusterSize(CacheClusterSize&& value) { m_cacheClusterSizeHasBeenSet = true; m_cacheClusterSize = std::move(value); }
 
     /**
      * <p>The size of the cache cluster for the stage, if enabled.</p>
@@ -236,7 +244,8 @@ namespace Model
     /**
      * <p>The size of the cache cluster for the stage, if enabled.</p>
      */
-    inline Stage& WithCacheClusterSize(CacheClusterSize&& value) { SetCacheClusterSize(value); return *this;}
+    inline Stage& WithCacheClusterSize(CacheClusterSize&& value) { SetCacheClusterSize(std::move(value)); return *this;}
+
 
     /**
      * <p>The status of the cache cluster for the stage, if enabled.</p>
@@ -251,7 +260,7 @@ namespace Model
     /**
      * <p>The status of the cache cluster for the stage, if enabled.</p>
      */
-    inline void SetCacheClusterStatus(CacheClusterStatus&& value) { m_cacheClusterStatusHasBeenSet = true; m_cacheClusterStatus = value; }
+    inline void SetCacheClusterStatus(CacheClusterStatus&& value) { m_cacheClusterStatusHasBeenSet = true; m_cacheClusterStatus = std::move(value); }
 
     /**
      * <p>The status of the cache cluster for the stage, if enabled.</p>
@@ -261,7 +270,8 @@ namespace Model
     /**
      * <p>The status of the cache cluster for the stage, if enabled.</p>
      */
-    inline Stage& WithCacheClusterStatus(CacheClusterStatus&& value) { SetCacheClusterStatus(value); return *this;}
+    inline Stage& WithCacheClusterStatus(CacheClusterStatus&& value) { SetCacheClusterStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>A map that defines the method settings for a <a>Stage</a> resource. Keys
@@ -285,7 +295,7 @@ namespace Model
      * as <code>{resource_path}/{http_method}</code> for an individual method override,
      * or <code>/\* /\*</code> for overriding all methods in the stage. </p>
      */
-    inline void SetMethodSettings(Aws::Map<Aws::String, MethodSetting>&& value) { m_methodSettingsHasBeenSet = true; m_methodSettings = value; }
+    inline void SetMethodSettings(Aws::Map<Aws::String, MethodSetting>&& value) { m_methodSettingsHasBeenSet = true; m_methodSettings = std::move(value); }
 
     /**
      * <p>A map that defines the method settings for a <a>Stage</a> resource. Keys
@@ -301,7 +311,7 @@ namespace Model
      * as <code>{resource_path}/{http_method}</code> for an individual method override,
      * or <code>/\* /\*</code> for overriding all methods in the stage. </p>
      */
-    inline Stage& WithMethodSettings(Aws::Map<Aws::String, MethodSetting>&& value) { SetMethodSettings(value); return *this;}
+    inline Stage& WithMethodSettings(Aws::Map<Aws::String, MethodSetting>&& value) { SetMethodSettings(std::move(value)); return *this;}
 
     /**
      * <p>A map that defines the method settings for a <a>Stage</a> resource. Keys
@@ -309,7 +319,7 @@ namespace Model
      * as <code>{resource_path}/{http_method}</code> for an individual method override,
      * or <code>/\* /\*</code> for overriding all methods in the stage. </p>
      */
-    inline Stage& AddMethodSettings(const Aws::String& key, const MethodSetting& value) { m_methodSettingsHasBeenSet = true; m_methodSettings[key] = value; return *this; }
+    inline Stage& AddMethodSettings(const Aws::String& key, const MethodSetting& value) { m_methodSettingsHasBeenSet = true; m_methodSettings.emplace(key, value); return *this; }
 
     /**
      * <p>A map that defines the method settings for a <a>Stage</a> resource. Keys
@@ -317,7 +327,7 @@ namespace Model
      * as <code>{resource_path}/{http_method}</code> for an individual method override,
      * or <code>/\* /\*</code> for overriding all methods in the stage. </p>
      */
-    inline Stage& AddMethodSettings(Aws::String&& key, const MethodSetting& value) { m_methodSettingsHasBeenSet = true; m_methodSettings[key] = value; return *this; }
+    inline Stage& AddMethodSettings(Aws::String&& key, const MethodSetting& value) { m_methodSettingsHasBeenSet = true; m_methodSettings.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A map that defines the method settings for a <a>Stage</a> resource. Keys
@@ -325,7 +335,7 @@ namespace Model
      * as <code>{resource_path}/{http_method}</code> for an individual method override,
      * or <code>/\* /\*</code> for overriding all methods in the stage. </p>
      */
-    inline Stage& AddMethodSettings(const Aws::String& key, MethodSetting&& value) { m_methodSettingsHasBeenSet = true; m_methodSettings[key] = value; return *this; }
+    inline Stage& AddMethodSettings(const Aws::String& key, MethodSetting&& value) { m_methodSettingsHasBeenSet = true; m_methodSettings.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A map that defines the method settings for a <a>Stage</a> resource. Keys
@@ -333,7 +343,7 @@ namespace Model
      * as <code>{resource_path}/{http_method}</code> for an individual method override,
      * or <code>/\* /\*</code> for overriding all methods in the stage. </p>
      */
-    inline Stage& AddMethodSettings(Aws::String&& key, MethodSetting&& value) { m_methodSettingsHasBeenSet = true; m_methodSettings[key] = value; return *this; }
+    inline Stage& AddMethodSettings(Aws::String&& key, MethodSetting&& value) { m_methodSettingsHasBeenSet = true; m_methodSettings.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>A map that defines the method settings for a <a>Stage</a> resource. Keys
@@ -341,7 +351,7 @@ namespace Model
      * as <code>{resource_path}/{http_method}</code> for an individual method override,
      * or <code>/\* /\*</code> for overriding all methods in the stage. </p>
      */
-    inline Stage& AddMethodSettings(const char* key, MethodSetting&& value) { m_methodSettingsHasBeenSet = true; m_methodSettings[key] = value; return *this; }
+    inline Stage& AddMethodSettings(const char* key, MethodSetting&& value) { m_methodSettingsHasBeenSet = true; m_methodSettings.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A map that defines the method settings for a <a>Stage</a> resource. Keys
@@ -349,7 +359,8 @@ namespace Model
      * as <code>{resource_path}/{http_method}</code> for an individual method override,
      * or <code>/\* /\*</code> for overriding all methods in the stage. </p>
      */
-    inline Stage& AddMethodSettings(const char* key, const MethodSetting& value) { m_methodSettingsHasBeenSet = true; m_methodSettings[key] = value; return *this; }
+    inline Stage& AddMethodSettings(const char* key, const MethodSetting& value) { m_methodSettingsHasBeenSet = true; m_methodSettings.emplace(key, value); return *this; }
+
 
     /**
      * <p>A map that defines the stage variables for a <a>Stage</a> resource. Variable
@@ -370,7 +381,7 @@ namespace Model
      * names can have alphanumeric and underscore characters, and the values must match
      * <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.</p>
      */
-    inline void SetVariables(Aws::Map<Aws::String, Aws::String>&& value) { m_variablesHasBeenSet = true; m_variables = value; }
+    inline void SetVariables(Aws::Map<Aws::String, Aws::String>&& value) { m_variablesHasBeenSet = true; m_variables = std::move(value); }
 
     /**
      * <p>A map that defines the stage variables for a <a>Stage</a> resource. Variable
@@ -384,56 +395,57 @@ namespace Model
      * names can have alphanumeric and underscore characters, and the values must match
      * <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.</p>
      */
-    inline Stage& WithVariables(Aws::Map<Aws::String, Aws::String>&& value) { SetVariables(value); return *this;}
+    inline Stage& WithVariables(Aws::Map<Aws::String, Aws::String>&& value) { SetVariables(std::move(value)); return *this;}
 
     /**
      * <p>A map that defines the stage variables for a <a>Stage</a> resource. Variable
      * names can have alphanumeric and underscore characters, and the values must match
      * <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.</p>
      */
-    inline Stage& AddVariables(const Aws::String& key, const Aws::String& value) { m_variablesHasBeenSet = true; m_variables[key] = value; return *this; }
+    inline Stage& AddVariables(const Aws::String& key, const Aws::String& value) { m_variablesHasBeenSet = true; m_variables.emplace(key, value); return *this; }
 
     /**
      * <p>A map that defines the stage variables for a <a>Stage</a> resource. Variable
      * names can have alphanumeric and underscore characters, and the values must match
      * <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.</p>
      */
-    inline Stage& AddVariables(Aws::String&& key, const Aws::String& value) { m_variablesHasBeenSet = true; m_variables[key] = value; return *this; }
+    inline Stage& AddVariables(Aws::String&& key, const Aws::String& value) { m_variablesHasBeenSet = true; m_variables.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A map that defines the stage variables for a <a>Stage</a> resource. Variable
      * names can have alphanumeric and underscore characters, and the values must match
      * <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.</p>
      */
-    inline Stage& AddVariables(const Aws::String& key, Aws::String&& value) { m_variablesHasBeenSet = true; m_variables[key] = value; return *this; }
+    inline Stage& AddVariables(const Aws::String& key, Aws::String&& value) { m_variablesHasBeenSet = true; m_variables.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A map that defines the stage variables for a <a>Stage</a> resource. Variable
      * names can have alphanumeric and underscore characters, and the values must match
      * <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.</p>
      */
-    inline Stage& AddVariables(Aws::String&& key, Aws::String&& value) { m_variablesHasBeenSet = true; m_variables[key] = value; return *this; }
+    inline Stage& AddVariables(Aws::String&& key, Aws::String&& value) { m_variablesHasBeenSet = true; m_variables.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>A map that defines the stage variables for a <a>Stage</a> resource. Variable
      * names can have alphanumeric and underscore characters, and the values must match
      * <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.</p>
      */
-    inline Stage& AddVariables(const char* key, Aws::String&& value) { m_variablesHasBeenSet = true; m_variables[key] = value; return *this; }
+    inline Stage& AddVariables(const char* key, Aws::String&& value) { m_variablesHasBeenSet = true; m_variables.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A map that defines the stage variables for a <a>Stage</a> resource. Variable
      * names can have alphanumeric and underscore characters, and the values must match
      * <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.</p>
      */
-    inline Stage& AddVariables(Aws::String&& key, const char* value) { m_variablesHasBeenSet = true; m_variables[key] = value; return *this; }
+    inline Stage& AddVariables(Aws::String&& key, const char* value) { m_variablesHasBeenSet = true; m_variables.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A map that defines the stage variables for a <a>Stage</a> resource. Variable
      * names can have alphanumeric and underscore characters, and the values must match
      * <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.</p>
      */
-    inline Stage& AddVariables(const char* key, const char* value) { m_variablesHasBeenSet = true; m_variables[key] = value; return *this; }
+    inline Stage& AddVariables(const char* key, const char* value) { m_variablesHasBeenSet = true; m_variables.emplace(key, value); return *this; }
+
 
     /**
      * <p>The version of the associated API documentation.</p>
@@ -448,7 +460,7 @@ namespace Model
     /**
      * <p>The version of the associated API documentation.</p>
      */
-    inline void SetDocumentationVersion(Aws::String&& value) { m_documentationVersionHasBeenSet = true; m_documentationVersion = value; }
+    inline void SetDocumentationVersion(Aws::String&& value) { m_documentationVersionHasBeenSet = true; m_documentationVersion = std::move(value); }
 
     /**
      * <p>The version of the associated API documentation.</p>
@@ -463,106 +475,100 @@ namespace Model
     /**
      * <p>The version of the associated API documentation.</p>
      */
-    inline Stage& WithDocumentationVersion(Aws::String&& value) { SetDocumentationVersion(value); return *this;}
+    inline Stage& WithDocumentationVersion(Aws::String&& value) { SetDocumentationVersion(std::move(value)); return *this;}
 
     /**
      * <p>The version of the associated API documentation.</p>
      */
     inline Stage& WithDocumentationVersion(const char* value) { SetDocumentationVersion(value); return *this;}
 
+
     /**
-     * <p>The date and time that the stage was created, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The timestamp when the stage was created.</p>
      */
     inline const Aws::Utils::DateTime& GetCreatedDate() const{ return m_createdDate; }
 
     /**
-     * <p>The date and time that the stage was created, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The timestamp when the stage was created.</p>
      */
     inline void SetCreatedDate(const Aws::Utils::DateTime& value) { m_createdDateHasBeenSet = true; m_createdDate = value; }
 
     /**
-     * <p>The date and time that the stage was created, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The timestamp when the stage was created.</p>
      */
-    inline void SetCreatedDate(Aws::Utils::DateTime&& value) { m_createdDateHasBeenSet = true; m_createdDate = value; }
+    inline void SetCreatedDate(Aws::Utils::DateTime&& value) { m_createdDateHasBeenSet = true; m_createdDate = std::move(value); }
 
     /**
-     * <p>The date and time that the stage was created, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The timestamp when the stage was created.</p>
      */
     inline Stage& WithCreatedDate(const Aws::Utils::DateTime& value) { SetCreatedDate(value); return *this;}
 
     /**
-     * <p>The date and time that the stage was created, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The timestamp when the stage was created.</p>
      */
-    inline Stage& WithCreatedDate(Aws::Utils::DateTime&& value) { SetCreatedDate(value); return *this;}
+    inline Stage& WithCreatedDate(Aws::Utils::DateTime&& value) { SetCreatedDate(std::move(value)); return *this;}
+
 
     /**
-     * <p>The date and time that information about the stage was last updated, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The timestamp when the stage last updated.</p>
      */
     inline const Aws::Utils::DateTime& GetLastUpdatedDate() const{ return m_lastUpdatedDate; }
 
     /**
-     * <p>The date and time that information about the stage was last updated, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The timestamp when the stage last updated.</p>
      */
     inline void SetLastUpdatedDate(const Aws::Utils::DateTime& value) { m_lastUpdatedDateHasBeenSet = true; m_lastUpdatedDate = value; }
 
     /**
-     * <p>The date and time that information about the stage was last updated, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The timestamp when the stage last updated.</p>
      */
-    inline void SetLastUpdatedDate(Aws::Utils::DateTime&& value) { m_lastUpdatedDateHasBeenSet = true; m_lastUpdatedDate = value; }
+    inline void SetLastUpdatedDate(Aws::Utils::DateTime&& value) { m_lastUpdatedDateHasBeenSet = true; m_lastUpdatedDate = std::move(value); }
 
     /**
-     * <p>The date and time that information about the stage was last updated, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The timestamp when the stage last updated.</p>
      */
     inline Stage& WithLastUpdatedDate(const Aws::Utils::DateTime& value) { SetLastUpdatedDate(value); return *this;}
 
     /**
-     * <p>The date and time that information about the stage was last updated, in <a
-     * href="http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank">ISO
-     * 8601 format</a>.</p>
+     * <p>The timestamp when the stage last updated.</p>
      */
-    inline Stage& WithLastUpdatedDate(Aws::Utils::DateTime&& value) { SetLastUpdatedDate(value); return *this;}
+    inline Stage& WithLastUpdatedDate(Aws::Utils::DateTime&& value) { SetLastUpdatedDate(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_deploymentId;
     bool m_deploymentIdHasBeenSet;
+
     Aws::String m_clientCertificateId;
     bool m_clientCertificateIdHasBeenSet;
+
     Aws::String m_stageName;
     bool m_stageNameHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     bool m_cacheClusterEnabled;
     bool m_cacheClusterEnabledHasBeenSet;
+
     CacheClusterSize m_cacheClusterSize;
     bool m_cacheClusterSizeHasBeenSet;
+
     CacheClusterStatus m_cacheClusterStatus;
     bool m_cacheClusterStatusHasBeenSet;
+
     Aws::Map<Aws::String, MethodSetting> m_methodSettings;
     bool m_methodSettingsHasBeenSet;
+
     Aws::Map<Aws::String, Aws::String> m_variables;
     bool m_variablesHasBeenSet;
+
     Aws::String m_documentationVersion;
     bool m_documentationVersionHasBeenSet;
+
     Aws::Utils::DateTime m_createdDate;
     bool m_createdDateHasBeenSet;
+
     Aws::Utils::DateTime m_lastUpdatedDate;
     bool m_lastUpdatedDateHasBeenSet;
   };

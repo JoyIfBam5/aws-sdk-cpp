@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/ecs/model/Attribute.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     PutAttributesResult();
-    PutAttributesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    PutAttributesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PutAttributesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PutAttributesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The attributes applied to your resource.</p>
@@ -53,7 +56,7 @@ namespace Model
     /**
      * <p>The attributes applied to your resource.</p>
      */
-    inline void SetAttributes(Aws::Vector<Attribute>&& value) { m_attributes = value; }
+    inline void SetAttributes(Aws::Vector<Attribute>&& value) { m_attributes = std::move(value); }
 
     /**
      * <p>The attributes applied to your resource.</p>
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>The attributes applied to your resource.</p>
      */
-    inline PutAttributesResult& WithAttributes(Aws::Vector<Attribute>&& value) { SetAttributes(value); return *this;}
+    inline PutAttributesResult& WithAttributes(Aws::Vector<Attribute>&& value) { SetAttributes(std::move(value)); return *this;}
 
     /**
      * <p>The attributes applied to your resource.</p>
@@ -73,9 +76,10 @@ namespace Model
     /**
      * <p>The attributes applied to your resource.</p>
      */
-    inline PutAttributesResult& AddAttributes(Attribute&& value) { m_attributes.push_back(value); return *this; }
+    inline PutAttributesResult& AddAttributes(Attribute&& value) { m_attributes.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<Attribute> m_attributes;
   };
 

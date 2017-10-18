@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/rds/model/CreateDBInstanceRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -68,7 +69,12 @@ CreateDBInstanceRequest::CreateDBInstanceRequest() :
     m_domainIAMRoleNameHasBeenSet(false),
     m_promotionTier(0),
     m_promotionTierHasBeenSet(false),
-    m_timezoneHasBeenSet(false)
+    m_timezoneHasBeenSet(false),
+    m_enableIAMDatabaseAuthentication(false),
+    m_enableIAMDatabaseAuthenticationHasBeenSet(false),
+    m_enablePerformanceInsights(false),
+    m_enablePerformanceInsightsHasBeenSet(false),
+    m_performanceInsightsKMSKeyIdHasBeenSet(false)
 {
 }
 
@@ -283,7 +289,27 @@ Aws::String CreateDBInstanceRequest::SerializePayload() const
     ss << "Timezone=" << StringUtils::URLEncode(m_timezone.c_str()) << "&";
   }
 
+  if(m_enableIAMDatabaseAuthenticationHasBeenSet)
+  {
+    ss << "EnableIAMDatabaseAuthentication=" << std::boolalpha << m_enableIAMDatabaseAuthentication << "&";
+  }
+
+  if(m_enablePerformanceInsightsHasBeenSet)
+  {
+    ss << "EnablePerformanceInsights=" << std::boolalpha << m_enablePerformanceInsights << "&";
+  }
+
+  if(m_performanceInsightsKMSKeyIdHasBeenSet)
+  {
+    ss << "PerformanceInsightsKMSKeyId=" << StringUtils::URLEncode(m_performanceInsightsKMSKeyId.c_str()) << "&";
+  }
+
   ss << "Version=2014-10-31";
   return ss.str();
 }
 
+
+void  CreateDBInstanceRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

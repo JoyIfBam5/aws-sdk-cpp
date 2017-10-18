@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/lightsail/model/RegionName.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,40 +46,49 @@ namespace Model
     ResourceLocation& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
-     * <p>The Availability Zone.</p>
+     * <p>The Availability Zone. Follows the format <code>us-east-1a</code>
+     * (case-sensitive).</p>
      */
     inline const Aws::String& GetAvailabilityZone() const{ return m_availabilityZone; }
 
     /**
-     * <p>The Availability Zone.</p>
+     * <p>The Availability Zone. Follows the format <code>us-east-1a</code>
+     * (case-sensitive).</p>
      */
     inline void SetAvailabilityZone(const Aws::String& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = value; }
 
     /**
-     * <p>The Availability Zone.</p>
+     * <p>The Availability Zone. Follows the format <code>us-east-1a</code>
+     * (case-sensitive).</p>
      */
-    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = value; }
+    inline void SetAvailabilityZone(Aws::String&& value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone = std::move(value); }
 
     /**
-     * <p>The Availability Zone.</p>
+     * <p>The Availability Zone. Follows the format <code>us-east-1a</code>
+     * (case-sensitive).</p>
      */
     inline void SetAvailabilityZone(const char* value) { m_availabilityZoneHasBeenSet = true; m_availabilityZone.assign(value); }
 
     /**
-     * <p>The Availability Zone.</p>
+     * <p>The Availability Zone. Follows the format <code>us-east-1a</code>
+     * (case-sensitive).</p>
      */
     inline ResourceLocation& WithAvailabilityZone(const Aws::String& value) { SetAvailabilityZone(value); return *this;}
 
     /**
-     * <p>The Availability Zone.</p>
+     * <p>The Availability Zone. Follows the format <code>us-east-1a</code>
+     * (case-sensitive).</p>
      */
-    inline ResourceLocation& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(value); return *this;}
+    inline ResourceLocation& WithAvailabilityZone(Aws::String&& value) { SetAvailabilityZone(std::move(value)); return *this;}
 
     /**
-     * <p>The Availability Zone.</p>
+     * <p>The Availability Zone. Follows the format <code>us-east-1a</code>
+     * (case-sensitive).</p>
      */
     inline ResourceLocation& WithAvailabilityZone(const char* value) { SetAvailabilityZone(value); return *this;}
+
 
     /**
      * <p>The AWS Region name.</p>
@@ -92,7 +103,7 @@ namespace Model
     /**
      * <p>The AWS Region name.</p>
      */
-    inline void SetRegionName(RegionName&& value) { m_regionNameHasBeenSet = true; m_regionName = value; }
+    inline void SetRegionName(RegionName&& value) { m_regionNameHasBeenSet = true; m_regionName = std::move(value); }
 
     /**
      * <p>The AWS Region name.</p>
@@ -102,11 +113,13 @@ namespace Model
     /**
      * <p>The AWS Region name.</p>
      */
-    inline ResourceLocation& WithRegionName(RegionName&& value) { SetRegionName(value); return *this;}
+    inline ResourceLocation& WithRegionName(RegionName&& value) { SetRegionName(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_availabilityZone;
     bool m_availabilityZoneHasBeenSet;
+
     RegionName m_regionName;
     bool m_regionNameHasBeenSet;
   };

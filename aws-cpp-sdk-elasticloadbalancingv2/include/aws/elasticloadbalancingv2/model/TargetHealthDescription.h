@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticloadbalancingv2/ElasticLoadBalancingv2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/elasticloadbalancingv2/model/TargetDescription.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/elasticloadbalancingv2/model/TargetHealth.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The description of the target.</p>
      */
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>The description of the target.</p>
      */
-    inline void SetTarget(TargetDescription&& value) { m_targetHasBeenSet = true; m_target = value; }
+    inline void SetTarget(TargetDescription&& value) { m_targetHasBeenSet = true; m_target = std::move(value); }
 
     /**
      * <p>The description of the target.</p>
@@ -71,7 +74,8 @@ namespace Model
     /**
      * <p>The description of the target.</p>
      */
-    inline TargetHealthDescription& WithTarget(TargetDescription&& value) { SetTarget(value); return *this;}
+    inline TargetHealthDescription& WithTarget(TargetDescription&& value) { SetTarget(std::move(value)); return *this;}
+
 
     /**
      * <p>The port to use to connect with the target.</p>
@@ -86,7 +90,7 @@ namespace Model
     /**
      * <p>The port to use to connect with the target.</p>
      */
-    inline void SetHealthCheckPort(Aws::String&& value) { m_healthCheckPortHasBeenSet = true; m_healthCheckPort = value; }
+    inline void SetHealthCheckPort(Aws::String&& value) { m_healthCheckPortHasBeenSet = true; m_healthCheckPort = std::move(value); }
 
     /**
      * <p>The port to use to connect with the target.</p>
@@ -101,12 +105,13 @@ namespace Model
     /**
      * <p>The port to use to connect with the target.</p>
      */
-    inline TargetHealthDescription& WithHealthCheckPort(Aws::String&& value) { SetHealthCheckPort(value); return *this;}
+    inline TargetHealthDescription& WithHealthCheckPort(Aws::String&& value) { SetHealthCheckPort(std::move(value)); return *this;}
 
     /**
      * <p>The port to use to connect with the target.</p>
      */
     inline TargetHealthDescription& WithHealthCheckPort(const char* value) { SetHealthCheckPort(value); return *this;}
+
 
     /**
      * <p>The health information for the target.</p>
@@ -121,7 +126,7 @@ namespace Model
     /**
      * <p>The health information for the target.</p>
      */
-    inline void SetTargetHealth(TargetHealth&& value) { m_targetHealthHasBeenSet = true; m_targetHealth = value; }
+    inline void SetTargetHealth(TargetHealth&& value) { m_targetHealthHasBeenSet = true; m_targetHealth = std::move(value); }
 
     /**
      * <p>The health information for the target.</p>
@@ -131,13 +136,16 @@ namespace Model
     /**
      * <p>The health information for the target.</p>
      */
-    inline TargetHealthDescription& WithTargetHealth(TargetHealth&& value) { SetTargetHealth(value); return *this;}
+    inline TargetHealthDescription& WithTargetHealth(TargetHealth&& value) { SetTargetHealth(std::move(value)); return *this;}
 
   private:
+
     TargetDescription m_target;
     bool m_targetHasBeenSet;
+
     Aws::String m_healthCheckPort;
     bool m_healthCheckPortHasBeenSet;
+
     TargetHealth m_targetHealth;
     bool m_targetHealthHasBeenSet;
   };

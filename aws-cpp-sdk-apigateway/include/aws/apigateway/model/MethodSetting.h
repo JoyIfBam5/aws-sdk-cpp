@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/apigateway/model/UnauthorizedCacheControlHeaderStrategy.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     MethodSetting& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Specifies whether Amazon CloudWatch metrics are enabled for this method. The
      * PATCH path for this setting is
@@ -68,6 +71,7 @@ namespace Model
      */
     inline MethodSetting& WithMetricsEnabled(bool value) { SetMetricsEnabled(value); return *this;}
 
+
     /**
      * <p>Specifies the logging level for this method, which effects the log entries
      * pushed to Amazon CloudWatch Logs. The PATCH path for this setting is
@@ -90,7 +94,7 @@ namespace Model
      * <code>/{method_setting_key}/logging/loglevel</code>, and the available levels
      * are <code>OFF</code>, <code>ERROR</code>, and <code>INFO</code>.</p>
      */
-    inline void SetLoggingLevel(Aws::String&& value) { m_loggingLevelHasBeenSet = true; m_loggingLevel = value; }
+    inline void SetLoggingLevel(Aws::String&& value) { m_loggingLevelHasBeenSet = true; m_loggingLevel = std::move(value); }
 
     /**
      * <p>Specifies the logging level for this method, which effects the log entries
@@ -114,7 +118,7 @@ namespace Model
      * <code>/{method_setting_key}/logging/loglevel</code>, and the available levels
      * are <code>OFF</code>, <code>ERROR</code>, and <code>INFO</code>.</p>
      */
-    inline MethodSetting& WithLoggingLevel(Aws::String&& value) { SetLoggingLevel(value); return *this;}
+    inline MethodSetting& WithLoggingLevel(Aws::String&& value) { SetLoggingLevel(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the logging level for this method, which effects the log entries
@@ -123,6 +127,7 @@ namespace Model
      * are <code>OFF</code>, <code>ERROR</code>, and <code>INFO</code>.</p>
      */
     inline MethodSetting& WithLoggingLevel(const char* value) { SetLoggingLevel(value); return *this;}
+
 
     /**
      * <p>Specifies whether data trace logging is enabled for this method, which
@@ -148,6 +153,7 @@ namespace Model
      */
     inline MethodSetting& WithDataTraceEnabled(bool value) { SetDataTraceEnabled(value); return *this;}
 
+
     /**
      * <p>Specifies the throttling burst limit. The PATCH path for this setting is
      * <code>/{method_setting_key}/throttling/burstLimit</code>, and the value is an
@@ -169,6 +175,7 @@ namespace Model
      */
     inline MethodSetting& WithThrottlingBurstLimit(int value) { SetThrottlingBurstLimit(value); return *this;}
 
+
     /**
      * <p>Specifies the throttling rate limit. The PATCH path for this setting is
      * <code>/{method_setting_key}/throttling/rateLimit</code>, and the value is a
@@ -189,6 +196,7 @@ namespace Model
      * double.</p>
      */
     inline MethodSetting& WithThrottlingRateLimit(double value) { SetThrottlingRateLimit(value); return *this;}
+
 
     /**
      * <p>Specifies whether responses should be cached and returned for requests. A
@@ -214,6 +222,7 @@ namespace Model
      */
     inline MethodSetting& WithCachingEnabled(bool value) { SetCachingEnabled(value); return *this;}
 
+
     /**
      * <p>Specifies the time to live (TTL), in seconds, for cached responses. The
      * higher the TTL, the longer the response will be cached. The PATCH path for this
@@ -238,6 +247,7 @@ namespace Model
      */
     inline MethodSetting& WithCacheTtlInSeconds(int value) { SetCacheTtlInSeconds(value); return *this;}
 
+
     /**
      * <p>Specifies whether the cached responses are encrypted. The PATCH path for this
      * setting is <code>/{method_setting_key}/caching/dataEncrypted</code>, and the
@@ -258,6 +268,7 @@ namespace Model
      * value is a Boolean.</p>
      */
     inline MethodSetting& WithCacheDataEncrypted(bool value) { SetCacheDataEncrypted(value); return *this;}
+
 
     /**
      * <p>Specifies whether authorization is required for a cache invalidation request.
@@ -282,6 +293,7 @@ namespace Model
      * and the value is a Boolean.</p>
      */
     inline MethodSetting& WithRequireAuthorizationForCacheControl(bool value) { SetRequireAuthorizationForCacheControl(value); return *this;}
+
 
     /**
      * <p>Specifies how to handle unauthorized requests for cache invalidation. The
@@ -311,7 +323,7 @@ namespace Model
      * <code>SUCCEED_WITH_RESPONSE_HEADER</code>,
      * <code>SUCCEED_WITHOUT_RESPONSE_HEADER</code>.</p>
      */
-    inline void SetUnauthorizedCacheControlHeaderStrategy(UnauthorizedCacheControlHeaderStrategy&& value) { m_unauthorizedCacheControlHeaderStrategyHasBeenSet = true; m_unauthorizedCacheControlHeaderStrategy = value; }
+    inline void SetUnauthorizedCacheControlHeaderStrategy(UnauthorizedCacheControlHeaderStrategy&& value) { m_unauthorizedCacheControlHeaderStrategyHasBeenSet = true; m_unauthorizedCacheControlHeaderStrategy = std::move(value); }
 
     /**
      * <p>Specifies how to handle unauthorized requests for cache invalidation. The
@@ -331,27 +343,37 @@ namespace Model
      * <code>SUCCEED_WITH_RESPONSE_HEADER</code>,
      * <code>SUCCEED_WITHOUT_RESPONSE_HEADER</code>.</p>
      */
-    inline MethodSetting& WithUnauthorizedCacheControlHeaderStrategy(UnauthorizedCacheControlHeaderStrategy&& value) { SetUnauthorizedCacheControlHeaderStrategy(value); return *this;}
+    inline MethodSetting& WithUnauthorizedCacheControlHeaderStrategy(UnauthorizedCacheControlHeaderStrategy&& value) { SetUnauthorizedCacheControlHeaderStrategy(std::move(value)); return *this;}
 
   private:
+
     bool m_metricsEnabled;
     bool m_metricsEnabledHasBeenSet;
+
     Aws::String m_loggingLevel;
     bool m_loggingLevelHasBeenSet;
+
     bool m_dataTraceEnabled;
     bool m_dataTraceEnabledHasBeenSet;
+
     int m_throttlingBurstLimit;
     bool m_throttlingBurstLimitHasBeenSet;
+
     double m_throttlingRateLimit;
     bool m_throttlingRateLimitHasBeenSet;
+
     bool m_cachingEnabled;
     bool m_cachingEnabledHasBeenSet;
+
     int m_cacheTtlInSeconds;
     bool m_cacheTtlInSecondsHasBeenSet;
+
     bool m_cacheDataEncrypted;
     bool m_cacheDataEncryptedHasBeenSet;
+
     bool m_requireAuthorizationForCacheControl;
     bool m_requireAuthorizationForCacheControlHasBeenSet;
+
     UnauthorizedCacheControlHeaderStrategy m_unauthorizedCacheControlHeaderStrategy;
     bool m_unauthorizedCacheControlHeaderStrategyHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ssm/model/InventoryResultEntity.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     GetInventoryResult();
-    GetInventoryResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetInventoryResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetInventoryResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetInventoryResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Collection of inventory entities such as a collection of instance inventory.
@@ -57,7 +60,7 @@ namespace Model
      * <p>Collection of inventory entities such as a collection of instance inventory.
      * </p>
      */
-    inline void SetEntities(Aws::Vector<InventoryResultEntity>&& value) { m_entities = value; }
+    inline void SetEntities(Aws::Vector<InventoryResultEntity>&& value) { m_entities = std::move(value); }
 
     /**
      * <p>Collection of inventory entities such as a collection of instance inventory.
@@ -69,7 +72,7 @@ namespace Model
      * <p>Collection of inventory entities such as a collection of instance inventory.
      * </p>
      */
-    inline GetInventoryResult& WithEntities(Aws::Vector<InventoryResultEntity>&& value) { SetEntities(value); return *this;}
+    inline GetInventoryResult& WithEntities(Aws::Vector<InventoryResultEntity>&& value) { SetEntities(std::move(value)); return *this;}
 
     /**
      * <p>Collection of inventory entities such as a collection of instance inventory.
@@ -81,7 +84,8 @@ namespace Model
      * <p>Collection of inventory entities such as a collection of instance inventory.
      * </p>
      */
-    inline GetInventoryResult& AddEntities(InventoryResultEntity&& value) { m_entities.push_back(value); return *this; }
+    inline GetInventoryResult& AddEntities(InventoryResultEntity&& value) { m_entities.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
@@ -99,7 +103,7 @@ namespace Model
      * <p>The token to use when requesting the next set of items. If there are no
      * additional items to return, the string is empty.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
@@ -117,7 +121,7 @@ namespace Model
      * <p>The token to use when requesting the next set of items. If there are no
      * additional items to return, the string is empty.</p>
      */
-    inline GetInventoryResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline GetInventoryResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The token to use when requesting the next set of items. If there are no
@@ -126,7 +130,9 @@ namespace Model
     inline GetInventoryResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<InventoryResultEntity> m_entities;
+
     Aws::String m_nextToken;
   };
 

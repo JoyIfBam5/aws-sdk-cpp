@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     ThingTypeMetadata& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Whether the thing type is deprecated. If <b>true</b>, no new things could be
      * associated with this type.</p>
@@ -64,6 +67,7 @@ namespace Model
      */
     inline ThingTypeMetadata& WithDeprecated(bool value) { SetDeprecated(value); return *this;}
 
+
     /**
      * <p>The date and time when the thing type was deprecated.</p>
      */
@@ -77,7 +81,7 @@ namespace Model
     /**
      * <p>The date and time when the thing type was deprecated.</p>
      */
-    inline void SetDeprecationDate(Aws::Utils::DateTime&& value) { m_deprecationDateHasBeenSet = true; m_deprecationDate = value; }
+    inline void SetDeprecationDate(Aws::Utils::DateTime&& value) { m_deprecationDateHasBeenSet = true; m_deprecationDate = std::move(value); }
 
     /**
      * <p>The date and time when the thing type was deprecated.</p>
@@ -87,7 +91,8 @@ namespace Model
     /**
      * <p>The date and time when the thing type was deprecated.</p>
      */
-    inline ThingTypeMetadata& WithDeprecationDate(Aws::Utils::DateTime&& value) { SetDeprecationDate(value); return *this;}
+    inline ThingTypeMetadata& WithDeprecationDate(Aws::Utils::DateTime&& value) { SetDeprecationDate(std::move(value)); return *this;}
+
 
     /**
      * <p>The date and time when the thing type was created.</p>
@@ -102,7 +107,7 @@ namespace Model
     /**
      * <p>The date and time when the thing type was created.</p>
      */
-    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDateHasBeenSet = true; m_creationDate = value; }
+    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDateHasBeenSet = true; m_creationDate = std::move(value); }
 
     /**
      * <p>The date and time when the thing type was created.</p>
@@ -112,13 +117,16 @@ namespace Model
     /**
      * <p>The date and time when the thing type was created.</p>
      */
-    inline ThingTypeMetadata& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(value); return *this;}
+    inline ThingTypeMetadata& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(std::move(value)); return *this;}
 
   private:
+
     bool m_deprecated;
     bool m_deprecatedHasBeenSet;
+
     Aws::Utils::DateTime m_deprecationDate;
     bool m_deprecationDateHasBeenSet;
+
     Aws::Utils::DateTime m_creationDate;
     bool m_creationDateHasBeenSet;
   };

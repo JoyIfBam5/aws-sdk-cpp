@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/cloudformation/model/DescribeChangeSetResult.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
@@ -32,19 +33,19 @@ DescribeChangeSetResult::DescribeChangeSetResult() :
 {
 }
 
-DescribeChangeSetResult::DescribeChangeSetResult(const AmazonWebServiceResult<XmlDocument>& result) : 
+DescribeChangeSetResult::DescribeChangeSetResult(const Aws::AmazonWebServiceResult<XmlDocument>& result) : 
     m_executionStatus(ExecutionStatus::NOT_SET),
     m_status(ChangeSetStatus::NOT_SET)
 {
   *this = result;
 }
 
-DescribeChangeSetResult& DescribeChangeSetResult::operator =(const AmazonWebServiceResult<XmlDocument>& result)
+DescribeChangeSetResult& DescribeChangeSetResult::operator =(const Aws::AmazonWebServiceResult<XmlDocument>& result)
 {
   const XmlDocument& xmlDocument = result.GetPayload();
   XmlNode rootNode = xmlDocument.GetRootElement();
   XmlNode resultNode = rootNode;
-  if (rootNode.GetName() != "DescribeChangeSetResult")
+  if (!rootNode.IsNull() && (rootNode.GetName() != "DescribeChangeSetResult"))
   {
     resultNode = rootNode.FirstChild("DescribeChangeSetResult");
   }
@@ -118,6 +119,11 @@ DescribeChangeSetResult& DescribeChangeSetResult::operator =(const AmazonWebServ
       }
 
     }
+    XmlNode rollbackConfigurationNode = resultNode.FirstChild("RollbackConfiguration");
+    if(!rollbackConfigurationNode.IsNull())
+    {
+      m_rollbackConfiguration = rollbackConfigurationNode;
+    }
     XmlNode capabilitiesNode = resultNode.FirstChild("Capabilities");
     if(!capabilitiesNode.IsNull())
     {
@@ -158,9 +164,10 @@ DescribeChangeSetResult& DescribeChangeSetResult::operator =(const AmazonWebServ
     }
   }
 
-  XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
-  m_responseMetadata = responseMetadataNode;
-  AWS_LOGSTREAM_DEBUG("Aws::CloudFormation::Model::DescribeChangeSetResult", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
-
+  if (!rootNode.IsNull()) {
+    XmlNode responseMetadataNode = rootNode.FirstChild("ResponseMetadata");
+    m_responseMetadata = responseMetadataNode;
+    AWS_LOGSTREAM_DEBUG("Aws::CloudFormation::Model::DescribeChangeSetResult", "x-amzn-request-id: " << m_responseMetadata.GetRequestId() );
+  }
   return *this;
 }

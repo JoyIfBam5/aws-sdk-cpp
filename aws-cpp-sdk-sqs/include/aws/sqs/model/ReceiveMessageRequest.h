@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/sqs/SQS_EXPORTS.h>
 #include <aws/sqs/SQSRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/sqs/model/QueueAttributeName.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,7 +37,19 @@ namespace Model
   {
   public:
     ReceiveMessageRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ReceiveMessage"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The URL of the Amazon SQS queue from which messages are received.</p>
@@ -53,7 +67,7 @@ namespace Model
      * <p>The URL of the Amazon SQS queue from which messages are received.</p>
      * <p>Queue URLs are case-sensitive.</p>
      */
-    inline void SetQueueUrl(Aws::String&& value) { m_queueUrlHasBeenSet = true; m_queueUrl = value; }
+    inline void SetQueueUrl(Aws::String&& value) { m_queueUrlHasBeenSet = true; m_queueUrl = std::move(value); }
 
     /**
      * <p>The URL of the Amazon SQS queue from which messages are received.</p>
@@ -71,13 +85,14 @@ namespace Model
      * <p>The URL of the Amazon SQS queue from which messages are received.</p>
      * <p>Queue URLs are case-sensitive.</p>
      */
-    inline ReceiveMessageRequest& WithQueueUrl(Aws::String&& value) { SetQueueUrl(value); return *this;}
+    inline ReceiveMessageRequest& WithQueueUrl(Aws::String&& value) { SetQueueUrl(std::move(value)); return *this;}
 
     /**
      * <p>The URL of the Amazon SQS queue from which messages are received.</p>
      * <p>Queue URLs are case-sensitive.</p>
      */
     inline ReceiveMessageRequest& WithQueueUrl(const char* value) { SetQueueUrl(value); return *this;}
+
 
     /**
      * <p>A list of attributes that need to be returned along with each message. These
@@ -194,7 +209,7 @@ namespace Model
      * <code>RedrivePolicy</code> </p> </li> <li> <p> <code>VisibilityTimeout</code>
      * </p> </li> </ul>
      */
-    inline void SetAttributeNames(Aws::Vector<QueueAttributeName>&& value) { m_attributeNamesHasBeenSet = true; m_attributeNames = value; }
+    inline void SetAttributeNames(Aws::Vector<QueueAttributeName>&& value) { m_attributeNamesHasBeenSet = true; m_attributeNames = std::move(value); }
 
     /**
      * <p>A list of attributes that need to be returned along with each message. These
@@ -272,7 +287,7 @@ namespace Model
      * <code>RedrivePolicy</code> </p> </li> <li> <p> <code>VisibilityTimeout</code>
      * </p> </li> </ul>
      */
-    inline ReceiveMessageRequest& WithAttributeNames(Aws::Vector<QueueAttributeName>&& value) { SetAttributeNames(value); return *this;}
+    inline ReceiveMessageRequest& WithAttributeNames(Aws::Vector<QueueAttributeName>&& value) { SetAttributeNames(std::move(value)); return *this;}
 
     /**
      * <p>A list of attributes that need to be returned along with each message. These
@@ -350,7 +365,8 @@ namespace Model
      * <code>RedrivePolicy</code> </p> </li> <li> <p> <code>VisibilityTimeout</code>
      * </p> </li> </ul>
      */
-    inline ReceiveMessageRequest& AddAttributeNames(QueueAttributeName&& value) { m_attributeNamesHasBeenSet = true; m_attributeNames.push_back(value); return *this; }
+    inline ReceiveMessageRequest& AddAttributeNames(QueueAttributeName&& value) { m_attributeNamesHasBeenSet = true; m_attributeNames.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The name of the message attribute, where <i>N</i> is the index.</p> <ul> <li>
@@ -404,7 +420,7 @@ namespace Model
      * all message attributes starting with a prefix, for example
      * <code>bar.*</code>.</p>
      */
-    inline void SetMessageAttributeNames(Aws::Vector<Aws::String>&& value) { m_messageAttributeNamesHasBeenSet = true; m_messageAttributeNames = value; }
+    inline void SetMessageAttributeNames(Aws::Vector<Aws::String>&& value) { m_messageAttributeNamesHasBeenSet = true; m_messageAttributeNames = std::move(value); }
 
     /**
      * <p>The name of the message attribute, where <i>N</i> is the index.</p> <ul> <li>
@@ -440,7 +456,7 @@ namespace Model
      * all message attributes starting with a prefix, for example
      * <code>bar.*</code>.</p>
      */
-    inline ReceiveMessageRequest& WithMessageAttributeNames(Aws::Vector<Aws::String>&& value) { SetMessageAttributeNames(value); return *this;}
+    inline ReceiveMessageRequest& WithMessageAttributeNames(Aws::Vector<Aws::String>&& value) { SetMessageAttributeNames(std::move(value)); return *this;}
 
     /**
      * <p>The name of the message attribute, where <i>N</i> is the index.</p> <ul> <li>
@@ -476,7 +492,7 @@ namespace Model
      * all message attributes starting with a prefix, for example
      * <code>bar.*</code>.</p>
      */
-    inline ReceiveMessageRequest& AddMessageAttributeNames(Aws::String&& value) { m_messageAttributeNamesHasBeenSet = true; m_messageAttributeNames.push_back(value); return *this; }
+    inline ReceiveMessageRequest& AddMessageAttributeNames(Aws::String&& value) { m_messageAttributeNamesHasBeenSet = true; m_messageAttributeNames.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The name of the message attribute, where <i>N</i> is the index.</p> <ul> <li>
@@ -495,6 +511,7 @@ namespace Model
      * <code>bar.*</code>.</p>
      */
     inline ReceiveMessageRequest& AddMessageAttributeNames(const char* value) { m_messageAttributeNamesHasBeenSet = true; m_messageAttributeNames.push_back(value); return *this; }
+
 
     /**
      * <p>The maximum number of messages to return. Amazon SQS never returns more
@@ -517,6 +534,7 @@ namespace Model
      */
     inline ReceiveMessageRequest& WithMaxNumberOfMessages(int value) { SetMaxNumberOfMessages(value); return *this;}
 
+
     /**
      * <p>The duration (in seconds) that the received messages are hidden from
      * subsequent retrieve requests after being retrieved by a
@@ -538,26 +556,31 @@ namespace Model
      */
     inline ReceiveMessageRequest& WithVisibilityTimeout(int value) { SetVisibilityTimeout(value); return *this;}
 
+
     /**
      * <p>The duration (in seconds) for which the call waits for a message to arrive in
      * the queue before returning. If a message is available, the call returns sooner
-     * than <code>WaitTimeSeconds</code>.</p>
+     * than <code>WaitTimeSeconds</code>. If no messages are available and the wait
+     * time expires, the call returns successfully with an empty list of messages.</p>
      */
     inline int GetWaitTimeSeconds() const{ return m_waitTimeSeconds; }
 
     /**
      * <p>The duration (in seconds) for which the call waits for a message to arrive in
      * the queue before returning. If a message is available, the call returns sooner
-     * than <code>WaitTimeSeconds</code>.</p>
+     * than <code>WaitTimeSeconds</code>. If no messages are available and the wait
+     * time expires, the call returns successfully with an empty list of messages.</p>
      */
     inline void SetWaitTimeSeconds(int value) { m_waitTimeSecondsHasBeenSet = true; m_waitTimeSeconds = value; }
 
     /**
      * <p>The duration (in seconds) for which the call waits for a message to arrive in
      * the queue before returning. If a message is available, the call returns sooner
-     * than <code>WaitTimeSeconds</code>.</p>
+     * than <code>WaitTimeSeconds</code>. If no messages are available and the wait
+     * time expires, the call returns successfully with an empty list of messages.</p>
      */
     inline ReceiveMessageRequest& WithWaitTimeSeconds(int value) { SetWaitTimeSeconds(value); return *this;}
+
 
     /**
      * <p>This parameter applies only to FIFO (first-in-first-out) queues.</p> <p>The
@@ -710,7 +733,7 @@ namespace Model
      * the ReceiveRequestAttemptId Request Parameter</a> in the <i>Amazon Simple Queue
      * Service Developer Guide</i>.</p>
      */
-    inline void SetReceiveRequestAttemptId(Aws::String&& value) { m_receiveRequestAttemptIdHasBeenSet = true; m_receiveRequestAttemptId = value; }
+    inline void SetReceiveRequestAttemptId(Aws::String&& value) { m_receiveRequestAttemptIdHasBeenSet = true; m_receiveRequestAttemptId = std::move(value); }
 
     /**
      * <p>This parameter applies only to FIFO (first-in-first-out) queues.</p> <p>The
@@ -863,7 +886,7 @@ namespace Model
      * the ReceiveRequestAttemptId Request Parameter</a> in the <i>Amazon Simple Queue
      * Service Developer Guide</i>.</p>
      */
-    inline ReceiveMessageRequest& WithReceiveRequestAttemptId(Aws::String&& value) { SetReceiveRequestAttemptId(value); return *this;}
+    inline ReceiveMessageRequest& WithReceiveRequestAttemptId(Aws::String&& value) { SetReceiveRequestAttemptId(std::move(value)); return *this;}
 
     /**
      * <p>This parameter applies only to FIFO (first-in-first-out) queues.</p> <p>The
@@ -917,18 +940,25 @@ namespace Model
     inline ReceiveMessageRequest& WithReceiveRequestAttemptId(const char* value) { SetReceiveRequestAttemptId(value); return *this;}
 
   private:
+
     Aws::String m_queueUrl;
     bool m_queueUrlHasBeenSet;
+
     Aws::Vector<QueueAttributeName> m_attributeNames;
     bool m_attributeNamesHasBeenSet;
+
     Aws::Vector<Aws::String> m_messageAttributeNames;
     bool m_messageAttributeNamesHasBeenSet;
+
     int m_maxNumberOfMessages;
     bool m_maxNumberOfMessagesHasBeenSet;
+
     int m_visibilityTimeout;
     bool m_visibilityTimeoutHasBeenSet;
+
     int m_waitTimeSeconds;
     bool m_waitTimeSecondsHasBeenSet;
+
     Aws::String m_receiveRequestAttemptId;
     bool m_receiveRequestAttemptIdHasBeenSet;
   };

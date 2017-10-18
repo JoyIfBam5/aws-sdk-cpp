@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/model/WafActionType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     WafAction(const Aws::Utils::Json::JsonValue& jsonValue);
     WafAction& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>Specifies how you want AWS WAF to respond to requests that match the settings
@@ -85,7 +88,7 @@ namespace Model
      * <code>COUNT</code> for the default action for a <code>WebACL</code>.</p> </li>
      * </ul>
      */
-    inline void SetType(WafActionType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(WafActionType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>Specifies how you want AWS WAF to respond to requests that match the settings
@@ -111,9 +114,10 @@ namespace Model
      * <code>COUNT</code> for the default action for a <code>WebACL</code>.</p> </li>
      * </ul>
      */
-    inline WafAction& WithType(WafActionType&& value) { SetType(value); return *this;}
+    inline WafAction& WithType(WafActionType&& value) { SetType(std::move(value)); return *this;}
 
   private:
+
     WafActionType m_type;
     bool m_typeHasBeenSet;
   };

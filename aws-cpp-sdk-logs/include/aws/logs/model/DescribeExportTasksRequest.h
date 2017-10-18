@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/logs/CloudWatchLogs_EXPORTS.h>
 #include <aws/logs/CloudWatchLogsRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/logs/model/ExportTaskStatusCode.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,9 +33,17 @@ namespace Model
   {
   public:
     DescribeExportTasksRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeExportTasks"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The ID of the export task. Specifying a task ID filters the results to zero
@@ -51,7 +61,7 @@ namespace Model
      * <p>The ID of the export task. Specifying a task ID filters the results to zero
      * or one export tasks.</p>
      */
-    inline void SetTaskId(Aws::String&& value) { m_taskIdHasBeenSet = true; m_taskId = value; }
+    inline void SetTaskId(Aws::String&& value) { m_taskIdHasBeenSet = true; m_taskId = std::move(value); }
 
     /**
      * <p>The ID of the export task. Specifying a task ID filters the results to zero
@@ -69,13 +79,14 @@ namespace Model
      * <p>The ID of the export task. Specifying a task ID filters the results to zero
      * or one export tasks.</p>
      */
-    inline DescribeExportTasksRequest& WithTaskId(Aws::String&& value) { SetTaskId(value); return *this;}
+    inline DescribeExportTasksRequest& WithTaskId(Aws::String&& value) { SetTaskId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the export task. Specifying a task ID filters the results to zero
      * or one export tasks.</p>
      */
     inline DescribeExportTasksRequest& WithTaskId(const char* value) { SetTaskId(value); return *this;}
+
 
     /**
      * <p>The status code of the export task. Specifying a status code filters the
@@ -93,7 +104,7 @@ namespace Model
      * <p>The status code of the export task. Specifying a status code filters the
      * results to zero or more export tasks.</p>
      */
-    inline void SetStatusCode(ExportTaskStatusCode&& value) { m_statusCodeHasBeenSet = true; m_statusCode = value; }
+    inline void SetStatusCode(ExportTaskStatusCode&& value) { m_statusCodeHasBeenSet = true; m_statusCode = std::move(value); }
 
     /**
      * <p>The status code of the export task. Specifying a status code filters the
@@ -105,7 +116,8 @@ namespace Model
      * <p>The status code of the export task. Specifying a status code filters the
      * results to zero or more export tasks.</p>
      */
-    inline DescribeExportTasksRequest& WithStatusCode(ExportTaskStatusCode&& value) { SetStatusCode(value); return *this;}
+    inline DescribeExportTasksRequest& WithStatusCode(ExportTaskStatusCode&& value) { SetStatusCode(std::move(value)); return *this;}
+
 
     /**
      * <p>The token for the next set of items to return. (You received this token from
@@ -123,7 +135,7 @@ namespace Model
      * <p>The token for the next set of items to return. (You received this token from
      * a previous call.)</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>The token for the next set of items to return. (You received this token from
@@ -141,13 +153,14 @@ namespace Model
      * <p>The token for the next set of items to return. (You received this token from
      * a previous call.)</p>
      */
-    inline DescribeExportTasksRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeExportTasksRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The token for the next set of items to return. (You received this token from
      * a previous call.)</p>
      */
     inline DescribeExportTasksRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     /**
      * <p>The maximum number of items returned. If you don't specify a value, the
@@ -168,12 +181,16 @@ namespace Model
     inline DescribeExportTasksRequest& WithLimit(int value) { SetLimit(value); return *this;}
 
   private:
+
     Aws::String m_taskId;
     bool m_taskIdHasBeenSet;
+
     ExportTaskStatusCode m_statusCode;
     bool m_statusCodeHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
+
     int m_limit;
     bool m_limitHasBeenSet;
   };

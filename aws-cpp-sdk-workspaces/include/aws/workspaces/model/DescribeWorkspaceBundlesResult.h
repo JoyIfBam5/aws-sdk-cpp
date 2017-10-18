@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/workspaces/WorkSpaces_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/workspaces/model/WorkspaceBundle.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     DescribeWorkspaceBundlesResult();
-    DescribeWorkspaceBundlesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeWorkspaceBundlesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeWorkspaceBundlesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeWorkspaceBundlesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>An array of structures that contain information about the bundles.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>An array of structures that contain information about the bundles.</p>
      */
-    inline void SetBundles(Aws::Vector<WorkspaceBundle>&& value) { m_bundles = value; }
+    inline void SetBundles(Aws::Vector<WorkspaceBundle>&& value) { m_bundles = std::move(value); }
 
     /**
      * <p>An array of structures that contain information about the bundles.</p>
@@ -70,7 +73,7 @@ namespace Model
     /**
      * <p>An array of structures that contain information about the bundles.</p>
      */
-    inline DescribeWorkspaceBundlesResult& WithBundles(Aws::Vector<WorkspaceBundle>&& value) { SetBundles(value); return *this;}
+    inline DescribeWorkspaceBundlesResult& WithBundles(Aws::Vector<WorkspaceBundle>&& value) { SetBundles(std::move(value)); return *this;}
 
     /**
      * <p>An array of structures that contain information about the bundles.</p>
@@ -80,7 +83,8 @@ namespace Model
     /**
      * <p>An array of structures that contain information about the bundles.</p>
      */
-    inline DescribeWorkspaceBundlesResult& AddBundles(WorkspaceBundle&& value) { m_bundles.push_back(value); return *this; }
+    inline DescribeWorkspaceBundlesResult& AddBundles(WorkspaceBundle&& value) { m_bundles.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>If not null, more results are available. Pass this value for the
@@ -104,7 +108,7 @@ namespace Model
      * retrieve the next set of items. This token is valid for one day and must be used
      * within that time frame.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>If not null, more results are available. Pass this value for the
@@ -128,7 +132,7 @@ namespace Model
      * retrieve the next set of items. This token is valid for one day and must be used
      * within that time frame.</p>
      */
-    inline DescribeWorkspaceBundlesResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeWorkspaceBundlesResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>If not null, more results are available. Pass this value for the
@@ -139,7 +143,9 @@ namespace Model
     inline DescribeWorkspaceBundlesResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<WorkspaceBundle> m_bundles;
+
     Aws::String m_nextToken;
   };
 

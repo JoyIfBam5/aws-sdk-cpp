@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,15 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/email/SES_EXPORTS.h>
 #include <aws/email/model/ConfigurationSet.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <aws/email/model/TrackingOptions.h>
 #include <aws/email/model/ResponseMetadata.h>
 #include <aws/email/model/EventDestination.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,8 +51,9 @@ namespace Model
   {
   public:
     DescribeConfigurationSetResult();
-    DescribeConfigurationSetResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeConfigurationSetResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeConfigurationSetResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeConfigurationSetResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>The configuration set object associated with the specified configuration
@@ -67,7 +71,7 @@ namespace Model
      * <p>The configuration set object associated with the specified configuration
      * set.</p>
      */
-    inline void SetConfigurationSet(ConfigurationSet&& value) { m_configurationSet = value; }
+    inline void SetConfigurationSet(ConfigurationSet&& value) { m_configurationSet = std::move(value); }
 
     /**
      * <p>The configuration set object associated with the specified configuration
@@ -79,7 +83,8 @@ namespace Model
      * <p>The configuration set object associated with the specified configuration
      * set.</p>
      */
-    inline DescribeConfigurationSetResult& WithConfigurationSet(ConfigurationSet&& value) { SetConfigurationSet(value); return *this;}
+    inline DescribeConfigurationSetResult& WithConfigurationSet(ConfigurationSet&& value) { SetConfigurationSet(std::move(value)); return *this;}
+
 
     /**
      * <p>A list of event destinations associated with the configuration set. </p>
@@ -94,7 +99,7 @@ namespace Model
     /**
      * <p>A list of event destinations associated with the configuration set. </p>
      */
-    inline void SetEventDestinations(Aws::Vector<EventDestination>&& value) { m_eventDestinations = value; }
+    inline void SetEventDestinations(Aws::Vector<EventDestination>&& value) { m_eventDestinations = std::move(value); }
 
     /**
      * <p>A list of event destinations associated with the configuration set. </p>
@@ -104,7 +109,7 @@ namespace Model
     /**
      * <p>A list of event destinations associated with the configuration set. </p>
      */
-    inline DescribeConfigurationSetResult& WithEventDestinations(Aws::Vector<EventDestination>&& value) { SetEventDestinations(value); return *this;}
+    inline DescribeConfigurationSetResult& WithEventDestinations(Aws::Vector<EventDestination>&& value) { SetEventDestinations(std::move(value)); return *this;}
 
     /**
      * <p>A list of event destinations associated with the configuration set. </p>
@@ -114,7 +119,39 @@ namespace Model
     /**
      * <p>A list of event destinations associated with the configuration set. </p>
      */
-    inline DescribeConfigurationSetResult& AddEventDestinations(EventDestination&& value) { m_eventDestinations.push_back(value); return *this; }
+    inline DescribeConfigurationSetResult& AddEventDestinations(EventDestination&& value) { m_eventDestinations.push_back(std::move(value)); return *this; }
+
+
+    /**
+     * <p>The name of the custom open and click tracking domain associated with the
+     * configuration set.</p>
+     */
+    inline const TrackingOptions& GetTrackingOptions() const{ return m_trackingOptions; }
+
+    /**
+     * <p>The name of the custom open and click tracking domain associated with the
+     * configuration set.</p>
+     */
+    inline void SetTrackingOptions(const TrackingOptions& value) { m_trackingOptions = value; }
+
+    /**
+     * <p>The name of the custom open and click tracking domain associated with the
+     * configuration set.</p>
+     */
+    inline void SetTrackingOptions(TrackingOptions&& value) { m_trackingOptions = std::move(value); }
+
+    /**
+     * <p>The name of the custom open and click tracking domain associated with the
+     * configuration set.</p>
+     */
+    inline DescribeConfigurationSetResult& WithTrackingOptions(const TrackingOptions& value) { SetTrackingOptions(value); return *this;}
+
+    /**
+     * <p>The name of the custom open and click tracking domain associated with the
+     * configuration set.</p>
+     */
+    inline DescribeConfigurationSetResult& WithTrackingOptions(TrackingOptions&& value) { SetTrackingOptions(std::move(value)); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -123,17 +160,22 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeConfigurationSetResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeConfigurationSetResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeConfigurationSetResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     ConfigurationSet m_configurationSet;
+
     Aws::Vector<EventDestination> m_eventDestinations;
+
+    TrackingOptions m_trackingOptions;
+
     ResponseMetadata m_responseMetadata;
   };
 

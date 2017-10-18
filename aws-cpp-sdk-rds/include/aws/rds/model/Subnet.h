@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/rds/model/AvailabilityZone.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>Specifies the identifier of the subnet.</p>
      */
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>Specifies the identifier of the subnet.</p>
      */
-    inline void SetSubnetIdentifier(Aws::String&& value) { m_subnetIdentifierHasBeenSet = true; m_subnetIdentifier = value; }
+    inline void SetSubnetIdentifier(Aws::String&& value) { m_subnetIdentifierHasBeenSet = true; m_subnetIdentifier = std::move(value); }
 
     /**
      * <p>Specifies the identifier of the subnet.</p>
@@ -76,12 +79,13 @@ namespace Model
     /**
      * <p>Specifies the identifier of the subnet.</p>
      */
-    inline Subnet& WithSubnetIdentifier(Aws::String&& value) { SetSubnetIdentifier(value); return *this;}
+    inline Subnet& WithSubnetIdentifier(Aws::String&& value) { SetSubnetIdentifier(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the identifier of the subnet.</p>
      */
     inline Subnet& WithSubnetIdentifier(const char* value) { SetSubnetIdentifier(value); return *this;}
+
 
     
     inline const AvailabilityZone& GetSubnetAvailabilityZone() const{ return m_subnetAvailabilityZone; }
@@ -90,13 +94,14 @@ namespace Model
     inline void SetSubnetAvailabilityZone(const AvailabilityZone& value) { m_subnetAvailabilityZoneHasBeenSet = true; m_subnetAvailabilityZone = value; }
 
     
-    inline void SetSubnetAvailabilityZone(AvailabilityZone&& value) { m_subnetAvailabilityZoneHasBeenSet = true; m_subnetAvailabilityZone = value; }
+    inline void SetSubnetAvailabilityZone(AvailabilityZone&& value) { m_subnetAvailabilityZoneHasBeenSet = true; m_subnetAvailabilityZone = std::move(value); }
 
     
     inline Subnet& WithSubnetAvailabilityZone(const AvailabilityZone& value) { SetSubnetAvailabilityZone(value); return *this;}
 
     
-    inline Subnet& WithSubnetAvailabilityZone(AvailabilityZone&& value) { SetSubnetAvailabilityZone(value); return *this;}
+    inline Subnet& WithSubnetAvailabilityZone(AvailabilityZone&& value) { SetSubnetAvailabilityZone(std::move(value)); return *this;}
+
 
     /**
      * <p>Specifies the status of the subnet.</p>
@@ -111,7 +116,7 @@ namespace Model
     /**
      * <p>Specifies the status of the subnet.</p>
      */
-    inline void SetSubnetStatus(Aws::String&& value) { m_subnetStatusHasBeenSet = true; m_subnetStatus = value; }
+    inline void SetSubnetStatus(Aws::String&& value) { m_subnetStatusHasBeenSet = true; m_subnetStatus = std::move(value); }
 
     /**
      * <p>Specifies the status of the subnet.</p>
@@ -126,7 +131,7 @@ namespace Model
     /**
      * <p>Specifies the status of the subnet.</p>
      */
-    inline Subnet& WithSubnetStatus(Aws::String&& value) { SetSubnetStatus(value); return *this;}
+    inline Subnet& WithSubnetStatus(Aws::String&& value) { SetSubnetStatus(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the status of the subnet.</p>
@@ -134,10 +139,13 @@ namespace Model
     inline Subnet& WithSubnetStatus(const char* value) { SetSubnetStatus(value); return *this;}
 
   private:
+
     Aws::String m_subnetIdentifier;
     bool m_subnetIdentifierHasBeenSet;
+
     AvailabilityZone m_subnetAvailabilityZone;
     bool m_subnetAvailabilityZoneHasBeenSet;
+
     Aws::String m_subnetStatus;
     bool m_subnetStatusHasBeenSet;
   };

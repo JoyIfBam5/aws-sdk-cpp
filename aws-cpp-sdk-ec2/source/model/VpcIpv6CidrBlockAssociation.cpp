@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/VpcIpv6CidrBlockAssociation.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,16 +31,16 @@ namespace Model
 {
 
 VpcIpv6CidrBlockAssociation::VpcIpv6CidrBlockAssociation() : 
+    m_associationIdHasBeenSet(false),
     m_ipv6CidrBlockHasBeenSet(false),
-    m_ipv6CidrBlockStateHasBeenSet(false),
-    m_associationIdHasBeenSet(false)
+    m_ipv6CidrBlockStateHasBeenSet(false)
 {
 }
 
 VpcIpv6CidrBlockAssociation::VpcIpv6CidrBlockAssociation(const XmlNode& xmlNode) : 
+    m_associationIdHasBeenSet(false),
     m_ipv6CidrBlockHasBeenSet(false),
-    m_ipv6CidrBlockStateHasBeenSet(false),
-    m_associationIdHasBeenSet(false)
+    m_ipv6CidrBlockStateHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -50,6 +51,12 @@ VpcIpv6CidrBlockAssociation& VpcIpv6CidrBlockAssociation::operator =(const XmlNo
 
   if(!resultNode.IsNull())
   {
+    XmlNode associationIdNode = resultNode.FirstChild("associationId");
+    if(!associationIdNode.IsNull())
+    {
+      m_associationId = StringUtils::Trim(associationIdNode.GetText().c_str());
+      m_associationIdHasBeenSet = true;
+    }
     XmlNode ipv6CidrBlockNode = resultNode.FirstChild("ipv6CidrBlock");
     if(!ipv6CidrBlockNode.IsNull())
     {
@@ -62,12 +69,6 @@ VpcIpv6CidrBlockAssociation& VpcIpv6CidrBlockAssociation::operator =(const XmlNo
       m_ipv6CidrBlockState = ipv6CidrBlockStateNode;
       m_ipv6CidrBlockStateHasBeenSet = true;
     }
-    XmlNode associationIdNode = resultNode.FirstChild("associationId");
-    if(!associationIdNode.IsNull())
-    {
-      m_associationId = StringUtils::Trim(associationIdNode.GetText().c_str());
-      m_associationIdHasBeenSet = true;
-    }
   }
 
   return *this;
@@ -75,6 +76,11 @@ VpcIpv6CidrBlockAssociation& VpcIpv6CidrBlockAssociation::operator =(const XmlNo
 
 void VpcIpv6CidrBlockAssociation::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
+  if(m_associationIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".AssociationId=" << StringUtils::URLEncode(m_associationId.c_str()) << "&";
+  }
+
   if(m_ipv6CidrBlockHasBeenSet)
   {
       oStream << location << index << locationValue << ".Ipv6CidrBlock=" << StringUtils::URLEncode(m_ipv6CidrBlock.c_str()) << "&";
@@ -87,15 +93,14 @@ void VpcIpv6CidrBlockAssociation::OutputToStream(Aws::OStream& oStream, const ch
       m_ipv6CidrBlockState.OutputToStream(oStream, ipv6CidrBlockStateLocationAndMemberSs.str().c_str());
   }
 
-  if(m_associationIdHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".AssociationId=" << StringUtils::URLEncode(m_associationId.c_str()) << "&";
-  }
-
 }
 
 void VpcIpv6CidrBlockAssociation::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
+  if(m_associationIdHasBeenSet)
+  {
+      oStream << location << ".AssociationId=" << StringUtils::URLEncode(m_associationId.c_str()) << "&";
+  }
   if(m_ipv6CidrBlockHasBeenSet)
   {
       oStream << location << ".Ipv6CidrBlock=" << StringUtils::URLEncode(m_ipv6CidrBlock.c_str()) << "&";
@@ -105,10 +110,6 @@ void VpcIpv6CidrBlockAssociation::OutputToStream(Aws::OStream& oStream, const ch
       Aws::String ipv6CidrBlockStateLocationAndMember(location);
       ipv6CidrBlockStateLocationAndMember += ".Ipv6CidrBlockState";
       m_ipv6CidrBlockState.OutputToStream(oStream, ipv6CidrBlockStateLocationAndMember.c_str());
-  }
-  if(m_associationIdHasBeenSet)
-  {
-      oStream << location << ".AssociationId=" << StringUtils::URLEncode(m_associationId.c_str()) << "&";
   }
 }
 

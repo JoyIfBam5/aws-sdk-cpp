@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/events/CloudWatchEvents_EXPORTS.h>
 #include <aws/events/CloudWatchEventsRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -25,102 +27,101 @@ namespace Model
 {
 
   /**
-   * <p>Container for the parameters to the <a>ListRuleNamesByTarget</a>
-   * operation.</p><p><h3>See Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/ListRuleNamesByTargetRequest">AWS
-   * API Reference</a></p>
    */
   class AWS_CLOUDWATCHEVENTS_API ListRuleNamesByTargetRequest : public CloudWatchEventsRequest
   {
   public:
     ListRuleNamesByTargetRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListRuleNamesByTarget"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
 
+
     /**
-     * <p>The Amazon Resource Name (ARN) of the target resource that you want to list
-     * the rules for.</p>
+     * <p>The Amazon Resource Name (ARN) of the target resource.</p>
      */
     inline const Aws::String& GetTargetArn() const{ return m_targetArn; }
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the target resource that you want to list
-     * the rules for.</p>
+     * <p>The Amazon Resource Name (ARN) of the target resource.</p>
      */
     inline void SetTargetArn(const Aws::String& value) { m_targetArnHasBeenSet = true; m_targetArn = value; }
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the target resource that you want to list
-     * the rules for.</p>
+     * <p>The Amazon Resource Name (ARN) of the target resource.</p>
      */
-    inline void SetTargetArn(Aws::String&& value) { m_targetArnHasBeenSet = true; m_targetArn = value; }
+    inline void SetTargetArn(Aws::String&& value) { m_targetArnHasBeenSet = true; m_targetArn = std::move(value); }
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the target resource that you want to list
-     * the rules for.</p>
+     * <p>The Amazon Resource Name (ARN) of the target resource.</p>
      */
     inline void SetTargetArn(const char* value) { m_targetArnHasBeenSet = true; m_targetArn.assign(value); }
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the target resource that you want to list
-     * the rules for.</p>
+     * <p>The Amazon Resource Name (ARN) of the target resource.</p>
      */
     inline ListRuleNamesByTargetRequest& WithTargetArn(const Aws::String& value) { SetTargetArn(value); return *this;}
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the target resource that you want to list
-     * the rules for.</p>
+     * <p>The Amazon Resource Name (ARN) of the target resource.</p>
      */
-    inline ListRuleNamesByTargetRequest& WithTargetArn(Aws::String&& value) { SetTargetArn(value); return *this;}
+    inline ListRuleNamesByTargetRequest& WithTargetArn(Aws::String&& value) { SetTargetArn(std::move(value)); return *this;}
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the target resource that you want to list
-     * the rules for.</p>
+     * <p>The Amazon Resource Name (ARN) of the target resource.</p>
      */
     inline ListRuleNamesByTargetRequest& WithTargetArn(const char* value) { SetTargetArn(value); return *this;}
 
+
     /**
-     * <p>The token returned by a previous call to indicate that there is more data
-     * available.</p>
+     * <p>The token returned by a previous call to retrieve the next set of
+     * results.</p>
      */
     inline const Aws::String& GetNextToken() const{ return m_nextToken; }
 
     /**
-     * <p>The token returned by a previous call to indicate that there is more data
-     * available.</p>
+     * <p>The token returned by a previous call to retrieve the next set of
+     * results.</p>
      */
     inline void SetNextToken(const Aws::String& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
 
     /**
-     * <p>The token returned by a previous call to indicate that there is more data
-     * available.</p>
+     * <p>The token returned by a previous call to retrieve the next set of
+     * results.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
-     * <p>The token returned by a previous call to indicate that there is more data
-     * available.</p>
+     * <p>The token returned by a previous call to retrieve the next set of
+     * results.</p>
      */
     inline void SetNextToken(const char* value) { m_nextTokenHasBeenSet = true; m_nextToken.assign(value); }
 
     /**
-     * <p>The token returned by a previous call to indicate that there is more data
-     * available.</p>
+     * <p>The token returned by a previous call to retrieve the next set of
+     * results.</p>
      */
     inline ListRuleNamesByTargetRequest& WithNextToken(const Aws::String& value) { SetNextToken(value); return *this;}
 
     /**
-     * <p>The token returned by a previous call to indicate that there is more data
-     * available.</p>
+     * <p>The token returned by a previous call to retrieve the next set of
+     * results.</p>
      */
-    inline ListRuleNamesByTargetRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListRuleNamesByTargetRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
-     * <p>The token returned by a previous call to indicate that there is more data
-     * available.</p>
+     * <p>The token returned by a previous call to retrieve the next set of
+     * results.</p>
      */
     inline ListRuleNamesByTargetRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     /**
      * <p>The maximum number of results to return.</p>
@@ -138,10 +139,13 @@ namespace Model
     inline ListRuleNamesByTargetRequest& WithLimit(int value) { SetLimit(value); return *this;}
 
   private:
+
     Aws::String m_targetArn;
     bool m_targetArnHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
+
     int m_limit;
     bool m_limitHasBeenSet;
   };

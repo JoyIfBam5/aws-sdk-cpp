@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/shield/Shield_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     Mitigation& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the mitigation taken for this attack.</p>
      */
@@ -56,7 +59,7 @@ namespace Model
     /**
      * <p>The name of the mitigation taken for this attack.</p>
      */
-    inline void SetMitigationName(Aws::String&& value) { m_mitigationNameHasBeenSet = true; m_mitigationName = value; }
+    inline void SetMitigationName(Aws::String&& value) { m_mitigationNameHasBeenSet = true; m_mitigationName = std::move(value); }
 
     /**
      * <p>The name of the mitigation taken for this attack.</p>
@@ -71,7 +74,7 @@ namespace Model
     /**
      * <p>The name of the mitigation taken for this attack.</p>
      */
-    inline Mitigation& WithMitigationName(Aws::String&& value) { SetMitigationName(value); return *this;}
+    inline Mitigation& WithMitigationName(Aws::String&& value) { SetMitigationName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the mitigation taken for this attack.</p>
@@ -79,6 +82,7 @@ namespace Model
     inline Mitigation& WithMitigationName(const char* value) { SetMitigationName(value); return *this;}
 
   private:
+
     Aws::String m_mitigationName;
     bool m_mitigationNameHasBeenSet;
   };

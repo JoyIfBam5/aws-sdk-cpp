@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The frequency (<code>Daily</code>, <code>Weekly</code>, or
      * <code>Monthly</code>).</p>
@@ -64,7 +67,7 @@ namespace Model
      * <p>The frequency (<code>Daily</code>, <code>Weekly</code>, or
      * <code>Monthly</code>).</p>
      */
-    inline void SetFrequency(Aws::String&& value) { m_frequencyHasBeenSet = true; m_frequency = value; }
+    inline void SetFrequency(Aws::String&& value) { m_frequencyHasBeenSet = true; m_frequency = std::move(value); }
 
     /**
      * <p>The frequency (<code>Daily</code>, <code>Weekly</code>, or
@@ -82,13 +85,14 @@ namespace Model
      * <p>The frequency (<code>Daily</code>, <code>Weekly</code>, or
      * <code>Monthly</code>).</p>
      */
-    inline ScheduledInstanceRecurrence& WithFrequency(Aws::String&& value) { SetFrequency(value); return *this;}
+    inline ScheduledInstanceRecurrence& WithFrequency(Aws::String&& value) { SetFrequency(std::move(value)); return *this;}
 
     /**
      * <p>The frequency (<code>Daily</code>, <code>Weekly</code>, or
      * <code>Monthly</code>).</p>
      */
     inline ScheduledInstanceRecurrence& WithFrequency(const char* value) { SetFrequency(value); return *this;}
+
 
     /**
      * <p>The interval quantity. The interval unit depends on the value of
@@ -107,6 +111,7 @@ namespace Model
      * <code>frequency</code>. For example, every 2 weeks or every 2 months.</p>
      */
     inline ScheduledInstanceRecurrence& WithInterval(int value) { SetInterval(value); return *this;}
+
 
     /**
      * <p>The days. For a monthly schedule, this is one or more days of the month
@@ -127,7 +132,7 @@ namespace Model
      * (1-31). For a weekly schedule, this is one or more days of the week (1-7, where
      * 1 is Sunday).</p>
      */
-    inline void SetOccurrenceDaySet(Aws::Vector<int>&& value) { m_occurrenceDaySetHasBeenSet = true; m_occurrenceDaySet = value; }
+    inline void SetOccurrenceDaySet(Aws::Vector<int>&& value) { m_occurrenceDaySetHasBeenSet = true; m_occurrenceDaySet = std::move(value); }
 
     /**
      * <p>The days. For a monthly schedule, this is one or more days of the month
@@ -141,7 +146,7 @@ namespace Model
      * (1-31). For a weekly schedule, this is one or more days of the week (1-7, where
      * 1 is Sunday).</p>
      */
-    inline ScheduledInstanceRecurrence& WithOccurrenceDaySet(Aws::Vector<int>&& value) { SetOccurrenceDaySet(value); return *this;}
+    inline ScheduledInstanceRecurrence& WithOccurrenceDaySet(Aws::Vector<int>&& value) { SetOccurrenceDaySet(std::move(value)); return *this;}
 
     /**
      * <p>The days. For a monthly schedule, this is one or more days of the month
@@ -149,6 +154,7 @@ namespace Model
      * 1 is Sunday).</p>
      */
     inline ScheduledInstanceRecurrence& AddOccurrenceDaySet(int value) { m_occurrenceDaySetHasBeenSet = true; m_occurrenceDaySet.push_back(value); return *this; }
+
 
     /**
      * <p>Indicates whether the occurrence is relative to the end of the specified week
@@ -168,6 +174,7 @@ namespace Model
      */
     inline ScheduledInstanceRecurrence& WithOccurrenceRelativeToEnd(bool value) { SetOccurrenceRelativeToEnd(value); return *this;}
 
+
     /**
      * <p>The unit for <code>occurrenceDaySet</code> (<code>DayOfWeek</code> or
      * <code>DayOfMonth</code>).</p>
@@ -184,7 +191,7 @@ namespace Model
      * <p>The unit for <code>occurrenceDaySet</code> (<code>DayOfWeek</code> or
      * <code>DayOfMonth</code>).</p>
      */
-    inline void SetOccurrenceUnit(Aws::String&& value) { m_occurrenceUnitHasBeenSet = true; m_occurrenceUnit = value; }
+    inline void SetOccurrenceUnit(Aws::String&& value) { m_occurrenceUnitHasBeenSet = true; m_occurrenceUnit = std::move(value); }
 
     /**
      * <p>The unit for <code>occurrenceDaySet</code> (<code>DayOfWeek</code> or
@@ -202,7 +209,7 @@ namespace Model
      * <p>The unit for <code>occurrenceDaySet</code> (<code>DayOfWeek</code> or
      * <code>DayOfMonth</code>).</p>
      */
-    inline ScheduledInstanceRecurrence& WithOccurrenceUnit(Aws::String&& value) { SetOccurrenceUnit(value); return *this;}
+    inline ScheduledInstanceRecurrence& WithOccurrenceUnit(Aws::String&& value) { SetOccurrenceUnit(std::move(value)); return *this;}
 
     /**
      * <p>The unit for <code>occurrenceDaySet</code> (<code>DayOfWeek</code> or
@@ -211,14 +218,19 @@ namespace Model
     inline ScheduledInstanceRecurrence& WithOccurrenceUnit(const char* value) { SetOccurrenceUnit(value); return *this;}
 
   private:
+
     Aws::String m_frequency;
     bool m_frequencyHasBeenSet;
+
     int m_interval;
     bool m_intervalHasBeenSet;
+
     Aws::Vector<int> m_occurrenceDaySet;
     bool m_occurrenceDaySetHasBeenSet;
+
     bool m_occurrenceRelativeToEnd;
     bool m_occurrenceRelativeToEndHasBeenSet;
+
     Aws::String m_occurrenceUnit;
     bool m_occurrenceUnitHasBeenSet;
   };

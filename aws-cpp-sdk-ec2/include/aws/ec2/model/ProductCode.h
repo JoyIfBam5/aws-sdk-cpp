@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ec2/model/ProductCodeValues.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The product code.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The product code.</p>
      */
-    inline void SetProductCodeId(Aws::String&& value) { m_productCodeIdHasBeenSet = true; m_productCodeId = value; }
+    inline void SetProductCodeId(Aws::String&& value) { m_productCodeIdHasBeenSet = true; m_productCodeId = std::move(value); }
 
     /**
      * <p>The product code.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The product code.</p>
      */
-    inline ProductCode& WithProductCodeId(Aws::String&& value) { SetProductCodeId(value); return *this;}
+    inline ProductCode& WithProductCodeId(Aws::String&& value) { SetProductCodeId(std::move(value)); return *this;}
 
     /**
      * <p>The product code.</p>
      */
     inline ProductCode& WithProductCodeId(const char* value) { SetProductCodeId(value); return *this;}
+
 
     /**
      * <p>The type of product code.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>The type of product code.</p>
      */
-    inline void SetProductCodeType(ProductCodeValues&& value) { m_productCodeTypeHasBeenSet = true; m_productCodeType = value; }
+    inline void SetProductCodeType(ProductCodeValues&& value) { m_productCodeTypeHasBeenSet = true; m_productCodeType = std::move(value); }
 
     /**
      * <p>The type of product code.</p>
@@ -105,11 +109,13 @@ namespace Model
     /**
      * <p>The type of product code.</p>
      */
-    inline ProductCode& WithProductCodeType(ProductCodeValues&& value) { SetProductCodeType(value); return *this;}
+    inline ProductCode& WithProductCodeType(ProductCodeValues&& value) { SetProductCodeType(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_productCodeId;
     bool m_productCodeIdHasBeenSet;
+
     ProductCodeValues m_productCodeType;
     bool m_productCodeTypeHasBeenSet;
   };

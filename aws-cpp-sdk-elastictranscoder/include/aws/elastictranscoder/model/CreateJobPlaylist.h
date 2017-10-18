@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elastictranscoder/ElasticTranscoder_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elastictranscoder/model/HlsContentProtection.h>
 #include <aws/elastictranscoder/model/PlayReadyDrm.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     CreateJobPlaylist(const Aws::Utils::Json::JsonValue& jsonValue);
     CreateJobPlaylist& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>The name that you want Elastic Transcoder to assign to the master playlist,
@@ -86,7 +89,7 @@ namespace Model
      * you include a file extension in <code>Name</code>, the file name will have two
      * extensions.</p> </note>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name that you want Elastic Transcoder to assign to the master playlist,
@@ -128,7 +131,7 @@ namespace Model
      * you include a file extension in <code>Name</code>, the file name will have two
      * extensions.</p> </note>
      */
-    inline CreateJobPlaylist& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline CreateJobPlaylist& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name that you want Elastic Transcoder to assign to the master playlist,
@@ -143,6 +146,7 @@ namespace Model
      * extensions.</p> </note>
      */
     inline CreateJobPlaylist& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The format of the output playlist. Valid formats include <code>HLSv3</code>,
@@ -160,7 +164,7 @@ namespace Model
      * <p>The format of the output playlist. Valid formats include <code>HLSv3</code>,
      * <code>HLSv4</code>, and <code>Smooth</code>.</p>
      */
-    inline void SetFormat(Aws::String&& value) { m_formatHasBeenSet = true; m_format = value; }
+    inline void SetFormat(Aws::String&& value) { m_formatHasBeenSet = true; m_format = std::move(value); }
 
     /**
      * <p>The format of the output playlist. Valid formats include <code>HLSv3</code>,
@@ -178,13 +182,14 @@ namespace Model
      * <p>The format of the output playlist. Valid formats include <code>HLSv3</code>,
      * <code>HLSv4</code>, and <code>Smooth</code>.</p>
      */
-    inline CreateJobPlaylist& WithFormat(Aws::String&& value) { SetFormat(value); return *this;}
+    inline CreateJobPlaylist& WithFormat(Aws::String&& value) { SetFormat(std::move(value)); return *this;}
 
     /**
      * <p>The format of the output playlist. Valid formats include <code>HLSv3</code>,
      * <code>HLSv4</code>, and <code>Smooth</code>.</p>
      */
     inline CreateJobPlaylist& WithFormat(const char* value) { SetFormat(value); return *this;}
+
 
     /**
      * <p>For each output in this job that you want to include in a master playlist,
@@ -277,7 +282,7 @@ namespace Model
      * <code>Video:FrameRate</code> to <code>Video:KeyframesMaxDist</code> ratio must
      * be the same for all outputs.</p>
      */
-    inline void SetOutputKeys(Aws::Vector<Aws::String>&& value) { m_outputKeysHasBeenSet = true; m_outputKeys = value; }
+    inline void SetOutputKeys(Aws::Vector<Aws::String>&& value) { m_outputKeysHasBeenSet = true; m_outputKeys = std::move(value); }
 
     /**
      * <p>For each output in this job that you want to include in a master playlist,
@@ -339,7 +344,7 @@ namespace Model
      * <code>Video:FrameRate</code> to <code>Video:KeyframesMaxDist</code> ratio must
      * be the same for all outputs.</p>
      */
-    inline CreateJobPlaylist& WithOutputKeys(Aws::Vector<Aws::String>&& value) { SetOutputKeys(value); return *this;}
+    inline CreateJobPlaylist& WithOutputKeys(Aws::Vector<Aws::String>&& value) { SetOutputKeys(std::move(value)); return *this;}
 
     /**
      * <p>For each output in this job that you want to include in a master playlist,
@@ -401,7 +406,7 @@ namespace Model
      * <code>Video:FrameRate</code> to <code>Video:KeyframesMaxDist</code> ratio must
      * be the same for all outputs.</p>
      */
-    inline CreateJobPlaylist& AddOutputKeys(Aws::String&& value) { m_outputKeysHasBeenSet = true; m_outputKeys.push_back(value); return *this; }
+    inline CreateJobPlaylist& AddOutputKeys(Aws::String&& value) { m_outputKeysHasBeenSet = true; m_outputKeys.push_back(std::move(value)); return *this; }
 
     /**
      * <p>For each output in this job that you want to include in a master playlist,
@@ -434,6 +439,7 @@ namespace Model
      */
     inline CreateJobPlaylist& AddOutputKeys(const char* value) { m_outputKeysHasBeenSet = true; m_outputKeys.push_back(value); return *this; }
 
+
     /**
      * <p>The HLS content protection settings, if any, that you want Elastic Transcoder
      * to apply to the output files associated with this playlist.</p>
@@ -450,7 +456,7 @@ namespace Model
      * <p>The HLS content protection settings, if any, that you want Elastic Transcoder
      * to apply to the output files associated with this playlist.</p>
      */
-    inline void SetHlsContentProtection(HlsContentProtection&& value) { m_hlsContentProtectionHasBeenSet = true; m_hlsContentProtection = value; }
+    inline void SetHlsContentProtection(HlsContentProtection&& value) { m_hlsContentProtectionHasBeenSet = true; m_hlsContentProtection = std::move(value); }
 
     /**
      * <p>The HLS content protection settings, if any, that you want Elastic Transcoder
@@ -462,7 +468,8 @@ namespace Model
      * <p>The HLS content protection settings, if any, that you want Elastic Transcoder
      * to apply to the output files associated with this playlist.</p>
      */
-    inline CreateJobPlaylist& WithHlsContentProtection(HlsContentProtection&& value) { SetHlsContentProtection(value); return *this;}
+    inline CreateJobPlaylist& WithHlsContentProtection(HlsContentProtection&& value) { SetHlsContentProtection(std::move(value)); return *this;}
+
 
     /**
      * <p>The DRM settings, if any, that you want Elastic Transcoder to apply to the
@@ -480,7 +487,7 @@ namespace Model
      * <p>The DRM settings, if any, that you want Elastic Transcoder to apply to the
      * output files associated with this playlist.</p>
      */
-    inline void SetPlayReadyDrm(PlayReadyDrm&& value) { m_playReadyDrmHasBeenSet = true; m_playReadyDrm = value; }
+    inline void SetPlayReadyDrm(PlayReadyDrm&& value) { m_playReadyDrmHasBeenSet = true; m_playReadyDrm = std::move(value); }
 
     /**
      * <p>The DRM settings, if any, that you want Elastic Transcoder to apply to the
@@ -492,17 +499,22 @@ namespace Model
      * <p>The DRM settings, if any, that you want Elastic Transcoder to apply to the
      * output files associated with this playlist.</p>
      */
-    inline CreateJobPlaylist& WithPlayReadyDrm(PlayReadyDrm&& value) { SetPlayReadyDrm(value); return *this;}
+    inline CreateJobPlaylist& WithPlayReadyDrm(PlayReadyDrm&& value) { SetPlayReadyDrm(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_format;
     bool m_formatHasBeenSet;
+
     Aws::Vector<Aws::String> m_outputKeys;
     bool m_outputKeysHasBeenSet;
+
     HlsContentProtection m_hlsContentProtection;
     bool m_hlsContentProtectionHasBeenSet;
+
     PlayReadyDrm m_playReadyDrm;
     bool m_playReadyDrmHasBeenSet;
   };

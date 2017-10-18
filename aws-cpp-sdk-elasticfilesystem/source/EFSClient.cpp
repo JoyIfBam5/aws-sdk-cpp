@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/core/utils/Outcome.h>
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
@@ -105,9 +106,10 @@ void EFSClient::init(const ClientConfiguration& config)
 CreateFileSystemOutcome EFSClient::CreateFileSystem(const CreateFileSystemRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-02-01/file-systems";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-02-01/file-systems";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return CreateFileSystemOutcome(CreateFileSystemResult(outcome.GetResult()));
@@ -139,9 +141,10 @@ void EFSClient::CreateFileSystemAsyncHelper(const CreateFileSystemRequest& reque
 CreateMountTargetOutcome EFSClient::CreateMountTarget(const CreateMountTargetRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-02-01/mount-targets";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-02-01/mount-targets";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return CreateMountTargetOutcome(CreateMountTargetResult(outcome.GetResult()));
@@ -173,10 +176,11 @@ void EFSClient::CreateMountTargetAsyncHelper(const CreateMountTargetRequest& req
 CreateTagsOutcome EFSClient::CreateTags(const CreateTagsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-02-01/create-tags/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-02-01/create-tags/";
   ss << request.GetFileSystemId();
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return CreateTagsOutcome(NoResult());
@@ -208,10 +212,11 @@ void EFSClient::CreateTagsAsyncHelper(const CreateTagsRequest& request, const Cr
 DeleteFileSystemOutcome EFSClient::DeleteFileSystem(const DeleteFileSystemRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-02-01/file-systems/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-02-01/file-systems/";
   ss << request.GetFileSystemId();
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_DELETE);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_DELETE, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DeleteFileSystemOutcome(NoResult());
@@ -243,10 +248,11 @@ void EFSClient::DeleteFileSystemAsyncHelper(const DeleteFileSystemRequest& reque
 DeleteMountTargetOutcome EFSClient::DeleteMountTarget(const DeleteMountTargetRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-02-01/mount-targets/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-02-01/mount-targets/";
   ss << request.GetMountTargetId();
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_DELETE);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_DELETE, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DeleteMountTargetOutcome(NoResult());
@@ -278,10 +284,11 @@ void EFSClient::DeleteMountTargetAsyncHelper(const DeleteMountTargetRequest& req
 DeleteTagsOutcome EFSClient::DeleteTags(const DeleteTagsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-02-01/delete-tags/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-02-01/delete-tags/";
   ss << request.GetFileSystemId();
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_POST);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DeleteTagsOutcome(NoResult());
@@ -313,9 +320,10 @@ void EFSClient::DeleteTagsAsyncHelper(const DeleteTagsRequest& request, const De
 DescribeFileSystemsOutcome EFSClient::DescribeFileSystems(const DescribeFileSystemsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-02-01/file-systems";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_GET);
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-02-01/file-systems";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeFileSystemsOutcome(DescribeFileSystemsResult(outcome.GetResult()));
@@ -347,11 +355,12 @@ void EFSClient::DescribeFileSystemsAsyncHelper(const DescribeFileSystemsRequest&
 DescribeMountTargetSecurityGroupsOutcome EFSClient::DescribeMountTargetSecurityGroups(const DescribeMountTargetSecurityGroupsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-02-01/mount-targets/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-02-01/mount-targets/";
   ss << request.GetMountTargetId();
   ss << "/security-groups";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_GET);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeMountTargetSecurityGroupsOutcome(DescribeMountTargetSecurityGroupsResult(outcome.GetResult()));
@@ -383,9 +392,10 @@ void EFSClient::DescribeMountTargetSecurityGroupsAsyncHelper(const DescribeMount
 DescribeMountTargetsOutcome EFSClient::DescribeMountTargets(const DescribeMountTargetsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-02-01/mount-targets";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_GET);
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-02-01/mount-targets";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeMountTargetsOutcome(DescribeMountTargetsResult(outcome.GetResult()));
@@ -417,11 +427,12 @@ void EFSClient::DescribeMountTargetsAsyncHelper(const DescribeMountTargetsReques
 DescribeTagsOutcome EFSClient::DescribeTags(const DescribeTagsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-02-01/tags/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-02-01/tags/";
   ss << request.GetFileSystemId();
   ss << "/";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_GET);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_GET, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return DescribeTagsOutcome(DescribeTagsResult(outcome.GetResult()));
@@ -453,11 +464,12 @@ void EFSClient::DescribeTagsAsyncHelper(const DescribeTagsRequest& request, cons
 ModifyMountTargetSecurityGroupsOutcome EFSClient::ModifyMountTargetSecurityGroups(const ModifyMountTargetSecurityGroupsRequest& request) const
 {
   Aws::StringStream ss;
-  ss << m_uri << "/2015-02-01/mount-targets/";
+  Aws::Http::URI uri = m_uri;
+  ss << "/2015-02-01/mount-targets/";
   ss << request.GetMountTargetId();
   ss << "/security-groups";
-
-  JsonOutcome outcome = MakeRequest(ss.str(), request, HttpMethod::HTTP_PUT);
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_PUT, Aws::Auth::SIGV4_SIGNER);
   if(outcome.IsSuccess())
   {
     return ModifyMountTargetSecurityGroupsOutcome(NoResult());

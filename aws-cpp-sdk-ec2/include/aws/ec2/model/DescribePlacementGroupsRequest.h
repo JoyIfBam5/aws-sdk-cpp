@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/ec2/EC2Request.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
-#include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ec2/model/Filter.h>
+#include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,79 +38,19 @@ namespace Model
   {
   public:
     DescribePlacementGroupsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribePlacementGroups"; }
+
     Aws::String SerializePayload() const override;
 
-    /**
-     * <p>Checks whether you have the required permissions for the action, without
-     * actually making the request, and provides an error response. If you have the
-     * required permissions, the error response is <code>DryRunOperation</code>.
-     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
-     */
-    inline bool GetDryRun() const{ return m_dryRun; }
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
 
-    /**
-     * <p>Checks whether you have the required permissions for the action, without
-     * actually making the request, and provides an error response. If you have the
-     * required permissions, the error response is <code>DryRunOperation</code>.
-     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
-     */
-    inline void SetDryRun(bool value) { m_dryRunHasBeenSet = true; m_dryRun = value; }
-
-    /**
-     * <p>Checks whether you have the required permissions for the action, without
-     * actually making the request, and provides an error response. If you have the
-     * required permissions, the error response is <code>DryRunOperation</code>.
-     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
-     */
-    inline DescribePlacementGroupsRequest& WithDryRun(bool value) { SetDryRun(value); return *this;}
-
-    /**
-     * <p>One or more placement group names.</p> <p>Default: Describes all your
-     * placement groups, or only those otherwise specified.</p>
-     */
-    inline const Aws::Vector<Aws::String>& GetGroupNames() const{ return m_groupNames; }
-
-    /**
-     * <p>One or more placement group names.</p> <p>Default: Describes all your
-     * placement groups, or only those otherwise specified.</p>
-     */
-    inline void SetGroupNames(const Aws::Vector<Aws::String>& value) { m_groupNamesHasBeenSet = true; m_groupNames = value; }
-
-    /**
-     * <p>One or more placement group names.</p> <p>Default: Describes all your
-     * placement groups, or only those otherwise specified.</p>
-     */
-    inline void SetGroupNames(Aws::Vector<Aws::String>&& value) { m_groupNamesHasBeenSet = true; m_groupNames = value; }
-
-    /**
-     * <p>One or more placement group names.</p> <p>Default: Describes all your
-     * placement groups, or only those otherwise specified.</p>
-     */
-    inline DescribePlacementGroupsRequest& WithGroupNames(const Aws::Vector<Aws::String>& value) { SetGroupNames(value); return *this;}
-
-    /**
-     * <p>One or more placement group names.</p> <p>Default: Describes all your
-     * placement groups, or only those otherwise specified.</p>
-     */
-    inline DescribePlacementGroupsRequest& WithGroupNames(Aws::Vector<Aws::String>&& value) { SetGroupNames(value); return *this;}
-
-    /**
-     * <p>One or more placement group names.</p> <p>Default: Describes all your
-     * placement groups, or only those otherwise specified.</p>
-     */
-    inline DescribePlacementGroupsRequest& AddGroupNames(const Aws::String& value) { m_groupNamesHasBeenSet = true; m_groupNames.push_back(value); return *this; }
-
-    /**
-     * <p>One or more placement group names.</p> <p>Default: Describes all your
-     * placement groups, or only those otherwise specified.</p>
-     */
-    inline DescribePlacementGroupsRequest& AddGroupNames(Aws::String&& value) { m_groupNamesHasBeenSet = true; m_groupNames.push_back(value); return *this; }
-
-    /**
-     * <p>One or more placement group names.</p> <p>Default: Describes all your
-     * placement groups, or only those otherwise specified.</p>
-     */
-    inline DescribePlacementGroupsRequest& AddGroupNames(const char* value) { m_groupNamesHasBeenSet = true; m_groupNames.push_back(value); return *this; }
+  public:
 
     /**
      * <p>One or more filters.</p> <ul> <li> <p> <code>group-name</code> - The name of
@@ -138,7 +80,7 @@ namespace Model
      * <code>strategy</code> - The strategy of the placement group
      * (<code>cluster</code>).</p> </li> </ul>
      */
-    inline void SetFilters(Aws::Vector<Filter>&& value) { m_filtersHasBeenSet = true; m_filters = value; }
+    inline void SetFilters(Aws::Vector<Filter>&& value) { m_filtersHasBeenSet = true; m_filters = std::move(value); }
 
     /**
      * <p>One or more filters.</p> <ul> <li> <p> <code>group-name</code> - The name of
@@ -158,7 +100,7 @@ namespace Model
      * <code>strategy</code> - The strategy of the placement group
      * (<code>cluster</code>).</p> </li> </ul>
      */
-    inline DescribePlacementGroupsRequest& WithFilters(Aws::Vector<Filter>&& value) { SetFilters(value); return *this;}
+    inline DescribePlacementGroupsRequest& WithFilters(Aws::Vector<Filter>&& value) { SetFilters(std::move(value)); return *this;}
 
     /**
      * <p>One or more filters.</p> <ul> <li> <p> <code>group-name</code> - The name of
@@ -178,15 +120,92 @@ namespace Model
      * <code>strategy</code> - The strategy of the placement group
      * (<code>cluster</code>).</p> </li> </ul>
      */
-    inline DescribePlacementGroupsRequest& AddFilters(Filter&& value) { m_filtersHasBeenSet = true; m_filters.push_back(value); return *this; }
+    inline DescribePlacementGroupsRequest& AddFilters(Filter&& value) { m_filtersHasBeenSet = true; m_filters.push_back(std::move(value)); return *this; }
+
+
+    /**
+     * <p>Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have the
+     * required permissions, the error response is <code>DryRunOperation</code>.
+     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+     */
+    inline bool GetDryRun() const{ return m_dryRun; }
+
+    /**
+     * <p>Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have the
+     * required permissions, the error response is <code>DryRunOperation</code>.
+     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+     */
+    inline void SetDryRun(bool value) { m_dryRunHasBeenSet = true; m_dryRun = value; }
+
+    /**
+     * <p>Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have the
+     * required permissions, the error response is <code>DryRunOperation</code>.
+     * Otherwise, it is <code>UnauthorizedOperation</code>.</p>
+     */
+    inline DescribePlacementGroupsRequest& WithDryRun(bool value) { SetDryRun(value); return *this;}
+
+
+    /**
+     * <p>One or more placement group names.</p> <p>Default: Describes all your
+     * placement groups, or only those otherwise specified.</p>
+     */
+    inline const Aws::Vector<Aws::String>& GetGroupNames() const{ return m_groupNames; }
+
+    /**
+     * <p>One or more placement group names.</p> <p>Default: Describes all your
+     * placement groups, or only those otherwise specified.</p>
+     */
+    inline void SetGroupNames(const Aws::Vector<Aws::String>& value) { m_groupNamesHasBeenSet = true; m_groupNames = value; }
+
+    /**
+     * <p>One or more placement group names.</p> <p>Default: Describes all your
+     * placement groups, or only those otherwise specified.</p>
+     */
+    inline void SetGroupNames(Aws::Vector<Aws::String>&& value) { m_groupNamesHasBeenSet = true; m_groupNames = std::move(value); }
+
+    /**
+     * <p>One or more placement group names.</p> <p>Default: Describes all your
+     * placement groups, or only those otherwise specified.</p>
+     */
+    inline DescribePlacementGroupsRequest& WithGroupNames(const Aws::Vector<Aws::String>& value) { SetGroupNames(value); return *this;}
+
+    /**
+     * <p>One or more placement group names.</p> <p>Default: Describes all your
+     * placement groups, or only those otherwise specified.</p>
+     */
+    inline DescribePlacementGroupsRequest& WithGroupNames(Aws::Vector<Aws::String>&& value) { SetGroupNames(std::move(value)); return *this;}
+
+    /**
+     * <p>One or more placement group names.</p> <p>Default: Describes all your
+     * placement groups, or only those otherwise specified.</p>
+     */
+    inline DescribePlacementGroupsRequest& AddGroupNames(const Aws::String& value) { m_groupNamesHasBeenSet = true; m_groupNames.push_back(value); return *this; }
+
+    /**
+     * <p>One or more placement group names.</p> <p>Default: Describes all your
+     * placement groups, or only those otherwise specified.</p>
+     */
+    inline DescribePlacementGroupsRequest& AddGroupNames(Aws::String&& value) { m_groupNamesHasBeenSet = true; m_groupNames.push_back(std::move(value)); return *this; }
+
+    /**
+     * <p>One or more placement group names.</p> <p>Default: Describes all your
+     * placement groups, or only those otherwise specified.</p>
+     */
+    inline DescribePlacementGroupsRequest& AddGroupNames(const char* value) { m_groupNamesHasBeenSet = true; m_groupNames.push_back(value); return *this; }
 
   private:
-    bool m_dryRun;
-    bool m_dryRunHasBeenSet;
-    Aws::Vector<Aws::String> m_groupNames;
-    bool m_groupNamesHasBeenSet;
+
     Aws::Vector<Filter> m_filters;
     bool m_filtersHasBeenSet;
+
+    bool m_dryRun;
+    bool m_dryRunHasBeenSet;
+
+    Aws::Vector<Aws::String> m_groupNames;
+    bool m_groupNamesHasBeenSet;
   };
 
 } // namespace Model

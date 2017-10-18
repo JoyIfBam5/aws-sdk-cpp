@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/polly/Polly_EXPORTS.h>
 #include <aws/polly/model/Lexicon.h>
 #include <aws/polly/model/LexiconAttributes.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     GetLexiconResult();
-    GetLexiconResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetLexiconResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetLexiconResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetLexiconResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Lexicon object that provides name and the string content of the lexicon. </p>
@@ -53,7 +56,7 @@ namespace Model
     /**
      * <p>Lexicon object that provides name and the string content of the lexicon. </p>
      */
-    inline void SetLexicon(Lexicon&& value) { m_lexicon = value; }
+    inline void SetLexicon(Lexicon&& value) { m_lexicon = std::move(value); }
 
     /**
      * <p>Lexicon object that provides name and the string content of the lexicon. </p>
@@ -63,7 +66,8 @@ namespace Model
     /**
      * <p>Lexicon object that provides name and the string content of the lexicon. </p>
      */
-    inline GetLexiconResult& WithLexicon(Lexicon&& value) { SetLexicon(value); return *this;}
+    inline GetLexiconResult& WithLexicon(Lexicon&& value) { SetLexicon(std::move(value)); return *this;}
+
 
     /**
      * <p>Metadata of the lexicon, including phonetic alphabetic used, language code,
@@ -84,7 +88,7 @@ namespace Model
      * lexicon ARN, number of lexemes defined in the lexicon, and size of lexicon in
      * bytes.</p>
      */
-    inline void SetLexiconAttributes(LexiconAttributes&& value) { m_lexiconAttributes = value; }
+    inline void SetLexiconAttributes(LexiconAttributes&& value) { m_lexiconAttributes = std::move(value); }
 
     /**
      * <p>Metadata of the lexicon, including phonetic alphabetic used, language code,
@@ -98,10 +102,12 @@ namespace Model
      * lexicon ARN, number of lexemes defined in the lexicon, and size of lexicon in
      * bytes.</p>
      */
-    inline GetLexiconResult& WithLexiconAttributes(LexiconAttributes&& value) { SetLexiconAttributes(value); return *this;}
+    inline GetLexiconResult& WithLexiconAttributes(LexiconAttributes&& value) { SetLexiconAttributes(std::move(value)); return *this;}
 
   private:
+
     Lexicon m_lexicon;
+
     LexiconAttributes m_lexiconAttributes;
   };
 

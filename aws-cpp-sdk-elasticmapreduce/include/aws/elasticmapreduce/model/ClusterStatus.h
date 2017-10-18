@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/elasticmapreduce/model/ClusterState.h>
 #include <aws/elasticmapreduce/model/ClusterStateChangeReason.h>
 #include <aws/elasticmapreduce/model/ClusterTimeline.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     ClusterStatus& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The current state of the cluster.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The current state of the cluster.</p>
      */
-    inline void SetState(ClusterState&& value) { m_stateHasBeenSet = true; m_state = value; }
+    inline void SetState(ClusterState&& value) { m_stateHasBeenSet = true; m_state = std::move(value); }
 
     /**
      * <p>The current state of the cluster.</p>
@@ -68,7 +71,8 @@ namespace Model
     /**
      * <p>The current state of the cluster.</p>
      */
-    inline ClusterStatus& WithState(ClusterState&& value) { SetState(value); return *this;}
+    inline ClusterStatus& WithState(ClusterState&& value) { SetState(std::move(value)); return *this;}
+
 
     /**
      * <p>The reason for the cluster status change.</p>
@@ -83,7 +87,7 @@ namespace Model
     /**
      * <p>The reason for the cluster status change.</p>
      */
-    inline void SetStateChangeReason(ClusterStateChangeReason&& value) { m_stateChangeReasonHasBeenSet = true; m_stateChangeReason = value; }
+    inline void SetStateChangeReason(ClusterStateChangeReason&& value) { m_stateChangeReasonHasBeenSet = true; m_stateChangeReason = std::move(value); }
 
     /**
      * <p>The reason for the cluster status change.</p>
@@ -93,7 +97,8 @@ namespace Model
     /**
      * <p>The reason for the cluster status change.</p>
      */
-    inline ClusterStatus& WithStateChangeReason(ClusterStateChangeReason&& value) { SetStateChangeReason(value); return *this;}
+    inline ClusterStatus& WithStateChangeReason(ClusterStateChangeReason&& value) { SetStateChangeReason(std::move(value)); return *this;}
+
 
     /**
      * <p>A timeline that represents the status of a cluster over the lifetime of the
@@ -111,7 +116,7 @@ namespace Model
      * <p>A timeline that represents the status of a cluster over the lifetime of the
      * cluster.</p>
      */
-    inline void SetTimeline(ClusterTimeline&& value) { m_timelineHasBeenSet = true; m_timeline = value; }
+    inline void SetTimeline(ClusterTimeline&& value) { m_timelineHasBeenSet = true; m_timeline = std::move(value); }
 
     /**
      * <p>A timeline that represents the status of a cluster over the lifetime of the
@@ -123,13 +128,16 @@ namespace Model
      * <p>A timeline that represents the status of a cluster over the lifetime of the
      * cluster.</p>
      */
-    inline ClusterStatus& WithTimeline(ClusterTimeline&& value) { SetTimeline(value); return *this;}
+    inline ClusterStatus& WithTimeline(ClusterTimeline&& value) { SetTimeline(std::move(value)); return *this;}
 
   private:
+
     ClusterState m_state;
     bool m_stateHasBeenSet;
+
     ClusterStateChangeReason m_stateChangeReason;
     bool m_stateChangeReasonHasBeenSet;
+
     ClusterTimeline m_timeline;
     bool m_timelineHasBeenSet;
   };

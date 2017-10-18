@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   *
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -38,6 +38,11 @@ namespace FileSystem
     * Returns the directory path for the home dir env variable
     */
     AWS_CORE_API Aws::String GetHomeDirectory();
+
+    /**
+     * Returns the directory path for the directory containing the currently running executable
+     */
+    AWS_CORE_API Aws::String GetExecutableDirectory();
 
     /**
     * Creates directory if it doesn't exist. Returns true if the directory was created
@@ -87,6 +92,12 @@ namespace FileSystem
      */
     AWS_CORE_API Aws::String Join(const Aws::String& leftSegment, const Aws::String& rightSegment);
 
+	/**
+	* Joins the leftSegment and rightSegment of a path together using the specified delimiter.
+	* e.g. with delimiter & C:\users\name\ and .aws becomes C:\users\name&.aws
+	*/
+	AWS_CORE_API Aws::String Join(char delimiter, const Aws::String& leftSegment, const Aws::String& rightSegment);
+
     /**
      * Type of directory entry encountered.
      */
@@ -125,7 +136,7 @@ namespace FileSystem
         /**
          * If this directory is valid for use.
          */
-        operator bool() const { return m_directoryEntry.operator bool(); }
+        virtual operator bool() const { return m_directoryEntry.operator bool(); }
 
         /**
          * Get the entry representing this current directory object.
@@ -147,6 +158,11 @@ namespace FileSystem
          * The original Directory object you use is responsible for the memory this method allocates, so do not attempt to delete the return value.
          */
         Directory& Descend(const DirectoryEntry& directoryEntry);
+
+        /**
+         * Recursively search directories with path as root directory, return all normal(non directory and non symlink) files' paths.
+         */
+        static Aws::Vector<Aws::String> GetAllFilePathsInDirectory(const Aws::String& path);
 
     protected:
         DirectoryEntry m_directoryEntry;

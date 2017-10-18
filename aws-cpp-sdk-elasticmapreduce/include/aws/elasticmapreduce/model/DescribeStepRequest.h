@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/elasticmapreduce/EMRRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,9 +35,17 @@ namespace Model
   {
   public:
     DescribeStepRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeStep"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The identifier of the cluster with steps to describe.</p>
@@ -50,7 +60,7 @@ namespace Model
     /**
      * <p>The identifier of the cluster with steps to describe.</p>
      */
-    inline void SetClusterId(Aws::String&& value) { m_clusterIdHasBeenSet = true; m_clusterId = value; }
+    inline void SetClusterId(Aws::String&& value) { m_clusterIdHasBeenSet = true; m_clusterId = std::move(value); }
 
     /**
      * <p>The identifier of the cluster with steps to describe.</p>
@@ -65,12 +75,13 @@ namespace Model
     /**
      * <p>The identifier of the cluster with steps to describe.</p>
      */
-    inline DescribeStepRequest& WithClusterId(Aws::String&& value) { SetClusterId(value); return *this;}
+    inline DescribeStepRequest& WithClusterId(Aws::String&& value) { SetClusterId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the cluster with steps to describe.</p>
      */
     inline DescribeStepRequest& WithClusterId(const char* value) { SetClusterId(value); return *this;}
+
 
     /**
      * <p>The identifier of the step to describe.</p>
@@ -85,7 +96,7 @@ namespace Model
     /**
      * <p>The identifier of the step to describe.</p>
      */
-    inline void SetStepId(Aws::String&& value) { m_stepIdHasBeenSet = true; m_stepId = value; }
+    inline void SetStepId(Aws::String&& value) { m_stepIdHasBeenSet = true; m_stepId = std::move(value); }
 
     /**
      * <p>The identifier of the step to describe.</p>
@@ -100,7 +111,7 @@ namespace Model
     /**
      * <p>The identifier of the step to describe.</p>
      */
-    inline DescribeStepRequest& WithStepId(Aws::String&& value) { SetStepId(value); return *this;}
+    inline DescribeStepRequest& WithStepId(Aws::String&& value) { SetStepId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the step to describe.</p>
@@ -108,8 +119,10 @@ namespace Model
     inline DescribeStepRequest& WithStepId(const char* value) { SetStepId(value); return *this;}
 
   private:
+
     Aws::String m_clusterId;
     bool m_clusterIdHasBeenSet;
+
     Aws::String m_stepId;
     bool m_stepIdHasBeenSet;
   };

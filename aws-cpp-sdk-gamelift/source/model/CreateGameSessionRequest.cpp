@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/gamelift/model/CreateGameSessionRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -29,7 +30,9 @@ CreateGameSessionRequest::CreateGameSessionRequest() :
     m_nameHasBeenSet(false),
     m_gamePropertiesHasBeenSet(false),
     m_creatorIdHasBeenSet(false),
-    m_gameSessionIdHasBeenSet(false)
+    m_gameSessionIdHasBeenSet(false),
+    m_idempotencyTokenHasBeenSet(false),
+    m_gameSessionDataHasBeenSet(false)
 {
 }
 
@@ -84,6 +87,18 @@ Aws::String CreateGameSessionRequest::SerializePayload() const
 
   }
 
+  if(m_idempotencyTokenHasBeenSet)
+  {
+   payload.WithString("IdempotencyToken", m_idempotencyToken);
+
+  }
+
+  if(m_gameSessionDataHasBeenSet)
+  {
+   payload.WithString("GameSessionData", m_gameSessionData);
+
+  }
+
   return payload.WriteReadable();
 }
 
@@ -94,6 +109,7 @@ Aws::Http::HeaderValueCollection CreateGameSessionRequest::GetRequestSpecificHea
   return headers;
 
 }
+
 
 
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/ssm/model/AutomationExecution.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     GetAutomationExecutionResult();
-    GetAutomationExecutionResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetAutomationExecutionResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetAutomationExecutionResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetAutomationExecutionResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Detailed information about the current state of an automation execution.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>Detailed information about the current state of an automation execution.</p>
      */
-    inline void SetAutomationExecution(AutomationExecution&& value) { m_automationExecution = value; }
+    inline void SetAutomationExecution(AutomationExecution&& value) { m_automationExecution = std::move(value); }
 
     /**
      * <p>Detailed information about the current state of an automation execution.</p>
@@ -62,9 +65,10 @@ namespace Model
     /**
      * <p>Detailed information about the current state of an automation execution.</p>
      */
-    inline GetAutomationExecutionResult& WithAutomationExecution(AutomationExecution&& value) { SetAutomationExecution(value); return *this;}
+    inline GetAutomationExecutionResult& WithAutomationExecution(AutomationExecution&& value) { SetAutomationExecution(std::move(value)); return *this;}
 
   private:
+
     AutomationExecution m_automationExecution;
   };
 

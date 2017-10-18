@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudformation/CloudFormation_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The stack that contains the exported output name and value.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The stack that contains the exported output name and value.</p>
      */
-    inline void SetExportingStackId(Aws::String&& value) { m_exportingStackIdHasBeenSet = true; m_exportingStackId = value; }
+    inline void SetExportingStackId(Aws::String&& value) { m_exportingStackIdHasBeenSet = true; m_exportingStackId = std::move(value); }
 
     /**
      * <p>The stack that contains the exported output name and value.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The stack that contains the exported output name and value.</p>
      */
-    inline Export& WithExportingStackId(Aws::String&& value) { SetExportingStackId(value); return *this;}
+    inline Export& WithExportingStackId(Aws::String&& value) { SetExportingStackId(std::move(value)); return *this;}
 
     /**
      * <p>The stack that contains the exported output name and value.</p>
      */
     inline Export& WithExportingStackId(const char* value) { SetExportingStackId(value); return *this;}
+
 
     /**
      * <p>The name of exported output value. Use this name and the
@@ -104,7 +108,7 @@ namespace Model
      * stacks. The name is defined in the <code>Export</code> field in the associated
      * stack's <code>Outputs</code> section.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of exported output value. Use this name and the
@@ -128,7 +132,7 @@ namespace Model
      * stacks. The name is defined in the <code>Export</code> field in the associated
      * stack's <code>Outputs</code> section.</p>
      */
-    inline Export& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline Export& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of exported output value. Use this name and the
@@ -137,6 +141,7 @@ namespace Model
      * stack's <code>Outputs</code> section.</p>
      */
     inline Export& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The value of the exported output, such as a resource physical ID. This value
@@ -157,7 +162,7 @@ namespace Model
      * is defined in the <code>Export</code> field in the associated stack's
      * <code>Outputs</code> section.</p>
      */
-    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = value; }
+    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = std::move(value); }
 
     /**
      * <p>The value of the exported output, such as a resource physical ID. This value
@@ -178,7 +183,7 @@ namespace Model
      * is defined in the <code>Export</code> field in the associated stack's
      * <code>Outputs</code> section.</p>
      */
-    inline Export& WithValue(Aws::String&& value) { SetValue(value); return *this;}
+    inline Export& WithValue(Aws::String&& value) { SetValue(std::move(value)); return *this;}
 
     /**
      * <p>The value of the exported output, such as a resource physical ID. This value
@@ -188,10 +193,13 @@ namespace Model
     inline Export& WithValue(const char* value) { SetValue(value); return *this;}
 
   private:
+
     Aws::String m_exportingStackId;
     bool m_exportingStackIdHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_value;
     bool m_valueHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/polly/Polly_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/polly/model/LexiconAttributes.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     LexiconDescription& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Name of the lexicon.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>Name of the lexicon.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>Name of the lexicon.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>Name of the lexicon.</p>
      */
-    inline LexiconDescription& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline LexiconDescription& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>Name of the lexicon.</p>
      */
     inline LexiconDescription& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>Provides lexicon metadata.</p>
@@ -92,7 +96,7 @@ namespace Model
     /**
      * <p>Provides lexicon metadata.</p>
      */
-    inline void SetAttributes(LexiconAttributes&& value) { m_attributesHasBeenSet = true; m_attributes = value; }
+    inline void SetAttributes(LexiconAttributes&& value) { m_attributesHasBeenSet = true; m_attributes = std::move(value); }
 
     /**
      * <p>Provides lexicon metadata.</p>
@@ -102,11 +106,13 @@ namespace Model
     /**
      * <p>Provides lexicon metadata.</p>
      */
-    inline LexiconDescription& WithAttributes(LexiconAttributes&& value) { SetAttributes(value); return *this;}
+    inline LexiconDescription& WithAttributes(LexiconAttributes&& value) { SetAttributes(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     LexiconAttributes m_attributes;
     bool m_attributesHasBeenSet;
   };

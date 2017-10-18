@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudsearch/CloudSearch_EXPORTS.h>
 #include <aws/cloudsearch/CloudSearchRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/cloudsearch/model/ScalingParameters.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,7 +39,19 @@ namespace Model
   {
   public:
     UpdateScalingParametersRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateScalingParameters"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     
     inline const Aws::String& GetDomainName() const{ return m_domainName; }
@@ -46,7 +60,7 @@ namespace Model
     inline void SetDomainName(const Aws::String& value) { m_domainNameHasBeenSet = true; m_domainName = value; }
 
     
-    inline void SetDomainName(Aws::String&& value) { m_domainNameHasBeenSet = true; m_domainName = value; }
+    inline void SetDomainName(Aws::String&& value) { m_domainNameHasBeenSet = true; m_domainName = std::move(value); }
 
     
     inline void SetDomainName(const char* value) { m_domainNameHasBeenSet = true; m_domainName.assign(value); }
@@ -55,10 +69,11 @@ namespace Model
     inline UpdateScalingParametersRequest& WithDomainName(const Aws::String& value) { SetDomainName(value); return *this;}
 
     
-    inline UpdateScalingParametersRequest& WithDomainName(Aws::String&& value) { SetDomainName(value); return *this;}
+    inline UpdateScalingParametersRequest& WithDomainName(Aws::String&& value) { SetDomainName(std::move(value)); return *this;}
 
     
     inline UpdateScalingParametersRequest& WithDomainName(const char* value) { SetDomainName(value); return *this;}
+
 
     
     inline const ScalingParameters& GetScalingParameters() const{ return m_scalingParameters; }
@@ -67,17 +82,19 @@ namespace Model
     inline void SetScalingParameters(const ScalingParameters& value) { m_scalingParametersHasBeenSet = true; m_scalingParameters = value; }
 
     
-    inline void SetScalingParameters(ScalingParameters&& value) { m_scalingParametersHasBeenSet = true; m_scalingParameters = value; }
+    inline void SetScalingParameters(ScalingParameters&& value) { m_scalingParametersHasBeenSet = true; m_scalingParameters = std::move(value); }
 
     
     inline UpdateScalingParametersRequest& WithScalingParameters(const ScalingParameters& value) { SetScalingParameters(value); return *this;}
 
     
-    inline UpdateScalingParametersRequest& WithScalingParameters(ScalingParameters&& value) { SetScalingParameters(value); return *this;}
+    inline UpdateScalingParametersRequest& WithScalingParameters(ScalingParameters&& value) { SetScalingParameters(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_domainName;
     bool m_domainNameHasBeenSet;
+
     ScalingParameters m_scalingParameters;
     bool m_scalingParametersHasBeenSet;
   };

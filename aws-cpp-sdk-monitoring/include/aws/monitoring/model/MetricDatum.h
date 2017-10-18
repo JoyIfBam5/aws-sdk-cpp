@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/monitoring/CloudWatch_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -21,6 +22,7 @@
 #include <aws/monitoring/model/StatisticSet.h>
 #include <aws/monitoring/model/StandardUnit.h>
 #include <aws/monitoring/model/Dimension.h>
+#include <utility>
 
 namespace Aws
 {
@@ -52,6 +54,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the metric.</p>
      */
@@ -65,7 +68,7 @@ namespace Model
     /**
      * <p>The name of the metric.</p>
      */
-    inline void SetMetricName(Aws::String&& value) { m_metricNameHasBeenSet = true; m_metricName = value; }
+    inline void SetMetricName(Aws::String&& value) { m_metricNameHasBeenSet = true; m_metricName = std::move(value); }
 
     /**
      * <p>The name of the metric.</p>
@@ -80,12 +83,13 @@ namespace Model
     /**
      * <p>The name of the metric.</p>
      */
-    inline MetricDatum& WithMetricName(Aws::String&& value) { SetMetricName(value); return *this;}
+    inline MetricDatum& WithMetricName(Aws::String&& value) { SetMetricName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the metric.</p>
      */
     inline MetricDatum& WithMetricName(const char* value) { SetMetricName(value); return *this;}
+
 
     /**
      * <p>The dimensions associated with the metric.</p>
@@ -100,7 +104,7 @@ namespace Model
     /**
      * <p>The dimensions associated with the metric.</p>
      */
-    inline void SetDimensions(Aws::Vector<Dimension>&& value) { m_dimensionsHasBeenSet = true; m_dimensions = value; }
+    inline void SetDimensions(Aws::Vector<Dimension>&& value) { m_dimensionsHasBeenSet = true; m_dimensions = std::move(value); }
 
     /**
      * <p>The dimensions associated with the metric.</p>
@@ -110,7 +114,7 @@ namespace Model
     /**
      * <p>The dimensions associated with the metric.</p>
      */
-    inline MetricDatum& WithDimensions(Aws::Vector<Dimension>&& value) { SetDimensions(value); return *this;}
+    inline MetricDatum& WithDimensions(Aws::Vector<Dimension>&& value) { SetDimensions(std::move(value)); return *this;}
 
     /**
      * <p>The dimensions associated with the metric.</p>
@@ -120,7 +124,8 @@ namespace Model
     /**
      * <p>The dimensions associated with the metric.</p>
      */
-    inline MetricDatum& AddDimensions(Dimension&& value) { m_dimensionsHasBeenSet = true; m_dimensions.push_back(value); return *this; }
+    inline MetricDatum& AddDimensions(Dimension&& value) { m_dimensionsHasBeenSet = true; m_dimensions.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The time the metric data was received, expressed as the number of
@@ -138,7 +143,7 @@ namespace Model
      * <p>The time the metric data was received, expressed as the number of
      * milliseconds since Jan 1, 1970 00:00:00 UTC.</p>
      */
-    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = value; }
+    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = std::move(value); }
 
     /**
      * <p>The time the metric data was received, expressed as the number of
@@ -150,34 +155,36 @@ namespace Model
      * <p>The time the metric data was received, expressed as the number of
      * milliseconds since Jan 1, 1970 00:00:00 UTC.</p>
      */
-    inline MetricDatum& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(value); return *this;}
+    inline MetricDatum& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(std::move(value)); return *this;}
+
 
     /**
      * <p>The value for the metric.</p> <p>Although the parameter accepts numbers of
-     * type Double, Amazon CloudWatch rejects values that are either too small or too
-     * large. Values must be in the range of 8.515920e-109 to 1.174271e+108 (Base 10)
-     * or 2e-360 to 2e360 (Base 2). In addition, special values (for example, NaN,
+     * type Double, CloudWatch rejects values that are either too small or too large.
+     * Values must be in the range of 8.515920e-109 to 1.174271e+108 (Base 10) or
+     * 2e-360 to 2e360 (Base 2). In addition, special values (for example, NaN,
      * +Infinity, -Infinity) are not supported.</p>
      */
     inline double GetValue() const{ return m_value; }
 
     /**
      * <p>The value for the metric.</p> <p>Although the parameter accepts numbers of
-     * type Double, Amazon CloudWatch rejects values that are either too small or too
-     * large. Values must be in the range of 8.515920e-109 to 1.174271e+108 (Base 10)
-     * or 2e-360 to 2e360 (Base 2). In addition, special values (for example, NaN,
+     * type Double, CloudWatch rejects values that are either too small or too large.
+     * Values must be in the range of 8.515920e-109 to 1.174271e+108 (Base 10) or
+     * 2e-360 to 2e360 (Base 2). In addition, special values (for example, NaN,
      * +Infinity, -Infinity) are not supported.</p>
      */
     inline void SetValue(double value) { m_valueHasBeenSet = true; m_value = value; }
 
     /**
      * <p>The value for the metric.</p> <p>Although the parameter accepts numbers of
-     * type Double, Amazon CloudWatch rejects values that are either too small or too
-     * large. Values must be in the range of 8.515920e-109 to 1.174271e+108 (Base 10)
-     * or 2e-360 to 2e360 (Base 2). In addition, special values (for example, NaN,
+     * type Double, CloudWatch rejects values that are either too small or too large.
+     * Values must be in the range of 8.515920e-109 to 1.174271e+108 (Base 10) or
+     * 2e-360 to 2e360 (Base 2). In addition, special values (for example, NaN,
      * +Infinity, -Infinity) are not supported.</p>
      */
     inline MetricDatum& WithValue(double value) { SetValue(value); return *this;}
+
 
     /**
      * <p>The statistical values for the metric.</p>
@@ -192,7 +199,7 @@ namespace Model
     /**
      * <p>The statistical values for the metric.</p>
      */
-    inline void SetStatisticValues(StatisticSet&& value) { m_statisticValuesHasBeenSet = true; m_statisticValues = value; }
+    inline void SetStatisticValues(StatisticSet&& value) { m_statisticValuesHasBeenSet = true; m_statisticValues = std::move(value); }
 
     /**
      * <p>The statistical values for the metric.</p>
@@ -202,7 +209,8 @@ namespace Model
     /**
      * <p>The statistical values for the metric.</p>
      */
-    inline MetricDatum& WithStatisticValues(StatisticSet&& value) { SetStatisticValues(value); return *this;}
+    inline MetricDatum& WithStatisticValues(StatisticSet&& value) { SetStatisticValues(std::move(value)); return *this;}
+
 
     /**
      * <p>The unit of the metric.</p>
@@ -217,7 +225,7 @@ namespace Model
     /**
      * <p>The unit of the metric.</p>
      */
-    inline void SetUnit(StandardUnit&& value) { m_unitHasBeenSet = true; m_unit = value; }
+    inline void SetUnit(StandardUnit&& value) { m_unitHasBeenSet = true; m_unit = std::move(value); }
 
     /**
      * <p>The unit of the metric.</p>
@@ -227,21 +235,70 @@ namespace Model
     /**
      * <p>The unit of the metric.</p>
      */
-    inline MetricDatum& WithUnit(StandardUnit&& value) { SetUnit(value); return *this;}
+    inline MetricDatum& WithUnit(StandardUnit&& value) { SetUnit(std::move(value)); return *this;}
+
+
+    /**
+     * <p>Valid values are 1 and 60. Setting this to 1 specifies this metric as a
+     * high-resolution metric, so that CloudWatch stores the metric with sub-minute
+     * resolution down to one second. Setting this to 60 specifies this metric as a
+     * regular-resolution metric, which CloudWatch stores at 1-minute resolution.
+     * Currently, high resolution is available only for custom metrics. For more
+     * information about high-resolution metrics, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html#high-resolution-metrics">High-Resolution
+     * Metrics</a> in the <i>Amazon CloudWatch User Guide</i>. </p> <p>This field is
+     * optional, if you do not specify it the default of 60 is used.</p>
+     */
+    inline int GetStorageResolution() const{ return m_storageResolution; }
+
+    /**
+     * <p>Valid values are 1 and 60. Setting this to 1 specifies this metric as a
+     * high-resolution metric, so that CloudWatch stores the metric with sub-minute
+     * resolution down to one second. Setting this to 60 specifies this metric as a
+     * regular-resolution metric, which CloudWatch stores at 1-minute resolution.
+     * Currently, high resolution is available only for custom metrics. For more
+     * information about high-resolution metrics, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html#high-resolution-metrics">High-Resolution
+     * Metrics</a> in the <i>Amazon CloudWatch User Guide</i>. </p> <p>This field is
+     * optional, if you do not specify it the default of 60 is used.</p>
+     */
+    inline void SetStorageResolution(int value) { m_storageResolutionHasBeenSet = true; m_storageResolution = value; }
+
+    /**
+     * <p>Valid values are 1 and 60. Setting this to 1 specifies this metric as a
+     * high-resolution metric, so that CloudWatch stores the metric with sub-minute
+     * resolution down to one second. Setting this to 60 specifies this metric as a
+     * regular-resolution metric, which CloudWatch stores at 1-minute resolution.
+     * Currently, high resolution is available only for custom metrics. For more
+     * information about high-resolution metrics, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html#high-resolution-metrics">High-Resolution
+     * Metrics</a> in the <i>Amazon CloudWatch User Guide</i>. </p> <p>This field is
+     * optional, if you do not specify it the default of 60 is used.</p>
+     */
+    inline MetricDatum& WithStorageResolution(int value) { SetStorageResolution(value); return *this;}
 
   private:
+
     Aws::String m_metricName;
     bool m_metricNameHasBeenSet;
+
     Aws::Vector<Dimension> m_dimensions;
     bool m_dimensionsHasBeenSet;
+
     Aws::Utils::DateTime m_timestamp;
     bool m_timestampHasBeenSet;
+
     double m_value;
     bool m_valueHasBeenSet;
+
     StatisticSet m_statisticValues;
     bool m_statisticValuesHasBeenSet;
+
     StandardUnit m_unit;
     bool m_unitHasBeenSet;
+
+    int m_storageResolution;
+    bool m_storageResolutionHasBeenSet;
   };
 
 } // namespace Model

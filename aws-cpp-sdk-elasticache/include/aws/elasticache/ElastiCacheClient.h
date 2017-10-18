@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticache/ElastiCache_EXPORTS.h>
 #include <aws/elasticache/ElastiCacheErrors.h>
@@ -56,6 +57,7 @@
 #include <aws/elasticache/model/RemoveTagsFromResourceResult.h>
 #include <aws/elasticache/model/ResetCacheParameterGroupResult.h>
 #include <aws/elasticache/model/RevokeCacheSecurityGroupIngressResult.h>
+#include <aws/elasticache/model/TestFailoverResult.h>
 #include <aws/core/NoResult.h>
 #include <aws/core/client/AsyncCallerContext.h>
 #include <aws/core/http/HttpTypes.h>
@@ -140,6 +142,7 @@ namespace Model
         class RemoveTagsFromResourceRequest;
         class ResetCacheParameterGroupRequest;
         class RevokeCacheSecurityGroupIngressRequest;
+        class TestFailoverRequest;
 
         typedef Aws::Utils::Outcome<AddTagsToResourceResult, Aws::Client::AWSError<ElastiCacheErrors>> AddTagsToResourceOutcome;
         typedef Aws::Utils::Outcome<AuthorizeCacheSecurityGroupIngressResult, Aws::Client::AWSError<ElastiCacheErrors>> AuthorizeCacheSecurityGroupIngressOutcome;
@@ -151,9 +154,9 @@ namespace Model
         typedef Aws::Utils::Outcome<CreateReplicationGroupResult, Aws::Client::AWSError<ElastiCacheErrors>> CreateReplicationGroupOutcome;
         typedef Aws::Utils::Outcome<CreateSnapshotResult, Aws::Client::AWSError<ElastiCacheErrors>> CreateSnapshotOutcome;
         typedef Aws::Utils::Outcome<DeleteCacheClusterResult, Aws::Client::AWSError<ElastiCacheErrors>> DeleteCacheClusterOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<ElastiCacheErrors>> DeleteCacheParameterGroupOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<ElastiCacheErrors>> DeleteCacheSecurityGroupOutcome;
-        typedef Aws::Utils::Outcome<NoResult, Aws::Client::AWSError<ElastiCacheErrors>> DeleteCacheSubnetGroupOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<ElastiCacheErrors>> DeleteCacheParameterGroupOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<ElastiCacheErrors>> DeleteCacheSecurityGroupOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<ElastiCacheErrors>> DeleteCacheSubnetGroupOutcome;
         typedef Aws::Utils::Outcome<DeleteReplicationGroupResult, Aws::Client::AWSError<ElastiCacheErrors>> DeleteReplicationGroupOutcome;
         typedef Aws::Utils::Outcome<DeleteSnapshotResult, Aws::Client::AWSError<ElastiCacheErrors>> DeleteSnapshotOutcome;
         typedef Aws::Utils::Outcome<DescribeCacheClustersResult, Aws::Client::AWSError<ElastiCacheErrors>> DescribeCacheClustersOutcome;
@@ -179,6 +182,7 @@ namespace Model
         typedef Aws::Utils::Outcome<RemoveTagsFromResourceResult, Aws::Client::AWSError<ElastiCacheErrors>> RemoveTagsFromResourceOutcome;
         typedef Aws::Utils::Outcome<ResetCacheParameterGroupResult, Aws::Client::AWSError<ElastiCacheErrors>> ResetCacheParameterGroupOutcome;
         typedef Aws::Utils::Outcome<RevokeCacheSecurityGroupIngressResult, Aws::Client::AWSError<ElastiCacheErrors>> RevokeCacheSecurityGroupIngressOutcome;
+        typedef Aws::Utils::Outcome<TestFailoverResult, Aws::Client::AWSError<ElastiCacheErrors>> TestFailoverOutcome;
 
         typedef std::future<AddTagsToResourceOutcome> AddTagsToResourceOutcomeCallable;
         typedef std::future<AuthorizeCacheSecurityGroupIngressOutcome> AuthorizeCacheSecurityGroupIngressOutcomeCallable;
@@ -218,6 +222,7 @@ namespace Model
         typedef std::future<RemoveTagsFromResourceOutcome> RemoveTagsFromResourceOutcomeCallable;
         typedef std::future<ResetCacheParameterGroupOutcome> ResetCacheParameterGroupOutcomeCallable;
         typedef std::future<RevokeCacheSecurityGroupIngressOutcome> RevokeCacheSecurityGroupIngressOutcomeCallable;
+        typedef std::future<TestFailoverOutcome> TestFailoverOutcomeCallable;
 } // namespace Model
 
   class ElastiCacheClient;
@@ -260,6 +265,7 @@ namespace Model
     typedef std::function<void(const ElastiCacheClient*, const Model::RemoveTagsFromResourceRequest&, const Model::RemoveTagsFromResourceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > RemoveTagsFromResourceResponseReceivedHandler;
     typedef std::function<void(const ElastiCacheClient*, const Model::ResetCacheParameterGroupRequest&, const Model::ResetCacheParameterGroupOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ResetCacheParameterGroupResponseReceivedHandler;
     typedef std::function<void(const ElastiCacheClient*, const Model::RevokeCacheSecurityGroupIngressRequest&, const Model::RevokeCacheSecurityGroupIngressOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > RevokeCacheSecurityGroupIngressResponseReceivedHandler;
+    typedef std::function<void(const ElastiCacheClient*, const Model::TestFailoverRequest&, const Model::TestFailoverOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > TestFailoverResponseReceivedHandler;
 
   /**
    * <fullname>Amazon ElastiCache</fullname> <p>Amazon ElastiCache is a web service
@@ -281,31 +287,34 @@ namespace Model
         * Initializes client to use DefaultCredentialProviderChain, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        ElastiCacheClient(const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        ElastiCacheClient(const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use SimpleAWSCredentialsProvider, with default http client factory, and optional client config. If client config
         * is not specified, it will be initialized to default values.
         */
-        ElastiCacheClient(const Auth::AWSCredentials& credentials, const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        ElastiCacheClient(const Aws::Auth::AWSCredentials& credentials, const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
        /**
         * Initializes client to use specified credentials provider with specified client config. If http client factory is not supplied,
         * the default http client factory will be used
         */
-        ElastiCacheClient(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-            const Client::ClientConfiguration& clientConfiguration = Client::ClientConfiguration());
+        ElastiCacheClient(const std::shared_ptr<Aws::Auth::AWSCredentialsProvider>& credentialsProvider,
+            const Aws::Client::ClientConfiguration& clientConfiguration = Aws::Client::ClientConfiguration());
 
         virtual ~ElastiCacheClient();
+
+        inline virtual const char* GetServiceClientName() const override { return "elasticache"; }
+
 
        /**
         * Converts any request object to a presigned URL with the GET method, using region for the signer and a timeout of 15 minutes.
         */
-        Aws::String ConvertRequestToPresignedUrl(const AmazonSerializableWebServiceRequest& requestToConvert, const char* region) const;
+        Aws::String ConvertRequestToPresignedUrl(const Aws::AmazonSerializableWebServiceRequest& requestToConvert, const char* region) const;
 
 
         /**
-         * <p>Adds up to 10 cost allocation tags to the named resource. A cost allocation
+         * <p>Adds up to 50 cost allocation tags to the named resource. A cost allocation
          * tag is a key-value pair where the key and value are case-sensitive. You can use
          * cost allocation tags to categorize and track your AWS costs.</p> <p> When you
          * apply tags to your ElastiCache resources, AWS generates a cost allocation report
@@ -322,7 +331,7 @@ namespace Model
         virtual Model::AddTagsToResourceOutcome AddTagsToResource(const Model::AddTagsToResourceRequest& request) const;
 
         /**
-         * <p>Adds up to 10 cost allocation tags to the named resource. A cost allocation
+         * <p>Adds up to 50 cost allocation tags to the named resource. A cost allocation
          * tag is a key-value pair where the key and value are case-sensitive. You can use
          * cost allocation tags to categorize and track your AWS costs.</p> <p> When you
          * apply tags to your ElastiCache resources, AWS generates a cost allocation report
@@ -341,7 +350,7 @@ namespace Model
         virtual Model::AddTagsToResourceOutcomeCallable AddTagsToResourceCallable(const Model::AddTagsToResourceRequest& request) const;
 
         /**
-         * <p>Adds up to 10 cost allocation tags to the named resource. A cost allocation
+         * <p>Adds up to 50 cost allocation tags to the named resource. A cost allocation
          * tag is a key-value pair where the key and value are case-sensitive. You can use
          * cost allocation tags to categorize and track your AWS costs.</p> <p> When you
          * apply tags to your ElastiCache resources, AWS generates a cost allocation report
@@ -609,18 +618,36 @@ namespace Model
         virtual void CreateCacheClusterAsync(const Model::CreateCacheClusterRequest& request, const CreateCacheClusterResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Creates a new cache parameter group. A cache parameter group is a collection
-         * of parameters that you apply to all of the nodes in a cache
-         * cluster.</p><p><h3>See Also:</h3>   <a
+         * <p>Creates a new Amazon ElastiCache cache parameter group. An ElastiCache cache
+         * parameter group is a collection of parameters and their values that are applied
+         * to all of the nodes in any cache cluster or replication group using the
+         * CacheParameterGroup.</p> <p>A newly created CacheParameterGroup is an exact
+         * duplicate of the default parameter group for the CacheParameterGroupFamily. To
+         * customize the newly created CacheParameterGroup you can change the values of
+         * specific parameters. For more information, see:</p> <ul> <li> <p> <a
+         * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ModifyCacheParameterGroup.html">ModifyCacheParameterGroup</a>
+         * in the ElastiCache API Reference.</p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/ParameterGroups.html">Parameters
+         * and Parameter Groups</a> in the ElastiCache User Guide.</p> </li>
+         * </ul><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CreateCacheParameterGroup">AWS
          * API Reference</a></p>
          */
         virtual Model::CreateCacheParameterGroupOutcome CreateCacheParameterGroup(const Model::CreateCacheParameterGroupRequest& request) const;
 
         /**
-         * <p>Creates a new cache parameter group. A cache parameter group is a collection
-         * of parameters that you apply to all of the nodes in a cache
-         * cluster.</p><p><h3>See Also:</h3>   <a
+         * <p>Creates a new Amazon ElastiCache cache parameter group. An ElastiCache cache
+         * parameter group is a collection of parameters and their values that are applied
+         * to all of the nodes in any cache cluster or replication group using the
+         * CacheParameterGroup.</p> <p>A newly created CacheParameterGroup is an exact
+         * duplicate of the default parameter group for the CacheParameterGroupFamily. To
+         * customize the newly created CacheParameterGroup you can change the values of
+         * specific parameters. For more information, see:</p> <ul> <li> <p> <a
+         * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ModifyCacheParameterGroup.html">ModifyCacheParameterGroup</a>
+         * in the ElastiCache API Reference.</p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/ParameterGroups.html">Parameters
+         * and Parameter Groups</a> in the ElastiCache User Guide.</p> </li>
+         * </ul><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CreateCacheParameterGroup">AWS
          * API Reference</a></p>
          *
@@ -629,9 +656,18 @@ namespace Model
         virtual Model::CreateCacheParameterGroupOutcomeCallable CreateCacheParameterGroupCallable(const Model::CreateCacheParameterGroupRequest& request) const;
 
         /**
-         * <p>Creates a new cache parameter group. A cache parameter group is a collection
-         * of parameters that you apply to all of the nodes in a cache
-         * cluster.</p><p><h3>See Also:</h3>   <a
+         * <p>Creates a new Amazon ElastiCache cache parameter group. An ElastiCache cache
+         * parameter group is a collection of parameters and their values that are applied
+         * to all of the nodes in any cache cluster or replication group using the
+         * CacheParameterGroup.</p> <p>A newly created CacheParameterGroup is an exact
+         * duplicate of the default parameter group for the CacheParameterGroupFamily. To
+         * customize the newly created CacheParameterGroup you can change the values of
+         * specific parameters. For more information, see:</p> <ul> <li> <p> <a
+         * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ModifyCacheParameterGroup.html">ModifyCacheParameterGroup</a>
+         * in the ElastiCache API Reference.</p> </li> <li> <p> <a
+         * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/ParameterGroups.html">Parameters
+         * and Parameter Groups</a> in the ElastiCache User Guide.</p> </li>
+         * </ul><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CreateCacheParameterGroup">AWS
          * API Reference</a></p>
          *
@@ -726,8 +762,13 @@ namespace Model
          * groups (shards).</p> <p>When a Redis (cluster mode disabled) replication group
          * has been successfully created, you can add one or more read replicas to it, up
          * to a total of 5 read replicas. You cannot alter a Redis (cluster mode enabled)
-         * replication group after it has been created.</p> <note> <p>This operation is
-         * valid for Redis only.</p> </note><p><h3>See Also:</h3>   <a
+         * replication group after it has been created. However, if you need to increase or
+         * decrease the number of node groups (console: shards), you can avail yourself of
+         * ElastiCache for Redis' enhanced backup and restore. For more information, see <a
+         * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/backups-restoring.html">Restoring
+         * From a Backup with Cluster Resizing</a> in the <i>ElastiCache User
+         * Guide</i>.</p> <note> <p>This operation is valid for Redis only.</p>
+         * </note><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CreateReplicationGroup">AWS
          * API Reference</a></p>
          */
@@ -746,8 +787,13 @@ namespace Model
          * groups (shards).</p> <p>When a Redis (cluster mode disabled) replication group
          * has been successfully created, you can add one or more read replicas to it, up
          * to a total of 5 read replicas. You cannot alter a Redis (cluster mode enabled)
-         * replication group after it has been created.</p> <note> <p>This operation is
-         * valid for Redis only.</p> </note><p><h3>See Also:</h3>   <a
+         * replication group after it has been created. However, if you need to increase or
+         * decrease the number of node groups (console: shards), you can avail yourself of
+         * ElastiCache for Redis' enhanced backup and restore. For more information, see <a
+         * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/backups-restoring.html">Restoring
+         * From a Backup with Cluster Resizing</a> in the <i>ElastiCache User
+         * Guide</i>.</p> <note> <p>This operation is valid for Redis only.</p>
+         * </note><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CreateReplicationGroup">AWS
          * API Reference</a></p>
          *
@@ -768,8 +814,13 @@ namespace Model
          * groups (shards).</p> <p>When a Redis (cluster mode disabled) replication group
          * has been successfully created, you can add one or more read replicas to it, up
          * to a total of 5 read replicas. You cannot alter a Redis (cluster mode enabled)
-         * replication group after it has been created.</p> <note> <p>This operation is
-         * valid for Redis only.</p> </note><p><h3>See Also:</h3>   <a
+         * replication group after it has been created. However, if you need to increase or
+         * decrease the number of node groups (console: shards), you can avail yourself of
+         * ElastiCache for Redis' enhanced backup and restore. For more information, see <a
+         * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/backups-restoring.html">Restoring
+         * From a Backup with Cluster Resizing</a> in the <i>ElastiCache User
+         * Guide</i>.</p> <note> <p>This operation is valid for Redis only.</p>
+         * </note><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CreateReplicationGroup">AWS
          * API Reference</a></p>
          *
@@ -1040,18 +1091,19 @@ namespace Model
          * <p>Returns information about all provisioned cache clusters if no cache cluster
          * identifier is specified, or about a specific cache cluster if a cache cluster
          * identifier is supplied.</p> <p>By default, abbreviated information about the
-         * cache clusters are returned. You can use the optional <code>ShowDetails</code>
+         * cache clusters is returned. You can use the optional <i>ShowCacheNodeInfo</i>
          * flag to retrieve detailed information about the cache nodes associated with the
          * cache clusters. These details include the DNS address and port for the cache
-         * node endpoint.</p> <p>If the cluster is in the CREATING state, only
+         * node endpoint.</p> <p>If the cluster is in the <i>creating</i> state, only
          * cluster-level information is displayed until all of the nodes are successfully
-         * provisioned.</p> <p>If the cluster is in the DELETING state, only cluster-level
-         * information is displayed.</p> <p>If cache nodes are currently being added to the
-         * cache cluster, node endpoint information and creation time for the additional
-         * nodes are not displayed until they are completely provisioned. When the cache
-         * cluster state is <code>available</code>, the cluster is ready for use.</p> <p>If
-         * cache nodes are currently being removed from the cache cluster, no endpoint
-         * information for the removed nodes is displayed.</p><p><h3>See Also:</h3>   <a
+         * provisioned.</p> <p>If the cluster is in the <i>deleting</i> state, only
+         * cluster-level information is displayed.</p> <p>If cache nodes are currently
+         * being added to the cache cluster, node endpoint information and creation time
+         * for the additional nodes are not displayed until they are completely
+         * provisioned. When the cache cluster state is <i>available</i>, the cluster is
+         * ready for use.</p> <p>If cache nodes are currently being removed from the cache
+         * cluster, no endpoint information for the removed nodes is
+         * displayed.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DescribeCacheClusters">AWS
          * API Reference</a></p>
          */
@@ -1061,18 +1113,19 @@ namespace Model
          * <p>Returns information about all provisioned cache clusters if no cache cluster
          * identifier is specified, or about a specific cache cluster if a cache cluster
          * identifier is supplied.</p> <p>By default, abbreviated information about the
-         * cache clusters are returned. You can use the optional <code>ShowDetails</code>
+         * cache clusters is returned. You can use the optional <i>ShowCacheNodeInfo</i>
          * flag to retrieve detailed information about the cache nodes associated with the
          * cache clusters. These details include the DNS address and port for the cache
-         * node endpoint.</p> <p>If the cluster is in the CREATING state, only
+         * node endpoint.</p> <p>If the cluster is in the <i>creating</i> state, only
          * cluster-level information is displayed until all of the nodes are successfully
-         * provisioned.</p> <p>If the cluster is in the DELETING state, only cluster-level
-         * information is displayed.</p> <p>If cache nodes are currently being added to the
-         * cache cluster, node endpoint information and creation time for the additional
-         * nodes are not displayed until they are completely provisioned. When the cache
-         * cluster state is <code>available</code>, the cluster is ready for use.</p> <p>If
-         * cache nodes are currently being removed from the cache cluster, no endpoint
-         * information for the removed nodes is displayed.</p><p><h3>See Also:</h3>   <a
+         * provisioned.</p> <p>If the cluster is in the <i>deleting</i> state, only
+         * cluster-level information is displayed.</p> <p>If cache nodes are currently
+         * being added to the cache cluster, node endpoint information and creation time
+         * for the additional nodes are not displayed until they are completely
+         * provisioned. When the cache cluster state is <i>available</i>, the cluster is
+         * ready for use.</p> <p>If cache nodes are currently being removed from the cache
+         * cluster, no endpoint information for the removed nodes is
+         * displayed.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DescribeCacheClusters">AWS
          * API Reference</a></p>
          *
@@ -1084,18 +1137,19 @@ namespace Model
          * <p>Returns information about all provisioned cache clusters if no cache cluster
          * identifier is specified, or about a specific cache cluster if a cache cluster
          * identifier is supplied.</p> <p>By default, abbreviated information about the
-         * cache clusters are returned. You can use the optional <code>ShowDetails</code>
+         * cache clusters is returned. You can use the optional <i>ShowCacheNodeInfo</i>
          * flag to retrieve detailed information about the cache nodes associated with the
          * cache clusters. These details include the DNS address and port for the cache
-         * node endpoint.</p> <p>If the cluster is in the CREATING state, only
+         * node endpoint.</p> <p>If the cluster is in the <i>creating</i> state, only
          * cluster-level information is displayed until all of the nodes are successfully
-         * provisioned.</p> <p>If the cluster is in the DELETING state, only cluster-level
-         * information is displayed.</p> <p>If cache nodes are currently being added to the
-         * cache cluster, node endpoint information and creation time for the additional
-         * nodes are not displayed until they are completely provisioned. When the cache
-         * cluster state is <code>available</code>, the cluster is ready for use.</p> <p>If
-         * cache nodes are currently being removed from the cache cluster, no endpoint
-         * information for the removed nodes is displayed.</p><p><h3>See Also:</h3>   <a
+         * provisioned.</p> <p>If the cluster is in the <i>deleting</i> state, only
+         * cluster-level information is displayed.</p> <p>If cache nodes are currently
+         * being added to the cache cluster, node endpoint information and creation time
+         * for the additional nodes are not displayed until they are completely
+         * provisioned. When the cache cluster state is <i>available</i>, the cluster is
+         * ready for use.</p> <p>If cache nodes are currently being removed from the cache
+         * cluster, no endpoint information for the removed nodes is
+         * displayed.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DescribeCacheClusters">AWS
          * API Reference</a></p>
          *
@@ -1488,7 +1542,7 @@ namespace Model
          * <p>Lists all cost allocation tags currently on the named resource. A <code>cost
          * allocation tag</code> is a key-value pair where the key is case-sensitive and
          * the value is optional. You can use cost allocation tags to categorize and track
-         * your AWS costs.</p> <p>You can have a maximum of 10 cost allocation tags on an
+         * your AWS costs.</p> <p>You can have a maximum of 50 cost allocation tags on an
          * ElastiCache resource. For more information, see <a
          * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/BestPractices.html">Using
          * Cost Allocation Tags in Amazon ElastiCache</a>.</p><p><h3>See Also:</h3>   <a
@@ -1501,7 +1555,7 @@ namespace Model
          * <p>Lists all cost allocation tags currently on the named resource. A <code>cost
          * allocation tag</code> is a key-value pair where the key is case-sensitive and
          * the value is optional. You can use cost allocation tags to categorize and track
-         * your AWS costs.</p> <p>You can have a maximum of 10 cost allocation tags on an
+         * your AWS costs.</p> <p>You can have a maximum of 50 cost allocation tags on an
          * ElastiCache resource. For more information, see <a
          * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/BestPractices.html">Using
          * Cost Allocation Tags in Amazon ElastiCache</a>.</p><p><h3>See Also:</h3>   <a
@@ -1516,7 +1570,7 @@ namespace Model
          * <p>Lists all cost allocation tags currently on the named resource. A <code>cost
          * allocation tag</code> is a key-value pair where the key is case-sensitive and
          * the value is optional. You can use cost allocation tags to categorize and track
-         * your AWS costs.</p> <p>You can have a maximum of 10 cost allocation tags on an
+         * your AWS costs.</p> <p>You can have a maximum of 50 cost allocation tags on an
          * ElastiCache resource. For more information, see <a
          * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/BestPractices.html">Using
          * Cost Allocation Tags in Amazon ElastiCache</a>.</p><p><h3>See Also:</h3>   <a
@@ -1818,9 +1872,124 @@ namespace Model
          */
         virtual void RevokeCacheSecurityGroupIngressAsync(const Model::RevokeCacheSecurityGroupIngressRequest& request, const RevokeCacheSecurityGroupIngressResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
+        /**
+         * <p>Represents the input of a <code>TestFailover</code> operation which test
+         * automatic failover on a specified node group (called shard in the console) in a
+         * replication group (called cluster in the console).</p> <p class="title"> <b>Note
+         * the following</b> </p> <ul> <li> <p>A customer can use this operation to test
+         * automatic failover on up to 5 shards (called node groups in the ElastiCache API
+         * and AWS CLI) in any rolling 24-hour period.</p> </li> <li> <p>If calling this
+         * operation on shards in different clusters (called replication groups in the API
+         * and CLI), the calls can be made concurrently.</p> <p> </p> </li> <li> <p>If
+         * calling this operation multiple times on different shards in the same Redis
+         * (cluster mode enabled) replication group, the first node replacement must
+         * complete before a subsequent call can be made.</p> </li> <li> <p>To determine
+         * whether the node replacement is complete you can check Events using the Amazon
+         * ElastiCache console, the AWS CLI, or the ElastiCache API. Look for the following
+         * automatic failover related events, listed here in order of occurrance:</p> <ol>
+         * <li> <p>Replication group message: <code>Test Failover API called for node group
+         * &lt;node-group-id&gt;</code> </p> </li> <li> <p>Cache cluster message:
+         * <code>Failover from master node &lt;primary-node-id&gt; to replica node
+         * &lt;node-id&gt; completed</code> </p> </li> <li> <p>Replication group message:
+         * <code>Failover from master node &lt;primary-node-id&gt; to replica node
+         * &lt;node-id&gt; completed</code> </p> </li> <li> <p>Cache cluster message:
+         * <code>Recovering cache nodes &lt;node-id&gt;</code> </p> </li> <li> <p>Cache
+         * cluster message: <code>Finished recovery for cache nodes &lt;node-id&gt;</code>
+         * </p> </li> </ol> <p>For more information see:</p> <ul> <li> <p> <a
+         * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/ECEvents.Viewing.html">Viewing
+         * ElastiCache Events</a> in the <i>ElastiCache User Guide</i> </p> </li> <li> <p>
+         * <a
+         * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeEvents.html">DescribeEvents</a>
+         * in the ElastiCache API Reference</p> </li> </ul> </li> </ul> <p>Also see, <a
+         * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/AutoFailover.html#auto-failover-test">Testing
+         * Multi-AZ with Automatic Failover</a> in the <i>ElastiCache User
+         * Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/TestFailover">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::TestFailoverOutcome TestFailover(const Model::TestFailoverRequest& request) const;
+
+        /**
+         * <p>Represents the input of a <code>TestFailover</code> operation which test
+         * automatic failover on a specified node group (called shard in the console) in a
+         * replication group (called cluster in the console).</p> <p class="title"> <b>Note
+         * the following</b> </p> <ul> <li> <p>A customer can use this operation to test
+         * automatic failover on up to 5 shards (called node groups in the ElastiCache API
+         * and AWS CLI) in any rolling 24-hour period.</p> </li> <li> <p>If calling this
+         * operation on shards in different clusters (called replication groups in the API
+         * and CLI), the calls can be made concurrently.</p> <p> </p> </li> <li> <p>If
+         * calling this operation multiple times on different shards in the same Redis
+         * (cluster mode enabled) replication group, the first node replacement must
+         * complete before a subsequent call can be made.</p> </li> <li> <p>To determine
+         * whether the node replacement is complete you can check Events using the Amazon
+         * ElastiCache console, the AWS CLI, or the ElastiCache API. Look for the following
+         * automatic failover related events, listed here in order of occurrance:</p> <ol>
+         * <li> <p>Replication group message: <code>Test Failover API called for node group
+         * &lt;node-group-id&gt;</code> </p> </li> <li> <p>Cache cluster message:
+         * <code>Failover from master node &lt;primary-node-id&gt; to replica node
+         * &lt;node-id&gt; completed</code> </p> </li> <li> <p>Replication group message:
+         * <code>Failover from master node &lt;primary-node-id&gt; to replica node
+         * &lt;node-id&gt; completed</code> </p> </li> <li> <p>Cache cluster message:
+         * <code>Recovering cache nodes &lt;node-id&gt;</code> </p> </li> <li> <p>Cache
+         * cluster message: <code>Finished recovery for cache nodes &lt;node-id&gt;</code>
+         * </p> </li> </ol> <p>For more information see:</p> <ul> <li> <p> <a
+         * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/ECEvents.Viewing.html">Viewing
+         * ElastiCache Events</a> in the <i>ElastiCache User Guide</i> </p> </li> <li> <p>
+         * <a
+         * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeEvents.html">DescribeEvents</a>
+         * in the ElastiCache API Reference</p> </li> </ul> </li> </ul> <p>Also see, <a
+         * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/AutoFailover.html#auto-failover-test">Testing
+         * Multi-AZ with Automatic Failover</a> in the <i>ElastiCache User
+         * Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/TestFailover">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::TestFailoverOutcomeCallable TestFailoverCallable(const Model::TestFailoverRequest& request) const;
+
+        /**
+         * <p>Represents the input of a <code>TestFailover</code> operation which test
+         * automatic failover on a specified node group (called shard in the console) in a
+         * replication group (called cluster in the console).</p> <p class="title"> <b>Note
+         * the following</b> </p> <ul> <li> <p>A customer can use this operation to test
+         * automatic failover on up to 5 shards (called node groups in the ElastiCache API
+         * and AWS CLI) in any rolling 24-hour period.</p> </li> <li> <p>If calling this
+         * operation on shards in different clusters (called replication groups in the API
+         * and CLI), the calls can be made concurrently.</p> <p> </p> </li> <li> <p>If
+         * calling this operation multiple times on different shards in the same Redis
+         * (cluster mode enabled) replication group, the first node replacement must
+         * complete before a subsequent call can be made.</p> </li> <li> <p>To determine
+         * whether the node replacement is complete you can check Events using the Amazon
+         * ElastiCache console, the AWS CLI, or the ElastiCache API. Look for the following
+         * automatic failover related events, listed here in order of occurrance:</p> <ol>
+         * <li> <p>Replication group message: <code>Test Failover API called for node group
+         * &lt;node-group-id&gt;</code> </p> </li> <li> <p>Cache cluster message:
+         * <code>Failover from master node &lt;primary-node-id&gt; to replica node
+         * &lt;node-id&gt; completed</code> </p> </li> <li> <p>Replication group message:
+         * <code>Failover from master node &lt;primary-node-id&gt; to replica node
+         * &lt;node-id&gt; completed</code> </p> </li> <li> <p>Cache cluster message:
+         * <code>Recovering cache nodes &lt;node-id&gt;</code> </p> </li> <li> <p>Cache
+         * cluster message: <code>Finished recovery for cache nodes &lt;node-id&gt;</code>
+         * </p> </li> </ol> <p>For more information see:</p> <ul> <li> <p> <a
+         * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/ECEvents.Viewing.html">Viewing
+         * ElastiCache Events</a> in the <i>ElastiCache User Guide</i> </p> </li> <li> <p>
+         * <a
+         * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_DescribeEvents.html">DescribeEvents</a>
+         * in the ElastiCache API Reference</p> </li> </ul> </li> </ul> <p>Also see, <a
+         * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/AutoFailover.html#auto-failover-test">Testing
+         * Multi-AZ with Automatic Failover</a> in the <i>ElastiCache User
+         * Guide</i>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/TestFailover">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void TestFailoverAsync(const Model::TestFailoverRequest& request, const TestFailoverResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
 
   private:
-    void init(const Client::ClientConfiguration& clientConfiguration);
+    void init(const Aws::Client::ClientConfiguration& clientConfiguration);
 
         /**Async helpers**/
         void AddTagsToResourceAsyncHelper(const Model::AddTagsToResourceRequest& request, const AddTagsToResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -1861,9 +2030,10 @@ namespace Model
         void RemoveTagsFromResourceAsyncHelper(const Model::RemoveTagsFromResourceRequest& request, const RemoveTagsFromResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ResetCacheParameterGroupAsyncHelper(const Model::ResetCacheParameterGroupRequest& request, const ResetCacheParameterGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void RevokeCacheSecurityGroupIngressAsyncHelper(const Model::RevokeCacheSecurityGroupIngressRequest& request, const RevokeCacheSecurityGroupIngressResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void TestFailoverAsyncHelper(const Model::TestFailoverRequest& request, const TestFailoverResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
     Aws::String m_uri;
-    std::shared_ptr<Utils::Threading::Executor> m_executor;
+    std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;
   };
 
 } // namespace ElastiCache

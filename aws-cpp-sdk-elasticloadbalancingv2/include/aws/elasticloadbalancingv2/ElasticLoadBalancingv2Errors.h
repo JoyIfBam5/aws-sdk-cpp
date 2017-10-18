@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 
 #include <aws/core/client/CoreErrors.h>
@@ -54,7 +55,9 @@ enum class ElasticLoadBalancingv2Errors
   UNKNOWN = 100,
   ///////////////////////////////////////////////////////////////////////////////////////////
 
-  CERTIFICATE_NOT_FOUND= static_cast<int>(Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
+  ALLOCATION_ID_NOT_FOUND= static_cast<int>(Aws::Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
+  AVAILABILITY_ZONE_NOT_SUPPORTED,
+  CERTIFICATE_NOT_FOUND,
   DUPLICATE_LISTENER,
   DUPLICATE_LOAD_BALANCER_NAME,
   DUPLICATE_TAG_KEYS,
@@ -88,7 +91,7 @@ enum class ElasticLoadBalancingv2Errors
 };
 namespace ElasticLoadBalancingv2ErrorMapper
 {
-  AWS_ELASTICLOADBALANCINGV2_API Client::AWSError<Client::CoreErrors> GetErrorForName(const char* errorName);
+  AWS_ELASTICLOADBALANCINGV2_API Aws::Client::AWSError<Aws::Client::CoreErrors> GetErrorForName(const char* errorName);
 }
 
 } // namespace ElasticLoadBalancingv2

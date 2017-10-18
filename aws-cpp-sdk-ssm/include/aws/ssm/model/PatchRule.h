@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/ssm/model/PatchFilterGroup.h>
+#include <aws/ssm/model/PatchComplianceLevel.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +46,7 @@ namespace Model
     PatchRule& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The patch filter group that defines the criteria for the rule.</p>
      */
@@ -56,7 +60,7 @@ namespace Model
     /**
      * <p>The patch filter group that defines the criteria for the rule.</p>
      */
-    inline void SetPatchFilterGroup(PatchFilterGroup&& value) { m_patchFilterGroupHasBeenSet = true; m_patchFilterGroup = value; }
+    inline void SetPatchFilterGroup(PatchFilterGroup&& value) { m_patchFilterGroupHasBeenSet = true; m_patchFilterGroup = std::move(value); }
 
     /**
      * <p>The patch filter group that defines the criteria for the rule.</p>
@@ -66,7 +70,44 @@ namespace Model
     /**
      * <p>The patch filter group that defines the criteria for the rule.</p>
      */
-    inline PatchRule& WithPatchFilterGroup(PatchFilterGroup&& value) { SetPatchFilterGroup(value); return *this;}
+    inline PatchRule& WithPatchFilterGroup(PatchFilterGroup&& value) { SetPatchFilterGroup(std::move(value)); return *this;}
+
+
+    /**
+     * <p>A compliance severity level for all approved patches in a patch baseline.
+     * Valid compliance severity levels include the following: Unspecified, Critical,
+     * High, Medium, Low, and Informational.</p>
+     */
+    inline const PatchComplianceLevel& GetComplianceLevel() const{ return m_complianceLevel; }
+
+    /**
+     * <p>A compliance severity level for all approved patches in a patch baseline.
+     * Valid compliance severity levels include the following: Unspecified, Critical,
+     * High, Medium, Low, and Informational.</p>
+     */
+    inline void SetComplianceLevel(const PatchComplianceLevel& value) { m_complianceLevelHasBeenSet = true; m_complianceLevel = value; }
+
+    /**
+     * <p>A compliance severity level for all approved patches in a patch baseline.
+     * Valid compliance severity levels include the following: Unspecified, Critical,
+     * High, Medium, Low, and Informational.</p>
+     */
+    inline void SetComplianceLevel(PatchComplianceLevel&& value) { m_complianceLevelHasBeenSet = true; m_complianceLevel = std::move(value); }
+
+    /**
+     * <p>A compliance severity level for all approved patches in a patch baseline.
+     * Valid compliance severity levels include the following: Unspecified, Critical,
+     * High, Medium, Low, and Informational.</p>
+     */
+    inline PatchRule& WithComplianceLevel(const PatchComplianceLevel& value) { SetComplianceLevel(value); return *this;}
+
+    /**
+     * <p>A compliance severity level for all approved patches in a patch baseline.
+     * Valid compliance severity levels include the following: Unspecified, Critical,
+     * High, Medium, Low, and Informational.</p>
+     */
+    inline PatchRule& WithComplianceLevel(PatchComplianceLevel&& value) { SetComplianceLevel(std::move(value)); return *this;}
+
 
     /**
      * <p>The number of days after the release date of each patch matched by the rule
@@ -87,8 +128,13 @@ namespace Model
     inline PatchRule& WithApproveAfterDays(int value) { SetApproveAfterDays(value); return *this;}
 
   private:
+
     PatchFilterGroup m_patchFilterGroup;
     bool m_patchFilterGroupHasBeenSet;
+
+    PatchComplianceLevel m_complianceLevel;
+    bool m_complianceLevelHasBeenSet;
+
     int m_approveAfterDays;
     bool m_approveAfterDaysHasBeenSet;
   };

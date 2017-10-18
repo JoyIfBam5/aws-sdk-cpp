@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudsearch/CloudSearch_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/cloudsearch/model/DocumentSuggesterOptions.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,6 +52,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     
     inline const Aws::String& GetSuggesterName() const{ return m_suggesterName; }
 
@@ -57,7 +60,7 @@ namespace Model
     inline void SetSuggesterName(const Aws::String& value) { m_suggesterNameHasBeenSet = true; m_suggesterName = value; }
 
     
-    inline void SetSuggesterName(Aws::String&& value) { m_suggesterNameHasBeenSet = true; m_suggesterName = value; }
+    inline void SetSuggesterName(Aws::String&& value) { m_suggesterNameHasBeenSet = true; m_suggesterName = std::move(value); }
 
     
     inline void SetSuggesterName(const char* value) { m_suggesterNameHasBeenSet = true; m_suggesterName.assign(value); }
@@ -66,10 +69,11 @@ namespace Model
     inline Suggester& WithSuggesterName(const Aws::String& value) { SetSuggesterName(value); return *this;}
 
     
-    inline Suggester& WithSuggesterName(Aws::String&& value) { SetSuggesterName(value); return *this;}
+    inline Suggester& WithSuggesterName(Aws::String&& value) { SetSuggesterName(std::move(value)); return *this;}
 
     
     inline Suggester& WithSuggesterName(const char* value) { SetSuggesterName(value); return *this;}
+
 
     
     inline const DocumentSuggesterOptions& GetDocumentSuggesterOptions() const{ return m_documentSuggesterOptions; }
@@ -78,17 +82,19 @@ namespace Model
     inline void SetDocumentSuggesterOptions(const DocumentSuggesterOptions& value) { m_documentSuggesterOptionsHasBeenSet = true; m_documentSuggesterOptions = value; }
 
     
-    inline void SetDocumentSuggesterOptions(DocumentSuggesterOptions&& value) { m_documentSuggesterOptionsHasBeenSet = true; m_documentSuggesterOptions = value; }
+    inline void SetDocumentSuggesterOptions(DocumentSuggesterOptions&& value) { m_documentSuggesterOptionsHasBeenSet = true; m_documentSuggesterOptions = std::move(value); }
 
     
     inline Suggester& WithDocumentSuggesterOptions(const DocumentSuggesterOptions& value) { SetDocumentSuggesterOptions(value); return *this;}
 
     
-    inline Suggester& WithDocumentSuggesterOptions(DocumentSuggesterOptions&& value) { SetDocumentSuggesterOptions(value); return *this;}
+    inline Suggester& WithDocumentSuggesterOptions(DocumentSuggesterOptions&& value) { SetDocumentSuggesterOptions(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_suggesterName;
     bool m_suggesterNameHasBeenSet;
+
     DocumentSuggesterOptions m_documentSuggesterOptions;
     bool m_documentSuggesterOptionsHasBeenSet;
   };

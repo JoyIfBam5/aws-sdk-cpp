@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/AssignIpv6AddressesRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -20,10 +21,10 @@ using namespace Aws::EC2::Model;
 using namespace Aws::Utils;
 
 AssignIpv6AddressesRequest::AssignIpv6AddressesRequest() : 
-    m_networkInterfaceIdHasBeenSet(false),
-    m_ipv6AddressesHasBeenSet(false),
     m_ipv6AddressCount(0),
-    m_ipv6AddressCountHasBeenSet(false)
+    m_ipv6AddressCountHasBeenSet(false),
+    m_ipv6AddressesHasBeenSet(false),
+    m_networkInterfaceIdHasBeenSet(false)
 {
 }
 
@@ -31,9 +32,9 @@ Aws::String AssignIpv6AddressesRequest::SerializePayload() const
 {
   Aws::StringStream ss;
   ss << "Action=AssignIpv6Addresses&";
-  if(m_networkInterfaceIdHasBeenSet)
+  if(m_ipv6AddressCountHasBeenSet)
   {
-    ss << "NetworkInterfaceId=" << StringUtils::URLEncode(m_networkInterfaceId.c_str()) << "&";
+    ss << "Ipv6AddressCount=" << m_ipv6AddressCount << "&";
   }
 
   if(m_ipv6AddressesHasBeenSet)
@@ -47,12 +48,17 @@ Aws::String AssignIpv6AddressesRequest::SerializePayload() const
     }
   }
 
-  if(m_ipv6AddressCountHasBeenSet)
+  if(m_networkInterfaceIdHasBeenSet)
   {
-    ss << "Ipv6AddressCount=" << m_ipv6AddressCount << "&";
+    ss << "NetworkInterfaceId=" << StringUtils::URLEncode(m_networkInterfaceId.c_str()) << "&";
   }
 
   ss << "Version=2016-11-15";
   return ss.str();
 }
 
+
+void  AssignIpv6AddressesRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

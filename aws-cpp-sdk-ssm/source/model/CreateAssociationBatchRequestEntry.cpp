@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ssm/model/CreateAssociationBatchRequestEntry.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -34,7 +35,8 @@ CreateAssociationBatchRequestEntry::CreateAssociationBatchRequestEntry() :
     m_documentVersionHasBeenSet(false),
     m_targetsHasBeenSet(false),
     m_scheduleExpressionHasBeenSet(false),
-    m_outputLocationHasBeenSet(false)
+    m_outputLocationHasBeenSet(false),
+    m_associationNameHasBeenSet(false)
 {
 }
 
@@ -45,7 +47,8 @@ CreateAssociationBatchRequestEntry::CreateAssociationBatchRequestEntry(const Jso
     m_documentVersionHasBeenSet(false),
     m_targetsHasBeenSet(false),
     m_scheduleExpressionHasBeenSet(false),
-    m_outputLocationHasBeenSet(false)
+    m_outputLocationHasBeenSet(false),
+    m_associationNameHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -114,6 +117,13 @@ CreateAssociationBatchRequestEntry& CreateAssociationBatchRequestEntry::operator
     m_outputLocationHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("AssociationName"))
+  {
+    m_associationName = jsonValue.GetString("AssociationName");
+
+    m_associationNameHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -175,6 +185,12 @@ JsonValue CreateAssociationBatchRequestEntry::Jsonize() const
   if(m_outputLocationHasBeenSet)
   {
    payload.WithObject("OutputLocation", m_outputLocation.Jsonize());
+
+  }
+
+  if(m_associationNameHasBeenSet)
+  {
+   payload.WithString("AssociationName", m_associationName);
 
   }
 

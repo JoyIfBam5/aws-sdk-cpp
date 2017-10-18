@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/appstream/model/UpdateStackRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -24,7 +25,10 @@ using namespace Aws::Utils;
 UpdateStackRequest::UpdateStackRequest() : 
     m_displayNameHasBeenSet(false),
     m_descriptionHasBeenSet(false),
-    m_nameHasBeenSet(false)
+    m_nameHasBeenSet(false),
+    m_storageConnectorsHasBeenSet(false),
+    m_deleteStorageConnectors(false),
+    m_deleteStorageConnectorsHasBeenSet(false)
 {
 }
 
@@ -50,6 +54,23 @@ Aws::String UpdateStackRequest::SerializePayload() const
 
   }
 
+  if(m_storageConnectorsHasBeenSet)
+  {
+   Array<JsonValue> storageConnectorsJsonList(m_storageConnectors.size());
+   for(unsigned storageConnectorsIndex = 0; storageConnectorsIndex < storageConnectorsJsonList.GetLength(); ++storageConnectorsIndex)
+   {
+     storageConnectorsJsonList[storageConnectorsIndex].AsObject(m_storageConnectors[storageConnectorsIndex].Jsonize());
+   }
+   payload.WithArray("StorageConnectors", std::move(storageConnectorsJsonList));
+
+  }
+
+  if(m_deleteStorageConnectorsHasBeenSet)
+  {
+   payload.WithBool("DeleteStorageConnectors", m_deleteStorageConnectors);
+
+  }
+
   return payload.WriteReadable();
 }
 
@@ -60,6 +81,7 @@ Aws::Http::HeaderValueCollection UpdateStackRequest::GetRequestSpecificHeaders()
   return headers;
 
 }
+
 
 
 

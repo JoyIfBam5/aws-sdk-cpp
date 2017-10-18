@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -20,6 +21,7 @@
 #include <aws/elasticbeanstalk/model/FailureType.h>
 #include <aws/elasticbeanstalk/model/ActionHistoryStatus.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -51,6 +53,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>A unique identifier for the managed action.</p>
      */
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>A unique identifier for the managed action.</p>
      */
-    inline void SetActionId(Aws::String&& value) { m_actionIdHasBeenSet = true; m_actionId = value; }
+    inline void SetActionId(Aws::String&& value) { m_actionIdHasBeenSet = true; m_actionId = std::move(value); }
 
     /**
      * <p>A unique identifier for the managed action.</p>
@@ -79,12 +82,13 @@ namespace Model
     /**
      * <p>A unique identifier for the managed action.</p>
      */
-    inline ManagedActionHistoryItem& WithActionId(Aws::String&& value) { SetActionId(value); return *this;}
+    inline ManagedActionHistoryItem& WithActionId(Aws::String&& value) { SetActionId(std::move(value)); return *this;}
 
     /**
      * <p>A unique identifier for the managed action.</p>
      */
     inline ManagedActionHistoryItem& WithActionId(const char* value) { SetActionId(value); return *this;}
+
 
     /**
      * <p>The type of the managed action.</p>
@@ -99,7 +103,7 @@ namespace Model
     /**
      * <p>The type of the managed action.</p>
      */
-    inline void SetActionType(ActionType&& value) { m_actionTypeHasBeenSet = true; m_actionType = value; }
+    inline void SetActionType(ActionType&& value) { m_actionTypeHasBeenSet = true; m_actionType = std::move(value); }
 
     /**
      * <p>The type of the managed action.</p>
@@ -109,7 +113,8 @@ namespace Model
     /**
      * <p>The type of the managed action.</p>
      */
-    inline ManagedActionHistoryItem& WithActionType(ActionType&& value) { SetActionType(value); return *this;}
+    inline ManagedActionHistoryItem& WithActionType(ActionType&& value) { SetActionType(std::move(value)); return *this;}
+
 
     /**
      * <p>A description of the managed action.</p>
@@ -124,7 +129,7 @@ namespace Model
     /**
      * <p>A description of the managed action.</p>
      */
-    inline void SetActionDescription(Aws::String&& value) { m_actionDescriptionHasBeenSet = true; m_actionDescription = value; }
+    inline void SetActionDescription(Aws::String&& value) { m_actionDescriptionHasBeenSet = true; m_actionDescription = std::move(value); }
 
     /**
      * <p>A description of the managed action.</p>
@@ -139,12 +144,13 @@ namespace Model
     /**
      * <p>A description of the managed action.</p>
      */
-    inline ManagedActionHistoryItem& WithActionDescription(Aws::String&& value) { SetActionDescription(value); return *this;}
+    inline ManagedActionHistoryItem& WithActionDescription(Aws::String&& value) { SetActionDescription(std::move(value)); return *this;}
 
     /**
      * <p>A description of the managed action.</p>
      */
     inline ManagedActionHistoryItem& WithActionDescription(const char* value) { SetActionDescription(value); return *this;}
+
 
     /**
      * <p>If the action failed, the type of failure.</p>
@@ -159,7 +165,7 @@ namespace Model
     /**
      * <p>If the action failed, the type of failure.</p>
      */
-    inline void SetFailureType(FailureType&& value) { m_failureTypeHasBeenSet = true; m_failureType = value; }
+    inline void SetFailureType(FailureType&& value) { m_failureTypeHasBeenSet = true; m_failureType = std::move(value); }
 
     /**
      * <p>If the action failed, the type of failure.</p>
@@ -169,7 +175,8 @@ namespace Model
     /**
      * <p>If the action failed, the type of failure.</p>
      */
-    inline ManagedActionHistoryItem& WithFailureType(FailureType&& value) { SetFailureType(value); return *this;}
+    inline ManagedActionHistoryItem& WithFailureType(FailureType&& value) { SetFailureType(std::move(value)); return *this;}
+
 
     /**
      * <p>The status of the action.</p>
@@ -184,7 +191,7 @@ namespace Model
     /**
      * <p>The status of the action.</p>
      */
-    inline void SetStatus(ActionHistoryStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(ActionHistoryStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The status of the action.</p>
@@ -194,7 +201,8 @@ namespace Model
     /**
      * <p>The status of the action.</p>
      */
-    inline ManagedActionHistoryItem& WithStatus(ActionHistoryStatus&& value) { SetStatus(value); return *this;}
+    inline ManagedActionHistoryItem& WithStatus(ActionHistoryStatus&& value) { SetStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>If the action failed, a description of the failure.</p>
@@ -209,7 +217,7 @@ namespace Model
     /**
      * <p>If the action failed, a description of the failure.</p>
      */
-    inline void SetFailureDescription(Aws::String&& value) { m_failureDescriptionHasBeenSet = true; m_failureDescription = value; }
+    inline void SetFailureDescription(Aws::String&& value) { m_failureDescriptionHasBeenSet = true; m_failureDescription = std::move(value); }
 
     /**
      * <p>If the action failed, a description of the failure.</p>
@@ -224,12 +232,13 @@ namespace Model
     /**
      * <p>If the action failed, a description of the failure.</p>
      */
-    inline ManagedActionHistoryItem& WithFailureDescription(Aws::String&& value) { SetFailureDescription(value); return *this;}
+    inline ManagedActionHistoryItem& WithFailureDescription(Aws::String&& value) { SetFailureDescription(std::move(value)); return *this;}
 
     /**
      * <p>If the action failed, a description of the failure.</p>
      */
     inline ManagedActionHistoryItem& WithFailureDescription(const char* value) { SetFailureDescription(value); return *this;}
+
 
     /**
      * <p>The date and time that the action started executing.</p>
@@ -244,7 +253,7 @@ namespace Model
     /**
      * <p>The date and time that the action started executing.</p>
      */
-    inline void SetExecutedTime(Aws::Utils::DateTime&& value) { m_executedTimeHasBeenSet = true; m_executedTime = value; }
+    inline void SetExecutedTime(Aws::Utils::DateTime&& value) { m_executedTimeHasBeenSet = true; m_executedTime = std::move(value); }
 
     /**
      * <p>The date and time that the action started executing.</p>
@@ -254,7 +263,8 @@ namespace Model
     /**
      * <p>The date and time that the action started executing.</p>
      */
-    inline ManagedActionHistoryItem& WithExecutedTime(Aws::Utils::DateTime&& value) { SetExecutedTime(value); return *this;}
+    inline ManagedActionHistoryItem& WithExecutedTime(Aws::Utils::DateTime&& value) { SetExecutedTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The date and time that the action finished executing.</p>
@@ -269,7 +279,7 @@ namespace Model
     /**
      * <p>The date and time that the action finished executing.</p>
      */
-    inline void SetFinishedTime(Aws::Utils::DateTime&& value) { m_finishedTimeHasBeenSet = true; m_finishedTime = value; }
+    inline void SetFinishedTime(Aws::Utils::DateTime&& value) { m_finishedTimeHasBeenSet = true; m_finishedTime = std::move(value); }
 
     /**
      * <p>The date and time that the action finished executing.</p>
@@ -279,23 +289,31 @@ namespace Model
     /**
      * <p>The date and time that the action finished executing.</p>
      */
-    inline ManagedActionHistoryItem& WithFinishedTime(Aws::Utils::DateTime&& value) { SetFinishedTime(value); return *this;}
+    inline ManagedActionHistoryItem& WithFinishedTime(Aws::Utils::DateTime&& value) { SetFinishedTime(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_actionId;
     bool m_actionIdHasBeenSet;
+
     ActionType m_actionType;
     bool m_actionTypeHasBeenSet;
+
     Aws::String m_actionDescription;
     bool m_actionDescriptionHasBeenSet;
+
     FailureType m_failureType;
     bool m_failureTypeHasBeenSet;
+
     ActionHistoryStatus m_status;
     bool m_statusHasBeenSet;
+
     Aws::String m_failureDescription;
     bool m_failureDescriptionHasBeenSet;
+
     Aws::Utils::DateTime m_executedTime;
     bool m_executedTimeHasBeenSet;
+
     Aws::Utils::DateTime m_finishedTime;
     bool m_finishedTimeHasBeenSet;
   };

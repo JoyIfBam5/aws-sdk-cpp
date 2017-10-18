@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/budgets/Budgets_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/budgets/model/Notification.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     DescribeNotificationsForBudgetResult();
-    DescribeNotificationsForBudgetResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeNotificationsForBudgetResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeNotificationsForBudgetResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeNotificationsForBudgetResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     
     inline const Aws::Vector<Notification>& GetNotifications() const{ return m_notifications; }
@@ -53,19 +56,20 @@ namespace Model
     inline void SetNotifications(const Aws::Vector<Notification>& value) { m_notifications = value; }
 
     
-    inline void SetNotifications(Aws::Vector<Notification>&& value) { m_notifications = value; }
+    inline void SetNotifications(Aws::Vector<Notification>&& value) { m_notifications = std::move(value); }
 
     
     inline DescribeNotificationsForBudgetResult& WithNotifications(const Aws::Vector<Notification>& value) { SetNotifications(value); return *this;}
 
     
-    inline DescribeNotificationsForBudgetResult& WithNotifications(Aws::Vector<Notification>&& value) { SetNotifications(value); return *this;}
+    inline DescribeNotificationsForBudgetResult& WithNotifications(Aws::Vector<Notification>&& value) { SetNotifications(std::move(value)); return *this;}
 
     
     inline DescribeNotificationsForBudgetResult& AddNotifications(const Notification& value) { m_notifications.push_back(value); return *this; }
 
     
-    inline DescribeNotificationsForBudgetResult& AddNotifications(Notification&& value) { m_notifications.push_back(value); return *this; }
+    inline DescribeNotificationsForBudgetResult& AddNotifications(Notification&& value) { m_notifications.push_back(std::move(value)); return *this; }
+
 
     
     inline const Aws::String& GetNextToken() const{ return m_nextToken; }
@@ -74,7 +78,7 @@ namespace Model
     inline void SetNextToken(const Aws::String& value) { m_nextToken = value; }
 
     
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     
     inline void SetNextToken(const char* value) { m_nextToken.assign(value); }
@@ -83,13 +87,15 @@ namespace Model
     inline DescribeNotificationsForBudgetResult& WithNextToken(const Aws::String& value) { SetNextToken(value); return *this;}
 
     
-    inline DescribeNotificationsForBudgetResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeNotificationsForBudgetResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     
     inline DescribeNotificationsForBudgetResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Notification> m_notifications;
+
     Aws::String m_nextToken;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/datapipeline/DataPipeline_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,6 +52,7 @@ namespace Model
     InstanceIdentity& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>A description of an EC2 instance that is generated when the instance is
      * launched and exposed to the instance via the instance metadata service in the
@@ -69,7 +72,7 @@ namespace Model
      * launched and exposed to the instance via the instance metadata service in the
      * form of a JSON representation of an object.</p>
      */
-    inline void SetDocument(Aws::String&& value) { m_documentHasBeenSet = true; m_document = value; }
+    inline void SetDocument(Aws::String&& value) { m_documentHasBeenSet = true; m_document = std::move(value); }
 
     /**
      * <p>A description of an EC2 instance that is generated when the instance is
@@ -90,7 +93,7 @@ namespace Model
      * launched and exposed to the instance via the instance metadata service in the
      * form of a JSON representation of an object.</p>
      */
-    inline InstanceIdentity& WithDocument(Aws::String&& value) { SetDocument(value); return *this;}
+    inline InstanceIdentity& WithDocument(Aws::String&& value) { SetDocument(std::move(value)); return *this;}
 
     /**
      * <p>A description of an EC2 instance that is generated when the instance is
@@ -98,6 +101,7 @@ namespace Model
      * form of a JSON representation of an object.</p>
      */
     inline InstanceIdentity& WithDocument(const char* value) { SetDocument(value); return *this;}
+
 
     /**
      * <p>A signature which can be used to verify the accuracy and authenticity of the
@@ -115,7 +119,7 @@ namespace Model
      * <p>A signature which can be used to verify the accuracy and authenticity of the
      * information provided in the instance identity document.</p>
      */
-    inline void SetSignature(Aws::String&& value) { m_signatureHasBeenSet = true; m_signature = value; }
+    inline void SetSignature(Aws::String&& value) { m_signatureHasBeenSet = true; m_signature = std::move(value); }
 
     /**
      * <p>A signature which can be used to verify the accuracy and authenticity of the
@@ -133,7 +137,7 @@ namespace Model
      * <p>A signature which can be used to verify the accuracy and authenticity of the
      * information provided in the instance identity document.</p>
      */
-    inline InstanceIdentity& WithSignature(Aws::String&& value) { SetSignature(value); return *this;}
+    inline InstanceIdentity& WithSignature(Aws::String&& value) { SetSignature(std::move(value)); return *this;}
 
     /**
      * <p>A signature which can be used to verify the accuracy and authenticity of the
@@ -142,8 +146,10 @@ namespace Model
     inline InstanceIdentity& WithSignature(const char* value) { SetSignature(value); return *this;}
 
   private:
+
     Aws::String m_document;
     bool m_documentHasBeenSet;
+
     Aws::String m_signature;
     bool m_signatureHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -51,6 +53,7 @@ namespace Model
     DocumentationVersion& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The version identifier of the API documentation snapshot.</p>
      */
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>The version identifier of the API documentation snapshot.</p>
      */
-    inline void SetVersion(Aws::String&& value) { m_versionHasBeenSet = true; m_version = value; }
+    inline void SetVersion(Aws::String&& value) { m_versionHasBeenSet = true; m_version = std::move(value); }
 
     /**
      * <p>The version identifier of the API documentation snapshot.</p>
@@ -79,12 +82,13 @@ namespace Model
     /**
      * <p>The version identifier of the API documentation snapshot.</p>
      */
-    inline DocumentationVersion& WithVersion(Aws::String&& value) { SetVersion(value); return *this;}
+    inline DocumentationVersion& WithVersion(Aws::String&& value) { SetVersion(std::move(value)); return *this;}
 
     /**
      * <p>The version identifier of the API documentation snapshot.</p>
      */
     inline DocumentationVersion& WithVersion(const char* value) { SetVersion(value); return *this;}
+
 
     /**
      * <p>The date when the API documentation snapshot is created.</p>
@@ -99,7 +103,7 @@ namespace Model
     /**
      * <p>The date when the API documentation snapshot is created.</p>
      */
-    inline void SetCreatedDate(Aws::Utils::DateTime&& value) { m_createdDateHasBeenSet = true; m_createdDate = value; }
+    inline void SetCreatedDate(Aws::Utils::DateTime&& value) { m_createdDateHasBeenSet = true; m_createdDate = std::move(value); }
 
     /**
      * <p>The date when the API documentation snapshot is created.</p>
@@ -109,7 +113,8 @@ namespace Model
     /**
      * <p>The date when the API documentation snapshot is created.</p>
      */
-    inline DocumentationVersion& WithCreatedDate(Aws::Utils::DateTime&& value) { SetCreatedDate(value); return *this;}
+    inline DocumentationVersion& WithCreatedDate(Aws::Utils::DateTime&& value) { SetCreatedDate(std::move(value)); return *this;}
+
 
     /**
      * <p>The description of the API documentation snapshot.</p>
@@ -124,7 +129,7 @@ namespace Model
     /**
      * <p>The description of the API documentation snapshot.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The description of the API documentation snapshot.</p>
@@ -139,7 +144,7 @@ namespace Model
     /**
      * <p>The description of the API documentation snapshot.</p>
      */
-    inline DocumentationVersion& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline DocumentationVersion& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description of the API documentation snapshot.</p>
@@ -147,10 +152,13 @@ namespace Model
     inline DocumentationVersion& WithDescription(const char* value) { SetDescription(value); return *this;}
 
   private:
+
     Aws::String m_version;
     bool m_versionHasBeenSet;
+
     Aws::Utils::DateTime m_createdDate;
     bool m_createdDateHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
   };

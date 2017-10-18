@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/lightsail/model/Operation.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     GetOperationsResult();
-    GetOperationsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetOperationsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetOperationsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetOperationsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>An array of key-value pairs containing information about the results of your
@@ -57,7 +60,7 @@ namespace Model
      * <p>An array of key-value pairs containing information about the results of your
      * get operations request.</p>
      */
-    inline void SetOperations(Aws::Vector<Operation>&& value) { m_operations = value; }
+    inline void SetOperations(Aws::Vector<Operation>&& value) { m_operations = std::move(value); }
 
     /**
      * <p>An array of key-value pairs containing information about the results of your
@@ -69,7 +72,7 @@ namespace Model
      * <p>An array of key-value pairs containing information about the results of your
      * get operations request.</p>
      */
-    inline GetOperationsResult& WithOperations(Aws::Vector<Operation>&& value) { SetOperations(value); return *this;}
+    inline GetOperationsResult& WithOperations(Aws::Vector<Operation>&& value) { SetOperations(std::move(value)); return *this;}
 
     /**
      * <p>An array of key-value pairs containing information about the results of your
@@ -81,7 +84,8 @@ namespace Model
      * <p>An array of key-value pairs containing information about the results of your
      * get operations request.</p>
      */
-    inline GetOperationsResult& AddOperations(Operation&& value) { m_operations.push_back(value); return *this; }
+    inline GetOperationsResult& AddOperations(Operation&& value) { m_operations.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>A token used for advancing to the next page of results from your get
@@ -99,7 +103,7 @@ namespace Model
      * <p>A token used for advancing to the next page of results from your get
      * operations request.</p>
      */
-    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = value; }
+    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = std::move(value); }
 
     /**
      * <p>A token used for advancing to the next page of results from your get
@@ -117,7 +121,7 @@ namespace Model
      * <p>A token used for advancing to the next page of results from your get
      * operations request.</p>
      */
-    inline GetOperationsResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(value); return *this;}
+    inline GetOperationsResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(std::move(value)); return *this;}
 
     /**
      * <p>A token used for advancing to the next page of results from your get
@@ -126,7 +130,9 @@ namespace Model
     inline GetOperationsResult& WithNextPageToken(const char* value) { SetNextPageToken(value); return *this;}
 
   private:
+
     Aws::Vector<Operation> m_operations;
+
     Aws::String m_nextPageToken;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/inspector/model/CreateResourceGroupRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -32,7 +33,12 @@ Aws::String CreateResourceGroupRequest::SerializePayload() const
 
   if(m_resourceGroupTagsHasBeenSet)
   {
-   payload.WithString("resourceGroupTags", m_resourceGroupTags);
+   Array<JsonValue> resourceGroupTagsJsonList(m_resourceGroupTags.size());
+   for(unsigned resourceGroupTagsIndex = 0; resourceGroupTagsIndex < resourceGroupTagsJsonList.GetLength(); ++resourceGroupTagsIndex)
+   {
+     resourceGroupTagsJsonList[resourceGroupTagsIndex].AsObject(m_resourceGroupTags[resourceGroupTagsIndex].Jsonize());
+   }
+   payload.WithArray("resourceGroupTags", std::move(resourceGroupTagsJsonList));
 
   }
 
@@ -46,6 +52,7 @@ Aws::Http::HeaderValueCollection CreateResourceGroupRequest::GetRequestSpecificH
   return headers;
 
 }
+
 
 
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/iot/model/CertificateDescription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     DescribeCertificateResult();
-    DescribeCertificateResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeCertificateResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeCertificateResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeCertificateResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The description of the certificate.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The description of the certificate.</p>
      */
-    inline void SetCertificateDescription(CertificateDescription&& value) { m_certificateDescription = value; }
+    inline void SetCertificateDescription(CertificateDescription&& value) { m_certificateDescription = std::move(value); }
 
     /**
      * <p>The description of the certificate.</p>
@@ -68,9 +71,10 @@ namespace Model
     /**
      * <p>The description of the certificate.</p>
      */
-    inline DescribeCertificateResult& WithCertificateDescription(CertificateDescription&& value) { SetCertificateDescription(value); return *this;}
+    inline DescribeCertificateResult& WithCertificateDescription(CertificateDescription&& value) { SetCertificateDescription(std::move(value)); return *this;}
 
   private:
+
     CertificateDescription m_certificateDescription;
   };
 

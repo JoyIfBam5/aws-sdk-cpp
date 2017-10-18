@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53/Route53_EXPORTS.h>
 #include <aws/route53/model/CloudWatchRegion.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,13 +49,14 @@ namespace Model
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
 
+
     /**
      * <p>A complex type that identifies the CloudWatch alarm that you want Amazon
      * Route 53 health checkers to use to determine whether this health check is
      * healthy.</p> <p>For the current list of CloudWatch regions, see <a
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html#cw_region">Amazon
-     * CloudWatch</a> in <i>AWS Regions and Endpoints</i> in the <i>Amazon Web Services
-     * General Reference</i>.</p>
+     * CloudWatch</a> in the <i>AWS Regions and Endpoints</i> chapter of the <i>Amazon
+     * Web Services General Reference</i>.</p>
      */
     inline const CloudWatchRegion& GetRegion() const{ return m_region; }
 
@@ -62,8 +65,8 @@ namespace Model
      * Route 53 health checkers to use to determine whether this health check is
      * healthy.</p> <p>For the current list of CloudWatch regions, see <a
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html#cw_region">Amazon
-     * CloudWatch</a> in <i>AWS Regions and Endpoints</i> in the <i>Amazon Web Services
-     * General Reference</i>.</p>
+     * CloudWatch</a> in the <i>AWS Regions and Endpoints</i> chapter of the <i>Amazon
+     * Web Services General Reference</i>.</p>
      */
     inline void SetRegion(const CloudWatchRegion& value) { m_regionHasBeenSet = true; m_region = value; }
 
@@ -72,18 +75,18 @@ namespace Model
      * Route 53 health checkers to use to determine whether this health check is
      * healthy.</p> <p>For the current list of CloudWatch regions, see <a
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html#cw_region">Amazon
-     * CloudWatch</a> in <i>AWS Regions and Endpoints</i> in the <i>Amazon Web Services
-     * General Reference</i>.</p>
+     * CloudWatch</a> in the <i>AWS Regions and Endpoints</i> chapter of the <i>Amazon
+     * Web Services General Reference</i>.</p>
      */
-    inline void SetRegion(CloudWatchRegion&& value) { m_regionHasBeenSet = true; m_region = value; }
+    inline void SetRegion(CloudWatchRegion&& value) { m_regionHasBeenSet = true; m_region = std::move(value); }
 
     /**
      * <p>A complex type that identifies the CloudWatch alarm that you want Amazon
      * Route 53 health checkers to use to determine whether this health check is
      * healthy.</p> <p>For the current list of CloudWatch regions, see <a
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html#cw_region">Amazon
-     * CloudWatch</a> in <i>AWS Regions and Endpoints</i> in the <i>Amazon Web Services
-     * General Reference</i>.</p>
+     * CloudWatch</a> in the <i>AWS Regions and Endpoints</i> chapter of the <i>Amazon
+     * Web Services General Reference</i>.</p>
      */
     inline AlarmIdentifier& WithRegion(const CloudWatchRegion& value) { SetRegion(value); return *this;}
 
@@ -92,10 +95,11 @@ namespace Model
      * Route 53 health checkers to use to determine whether this health check is
      * healthy.</p> <p>For the current list of CloudWatch regions, see <a
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html#cw_region">Amazon
-     * CloudWatch</a> in <i>AWS Regions and Endpoints</i> in the <i>Amazon Web Services
-     * General Reference</i>.</p>
+     * CloudWatch</a> in the <i>AWS Regions and Endpoints</i> chapter of the <i>Amazon
+     * Web Services General Reference</i>.</p>
      */
-    inline AlarmIdentifier& WithRegion(CloudWatchRegion&& value) { SetRegion(value); return *this;}
+    inline AlarmIdentifier& WithRegion(CloudWatchRegion&& value) { SetRegion(std::move(value)); return *this;}
+
 
     /**
      * <p>The name of the CloudWatch alarm that you want Amazon Route 53 health
@@ -113,7 +117,7 @@ namespace Model
      * <p>The name of the CloudWatch alarm that you want Amazon Route 53 health
      * checkers to use to determine whether this health check is healthy.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the CloudWatch alarm that you want Amazon Route 53 health
@@ -131,7 +135,7 @@ namespace Model
      * <p>The name of the CloudWatch alarm that you want Amazon Route 53 health
      * checkers to use to determine whether this health check is healthy.</p>
      */
-    inline AlarmIdentifier& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline AlarmIdentifier& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the CloudWatch alarm that you want Amazon Route 53 health
@@ -140,8 +144,10 @@ namespace Model
     inline AlarmIdentifier& WithName(const char* value) { SetName(value); return *this;}
 
   private:
+
     CloudWatchRegion m_region;
     bool m_regionHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
   };

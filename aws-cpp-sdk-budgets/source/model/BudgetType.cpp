@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/budgets/model/BudgetType.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -31,6 +32,7 @@ namespace Aws
 
         static const int USAGE_HASH = HashingUtils::HashString("USAGE");
         static const int COST_HASH = HashingUtils::HashString("COST");
+        static const int RI_UTILIZATION_HASH = HashingUtils::HashString("RI_UTILIZATION");
 
 
         BudgetType GetBudgetTypeForName(const Aws::String& name)
@@ -43,6 +45,10 @@ namespace Aws
           else if (hashCode == COST_HASH)
           {
             return BudgetType::COST;
+          }
+          else if (hashCode == RI_UTILIZATION_HASH)
+          {
+            return BudgetType::RI_UTILIZATION;
           }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
@@ -62,6 +68,8 @@ namespace Aws
             return "USAGE";
           case BudgetType::COST:
             return "COST";
+          case BudgetType::RI_UTILIZATION:
+            return "RI_UTILIZATION";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

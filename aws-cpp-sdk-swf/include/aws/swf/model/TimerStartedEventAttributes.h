@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/swf/SWF_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,7 +33,7 @@ namespace Model
 {
 
   /**
-   * <p>Provides details of the <code>TimerStarted</code> event.</p><p><h3>See
+   * <p>Provides the details of the <code>TimerStarted</code> event.</p><p><h3>See
    * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/swf-2012-01-25/TimerStartedEventAttributes">AWS
    * API Reference</a></p>
@@ -43,6 +45,7 @@ namespace Model
     TimerStartedEventAttributes(const Aws::Utils::Json::JsonValue& jsonValue);
     TimerStartedEventAttributes& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>The unique ID of the timer that was started.</p>
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The unique ID of the timer that was started.</p>
      */
-    inline void SetTimerId(Aws::String&& value) { m_timerIdHasBeenSet = true; m_timerId = value; }
+    inline void SetTimerId(Aws::String&& value) { m_timerIdHasBeenSet = true; m_timerId = std::move(value); }
 
     /**
      * <p>The unique ID of the timer that was started.</p>
@@ -72,96 +75,99 @@ namespace Model
     /**
      * <p>The unique ID of the timer that was started.</p>
      */
-    inline TimerStartedEventAttributes& WithTimerId(Aws::String&& value) { SetTimerId(value); return *this;}
+    inline TimerStartedEventAttributes& WithTimerId(Aws::String&& value) { SetTimerId(std::move(value)); return *this;}
 
     /**
      * <p>The unique ID of the timer that was started.</p>
      */
     inline TimerStartedEventAttributes& WithTimerId(const char* value) { SetTimerId(value); return *this;}
 
+
     /**
-     * <p><i>Optional.</i> Data attached to the event that can be used by the decider
-     * in subsequent workflow tasks.</p>
+     * <p>Data attached to the event that can be used by the decider in subsequent
+     * workflow tasks.</p>
      */
     inline const Aws::String& GetControl() const{ return m_control; }
 
     /**
-     * <p><i>Optional.</i> Data attached to the event that can be used by the decider
-     * in subsequent workflow tasks.</p>
+     * <p>Data attached to the event that can be used by the decider in subsequent
+     * workflow tasks.</p>
      */
     inline void SetControl(const Aws::String& value) { m_controlHasBeenSet = true; m_control = value; }
 
     /**
-     * <p><i>Optional.</i> Data attached to the event that can be used by the decider
-     * in subsequent workflow tasks.</p>
+     * <p>Data attached to the event that can be used by the decider in subsequent
+     * workflow tasks.</p>
      */
-    inline void SetControl(Aws::String&& value) { m_controlHasBeenSet = true; m_control = value; }
+    inline void SetControl(Aws::String&& value) { m_controlHasBeenSet = true; m_control = std::move(value); }
 
     /**
-     * <p><i>Optional.</i> Data attached to the event that can be used by the decider
-     * in subsequent workflow tasks.</p>
+     * <p>Data attached to the event that can be used by the decider in subsequent
+     * workflow tasks.</p>
      */
     inline void SetControl(const char* value) { m_controlHasBeenSet = true; m_control.assign(value); }
 
     /**
-     * <p><i>Optional.</i> Data attached to the event that can be used by the decider
-     * in subsequent workflow tasks.</p>
+     * <p>Data attached to the event that can be used by the decider in subsequent
+     * workflow tasks.</p>
      */
     inline TimerStartedEventAttributes& WithControl(const Aws::String& value) { SetControl(value); return *this;}
 
     /**
-     * <p><i>Optional.</i> Data attached to the event that can be used by the decider
-     * in subsequent workflow tasks.</p>
+     * <p>Data attached to the event that can be used by the decider in subsequent
+     * workflow tasks.</p>
      */
-    inline TimerStartedEventAttributes& WithControl(Aws::String&& value) { SetControl(value); return *this;}
+    inline TimerStartedEventAttributes& WithControl(Aws::String&& value) { SetControl(std::move(value)); return *this;}
 
     /**
-     * <p><i>Optional.</i> Data attached to the event that can be used by the decider
-     * in subsequent workflow tasks.</p>
+     * <p>Data attached to the event that can be used by the decider in subsequent
+     * workflow tasks.</p>
      */
     inline TimerStartedEventAttributes& WithControl(const char* value) { SetControl(value); return *this;}
 
+
     /**
-     * <p>The duration of time after which the timer will fire.</p> <p>The duration is
-     * specified in seconds; an integer greater than or equal to 0.</p>
+     * <p>The duration of time after which the timer fires.</p> <p>The duration is
+     * specified in seconds, an integer greater than or equal to <code>0</code>.</p>
      */
     inline const Aws::String& GetStartToFireTimeout() const{ return m_startToFireTimeout; }
 
     /**
-     * <p>The duration of time after which the timer will fire.</p> <p>The duration is
-     * specified in seconds; an integer greater than or equal to 0.</p>
+     * <p>The duration of time after which the timer fires.</p> <p>The duration is
+     * specified in seconds, an integer greater than or equal to <code>0</code>.</p>
      */
     inline void SetStartToFireTimeout(const Aws::String& value) { m_startToFireTimeoutHasBeenSet = true; m_startToFireTimeout = value; }
 
     /**
-     * <p>The duration of time after which the timer will fire.</p> <p>The duration is
-     * specified in seconds; an integer greater than or equal to 0.</p>
+     * <p>The duration of time after which the timer fires.</p> <p>The duration is
+     * specified in seconds, an integer greater than or equal to <code>0</code>.</p>
      */
-    inline void SetStartToFireTimeout(Aws::String&& value) { m_startToFireTimeoutHasBeenSet = true; m_startToFireTimeout = value; }
+    inline void SetStartToFireTimeout(Aws::String&& value) { m_startToFireTimeoutHasBeenSet = true; m_startToFireTimeout = std::move(value); }
 
     /**
-     * <p>The duration of time after which the timer will fire.</p> <p>The duration is
-     * specified in seconds; an integer greater than or equal to 0.</p>
+     * <p>The duration of time after which the timer fires.</p> <p>The duration is
+     * specified in seconds, an integer greater than or equal to <code>0</code>.</p>
      */
     inline void SetStartToFireTimeout(const char* value) { m_startToFireTimeoutHasBeenSet = true; m_startToFireTimeout.assign(value); }
 
     /**
-     * <p>The duration of time after which the timer will fire.</p> <p>The duration is
-     * specified in seconds; an integer greater than or equal to 0.</p>
+     * <p>The duration of time after which the timer fires.</p> <p>The duration is
+     * specified in seconds, an integer greater than or equal to <code>0</code>.</p>
      */
     inline TimerStartedEventAttributes& WithStartToFireTimeout(const Aws::String& value) { SetStartToFireTimeout(value); return *this;}
 
     /**
-     * <p>The duration of time after which the timer will fire.</p> <p>The duration is
-     * specified in seconds; an integer greater than or equal to 0.</p>
+     * <p>The duration of time after which the timer fires.</p> <p>The duration is
+     * specified in seconds, an integer greater than or equal to <code>0</code>.</p>
      */
-    inline TimerStartedEventAttributes& WithStartToFireTimeout(Aws::String&& value) { SetStartToFireTimeout(value); return *this;}
+    inline TimerStartedEventAttributes& WithStartToFireTimeout(Aws::String&& value) { SetStartToFireTimeout(std::move(value)); return *this;}
 
     /**
-     * <p>The duration of time after which the timer will fire.</p> <p>The duration is
-     * specified in seconds; an integer greater than or equal to 0.</p>
+     * <p>The duration of time after which the timer fires.</p> <p>The duration is
+     * specified in seconds, an integer greater than or equal to <code>0</code>.</p>
      */
     inline TimerStartedEventAttributes& WithStartToFireTimeout(const char* value) { SetStartToFireTimeout(value); return *this;}
+
 
     /**
      * <p>The ID of the <code>DecisionTaskCompleted</code> event corresponding to the
@@ -188,12 +194,16 @@ namespace Model
     inline TimerStartedEventAttributes& WithDecisionTaskCompletedEventId(long long value) { SetDecisionTaskCompletedEventId(value); return *this;}
 
   private:
+
     Aws::String m_timerId;
     bool m_timerIdHasBeenSet;
+
     Aws::String m_control;
     bool m_controlHasBeenSet;
+
     Aws::String m_startToFireTimeout;
     bool m_startToFireTimeoutHasBeenSet;
+
     long long m_decisionTaskCompletedEventId;
     bool m_decisionTaskCompletedEventIdHasBeenSet;
   };

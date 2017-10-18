@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticloadbalancing/ElasticLoadBalancing_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>Specifies whether access logs are enabled for the load balancer.</p>
      */
@@ -62,6 +65,7 @@ namespace Model
      */
     inline AccessLog& WithEnabled(bool value) { SetEnabled(value); return *this;}
 
+
     /**
      * <p>The name of the Amazon S3 bucket where the access logs are stored.</p>
      */
@@ -75,7 +79,7 @@ namespace Model
     /**
      * <p>The name of the Amazon S3 bucket where the access logs are stored.</p>
      */
-    inline void SetS3BucketName(Aws::String&& value) { m_s3BucketNameHasBeenSet = true; m_s3BucketName = value; }
+    inline void SetS3BucketName(Aws::String&& value) { m_s3BucketNameHasBeenSet = true; m_s3BucketName = std::move(value); }
 
     /**
      * <p>The name of the Amazon S3 bucket where the access logs are stored.</p>
@@ -90,12 +94,13 @@ namespace Model
     /**
      * <p>The name of the Amazon S3 bucket where the access logs are stored.</p>
      */
-    inline AccessLog& WithS3BucketName(Aws::String&& value) { SetS3BucketName(value); return *this;}
+    inline AccessLog& WithS3BucketName(Aws::String&& value) { SetS3BucketName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the Amazon S3 bucket where the access logs are stored.</p>
      */
     inline AccessLog& WithS3BucketName(const char* value) { SetS3BucketName(value); return *this;}
+
 
     /**
      * <p>The interval for publishing the access logs. You can specify an interval of
@@ -114,6 +119,7 @@ namespace Model
      * either 5 minutes or 60 minutes.</p> <p>Default: 60 minutes</p>
      */
     inline AccessLog& WithEmitInterval(int value) { SetEmitInterval(value); return *this;}
+
 
     /**
      * <p>The logical hierarchy you created for your Amazon S3 bucket, for example
@@ -134,7 +140,7 @@ namespace Model
      * <code>my-bucket-prefix/prod</code>. If the prefix is not provided, the log is
      * placed at the root level of the bucket.</p>
      */
-    inline void SetS3BucketPrefix(Aws::String&& value) { m_s3BucketPrefixHasBeenSet = true; m_s3BucketPrefix = value; }
+    inline void SetS3BucketPrefix(Aws::String&& value) { m_s3BucketPrefixHasBeenSet = true; m_s3BucketPrefix = std::move(value); }
 
     /**
      * <p>The logical hierarchy you created for your Amazon S3 bucket, for example
@@ -155,7 +161,7 @@ namespace Model
      * <code>my-bucket-prefix/prod</code>. If the prefix is not provided, the log is
      * placed at the root level of the bucket.</p>
      */
-    inline AccessLog& WithS3BucketPrefix(Aws::String&& value) { SetS3BucketPrefix(value); return *this;}
+    inline AccessLog& WithS3BucketPrefix(Aws::String&& value) { SetS3BucketPrefix(std::move(value)); return *this;}
 
     /**
      * <p>The logical hierarchy you created for your Amazon S3 bucket, for example
@@ -165,12 +171,16 @@ namespace Model
     inline AccessLog& WithS3BucketPrefix(const char* value) { SetS3BucketPrefix(value); return *this;}
 
   private:
+
     bool m_enabled;
     bool m_enabledHasBeenSet;
+
     Aws::String m_s3BucketName;
     bool m_s3BucketNameHasBeenSet;
+
     int m_emitInterval;
     bool m_emitIntervalHasBeenSet;
+
     Aws::String m_s3BucketPrefix;
     bool m_s3BucketPrefixHasBeenSet;
   };

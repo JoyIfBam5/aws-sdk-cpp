@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/rds/model/RestoreDBClusterFromS3Request.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -42,6 +43,8 @@ RestoreDBClusterFromS3Request::RestoreDBClusterFromS3Request() :
     m_storageEncrypted(false),
     m_storageEncryptedHasBeenSet(false),
     m_kmsKeyIdHasBeenSet(false),
+    m_enableIAMDatabaseAuthentication(false),
+    m_enableIAMDatabaseAuthenticationHasBeenSet(false),
     m_sourceEngineHasBeenSet(false),
     m_sourceEngineVersionHasBeenSet(false),
     m_s3BucketNameHasBeenSet(false),
@@ -166,6 +169,11 @@ Aws::String RestoreDBClusterFromS3Request::SerializePayload() const
     ss << "KmsKeyId=" << StringUtils::URLEncode(m_kmsKeyId.c_str()) << "&";
   }
 
+  if(m_enableIAMDatabaseAuthenticationHasBeenSet)
+  {
+    ss << "EnableIAMDatabaseAuthentication=" << std::boolalpha << m_enableIAMDatabaseAuthentication << "&";
+  }
+
   if(m_sourceEngineHasBeenSet)
   {
     ss << "SourceEngine=" << StringUtils::URLEncode(m_sourceEngine.c_str()) << "&";
@@ -195,3 +203,8 @@ Aws::String RestoreDBClusterFromS3Request::SerializePayload() const
   return ss.str();
 }
 
+
+void  RestoreDBClusterFromS3Request::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

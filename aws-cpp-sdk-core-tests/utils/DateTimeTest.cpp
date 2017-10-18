@@ -1,5 +1,5 @@
 /*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -35,6 +35,7 @@ TEST(DateTimeTest, TestDefault)
 TEST(DateTimeTest, TestRFC822Parsing)
 {
     const char* gmtDateStr = "Wed, 02 Oct 2002 08:05:09 GMT";  
+    const char* twoDigitYearVersion = "Wed, 02 Oct 02 08:05:09 GMT";  
     DateTime gmtDate(gmtDateStr, DateFormat::RFC822);    
     ASSERT_TRUE(gmtDate.WasParseSuccessful());
     ASSERT_EQ(DayOfWeek::Wednesday, gmtDate.GetDayOfWeek());
@@ -45,6 +46,8 @@ TEST(DateTimeTest, TestRFC822Parsing)
     ASSERT_EQ(5, gmtDate.GetMinute());
     ASSERT_EQ(9, gmtDate.GetSecond());
     ASSERT_EQ(gmtDateStr, gmtDate.ToGmtString(DateFormat::RFC822));    
+
+    ASSERT_EQ(gmtDate, DateTime(twoDigitYearVersion, DateFormat::RFC822));
 }
 
 TEST(DateTimeTest, TestRFC822Parsing_DOS_Stopped)
@@ -135,4 +138,21 @@ TEST(DateTimeTest, TestMillisParsing)
     ASSERT_EQ(9, gmtDate.GetSecond());
     ASSERT_EQ(gmtDateMillis, gmtDate.Millis());
     ASSERT_EQ("2002-10-02T08:05:09Z", gmtDate.ToGmtString(DateFormat::ISO_8601));
+}
+
+TEST(DateTimeTest, TestFormatAutoDetect)
+{
+    const char rfcDate[] = "Wed, 02 Oct 2002 08:05:09 GMT";  
+    DateTime parsedRFCDate(rfcDate, DateFormat::AutoDetect);
+    ASSERT_TRUE(parsedRFCDate.WasParseSuccessful());
+    ASSERT_EQ(DateTime(rfcDate, DateFormat::RFC822), parsedRFCDate);
+
+    const char isoDate[] = "2002-10-02T08:05:09Z";
+    DateTime parsedISODate(isoDate, DateFormat::AutoDetect);
+    ASSERT_TRUE(parsedISODate.WasParseSuccessful());
+    ASSERT_EQ(DateTime(isoDate, DateFormat::ISO_8601), parsedISODate);
+
+    const char badDate[] = "2002 10,02T08 05 09G";
+    DateTime parsedBadDate(badDate, DateFormat::AutoDetect);
+    ASSERT_FALSE(parsedBadDate.WasParseSuccessful());
 }

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/sts/STS_EXPORTS.h>
 #include <aws/sts/model/Credentials.h>
 #include <aws/sts/model/AssumedRoleUser.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/sts/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,8 +48,9 @@ namespace Model
   {
   public:
     AssumeRoleWithSAMLResult();
-    AssumeRoleWithSAMLResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    AssumeRoleWithSAMLResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    AssumeRoleWithSAMLResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    AssumeRoleWithSAMLResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>The temporary security credentials, which include an access key ID, a secret
@@ -77,7 +80,7 @@ namespace Model
      * size is less than 4096 bytes, but that can vary. Also, future updates to AWS
      * might require larger sizes.</p>
      */
-    inline void SetCredentials(Credentials&& value) { m_credentials = value; }
+    inline void SetCredentials(Credentials&& value) { m_credentials = std::move(value); }
 
     /**
      * <p>The temporary security credentials, which include an access key ID, a secret
@@ -97,7 +100,8 @@ namespace Model
      * size is less than 4096 bytes, but that can vary. Also, future updates to AWS
      * might require larger sizes.</p>
      */
-    inline AssumeRoleWithSAMLResult& WithCredentials(Credentials&& value) { SetCredentials(value); return *this;}
+    inline AssumeRoleWithSAMLResult& WithCredentials(Credentials&& value) { SetCredentials(std::move(value)); return *this;}
+
 
     /**
      * <p>The identifiers for the temporary security credentials that the operation
@@ -115,7 +119,7 @@ namespace Model
      * <p>The identifiers for the temporary security credentials that the operation
      * returns.</p>
      */
-    inline void SetAssumedRoleUser(AssumedRoleUser&& value) { m_assumedRoleUser = value; }
+    inline void SetAssumedRoleUser(AssumedRoleUser&& value) { m_assumedRoleUser = std::move(value); }
 
     /**
      * <p>The identifiers for the temporary security credentials that the operation
@@ -127,7 +131,8 @@ namespace Model
      * <p>The identifiers for the temporary security credentials that the operation
      * returns.</p>
      */
-    inline AssumeRoleWithSAMLResult& WithAssumedRoleUser(AssumedRoleUser&& value) { SetAssumedRoleUser(value); return *this;}
+    inline AssumeRoleWithSAMLResult& WithAssumedRoleUser(AssumedRoleUser&& value) { SetAssumedRoleUser(std::move(value)); return *this;}
+
 
     /**
      * <p>A percentage value that indicates the size of the policy in packed form. The
@@ -150,6 +155,7 @@ namespace Model
      */
     inline AssumeRoleWithSAMLResult& WithPackedPolicySize(int value) { SetPackedPolicySize(value); return *this;}
 
+
     /**
      * <p>The value of the <code>NameID</code> element in the <code>Subject</code>
      * element of the SAML assertion.</p>
@@ -166,7 +172,7 @@ namespace Model
      * <p>The value of the <code>NameID</code> element in the <code>Subject</code>
      * element of the SAML assertion.</p>
      */
-    inline void SetSubject(Aws::String&& value) { m_subject = value; }
+    inline void SetSubject(Aws::String&& value) { m_subject = std::move(value); }
 
     /**
      * <p>The value of the <code>NameID</code> element in the <code>Subject</code>
@@ -184,13 +190,14 @@ namespace Model
      * <p>The value of the <code>NameID</code> element in the <code>Subject</code>
      * element of the SAML assertion.</p>
      */
-    inline AssumeRoleWithSAMLResult& WithSubject(Aws::String&& value) { SetSubject(value); return *this;}
+    inline AssumeRoleWithSAMLResult& WithSubject(Aws::String&& value) { SetSubject(std::move(value)); return *this;}
 
     /**
      * <p>The value of the <code>NameID</code> element in the <code>Subject</code>
      * element of the SAML assertion.</p>
      */
     inline AssumeRoleWithSAMLResult& WithSubject(const char* value) { SetSubject(value); return *this;}
+
 
     /**
      * <p> The format of the name ID, as defined by the <code>Format</code> attribute
@@ -226,7 +233,7 @@ namespace Model
      * returned as <code>transient</code>. If the format includes any other prefix, the
      * format is returned with no modifications.</p>
      */
-    inline void SetSubjectType(Aws::String&& value) { m_subjectType = value; }
+    inline void SetSubjectType(Aws::String&& value) { m_subjectType = std::move(value); }
 
     /**
      * <p> The format of the name ID, as defined by the <code>Format</code> attribute
@@ -262,7 +269,7 @@ namespace Model
      * returned as <code>transient</code>. If the format includes any other prefix, the
      * format is returned with no modifications.</p>
      */
-    inline AssumeRoleWithSAMLResult& WithSubjectType(Aws::String&& value) { SetSubjectType(value); return *this;}
+    inline AssumeRoleWithSAMLResult& WithSubjectType(Aws::String&& value) { SetSubjectType(std::move(value)); return *this;}
 
     /**
      * <p> The format of the name ID, as defined by the <code>Format</code> attribute
@@ -275,6 +282,7 @@ namespace Model
      * format is returned with no modifications.</p>
      */
     inline AssumeRoleWithSAMLResult& WithSubjectType(const char* value) { SetSubjectType(value); return *this;}
+
 
     /**
      * <p>The value of the <code>Issuer</code> element of the SAML assertion.</p>
@@ -289,7 +297,7 @@ namespace Model
     /**
      * <p>The value of the <code>Issuer</code> element of the SAML assertion.</p>
      */
-    inline void SetIssuer(Aws::String&& value) { m_issuer = value; }
+    inline void SetIssuer(Aws::String&& value) { m_issuer = std::move(value); }
 
     /**
      * <p>The value of the <code>Issuer</code> element of the SAML assertion.</p>
@@ -304,12 +312,13 @@ namespace Model
     /**
      * <p>The value of the <code>Issuer</code> element of the SAML assertion.</p>
      */
-    inline AssumeRoleWithSAMLResult& WithIssuer(Aws::String&& value) { SetIssuer(value); return *this;}
+    inline AssumeRoleWithSAMLResult& WithIssuer(Aws::String&& value) { SetIssuer(std::move(value)); return *this;}
 
     /**
      * <p>The value of the <code>Issuer</code> element of the SAML assertion.</p>
      */
     inline AssumeRoleWithSAMLResult& WithIssuer(const char* value) { SetIssuer(value); return *this;}
+
 
     /**
      * <p> The value of the <code>Recipient</code> attribute of the
@@ -327,7 +336,7 @@ namespace Model
      * <p> The value of the <code>Recipient</code> attribute of the
      * <code>SubjectConfirmationData</code> element of the SAML assertion. </p>
      */
-    inline void SetAudience(Aws::String&& value) { m_audience = value; }
+    inline void SetAudience(Aws::String&& value) { m_audience = std::move(value); }
 
     /**
      * <p> The value of the <code>Recipient</code> attribute of the
@@ -345,13 +354,14 @@ namespace Model
      * <p> The value of the <code>Recipient</code> attribute of the
      * <code>SubjectConfirmationData</code> element of the SAML assertion. </p>
      */
-    inline AssumeRoleWithSAMLResult& WithAudience(Aws::String&& value) { SetAudience(value); return *this;}
+    inline AssumeRoleWithSAMLResult& WithAudience(Aws::String&& value) { SetAudience(std::move(value)); return *this;}
 
     /**
      * <p> The value of the <code>Recipient</code> attribute of the
      * <code>SubjectConfirmationData</code> element of the SAML assertion. </p>
      */
     inline AssumeRoleWithSAMLResult& WithAudience(const char* value) { SetAudience(value); return *this;}
+
 
     /**
      * <p>A hash value based on the concatenation of the <code>Issuer</code> response
@@ -384,7 +394,7 @@ namespace Model
      * <code>BASE64 ( SHA1 ( "https://example.com/saml" + "123456789012" + "/MySAMLIdP"
      * ) )</code> </p>
      */
-    inline void SetNameQualifier(Aws::String&& value) { m_nameQualifier = value; }
+    inline void SetNameQualifier(Aws::String&& value) { m_nameQualifier = std::move(value); }
 
     /**
      * <p>A hash value based on the concatenation of the <code>Issuer</code> response
@@ -417,7 +427,7 @@ namespace Model
      * <code>BASE64 ( SHA1 ( "https://example.com/saml" + "123456789012" + "/MySAMLIdP"
      * ) )</code> </p>
      */
-    inline AssumeRoleWithSAMLResult& WithNameQualifier(Aws::String&& value) { SetNameQualifier(value); return *this;}
+    inline AssumeRoleWithSAMLResult& WithNameQualifier(Aws::String&& value) { SetNameQualifier(std::move(value)); return *this;}
 
     /**
      * <p>A hash value based on the concatenation of the <code>Issuer</code> response
@@ -430,6 +440,7 @@ namespace Model
      */
     inline AssumeRoleWithSAMLResult& WithNameQualifier(const char* value) { SetNameQualifier(value); return *this;}
 
+
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
 
@@ -437,23 +448,32 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline AssumeRoleWithSAMLResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline AssumeRoleWithSAMLResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline AssumeRoleWithSAMLResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Credentials m_credentials;
+
     AssumedRoleUser m_assumedRoleUser;
+
     int m_packedPolicySize;
+
     Aws::String m_subject;
+
     Aws::String m_subjectType;
+
     Aws::String m_issuer;
+
     Aws::String m_audience;
+
     Aws::String m_nameQualifier;
+
     ResponseMetadata m_responseMetadata;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/UserIdGroupPair.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,22 +31,24 @@ namespace Model
 {
 
 UserIdGroupPair::UserIdGroupPair() : 
-    m_userIdHasBeenSet(false),
-    m_groupNameHasBeenSet(false),
+    m_descriptionHasBeenSet(false),
     m_groupIdHasBeenSet(false),
+    m_groupNameHasBeenSet(false),
+    m_peeringStatusHasBeenSet(false),
+    m_userIdHasBeenSet(false),
     m_vpcIdHasBeenSet(false),
-    m_vpcPeeringConnectionIdHasBeenSet(false),
-    m_peeringStatusHasBeenSet(false)
+    m_vpcPeeringConnectionIdHasBeenSet(false)
 {
 }
 
 UserIdGroupPair::UserIdGroupPair(const XmlNode& xmlNode) : 
-    m_userIdHasBeenSet(false),
-    m_groupNameHasBeenSet(false),
+    m_descriptionHasBeenSet(false),
     m_groupIdHasBeenSet(false),
+    m_groupNameHasBeenSet(false),
+    m_peeringStatusHasBeenSet(false),
+    m_userIdHasBeenSet(false),
     m_vpcIdHasBeenSet(false),
-    m_vpcPeeringConnectionIdHasBeenSet(false),
-    m_peeringStatusHasBeenSet(false)
+    m_vpcPeeringConnectionIdHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -56,11 +59,17 @@ UserIdGroupPair& UserIdGroupPair::operator =(const XmlNode& xmlNode)
 
   if(!resultNode.IsNull())
   {
-    XmlNode userIdNode = resultNode.FirstChild("userId");
-    if(!userIdNode.IsNull())
+    XmlNode descriptionNode = resultNode.FirstChild("description");
+    if(!descriptionNode.IsNull())
     {
-      m_userId = StringUtils::Trim(userIdNode.GetText().c_str());
-      m_userIdHasBeenSet = true;
+      m_description = StringUtils::Trim(descriptionNode.GetText().c_str());
+      m_descriptionHasBeenSet = true;
+    }
+    XmlNode groupIdNode = resultNode.FirstChild("groupId");
+    if(!groupIdNode.IsNull())
+    {
+      m_groupId = StringUtils::Trim(groupIdNode.GetText().c_str());
+      m_groupIdHasBeenSet = true;
     }
     XmlNode groupNameNode = resultNode.FirstChild("groupName");
     if(!groupNameNode.IsNull())
@@ -68,11 +77,17 @@ UserIdGroupPair& UserIdGroupPair::operator =(const XmlNode& xmlNode)
       m_groupName = StringUtils::Trim(groupNameNode.GetText().c_str());
       m_groupNameHasBeenSet = true;
     }
-    XmlNode groupIdNode = resultNode.FirstChild("groupId");
-    if(!groupIdNode.IsNull())
+    XmlNode peeringStatusNode = resultNode.FirstChild("peeringStatus");
+    if(!peeringStatusNode.IsNull())
     {
-      m_groupId = StringUtils::Trim(groupIdNode.GetText().c_str());
-      m_groupIdHasBeenSet = true;
+      m_peeringStatus = StringUtils::Trim(peeringStatusNode.GetText().c_str());
+      m_peeringStatusHasBeenSet = true;
+    }
+    XmlNode userIdNode = resultNode.FirstChild("userId");
+    if(!userIdNode.IsNull())
+    {
+      m_userId = StringUtils::Trim(userIdNode.GetText().c_str());
+      m_userIdHasBeenSet = true;
     }
     XmlNode vpcIdNode = resultNode.FirstChild("vpcId");
     if(!vpcIdNode.IsNull())
@@ -86,12 +101,6 @@ UserIdGroupPair& UserIdGroupPair::operator =(const XmlNode& xmlNode)
       m_vpcPeeringConnectionId = StringUtils::Trim(vpcPeeringConnectionIdNode.GetText().c_str());
       m_vpcPeeringConnectionIdHasBeenSet = true;
     }
-    XmlNode peeringStatusNode = resultNode.FirstChild("peeringStatus");
-    if(!peeringStatusNode.IsNull())
-    {
-      m_peeringStatus = StringUtils::Trim(peeringStatusNode.GetText().c_str());
-      m_peeringStatusHasBeenSet = true;
-    }
   }
 
   return *this;
@@ -99,9 +108,14 @@ UserIdGroupPair& UserIdGroupPair::operator =(const XmlNode& xmlNode)
 
 void UserIdGroupPair::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
-  if(m_userIdHasBeenSet)
+  if(m_descriptionHasBeenSet)
   {
-      oStream << location << index << locationValue << ".UserId=" << StringUtils::URLEncode(m_userId.c_str()) << "&";
+      oStream << location << index << locationValue << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
+  }
+
+  if(m_groupIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".GroupId=" << StringUtils::URLEncode(m_groupId.c_str()) << "&";
   }
 
   if(m_groupNameHasBeenSet)
@@ -109,9 +123,14 @@ void UserIdGroupPair::OutputToStream(Aws::OStream& oStream, const char* location
       oStream << location << index << locationValue << ".GroupName=" << StringUtils::URLEncode(m_groupName.c_str()) << "&";
   }
 
-  if(m_groupIdHasBeenSet)
+  if(m_peeringStatusHasBeenSet)
   {
-      oStream << location << index << locationValue << ".GroupId=" << StringUtils::URLEncode(m_groupId.c_str()) << "&";
+      oStream << location << index << locationValue << ".PeeringStatus=" << StringUtils::URLEncode(m_peeringStatus.c_str()) << "&";
+  }
+
+  if(m_userIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".UserId=" << StringUtils::URLEncode(m_userId.c_str()) << "&";
   }
 
   if(m_vpcIdHasBeenSet)
@@ -124,26 +143,29 @@ void UserIdGroupPair::OutputToStream(Aws::OStream& oStream, const char* location
       oStream << location << index << locationValue << ".VpcPeeringConnectionId=" << StringUtils::URLEncode(m_vpcPeeringConnectionId.c_str()) << "&";
   }
 
-  if(m_peeringStatusHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".PeeringStatus=" << StringUtils::URLEncode(m_peeringStatus.c_str()) << "&";
-  }
-
 }
 
 void UserIdGroupPair::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
-  if(m_userIdHasBeenSet)
+  if(m_descriptionHasBeenSet)
   {
-      oStream << location << ".UserId=" << StringUtils::URLEncode(m_userId.c_str()) << "&";
+      oStream << location << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
+  }
+  if(m_groupIdHasBeenSet)
+  {
+      oStream << location << ".GroupId=" << StringUtils::URLEncode(m_groupId.c_str()) << "&";
   }
   if(m_groupNameHasBeenSet)
   {
       oStream << location << ".GroupName=" << StringUtils::URLEncode(m_groupName.c_str()) << "&";
   }
-  if(m_groupIdHasBeenSet)
+  if(m_peeringStatusHasBeenSet)
   {
-      oStream << location << ".GroupId=" << StringUtils::URLEncode(m_groupId.c_str()) << "&";
+      oStream << location << ".PeeringStatus=" << StringUtils::URLEncode(m_peeringStatus.c_str()) << "&";
+  }
+  if(m_userIdHasBeenSet)
+  {
+      oStream << location << ".UserId=" << StringUtils::URLEncode(m_userId.c_str()) << "&";
   }
   if(m_vpcIdHasBeenSet)
   {
@@ -152,10 +174,6 @@ void UserIdGroupPair::OutputToStream(Aws::OStream& oStream, const char* location
   if(m_vpcPeeringConnectionIdHasBeenSet)
   {
       oStream << location << ".VpcPeeringConnectionId=" << StringUtils::URLEncode(m_vpcPeeringConnectionId.c_str()) << "&";
-  }
-  if(m_peeringStatusHasBeenSet)
-  {
-      oStream << location << ".PeeringStatus=" << StringUtils::URLEncode(m_peeringStatus.c_str()) << "&";
   }
 }
 

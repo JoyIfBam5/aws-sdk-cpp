@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudsearch/CloudSearch_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>A value to use for the field if the field isn't specified for a document.
      * This can be important if you are using the field in an expression and that field
@@ -69,6 +72,7 @@ namespace Model
      */
     inline DoubleOptions& WithDefaultValue(double value) { SetDefaultValue(value); return *this;}
 
+
     /**
      * <p>The name of the source field to map to the field. </p>
      */
@@ -82,7 +86,7 @@ namespace Model
     /**
      * <p>The name of the source field to map to the field. </p>
      */
-    inline void SetSourceField(Aws::String&& value) { m_sourceFieldHasBeenSet = true; m_sourceField = value; }
+    inline void SetSourceField(Aws::String&& value) { m_sourceFieldHasBeenSet = true; m_sourceField = std::move(value); }
 
     /**
      * <p>The name of the source field to map to the field. </p>
@@ -97,12 +101,13 @@ namespace Model
     /**
      * <p>The name of the source field to map to the field. </p>
      */
-    inline DoubleOptions& WithSourceField(Aws::String&& value) { SetSourceField(value); return *this;}
+    inline DoubleOptions& WithSourceField(Aws::String&& value) { SetSourceField(std::move(value)); return *this;}
 
     /**
      * <p>The name of the source field to map to the field. </p>
      */
     inline DoubleOptions& WithSourceField(const char* value) { SetSourceField(value); return *this;}
+
 
     /**
      * <p>Whether facet information can be returned for the field.</p>
@@ -119,6 +124,7 @@ namespace Model
      */
     inline DoubleOptions& WithFacetEnabled(bool value) { SetFacetEnabled(value); return *this;}
 
+
     /**
      * <p>Whether the contents of the field are searchable.</p>
      */
@@ -134,6 +140,7 @@ namespace Model
      */
     inline DoubleOptions& WithSearchEnabled(bool value) { SetSearchEnabled(value); return *this;}
 
+
     /**
      * <p>Whether the contents of the field can be returned in the search results.</p>
      */
@@ -148,6 +155,7 @@ namespace Model
      * <p>Whether the contents of the field can be returned in the search results.</p>
      */
     inline DoubleOptions& WithReturnEnabled(bool value) { SetReturnEnabled(value); return *this;}
+
 
     /**
      * <p>Whether the field can be used to sort the search results.</p>
@@ -165,16 +173,22 @@ namespace Model
     inline DoubleOptions& WithSortEnabled(bool value) { SetSortEnabled(value); return *this;}
 
   private:
+
     double m_defaultValue;
     bool m_defaultValueHasBeenSet;
+
     Aws::String m_sourceField;
     bool m_sourceFieldHasBeenSet;
+
     bool m_facetEnabled;
     bool m_facetEnabledHasBeenSet;
+
     bool m_searchEnabled;
     bool m_searchEnabledHasBeenSet;
+
     bool m_returnEnabled;
     bool m_returnEnabledHasBeenSet;
+
     bool m_sortEnabled;
     bool m_sortEnabledHasBeenSet;
   };

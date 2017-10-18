@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,8 +48,9 @@ namespace Model
   {
   public:
     CreateUsagePlanKeyResult();
-    CreateUsagePlanKeyResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateUsagePlanKeyResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateUsagePlanKeyResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateUsagePlanKeyResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The Id of a usage plan key.</p>
@@ -62,7 +65,7 @@ namespace Model
     /**
      * <p>The Id of a usage plan key.</p>
      */
-    inline void SetId(Aws::String&& value) { m_id = value; }
+    inline void SetId(Aws::String&& value) { m_id = std::move(value); }
 
     /**
      * <p>The Id of a usage plan key.</p>
@@ -77,12 +80,13 @@ namespace Model
     /**
      * <p>The Id of a usage plan key.</p>
      */
-    inline CreateUsagePlanKeyResult& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline CreateUsagePlanKeyResult& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The Id of a usage plan key.</p>
      */
     inline CreateUsagePlanKeyResult& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>The type of a usage plan key. Currently, the valid key type is
@@ -100,7 +104,7 @@ namespace Model
      * <p>The type of a usage plan key. Currently, the valid key type is
      * <code>API_KEY</code>.</p>
      */
-    inline void SetType(Aws::String&& value) { m_type = value; }
+    inline void SetType(Aws::String&& value) { m_type = std::move(value); }
 
     /**
      * <p>The type of a usage plan key. Currently, the valid key type is
@@ -118,13 +122,14 @@ namespace Model
      * <p>The type of a usage plan key. Currently, the valid key type is
      * <code>API_KEY</code>.</p>
      */
-    inline CreateUsagePlanKeyResult& WithType(Aws::String&& value) { SetType(value); return *this;}
+    inline CreateUsagePlanKeyResult& WithType(Aws::String&& value) { SetType(std::move(value)); return *this;}
 
     /**
      * <p>The type of a usage plan key. Currently, the valid key type is
      * <code>API_KEY</code>.</p>
      */
     inline CreateUsagePlanKeyResult& WithType(const char* value) { SetType(value); return *this;}
+
 
     /**
      * <p>The value of a usage plan key.</p>
@@ -139,7 +144,7 @@ namespace Model
     /**
      * <p>The value of a usage plan key.</p>
      */
-    inline void SetValue(Aws::String&& value) { m_value = value; }
+    inline void SetValue(Aws::String&& value) { m_value = std::move(value); }
 
     /**
      * <p>The value of a usage plan key.</p>
@@ -154,12 +159,13 @@ namespace Model
     /**
      * <p>The value of a usage plan key.</p>
      */
-    inline CreateUsagePlanKeyResult& WithValue(Aws::String&& value) { SetValue(value); return *this;}
+    inline CreateUsagePlanKeyResult& WithValue(Aws::String&& value) { SetValue(std::move(value)); return *this;}
 
     /**
      * <p>The value of a usage plan key.</p>
      */
     inline CreateUsagePlanKeyResult& WithValue(const char* value) { SetValue(value); return *this;}
+
 
     /**
      * <p>The name of a usage plan key.</p>
@@ -174,7 +180,7 @@ namespace Model
     /**
      * <p>The name of a usage plan key.</p>
      */
-    inline void SetName(Aws::String&& value) { m_name = value; }
+    inline void SetName(Aws::String&& value) { m_name = std::move(value); }
 
     /**
      * <p>The name of a usage plan key.</p>
@@ -189,7 +195,7 @@ namespace Model
     /**
      * <p>The name of a usage plan key.</p>
      */
-    inline CreateUsagePlanKeyResult& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline CreateUsagePlanKeyResult& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of a usage plan key.</p>
@@ -197,9 +203,13 @@ namespace Model
     inline CreateUsagePlanKeyResult& WithName(const char* value) { SetName(value); return *this;}
 
   private:
+
     Aws::String m_id;
+
     Aws::String m_type;
+
     Aws::String m_value;
+
     Aws::String m_name;
   };
 

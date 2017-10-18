@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/gamelift/GameLift_EXPORTS.h>
 #include <aws/gamelift/GameLiftRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,101 +35,118 @@ namespace Model
   {
   public:
     SearchGameSessionsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "SearchGameSessions"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
 
+
     /**
-     * <p>Unique identifier for a fleet. Each request must reference either a fleet ID
-     * or alias ID, but not both.</p>
+     * <p>Unique identifier for a fleet to search for active game sessions. Each
+     * request must reference either a fleet ID or alias ID, but not both.</p>
      */
     inline const Aws::String& GetFleetId() const{ return m_fleetId; }
 
     /**
-     * <p>Unique identifier for a fleet. Each request must reference either a fleet ID
-     * or alias ID, but not both.</p>
+     * <p>Unique identifier for a fleet to search for active game sessions. Each
+     * request must reference either a fleet ID or alias ID, but not both.</p>
      */
     inline void SetFleetId(const Aws::String& value) { m_fleetIdHasBeenSet = true; m_fleetId = value; }
 
     /**
-     * <p>Unique identifier for a fleet. Each request must reference either a fleet ID
-     * or alias ID, but not both.</p>
+     * <p>Unique identifier for a fleet to search for active game sessions. Each
+     * request must reference either a fleet ID or alias ID, but not both.</p>
      */
-    inline void SetFleetId(Aws::String&& value) { m_fleetIdHasBeenSet = true; m_fleetId = value; }
+    inline void SetFleetId(Aws::String&& value) { m_fleetIdHasBeenSet = true; m_fleetId = std::move(value); }
 
     /**
-     * <p>Unique identifier for a fleet. Each request must reference either a fleet ID
-     * or alias ID, but not both.</p>
+     * <p>Unique identifier for a fleet to search for active game sessions. Each
+     * request must reference either a fleet ID or alias ID, but not both.</p>
      */
     inline void SetFleetId(const char* value) { m_fleetIdHasBeenSet = true; m_fleetId.assign(value); }
 
     /**
-     * <p>Unique identifier for a fleet. Each request must reference either a fleet ID
-     * or alias ID, but not both.</p>
+     * <p>Unique identifier for a fleet to search for active game sessions. Each
+     * request must reference either a fleet ID or alias ID, but not both.</p>
      */
     inline SearchGameSessionsRequest& WithFleetId(const Aws::String& value) { SetFleetId(value); return *this;}
 
     /**
-     * <p>Unique identifier for a fleet. Each request must reference either a fleet ID
-     * or alias ID, but not both.</p>
+     * <p>Unique identifier for a fleet to search for active game sessions. Each
+     * request must reference either a fleet ID or alias ID, but not both.</p>
      */
-    inline SearchGameSessionsRequest& WithFleetId(Aws::String&& value) { SetFleetId(value); return *this;}
+    inline SearchGameSessionsRequest& WithFleetId(Aws::String&& value) { SetFleetId(std::move(value)); return *this;}
 
     /**
-     * <p>Unique identifier for a fleet. Each request must reference either a fleet ID
-     * or alias ID, but not both.</p>
+     * <p>Unique identifier for a fleet to search for active game sessions. Each
+     * request must reference either a fleet ID or alias ID, but not both.</p>
      */
     inline SearchGameSessionsRequest& WithFleetId(const char* value) { SetFleetId(value); return *this;}
 
+
     /**
-     * <p>Unique identifier for a fleet alias. Each request must reference either a
-     * fleet ID or alias ID, but not both.</p>
+     * <p>Unique identifier for an alias associated with the fleet to search for active
+     * game sessions. Each request must reference either a fleet ID or alias ID, but
+     * not both.</p>
      */
     inline const Aws::String& GetAliasId() const{ return m_aliasId; }
 
     /**
-     * <p>Unique identifier for a fleet alias. Each request must reference either a
-     * fleet ID or alias ID, but not both.</p>
+     * <p>Unique identifier for an alias associated with the fleet to search for active
+     * game sessions. Each request must reference either a fleet ID or alias ID, but
+     * not both.</p>
      */
     inline void SetAliasId(const Aws::String& value) { m_aliasIdHasBeenSet = true; m_aliasId = value; }
 
     /**
-     * <p>Unique identifier for a fleet alias. Each request must reference either a
-     * fleet ID or alias ID, but not both.</p>
+     * <p>Unique identifier for an alias associated with the fleet to search for active
+     * game sessions. Each request must reference either a fleet ID or alias ID, but
+     * not both.</p>
      */
-    inline void SetAliasId(Aws::String&& value) { m_aliasIdHasBeenSet = true; m_aliasId = value; }
+    inline void SetAliasId(Aws::String&& value) { m_aliasIdHasBeenSet = true; m_aliasId = std::move(value); }
 
     /**
-     * <p>Unique identifier for a fleet alias. Each request must reference either a
-     * fleet ID or alias ID, but not both.</p>
+     * <p>Unique identifier for an alias associated with the fleet to search for active
+     * game sessions. Each request must reference either a fleet ID or alias ID, but
+     * not both.</p>
      */
     inline void SetAliasId(const char* value) { m_aliasIdHasBeenSet = true; m_aliasId.assign(value); }
 
     /**
-     * <p>Unique identifier for a fleet alias. Each request must reference either a
-     * fleet ID or alias ID, but not both.</p>
+     * <p>Unique identifier for an alias associated with the fleet to search for active
+     * game sessions. Each request must reference either a fleet ID or alias ID, but
+     * not both.</p>
      */
     inline SearchGameSessionsRequest& WithAliasId(const Aws::String& value) { SetAliasId(value); return *this;}
 
     /**
-     * <p>Unique identifier for a fleet alias. Each request must reference either a
-     * fleet ID or alias ID, but not both.</p>
+     * <p>Unique identifier for an alias associated with the fleet to search for active
+     * game sessions. Each request must reference either a fleet ID or alias ID, but
+     * not both.</p>
      */
-    inline SearchGameSessionsRequest& WithAliasId(Aws::String&& value) { SetAliasId(value); return *this;}
+    inline SearchGameSessionsRequest& WithAliasId(Aws::String&& value) { SetAliasId(std::move(value)); return *this;}
 
     /**
-     * <p>Unique identifier for a fleet alias. Each request must reference either a
-     * fleet ID or alias ID, but not both.</p>
+     * <p>Unique identifier for an alias associated with the fleet to search for active
+     * game sessions. Each request must reference either a fleet ID or alias ID, but
+     * not both.</p>
      */
     inline SearchGameSessionsRequest& WithAliasId(const char* value) { SetAliasId(value); return *this;}
+
 
     /**
      * <p>String containing the search criteria for the session search. If no filter
      * expression is included, the request returns results for all game sessions in the
-     * fleet that are in ACTIVE status.</p> <p>A filter expression can contain one or
-     * multiple conditions. Each condition consists of the following:</p> <ul> <li> <p>
-     * <b>Operand</b> -- Name of a game session attribute. Valid values are
-     * <code>gameSessionName</code>, <code>gameSessionId</code>,
+     * fleet that are in <code>ACTIVE</code> status.</p> <p>A filter expression can
+     * contain one or multiple conditions. Each condition consists of the
+     * following:</p> <ul> <li> <p> <b>Operand</b> -- Name of a game session attribute.
+     * Valid values are <code>gameSessionName</code>, <code>gameSessionId</code>,
      * <code>creationTimeMillis</code>, <code>playerSessionCount</code>,
      * <code>maximumSessions</code>, <code>hasAvailablePlayerSessions</code>.</p> </li>
      * <li> <p> <b>Comparator</b> -- Valid comparators are: <code>=</code>,
@@ -156,10 +175,10 @@ namespace Model
     /**
      * <p>String containing the search criteria for the session search. If no filter
      * expression is included, the request returns results for all game sessions in the
-     * fleet that are in ACTIVE status.</p> <p>A filter expression can contain one or
-     * multiple conditions. Each condition consists of the following:</p> <ul> <li> <p>
-     * <b>Operand</b> -- Name of a game session attribute. Valid values are
-     * <code>gameSessionName</code>, <code>gameSessionId</code>,
+     * fleet that are in <code>ACTIVE</code> status.</p> <p>A filter expression can
+     * contain one or multiple conditions. Each condition consists of the
+     * following:</p> <ul> <li> <p> <b>Operand</b> -- Name of a game session attribute.
+     * Valid values are <code>gameSessionName</code>, <code>gameSessionId</code>,
      * <code>creationTimeMillis</code>, <code>playerSessionCount</code>,
      * <code>maximumSessions</code>, <code>hasAvailablePlayerSessions</code>.</p> </li>
      * <li> <p> <b>Comparator</b> -- Valid comparators are: <code>=</code>,
@@ -188,10 +207,10 @@ namespace Model
     /**
      * <p>String containing the search criteria for the session search. If no filter
      * expression is included, the request returns results for all game sessions in the
-     * fleet that are in ACTIVE status.</p> <p>A filter expression can contain one or
-     * multiple conditions. Each condition consists of the following:</p> <ul> <li> <p>
-     * <b>Operand</b> -- Name of a game session attribute. Valid values are
-     * <code>gameSessionName</code>, <code>gameSessionId</code>,
+     * fleet that are in <code>ACTIVE</code> status.</p> <p>A filter expression can
+     * contain one or multiple conditions. Each condition consists of the
+     * following:</p> <ul> <li> <p> <b>Operand</b> -- Name of a game session attribute.
+     * Valid values are <code>gameSessionName</code>, <code>gameSessionId</code>,
      * <code>creationTimeMillis</code>, <code>playerSessionCount</code>,
      * <code>maximumSessions</code>, <code>hasAvailablePlayerSessions</code>.</p> </li>
      * <li> <p> <b>Comparator</b> -- Valid comparators are: <code>=</code>,
@@ -215,15 +234,15 @@ namespace Model
      * an open player slot: <code>"maximumSessions&gt;=10 AND
      * hasAvailablePlayerSessions=true"</code>. </p>
      */
-    inline void SetFilterExpression(Aws::String&& value) { m_filterExpressionHasBeenSet = true; m_filterExpression = value; }
+    inline void SetFilterExpression(Aws::String&& value) { m_filterExpressionHasBeenSet = true; m_filterExpression = std::move(value); }
 
     /**
      * <p>String containing the search criteria for the session search. If no filter
      * expression is included, the request returns results for all game sessions in the
-     * fleet that are in ACTIVE status.</p> <p>A filter expression can contain one or
-     * multiple conditions. Each condition consists of the following:</p> <ul> <li> <p>
-     * <b>Operand</b> -- Name of a game session attribute. Valid values are
-     * <code>gameSessionName</code>, <code>gameSessionId</code>,
+     * fleet that are in <code>ACTIVE</code> status.</p> <p>A filter expression can
+     * contain one or multiple conditions. Each condition consists of the
+     * following:</p> <ul> <li> <p> <b>Operand</b> -- Name of a game session attribute.
+     * Valid values are <code>gameSessionName</code>, <code>gameSessionId</code>,
      * <code>creationTimeMillis</code>, <code>playerSessionCount</code>,
      * <code>maximumSessions</code>, <code>hasAvailablePlayerSessions</code>.</p> </li>
      * <li> <p> <b>Comparator</b> -- Valid comparators are: <code>=</code>,
@@ -252,10 +271,10 @@ namespace Model
     /**
      * <p>String containing the search criteria for the session search. If no filter
      * expression is included, the request returns results for all game sessions in the
-     * fleet that are in ACTIVE status.</p> <p>A filter expression can contain one or
-     * multiple conditions. Each condition consists of the following:</p> <ul> <li> <p>
-     * <b>Operand</b> -- Name of a game session attribute. Valid values are
-     * <code>gameSessionName</code>, <code>gameSessionId</code>,
+     * fleet that are in <code>ACTIVE</code> status.</p> <p>A filter expression can
+     * contain one or multiple conditions. Each condition consists of the
+     * following:</p> <ul> <li> <p> <b>Operand</b> -- Name of a game session attribute.
+     * Valid values are <code>gameSessionName</code>, <code>gameSessionId</code>,
      * <code>creationTimeMillis</code>, <code>playerSessionCount</code>,
      * <code>maximumSessions</code>, <code>hasAvailablePlayerSessions</code>.</p> </li>
      * <li> <p> <b>Comparator</b> -- Valid comparators are: <code>=</code>,
@@ -284,10 +303,10 @@ namespace Model
     /**
      * <p>String containing the search criteria for the session search. If no filter
      * expression is included, the request returns results for all game sessions in the
-     * fleet that are in ACTIVE status.</p> <p>A filter expression can contain one or
-     * multiple conditions. Each condition consists of the following:</p> <ul> <li> <p>
-     * <b>Operand</b> -- Name of a game session attribute. Valid values are
-     * <code>gameSessionName</code>, <code>gameSessionId</code>,
+     * fleet that are in <code>ACTIVE</code> status.</p> <p>A filter expression can
+     * contain one or multiple conditions. Each condition consists of the
+     * following:</p> <ul> <li> <p> <b>Operand</b> -- Name of a game session attribute.
+     * Valid values are <code>gameSessionName</code>, <code>gameSessionId</code>,
      * <code>creationTimeMillis</code>, <code>playerSessionCount</code>,
      * <code>maximumSessions</code>, <code>hasAvailablePlayerSessions</code>.</p> </li>
      * <li> <p> <b>Comparator</b> -- Valid comparators are: <code>=</code>,
@@ -311,15 +330,15 @@ namespace Model
      * an open player slot: <code>"maximumSessions&gt;=10 AND
      * hasAvailablePlayerSessions=true"</code>. </p>
      */
-    inline SearchGameSessionsRequest& WithFilterExpression(Aws::String&& value) { SetFilterExpression(value); return *this;}
+    inline SearchGameSessionsRequest& WithFilterExpression(Aws::String&& value) { SetFilterExpression(std::move(value)); return *this;}
 
     /**
      * <p>String containing the search criteria for the session search. If no filter
      * expression is included, the request returns results for all game sessions in the
-     * fleet that are in ACTIVE status.</p> <p>A filter expression can contain one or
-     * multiple conditions. Each condition consists of the following:</p> <ul> <li> <p>
-     * <b>Operand</b> -- Name of a game session attribute. Valid values are
-     * <code>gameSessionName</code>, <code>gameSessionId</code>,
+     * fleet that are in <code>ACTIVE</code> status.</p> <p>A filter expression can
+     * contain one or multiple conditions. Each condition consists of the
+     * following:</p> <ul> <li> <p> <b>Operand</b> -- Name of a game session attribute.
+     * Valid values are <code>gameSessionName</code>, <code>gameSessionId</code>,
      * <code>creationTimeMillis</code>, <code>playerSessionCount</code>,
      * <code>maximumSessions</code>, <code>hasAvailablePlayerSessions</code>.</p> </li>
      * <li> <p> <b>Comparator</b> -- Valid comparators are: <code>=</code>,
@@ -344,6 +363,7 @@ namespace Model
      * hasAvailablePlayerSessions=true"</code>. </p>
      */
     inline SearchGameSessionsRequest& WithFilterExpression(const char* value) { SetFilterExpression(value); return *this;}
+
 
     /**
      * <p>Instructions on how to sort the search results. If no sort expression is
@@ -391,7 +411,7 @@ namespace Model
      * ASC"</code>. Results with a null value for the sort operand are returned at the
      * end of the list.</p>
      */
-    inline void SetSortExpression(Aws::String&& value) { m_sortExpressionHasBeenSet = true; m_sortExpression = value; }
+    inline void SetSortExpression(Aws::String&& value) { m_sortExpressionHasBeenSet = true; m_sortExpression = std::move(value); }
 
     /**
      * <p>Instructions on how to sort the search results. If no sort expression is
@@ -439,7 +459,7 @@ namespace Model
      * ASC"</code>. Results with a null value for the sort operand are returned at the
      * end of the list.</p>
      */
-    inline SearchGameSessionsRequest& WithSortExpression(Aws::String&& value) { SetSortExpression(value); return *this;}
+    inline SearchGameSessionsRequest& WithSortExpression(Aws::String&& value) { SetSortExpression(std::move(value)); return *this;}
 
     /**
      * <p>Instructions on how to sort the search results. If no sort expression is
@@ -456,6 +476,7 @@ namespace Model
      * end of the list.</p>
      */
     inline SearchGameSessionsRequest& WithSortExpression(const char* value) { SetSortExpression(value); return *this;}
+
 
     /**
      * <p>Maximum number of results to return. Use this parameter with
@@ -481,66 +502,73 @@ namespace Model
      */
     inline SearchGameSessionsRequest& WithLimit(int value) { SetLimit(value); return *this;}
 
+
     /**
-     * <p>Token indicating the start of the next sequential page of results. Use the
-     * token that is returned with a previous call to this action. To specify the start
-     * of the result set, do not specify a value.</p>
+     * <p>Token that indicates the start of the next sequential page of results. Use
+     * the token that is returned with a previous call to this action. To start at the
+     * beginning of the result set, do not specify a value.</p>
      */
     inline const Aws::String& GetNextToken() const{ return m_nextToken; }
 
     /**
-     * <p>Token indicating the start of the next sequential page of results. Use the
-     * token that is returned with a previous call to this action. To specify the start
-     * of the result set, do not specify a value.</p>
+     * <p>Token that indicates the start of the next sequential page of results. Use
+     * the token that is returned with a previous call to this action. To start at the
+     * beginning of the result set, do not specify a value.</p>
      */
     inline void SetNextToken(const Aws::String& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
 
     /**
-     * <p>Token indicating the start of the next sequential page of results. Use the
-     * token that is returned with a previous call to this action. To specify the start
-     * of the result set, do not specify a value.</p>
+     * <p>Token that indicates the start of the next sequential page of results. Use
+     * the token that is returned with a previous call to this action. To start at the
+     * beginning of the result set, do not specify a value.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
-     * <p>Token indicating the start of the next sequential page of results. Use the
-     * token that is returned with a previous call to this action. To specify the start
-     * of the result set, do not specify a value.</p>
+     * <p>Token that indicates the start of the next sequential page of results. Use
+     * the token that is returned with a previous call to this action. To start at the
+     * beginning of the result set, do not specify a value.</p>
      */
     inline void SetNextToken(const char* value) { m_nextTokenHasBeenSet = true; m_nextToken.assign(value); }
 
     /**
-     * <p>Token indicating the start of the next sequential page of results. Use the
-     * token that is returned with a previous call to this action. To specify the start
-     * of the result set, do not specify a value.</p>
+     * <p>Token that indicates the start of the next sequential page of results. Use
+     * the token that is returned with a previous call to this action. To start at the
+     * beginning of the result set, do not specify a value.</p>
      */
     inline SearchGameSessionsRequest& WithNextToken(const Aws::String& value) { SetNextToken(value); return *this;}
 
     /**
-     * <p>Token indicating the start of the next sequential page of results. Use the
-     * token that is returned with a previous call to this action. To specify the start
-     * of the result set, do not specify a value.</p>
+     * <p>Token that indicates the start of the next sequential page of results. Use
+     * the token that is returned with a previous call to this action. To start at the
+     * beginning of the result set, do not specify a value.</p>
      */
-    inline SearchGameSessionsRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline SearchGameSessionsRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
-     * <p>Token indicating the start of the next sequential page of results. Use the
-     * token that is returned with a previous call to this action. To specify the start
-     * of the result set, do not specify a value.</p>
+     * <p>Token that indicates the start of the next sequential page of results. Use
+     * the token that is returned with a previous call to this action. To start at the
+     * beginning of the result set, do not specify a value.</p>
      */
     inline SearchGameSessionsRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::String m_fleetId;
     bool m_fleetIdHasBeenSet;
+
     Aws::String m_aliasId;
     bool m_aliasIdHasBeenSet;
+
     Aws::String m_filterExpression;
     bool m_filterExpressionHasBeenSet;
+
     Aws::String m_sortExpression;
     bool m_sortExpressionHasBeenSet;
+
     int m_limit;
     bool m_limitHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
   };

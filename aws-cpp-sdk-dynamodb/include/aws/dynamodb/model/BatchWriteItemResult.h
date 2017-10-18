@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dynamodb/DynamoDB_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
@@ -20,6 +21,7 @@
 #include <aws/dynamodb/model/ConsumedCapacity.h>
 #include <aws/dynamodb/model/WriteRequest.h>
 #include <aws/dynamodb/model/ItemCollectionMetrics.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,8 +49,9 @@ namespace Model
   {
   public:
     BatchWriteItemResult();
-    BatchWriteItemResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    BatchWriteItemResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    BatchWriteItemResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    BatchWriteItemResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A map of tables and requests against those tables that were not processed.
@@ -132,7 +135,7 @@ namespace Model
      * definition.</p> </li> </ul> </li> </ul> <p>If there are no unprocessed items
      * remaining, the response contains an empty <code>UnprocessedItems</code> map.</p>
      */
-    inline void SetUnprocessedItems(Aws::Map<Aws::String, Aws::Vector<WriteRequest>>&& value) { m_unprocessedItems = value; }
+    inline void SetUnprocessedItems(Aws::Map<Aws::String, Aws::Vector<WriteRequest>>&& value) { m_unprocessedItems = std::move(value); }
 
     /**
      * <p>A map of tables and requests against those tables that were not processed.
@@ -188,7 +191,7 @@ namespace Model
      * definition.</p> </li> </ul> </li> </ul> <p>If there are no unprocessed items
      * remaining, the response contains an empty <code>UnprocessedItems</code> map.</p>
      */
-    inline BatchWriteItemResult& WithUnprocessedItems(Aws::Map<Aws::String, Aws::Vector<WriteRequest>>&& value) { SetUnprocessedItems(value); return *this;}
+    inline BatchWriteItemResult& WithUnprocessedItems(Aws::Map<Aws::String, Aws::Vector<WriteRequest>>&& value) { SetUnprocessedItems(std::move(value)); return *this;}
 
     /**
      * <p>A map of tables and requests against those tables that were not processed.
@@ -216,7 +219,7 @@ namespace Model
      * definition.</p> </li> </ul> </li> </ul> <p>If there are no unprocessed items
      * remaining, the response contains an empty <code>UnprocessedItems</code> map.</p>
      */
-    inline BatchWriteItemResult& AddUnprocessedItems(const Aws::String& key, const Aws::Vector<WriteRequest>& value) { m_unprocessedItems[key] = value; return *this; }
+    inline BatchWriteItemResult& AddUnprocessedItems(const Aws::String& key, const Aws::Vector<WriteRequest>& value) { m_unprocessedItems.emplace(key, value); return *this; }
 
     /**
      * <p>A map of tables and requests against those tables that were not processed.
@@ -244,7 +247,7 @@ namespace Model
      * definition.</p> </li> </ul> </li> </ul> <p>If there are no unprocessed items
      * remaining, the response contains an empty <code>UnprocessedItems</code> map.</p>
      */
-    inline BatchWriteItemResult& AddUnprocessedItems(Aws::String&& key, const Aws::Vector<WriteRequest>& value) { m_unprocessedItems[key] = value; return *this; }
+    inline BatchWriteItemResult& AddUnprocessedItems(Aws::String&& key, const Aws::Vector<WriteRequest>& value) { m_unprocessedItems.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A map of tables and requests against those tables that were not processed.
@@ -272,7 +275,7 @@ namespace Model
      * definition.</p> </li> </ul> </li> </ul> <p>If there are no unprocessed items
      * remaining, the response contains an empty <code>UnprocessedItems</code> map.</p>
      */
-    inline BatchWriteItemResult& AddUnprocessedItems(const Aws::String& key, Aws::Vector<WriteRequest>&& value) { m_unprocessedItems[key] = value; return *this; }
+    inline BatchWriteItemResult& AddUnprocessedItems(const Aws::String& key, Aws::Vector<WriteRequest>&& value) { m_unprocessedItems.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A map of tables and requests against those tables that were not processed.
@@ -300,7 +303,7 @@ namespace Model
      * definition.</p> </li> </ul> </li> </ul> <p>If there are no unprocessed items
      * remaining, the response contains an empty <code>UnprocessedItems</code> map.</p>
      */
-    inline BatchWriteItemResult& AddUnprocessedItems(Aws::String&& key, Aws::Vector<WriteRequest>&& value) { m_unprocessedItems[key] = value; return *this; }
+    inline BatchWriteItemResult& AddUnprocessedItems(Aws::String&& key, Aws::Vector<WriteRequest>&& value) { m_unprocessedItems.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>A map of tables and requests against those tables that were not processed.
@@ -328,7 +331,7 @@ namespace Model
      * definition.</p> </li> </ul> </li> </ul> <p>If there are no unprocessed items
      * remaining, the response contains an empty <code>UnprocessedItems</code> map.</p>
      */
-    inline BatchWriteItemResult& AddUnprocessedItems(const char* key, Aws::Vector<WriteRequest>&& value) { m_unprocessedItems[key] = value; return *this; }
+    inline BatchWriteItemResult& AddUnprocessedItems(const char* key, Aws::Vector<WriteRequest>&& value) { m_unprocessedItems.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A map of tables and requests against those tables that were not processed.
@@ -356,7 +359,8 @@ namespace Model
      * definition.</p> </li> </ul> </li> </ul> <p>If there are no unprocessed items
      * remaining, the response contains an empty <code>UnprocessedItems</code> map.</p>
      */
-    inline BatchWriteItemResult& AddUnprocessedItems(const char* key, const Aws::Vector<WriteRequest>& value) { m_unprocessedItems[key] = value; return *this; }
+    inline BatchWriteItemResult& AddUnprocessedItems(const char* key, const Aws::Vector<WriteRequest>& value) { m_unprocessedItems.emplace(key, value); return *this; }
+
 
     /**
      * <p>A list of tables that were processed by <code>BatchWriteItem</code> and, for
@@ -410,7 +414,7 @@ namespace Model
      * over time; therefore, do not rely on the precision or accuracy of the
      * estimate.</p> </li> </ul>
      */
-    inline void SetItemCollectionMetrics(Aws::Map<Aws::String, Aws::Vector<ItemCollectionMetrics>>&& value) { m_itemCollectionMetrics = value; }
+    inline void SetItemCollectionMetrics(Aws::Map<Aws::String, Aws::Vector<ItemCollectionMetrics>>&& value) { m_itemCollectionMetrics = std::move(value); }
 
     /**
      * <p>A list of tables that were processed by <code>BatchWriteItem</code> and, for
@@ -446,7 +450,7 @@ namespace Model
      * over time; therefore, do not rely on the precision or accuracy of the
      * estimate.</p> </li> </ul>
      */
-    inline BatchWriteItemResult& WithItemCollectionMetrics(Aws::Map<Aws::String, Aws::Vector<ItemCollectionMetrics>>&& value) { SetItemCollectionMetrics(value); return *this;}
+    inline BatchWriteItemResult& WithItemCollectionMetrics(Aws::Map<Aws::String, Aws::Vector<ItemCollectionMetrics>>&& value) { SetItemCollectionMetrics(std::move(value)); return *this;}
 
     /**
      * <p>A list of tables that were processed by <code>BatchWriteItem</code> and, for
@@ -464,7 +468,7 @@ namespace Model
      * over time; therefore, do not rely on the precision or accuracy of the
      * estimate.</p> </li> </ul>
      */
-    inline BatchWriteItemResult& AddItemCollectionMetrics(const Aws::String& key, const Aws::Vector<ItemCollectionMetrics>& value) { m_itemCollectionMetrics[key] = value; return *this; }
+    inline BatchWriteItemResult& AddItemCollectionMetrics(const Aws::String& key, const Aws::Vector<ItemCollectionMetrics>& value) { m_itemCollectionMetrics.emplace(key, value); return *this; }
 
     /**
      * <p>A list of tables that were processed by <code>BatchWriteItem</code> and, for
@@ -482,7 +486,7 @@ namespace Model
      * over time; therefore, do not rely on the precision or accuracy of the
      * estimate.</p> </li> </ul>
      */
-    inline BatchWriteItemResult& AddItemCollectionMetrics(Aws::String&& key, const Aws::Vector<ItemCollectionMetrics>& value) { m_itemCollectionMetrics[key] = value; return *this; }
+    inline BatchWriteItemResult& AddItemCollectionMetrics(Aws::String&& key, const Aws::Vector<ItemCollectionMetrics>& value) { m_itemCollectionMetrics.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>A list of tables that were processed by <code>BatchWriteItem</code> and, for
@@ -500,7 +504,7 @@ namespace Model
      * over time; therefore, do not rely on the precision or accuracy of the
      * estimate.</p> </li> </ul>
      */
-    inline BatchWriteItemResult& AddItemCollectionMetrics(const Aws::String& key, Aws::Vector<ItemCollectionMetrics>&& value) { m_itemCollectionMetrics[key] = value; return *this; }
+    inline BatchWriteItemResult& AddItemCollectionMetrics(const Aws::String& key, Aws::Vector<ItemCollectionMetrics>&& value) { m_itemCollectionMetrics.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A list of tables that were processed by <code>BatchWriteItem</code> and, for
@@ -518,7 +522,7 @@ namespace Model
      * over time; therefore, do not rely on the precision or accuracy of the
      * estimate.</p> </li> </ul>
      */
-    inline BatchWriteItemResult& AddItemCollectionMetrics(Aws::String&& key, Aws::Vector<ItemCollectionMetrics>&& value) { m_itemCollectionMetrics[key] = value; return *this; }
+    inline BatchWriteItemResult& AddItemCollectionMetrics(Aws::String&& key, Aws::Vector<ItemCollectionMetrics>&& value) { m_itemCollectionMetrics.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>A list of tables that were processed by <code>BatchWriteItem</code> and, for
@@ -536,7 +540,7 @@ namespace Model
      * over time; therefore, do not rely on the precision or accuracy of the
      * estimate.</p> </li> </ul>
      */
-    inline BatchWriteItemResult& AddItemCollectionMetrics(const char* key, Aws::Vector<ItemCollectionMetrics>&& value) { m_itemCollectionMetrics[key] = value; return *this; }
+    inline BatchWriteItemResult& AddItemCollectionMetrics(const char* key, Aws::Vector<ItemCollectionMetrics>&& value) { m_itemCollectionMetrics.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>A list of tables that were processed by <code>BatchWriteItem</code> and, for
@@ -554,7 +558,8 @@ namespace Model
      * over time; therefore, do not rely on the precision or accuracy of the
      * estimate.</p> </li> </ul>
      */
-    inline BatchWriteItemResult& AddItemCollectionMetrics(const char* key, const Aws::Vector<ItemCollectionMetrics>& value) { m_itemCollectionMetrics[key] = value; return *this; }
+    inline BatchWriteItemResult& AddItemCollectionMetrics(const char* key, const Aws::Vector<ItemCollectionMetrics>& value) { m_itemCollectionMetrics.emplace(key, value); return *this; }
+
 
     /**
      * <p>The capacity units consumed by the entire <code>BatchWriteItem</code>
@@ -581,7 +586,7 @@ namespace Model
      * </li> <li> <p> <code>CapacityUnits</code> - The total number of capacity units
      * consumed.</p> </li> </ul>
      */
-    inline void SetConsumedCapacity(Aws::Vector<ConsumedCapacity>&& value) { m_consumedCapacity = value; }
+    inline void SetConsumedCapacity(Aws::Vector<ConsumedCapacity>&& value) { m_consumedCapacity = std::move(value); }
 
     /**
      * <p>The capacity units consumed by the entire <code>BatchWriteItem</code>
@@ -599,7 +604,7 @@ namespace Model
      * </li> <li> <p> <code>CapacityUnits</code> - The total number of capacity units
      * consumed.</p> </li> </ul>
      */
-    inline BatchWriteItemResult& WithConsumedCapacity(Aws::Vector<ConsumedCapacity>&& value) { SetConsumedCapacity(value); return *this;}
+    inline BatchWriteItemResult& WithConsumedCapacity(Aws::Vector<ConsumedCapacity>&& value) { SetConsumedCapacity(std::move(value)); return *this;}
 
     /**
      * <p>The capacity units consumed by the entire <code>BatchWriteItem</code>
@@ -617,11 +622,14 @@ namespace Model
      * </li> <li> <p> <code>CapacityUnits</code> - The total number of capacity units
      * consumed.</p> </li> </ul>
      */
-    inline BatchWriteItemResult& AddConsumedCapacity(ConsumedCapacity&& value) { m_consumedCapacity.push_back(value); return *this; }
+    inline BatchWriteItemResult& AddConsumedCapacity(ConsumedCapacity&& value) { m_consumedCapacity.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Map<Aws::String, Aws::Vector<WriteRequest>> m_unprocessedItems;
+
     Aws::Map<Aws::String, Aws::Vector<ItemCollectionMetrics>> m_itemCollectionMetrics;
+
     Aws::Vector<ConsumedCapacity> m_consumedCapacity;
   };
 

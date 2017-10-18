@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudsearchdomain/CloudSearchDomain_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     SuggestionMatch& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The string that matches the query string specified in the
      * <code>SuggestRequest</code>. </p>
@@ -60,7 +63,7 @@ namespace Model
      * <p>The string that matches the query string specified in the
      * <code>SuggestRequest</code>. </p>
      */
-    inline void SetSuggestion(Aws::String&& value) { m_suggestionHasBeenSet = true; m_suggestion = value; }
+    inline void SetSuggestion(Aws::String&& value) { m_suggestionHasBeenSet = true; m_suggestion = std::move(value); }
 
     /**
      * <p>The string that matches the query string specified in the
@@ -78,13 +81,14 @@ namespace Model
      * <p>The string that matches the query string specified in the
      * <code>SuggestRequest</code>. </p>
      */
-    inline SuggestionMatch& WithSuggestion(Aws::String&& value) { SetSuggestion(value); return *this;}
+    inline SuggestionMatch& WithSuggestion(Aws::String&& value) { SetSuggestion(std::move(value)); return *this;}
 
     /**
      * <p>The string that matches the query string specified in the
      * <code>SuggestRequest</code>. </p>
      */
     inline SuggestionMatch& WithSuggestion(const char* value) { SetSuggestion(value); return *this;}
+
 
     /**
      * <p>The relevance score of a suggested match.</p>
@@ -101,6 +105,7 @@ namespace Model
      */
     inline SuggestionMatch& WithScore(long long value) { SetScore(value); return *this;}
 
+
     /**
      * <p>The document ID of the suggested document.</p>
      */
@@ -114,7 +119,7 @@ namespace Model
     /**
      * <p>The document ID of the suggested document.</p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>The document ID of the suggested document.</p>
@@ -129,7 +134,7 @@ namespace Model
     /**
      * <p>The document ID of the suggested document.</p>
      */
-    inline SuggestionMatch& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline SuggestionMatch& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The document ID of the suggested document.</p>
@@ -137,10 +142,13 @@ namespace Model
     inline SuggestionMatch& WithId(const char* value) { SetId(value); return *this;}
 
   private:
+
     Aws::String m_suggestion;
     bool m_suggestionHasBeenSet;
+
     long long m_score;
     bool m_scoreHasBeenSet;
+
     Aws::String m_id;
     bool m_idHasBeenSet;
   };

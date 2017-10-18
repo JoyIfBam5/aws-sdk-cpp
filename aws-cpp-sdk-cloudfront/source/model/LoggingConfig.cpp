@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/cloudfront/model/LoggingConfig.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -91,17 +92,17 @@ void LoggingConfig::AddToNode(XmlNode& parentNode) const
   if(m_enabledHasBeenSet)
   {
    XmlNode enabledNode = parentNode.CreateChildElement("Enabled");
-  ss << m_enabled;
+   ss << std::boolalpha << m_enabled;
    enabledNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_includeCookiesHasBeenSet)
   {
    XmlNode includeCookiesNode = parentNode.CreateChildElement("IncludeCookies");
-  ss << m_includeCookies;
+   ss << std::boolalpha << m_includeCookies;
    includeCookiesNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_bucketHasBeenSet)

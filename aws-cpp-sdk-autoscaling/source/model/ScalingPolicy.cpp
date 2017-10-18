@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/autoscaling/model/ScalingPolicy.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -47,7 +48,8 @@ ScalingPolicy::ScalingPolicy() :
     m_metricAggregationTypeHasBeenSet(false),
     m_estimatedInstanceWarmup(0),
     m_estimatedInstanceWarmupHasBeenSet(false),
-    m_alarmsHasBeenSet(false)
+    m_alarmsHasBeenSet(false),
+    m_targetTrackingConfigurationHasBeenSet(false)
 {
 }
 
@@ -69,7 +71,8 @@ ScalingPolicy::ScalingPolicy(const XmlNode& xmlNode) :
     m_metricAggregationTypeHasBeenSet(false),
     m_estimatedInstanceWarmup(0),
     m_estimatedInstanceWarmupHasBeenSet(false),
-    m_alarmsHasBeenSet(false)
+    m_alarmsHasBeenSet(false),
+    m_targetTrackingConfigurationHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -170,6 +173,12 @@ ScalingPolicy& ScalingPolicy::operator =(const XmlNode& xmlNode)
 
       m_alarmsHasBeenSet = true;
     }
+    XmlNode targetTrackingConfigurationNode = resultNode.FirstChild("TargetTrackingConfiguration");
+    if(!targetTrackingConfigurationNode.IsNull())
+    {
+      m_targetTrackingConfiguration = targetTrackingConfigurationNode;
+      m_targetTrackingConfigurationHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -254,6 +263,13 @@ void ScalingPolicy::OutputToStream(Aws::OStream& oStream, const char* location, 
       }
   }
 
+  if(m_targetTrackingConfigurationHasBeenSet)
+  {
+      Aws::StringStream targetTrackingConfigurationLocationAndMemberSs;
+      targetTrackingConfigurationLocationAndMemberSs << location << index << locationValue << ".TargetTrackingConfiguration";
+      m_targetTrackingConfiguration.OutputToStream(oStream, targetTrackingConfigurationLocationAndMemberSs.str().c_str());
+  }
+
 }
 
 void ScalingPolicy::OutputToStream(Aws::OStream& oStream, const char* location) const
@@ -321,6 +337,12 @@ void ScalingPolicy::OutputToStream(Aws::OStream& oStream, const char* location) 
         alarmsSs << location <<  ".Alarms.member." << alarmsIdx++;
         item.OutputToStream(oStream, alarmsSs.str().c_str());
       }
+  }
+  if(m_targetTrackingConfigurationHasBeenSet)
+  {
+      Aws::String targetTrackingConfigurationLocationAndMember(location);
+      targetTrackingConfigurationLocationAndMember += ".TargetTrackingConfiguration";
+      m_targetTrackingConfiguration.OutputToStream(oStream, targetTrackingConfigurationLocationAndMember.c_str());
   }
 }
 

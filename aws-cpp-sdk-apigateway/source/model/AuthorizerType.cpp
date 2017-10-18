@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/apigateway/model/AuthorizerType.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -30,6 +31,7 @@ namespace Aws
       {
 
         static const int TOKEN_HASH = HashingUtils::HashString("TOKEN");
+        static const int REQUEST_HASH = HashingUtils::HashString("REQUEST");
         static const int COGNITO_USER_POOLS_HASH = HashingUtils::HashString("COGNITO_USER_POOLS");
 
 
@@ -39,6 +41,10 @@ namespace Aws
           if (hashCode == TOKEN_HASH)
           {
             return AuthorizerType::TOKEN;
+          }
+          else if (hashCode == REQUEST_HASH)
+          {
+            return AuthorizerType::REQUEST;
           }
           else if (hashCode == COGNITO_USER_POOLS_HASH)
           {
@@ -60,6 +66,8 @@ namespace Aws
           {
           case AuthorizerType::TOKEN:
             return "TOKEN";
+          case AuthorizerType::REQUEST:
+            return "REQUEST";
           case AuthorizerType::COGNITO_USER_POOLS:
             return "COGNITO_USER_POOLS";
           default:

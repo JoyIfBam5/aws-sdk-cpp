@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/apigateway/APIGatewayRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,9 +40,17 @@ namespace Model
   {
   public:
     GetModelRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "GetModel"; }
+
     Aws::String SerializePayload() const override;
 
     void AddQueryStringParameters(Aws::Http::URI& uri) const override;
+
 
     /**
      * <p>The <a>RestApi</a> identifier under which the <a>Model</a> exists.</p>
@@ -55,7 +65,7 @@ namespace Model
     /**
      * <p>The <a>RestApi</a> identifier under which the <a>Model</a> exists.</p>
      */
-    inline void SetRestApiId(Aws::String&& value) { m_restApiIdHasBeenSet = true; m_restApiId = value; }
+    inline void SetRestApiId(Aws::String&& value) { m_restApiIdHasBeenSet = true; m_restApiId = std::move(value); }
 
     /**
      * <p>The <a>RestApi</a> identifier under which the <a>Model</a> exists.</p>
@@ -70,12 +80,13 @@ namespace Model
     /**
      * <p>The <a>RestApi</a> identifier under which the <a>Model</a> exists.</p>
      */
-    inline GetModelRequest& WithRestApiId(Aws::String&& value) { SetRestApiId(value); return *this;}
+    inline GetModelRequest& WithRestApiId(Aws::String&& value) { SetRestApiId(std::move(value)); return *this;}
 
     /**
      * <p>The <a>RestApi</a> identifier under which the <a>Model</a> exists.</p>
      */
     inline GetModelRequest& WithRestApiId(const char* value) { SetRestApiId(value); return *this;}
+
 
     /**
      * <p>The name of the model as an identifier.</p>
@@ -90,7 +101,7 @@ namespace Model
     /**
      * <p>The name of the model as an identifier.</p>
      */
-    inline void SetModelName(Aws::String&& value) { m_modelNameHasBeenSet = true; m_modelName = value; }
+    inline void SetModelName(Aws::String&& value) { m_modelNameHasBeenSet = true; m_modelName = std::move(value); }
 
     /**
      * <p>The name of the model as an identifier.</p>
@@ -105,12 +116,13 @@ namespace Model
     /**
      * <p>The name of the model as an identifier.</p>
      */
-    inline GetModelRequest& WithModelName(Aws::String&& value) { SetModelName(value); return *this;}
+    inline GetModelRequest& WithModelName(Aws::String&& value) { SetModelName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the model as an identifier.</p>
      */
     inline GetModelRequest& WithModelName(const char* value) { SetModelName(value); return *this;}
+
 
     /**
      * <p>A query parameter of a Boolean value to resolve (<code>true</code>) all
@@ -134,10 +146,13 @@ namespace Model
     inline GetModelRequest& WithFlatten(bool value) { SetFlatten(value); return *this;}
 
   private:
+
     Aws::String m_restApiId;
     bool m_restApiIdHasBeenSet;
+
     Aws::String m_modelName;
     bool m_modelNameHasBeenSet;
+
     bool m_flatten;
     bool m_flattenHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/waf/WAF_EXPORTS.h>
 #include <aws/waf/model/ByteMatchSet.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     GetByteMatchSetResult();
-    GetByteMatchSetResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetByteMatchSetResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetByteMatchSetResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetByteMatchSetResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the <a>ByteMatchSet</a> that you specified in the
@@ -79,7 +82,7 @@ namespace Model
      * <p> <a>FieldToMatch</a>: Contains <code>Data</code> and <code>Type</code> </p>
      * </li> </ul>
      */
-    inline void SetByteMatchSet(ByteMatchSet&& value) { m_byteMatchSet = value; }
+    inline void SetByteMatchSet(ByteMatchSet&& value) { m_byteMatchSet = std::move(value); }
 
     /**
      * <p>Information about the <a>ByteMatchSet</a> that you specified in the
@@ -107,9 +110,10 @@ namespace Model
      * <p> <a>FieldToMatch</a>: Contains <code>Data</code> and <code>Type</code> </p>
      * </li> </ul>
      */
-    inline GetByteMatchSetResult& WithByteMatchSet(ByteMatchSet&& value) { SetByteMatchSet(value); return *this;}
+    inline GetByteMatchSetResult& WithByteMatchSet(ByteMatchSet&& value) { SetByteMatchSet(std::move(value)); return *this;}
 
   private:
+
     ByteMatchSet m_byteMatchSet;
   };
 

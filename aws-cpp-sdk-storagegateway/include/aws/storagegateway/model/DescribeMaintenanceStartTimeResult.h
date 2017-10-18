@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/storagegateway/StorageGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,8 +48,9 @@ namespace Model
   {
   public:
     DescribeMaintenanceStartTimeResult();
-    DescribeMaintenanceStartTimeResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeMaintenanceStartTimeResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeMaintenanceStartTimeResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeMaintenanceStartTimeResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     
     inline const Aws::String& GetGatewayARN() const{ return m_gatewayARN; }
@@ -56,7 +59,7 @@ namespace Model
     inline void SetGatewayARN(const Aws::String& value) { m_gatewayARN = value; }
 
     
-    inline void SetGatewayARN(Aws::String&& value) { m_gatewayARN = value; }
+    inline void SetGatewayARN(Aws::String&& value) { m_gatewayARN = std::move(value); }
 
     
     inline void SetGatewayARN(const char* value) { m_gatewayARN.assign(value); }
@@ -65,10 +68,11 @@ namespace Model
     inline DescribeMaintenanceStartTimeResult& WithGatewayARN(const Aws::String& value) { SetGatewayARN(value); return *this;}
 
     
-    inline DescribeMaintenanceStartTimeResult& WithGatewayARN(Aws::String&& value) { SetGatewayARN(value); return *this;}
+    inline DescribeMaintenanceStartTimeResult& WithGatewayARN(Aws::String&& value) { SetGatewayARN(std::move(value)); return *this;}
 
     
     inline DescribeMaintenanceStartTimeResult& WithGatewayARN(const char* value) { SetGatewayARN(value); return *this;}
+
 
     /**
      * <p>The hour component of the maintenance start time represented as <i>hh</i>,
@@ -91,6 +95,7 @@ namespace Model
      */
     inline DescribeMaintenanceStartTimeResult& WithHourOfDay(int value) { SetHourOfDay(value); return *this;}
 
+
     /**
      * <p>The minute component of the maintenance start time represented as <i>mm</i>,
      * where <i>mm</i> is the minute (0 to 59). The minute of the hour is in the time
@@ -111,6 +116,7 @@ namespace Model
      * zone of the gateway.</p>
      */
     inline DescribeMaintenanceStartTimeResult& WithMinuteOfHour(int value) { SetMinuteOfHour(value); return *this;}
+
 
     /**
      * <p>An ordinal number between 0 and 6 that represents the day of the week, where
@@ -133,6 +139,7 @@ namespace Model
      */
     inline DescribeMaintenanceStartTimeResult& WithDayOfWeek(int value) { SetDayOfWeek(value); return *this;}
 
+
     
     inline const Aws::String& GetTimezone() const{ return m_timezone; }
 
@@ -140,7 +147,7 @@ namespace Model
     inline void SetTimezone(const Aws::String& value) { m_timezone = value; }
 
     
-    inline void SetTimezone(Aws::String&& value) { m_timezone = value; }
+    inline void SetTimezone(Aws::String&& value) { m_timezone = std::move(value); }
 
     
     inline void SetTimezone(const char* value) { m_timezone.assign(value); }
@@ -149,16 +156,21 @@ namespace Model
     inline DescribeMaintenanceStartTimeResult& WithTimezone(const Aws::String& value) { SetTimezone(value); return *this;}
 
     
-    inline DescribeMaintenanceStartTimeResult& WithTimezone(Aws::String&& value) { SetTimezone(value); return *this;}
+    inline DescribeMaintenanceStartTimeResult& WithTimezone(Aws::String&& value) { SetTimezone(std::move(value)); return *this;}
 
     
     inline DescribeMaintenanceStartTimeResult& WithTimezone(const char* value) { SetTimezone(value); return *this;}
 
   private:
+
     Aws::String m_gatewayARN;
+
     int m_hourOfDay;
+
     int m_minuteOfHour;
+
     int m_dayOfWeek;
+
     Aws::String m_timezone;
   };
 

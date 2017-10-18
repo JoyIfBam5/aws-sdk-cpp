@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticloadbalancingv2/ElasticLoadBalancingv2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/elasticloadbalancingv2/model/TargetHealthStateEnum.h>
 #include <aws/elasticloadbalancingv2/model/TargetHealthReasonEnum.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +51,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The state of the target.</p>
      */
@@ -62,7 +65,7 @@ namespace Model
     /**
      * <p>The state of the target.</p>
      */
-    inline void SetState(TargetHealthStateEnum&& value) { m_stateHasBeenSet = true; m_state = value; }
+    inline void SetState(TargetHealthStateEnum&& value) { m_stateHasBeenSet = true; m_state = std::move(value); }
 
     /**
      * <p>The state of the target.</p>
@@ -72,7 +75,8 @@ namespace Model
     /**
      * <p>The state of the target.</p>
      */
-    inline TargetHealth& WithState(TargetHealthStateEnum&& value) { SetState(value); return *this;}
+    inline TargetHealth& WithState(TargetHealthStateEnum&& value) { SetState(std::move(value)); return *this;}
+
 
     /**
      * <p>The reason code. If the target state is <code>healthy</code>, a reason code
@@ -96,12 +100,13 @@ namespace Model
      * <code>Target.NotRegistered</code> - The target is not registered with the target
      * group.</p> </li> <li> <p> <code>Target.NotInUse</code> - The target group is not
      * used by any load balancer or the target is in an Availability Zone that is not
-     * enabled for its load balancer.</p> </li> <li> <p>
-     * <code>Target.InvalidState</code> - The target is in the stopped or terminated
-     * state.</p> </li> </ul> <p>If the target state is <code>draining</code>, the
-     * reason code can be the following value:</p> <ul> <li> <p>
-     * <code>Target.DeregistrationInProgress</code> - The target is in the process of
-     * being deregistered and the deregistration delay period has not expired.</p>
+     * enabled for its load balancer.</p> </li> <li> <p> <code>Target.IpUnusable</code>
+     * - The target IP address is reserved for use by a load balancer.</p> </li> <li>
+     * <p> <code>Target.InvalidState</code> - The target is in the stopped or
+     * terminated state.</p> </li> </ul> <p>If the target state is
+     * <code>draining</code>, the reason code can be the following value:</p> <ul> <li>
+     * <p> <code>Target.DeregistrationInProgress</code> - The target is in the process
+     * of being deregistered and the deregistration delay period has not expired.</p>
      * </li> </ul>
      */
     inline const TargetHealthReasonEnum& GetReason() const{ return m_reason; }
@@ -128,12 +133,13 @@ namespace Model
      * <code>Target.NotRegistered</code> - The target is not registered with the target
      * group.</p> </li> <li> <p> <code>Target.NotInUse</code> - The target group is not
      * used by any load balancer or the target is in an Availability Zone that is not
-     * enabled for its load balancer.</p> </li> <li> <p>
-     * <code>Target.InvalidState</code> - The target is in the stopped or terminated
-     * state.</p> </li> </ul> <p>If the target state is <code>draining</code>, the
-     * reason code can be the following value:</p> <ul> <li> <p>
-     * <code>Target.DeregistrationInProgress</code> - The target is in the process of
-     * being deregistered and the deregistration delay period has not expired.</p>
+     * enabled for its load balancer.</p> </li> <li> <p> <code>Target.IpUnusable</code>
+     * - The target IP address is reserved for use by a load balancer.</p> </li> <li>
+     * <p> <code>Target.InvalidState</code> - The target is in the stopped or
+     * terminated state.</p> </li> </ul> <p>If the target state is
+     * <code>draining</code>, the reason code can be the following value:</p> <ul> <li>
+     * <p> <code>Target.DeregistrationInProgress</code> - The target is in the process
+     * of being deregistered and the deregistration delay period has not expired.</p>
      * </li> </ul>
      */
     inline void SetReason(const TargetHealthReasonEnum& value) { m_reasonHasBeenSet = true; m_reason = value; }
@@ -160,15 +166,16 @@ namespace Model
      * <code>Target.NotRegistered</code> - The target is not registered with the target
      * group.</p> </li> <li> <p> <code>Target.NotInUse</code> - The target group is not
      * used by any load balancer or the target is in an Availability Zone that is not
-     * enabled for its load balancer.</p> </li> <li> <p>
-     * <code>Target.InvalidState</code> - The target is in the stopped or terminated
-     * state.</p> </li> </ul> <p>If the target state is <code>draining</code>, the
-     * reason code can be the following value:</p> <ul> <li> <p>
-     * <code>Target.DeregistrationInProgress</code> - The target is in the process of
-     * being deregistered and the deregistration delay period has not expired.</p>
+     * enabled for its load balancer.</p> </li> <li> <p> <code>Target.IpUnusable</code>
+     * - The target IP address is reserved for use by a load balancer.</p> </li> <li>
+     * <p> <code>Target.InvalidState</code> - The target is in the stopped or
+     * terminated state.</p> </li> </ul> <p>If the target state is
+     * <code>draining</code>, the reason code can be the following value:</p> <ul> <li>
+     * <p> <code>Target.DeregistrationInProgress</code> - The target is in the process
+     * of being deregistered and the deregistration delay period has not expired.</p>
      * </li> </ul>
      */
-    inline void SetReason(TargetHealthReasonEnum&& value) { m_reasonHasBeenSet = true; m_reason = value; }
+    inline void SetReason(TargetHealthReasonEnum&& value) { m_reasonHasBeenSet = true; m_reason = std::move(value); }
 
     /**
      * <p>The reason code. If the target state is <code>healthy</code>, a reason code
@@ -192,12 +199,13 @@ namespace Model
      * <code>Target.NotRegistered</code> - The target is not registered with the target
      * group.</p> </li> <li> <p> <code>Target.NotInUse</code> - The target group is not
      * used by any load balancer or the target is in an Availability Zone that is not
-     * enabled for its load balancer.</p> </li> <li> <p>
-     * <code>Target.InvalidState</code> - The target is in the stopped or terminated
-     * state.</p> </li> </ul> <p>If the target state is <code>draining</code>, the
-     * reason code can be the following value:</p> <ul> <li> <p>
-     * <code>Target.DeregistrationInProgress</code> - The target is in the process of
-     * being deregistered and the deregistration delay period has not expired.</p>
+     * enabled for its load balancer.</p> </li> <li> <p> <code>Target.IpUnusable</code>
+     * - The target IP address is reserved for use by a load balancer.</p> </li> <li>
+     * <p> <code>Target.InvalidState</code> - The target is in the stopped or
+     * terminated state.</p> </li> </ul> <p>If the target state is
+     * <code>draining</code>, the reason code can be the following value:</p> <ul> <li>
+     * <p> <code>Target.DeregistrationInProgress</code> - The target is in the process
+     * of being deregistered and the deregistration delay period has not expired.</p>
      * </li> </ul>
      */
     inline TargetHealth& WithReason(const TargetHealthReasonEnum& value) { SetReason(value); return *this;}
@@ -224,15 +232,17 @@ namespace Model
      * <code>Target.NotRegistered</code> - The target is not registered with the target
      * group.</p> </li> <li> <p> <code>Target.NotInUse</code> - The target group is not
      * used by any load balancer or the target is in an Availability Zone that is not
-     * enabled for its load balancer.</p> </li> <li> <p>
-     * <code>Target.InvalidState</code> - The target is in the stopped or terminated
-     * state.</p> </li> </ul> <p>If the target state is <code>draining</code>, the
-     * reason code can be the following value:</p> <ul> <li> <p>
-     * <code>Target.DeregistrationInProgress</code> - The target is in the process of
-     * being deregistered and the deregistration delay period has not expired.</p>
+     * enabled for its load balancer.</p> </li> <li> <p> <code>Target.IpUnusable</code>
+     * - The target IP address is reserved for use by a load balancer.</p> </li> <li>
+     * <p> <code>Target.InvalidState</code> - The target is in the stopped or
+     * terminated state.</p> </li> </ul> <p>If the target state is
+     * <code>draining</code>, the reason code can be the following value:</p> <ul> <li>
+     * <p> <code>Target.DeregistrationInProgress</code> - The target is in the process
+     * of being deregistered and the deregistration delay period has not expired.</p>
      * </li> </ul>
      */
-    inline TargetHealth& WithReason(TargetHealthReasonEnum&& value) { SetReason(value); return *this;}
+    inline TargetHealth& WithReason(TargetHealthReasonEnum&& value) { SetReason(std::move(value)); return *this;}
+
 
     /**
      * <p>A description of the target health that provides additional details. If the
@@ -250,7 +260,7 @@ namespace Model
      * <p>A description of the target health that provides additional details. If the
      * state is <code>healthy</code>, a description is not provided.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>A description of the target health that provides additional details. If the
@@ -268,7 +278,7 @@ namespace Model
      * <p>A description of the target health that provides additional details. If the
      * state is <code>healthy</code>, a description is not provided.</p>
      */
-    inline TargetHealth& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline TargetHealth& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>A description of the target health that provides additional details. If the
@@ -277,10 +287,13 @@ namespace Model
     inline TargetHealth& WithDescription(const char* value) { SetDescription(value); return *this;}
 
   private:
+
     TargetHealthStateEnum m_state;
     bool m_stateHasBeenSet;
+
     TargetHealthReasonEnum m_reason;
     bool m_reasonHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
   };

@@ -48,8 +48,8 @@ file(GLOB ALL_S3ENCRYPTION
 
 set(S3ENCRYPTION_INCLUDES
     "${CMAKE_CURRENT_SOURCE_DIR}/include/"
-    "${CMAKE_SOURCE_DIR}/aws-cpp-sdk-s3/include/"
-    "${CMAKE_SOURCE_DIR}/aws-cpp-sdk-kms/include/"
+    "${AWS_NATIVE_SDK_ROOT}/aws-cpp-sdk-s3/include/"
+    "${AWS_NATIVE_SDK_ROOT}/aws-cpp-sdk-kms/include/"
     "${CORE_DIR}/include/"
   )
 
@@ -73,5 +73,9 @@ install (FILES ${S3ENCRYPTION_HEADERS} DESTINATION ${INCLUDE_DIRECTORY}/aws/s3-e
 install (FILES ${S3ENCRYPTION_MATERIALS_HEADERS} DESTINATION ${INCLUDE_DIRECTORY}/aws/s3-encryption/materials)
 install (FILES ${S3ENCRYPTION_HANDLERS_HEADERS} DESTINATION ${INCLUDE_DIRECTORY}/aws/s3-encryption/handlers)
 install (FILES ${S3ENCRYPTION_MODULES_HEADERS} DESTINATION ${INCLUDE_DIRECTORY}/aws/s3-encryption/modules)
+
+if(PLATFORM_WINDOWS AND MSVC)
+    install (FILES nuget/${PROJECT_NAME}.autopkg DESTINATION nuget)
+endif()
 
 do_packaging()

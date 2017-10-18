@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/config/ConfigService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     ConfigRuleEvaluationStatus& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the AWS Config rule.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The name of the AWS Config rule.</p>
      */
-    inline void SetConfigRuleName(Aws::String&& value) { m_configRuleNameHasBeenSet = true; m_configRuleName = value; }
+    inline void SetConfigRuleName(Aws::String&& value) { m_configRuleNameHasBeenSet = true; m_configRuleName = std::move(value); }
 
     /**
      * <p>The name of the AWS Config rule.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The name of the AWS Config rule.</p>
      */
-    inline ConfigRuleEvaluationStatus& WithConfigRuleName(Aws::String&& value) { SetConfigRuleName(value); return *this;}
+    inline ConfigRuleEvaluationStatus& WithConfigRuleName(Aws::String&& value) { SetConfigRuleName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the AWS Config rule.</p>
      */
     inline ConfigRuleEvaluationStatus& WithConfigRuleName(const char* value) { SetConfigRuleName(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the AWS Config rule.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the AWS Config rule.</p>
      */
-    inline void SetConfigRuleArn(Aws::String&& value) { m_configRuleArnHasBeenSet = true; m_configRuleArn = value; }
+    inline void SetConfigRuleArn(Aws::String&& value) { m_configRuleArnHasBeenSet = true; m_configRuleArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the AWS Config rule.</p>
@@ -110,12 +114,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the AWS Config rule.</p>
      */
-    inline ConfigRuleEvaluationStatus& WithConfigRuleArn(Aws::String&& value) { SetConfigRuleArn(value); return *this;}
+    inline ConfigRuleEvaluationStatus& WithConfigRuleArn(Aws::String&& value) { SetConfigRuleArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the AWS Config rule.</p>
      */
     inline ConfigRuleEvaluationStatus& WithConfigRuleArn(const char* value) { SetConfigRuleArn(value); return *this;}
+
 
     /**
      * <p>The ID of the AWS Config rule.</p>
@@ -130,7 +135,7 @@ namespace Model
     /**
      * <p>The ID of the AWS Config rule.</p>
      */
-    inline void SetConfigRuleId(Aws::String&& value) { m_configRuleIdHasBeenSet = true; m_configRuleId = value; }
+    inline void SetConfigRuleId(Aws::String&& value) { m_configRuleIdHasBeenSet = true; m_configRuleId = std::move(value); }
 
     /**
      * <p>The ID of the AWS Config rule.</p>
@@ -145,12 +150,13 @@ namespace Model
     /**
      * <p>The ID of the AWS Config rule.</p>
      */
-    inline ConfigRuleEvaluationStatus& WithConfigRuleId(Aws::String&& value) { SetConfigRuleId(value); return *this;}
+    inline ConfigRuleEvaluationStatus& WithConfigRuleId(Aws::String&& value) { SetConfigRuleId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the AWS Config rule.</p>
      */
     inline ConfigRuleEvaluationStatus& WithConfigRuleId(const char* value) { SetConfigRuleId(value); return *this;}
+
 
     /**
      * <p>The time that AWS Config last successfully invoked the AWS Config rule to
@@ -168,7 +174,7 @@ namespace Model
      * <p>The time that AWS Config last successfully invoked the AWS Config rule to
      * evaluate your AWS resources.</p>
      */
-    inline void SetLastSuccessfulInvocationTime(Aws::Utils::DateTime&& value) { m_lastSuccessfulInvocationTimeHasBeenSet = true; m_lastSuccessfulInvocationTime = value; }
+    inline void SetLastSuccessfulInvocationTime(Aws::Utils::DateTime&& value) { m_lastSuccessfulInvocationTimeHasBeenSet = true; m_lastSuccessfulInvocationTime = std::move(value); }
 
     /**
      * <p>The time that AWS Config last successfully invoked the AWS Config rule to
@@ -180,7 +186,8 @@ namespace Model
      * <p>The time that AWS Config last successfully invoked the AWS Config rule to
      * evaluate your AWS resources.</p>
      */
-    inline ConfigRuleEvaluationStatus& WithLastSuccessfulInvocationTime(Aws::Utils::DateTime&& value) { SetLastSuccessfulInvocationTime(value); return *this;}
+    inline ConfigRuleEvaluationStatus& WithLastSuccessfulInvocationTime(Aws::Utils::DateTime&& value) { SetLastSuccessfulInvocationTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The time that AWS Config last failed to invoke the AWS Config rule to
@@ -198,7 +205,7 @@ namespace Model
      * <p>The time that AWS Config last failed to invoke the AWS Config rule to
      * evaluate your AWS resources.</p>
      */
-    inline void SetLastFailedInvocationTime(Aws::Utils::DateTime&& value) { m_lastFailedInvocationTimeHasBeenSet = true; m_lastFailedInvocationTime = value; }
+    inline void SetLastFailedInvocationTime(Aws::Utils::DateTime&& value) { m_lastFailedInvocationTimeHasBeenSet = true; m_lastFailedInvocationTime = std::move(value); }
 
     /**
      * <p>The time that AWS Config last failed to invoke the AWS Config rule to
@@ -210,7 +217,8 @@ namespace Model
      * <p>The time that AWS Config last failed to invoke the AWS Config rule to
      * evaluate your AWS resources.</p>
      */
-    inline ConfigRuleEvaluationStatus& WithLastFailedInvocationTime(Aws::Utils::DateTime&& value) { SetLastFailedInvocationTime(value); return *this;}
+    inline ConfigRuleEvaluationStatus& WithLastFailedInvocationTime(Aws::Utils::DateTime&& value) { SetLastFailedInvocationTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The time that AWS Config last successfully evaluated your AWS resources
@@ -228,7 +236,7 @@ namespace Model
      * <p>The time that AWS Config last successfully evaluated your AWS resources
      * against the rule.</p>
      */
-    inline void SetLastSuccessfulEvaluationTime(Aws::Utils::DateTime&& value) { m_lastSuccessfulEvaluationTimeHasBeenSet = true; m_lastSuccessfulEvaluationTime = value; }
+    inline void SetLastSuccessfulEvaluationTime(Aws::Utils::DateTime&& value) { m_lastSuccessfulEvaluationTimeHasBeenSet = true; m_lastSuccessfulEvaluationTime = std::move(value); }
 
     /**
      * <p>The time that AWS Config last successfully evaluated your AWS resources
@@ -240,7 +248,8 @@ namespace Model
      * <p>The time that AWS Config last successfully evaluated your AWS resources
      * against the rule.</p>
      */
-    inline ConfigRuleEvaluationStatus& WithLastSuccessfulEvaluationTime(Aws::Utils::DateTime&& value) { SetLastSuccessfulEvaluationTime(value); return *this;}
+    inline ConfigRuleEvaluationStatus& WithLastSuccessfulEvaluationTime(Aws::Utils::DateTime&& value) { SetLastSuccessfulEvaluationTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The time that AWS Config last failed to evaluate your AWS resources against
@@ -258,7 +267,7 @@ namespace Model
      * <p>The time that AWS Config last failed to evaluate your AWS resources against
      * the rule.</p>
      */
-    inline void SetLastFailedEvaluationTime(Aws::Utils::DateTime&& value) { m_lastFailedEvaluationTimeHasBeenSet = true; m_lastFailedEvaluationTime = value; }
+    inline void SetLastFailedEvaluationTime(Aws::Utils::DateTime&& value) { m_lastFailedEvaluationTimeHasBeenSet = true; m_lastFailedEvaluationTime = std::move(value); }
 
     /**
      * <p>The time that AWS Config last failed to evaluate your AWS resources against
@@ -270,7 +279,8 @@ namespace Model
      * <p>The time that AWS Config last failed to evaluate your AWS resources against
      * the rule.</p>
      */
-    inline ConfigRuleEvaluationStatus& WithLastFailedEvaluationTime(Aws::Utils::DateTime&& value) { SetLastFailedEvaluationTime(value); return *this;}
+    inline ConfigRuleEvaluationStatus& WithLastFailedEvaluationTime(Aws::Utils::DateTime&& value) { SetLastFailedEvaluationTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The time that you first activated the AWS Config rule.</p>
@@ -285,7 +295,7 @@ namespace Model
     /**
      * <p>The time that you first activated the AWS Config rule.</p>
      */
-    inline void SetFirstActivatedTime(Aws::Utils::DateTime&& value) { m_firstActivatedTimeHasBeenSet = true; m_firstActivatedTime = value; }
+    inline void SetFirstActivatedTime(Aws::Utils::DateTime&& value) { m_firstActivatedTimeHasBeenSet = true; m_firstActivatedTime = std::move(value); }
 
     /**
      * <p>The time that you first activated the AWS Config rule.</p>
@@ -295,7 +305,8 @@ namespace Model
     /**
      * <p>The time that you first activated the AWS Config rule.</p>
      */
-    inline ConfigRuleEvaluationStatus& WithFirstActivatedTime(Aws::Utils::DateTime&& value) { SetFirstActivatedTime(value); return *this;}
+    inline ConfigRuleEvaluationStatus& WithFirstActivatedTime(Aws::Utils::DateTime&& value) { SetFirstActivatedTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The error code that AWS Config returned when the rule last failed.</p>
@@ -310,7 +321,7 @@ namespace Model
     /**
      * <p>The error code that AWS Config returned when the rule last failed.</p>
      */
-    inline void SetLastErrorCode(Aws::String&& value) { m_lastErrorCodeHasBeenSet = true; m_lastErrorCode = value; }
+    inline void SetLastErrorCode(Aws::String&& value) { m_lastErrorCodeHasBeenSet = true; m_lastErrorCode = std::move(value); }
 
     /**
      * <p>The error code that AWS Config returned when the rule last failed.</p>
@@ -325,12 +336,13 @@ namespace Model
     /**
      * <p>The error code that AWS Config returned when the rule last failed.</p>
      */
-    inline ConfigRuleEvaluationStatus& WithLastErrorCode(Aws::String&& value) { SetLastErrorCode(value); return *this;}
+    inline ConfigRuleEvaluationStatus& WithLastErrorCode(Aws::String&& value) { SetLastErrorCode(std::move(value)); return *this;}
 
     /**
      * <p>The error code that AWS Config returned when the rule last failed.</p>
      */
     inline ConfigRuleEvaluationStatus& WithLastErrorCode(const char* value) { SetLastErrorCode(value); return *this;}
+
 
     /**
      * <p>The error message that AWS Config returned when the rule last failed.</p>
@@ -345,7 +357,7 @@ namespace Model
     /**
      * <p>The error message that AWS Config returned when the rule last failed.</p>
      */
-    inline void SetLastErrorMessage(Aws::String&& value) { m_lastErrorMessageHasBeenSet = true; m_lastErrorMessage = value; }
+    inline void SetLastErrorMessage(Aws::String&& value) { m_lastErrorMessageHasBeenSet = true; m_lastErrorMessage = std::move(value); }
 
     /**
      * <p>The error message that AWS Config returned when the rule last failed.</p>
@@ -360,12 +372,13 @@ namespace Model
     /**
      * <p>The error message that AWS Config returned when the rule last failed.</p>
      */
-    inline ConfigRuleEvaluationStatus& WithLastErrorMessage(Aws::String&& value) { SetLastErrorMessage(value); return *this;}
+    inline ConfigRuleEvaluationStatus& WithLastErrorMessage(Aws::String&& value) { SetLastErrorMessage(std::move(value)); return *this;}
 
     /**
      * <p>The error message that AWS Config returned when the rule last failed.</p>
      */
     inline ConfigRuleEvaluationStatus& WithLastErrorMessage(const char* value) { SetLastErrorMessage(value); return *this;}
+
 
     /**
      * <p>Indicates whether AWS Config has evaluated your resources against the rule at
@@ -395,26 +408,37 @@ namespace Model
     inline ConfigRuleEvaluationStatus& WithFirstEvaluationStarted(bool value) { SetFirstEvaluationStarted(value); return *this;}
 
   private:
+
     Aws::String m_configRuleName;
     bool m_configRuleNameHasBeenSet;
+
     Aws::String m_configRuleArn;
     bool m_configRuleArnHasBeenSet;
+
     Aws::String m_configRuleId;
     bool m_configRuleIdHasBeenSet;
+
     Aws::Utils::DateTime m_lastSuccessfulInvocationTime;
     bool m_lastSuccessfulInvocationTimeHasBeenSet;
+
     Aws::Utils::DateTime m_lastFailedInvocationTime;
     bool m_lastFailedInvocationTimeHasBeenSet;
+
     Aws::Utils::DateTime m_lastSuccessfulEvaluationTime;
     bool m_lastSuccessfulEvaluationTimeHasBeenSet;
+
     Aws::Utils::DateTime m_lastFailedEvaluationTime;
     bool m_lastFailedEvaluationTimeHasBeenSet;
+
     Aws::Utils::DateTime m_firstActivatedTime;
     bool m_firstActivatedTimeHasBeenSet;
+
     Aws::String m_lastErrorCode;
     bool m_lastErrorCodeHasBeenSet;
+
     Aws::String m_lastErrorMessage;
     bool m_lastErrorMessageHasBeenSet;
+
     bool m_firstEvaluationStarted;
     bool m_firstEvaluationStartedHasBeenSet;
   };

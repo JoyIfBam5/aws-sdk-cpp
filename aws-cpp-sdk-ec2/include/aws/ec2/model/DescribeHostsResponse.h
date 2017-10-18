@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ec2/model/ResponseMetadata.h>
 #include <aws/ec2/model/Host.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     DescribeHostsResponse();
-    DescribeHostsResponse(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeHostsResponse& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeHostsResponse(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeHostsResponse& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>Information about the Dedicated Hosts.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>Information about the Dedicated Hosts.</p>
      */
-    inline void SetHosts(Aws::Vector<Host>&& value) { m_hosts = value; }
+    inline void SetHosts(Aws::Vector<Host>&& value) { m_hosts = std::move(value); }
 
     /**
      * <p>Information about the Dedicated Hosts.</p>
@@ -70,7 +73,7 @@ namespace Model
     /**
      * <p>Information about the Dedicated Hosts.</p>
      */
-    inline DescribeHostsResponse& WithHosts(Aws::Vector<Host>&& value) { SetHosts(value); return *this;}
+    inline DescribeHostsResponse& WithHosts(Aws::Vector<Host>&& value) { SetHosts(std::move(value)); return *this;}
 
     /**
      * <p>Information about the Dedicated Hosts.</p>
@@ -80,7 +83,8 @@ namespace Model
     /**
      * <p>Information about the Dedicated Hosts.</p>
      */
-    inline DescribeHostsResponse& AddHosts(Host&& value) { m_hosts.push_back(value); return *this; }
+    inline DescribeHostsResponse& AddHosts(Host&& value) { m_hosts.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The token to use to retrieve the next page of results. This value is
@@ -98,7 +102,7 @@ namespace Model
      * <p>The token to use to retrieve the next page of results. This value is
      * <code>null</code> when there are no more results to return.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The token to use to retrieve the next page of results. This value is
@@ -116,13 +120,14 @@ namespace Model
      * <p>The token to use to retrieve the next page of results. This value is
      * <code>null</code> when there are no more results to return.</p>
      */
-    inline DescribeHostsResponse& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeHostsResponse& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The token to use to retrieve the next page of results. This value is
      * <code>null</code> when there are no more results to return.</p>
      */
     inline DescribeHostsResponse& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -131,17 +136,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeHostsResponse& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeHostsResponse& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeHostsResponse& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<Host> m_hosts;
+
     Aws::String m_nextToken;
+
     ResponseMetadata m_responseMetadata;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/iot/model/CreatePolicyVersionResult.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
+#include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/UnreferencedParam.h>
 
 #include <utility>
@@ -29,13 +31,13 @@ CreatePolicyVersionResult::CreatePolicyVersionResult() :
 {
 }
 
-CreatePolicyVersionResult::CreatePolicyVersionResult(const AmazonWebServiceResult<JsonValue>& result) : 
+CreatePolicyVersionResult::CreatePolicyVersionResult(const Aws::AmazonWebServiceResult<JsonValue>& result) : 
     m_isDefaultVersion(false)
 {
   *this = result;
 }
 
-CreatePolicyVersionResult& CreatePolicyVersionResult::operator =(const AmazonWebServiceResult<JsonValue>& result)
+CreatePolicyVersionResult& CreatePolicyVersionResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
   const JsonValue& jsonValue = result.GetPayload();
   if(jsonValue.ValueExists("policyArn"))

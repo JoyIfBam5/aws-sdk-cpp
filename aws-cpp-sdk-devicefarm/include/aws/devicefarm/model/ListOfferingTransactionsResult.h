@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/devicefarm/DeviceFarm_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/devicefarm/model/OfferingTransaction.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     ListOfferingTransactionsResult();
-    ListOfferingTransactionsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListOfferingTransactionsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListOfferingTransactionsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListOfferingTransactionsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The audit log of subscriptions you have purchased and modified through AWS
@@ -63,7 +66,7 @@ namespace Model
      * <p>The audit log of subscriptions you have purchased and modified through AWS
      * Device Farm.</p>
      */
-    inline void SetOfferingTransactions(Aws::Vector<OfferingTransaction>&& value) { m_offeringTransactions = value; }
+    inline void SetOfferingTransactions(Aws::Vector<OfferingTransaction>&& value) { m_offeringTransactions = std::move(value); }
 
     /**
      * <p>The audit log of subscriptions you have purchased and modified through AWS
@@ -75,7 +78,7 @@ namespace Model
      * <p>The audit log of subscriptions you have purchased and modified through AWS
      * Device Farm.</p>
      */
-    inline ListOfferingTransactionsResult& WithOfferingTransactions(Aws::Vector<OfferingTransaction>&& value) { SetOfferingTransactions(value); return *this;}
+    inline ListOfferingTransactionsResult& WithOfferingTransactions(Aws::Vector<OfferingTransaction>&& value) { SetOfferingTransactions(std::move(value)); return *this;}
 
     /**
      * <p>The audit log of subscriptions you have purchased and modified through AWS
@@ -87,7 +90,8 @@ namespace Model
      * <p>The audit log of subscriptions you have purchased and modified through AWS
      * Device Farm.</p>
      */
-    inline ListOfferingTransactionsResult& AddOfferingTransactions(OfferingTransaction&& value) { m_offeringTransactions.push_back(value); return *this; }
+    inline ListOfferingTransactionsResult& AddOfferingTransactions(OfferingTransaction&& value) { m_offeringTransactions.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>An identifier that was returned from the previous call to this operation,
@@ -105,7 +109,7 @@ namespace Model
      * <p>An identifier that was returned from the previous call to this operation,
      * which can be used to return the next set of items in the list.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>An identifier that was returned from the previous call to this operation,
@@ -123,7 +127,7 @@ namespace Model
      * <p>An identifier that was returned from the previous call to this operation,
      * which can be used to return the next set of items in the list.</p>
      */
-    inline ListOfferingTransactionsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListOfferingTransactionsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>An identifier that was returned from the previous call to this operation,
@@ -132,7 +136,9 @@ namespace Model
     inline ListOfferingTransactionsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<OfferingTransaction> m_offeringTransactions;
+
     Aws::String m_nextToken;
   };
 

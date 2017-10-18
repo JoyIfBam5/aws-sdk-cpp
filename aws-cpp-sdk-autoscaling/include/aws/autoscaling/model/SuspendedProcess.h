@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/autoscaling/AutoScaling_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the suspended process.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The name of the suspended process.</p>
      */
-    inline void SetProcessName(Aws::String&& value) { m_processNameHasBeenSet = true; m_processName = value; }
+    inline void SetProcessName(Aws::String&& value) { m_processNameHasBeenSet = true; m_processName = std::move(value); }
 
     /**
      * <p>The name of the suspended process.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The name of the suspended process.</p>
      */
-    inline SuspendedProcess& WithProcessName(Aws::String&& value) { SetProcessName(value); return *this;}
+    inline SuspendedProcess& WithProcessName(Aws::String&& value) { SetProcessName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the suspended process.</p>
      */
     inline SuspendedProcess& WithProcessName(const char* value) { SetProcessName(value); return *this;}
+
 
     /**
      * <p>The reason that the process was suspended.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>The reason that the process was suspended.</p>
      */
-    inline void SetSuspensionReason(Aws::String&& value) { m_suspensionReasonHasBeenSet = true; m_suspensionReason = value; }
+    inline void SetSuspensionReason(Aws::String&& value) { m_suspensionReasonHasBeenSet = true; m_suspensionReason = std::move(value); }
 
     /**
      * <p>The reason that the process was suspended.</p>
@@ -110,7 +114,7 @@ namespace Model
     /**
      * <p>The reason that the process was suspended.</p>
      */
-    inline SuspendedProcess& WithSuspensionReason(Aws::String&& value) { SetSuspensionReason(value); return *this;}
+    inline SuspendedProcess& WithSuspensionReason(Aws::String&& value) { SetSuspensionReason(std::move(value)); return *this;}
 
     /**
      * <p>The reason that the process was suspended.</p>
@@ -118,8 +122,10 @@ namespace Model
     inline SuspendedProcess& WithSuspensionReason(const char* value) { SetSuspensionReason(value); return *this;}
 
   private:
+
     Aws::String m_processName;
     bool m_processNameHasBeenSet;
+
     Aws::String m_suspensionReason;
     bool m_suspensionReasonHasBeenSet;
   };

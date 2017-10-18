@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/gamelift/GameLift_EXPORTS.h>
 
@@ -37,7 +38,7 @@ namespace Model
    * game sessions within a specified time period".</p> <p>The policy is evaluated
    * when a player tries to create a new game session. For example, with a policy of
    * 10 new game sessions and a time period of 60 minutes, on receiving a
-   * <code>CreateGameSession</code> request, GameLift checks that the player
+   * <code>CreateGameSession</code> request, Amazon GameLift checks that the player
    * (identified by <code>CreatorId</code>) has created fewer than 10 game sessions
    * in the past 60 minutes.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/ResourceCreationLimitPolicy">AWS
@@ -50,6 +51,7 @@ namespace Model
     ResourceCreationLimitPolicy(const Aws::Utils::Json::JsonValue& jsonValue);
     ResourceCreationLimitPolicy& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>Maximum number of game sessions that an individual can create during the
@@ -69,6 +71,7 @@ namespace Model
      */
     inline ResourceCreationLimitPolicy& WithNewGameSessionsPerCreator(int value) { SetNewGameSessionsPerCreator(value); return *this;}
 
+
     /**
      * <p>Time span used in evaluating the resource creation limit policy. </p>
      */
@@ -85,8 +88,10 @@ namespace Model
     inline ResourceCreationLimitPolicy& WithPolicyPeriodInMinutes(int value) { SetPolicyPeriodInMinutes(value); return *this;}
 
   private:
+
     int m_newGameSessionsPerCreator;
     bool m_newGameSessionsPerCreatorHasBeenSet;
+
     int m_policyPeriodInMinutes;
     bool m_policyPeriodInMinutesHasBeenSet;
   };

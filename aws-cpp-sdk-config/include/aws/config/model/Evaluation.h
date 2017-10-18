@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/config/ConfigService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/config/model/ComplianceType.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     Evaluation& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The type of AWS resource that was evaluated.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The type of AWS resource that was evaluated.</p>
      */
-    inline void SetComplianceResourceType(Aws::String&& value) { m_complianceResourceTypeHasBeenSet = true; m_complianceResourceType = value; }
+    inline void SetComplianceResourceType(Aws::String&& value) { m_complianceResourceTypeHasBeenSet = true; m_complianceResourceType = std::move(value); }
 
     /**
      * <p>The type of AWS resource that was evaluated.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>The type of AWS resource that was evaluated.</p>
      */
-    inline Evaluation& WithComplianceResourceType(Aws::String&& value) { SetComplianceResourceType(value); return *this;}
+    inline Evaluation& WithComplianceResourceType(Aws::String&& value) { SetComplianceResourceType(std::move(value)); return *this;}
 
     /**
      * <p>The type of AWS resource that was evaluated.</p>
      */
     inline Evaluation& WithComplianceResourceType(const char* value) { SetComplianceResourceType(value); return *this;}
+
 
     /**
      * <p>The ID of the AWS resource that was evaluated.</p>
@@ -94,7 +98,7 @@ namespace Model
     /**
      * <p>The ID of the AWS resource that was evaluated.</p>
      */
-    inline void SetComplianceResourceId(Aws::String&& value) { m_complianceResourceIdHasBeenSet = true; m_complianceResourceId = value; }
+    inline void SetComplianceResourceId(Aws::String&& value) { m_complianceResourceIdHasBeenSet = true; m_complianceResourceId = std::move(value); }
 
     /**
      * <p>The ID of the AWS resource that was evaluated.</p>
@@ -109,12 +113,13 @@ namespace Model
     /**
      * <p>The ID of the AWS resource that was evaluated.</p>
      */
-    inline Evaluation& WithComplianceResourceId(Aws::String&& value) { SetComplianceResourceId(value); return *this;}
+    inline Evaluation& WithComplianceResourceId(Aws::String&& value) { SetComplianceResourceId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the AWS resource that was evaluated.</p>
      */
     inline Evaluation& WithComplianceResourceId(const char* value) { SetComplianceResourceId(value); return *this;}
+
 
     /**
      * <p>Indicates whether the AWS resource complies with the AWS Config rule that it
@@ -153,7 +158,7 @@ namespace Model
      * example, an AWS Lambda function for a custom Config rule cannot pass an
      * <code>INSUFFICIENT_DATA</code> value to AWS Config.</p>
      */
-    inline void SetComplianceType(ComplianceType&& value) { m_complianceTypeHasBeenSet = true; m_complianceType = value; }
+    inline void SetComplianceType(ComplianceType&& value) { m_complianceTypeHasBeenSet = true; m_complianceType = std::move(value); }
 
     /**
      * <p>Indicates whether the AWS resource complies with the AWS Config rule that it
@@ -179,7 +184,8 @@ namespace Model
      * example, an AWS Lambda function for a custom Config rule cannot pass an
      * <code>INSUFFICIENT_DATA</code> value to AWS Config.</p>
      */
-    inline Evaluation& WithComplianceType(ComplianceType&& value) { SetComplianceType(value); return *this;}
+    inline Evaluation& WithComplianceType(ComplianceType&& value) { SetComplianceType(std::move(value)); return *this;}
+
 
     /**
      * <p>Supplementary information about how the evaluation determined the
@@ -197,7 +203,7 @@ namespace Model
      * <p>Supplementary information about how the evaluation determined the
      * compliance.</p>
      */
-    inline void SetAnnotation(Aws::String&& value) { m_annotationHasBeenSet = true; m_annotation = value; }
+    inline void SetAnnotation(Aws::String&& value) { m_annotationHasBeenSet = true; m_annotation = std::move(value); }
 
     /**
      * <p>Supplementary information about how the evaluation determined the
@@ -215,13 +221,14 @@ namespace Model
      * <p>Supplementary information about how the evaluation determined the
      * compliance.</p>
      */
-    inline Evaluation& WithAnnotation(Aws::String&& value) { SetAnnotation(value); return *this;}
+    inline Evaluation& WithAnnotation(Aws::String&& value) { SetAnnotation(std::move(value)); return *this;}
 
     /**
      * <p>Supplementary information about how the evaluation determined the
      * compliance.</p>
      */
     inline Evaluation& WithAnnotation(const char* value) { SetAnnotation(value); return *this;}
+
 
     /**
      * <p>The time of the event in AWS Config that triggered the evaluation. For
@@ -248,7 +255,7 @@ namespace Model
      * time indicates when AWS Config triggered the evaluation at the frequency that
      * you specified (for example, every 24 hours).</p>
      */
-    inline void SetOrderingTimestamp(Aws::Utils::DateTime&& value) { m_orderingTimestampHasBeenSet = true; m_orderingTimestamp = value; }
+    inline void SetOrderingTimestamp(Aws::Utils::DateTime&& value) { m_orderingTimestampHasBeenSet = true; m_orderingTimestamp = std::move(value); }
 
     /**
      * <p>The time of the event in AWS Config that triggered the evaluation. For
@@ -266,17 +273,22 @@ namespace Model
      * time indicates when AWS Config triggered the evaluation at the frequency that
      * you specified (for example, every 24 hours).</p>
      */
-    inline Evaluation& WithOrderingTimestamp(Aws::Utils::DateTime&& value) { SetOrderingTimestamp(value); return *this;}
+    inline Evaluation& WithOrderingTimestamp(Aws::Utils::DateTime&& value) { SetOrderingTimestamp(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_complianceResourceType;
     bool m_complianceResourceTypeHasBeenSet;
+
     Aws::String m_complianceResourceId;
     bool m_complianceResourceIdHasBeenSet;
+
     ComplianceType m_complianceType;
     bool m_complianceTypeHasBeenSet;
+
     Aws::String m_annotation;
     bool m_annotationHasBeenSet;
+
     Aws::Utils::DateTime m_orderingTimestamp;
     bool m_orderingTimestampHasBeenSet;
   };

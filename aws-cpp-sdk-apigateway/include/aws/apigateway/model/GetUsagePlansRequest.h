@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/apigateway/APIGatewayRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,51 +40,53 @@ namespace Model
   {
   public:
     GetUsagePlansRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "GetUsagePlans"; }
+
     Aws::String SerializePayload() const override;
 
     void AddQueryStringParameters(Aws::Http::URI& uri) const override;
 
+
     /**
-     * <p>The zero-based array index specifying the position of the to-be-retrieved
-     * <a>UsagePlan</a> resource.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
     inline const Aws::String& GetPosition() const{ return m_position; }
 
     /**
-     * <p>The zero-based array index specifying the position of the to-be-retrieved
-     * <a>UsagePlan</a> resource.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
     inline void SetPosition(const Aws::String& value) { m_positionHasBeenSet = true; m_position = value; }
 
     /**
-     * <p>The zero-based array index specifying the position of the to-be-retrieved
-     * <a>UsagePlan</a> resource.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
-    inline void SetPosition(Aws::String&& value) { m_positionHasBeenSet = true; m_position = value; }
+    inline void SetPosition(Aws::String&& value) { m_positionHasBeenSet = true; m_position = std::move(value); }
 
     /**
-     * <p>The zero-based array index specifying the position of the to-be-retrieved
-     * <a>UsagePlan</a> resource.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
     inline void SetPosition(const char* value) { m_positionHasBeenSet = true; m_position.assign(value); }
 
     /**
-     * <p>The zero-based array index specifying the position of the to-be-retrieved
-     * <a>UsagePlan</a> resource.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
     inline GetUsagePlansRequest& WithPosition(const Aws::String& value) { SetPosition(value); return *this;}
 
     /**
-     * <p>The zero-based array index specifying the position of the to-be-retrieved
-     * <a>UsagePlan</a> resource.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
-    inline GetUsagePlansRequest& WithPosition(Aws::String&& value) { SetPosition(value); return *this;}
+    inline GetUsagePlansRequest& WithPosition(Aws::String&& value) { SetPosition(std::move(value)); return *this;}
 
     /**
-     * <p>The zero-based array index specifying the position of the to-be-retrieved
-     * <a>UsagePlan</a> resource.</p>
+     * <p>The current pagination position in the paged result set.</p>
      */
     inline GetUsagePlansRequest& WithPosition(const char* value) { SetPosition(value); return *this;}
+
 
     /**
      * <p>The identifier of the API key associated with the usage plans.</p>
@@ -97,7 +101,7 @@ namespace Model
     /**
      * <p>The identifier of the API key associated with the usage plans.</p>
      */
-    inline void SetKeyId(Aws::String&& value) { m_keyIdHasBeenSet = true; m_keyId = value; }
+    inline void SetKeyId(Aws::String&& value) { m_keyIdHasBeenSet = true; m_keyId = std::move(value); }
 
     /**
      * <p>The identifier of the API key associated with the usage plans.</p>
@@ -112,33 +116,37 @@ namespace Model
     /**
      * <p>The identifier of the API key associated with the usage plans.</p>
      */
-    inline GetUsagePlansRequest& WithKeyId(Aws::String&& value) { SetKeyId(value); return *this;}
+    inline GetUsagePlansRequest& WithKeyId(Aws::String&& value) { SetKeyId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the API key associated with the usage plans.</p>
      */
     inline GetUsagePlansRequest& WithKeyId(const char* value) { SetKeyId(value); return *this;}
 
+
     /**
-     * <p>The number of <a>UsagePlan</a> resources to be returned as the result.</p>
+     * <p>The maximum number of returned results per page.</p>
      */
     inline int GetLimit() const{ return m_limit; }
 
     /**
-     * <p>The number of <a>UsagePlan</a> resources to be returned as the result.</p>
+     * <p>The maximum number of returned results per page.</p>
      */
     inline void SetLimit(int value) { m_limitHasBeenSet = true; m_limit = value; }
 
     /**
-     * <p>The number of <a>UsagePlan</a> resources to be returned as the result.</p>
+     * <p>The maximum number of returned results per page.</p>
      */
     inline GetUsagePlansRequest& WithLimit(int value) { SetLimit(value); return *this;}
 
   private:
+
     Aws::String m_position;
     bool m_positionHasBeenSet;
+
     Aws::String m_keyId;
     bool m_keyIdHasBeenSet;
+
     int m_limit;
     bool m_limitHasBeenSet;
   };

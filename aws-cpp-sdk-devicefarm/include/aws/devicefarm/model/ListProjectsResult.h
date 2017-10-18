@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/devicefarm/DeviceFarm_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/devicefarm/model/Project.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     ListProjectsResult();
-    ListProjectsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListProjectsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListProjectsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListProjectsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the projects.</p>
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>Information about the projects.</p>
      */
-    inline void SetProjects(Aws::Vector<Project>&& value) { m_projects = value; }
+    inline void SetProjects(Aws::Vector<Project>&& value) { m_projects = std::move(value); }
 
     /**
      * <p>Information about the projects.</p>
@@ -70,7 +73,7 @@ namespace Model
     /**
      * <p>Information about the projects.</p>
      */
-    inline ListProjectsResult& WithProjects(Aws::Vector<Project>&& value) { SetProjects(value); return *this;}
+    inline ListProjectsResult& WithProjects(Aws::Vector<Project>&& value) { SetProjects(std::move(value)); return *this;}
 
     /**
      * <p>Information about the projects.</p>
@@ -80,7 +83,8 @@ namespace Model
     /**
      * <p>Information about the projects.</p>
      */
-    inline ListProjectsResult& AddProjects(Project&& value) { m_projects.push_back(value); return *this; }
+    inline ListProjectsResult& AddProjects(Project&& value) { m_projects.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>If the number of items that are returned is significantly large, this is an
@@ -101,7 +105,7 @@ namespace Model
      * identifier that is also returned, which can be used in a subsequent call to this
      * operation to return the next set of items in the list.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>If the number of items that are returned is significantly large, this is an
@@ -122,7 +126,7 @@ namespace Model
      * identifier that is also returned, which can be used in a subsequent call to this
      * operation to return the next set of items in the list.</p>
      */
-    inline ListProjectsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListProjectsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>If the number of items that are returned is significantly large, this is an
@@ -132,7 +136,9 @@ namespace Model
     inline ListProjectsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Project> m_projects;
+
     Aws::String m_nextToken;
   };
 

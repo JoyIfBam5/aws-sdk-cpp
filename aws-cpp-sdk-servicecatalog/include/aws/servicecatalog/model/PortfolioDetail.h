@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     PortfolioDetail& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The identifier for the portfolio.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The identifier for the portfolio.</p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>The identifier for the portfolio.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The identifier for the portfolio.</p>
      */
-    inline PortfolioDetail& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline PortfolioDetail& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier for the portfolio.</p>
      */
     inline PortfolioDetail& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>The ARN assigned to the portfolio.</p>
@@ -92,7 +96,7 @@ namespace Model
     /**
      * <p>The ARN assigned to the portfolio.</p>
      */
-    inline void SetARN(Aws::String&& value) { m_aRNHasBeenSet = true; m_aRN = value; }
+    inline void SetARN(Aws::String&& value) { m_aRNHasBeenSet = true; m_aRN = std::move(value); }
 
     /**
      * <p>The ARN assigned to the portfolio.</p>
@@ -107,12 +111,13 @@ namespace Model
     /**
      * <p>The ARN assigned to the portfolio.</p>
      */
-    inline PortfolioDetail& WithARN(Aws::String&& value) { SetARN(value); return *this;}
+    inline PortfolioDetail& WithARN(Aws::String&& value) { SetARN(std::move(value)); return *this;}
 
     /**
      * <p>The ARN assigned to the portfolio.</p>
      */
     inline PortfolioDetail& WithARN(const char* value) { SetARN(value); return *this;}
+
 
     /**
      * <p>The name to use for display purposes.</p>
@@ -127,7 +132,7 @@ namespace Model
     /**
      * <p>The name to use for display purposes.</p>
      */
-    inline void SetDisplayName(Aws::String&& value) { m_displayNameHasBeenSet = true; m_displayName = value; }
+    inline void SetDisplayName(Aws::String&& value) { m_displayNameHasBeenSet = true; m_displayName = std::move(value); }
 
     /**
      * <p>The name to use for display purposes.</p>
@@ -142,12 +147,13 @@ namespace Model
     /**
      * <p>The name to use for display purposes.</p>
      */
-    inline PortfolioDetail& WithDisplayName(Aws::String&& value) { SetDisplayName(value); return *this;}
+    inline PortfolioDetail& WithDisplayName(Aws::String&& value) { SetDisplayName(std::move(value)); return *this;}
 
     /**
      * <p>The name to use for display purposes.</p>
      */
     inline PortfolioDetail& WithDisplayName(const char* value) { SetDisplayName(value); return *this;}
+
 
     /**
      * <p>The text description of the portfolio.</p>
@@ -162,7 +168,7 @@ namespace Model
     /**
      * <p>The text description of the portfolio.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The text description of the portfolio.</p>
@@ -177,12 +183,13 @@ namespace Model
     /**
      * <p>The text description of the portfolio.</p>
      */
-    inline PortfolioDetail& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline PortfolioDetail& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The text description of the portfolio.</p>
      */
     inline PortfolioDetail& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The UTC timestamp of the creation time.</p>
@@ -197,7 +204,7 @@ namespace Model
     /**
      * <p>The UTC timestamp of the creation time.</p>
      */
-    inline void SetCreatedTime(Aws::Utils::DateTime&& value) { m_createdTimeHasBeenSet = true; m_createdTime = value; }
+    inline void SetCreatedTime(Aws::Utils::DateTime&& value) { m_createdTimeHasBeenSet = true; m_createdTime = std::move(value); }
 
     /**
      * <p>The UTC timestamp of the creation time.</p>
@@ -207,7 +214,8 @@ namespace Model
     /**
      * <p>The UTC timestamp of the creation time.</p>
      */
-    inline PortfolioDetail& WithCreatedTime(Aws::Utils::DateTime&& value) { SetCreatedTime(value); return *this;}
+    inline PortfolioDetail& WithCreatedTime(Aws::Utils::DateTime&& value) { SetCreatedTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The name of the portfolio provider.</p>
@@ -222,7 +230,7 @@ namespace Model
     /**
      * <p>The name of the portfolio provider.</p>
      */
-    inline void SetProviderName(Aws::String&& value) { m_providerNameHasBeenSet = true; m_providerName = value; }
+    inline void SetProviderName(Aws::String&& value) { m_providerNameHasBeenSet = true; m_providerName = std::move(value); }
 
     /**
      * <p>The name of the portfolio provider.</p>
@@ -237,7 +245,7 @@ namespace Model
     /**
      * <p>The name of the portfolio provider.</p>
      */
-    inline PortfolioDetail& WithProviderName(Aws::String&& value) { SetProviderName(value); return *this;}
+    inline PortfolioDetail& WithProviderName(Aws::String&& value) { SetProviderName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the portfolio provider.</p>
@@ -245,16 +253,22 @@ namespace Model
     inline PortfolioDetail& WithProviderName(const char* value) { SetProviderName(value); return *this;}
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     Aws::String m_aRN;
     bool m_aRNHasBeenSet;
+
     Aws::String m_displayName;
     bool m_displayNameHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     Aws::Utils::DateTime m_createdTime;
     bool m_createdTimeHasBeenSet;
+
     Aws::String m_providerName;
     bool m_providerNameHasBeenSet;
   };

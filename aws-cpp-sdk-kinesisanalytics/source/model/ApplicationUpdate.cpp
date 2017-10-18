@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/kinesisanalytics/model/ApplicationUpdate.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -31,7 +32,8 @@ ApplicationUpdate::ApplicationUpdate() :
     m_inputUpdatesHasBeenSet(false),
     m_applicationCodeUpdateHasBeenSet(false),
     m_outputUpdatesHasBeenSet(false),
-    m_referenceDataSourceUpdatesHasBeenSet(false)
+    m_referenceDataSourceUpdatesHasBeenSet(false),
+    m_cloudWatchLoggingOptionUpdatesHasBeenSet(false)
 {
 }
 
@@ -39,7 +41,8 @@ ApplicationUpdate::ApplicationUpdate(const JsonValue& jsonValue) :
     m_inputUpdatesHasBeenSet(false),
     m_applicationCodeUpdateHasBeenSet(false),
     m_outputUpdatesHasBeenSet(false),
-    m_referenceDataSourceUpdatesHasBeenSet(false)
+    m_referenceDataSourceUpdatesHasBeenSet(false),
+    m_cloudWatchLoggingOptionUpdatesHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -81,6 +84,16 @@ ApplicationUpdate& ApplicationUpdate::operator =(const JsonValue& jsonValue)
       m_referenceDataSourceUpdates.push_back(referenceDataSourceUpdatesJsonList[referenceDataSourceUpdatesIndex].AsObject());
     }
     m_referenceDataSourceUpdatesHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("CloudWatchLoggingOptionUpdates"))
+  {
+    Array<JsonValue> cloudWatchLoggingOptionUpdatesJsonList = jsonValue.GetArray("CloudWatchLoggingOptionUpdates");
+    for(unsigned cloudWatchLoggingOptionUpdatesIndex = 0; cloudWatchLoggingOptionUpdatesIndex < cloudWatchLoggingOptionUpdatesJsonList.GetLength(); ++cloudWatchLoggingOptionUpdatesIndex)
+    {
+      m_cloudWatchLoggingOptionUpdates.push_back(cloudWatchLoggingOptionUpdatesJsonList[cloudWatchLoggingOptionUpdatesIndex].AsObject());
+    }
+    m_cloudWatchLoggingOptionUpdatesHasBeenSet = true;
   }
 
   return *this;
@@ -126,6 +139,17 @@ JsonValue ApplicationUpdate::Jsonize() const
      referenceDataSourceUpdatesJsonList[referenceDataSourceUpdatesIndex].AsObject(m_referenceDataSourceUpdates[referenceDataSourceUpdatesIndex].Jsonize());
    }
    payload.WithArray("ReferenceDataSourceUpdates", std::move(referenceDataSourceUpdatesJsonList));
+
+  }
+
+  if(m_cloudWatchLoggingOptionUpdatesHasBeenSet)
+  {
+   Array<JsonValue> cloudWatchLoggingOptionUpdatesJsonList(m_cloudWatchLoggingOptionUpdates.size());
+   for(unsigned cloudWatchLoggingOptionUpdatesIndex = 0; cloudWatchLoggingOptionUpdatesIndex < cloudWatchLoggingOptionUpdatesJsonList.GetLength(); ++cloudWatchLoggingOptionUpdatesIndex)
+   {
+     cloudWatchLoggingOptionUpdatesJsonList[cloudWatchLoggingOptionUpdatesIndex].AsObject(m_cloudWatchLoggingOptionUpdates[cloudWatchLoggingOptionUpdatesIndex].Jsonize());
+   }
+   payload.WithArray("CloudWatchLoggingOptionUpdates", std::move(cloudWatchLoggingOptionUpdatesJsonList));
 
   }
 

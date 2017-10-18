@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     VolumeConfiguration& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The volume mount point. For example "/dev/sdh".</p>
      */
@@ -56,7 +59,7 @@ namespace Model
     /**
      * <p>The volume mount point. For example "/dev/sdh".</p>
      */
-    inline void SetMountPoint(Aws::String&& value) { m_mountPointHasBeenSet = true; m_mountPoint = value; }
+    inline void SetMountPoint(Aws::String&& value) { m_mountPointHasBeenSet = true; m_mountPoint = std::move(value); }
 
     /**
      * <p>The volume mount point. For example "/dev/sdh".</p>
@@ -71,12 +74,13 @@ namespace Model
     /**
      * <p>The volume mount point. For example "/dev/sdh".</p>
      */
-    inline VolumeConfiguration& WithMountPoint(Aws::String&& value) { SetMountPoint(value); return *this;}
+    inline VolumeConfiguration& WithMountPoint(Aws::String&& value) { SetMountPoint(std::move(value)); return *this;}
 
     /**
      * <p>The volume mount point. For example "/dev/sdh".</p>
      */
     inline VolumeConfiguration& WithMountPoint(const char* value) { SetMountPoint(value); return *this;}
+
 
     /**
      * <p>The volume <a href="http://en.wikipedia.org/wiki/Standard_RAID_levels">RAID
@@ -96,6 +100,7 @@ namespace Model
      */
     inline VolumeConfiguration& WithRaidLevel(int value) { SetRaidLevel(value); return *this;}
 
+
     /**
      * <p>The number of disks in the volume.</p>
      */
@@ -111,6 +116,7 @@ namespace Model
      */
     inline VolumeConfiguration& WithNumberOfDisks(int value) { SetNumberOfDisks(value); return *this;}
 
+
     /**
      * <p>The volume size.</p>
      */
@@ -125,6 +131,7 @@ namespace Model
      * <p>The volume size.</p>
      */
     inline VolumeConfiguration& WithSize(int value) { SetSize(value); return *this;}
+
 
     /**
      * <p>The volume type:</p> <ul> <li> <p> <code>standard</code> - Magnetic</p> </li>
@@ -145,7 +152,7 @@ namespace Model
      * <li> <p> <code>io1</code> - Provisioned IOPS (SSD)</p> </li> <li> <p>
      * <code>gp2</code> - General Purpose (SSD)</p> </li> </ul>
      */
-    inline void SetVolumeType(Aws::String&& value) { m_volumeTypeHasBeenSet = true; m_volumeType = value; }
+    inline void SetVolumeType(Aws::String&& value) { m_volumeTypeHasBeenSet = true; m_volumeType = std::move(value); }
 
     /**
      * <p>The volume type:</p> <ul> <li> <p> <code>standard</code> - Magnetic</p> </li>
@@ -166,7 +173,7 @@ namespace Model
      * <li> <p> <code>io1</code> - Provisioned IOPS (SSD)</p> </li> <li> <p>
      * <code>gp2</code> - General Purpose (SSD)</p> </li> </ul>
      */
-    inline VolumeConfiguration& WithVolumeType(Aws::String&& value) { SetVolumeType(value); return *this;}
+    inline VolumeConfiguration& WithVolumeType(Aws::String&& value) { SetVolumeType(std::move(value)); return *this;}
 
     /**
      * <p>The volume type:</p> <ul> <li> <p> <code>standard</code> - Magnetic</p> </li>
@@ -174,6 +181,7 @@ namespace Model
      * <code>gp2</code> - General Purpose (SSD)</p> </li> </ul>
      */
     inline VolumeConfiguration& WithVolumeType(const char* value) { SetVolumeType(value); return *this;}
+
 
     /**
      * <p>For PIOPS volumes, the IOPS per disk.</p>
@@ -191,16 +199,22 @@ namespace Model
     inline VolumeConfiguration& WithIops(int value) { SetIops(value); return *this;}
 
   private:
+
     Aws::String m_mountPoint;
     bool m_mountPointHasBeenSet;
+
     int m_raidLevel;
     bool m_raidLevelHasBeenSet;
+
     int m_numberOfDisks;
     bool m_numberOfDisksHasBeenSet;
+
     int m_size;
     bool m_sizeHasBeenSet;
+
     Aws::String m_volumeType;
     bool m_volumeTypeHasBeenSet;
+
     int m_iops;
     bool m_iopsHasBeenSet;
   };

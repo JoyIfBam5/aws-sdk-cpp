@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   *
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -154,7 +154,7 @@ void PersistentCognitoIdentityProvider_JsonFileImpl::PersistChangesToFile(const 
     }
     else
     {
-        AWS_LOG_ERROR(LOG_TAG, "Failed persisting changes to file.");
+        AWS_LOGSTREAM_ERROR(LOG_TAG, "Failed persisting changes to file.");
     }
 }
 

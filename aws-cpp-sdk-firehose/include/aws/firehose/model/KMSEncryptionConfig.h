@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/firehose/Firehose_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     KMSEncryptionConfig& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ARN of the encryption key. Must belong to the same region as the
      * destination Amazon S3 bucket.</p>
@@ -60,7 +63,7 @@ namespace Model
      * <p>The ARN of the encryption key. Must belong to the same region as the
      * destination Amazon S3 bucket.</p>
      */
-    inline void SetAWSKMSKeyARN(Aws::String&& value) { m_aWSKMSKeyARNHasBeenSet = true; m_aWSKMSKeyARN = value; }
+    inline void SetAWSKMSKeyARN(Aws::String&& value) { m_aWSKMSKeyARNHasBeenSet = true; m_aWSKMSKeyARN = std::move(value); }
 
     /**
      * <p>The ARN of the encryption key. Must belong to the same region as the
@@ -78,7 +81,7 @@ namespace Model
      * <p>The ARN of the encryption key. Must belong to the same region as the
      * destination Amazon S3 bucket.</p>
      */
-    inline KMSEncryptionConfig& WithAWSKMSKeyARN(Aws::String&& value) { SetAWSKMSKeyARN(value); return *this;}
+    inline KMSEncryptionConfig& WithAWSKMSKeyARN(Aws::String&& value) { SetAWSKMSKeyARN(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of the encryption key. Must belong to the same region as the
@@ -87,6 +90,7 @@ namespace Model
     inline KMSEncryptionConfig& WithAWSKMSKeyARN(const char* value) { SetAWSKMSKeyARN(value); return *this;}
 
   private:
+
     Aws::String m_aWSKMSKeyARN;
     bool m_aWSKMSKeyARNHasBeenSet;
   };

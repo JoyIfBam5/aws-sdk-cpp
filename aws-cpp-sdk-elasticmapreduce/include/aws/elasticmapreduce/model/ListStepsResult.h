@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/elasticmapreduce/model/StepSummary.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,8 +47,9 @@ namespace Model
   {
   public:
     ListStepsResult();
-    ListStepsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListStepsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListStepsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListStepsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The filtered list of steps for the cluster.</p>
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>The filtered list of steps for the cluster.</p>
      */
-    inline void SetSteps(Aws::Vector<StepSummary>&& value) { m_steps = value; }
+    inline void SetSteps(Aws::Vector<StepSummary>&& value) { m_steps = std::move(value); }
 
     /**
      * <p>The filtered list of steps for the cluster.</p>
@@ -71,7 +74,7 @@ namespace Model
     /**
      * <p>The filtered list of steps for the cluster.</p>
      */
-    inline ListStepsResult& WithSteps(Aws::Vector<StepSummary>&& value) { SetSteps(value); return *this;}
+    inline ListStepsResult& WithSteps(Aws::Vector<StepSummary>&& value) { SetSteps(std::move(value)); return *this;}
 
     /**
      * <p>The filtered list of steps for the cluster.</p>
@@ -81,7 +84,8 @@ namespace Model
     /**
      * <p>The filtered list of steps for the cluster.</p>
      */
-    inline ListStepsResult& AddSteps(StepSummary&& value) { m_steps.push_back(value); return *this; }
+    inline ListStepsResult& AddSteps(StepSummary&& value) { m_steps.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
@@ -96,7 +100,7 @@ namespace Model
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
@@ -111,7 +115,7 @@ namespace Model
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
      */
-    inline ListStepsResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline ListStepsResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>The pagination token that indicates the next set of results to retrieve.</p>
@@ -119,7 +123,9 @@ namespace Model
     inline ListStepsResult& WithMarker(const char* value) { SetMarker(value); return *this;}
 
   private:
+
     Aws::Vector<StepSummary> m_steps;
+
     Aws::String m_marker;
   };
 

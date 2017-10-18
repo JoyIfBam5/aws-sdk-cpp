@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/servicecatalog/model/RecordDetail.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/servicecatalog/model/RecordOutput.h>
+#include <utility>
 
 namespace Aws
 {
@@ -39,8 +41,9 @@ namespace Model
   {
   public:
     DescribeRecordResult();
-    DescribeRecordResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeRecordResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeRecordResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeRecordResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Detailed record information for the specified product. </p>
@@ -55,7 +58,7 @@ namespace Model
     /**
      * <p>Detailed record information for the specified product. </p>
      */
-    inline void SetRecordDetail(RecordDetail&& value) { m_recordDetail = value; }
+    inline void SetRecordDetail(RecordDetail&& value) { m_recordDetail = std::move(value); }
 
     /**
      * <p>Detailed record information for the specified product. </p>
@@ -65,7 +68,8 @@ namespace Model
     /**
      * <p>Detailed record information for the specified product. </p>
      */
-    inline DescribeRecordResult& WithRecordDetail(RecordDetail&& value) { SetRecordDetail(value); return *this;}
+    inline DescribeRecordResult& WithRecordDetail(RecordDetail&& value) { SetRecordDetail(std::move(value)); return *this;}
+
 
     /**
      * <p>A list of outputs for the specified Product object created as the result of a
@@ -86,7 +90,7 @@ namespace Model
      * request. For example, a CloudFormation-backed product that creates an S3 bucket
      * would have an output for the S3 bucket URL.</p>
      */
-    inline void SetRecordOutputs(Aws::Vector<RecordOutput>&& value) { m_recordOutputs = value; }
+    inline void SetRecordOutputs(Aws::Vector<RecordOutput>&& value) { m_recordOutputs = std::move(value); }
 
     /**
      * <p>A list of outputs for the specified Product object created as the result of a
@@ -100,7 +104,7 @@ namespace Model
      * request. For example, a CloudFormation-backed product that creates an S3 bucket
      * would have an output for the S3 bucket URL.</p>
      */
-    inline DescribeRecordResult& WithRecordOutputs(Aws::Vector<RecordOutput>&& value) { SetRecordOutputs(value); return *this;}
+    inline DescribeRecordResult& WithRecordOutputs(Aws::Vector<RecordOutput>&& value) { SetRecordOutputs(std::move(value)); return *this;}
 
     /**
      * <p>A list of outputs for the specified Product object created as the result of a
@@ -114,7 +118,8 @@ namespace Model
      * request. For example, a CloudFormation-backed product that creates an S3 bucket
      * would have an output for the S3 bucket URL.</p>
      */
-    inline DescribeRecordResult& AddRecordOutputs(RecordOutput&& value) { m_recordOutputs.push_back(value); return *this; }
+    inline DescribeRecordResult& AddRecordOutputs(RecordOutput&& value) { m_recordOutputs.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The page token to use to retrieve the next page of results for this
@@ -132,7 +137,7 @@ namespace Model
      * <p>The page token to use to retrieve the next page of results for this
      * operation. If there are no more pages, this value is null.</p>
      */
-    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = value; }
+    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = std::move(value); }
 
     /**
      * <p>The page token to use to retrieve the next page of results for this
@@ -150,7 +155,7 @@ namespace Model
      * <p>The page token to use to retrieve the next page of results for this
      * operation. If there are no more pages, this value is null.</p>
      */
-    inline DescribeRecordResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(value); return *this;}
+    inline DescribeRecordResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(std::move(value)); return *this;}
 
     /**
      * <p>The page token to use to retrieve the next page of results for this
@@ -159,8 +164,11 @@ namespace Model
     inline DescribeRecordResult& WithNextPageToken(const char* value) { SetNextPageToken(value); return *this;}
 
   private:
+
     RecordDetail m_recordDetail;
+
     Aws::Vector<RecordOutput> m_recordOutputs;
+
     Aws::String m_nextPageToken;
   };
 

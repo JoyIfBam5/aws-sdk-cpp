@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesis/Kinesis_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     HashKeyRange& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The starting hash key of the hash key range.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The starting hash key of the hash key range.</p>
      */
-    inline void SetStartingHashKey(Aws::String&& value) { m_startingHashKeyHasBeenSet = true; m_startingHashKey = value; }
+    inline void SetStartingHashKey(Aws::String&& value) { m_startingHashKeyHasBeenSet = true; m_startingHashKey = std::move(value); }
 
     /**
      * <p>The starting hash key of the hash key range.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The starting hash key of the hash key range.</p>
      */
-    inline HashKeyRange& WithStartingHashKey(Aws::String&& value) { SetStartingHashKey(value); return *this;}
+    inline HashKeyRange& WithStartingHashKey(Aws::String&& value) { SetStartingHashKey(std::move(value)); return *this;}
 
     /**
      * <p>The starting hash key of the hash key range.</p>
      */
     inline HashKeyRange& WithStartingHashKey(const char* value) { SetStartingHashKey(value); return *this;}
+
 
     /**
      * <p>The ending hash key of the hash key range.</p>
@@ -92,7 +96,7 @@ namespace Model
     /**
      * <p>The ending hash key of the hash key range.</p>
      */
-    inline void SetEndingHashKey(Aws::String&& value) { m_endingHashKeyHasBeenSet = true; m_endingHashKey = value; }
+    inline void SetEndingHashKey(Aws::String&& value) { m_endingHashKeyHasBeenSet = true; m_endingHashKey = std::move(value); }
 
     /**
      * <p>The ending hash key of the hash key range.</p>
@@ -107,7 +111,7 @@ namespace Model
     /**
      * <p>The ending hash key of the hash key range.</p>
      */
-    inline HashKeyRange& WithEndingHashKey(Aws::String&& value) { SetEndingHashKey(value); return *this;}
+    inline HashKeyRange& WithEndingHashKey(Aws::String&& value) { SetEndingHashKey(std::move(value)); return *this;}
 
     /**
      * <p>The ending hash key of the hash key range.</p>
@@ -115,8 +119,10 @@ namespace Model
     inline HashKeyRange& WithEndingHashKey(const char* value) { SetEndingHashKey(value); return *this;}
 
   private:
+
     Aws::String m_startingHashKey;
     bool m_startingHashKeyHasBeenSet;
+
     Aws::String m_endingHashKey;
     bool m_endingHashKeyHasBeenSet;
   };

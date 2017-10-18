@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/elasticmapreduce/model/AdjustmentType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     SimpleScalingPolicyConfiguration& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The way in which EC2 instances are added (if <code>ScalingAdjustment</code>
      * is a positive number) or terminated (if <code>ScalingAdjustment</code> is a
@@ -55,7 +58,7 @@ namespace Model
      * <code>ScalingAdjustment</code>, which should be expressed as an integer.
      * <code>PERCENT_CHANGE_IN_CAPACITY</code> indicates the instance count increments
      * or decrements by the percentage specified by <code>ScalingAdjustment</code>,
-     * which should be expressed as a decimal, for example, 0.20 indicates an increase
+     * which should be expressed as a decimal. For example, 0.20 indicates an increase
      * in 20% increments of cluster capacity. <code>EXACT_CAPACITY</code> indicates the
      * scaling activity results in an instance group with the number of EC2 instances
      * specified by <code>ScalingAdjustment</code>, which should be expressed as a
@@ -72,7 +75,7 @@ namespace Model
      * <code>ScalingAdjustment</code>, which should be expressed as an integer.
      * <code>PERCENT_CHANGE_IN_CAPACITY</code> indicates the instance count increments
      * or decrements by the percentage specified by <code>ScalingAdjustment</code>,
-     * which should be expressed as a decimal, for example, 0.20 indicates an increase
+     * which should be expressed as a decimal. For example, 0.20 indicates an increase
      * in 20% increments of cluster capacity. <code>EXACT_CAPACITY</code> indicates the
      * scaling activity results in an instance group with the number of EC2 instances
      * specified by <code>ScalingAdjustment</code>, which should be expressed as a
@@ -89,13 +92,13 @@ namespace Model
      * <code>ScalingAdjustment</code>, which should be expressed as an integer.
      * <code>PERCENT_CHANGE_IN_CAPACITY</code> indicates the instance count increments
      * or decrements by the percentage specified by <code>ScalingAdjustment</code>,
-     * which should be expressed as a decimal, for example, 0.20 indicates an increase
+     * which should be expressed as a decimal. For example, 0.20 indicates an increase
      * in 20% increments of cluster capacity. <code>EXACT_CAPACITY</code> indicates the
      * scaling activity results in an instance group with the number of EC2 instances
      * specified by <code>ScalingAdjustment</code>, which should be expressed as a
      * positive integer.</p>
      */
-    inline void SetAdjustmentType(AdjustmentType&& value) { m_adjustmentTypeHasBeenSet = true; m_adjustmentType = value; }
+    inline void SetAdjustmentType(AdjustmentType&& value) { m_adjustmentTypeHasBeenSet = true; m_adjustmentType = std::move(value); }
 
     /**
      * <p>The way in which EC2 instances are added (if <code>ScalingAdjustment</code>
@@ -106,7 +109,7 @@ namespace Model
      * <code>ScalingAdjustment</code>, which should be expressed as an integer.
      * <code>PERCENT_CHANGE_IN_CAPACITY</code> indicates the instance count increments
      * or decrements by the percentage specified by <code>ScalingAdjustment</code>,
-     * which should be expressed as a decimal, for example, 0.20 indicates an increase
+     * which should be expressed as a decimal. For example, 0.20 indicates an increase
      * in 20% increments of cluster capacity. <code>EXACT_CAPACITY</code> indicates the
      * scaling activity results in an instance group with the number of EC2 instances
      * specified by <code>ScalingAdjustment</code>, which should be expressed as a
@@ -123,13 +126,14 @@ namespace Model
      * <code>ScalingAdjustment</code>, which should be expressed as an integer.
      * <code>PERCENT_CHANGE_IN_CAPACITY</code> indicates the instance count increments
      * or decrements by the percentage specified by <code>ScalingAdjustment</code>,
-     * which should be expressed as a decimal, for example, 0.20 indicates an increase
+     * which should be expressed as a decimal. For example, 0.20 indicates an increase
      * in 20% increments of cluster capacity. <code>EXACT_CAPACITY</code> indicates the
      * scaling activity results in an instance group with the number of EC2 instances
      * specified by <code>ScalingAdjustment</code>, which should be expressed as a
      * positive integer.</p>
      */
-    inline SimpleScalingPolicyConfiguration& WithAdjustmentType(AdjustmentType&& value) { SetAdjustmentType(value); return *this;}
+    inline SimpleScalingPolicyConfiguration& WithAdjustmentType(AdjustmentType&& value) { SetAdjustmentType(std::move(value)); return *this;}
+
 
     /**
      * <p>The amount by which to scale in or scale out, based on the specified
@@ -167,6 +171,7 @@ namespace Model
      */
     inline SimpleScalingPolicyConfiguration& WithScalingAdjustment(int value) { SetScalingAdjustment(value); return *this;}
 
+
     /**
      * <p>The amount of time, in seconds, after a scaling activity completes before any
      * further trigger-related scaling activities can start. The default value is
@@ -189,10 +194,13 @@ namespace Model
     inline SimpleScalingPolicyConfiguration& WithCoolDown(int value) { SetCoolDown(value); return *this;}
 
   private:
+
     AdjustmentType m_adjustmentType;
     bool m_adjustmentTypeHasBeenSet;
+
     int m_scalingAdjustment;
     bool m_scalingAdjustmentHasBeenSet;
+
     int m_coolDown;
     bool m_coolDownHasBeenSet;
   };

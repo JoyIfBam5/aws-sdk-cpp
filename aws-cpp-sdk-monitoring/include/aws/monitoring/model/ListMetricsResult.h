@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/monitoring/CloudWatch_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/monitoring/model/ResponseMetadata.h>
 #include <aws/monitoring/model/Metric.h>
+#include <utility>
 
 namespace Aws
 {
@@ -39,8 +41,9 @@ namespace Model
   {
   public:
     ListMetricsResult();
-    ListMetricsResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    ListMetricsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ListMetricsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ListMetricsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>The metrics.</p>
@@ -55,7 +58,7 @@ namespace Model
     /**
      * <p>The metrics.</p>
      */
-    inline void SetMetrics(Aws::Vector<Metric>&& value) { m_metrics = value; }
+    inline void SetMetrics(Aws::Vector<Metric>&& value) { m_metrics = std::move(value); }
 
     /**
      * <p>The metrics.</p>
@@ -65,7 +68,7 @@ namespace Model
     /**
      * <p>The metrics.</p>
      */
-    inline ListMetricsResult& WithMetrics(Aws::Vector<Metric>&& value) { SetMetrics(value); return *this;}
+    inline ListMetricsResult& WithMetrics(Aws::Vector<Metric>&& value) { SetMetrics(std::move(value)); return *this;}
 
     /**
      * <p>The metrics.</p>
@@ -75,7 +78,8 @@ namespace Model
     /**
      * <p>The metrics.</p>
      */
-    inline ListMetricsResult& AddMetrics(Metric&& value) { m_metrics.push_back(value); return *this; }
+    inline ListMetricsResult& AddMetrics(Metric&& value) { m_metrics.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The token that marks the start of the next batch of returned results.</p>
@@ -90,7 +94,7 @@ namespace Model
     /**
      * <p>The token that marks the start of the next batch of returned results.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The token that marks the start of the next batch of returned results.</p>
@@ -105,12 +109,13 @@ namespace Model
     /**
      * <p>The token that marks the start of the next batch of returned results.</p>
      */
-    inline ListMetricsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListMetricsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The token that marks the start of the next batch of returned results.</p>
      */
     inline ListMetricsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -119,17 +124,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline ListMetricsResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline ListMetricsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline ListMetricsResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<Metric> m_metrics;
+
     Aws::String m_nextToken;
+
     ResponseMetadata m_responseMetadata;
   };
 

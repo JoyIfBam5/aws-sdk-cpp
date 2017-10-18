@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudtrail/CloudTrail_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/cloudtrail/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     ResourceTag& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Specifies the ARN of the resource.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>Specifies the ARN of the resource.</p>
      */
-    inline void SetResourceId(Aws::String&& value) { m_resourceIdHasBeenSet = true; m_resourceId = value; }
+    inline void SetResourceId(Aws::String&& value) { m_resourceIdHasBeenSet = true; m_resourceId = std::move(value); }
 
     /**
      * <p>Specifies the ARN of the resource.</p>
@@ -73,37 +76,54 @@ namespace Model
     /**
      * <p>Specifies the ARN of the resource.</p>
      */
-    inline ResourceTag& WithResourceId(Aws::String&& value) { SetResourceId(value); return *this;}
+    inline ResourceTag& WithResourceId(Aws::String&& value) { SetResourceId(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the ARN of the resource.</p>
      */
     inline ResourceTag& WithResourceId(const char* value) { SetResourceId(value); return *this;}
 
-    
+
+    /**
+     * <p>A list of tags.</p>
+     */
     inline const Aws::Vector<Tag>& GetTagsList() const{ return m_tagsList; }
 
-    
+    /**
+     * <p>A list of tags.</p>
+     */
     inline void SetTagsList(const Aws::Vector<Tag>& value) { m_tagsListHasBeenSet = true; m_tagsList = value; }
 
-    
-    inline void SetTagsList(Aws::Vector<Tag>&& value) { m_tagsListHasBeenSet = true; m_tagsList = value; }
+    /**
+     * <p>A list of tags.</p>
+     */
+    inline void SetTagsList(Aws::Vector<Tag>&& value) { m_tagsListHasBeenSet = true; m_tagsList = std::move(value); }
 
-    
+    /**
+     * <p>A list of tags.</p>
+     */
     inline ResourceTag& WithTagsList(const Aws::Vector<Tag>& value) { SetTagsList(value); return *this;}
 
-    
-    inline ResourceTag& WithTagsList(Aws::Vector<Tag>&& value) { SetTagsList(value); return *this;}
+    /**
+     * <p>A list of tags.</p>
+     */
+    inline ResourceTag& WithTagsList(Aws::Vector<Tag>&& value) { SetTagsList(std::move(value)); return *this;}
 
-    
+    /**
+     * <p>A list of tags.</p>
+     */
     inline ResourceTag& AddTagsList(const Tag& value) { m_tagsListHasBeenSet = true; m_tagsList.push_back(value); return *this; }
 
-    
-    inline ResourceTag& AddTagsList(Tag&& value) { m_tagsListHasBeenSet = true; m_tagsList.push_back(value); return *this; }
+    /**
+     * <p>A list of tags.</p>
+     */
+    inline ResourceTag& AddTagsList(Tag&& value) { m_tagsListHasBeenSet = true; m_tagsList.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_resourceId;
     bool m_resourceIdHasBeenSet;
+
     Aws::Vector<Tag> m_tagsList;
     bool m_tagsListHasBeenSet;
   };

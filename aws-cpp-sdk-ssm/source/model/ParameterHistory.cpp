@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ssm/model/ParameterHistory.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -35,7 +36,8 @@ ParameterHistory::ParameterHistory() :
     m_lastModifiedDateHasBeenSet(false),
     m_lastModifiedUserHasBeenSet(false),
     m_descriptionHasBeenSet(false),
-    m_valueHasBeenSet(false)
+    m_valueHasBeenSet(false),
+    m_allowedPatternHasBeenSet(false)
 {
 }
 
@@ -47,7 +49,8 @@ ParameterHistory::ParameterHistory(const JsonValue& jsonValue) :
     m_lastModifiedDateHasBeenSet(false),
     m_lastModifiedUserHasBeenSet(false),
     m_descriptionHasBeenSet(false),
-    m_valueHasBeenSet(false)
+    m_valueHasBeenSet(false),
+    m_allowedPatternHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -103,6 +106,13 @@ ParameterHistory& ParameterHistory::operator =(const JsonValue& jsonValue)
     m_valueHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("AllowedPattern"))
+  {
+    m_allowedPattern = jsonValue.GetString("AllowedPattern");
+
+    m_allowedPatternHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -147,6 +157,12 @@ JsonValue ParameterHistory::Jsonize() const
   if(m_valueHasBeenSet)
   {
    payload.WithString("Value", m_value);
+
+  }
+
+  if(m_allowedPatternHasBeenSet)
+  {
+   payload.WithString("AllowedPattern", m_allowedPattern);
 
   }
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ssm/model/UpdateAssociationRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -26,7 +27,11 @@ UpdateAssociationRequest::UpdateAssociationRequest() :
     m_parametersHasBeenSet(false),
     m_documentVersionHasBeenSet(false),
     m_scheduleExpressionHasBeenSet(false),
-    m_outputLocationHasBeenSet(false)
+    m_outputLocationHasBeenSet(false),
+    m_nameHasBeenSet(false),
+    m_targetsHasBeenSet(false),
+    m_associationNameHasBeenSet(false),
+    m_associationVersionHasBeenSet(false)
 {
 }
 
@@ -74,6 +79,35 @@ Aws::String UpdateAssociationRequest::SerializePayload() const
 
   }
 
+  if(m_nameHasBeenSet)
+  {
+   payload.WithString("Name", m_name);
+
+  }
+
+  if(m_targetsHasBeenSet)
+  {
+   Array<JsonValue> targetsJsonList(m_targets.size());
+   for(unsigned targetsIndex = 0; targetsIndex < targetsJsonList.GetLength(); ++targetsIndex)
+   {
+     targetsJsonList[targetsIndex].AsObject(m_targets[targetsIndex].Jsonize());
+   }
+   payload.WithArray("Targets", std::move(targetsJsonList));
+
+  }
+
+  if(m_associationNameHasBeenSet)
+  {
+   payload.WithString("AssociationName", m_associationName);
+
+  }
+
+  if(m_associationVersionHasBeenSet)
+  {
+   payload.WithString("AssociationVersion", m_associationVersion);
+
+  }
+
   return payload.WriteReadable();
 }
 
@@ -84,6 +118,7 @@ Aws::Http::HeaderValueCollection UpdateAssociationRequest::GetRequestSpecificHea
   return headers;
 
 }
+
 
 
 

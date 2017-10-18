@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/xray/XRay_EXPORTS.h>
 
@@ -44,6 +45,7 @@ namespace Model
     HistogramEntry& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The value of the entry.</p>
      */
@@ -58,6 +60,7 @@ namespace Model
      * <p>The value of the entry.</p>
      */
     inline HistogramEntry& WithValue(double value) { SetValue(value); return *this;}
+
 
     /**
      * <p>The prevalence of the entry.</p>
@@ -75,8 +78,10 @@ namespace Model
     inline HistogramEntry& WithCount(int value) { SetCount(value); return *this;}
 
   private:
+
     double m_value;
     bool m_valueHasBeenSet;
+
     int m_count;
     bool m_countHasBeenSet;
   };

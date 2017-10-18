@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/storagegateway/StorageGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -41,8 +43,9 @@ namespace Model
   {
   public:
     CreateStorediSCSIVolumeResult();
-    CreateStorediSCSIVolumeResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateStorediSCSIVolumeResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateStorediSCSIVolumeResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateStorediSCSIVolumeResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the configured volume.</p>
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the configured volume.</p>
      */
-    inline void SetVolumeARN(Aws::String&& value) { m_volumeARN = value; }
+    inline void SetVolumeARN(Aws::String&& value) { m_volumeARN = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the configured volume.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the configured volume.</p>
      */
-    inline CreateStorediSCSIVolumeResult& WithVolumeARN(Aws::String&& value) { SetVolumeARN(value); return *this;}
+    inline CreateStorediSCSIVolumeResult& WithVolumeARN(Aws::String&& value) { SetVolumeARN(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the configured volume.</p>
      */
     inline CreateStorediSCSIVolumeResult& WithVolumeARN(const char* value) { SetVolumeARN(value); return *this;}
+
 
     /**
      * <p>The size of the volume in bytes.</p>
@@ -93,6 +97,7 @@ namespace Model
      * <p>The size of the volume in bytes.</p>
      */
     inline CreateStorediSCSIVolumeResult& WithVolumeSizeInBytes(long long value) { SetVolumeSizeInBytes(value); return *this;}
+
 
     /**
      * <p>he Amazon Resource Name (ARN) of the volume target that includes the iSCSI
@@ -110,7 +115,7 @@ namespace Model
      * <p>he Amazon Resource Name (ARN) of the volume target that includes the iSCSI
      * name that initiators can use to connect to the target.</p>
      */
-    inline void SetTargetARN(Aws::String&& value) { m_targetARN = value; }
+    inline void SetTargetARN(Aws::String&& value) { m_targetARN = std::move(value); }
 
     /**
      * <p>he Amazon Resource Name (ARN) of the volume target that includes the iSCSI
@@ -128,7 +133,7 @@ namespace Model
      * <p>he Amazon Resource Name (ARN) of the volume target that includes the iSCSI
      * name that initiators can use to connect to the target.</p>
      */
-    inline CreateStorediSCSIVolumeResult& WithTargetARN(Aws::String&& value) { SetTargetARN(value); return *this;}
+    inline CreateStorediSCSIVolumeResult& WithTargetARN(Aws::String&& value) { SetTargetARN(std::move(value)); return *this;}
 
     /**
      * <p>he Amazon Resource Name (ARN) of the volume target that includes the iSCSI
@@ -137,8 +142,11 @@ namespace Model
     inline CreateStorediSCSIVolumeResult& WithTargetARN(const char* value) { SetTargetARN(value); return *this;}
 
   private:
+
     Aws::String m_volumeARN;
+
     long long m_volumeSizeInBytes;
+
     Aws::String m_targetARN;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/route53/model/RRType.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -40,6 +41,7 @@ namespace Aws
         static const int SRV_HASH = HashingUtils::HashString("SRV");
         static const int SPF_HASH = HashingUtils::HashString("SPF");
         static const int AAAA_HASH = HashingUtils::HashString("AAAA");
+        static const int CAA_HASH = HashingUtils::HashString("CAA");
 
 
         RRType GetRRTypeForName(const Aws::String& name)
@@ -89,6 +91,10 @@ namespace Aws
           {
             return RRType::AAAA;
           }
+          else if (hashCode == CAA_HASH)
+          {
+            return RRType::CAA;
+          }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
           {
@@ -125,6 +131,8 @@ namespace Aws
             return "SPF";
           case RRType::AAAA:
             return "AAAA";
+          case RRType::CAA:
+            return "CAA";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

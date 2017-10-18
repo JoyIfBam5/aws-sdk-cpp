@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesis/Kinesis_EXPORTS.h>
 #include <aws/kinesis/KinesisRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     SplitShardRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "SplitShard"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The name of the stream for the shard split.</p>
@@ -51,7 +61,7 @@ namespace Model
     /**
      * <p>The name of the stream for the shard split.</p>
      */
-    inline void SetStreamName(Aws::String&& value) { m_streamNameHasBeenSet = true; m_streamName = value; }
+    inline void SetStreamName(Aws::String&& value) { m_streamNameHasBeenSet = true; m_streamName = std::move(value); }
 
     /**
      * <p>The name of the stream for the shard split.</p>
@@ -66,12 +76,13 @@ namespace Model
     /**
      * <p>The name of the stream for the shard split.</p>
      */
-    inline SplitShardRequest& WithStreamName(Aws::String&& value) { SetStreamName(value); return *this;}
+    inline SplitShardRequest& WithStreamName(Aws::String&& value) { SetStreamName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the stream for the shard split.</p>
      */
     inline SplitShardRequest& WithStreamName(const char* value) { SetStreamName(value); return *this;}
+
 
     /**
      * <p>The shard ID of the shard to split.</p>
@@ -86,7 +97,7 @@ namespace Model
     /**
      * <p>The shard ID of the shard to split.</p>
      */
-    inline void SetShardToSplit(Aws::String&& value) { m_shardToSplitHasBeenSet = true; m_shardToSplit = value; }
+    inline void SetShardToSplit(Aws::String&& value) { m_shardToSplitHasBeenSet = true; m_shardToSplit = std::move(value); }
 
     /**
      * <p>The shard ID of the shard to split.</p>
@@ -101,12 +112,13 @@ namespace Model
     /**
      * <p>The shard ID of the shard to split.</p>
      */
-    inline SplitShardRequest& WithShardToSplit(Aws::String&& value) { SetShardToSplit(value); return *this;}
+    inline SplitShardRequest& WithShardToSplit(Aws::String&& value) { SetShardToSplit(std::move(value)); return *this;}
 
     /**
      * <p>The shard ID of the shard to split.</p>
      */
     inline SplitShardRequest& WithShardToSplit(const char* value) { SetShardToSplit(value); return *this;}
+
 
     /**
      * <p>A hash key value for the starting hash key of one of the child shards created
@@ -139,7 +151,7 @@ namespace Model
      * hash key range are distributed to one of the child shards. All the lower hash
      * key values in the range are distributed to the other child shard.</p>
      */
-    inline void SetNewStartingHashKey(Aws::String&& value) { m_newStartingHashKeyHasBeenSet = true; m_newStartingHashKey = value; }
+    inline void SetNewStartingHashKey(Aws::String&& value) { m_newStartingHashKeyHasBeenSet = true; m_newStartingHashKey = std::move(value); }
 
     /**
      * <p>A hash key value for the starting hash key of one of the child shards created
@@ -172,7 +184,7 @@ namespace Model
      * hash key range are distributed to one of the child shards. All the lower hash
      * key values in the range are distributed to the other child shard.</p>
      */
-    inline SplitShardRequest& WithNewStartingHashKey(Aws::String&& value) { SetNewStartingHashKey(value); return *this;}
+    inline SplitShardRequest& WithNewStartingHashKey(Aws::String&& value) { SetNewStartingHashKey(std::move(value)); return *this;}
 
     /**
      * <p>A hash key value for the starting hash key of one of the child shards created
@@ -186,10 +198,13 @@ namespace Model
     inline SplitShardRequest& WithNewStartingHashKey(const char* value) { SetNewStartingHashKey(value); return *this;}
 
   private:
+
     Aws::String m_streamName;
     bool m_streamNameHasBeenSet;
+
     Aws::String m_shardToSplit;
     bool m_shardToSplitHasBeenSet;
+
     Aws::String m_newStartingHashKey;
     bool m_newStartingHashKeyHasBeenSet;
   };

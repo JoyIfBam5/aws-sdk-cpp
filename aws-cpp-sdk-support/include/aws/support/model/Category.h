@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/support/Support_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     Category& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The category code for the support case.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The category code for the support case.</p>
      */
-    inline void SetCode(Aws::String&& value) { m_codeHasBeenSet = true; m_code = value; }
+    inline void SetCode(Aws::String&& value) { m_codeHasBeenSet = true; m_code = std::move(value); }
 
     /**
      * <p>The category code for the support case.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The category code for the support case.</p>
      */
-    inline Category& WithCode(Aws::String&& value) { SetCode(value); return *this;}
+    inline Category& WithCode(Aws::String&& value) { SetCode(std::move(value)); return *this;}
 
     /**
      * <p>The category code for the support case.</p>
      */
     inline Category& WithCode(const char* value) { SetCode(value); return *this;}
+
 
     /**
      * <p>The category name for the support case.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The category name for the support case.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The category name for the support case.</p>
@@ -108,7 +112,7 @@ namespace Model
     /**
      * <p>The category name for the support case.</p>
      */
-    inline Category& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline Category& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The category name for the support case.</p>
@@ -116,8 +120,10 @@ namespace Model
     inline Category& WithName(const char* value) { SetName(value); return *this;}
 
   private:
+
     Aws::String m_code;
     bool m_codeHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
   };

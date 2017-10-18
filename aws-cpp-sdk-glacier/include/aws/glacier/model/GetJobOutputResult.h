@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/glacier/Glacier_EXPORTS.h>
 #include <aws/core/utils/stream/ResponseStream.h>
 #include <aws/core/utils/Array.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,8 +48,9 @@ namespace Model
     GetJobOutputResult& operator=(const GetJobOutputResult&) = delete;
 
 
-    GetJobOutputResult(AmazonWebServiceResult<Utils::Stream::ResponseStream>&& result);
-    GetJobOutputResult& operator=(AmazonWebServiceResult<Utils::Stream::ResponseStream>&& result);
+    GetJobOutputResult(Aws::AmazonWebServiceResult<Aws::Utils::Stream::ResponseStream>&& result);
+    GetJobOutputResult& operator=(Aws::AmazonWebServiceResult<Aws::Utils::Stream::ResponseStream>&& result);
+
 
 
     /**
@@ -60,6 +63,7 @@ namespace Model
      */
     inline void ReplaceBody(Aws::IOStream* body) { m_body = Aws::Utils::Stream::ResponseStream(body); }
     
+
     /**
      * <p>The checksum of the data in the response. This header is returned only when
      * retrieving the output for an archive retrieval job. Furthermore, this header
@@ -106,7 +110,7 @@ namespace Model
      * (the end of the archive), then the x-amz-sha256-tree-hash is returned as a
      * response header.</p> </li> </ul>
      */
-    inline void SetChecksum(Aws::String&& value) { m_checksum = value; }
+    inline void SetChecksum(Aws::String&& value) { m_checksum = std::move(value); }
 
     /**
      * <p>The checksum of the data in the response. This header is returned only when
@@ -154,7 +158,7 @@ namespace Model
      * (the end of the archive), then the x-amz-sha256-tree-hash is returned as a
      * response header.</p> </li> </ul>
      */
-    inline GetJobOutputResult& WithChecksum(Aws::String&& value) { SetChecksum(value); return *this;}
+    inline GetJobOutputResult& WithChecksum(Aws::String&& value) { SetChecksum(std::move(value)); return *this;}
 
     /**
      * <p>The checksum of the data in the response. This header is returned only when
@@ -171,6 +175,7 @@ namespace Model
      * response header.</p> </li> </ul>
      */
     inline GetJobOutputResult& WithChecksum(const char* value) { SetChecksum(value); return *this;}
+
 
     /**
      * <p>The HTTP response code for a job output request. The value depends on whether
@@ -189,6 +194,7 @@ namespace Model
      * a range was specified in the request.</p>
      */
     inline GetJobOutputResult& WithStatus(int value) { SetStatus(value); return *this;}
+
 
     /**
      * <p>The range of bytes returned by Amazon Glacier. If only partial output is
@@ -209,7 +215,7 @@ namespace Model
      * downloaded, the response provides the range of bytes Amazon Glacier returned.
      * For example, bytes 0-1048575/8388608 returns the first 1 MB from 8 MB.</p>
      */
-    inline void SetContentRange(Aws::String&& value) { m_contentRange = value; }
+    inline void SetContentRange(Aws::String&& value) { m_contentRange = std::move(value); }
 
     /**
      * <p>The range of bytes returned by Amazon Glacier. If only partial output is
@@ -230,7 +236,7 @@ namespace Model
      * downloaded, the response provides the range of bytes Amazon Glacier returned.
      * For example, bytes 0-1048575/8388608 returns the first 1 MB from 8 MB.</p>
      */
-    inline GetJobOutputResult& WithContentRange(Aws::String&& value) { SetContentRange(value); return *this;}
+    inline GetJobOutputResult& WithContentRange(Aws::String&& value) { SetContentRange(std::move(value)); return *this;}
 
     /**
      * <p>The range of bytes returned by Amazon Glacier. If only partial output is
@@ -238,6 +244,7 @@ namespace Model
      * For example, bytes 0-1048575/8388608 returns the first 1 MB from 8 MB.</p>
      */
     inline GetJobOutputResult& WithContentRange(const char* value) { SetContentRange(value); return *this;}
+
 
     /**
      * <p>Indicates the range units accepted. For more information, see <a
@@ -255,7 +262,7 @@ namespace Model
      * <p>Indicates the range units accepted. For more information, see <a
      * href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">RFC2616</a>. </p>
      */
-    inline void SetAcceptRanges(Aws::String&& value) { m_acceptRanges = value; }
+    inline void SetAcceptRanges(Aws::String&& value) { m_acceptRanges = std::move(value); }
 
     /**
      * <p>Indicates the range units accepted. For more information, see <a
@@ -273,13 +280,14 @@ namespace Model
      * <p>Indicates the range units accepted. For more information, see <a
      * href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">RFC2616</a>. </p>
      */
-    inline GetJobOutputResult& WithAcceptRanges(Aws::String&& value) { SetAcceptRanges(value); return *this;}
+    inline GetJobOutputResult& WithAcceptRanges(Aws::String&& value) { SetAcceptRanges(std::move(value)); return *this;}
 
     /**
      * <p>Indicates the range units accepted. For more information, see <a
      * href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html">RFC2616</a>. </p>
      */
     inline GetJobOutputResult& WithAcceptRanges(const char* value) { SetAcceptRanges(value); return *this;}
+
 
     /**
      * <p>The Content-Type depends on whether the job output is an archive or a vault
@@ -306,7 +314,7 @@ namespace Model
      * Content-Type is text/csv. Otherwise, by default, vault inventory is returned as
      * JSON, and the Content-Type is application/json.</p>
      */
-    inline void SetContentType(Aws::String&& value) { m_contentType = value; }
+    inline void SetContentType(Aws::String&& value) { m_contentType = std::move(value); }
 
     /**
      * <p>The Content-Type depends on whether the job output is an archive or a vault
@@ -333,7 +341,7 @@ namespace Model
      * Content-Type is text/csv. Otherwise, by default, vault inventory is returned as
      * JSON, and the Content-Type is application/json.</p>
      */
-    inline GetJobOutputResult& WithContentType(Aws::String&& value) { SetContentType(value); return *this;}
+    inline GetJobOutputResult& WithContentType(Aws::String&& value) { SetContentType(std::move(value)); return *this;}
 
     /**
      * <p>The Content-Type depends on whether the job output is an archive or a vault
@@ -343,6 +351,7 @@ namespace Model
      * JSON, and the Content-Type is application/json.</p>
      */
     inline GetJobOutputResult& WithContentType(const char* value) { SetContentType(value); return *this;}
+
 
     /**
      * <p>The description of an archive.</p>
@@ -357,7 +366,7 @@ namespace Model
     /**
      * <p>The description of an archive.</p>
      */
-    inline void SetArchiveDescription(Aws::String&& value) { m_archiveDescription = value; }
+    inline void SetArchiveDescription(Aws::String&& value) { m_archiveDescription = std::move(value); }
 
     /**
      * <p>The description of an archive.</p>
@@ -372,7 +381,7 @@ namespace Model
     /**
      * <p>The description of an archive.</p>
      */
-    inline GetJobOutputResult& WithArchiveDescription(Aws::String&& value) { SetArchiveDescription(value); return *this;}
+    inline GetJobOutputResult& WithArchiveDescription(Aws::String&& value) { SetArchiveDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description of an archive.</p>
@@ -380,12 +389,19 @@ namespace Model
     inline GetJobOutputResult& WithArchiveDescription(const char* value) { SetArchiveDescription(value); return *this;}
 
   private:
-    Utils::Stream::ResponseStream m_body;
+
+  Aws::Utils::Stream::ResponseStream m_body;
+
     Aws::String m_checksum;
+
     int m_status;
+
     Aws::String m_contentRange;
+
     Aws::String m_acceptRanges;
+
     Aws::String m_contentType;
+
     Aws::String m_archiveDescription;
   };
 

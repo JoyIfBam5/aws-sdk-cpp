@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/ssm/SSMRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     DeregisterTargetFromMaintenanceWindowRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DeregisterTargetFromMaintenanceWindow"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The ID of the Maintenance Window the target should be removed from.</p>
@@ -47,7 +57,7 @@ namespace Model
     /**
      * <p>The ID of the Maintenance Window the target should be removed from.</p>
      */
-    inline void SetWindowId(Aws::String&& value) { m_windowIdHasBeenSet = true; m_windowId = value; }
+    inline void SetWindowId(Aws::String&& value) { m_windowIdHasBeenSet = true; m_windowId = std::move(value); }
 
     /**
      * <p>The ID of the Maintenance Window the target should be removed from.</p>
@@ -62,12 +72,13 @@ namespace Model
     /**
      * <p>The ID of the Maintenance Window the target should be removed from.</p>
      */
-    inline DeregisterTargetFromMaintenanceWindowRequest& WithWindowId(Aws::String&& value) { SetWindowId(value); return *this;}
+    inline DeregisterTargetFromMaintenanceWindowRequest& WithWindowId(Aws::String&& value) { SetWindowId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the Maintenance Window the target should be removed from.</p>
      */
     inline DeregisterTargetFromMaintenanceWindowRequest& WithWindowId(const char* value) { SetWindowId(value); return *this;}
+
 
     /**
      * <p>The ID of the target definition to remove.</p>
@@ -82,7 +93,7 @@ namespace Model
     /**
      * <p>The ID of the target definition to remove.</p>
      */
-    inline void SetWindowTargetId(Aws::String&& value) { m_windowTargetIdHasBeenSet = true; m_windowTargetId = value; }
+    inline void SetWindowTargetId(Aws::String&& value) { m_windowTargetIdHasBeenSet = true; m_windowTargetId = std::move(value); }
 
     /**
      * <p>The ID of the target definition to remove.</p>
@@ -97,18 +108,45 @@ namespace Model
     /**
      * <p>The ID of the target definition to remove.</p>
      */
-    inline DeregisterTargetFromMaintenanceWindowRequest& WithWindowTargetId(Aws::String&& value) { SetWindowTargetId(value); return *this;}
+    inline DeregisterTargetFromMaintenanceWindowRequest& WithWindowTargetId(Aws::String&& value) { SetWindowTargetId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the target definition to remove.</p>
      */
     inline DeregisterTargetFromMaintenanceWindowRequest& WithWindowTargetId(const char* value) { SetWindowTargetId(value); return *this;}
 
+
+    /**
+     * <p>The system checks if the target is being referenced by a task. If the target
+     * is being referenced, the system returns an error and does not deregister the
+     * target from the Maintenance Window.</p>
+     */
+    inline bool GetSafe() const{ return m_safe; }
+
+    /**
+     * <p>The system checks if the target is being referenced by a task. If the target
+     * is being referenced, the system returns an error and does not deregister the
+     * target from the Maintenance Window.</p>
+     */
+    inline void SetSafe(bool value) { m_safeHasBeenSet = true; m_safe = value; }
+
+    /**
+     * <p>The system checks if the target is being referenced by a task. If the target
+     * is being referenced, the system returns an error and does not deregister the
+     * target from the Maintenance Window.</p>
+     */
+    inline DeregisterTargetFromMaintenanceWindowRequest& WithSafe(bool value) { SetSafe(value); return *this;}
+
   private:
+
     Aws::String m_windowId;
     bool m_windowIdHasBeenSet;
+
     Aws::String m_windowTargetId;
     bool m_windowTargetIdHasBeenSet;
+
+    bool m_safe;
+    bool m_safeHasBeenSet;
   };
 
 } // namespace Model

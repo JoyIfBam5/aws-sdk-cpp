@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/servicecatalog/model/PortfolioDetail.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/servicecatalog/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     UpdatePortfolioResult();
-    UpdatePortfolioResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    UpdatePortfolioResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdatePortfolioResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdatePortfolioResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The resulting detailed portfolio information.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>The resulting detailed portfolio information.</p>
      */
-    inline void SetPortfolioDetail(PortfolioDetail&& value) { m_portfolioDetail = value; }
+    inline void SetPortfolioDetail(PortfolioDetail&& value) { m_portfolioDetail = std::move(value); }
 
     /**
      * <p>The resulting detailed portfolio information.</p>
@@ -64,7 +67,8 @@ namespace Model
     /**
      * <p>The resulting detailed portfolio information.</p>
      */
-    inline UpdatePortfolioResult& WithPortfolioDetail(PortfolioDetail&& value) { SetPortfolioDetail(value); return *this;}
+    inline UpdatePortfolioResult& WithPortfolioDetail(PortfolioDetail&& value) { SetPortfolioDetail(std::move(value)); return *this;}
+
 
     /**
      * <p>Tags associated with the portfolio.</p>
@@ -79,7 +83,7 @@ namespace Model
     /**
      * <p>Tags associated with the portfolio.</p>
      */
-    inline void SetTags(Aws::Vector<Tag>&& value) { m_tags = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tags = std::move(value); }
 
     /**
      * <p>Tags associated with the portfolio.</p>
@@ -89,7 +93,7 @@ namespace Model
     /**
      * <p>Tags associated with the portfolio.</p>
      */
-    inline UpdatePortfolioResult& WithTags(Aws::Vector<Tag>&& value) { SetTags(value); return *this;}
+    inline UpdatePortfolioResult& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
      * <p>Tags associated with the portfolio.</p>
@@ -99,10 +103,12 @@ namespace Model
     /**
      * <p>Tags associated with the portfolio.</p>
      */
-    inline UpdatePortfolioResult& AddTags(Tag&& value) { m_tags.push_back(value); return *this; }
+    inline UpdatePortfolioResult& AddTags(Tag&& value) { m_tags.push_back(std::move(value)); return *this; }
 
   private:
+
     PortfolioDetail m_portfolioDetail;
+
     Aws::Vector<Tag> m_tags;
   };
 

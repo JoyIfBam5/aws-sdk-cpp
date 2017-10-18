@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/ecs/ECSRequest.h>
@@ -21,6 +22,7 @@
 #include <aws/ecs/model/ContainerDefinition.h>
 #include <aws/ecs/model/Volume.h>
 #include <aws/ecs/model/TaskDefinitionPlacementConstraint.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,9 +37,17 @@ namespace Model
   {
   public:
     RegisterTaskDefinitionRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "RegisterTaskDefinition"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>You must specify a <code>family</code> for a task definition, which allows
@@ -64,7 +74,7 @@ namespace Model
      * letters (uppercase and lowercase), numbers, hyphens, and underscores are
      * allowed.</p>
      */
-    inline void SetFamily(Aws::String&& value) { m_familyHasBeenSet = true; m_family = value; }
+    inline void SetFamily(Aws::String&& value) { m_familyHasBeenSet = true; m_family = std::move(value); }
 
     /**
      * <p>You must specify a <code>family</code> for a task definition, which allows
@@ -91,7 +101,7 @@ namespace Model
      * letters (uppercase and lowercase), numbers, hyphens, and underscores are
      * allowed.</p>
      */
-    inline RegisterTaskDefinitionRequest& WithFamily(Aws::String&& value) { SetFamily(value); return *this;}
+    inline RegisterTaskDefinitionRequest& WithFamily(Aws::String&& value) { SetFamily(std::move(value)); return *this;}
 
     /**
      * <p>You must specify a <code>family</code> for a task definition, which allows
@@ -101,6 +111,7 @@ namespace Model
      * allowed.</p>
      */
     inline RegisterTaskDefinitionRequest& WithFamily(const char* value) { SetFamily(value); return *this;}
+
 
     /**
      * <p>The short name or full Amazon Resource Name (ARN) of the IAM role that
@@ -130,7 +141,7 @@ namespace Model
      * Roles for Tasks</a> in the <i>Amazon EC2 Container Service Developer
      * Guide</i>.</p>
      */
-    inline void SetTaskRoleArn(Aws::String&& value) { m_taskRoleArnHasBeenSet = true; m_taskRoleArn = value; }
+    inline void SetTaskRoleArn(Aws::String&& value) { m_taskRoleArnHasBeenSet = true; m_taskRoleArn = std::move(value); }
 
     /**
      * <p>The short name or full Amazon Resource Name (ARN) of the IAM role that
@@ -160,7 +171,7 @@ namespace Model
      * Roles for Tasks</a> in the <i>Amazon EC2 Container Service Developer
      * Guide</i>.</p>
      */
-    inline RegisterTaskDefinitionRequest& WithTaskRoleArn(Aws::String&& value) { SetTaskRoleArn(value); return *this;}
+    inline RegisterTaskDefinitionRequest& WithTaskRoleArn(Aws::String&& value) { SetTaskRoleArn(std::move(value)); return *this;}
 
     /**
      * <p>The short name or full Amazon Resource Name (ARN) of the IAM role that
@@ -171,6 +182,7 @@ namespace Model
      * Guide</i>.</p>
      */
     inline RegisterTaskDefinitionRequest& WithTaskRoleArn(const char* value) { SetTaskRoleArn(value); return *this;}
+
 
     /**
      * <p>The Docker networking mode to use for the containers in the task. The valid
@@ -224,7 +236,7 @@ namespace Model
      * href="https://docs.docker.com/engine/reference/run/#network-settings">Network
      * settings</a> in the <i>Docker run reference</i>.</p>
      */
-    inline void SetNetworkMode(NetworkMode&& value) { m_networkModeHasBeenSet = true; m_networkMode = value; }
+    inline void SetNetworkMode(NetworkMode&& value) { m_networkModeHasBeenSet = true; m_networkMode = std::move(value); }
 
     /**
      * <p>The Docker networking mode to use for the containers in the task. The valid
@@ -260,7 +272,8 @@ namespace Model
      * href="https://docs.docker.com/engine/reference/run/#network-settings">Network
      * settings</a> in the <i>Docker run reference</i>.</p>
      */
-    inline RegisterTaskDefinitionRequest& WithNetworkMode(NetworkMode&& value) { SetNetworkMode(value); return *this;}
+    inline RegisterTaskDefinitionRequest& WithNetworkMode(NetworkMode&& value) { SetNetworkMode(std::move(value)); return *this;}
+
 
     /**
      * <p>A list of container definitions in JSON format that describe the different
@@ -278,7 +291,7 @@ namespace Model
      * <p>A list of container definitions in JSON format that describe the different
      * containers that make up your task.</p>
      */
-    inline void SetContainerDefinitions(Aws::Vector<ContainerDefinition>&& value) { m_containerDefinitionsHasBeenSet = true; m_containerDefinitions = value; }
+    inline void SetContainerDefinitions(Aws::Vector<ContainerDefinition>&& value) { m_containerDefinitionsHasBeenSet = true; m_containerDefinitions = std::move(value); }
 
     /**
      * <p>A list of container definitions in JSON format that describe the different
@@ -290,7 +303,7 @@ namespace Model
      * <p>A list of container definitions in JSON format that describe the different
      * containers that make up your task.</p>
      */
-    inline RegisterTaskDefinitionRequest& WithContainerDefinitions(Aws::Vector<ContainerDefinition>&& value) { SetContainerDefinitions(value); return *this;}
+    inline RegisterTaskDefinitionRequest& WithContainerDefinitions(Aws::Vector<ContainerDefinition>&& value) { SetContainerDefinitions(std::move(value)); return *this;}
 
     /**
      * <p>A list of container definitions in JSON format that describe the different
@@ -302,7 +315,8 @@ namespace Model
      * <p>A list of container definitions in JSON format that describe the different
      * containers that make up your task.</p>
      */
-    inline RegisterTaskDefinitionRequest& AddContainerDefinitions(ContainerDefinition&& value) { m_containerDefinitionsHasBeenSet = true; m_containerDefinitions.push_back(value); return *this; }
+    inline RegisterTaskDefinitionRequest& AddContainerDefinitions(ContainerDefinition&& value) { m_containerDefinitionsHasBeenSet = true; m_containerDefinitions.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>A list of volume definitions in JSON format that containers in your task may
@@ -320,7 +334,7 @@ namespace Model
      * <p>A list of volume definitions in JSON format that containers in your task may
      * use.</p>
      */
-    inline void SetVolumes(Aws::Vector<Volume>&& value) { m_volumesHasBeenSet = true; m_volumes = value; }
+    inline void SetVolumes(Aws::Vector<Volume>&& value) { m_volumesHasBeenSet = true; m_volumes = std::move(value); }
 
     /**
      * <p>A list of volume definitions in JSON format that containers in your task may
@@ -332,7 +346,7 @@ namespace Model
      * <p>A list of volume definitions in JSON format that containers in your task may
      * use.</p>
      */
-    inline RegisterTaskDefinitionRequest& WithVolumes(Aws::Vector<Volume>&& value) { SetVolumes(value); return *this;}
+    inline RegisterTaskDefinitionRequest& WithVolumes(Aws::Vector<Volume>&& value) { SetVolumes(std::move(value)); return *this;}
 
     /**
      * <p>A list of volume definitions in JSON format that containers in your task may
@@ -344,7 +358,8 @@ namespace Model
      * <p>A list of volume definitions in JSON format that containers in your task may
      * use.</p>
      */
-    inline RegisterTaskDefinitionRequest& AddVolumes(Volume&& value) { m_volumesHasBeenSet = true; m_volumes.push_back(value); return *this; }
+    inline RegisterTaskDefinitionRequest& AddVolumes(Volume&& value) { m_volumesHasBeenSet = true; m_volumes.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>An array of placement constraint objects to use for the task. You can specify
@@ -365,7 +380,7 @@ namespace Model
      * a maximum of 10 constraints per task (this limit includes constraints in the
      * task definition and those specified at run time).</p>
      */
-    inline void SetPlacementConstraints(Aws::Vector<TaskDefinitionPlacementConstraint>&& value) { m_placementConstraintsHasBeenSet = true; m_placementConstraints = value; }
+    inline void SetPlacementConstraints(Aws::Vector<TaskDefinitionPlacementConstraint>&& value) { m_placementConstraintsHasBeenSet = true; m_placementConstraints = std::move(value); }
 
     /**
      * <p>An array of placement constraint objects to use for the task. You can specify
@@ -379,7 +394,7 @@ namespace Model
      * a maximum of 10 constraints per task (this limit includes constraints in the
      * task definition and those specified at run time).</p>
      */
-    inline RegisterTaskDefinitionRequest& WithPlacementConstraints(Aws::Vector<TaskDefinitionPlacementConstraint>&& value) { SetPlacementConstraints(value); return *this;}
+    inline RegisterTaskDefinitionRequest& WithPlacementConstraints(Aws::Vector<TaskDefinitionPlacementConstraint>&& value) { SetPlacementConstraints(std::move(value)); return *this;}
 
     /**
      * <p>An array of placement constraint objects to use for the task. You can specify
@@ -393,19 +408,25 @@ namespace Model
      * a maximum of 10 constraints per task (this limit includes constraints in the
      * task definition and those specified at run time).</p>
      */
-    inline RegisterTaskDefinitionRequest& AddPlacementConstraints(TaskDefinitionPlacementConstraint&& value) { m_placementConstraintsHasBeenSet = true; m_placementConstraints.push_back(value); return *this; }
+    inline RegisterTaskDefinitionRequest& AddPlacementConstraints(TaskDefinitionPlacementConstraint&& value) { m_placementConstraintsHasBeenSet = true; m_placementConstraints.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_family;
     bool m_familyHasBeenSet;
+
     Aws::String m_taskRoleArn;
     bool m_taskRoleArnHasBeenSet;
+
     NetworkMode m_networkMode;
     bool m_networkModeHasBeenSet;
+
     Aws::Vector<ContainerDefinition> m_containerDefinitions;
     bool m_containerDefinitionsHasBeenSet;
+
     Aws::Vector<Volume> m_volumes;
     bool m_volumesHasBeenSet;
+
     Aws::Vector<TaskDefinitionPlacementConstraint> m_placementConstraints;
     bool m_placementConstraintsHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/events/CloudWatchEvents_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/events/model/PutTargetsResultEntry.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,17 +35,13 @@ namespace CloudWatchEvents
 {
 namespace Model
 {
-  /**
-   * <p>The result of the <a>PutTargets</a> operation.</p><p><h3>See Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/PutTargetsResponse">AWS
-   * API Reference</a></p>
-   */
   class AWS_CLOUDWATCHEVENTS_API PutTargetsResult
   {
   public:
     PutTargetsResult();
-    PutTargetsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    PutTargetsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PutTargetsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PutTargetsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The number of failed entries.</p>
@@ -60,43 +58,46 @@ namespace Model
      */
     inline PutTargetsResult& WithFailedEntryCount(int value) { SetFailedEntryCount(value); return *this;}
 
+
     /**
-     * <p>An array of failed target entries.</p>
+     * <p>The failed target entries.</p>
      */
     inline const Aws::Vector<PutTargetsResultEntry>& GetFailedEntries() const{ return m_failedEntries; }
 
     /**
-     * <p>An array of failed target entries.</p>
+     * <p>The failed target entries.</p>
      */
     inline void SetFailedEntries(const Aws::Vector<PutTargetsResultEntry>& value) { m_failedEntries = value; }
 
     /**
-     * <p>An array of failed target entries.</p>
+     * <p>The failed target entries.</p>
      */
-    inline void SetFailedEntries(Aws::Vector<PutTargetsResultEntry>&& value) { m_failedEntries = value; }
+    inline void SetFailedEntries(Aws::Vector<PutTargetsResultEntry>&& value) { m_failedEntries = std::move(value); }
 
     /**
-     * <p>An array of failed target entries.</p>
+     * <p>The failed target entries.</p>
      */
     inline PutTargetsResult& WithFailedEntries(const Aws::Vector<PutTargetsResultEntry>& value) { SetFailedEntries(value); return *this;}
 
     /**
-     * <p>An array of failed target entries.</p>
+     * <p>The failed target entries.</p>
      */
-    inline PutTargetsResult& WithFailedEntries(Aws::Vector<PutTargetsResultEntry>&& value) { SetFailedEntries(value); return *this;}
+    inline PutTargetsResult& WithFailedEntries(Aws::Vector<PutTargetsResultEntry>&& value) { SetFailedEntries(std::move(value)); return *this;}
 
     /**
-     * <p>An array of failed target entries.</p>
+     * <p>The failed target entries.</p>
      */
     inline PutTargetsResult& AddFailedEntries(const PutTargetsResultEntry& value) { m_failedEntries.push_back(value); return *this; }
 
     /**
-     * <p>An array of failed target entries.</p>
+     * <p>The failed target entries.</p>
      */
-    inline PutTargetsResult& AddFailedEntries(PutTargetsResultEntry&& value) { m_failedEntries.push_back(value); return *this; }
+    inline PutTargetsResult& AddFailedEntries(PutTargetsResultEntry&& value) { m_failedEntries.push_back(std::move(value)); return *this; }
 
   private:
+
     int m_failedEntryCount;
+
     Aws::Vector<PutTargetsResultEntry> m_failedEntries;
   };
 

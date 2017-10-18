@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/budgets/Budgets_EXPORTS.h>
 
@@ -43,6 +44,7 @@ namespace Model
     CostTypes& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     
     inline bool GetIncludeTax() const{ return m_includeTax; }
 
@@ -52,6 +54,7 @@ namespace Model
     
     inline CostTypes& WithIncludeTax(bool value) { SetIncludeTax(value); return *this;}
 
+
     
     inline bool GetIncludeSubscription() const{ return m_includeSubscription; }
 
@@ -60,6 +63,7 @@ namespace Model
 
     
     inline CostTypes& WithIncludeSubscription(bool value) { SetIncludeSubscription(value); return *this;}
+
 
     
     inline bool GetUseBlended() const{ return m_useBlended; }
@@ -71,10 +75,13 @@ namespace Model
     inline CostTypes& WithUseBlended(bool value) { SetUseBlended(value); return *this;}
 
   private:
+
     bool m_includeTax;
     bool m_includeTaxHasBeenSet;
+
     bool m_includeSubscription;
     bool m_includeSubscriptionHasBeenSet;
+
     bool m_useBlended;
     bool m_useBlendedHasBeenSet;
   };

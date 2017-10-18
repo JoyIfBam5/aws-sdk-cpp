@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/ecs/ECSRequest.h>
@@ -20,6 +21,7 @@
 #include <aws/ecs/model/VersionInfo.h>
 #include <aws/ecs/model/Resource.h>
 #include <aws/ecs/model/Attribute.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     RegisterContainerInstanceRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "RegisterContainerInstance"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The short name or full Amazon Resource Name (ARN) of the cluster with which
@@ -57,7 +67,7 @@ namespace Model
      * to register your container instance. If you do not specify a cluster, the
      * default cluster is assumed.</p>
      */
-    inline void SetCluster(Aws::String&& value) { m_clusterHasBeenSet = true; m_cluster = value; }
+    inline void SetCluster(Aws::String&& value) { m_clusterHasBeenSet = true; m_cluster = std::move(value); }
 
     /**
      * <p>The short name or full Amazon Resource Name (ARN) of the cluster with which
@@ -78,7 +88,7 @@ namespace Model
      * to register your container instance. If you do not specify a cluster, the
      * default cluster is assumed.</p>
      */
-    inline RegisterContainerInstanceRequest& WithCluster(Aws::String&& value) { SetCluster(value); return *this;}
+    inline RegisterContainerInstanceRequest& WithCluster(Aws::String&& value) { SetCluster(std::move(value)); return *this;}
 
     /**
      * <p>The short name or full Amazon Resource Name (ARN) of the cluster with which
@@ -86,6 +96,7 @@ namespace Model
      * default cluster is assumed.</p>
      */
     inline RegisterContainerInstanceRequest& WithCluster(const char* value) { SetCluster(value); return *this;}
+
 
     /**
      * <p>The instance identity document for the EC2 instance to register. This
@@ -109,7 +120,7 @@ namespace Model
      * <code>curl
      * http://169.254.169.254/latest/dynamic/instance-identity/document/</code> </p>
      */
-    inline void SetInstanceIdentityDocument(Aws::String&& value) { m_instanceIdentityDocumentHasBeenSet = true; m_instanceIdentityDocument = value; }
+    inline void SetInstanceIdentityDocument(Aws::String&& value) { m_instanceIdentityDocumentHasBeenSet = true; m_instanceIdentityDocument = std::move(value); }
 
     /**
      * <p>The instance identity document for the EC2 instance to register. This
@@ -133,7 +144,7 @@ namespace Model
      * <code>curl
      * http://169.254.169.254/latest/dynamic/instance-identity/document/</code> </p>
      */
-    inline RegisterContainerInstanceRequest& WithInstanceIdentityDocument(Aws::String&& value) { SetInstanceIdentityDocument(value); return *this;}
+    inline RegisterContainerInstanceRequest& WithInstanceIdentityDocument(Aws::String&& value) { SetInstanceIdentityDocument(std::move(value)); return *this;}
 
     /**
      * <p>The instance identity document for the EC2 instance to register. This
@@ -142,6 +153,7 @@ namespace Model
      * http://169.254.169.254/latest/dynamic/instance-identity/document/</code> </p>
      */
     inline RegisterContainerInstanceRequest& WithInstanceIdentityDocument(const char* value) { SetInstanceIdentityDocument(value); return *this;}
+
 
     /**
      * <p>The instance identity document signature for the EC2 instance to register.
@@ -165,7 +177,7 @@ namespace Model
      * <code>curl
      * http://169.254.169.254/latest/dynamic/instance-identity/signature/</code> </p>
      */
-    inline void SetInstanceIdentityDocumentSignature(Aws::String&& value) { m_instanceIdentityDocumentSignatureHasBeenSet = true; m_instanceIdentityDocumentSignature = value; }
+    inline void SetInstanceIdentityDocumentSignature(Aws::String&& value) { m_instanceIdentityDocumentSignatureHasBeenSet = true; m_instanceIdentityDocumentSignature = std::move(value); }
 
     /**
      * <p>The instance identity document signature for the EC2 instance to register.
@@ -189,7 +201,7 @@ namespace Model
      * <code>curl
      * http://169.254.169.254/latest/dynamic/instance-identity/signature/</code> </p>
      */
-    inline RegisterContainerInstanceRequest& WithInstanceIdentityDocumentSignature(Aws::String&& value) { SetInstanceIdentityDocumentSignature(value); return *this;}
+    inline RegisterContainerInstanceRequest& WithInstanceIdentityDocumentSignature(Aws::String&& value) { SetInstanceIdentityDocumentSignature(std::move(value)); return *this;}
 
     /**
      * <p>The instance identity document signature for the EC2 instance to register.
@@ -198,6 +210,7 @@ namespace Model
      * http://169.254.169.254/latest/dynamic/instance-identity/signature/</code> </p>
      */
     inline RegisterContainerInstanceRequest& WithInstanceIdentityDocumentSignature(const char* value) { SetInstanceIdentityDocumentSignature(value); return *this;}
+
 
     /**
      * <p>The resources available on the instance.</p>
@@ -212,7 +225,7 @@ namespace Model
     /**
      * <p>The resources available on the instance.</p>
      */
-    inline void SetTotalResources(Aws::Vector<Resource>&& value) { m_totalResourcesHasBeenSet = true; m_totalResources = value; }
+    inline void SetTotalResources(Aws::Vector<Resource>&& value) { m_totalResourcesHasBeenSet = true; m_totalResources = std::move(value); }
 
     /**
      * <p>The resources available on the instance.</p>
@@ -222,7 +235,7 @@ namespace Model
     /**
      * <p>The resources available on the instance.</p>
      */
-    inline RegisterContainerInstanceRequest& WithTotalResources(Aws::Vector<Resource>&& value) { SetTotalResources(value); return *this;}
+    inline RegisterContainerInstanceRequest& WithTotalResources(Aws::Vector<Resource>&& value) { SetTotalResources(std::move(value)); return *this;}
 
     /**
      * <p>The resources available on the instance.</p>
@@ -232,7 +245,8 @@ namespace Model
     /**
      * <p>The resources available on the instance.</p>
      */
-    inline RegisterContainerInstanceRequest& AddTotalResources(Resource&& value) { m_totalResourcesHasBeenSet = true; m_totalResources.push_back(value); return *this; }
+    inline RegisterContainerInstanceRequest& AddTotalResources(Resource&& value) { m_totalResourcesHasBeenSet = true; m_totalResources.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The version information for the Amazon ECS container agent and Docker daemon
@@ -250,7 +264,7 @@ namespace Model
      * <p>The version information for the Amazon ECS container agent and Docker daemon
      * running on the container instance.</p>
      */
-    inline void SetVersionInfo(VersionInfo&& value) { m_versionInfoHasBeenSet = true; m_versionInfo = value; }
+    inline void SetVersionInfo(VersionInfo&& value) { m_versionInfoHasBeenSet = true; m_versionInfo = std::move(value); }
 
     /**
      * <p>The version information for the Amazon ECS container agent and Docker daemon
@@ -262,7 +276,8 @@ namespace Model
      * <p>The version information for the Amazon ECS container agent and Docker daemon
      * running on the container instance.</p>
      */
-    inline RegisterContainerInstanceRequest& WithVersionInfo(VersionInfo&& value) { SetVersionInfo(value); return *this;}
+    inline RegisterContainerInstanceRequest& WithVersionInfo(VersionInfo&& value) { SetVersionInfo(std::move(value)); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the container instance (if it was
@@ -280,7 +295,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the container instance (if it was
      * previously registered).</p>
      */
-    inline void SetContainerInstanceArn(Aws::String&& value) { m_containerInstanceArnHasBeenSet = true; m_containerInstanceArn = value; }
+    inline void SetContainerInstanceArn(Aws::String&& value) { m_containerInstanceArnHasBeenSet = true; m_containerInstanceArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the container instance (if it was
@@ -298,13 +313,14 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the container instance (if it was
      * previously registered).</p>
      */
-    inline RegisterContainerInstanceRequest& WithContainerInstanceArn(Aws::String&& value) { SetContainerInstanceArn(value); return *this;}
+    inline RegisterContainerInstanceRequest& WithContainerInstanceArn(Aws::String&& value) { SetContainerInstanceArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the container instance (if it was
      * previously registered).</p>
      */
     inline RegisterContainerInstanceRequest& WithContainerInstanceArn(const char* value) { SetContainerInstanceArn(value); return *this;}
+
 
     /**
      * <p>The container instance attributes that this container instance supports.</p>
@@ -319,7 +335,7 @@ namespace Model
     /**
      * <p>The container instance attributes that this container instance supports.</p>
      */
-    inline void SetAttributes(Aws::Vector<Attribute>&& value) { m_attributesHasBeenSet = true; m_attributes = value; }
+    inline void SetAttributes(Aws::Vector<Attribute>&& value) { m_attributesHasBeenSet = true; m_attributes = std::move(value); }
 
     /**
      * <p>The container instance attributes that this container instance supports.</p>
@@ -329,7 +345,7 @@ namespace Model
     /**
      * <p>The container instance attributes that this container instance supports.</p>
      */
-    inline RegisterContainerInstanceRequest& WithAttributes(Aws::Vector<Attribute>&& value) { SetAttributes(value); return *this;}
+    inline RegisterContainerInstanceRequest& WithAttributes(Aws::Vector<Attribute>&& value) { SetAttributes(std::move(value)); return *this;}
 
     /**
      * <p>The container instance attributes that this container instance supports.</p>
@@ -339,21 +355,28 @@ namespace Model
     /**
      * <p>The container instance attributes that this container instance supports.</p>
      */
-    inline RegisterContainerInstanceRequest& AddAttributes(Attribute&& value) { m_attributesHasBeenSet = true; m_attributes.push_back(value); return *this; }
+    inline RegisterContainerInstanceRequest& AddAttributes(Attribute&& value) { m_attributesHasBeenSet = true; m_attributes.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_cluster;
     bool m_clusterHasBeenSet;
+
     Aws::String m_instanceIdentityDocument;
     bool m_instanceIdentityDocumentHasBeenSet;
+
     Aws::String m_instanceIdentityDocumentSignature;
     bool m_instanceIdentityDocumentSignatureHasBeenSet;
+
     Aws::Vector<Resource> m_totalResources;
     bool m_totalResourcesHasBeenSet;
+
     VersionInfo m_versionInfo;
     bool m_versionInfoHasBeenSet;
+
     Aws::String m_containerInstanceArn;
     bool m_containerInstanceArnHasBeenSet;
+
     Aws::Vector<Attribute> m_attributes;
     bool m_attributesHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/kinesisanalytics/model/CreateApplicationRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -26,6 +27,7 @@ CreateApplicationRequest::CreateApplicationRequest() :
     m_applicationDescriptionHasBeenSet(false),
     m_inputsHasBeenSet(false),
     m_outputsHasBeenSet(false),
+    m_cloudWatchLoggingOptionsHasBeenSet(false),
     m_applicationCodeHasBeenSet(false)
 {
 }
@@ -68,6 +70,17 @@ Aws::String CreateApplicationRequest::SerializePayload() const
 
   }
 
+  if(m_cloudWatchLoggingOptionsHasBeenSet)
+  {
+   Array<JsonValue> cloudWatchLoggingOptionsJsonList(m_cloudWatchLoggingOptions.size());
+   for(unsigned cloudWatchLoggingOptionsIndex = 0; cloudWatchLoggingOptionsIndex < cloudWatchLoggingOptionsJsonList.GetLength(); ++cloudWatchLoggingOptionsIndex)
+   {
+     cloudWatchLoggingOptionsJsonList[cloudWatchLoggingOptionsIndex].AsObject(m_cloudWatchLoggingOptions[cloudWatchLoggingOptionsIndex].Jsonize());
+   }
+   payload.WithArray("CloudWatchLoggingOptions", std::move(cloudWatchLoggingOptionsJsonList));
+
+  }
+
   if(m_applicationCodeHasBeenSet)
   {
    payload.WithString("ApplicationCode", m_applicationCode);
@@ -84,6 +97,7 @@ Aws::Http::HeaderValueCollection CreateApplicationRequest::GetRequestSpecificHea
   return headers;
 
 }
+
 
 
 

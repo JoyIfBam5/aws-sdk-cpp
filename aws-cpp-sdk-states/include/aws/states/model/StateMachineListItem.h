@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/states/SFN_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -39,6 +41,7 @@ namespace Model
     StateMachineListItem& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the state machine.</p>
      */
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the state machine.</p>
      */
-    inline void SetStateMachineArn(Aws::String&& value) { m_stateMachineArnHasBeenSet = true; m_stateMachineArn = value; }
+    inline void SetStateMachineArn(Aws::String&& value) { m_stateMachineArnHasBeenSet = true; m_stateMachineArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the state machine.</p>
@@ -67,12 +70,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the state machine.</p>
      */
-    inline StateMachineListItem& WithStateMachineArn(Aws::String&& value) { SetStateMachineArn(value); return *this;}
+    inline StateMachineListItem& WithStateMachineArn(Aws::String&& value) { SetStateMachineArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) that identifies the state machine.</p>
      */
     inline StateMachineListItem& WithStateMachineArn(const char* value) { SetStateMachineArn(value); return *this;}
+
 
     /**
      * <p>The name of the state machine.</p>
@@ -87,7 +91,7 @@ namespace Model
     /**
      * <p>The name of the state machine.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the state machine.</p>
@@ -102,12 +106,13 @@ namespace Model
     /**
      * <p>The name of the state machine.</p>
      */
-    inline StateMachineListItem& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline StateMachineListItem& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the state machine.</p>
      */
     inline StateMachineListItem& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The date the state machine was created.</p>
@@ -122,7 +127,7 @@ namespace Model
     /**
      * <p>The date the state machine was created.</p>
      */
-    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDateHasBeenSet = true; m_creationDate = value; }
+    inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDateHasBeenSet = true; m_creationDate = std::move(value); }
 
     /**
      * <p>The date the state machine was created.</p>
@@ -132,13 +137,16 @@ namespace Model
     /**
      * <p>The date the state machine was created.</p>
      */
-    inline StateMachineListItem& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(value); return *this;}
+    inline StateMachineListItem& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_stateMachineArn;
     bool m_stateMachineArnHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::Utils::DateTime m_creationDate;
     bool m_creationDateHasBeenSet;
   };

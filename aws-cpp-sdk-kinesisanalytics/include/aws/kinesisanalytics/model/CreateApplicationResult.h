@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesisanalytics/KinesisAnalytics_EXPORTS.h>
 #include <aws/kinesisanalytics/model/ApplicationSummary.h>
+#include <utility>
 
 namespace Aws
 {
@@ -41,8 +43,9 @@ namespace Model
   {
   public:
     CreateApplicationResult();
-    CreateApplicationResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateApplicationResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateApplicationResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateApplicationResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>In response to your <code>CreateApplication</code> request, Amazon Kinesis
@@ -63,7 +66,7 @@ namespace Model
      * Analytics returns a response with a summary of the application it created,
      * including the application Amazon Resource Name (ARN), name, and status.</p>
      */
-    inline void SetApplicationSummary(ApplicationSummary&& value) { m_applicationSummary = value; }
+    inline void SetApplicationSummary(ApplicationSummary&& value) { m_applicationSummary = std::move(value); }
 
     /**
      * <p>In response to your <code>CreateApplication</code> request, Amazon Kinesis
@@ -77,9 +80,10 @@ namespace Model
      * Analytics returns a response with a summary of the application it created,
      * including the application Amazon Resource Name (ARN), name, and status.</p>
      */
-    inline CreateApplicationResult& WithApplicationSummary(ApplicationSummary&& value) { SetApplicationSummary(value); return *this;}
+    inline CreateApplicationResult& WithApplicationSummary(ApplicationSummary&& value) { SetApplicationSummary(std::move(value)); return *this;}
 
   private:
+
     ApplicationSummary m_applicationSummary;
   };
 

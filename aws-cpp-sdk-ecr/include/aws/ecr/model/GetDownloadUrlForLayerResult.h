@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecr/ECR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     GetDownloadUrlForLayerResult();
-    GetDownloadUrlForLayerResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetDownloadUrlForLayerResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDownloadUrlForLayerResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDownloadUrlForLayerResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The pre-signed Amazon S3 download URL for the requested layer.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The pre-signed Amazon S3 download URL for the requested layer.</p>
      */
-    inline void SetDownloadUrl(Aws::String&& value) { m_downloadUrl = value; }
+    inline void SetDownloadUrl(Aws::String&& value) { m_downloadUrl = std::move(value); }
 
     /**
      * <p>The pre-signed Amazon S3 download URL for the requested layer.</p>
@@ -67,12 +70,13 @@ namespace Model
     /**
      * <p>The pre-signed Amazon S3 download URL for the requested layer.</p>
      */
-    inline GetDownloadUrlForLayerResult& WithDownloadUrl(Aws::String&& value) { SetDownloadUrl(value); return *this;}
+    inline GetDownloadUrlForLayerResult& WithDownloadUrl(Aws::String&& value) { SetDownloadUrl(std::move(value)); return *this;}
 
     /**
      * <p>The pre-signed Amazon S3 download URL for the requested layer.</p>
      */
     inline GetDownloadUrlForLayerResult& WithDownloadUrl(const char* value) { SetDownloadUrl(value); return *this;}
+
 
     /**
      * <p>The digest of the image layer to download.</p>
@@ -87,7 +91,7 @@ namespace Model
     /**
      * <p>The digest of the image layer to download.</p>
      */
-    inline void SetLayerDigest(Aws::String&& value) { m_layerDigest = value; }
+    inline void SetLayerDigest(Aws::String&& value) { m_layerDigest = std::move(value); }
 
     /**
      * <p>The digest of the image layer to download.</p>
@@ -102,7 +106,7 @@ namespace Model
     /**
      * <p>The digest of the image layer to download.</p>
      */
-    inline GetDownloadUrlForLayerResult& WithLayerDigest(Aws::String&& value) { SetLayerDigest(value); return *this;}
+    inline GetDownloadUrlForLayerResult& WithLayerDigest(Aws::String&& value) { SetLayerDigest(std::move(value)); return *this;}
 
     /**
      * <p>The digest of the image layer to download.</p>
@@ -110,7 +114,9 @@ namespace Model
     inline GetDownloadUrlForLayerResult& WithLayerDigest(const char* value) { SetLayerDigest(value); return *this;}
 
   private:
+
     Aws::String m_downloadUrl;
+
     Aws::String m_layerDigest;
   };
 

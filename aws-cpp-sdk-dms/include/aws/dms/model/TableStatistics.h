@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dms/DatabaseMigrationService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     TableStatistics& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The schema name.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The schema name.</p>
      */
-    inline void SetSchemaName(Aws::String&& value) { m_schemaNameHasBeenSet = true; m_schemaName = value; }
+    inline void SetSchemaName(Aws::String&& value) { m_schemaNameHasBeenSet = true; m_schemaName = std::move(value); }
 
     /**
      * <p>The schema name.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The schema name.</p>
      */
-    inline TableStatistics& WithSchemaName(Aws::String&& value) { SetSchemaName(value); return *this;}
+    inline TableStatistics& WithSchemaName(Aws::String&& value) { SetSchemaName(std::move(value)); return *this;}
 
     /**
      * <p>The schema name.</p>
      */
     inline TableStatistics& WithSchemaName(const char* value) { SetSchemaName(value); return *this;}
+
 
     /**
      * <p>The name of the table.</p>
@@ -92,7 +96,7 @@ namespace Model
     /**
      * <p>The name of the table.</p>
      */
-    inline void SetTableName(Aws::String&& value) { m_tableNameHasBeenSet = true; m_tableName = value; }
+    inline void SetTableName(Aws::String&& value) { m_tableNameHasBeenSet = true; m_tableName = std::move(value); }
 
     /**
      * <p>The name of the table.</p>
@@ -107,12 +111,13 @@ namespace Model
     /**
      * <p>The name of the table.</p>
      */
-    inline TableStatistics& WithTableName(Aws::String&& value) { SetTableName(value); return *this;}
+    inline TableStatistics& WithTableName(Aws::String&& value) { SetTableName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the table.</p>
      */
     inline TableStatistics& WithTableName(const char* value) { SetTableName(value); return *this;}
+
 
     /**
      * <p>The number of insert actions performed on a table.</p>
@@ -129,6 +134,7 @@ namespace Model
      */
     inline TableStatistics& WithInserts(long long value) { SetInserts(value); return *this;}
 
+
     /**
      * <p>The number of delete actions performed on a table.</p>
      */
@@ -144,6 +150,7 @@ namespace Model
      */
     inline TableStatistics& WithDeletes(long long value) { SetDeletes(value); return *this;}
 
+
     /**
      * <p>The number of update actions performed on a table.</p>
      */
@@ -158,6 +165,7 @@ namespace Model
      * <p>The number of update actions performed on a table.</p>
      */
     inline TableStatistics& WithUpdates(long long value) { SetUpdates(value); return *this;}
+
 
     /**
      * <p>The Data Definition Language (DDL) used to build and modify the structure of
@@ -177,6 +185,7 @@ namespace Model
      */
     inline TableStatistics& WithDdls(long long value) { SetDdls(value); return *this;}
 
+
     /**
      * <p>The number of rows added during the Full Load operation.</p>
      */
@@ -192,6 +201,45 @@ namespace Model
      */
     inline TableStatistics& WithFullLoadRows(long long value) { SetFullLoadRows(value); return *this;}
 
+
+    /**
+     * <p>The number of rows that failed conditional checks during the Full Load
+     * operation (valid only for DynamoDB as a target migrations).</p>
+     */
+    inline long long GetFullLoadCondtnlChkFailedRows() const{ return m_fullLoadCondtnlChkFailedRows; }
+
+    /**
+     * <p>The number of rows that failed conditional checks during the Full Load
+     * operation (valid only for DynamoDB as a target migrations).</p>
+     */
+    inline void SetFullLoadCondtnlChkFailedRows(long long value) { m_fullLoadCondtnlChkFailedRowsHasBeenSet = true; m_fullLoadCondtnlChkFailedRows = value; }
+
+    /**
+     * <p>The number of rows that failed conditional checks during the Full Load
+     * operation (valid only for DynamoDB as a target migrations).</p>
+     */
+    inline TableStatistics& WithFullLoadCondtnlChkFailedRows(long long value) { SetFullLoadCondtnlChkFailedRows(value); return *this;}
+
+
+    /**
+     * <p>The number of rows that failed to load during the Full Load operation (valid
+     * only for DynamoDB as a target migrations).</p>
+     */
+    inline long long GetFullLoadErrorRows() const{ return m_fullLoadErrorRows; }
+
+    /**
+     * <p>The number of rows that failed to load during the Full Load operation (valid
+     * only for DynamoDB as a target migrations).</p>
+     */
+    inline void SetFullLoadErrorRows(long long value) { m_fullLoadErrorRowsHasBeenSet = true; m_fullLoadErrorRows = value; }
+
+    /**
+     * <p>The number of rows that failed to load during the Full Load operation (valid
+     * only for DynamoDB as a target migrations).</p>
+     */
+    inline TableStatistics& WithFullLoadErrorRows(long long value) { SetFullLoadErrorRows(value); return *this;}
+
+
     /**
      * <p>The last time the table was updated.</p>
      */
@@ -205,7 +253,7 @@ namespace Model
     /**
      * <p>The last time the table was updated.</p>
      */
-    inline void SetLastUpdateTime(Aws::Utils::DateTime&& value) { m_lastUpdateTimeHasBeenSet = true; m_lastUpdateTime = value; }
+    inline void SetLastUpdateTime(Aws::Utils::DateTime&& value) { m_lastUpdateTimeHasBeenSet = true; m_lastUpdateTime = std::move(value); }
 
     /**
      * <p>The last time the table was updated.</p>
@@ -215,60 +263,90 @@ namespace Model
     /**
      * <p>The last time the table was updated.</p>
      */
-    inline TableStatistics& WithLastUpdateTime(Aws::Utils::DateTime&& value) { SetLastUpdateTime(value); return *this;}
+    inline TableStatistics& WithLastUpdateTime(Aws::Utils::DateTime&& value) { SetLastUpdateTime(std::move(value)); return *this;}
+
 
     /**
-     * <p>The state of the table.</p>
+     * <p>The state of the tables described.</p> <p>Valid states: Table does not exist
+     * | Before load | Full load | Table completed | Table cancelled | Table error |
+     * Table all | Table updates | Table is being reloaded</p>
      */
     inline const Aws::String& GetTableState() const{ return m_tableState; }
 
     /**
-     * <p>The state of the table.</p>
+     * <p>The state of the tables described.</p> <p>Valid states: Table does not exist
+     * | Before load | Full load | Table completed | Table cancelled | Table error |
+     * Table all | Table updates | Table is being reloaded</p>
      */
     inline void SetTableState(const Aws::String& value) { m_tableStateHasBeenSet = true; m_tableState = value; }
 
     /**
-     * <p>The state of the table.</p>
+     * <p>The state of the tables described.</p> <p>Valid states: Table does not exist
+     * | Before load | Full load | Table completed | Table cancelled | Table error |
+     * Table all | Table updates | Table is being reloaded</p>
      */
-    inline void SetTableState(Aws::String&& value) { m_tableStateHasBeenSet = true; m_tableState = value; }
+    inline void SetTableState(Aws::String&& value) { m_tableStateHasBeenSet = true; m_tableState = std::move(value); }
 
     /**
-     * <p>The state of the table.</p>
+     * <p>The state of the tables described.</p> <p>Valid states: Table does not exist
+     * | Before load | Full load | Table completed | Table cancelled | Table error |
+     * Table all | Table updates | Table is being reloaded</p>
      */
     inline void SetTableState(const char* value) { m_tableStateHasBeenSet = true; m_tableState.assign(value); }
 
     /**
-     * <p>The state of the table.</p>
+     * <p>The state of the tables described.</p> <p>Valid states: Table does not exist
+     * | Before load | Full load | Table completed | Table cancelled | Table error |
+     * Table all | Table updates | Table is being reloaded</p>
      */
     inline TableStatistics& WithTableState(const Aws::String& value) { SetTableState(value); return *this;}
 
     /**
-     * <p>The state of the table.</p>
+     * <p>The state of the tables described.</p> <p>Valid states: Table does not exist
+     * | Before load | Full load | Table completed | Table cancelled | Table error |
+     * Table all | Table updates | Table is being reloaded</p>
      */
-    inline TableStatistics& WithTableState(Aws::String&& value) { SetTableState(value); return *this;}
+    inline TableStatistics& WithTableState(Aws::String&& value) { SetTableState(std::move(value)); return *this;}
 
     /**
-     * <p>The state of the table.</p>
+     * <p>The state of the tables described.</p> <p>Valid states: Table does not exist
+     * | Before load | Full load | Table completed | Table cancelled | Table error |
+     * Table all | Table updates | Table is being reloaded</p>
      */
     inline TableStatistics& WithTableState(const char* value) { SetTableState(value); return *this;}
 
   private:
+
     Aws::String m_schemaName;
     bool m_schemaNameHasBeenSet;
+
     Aws::String m_tableName;
     bool m_tableNameHasBeenSet;
+
     long long m_inserts;
     bool m_insertsHasBeenSet;
+
     long long m_deletes;
     bool m_deletesHasBeenSet;
+
     long long m_updates;
     bool m_updatesHasBeenSet;
+
     long long m_ddls;
     bool m_ddlsHasBeenSet;
+
     long long m_fullLoadRows;
     bool m_fullLoadRowsHasBeenSet;
+
+    long long m_fullLoadCondtnlChkFailedRows;
+    bool m_fullLoadCondtnlChkFailedRowsHasBeenSet;
+
+    long long m_fullLoadErrorRows;
+    bool m_fullLoadErrorRowsHasBeenSet;
+
     Aws::Utils::DateTime m_lastUpdateTime;
     bool m_lastUpdateTimeHasBeenSet;
+
     Aws::String m_tableState;
     bool m_tableStateHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticache/ElastiCache_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -19,6 +20,7 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/elasticache/model/ChangeType.h>
 #include <aws/elasticache/model/CacheNodeTypeSpecificValue.h>
+#include <utility>
 
 namespace Aws
 {
@@ -52,6 +54,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the parameter.</p>
      */
@@ -65,7 +68,7 @@ namespace Model
     /**
      * <p>The name of the parameter.</p>
      */
-    inline void SetParameterName(Aws::String&& value) { m_parameterNameHasBeenSet = true; m_parameterName = value; }
+    inline void SetParameterName(Aws::String&& value) { m_parameterNameHasBeenSet = true; m_parameterName = std::move(value); }
 
     /**
      * <p>The name of the parameter.</p>
@@ -80,12 +83,13 @@ namespace Model
     /**
      * <p>The name of the parameter.</p>
      */
-    inline CacheNodeTypeSpecificParameter& WithParameterName(Aws::String&& value) { SetParameterName(value); return *this;}
+    inline CacheNodeTypeSpecificParameter& WithParameterName(Aws::String&& value) { SetParameterName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the parameter.</p>
      */
     inline CacheNodeTypeSpecificParameter& WithParameterName(const char* value) { SetParameterName(value); return *this;}
+
 
     /**
      * <p>A description of the parameter.</p>
@@ -100,7 +104,7 @@ namespace Model
     /**
      * <p>A description of the parameter.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>A description of the parameter.</p>
@@ -115,12 +119,13 @@ namespace Model
     /**
      * <p>A description of the parameter.</p>
      */
-    inline CacheNodeTypeSpecificParameter& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline CacheNodeTypeSpecificParameter& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>A description of the parameter.</p>
      */
     inline CacheNodeTypeSpecificParameter& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The source of the parameter value.</p>
@@ -135,7 +140,7 @@ namespace Model
     /**
      * <p>The source of the parameter value.</p>
      */
-    inline void SetSource(Aws::String&& value) { m_sourceHasBeenSet = true; m_source = value; }
+    inline void SetSource(Aws::String&& value) { m_sourceHasBeenSet = true; m_source = std::move(value); }
 
     /**
      * <p>The source of the parameter value.</p>
@@ -150,12 +155,13 @@ namespace Model
     /**
      * <p>The source of the parameter value.</p>
      */
-    inline CacheNodeTypeSpecificParameter& WithSource(Aws::String&& value) { SetSource(value); return *this;}
+    inline CacheNodeTypeSpecificParameter& WithSource(Aws::String&& value) { SetSource(std::move(value)); return *this;}
 
     /**
      * <p>The source of the parameter value.</p>
      */
     inline CacheNodeTypeSpecificParameter& WithSource(const char* value) { SetSource(value); return *this;}
+
 
     /**
      * <p>The valid data type for the parameter.</p>
@@ -170,7 +176,7 @@ namespace Model
     /**
      * <p>The valid data type for the parameter.</p>
      */
-    inline void SetDataType(Aws::String&& value) { m_dataTypeHasBeenSet = true; m_dataType = value; }
+    inline void SetDataType(Aws::String&& value) { m_dataTypeHasBeenSet = true; m_dataType = std::move(value); }
 
     /**
      * <p>The valid data type for the parameter.</p>
@@ -185,12 +191,13 @@ namespace Model
     /**
      * <p>The valid data type for the parameter.</p>
      */
-    inline CacheNodeTypeSpecificParameter& WithDataType(Aws::String&& value) { SetDataType(value); return *this;}
+    inline CacheNodeTypeSpecificParameter& WithDataType(Aws::String&& value) { SetDataType(std::move(value)); return *this;}
 
     /**
      * <p>The valid data type for the parameter.</p>
      */
     inline CacheNodeTypeSpecificParameter& WithDataType(const char* value) { SetDataType(value); return *this;}
+
 
     /**
      * <p>The valid range of values for the parameter.</p>
@@ -205,7 +212,7 @@ namespace Model
     /**
      * <p>The valid range of values for the parameter.</p>
      */
-    inline void SetAllowedValues(Aws::String&& value) { m_allowedValuesHasBeenSet = true; m_allowedValues = value; }
+    inline void SetAllowedValues(Aws::String&& value) { m_allowedValuesHasBeenSet = true; m_allowedValues = std::move(value); }
 
     /**
      * <p>The valid range of values for the parameter.</p>
@@ -220,12 +227,13 @@ namespace Model
     /**
      * <p>The valid range of values for the parameter.</p>
      */
-    inline CacheNodeTypeSpecificParameter& WithAllowedValues(Aws::String&& value) { SetAllowedValues(value); return *this;}
+    inline CacheNodeTypeSpecificParameter& WithAllowedValues(Aws::String&& value) { SetAllowedValues(std::move(value)); return *this;}
 
     /**
      * <p>The valid range of values for the parameter.</p>
      */
     inline CacheNodeTypeSpecificParameter& WithAllowedValues(const char* value) { SetAllowedValues(value); return *this;}
+
 
     /**
      * <p>Indicates whether (<code>true</code>) or not (<code>false</code>) the
@@ -248,6 +256,7 @@ namespace Model
      */
     inline CacheNodeTypeSpecificParameter& WithIsModifiable(bool value) { SetIsModifiable(value); return *this;}
 
+
     /**
      * <p>The earliest cache engine version to which the parameter can apply.</p>
      */
@@ -261,7 +270,7 @@ namespace Model
     /**
      * <p>The earliest cache engine version to which the parameter can apply.</p>
      */
-    inline void SetMinimumEngineVersion(Aws::String&& value) { m_minimumEngineVersionHasBeenSet = true; m_minimumEngineVersion = value; }
+    inline void SetMinimumEngineVersion(Aws::String&& value) { m_minimumEngineVersionHasBeenSet = true; m_minimumEngineVersion = std::move(value); }
 
     /**
      * <p>The earliest cache engine version to which the parameter can apply.</p>
@@ -276,12 +285,13 @@ namespace Model
     /**
      * <p>The earliest cache engine version to which the parameter can apply.</p>
      */
-    inline CacheNodeTypeSpecificParameter& WithMinimumEngineVersion(Aws::String&& value) { SetMinimumEngineVersion(value); return *this;}
+    inline CacheNodeTypeSpecificParameter& WithMinimumEngineVersion(Aws::String&& value) { SetMinimumEngineVersion(std::move(value)); return *this;}
 
     /**
      * <p>The earliest cache engine version to which the parameter can apply.</p>
      */
     inline CacheNodeTypeSpecificParameter& WithMinimumEngineVersion(const char* value) { SetMinimumEngineVersion(value); return *this;}
+
 
     /**
      * <p>A list of cache node types and their corresponding values for this
@@ -299,7 +309,7 @@ namespace Model
      * <p>A list of cache node types and their corresponding values for this
      * parameter.</p>
      */
-    inline void SetCacheNodeTypeSpecificValues(Aws::Vector<CacheNodeTypeSpecificValue>&& value) { m_cacheNodeTypeSpecificValuesHasBeenSet = true; m_cacheNodeTypeSpecificValues = value; }
+    inline void SetCacheNodeTypeSpecificValues(Aws::Vector<CacheNodeTypeSpecificValue>&& value) { m_cacheNodeTypeSpecificValuesHasBeenSet = true; m_cacheNodeTypeSpecificValues = std::move(value); }
 
     /**
      * <p>A list of cache node types and their corresponding values for this
@@ -311,7 +321,7 @@ namespace Model
      * <p>A list of cache node types and their corresponding values for this
      * parameter.</p>
      */
-    inline CacheNodeTypeSpecificParameter& WithCacheNodeTypeSpecificValues(Aws::Vector<CacheNodeTypeSpecificValue>&& value) { SetCacheNodeTypeSpecificValues(value); return *this;}
+    inline CacheNodeTypeSpecificParameter& WithCacheNodeTypeSpecificValues(Aws::Vector<CacheNodeTypeSpecificValue>&& value) { SetCacheNodeTypeSpecificValues(std::move(value)); return *this;}
 
     /**
      * <p>A list of cache node types and their corresponding values for this
@@ -323,7 +333,8 @@ namespace Model
      * <p>A list of cache node types and their corresponding values for this
      * parameter.</p>
      */
-    inline CacheNodeTypeSpecificParameter& AddCacheNodeTypeSpecificValues(CacheNodeTypeSpecificValue&& value) { m_cacheNodeTypeSpecificValuesHasBeenSet = true; m_cacheNodeTypeSpecificValues.push_back(value); return *this; }
+    inline CacheNodeTypeSpecificParameter& AddCacheNodeTypeSpecificValues(CacheNodeTypeSpecificValue&& value) { m_cacheNodeTypeSpecificValuesHasBeenSet = true; m_cacheNodeTypeSpecificValues.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Indicates whether a change to the parameter is applied immediately or
@@ -350,7 +361,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Clusters.Rebooting.html">Rebooting
      * a Cluster</a>.</p>
      */
-    inline void SetChangeType(ChangeType&& value) { m_changeTypeHasBeenSet = true; m_changeType = value; }
+    inline void SetChangeType(ChangeType&& value) { m_changeTypeHasBeenSet = true; m_changeType = std::move(value); }
 
     /**
      * <p>Indicates whether a change to the parameter is applied immediately or
@@ -368,25 +379,34 @@ namespace Model
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Clusters.Rebooting.html">Rebooting
      * a Cluster</a>.</p>
      */
-    inline CacheNodeTypeSpecificParameter& WithChangeType(ChangeType&& value) { SetChangeType(value); return *this;}
+    inline CacheNodeTypeSpecificParameter& WithChangeType(ChangeType&& value) { SetChangeType(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_parameterName;
     bool m_parameterNameHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     Aws::String m_source;
     bool m_sourceHasBeenSet;
+
     Aws::String m_dataType;
     bool m_dataTypeHasBeenSet;
+
     Aws::String m_allowedValues;
     bool m_allowedValuesHasBeenSet;
+
     bool m_isModifiable;
     bool m_isModifiableHasBeenSet;
+
     Aws::String m_minimumEngineVersion;
     bool m_minimumEngineVersionHasBeenSet;
+
     Aws::Vector<CacheNodeTypeSpecificValue> m_cacheNodeTypeSpecificValues;
     bool m_cacheNodeTypeSpecificValuesHasBeenSet;
+
     ChangeType m_changeType;
     bool m_changeTypeHasBeenSet;
   };

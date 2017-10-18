@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/config/ConfigService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -58,7 +59,14 @@ namespace Model
     AWS_Redshift_ClusterParameterGroup,
     AWS_Redshift_ClusterSecurityGroup,
     AWS_Redshift_ClusterSubnetGroup,
-    AWS_Redshift_EventSubscription
+    AWS_Redshift_EventSubscription,
+    AWS_CloudWatch_Alarm,
+    AWS_CloudFormation_Stack,
+    AWS_DynamoDB_Table,
+    AWS_AutoScaling_AutoScalingGroup,
+    AWS_AutoScaling_LaunchConfiguration,
+    AWS_AutoScaling_ScalingPolicy,
+    AWS_AutoScaling_ScheduledAction
   };
 
 namespace ResourceTypeMapper

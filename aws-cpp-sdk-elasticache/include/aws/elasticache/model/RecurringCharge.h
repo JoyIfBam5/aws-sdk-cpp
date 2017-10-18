@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticache/ElastiCache_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The monetary amount of the recurring charge.</p>
      */
@@ -63,6 +66,7 @@ namespace Model
      */
     inline RecurringCharge& WithRecurringChargeAmount(double value) { SetRecurringChargeAmount(value); return *this;}
 
+
     /**
      * <p>The frequency of the recurring charge.</p>
      */
@@ -76,7 +80,7 @@ namespace Model
     /**
      * <p>The frequency of the recurring charge.</p>
      */
-    inline void SetRecurringChargeFrequency(Aws::String&& value) { m_recurringChargeFrequencyHasBeenSet = true; m_recurringChargeFrequency = value; }
+    inline void SetRecurringChargeFrequency(Aws::String&& value) { m_recurringChargeFrequencyHasBeenSet = true; m_recurringChargeFrequency = std::move(value); }
 
     /**
      * <p>The frequency of the recurring charge.</p>
@@ -91,7 +95,7 @@ namespace Model
     /**
      * <p>The frequency of the recurring charge.</p>
      */
-    inline RecurringCharge& WithRecurringChargeFrequency(Aws::String&& value) { SetRecurringChargeFrequency(value); return *this;}
+    inline RecurringCharge& WithRecurringChargeFrequency(Aws::String&& value) { SetRecurringChargeFrequency(std::move(value)); return *this;}
 
     /**
      * <p>The frequency of the recurring charge.</p>
@@ -99,8 +103,10 @@ namespace Model
     inline RecurringCharge& WithRecurringChargeFrequency(const char* value) { SetRecurringChargeFrequency(value); return *this;}
 
   private:
+
     double m_recurringChargeAmount;
     bool m_recurringChargeAmountHasBeenSet;
+
     Aws::String m_recurringChargeFrequency;
     bool m_recurringChargeFrequencyHasBeenSet;
   };

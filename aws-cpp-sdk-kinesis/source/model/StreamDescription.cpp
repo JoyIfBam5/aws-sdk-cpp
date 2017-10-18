@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/kinesis/model/StreamDescription.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -38,7 +39,10 @@ StreamDescription::StreamDescription() :
     m_retentionPeriodHours(0),
     m_retentionPeriodHoursHasBeenSet(false),
     m_streamCreationTimestampHasBeenSet(false),
-    m_enhancedMonitoringHasBeenSet(false)
+    m_enhancedMonitoringHasBeenSet(false),
+    m_encryptionType(EncryptionType::NOT_SET),
+    m_encryptionTypeHasBeenSet(false),
+    m_keyIdHasBeenSet(false)
 {
 }
 
@@ -53,7 +57,10 @@ StreamDescription::StreamDescription(const JsonValue& jsonValue) :
     m_retentionPeriodHours(0),
     m_retentionPeriodHoursHasBeenSet(false),
     m_streamCreationTimestampHasBeenSet(false),
-    m_enhancedMonitoringHasBeenSet(false)
+    m_enhancedMonitoringHasBeenSet(false),
+    m_encryptionType(EncryptionType::NOT_SET),
+    m_encryptionTypeHasBeenSet(false),
+    m_keyIdHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -122,6 +129,20 @@ StreamDescription& StreamDescription::operator =(const JsonValue& jsonValue)
     m_enhancedMonitoringHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("EncryptionType"))
+  {
+    m_encryptionType = EncryptionTypeMapper::GetEncryptionTypeForName(jsonValue.GetString("EncryptionType"));
+
+    m_encryptionTypeHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("KeyId"))
+  {
+    m_keyId = jsonValue.GetString("KeyId");
+
+    m_keyIdHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -182,6 +203,17 @@ JsonValue StreamDescription::Jsonize() const
      enhancedMonitoringJsonList[enhancedMonitoringIndex].AsObject(m_enhancedMonitoring[enhancedMonitoringIndex].Jsonize());
    }
    payload.WithArray("EnhancedMonitoring", std::move(enhancedMonitoringJsonList));
+
+  }
+
+  if(m_encryptionTypeHasBeenSet)
+  {
+   payload.WithString("EncryptionType", EncryptionTypeMapper::GetNameForEncryptionType(m_encryptionType));
+  }
+
+  if(m_keyIdHasBeenSet)
+  {
+   payload.WithString("KeyId", m_keyId);
 
   }
 

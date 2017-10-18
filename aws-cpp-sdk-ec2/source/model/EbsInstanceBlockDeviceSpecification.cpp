@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/EbsInstanceBlockDeviceSpecification.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -30,16 +31,16 @@ namespace Model
 {
 
 EbsInstanceBlockDeviceSpecification::EbsInstanceBlockDeviceSpecification() : 
-    m_volumeIdHasBeenSet(false),
     m_deleteOnTermination(false),
-    m_deleteOnTerminationHasBeenSet(false)
+    m_deleteOnTerminationHasBeenSet(false),
+    m_volumeIdHasBeenSet(false)
 {
 }
 
 EbsInstanceBlockDeviceSpecification::EbsInstanceBlockDeviceSpecification(const XmlNode& xmlNode) : 
-    m_volumeIdHasBeenSet(false),
     m_deleteOnTermination(false),
-    m_deleteOnTerminationHasBeenSet(false)
+    m_deleteOnTerminationHasBeenSet(false),
+    m_volumeIdHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -50,17 +51,17 @@ EbsInstanceBlockDeviceSpecification& EbsInstanceBlockDeviceSpecification::operat
 
   if(!resultNode.IsNull())
   {
-    XmlNode volumeIdNode = resultNode.FirstChild("volumeId");
-    if(!volumeIdNode.IsNull())
-    {
-      m_volumeId = StringUtils::Trim(volumeIdNode.GetText().c_str());
-      m_volumeIdHasBeenSet = true;
-    }
     XmlNode deleteOnTerminationNode = resultNode.FirstChild("deleteOnTermination");
     if(!deleteOnTerminationNode.IsNull())
     {
       m_deleteOnTermination = StringUtils::ConvertToBool(StringUtils::Trim(deleteOnTerminationNode.GetText().c_str()).c_str());
       m_deleteOnTerminationHasBeenSet = true;
+    }
+    XmlNode volumeIdNode = resultNode.FirstChild("volumeId");
+    if(!volumeIdNode.IsNull())
+    {
+      m_volumeId = StringUtils::Trim(volumeIdNode.GetText().c_str());
+      m_volumeIdHasBeenSet = true;
     }
   }
 
@@ -69,27 +70,27 @@ EbsInstanceBlockDeviceSpecification& EbsInstanceBlockDeviceSpecification::operat
 
 void EbsInstanceBlockDeviceSpecification::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
-  if(m_volumeIdHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".VolumeId=" << StringUtils::URLEncode(m_volumeId.c_str()) << "&";
-  }
-
   if(m_deleteOnTerminationHasBeenSet)
   {
       oStream << location << index << locationValue << ".DeleteOnTermination=" << std::boolalpha << m_deleteOnTermination << "&";
+  }
+
+  if(m_volumeIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".VolumeId=" << StringUtils::URLEncode(m_volumeId.c_str()) << "&";
   }
 
 }
 
 void EbsInstanceBlockDeviceSpecification::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
-  if(m_volumeIdHasBeenSet)
-  {
-      oStream << location << ".VolumeId=" << StringUtils::URLEncode(m_volumeId.c_str()) << "&";
-  }
   if(m_deleteOnTerminationHasBeenSet)
   {
       oStream << location << ".DeleteOnTermination=" << std::boolalpha << m_deleteOnTermination << "&";
+  }
+  if(m_volumeIdHasBeenSet)
+  {
+      oStream << location << ".VolumeId=" << StringUtils::URLEncode(m_volumeId.c_str()) << "&";
   }
 }
 

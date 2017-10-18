@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/states/SFN_EXPORTS.h>
 #include <aws/states/SFNRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     GetExecutionHistoryRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "GetExecutionHistory"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the execution.</p>
@@ -47,7 +57,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the execution.</p>
      */
-    inline void SetExecutionArn(Aws::String&& value) { m_executionArnHasBeenSet = true; m_executionArn = value; }
+    inline void SetExecutionArn(Aws::String&& value) { m_executionArnHasBeenSet = true; m_executionArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the execution.</p>
@@ -62,12 +72,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the execution.</p>
      */
-    inline GetExecutionHistoryRequest& WithExecutionArn(Aws::String&& value) { SetExecutionArn(value); return *this;}
+    inline GetExecutionHistoryRequest& WithExecutionArn(Aws::String&& value) { SetExecutionArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the execution.</p>
      */
     inline GetExecutionHistoryRequest& WithExecutionArn(const char* value) { SetExecutionArn(value); return *this;}
+
 
     /**
      * <p>The maximum number of results that will be returned per call.
@@ -96,6 +107,7 @@ namespace Model
      */
     inline GetExecutionHistoryRequest& WithMaxResults(int value) { SetMaxResults(value); return *this;}
 
+
     /**
      * <p>Lists events in descending order of their <code>timeStamp</code>.</p>
      */
@@ -110,6 +122,7 @@ namespace Model
      * <p>Lists events in descending order of their <code>timeStamp</code>.</p>
      */
     inline GetExecutionHistoryRequest& WithReverseOrder(bool value) { SetReverseOrder(value); return *this;}
+
 
     /**
      * <p>If a <code>nextToken</code> was returned by a previous call, there are more
@@ -136,7 +149,7 @@ namespace Model
      * unchanged.</p> <p>The configured <code>maxResults</code> determines how many
      * results can be returned in a single call.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>If a <code>nextToken</code> was returned by a previous call, there are more
@@ -163,7 +176,7 @@ namespace Model
      * unchanged.</p> <p>The configured <code>maxResults</code> determines how many
      * results can be returned in a single call.</p>
      */
-    inline GetExecutionHistoryRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline GetExecutionHistoryRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>If a <code>nextToken</code> was returned by a previous call, there are more
@@ -175,12 +188,16 @@ namespace Model
     inline GetExecutionHistoryRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::String m_executionArn;
     bool m_executionArnHasBeenSet;
+
     int m_maxResults;
     bool m_maxResultsHasBeenSet;
+
     bool m_reverseOrder;
     bool m_reverseOrderHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
   };

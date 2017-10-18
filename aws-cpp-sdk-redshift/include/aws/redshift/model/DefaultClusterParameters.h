@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/redshift/model/Parameter.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +51,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the cluster parameter group family to which the engine default
      * parameters apply.</p>
@@ -65,7 +68,7 @@ namespace Model
      * <p>The name of the cluster parameter group family to which the engine default
      * parameters apply.</p>
      */
-    inline void SetParameterGroupFamily(Aws::String&& value) { m_parameterGroupFamilyHasBeenSet = true; m_parameterGroupFamily = value; }
+    inline void SetParameterGroupFamily(Aws::String&& value) { m_parameterGroupFamilyHasBeenSet = true; m_parameterGroupFamily = std::move(value); }
 
     /**
      * <p>The name of the cluster parameter group family to which the engine default
@@ -83,13 +86,14 @@ namespace Model
      * <p>The name of the cluster parameter group family to which the engine default
      * parameters apply.</p>
      */
-    inline DefaultClusterParameters& WithParameterGroupFamily(Aws::String&& value) { SetParameterGroupFamily(value); return *this;}
+    inline DefaultClusterParameters& WithParameterGroupFamily(Aws::String&& value) { SetParameterGroupFamily(std::move(value)); return *this;}
 
     /**
      * <p>The name of the cluster parameter group family to which the engine default
      * parameters apply.</p>
      */
     inline DefaultClusterParameters& WithParameterGroupFamily(const char* value) { SetParameterGroupFamily(value); return *this;}
+
 
     /**
      * <p>A value that indicates the starting point for the next set of response
@@ -119,7 +123,7 @@ namespace Model
      * <code>Marker</code> field is empty, all response records have been retrieved for
      * the request. </p>
      */
-    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_markerHasBeenSet = true; m_marker = std::move(value); }
 
     /**
      * <p>A value that indicates the starting point for the next set of response
@@ -149,7 +153,7 @@ namespace Model
      * <code>Marker</code> field is empty, all response records have been retrieved for
      * the request. </p>
      */
-    inline DefaultClusterParameters& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline DefaultClusterParameters& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>A value that indicates the starting point for the next set of response
@@ -160,6 +164,7 @@ namespace Model
      * the request. </p>
      */
     inline DefaultClusterParameters& WithMarker(const char* value) { SetMarker(value); return *this;}
+
 
     /**
      * <p>The list of cluster default parameters.</p>
@@ -174,7 +179,7 @@ namespace Model
     /**
      * <p>The list of cluster default parameters.</p>
      */
-    inline void SetParameters(Aws::Vector<Parameter>&& value) { m_parametersHasBeenSet = true; m_parameters = value; }
+    inline void SetParameters(Aws::Vector<Parameter>&& value) { m_parametersHasBeenSet = true; m_parameters = std::move(value); }
 
     /**
      * <p>The list of cluster default parameters.</p>
@@ -184,7 +189,7 @@ namespace Model
     /**
      * <p>The list of cluster default parameters.</p>
      */
-    inline DefaultClusterParameters& WithParameters(Aws::Vector<Parameter>&& value) { SetParameters(value); return *this;}
+    inline DefaultClusterParameters& WithParameters(Aws::Vector<Parameter>&& value) { SetParameters(std::move(value)); return *this;}
 
     /**
      * <p>The list of cluster default parameters.</p>
@@ -194,13 +199,16 @@ namespace Model
     /**
      * <p>The list of cluster default parameters.</p>
      */
-    inline DefaultClusterParameters& AddParameters(Parameter&& value) { m_parametersHasBeenSet = true; m_parameters.push_back(value); return *this; }
+    inline DefaultClusterParameters& AddParameters(Parameter&& value) { m_parametersHasBeenSet = true; m_parameters.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_parameterGroupFamily;
     bool m_parameterGroupFamilyHasBeenSet;
+
     Aws::String m_marker;
     bool m_markerHasBeenSet;
+
     Aws::Vector<Parameter> m_parameters;
     bool m_parametersHasBeenSet;
   };

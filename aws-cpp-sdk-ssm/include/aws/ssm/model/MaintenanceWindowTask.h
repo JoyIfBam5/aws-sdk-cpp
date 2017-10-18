@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -21,6 +22,7 @@
 #include <aws/ssm/model/LoggingInfo.h>
 #include <aws/ssm/model/Target.h>
 #include <aws/ssm/model/MaintenanceWindowTaskParameterValueExpression.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,6 +52,7 @@ namespace Model
     MaintenanceWindowTask& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The Maintenance Window ID where the task is registered.</p>
      */
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>The Maintenance Window ID where the task is registered.</p>
      */
-    inline void SetWindowId(Aws::String&& value) { m_windowIdHasBeenSet = true; m_windowId = value; }
+    inline void SetWindowId(Aws::String&& value) { m_windowIdHasBeenSet = true; m_windowId = std::move(value); }
 
     /**
      * <p>The Maintenance Window ID where the task is registered.</p>
@@ -78,12 +81,13 @@ namespace Model
     /**
      * <p>The Maintenance Window ID where the task is registered.</p>
      */
-    inline MaintenanceWindowTask& WithWindowId(Aws::String&& value) { SetWindowId(value); return *this;}
+    inline MaintenanceWindowTask& WithWindowId(Aws::String&& value) { SetWindowId(std::move(value)); return *this;}
 
     /**
      * <p>The Maintenance Window ID where the task is registered.</p>
      */
     inline MaintenanceWindowTask& WithWindowId(const char* value) { SetWindowId(value); return *this;}
+
 
     /**
      * <p>The task ID.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>The task ID.</p>
      */
-    inline void SetWindowTaskId(Aws::String&& value) { m_windowTaskIdHasBeenSet = true; m_windowTaskId = value; }
+    inline void SetWindowTaskId(Aws::String&& value) { m_windowTaskIdHasBeenSet = true; m_windowTaskId = std::move(value); }
 
     /**
      * <p>The task ID.</p>
@@ -113,72 +117,101 @@ namespace Model
     /**
      * <p>The task ID.</p>
      */
-    inline MaintenanceWindowTask& WithWindowTaskId(Aws::String&& value) { SetWindowTaskId(value); return *this;}
+    inline MaintenanceWindowTask& WithWindowTaskId(Aws::String&& value) { SetWindowTaskId(std::move(value)); return *this;}
 
     /**
      * <p>The task ID.</p>
      */
     inline MaintenanceWindowTask& WithWindowTaskId(const char* value) { SetWindowTaskId(value); return *this;}
 
+
     /**
-     * <p>The ARN of the task to execute.</p>
+     * <p>The resource that the task uses during execution. For RUN_COMMAND and
+     * AUTOMATION task types, <code>TaskArn</code> is the Systems Manager document name
+     * or ARN. For LAMBDA tasks, it's the function name or ARN. For STEP_FUNCTION
+     * tasks, it's the state machine ARN.</p>
      */
     inline const Aws::String& GetTaskArn() const{ return m_taskArn; }
 
     /**
-     * <p>The ARN of the task to execute.</p>
+     * <p>The resource that the task uses during execution. For RUN_COMMAND and
+     * AUTOMATION task types, <code>TaskArn</code> is the Systems Manager document name
+     * or ARN. For LAMBDA tasks, it's the function name or ARN. For STEP_FUNCTION
+     * tasks, it's the state machine ARN.</p>
      */
     inline void SetTaskArn(const Aws::String& value) { m_taskArnHasBeenSet = true; m_taskArn = value; }
 
     /**
-     * <p>The ARN of the task to execute.</p>
+     * <p>The resource that the task uses during execution. For RUN_COMMAND and
+     * AUTOMATION task types, <code>TaskArn</code> is the Systems Manager document name
+     * or ARN. For LAMBDA tasks, it's the function name or ARN. For STEP_FUNCTION
+     * tasks, it's the state machine ARN.</p>
      */
-    inline void SetTaskArn(Aws::String&& value) { m_taskArnHasBeenSet = true; m_taskArn = value; }
+    inline void SetTaskArn(Aws::String&& value) { m_taskArnHasBeenSet = true; m_taskArn = std::move(value); }
 
     /**
-     * <p>The ARN of the task to execute.</p>
+     * <p>The resource that the task uses during execution. For RUN_COMMAND and
+     * AUTOMATION task types, <code>TaskArn</code> is the Systems Manager document name
+     * or ARN. For LAMBDA tasks, it's the function name or ARN. For STEP_FUNCTION
+     * tasks, it's the state machine ARN.</p>
      */
     inline void SetTaskArn(const char* value) { m_taskArnHasBeenSet = true; m_taskArn.assign(value); }
 
     /**
-     * <p>The ARN of the task to execute.</p>
+     * <p>The resource that the task uses during execution. For RUN_COMMAND and
+     * AUTOMATION task types, <code>TaskArn</code> is the Systems Manager document name
+     * or ARN. For LAMBDA tasks, it's the function name or ARN. For STEP_FUNCTION
+     * tasks, it's the state machine ARN.</p>
      */
     inline MaintenanceWindowTask& WithTaskArn(const Aws::String& value) { SetTaskArn(value); return *this;}
 
     /**
-     * <p>The ARN of the task to execute.</p>
+     * <p>The resource that the task uses during execution. For RUN_COMMAND and
+     * AUTOMATION task types, <code>TaskArn</code> is the Systems Manager document name
+     * or ARN. For LAMBDA tasks, it's the function name or ARN. For STEP_FUNCTION
+     * tasks, it's the state machine ARN.</p>
      */
-    inline MaintenanceWindowTask& WithTaskArn(Aws::String&& value) { SetTaskArn(value); return *this;}
+    inline MaintenanceWindowTask& WithTaskArn(Aws::String&& value) { SetTaskArn(std::move(value)); return *this;}
 
     /**
-     * <p>The ARN of the task to execute.</p>
+     * <p>The resource that the task uses during execution. For RUN_COMMAND and
+     * AUTOMATION task types, <code>TaskArn</code> is the Systems Manager document name
+     * or ARN. For LAMBDA tasks, it's the function name or ARN. For STEP_FUNCTION
+     * tasks, it's the state machine ARN.</p>
      */
     inline MaintenanceWindowTask& WithTaskArn(const char* value) { SetTaskArn(value); return *this;}
 
+
     /**
-     * <p>The type of task.</p>
+     * <p>The type of task. The type can be one of the following: RUN_COMMAND,
+     * AUTOMATION, LAMBDA, or STEP_FUNCTION.</p>
      */
     inline const MaintenanceWindowTaskType& GetType() const{ return m_type; }
 
     /**
-     * <p>The type of task.</p>
+     * <p>The type of task. The type can be one of the following: RUN_COMMAND,
+     * AUTOMATION, LAMBDA, or STEP_FUNCTION.</p>
      */
     inline void SetType(const MaintenanceWindowTaskType& value) { m_typeHasBeenSet = true; m_type = value; }
 
     /**
-     * <p>The type of task.</p>
+     * <p>The type of task. The type can be one of the following: RUN_COMMAND,
+     * AUTOMATION, LAMBDA, or STEP_FUNCTION.</p>
      */
-    inline void SetType(MaintenanceWindowTaskType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(MaintenanceWindowTaskType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
-     * <p>The type of task.</p>
+     * <p>The type of task. The type can be one of the following: RUN_COMMAND,
+     * AUTOMATION, LAMBDA, or STEP_FUNCTION.</p>
      */
     inline MaintenanceWindowTask& WithType(const MaintenanceWindowTaskType& value) { SetType(value); return *this;}
 
     /**
-     * <p>The type of task.</p>
+     * <p>The type of task. The type can be one of the following: RUN_COMMAND,
+     * AUTOMATION, LAMBDA, or STEP_FUNCTION.</p>
      */
-    inline MaintenanceWindowTask& WithType(MaintenanceWindowTaskType&& value) { SetType(value); return *this;}
+    inline MaintenanceWindowTask& WithType(MaintenanceWindowTaskType&& value) { SetType(std::move(value)); return *this;}
+
 
     /**
      * <p>The targets (either instances or tags). Instances are specified using
@@ -199,7 +232,7 @@ namespace Model
      * Key=instanceids,Values=&lt;instanceid1&gt;,&lt;instanceid2&gt;. Tags are
      * specified using Key=&lt;tag name&gt;,Values=&lt;tag value&gt;.</p>
      */
-    inline void SetTargets(Aws::Vector<Target>&& value) { m_targetsHasBeenSet = true; m_targets = value; }
+    inline void SetTargets(Aws::Vector<Target>&& value) { m_targetsHasBeenSet = true; m_targets = std::move(value); }
 
     /**
      * <p>The targets (either instances or tags). Instances are specified using
@@ -213,7 +246,7 @@ namespace Model
      * Key=instanceids,Values=&lt;instanceid1&gt;,&lt;instanceid2&gt;. Tags are
      * specified using Key=&lt;tag name&gt;,Values=&lt;tag value&gt;.</p>
      */
-    inline MaintenanceWindowTask& WithTargets(Aws::Vector<Target>&& value) { SetTargets(value); return *this;}
+    inline MaintenanceWindowTask& WithTargets(Aws::Vector<Target>&& value) { SetTargets(std::move(value)); return *this;}
 
     /**
      * <p>The targets (either instances or tags). Instances are specified using
@@ -227,7 +260,8 @@ namespace Model
      * Key=instanceids,Values=&lt;instanceid1&gt;,&lt;instanceid2&gt;. Tags are
      * specified using Key=&lt;tag name&gt;,Values=&lt;tag value&gt;.</p>
      */
-    inline MaintenanceWindowTask& AddTargets(Target&& value) { m_targetsHasBeenSet = true; m_targets.push_back(value); return *this; }
+    inline MaintenanceWindowTask& AddTargets(Target&& value) { m_targetsHasBeenSet = true; m_targets.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The parameters that should be passed to the task when it is executed.</p>
@@ -242,7 +276,7 @@ namespace Model
     /**
      * <p>The parameters that should be passed to the task when it is executed.</p>
      */
-    inline void SetTaskParameters(Aws::Map<Aws::String, MaintenanceWindowTaskParameterValueExpression>&& value) { m_taskParametersHasBeenSet = true; m_taskParameters = value; }
+    inline void SetTaskParameters(Aws::Map<Aws::String, MaintenanceWindowTaskParameterValueExpression>&& value) { m_taskParametersHasBeenSet = true; m_taskParameters = std::move(value); }
 
     /**
      * <p>The parameters that should be passed to the task when it is executed.</p>
@@ -252,58 +286,60 @@ namespace Model
     /**
      * <p>The parameters that should be passed to the task when it is executed.</p>
      */
-    inline MaintenanceWindowTask& WithTaskParameters(Aws::Map<Aws::String, MaintenanceWindowTaskParameterValueExpression>&& value) { SetTaskParameters(value); return *this;}
+    inline MaintenanceWindowTask& WithTaskParameters(Aws::Map<Aws::String, MaintenanceWindowTaskParameterValueExpression>&& value) { SetTaskParameters(std::move(value)); return *this;}
 
     /**
      * <p>The parameters that should be passed to the task when it is executed.</p>
      */
-    inline MaintenanceWindowTask& AddTaskParameters(const Aws::String& key, const MaintenanceWindowTaskParameterValueExpression& value) { m_taskParametersHasBeenSet = true; m_taskParameters[key] = value; return *this; }
+    inline MaintenanceWindowTask& AddTaskParameters(const Aws::String& key, const MaintenanceWindowTaskParameterValueExpression& value) { m_taskParametersHasBeenSet = true; m_taskParameters.emplace(key, value); return *this; }
 
     /**
      * <p>The parameters that should be passed to the task when it is executed.</p>
      */
-    inline MaintenanceWindowTask& AddTaskParameters(Aws::String&& key, const MaintenanceWindowTaskParameterValueExpression& value) { m_taskParametersHasBeenSet = true; m_taskParameters[key] = value; return *this; }
+    inline MaintenanceWindowTask& AddTaskParameters(Aws::String&& key, const MaintenanceWindowTaskParameterValueExpression& value) { m_taskParametersHasBeenSet = true; m_taskParameters.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The parameters that should be passed to the task when it is executed.</p>
      */
-    inline MaintenanceWindowTask& AddTaskParameters(const Aws::String& key, MaintenanceWindowTaskParameterValueExpression&& value) { m_taskParametersHasBeenSet = true; m_taskParameters[key] = value; return *this; }
+    inline MaintenanceWindowTask& AddTaskParameters(const Aws::String& key, MaintenanceWindowTaskParameterValueExpression&& value) { m_taskParametersHasBeenSet = true; m_taskParameters.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The parameters that should be passed to the task when it is executed.</p>
      */
-    inline MaintenanceWindowTask& AddTaskParameters(Aws::String&& key, MaintenanceWindowTaskParameterValueExpression&& value) { m_taskParametersHasBeenSet = true; m_taskParameters[key] = value; return *this; }
+    inline MaintenanceWindowTask& AddTaskParameters(Aws::String&& key, MaintenanceWindowTaskParameterValueExpression&& value) { m_taskParametersHasBeenSet = true; m_taskParameters.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>The parameters that should be passed to the task when it is executed.</p>
      */
-    inline MaintenanceWindowTask& AddTaskParameters(const char* key, MaintenanceWindowTaskParameterValueExpression&& value) { m_taskParametersHasBeenSet = true; m_taskParameters[key] = value; return *this; }
+    inline MaintenanceWindowTask& AddTaskParameters(const char* key, MaintenanceWindowTaskParameterValueExpression&& value) { m_taskParametersHasBeenSet = true; m_taskParameters.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The parameters that should be passed to the task when it is executed.</p>
      */
-    inline MaintenanceWindowTask& AddTaskParameters(const char* key, const MaintenanceWindowTaskParameterValueExpression& value) { m_taskParametersHasBeenSet = true; m_taskParameters[key] = value; return *this; }
+    inline MaintenanceWindowTask& AddTaskParameters(const char* key, const MaintenanceWindowTaskParameterValueExpression& value) { m_taskParametersHasBeenSet = true; m_taskParameters.emplace(key, value); return *this; }
+
 
     /**
-     * <p>The priority of the task in the Maintenance Window, the lower the number the
-     * higher the priority. Tasks in a Maintenance Window are scheduled in priority
-     * order with tasks that have the same priority scheduled in parallel.</p>
+     * <p>The priority of the task in the Maintenance Window. The lower the number, the
+     * higher the priority. Tasks that have the same priority are scheduled in
+     * parallel.</p>
      */
     inline int GetPriority() const{ return m_priority; }
 
     /**
-     * <p>The priority of the task in the Maintenance Window, the lower the number the
-     * higher the priority. Tasks in a Maintenance Window are scheduled in priority
-     * order with tasks that have the same priority scheduled in parallel.</p>
+     * <p>The priority of the task in the Maintenance Window. The lower the number, the
+     * higher the priority. Tasks that have the same priority are scheduled in
+     * parallel.</p>
      */
     inline void SetPriority(int value) { m_priorityHasBeenSet = true; m_priority = value; }
 
     /**
-     * <p>The priority of the task in the Maintenance Window, the lower the number the
-     * higher the priority. Tasks in a Maintenance Window are scheduled in priority
-     * order with tasks that have the same priority scheduled in parallel.</p>
+     * <p>The priority of the task in the Maintenance Window. The lower the number, the
+     * higher the priority. Tasks that have the same priority are scheduled in
+     * parallel.</p>
      */
     inline MaintenanceWindowTask& WithPriority(int value) { SetPriority(value); return *this;}
+
 
     /**
      * <p>Information about an Amazon S3 bucket to write task-level logs to.</p>
@@ -318,7 +354,7 @@ namespace Model
     /**
      * <p>Information about an Amazon S3 bucket to write task-level logs to.</p>
      */
-    inline void SetLoggingInfo(LoggingInfo&& value) { m_loggingInfoHasBeenSet = true; m_loggingInfo = value; }
+    inline void SetLoggingInfo(LoggingInfo&& value) { m_loggingInfoHasBeenSet = true; m_loggingInfo = std::move(value); }
 
     /**
      * <p>Information about an Amazon S3 bucket to write task-level logs to.</p>
@@ -328,7 +364,8 @@ namespace Model
     /**
      * <p>Information about an Amazon S3 bucket to write task-level logs to.</p>
      */
-    inline MaintenanceWindowTask& WithLoggingInfo(LoggingInfo&& value) { SetLoggingInfo(value); return *this;}
+    inline MaintenanceWindowTask& WithLoggingInfo(LoggingInfo&& value) { SetLoggingInfo(std::move(value)); return *this;}
+
 
     /**
      * <p>The role that should be assumed when executing the task</p>
@@ -343,7 +380,7 @@ namespace Model
     /**
      * <p>The role that should be assumed when executing the task</p>
      */
-    inline void SetServiceRoleArn(Aws::String&& value) { m_serviceRoleArnHasBeenSet = true; m_serviceRoleArn = value; }
+    inline void SetServiceRoleArn(Aws::String&& value) { m_serviceRoleArnHasBeenSet = true; m_serviceRoleArn = std::move(value); }
 
     /**
      * <p>The role that should be assumed when executing the task</p>
@@ -358,12 +395,13 @@ namespace Model
     /**
      * <p>The role that should be assumed when executing the task</p>
      */
-    inline MaintenanceWindowTask& WithServiceRoleArn(Aws::String&& value) { SetServiceRoleArn(value); return *this;}
+    inline MaintenanceWindowTask& WithServiceRoleArn(Aws::String&& value) { SetServiceRoleArn(std::move(value)); return *this;}
 
     /**
      * <p>The role that should be assumed when executing the task</p>
      */
     inline MaintenanceWindowTask& WithServiceRoleArn(const char* value) { SetServiceRoleArn(value); return *this;}
+
 
     /**
      * <p>The maximum number of targets this task can be run for in parallel.</p>
@@ -378,7 +416,7 @@ namespace Model
     /**
      * <p>The maximum number of targets this task can be run for in parallel.</p>
      */
-    inline void SetMaxConcurrency(Aws::String&& value) { m_maxConcurrencyHasBeenSet = true; m_maxConcurrency = value; }
+    inline void SetMaxConcurrency(Aws::String&& value) { m_maxConcurrencyHasBeenSet = true; m_maxConcurrency = std::move(value); }
 
     /**
      * <p>The maximum number of targets this task can be run for in parallel.</p>
@@ -393,12 +431,13 @@ namespace Model
     /**
      * <p>The maximum number of targets this task can be run for in parallel.</p>
      */
-    inline MaintenanceWindowTask& WithMaxConcurrency(Aws::String&& value) { SetMaxConcurrency(value); return *this;}
+    inline MaintenanceWindowTask& WithMaxConcurrency(Aws::String&& value) { SetMaxConcurrency(std::move(value)); return *this;}
 
     /**
      * <p>The maximum number of targets this task can be run for in parallel.</p>
      */
     inline MaintenanceWindowTask& WithMaxConcurrency(const char* value) { SetMaxConcurrency(value); return *this;}
+
 
     /**
      * <p>The maximum number of errors allowed before this task stops being
@@ -416,7 +455,7 @@ namespace Model
      * <p>The maximum number of errors allowed before this task stops being
      * scheduled.</p>
      */
-    inline void SetMaxErrors(Aws::String&& value) { m_maxErrorsHasBeenSet = true; m_maxErrors = value; }
+    inline void SetMaxErrors(Aws::String&& value) { m_maxErrorsHasBeenSet = true; m_maxErrors = std::move(value); }
 
     /**
      * <p>The maximum number of errors allowed before this task stops being
@@ -434,7 +473,7 @@ namespace Model
      * <p>The maximum number of errors allowed before this task stops being
      * scheduled.</p>
      */
-    inline MaintenanceWindowTask& WithMaxErrors(Aws::String&& value) { SetMaxErrors(value); return *this;}
+    inline MaintenanceWindowTask& WithMaxErrors(Aws::String&& value) { SetMaxErrors(std::move(value)); return *this;}
 
     /**
      * <p>The maximum number of errors allowed before this task stops being
@@ -442,29 +481,118 @@ namespace Model
      */
     inline MaintenanceWindowTask& WithMaxErrors(const char* value) { SetMaxErrors(value); return *this;}
 
+
+    /**
+     * <p>The task name.</p>
+     */
+    inline const Aws::String& GetName() const{ return m_name; }
+
+    /**
+     * <p>The task name.</p>
+     */
+    inline void SetName(const Aws::String& value) { m_nameHasBeenSet = true; m_name = value; }
+
+    /**
+     * <p>The task name.</p>
+     */
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
+
+    /**
+     * <p>The task name.</p>
+     */
+    inline void SetName(const char* value) { m_nameHasBeenSet = true; m_name.assign(value); }
+
+    /**
+     * <p>The task name.</p>
+     */
+    inline MaintenanceWindowTask& WithName(const Aws::String& value) { SetName(value); return *this;}
+
+    /**
+     * <p>The task name.</p>
+     */
+    inline MaintenanceWindowTask& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
+
+    /**
+     * <p>The task name.</p>
+     */
+    inline MaintenanceWindowTask& WithName(const char* value) { SetName(value); return *this;}
+
+
+    /**
+     * <p>A description of the task.</p>
+     */
+    inline const Aws::String& GetDescription() const{ return m_description; }
+
+    /**
+     * <p>A description of the task.</p>
+     */
+    inline void SetDescription(const Aws::String& value) { m_descriptionHasBeenSet = true; m_description = value; }
+
+    /**
+     * <p>A description of the task.</p>
+     */
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
+
+    /**
+     * <p>A description of the task.</p>
+     */
+    inline void SetDescription(const char* value) { m_descriptionHasBeenSet = true; m_description.assign(value); }
+
+    /**
+     * <p>A description of the task.</p>
+     */
+    inline MaintenanceWindowTask& WithDescription(const Aws::String& value) { SetDescription(value); return *this;}
+
+    /**
+     * <p>A description of the task.</p>
+     */
+    inline MaintenanceWindowTask& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
+
+    /**
+     * <p>A description of the task.</p>
+     */
+    inline MaintenanceWindowTask& WithDescription(const char* value) { SetDescription(value); return *this;}
+
   private:
+
     Aws::String m_windowId;
     bool m_windowIdHasBeenSet;
+
     Aws::String m_windowTaskId;
     bool m_windowTaskIdHasBeenSet;
+
     Aws::String m_taskArn;
     bool m_taskArnHasBeenSet;
+
     MaintenanceWindowTaskType m_type;
     bool m_typeHasBeenSet;
+
     Aws::Vector<Target> m_targets;
     bool m_targetsHasBeenSet;
+
     Aws::Map<Aws::String, MaintenanceWindowTaskParameterValueExpression> m_taskParameters;
     bool m_taskParametersHasBeenSet;
+
     int m_priority;
     bool m_priorityHasBeenSet;
+
     LoggingInfo m_loggingInfo;
     bool m_loggingInfoHasBeenSet;
+
     Aws::String m_serviceRoleArn;
     bool m_serviceRoleArnHasBeenSet;
+
     Aws::String m_maxConcurrency;
     bool m_maxConcurrencyHasBeenSet;
+
     Aws::String m_maxErrors;
     bool m_maxErrorsHasBeenSet;
+
+    Aws::String m_name;
+    bool m_nameHasBeenSet;
+
+    Aws::String m_description;
+    bool m_descriptionHasBeenSet;
   };
 
 } // namespace Model

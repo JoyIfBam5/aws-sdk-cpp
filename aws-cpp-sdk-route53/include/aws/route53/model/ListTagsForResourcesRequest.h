@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53/Route53_EXPORTS.h>
 #include <aws/route53/Route53Request.h>
 #include <aws/route53/model/TagResourceType.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,7 +38,15 @@ namespace Model
   {
   public:
     ListTagsForResourcesRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "ListTagsForResources"; }
+
     Aws::String SerializePayload() const override;
+
 
     /**
      * <p>The type of the resources.</p> <ul> <li> <p>The resource type for health
@@ -57,7 +67,7 @@ namespace Model
      * checks is <code>healthcheck</code>.</p> </li> <li> <p>The resource type for
      * hosted zones is <code>hostedzone</code>.</p> </li> </ul>
      */
-    inline void SetResourceType(TagResourceType&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = value; }
+    inline void SetResourceType(TagResourceType&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = std::move(value); }
 
     /**
      * <p>The type of the resources.</p> <ul> <li> <p>The resource type for health
@@ -71,7 +81,8 @@ namespace Model
      * checks is <code>healthcheck</code>.</p> </li> <li> <p>The resource type for
      * hosted zones is <code>hostedzone</code>.</p> </li> </ul>
      */
-    inline ListTagsForResourcesRequest& WithResourceType(TagResourceType&& value) { SetResourceType(value); return *this;}
+    inline ListTagsForResourcesRequest& WithResourceType(TagResourceType&& value) { SetResourceType(std::move(value)); return *this;}
+
 
     /**
      * <p>A complex type that contains the ResourceId element for each resource for
@@ -89,7 +100,7 @@ namespace Model
      * <p>A complex type that contains the ResourceId element for each resource for
      * which you want to get a list of tags.</p>
      */
-    inline void SetResourceIds(Aws::Vector<Aws::String>&& value) { m_resourceIdsHasBeenSet = true; m_resourceIds = value; }
+    inline void SetResourceIds(Aws::Vector<Aws::String>&& value) { m_resourceIdsHasBeenSet = true; m_resourceIds = std::move(value); }
 
     /**
      * <p>A complex type that contains the ResourceId element for each resource for
@@ -101,7 +112,7 @@ namespace Model
      * <p>A complex type that contains the ResourceId element for each resource for
      * which you want to get a list of tags.</p>
      */
-    inline ListTagsForResourcesRequest& WithResourceIds(Aws::Vector<Aws::String>&& value) { SetResourceIds(value); return *this;}
+    inline ListTagsForResourcesRequest& WithResourceIds(Aws::Vector<Aws::String>&& value) { SetResourceIds(std::move(value)); return *this;}
 
     /**
      * <p>A complex type that contains the ResourceId element for each resource for
@@ -113,7 +124,7 @@ namespace Model
      * <p>A complex type that contains the ResourceId element for each resource for
      * which you want to get a list of tags.</p>
      */
-    inline ListTagsForResourcesRequest& AddResourceIds(Aws::String&& value) { m_resourceIdsHasBeenSet = true; m_resourceIds.push_back(value); return *this; }
+    inline ListTagsForResourcesRequest& AddResourceIds(Aws::String&& value) { m_resourceIdsHasBeenSet = true; m_resourceIds.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A complex type that contains the ResourceId element for each resource for
@@ -122,8 +133,10 @@ namespace Model
     inline ListTagsForResourcesRequest& AddResourceIds(const char* value) { m_resourceIdsHasBeenSet = true; m_resourceIds.push_back(value); return *this; }
 
   private:
+
     TagResourceType m_resourceType;
     bool m_resourceTypeHasBeenSet;
+
     Aws::Vector<Aws::String> m_resourceIds;
     bool m_resourceIdsHasBeenSet;
   };

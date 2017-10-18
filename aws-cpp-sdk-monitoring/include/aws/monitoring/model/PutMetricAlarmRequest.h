@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/monitoring/CloudWatch_EXPORTS.h>
 #include <aws/monitoring/CloudWatchRequest.h>
@@ -21,6 +22,7 @@
 #include <aws/monitoring/model/StandardUnit.h>
 #include <aws/monitoring/model/ComparisonOperator.h>
 #include <aws/monitoring/model/Dimension.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,7 +37,19 @@ namespace Model
   {
   public:
     PutMetricAlarmRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "PutMetricAlarm"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The name for the alarm. This name must be unique within the AWS account.</p>
@@ -50,7 +64,7 @@ namespace Model
     /**
      * <p>The name for the alarm. This name must be unique within the AWS account.</p>
      */
-    inline void SetAlarmName(Aws::String&& value) { m_alarmNameHasBeenSet = true; m_alarmName = value; }
+    inline void SetAlarmName(Aws::String&& value) { m_alarmNameHasBeenSet = true; m_alarmName = std::move(value); }
 
     /**
      * <p>The name for the alarm. This name must be unique within the AWS account.</p>
@@ -65,12 +79,13 @@ namespace Model
     /**
      * <p>The name for the alarm. This name must be unique within the AWS account.</p>
      */
-    inline PutMetricAlarmRequest& WithAlarmName(Aws::String&& value) { SetAlarmName(value); return *this;}
+    inline PutMetricAlarmRequest& WithAlarmName(Aws::String&& value) { SetAlarmName(std::move(value)); return *this;}
 
     /**
      * <p>The name for the alarm. This name must be unique within the AWS account.</p>
      */
     inline PutMetricAlarmRequest& WithAlarmName(const char* value) { SetAlarmName(value); return *this;}
+
 
     /**
      * <p>The description for the alarm.</p>
@@ -85,7 +100,7 @@ namespace Model
     /**
      * <p>The description for the alarm.</p>
      */
-    inline void SetAlarmDescription(Aws::String&& value) { m_alarmDescriptionHasBeenSet = true; m_alarmDescription = value; }
+    inline void SetAlarmDescription(Aws::String&& value) { m_alarmDescriptionHasBeenSet = true; m_alarmDescription = std::move(value); }
 
     /**
      * <p>The description for the alarm.</p>
@@ -100,12 +115,13 @@ namespace Model
     /**
      * <p>The description for the alarm.</p>
      */
-    inline PutMetricAlarmRequest& WithAlarmDescription(Aws::String&& value) { SetAlarmDescription(value); return *this;}
+    inline PutMetricAlarmRequest& WithAlarmDescription(Aws::String&& value) { SetAlarmDescription(std::move(value)); return *this;}
 
     /**
      * <p>The description for the alarm.</p>
      */
     inline PutMetricAlarmRequest& WithAlarmDescription(const char* value) { SetAlarmDescription(value); return *this;}
+
 
     /**
      * <p>Indicates whether actions should be executed during any changes to the alarm
@@ -124,6 +140,7 @@ namespace Model
      * state.</p>
      */
     inline PutMetricAlarmRequest& WithActionsEnabled(bool value) { SetActionsEnabled(value); return *this;}
+
 
     /**
      * <p>The actions to execute when this alarm transitions to an <code>OK</code>
@@ -168,7 +185,7 @@ namespace Model
      * |
      * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId.Reboot/1.0</p>
      */
-    inline void SetOKActions(Aws::Vector<Aws::String>&& value) { m_oKActionsHasBeenSet = true; m_oKActions = value; }
+    inline void SetOKActions(Aws::Vector<Aws::String>&& value) { m_oKActionsHasBeenSet = true; m_oKActions = std::move(value); }
 
     /**
      * <p>The actions to execute when this alarm transitions to an <code>OK</code>
@@ -198,7 +215,7 @@ namespace Model
      * |
      * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId.Reboot/1.0</p>
      */
-    inline PutMetricAlarmRequest& WithOKActions(Aws::Vector<Aws::String>&& value) { SetOKActions(value); return *this;}
+    inline PutMetricAlarmRequest& WithOKActions(Aws::Vector<Aws::String>&& value) { SetOKActions(std::move(value)); return *this;}
 
     /**
      * <p>The actions to execute when this alarm transitions to an <code>OK</code>
@@ -228,7 +245,7 @@ namespace Model
      * |
      * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId.Reboot/1.0</p>
      */
-    inline PutMetricAlarmRequest& AddOKActions(Aws::String&& value) { m_oKActionsHasBeenSet = true; m_oKActions.push_back(value); return *this; }
+    inline PutMetricAlarmRequest& AddOKActions(Aws::String&& value) { m_oKActionsHasBeenSet = true; m_oKActions.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The actions to execute when this alarm transitions to an <code>OK</code>
@@ -244,6 +261,7 @@ namespace Model
      * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId.Reboot/1.0</p>
      */
     inline PutMetricAlarmRequest& AddOKActions(const char* value) { m_oKActionsHasBeenSet = true; m_oKActions.push_back(value); return *this; }
+
 
     /**
      * <p>The actions to execute when this alarm transitions to the <code>ALARM</code>
@@ -288,7 +306,7 @@ namespace Model
      * |
      * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId.Reboot/1.0</p>
      */
-    inline void SetAlarmActions(Aws::Vector<Aws::String>&& value) { m_alarmActionsHasBeenSet = true; m_alarmActions = value; }
+    inline void SetAlarmActions(Aws::Vector<Aws::String>&& value) { m_alarmActionsHasBeenSet = true; m_alarmActions = std::move(value); }
 
     /**
      * <p>The actions to execute when this alarm transitions to the <code>ALARM</code>
@@ -318,7 +336,7 @@ namespace Model
      * |
      * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId.Reboot/1.0</p>
      */
-    inline PutMetricAlarmRequest& WithAlarmActions(Aws::Vector<Aws::String>&& value) { SetAlarmActions(value); return *this;}
+    inline PutMetricAlarmRequest& WithAlarmActions(Aws::Vector<Aws::String>&& value) { SetAlarmActions(std::move(value)); return *this;}
 
     /**
      * <p>The actions to execute when this alarm transitions to the <code>ALARM</code>
@@ -348,7 +366,7 @@ namespace Model
      * |
      * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId.Reboot/1.0</p>
      */
-    inline PutMetricAlarmRequest& AddAlarmActions(Aws::String&& value) { m_alarmActionsHasBeenSet = true; m_alarmActions.push_back(value); return *this; }
+    inline PutMetricAlarmRequest& AddAlarmActions(Aws::String&& value) { m_alarmActionsHasBeenSet = true; m_alarmActions.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The actions to execute when this alarm transitions to the <code>ALARM</code>
@@ -364,6 +382,7 @@ namespace Model
      * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId.Reboot/1.0</p>
      */
     inline PutMetricAlarmRequest& AddAlarmActions(const char* value) { m_alarmActionsHasBeenSet = true; m_alarmActions.push_back(value); return *this; }
+
 
     /**
      * <p>The actions to execute when this alarm transitions to the
@@ -411,7 +430,7 @@ namespace Model
      * |
      * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId.Reboot/1.0</p>
      */
-    inline void SetInsufficientDataActions(Aws::Vector<Aws::String>&& value) { m_insufficientDataActionsHasBeenSet = true; m_insufficientDataActions = value; }
+    inline void SetInsufficientDataActions(Aws::Vector<Aws::String>&& value) { m_insufficientDataActionsHasBeenSet = true; m_insufficientDataActions = std::move(value); }
 
     /**
      * <p>The actions to execute when this alarm transitions to the
@@ -443,7 +462,7 @@ namespace Model
      * |
      * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId.Reboot/1.0</p>
      */
-    inline PutMetricAlarmRequest& WithInsufficientDataActions(Aws::Vector<Aws::String>&& value) { SetInsufficientDataActions(value); return *this;}
+    inline PutMetricAlarmRequest& WithInsufficientDataActions(Aws::Vector<Aws::String>&& value) { SetInsufficientDataActions(std::move(value)); return *this;}
 
     /**
      * <p>The actions to execute when this alarm transitions to the
@@ -475,7 +494,7 @@ namespace Model
      * |
      * arn:aws:swf:us-east-1:{<i>customer-account</i>}:action/actions/AWS_EC2.InstanceId.Reboot/1.0</p>
      */
-    inline PutMetricAlarmRequest& AddInsufficientDataActions(Aws::String&& value) { m_insufficientDataActionsHasBeenSet = true; m_insufficientDataActions.push_back(value); return *this; }
+    inline PutMetricAlarmRequest& AddInsufficientDataActions(Aws::String&& value) { m_insufficientDataActionsHasBeenSet = true; m_insufficientDataActions.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The actions to execute when this alarm transitions to the
@@ -493,6 +512,7 @@ namespace Model
      */
     inline PutMetricAlarmRequest& AddInsufficientDataActions(const char* value) { m_insufficientDataActionsHasBeenSet = true; m_insufficientDataActions.push_back(value); return *this; }
 
+
     /**
      * <p>The name for the metric associated with the alarm.</p>
      */
@@ -506,7 +526,7 @@ namespace Model
     /**
      * <p>The name for the metric associated with the alarm.</p>
      */
-    inline void SetMetricName(Aws::String&& value) { m_metricNameHasBeenSet = true; m_metricName = value; }
+    inline void SetMetricName(Aws::String&& value) { m_metricNameHasBeenSet = true; m_metricName = std::move(value); }
 
     /**
      * <p>The name for the metric associated with the alarm.</p>
@@ -521,12 +541,13 @@ namespace Model
     /**
      * <p>The name for the metric associated with the alarm.</p>
      */
-    inline PutMetricAlarmRequest& WithMetricName(Aws::String&& value) { SetMetricName(value); return *this;}
+    inline PutMetricAlarmRequest& WithMetricName(Aws::String&& value) { SetMetricName(std::move(value)); return *this;}
 
     /**
      * <p>The name for the metric associated with the alarm.</p>
      */
     inline PutMetricAlarmRequest& WithMetricName(const char* value) { SetMetricName(value); return *this;}
+
 
     /**
      * <p>The namespace for the metric associated with the alarm.</p>
@@ -541,7 +562,7 @@ namespace Model
     /**
      * <p>The namespace for the metric associated with the alarm.</p>
      */
-    inline void SetNamespace(Aws::String&& value) { m_namespaceHasBeenSet = true; m_namespace = value; }
+    inline void SetNamespace(Aws::String&& value) { m_namespaceHasBeenSet = true; m_namespace = std::move(value); }
 
     /**
      * <p>The namespace for the metric associated with the alarm.</p>
@@ -556,12 +577,13 @@ namespace Model
     /**
      * <p>The namespace for the metric associated with the alarm.</p>
      */
-    inline PutMetricAlarmRequest& WithNamespace(Aws::String&& value) { SetNamespace(value); return *this;}
+    inline PutMetricAlarmRequest& WithNamespace(Aws::String&& value) { SetNamespace(std::move(value)); return *this;}
 
     /**
      * <p>The namespace for the metric associated with the alarm.</p>
      */
     inline PutMetricAlarmRequest& WithNamespace(const char* value) { SetNamespace(value); return *this;}
+
 
     /**
      * <p>The statistic for the metric associated with the alarm, other than
@@ -579,7 +601,7 @@ namespace Model
      * <p>The statistic for the metric associated with the alarm, other than
      * percentile. For percentile statistics, use <code>ExtendedStatistic</code>.</p>
      */
-    inline void SetStatistic(Statistic&& value) { m_statisticHasBeenSet = true; m_statistic = value; }
+    inline void SetStatistic(Statistic&& value) { m_statisticHasBeenSet = true; m_statistic = std::move(value); }
 
     /**
      * <p>The statistic for the metric associated with the alarm, other than
@@ -591,7 +613,8 @@ namespace Model
      * <p>The statistic for the metric associated with the alarm, other than
      * percentile. For percentile statistics, use <code>ExtendedStatistic</code>.</p>
      */
-    inline PutMetricAlarmRequest& WithStatistic(Statistic&& value) { SetStatistic(value); return *this;}
+    inline PutMetricAlarmRequest& WithStatistic(Statistic&& value) { SetStatistic(std::move(value)); return *this;}
+
 
     /**
      * <p>The percentile statistic for the metric associated with the alarm. Specify a
@@ -609,7 +632,7 @@ namespace Model
      * <p>The percentile statistic for the metric associated with the alarm. Specify a
      * value between p0.0 and p100.</p>
      */
-    inline void SetExtendedStatistic(Aws::String&& value) { m_extendedStatisticHasBeenSet = true; m_extendedStatistic = value; }
+    inline void SetExtendedStatistic(Aws::String&& value) { m_extendedStatisticHasBeenSet = true; m_extendedStatistic = std::move(value); }
 
     /**
      * <p>The percentile statistic for the metric associated with the alarm. Specify a
@@ -627,13 +650,14 @@ namespace Model
      * <p>The percentile statistic for the metric associated with the alarm. Specify a
      * value between p0.0 and p100.</p>
      */
-    inline PutMetricAlarmRequest& WithExtendedStatistic(Aws::String&& value) { SetExtendedStatistic(value); return *this;}
+    inline PutMetricAlarmRequest& WithExtendedStatistic(Aws::String&& value) { SetExtendedStatistic(std::move(value)); return *this;}
 
     /**
      * <p>The percentile statistic for the metric associated with the alarm. Specify a
      * value between p0.0 and p100.</p>
      */
     inline PutMetricAlarmRequest& WithExtendedStatistic(const char* value) { SetExtendedStatistic(value); return *this;}
+
 
     /**
      * <p>The dimensions for the metric associated with the alarm.</p>
@@ -648,7 +672,7 @@ namespace Model
     /**
      * <p>The dimensions for the metric associated with the alarm.</p>
      */
-    inline void SetDimensions(Aws::Vector<Dimension>&& value) { m_dimensionsHasBeenSet = true; m_dimensions = value; }
+    inline void SetDimensions(Aws::Vector<Dimension>&& value) { m_dimensionsHasBeenSet = true; m_dimensions = std::move(value); }
 
     /**
      * <p>The dimensions for the metric associated with the alarm.</p>
@@ -658,7 +682,7 @@ namespace Model
     /**
      * <p>The dimensions for the metric associated with the alarm.</p>
      */
-    inline PutMetricAlarmRequest& WithDimensions(Aws::Vector<Dimension>&& value) { SetDimensions(value); return *this;}
+    inline PutMetricAlarmRequest& WithDimensions(Aws::Vector<Dimension>&& value) { SetDimensions(std::move(value)); return *this;}
 
     /**
      * <p>The dimensions for the metric associated with the alarm.</p>
@@ -668,22 +692,63 @@ namespace Model
     /**
      * <p>The dimensions for the metric associated with the alarm.</p>
      */
-    inline PutMetricAlarmRequest& AddDimensions(Dimension&& value) { m_dimensionsHasBeenSet = true; m_dimensions.push_back(value); return *this; }
+    inline PutMetricAlarmRequest& AddDimensions(Dimension&& value) { m_dimensionsHasBeenSet = true; m_dimensions.push_back(std::move(value)); return *this; }
+
 
     /**
-     * <p>The period, in seconds, over which the specified statistic is applied.</p>
+     * <p>The period, in seconds, over which the specified statistic is applied. Valid
+     * values are 10, 30, and any multiple of 60.</p> <p>Be sure to specify 10 or 30
+     * only for metrics that are stored by a <code>PutMetricData</code> call with a
+     * <code>StorageResolution</code> of 1. If you specify a Period of 10 or 30 for a
+     * metric that does not have sub-minute resolution, the alarm still attempts to
+     * gather data at the period rate that you specify. In this case, it does not
+     * receive data for the attempts that do not correspond to a one-minute data
+     * resolution, and the alarm may often lapse into INSUFFICENT_DATA status.
+     * Specifying 10 or 30 also sets this alarm as a high-resolution alarm, which has a
+     * higher charge than other alarms. For more information about pricing, see <a
+     * href="https://aws.amazon.com/cloudwatch/pricing/">Amazon CloudWatch
+     * Pricing</a>.</p> <p>An alarm's total current evaluation period can be no longer
+     * than one day, so <code>Period</code> multiplied by
+     * <code>EvaluationPeriods</code> cannot be more than 86,400 seconds.</p>
      */
     inline int GetPeriod() const{ return m_period; }
 
     /**
-     * <p>The period, in seconds, over which the specified statistic is applied.</p>
+     * <p>The period, in seconds, over which the specified statistic is applied. Valid
+     * values are 10, 30, and any multiple of 60.</p> <p>Be sure to specify 10 or 30
+     * only for metrics that are stored by a <code>PutMetricData</code> call with a
+     * <code>StorageResolution</code> of 1. If you specify a Period of 10 or 30 for a
+     * metric that does not have sub-minute resolution, the alarm still attempts to
+     * gather data at the period rate that you specify. In this case, it does not
+     * receive data for the attempts that do not correspond to a one-minute data
+     * resolution, and the alarm may often lapse into INSUFFICENT_DATA status.
+     * Specifying 10 or 30 also sets this alarm as a high-resolution alarm, which has a
+     * higher charge than other alarms. For more information about pricing, see <a
+     * href="https://aws.amazon.com/cloudwatch/pricing/">Amazon CloudWatch
+     * Pricing</a>.</p> <p>An alarm's total current evaluation period can be no longer
+     * than one day, so <code>Period</code> multiplied by
+     * <code>EvaluationPeriods</code> cannot be more than 86,400 seconds.</p>
      */
     inline void SetPeriod(int value) { m_periodHasBeenSet = true; m_period = value; }
 
     /**
-     * <p>The period, in seconds, over which the specified statistic is applied.</p>
+     * <p>The period, in seconds, over which the specified statistic is applied. Valid
+     * values are 10, 30, and any multiple of 60.</p> <p>Be sure to specify 10 or 30
+     * only for metrics that are stored by a <code>PutMetricData</code> call with a
+     * <code>StorageResolution</code> of 1. If you specify a Period of 10 or 30 for a
+     * metric that does not have sub-minute resolution, the alarm still attempts to
+     * gather data at the period rate that you specify. In this case, it does not
+     * receive data for the attempts that do not correspond to a one-minute data
+     * resolution, and the alarm may often lapse into INSUFFICENT_DATA status.
+     * Specifying 10 or 30 also sets this alarm as a high-resolution alarm, which has a
+     * higher charge than other alarms. For more information about pricing, see <a
+     * href="https://aws.amazon.com/cloudwatch/pricing/">Amazon CloudWatch
+     * Pricing</a>.</p> <p>An alarm's total current evaluation period can be no longer
+     * than one day, so <code>Period</code> multiplied by
+     * <code>EvaluationPeriods</code> cannot be more than 86,400 seconds.</p>
      */
     inline PutMetricAlarmRequest& WithPeriod(int value) { SetPeriod(value); return *this;}
+
 
     /**
      * <p>The unit of measure for the statistic. For example, the units for the Amazon
@@ -692,8 +757,8 @@ namespace Model
      * you create a custom metric. Units help provide conceptual meaning to your data.
      * Metric data points that specify a unit of measure, such as Percent, are
      * aggregated separately.</p> <p>If you specify a unit, you must use a unit that is
-     * appropriate for the metric. Otherwise, the Amazon CloudWatch alarm can get stuck
-     * in the <code>INSUFFICIENT DATA</code> state. </p>
+     * appropriate for the metric. Otherwise, the CloudWatch alarm can get stuck in the
+     * <code>INSUFFICIENT DATA</code> state. </p>
      */
     inline const StandardUnit& GetUnit() const{ return m_unit; }
 
@@ -704,8 +769,8 @@ namespace Model
      * you create a custom metric. Units help provide conceptual meaning to your data.
      * Metric data points that specify a unit of measure, such as Percent, are
      * aggregated separately.</p> <p>If you specify a unit, you must use a unit that is
-     * appropriate for the metric. Otherwise, the Amazon CloudWatch alarm can get stuck
-     * in the <code>INSUFFICIENT DATA</code> state. </p>
+     * appropriate for the metric. Otherwise, the CloudWatch alarm can get stuck in the
+     * <code>INSUFFICIENT DATA</code> state. </p>
      */
     inline void SetUnit(const StandardUnit& value) { m_unitHasBeenSet = true; m_unit = value; }
 
@@ -716,10 +781,10 @@ namespace Model
      * you create a custom metric. Units help provide conceptual meaning to your data.
      * Metric data points that specify a unit of measure, such as Percent, are
      * aggregated separately.</p> <p>If you specify a unit, you must use a unit that is
-     * appropriate for the metric. Otherwise, the Amazon CloudWatch alarm can get stuck
-     * in the <code>INSUFFICIENT DATA</code> state. </p>
+     * appropriate for the metric. Otherwise, the CloudWatch alarm can get stuck in the
+     * <code>INSUFFICIENT DATA</code> state. </p>
      */
-    inline void SetUnit(StandardUnit&& value) { m_unitHasBeenSet = true; m_unit = value; }
+    inline void SetUnit(StandardUnit&& value) { m_unitHasBeenSet = true; m_unit = std::move(value); }
 
     /**
      * <p>The unit of measure for the statistic. For example, the units for the Amazon
@@ -728,8 +793,8 @@ namespace Model
      * you create a custom metric. Units help provide conceptual meaning to your data.
      * Metric data points that specify a unit of measure, such as Percent, are
      * aggregated separately.</p> <p>If you specify a unit, you must use a unit that is
-     * appropriate for the metric. Otherwise, the Amazon CloudWatch alarm can get stuck
-     * in the <code>INSUFFICIENT DATA</code> state. </p>
+     * appropriate for the metric. Otherwise, the CloudWatch alarm can get stuck in the
+     * <code>INSUFFICIENT DATA</code> state. </p>
      */
     inline PutMetricAlarmRequest& WithUnit(const StandardUnit& value) { SetUnit(value); return *this;}
 
@@ -740,28 +805,36 @@ namespace Model
      * you create a custom metric. Units help provide conceptual meaning to your data.
      * Metric data points that specify a unit of measure, such as Percent, are
      * aggregated separately.</p> <p>If you specify a unit, you must use a unit that is
-     * appropriate for the metric. Otherwise, the Amazon CloudWatch alarm can get stuck
-     * in the <code>INSUFFICIENT DATA</code> state. </p>
+     * appropriate for the metric. Otherwise, the CloudWatch alarm can get stuck in the
+     * <code>INSUFFICIENT DATA</code> state. </p>
      */
-    inline PutMetricAlarmRequest& WithUnit(StandardUnit&& value) { SetUnit(value); return *this;}
+    inline PutMetricAlarmRequest& WithUnit(StandardUnit&& value) { SetUnit(std::move(value)); return *this;}
+
 
     /**
-     * <p>The number of periods over which data is compared to the specified
-     * threshold.</p>
+     * <p>The number of periods over which data is compared to the specified threshold.
+     * An alarm's total current evaluation period can be no longer than one day, so
+     * this number multiplied by <code>Period</code> cannot be more than 86,400
+     * seconds.</p>
      */
     inline int GetEvaluationPeriods() const{ return m_evaluationPeriods; }
 
     /**
-     * <p>The number of periods over which data is compared to the specified
-     * threshold.</p>
+     * <p>The number of periods over which data is compared to the specified threshold.
+     * An alarm's total current evaluation period can be no longer than one day, so
+     * this number multiplied by <code>Period</code> cannot be more than 86,400
+     * seconds.</p>
      */
     inline void SetEvaluationPeriods(int value) { m_evaluationPeriodsHasBeenSet = true; m_evaluationPeriods = value; }
 
     /**
-     * <p>The number of periods over which data is compared to the specified
-     * threshold.</p>
+     * <p>The number of periods over which data is compared to the specified threshold.
+     * An alarm's total current evaluation period can be no longer than one day, so
+     * this number multiplied by <code>Period</code> cannot be more than 86,400
+     * seconds.</p>
      */
     inline PutMetricAlarmRequest& WithEvaluationPeriods(int value) { SetEvaluationPeriods(value); return *this;}
+
 
     /**
      * <p>The value against which the specified statistic is compared.</p>
@@ -777,6 +850,7 @@ namespace Model
      * <p>The value against which the specified statistic is compared.</p>
      */
     inline PutMetricAlarmRequest& WithThreshold(double value) { SetThreshold(value); return *this;}
+
 
     /**
      * <p> The arithmetic operation to use when comparing the specified statistic and
@@ -794,7 +868,7 @@ namespace Model
      * <p> The arithmetic operation to use when comparing the specified statistic and
      * threshold. The specified statistic value is used as the first operand.</p>
      */
-    inline void SetComparisonOperator(ComparisonOperator&& value) { m_comparisonOperatorHasBeenSet = true; m_comparisonOperator = value; }
+    inline void SetComparisonOperator(ComparisonOperator&& value) { m_comparisonOperatorHasBeenSet = true; m_comparisonOperator = std::move(value); }
 
     /**
      * <p> The arithmetic operation to use when comparing the specified statistic and
@@ -806,41 +880,226 @@ namespace Model
      * <p> The arithmetic operation to use when comparing the specified statistic and
      * threshold. The specified statistic value is used as the first operand.</p>
      */
-    inline PutMetricAlarmRequest& WithComparisonOperator(ComparisonOperator&& value) { SetComparisonOperator(value); return *this;}
+    inline PutMetricAlarmRequest& WithComparisonOperator(ComparisonOperator&& value) { SetComparisonOperator(std::move(value)); return *this;}
+
+
+    /**
+     * <p> Sets how this alarm is to handle missing data points. If
+     * <code>TreatMissingData</code> is omitted, the default behavior of
+     * <code>missing</code> is used. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data">Configuring
+     * How CloudWatch Alarms Treats Missing Data</a>.</p> <p>Valid Values:
+     * <code>breaching | notBreaching | ignore | missing</code> </p>
+     */
+    inline const Aws::String& GetTreatMissingData() const{ return m_treatMissingData; }
+
+    /**
+     * <p> Sets how this alarm is to handle missing data points. If
+     * <code>TreatMissingData</code> is omitted, the default behavior of
+     * <code>missing</code> is used. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data">Configuring
+     * How CloudWatch Alarms Treats Missing Data</a>.</p> <p>Valid Values:
+     * <code>breaching | notBreaching | ignore | missing</code> </p>
+     */
+    inline void SetTreatMissingData(const Aws::String& value) { m_treatMissingDataHasBeenSet = true; m_treatMissingData = value; }
+
+    /**
+     * <p> Sets how this alarm is to handle missing data points. If
+     * <code>TreatMissingData</code> is omitted, the default behavior of
+     * <code>missing</code> is used. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data">Configuring
+     * How CloudWatch Alarms Treats Missing Data</a>.</p> <p>Valid Values:
+     * <code>breaching | notBreaching | ignore | missing</code> </p>
+     */
+    inline void SetTreatMissingData(Aws::String&& value) { m_treatMissingDataHasBeenSet = true; m_treatMissingData = std::move(value); }
+
+    /**
+     * <p> Sets how this alarm is to handle missing data points. If
+     * <code>TreatMissingData</code> is omitted, the default behavior of
+     * <code>missing</code> is used. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data">Configuring
+     * How CloudWatch Alarms Treats Missing Data</a>.</p> <p>Valid Values:
+     * <code>breaching | notBreaching | ignore | missing</code> </p>
+     */
+    inline void SetTreatMissingData(const char* value) { m_treatMissingDataHasBeenSet = true; m_treatMissingData.assign(value); }
+
+    /**
+     * <p> Sets how this alarm is to handle missing data points. If
+     * <code>TreatMissingData</code> is omitted, the default behavior of
+     * <code>missing</code> is used. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data">Configuring
+     * How CloudWatch Alarms Treats Missing Data</a>.</p> <p>Valid Values:
+     * <code>breaching | notBreaching | ignore | missing</code> </p>
+     */
+    inline PutMetricAlarmRequest& WithTreatMissingData(const Aws::String& value) { SetTreatMissingData(value); return *this;}
+
+    /**
+     * <p> Sets how this alarm is to handle missing data points. If
+     * <code>TreatMissingData</code> is omitted, the default behavior of
+     * <code>missing</code> is used. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data">Configuring
+     * How CloudWatch Alarms Treats Missing Data</a>.</p> <p>Valid Values:
+     * <code>breaching | notBreaching | ignore | missing</code> </p>
+     */
+    inline PutMetricAlarmRequest& WithTreatMissingData(Aws::String&& value) { SetTreatMissingData(std::move(value)); return *this;}
+
+    /**
+     * <p> Sets how this alarm is to handle missing data points. If
+     * <code>TreatMissingData</code> is omitted, the default behavior of
+     * <code>missing</code> is used. For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data">Configuring
+     * How CloudWatch Alarms Treats Missing Data</a>.</p> <p>Valid Values:
+     * <code>breaching | notBreaching | ignore | missing</code> </p>
+     */
+    inline PutMetricAlarmRequest& WithTreatMissingData(const char* value) { SetTreatMissingData(value); return *this;}
+
+
+    /**
+     * <p> Used only for alarms based on percentiles. If you specify
+     * <code>ignore</code>, the alarm state does not change during periods with too few
+     * data points to be statistically significant. If you specify
+     * <code>evaluate</code> or omit this parameter, the alarm is always evaluated and
+     * possibly changes state no matter how many data points are available. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#percentiles-with-low-samples">Percentile-Based
+     * CloudWatch Alarms and Low Data Samples</a>.</p> <p>Valid Values: <code>evaluate
+     * | ignore</code> </p>
+     */
+    inline const Aws::String& GetEvaluateLowSampleCountPercentile() const{ return m_evaluateLowSampleCountPercentile; }
+
+    /**
+     * <p> Used only for alarms based on percentiles. If you specify
+     * <code>ignore</code>, the alarm state does not change during periods with too few
+     * data points to be statistically significant. If you specify
+     * <code>evaluate</code> or omit this parameter, the alarm is always evaluated and
+     * possibly changes state no matter how many data points are available. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#percentiles-with-low-samples">Percentile-Based
+     * CloudWatch Alarms and Low Data Samples</a>.</p> <p>Valid Values: <code>evaluate
+     * | ignore</code> </p>
+     */
+    inline void SetEvaluateLowSampleCountPercentile(const Aws::String& value) { m_evaluateLowSampleCountPercentileHasBeenSet = true; m_evaluateLowSampleCountPercentile = value; }
+
+    /**
+     * <p> Used only for alarms based on percentiles. If you specify
+     * <code>ignore</code>, the alarm state does not change during periods with too few
+     * data points to be statistically significant. If you specify
+     * <code>evaluate</code> or omit this parameter, the alarm is always evaluated and
+     * possibly changes state no matter how many data points are available. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#percentiles-with-low-samples">Percentile-Based
+     * CloudWatch Alarms and Low Data Samples</a>.</p> <p>Valid Values: <code>evaluate
+     * | ignore</code> </p>
+     */
+    inline void SetEvaluateLowSampleCountPercentile(Aws::String&& value) { m_evaluateLowSampleCountPercentileHasBeenSet = true; m_evaluateLowSampleCountPercentile = std::move(value); }
+
+    /**
+     * <p> Used only for alarms based on percentiles. If you specify
+     * <code>ignore</code>, the alarm state does not change during periods with too few
+     * data points to be statistically significant. If you specify
+     * <code>evaluate</code> or omit this parameter, the alarm is always evaluated and
+     * possibly changes state no matter how many data points are available. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#percentiles-with-low-samples">Percentile-Based
+     * CloudWatch Alarms and Low Data Samples</a>.</p> <p>Valid Values: <code>evaluate
+     * | ignore</code> </p>
+     */
+    inline void SetEvaluateLowSampleCountPercentile(const char* value) { m_evaluateLowSampleCountPercentileHasBeenSet = true; m_evaluateLowSampleCountPercentile.assign(value); }
+
+    /**
+     * <p> Used only for alarms based on percentiles. If you specify
+     * <code>ignore</code>, the alarm state does not change during periods with too few
+     * data points to be statistically significant. If you specify
+     * <code>evaluate</code> or omit this parameter, the alarm is always evaluated and
+     * possibly changes state no matter how many data points are available. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#percentiles-with-low-samples">Percentile-Based
+     * CloudWatch Alarms and Low Data Samples</a>.</p> <p>Valid Values: <code>evaluate
+     * | ignore</code> </p>
+     */
+    inline PutMetricAlarmRequest& WithEvaluateLowSampleCountPercentile(const Aws::String& value) { SetEvaluateLowSampleCountPercentile(value); return *this;}
+
+    /**
+     * <p> Used only for alarms based on percentiles. If you specify
+     * <code>ignore</code>, the alarm state does not change during periods with too few
+     * data points to be statistically significant. If you specify
+     * <code>evaluate</code> or omit this parameter, the alarm is always evaluated and
+     * possibly changes state no matter how many data points are available. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#percentiles-with-low-samples">Percentile-Based
+     * CloudWatch Alarms and Low Data Samples</a>.</p> <p>Valid Values: <code>evaluate
+     * | ignore</code> </p>
+     */
+    inline PutMetricAlarmRequest& WithEvaluateLowSampleCountPercentile(Aws::String&& value) { SetEvaluateLowSampleCountPercentile(std::move(value)); return *this;}
+
+    /**
+     * <p> Used only for alarms based on percentiles. If you specify
+     * <code>ignore</code>, the alarm state does not change during periods with too few
+     * data points to be statistically significant. If you specify
+     * <code>evaluate</code> or omit this parameter, the alarm is always evaluated and
+     * possibly changes state no matter how many data points are available. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#percentiles-with-low-samples">Percentile-Based
+     * CloudWatch Alarms and Low Data Samples</a>.</p> <p>Valid Values: <code>evaluate
+     * | ignore</code> </p>
+     */
+    inline PutMetricAlarmRequest& WithEvaluateLowSampleCountPercentile(const char* value) { SetEvaluateLowSampleCountPercentile(value); return *this;}
 
   private:
+
     Aws::String m_alarmName;
     bool m_alarmNameHasBeenSet;
+
     Aws::String m_alarmDescription;
     bool m_alarmDescriptionHasBeenSet;
+
     bool m_actionsEnabled;
     bool m_actionsEnabledHasBeenSet;
+
     Aws::Vector<Aws::String> m_oKActions;
     bool m_oKActionsHasBeenSet;
+
     Aws::Vector<Aws::String> m_alarmActions;
     bool m_alarmActionsHasBeenSet;
+
     Aws::Vector<Aws::String> m_insufficientDataActions;
     bool m_insufficientDataActionsHasBeenSet;
+
     Aws::String m_metricName;
     bool m_metricNameHasBeenSet;
+
     Aws::String m_namespace;
     bool m_namespaceHasBeenSet;
+
     Statistic m_statistic;
     bool m_statisticHasBeenSet;
+
     Aws::String m_extendedStatistic;
     bool m_extendedStatisticHasBeenSet;
+
     Aws::Vector<Dimension> m_dimensions;
     bool m_dimensionsHasBeenSet;
+
     int m_period;
     bool m_periodHasBeenSet;
+
     StandardUnit m_unit;
     bool m_unitHasBeenSet;
+
     int m_evaluationPeriods;
     bool m_evaluationPeriodsHasBeenSet;
+
     double m_threshold;
     bool m_thresholdHasBeenSet;
+
     ComparisonOperator m_comparisonOperator;
     bool m_comparisonOperatorHasBeenSet;
+
+    Aws::String m_treatMissingData;
+    bool m_treatMissingDataHasBeenSet;
+
+    Aws::String m_evaluateLowSampleCountPercentile;
+    bool m_evaluateLowSampleCountPercentileHasBeenSet;
   };
 
 } // namespace Model

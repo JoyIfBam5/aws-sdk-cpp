@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/PlacementGroup.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -31,19 +32,19 @@ namespace Model
 
 PlacementGroup::PlacementGroup() : 
     m_groupNameHasBeenSet(false),
-    m_strategy(PlacementStrategy::NOT_SET),
-    m_strategyHasBeenSet(false),
     m_state(PlacementGroupState::NOT_SET),
-    m_stateHasBeenSet(false)
+    m_stateHasBeenSet(false),
+    m_strategy(PlacementStrategy::NOT_SET),
+    m_strategyHasBeenSet(false)
 {
 }
 
 PlacementGroup::PlacementGroup(const XmlNode& xmlNode) : 
     m_groupNameHasBeenSet(false),
-    m_strategy(PlacementStrategy::NOT_SET),
-    m_strategyHasBeenSet(false),
     m_state(PlacementGroupState::NOT_SET),
-    m_stateHasBeenSet(false)
+    m_stateHasBeenSet(false),
+    m_strategy(PlacementStrategy::NOT_SET),
+    m_strategyHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -60,17 +61,17 @@ PlacementGroup& PlacementGroup::operator =(const XmlNode& xmlNode)
       m_groupName = StringUtils::Trim(groupNameNode.GetText().c_str());
       m_groupNameHasBeenSet = true;
     }
-    XmlNode strategyNode = resultNode.FirstChild("strategy");
-    if(!strategyNode.IsNull())
-    {
-      m_strategy = PlacementStrategyMapper::GetPlacementStrategyForName(StringUtils::Trim(strategyNode.GetText().c_str()).c_str());
-      m_strategyHasBeenSet = true;
-    }
     XmlNode stateNode = resultNode.FirstChild("state");
     if(!stateNode.IsNull())
     {
       m_state = PlacementGroupStateMapper::GetPlacementGroupStateForName(StringUtils::Trim(stateNode.GetText().c_str()).c_str());
       m_stateHasBeenSet = true;
+    }
+    XmlNode strategyNode = resultNode.FirstChild("strategy");
+    if(!strategyNode.IsNull())
+    {
+      m_strategy = PlacementStrategyMapper::GetPlacementStrategyForName(StringUtils::Trim(strategyNode.GetText().c_str()).c_str());
+      m_strategyHasBeenSet = true;
     }
   }
 
@@ -84,14 +85,14 @@ void PlacementGroup::OutputToStream(Aws::OStream& oStream, const char* location,
       oStream << location << index << locationValue << ".GroupName=" << StringUtils::URLEncode(m_groupName.c_str()) << "&";
   }
 
-  if(m_strategyHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".Strategy=" << PlacementStrategyMapper::GetNameForPlacementStrategy(m_strategy) << "&";
-  }
-
   if(m_stateHasBeenSet)
   {
       oStream << location << index << locationValue << ".State=" << PlacementGroupStateMapper::GetNameForPlacementGroupState(m_state) << "&";
+  }
+
+  if(m_strategyHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".Strategy=" << PlacementStrategyMapper::GetNameForPlacementStrategy(m_strategy) << "&";
   }
 
 }
@@ -102,13 +103,13 @@ void PlacementGroup::OutputToStream(Aws::OStream& oStream, const char* location)
   {
       oStream << location << ".GroupName=" << StringUtils::URLEncode(m_groupName.c_str()) << "&";
   }
-  if(m_strategyHasBeenSet)
-  {
-      oStream << location << ".Strategy=" << PlacementStrategyMapper::GetNameForPlacementStrategy(m_strategy) << "&";
-  }
   if(m_stateHasBeenSet)
   {
       oStream << location << ".State=" << PlacementGroupStateMapper::GetNameForPlacementGroupState(m_state) << "&";
+  }
+  if(m_strategyHasBeenSet)
+  {
+      oStream << location << ".Strategy=" << PlacementStrategyMapper::GetNameForPlacementStrategy(m_strategy) << "&";
   }
 }
 

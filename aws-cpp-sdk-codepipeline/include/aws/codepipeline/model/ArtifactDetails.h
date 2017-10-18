@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codepipeline/CodePipeline_EXPORTS.h>
 
@@ -43,6 +44,7 @@ namespace Model
     ArtifactDetails& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The minimum number of artifacts allowed for the action type.</p>
      */
@@ -57,6 +59,7 @@ namespace Model
      * <p>The minimum number of artifacts allowed for the action type.</p>
      */
     inline ArtifactDetails& WithMinimumCount(int value) { SetMinimumCount(value); return *this;}
+
 
     /**
      * <p>The maximum number of artifacts allowed for the action type.</p>
@@ -74,8 +77,10 @@ namespace Model
     inline ArtifactDetails& WithMaximumCount(int value) { SetMaximumCount(value); return *this;}
 
   private:
+
     int m_minimumCount;
     bool m_minimumCountHasBeenSet;
+
     int m_maximumCount;
     bool m_maximumCountHasBeenSet;
   };

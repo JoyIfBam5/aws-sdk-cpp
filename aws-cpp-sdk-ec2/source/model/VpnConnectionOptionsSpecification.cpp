@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/VpnConnectionOptionsSpecification.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -31,13 +32,15 @@ namespace Model
 
 VpnConnectionOptionsSpecification::VpnConnectionOptionsSpecification() : 
     m_staticRoutesOnly(false),
-    m_staticRoutesOnlyHasBeenSet(false)
+    m_staticRoutesOnlyHasBeenSet(false),
+    m_tunnelOptionsHasBeenSet(false)
 {
 }
 
 VpnConnectionOptionsSpecification::VpnConnectionOptionsSpecification(const XmlNode& xmlNode) : 
     m_staticRoutesOnly(false),
-    m_staticRoutesOnlyHasBeenSet(false)
+    m_staticRoutesOnlyHasBeenSet(false),
+    m_tunnelOptionsHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -54,6 +57,18 @@ VpnConnectionOptionsSpecification& VpnConnectionOptionsSpecification::operator =
       m_staticRoutesOnly = StringUtils::ConvertToBool(StringUtils::Trim(staticRoutesOnlyNode.GetText().c_str()).c_str());
       m_staticRoutesOnlyHasBeenSet = true;
     }
+    XmlNode tunnelOptionsNode = resultNode.FirstChild("TunnelOptions");
+    if(!tunnelOptionsNode.IsNull())
+    {
+      XmlNode tunnelOptionsMember = tunnelOptionsNode.FirstChild("item");
+      while(!tunnelOptionsMember.IsNull())
+      {
+        m_tunnelOptions.push_back(tunnelOptionsMember);
+        tunnelOptionsMember = tunnelOptionsMember.NextNode("item");
+      }
+
+      m_tunnelOptionsHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -66,6 +81,17 @@ void VpnConnectionOptionsSpecification::OutputToStream(Aws::OStream& oStream, co
       oStream << location << index << locationValue << ".StaticRoutesOnly=" << std::boolalpha << m_staticRoutesOnly << "&";
   }
 
+  if(m_tunnelOptionsHasBeenSet)
+  {
+      unsigned tunnelOptionsIdx = 1;
+      for(auto& item : m_tunnelOptions)
+      {
+        Aws::StringStream tunnelOptionsSs;
+        tunnelOptionsSs << location << index << locationValue << ".TunnelOptions." << tunnelOptionsIdx++;
+        item.OutputToStream(oStream, tunnelOptionsSs.str().c_str());
+      }
+  }
+
 }
 
 void VpnConnectionOptionsSpecification::OutputToStream(Aws::OStream& oStream, const char* location) const
@@ -73,6 +99,16 @@ void VpnConnectionOptionsSpecification::OutputToStream(Aws::OStream& oStream, co
   if(m_staticRoutesOnlyHasBeenSet)
   {
       oStream << location << ".StaticRoutesOnly=" << std::boolalpha << m_staticRoutesOnly << "&";
+  }
+  if(m_tunnelOptionsHasBeenSet)
+  {
+      unsigned tunnelOptionsIdx = 1;
+      for(auto& item : m_tunnelOptions)
+      {
+        Aws::StringStream tunnelOptionsSs;
+        tunnelOptionsSs << location <<  ".Item." << tunnelOptionsIdx++;
+        item.OutputToStream(oStream, tunnelOptionsSs.str().c_str());
+      }
   }
 }
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/iot/IoTRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     AttachThingPrincipalRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "AttachThingPrincipal"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The name of the thing.</p>
@@ -51,7 +61,7 @@ namespace Model
     /**
      * <p>The name of the thing.</p>
      */
-    inline void SetThingName(Aws::String&& value) { m_thingNameHasBeenSet = true; m_thingName = value; }
+    inline void SetThingName(Aws::String&& value) { m_thingNameHasBeenSet = true; m_thingName = std::move(value); }
 
     /**
      * <p>The name of the thing.</p>
@@ -66,12 +76,13 @@ namespace Model
     /**
      * <p>The name of the thing.</p>
      */
-    inline AttachThingPrincipalRequest& WithThingName(Aws::String&& value) { SetThingName(value); return *this;}
+    inline AttachThingPrincipalRequest& WithThingName(Aws::String&& value) { SetThingName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the thing.</p>
      */
     inline AttachThingPrincipalRequest& WithThingName(const char* value) { SetThingName(value); return *this;}
+
 
     /**
      * <p>The principal, such as a certificate or other credential.</p>
@@ -86,7 +97,7 @@ namespace Model
     /**
      * <p>The principal, such as a certificate or other credential.</p>
      */
-    inline void SetPrincipal(Aws::String&& value) { m_principalHasBeenSet = true; m_principal = value; }
+    inline void SetPrincipal(Aws::String&& value) { m_principalHasBeenSet = true; m_principal = std::move(value); }
 
     /**
      * <p>The principal, such as a certificate or other credential.</p>
@@ -101,7 +112,7 @@ namespace Model
     /**
      * <p>The principal, such as a certificate or other credential.</p>
      */
-    inline AttachThingPrincipalRequest& WithPrincipal(Aws::String&& value) { SetPrincipal(value); return *this;}
+    inline AttachThingPrincipalRequest& WithPrincipal(Aws::String&& value) { SetPrincipal(std::move(value)); return *this;}
 
     /**
      * <p>The principal, such as a certificate or other credential.</p>
@@ -109,8 +120,10 @@ namespace Model
     inline AttachThingPrincipalRequest& WithPrincipal(const char* value) { SetPrincipal(value); return *this;}
 
   private:
+
     Aws::String m_thingName;
     bool m_thingNameHasBeenSet;
+
     Aws::String m_principal;
     bool m_principalHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 
 #include <aws/core/client/CoreErrors.h>
@@ -54,21 +55,30 @@ enum class CodeCommitErrors
   UNKNOWN = 100,
   ///////////////////////////////////////////////////////////////////////////////////////////
 
-  BRANCH_DOES_NOT_EXIST= static_cast<int>(Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
+  BLOB_ID_DOES_NOT_EXIST= static_cast<int>(Aws::Client::CoreErrors::SERVICE_EXTENSION_START_RANGE) + 1,
+  BLOB_ID_REQUIRED,
+  BRANCH_DOES_NOT_EXIST,
   BRANCH_NAME_EXISTS,
   BRANCH_NAME_REQUIRED,
   COMMIT_DOES_NOT_EXIST,
   COMMIT_ID_DOES_NOT_EXIST,
   COMMIT_ID_REQUIRED,
+  COMMIT_REQUIRED,
+  DEFAULT_BRANCH_CANNOT_BE_DELETED,
   ENCRYPTION_INTEGRITY_CHECKS_FAILED,
   ENCRYPTION_KEY_ACCESS_DENIED,
   ENCRYPTION_KEY_DISABLED,
   ENCRYPTION_KEY_NOT_FOUND,
   ENCRYPTION_KEY_UNAVAILABLE,
+  FILE_TOO_LARGE,
+  INVALID_BLOB_ID,
   INVALID_BRANCH_NAME,
+  INVALID_COMMIT,
   INVALID_COMMIT_ID,
   INVALID_CONTINUATION_TOKEN,
+  INVALID_MAX_RESULTS,
   INVALID_ORDER,
+  INVALID_PATH,
   INVALID_REPOSITORY_DESCRIPTION,
   INVALID_REPOSITORY_NAME,
   INVALID_REPOSITORY_TRIGGER_BRANCH_NAME,
@@ -81,6 +91,7 @@ enum class CodeCommitErrors
   MAXIMUM_BRANCHES_EXCEEDED,
   MAXIMUM_REPOSITORY_NAMES_EXCEEDED,
   MAXIMUM_REPOSITORY_TRIGGERS_EXCEEDED,
+  PATH_DOES_NOT_EXIST,
   REPOSITORY_DOES_NOT_EXIST,
   REPOSITORY_LIMIT_EXCEEDED,
   REPOSITORY_NAMES_REQUIRED,
@@ -94,7 +105,7 @@ enum class CodeCommitErrors
 };
 namespace CodeCommitErrorMapper
 {
-  AWS_CODECOMMIT_API Client::AWSError<Client::CoreErrors> GetErrorForName(const char* errorName);
+  AWS_CODECOMMIT_API Aws::Client::AWSError<Aws::Client::CoreErrors> GetErrorForName(const char* errorName);
 }
 
 } // namespace CodeCommit

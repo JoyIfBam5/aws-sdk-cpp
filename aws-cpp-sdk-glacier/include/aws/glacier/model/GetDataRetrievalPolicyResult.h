@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/glacier/Glacier_EXPORTS.h>
 #include <aws/glacier/model/DataRetrievalPolicy.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     GetDataRetrievalPolicyResult();
-    GetDataRetrievalPolicyResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetDataRetrievalPolicyResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDataRetrievalPolicyResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDataRetrievalPolicyResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Contains the returned data retrieval policy in JSON format.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>Contains the returned data retrieval policy in JSON format.</p>
      */
-    inline void SetPolicy(DataRetrievalPolicy&& value) { m_policy = value; }
+    inline void SetPolicy(DataRetrievalPolicy&& value) { m_policy = std::move(value); }
 
     /**
      * <p>Contains the returned data retrieval policy in JSON format.</p>
@@ -68,9 +71,10 @@ namespace Model
     /**
      * <p>Contains the returned data retrieval policy in JSON format.</p>
      */
-    inline GetDataRetrievalPolicyResult& WithPolicy(DataRetrievalPolicy&& value) { SetPolicy(value); return *this;}
+    inline GetDataRetrievalPolicyResult& WithPolicy(DataRetrievalPolicy&& value) { SetPolicy(std::move(value)); return *this;}
 
   private:
+
     DataRetrievalPolicy m_policy;
   };
 

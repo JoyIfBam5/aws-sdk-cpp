@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/states/SFN_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,6 +40,7 @@ namespace Model
     ExecutionAbortedEventDetails& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The error code of the failure.</p>
      */
@@ -51,7 +54,7 @@ namespace Model
     /**
      * <p>The error code of the failure.</p>
      */
-    inline void SetError(Aws::String&& value) { m_errorHasBeenSet = true; m_error = value; }
+    inline void SetError(Aws::String&& value) { m_errorHasBeenSet = true; m_error = std::move(value); }
 
     /**
      * <p>The error code of the failure.</p>
@@ -66,12 +69,13 @@ namespace Model
     /**
      * <p>The error code of the failure.</p>
      */
-    inline ExecutionAbortedEventDetails& WithError(Aws::String&& value) { SetError(value); return *this;}
+    inline ExecutionAbortedEventDetails& WithError(Aws::String&& value) { SetError(std::move(value)); return *this;}
 
     /**
      * <p>The error code of the failure.</p>
      */
     inline ExecutionAbortedEventDetails& WithError(const char* value) { SetError(value); return *this;}
+
 
     /**
      * <p>A more detailed explanation of the cause of the failure.</p>
@@ -86,7 +90,7 @@ namespace Model
     /**
      * <p>A more detailed explanation of the cause of the failure.</p>
      */
-    inline void SetCause(Aws::String&& value) { m_causeHasBeenSet = true; m_cause = value; }
+    inline void SetCause(Aws::String&& value) { m_causeHasBeenSet = true; m_cause = std::move(value); }
 
     /**
      * <p>A more detailed explanation of the cause of the failure.</p>
@@ -101,7 +105,7 @@ namespace Model
     /**
      * <p>A more detailed explanation of the cause of the failure.</p>
      */
-    inline ExecutionAbortedEventDetails& WithCause(Aws::String&& value) { SetCause(value); return *this;}
+    inline ExecutionAbortedEventDetails& WithCause(Aws::String&& value) { SetCause(std::move(value)); return *this;}
 
     /**
      * <p>A more detailed explanation of the cause of the failure.</p>
@@ -109,8 +113,10 @@ namespace Model
     inline ExecutionAbortedEventDetails& WithCause(const char* value) { SetCause(value); return *this;}
 
   private:
+
     Aws::String m_error;
     bool m_errorHasBeenSet;
+
     Aws::String m_cause;
     bool m_causeHasBeenSet;
   };

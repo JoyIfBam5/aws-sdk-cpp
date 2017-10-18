@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworkscm/OpsWorksCM_EXPORTS.h>
 #include <aws/opsworkscm/model/Backup.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,35 +38,37 @@ namespace Model
   {
   public:
     CreateBackupResult();
-    CreateBackupResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateBackupResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateBackupResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateBackupResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
-     * <p>Backup created by request. </p>
+     * <p>Backup created by request.</p>
      */
     inline const Backup& GetBackup() const{ return m_backup; }
 
     /**
-     * <p>Backup created by request. </p>
+     * <p>Backup created by request.</p>
      */
     inline void SetBackup(const Backup& value) { m_backup = value; }
 
     /**
-     * <p>Backup created by request. </p>
+     * <p>Backup created by request.</p>
      */
-    inline void SetBackup(Backup&& value) { m_backup = value; }
+    inline void SetBackup(Backup&& value) { m_backup = std::move(value); }
 
     /**
-     * <p>Backup created by request. </p>
+     * <p>Backup created by request.</p>
      */
     inline CreateBackupResult& WithBackup(const Backup& value) { SetBackup(value); return *this;}
 
     /**
-     * <p>Backup created by request. </p>
+     * <p>Backup created by request.</p>
      */
-    inline CreateBackupResult& WithBackup(Backup&& value) { SetBackup(value); return *this;}
+    inline CreateBackupResult& WithBackup(Backup&& value) { SetBackup(std::move(value)); return *this;}
 
   private:
+
     Backup m_backup;
   };
 

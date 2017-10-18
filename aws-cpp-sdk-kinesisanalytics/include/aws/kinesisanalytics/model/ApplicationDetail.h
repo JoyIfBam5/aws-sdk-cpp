@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesisanalytics/KinesisAnalytics_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -21,6 +22,8 @@
 #include <aws/kinesisanalytics/model/InputDescription.h>
 #include <aws/kinesisanalytics/model/OutputDescription.h>
 #include <aws/kinesisanalytics/model/ReferenceDataSourceDescription.h>
+#include <aws/kinesisanalytics/model/CloudWatchLoggingOptionDescription.h>
+#include <utility>
 
 namespace Aws
 {
@@ -51,6 +54,7 @@ namespace Model
     ApplicationDetail& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Name of the application.</p>
      */
@@ -64,7 +68,7 @@ namespace Model
     /**
      * <p>Name of the application.</p>
      */
-    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = value; }
+    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = std::move(value); }
 
     /**
      * <p>Name of the application.</p>
@@ -79,12 +83,13 @@ namespace Model
     /**
      * <p>Name of the application.</p>
      */
-    inline ApplicationDetail& WithApplicationName(Aws::String&& value) { SetApplicationName(value); return *this;}
+    inline ApplicationDetail& WithApplicationName(Aws::String&& value) { SetApplicationName(std::move(value)); return *this;}
 
     /**
      * <p>Name of the application.</p>
      */
     inline ApplicationDetail& WithApplicationName(const char* value) { SetApplicationName(value); return *this;}
+
 
     /**
      * <p>Description of the application.</p>
@@ -99,7 +104,7 @@ namespace Model
     /**
      * <p>Description of the application.</p>
      */
-    inline void SetApplicationDescription(Aws::String&& value) { m_applicationDescriptionHasBeenSet = true; m_applicationDescription = value; }
+    inline void SetApplicationDescription(Aws::String&& value) { m_applicationDescriptionHasBeenSet = true; m_applicationDescription = std::move(value); }
 
     /**
      * <p>Description of the application.</p>
@@ -114,12 +119,13 @@ namespace Model
     /**
      * <p>Description of the application.</p>
      */
-    inline ApplicationDetail& WithApplicationDescription(Aws::String&& value) { SetApplicationDescription(value); return *this;}
+    inline ApplicationDetail& WithApplicationDescription(Aws::String&& value) { SetApplicationDescription(std::move(value)); return *this;}
 
     /**
      * <p>Description of the application.</p>
      */
     inline ApplicationDetail& WithApplicationDescription(const char* value) { SetApplicationDescription(value); return *this;}
+
 
     /**
      * <p>ARN of the application.</p>
@@ -134,7 +140,7 @@ namespace Model
     /**
      * <p>ARN of the application.</p>
      */
-    inline void SetApplicationARN(Aws::String&& value) { m_applicationARNHasBeenSet = true; m_applicationARN = value; }
+    inline void SetApplicationARN(Aws::String&& value) { m_applicationARNHasBeenSet = true; m_applicationARN = std::move(value); }
 
     /**
      * <p>ARN of the application.</p>
@@ -149,12 +155,13 @@ namespace Model
     /**
      * <p>ARN of the application.</p>
      */
-    inline ApplicationDetail& WithApplicationARN(Aws::String&& value) { SetApplicationARN(value); return *this;}
+    inline ApplicationDetail& WithApplicationARN(Aws::String&& value) { SetApplicationARN(std::move(value)); return *this;}
 
     /**
      * <p>ARN of the application.</p>
      */
     inline ApplicationDetail& WithApplicationARN(const char* value) { SetApplicationARN(value); return *this;}
+
 
     /**
      * <p>Status of the application.</p>
@@ -169,7 +176,7 @@ namespace Model
     /**
      * <p>Status of the application.</p>
      */
-    inline void SetApplicationStatus(ApplicationStatus&& value) { m_applicationStatusHasBeenSet = true; m_applicationStatus = value; }
+    inline void SetApplicationStatus(ApplicationStatus&& value) { m_applicationStatusHasBeenSet = true; m_applicationStatus = std::move(value); }
 
     /**
      * <p>Status of the application.</p>
@@ -179,7 +186,8 @@ namespace Model
     /**
      * <p>Status of the application.</p>
      */
-    inline ApplicationDetail& WithApplicationStatus(ApplicationStatus&& value) { SetApplicationStatus(value); return *this;}
+    inline ApplicationDetail& WithApplicationStatus(ApplicationStatus&& value) { SetApplicationStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>Timestamp when the application version was created.</p>
@@ -194,7 +202,7 @@ namespace Model
     /**
      * <p>Timestamp when the application version was created.</p>
      */
-    inline void SetCreateTimestamp(Aws::Utils::DateTime&& value) { m_createTimestampHasBeenSet = true; m_createTimestamp = value; }
+    inline void SetCreateTimestamp(Aws::Utils::DateTime&& value) { m_createTimestampHasBeenSet = true; m_createTimestamp = std::move(value); }
 
     /**
      * <p>Timestamp when the application version was created.</p>
@@ -204,7 +212,8 @@ namespace Model
     /**
      * <p>Timestamp when the application version was created.</p>
      */
-    inline ApplicationDetail& WithCreateTimestamp(Aws::Utils::DateTime&& value) { SetCreateTimestamp(value); return *this;}
+    inline ApplicationDetail& WithCreateTimestamp(Aws::Utils::DateTime&& value) { SetCreateTimestamp(std::move(value)); return *this;}
+
 
     /**
      * <p>Timestamp when the application was last updated.</p>
@@ -219,7 +228,7 @@ namespace Model
     /**
      * <p>Timestamp when the application was last updated.</p>
      */
-    inline void SetLastUpdateTimestamp(Aws::Utils::DateTime&& value) { m_lastUpdateTimestampHasBeenSet = true; m_lastUpdateTimestamp = value; }
+    inline void SetLastUpdateTimestamp(Aws::Utils::DateTime&& value) { m_lastUpdateTimestampHasBeenSet = true; m_lastUpdateTimestamp = std::move(value); }
 
     /**
      * <p>Timestamp when the application was last updated.</p>
@@ -229,7 +238,8 @@ namespace Model
     /**
      * <p>Timestamp when the application was last updated.</p>
      */
-    inline ApplicationDetail& WithLastUpdateTimestamp(Aws::Utils::DateTime&& value) { SetLastUpdateTimestamp(value); return *this;}
+    inline ApplicationDetail& WithLastUpdateTimestamp(Aws::Utils::DateTime&& value) { SetLastUpdateTimestamp(std::move(value)); return *this;}
+
 
     /**
      * <p>Describes the application input configuration. For more information, see <a
@@ -250,7 +260,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-input.html">Configuring
      * Application Input</a>. </p>
      */
-    inline void SetInputDescriptions(Aws::Vector<InputDescription>&& value) { m_inputDescriptionsHasBeenSet = true; m_inputDescriptions = value; }
+    inline void SetInputDescriptions(Aws::Vector<InputDescription>&& value) { m_inputDescriptionsHasBeenSet = true; m_inputDescriptions = std::move(value); }
 
     /**
      * <p>Describes the application input configuration. For more information, see <a
@@ -264,7 +274,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-input.html">Configuring
      * Application Input</a>. </p>
      */
-    inline ApplicationDetail& WithInputDescriptions(Aws::Vector<InputDescription>&& value) { SetInputDescriptions(value); return *this;}
+    inline ApplicationDetail& WithInputDescriptions(Aws::Vector<InputDescription>&& value) { SetInputDescriptions(std::move(value)); return *this;}
 
     /**
      * <p>Describes the application input configuration. For more information, see <a
@@ -278,7 +288,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-input.html">Configuring
      * Application Input</a>. </p>
      */
-    inline ApplicationDetail& AddInputDescriptions(InputDescription&& value) { m_inputDescriptionsHasBeenSet = true; m_inputDescriptions.push_back(value); return *this; }
+    inline ApplicationDetail& AddInputDescriptions(InputDescription&& value) { m_inputDescriptionsHasBeenSet = true; m_inputDescriptions.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Describes the application output configuration. For more information, see <a
@@ -299,7 +310,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-output.html">Configuring
      * Application Output</a>. </p>
      */
-    inline void SetOutputDescriptions(Aws::Vector<OutputDescription>&& value) { m_outputDescriptionsHasBeenSet = true; m_outputDescriptions = value; }
+    inline void SetOutputDescriptions(Aws::Vector<OutputDescription>&& value) { m_outputDescriptionsHasBeenSet = true; m_outputDescriptions = std::move(value); }
 
     /**
      * <p>Describes the application output configuration. For more information, see <a
@@ -313,7 +324,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-output.html">Configuring
      * Application Output</a>. </p>
      */
-    inline ApplicationDetail& WithOutputDescriptions(Aws::Vector<OutputDescription>&& value) { SetOutputDescriptions(value); return *this;}
+    inline ApplicationDetail& WithOutputDescriptions(Aws::Vector<OutputDescription>&& value) { SetOutputDescriptions(std::move(value)); return *this;}
 
     /**
      * <p>Describes the application output configuration. For more information, see <a
@@ -327,7 +338,8 @@ namespace Model
      * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-output.html">Configuring
      * Application Output</a>. </p>
      */
-    inline ApplicationDetail& AddOutputDescriptions(OutputDescription&& value) { m_outputDescriptionsHasBeenSet = true; m_outputDescriptions.push_back(value); return *this; }
+    inline ApplicationDetail& AddOutputDescriptions(OutputDescription&& value) { m_outputDescriptionsHasBeenSet = true; m_outputDescriptions.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Describes reference data sources configured for the application. For more
@@ -351,7 +363,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-input.html">Configuring
      * Application Input</a>. </p>
      */
-    inline void SetReferenceDataSourceDescriptions(Aws::Vector<ReferenceDataSourceDescription>&& value) { m_referenceDataSourceDescriptionsHasBeenSet = true; m_referenceDataSourceDescriptions = value; }
+    inline void SetReferenceDataSourceDescriptions(Aws::Vector<ReferenceDataSourceDescription>&& value) { m_referenceDataSourceDescriptionsHasBeenSet = true; m_referenceDataSourceDescriptions = std::move(value); }
 
     /**
      * <p>Describes reference data sources configured for the application. For more
@@ -367,7 +379,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-input.html">Configuring
      * Application Input</a>. </p>
      */
-    inline ApplicationDetail& WithReferenceDataSourceDescriptions(Aws::Vector<ReferenceDataSourceDescription>&& value) { SetReferenceDataSourceDescriptions(value); return *this;}
+    inline ApplicationDetail& WithReferenceDataSourceDescriptions(Aws::Vector<ReferenceDataSourceDescription>&& value) { SetReferenceDataSourceDescriptions(std::move(value)); return *this;}
 
     /**
      * <p>Describes reference data sources configured for the application. For more
@@ -383,7 +395,72 @@ namespace Model
      * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-input.html">Configuring
      * Application Input</a>. </p>
      */
-    inline ApplicationDetail& AddReferenceDataSourceDescriptions(ReferenceDataSourceDescription&& value) { m_referenceDataSourceDescriptionsHasBeenSet = true; m_referenceDataSourceDescriptions.push_back(value); return *this; }
+    inline ApplicationDetail& AddReferenceDataSourceDescriptions(ReferenceDataSourceDescription&& value) { m_referenceDataSourceDescriptionsHasBeenSet = true; m_referenceDataSourceDescriptions.push_back(std::move(value)); return *this; }
+
+
+    /**
+     * <p>Describes the CloudWatch log streams that are configured to receive
+     * application messages. For more information about using CloudWatch log streams
+     * with Amazon Kinesis Analytics applications, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-logs.html">Working
+     * with Amazon CloudWatch Logs</a>. </p>
+     */
+    inline const Aws::Vector<CloudWatchLoggingOptionDescription>& GetCloudWatchLoggingOptionDescriptions() const{ return m_cloudWatchLoggingOptionDescriptions; }
+
+    /**
+     * <p>Describes the CloudWatch log streams that are configured to receive
+     * application messages. For more information about using CloudWatch log streams
+     * with Amazon Kinesis Analytics applications, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-logs.html">Working
+     * with Amazon CloudWatch Logs</a>. </p>
+     */
+    inline void SetCloudWatchLoggingOptionDescriptions(const Aws::Vector<CloudWatchLoggingOptionDescription>& value) { m_cloudWatchLoggingOptionDescriptionsHasBeenSet = true; m_cloudWatchLoggingOptionDescriptions = value; }
+
+    /**
+     * <p>Describes the CloudWatch log streams that are configured to receive
+     * application messages. For more information about using CloudWatch log streams
+     * with Amazon Kinesis Analytics applications, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-logs.html">Working
+     * with Amazon CloudWatch Logs</a>. </p>
+     */
+    inline void SetCloudWatchLoggingOptionDescriptions(Aws::Vector<CloudWatchLoggingOptionDescription>&& value) { m_cloudWatchLoggingOptionDescriptionsHasBeenSet = true; m_cloudWatchLoggingOptionDescriptions = std::move(value); }
+
+    /**
+     * <p>Describes the CloudWatch log streams that are configured to receive
+     * application messages. For more information about using CloudWatch log streams
+     * with Amazon Kinesis Analytics applications, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-logs.html">Working
+     * with Amazon CloudWatch Logs</a>. </p>
+     */
+    inline ApplicationDetail& WithCloudWatchLoggingOptionDescriptions(const Aws::Vector<CloudWatchLoggingOptionDescription>& value) { SetCloudWatchLoggingOptionDescriptions(value); return *this;}
+
+    /**
+     * <p>Describes the CloudWatch log streams that are configured to receive
+     * application messages. For more information about using CloudWatch log streams
+     * with Amazon Kinesis Analytics applications, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-logs.html">Working
+     * with Amazon CloudWatch Logs</a>. </p>
+     */
+    inline ApplicationDetail& WithCloudWatchLoggingOptionDescriptions(Aws::Vector<CloudWatchLoggingOptionDescription>&& value) { SetCloudWatchLoggingOptionDescriptions(std::move(value)); return *this;}
+
+    /**
+     * <p>Describes the CloudWatch log streams that are configured to receive
+     * application messages. For more information about using CloudWatch log streams
+     * with Amazon Kinesis Analytics applications, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-logs.html">Working
+     * with Amazon CloudWatch Logs</a>. </p>
+     */
+    inline ApplicationDetail& AddCloudWatchLoggingOptionDescriptions(const CloudWatchLoggingOptionDescription& value) { m_cloudWatchLoggingOptionDescriptionsHasBeenSet = true; m_cloudWatchLoggingOptionDescriptions.push_back(value); return *this; }
+
+    /**
+     * <p>Describes the CloudWatch log streams that are configured to receive
+     * application messages. For more information about using CloudWatch log streams
+     * with Amazon Kinesis Analytics applications, see <a
+     * href="http://docs.aws.amazon.com/kinesisanalytics/latest/dev/cloudwatch-logs.html">Working
+     * with Amazon CloudWatch Logs</a>. </p>
+     */
+    inline ApplicationDetail& AddCloudWatchLoggingOptionDescriptions(CloudWatchLoggingOptionDescription&& value) { m_cloudWatchLoggingOptionDescriptionsHasBeenSet = true; m_cloudWatchLoggingOptionDescriptions.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Returns the application code that you provided to perform data analysis on
@@ -401,7 +478,7 @@ namespace Model
      * <p>Returns the application code that you provided to perform data analysis on
      * any of the in-application streams in your application.</p>
      */
-    inline void SetApplicationCode(Aws::String&& value) { m_applicationCodeHasBeenSet = true; m_applicationCode = value; }
+    inline void SetApplicationCode(Aws::String&& value) { m_applicationCodeHasBeenSet = true; m_applicationCode = std::move(value); }
 
     /**
      * <p>Returns the application code that you provided to perform data analysis on
@@ -419,13 +496,14 @@ namespace Model
      * <p>Returns the application code that you provided to perform data analysis on
      * any of the in-application streams in your application.</p>
      */
-    inline ApplicationDetail& WithApplicationCode(Aws::String&& value) { SetApplicationCode(value); return *this;}
+    inline ApplicationDetail& WithApplicationCode(Aws::String&& value) { SetApplicationCode(std::move(value)); return *this;}
 
     /**
      * <p>Returns the application code that you provided to perform data analysis on
      * any of the in-application streams in your application.</p>
      */
     inline ApplicationDetail& WithApplicationCode(const char* value) { SetApplicationCode(value); return *this;}
+
 
     /**
      * <p>Provides the current application version.</p>
@@ -443,26 +521,40 @@ namespace Model
     inline ApplicationDetail& WithApplicationVersionId(long long value) { SetApplicationVersionId(value); return *this;}
 
   private:
+
     Aws::String m_applicationName;
     bool m_applicationNameHasBeenSet;
+
     Aws::String m_applicationDescription;
     bool m_applicationDescriptionHasBeenSet;
+
     Aws::String m_applicationARN;
     bool m_applicationARNHasBeenSet;
+
     ApplicationStatus m_applicationStatus;
     bool m_applicationStatusHasBeenSet;
+
     Aws::Utils::DateTime m_createTimestamp;
     bool m_createTimestampHasBeenSet;
+
     Aws::Utils::DateTime m_lastUpdateTimestamp;
     bool m_lastUpdateTimestampHasBeenSet;
+
     Aws::Vector<InputDescription> m_inputDescriptions;
     bool m_inputDescriptionsHasBeenSet;
+
     Aws::Vector<OutputDescription> m_outputDescriptions;
     bool m_outputDescriptionsHasBeenSet;
+
     Aws::Vector<ReferenceDataSourceDescription> m_referenceDataSourceDescriptions;
     bool m_referenceDataSourceDescriptionsHasBeenSet;
+
+    Aws::Vector<CloudWatchLoggingOptionDescription> m_cloudWatchLoggingOptionDescriptions;
+    bool m_cloudWatchLoggingOptionDescriptionsHasBeenSet;
+
     Aws::String m_applicationCode;
     bool m_applicationCodeHasBeenSet;
+
     long long m_applicationVersionId;
     bool m_applicationVersionIdHasBeenSet;
   };

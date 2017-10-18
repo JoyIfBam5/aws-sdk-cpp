@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/appstream/model/Image.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -36,12 +37,15 @@ Image::Image() :
     m_stateHasBeenSet(false),
     m_visibility(VisibilityType::NOT_SET),
     m_visibilityHasBeenSet(false),
+    m_imageBuilderSupported(false),
+    m_imageBuilderSupportedHasBeenSet(false),
     m_platform(PlatformType::NOT_SET),
     m_platformHasBeenSet(false),
     m_descriptionHasBeenSet(false),
     m_stateChangeReasonHasBeenSet(false),
     m_applicationsHasBeenSet(false),
-    m_createdTimeHasBeenSet(false)
+    m_createdTimeHasBeenSet(false),
+    m_publicBaseImageReleasedDateHasBeenSet(false)
 {
 }
 
@@ -54,12 +58,15 @@ Image::Image(const JsonValue& jsonValue) :
     m_stateHasBeenSet(false),
     m_visibility(VisibilityType::NOT_SET),
     m_visibilityHasBeenSet(false),
+    m_imageBuilderSupported(false),
+    m_imageBuilderSupportedHasBeenSet(false),
     m_platform(PlatformType::NOT_SET),
     m_platformHasBeenSet(false),
     m_descriptionHasBeenSet(false),
     m_stateChangeReasonHasBeenSet(false),
     m_applicationsHasBeenSet(false),
-    m_createdTimeHasBeenSet(false)
+    m_createdTimeHasBeenSet(false),
+    m_publicBaseImageReleasedDateHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -108,6 +115,13 @@ Image& Image::operator =(const JsonValue& jsonValue)
     m_visibilityHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("ImageBuilderSupported"))
+  {
+    m_imageBuilderSupported = jsonValue.GetBool("ImageBuilderSupported");
+
+    m_imageBuilderSupportedHasBeenSet = true;
+  }
+
   if(jsonValue.ValueExists("Platform"))
   {
     m_platform = PlatformTypeMapper::GetPlatformTypeForName(jsonValue.GetString("Platform"));
@@ -144,6 +158,13 @@ Image& Image::operator =(const JsonValue& jsonValue)
     m_createdTime = jsonValue.GetDouble("CreatedTime");
 
     m_createdTimeHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("PublicBaseImageReleasedDate"))
+  {
+    m_publicBaseImageReleasedDate = jsonValue.GetDouble("PublicBaseImageReleasedDate");
+
+    m_publicBaseImageReleasedDateHasBeenSet = true;
   }
 
   return *this;
@@ -187,6 +208,12 @@ JsonValue Image::Jsonize() const
    payload.WithString("Visibility", VisibilityTypeMapper::GetNameForVisibilityType(m_visibility));
   }
 
+  if(m_imageBuilderSupportedHasBeenSet)
+  {
+   payload.WithBool("ImageBuilderSupported", m_imageBuilderSupported);
+
+  }
+
   if(m_platformHasBeenSet)
   {
    payload.WithString("Platform", PlatformTypeMapper::GetNameForPlatformType(m_platform));
@@ -218,6 +245,11 @@ JsonValue Image::Jsonize() const
   if(m_createdTimeHasBeenSet)
   {
    payload.WithDouble("CreatedTime", m_createdTime.SecondsWithMSPrecision());
+  }
+
+  if(m_publicBaseImageReleasedDateHasBeenSet)
+  {
+   payload.WithDouble("PublicBaseImageReleasedDate", m_publicBaseImageReleasedDate.SecondsWithMSPrecision());
   }
 
   return payload;

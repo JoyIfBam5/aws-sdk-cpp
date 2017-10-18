@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ssm/model/UpdatePatchBaselineResult.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
+#include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/UnreferencedParam.h>
 
 #include <utility>
@@ -24,16 +26,20 @@ using namespace Aws::Utils::Json;
 using namespace Aws::Utils;
 using namespace Aws;
 
-UpdatePatchBaselineResult::UpdatePatchBaselineResult()
+UpdatePatchBaselineResult::UpdatePatchBaselineResult() : 
+    m_operatingSystem(OperatingSystem::NOT_SET),
+    m_approvedPatchesComplianceLevel(PatchComplianceLevel::NOT_SET)
 {
 }
 
-UpdatePatchBaselineResult::UpdatePatchBaselineResult(const AmazonWebServiceResult<JsonValue>& result)
+UpdatePatchBaselineResult::UpdatePatchBaselineResult(const Aws::AmazonWebServiceResult<JsonValue>& result) : 
+    m_operatingSystem(OperatingSystem::NOT_SET),
+    m_approvedPatchesComplianceLevel(PatchComplianceLevel::NOT_SET)
 {
   *this = result;
 }
 
-UpdatePatchBaselineResult& UpdatePatchBaselineResult::operator =(const AmazonWebServiceResult<JsonValue>& result)
+UpdatePatchBaselineResult& UpdatePatchBaselineResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
   const JsonValue& jsonValue = result.GetPayload();
   if(jsonValue.ValueExists("BaselineId"))
@@ -45,6 +51,12 @@ UpdatePatchBaselineResult& UpdatePatchBaselineResult::operator =(const AmazonWeb
   if(jsonValue.ValueExists("Name"))
   {
     m_name = jsonValue.GetString("Name");
+
+  }
+
+  if(jsonValue.ValueExists("OperatingSystem"))
+  {
+    m_operatingSystem = OperatingSystemMapper::GetOperatingSystemForName(jsonValue.GetString("OperatingSystem"));
 
   }
 
@@ -67,6 +79,12 @@ UpdatePatchBaselineResult& UpdatePatchBaselineResult::operator =(const AmazonWeb
     {
       m_approvedPatches.push_back(approvedPatchesJsonList[approvedPatchesIndex].AsString());
     }
+  }
+
+  if(jsonValue.ValueExists("ApprovedPatchesComplianceLevel"))
+  {
+    m_approvedPatchesComplianceLevel = PatchComplianceLevelMapper::GetPatchComplianceLevelForName(jsonValue.GetString("ApprovedPatchesComplianceLevel"));
+
   }
 
   if(jsonValue.ValueExists("RejectedPatches"))

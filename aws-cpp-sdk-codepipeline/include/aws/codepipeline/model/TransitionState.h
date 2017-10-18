@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codepipeline/CodePipeline_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     TransitionState& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Whether the transition between stages is enabled (true) or disabled
      * (false).</p>
@@ -63,6 +66,7 @@ namespace Model
      */
     inline TransitionState& WithEnabled(bool value) { SetEnabled(value); return *this;}
 
+
     /**
      * <p>The ID of the user who last changed the transition state.</p>
      */
@@ -76,7 +80,7 @@ namespace Model
     /**
      * <p>The ID of the user who last changed the transition state.</p>
      */
-    inline void SetLastChangedBy(Aws::String&& value) { m_lastChangedByHasBeenSet = true; m_lastChangedBy = value; }
+    inline void SetLastChangedBy(Aws::String&& value) { m_lastChangedByHasBeenSet = true; m_lastChangedBy = std::move(value); }
 
     /**
      * <p>The ID of the user who last changed the transition state.</p>
@@ -91,12 +95,13 @@ namespace Model
     /**
      * <p>The ID of the user who last changed the transition state.</p>
      */
-    inline TransitionState& WithLastChangedBy(Aws::String&& value) { SetLastChangedBy(value); return *this;}
+    inline TransitionState& WithLastChangedBy(Aws::String&& value) { SetLastChangedBy(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the user who last changed the transition state.</p>
      */
     inline TransitionState& WithLastChangedBy(const char* value) { SetLastChangedBy(value); return *this;}
+
 
     /**
      * <p>The timestamp when the transition state was last changed.</p>
@@ -111,7 +116,7 @@ namespace Model
     /**
      * <p>The timestamp when the transition state was last changed.</p>
      */
-    inline void SetLastChangedAt(Aws::Utils::DateTime&& value) { m_lastChangedAtHasBeenSet = true; m_lastChangedAt = value; }
+    inline void SetLastChangedAt(Aws::Utils::DateTime&& value) { m_lastChangedAtHasBeenSet = true; m_lastChangedAt = std::move(value); }
 
     /**
      * <p>The timestamp when the transition state was last changed.</p>
@@ -121,7 +126,8 @@ namespace Model
     /**
      * <p>The timestamp when the transition state was last changed.</p>
      */
-    inline TransitionState& WithLastChangedAt(Aws::Utils::DateTime&& value) { SetLastChangedAt(value); return *this;}
+    inline TransitionState& WithLastChangedAt(Aws::Utils::DateTime&& value) { SetLastChangedAt(std::move(value)); return *this;}
+
 
     /**
      * <p>The user-specified reason why the transition between two stages of a pipeline
@@ -139,7 +145,7 @@ namespace Model
      * <p>The user-specified reason why the transition between two stages of a pipeline
      * was disabled.</p>
      */
-    inline void SetDisabledReason(Aws::String&& value) { m_disabledReasonHasBeenSet = true; m_disabledReason = value; }
+    inline void SetDisabledReason(Aws::String&& value) { m_disabledReasonHasBeenSet = true; m_disabledReason = std::move(value); }
 
     /**
      * <p>The user-specified reason why the transition between two stages of a pipeline
@@ -157,7 +163,7 @@ namespace Model
      * <p>The user-specified reason why the transition between two stages of a pipeline
      * was disabled.</p>
      */
-    inline TransitionState& WithDisabledReason(Aws::String&& value) { SetDisabledReason(value); return *this;}
+    inline TransitionState& WithDisabledReason(Aws::String&& value) { SetDisabledReason(std::move(value)); return *this;}
 
     /**
      * <p>The user-specified reason why the transition between two stages of a pipeline
@@ -166,12 +172,16 @@ namespace Model
     inline TransitionState& WithDisabledReason(const char* value) { SetDisabledReason(value); return *this;}
 
   private:
+
     bool m_enabled;
     bool m_enabledHasBeenSet;
+
     Aws::String m_lastChangedBy;
     bool m_lastChangedByHasBeenSet;
+
     Aws::Utils::DateTime m_lastChangedAt;
     bool m_lastChangedAtHasBeenSet;
+
     Aws::String m_disabledReason;
     bool m_disabledReasonHasBeenSet;
   };

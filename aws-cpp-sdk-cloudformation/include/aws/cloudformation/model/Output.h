@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudformation/CloudFormation_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The key associated with the output.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The key associated with the output.</p>
      */
-    inline void SetOutputKey(Aws::String&& value) { m_outputKeyHasBeenSet = true; m_outputKey = value; }
+    inline void SetOutputKey(Aws::String&& value) { m_outputKeyHasBeenSet = true; m_outputKey = std::move(value); }
 
     /**
      * <p>The key associated with the output.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>The key associated with the output.</p>
      */
-    inline Output& WithOutputKey(Aws::String&& value) { SetOutputKey(value); return *this;}
+    inline Output& WithOutputKey(Aws::String&& value) { SetOutputKey(std::move(value)); return *this;}
 
     /**
      * <p>The key associated with the output.</p>
      */
     inline Output& WithOutputKey(const char* value) { SetOutputKey(value); return *this;}
+
 
     /**
      * <p>The value associated with the output.</p>
@@ -94,7 +98,7 @@ namespace Model
     /**
      * <p>The value associated with the output.</p>
      */
-    inline void SetOutputValue(Aws::String&& value) { m_outputValueHasBeenSet = true; m_outputValue = value; }
+    inline void SetOutputValue(Aws::String&& value) { m_outputValueHasBeenSet = true; m_outputValue = std::move(value); }
 
     /**
      * <p>The value associated with the output.</p>
@@ -109,12 +113,13 @@ namespace Model
     /**
      * <p>The value associated with the output.</p>
      */
-    inline Output& WithOutputValue(Aws::String&& value) { SetOutputValue(value); return *this;}
+    inline Output& WithOutputValue(Aws::String&& value) { SetOutputValue(std::move(value)); return *this;}
 
     /**
      * <p>The value associated with the output.</p>
      */
     inline Output& WithOutputValue(const char* value) { SetOutputValue(value); return *this;}
+
 
     /**
      * <p>User defined description associated with the output.</p>
@@ -129,7 +134,7 @@ namespace Model
     /**
      * <p>User defined description associated with the output.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>User defined description associated with the output.</p>
@@ -144,20 +149,62 @@ namespace Model
     /**
      * <p>User defined description associated with the output.</p>
      */
-    inline Output& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline Output& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>User defined description associated with the output.</p>
      */
     inline Output& WithDescription(const char* value) { SetDescription(value); return *this;}
 
+
+    /**
+     * <p>The name of the export associated with the output.</p>
+     */
+    inline const Aws::String& GetExportName() const{ return m_exportName; }
+
+    /**
+     * <p>The name of the export associated with the output.</p>
+     */
+    inline void SetExportName(const Aws::String& value) { m_exportNameHasBeenSet = true; m_exportName = value; }
+
+    /**
+     * <p>The name of the export associated with the output.</p>
+     */
+    inline void SetExportName(Aws::String&& value) { m_exportNameHasBeenSet = true; m_exportName = std::move(value); }
+
+    /**
+     * <p>The name of the export associated with the output.</p>
+     */
+    inline void SetExportName(const char* value) { m_exportNameHasBeenSet = true; m_exportName.assign(value); }
+
+    /**
+     * <p>The name of the export associated with the output.</p>
+     */
+    inline Output& WithExportName(const Aws::String& value) { SetExportName(value); return *this;}
+
+    /**
+     * <p>The name of the export associated with the output.</p>
+     */
+    inline Output& WithExportName(Aws::String&& value) { SetExportName(std::move(value)); return *this;}
+
+    /**
+     * <p>The name of the export associated with the output.</p>
+     */
+    inline Output& WithExportName(const char* value) { SetExportName(value); return *this;}
+
   private:
+
     Aws::String m_outputKey;
     bool m_outputKeyHasBeenSet;
+
     Aws::String m_outputValue;
     bool m_outputValueHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
+    Aws::String m_exportName;
+    bool m_exportNameHasBeenSet;
   };
 
 } // namespace Model

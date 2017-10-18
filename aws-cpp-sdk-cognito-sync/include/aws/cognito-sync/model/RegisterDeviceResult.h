@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-sync/CognitoSync_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -41,8 +43,9 @@ namespace Model
   {
   public:
     RegisterDeviceResult();
-    RegisterDeviceResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    RegisterDeviceResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    RegisterDeviceResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    RegisterDeviceResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The unique ID generated for this device by Cognito.</p>
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The unique ID generated for this device by Cognito.</p>
      */
-    inline void SetDeviceId(Aws::String&& value) { m_deviceId = value; }
+    inline void SetDeviceId(Aws::String&& value) { m_deviceId = std::move(value); }
 
     /**
      * <p>The unique ID generated for this device by Cognito.</p>
@@ -72,7 +75,7 @@ namespace Model
     /**
      * <p>The unique ID generated for this device by Cognito.</p>
      */
-    inline RegisterDeviceResult& WithDeviceId(Aws::String&& value) { SetDeviceId(value); return *this;}
+    inline RegisterDeviceResult& WithDeviceId(Aws::String&& value) { SetDeviceId(std::move(value)); return *this;}
 
     /**
      * <p>The unique ID generated for this device by Cognito.</p>
@@ -80,6 +83,7 @@ namespace Model
     inline RegisterDeviceResult& WithDeviceId(const char* value) { SetDeviceId(value); return *this;}
 
   private:
+
     Aws::String m_deviceId;
   };
 

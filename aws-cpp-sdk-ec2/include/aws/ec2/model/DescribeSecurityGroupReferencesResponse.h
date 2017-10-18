@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/ec2/model/ResponseMetadata.h>
 #include <aws/ec2/model/SecurityGroupReference.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     DescribeSecurityGroupReferencesResponse();
-    DescribeSecurityGroupReferencesResponse(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeSecurityGroupReferencesResponse& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeSecurityGroupReferencesResponse(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeSecurityGroupReferencesResponse& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>Information about the VPCs with the referencing security groups.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>Information about the VPCs with the referencing security groups.</p>
      */
-    inline void SetSecurityGroupReferenceSet(Aws::Vector<SecurityGroupReference>&& value) { m_securityGroupReferenceSet = value; }
+    inline void SetSecurityGroupReferenceSet(Aws::Vector<SecurityGroupReference>&& value) { m_securityGroupReferenceSet = std::move(value); }
 
     /**
      * <p>Information about the VPCs with the referencing security groups.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>Information about the VPCs with the referencing security groups.</p>
      */
-    inline DescribeSecurityGroupReferencesResponse& WithSecurityGroupReferenceSet(Aws::Vector<SecurityGroupReference>&& value) { SetSecurityGroupReferenceSet(value); return *this;}
+    inline DescribeSecurityGroupReferencesResponse& WithSecurityGroupReferenceSet(Aws::Vector<SecurityGroupReference>&& value) { SetSecurityGroupReferenceSet(std::move(value)); return *this;}
 
     /**
      * <p>Information about the VPCs with the referencing security groups.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>Information about the VPCs with the referencing security groups.</p>
      */
-    inline DescribeSecurityGroupReferencesResponse& AddSecurityGroupReferenceSet(SecurityGroupReference&& value) { m_securityGroupReferenceSet.push_back(value); return *this; }
+    inline DescribeSecurityGroupReferencesResponse& AddSecurityGroupReferenceSet(SecurityGroupReference&& value) { m_securityGroupReferenceSet.push_back(std::move(value)); return *this; }
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -83,16 +87,18 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeSecurityGroupReferencesResponse& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeSecurityGroupReferencesResponse& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeSecurityGroupReferencesResponse& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<SecurityGroupReference> m_securityGroupReferenceSet;
+
     ResponseMetadata m_responseMetadata;
   };
 

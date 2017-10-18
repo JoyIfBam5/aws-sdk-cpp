@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     RunJobFlowResult();
-    RunJobFlowResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    RunJobFlowResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    RunJobFlowResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    RunJobFlowResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>An unique identifier for the job flow.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>An unique identifier for the job flow.</p>
      */
-    inline void SetJobFlowId(Aws::String&& value) { m_jobFlowId = value; }
+    inline void SetJobFlowId(Aws::String&& value) { m_jobFlowId = std::move(value); }
 
     /**
      * <p>An unique identifier for the job flow.</p>
@@ -73,7 +76,7 @@ namespace Model
     /**
      * <p>An unique identifier for the job flow.</p>
      */
-    inline RunJobFlowResult& WithJobFlowId(Aws::String&& value) { SetJobFlowId(value); return *this;}
+    inline RunJobFlowResult& WithJobFlowId(Aws::String&& value) { SetJobFlowId(std::move(value)); return *this;}
 
     /**
      * <p>An unique identifier for the job flow.</p>
@@ -81,6 +84,7 @@ namespace Model
     inline RunJobFlowResult& WithJobFlowId(const char* value) { SetJobFlowId(value); return *this;}
 
   private:
+
     Aws::String m_jobFlowId;
   };
 

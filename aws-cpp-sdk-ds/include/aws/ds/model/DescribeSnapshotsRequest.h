@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ds/DirectoryService_EXPORTS.h>
 #include <aws/ds/DirectoryServiceRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,9 +37,17 @@ namespace Model
   {
   public:
     DescribeSnapshotsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeSnapshots"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The identifier of the directory for which to retrieve snapshot
@@ -55,7 +65,7 @@ namespace Model
      * <p>The identifier of the directory for which to retrieve snapshot
      * information.</p>
      */
-    inline void SetDirectoryId(Aws::String&& value) { m_directoryIdHasBeenSet = true; m_directoryId = value; }
+    inline void SetDirectoryId(Aws::String&& value) { m_directoryIdHasBeenSet = true; m_directoryId = std::move(value); }
 
     /**
      * <p>The identifier of the directory for which to retrieve snapshot
@@ -73,13 +83,14 @@ namespace Model
      * <p>The identifier of the directory for which to retrieve snapshot
      * information.</p>
      */
-    inline DescribeSnapshotsRequest& WithDirectoryId(Aws::String&& value) { SetDirectoryId(value); return *this;}
+    inline DescribeSnapshotsRequest& WithDirectoryId(Aws::String&& value) { SetDirectoryId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the directory for which to retrieve snapshot
      * information.</p>
      */
     inline DescribeSnapshotsRequest& WithDirectoryId(const char* value) { SetDirectoryId(value); return *this;}
+
 
     /**
      * <p>A list of identifiers of the snapshots to obtain the information for. If this
@@ -100,7 +111,7 @@ namespace Model
      * member is null or empty, all snapshots are returned using the <i>Limit</i> and
      * <i>NextToken</i> members.</p>
      */
-    inline void SetSnapshotIds(Aws::Vector<Aws::String>&& value) { m_snapshotIdsHasBeenSet = true; m_snapshotIds = value; }
+    inline void SetSnapshotIds(Aws::Vector<Aws::String>&& value) { m_snapshotIdsHasBeenSet = true; m_snapshotIds = std::move(value); }
 
     /**
      * <p>A list of identifiers of the snapshots to obtain the information for. If this
@@ -114,7 +125,7 @@ namespace Model
      * member is null or empty, all snapshots are returned using the <i>Limit</i> and
      * <i>NextToken</i> members.</p>
      */
-    inline DescribeSnapshotsRequest& WithSnapshotIds(Aws::Vector<Aws::String>&& value) { SetSnapshotIds(value); return *this;}
+    inline DescribeSnapshotsRequest& WithSnapshotIds(Aws::Vector<Aws::String>&& value) { SetSnapshotIds(std::move(value)); return *this;}
 
     /**
      * <p>A list of identifiers of the snapshots to obtain the information for. If this
@@ -128,7 +139,7 @@ namespace Model
      * member is null or empty, all snapshots are returned using the <i>Limit</i> and
      * <i>NextToken</i> members.</p>
      */
-    inline DescribeSnapshotsRequest& AddSnapshotIds(Aws::String&& value) { m_snapshotIdsHasBeenSet = true; m_snapshotIds.push_back(value); return *this; }
+    inline DescribeSnapshotsRequest& AddSnapshotIds(Aws::String&& value) { m_snapshotIdsHasBeenSet = true; m_snapshotIds.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of identifiers of the snapshots to obtain the information for. If this
@@ -136,6 +147,7 @@ namespace Model
      * <i>NextToken</i> members.</p>
      */
     inline DescribeSnapshotsRequest& AddSnapshotIds(const char* value) { m_snapshotIdsHasBeenSet = true; m_snapshotIds.push_back(value); return *this; }
+
 
     /**
      * <p>The <i>DescribeSnapshotsResult.NextToken</i> value from a previous call to
@@ -153,7 +165,7 @@ namespace Model
      * <p>The <i>DescribeSnapshotsResult.NextToken</i> value from a previous call to
      * <a>DescribeSnapshots</a>. Pass null if this is the first call.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>The <i>DescribeSnapshotsResult.NextToken</i> value from a previous call to
@@ -171,13 +183,14 @@ namespace Model
      * <p>The <i>DescribeSnapshotsResult.NextToken</i> value from a previous call to
      * <a>DescribeSnapshots</a>. Pass null if this is the first call.</p>
      */
-    inline DescribeSnapshotsRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeSnapshotsRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The <i>DescribeSnapshotsResult.NextToken</i> value from a previous call to
      * <a>DescribeSnapshots</a>. Pass null if this is the first call.</p>
      */
     inline DescribeSnapshotsRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     /**
      * <p>The maximum number of objects to return.</p>
@@ -195,12 +208,16 @@ namespace Model
     inline DescribeSnapshotsRequest& WithLimit(int value) { SetLimit(value); return *this;}
 
   private:
+
     Aws::String m_directoryId;
     bool m_directoryIdHasBeenSet;
+
     Aws::Vector<Aws::String> m_snapshotIds;
     bool m_snapshotIdsHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
+
     int m_limit;
     bool m_limitHasBeenSet;
   };

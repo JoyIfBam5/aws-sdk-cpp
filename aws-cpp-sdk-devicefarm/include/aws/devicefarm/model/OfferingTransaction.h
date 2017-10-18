@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/devicefarm/DeviceFarm_EXPORTS.h>
 #include <aws/devicefarm/model/OfferingStatus.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/devicefarm/model/MonetaryAmount.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     OfferingTransaction& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The status of an offering transaction.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The status of an offering transaction.</p>
      */
-    inline void SetOfferingStatus(OfferingStatus&& value) { m_offeringStatusHasBeenSet = true; m_offeringStatus = value; }
+    inline void SetOfferingStatus(OfferingStatus&& value) { m_offeringStatusHasBeenSet = true; m_offeringStatus = std::move(value); }
 
     /**
      * <p>The status of an offering transaction.</p>
@@ -70,7 +73,8 @@ namespace Model
     /**
      * <p>The status of an offering transaction.</p>
      */
-    inline OfferingTransaction& WithOfferingStatus(OfferingStatus&& value) { SetOfferingStatus(value); return *this;}
+    inline OfferingTransaction& WithOfferingStatus(OfferingStatus&& value) { SetOfferingStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The transaction ID of the offering transaction.</p>
@@ -85,7 +89,7 @@ namespace Model
     /**
      * <p>The transaction ID of the offering transaction.</p>
      */
-    inline void SetTransactionId(Aws::String&& value) { m_transactionIdHasBeenSet = true; m_transactionId = value; }
+    inline void SetTransactionId(Aws::String&& value) { m_transactionIdHasBeenSet = true; m_transactionId = std::move(value); }
 
     /**
      * <p>The transaction ID of the offering transaction.</p>
@@ -100,12 +104,49 @@ namespace Model
     /**
      * <p>The transaction ID of the offering transaction.</p>
      */
-    inline OfferingTransaction& WithTransactionId(Aws::String&& value) { SetTransactionId(value); return *this;}
+    inline OfferingTransaction& WithTransactionId(Aws::String&& value) { SetTransactionId(std::move(value)); return *this;}
 
     /**
      * <p>The transaction ID of the offering transaction.</p>
      */
     inline OfferingTransaction& WithTransactionId(const char* value) { SetTransactionId(value); return *this;}
+
+
+    /**
+     * <p>The ID that corresponds to a device offering promotion.</p>
+     */
+    inline const Aws::String& GetOfferingPromotionId() const{ return m_offeringPromotionId; }
+
+    /**
+     * <p>The ID that corresponds to a device offering promotion.</p>
+     */
+    inline void SetOfferingPromotionId(const Aws::String& value) { m_offeringPromotionIdHasBeenSet = true; m_offeringPromotionId = value; }
+
+    /**
+     * <p>The ID that corresponds to a device offering promotion.</p>
+     */
+    inline void SetOfferingPromotionId(Aws::String&& value) { m_offeringPromotionIdHasBeenSet = true; m_offeringPromotionId = std::move(value); }
+
+    /**
+     * <p>The ID that corresponds to a device offering promotion.</p>
+     */
+    inline void SetOfferingPromotionId(const char* value) { m_offeringPromotionIdHasBeenSet = true; m_offeringPromotionId.assign(value); }
+
+    /**
+     * <p>The ID that corresponds to a device offering promotion.</p>
+     */
+    inline OfferingTransaction& WithOfferingPromotionId(const Aws::String& value) { SetOfferingPromotionId(value); return *this;}
+
+    /**
+     * <p>The ID that corresponds to a device offering promotion.</p>
+     */
+    inline OfferingTransaction& WithOfferingPromotionId(Aws::String&& value) { SetOfferingPromotionId(std::move(value)); return *this;}
+
+    /**
+     * <p>The ID that corresponds to a device offering promotion.</p>
+     */
+    inline OfferingTransaction& WithOfferingPromotionId(const char* value) { SetOfferingPromotionId(value); return *this;}
+
 
     /**
      * <p>The date on which an offering transaction was created.</p>
@@ -120,7 +161,7 @@ namespace Model
     /**
      * <p>The date on which an offering transaction was created.</p>
      */
-    inline void SetCreatedOn(Aws::Utils::DateTime&& value) { m_createdOnHasBeenSet = true; m_createdOn = value; }
+    inline void SetCreatedOn(Aws::Utils::DateTime&& value) { m_createdOnHasBeenSet = true; m_createdOn = std::move(value); }
 
     /**
      * <p>The date on which an offering transaction was created.</p>
@@ -130,7 +171,8 @@ namespace Model
     /**
      * <p>The date on which an offering transaction was created.</p>
      */
-    inline OfferingTransaction& WithCreatedOn(Aws::Utils::DateTime&& value) { SetCreatedOn(value); return *this;}
+    inline OfferingTransaction& WithCreatedOn(Aws::Utils::DateTime&& value) { SetCreatedOn(std::move(value)); return *this;}
+
 
     /**
      * <p>The cost of an offering transaction.</p>
@@ -145,7 +187,7 @@ namespace Model
     /**
      * <p>The cost of an offering transaction.</p>
      */
-    inline void SetCost(MonetaryAmount&& value) { m_costHasBeenSet = true; m_cost = value; }
+    inline void SetCost(MonetaryAmount&& value) { m_costHasBeenSet = true; m_cost = std::move(value); }
 
     /**
      * <p>The cost of an offering transaction.</p>
@@ -155,15 +197,22 @@ namespace Model
     /**
      * <p>The cost of an offering transaction.</p>
      */
-    inline OfferingTransaction& WithCost(MonetaryAmount&& value) { SetCost(value); return *this;}
+    inline OfferingTransaction& WithCost(MonetaryAmount&& value) { SetCost(std::move(value)); return *this;}
 
   private:
+
     OfferingStatus m_offeringStatus;
     bool m_offeringStatusHasBeenSet;
+
     Aws::String m_transactionId;
     bool m_transactionIdHasBeenSet;
+
+    Aws::String m_offeringPromotionId;
+    bool m_offeringPromotionIdHasBeenSet;
+
     Aws::Utils::DateTime m_createdOn;
     bool m_createdOnHasBeenSet;
+
     MonetaryAmount m_cost;
     bool m_costHasBeenSet;
   };

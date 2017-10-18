@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-sync/CognitoSync_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/cognito-sync/model/Dataset.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     ListDatasetsResult();
-    ListDatasetsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListDatasetsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListDatasetsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListDatasetsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * A set of datasets.
@@ -59,7 +62,7 @@ namespace Model
     /**
      * A set of datasets.
      */
-    inline void SetDatasets(Aws::Vector<Dataset>&& value) { m_datasets = value; }
+    inline void SetDatasets(Aws::Vector<Dataset>&& value) { m_datasets = std::move(value); }
 
     /**
      * A set of datasets.
@@ -69,7 +72,7 @@ namespace Model
     /**
      * A set of datasets.
      */
-    inline ListDatasetsResult& WithDatasets(Aws::Vector<Dataset>&& value) { SetDatasets(value); return *this;}
+    inline ListDatasetsResult& WithDatasets(Aws::Vector<Dataset>&& value) { SetDatasets(std::move(value)); return *this;}
 
     /**
      * A set of datasets.
@@ -79,7 +82,8 @@ namespace Model
     /**
      * A set of datasets.
      */
-    inline ListDatasetsResult& AddDatasets(Dataset&& value) { m_datasets.push_back(value); return *this; }
+    inline ListDatasetsResult& AddDatasets(Dataset&& value) { m_datasets.push_back(std::move(value)); return *this; }
+
 
     /**
      * Number of datasets returned.
@@ -96,6 +100,7 @@ namespace Model
      */
     inline ListDatasetsResult& WithCount(int value) { SetCount(value); return *this;}
 
+
     /**
      * A pagination token for obtaining the next page of results.
      */
@@ -109,7 +114,7 @@ namespace Model
     /**
      * A pagination token for obtaining the next page of results.
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * A pagination token for obtaining the next page of results.
@@ -124,7 +129,7 @@ namespace Model
     /**
      * A pagination token for obtaining the next page of results.
      */
-    inline ListDatasetsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListDatasetsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * A pagination token for obtaining the next page of results.
@@ -132,8 +137,11 @@ namespace Model
     inline ListDatasetsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Dataset> m_datasets;
+
     int m_count;
+
     Aws::String m_nextToken;
   };
 

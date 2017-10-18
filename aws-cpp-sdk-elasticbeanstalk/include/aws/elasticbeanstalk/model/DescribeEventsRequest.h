@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticbeanstalk/ElasticBeanstalk_EXPORTS.h>
 #include <aws/elasticbeanstalk/ElasticBeanstalkRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/elasticbeanstalk/model/EventSeverity.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,7 +38,19 @@ namespace Model
   {
   public:
     DescribeEventsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeEvents"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
@@ -54,7 +68,7 @@ namespace Model
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
      * include only those associated with this application.</p>
      */
-    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = value; }
+    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = std::move(value); }
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
@@ -72,13 +86,14 @@ namespace Model
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
      * include only those associated with this application.</p>
      */
-    inline DescribeEventsRequest& WithApplicationName(Aws::String&& value) { SetApplicationName(value); return *this;}
+    inline DescribeEventsRequest& WithApplicationName(Aws::String&& value) { SetApplicationName(std::move(value)); return *this;}
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
      * include only those associated with this application.</p>
      */
     inline DescribeEventsRequest& WithApplicationName(const char* value) { SetApplicationName(value); return *this;}
+
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
@@ -96,7 +111,7 @@ namespace Model
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
      * those associated with this application version.</p>
      */
-    inline void SetVersionLabel(Aws::String&& value) { m_versionLabelHasBeenSet = true; m_versionLabel = value; }
+    inline void SetVersionLabel(Aws::String&& value) { m_versionLabelHasBeenSet = true; m_versionLabel = std::move(value); }
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
@@ -114,13 +129,14 @@ namespace Model
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
      * those associated with this application version.</p>
      */
-    inline DescribeEventsRequest& WithVersionLabel(Aws::String&& value) { SetVersionLabel(value); return *this;}
+    inline DescribeEventsRequest& WithVersionLabel(Aws::String&& value) { SetVersionLabel(std::move(value)); return *this;}
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
      * those associated with this application version.</p>
      */
     inline DescribeEventsRequest& WithVersionLabel(const char* value) { SetVersionLabel(value); return *this;}
+
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
@@ -138,7 +154,7 @@ namespace Model
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
      * those that are associated with this environment configuration.</p>
      */
-    inline void SetTemplateName(Aws::String&& value) { m_templateNameHasBeenSet = true; m_templateName = value; }
+    inline void SetTemplateName(Aws::String&& value) { m_templateNameHasBeenSet = true; m_templateName = std::move(value); }
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
@@ -156,13 +172,14 @@ namespace Model
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
      * those that are associated with this environment configuration.</p>
      */
-    inline DescribeEventsRequest& WithTemplateName(Aws::String&& value) { SetTemplateName(value); return *this;}
+    inline DescribeEventsRequest& WithTemplateName(Aws::String&& value) { SetTemplateName(std::move(value)); return *this;}
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
      * those that are associated with this environment configuration.</p>
      */
     inline DescribeEventsRequest& WithTemplateName(const char* value) { SetTemplateName(value); return *this;}
+
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
@@ -180,7 +197,7 @@ namespace Model
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
      * those associated with this environment.</p>
      */
-    inline void SetEnvironmentId(Aws::String&& value) { m_environmentIdHasBeenSet = true; m_environmentId = value; }
+    inline void SetEnvironmentId(Aws::String&& value) { m_environmentIdHasBeenSet = true; m_environmentId = std::move(value); }
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
@@ -198,13 +215,14 @@ namespace Model
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
      * those associated with this environment.</p>
      */
-    inline DescribeEventsRequest& WithEnvironmentId(Aws::String&& value) { SetEnvironmentId(value); return *this;}
+    inline DescribeEventsRequest& WithEnvironmentId(Aws::String&& value) { SetEnvironmentId(std::move(value)); return *this;}
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
      * those associated with this environment.</p>
      */
     inline DescribeEventsRequest& WithEnvironmentId(const char* value) { SetEnvironmentId(value); return *this;}
+
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
@@ -222,7 +240,7 @@ namespace Model
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
      * those associated with this environment.</p>
      */
-    inline void SetEnvironmentName(Aws::String&& value) { m_environmentNameHasBeenSet = true; m_environmentName = value; }
+    inline void SetEnvironmentName(Aws::String&& value) { m_environmentNameHasBeenSet = true; m_environmentName = std::move(value); }
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
@@ -240,13 +258,50 @@ namespace Model
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
      * those associated with this environment.</p>
      */
-    inline DescribeEventsRequest& WithEnvironmentName(Aws::String&& value) { SetEnvironmentName(value); return *this;}
+    inline DescribeEventsRequest& WithEnvironmentName(Aws::String&& value) { SetEnvironmentName(std::move(value)); return *this;}
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
      * those associated with this environment.</p>
      */
     inline DescribeEventsRequest& WithEnvironmentName(const char* value) { SetEnvironmentName(value); return *this;}
+
+
+    /**
+     * <p>The ARN of the version of the custom platform.</p>
+     */
+    inline const Aws::String& GetPlatformArn() const{ return m_platformArn; }
+
+    /**
+     * <p>The ARN of the version of the custom platform.</p>
+     */
+    inline void SetPlatformArn(const Aws::String& value) { m_platformArnHasBeenSet = true; m_platformArn = value; }
+
+    /**
+     * <p>The ARN of the version of the custom platform.</p>
+     */
+    inline void SetPlatformArn(Aws::String&& value) { m_platformArnHasBeenSet = true; m_platformArn = std::move(value); }
+
+    /**
+     * <p>The ARN of the version of the custom platform.</p>
+     */
+    inline void SetPlatformArn(const char* value) { m_platformArnHasBeenSet = true; m_platformArn.assign(value); }
+
+    /**
+     * <p>The ARN of the version of the custom platform.</p>
+     */
+    inline DescribeEventsRequest& WithPlatformArn(const Aws::String& value) { SetPlatformArn(value); return *this;}
+
+    /**
+     * <p>The ARN of the version of the custom platform.</p>
+     */
+    inline DescribeEventsRequest& WithPlatformArn(Aws::String&& value) { SetPlatformArn(std::move(value)); return *this;}
+
+    /**
+     * <p>The ARN of the version of the custom platform.</p>
+     */
+    inline DescribeEventsRequest& WithPlatformArn(const char* value) { SetPlatformArn(value); return *this;}
+
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the described events to include
@@ -264,7 +319,7 @@ namespace Model
      * <p>If specified, AWS Elastic Beanstalk restricts the described events to include
      * only those associated with this request ID.</p>
      */
-    inline void SetRequestId(Aws::String&& value) { m_requestIdHasBeenSet = true; m_requestId = value; }
+    inline void SetRequestId(Aws::String&& value) { m_requestIdHasBeenSet = true; m_requestId = std::move(value); }
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the described events to include
@@ -282,13 +337,14 @@ namespace Model
      * <p>If specified, AWS Elastic Beanstalk restricts the described events to include
      * only those associated with this request ID.</p>
      */
-    inline DescribeEventsRequest& WithRequestId(Aws::String&& value) { SetRequestId(value); return *this;}
+    inline DescribeEventsRequest& WithRequestId(Aws::String&& value) { SetRequestId(std::move(value)); return *this;}
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the described events to include
      * only those associated with this request ID.</p>
      */
     inline DescribeEventsRequest& WithRequestId(const char* value) { SetRequestId(value); return *this;}
+
 
     /**
      * <p>If specified, limits the events returned from this call to include only those
@@ -306,7 +362,7 @@ namespace Model
      * <p>If specified, limits the events returned from this call to include only those
      * with the specified severity or higher.</p>
      */
-    inline void SetSeverity(EventSeverity&& value) { m_severityHasBeenSet = true; m_severity = value; }
+    inline void SetSeverity(EventSeverity&& value) { m_severityHasBeenSet = true; m_severity = std::move(value); }
 
     /**
      * <p>If specified, limits the events returned from this call to include only those
@@ -318,7 +374,8 @@ namespace Model
      * <p>If specified, limits the events returned from this call to include only those
      * with the specified severity or higher.</p>
      */
-    inline DescribeEventsRequest& WithSeverity(EventSeverity&& value) { SetSeverity(value); return *this;}
+    inline DescribeEventsRequest& WithSeverity(EventSeverity&& value) { SetSeverity(std::move(value)); return *this;}
+
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
@@ -336,7 +393,7 @@ namespace Model
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
      * those that occur on or after this time.</p>
      */
-    inline void SetStartTime(Aws::Utils::DateTime&& value) { m_startTimeHasBeenSet = true; m_startTime = value; }
+    inline void SetStartTime(Aws::Utils::DateTime&& value) { m_startTimeHasBeenSet = true; m_startTime = std::move(value); }
 
     /**
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
@@ -348,7 +405,8 @@ namespace Model
      * <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to
      * those that occur on or after this time.</p>
      */
-    inline DescribeEventsRequest& WithStartTime(Aws::Utils::DateTime&& value) { SetStartTime(value); return *this;}
+    inline DescribeEventsRequest& WithStartTime(Aws::Utils::DateTime&& value) { SetStartTime(std::move(value)); return *this;}
+
 
     /**
      * <p> If specified, AWS Elastic Beanstalk restricts the returned descriptions to
@@ -366,7 +424,7 @@ namespace Model
      * <p> If specified, AWS Elastic Beanstalk restricts the returned descriptions to
      * those that occur up to, but not including, the <code>EndTime</code>. </p>
      */
-    inline void SetEndTime(Aws::Utils::DateTime&& value) { m_endTimeHasBeenSet = true; m_endTime = value; }
+    inline void SetEndTime(Aws::Utils::DateTime&& value) { m_endTimeHasBeenSet = true; m_endTime = std::move(value); }
 
     /**
      * <p> If specified, AWS Elastic Beanstalk restricts the returned descriptions to
@@ -378,7 +436,8 @@ namespace Model
      * <p> If specified, AWS Elastic Beanstalk restricts the returned descriptions to
      * those that occur up to, but not including, the <code>EndTime</code>. </p>
      */
-    inline DescribeEventsRequest& WithEndTime(Aws::Utils::DateTime&& value) { SetEndTime(value); return *this;}
+    inline DescribeEventsRequest& WithEndTime(Aws::Utils::DateTime&& value) { SetEndTime(std::move(value)); return *this;}
+
 
     /**
      * <p>Specifies the maximum number of events that can be returned, beginning with
@@ -398,6 +457,7 @@ namespace Model
      */
     inline DescribeEventsRequest& WithMaxRecords(int value) { SetMaxRecords(value); return *this;}
 
+
     /**
      * <p>Pagination token. If specified, the events return the next batch of
      * results.</p>
@@ -414,7 +474,7 @@ namespace Model
      * <p>Pagination token. If specified, the events return the next batch of
      * results.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextTokenHasBeenSet = true; m_nextToken = std::move(value); }
 
     /**
      * <p>Pagination token. If specified, the events return the next batch of
@@ -432,7 +492,7 @@ namespace Model
      * <p>Pagination token. If specified, the events return the next batch of
      * results.</p>
      */
-    inline DescribeEventsRequest& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeEventsRequest& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>Pagination token. If specified, the events return the next batch of
@@ -441,26 +501,40 @@ namespace Model
     inline DescribeEventsRequest& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::String m_applicationName;
     bool m_applicationNameHasBeenSet;
+
     Aws::String m_versionLabel;
     bool m_versionLabelHasBeenSet;
+
     Aws::String m_templateName;
     bool m_templateNameHasBeenSet;
+
     Aws::String m_environmentId;
     bool m_environmentIdHasBeenSet;
+
     Aws::String m_environmentName;
     bool m_environmentNameHasBeenSet;
+
+    Aws::String m_platformArn;
+    bool m_platformArnHasBeenSet;
+
     Aws::String m_requestId;
     bool m_requestIdHasBeenSet;
+
     EventSeverity m_severity;
     bool m_severityHasBeenSet;
+
     Aws::Utils::DateTime m_startTime;
     bool m_startTimeHasBeenSet;
+
     Aws::Utils::DateTime m_endTime;
     bool m_endTimeHasBeenSet;
+
     int m_maxRecords;
     bool m_maxRecordsHasBeenSet;
+
     Aws::String m_nextToken;
     bool m_nextTokenHasBeenSet;
   };

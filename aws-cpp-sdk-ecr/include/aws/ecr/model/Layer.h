@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecr/ECR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ecr/model/LayerAvailability.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     Layer& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The <code>sha256</code> digest of the image layer.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The <code>sha256</code> digest of the image layer.</p>
      */
-    inline void SetLayerDigest(Aws::String&& value) { m_layerDigestHasBeenSet = true; m_layerDigest = value; }
+    inline void SetLayerDigest(Aws::String&& value) { m_layerDigestHasBeenSet = true; m_layerDigest = std::move(value); }
 
     /**
      * <p>The <code>sha256</code> digest of the image layer.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The <code>sha256</code> digest of the image layer.</p>
      */
-    inline Layer& WithLayerDigest(Aws::String&& value) { SetLayerDigest(value); return *this;}
+    inline Layer& WithLayerDigest(Aws::String&& value) { SetLayerDigest(std::move(value)); return *this;}
 
     /**
      * <p>The <code>sha256</code> digest of the image layer.</p>
      */
     inline Layer& WithLayerDigest(const char* value) { SetLayerDigest(value); return *this;}
+
 
     /**
      * <p>The availability status of the image layer.</p>
@@ -92,7 +96,7 @@ namespace Model
     /**
      * <p>The availability status of the image layer.</p>
      */
-    inline void SetLayerAvailability(LayerAvailability&& value) { m_layerAvailabilityHasBeenSet = true; m_layerAvailability = value; }
+    inline void SetLayerAvailability(LayerAvailability&& value) { m_layerAvailabilityHasBeenSet = true; m_layerAvailability = std::move(value); }
 
     /**
      * <p>The availability status of the image layer.</p>
@@ -102,7 +106,8 @@ namespace Model
     /**
      * <p>The availability status of the image layer.</p>
      */
-    inline Layer& WithLayerAvailability(LayerAvailability&& value) { SetLayerAvailability(value); return *this;}
+    inline Layer& WithLayerAvailability(LayerAvailability&& value) { SetLayerAvailability(std::move(value)); return *this;}
+
 
     /**
      * <p>The size, in bytes, of the image layer.</p>
@@ -118,6 +123,7 @@ namespace Model
      * <p>The size, in bytes, of the image layer.</p>
      */
     inline Layer& WithLayerSize(long long value) { SetLayerSize(value); return *this;}
+
 
     /**
      * <p>The media type of the layer, such as
@@ -138,7 +144,7 @@ namespace Model
      * <code>application/vnd.docker.image.rootfs.diff.tar.gzip</code> or
      * <code>application/vnd.oci.image.layer.v1.tar+gzip</code>.</p>
      */
-    inline void SetMediaType(Aws::String&& value) { m_mediaTypeHasBeenSet = true; m_mediaType = value; }
+    inline void SetMediaType(Aws::String&& value) { m_mediaTypeHasBeenSet = true; m_mediaType = std::move(value); }
 
     /**
      * <p>The media type of the layer, such as
@@ -159,7 +165,7 @@ namespace Model
      * <code>application/vnd.docker.image.rootfs.diff.tar.gzip</code> or
      * <code>application/vnd.oci.image.layer.v1.tar+gzip</code>.</p>
      */
-    inline Layer& WithMediaType(Aws::String&& value) { SetMediaType(value); return *this;}
+    inline Layer& WithMediaType(Aws::String&& value) { SetMediaType(std::move(value)); return *this;}
 
     /**
      * <p>The media type of the layer, such as
@@ -169,12 +175,16 @@ namespace Model
     inline Layer& WithMediaType(const char* value) { SetMediaType(value); return *this;}
 
   private:
+
     Aws::String m_layerDigest;
     bool m_layerDigestHasBeenSet;
+
     LayerAvailability m_layerAvailability;
     bool m_layerAvailabilityHasBeenSet;
+
     long long m_layerSize;
     bool m_layerSizeHasBeenSet;
+
     Aws::String m_mediaType;
     bool m_mediaTypeHasBeenSet;
   };

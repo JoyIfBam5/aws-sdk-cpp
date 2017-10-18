@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ssm/SSM_EXPORTS.h>
 #include <aws/ssm/model/Command.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     SendCommandResult();
-    SendCommandResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    SendCommandResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    SendCommandResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    SendCommandResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The request as it was received by Systems Manager. Also provides the command
@@ -55,7 +58,7 @@ namespace Model
      * <p>The request as it was received by Systems Manager. Also provides the command
      * ID which can be used future references to this request.</p>
      */
-    inline void SetCommand(Command&& value) { m_command = value; }
+    inline void SetCommand(Command&& value) { m_command = std::move(value); }
 
     /**
      * <p>The request as it was received by Systems Manager. Also provides the command
@@ -67,9 +70,10 @@ namespace Model
      * <p>The request as it was received by Systems Manager. Also provides the command
      * ID which can be used future references to this request.</p>
      */
-    inline SendCommandResult& WithCommand(Command&& value) { SetCommand(value); return *this;}
+    inline SendCommandResult& WithCommand(Command&& value) { SetCommand(std::move(value)); return *this;}
 
   private:
+
     Command m_command;
   };
 

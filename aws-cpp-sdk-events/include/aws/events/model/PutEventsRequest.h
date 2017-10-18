@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/events/CloudWatchEvents_EXPORTS.h>
 #include <aws/events/CloudWatchEventsRequest.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/events/model/PutEventsRequestEntry.h>
+#include <utility>
 
 namespace Aws
 {
@@ -26,18 +28,22 @@ namespace Model
 {
 
   /**
-   * <p>Container for the parameters to the <a>PutEvents</a> operation.</p><p><h3>See
-   * Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/PutEventsRequest">AWS
-   * API Reference</a></p>
    */
   class AWS_CLOUDWATCHEVENTS_API PutEventsRequest : public CloudWatchEventsRequest
   {
   public:
     PutEventsRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "PutEvents"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The entry that defines an event in your system. You can specify several
@@ -58,7 +64,7 @@ namespace Model
      * parameters for the entry such as the source and type of the event, resources
      * associated with the event, and so on.</p>
      */
-    inline void SetEntries(Aws::Vector<PutEventsRequestEntry>&& value) { m_entriesHasBeenSet = true; m_entries = value; }
+    inline void SetEntries(Aws::Vector<PutEventsRequestEntry>&& value) { m_entriesHasBeenSet = true; m_entries = std::move(value); }
 
     /**
      * <p>The entry that defines an event in your system. You can specify several
@@ -72,7 +78,7 @@ namespace Model
      * parameters for the entry such as the source and type of the event, resources
      * associated with the event, and so on.</p>
      */
-    inline PutEventsRequest& WithEntries(Aws::Vector<PutEventsRequestEntry>&& value) { SetEntries(value); return *this;}
+    inline PutEventsRequest& WithEntries(Aws::Vector<PutEventsRequestEntry>&& value) { SetEntries(std::move(value)); return *this;}
 
     /**
      * <p>The entry that defines an event in your system. You can specify several
@@ -86,9 +92,10 @@ namespace Model
      * parameters for the entry such as the source and type of the event, resources
      * associated with the event, and so on.</p>
      */
-    inline PutEventsRequest& AddEntries(PutEventsRequestEntry&& value) { m_entriesHasBeenSet = true; m_entries.push_back(value); return *this; }
+    inline PutEventsRequest& AddEntries(PutEventsRequestEntry&& value) { m_entriesHasBeenSet = true; m_entries.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<PutEventsRequestEntry> m_entries;
     bool m_entriesHasBeenSet;
   };

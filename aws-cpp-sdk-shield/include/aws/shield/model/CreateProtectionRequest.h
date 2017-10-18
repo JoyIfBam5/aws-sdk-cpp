@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/shield/Shield_EXPORTS.h>
 #include <aws/shield/ShieldRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     CreateProtectionRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "CreateProtection"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>Friendly name for the <code>Protection</code> you are creating.</p>
@@ -47,7 +57,7 @@ namespace Model
     /**
      * <p>Friendly name for the <code>Protection</code> you are creating.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>Friendly name for the <code>Protection</code> you are creating.</p>
@@ -62,12 +72,13 @@ namespace Model
     /**
      * <p>Friendly name for the <code>Protection</code> you are creating.</p>
      */
-    inline CreateProtectionRequest& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline CreateProtectionRequest& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>Friendly name for the <code>Protection</code> you are creating.</p>
      */
     inline CreateProtectionRequest& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The ARN (Amazon Resource Name) of the resource to be protected.</p>
@@ -82,7 +93,7 @@ namespace Model
     /**
      * <p>The ARN (Amazon Resource Name) of the resource to be protected.</p>
      */
-    inline void SetResourceArn(Aws::String&& value) { m_resourceArnHasBeenSet = true; m_resourceArn = value; }
+    inline void SetResourceArn(Aws::String&& value) { m_resourceArnHasBeenSet = true; m_resourceArn = std::move(value); }
 
     /**
      * <p>The ARN (Amazon Resource Name) of the resource to be protected.</p>
@@ -97,7 +108,7 @@ namespace Model
     /**
      * <p>The ARN (Amazon Resource Name) of the resource to be protected.</p>
      */
-    inline CreateProtectionRequest& WithResourceArn(Aws::String&& value) { SetResourceArn(value); return *this;}
+    inline CreateProtectionRequest& WithResourceArn(Aws::String&& value) { SetResourceArn(std::move(value)); return *this;}
 
     /**
      * <p>The ARN (Amazon Resource Name) of the resource to be protected.</p>
@@ -105,8 +116,10 @@ namespace Model
     inline CreateProtectionRequest& WithResourceArn(const char* value) { SetResourceArn(value); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_resourceArn;
     bool m_resourceArnHasBeenSet;
   };

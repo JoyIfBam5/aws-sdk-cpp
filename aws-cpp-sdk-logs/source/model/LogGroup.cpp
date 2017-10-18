@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/logs/model/LogGroup.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -37,7 +38,8 @@ LogGroup::LogGroup() :
     m_metricFilterCountHasBeenSet(false),
     m_arnHasBeenSet(false),
     m_storedBytes(0),
-    m_storedBytesHasBeenSet(false)
+    m_storedBytesHasBeenSet(false),
+    m_kmsKeyIdHasBeenSet(false)
 {
 }
 
@@ -51,7 +53,8 @@ LogGroup::LogGroup(const JsonValue& jsonValue) :
     m_metricFilterCountHasBeenSet(false),
     m_arnHasBeenSet(false),
     m_storedBytes(0),
-    m_storedBytesHasBeenSet(false)
+    m_storedBytesHasBeenSet(false),
+    m_kmsKeyIdHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -100,6 +103,13 @@ LogGroup& LogGroup::operator =(const JsonValue& jsonValue)
     m_storedBytesHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("kmsKeyId"))
+  {
+    m_kmsKeyId = jsonValue.GetString("kmsKeyId");
+
+    m_kmsKeyIdHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -140,6 +150,12 @@ JsonValue LogGroup::Jsonize() const
   if(m_storedBytesHasBeenSet)
   {
    payload.WithInt64("storedBytes", m_storedBytes);
+
+  }
+
+  if(m_kmsKeyIdHasBeenSet)
+  {
+   payload.WithString("kmsKeyId", m_kmsKeyId);
 
   }
 

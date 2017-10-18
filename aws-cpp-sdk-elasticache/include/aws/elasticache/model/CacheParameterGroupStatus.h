@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticache/ElastiCache_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the cache parameter group.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The name of the cache parameter group.</p>
      */
-    inline void SetCacheParameterGroupName(Aws::String&& value) { m_cacheParameterGroupNameHasBeenSet = true; m_cacheParameterGroupName = value; }
+    inline void SetCacheParameterGroupName(Aws::String&& value) { m_cacheParameterGroupNameHasBeenSet = true; m_cacheParameterGroupName = std::move(value); }
 
     /**
      * <p>The name of the cache parameter group.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The name of the cache parameter group.</p>
      */
-    inline CacheParameterGroupStatus& WithCacheParameterGroupName(Aws::String&& value) { SetCacheParameterGroupName(value); return *this;}
+    inline CacheParameterGroupStatus& WithCacheParameterGroupName(Aws::String&& value) { SetCacheParameterGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the cache parameter group.</p>
      */
     inline CacheParameterGroupStatus& WithCacheParameterGroupName(const char* value) { SetCacheParameterGroupName(value); return *this;}
+
 
     /**
      * <p>The status of parameter updates.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>The status of parameter updates.</p>
      */
-    inline void SetParameterApplyStatus(Aws::String&& value) { m_parameterApplyStatusHasBeenSet = true; m_parameterApplyStatus = value; }
+    inline void SetParameterApplyStatus(Aws::String&& value) { m_parameterApplyStatusHasBeenSet = true; m_parameterApplyStatus = std::move(value); }
 
     /**
      * <p>The status of parameter updates.</p>
@@ -110,12 +114,13 @@ namespace Model
     /**
      * <p>The status of parameter updates.</p>
      */
-    inline CacheParameterGroupStatus& WithParameterApplyStatus(Aws::String&& value) { SetParameterApplyStatus(value); return *this;}
+    inline CacheParameterGroupStatus& WithParameterApplyStatus(Aws::String&& value) { SetParameterApplyStatus(std::move(value)); return *this;}
 
     /**
      * <p>The status of parameter updates.</p>
      */
     inline CacheParameterGroupStatus& WithParameterApplyStatus(const char* value) { SetParameterApplyStatus(value); return *this;}
+
 
     /**
      * <p>A list of the cache node IDs which need to be rebooted for parameter changes
@@ -133,7 +138,7 @@ namespace Model
      * <p>A list of the cache node IDs which need to be rebooted for parameter changes
      * to be applied. A node ID is a numeric identifier (0001, 0002, etc.).</p>
      */
-    inline void SetCacheNodeIdsToReboot(Aws::Vector<Aws::String>&& value) { m_cacheNodeIdsToRebootHasBeenSet = true; m_cacheNodeIdsToReboot = value; }
+    inline void SetCacheNodeIdsToReboot(Aws::Vector<Aws::String>&& value) { m_cacheNodeIdsToRebootHasBeenSet = true; m_cacheNodeIdsToReboot = std::move(value); }
 
     /**
      * <p>A list of the cache node IDs which need to be rebooted for parameter changes
@@ -145,7 +150,7 @@ namespace Model
      * <p>A list of the cache node IDs which need to be rebooted for parameter changes
      * to be applied. A node ID is a numeric identifier (0001, 0002, etc.).</p>
      */
-    inline CacheParameterGroupStatus& WithCacheNodeIdsToReboot(Aws::Vector<Aws::String>&& value) { SetCacheNodeIdsToReboot(value); return *this;}
+    inline CacheParameterGroupStatus& WithCacheNodeIdsToReboot(Aws::Vector<Aws::String>&& value) { SetCacheNodeIdsToReboot(std::move(value)); return *this;}
 
     /**
      * <p>A list of the cache node IDs which need to be rebooted for parameter changes
@@ -157,7 +162,7 @@ namespace Model
      * <p>A list of the cache node IDs which need to be rebooted for parameter changes
      * to be applied. A node ID is a numeric identifier (0001, 0002, etc.).</p>
      */
-    inline CacheParameterGroupStatus& AddCacheNodeIdsToReboot(Aws::String&& value) { m_cacheNodeIdsToRebootHasBeenSet = true; m_cacheNodeIdsToReboot.push_back(value); return *this; }
+    inline CacheParameterGroupStatus& AddCacheNodeIdsToReboot(Aws::String&& value) { m_cacheNodeIdsToRebootHasBeenSet = true; m_cacheNodeIdsToReboot.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of the cache node IDs which need to be rebooted for parameter changes
@@ -166,10 +171,13 @@ namespace Model
     inline CacheParameterGroupStatus& AddCacheNodeIdsToReboot(const char* value) { m_cacheNodeIdsToRebootHasBeenSet = true; m_cacheNodeIdsToReboot.push_back(value); return *this; }
 
   private:
+
     Aws::String m_cacheParameterGroupName;
     bool m_cacheParameterGroupNameHasBeenSet;
+
     Aws::String m_parameterApplyStatus;
     bool m_parameterApplyStatusHasBeenSet;
+
     Aws::Vector<Aws::String> m_cacheNodeIdsToReboot;
     bool m_cacheNodeIdsToRebootHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/sts/STS_EXPORTS.h>
 #include <aws/sts/model/Credentials.h>
 #include <aws/sts/model/AssumedRoleUser.h>
 #include <aws/sts/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,8 +47,9 @@ namespace Model
   {
   public:
     AssumeRoleResult();
-    AssumeRoleResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    AssumeRoleResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    AssumeRoleResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    AssumeRoleResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>The temporary security credentials, which include an access key ID, a secret
@@ -76,7 +79,7 @@ namespace Model
      * size is less than 4096 bytes, but that can vary. Also, future updates to AWS
      * might require larger sizes.</p>
      */
-    inline void SetCredentials(Credentials&& value) { m_credentials = value; }
+    inline void SetCredentials(Credentials&& value) { m_credentials = std::move(value); }
 
     /**
      * <p>The temporary security credentials, which include an access key ID, a secret
@@ -96,7 +99,8 @@ namespace Model
      * size is less than 4096 bytes, but that can vary. Also, future updates to AWS
      * might require larger sizes.</p>
      */
-    inline AssumeRoleResult& WithCredentials(Credentials&& value) { SetCredentials(value); return *this;}
+    inline AssumeRoleResult& WithCredentials(Credentials&& value) { SetCredentials(std::move(value)); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) and the assumed role ID, which are identifiers
@@ -126,7 +130,7 @@ namespace Model
      * <code>RoleSessionName</code> that you specified when you called
      * <code>AssumeRole</code>. </p>
      */
-    inline void SetAssumedRoleUser(AssumedRoleUser&& value) { m_assumedRoleUser = value; }
+    inline void SetAssumedRoleUser(AssumedRoleUser&& value) { m_assumedRoleUser = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) and the assumed role ID, which are identifiers
@@ -146,7 +150,8 @@ namespace Model
      * <code>RoleSessionName</code> that you specified when you called
      * <code>AssumeRole</code>. </p>
      */
-    inline AssumeRoleResult& WithAssumedRoleUser(AssumedRoleUser&& value) { SetAssumedRoleUser(value); return *this;}
+    inline AssumeRoleResult& WithAssumedRoleUser(AssumedRoleUser&& value) { SetAssumedRoleUser(std::move(value)); return *this;}
+
 
     /**
      * <p>A percentage value that indicates the size of the policy in packed form. The
@@ -169,6 +174,7 @@ namespace Model
      */
     inline AssumeRoleResult& WithPackedPolicySize(int value) { SetPackedPolicySize(value); return *this;}
 
+
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
 
@@ -176,18 +182,22 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline AssumeRoleResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline AssumeRoleResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline AssumeRoleResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Credentials m_credentials;
+
     AssumedRoleUser m_assumedRoleUser;
+
     int m_packedPolicySize;
+
     ResponseMetadata m_responseMetadata;
   };
 

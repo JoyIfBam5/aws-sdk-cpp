@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kms/KMS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     KeyListEntry& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Unique identifier of the key.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>Unique identifier of the key.</p>
      */
-    inline void SetKeyId(Aws::String&& value) { m_keyIdHasBeenSet = true; m_keyId = value; }
+    inline void SetKeyId(Aws::String&& value) { m_keyIdHasBeenSet = true; m_keyId = std::move(value); }
 
     /**
      * <p>Unique identifier of the key.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>Unique identifier of the key.</p>
      */
-    inline KeyListEntry& WithKeyId(Aws::String&& value) { SetKeyId(value); return *this;}
+    inline KeyListEntry& WithKeyId(Aws::String&& value) { SetKeyId(std::move(value)); return *this;}
 
     /**
      * <p>Unique identifier of the key.</p>
      */
     inline KeyListEntry& WithKeyId(const char* value) { SetKeyId(value); return *this;}
+
 
     /**
      * <p>ARN of the key.</p>
@@ -92,7 +96,7 @@ namespace Model
     /**
      * <p>ARN of the key.</p>
      */
-    inline void SetKeyArn(Aws::String&& value) { m_keyArnHasBeenSet = true; m_keyArn = value; }
+    inline void SetKeyArn(Aws::String&& value) { m_keyArnHasBeenSet = true; m_keyArn = std::move(value); }
 
     /**
      * <p>ARN of the key.</p>
@@ -107,7 +111,7 @@ namespace Model
     /**
      * <p>ARN of the key.</p>
      */
-    inline KeyListEntry& WithKeyArn(Aws::String&& value) { SetKeyArn(value); return *this;}
+    inline KeyListEntry& WithKeyArn(Aws::String&& value) { SetKeyArn(std::move(value)); return *this;}
 
     /**
      * <p>ARN of the key.</p>
@@ -115,8 +119,10 @@ namespace Model
     inline KeyListEntry& WithKeyArn(const char* value) { SetKeyArn(value); return *this;}
 
   private:
+
     Aws::String m_keyId;
     bool m_keyIdHasBeenSet;
+
     Aws::String m_keyArn;
     bool m_keyArnHasBeenSet;
   };

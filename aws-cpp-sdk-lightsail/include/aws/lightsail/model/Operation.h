@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -20,6 +21,7 @@
 #include <aws/lightsail/model/ResourceLocation.h>
 #include <aws/lightsail/model/OperationType.h>
 #include <aws/lightsail/model/OperationStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     Operation& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ID of the operation.</p>
      */
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>The ID of the operation.</p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>The ID of the operation.</p>
@@ -76,12 +79,13 @@ namespace Model
     /**
      * <p>The ID of the operation.</p>
      */
-    inline Operation& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline Operation& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the operation.</p>
      */
     inline Operation& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>The resource name.</p>
@@ -96,7 +100,7 @@ namespace Model
     /**
      * <p>The resource name.</p>
      */
-    inline void SetResourceName(Aws::String&& value) { m_resourceNameHasBeenSet = true; m_resourceName = value; }
+    inline void SetResourceName(Aws::String&& value) { m_resourceNameHasBeenSet = true; m_resourceName = std::move(value); }
 
     /**
      * <p>The resource name.</p>
@@ -111,12 +115,13 @@ namespace Model
     /**
      * <p>The resource name.</p>
      */
-    inline Operation& WithResourceName(Aws::String&& value) { SetResourceName(value); return *this;}
+    inline Operation& WithResourceName(Aws::String&& value) { SetResourceName(std::move(value)); return *this;}
 
     /**
      * <p>The resource name.</p>
      */
     inline Operation& WithResourceName(const char* value) { SetResourceName(value); return *this;}
+
 
     /**
      * <p>The resource type. </p>
@@ -131,7 +136,7 @@ namespace Model
     /**
      * <p>The resource type. </p>
      */
-    inline void SetResourceType(ResourceType&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = value; }
+    inline void SetResourceType(ResourceType&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = std::move(value); }
 
     /**
      * <p>The resource type. </p>
@@ -141,7 +146,8 @@ namespace Model
     /**
      * <p>The resource type. </p>
      */
-    inline Operation& WithResourceType(ResourceType&& value) { SetResourceType(value); return *this;}
+    inline Operation& WithResourceType(ResourceType&& value) { SetResourceType(std::move(value)); return *this;}
+
 
     /**
      * <p>The timestamp when the operation was initialized (e.g.,
@@ -159,7 +165,7 @@ namespace Model
      * <p>The timestamp when the operation was initialized (e.g.,
      * <code>1479816991.349</code>).</p>
      */
-    inline void SetCreatedAt(Aws::Utils::DateTime&& value) { m_createdAtHasBeenSet = true; m_createdAt = value; }
+    inline void SetCreatedAt(Aws::Utils::DateTime&& value) { m_createdAtHasBeenSet = true; m_createdAt = std::move(value); }
 
     /**
      * <p>The timestamp when the operation was initialized (e.g.,
@@ -171,7 +177,8 @@ namespace Model
      * <p>The timestamp when the operation was initialized (e.g.,
      * <code>1479816991.349</code>).</p>
      */
-    inline Operation& WithCreatedAt(Aws::Utils::DateTime&& value) { SetCreatedAt(value); return *this;}
+    inline Operation& WithCreatedAt(Aws::Utils::DateTime&& value) { SetCreatedAt(std::move(value)); return *this;}
+
 
     /**
      * <p>The region and Availability Zone.</p>
@@ -186,7 +193,7 @@ namespace Model
     /**
      * <p>The region and Availability Zone.</p>
      */
-    inline void SetLocation(ResourceLocation&& value) { m_locationHasBeenSet = true; m_location = value; }
+    inline void SetLocation(ResourceLocation&& value) { m_locationHasBeenSet = true; m_location = std::move(value); }
 
     /**
      * <p>The region and Availability Zone.</p>
@@ -196,7 +203,8 @@ namespace Model
     /**
      * <p>The region and Availability Zone.</p>
      */
-    inline Operation& WithLocation(ResourceLocation&& value) { SetLocation(value); return *this;}
+    inline Operation& WithLocation(ResourceLocation&& value) { SetLocation(std::move(value)); return *this;}
+
 
     /**
      * <p>A Boolean value indicating whether the operation is terminal.</p>
@@ -213,6 +221,7 @@ namespace Model
      */
     inline Operation& WithIsTerminal(bool value) { SetIsTerminal(value); return *this;}
 
+
     /**
      * <p>Details about the operation (e.g., <code>Debian-1GB-Virginia-1</code>).</p>
      */
@@ -226,7 +235,7 @@ namespace Model
     /**
      * <p>Details about the operation (e.g., <code>Debian-1GB-Virginia-1</code>).</p>
      */
-    inline void SetOperationDetails(Aws::String&& value) { m_operationDetailsHasBeenSet = true; m_operationDetails = value; }
+    inline void SetOperationDetails(Aws::String&& value) { m_operationDetailsHasBeenSet = true; m_operationDetails = std::move(value); }
 
     /**
      * <p>Details about the operation (e.g., <code>Debian-1GB-Virginia-1</code>).</p>
@@ -241,12 +250,13 @@ namespace Model
     /**
      * <p>Details about the operation (e.g., <code>Debian-1GB-Virginia-1</code>).</p>
      */
-    inline Operation& WithOperationDetails(Aws::String&& value) { SetOperationDetails(value); return *this;}
+    inline Operation& WithOperationDetails(Aws::String&& value) { SetOperationDetails(std::move(value)); return *this;}
 
     /**
      * <p>Details about the operation (e.g., <code>Debian-1GB-Virginia-1</code>).</p>
      */
     inline Operation& WithOperationDetails(const char* value) { SetOperationDetails(value); return *this;}
+
 
     /**
      * <p>The type of operation. </p>
@@ -261,7 +271,7 @@ namespace Model
     /**
      * <p>The type of operation. </p>
      */
-    inline void SetOperationType(OperationType&& value) { m_operationTypeHasBeenSet = true; m_operationType = value; }
+    inline void SetOperationType(OperationType&& value) { m_operationTypeHasBeenSet = true; m_operationType = std::move(value); }
 
     /**
      * <p>The type of operation. </p>
@@ -271,7 +281,8 @@ namespace Model
     /**
      * <p>The type of operation. </p>
      */
-    inline Operation& WithOperationType(OperationType&& value) { SetOperationType(value); return *this;}
+    inline Operation& WithOperationType(OperationType&& value) { SetOperationType(std::move(value)); return *this;}
+
 
     /**
      * <p>The status of the operation. </p>
@@ -286,7 +297,7 @@ namespace Model
     /**
      * <p>The status of the operation. </p>
      */
-    inline void SetStatus(OperationStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(OperationStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The status of the operation. </p>
@@ -296,7 +307,8 @@ namespace Model
     /**
      * <p>The status of the operation. </p>
      */
-    inline Operation& WithStatus(OperationStatus&& value) { SetStatus(value); return *this;}
+    inline Operation& WithStatus(OperationStatus&& value) { SetStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The timestamp when the status was changed (e.g.,
@@ -314,7 +326,7 @@ namespace Model
      * <p>The timestamp when the status was changed (e.g.,
      * <code>1479816991.349</code>).</p>
      */
-    inline void SetStatusChangedAt(Aws::Utils::DateTime&& value) { m_statusChangedAtHasBeenSet = true; m_statusChangedAt = value; }
+    inline void SetStatusChangedAt(Aws::Utils::DateTime&& value) { m_statusChangedAtHasBeenSet = true; m_statusChangedAt = std::move(value); }
 
     /**
      * <p>The timestamp when the status was changed (e.g.,
@@ -326,7 +338,8 @@ namespace Model
      * <p>The timestamp when the status was changed (e.g.,
      * <code>1479816991.349</code>).</p>
      */
-    inline Operation& WithStatusChangedAt(Aws::Utils::DateTime&& value) { SetStatusChangedAt(value); return *this;}
+    inline Operation& WithStatusChangedAt(Aws::Utils::DateTime&& value) { SetStatusChangedAt(std::move(value)); return *this;}
+
 
     /**
      * <p>The error code.</p>
@@ -341,7 +354,7 @@ namespace Model
     /**
      * <p>The error code.</p>
      */
-    inline void SetErrorCode(Aws::String&& value) { m_errorCodeHasBeenSet = true; m_errorCode = value; }
+    inline void SetErrorCode(Aws::String&& value) { m_errorCodeHasBeenSet = true; m_errorCode = std::move(value); }
 
     /**
      * <p>The error code.</p>
@@ -356,12 +369,13 @@ namespace Model
     /**
      * <p>The error code.</p>
      */
-    inline Operation& WithErrorCode(Aws::String&& value) { SetErrorCode(value); return *this;}
+    inline Operation& WithErrorCode(Aws::String&& value) { SetErrorCode(std::move(value)); return *this;}
 
     /**
      * <p>The error code.</p>
      */
     inline Operation& WithErrorCode(const char* value) { SetErrorCode(value); return *this;}
+
 
     /**
      * <p>The error details.</p>
@@ -376,7 +390,7 @@ namespace Model
     /**
      * <p>The error details.</p>
      */
-    inline void SetErrorDetails(Aws::String&& value) { m_errorDetailsHasBeenSet = true; m_errorDetails = value; }
+    inline void SetErrorDetails(Aws::String&& value) { m_errorDetailsHasBeenSet = true; m_errorDetails = std::move(value); }
 
     /**
      * <p>The error details.</p>
@@ -391,7 +405,7 @@ namespace Model
     /**
      * <p>The error details.</p>
      */
-    inline Operation& WithErrorDetails(Aws::String&& value) { SetErrorDetails(value); return *this;}
+    inline Operation& WithErrorDetails(Aws::String&& value) { SetErrorDetails(std::move(value)); return *this;}
 
     /**
      * <p>The error details.</p>
@@ -399,28 +413,40 @@ namespace Model
     inline Operation& WithErrorDetails(const char* value) { SetErrorDetails(value); return *this;}
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     Aws::String m_resourceName;
     bool m_resourceNameHasBeenSet;
+
     ResourceType m_resourceType;
     bool m_resourceTypeHasBeenSet;
+
     Aws::Utils::DateTime m_createdAt;
     bool m_createdAtHasBeenSet;
+
     ResourceLocation m_location;
     bool m_locationHasBeenSet;
+
     bool m_isTerminal;
     bool m_isTerminalHasBeenSet;
+
     Aws::String m_operationDetails;
     bool m_operationDetailsHasBeenSet;
+
     OperationType m_operationType;
     bool m_operationTypeHasBeenSet;
+
     OperationStatus m_status;
     bool m_statusHasBeenSet;
+
     Aws::Utils::DateTime m_statusChangedAt;
     bool m_statusChangedAtHasBeenSet;
+
     Aws::String m_errorCode;
     bool m_errorCodeHasBeenSet;
+
     Aws::String m_errorDetails;
     bool m_errorDetailsHasBeenSet;
   };

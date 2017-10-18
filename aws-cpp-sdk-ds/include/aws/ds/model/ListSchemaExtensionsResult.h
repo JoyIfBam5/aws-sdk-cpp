@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ds/DirectoryService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ds/model/SchemaExtensionInfo.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     ListSchemaExtensionsResult();
-    ListSchemaExtensionsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListSchemaExtensionsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListSchemaExtensionsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListSchemaExtensionsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the schema extensions applied to the directory.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>Information about the schema extensions applied to the directory.</p>
      */
-    inline void SetSchemaExtensionsInfo(Aws::Vector<SchemaExtensionInfo>&& value) { m_schemaExtensionsInfo = value; }
+    inline void SetSchemaExtensionsInfo(Aws::Vector<SchemaExtensionInfo>&& value) { m_schemaExtensionsInfo = std::move(value); }
 
     /**
      * <p>Information about the schema extensions applied to the directory.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>Information about the schema extensions applied to the directory.</p>
      */
-    inline ListSchemaExtensionsResult& WithSchemaExtensionsInfo(Aws::Vector<SchemaExtensionInfo>&& value) { SetSchemaExtensionsInfo(value); return *this;}
+    inline ListSchemaExtensionsResult& WithSchemaExtensionsInfo(Aws::Vector<SchemaExtensionInfo>&& value) { SetSchemaExtensionsInfo(std::move(value)); return *this;}
 
     /**
      * <p>Information about the schema extensions applied to the directory.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>Information about the schema extensions applied to the directory.</p>
      */
-    inline ListSchemaExtensionsResult& AddSchemaExtensionsInfo(SchemaExtensionInfo&& value) { m_schemaExtensionsInfo.push_back(value); return *this; }
+    inline ListSchemaExtensionsResult& AddSchemaExtensionsInfo(SchemaExtensionInfo&& value) { m_schemaExtensionsInfo.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>If not null, more results are available. Pass this value for the
@@ -95,7 +99,7 @@ namespace Model
      * <code>NextToken</code> parameter in a subsequent call to
      * <code>ListSchemaExtensions</code> to retrieve the next set of items.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>If not null, more results are available. Pass this value for the
@@ -116,7 +120,7 @@ namespace Model
      * <code>NextToken</code> parameter in a subsequent call to
      * <code>ListSchemaExtensions</code> to retrieve the next set of items.</p>
      */
-    inline ListSchemaExtensionsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListSchemaExtensionsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>If not null, more results are available. Pass this value for the
@@ -126,7 +130,9 @@ namespace Model
     inline ListSchemaExtensionsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<SchemaExtensionInfo> m_schemaExtensionsInfo;
+
     Aws::String m_nextToken;
   };
 

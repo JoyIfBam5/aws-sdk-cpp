@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/redshift/model/Tag.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The tag for the resource.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The tag for the resource.</p>
      */
-    inline void SetTag(Tag&& value) { m_tagHasBeenSet = true; m_tag = value; }
+    inline void SetTag(Tag&& value) { m_tagHasBeenSet = true; m_tag = std::move(value); }
 
     /**
      * <p>The tag for the resource.</p>
@@ -70,7 +73,8 @@ namespace Model
     /**
      * <p>The tag for the resource.</p>
      */
-    inline TaggedResource& WithTag(Tag&& value) { SetTag(value); return *this;}
+    inline TaggedResource& WithTag(Tag&& value) { SetTag(std::move(value)); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) with which the tag is associated. For example,
@@ -88,7 +92,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) with which the tag is associated. For example,
      * <code>arn:aws:redshift:us-east-1:123456789:cluster:t1</code>.</p>
      */
-    inline void SetResourceName(Aws::String&& value) { m_resourceNameHasBeenSet = true; m_resourceName = value; }
+    inline void SetResourceName(Aws::String&& value) { m_resourceNameHasBeenSet = true; m_resourceName = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) with which the tag is associated. For example,
@@ -106,13 +110,14 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) with which the tag is associated. For example,
      * <code>arn:aws:redshift:us-east-1:123456789:cluster:t1</code>.</p>
      */
-    inline TaggedResource& WithResourceName(Aws::String&& value) { SetResourceName(value); return *this;}
+    inline TaggedResource& WithResourceName(Aws::String&& value) { SetResourceName(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) with which the tag is associated. For example,
      * <code>arn:aws:redshift:us-east-1:123456789:cluster:t1</code>.</p>
      */
     inline TaggedResource& WithResourceName(const char* value) { SetResourceName(value); return *this;}
+
 
     /**
      * <p>The type of resource with which the tag is associated. Valid resource types
@@ -122,7 +127,7 @@ namespace Model
      * <li> <p>HSM certificate</p> </li> <li> <p>Parameter group</p> </li> </ul> <p>For
      * more information about Amazon Redshift resource types and constructing ARNs, go
      * to <a
-     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html">Constructing
+     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-overview.html#redshift-iam-access-control-specify-actions">Constructing
      * an Amazon Redshift Amazon Resource Name (ARN)</a> in the Amazon Redshift Cluster
      * Management Guide. </p>
      */
@@ -136,7 +141,7 @@ namespace Model
      * <li> <p>HSM certificate</p> </li> <li> <p>Parameter group</p> </li> </ul> <p>For
      * more information about Amazon Redshift resource types and constructing ARNs, go
      * to <a
-     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html">Constructing
+     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-overview.html#redshift-iam-access-control-specify-actions">Constructing
      * an Amazon Redshift Amazon Resource Name (ARN)</a> in the Amazon Redshift Cluster
      * Management Guide. </p>
      */
@@ -150,11 +155,11 @@ namespace Model
      * <li> <p>HSM certificate</p> </li> <li> <p>Parameter group</p> </li> </ul> <p>For
      * more information about Amazon Redshift resource types and constructing ARNs, go
      * to <a
-     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html">Constructing
+     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-overview.html#redshift-iam-access-control-specify-actions">Constructing
      * an Amazon Redshift Amazon Resource Name (ARN)</a> in the Amazon Redshift Cluster
      * Management Guide. </p>
      */
-    inline void SetResourceType(Aws::String&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = value; }
+    inline void SetResourceType(Aws::String&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = std::move(value); }
 
     /**
      * <p>The type of resource with which the tag is associated. Valid resource types
@@ -164,7 +169,7 @@ namespace Model
      * <li> <p>HSM certificate</p> </li> <li> <p>Parameter group</p> </li> </ul> <p>For
      * more information about Amazon Redshift resource types and constructing ARNs, go
      * to <a
-     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html">Constructing
+     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-overview.html#redshift-iam-access-control-specify-actions">Constructing
      * an Amazon Redshift Amazon Resource Name (ARN)</a> in the Amazon Redshift Cluster
      * Management Guide. </p>
      */
@@ -178,7 +183,7 @@ namespace Model
      * <li> <p>HSM certificate</p> </li> <li> <p>Parameter group</p> </li> </ul> <p>For
      * more information about Amazon Redshift resource types and constructing ARNs, go
      * to <a
-     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html">Constructing
+     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-overview.html#redshift-iam-access-control-specify-actions">Constructing
      * an Amazon Redshift Amazon Resource Name (ARN)</a> in the Amazon Redshift Cluster
      * Management Guide. </p>
      */
@@ -192,11 +197,11 @@ namespace Model
      * <li> <p>HSM certificate</p> </li> <li> <p>Parameter group</p> </li> </ul> <p>For
      * more information about Amazon Redshift resource types and constructing ARNs, go
      * to <a
-     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html">Constructing
+     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-overview.html#redshift-iam-access-control-specify-actions">Constructing
      * an Amazon Redshift Amazon Resource Name (ARN)</a> in the Amazon Redshift Cluster
      * Management Guide. </p>
      */
-    inline TaggedResource& WithResourceType(Aws::String&& value) { SetResourceType(value); return *this;}
+    inline TaggedResource& WithResourceType(Aws::String&& value) { SetResourceType(std::move(value)); return *this;}
 
     /**
      * <p>The type of resource with which the tag is associated. Valid resource types
@@ -206,17 +211,20 @@ namespace Model
      * <li> <p>HSM certificate</p> </li> <li> <p>Parameter group</p> </li> </ul> <p>For
      * more information about Amazon Redshift resource types and constructing ARNs, go
      * to <a
-     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html">Constructing
+     * href="http://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-overview.html#redshift-iam-access-control-specify-actions">Constructing
      * an Amazon Redshift Amazon Resource Name (ARN)</a> in the Amazon Redshift Cluster
      * Management Guide. </p>
      */
     inline TaggedResource& WithResourceType(const char* value) { SetResourceType(value); return *this;}
 
   private:
+
     Tag m_tag;
     bool m_tagHasBeenSet;
+
     Aws::String m_resourceName;
     bool m_resourceNameHasBeenSet;
+
     Aws::String m_resourceType;
     bool m_resourceTypeHasBeenSet;
   };

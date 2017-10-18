@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/states/SFN_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,6 +40,7 @@ namespace Model
     StateEnteredEventDetails& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the state.</p>
      */
@@ -51,7 +54,7 @@ namespace Model
     /**
      * <p>The name of the state.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the state.</p>
@@ -66,12 +69,13 @@ namespace Model
     /**
      * <p>The name of the state.</p>
      */
-    inline StateEnteredEventDetails& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline StateEnteredEventDetails& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the state.</p>
      */
     inline StateEnteredEventDetails& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The JSON input data to the state.</p>
@@ -86,7 +90,7 @@ namespace Model
     /**
      * <p>The JSON input data to the state.</p>
      */
-    inline void SetInput(Aws::String&& value) { m_inputHasBeenSet = true; m_input = value; }
+    inline void SetInput(Aws::String&& value) { m_inputHasBeenSet = true; m_input = std::move(value); }
 
     /**
      * <p>The JSON input data to the state.</p>
@@ -101,7 +105,7 @@ namespace Model
     /**
      * <p>The JSON input data to the state.</p>
      */
-    inline StateEnteredEventDetails& WithInput(Aws::String&& value) { SetInput(value); return *this;}
+    inline StateEnteredEventDetails& WithInput(Aws::String&& value) { SetInput(std::move(value)); return *this;}
 
     /**
      * <p>The JSON input data to the state.</p>
@@ -109,8 +113,10 @@ namespace Model
     inline StateEnteredEventDetails& WithInput(const char* value) { SetInput(value); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_input;
     bool m_inputHasBeenSet;
   };

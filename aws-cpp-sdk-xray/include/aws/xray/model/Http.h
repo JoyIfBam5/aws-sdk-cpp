@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/xray/XRay_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     Http& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The request URL.</p>
      */
@@ -56,7 +59,7 @@ namespace Model
     /**
      * <p>The request URL.</p>
      */
-    inline void SetHttpURL(Aws::String&& value) { m_httpURLHasBeenSet = true; m_httpURL = value; }
+    inline void SetHttpURL(Aws::String&& value) { m_httpURLHasBeenSet = true; m_httpURL = std::move(value); }
 
     /**
      * <p>The request URL.</p>
@@ -71,12 +74,13 @@ namespace Model
     /**
      * <p>The request URL.</p>
      */
-    inline Http& WithHttpURL(Aws::String&& value) { SetHttpURL(value); return *this;}
+    inline Http& WithHttpURL(Aws::String&& value) { SetHttpURL(std::move(value)); return *this;}
 
     /**
      * <p>The request URL.</p>
      */
     inline Http& WithHttpURL(const char* value) { SetHttpURL(value); return *this;}
+
 
     /**
      * <p>The response status.</p>
@@ -93,6 +97,7 @@ namespace Model
      */
     inline Http& WithHttpStatus(int value) { SetHttpStatus(value); return *this;}
 
+
     /**
      * <p>The request method.</p>
      */
@@ -106,7 +111,7 @@ namespace Model
     /**
      * <p>The request method.</p>
      */
-    inline void SetHttpMethod(Aws::String&& value) { m_httpMethodHasBeenSet = true; m_httpMethod = value; }
+    inline void SetHttpMethod(Aws::String&& value) { m_httpMethodHasBeenSet = true; m_httpMethod = std::move(value); }
 
     /**
      * <p>The request method.</p>
@@ -121,12 +126,13 @@ namespace Model
     /**
      * <p>The request method.</p>
      */
-    inline Http& WithHttpMethod(Aws::String&& value) { SetHttpMethod(value); return *this;}
+    inline Http& WithHttpMethod(Aws::String&& value) { SetHttpMethod(std::move(value)); return *this;}
 
     /**
      * <p>The request method.</p>
      */
     inline Http& WithHttpMethod(const char* value) { SetHttpMethod(value); return *this;}
+
 
     /**
      * <p>The request's user agent string.</p>
@@ -141,7 +147,7 @@ namespace Model
     /**
      * <p>The request's user agent string.</p>
      */
-    inline void SetUserAgent(Aws::String&& value) { m_userAgentHasBeenSet = true; m_userAgent = value; }
+    inline void SetUserAgent(Aws::String&& value) { m_userAgentHasBeenSet = true; m_userAgent = std::move(value); }
 
     /**
      * <p>The request's user agent string.</p>
@@ -156,12 +162,13 @@ namespace Model
     /**
      * <p>The request's user agent string.</p>
      */
-    inline Http& WithUserAgent(Aws::String&& value) { SetUserAgent(value); return *this;}
+    inline Http& WithUserAgent(Aws::String&& value) { SetUserAgent(std::move(value)); return *this;}
 
     /**
      * <p>The request's user agent string.</p>
      */
     inline Http& WithUserAgent(const char* value) { SetUserAgent(value); return *this;}
+
 
     /**
      * <p>The IP address of the requestor.</p>
@@ -176,7 +183,7 @@ namespace Model
     /**
      * <p>The IP address of the requestor.</p>
      */
-    inline void SetClientIp(Aws::String&& value) { m_clientIpHasBeenSet = true; m_clientIp = value; }
+    inline void SetClientIp(Aws::String&& value) { m_clientIpHasBeenSet = true; m_clientIp = std::move(value); }
 
     /**
      * <p>The IP address of the requestor.</p>
@@ -191,7 +198,7 @@ namespace Model
     /**
      * <p>The IP address of the requestor.</p>
      */
-    inline Http& WithClientIp(Aws::String&& value) { SetClientIp(value); return *this;}
+    inline Http& WithClientIp(Aws::String&& value) { SetClientIp(std::move(value)); return *this;}
 
     /**
      * <p>The IP address of the requestor.</p>
@@ -199,14 +206,19 @@ namespace Model
     inline Http& WithClientIp(const char* value) { SetClientIp(value); return *this;}
 
   private:
+
     Aws::String m_httpURL;
     bool m_httpURLHasBeenSet;
+
     int m_httpStatus;
     bool m_httpStatusHasBeenSet;
+
     Aws::String m_httpMethod;
     bool m_httpMethodHasBeenSet;
+
     Aws::String m_userAgent;
     bool m_userAgentHasBeenSet;
+
     Aws::String m_clientIp;
     bool m_clientIpHasBeenSet;
   };

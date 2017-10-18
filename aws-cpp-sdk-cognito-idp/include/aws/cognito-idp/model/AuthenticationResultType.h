@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/cognito-idp/model/NewDeviceMetadataType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     AuthenticationResultType& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The access token of the authentication result.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The access token of the authentication result.</p>
      */
-    inline void SetAccessToken(Aws::String&& value) { m_accessTokenHasBeenSet = true; m_accessToken = value; }
+    inline void SetAccessToken(Aws::String&& value) { m_accessTokenHasBeenSet = true; m_accessToken = std::move(value); }
 
     /**
      * <p>The access token of the authentication result.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The access token of the authentication result.</p>
      */
-    inline AuthenticationResultType& WithAccessToken(Aws::String&& value) { SetAccessToken(value); return *this;}
+    inline AuthenticationResultType& WithAccessToken(Aws::String&& value) { SetAccessToken(std::move(value)); return *this;}
 
     /**
      * <p>The access token of the authentication result.</p>
      */
     inline AuthenticationResultType& WithAccessToken(const char* value) { SetAccessToken(value); return *this;}
+
 
     /**
      * <p>The expiration period of the authentication result.</p>
@@ -94,6 +98,7 @@ namespace Model
      */
     inline AuthenticationResultType& WithExpiresIn(int value) { SetExpiresIn(value); return *this;}
 
+
     /**
      * <p>The token type of the authentication result.</p>
      */
@@ -107,7 +112,7 @@ namespace Model
     /**
      * <p>The token type of the authentication result.</p>
      */
-    inline void SetTokenType(Aws::String&& value) { m_tokenTypeHasBeenSet = true; m_tokenType = value; }
+    inline void SetTokenType(Aws::String&& value) { m_tokenTypeHasBeenSet = true; m_tokenType = std::move(value); }
 
     /**
      * <p>The token type of the authentication result.</p>
@@ -122,12 +127,13 @@ namespace Model
     /**
      * <p>The token type of the authentication result.</p>
      */
-    inline AuthenticationResultType& WithTokenType(Aws::String&& value) { SetTokenType(value); return *this;}
+    inline AuthenticationResultType& WithTokenType(Aws::String&& value) { SetTokenType(std::move(value)); return *this;}
 
     /**
      * <p>The token type of the authentication result.</p>
      */
     inline AuthenticationResultType& WithTokenType(const char* value) { SetTokenType(value); return *this;}
+
 
     /**
      * <p>The refresh token of the authentication result.</p>
@@ -142,7 +148,7 @@ namespace Model
     /**
      * <p>The refresh token of the authentication result.</p>
      */
-    inline void SetRefreshToken(Aws::String&& value) { m_refreshTokenHasBeenSet = true; m_refreshToken = value; }
+    inline void SetRefreshToken(Aws::String&& value) { m_refreshTokenHasBeenSet = true; m_refreshToken = std::move(value); }
 
     /**
      * <p>The refresh token of the authentication result.</p>
@@ -157,12 +163,13 @@ namespace Model
     /**
      * <p>The refresh token of the authentication result.</p>
      */
-    inline AuthenticationResultType& WithRefreshToken(Aws::String&& value) { SetRefreshToken(value); return *this;}
+    inline AuthenticationResultType& WithRefreshToken(Aws::String&& value) { SetRefreshToken(std::move(value)); return *this;}
 
     /**
      * <p>The refresh token of the authentication result.</p>
      */
     inline AuthenticationResultType& WithRefreshToken(const char* value) { SetRefreshToken(value); return *this;}
+
 
     /**
      * <p>The ID token of the authentication result.</p>
@@ -177,7 +184,7 @@ namespace Model
     /**
      * <p>The ID token of the authentication result.</p>
      */
-    inline void SetIdToken(Aws::String&& value) { m_idTokenHasBeenSet = true; m_idToken = value; }
+    inline void SetIdToken(Aws::String&& value) { m_idTokenHasBeenSet = true; m_idToken = std::move(value); }
 
     /**
      * <p>The ID token of the authentication result.</p>
@@ -192,12 +199,13 @@ namespace Model
     /**
      * <p>The ID token of the authentication result.</p>
      */
-    inline AuthenticationResultType& WithIdToken(Aws::String&& value) { SetIdToken(value); return *this;}
+    inline AuthenticationResultType& WithIdToken(Aws::String&& value) { SetIdToken(std::move(value)); return *this;}
 
     /**
      * <p>The ID token of the authentication result.</p>
      */
     inline AuthenticationResultType& WithIdToken(const char* value) { SetIdToken(value); return *this;}
+
 
     /**
      * <p>The new device metadata from an authentication result.</p>
@@ -212,7 +220,7 @@ namespace Model
     /**
      * <p>The new device metadata from an authentication result.</p>
      */
-    inline void SetNewDeviceMetadata(NewDeviceMetadataType&& value) { m_newDeviceMetadataHasBeenSet = true; m_newDeviceMetadata = value; }
+    inline void SetNewDeviceMetadata(NewDeviceMetadataType&& value) { m_newDeviceMetadataHasBeenSet = true; m_newDeviceMetadata = std::move(value); }
 
     /**
      * <p>The new device metadata from an authentication result.</p>
@@ -222,19 +230,25 @@ namespace Model
     /**
      * <p>The new device metadata from an authentication result.</p>
      */
-    inline AuthenticationResultType& WithNewDeviceMetadata(NewDeviceMetadataType&& value) { SetNewDeviceMetadata(value); return *this;}
+    inline AuthenticationResultType& WithNewDeviceMetadata(NewDeviceMetadataType&& value) { SetNewDeviceMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_accessToken;
     bool m_accessTokenHasBeenSet;
+
     int m_expiresIn;
     bool m_expiresInHasBeenSet;
+
     Aws::String m_tokenType;
     bool m_tokenTypeHasBeenSet;
+
     Aws::String m_refreshToken;
     bool m_refreshTokenHasBeenSet;
+
     Aws::String m_idToken;
     bool m_idTokenHasBeenSet;
+
     NewDeviceMetadataType m_newDeviceMetadata;
     bool m_newDeviceMetadataHasBeenSet;
   };

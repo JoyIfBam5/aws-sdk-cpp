@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rekognition/Rekognition_EXPORTS.h>
 
@@ -30,7 +31,7 @@ namespace Model
 {
 
   /**
-   * <p>Indicates the pose of the face as determined by pitch, roll, and the
+   * <p>Indicates the pose of the face as determined by its pitch, roll, and
    * yaw.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/Pose">AWS
    * API Reference</a></p>
@@ -42,6 +43,7 @@ namespace Model
     Pose(const Aws::Utils::Json::JsonValue& jsonValue);
     Pose& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>Value representing the face rotation on the roll axis.</p>
@@ -58,6 +60,7 @@ namespace Model
      */
     inline Pose& WithRoll(double value) { SetRoll(value); return *this;}
 
+
     /**
      * <p>Value representing the face rotation on the yaw axis.</p>
      */
@@ -72,6 +75,7 @@ namespace Model
      * <p>Value representing the face rotation on the yaw axis.</p>
      */
     inline Pose& WithYaw(double value) { SetYaw(value); return *this;}
+
 
     /**
      * <p>Value representing the face rotation on the pitch axis.</p>
@@ -89,10 +93,13 @@ namespace Model
     inline Pose& WithPitch(double value) { SetPitch(value); return *this;}
 
   private:
+
     double m_roll;
     bool m_rollHasBeenSet;
+
     double m_yaw;
     bool m_yawHasBeenSet;
+
     double m_pitch;
     bool m_pitchHasBeenSet;
   };

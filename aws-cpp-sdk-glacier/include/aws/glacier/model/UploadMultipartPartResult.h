@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/glacier/Glacier_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     UploadMultipartPartResult();
-    UploadMultipartPartResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    UploadMultipartPartResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UploadMultipartPartResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UploadMultipartPartResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The SHA256 tree hash that Amazon Glacier computed for the uploaded part.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The SHA256 tree hash that Amazon Glacier computed for the uploaded part.</p>
      */
-    inline void SetChecksum(Aws::String&& value) { m_checksum = value; }
+    inline void SetChecksum(Aws::String&& value) { m_checksum = std::move(value); }
 
     /**
      * <p>The SHA256 tree hash that Amazon Glacier computed for the uploaded part.</p>
@@ -73,7 +76,7 @@ namespace Model
     /**
      * <p>The SHA256 tree hash that Amazon Glacier computed for the uploaded part.</p>
      */
-    inline UploadMultipartPartResult& WithChecksum(Aws::String&& value) { SetChecksum(value); return *this;}
+    inline UploadMultipartPartResult& WithChecksum(Aws::String&& value) { SetChecksum(std::move(value)); return *this;}
 
     /**
      * <p>The SHA256 tree hash that Amazon Glacier computed for the uploaded part.</p>
@@ -81,6 +84,7 @@ namespace Model
     inline UploadMultipartPartResult& WithChecksum(const char* value) { SetChecksum(value); return *this;}
 
   private:
+
     Aws::String m_checksum;
   };
 

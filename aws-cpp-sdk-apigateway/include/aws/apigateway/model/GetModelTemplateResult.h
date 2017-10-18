@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,8 +46,9 @@ namespace Model
   {
   public:
     GetModelTemplateResult();
-    GetModelTemplateResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetModelTemplateResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetModelTemplateResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetModelTemplateResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The Apache <a
@@ -69,7 +72,7 @@ namespace Model
      * target="_blank">Velocity Template Language (VTL)</a> template content used for
      * the template resource.</p>
      */
-    inline void SetValue(Aws::String&& value) { m_value = value; }
+    inline void SetValue(Aws::String&& value) { m_value = std::move(value); }
 
     /**
      * <p>The Apache <a
@@ -93,7 +96,7 @@ namespace Model
      * target="_blank">Velocity Template Language (VTL)</a> template content used for
      * the template resource.</p>
      */
-    inline GetModelTemplateResult& WithValue(Aws::String&& value) { SetValue(value); return *this;}
+    inline GetModelTemplateResult& WithValue(Aws::String&& value) { SetValue(std::move(value)); return *this;}
 
     /**
      * <p>The Apache <a
@@ -104,6 +107,7 @@ namespace Model
     inline GetModelTemplateResult& WithValue(const char* value) { SetValue(value); return *this;}
 
   private:
+
     Aws::String m_value;
   };
 

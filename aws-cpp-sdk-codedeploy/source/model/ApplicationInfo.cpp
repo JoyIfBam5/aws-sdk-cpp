@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/codedeploy/model/ApplicationInfo.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -32,7 +33,8 @@ ApplicationInfo::ApplicationInfo() :
     m_applicationNameHasBeenSet(false),
     m_createTimeHasBeenSet(false),
     m_linkedToGitHub(false),
-    m_linkedToGitHubHasBeenSet(false)
+    m_linkedToGitHubHasBeenSet(false),
+    m_gitHubAccountNameHasBeenSet(false)
 {
 }
 
@@ -41,7 +43,8 @@ ApplicationInfo::ApplicationInfo(const JsonValue& jsonValue) :
     m_applicationNameHasBeenSet(false),
     m_createTimeHasBeenSet(false),
     m_linkedToGitHub(false),
-    m_linkedToGitHubHasBeenSet(false)
+    m_linkedToGitHubHasBeenSet(false),
+    m_gitHubAccountNameHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -76,6 +79,13 @@ ApplicationInfo& ApplicationInfo::operator =(const JsonValue& jsonValue)
     m_linkedToGitHubHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("gitHubAccountName"))
+  {
+    m_gitHubAccountName = jsonValue.GetString("gitHubAccountName");
+
+    m_gitHubAccountNameHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -103,6 +113,12 @@ JsonValue ApplicationInfo::Jsonize() const
   if(m_linkedToGitHubHasBeenSet)
   {
    payload.WithBool("linkedToGitHub", m_linkedToGitHub);
+
+  }
+
+  if(m_gitHubAccountNameHasBeenSet)
+  {
+   payload.WithString("gitHubAccountName", m_gitHubAccountName);
 
   }
 

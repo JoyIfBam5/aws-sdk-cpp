@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/devicefarm/DeviceFarm_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/devicefarm/model/Job.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     ListJobsResult();
-    ListJobsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListJobsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListJobsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListJobsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about the jobs.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>Information about the jobs.</p>
      */
-    inline void SetJobs(Aws::Vector<Job>&& value) { m_jobs = value; }
+    inline void SetJobs(Aws::Vector<Job>&& value) { m_jobs = std::move(value); }
 
     /**
      * <p>Information about the jobs.</p>
@@ -69,7 +72,7 @@ namespace Model
     /**
      * <p>Information about the jobs.</p>
      */
-    inline ListJobsResult& WithJobs(Aws::Vector<Job>&& value) { SetJobs(value); return *this;}
+    inline ListJobsResult& WithJobs(Aws::Vector<Job>&& value) { SetJobs(std::move(value)); return *this;}
 
     /**
      * <p>Information about the jobs.</p>
@@ -79,7 +82,8 @@ namespace Model
     /**
      * <p>Information about the jobs.</p>
      */
-    inline ListJobsResult& AddJobs(Job&& value) { m_jobs.push_back(value); return *this; }
+    inline ListJobsResult& AddJobs(Job&& value) { m_jobs.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>If the number of items that are returned is significantly large, this is an
@@ -100,7 +104,7 @@ namespace Model
      * identifier that is also returned, which can be used in a subsequent call to this
      * operation to return the next set of items in the list.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>If the number of items that are returned is significantly large, this is an
@@ -121,7 +125,7 @@ namespace Model
      * identifier that is also returned, which can be used in a subsequent call to this
      * operation to return the next set of items in the list.</p>
      */
-    inline ListJobsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListJobsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>If the number of items that are returned is significantly large, this is an
@@ -131,7 +135,9 @@ namespace Model
     inline ListJobsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Job> m_jobs;
+
     Aws::String m_nextToken;
   };
 

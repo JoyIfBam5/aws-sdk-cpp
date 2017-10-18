@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/opsworks/OpsWorksRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     SetPermissionRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "SetPermission"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The stack ID.</p>
@@ -47,7 +57,7 @@ namespace Model
     /**
      * <p>The stack ID.</p>
      */
-    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = value; }
+    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = std::move(value); }
 
     /**
      * <p>The stack ID.</p>
@@ -62,12 +72,13 @@ namespace Model
     /**
      * <p>The stack ID.</p>
      */
-    inline SetPermissionRequest& WithStackId(Aws::String&& value) { SetStackId(value); return *this;}
+    inline SetPermissionRequest& WithStackId(Aws::String&& value) { SetStackId(std::move(value)); return *this;}
 
     /**
      * <p>The stack ID.</p>
      */
     inline SetPermissionRequest& WithStackId(const char* value) { SetStackId(value); return *this;}
+
 
     /**
      * <p>The user's IAM ARN. This can also be a federated user's ARN.</p>
@@ -82,7 +93,7 @@ namespace Model
     /**
      * <p>The user's IAM ARN. This can also be a federated user's ARN.</p>
      */
-    inline void SetIamUserArn(Aws::String&& value) { m_iamUserArnHasBeenSet = true; m_iamUserArn = value; }
+    inline void SetIamUserArn(Aws::String&& value) { m_iamUserArnHasBeenSet = true; m_iamUserArn = std::move(value); }
 
     /**
      * <p>The user's IAM ARN. This can also be a federated user's ARN.</p>
@@ -97,12 +108,13 @@ namespace Model
     /**
      * <p>The user's IAM ARN. This can also be a federated user's ARN.</p>
      */
-    inline SetPermissionRequest& WithIamUserArn(Aws::String&& value) { SetIamUserArn(value); return *this;}
+    inline SetPermissionRequest& WithIamUserArn(Aws::String&& value) { SetIamUserArn(std::move(value)); return *this;}
 
     /**
      * <p>The user's IAM ARN. This can also be a federated user's ARN.</p>
      */
     inline SetPermissionRequest& WithIamUserArn(const char* value) { SetIamUserArn(value); return *this;}
+
 
     /**
      * <p>The user is allowed to use SSH to communicate with the instance.</p>
@@ -119,6 +131,7 @@ namespace Model
      */
     inline SetPermissionRequest& WithAllowSsh(bool value) { SetAllowSsh(value); return *this;}
 
+
     /**
      * <p>The user is allowed to use <b>sudo</b> to elevate privileges.</p>
      */
@@ -133,6 +146,7 @@ namespace Model
      * <p>The user is allowed to use <b>sudo</b> to elevate privileges.</p>
      */
     inline SetPermissionRequest& WithAllowSudo(bool value) { SetAllowSudo(value); return *this;}
+
 
     /**
      * <p>The user's permission level, which must be set to one of the following
@@ -168,7 +182,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
      * User Permissions</a>.</p>
      */
-    inline void SetLevel(Aws::String&& value) { m_levelHasBeenSet = true; m_level = value; }
+    inline void SetLevel(Aws::String&& value) { m_levelHasBeenSet = true; m_level = std::move(value); }
 
     /**
      * <p>The user's permission level, which must be set to one of the following
@@ -204,7 +218,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html">Managing
      * User Permissions</a>.</p>
      */
-    inline SetPermissionRequest& WithLevel(Aws::String&& value) { SetLevel(value); return *this;}
+    inline SetPermissionRequest& WithLevel(Aws::String&& value) { SetLevel(std::move(value)); return *this;}
 
     /**
      * <p>The user's permission level, which must be set to one of the following
@@ -219,14 +233,19 @@ namespace Model
     inline SetPermissionRequest& WithLevel(const char* value) { SetLevel(value); return *this;}
 
   private:
+
     Aws::String m_stackId;
     bool m_stackIdHasBeenSet;
+
     Aws::String m_iamUserArn;
     bool m_iamUserArnHasBeenSet;
+
     bool m_allowSsh;
     bool m_allowSshHasBeenSet;
+
     bool m_allowSudo;
     bool m_allowSudoHasBeenSet;
+
     Aws::String m_level;
     bool m_levelHasBeenSet;
   };

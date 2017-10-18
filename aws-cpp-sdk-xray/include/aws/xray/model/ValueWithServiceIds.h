@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/xray/XRay_EXPORTS.h>
 #include <aws/xray/model/AnnotationValue.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/xray/model/ServiceId.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     ValueWithServiceIds& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Values of the annotation.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>Values of the annotation.</p>
      */
-    inline void SetAnnotationValue(AnnotationValue&& value) { m_annotationValueHasBeenSet = true; m_annotationValue = value; }
+    inline void SetAnnotationValue(AnnotationValue&& value) { m_annotationValueHasBeenSet = true; m_annotationValue = std::move(value); }
 
     /**
      * <p>Values of the annotation.</p>
@@ -68,7 +71,8 @@ namespace Model
     /**
      * <p>Values of the annotation.</p>
      */
-    inline ValueWithServiceIds& WithAnnotationValue(AnnotationValue&& value) { SetAnnotationValue(value); return *this;}
+    inline ValueWithServiceIds& WithAnnotationValue(AnnotationValue&& value) { SetAnnotationValue(std::move(value)); return *this;}
+
 
     /**
      * <p>Services to which the annotation applies.</p>
@@ -83,7 +87,7 @@ namespace Model
     /**
      * <p>Services to which the annotation applies.</p>
      */
-    inline void SetServiceIds(Aws::Vector<ServiceId>&& value) { m_serviceIdsHasBeenSet = true; m_serviceIds = value; }
+    inline void SetServiceIds(Aws::Vector<ServiceId>&& value) { m_serviceIdsHasBeenSet = true; m_serviceIds = std::move(value); }
 
     /**
      * <p>Services to which the annotation applies.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>Services to which the annotation applies.</p>
      */
-    inline ValueWithServiceIds& WithServiceIds(Aws::Vector<ServiceId>&& value) { SetServiceIds(value); return *this;}
+    inline ValueWithServiceIds& WithServiceIds(Aws::Vector<ServiceId>&& value) { SetServiceIds(std::move(value)); return *this;}
 
     /**
      * <p>Services to which the annotation applies.</p>
@@ -103,11 +107,13 @@ namespace Model
     /**
      * <p>Services to which the annotation applies.</p>
      */
-    inline ValueWithServiceIds& AddServiceIds(ServiceId&& value) { m_serviceIdsHasBeenSet = true; m_serviceIds.push_back(value); return *this; }
+    inline ValueWithServiceIds& AddServiceIds(ServiceId&& value) { m_serviceIdsHasBeenSet = true; m_serviceIds.push_back(std::move(value)); return *this; }
 
   private:
+
     AnnotationValue m_annotationValue;
     bool m_annotationValueHasBeenSet;
+
     Aws::Vector<ServiceId> m_serviceIds;
     bool m_serviceIdsHasBeenSet;
   };

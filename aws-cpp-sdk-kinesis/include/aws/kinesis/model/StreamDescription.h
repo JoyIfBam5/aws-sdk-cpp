@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,14 +12,17 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesis/Kinesis_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/kinesis/model/StreamStatus.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/DateTime.h>
+#include <aws/kinesis/model/EncryptionType.h>
 #include <aws/kinesis/model/Shard.h>
 #include <aws/kinesis/model/EnhancedMetrics.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +52,7 @@ namespace Model
     StreamDescription& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The name of the stream being described.</p>
      */
@@ -62,7 +66,7 @@ namespace Model
     /**
      * <p>The name of the stream being described.</p>
      */
-    inline void SetStreamName(Aws::String&& value) { m_streamNameHasBeenSet = true; m_streamName = value; }
+    inline void SetStreamName(Aws::String&& value) { m_streamNameHasBeenSet = true; m_streamName = std::move(value); }
 
     /**
      * <p>The name of the stream being described.</p>
@@ -77,12 +81,13 @@ namespace Model
     /**
      * <p>The name of the stream being described.</p>
      */
-    inline StreamDescription& WithStreamName(Aws::String&& value) { SetStreamName(value); return *this;}
+    inline StreamDescription& WithStreamName(Aws::String&& value) { SetStreamName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the stream being described.</p>
      */
     inline StreamDescription& WithStreamName(const char* value) { SetStreamName(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) for the stream being described.</p>
@@ -97,7 +102,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) for the stream being described.</p>
      */
-    inline void SetStreamARN(Aws::String&& value) { m_streamARNHasBeenSet = true; m_streamARN = value; }
+    inline void SetStreamARN(Aws::String&& value) { m_streamARNHasBeenSet = true; m_streamARN = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) for the stream being described.</p>
@@ -112,12 +117,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) for the stream being described.</p>
      */
-    inline StreamDescription& WithStreamARN(Aws::String&& value) { SetStreamARN(value); return *this;}
+    inline StreamDescription& WithStreamARN(Aws::String&& value) { SetStreamARN(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) for the stream being described.</p>
      */
     inline StreamDescription& WithStreamARN(const char* value) { SetStreamARN(value); return *this;}
+
 
     /**
      * <p>The current status of the stream being described. The stream status is one of
@@ -165,7 +171,7 @@ namespace Model
      * continue to work while the stream is in the <code>UPDATING</code> state.</p>
      * </li> </ul>
      */
-    inline void SetStreamStatus(StreamStatus&& value) { m_streamStatusHasBeenSet = true; m_streamStatus = value; }
+    inline void SetStreamStatus(StreamStatus&& value) { m_streamStatusHasBeenSet = true; m_streamStatus = std::move(value); }
 
     /**
      * <p>The current status of the stream being described. The stream status is one of
@@ -197,7 +203,8 @@ namespace Model
      * continue to work while the stream is in the <code>UPDATING</code> state.</p>
      * </li> </ul>
      */
-    inline StreamDescription& WithStreamStatus(StreamStatus&& value) { SetStreamStatus(value); return *this;}
+    inline StreamDescription& WithStreamStatus(StreamStatus&& value) { SetStreamStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>The shards that comprise the stream.</p>
@@ -212,7 +219,7 @@ namespace Model
     /**
      * <p>The shards that comprise the stream.</p>
      */
-    inline void SetShards(Aws::Vector<Shard>&& value) { m_shardsHasBeenSet = true; m_shards = value; }
+    inline void SetShards(Aws::Vector<Shard>&& value) { m_shardsHasBeenSet = true; m_shards = std::move(value); }
 
     /**
      * <p>The shards that comprise the stream.</p>
@@ -222,7 +229,7 @@ namespace Model
     /**
      * <p>The shards that comprise the stream.</p>
      */
-    inline StreamDescription& WithShards(Aws::Vector<Shard>&& value) { SetShards(value); return *this;}
+    inline StreamDescription& WithShards(Aws::Vector<Shard>&& value) { SetShards(std::move(value)); return *this;}
 
     /**
      * <p>The shards that comprise the stream.</p>
@@ -232,7 +239,8 @@ namespace Model
     /**
      * <p>The shards that comprise the stream.</p>
      */
-    inline StreamDescription& AddShards(Shard&& value) { m_shardsHasBeenSet = true; m_shards.push_back(value); return *this; }
+    inline StreamDescription& AddShards(Shard&& value) { m_shardsHasBeenSet = true; m_shards.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>If set to <code>true</code>, more shards in the stream are available to
@@ -252,6 +260,7 @@ namespace Model
      */
     inline StreamDescription& WithHasMoreShards(bool value) { SetHasMoreShards(value); return *this;}
 
+
     /**
      * <p>The current retention period, in hours.</p>
      */
@@ -267,6 +276,7 @@ namespace Model
      */
     inline StreamDescription& WithRetentionPeriodHours(int value) { SetRetentionPeriodHours(value); return *this;}
 
+
     /**
      * <p>The approximate time that the stream was created.</p>
      */
@@ -280,7 +290,7 @@ namespace Model
     /**
      * <p>The approximate time that the stream was created.</p>
      */
-    inline void SetStreamCreationTimestamp(Aws::Utils::DateTime&& value) { m_streamCreationTimestampHasBeenSet = true; m_streamCreationTimestamp = value; }
+    inline void SetStreamCreationTimestamp(Aws::Utils::DateTime&& value) { m_streamCreationTimestampHasBeenSet = true; m_streamCreationTimestamp = std::move(value); }
 
     /**
      * <p>The approximate time that the stream was created.</p>
@@ -290,7 +300,8 @@ namespace Model
     /**
      * <p>The approximate time that the stream was created.</p>
      */
-    inline StreamDescription& WithStreamCreationTimestamp(Aws::Utils::DateTime&& value) { SetStreamCreationTimestamp(value); return *this;}
+    inline StreamDescription& WithStreamCreationTimestamp(Aws::Utils::DateTime&& value) { SetStreamCreationTimestamp(std::move(value)); return *this;}
+
 
     /**
      * <p>Represents the current enhanced monitoring settings of the stream.</p>
@@ -305,7 +316,7 @@ namespace Model
     /**
      * <p>Represents the current enhanced monitoring settings of the stream.</p>
      */
-    inline void SetEnhancedMonitoring(Aws::Vector<EnhancedMetrics>&& value) { m_enhancedMonitoringHasBeenSet = true; m_enhancedMonitoring = value; }
+    inline void SetEnhancedMonitoring(Aws::Vector<EnhancedMetrics>&& value) { m_enhancedMonitoringHasBeenSet = true; m_enhancedMonitoring = std::move(value); }
 
     /**
      * <p>Represents the current enhanced monitoring settings of the stream.</p>
@@ -315,7 +326,7 @@ namespace Model
     /**
      * <p>Represents the current enhanced monitoring settings of the stream.</p>
      */
-    inline StreamDescription& WithEnhancedMonitoring(Aws::Vector<EnhancedMetrics>&& value) { SetEnhancedMonitoring(value); return *this;}
+    inline StreamDescription& WithEnhancedMonitoring(Aws::Vector<EnhancedMetrics>&& value) { SetEnhancedMonitoring(std::move(value)); return *this;}
 
     /**
      * <p>Represents the current enhanced monitoring settings of the stream.</p>
@@ -325,25 +336,128 @@ namespace Model
     /**
      * <p>Represents the current enhanced monitoring settings of the stream.</p>
      */
-    inline StreamDescription& AddEnhancedMonitoring(EnhancedMetrics&& value) { m_enhancedMonitoringHasBeenSet = true; m_enhancedMonitoring.push_back(value); return *this; }
+    inline StreamDescription& AddEnhancedMonitoring(EnhancedMetrics&& value) { m_enhancedMonitoringHasBeenSet = true; m_enhancedMonitoring.push_back(std::move(value)); return *this; }
+
+
+    /**
+     * <p>The server-side encryption type used on the stream. This parameter can be one
+     * of the following values:</p> <ul> <li> <p> <code>NONE</code>: Do not encrypt the
+     * records in the stream.</p> </li> <li> <p> <code>KMS</code>: Use server-side
+     * encryption on the records in the stream using a customer-managed KMS key.</p>
+     * </li> </ul>
+     */
+    inline const EncryptionType& GetEncryptionType() const{ return m_encryptionType; }
+
+    /**
+     * <p>The server-side encryption type used on the stream. This parameter can be one
+     * of the following values:</p> <ul> <li> <p> <code>NONE</code>: Do not encrypt the
+     * records in the stream.</p> </li> <li> <p> <code>KMS</code>: Use server-side
+     * encryption on the records in the stream using a customer-managed KMS key.</p>
+     * </li> </ul>
+     */
+    inline void SetEncryptionType(const EncryptionType& value) { m_encryptionTypeHasBeenSet = true; m_encryptionType = value; }
+
+    /**
+     * <p>The server-side encryption type used on the stream. This parameter can be one
+     * of the following values:</p> <ul> <li> <p> <code>NONE</code>: Do not encrypt the
+     * records in the stream.</p> </li> <li> <p> <code>KMS</code>: Use server-side
+     * encryption on the records in the stream using a customer-managed KMS key.</p>
+     * </li> </ul>
+     */
+    inline void SetEncryptionType(EncryptionType&& value) { m_encryptionTypeHasBeenSet = true; m_encryptionType = std::move(value); }
+
+    /**
+     * <p>The server-side encryption type used on the stream. This parameter can be one
+     * of the following values:</p> <ul> <li> <p> <code>NONE</code>: Do not encrypt the
+     * records in the stream.</p> </li> <li> <p> <code>KMS</code>: Use server-side
+     * encryption on the records in the stream using a customer-managed KMS key.</p>
+     * </li> </ul>
+     */
+    inline StreamDescription& WithEncryptionType(const EncryptionType& value) { SetEncryptionType(value); return *this;}
+
+    /**
+     * <p>The server-side encryption type used on the stream. This parameter can be one
+     * of the following values:</p> <ul> <li> <p> <code>NONE</code>: Do not encrypt the
+     * records in the stream.</p> </li> <li> <p> <code>KMS</code>: Use server-side
+     * encryption on the records in the stream using a customer-managed KMS key.</p>
+     * </li> </ul>
+     */
+    inline StreamDescription& WithEncryptionType(EncryptionType&& value) { SetEncryptionType(std::move(value)); return *this;}
+
+
+    /**
+     * <p>The GUID for the customer-managed KMS key used for encryption on the
+     * stream.</p>
+     */
+    inline const Aws::String& GetKeyId() const{ return m_keyId; }
+
+    /**
+     * <p>The GUID for the customer-managed KMS key used for encryption on the
+     * stream.</p>
+     */
+    inline void SetKeyId(const Aws::String& value) { m_keyIdHasBeenSet = true; m_keyId = value; }
+
+    /**
+     * <p>The GUID for the customer-managed KMS key used for encryption on the
+     * stream.</p>
+     */
+    inline void SetKeyId(Aws::String&& value) { m_keyIdHasBeenSet = true; m_keyId = std::move(value); }
+
+    /**
+     * <p>The GUID for the customer-managed KMS key used for encryption on the
+     * stream.</p>
+     */
+    inline void SetKeyId(const char* value) { m_keyIdHasBeenSet = true; m_keyId.assign(value); }
+
+    /**
+     * <p>The GUID for the customer-managed KMS key used for encryption on the
+     * stream.</p>
+     */
+    inline StreamDescription& WithKeyId(const Aws::String& value) { SetKeyId(value); return *this;}
+
+    /**
+     * <p>The GUID for the customer-managed KMS key used for encryption on the
+     * stream.</p>
+     */
+    inline StreamDescription& WithKeyId(Aws::String&& value) { SetKeyId(std::move(value)); return *this;}
+
+    /**
+     * <p>The GUID for the customer-managed KMS key used for encryption on the
+     * stream.</p>
+     */
+    inline StreamDescription& WithKeyId(const char* value) { SetKeyId(value); return *this;}
 
   private:
+
     Aws::String m_streamName;
     bool m_streamNameHasBeenSet;
+
     Aws::String m_streamARN;
     bool m_streamARNHasBeenSet;
+
     StreamStatus m_streamStatus;
     bool m_streamStatusHasBeenSet;
+
     Aws::Vector<Shard> m_shards;
     bool m_shardsHasBeenSet;
+
     bool m_hasMoreShards;
     bool m_hasMoreShardsHasBeenSet;
+
     int m_retentionPeriodHours;
     bool m_retentionPeriodHoursHasBeenSet;
+
     Aws::Utils::DateTime m_streamCreationTimestamp;
     bool m_streamCreationTimestampHasBeenSet;
+
     Aws::Vector<EnhancedMetrics> m_enhancedMonitoring;
     bool m_enhancedMonitoringHasBeenSet;
+
+    EncryptionType m_encryptionType;
+    bool m_encryptionTypeHasBeenSet;
+
+    Aws::String m_keyId;
+    bool m_keyIdHasBeenSet;
   };
 
 } // namespace Model

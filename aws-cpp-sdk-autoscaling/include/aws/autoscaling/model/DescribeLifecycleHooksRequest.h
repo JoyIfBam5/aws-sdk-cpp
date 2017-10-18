@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/autoscaling/AutoScaling_EXPORTS.h>
 #include <aws/autoscaling/AutoScalingRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -26,16 +28,24 @@ namespace Model
 {
 
   /**
-   * <p>Contains the parameters for DescribeLifecycleHooks.</p><p><h3>See Also:</h3> 
-   * <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/autoscaling-2011-01-01/DescribeLifecycleHooksType">AWS
-   * API Reference</a></p>
    */
   class AWS_AUTOSCALING_API DescribeLifecycleHooksRequest : public AutoScalingRequest
   {
   public:
     DescribeLifecycleHooksRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DescribeLifecycleHooks"; }
+
     Aws::String SerializePayload() const override;
+
+  protected:
+    void DumpBodyToUrl(Aws::Http::URI& uri ) const override;
+
+  public:
 
     /**
      * <p>The name of the group.</p>
@@ -50,7 +60,7 @@ namespace Model
     /**
      * <p>The name of the group.</p>
      */
-    inline void SetAutoScalingGroupName(Aws::String&& value) { m_autoScalingGroupNameHasBeenSet = true; m_autoScalingGroupName = value; }
+    inline void SetAutoScalingGroupName(Aws::String&& value) { m_autoScalingGroupNameHasBeenSet = true; m_autoScalingGroupName = std::move(value); }
 
     /**
      * <p>The name of the group.</p>
@@ -65,12 +75,13 @@ namespace Model
     /**
      * <p>The name of the group.</p>
      */
-    inline DescribeLifecycleHooksRequest& WithAutoScalingGroupName(Aws::String&& value) { SetAutoScalingGroupName(value); return *this;}
+    inline DescribeLifecycleHooksRequest& WithAutoScalingGroupName(Aws::String&& value) { SetAutoScalingGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the group.</p>
      */
     inline DescribeLifecycleHooksRequest& WithAutoScalingGroupName(const char* value) { SetAutoScalingGroupName(value); return *this;}
+
 
     /**
      * <p>The names of one or more lifecycle hooks. If you omit this parameter, all
@@ -88,7 +99,7 @@ namespace Model
      * <p>The names of one or more lifecycle hooks. If you omit this parameter, all
      * lifecycle hooks are described.</p>
      */
-    inline void SetLifecycleHookNames(Aws::Vector<Aws::String>&& value) { m_lifecycleHookNamesHasBeenSet = true; m_lifecycleHookNames = value; }
+    inline void SetLifecycleHookNames(Aws::Vector<Aws::String>&& value) { m_lifecycleHookNamesHasBeenSet = true; m_lifecycleHookNames = std::move(value); }
 
     /**
      * <p>The names of one or more lifecycle hooks. If you omit this parameter, all
@@ -100,7 +111,7 @@ namespace Model
      * <p>The names of one or more lifecycle hooks. If you omit this parameter, all
      * lifecycle hooks are described.</p>
      */
-    inline DescribeLifecycleHooksRequest& WithLifecycleHookNames(Aws::Vector<Aws::String>&& value) { SetLifecycleHookNames(value); return *this;}
+    inline DescribeLifecycleHooksRequest& WithLifecycleHookNames(Aws::Vector<Aws::String>&& value) { SetLifecycleHookNames(std::move(value)); return *this;}
 
     /**
      * <p>The names of one or more lifecycle hooks. If you omit this parameter, all
@@ -112,7 +123,7 @@ namespace Model
      * <p>The names of one or more lifecycle hooks. If you omit this parameter, all
      * lifecycle hooks are described.</p>
      */
-    inline DescribeLifecycleHooksRequest& AddLifecycleHookNames(Aws::String&& value) { m_lifecycleHookNamesHasBeenSet = true; m_lifecycleHookNames.push_back(value); return *this; }
+    inline DescribeLifecycleHooksRequest& AddLifecycleHookNames(Aws::String&& value) { m_lifecycleHookNamesHasBeenSet = true; m_lifecycleHookNames.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The names of one or more lifecycle hooks. If you omit this parameter, all
@@ -121,8 +132,10 @@ namespace Model
     inline DescribeLifecycleHooksRequest& AddLifecycleHookNames(const char* value) { m_lifecycleHookNamesHasBeenSet = true; m_lifecycleHookNames.push_back(value); return *this; }
 
   private:
+
     Aws::String m_autoScalingGroupName;
     bool m_autoScalingGroupNameHasBeenSet;
+
     Aws::Vector<Aws::String> m_lifecycleHookNames;
     bool m_lifecycleHookNamesHasBeenSet;
   };

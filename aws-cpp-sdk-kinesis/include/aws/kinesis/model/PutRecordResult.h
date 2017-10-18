@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesis/Kinesis_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <aws/kinesis/model/EncryptionType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +45,9 @@ namespace Model
   {
   public:
     PutRecordResult();
-    PutRecordResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    PutRecordResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PutRecordResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    PutRecordResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The shard ID of the shard where the data record was placed.</p>
@@ -58,7 +62,7 @@ namespace Model
     /**
      * <p>The shard ID of the shard where the data record was placed.</p>
      */
-    inline void SetShardId(Aws::String&& value) { m_shardId = value; }
+    inline void SetShardId(Aws::String&& value) { m_shardId = std::move(value); }
 
     /**
      * <p>The shard ID of the shard where the data record was placed.</p>
@@ -73,12 +77,13 @@ namespace Model
     /**
      * <p>The shard ID of the shard where the data record was placed.</p>
      */
-    inline PutRecordResult& WithShardId(Aws::String&& value) { SetShardId(value); return *this;}
+    inline PutRecordResult& WithShardId(Aws::String&& value) { SetShardId(std::move(value)); return *this;}
 
     /**
      * <p>The shard ID of the shard where the data record was placed.</p>
      */
     inline PutRecordResult& WithShardId(const char* value) { SetShardId(value); return *this;}
+
 
     /**
      * <p>The sequence number identifier that was assigned to the put data record. The
@@ -102,7 +107,7 @@ namespace Model
      * sequence number is the identifier associated with every record put into the
      * stream.</p>
      */
-    inline void SetSequenceNumber(Aws::String&& value) { m_sequenceNumber = value; }
+    inline void SetSequenceNumber(Aws::String&& value) { m_sequenceNumber = std::move(value); }
 
     /**
      * <p>The sequence number identifier that was assigned to the put data record. The
@@ -126,7 +131,7 @@ namespace Model
      * sequence number is the identifier associated with every record put into the
      * stream.</p>
      */
-    inline PutRecordResult& WithSequenceNumber(Aws::String&& value) { SetSequenceNumber(value); return *this;}
+    inline PutRecordResult& WithSequenceNumber(Aws::String&& value) { SetSequenceNumber(std::move(value)); return *this;}
 
     /**
      * <p>The sequence number identifier that was assigned to the put data record. The
@@ -136,9 +141,59 @@ namespace Model
      */
     inline PutRecordResult& WithSequenceNumber(const char* value) { SetSequenceNumber(value); return *this;}
 
+
+    /**
+     * <p>The encryption type to use on the record. This parameter can be one of the
+     * following values:</p> <ul> <li> <p> <code>NONE</code>: Do not encrypt the
+     * records in the stream.</p> </li> <li> <p> <code>KMS</code>: Use server-side
+     * encryption on the records in the stream using a customer-managed KMS key.</p>
+     * </li> </ul>
+     */
+    inline const EncryptionType& GetEncryptionType() const{ return m_encryptionType; }
+
+    /**
+     * <p>The encryption type to use on the record. This parameter can be one of the
+     * following values:</p> <ul> <li> <p> <code>NONE</code>: Do not encrypt the
+     * records in the stream.</p> </li> <li> <p> <code>KMS</code>: Use server-side
+     * encryption on the records in the stream using a customer-managed KMS key.</p>
+     * </li> </ul>
+     */
+    inline void SetEncryptionType(const EncryptionType& value) { m_encryptionType = value; }
+
+    /**
+     * <p>The encryption type to use on the record. This parameter can be one of the
+     * following values:</p> <ul> <li> <p> <code>NONE</code>: Do not encrypt the
+     * records in the stream.</p> </li> <li> <p> <code>KMS</code>: Use server-side
+     * encryption on the records in the stream using a customer-managed KMS key.</p>
+     * </li> </ul>
+     */
+    inline void SetEncryptionType(EncryptionType&& value) { m_encryptionType = std::move(value); }
+
+    /**
+     * <p>The encryption type to use on the record. This parameter can be one of the
+     * following values:</p> <ul> <li> <p> <code>NONE</code>: Do not encrypt the
+     * records in the stream.</p> </li> <li> <p> <code>KMS</code>: Use server-side
+     * encryption on the records in the stream using a customer-managed KMS key.</p>
+     * </li> </ul>
+     */
+    inline PutRecordResult& WithEncryptionType(const EncryptionType& value) { SetEncryptionType(value); return *this;}
+
+    /**
+     * <p>The encryption type to use on the record. This parameter can be one of the
+     * following values:</p> <ul> <li> <p> <code>NONE</code>: Do not encrypt the
+     * records in the stream.</p> </li> <li> <p> <code>KMS</code>: Use server-side
+     * encryption on the records in the stream using a customer-managed KMS key.</p>
+     * </li> </ul>
+     */
+    inline PutRecordResult& WithEncryptionType(EncryptionType&& value) { SetEncryptionType(std::move(value)); return *this;}
+
   private:
+
     Aws::String m_shardId;
+
     Aws::String m_sequenceNumber;
+
+    EncryptionType m_encryptionType;
   };
 
 } // namespace Model

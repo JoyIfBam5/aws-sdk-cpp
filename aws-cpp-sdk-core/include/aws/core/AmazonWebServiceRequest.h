@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   *
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@
 #include <aws/core/http/HttpRequest.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/stream/ResponseStream.h>
+#include <aws/core/auth/AWSAuthSigner.h>
 
 namespace Aws
 {
@@ -63,6 +64,18 @@ namespace Aws
          * Do nothing virtual, override this to add query strings to the request
          */
         virtual void AddQueryStringParameters(Aws::Http::URI& uri) const { AWS_UNREFERENCED_PARAM(uri); }
+
+        /**
+         * Put the request to a url for later presigning. This will push the body to the url and 
+         * then adds the existing query string parameters as normal.
+         */
+        virtual void PutToPresignedUrl(Aws::Http::URI& uri) const { DumpBodyToUrl(uri); AddQueryStringParameters(uri); }
+
+        /**
+         * Defaults to true, if this is set to false, then signers, if they support body signing, will not do so
+         */
+        virtual bool SignBody() const { return true; }
+
         /**
          * Retrieves the factory for creating response streams.
          */
@@ -118,11 +131,20 @@ namespace Aws
         /**
          * get closure for notification that a request is being retried
          */
-         inline virtual const RequestRetryHandler& GetRequestRetryHandler() const { return m_requestRetryHandler; }
+        inline virtual const RequestRetryHandler& GetRequestRetryHandler() const { return m_requestRetryHandler; }
         /**
          * If this is set to true, content-md5 needs to be computed and set on the request
          */
         inline virtual bool ShouldComputeContentMd5() const { return false; }
+
+        virtual const char* GetServiceRequestName() const = 0;
+
+    protected:
+        /**
+         * Default does nothing. Override this to convert what would otherwise be the payload of the 
+         *  request to a query string format.
+         */
+        virtual void DumpBodyToUrl(Aws::Http::URI& uri) const { AWS_UNREFERENCED_PARAM(uri); }
 
     private:
         Aws::IOStreamFactory m_responseStreamFactory;

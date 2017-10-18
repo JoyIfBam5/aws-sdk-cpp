@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/logs/CloudWatchLogs_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     MetricFilterMatchRecord& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The event number.</p>
      */
@@ -59,6 +62,7 @@ namespace Model
      */
     inline MetricFilterMatchRecord& WithEventNumber(long long value) { SetEventNumber(value); return *this;}
 
+
     /**
      * <p>The raw event data.</p>
      */
@@ -72,7 +76,7 @@ namespace Model
     /**
      * <p>The raw event data.</p>
      */
-    inline void SetEventMessage(Aws::String&& value) { m_eventMessageHasBeenSet = true; m_eventMessage = value; }
+    inline void SetEventMessage(Aws::String&& value) { m_eventMessageHasBeenSet = true; m_eventMessage = std::move(value); }
 
     /**
      * <p>The raw event data.</p>
@@ -87,12 +91,13 @@ namespace Model
     /**
      * <p>The raw event data.</p>
      */
-    inline MetricFilterMatchRecord& WithEventMessage(Aws::String&& value) { SetEventMessage(value); return *this;}
+    inline MetricFilterMatchRecord& WithEventMessage(Aws::String&& value) { SetEventMessage(std::move(value)); return *this;}
 
     /**
      * <p>The raw event data.</p>
      */
     inline MetricFilterMatchRecord& WithEventMessage(const char* value) { SetEventMessage(value); return *this;}
+
 
     /**
      * <p>The values extracted from the event data by the filter.</p>
@@ -107,7 +112,7 @@ namespace Model
     /**
      * <p>The values extracted from the event data by the filter.</p>
      */
-    inline void SetExtractedValues(Aws::Map<Aws::String, Aws::String>&& value) { m_extractedValuesHasBeenSet = true; m_extractedValues = value; }
+    inline void SetExtractedValues(Aws::Map<Aws::String, Aws::String>&& value) { m_extractedValuesHasBeenSet = true; m_extractedValues = std::move(value); }
 
     /**
      * <p>The values extracted from the event data by the filter.</p>
@@ -117,48 +122,51 @@ namespace Model
     /**
      * <p>The values extracted from the event data by the filter.</p>
      */
-    inline MetricFilterMatchRecord& WithExtractedValues(Aws::Map<Aws::String, Aws::String>&& value) { SetExtractedValues(value); return *this;}
+    inline MetricFilterMatchRecord& WithExtractedValues(Aws::Map<Aws::String, Aws::String>&& value) { SetExtractedValues(std::move(value)); return *this;}
 
     /**
      * <p>The values extracted from the event data by the filter.</p>
      */
-    inline MetricFilterMatchRecord& AddExtractedValues(const Aws::String& key, const Aws::String& value) { m_extractedValuesHasBeenSet = true; m_extractedValues[key] = value; return *this; }
+    inline MetricFilterMatchRecord& AddExtractedValues(const Aws::String& key, const Aws::String& value) { m_extractedValuesHasBeenSet = true; m_extractedValues.emplace(key, value); return *this; }
 
     /**
      * <p>The values extracted from the event data by the filter.</p>
      */
-    inline MetricFilterMatchRecord& AddExtractedValues(Aws::String&& key, const Aws::String& value) { m_extractedValuesHasBeenSet = true; m_extractedValues[key] = value; return *this; }
+    inline MetricFilterMatchRecord& AddExtractedValues(Aws::String&& key, const Aws::String& value) { m_extractedValuesHasBeenSet = true; m_extractedValues.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The values extracted from the event data by the filter.</p>
      */
-    inline MetricFilterMatchRecord& AddExtractedValues(const Aws::String& key, Aws::String&& value) { m_extractedValuesHasBeenSet = true; m_extractedValues[key] = value; return *this; }
+    inline MetricFilterMatchRecord& AddExtractedValues(const Aws::String& key, Aws::String&& value) { m_extractedValuesHasBeenSet = true; m_extractedValues.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The values extracted from the event data by the filter.</p>
      */
-    inline MetricFilterMatchRecord& AddExtractedValues(Aws::String&& key, Aws::String&& value) { m_extractedValuesHasBeenSet = true; m_extractedValues[key] = value; return *this; }
+    inline MetricFilterMatchRecord& AddExtractedValues(Aws::String&& key, Aws::String&& value) { m_extractedValuesHasBeenSet = true; m_extractedValues.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>The values extracted from the event data by the filter.</p>
      */
-    inline MetricFilterMatchRecord& AddExtractedValues(const char* key, Aws::String&& value) { m_extractedValuesHasBeenSet = true; m_extractedValues[key] = value; return *this; }
+    inline MetricFilterMatchRecord& AddExtractedValues(const char* key, Aws::String&& value) { m_extractedValuesHasBeenSet = true; m_extractedValues.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The values extracted from the event data by the filter.</p>
      */
-    inline MetricFilterMatchRecord& AddExtractedValues(Aws::String&& key, const char* value) { m_extractedValuesHasBeenSet = true; m_extractedValues[key] = value; return *this; }
+    inline MetricFilterMatchRecord& AddExtractedValues(Aws::String&& key, const char* value) { m_extractedValuesHasBeenSet = true; m_extractedValues.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The values extracted from the event data by the filter.</p>
      */
-    inline MetricFilterMatchRecord& AddExtractedValues(const char* key, const char* value) { m_extractedValuesHasBeenSet = true; m_extractedValues[key] = value; return *this; }
+    inline MetricFilterMatchRecord& AddExtractedValues(const char* key, const char* value) { m_extractedValuesHasBeenSet = true; m_extractedValues.emplace(key, value); return *this; }
 
   private:
+
     long long m_eventNumber;
     bool m_eventNumberHasBeenSet;
+
     Aws::String m_eventMessage;
     bool m_eventMessageHasBeenSet;
+
     Aws::Map<Aws::String, Aws::String> m_extractedValues;
     bool m_extractedValuesHasBeenSet;
   };

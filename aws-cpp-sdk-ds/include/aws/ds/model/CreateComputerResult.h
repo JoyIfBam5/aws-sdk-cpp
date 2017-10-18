@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ds/DirectoryService_EXPORTS.h>
 #include <aws/ds/model/Computer.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     CreateComputerResult();
-    CreateComputerResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    CreateComputerResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateComputerResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    CreateComputerResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A <a>Computer</a> object that represents the computer account.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>A <a>Computer</a> object that represents the computer account.</p>
      */
-    inline void SetComputer(Computer&& value) { m_computer = value; }
+    inline void SetComputer(Computer&& value) { m_computer = std::move(value); }
 
     /**
      * <p>A <a>Computer</a> object that represents the computer account.</p>
@@ -68,9 +71,10 @@ namespace Model
     /**
      * <p>A <a>Computer</a> object that represents the computer account.</p>
      */
-    inline CreateComputerResult& WithComputer(Computer&& value) { SetComputer(value); return *this;}
+    inline CreateComputerResult& WithComputer(Computer&& value) { SetComputer(std::move(value)); return *this;}
 
   private:
+
     Computer m_computer;
   };
 

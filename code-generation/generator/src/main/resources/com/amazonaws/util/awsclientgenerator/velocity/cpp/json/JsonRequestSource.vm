@@ -1,10 +1,15 @@
 #parse("com/amazonaws/util/awsclientgenerator/velocity/cfamily/Attribution.vm")
 
 #set($metadata = $serviceModel.metadata)
+#set($rootNamespace = $serviceModel.namespace)
+#set($serviceNamespace = $metadata.namespace)
 \#include <aws/${metadata.projectName}/model/${typeInfo.className}.h>
 \#include <aws/core/utils/json/JsonSerializer.h>
 #if($shape.hasQueryStringMembers())
 \#include <aws/core/http/URI.h>
+#end
+#if($shape.supportsPresigning)
+\#include <aws/core/utils/StringUtils.h>
 #end
 #foreach($header in $typeInfo.sourceIncludes)
 \#include $header
@@ -12,7 +17,7 @@
 
 \#include <utility>
 
-using namespace Aws::${metadata.namespace}::Model;
+using namespace ${rootNamespace}::${serviceNamespace}::Model;
 using namespace Aws::Utils::Json;
 using namespace Aws::Utils;
 #if($shape.hasQueryStringMembers())
@@ -54,6 +59,14 @@ Aws::Http::HeaderValueCollection ${typeInfo.className}::GetRequestSpecificHeader
 #end
 #if($shape.hasQueryStringMembers())
 #parse("com/amazonaws/util/awsclientgenerator/velocity/cpp/AddQueryStringParametersToRequest.vm")
+
+#end
+
+#if($shape.supportsPresigning)
+void  ${typeInfo.className}::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+#parse($presignerTemplate)
+}
 
 #end
 

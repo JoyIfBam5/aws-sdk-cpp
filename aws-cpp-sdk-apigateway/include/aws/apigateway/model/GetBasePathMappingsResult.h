@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/apigateway/APIGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/apigateway/model/BasePathMapping.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,8 +48,9 @@ namespace Model
   {
   public:
     GetBasePathMappingsResult();
-    GetBasePathMappingsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetBasePathMappingsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetBasePathMappingsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetBasePathMappingsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     
     inline const Aws::String& GetPosition() const{ return m_position; }
@@ -56,7 +59,7 @@ namespace Model
     inline void SetPosition(const Aws::String& value) { m_position = value; }
 
     
-    inline void SetPosition(Aws::String&& value) { m_position = value; }
+    inline void SetPosition(Aws::String&& value) { m_position = std::move(value); }
 
     
     inline void SetPosition(const char* value) { m_position.assign(value); }
@@ -65,55 +68,51 @@ namespace Model
     inline GetBasePathMappingsResult& WithPosition(const Aws::String& value) { SetPosition(value); return *this;}
 
     
-    inline GetBasePathMappingsResult& WithPosition(Aws::String&& value) { SetPosition(value); return *this;}
+    inline GetBasePathMappingsResult& WithPosition(Aws::String&& value) { SetPosition(std::move(value)); return *this;}
 
     
     inline GetBasePathMappingsResult& WithPosition(const char* value) { SetPosition(value); return *this;}
 
+
     /**
-     * <p>The current page of any <a>BasePathMapping</a> resources in the collection of
-     * base path mapping resources.</p>
+     * <p>The current page of elements from this collection.</p>
      */
     inline const Aws::Vector<BasePathMapping>& GetItems() const{ return m_items; }
 
     /**
-     * <p>The current page of any <a>BasePathMapping</a> resources in the collection of
-     * base path mapping resources.</p>
+     * <p>The current page of elements from this collection.</p>
      */
     inline void SetItems(const Aws::Vector<BasePathMapping>& value) { m_items = value; }
 
     /**
-     * <p>The current page of any <a>BasePathMapping</a> resources in the collection of
-     * base path mapping resources.</p>
+     * <p>The current page of elements from this collection.</p>
      */
-    inline void SetItems(Aws::Vector<BasePathMapping>&& value) { m_items = value; }
+    inline void SetItems(Aws::Vector<BasePathMapping>&& value) { m_items = std::move(value); }
 
     /**
-     * <p>The current page of any <a>BasePathMapping</a> resources in the collection of
-     * base path mapping resources.</p>
+     * <p>The current page of elements from this collection.</p>
      */
     inline GetBasePathMappingsResult& WithItems(const Aws::Vector<BasePathMapping>& value) { SetItems(value); return *this;}
 
     /**
-     * <p>The current page of any <a>BasePathMapping</a> resources in the collection of
-     * base path mapping resources.</p>
+     * <p>The current page of elements from this collection.</p>
      */
-    inline GetBasePathMappingsResult& WithItems(Aws::Vector<BasePathMapping>&& value) { SetItems(value); return *this;}
+    inline GetBasePathMappingsResult& WithItems(Aws::Vector<BasePathMapping>&& value) { SetItems(std::move(value)); return *this;}
 
     /**
-     * <p>The current page of any <a>BasePathMapping</a> resources in the collection of
-     * base path mapping resources.</p>
+     * <p>The current page of elements from this collection.</p>
      */
     inline GetBasePathMappingsResult& AddItems(const BasePathMapping& value) { m_items.push_back(value); return *this; }
 
     /**
-     * <p>The current page of any <a>BasePathMapping</a> resources in the collection of
-     * base path mapping resources.</p>
+     * <p>The current page of elements from this collection.</p>
      */
-    inline GetBasePathMappingsResult& AddItems(BasePathMapping&& value) { m_items.push_back(value); return *this; }
+    inline GetBasePathMappingsResult& AddItems(BasePathMapping&& value) { m_items.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_position;
+
     Aws::Vector<BasePathMapping> m_items;
   };
 

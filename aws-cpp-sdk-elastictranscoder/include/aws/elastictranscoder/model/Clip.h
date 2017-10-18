@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elastictranscoder/ElasticTranscoder_EXPORTS.h>
 #include <aws/elastictranscoder/model/TimeSpan.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     Clip& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Settings that determine when a clip begins and how long it lasts.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>Settings that determine when a clip begins and how long it lasts.</p>
      */
-    inline void SetTimeSpan(TimeSpan&& value) { m_timeSpanHasBeenSet = true; m_timeSpan = value; }
+    inline void SetTimeSpan(TimeSpan&& value) { m_timeSpanHasBeenSet = true; m_timeSpan = std::move(value); }
 
     /**
      * <p>Settings that determine when a clip begins and how long it lasts.</p>
@@ -67,9 +70,10 @@ namespace Model
     /**
      * <p>Settings that determine when a clip begins and how long it lasts.</p>
      */
-    inline Clip& WithTimeSpan(TimeSpan&& value) { SetTimeSpan(value); return *this;}
+    inline Clip& WithTimeSpan(TimeSpan&& value) { SetTimeSpan(std::move(value)); return *this;}
 
   private:
+
     TimeSpan m_timeSpan;
     bool m_timeSpanHasBeenSet;
   };

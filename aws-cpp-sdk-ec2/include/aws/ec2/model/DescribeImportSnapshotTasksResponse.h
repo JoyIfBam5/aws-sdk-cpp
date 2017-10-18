@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ec2/model/ResponseMetadata.h>
 #include <aws/ec2/model/ImportSnapshotTask.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,8 +47,9 @@ namespace Model
   {
   public:
     DescribeImportSnapshotTasksResponse();
-    DescribeImportSnapshotTasksResponse(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeImportSnapshotTasksResponse& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeImportSnapshotTasksResponse(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeImportSnapshotTasksResponse& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>A list of zero or more import snapshot tasks that are currently active or
@@ -64,7 +67,7 @@ namespace Model
      * <p>A list of zero or more import snapshot tasks that are currently active or
      * were completed or canceled in the previous 7 days.</p>
      */
-    inline void SetImportSnapshotTasks(Aws::Vector<ImportSnapshotTask>&& value) { m_importSnapshotTasks = value; }
+    inline void SetImportSnapshotTasks(Aws::Vector<ImportSnapshotTask>&& value) { m_importSnapshotTasks = std::move(value); }
 
     /**
      * <p>A list of zero or more import snapshot tasks that are currently active or
@@ -76,7 +79,7 @@ namespace Model
      * <p>A list of zero or more import snapshot tasks that are currently active or
      * were completed or canceled in the previous 7 days.</p>
      */
-    inline DescribeImportSnapshotTasksResponse& WithImportSnapshotTasks(Aws::Vector<ImportSnapshotTask>&& value) { SetImportSnapshotTasks(value); return *this;}
+    inline DescribeImportSnapshotTasksResponse& WithImportSnapshotTasks(Aws::Vector<ImportSnapshotTask>&& value) { SetImportSnapshotTasks(std::move(value)); return *this;}
 
     /**
      * <p>A list of zero or more import snapshot tasks that are currently active or
@@ -88,7 +91,8 @@ namespace Model
      * <p>A list of zero or more import snapshot tasks that are currently active or
      * were completed or canceled in the previous 7 days.</p>
      */
-    inline DescribeImportSnapshotTasksResponse& AddImportSnapshotTasks(ImportSnapshotTask&& value) { m_importSnapshotTasks.push_back(value); return *this; }
+    inline DescribeImportSnapshotTasksResponse& AddImportSnapshotTasks(ImportSnapshotTask&& value) { m_importSnapshotTasks.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The token to use to get the next page of results. This value is
@@ -106,7 +110,7 @@ namespace Model
      * <p>The token to use to get the next page of results. This value is
      * <code>null</code> when there are no more results to return.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The token to use to get the next page of results. This value is
@@ -124,13 +128,14 @@ namespace Model
      * <p>The token to use to get the next page of results. This value is
      * <code>null</code> when there are no more results to return.</p>
      */
-    inline DescribeImportSnapshotTasksResponse& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeImportSnapshotTasksResponse& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The token to use to get the next page of results. This value is
      * <code>null</code> when there are no more results to return.</p>
      */
     inline DescribeImportSnapshotTasksResponse& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -139,17 +144,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeImportSnapshotTasksResponse& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeImportSnapshotTasksResponse& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeImportSnapshotTasksResponse& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<ImportSnapshotTask> m_importSnapshotTasks;
+
     Aws::String m_nextToken;
+
     ResponseMetadata m_responseMetadata;
   };
 

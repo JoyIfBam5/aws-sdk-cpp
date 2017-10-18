@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iot/IoT_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/iot/model/ThingTypeProperties.h>
 #include <aws/iot/model/ThingTypeMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     DescribeThingTypeResult();
-    DescribeThingTypeResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeThingTypeResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeThingTypeResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeThingTypeResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The name of the thing type.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The name of the thing type.</p>
      */
-    inline void SetThingTypeName(Aws::String&& value) { m_thingTypeName = value; }
+    inline void SetThingTypeName(Aws::String&& value) { m_thingTypeName = std::move(value); }
 
     /**
      * <p>The name of the thing type.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>The name of the thing type.</p>
      */
-    inline DescribeThingTypeResult& WithThingTypeName(Aws::String&& value) { SetThingTypeName(value); return *this;}
+    inline DescribeThingTypeResult& WithThingTypeName(Aws::String&& value) { SetThingTypeName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the thing type.</p>
      */
     inline DescribeThingTypeResult& WithThingTypeName(const char* value) { SetThingTypeName(value); return *this;}
+
 
     /**
      * <p>The ThingTypeProperties contains information about the thing type including
@@ -97,7 +101,7 @@ namespace Model
      * <p>The ThingTypeProperties contains information about the thing type including
      * description, and a list of searchable thing attribute names.</p>
      */
-    inline void SetThingTypeProperties(ThingTypeProperties&& value) { m_thingTypeProperties = value; }
+    inline void SetThingTypeProperties(ThingTypeProperties&& value) { m_thingTypeProperties = std::move(value); }
 
     /**
      * <p>The ThingTypeProperties contains information about the thing type including
@@ -109,26 +113,50 @@ namespace Model
      * <p>The ThingTypeProperties contains information about the thing type including
      * description, and a list of searchable thing attribute names.</p>
      */
-    inline DescribeThingTypeResult& WithThingTypeProperties(ThingTypeProperties&& value) { SetThingTypeProperties(value); return *this;}
+    inline DescribeThingTypeResult& WithThingTypeProperties(ThingTypeProperties&& value) { SetThingTypeProperties(std::move(value)); return *this;}
 
-    
+
+    /**
+     * <p>The ThingTypeMetadata contains additional information about the thing type
+     * including: creation date and time, a value indicating whether the thing type is
+     * deprecated, and a date and time when it was deprecated.</p>
+     */
     inline const ThingTypeMetadata& GetThingTypeMetadata() const{ return m_thingTypeMetadata; }
 
-    
+    /**
+     * <p>The ThingTypeMetadata contains additional information about the thing type
+     * including: creation date and time, a value indicating whether the thing type is
+     * deprecated, and a date and time when it was deprecated.</p>
+     */
     inline void SetThingTypeMetadata(const ThingTypeMetadata& value) { m_thingTypeMetadata = value; }
 
-    
-    inline void SetThingTypeMetadata(ThingTypeMetadata&& value) { m_thingTypeMetadata = value; }
+    /**
+     * <p>The ThingTypeMetadata contains additional information about the thing type
+     * including: creation date and time, a value indicating whether the thing type is
+     * deprecated, and a date and time when it was deprecated.</p>
+     */
+    inline void SetThingTypeMetadata(ThingTypeMetadata&& value) { m_thingTypeMetadata = std::move(value); }
 
-    
+    /**
+     * <p>The ThingTypeMetadata contains additional information about the thing type
+     * including: creation date and time, a value indicating whether the thing type is
+     * deprecated, and a date and time when it was deprecated.</p>
+     */
     inline DescribeThingTypeResult& WithThingTypeMetadata(const ThingTypeMetadata& value) { SetThingTypeMetadata(value); return *this;}
 
-    
-    inline DescribeThingTypeResult& WithThingTypeMetadata(ThingTypeMetadata&& value) { SetThingTypeMetadata(value); return *this;}
+    /**
+     * <p>The ThingTypeMetadata contains additional information about the thing type
+     * including: creation date and time, a value indicating whether the thing type is
+     * deprecated, and a date and time when it was deprecated.</p>
+     */
+    inline DescribeThingTypeResult& WithThingTypeMetadata(ThingTypeMetadata&& value) { SetThingTypeMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_thingTypeName;
+
     ThingTypeProperties m_thingTypeProperties;
+
     ThingTypeMetadata m_thingTypeMetadata;
   };
 

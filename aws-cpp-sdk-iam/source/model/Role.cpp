@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/iam/model/Role.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -35,7 +36,8 @@ Role::Role() :
     m_roleIdHasBeenSet(false),
     m_arnHasBeenSet(false),
     m_createDateHasBeenSet(false),
-    m_assumeRolePolicyDocumentHasBeenSet(false)
+    m_assumeRolePolicyDocumentHasBeenSet(false),
+    m_descriptionHasBeenSet(false)
 {
 }
 
@@ -45,7 +47,8 @@ Role::Role(const XmlNode& xmlNode) :
     m_roleIdHasBeenSet(false),
     m_arnHasBeenSet(false),
     m_createDateHasBeenSet(false),
-    m_assumeRolePolicyDocumentHasBeenSet(false)
+    m_assumeRolePolicyDocumentHasBeenSet(false),
+    m_descriptionHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -92,6 +95,12 @@ Role& Role::operator =(const XmlNode& xmlNode)
       m_assumeRolePolicyDocument = StringUtils::Trim(assumeRolePolicyDocumentNode.GetText().c_str());
       m_assumeRolePolicyDocumentHasBeenSet = true;
     }
+    XmlNode descriptionNode = resultNode.FirstChild("Description");
+    if(!descriptionNode.IsNull())
+    {
+      m_description = StringUtils::Trim(descriptionNode.GetText().c_str());
+      m_descriptionHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -129,6 +138,11 @@ void Role::OutputToStream(Aws::OStream& oStream, const char* location, unsigned 
       oStream << location << index << locationValue << ".AssumeRolePolicyDocument=" << StringUtils::URLEncode(m_assumeRolePolicyDocument.c_str()) << "&";
   }
 
+  if(m_descriptionHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
+  }
+
 }
 
 void Role::OutputToStream(Aws::OStream& oStream, const char* location) const
@@ -156,6 +170,10 @@ void Role::OutputToStream(Aws::OStream& oStream, const char* location) const
   if(m_assumeRolePolicyDocumentHasBeenSet)
   {
       oStream << location << ".AssumeRolePolicyDocument=" << StringUtils::URLEncode(m_assumeRolePolicyDocument.c_str()) << "&";
+  }
+  if(m_descriptionHasBeenSet)
+  {
+      oStream << location << ".Description=" << StringUtils::URLEncode(m_description.c_str()) << "&";
   }
 }
 

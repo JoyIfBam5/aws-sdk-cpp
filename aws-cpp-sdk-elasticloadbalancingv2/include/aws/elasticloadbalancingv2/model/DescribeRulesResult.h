@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticloadbalancingv2/ElasticLoadBalancingv2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/elasticloadbalancingv2/model/ResponseMetadata.h>
 #include <aws/elasticloadbalancingv2/model/Rule.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,17 +37,13 @@ namespace ElasticLoadBalancingv2
 {
 namespace Model
 {
-  /**
-   * <p>Contains the output of DescribeRules.</p><p><h3>See Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DescribeRulesOutput">AWS
-   * API Reference</a></p>
-   */
   class AWS_ELASTICLOADBALANCINGV2_API DescribeRulesResult
   {
   public:
     DescribeRulesResult();
-    DescribeRulesResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeRulesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeRulesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeRulesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>Information about the rules.</p>
@@ -59,7 +58,7 @@ namespace Model
     /**
      * <p>Information about the rules.</p>
      */
-    inline void SetRules(Aws::Vector<Rule>&& value) { m_rules = value; }
+    inline void SetRules(Aws::Vector<Rule>&& value) { m_rules = std::move(value); }
 
     /**
      * <p>Information about the rules.</p>
@@ -69,7 +68,7 @@ namespace Model
     /**
      * <p>Information about the rules.</p>
      */
-    inline DescribeRulesResult& WithRules(Aws::Vector<Rule>&& value) { SetRules(value); return *this;}
+    inline DescribeRulesResult& WithRules(Aws::Vector<Rule>&& value) { SetRules(std::move(value)); return *this;}
 
     /**
      * <p>Information about the rules.</p>
@@ -79,7 +78,51 @@ namespace Model
     /**
      * <p>Information about the rules.</p>
      */
-    inline DescribeRulesResult& AddRules(Rule&& value) { m_rules.push_back(value); return *this; }
+    inline DescribeRulesResult& AddRules(Rule&& value) { m_rules.push_back(std::move(value)); return *this; }
+
+
+    /**
+     * <p>The marker to use when requesting the next set of results. If there are no
+     * additional results, the string is empty.</p>
+     */
+    inline const Aws::String& GetNextMarker() const{ return m_nextMarker; }
+
+    /**
+     * <p>The marker to use when requesting the next set of results. If there are no
+     * additional results, the string is empty.</p>
+     */
+    inline void SetNextMarker(const Aws::String& value) { m_nextMarker = value; }
+
+    /**
+     * <p>The marker to use when requesting the next set of results. If there are no
+     * additional results, the string is empty.</p>
+     */
+    inline void SetNextMarker(Aws::String&& value) { m_nextMarker = std::move(value); }
+
+    /**
+     * <p>The marker to use when requesting the next set of results. If there are no
+     * additional results, the string is empty.</p>
+     */
+    inline void SetNextMarker(const char* value) { m_nextMarker.assign(value); }
+
+    /**
+     * <p>The marker to use when requesting the next set of results. If there are no
+     * additional results, the string is empty.</p>
+     */
+    inline DescribeRulesResult& WithNextMarker(const Aws::String& value) { SetNextMarker(value); return *this;}
+
+    /**
+     * <p>The marker to use when requesting the next set of results. If there are no
+     * additional results, the string is empty.</p>
+     */
+    inline DescribeRulesResult& WithNextMarker(Aws::String&& value) { SetNextMarker(std::move(value)); return *this;}
+
+    /**
+     * <p>The marker to use when requesting the next set of results. If there are no
+     * additional results, the string is empty.</p>
+     */
+    inline DescribeRulesResult& WithNextMarker(const char* value) { SetNextMarker(value); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -88,16 +131,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeRulesResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeRulesResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeRulesResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<Rule> m_rules;
+
+    Aws::String m_nextMarker;
+
     ResponseMetadata m_responseMetadata;
   };
 

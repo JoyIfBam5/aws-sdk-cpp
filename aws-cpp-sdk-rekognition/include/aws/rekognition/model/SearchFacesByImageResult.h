@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rekognition/Rekognition_EXPORTS.h>
 #include <aws/rekognition/model/BoundingBox.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/rekognition/model/FaceMatch.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     SearchFacesByImageResult();
-    SearchFacesByImageResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    SearchFacesByImageResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    SearchFacesByImageResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    SearchFacesByImageResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The bounding box around the face in the input image that Amazon Rekognition
@@ -57,7 +60,7 @@ namespace Model
      * <p>The bounding box around the face in the input image that Amazon Rekognition
      * used for the search.</p>
      */
-    inline void SetSearchedFaceBoundingBox(BoundingBox&& value) { m_searchedFaceBoundingBox = value; }
+    inline void SetSearchedFaceBoundingBox(BoundingBox&& value) { m_searchedFaceBoundingBox = std::move(value); }
 
     /**
      * <p>The bounding box around the face in the input image that Amazon Rekognition
@@ -69,7 +72,8 @@ namespace Model
      * <p>The bounding box around the face in the input image that Amazon Rekognition
      * used for the search.</p>
      */
-    inline SearchFacesByImageResult& WithSearchedFaceBoundingBox(BoundingBox&& value) { SetSearchedFaceBoundingBox(value); return *this;}
+    inline SearchFacesByImageResult& WithSearchedFaceBoundingBox(BoundingBox&& value) { SetSearchedFaceBoundingBox(std::move(value)); return *this;}
+
 
     /**
      * <p>The level of confidence that the <code>searchedFaceBoundingBox</code>,
@@ -89,6 +93,7 @@ namespace Model
      */
     inline SearchFacesByImageResult& WithSearchedFaceConfidence(double value) { SetSearchedFaceConfidence(value); return *this;}
 
+
     /**
      * <p>An array of faces that match the input face, along with the confidence in the
      * match.</p>
@@ -105,7 +110,7 @@ namespace Model
      * <p>An array of faces that match the input face, along with the confidence in the
      * match.</p>
      */
-    inline void SetFaceMatches(Aws::Vector<FaceMatch>&& value) { m_faceMatches = value; }
+    inline void SetFaceMatches(Aws::Vector<FaceMatch>&& value) { m_faceMatches = std::move(value); }
 
     /**
      * <p>An array of faces that match the input face, along with the confidence in the
@@ -117,7 +122,7 @@ namespace Model
      * <p>An array of faces that match the input face, along with the confidence in the
      * match.</p>
      */
-    inline SearchFacesByImageResult& WithFaceMatches(Aws::Vector<FaceMatch>&& value) { SetFaceMatches(value); return *this;}
+    inline SearchFacesByImageResult& WithFaceMatches(Aws::Vector<FaceMatch>&& value) { SetFaceMatches(std::move(value)); return *this;}
 
     /**
      * <p>An array of faces that match the input face, along with the confidence in the
@@ -129,11 +134,14 @@ namespace Model
      * <p>An array of faces that match the input face, along with the confidence in the
      * match.</p>
      */
-    inline SearchFacesByImageResult& AddFaceMatches(FaceMatch&& value) { m_faceMatches.push_back(value); return *this; }
+    inline SearchFacesByImageResult& AddFaceMatches(FaceMatch&& value) { m_faceMatches.push_back(std::move(value)); return *this; }
 
   private:
+
     BoundingBox m_searchedFaceBoundingBox;
+
     double m_searchedFaceConfidence;
+
     Aws::Vector<FaceMatch> m_faceMatches;
   };
 

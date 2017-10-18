@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecr/ECR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ecr/model/Repository.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     DescribeRepositoriesResult();
-    DescribeRepositoriesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeRepositoriesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeRepositoriesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeRepositoriesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A list of repository objects corresponding to valid repositories.</p>
@@ -54,7 +57,7 @@ namespace Model
     /**
      * <p>A list of repository objects corresponding to valid repositories.</p>
      */
-    inline void SetRepositories(Aws::Vector<Repository>&& value) { m_repositories = value; }
+    inline void SetRepositories(Aws::Vector<Repository>&& value) { m_repositories = std::move(value); }
 
     /**
      * <p>A list of repository objects corresponding to valid repositories.</p>
@@ -64,7 +67,7 @@ namespace Model
     /**
      * <p>A list of repository objects corresponding to valid repositories.</p>
      */
-    inline DescribeRepositoriesResult& WithRepositories(Aws::Vector<Repository>&& value) { SetRepositories(value); return *this;}
+    inline DescribeRepositoriesResult& WithRepositories(Aws::Vector<Repository>&& value) { SetRepositories(std::move(value)); return *this;}
 
     /**
      * <p>A list of repository objects corresponding to valid repositories.</p>
@@ -74,7 +77,8 @@ namespace Model
     /**
      * <p>A list of repository objects corresponding to valid repositories.</p>
      */
-    inline DescribeRepositoriesResult& AddRepositories(Repository&& value) { m_repositories.push_back(value); return *this; }
+    inline DescribeRepositoriesResult& AddRepositories(Repository&& value) { m_repositories.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The <code>nextToken</code> value to include in a future
@@ -101,7 +105,7 @@ namespace Model
      * value can be used to retrieve the next page of results. This value is
      * <code>null</code> when there are no more results to return.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The <code>nextToken</code> value to include in a future
@@ -128,7 +132,7 @@ namespace Model
      * value can be used to retrieve the next page of results. This value is
      * <code>null</code> when there are no more results to return.</p>
      */
-    inline DescribeRepositoriesResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeRepositoriesResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The <code>nextToken</code> value to include in a future
@@ -140,7 +144,9 @@ namespace Model
     inline DescribeRepositoriesResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Repository> m_repositories;
+
     Aws::String m_nextToken;
   };
 

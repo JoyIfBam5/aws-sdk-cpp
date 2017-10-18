@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/rds/model/ReservedDBInstance.h>
 #include <aws/rds/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     PurchaseReservedDBInstancesOfferingResult();
-    PurchaseReservedDBInstancesOfferingResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    PurchaseReservedDBInstancesOfferingResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    PurchaseReservedDBInstancesOfferingResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    PurchaseReservedDBInstancesOfferingResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     
     inline const ReservedDBInstance& GetReservedDBInstance() const{ return m_reservedDBInstance; }
@@ -47,13 +50,14 @@ namespace Model
     inline void SetReservedDBInstance(const ReservedDBInstance& value) { m_reservedDBInstance = value; }
 
     
-    inline void SetReservedDBInstance(ReservedDBInstance&& value) { m_reservedDBInstance = value; }
+    inline void SetReservedDBInstance(ReservedDBInstance&& value) { m_reservedDBInstance = std::move(value); }
 
     
     inline PurchaseReservedDBInstancesOfferingResult& WithReservedDBInstance(const ReservedDBInstance& value) { SetReservedDBInstance(value); return *this;}
 
     
-    inline PurchaseReservedDBInstancesOfferingResult& WithReservedDBInstance(ReservedDBInstance&& value) { SetReservedDBInstance(value); return *this;}
+    inline PurchaseReservedDBInstancesOfferingResult& WithReservedDBInstance(ReservedDBInstance&& value) { SetReservedDBInstance(std::move(value)); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -62,16 +66,18 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline PurchaseReservedDBInstancesOfferingResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline PurchaseReservedDBInstancesOfferingResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline PurchaseReservedDBInstancesOfferingResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     ReservedDBInstance m_reservedDBInstance;
+
     ResponseMetadata m_responseMetadata;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/elasticmapreduce/model/Cluster.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     DescribeClusterResult();
-    DescribeClusterResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeClusterResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeClusterResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeClusterResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>This output contains the details for the requested cluster.</p>
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>This output contains the details for the requested cluster.</p>
      */
-    inline void SetCluster(Cluster&& value) { m_cluster = value; }
+    inline void SetCluster(Cluster&& value) { m_cluster = std::move(value); }
 
     /**
      * <p>This output contains the details for the requested cluster.</p>
@@ -68,9 +71,10 @@ namespace Model
     /**
      * <p>This output contains the details for the requested cluster.</p>
      */
-    inline DescribeClusterResult& WithCluster(Cluster&& value) { SetCluster(value); return *this;}
+    inline DescribeClusterResult& WithCluster(Cluster&& value) { SetCluster(std::move(value)); return *this;}
 
   private:
+
     Cluster m_cluster;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/email/model/DimensionValueSource.h>
 #include <aws/core/utils/HashingUtils.h>
 #include <aws/core/Globals.h>
@@ -31,6 +32,7 @@ namespace Aws
 
         static const int messageTag_HASH = HashingUtils::HashString("messageTag");
         static const int emailHeader_HASH = HashingUtils::HashString("emailHeader");
+        static const int linkTag_HASH = HashingUtils::HashString("linkTag");
 
 
         DimensionValueSource GetDimensionValueSourceForName(const Aws::String& name)
@@ -43,6 +45,10 @@ namespace Aws
           else if (hashCode == emailHeader_HASH)
           {
             return DimensionValueSource::emailHeader;
+          }
+          else if (hashCode == linkTag_HASH)
+          {
+            return DimensionValueSource::linkTag;
           }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
@@ -62,6 +68,8 @@ namespace Aws
             return "messageTag";
           case DimensionValueSource::emailHeader:
             return "emailHeader";
+          case DimensionValueSource::linkTag:
+            return "linkTag";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

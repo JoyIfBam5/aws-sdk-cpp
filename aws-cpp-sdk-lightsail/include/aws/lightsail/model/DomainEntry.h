@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     DomainEntry& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The ID of the domain recordset entry.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The ID of the domain recordset entry.</p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>The ID of the domain recordset entry.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The ID of the domain recordset entry.</p>
      */
-    inline DomainEntry& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline DomainEntry& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the domain recordset entry.</p>
      */
     inline DomainEntry& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>The name of the domain.</p>
@@ -92,7 +96,7 @@ namespace Model
     /**
      * <p>The name of the domain.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The name of the domain.</p>
@@ -107,12 +111,13 @@ namespace Model
     /**
      * <p>The name of the domain.</p>
      */
-    inline DomainEntry& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline DomainEntry& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the domain.</p>
      */
     inline DomainEntry& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The target AWS name server (e.g., <code>ns-111.awsdns-22.com.</code>).</p>
@@ -127,7 +132,7 @@ namespace Model
     /**
      * <p>The target AWS name server (e.g., <code>ns-111.awsdns-22.com.</code>).</p>
      */
-    inline void SetTarget(Aws::String&& value) { m_targetHasBeenSet = true; m_target = value; }
+    inline void SetTarget(Aws::String&& value) { m_targetHasBeenSet = true; m_target = std::move(value); }
 
     /**
      * <p>The target AWS name server (e.g., <code>ns-111.awsdns-22.com.</code>).</p>
@@ -142,12 +147,13 @@ namespace Model
     /**
      * <p>The target AWS name server (e.g., <code>ns-111.awsdns-22.com.</code>).</p>
      */
-    inline DomainEntry& WithTarget(Aws::String&& value) { SetTarget(value); return *this;}
+    inline DomainEntry& WithTarget(Aws::String&& value) { SetTarget(std::move(value)); return *this;}
 
     /**
      * <p>The target AWS name server (e.g., <code>ns-111.awsdns-22.com.</code>).</p>
      */
     inline DomainEntry& WithTarget(const char* value) { SetTarget(value); return *this;}
+
 
     /**
      * <p>The type of domain entry (e.g., <code>SOA</code> or <code>NS</code>).</p>
@@ -162,7 +168,7 @@ namespace Model
     /**
      * <p>The type of domain entry (e.g., <code>SOA</code> or <code>NS</code>).</p>
      */
-    inline void SetType(Aws::String&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(Aws::String&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The type of domain entry (e.g., <code>SOA</code> or <code>NS</code>).</p>
@@ -177,12 +183,13 @@ namespace Model
     /**
      * <p>The type of domain entry (e.g., <code>SOA</code> or <code>NS</code>).</p>
      */
-    inline DomainEntry& WithType(Aws::String&& value) { SetType(value); return *this;}
+    inline DomainEntry& WithType(Aws::String&& value) { SetType(std::move(value)); return *this;}
 
     /**
      * <p>The type of domain entry (e.g., <code>SOA</code> or <code>NS</code>).</p>
      */
     inline DomainEntry& WithType(const char* value) { SetType(value); return *this;}
+
 
     /**
      * <p>The options for the domain entry.</p>
@@ -197,7 +204,7 @@ namespace Model
     /**
      * <p>The options for the domain entry.</p>
      */
-    inline void SetOptions(Aws::Map<Aws::String, Aws::String>&& value) { m_optionsHasBeenSet = true; m_options = value; }
+    inline void SetOptions(Aws::Map<Aws::String, Aws::String>&& value) { m_optionsHasBeenSet = true; m_options = std::move(value); }
 
     /**
      * <p>The options for the domain entry.</p>
@@ -207,52 +214,57 @@ namespace Model
     /**
      * <p>The options for the domain entry.</p>
      */
-    inline DomainEntry& WithOptions(Aws::Map<Aws::String, Aws::String>&& value) { SetOptions(value); return *this;}
+    inline DomainEntry& WithOptions(Aws::Map<Aws::String, Aws::String>&& value) { SetOptions(std::move(value)); return *this;}
 
     /**
      * <p>The options for the domain entry.</p>
      */
-    inline DomainEntry& AddOptions(const Aws::String& key, const Aws::String& value) { m_optionsHasBeenSet = true; m_options[key] = value; return *this; }
+    inline DomainEntry& AddOptions(const Aws::String& key, const Aws::String& value) { m_optionsHasBeenSet = true; m_options.emplace(key, value); return *this; }
 
     /**
      * <p>The options for the domain entry.</p>
      */
-    inline DomainEntry& AddOptions(Aws::String&& key, const Aws::String& value) { m_optionsHasBeenSet = true; m_options[key] = value; return *this; }
+    inline DomainEntry& AddOptions(Aws::String&& key, const Aws::String& value) { m_optionsHasBeenSet = true; m_options.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The options for the domain entry.</p>
      */
-    inline DomainEntry& AddOptions(const Aws::String& key, Aws::String&& value) { m_optionsHasBeenSet = true; m_options[key] = value; return *this; }
+    inline DomainEntry& AddOptions(const Aws::String& key, Aws::String&& value) { m_optionsHasBeenSet = true; m_options.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The options for the domain entry.</p>
      */
-    inline DomainEntry& AddOptions(Aws::String&& key, Aws::String&& value) { m_optionsHasBeenSet = true; m_options[key] = value; return *this; }
+    inline DomainEntry& AddOptions(Aws::String&& key, Aws::String&& value) { m_optionsHasBeenSet = true; m_options.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>The options for the domain entry.</p>
      */
-    inline DomainEntry& AddOptions(const char* key, Aws::String&& value) { m_optionsHasBeenSet = true; m_options[key] = value; return *this; }
+    inline DomainEntry& AddOptions(const char* key, Aws::String&& value) { m_optionsHasBeenSet = true; m_options.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The options for the domain entry.</p>
      */
-    inline DomainEntry& AddOptions(Aws::String&& key, const char* value) { m_optionsHasBeenSet = true; m_options[key] = value; return *this; }
+    inline DomainEntry& AddOptions(Aws::String&& key, const char* value) { m_optionsHasBeenSet = true; m_options.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The options for the domain entry.</p>
      */
-    inline DomainEntry& AddOptions(const char* key, const char* value) { m_optionsHasBeenSet = true; m_options[key] = value; return *this; }
+    inline DomainEntry& AddOptions(const char* key, const char* value) { m_optionsHasBeenSet = true; m_options.emplace(key, value); return *this; }
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     Aws::String m_target;
     bool m_targetHasBeenSet;
+
     Aws::String m_type;
     bool m_typeHasBeenSet;
+
     Aws::Map<Aws::String, Aws::String> m_options;
     bool m_optionsHasBeenSet;
   };

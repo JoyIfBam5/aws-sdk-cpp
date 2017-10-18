@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/iam/IAM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/iam/model/ResponseMetadata.h>
 #include <aws/iam/model/InstanceProfile.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,8 +47,9 @@ namespace Model
   {
   public:
     ListInstanceProfilesForRoleResult();
-    ListInstanceProfilesForRoleResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    ListInstanceProfilesForRoleResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ListInstanceProfilesForRoleResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ListInstanceProfilesForRoleResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>A list of instance profiles.</p>
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>A list of instance profiles.</p>
      */
-    inline void SetInstanceProfiles(Aws::Vector<InstanceProfile>&& value) { m_instanceProfiles = value; }
+    inline void SetInstanceProfiles(Aws::Vector<InstanceProfile>&& value) { m_instanceProfiles = std::move(value); }
 
     /**
      * <p>A list of instance profiles.</p>
@@ -71,7 +74,7 @@ namespace Model
     /**
      * <p>A list of instance profiles.</p>
      */
-    inline ListInstanceProfilesForRoleResult& WithInstanceProfiles(Aws::Vector<InstanceProfile>&& value) { SetInstanceProfiles(value); return *this;}
+    inline ListInstanceProfilesForRoleResult& WithInstanceProfiles(Aws::Vector<InstanceProfile>&& value) { SetInstanceProfiles(std::move(value)); return *this;}
 
     /**
      * <p>A list of instance profiles.</p>
@@ -81,7 +84,8 @@ namespace Model
     /**
      * <p>A list of instance profiles.</p>
      */
-    inline ListInstanceProfilesForRoleResult& AddInstanceProfiles(InstanceProfile&& value) { m_instanceProfiles.push_back(value); return *this; }
+    inline ListInstanceProfilesForRoleResult& AddInstanceProfiles(InstanceProfile&& value) { m_instanceProfiles.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>A flag that indicates whether there are more items to return. If your results
@@ -116,6 +120,7 @@ namespace Model
      */
     inline ListInstanceProfilesForRoleResult& WithIsTruncated(bool value) { SetIsTruncated(value); return *this;}
 
+
     /**
      * <p>When <code>IsTruncated</code> is <code>true</code>, this element is present
      * and contains the value to use for the <code>Marker</code> parameter in a
@@ -135,7 +140,7 @@ namespace Model
      * and contains the value to use for the <code>Marker</code> parameter in a
      * subsequent pagination request.</p>
      */
-    inline void SetMarker(Aws::String&& value) { m_marker = value; }
+    inline void SetMarker(Aws::String&& value) { m_marker = std::move(value); }
 
     /**
      * <p>When <code>IsTruncated</code> is <code>true</code>, this element is present
@@ -156,7 +161,7 @@ namespace Model
      * and contains the value to use for the <code>Marker</code> parameter in a
      * subsequent pagination request.</p>
      */
-    inline ListInstanceProfilesForRoleResult& WithMarker(Aws::String&& value) { SetMarker(value); return *this;}
+    inline ListInstanceProfilesForRoleResult& WithMarker(Aws::String&& value) { SetMarker(std::move(value)); return *this;}
 
     /**
      * <p>When <code>IsTruncated</code> is <code>true</code>, this element is present
@@ -165,6 +170,7 @@ namespace Model
      */
     inline ListInstanceProfilesForRoleResult& WithMarker(const char* value) { SetMarker(value); return *this;}
 
+
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
 
@@ -172,18 +178,22 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline ListInstanceProfilesForRoleResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline ListInstanceProfilesForRoleResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline ListInstanceProfilesForRoleResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<InstanceProfile> m_instanceProfiles;
+
     bool m_isTruncated;
+
     Aws::String m_marker;
+
     ResponseMetadata m_responseMetadata;
   };
 

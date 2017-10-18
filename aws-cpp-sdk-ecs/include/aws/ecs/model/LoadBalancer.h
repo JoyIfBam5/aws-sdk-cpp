@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     LoadBalancer& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The full Amazon Resource Name (ARN) of the Elastic Load Balancing target
      * group associated with a service.</p>
@@ -60,7 +63,7 @@ namespace Model
      * <p>The full Amazon Resource Name (ARN) of the Elastic Load Balancing target
      * group associated with a service.</p>
      */
-    inline void SetTargetGroupArn(Aws::String&& value) { m_targetGroupArnHasBeenSet = true; m_targetGroupArn = value; }
+    inline void SetTargetGroupArn(Aws::String&& value) { m_targetGroupArnHasBeenSet = true; m_targetGroupArn = std::move(value); }
 
     /**
      * <p>The full Amazon Resource Name (ARN) of the Elastic Load Balancing target
@@ -78,7 +81,7 @@ namespace Model
      * <p>The full Amazon Resource Name (ARN) of the Elastic Load Balancing target
      * group associated with a service.</p>
      */
-    inline LoadBalancer& WithTargetGroupArn(Aws::String&& value) { SetTargetGroupArn(value); return *this;}
+    inline LoadBalancer& WithTargetGroupArn(Aws::String&& value) { SetTargetGroupArn(std::move(value)); return *this;}
 
     /**
      * <p>The full Amazon Resource Name (ARN) of the Elastic Load Balancing target
@@ -86,40 +89,42 @@ namespace Model
      */
     inline LoadBalancer& WithTargetGroupArn(const char* value) { SetTargetGroupArn(value); return *this;}
 
+
     /**
-     * <p>The name of the load balancer.</p>
+     * <p>The name of a load balancer.</p>
      */
     inline const Aws::String& GetLoadBalancerName() const{ return m_loadBalancerName; }
 
     /**
-     * <p>The name of the load balancer.</p>
+     * <p>The name of a load balancer.</p>
      */
     inline void SetLoadBalancerName(const Aws::String& value) { m_loadBalancerNameHasBeenSet = true; m_loadBalancerName = value; }
 
     /**
-     * <p>The name of the load balancer.</p>
+     * <p>The name of a load balancer.</p>
      */
-    inline void SetLoadBalancerName(Aws::String&& value) { m_loadBalancerNameHasBeenSet = true; m_loadBalancerName = value; }
+    inline void SetLoadBalancerName(Aws::String&& value) { m_loadBalancerNameHasBeenSet = true; m_loadBalancerName = std::move(value); }
 
     /**
-     * <p>The name of the load balancer.</p>
+     * <p>The name of a load balancer.</p>
      */
     inline void SetLoadBalancerName(const char* value) { m_loadBalancerNameHasBeenSet = true; m_loadBalancerName.assign(value); }
 
     /**
-     * <p>The name of the load balancer.</p>
+     * <p>The name of a load balancer.</p>
      */
     inline LoadBalancer& WithLoadBalancerName(const Aws::String& value) { SetLoadBalancerName(value); return *this;}
 
     /**
-     * <p>The name of the load balancer.</p>
+     * <p>The name of a load balancer.</p>
      */
-    inline LoadBalancer& WithLoadBalancerName(Aws::String&& value) { SetLoadBalancerName(value); return *this;}
+    inline LoadBalancer& WithLoadBalancerName(Aws::String&& value) { SetLoadBalancerName(std::move(value)); return *this;}
 
     /**
-     * <p>The name of the load balancer.</p>
+     * <p>The name of a load balancer.</p>
      */
     inline LoadBalancer& WithLoadBalancerName(const char* value) { SetLoadBalancerName(value); return *this;}
+
 
     /**
      * <p>The name of the container (as it appears in a container definition) to
@@ -137,7 +142,7 @@ namespace Model
      * <p>The name of the container (as it appears in a container definition) to
      * associate with the load balancer.</p>
      */
-    inline void SetContainerName(Aws::String&& value) { m_containerNameHasBeenSet = true; m_containerName = value; }
+    inline void SetContainerName(Aws::String&& value) { m_containerNameHasBeenSet = true; m_containerName = std::move(value); }
 
     /**
      * <p>The name of the container (as it appears in a container definition) to
@@ -155,13 +160,14 @@ namespace Model
      * <p>The name of the container (as it appears in a container definition) to
      * associate with the load balancer.</p>
      */
-    inline LoadBalancer& WithContainerName(Aws::String&& value) { SetContainerName(value); return *this;}
+    inline LoadBalancer& WithContainerName(Aws::String&& value) { SetContainerName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the container (as it appears in a container definition) to
      * associate with the load balancer.</p>
      */
     inline LoadBalancer& WithContainerName(const char* value) { SetContainerName(value); return *this;}
+
 
     /**
      * <p>The port on the container to associate with the load balancer. This port must
@@ -188,12 +194,16 @@ namespace Model
     inline LoadBalancer& WithContainerPort(int value) { SetContainerPort(value); return *this;}
 
   private:
+
     Aws::String m_targetGroupArn;
     bool m_targetGroupArnHasBeenSet;
+
     Aws::String m_loadBalancerName;
     bool m_loadBalancerNameHasBeenSet;
+
     Aws::String m_containerName;
     bool m_containerNameHasBeenSet;
+
     int m_containerPort;
     bool m_containerPortHasBeenSet;
   };

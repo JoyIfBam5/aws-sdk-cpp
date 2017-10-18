@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,6 +45,7 @@ namespace Model
     ConstraintDetail& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The identifier of the constraint.</p>
      */
@@ -56,7 +59,7 @@ namespace Model
     /**
      * <p>The identifier of the constraint.</p>
      */
-    inline void SetConstraintId(Aws::String&& value) { m_constraintIdHasBeenSet = true; m_constraintId = value; }
+    inline void SetConstraintId(Aws::String&& value) { m_constraintIdHasBeenSet = true; m_constraintId = std::move(value); }
 
     /**
      * <p>The identifier of the constraint.</p>
@@ -71,12 +74,13 @@ namespace Model
     /**
      * <p>The identifier of the constraint.</p>
      */
-    inline ConstraintDetail& WithConstraintId(Aws::String&& value) { SetConstraintId(value); return *this;}
+    inline ConstraintDetail& WithConstraintId(Aws::String&& value) { SetConstraintId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the constraint.</p>
      */
     inline ConstraintDetail& WithConstraintId(const char* value) { SetConstraintId(value); return *this;}
+
 
     /**
      * <p>The type of the constraint.</p>
@@ -91,7 +95,7 @@ namespace Model
     /**
      * <p>The type of the constraint.</p>
      */
-    inline void SetType(Aws::String&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(Aws::String&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The type of the constraint.</p>
@@ -106,12 +110,13 @@ namespace Model
     /**
      * <p>The type of the constraint.</p>
      */
-    inline ConstraintDetail& WithType(Aws::String&& value) { SetType(value); return *this;}
+    inline ConstraintDetail& WithType(Aws::String&& value) { SetType(std::move(value)); return *this;}
 
     /**
      * <p>The type of the constraint.</p>
      */
     inline ConstraintDetail& WithType(const char* value) { SetType(value); return *this;}
+
 
     /**
      * <p>The text description of the constraint.</p>
@@ -126,7 +131,7 @@ namespace Model
     /**
      * <p>The text description of the constraint.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>The text description of the constraint.</p>
@@ -141,12 +146,13 @@ namespace Model
     /**
      * <p>The text description of the constraint.</p>
      */
-    inline ConstraintDetail& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline ConstraintDetail& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>The text description of the constraint.</p>
      */
     inline ConstraintDetail& WithDescription(const char* value) { SetDescription(value); return *this;}
+
 
     /**
      * <p>The owner of the constraint.</p>
@@ -161,7 +167,7 @@ namespace Model
     /**
      * <p>The owner of the constraint.</p>
      */
-    inline void SetOwner(Aws::String&& value) { m_ownerHasBeenSet = true; m_owner = value; }
+    inline void SetOwner(Aws::String&& value) { m_ownerHasBeenSet = true; m_owner = std::move(value); }
 
     /**
      * <p>The owner of the constraint.</p>
@@ -176,7 +182,7 @@ namespace Model
     /**
      * <p>The owner of the constraint.</p>
      */
-    inline ConstraintDetail& WithOwner(Aws::String&& value) { SetOwner(value); return *this;}
+    inline ConstraintDetail& WithOwner(Aws::String&& value) { SetOwner(std::move(value)); return *this;}
 
     /**
      * <p>The owner of the constraint.</p>
@@ -184,12 +190,16 @@ namespace Model
     inline ConstraintDetail& WithOwner(const char* value) { SetOwner(value); return *this;}
 
   private:
+
     Aws::String m_constraintId;
     bool m_constraintIdHasBeenSet;
+
     Aws::String m_type;
     bool m_typeHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
     Aws::String m_owner;
     bool m_ownerHasBeenSet;
   };

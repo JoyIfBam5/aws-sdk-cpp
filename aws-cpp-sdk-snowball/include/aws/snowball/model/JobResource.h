@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/snowball/Snowball_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/snowball/model/S3Resource.h>
 #include <aws/snowball/model/LambdaResource.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     JobResource& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>An array of <code>S3Resource</code> objects.</p>
      */
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>An array of <code>S3Resource</code> objects.</p>
      */
-    inline void SetS3Resources(Aws::Vector<S3Resource>&& value) { m_s3ResourcesHasBeenSet = true; m_s3Resources = value; }
+    inline void SetS3Resources(Aws::Vector<S3Resource>&& value) { m_s3ResourcesHasBeenSet = true; m_s3Resources = std::move(value); }
 
     /**
      * <p>An array of <code>S3Resource</code> objects.</p>
@@ -71,7 +74,7 @@ namespace Model
     /**
      * <p>An array of <code>S3Resource</code> objects.</p>
      */
-    inline JobResource& WithS3Resources(Aws::Vector<S3Resource>&& value) { SetS3Resources(value); return *this;}
+    inline JobResource& WithS3Resources(Aws::Vector<S3Resource>&& value) { SetS3Resources(std::move(value)); return *this;}
 
     /**
      * <p>An array of <code>S3Resource</code> objects.</p>
@@ -81,7 +84,8 @@ namespace Model
     /**
      * <p>An array of <code>S3Resource</code> objects.</p>
      */
-    inline JobResource& AddS3Resources(S3Resource&& value) { m_s3ResourcesHasBeenSet = true; m_s3Resources.push_back(value); return *this; }
+    inline JobResource& AddS3Resources(S3Resource&& value) { m_s3ResourcesHasBeenSet = true; m_s3Resources.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The Python-language Lambda functions for this job.</p>
@@ -96,7 +100,7 @@ namespace Model
     /**
      * <p>The Python-language Lambda functions for this job.</p>
      */
-    inline void SetLambdaResources(Aws::Vector<LambdaResource>&& value) { m_lambdaResourcesHasBeenSet = true; m_lambdaResources = value; }
+    inline void SetLambdaResources(Aws::Vector<LambdaResource>&& value) { m_lambdaResourcesHasBeenSet = true; m_lambdaResources = std::move(value); }
 
     /**
      * <p>The Python-language Lambda functions for this job.</p>
@@ -106,7 +110,7 @@ namespace Model
     /**
      * <p>The Python-language Lambda functions for this job.</p>
      */
-    inline JobResource& WithLambdaResources(Aws::Vector<LambdaResource>&& value) { SetLambdaResources(value); return *this;}
+    inline JobResource& WithLambdaResources(Aws::Vector<LambdaResource>&& value) { SetLambdaResources(std::move(value)); return *this;}
 
     /**
      * <p>The Python-language Lambda functions for this job.</p>
@@ -116,11 +120,13 @@ namespace Model
     /**
      * <p>The Python-language Lambda functions for this job.</p>
      */
-    inline JobResource& AddLambdaResources(LambdaResource&& value) { m_lambdaResourcesHasBeenSet = true; m_lambdaResources.push_back(value); return *this; }
+    inline JobResource& AddLambdaResources(LambdaResource&& value) { m_lambdaResourcesHasBeenSet = true; m_lambdaResources.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<S3Resource> m_s3Resources;
     bool m_s3ResourcesHasBeenSet;
+
     Aws::Vector<LambdaResource> m_lambdaResources;
     bool m_lambdaResourcesHasBeenSet;
   };

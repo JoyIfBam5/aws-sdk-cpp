@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/ecs/model/Cluster.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     DeleteClusterResult();
-    DeleteClusterResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DeleteClusterResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DeleteClusterResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DeleteClusterResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The full description of the deleted cluster.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The full description of the deleted cluster.</p>
      */
-    inline void SetCluster(Cluster&& value) { m_cluster = value; }
+    inline void SetCluster(Cluster&& value) { m_cluster = std::move(value); }
 
     /**
      * <p>The full description of the deleted cluster.</p>
@@ -62,9 +65,10 @@ namespace Model
     /**
      * <p>The full description of the deleted cluster.</p>
      */
-    inline DeleteClusterResult& WithCluster(Cluster&& value) { SetCluster(value); return *this;}
+    inline DeleteClusterResult& WithCluster(Cluster&& value) { SetCluster(std::move(value)); return *this;}
 
   private:
+
     Cluster m_cluster;
   };
 

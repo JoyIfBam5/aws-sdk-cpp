@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ds/DirectoryService_EXPORTS.h>
 #include <aws/ds/DirectoryServiceRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     StartSchemaExtensionRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "StartSchemaExtension"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The identifier of the directory for which the schema extension will be
@@ -50,7 +60,7 @@ namespace Model
      * <p>The identifier of the directory for which the schema extension will be
      * applied to.</p>
      */
-    inline void SetDirectoryId(Aws::String&& value) { m_directoryIdHasBeenSet = true; m_directoryId = value; }
+    inline void SetDirectoryId(Aws::String&& value) { m_directoryIdHasBeenSet = true; m_directoryId = std::move(value); }
 
     /**
      * <p>The identifier of the directory for which the schema extension will be
@@ -68,13 +78,14 @@ namespace Model
      * <p>The identifier of the directory for which the schema extension will be
      * applied to.</p>
      */
-    inline StartSchemaExtensionRequest& WithDirectoryId(Aws::String&& value) { SetDirectoryId(value); return *this;}
+    inline StartSchemaExtensionRequest& WithDirectoryId(Aws::String&& value) { SetDirectoryId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the directory for which the schema extension will be
      * applied to.</p>
      */
     inline StartSchemaExtensionRequest& WithDirectoryId(const char* value) { SetDirectoryId(value); return *this;}
+
 
     /**
      * <p>If true, creates a snapshot of the directory before applying the schema
@@ -93,6 +104,7 @@ namespace Model
      * extension.</p>
      */
     inline StartSchemaExtensionRequest& WithCreateSnapshotBeforeSchemaExtension(bool value) { SetCreateSnapshotBeforeSchemaExtension(value); return *this;}
+
 
     /**
      * <p>The LDIF file represented as a string. To construct the LdifContent string,
@@ -116,7 +128,7 @@ namespace Model
      * example request below for more details. The file size can be no larger than
      * 1MB.</p>
      */
-    inline void SetLdifContent(Aws::String&& value) { m_ldifContentHasBeenSet = true; m_ldifContent = value; }
+    inline void SetLdifContent(Aws::String&& value) { m_ldifContentHasBeenSet = true; m_ldifContent = std::move(value); }
 
     /**
      * <p>The LDIF file represented as a string. To construct the LdifContent string,
@@ -140,7 +152,7 @@ namespace Model
      * example request below for more details. The file size can be no larger than
      * 1MB.</p>
      */
-    inline StartSchemaExtensionRequest& WithLdifContent(Aws::String&& value) { SetLdifContent(value); return *this;}
+    inline StartSchemaExtensionRequest& WithLdifContent(Aws::String&& value) { SetLdifContent(std::move(value)); return *this;}
 
     /**
      * <p>The LDIF file represented as a string. To construct the LdifContent string,
@@ -149,6 +161,7 @@ namespace Model
      * 1MB.</p>
      */
     inline StartSchemaExtensionRequest& WithLdifContent(const char* value) { SetLdifContent(value); return *this;}
+
 
     /**
      * <p>A description of the schema extension.</p>
@@ -163,7 +176,7 @@ namespace Model
     /**
      * <p>A description of the schema extension.</p>
      */
-    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = value; }
+    inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
      * <p>A description of the schema extension.</p>
@@ -178,7 +191,7 @@ namespace Model
     /**
      * <p>A description of the schema extension.</p>
      */
-    inline StartSchemaExtensionRequest& WithDescription(Aws::String&& value) { SetDescription(value); return *this;}
+    inline StartSchemaExtensionRequest& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
      * <p>A description of the schema extension.</p>
@@ -186,12 +199,16 @@ namespace Model
     inline StartSchemaExtensionRequest& WithDescription(const char* value) { SetDescription(value); return *this;}
 
   private:
+
     Aws::String m_directoryId;
     bool m_directoryIdHasBeenSet;
+
     bool m_createSnapshotBeforeSchemaExtension;
     bool m_createSnapshotBeforeSchemaExtensionHasBeenSet;
+
     Aws::String m_ldifContent;
     bool m_ldifContentHasBeenSet;
+
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
   };

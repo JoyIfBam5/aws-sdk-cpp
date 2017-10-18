@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
+#include <aws/core/utils/DateTime.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ec2/model/TelemetryStatus.h>
-#include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,49 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
+    /**
+     * <p>The number of accepted routes.</p>
+     */
+    inline int GetAcceptedRouteCount() const{ return m_acceptedRouteCount; }
+
+    /**
+     * <p>The number of accepted routes.</p>
+     */
+    inline void SetAcceptedRouteCount(int value) { m_acceptedRouteCountHasBeenSet = true; m_acceptedRouteCount = value; }
+
+    /**
+     * <p>The number of accepted routes.</p>
+     */
+    inline VgwTelemetry& WithAcceptedRouteCount(int value) { SetAcceptedRouteCount(value); return *this;}
+
+
+    /**
+     * <p>The date and time of the last change in status.</p>
+     */
+    inline const Aws::Utils::DateTime& GetLastStatusChange() const{ return m_lastStatusChange; }
+
+    /**
+     * <p>The date and time of the last change in status.</p>
+     */
+    inline void SetLastStatusChange(const Aws::Utils::DateTime& value) { m_lastStatusChangeHasBeenSet = true; m_lastStatusChange = value; }
+
+    /**
+     * <p>The date and time of the last change in status.</p>
+     */
+    inline void SetLastStatusChange(Aws::Utils::DateTime&& value) { m_lastStatusChangeHasBeenSet = true; m_lastStatusChange = std::move(value); }
+
+    /**
+     * <p>The date and time of the last change in status.</p>
+     */
+    inline VgwTelemetry& WithLastStatusChange(const Aws::Utils::DateTime& value) { SetLastStatusChange(value); return *this;}
+
+    /**
+     * <p>The date and time of the last change in status.</p>
+     */
+    inline VgwTelemetry& WithLastStatusChange(Aws::Utils::DateTime&& value) { SetLastStatusChange(std::move(value)); return *this;}
+
+
     /**
      * <p>The Internet-routable IP address of the virtual private gateway's outside
      * interface.</p>
@@ -64,7 +109,7 @@ namespace Model
      * <p>The Internet-routable IP address of the virtual private gateway's outside
      * interface.</p>
      */
-    inline void SetOutsideIpAddress(Aws::String&& value) { m_outsideIpAddressHasBeenSet = true; m_outsideIpAddress = value; }
+    inline void SetOutsideIpAddress(Aws::String&& value) { m_outsideIpAddressHasBeenSet = true; m_outsideIpAddress = std::move(value); }
 
     /**
      * <p>The Internet-routable IP address of the virtual private gateway's outside
@@ -82,13 +127,14 @@ namespace Model
      * <p>The Internet-routable IP address of the virtual private gateway's outside
      * interface.</p>
      */
-    inline VgwTelemetry& WithOutsideIpAddress(Aws::String&& value) { SetOutsideIpAddress(value); return *this;}
+    inline VgwTelemetry& WithOutsideIpAddress(Aws::String&& value) { SetOutsideIpAddress(std::move(value)); return *this;}
 
     /**
      * <p>The Internet-routable IP address of the virtual private gateway's outside
      * interface.</p>
      */
     inline VgwTelemetry& WithOutsideIpAddress(const char* value) { SetOutsideIpAddress(value); return *this;}
+
 
     /**
      * <p>The status of the VPN tunnel.</p>
@@ -103,7 +149,7 @@ namespace Model
     /**
      * <p>The status of the VPN tunnel.</p>
      */
-    inline void SetStatus(TelemetryStatus&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(TelemetryStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The status of the VPN tunnel.</p>
@@ -113,32 +159,8 @@ namespace Model
     /**
      * <p>The status of the VPN tunnel.</p>
      */
-    inline VgwTelemetry& WithStatus(TelemetryStatus&& value) { SetStatus(value); return *this;}
+    inline VgwTelemetry& WithStatus(TelemetryStatus&& value) { SetStatus(std::move(value)); return *this;}
 
-    /**
-     * <p>The date and time of the last change in status.</p>
-     */
-    inline const Aws::Utils::DateTime& GetLastStatusChange() const{ return m_lastStatusChange; }
-
-    /**
-     * <p>The date and time of the last change in status.</p>
-     */
-    inline void SetLastStatusChange(const Aws::Utils::DateTime& value) { m_lastStatusChangeHasBeenSet = true; m_lastStatusChange = value; }
-
-    /**
-     * <p>The date and time of the last change in status.</p>
-     */
-    inline void SetLastStatusChange(Aws::Utils::DateTime&& value) { m_lastStatusChangeHasBeenSet = true; m_lastStatusChange = value; }
-
-    /**
-     * <p>The date and time of the last change in status.</p>
-     */
-    inline VgwTelemetry& WithLastStatusChange(const Aws::Utils::DateTime& value) { SetLastStatusChange(value); return *this;}
-
-    /**
-     * <p>The date and time of the last change in status.</p>
-     */
-    inline VgwTelemetry& WithLastStatusChange(Aws::Utils::DateTime&& value) { SetLastStatusChange(value); return *this;}
 
     /**
      * <p>If an error occurs, a description of the error.</p>
@@ -153,7 +175,7 @@ namespace Model
     /**
      * <p>If an error occurs, a description of the error.</p>
      */
-    inline void SetStatusMessage(Aws::String&& value) { m_statusMessageHasBeenSet = true; m_statusMessage = value; }
+    inline void SetStatusMessage(Aws::String&& value) { m_statusMessageHasBeenSet = true; m_statusMessage = std::move(value); }
 
     /**
      * <p>If an error occurs, a description of the error.</p>
@@ -168,39 +190,29 @@ namespace Model
     /**
      * <p>If an error occurs, a description of the error.</p>
      */
-    inline VgwTelemetry& WithStatusMessage(Aws::String&& value) { SetStatusMessage(value); return *this;}
+    inline VgwTelemetry& WithStatusMessage(Aws::String&& value) { SetStatusMessage(std::move(value)); return *this;}
 
     /**
      * <p>If an error occurs, a description of the error.</p>
      */
     inline VgwTelemetry& WithStatusMessage(const char* value) { SetStatusMessage(value); return *this;}
 
-    /**
-     * <p>The number of accepted routes.</p>
-     */
-    inline int GetAcceptedRouteCount() const{ return m_acceptedRouteCount; }
-
-    /**
-     * <p>The number of accepted routes.</p>
-     */
-    inline void SetAcceptedRouteCount(int value) { m_acceptedRouteCountHasBeenSet = true; m_acceptedRouteCount = value; }
-
-    /**
-     * <p>The number of accepted routes.</p>
-     */
-    inline VgwTelemetry& WithAcceptedRouteCount(int value) { SetAcceptedRouteCount(value); return *this;}
-
   private:
-    Aws::String m_outsideIpAddress;
-    bool m_outsideIpAddressHasBeenSet;
-    TelemetryStatus m_status;
-    bool m_statusHasBeenSet;
-    Aws::Utils::DateTime m_lastStatusChange;
-    bool m_lastStatusChangeHasBeenSet;
-    Aws::String m_statusMessage;
-    bool m_statusMessageHasBeenSet;
+
     int m_acceptedRouteCount;
     bool m_acceptedRouteCountHasBeenSet;
+
+    Aws::Utils::DateTime m_lastStatusChange;
+    bool m_lastStatusChangeHasBeenSet;
+
+    Aws::String m_outsideIpAddress;
+    bool m_outsideIpAddressHasBeenSet;
+
+    TelemetryStatus m_status;
+    bool m_statusHasBeenSet;
+
+    Aws::String m_statusMessage;
+    bool m_statusMessageHasBeenSet;
   };
 
 } // namespace Model

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elastictranscoder/ElasticTranscoder_EXPORTS.h>
 #include <aws/elastictranscoder/model/Pipeline.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     UpdatePipelineStatusResult();
-    UpdatePipelineStatusResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    UpdatePipelineStatusResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdatePipelineStatusResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    UpdatePipelineStatusResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A section of the response body that provides information about the
@@ -61,7 +64,7 @@ namespace Model
      * <p>A section of the response body that provides information about the
      * pipeline.</p>
      */
-    inline void SetPipeline(Pipeline&& value) { m_pipeline = value; }
+    inline void SetPipeline(Pipeline&& value) { m_pipeline = std::move(value); }
 
     /**
      * <p>A section of the response body that provides information about the
@@ -73,9 +76,10 @@ namespace Model
      * <p>A section of the response body that provides information about the
      * pipeline.</p>
      */
-    inline UpdatePipelineStatusResult& WithPipeline(Pipeline&& value) { SetPipeline(value); return *this;}
+    inline UpdatePipelineStatusResult& WithPipeline(Pipeline&& value) { SetPipeline(std::move(value)); return *this;}
 
   private:
+
     Pipeline m_pipeline;
   };
 

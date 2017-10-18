@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   *
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -15,6 +15,13 @@
 
 #include <aws/core/utils/stream/ResponseStream.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
+
+#if defined(_GLIBCXX_FULLY_DYNAMIC_STRING) && _GLIBCXX_FULLY_DYNAMIC_STRING == 0 && defined(__ANDROID__)
+#include <aws/core/utils/stream/SimpleStreamBuf.h>
+using DefaultStreamBufType = Aws::Utils::Stream::SimpleStreamBuf;
+#else
+using DefaultStreamBufType = Aws::StringBuf;
+#endif
 
 using namespace Aws::Utils::Stream;
 
@@ -71,7 +78,7 @@ void ResponseStream::ReleaseStream()
 static const char *DEFAULT_STREAM_TAG = "DefaultUnderlyingStream";
 
 DefaultUnderlyingStream::DefaultUnderlyingStream() :
-    Base( Aws::New< Aws::StringBuf >( DEFAULT_STREAM_TAG ) )
+    Base( Aws::New< DefaultStreamBufType >( DEFAULT_STREAM_TAG ) )
 {}
 
 DefaultUnderlyingStream::~DefaultUnderlyingStream()

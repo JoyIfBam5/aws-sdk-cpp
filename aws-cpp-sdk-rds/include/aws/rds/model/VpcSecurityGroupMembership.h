@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the VPC security group.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The name of the VPC security group.</p>
      */
-    inline void SetVpcSecurityGroupId(Aws::String&& value) { m_vpcSecurityGroupIdHasBeenSet = true; m_vpcSecurityGroupId = value; }
+    inline void SetVpcSecurityGroupId(Aws::String&& value) { m_vpcSecurityGroupIdHasBeenSet = true; m_vpcSecurityGroupId = std::move(value); }
 
     /**
      * <p>The name of the VPC security group.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The name of the VPC security group.</p>
      */
-    inline VpcSecurityGroupMembership& WithVpcSecurityGroupId(Aws::String&& value) { SetVpcSecurityGroupId(value); return *this;}
+    inline VpcSecurityGroupMembership& WithVpcSecurityGroupId(Aws::String&& value) { SetVpcSecurityGroupId(std::move(value)); return *this;}
 
     /**
      * <p>The name of the VPC security group.</p>
      */
     inline VpcSecurityGroupMembership& WithVpcSecurityGroupId(const char* value) { SetVpcSecurityGroupId(value); return *this;}
+
 
     /**
      * <p>The status of the VPC security group.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>The status of the VPC security group.</p>
      */
-    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The status of the VPC security group.</p>
@@ -110,7 +114,7 @@ namespace Model
     /**
      * <p>The status of the VPC security group.</p>
      */
-    inline VpcSecurityGroupMembership& WithStatus(Aws::String&& value) { SetStatus(value); return *this;}
+    inline VpcSecurityGroupMembership& WithStatus(Aws::String&& value) { SetStatus(std::move(value)); return *this;}
 
     /**
      * <p>The status of the VPC security group.</p>
@@ -118,8 +122,10 @@ namespace Model
     inline VpcSecurityGroupMembership& WithStatus(const char* value) { SetStatus(value); return *this;}
 
   private:
+
     Aws::String m_vpcSecurityGroupId;
     bool m_vpcSecurityGroupIdHasBeenSet;
+
     Aws::String m_status;
     bool m_statusHasBeenSet;
   };

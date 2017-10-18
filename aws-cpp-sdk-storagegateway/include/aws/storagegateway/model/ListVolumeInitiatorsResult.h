@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/storagegateway/StorageGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     ListVolumeInitiatorsResult();
-    ListVolumeInitiatorsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListVolumeInitiatorsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListVolumeInitiatorsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListVolumeInitiatorsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The host names and port numbers of all iSCSI initiators that are connected to
@@ -61,7 +64,7 @@ namespace Model
      * <p>The host names and port numbers of all iSCSI initiators that are connected to
      * the gateway.</p>
      */
-    inline void SetInitiators(Aws::Vector<Aws::String>&& value) { m_initiators = value; }
+    inline void SetInitiators(Aws::Vector<Aws::String>&& value) { m_initiators = std::move(value); }
 
     /**
      * <p>The host names and port numbers of all iSCSI initiators that are connected to
@@ -73,7 +76,7 @@ namespace Model
      * <p>The host names and port numbers of all iSCSI initiators that are connected to
      * the gateway.</p>
      */
-    inline ListVolumeInitiatorsResult& WithInitiators(Aws::Vector<Aws::String>&& value) { SetInitiators(value); return *this;}
+    inline ListVolumeInitiatorsResult& WithInitiators(Aws::Vector<Aws::String>&& value) { SetInitiators(std::move(value)); return *this;}
 
     /**
      * <p>The host names and port numbers of all iSCSI initiators that are connected to
@@ -85,7 +88,7 @@ namespace Model
      * <p>The host names and port numbers of all iSCSI initiators that are connected to
      * the gateway.</p>
      */
-    inline ListVolumeInitiatorsResult& AddInitiators(Aws::String&& value) { m_initiators.push_back(value); return *this; }
+    inline ListVolumeInitiatorsResult& AddInitiators(Aws::String&& value) { m_initiators.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The host names and port numbers of all iSCSI initiators that are connected to
@@ -94,6 +97,7 @@ namespace Model
     inline ListVolumeInitiatorsResult& AddInitiators(const char* value) { m_initiators.push_back(value); return *this; }
 
   private:
+
     Aws::Vector<Aws::String> m_initiators;
   };
 

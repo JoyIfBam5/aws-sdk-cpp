@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/appstream/AppStream_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -35,7 +36,22 @@ namespace Model
     IAM_SERVICE_ROLE_MISSING_DESCRIBE_SUBNET_ACTION,
     SUBNET_NOT_FOUND,
     IMAGE_NOT_FOUND,
-    INVALID_SUBNET_CONFIGURATION
+    INVALID_SUBNET_CONFIGURATION,
+    SECURITY_GROUPS_NOT_FOUND,
+    IGW_NOT_ATTACHED,
+    IAM_SERVICE_ROLE_MISSING_DESCRIBE_SECURITY_GROUPS_ACTION,
+    DOMAIN_JOIN_ERROR_FILE_NOT_FOUND,
+    DOMAIN_JOIN_ERROR_ACCESS_DENIED,
+    DOMAIN_JOIN_ERROR_LOGON_FAILURE,
+    DOMAIN_JOIN_ERROR_INVALID_PARAMETER,
+    DOMAIN_JOIN_ERROR_MORE_DATA,
+    DOMAIN_JOIN_ERROR_NO_SUCH_DOMAIN,
+    DOMAIN_JOIN_ERROR_NOT_SUPPORTED,
+    DOMAIN_JOIN_NERR_INVALID_WORKGROUP_NAME,
+    DOMAIN_JOIN_NERR_WORKSTATION_NOT_STARTED,
+    DOMAIN_JOIN_ERROR_DS_MACHINE_ACCOUNT_QUOTA_EXCEEDED,
+    DOMAIN_JOIN_NERR_PASSWORD_EXPIRED,
+    DOMAIN_JOIN_INTERNAL_SERVICE_ERROR
   };
 
 namespace FleetErrorCodeMapper

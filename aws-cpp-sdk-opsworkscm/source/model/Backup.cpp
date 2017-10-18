@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/opsworkscm/model/Backup.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -42,9 +43,6 @@ Backup::Backup() :
     m_keyPairHasBeenSet(false),
     m_preferredBackupWindowHasBeenSet(false),
     m_preferredMaintenanceWindowHasBeenSet(false),
-    m_s3DataSize(0),
-    m_s3DataSizeHasBeenSet(false),
-    m_s3DataUrlHasBeenSet(false),
     m_s3LogUrlHasBeenSet(false),
     m_securityGroupIdsHasBeenSet(false),
     m_serverNameHasBeenSet(false),
@@ -73,9 +71,6 @@ Backup::Backup(const JsonValue& jsonValue) :
     m_keyPairHasBeenSet(false),
     m_preferredBackupWindowHasBeenSet(false),
     m_preferredMaintenanceWindowHasBeenSet(false),
-    m_s3DataSize(0),
-    m_s3DataSizeHasBeenSet(false),
-    m_s3DataUrlHasBeenSet(false),
     m_s3LogUrlHasBeenSet(false),
     m_securityGroupIdsHasBeenSet(false),
     m_serverNameHasBeenSet(false),
@@ -181,20 +176,6 @@ Backup& Backup::operator =(const JsonValue& jsonValue)
     m_preferredMaintenanceWindow = jsonValue.GetString("PreferredMaintenanceWindow");
 
     m_preferredMaintenanceWindowHasBeenSet = true;
-  }
-
-  if(jsonValue.ValueExists("S3DataSize"))
-  {
-    m_s3DataSize = jsonValue.GetInteger("S3DataSize");
-
-    m_s3DataSizeHasBeenSet = true;
-  }
-
-  if(jsonValue.ValueExists("S3DataUrl"))
-  {
-    m_s3DataUrl = jsonValue.GetString("S3DataUrl");
-
-    m_s3DataUrlHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("S3LogUrl"))
@@ -346,18 +327,6 @@ JsonValue Backup::Jsonize() const
   if(m_preferredMaintenanceWindowHasBeenSet)
   {
    payload.WithString("PreferredMaintenanceWindow", m_preferredMaintenanceWindow);
-
-  }
-
-  if(m_s3DataSizeHasBeenSet)
-  {
-   payload.WithInteger("S3DataSize", m_s3DataSize);
-
-  }
-
-  if(m_s3DataUrlHasBeenSet)
-  {
-   payload.WithString("S3DataUrl", m_s3DataUrl);
 
   }
 

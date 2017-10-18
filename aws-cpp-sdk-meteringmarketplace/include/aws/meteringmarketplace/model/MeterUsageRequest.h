@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/meteringmarketplace/MarketplaceMetering_EXPORTS.h>
 #include <aws/meteringmarketplace/MarketplaceMeteringRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,9 +33,17 @@ namespace Model
   {
   public:
     MeterUsageRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "MeterUsage"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>Product code is used to uniquely identify a product in AWS Marketplace. The
@@ -54,7 +64,7 @@ namespace Model
      * product code should be the same as the one used during the publishing of a new
      * product.</p>
      */
-    inline void SetProductCode(Aws::String&& value) { m_productCodeHasBeenSet = true; m_productCode = value; }
+    inline void SetProductCode(Aws::String&& value) { m_productCodeHasBeenSet = true; m_productCode = std::move(value); }
 
     /**
      * <p>Product code is used to uniquely identify a product in AWS Marketplace. The
@@ -75,7 +85,7 @@ namespace Model
      * product code should be the same as the one used during the publishing of a new
      * product.</p>
      */
-    inline MeterUsageRequest& WithProductCode(Aws::String&& value) { SetProductCode(value); return *this;}
+    inline MeterUsageRequest& WithProductCode(Aws::String&& value) { SetProductCode(std::move(value)); return *this;}
 
     /**
      * <p>Product code is used to uniquely identify a product in AWS Marketplace. The
@@ -83,6 +93,7 @@ namespace Model
      * product.</p>
      */
     inline MeterUsageRequest& WithProductCode(const char* value) { SetProductCode(value); return *this;}
+
 
     /**
      * <p>Timestamp of the hour, recorded in UTC. The seconds and milliseconds portions
@@ -100,7 +111,7 @@ namespace Model
      * <p>Timestamp of the hour, recorded in UTC. The seconds and milliseconds portions
      * of the timestamp will be ignored.</p>
      */
-    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = value; }
+    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = std::move(value); }
 
     /**
      * <p>Timestamp of the hour, recorded in UTC. The seconds and milliseconds portions
@@ -112,7 +123,8 @@ namespace Model
      * <p>Timestamp of the hour, recorded in UTC. The seconds and milliseconds portions
      * of the timestamp will be ignored.</p>
      */
-    inline MeterUsageRequest& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(value); return *this;}
+    inline MeterUsageRequest& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(std::move(value)); return *this;}
+
 
     /**
      * <p>It will be one of the fcp dimension name provided during the publishing of
@@ -130,7 +142,7 @@ namespace Model
      * <p>It will be one of the fcp dimension name provided during the publishing of
      * the product.</p>
      */
-    inline void SetUsageDimension(Aws::String&& value) { m_usageDimensionHasBeenSet = true; m_usageDimension = value; }
+    inline void SetUsageDimension(Aws::String&& value) { m_usageDimensionHasBeenSet = true; m_usageDimension = std::move(value); }
 
     /**
      * <p>It will be one of the fcp dimension name provided during the publishing of
@@ -148,13 +160,14 @@ namespace Model
      * <p>It will be one of the fcp dimension name provided during the publishing of
      * the product.</p>
      */
-    inline MeterUsageRequest& WithUsageDimension(Aws::String&& value) { SetUsageDimension(value); return *this;}
+    inline MeterUsageRequest& WithUsageDimension(Aws::String&& value) { SetUsageDimension(std::move(value)); return *this;}
 
     /**
      * <p>It will be one of the fcp dimension name provided during the publishing of
      * the product.</p>
      */
     inline MeterUsageRequest& WithUsageDimension(const char* value) { SetUsageDimension(value); return *this;}
+
 
     /**
      * <p>Consumption value for the hour.</p>
@@ -170,6 +183,7 @@ namespace Model
      * <p>Consumption value for the hour.</p>
      */
     inline MeterUsageRequest& WithUsageQuantity(int value) { SetUsageQuantity(value); return *this;}
+
 
     /**
      * <p>Checks whether you have the permissions required for the action, but does not
@@ -193,14 +207,19 @@ namespace Model
     inline MeterUsageRequest& WithDryRun(bool value) { SetDryRun(value); return *this;}
 
   private:
+
     Aws::String m_productCode;
     bool m_productCodeHasBeenSet;
+
     Aws::Utils::DateTime m_timestamp;
     bool m_timestampHasBeenSet;
+
     Aws::String m_usageDimension;
     bool m_usageDimensionHasBeenSet;
+
     int m_usageQuantity;
     bool m_usageQuantityHasBeenSet;
+
     bool m_dryRun;
     bool m_dryRunHasBeenSet;
   };

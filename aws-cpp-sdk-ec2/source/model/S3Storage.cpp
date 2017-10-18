@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/S3Storage.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -31,18 +32,18 @@ namespace Model
 {
 
 S3Storage::S3Storage() : 
+    m_aWSAccessKeyIdHasBeenSet(false),
     m_bucketHasBeenSet(false),
     m_prefixHasBeenSet(false),
-    m_aWSAccessKeyIdHasBeenSet(false),
     m_uploadPolicyHasBeenSet(false),
     m_uploadPolicySignatureHasBeenSet(false)
 {
 }
 
 S3Storage::S3Storage(const XmlNode& xmlNode) : 
+    m_aWSAccessKeyIdHasBeenSet(false),
     m_bucketHasBeenSet(false),
     m_prefixHasBeenSet(false),
-    m_aWSAccessKeyIdHasBeenSet(false),
     m_uploadPolicyHasBeenSet(false),
     m_uploadPolicySignatureHasBeenSet(false)
 {
@@ -55,6 +56,12 @@ S3Storage& S3Storage::operator =(const XmlNode& xmlNode)
 
   if(!resultNode.IsNull())
   {
+    XmlNode aWSAccessKeyIdNode = resultNode.FirstChild("AWSAccessKeyId");
+    if(!aWSAccessKeyIdNode.IsNull())
+    {
+      m_aWSAccessKeyId = StringUtils::Trim(aWSAccessKeyIdNode.GetText().c_str());
+      m_aWSAccessKeyIdHasBeenSet = true;
+    }
     XmlNode bucketNode = resultNode.FirstChild("bucket");
     if(!bucketNode.IsNull())
     {
@@ -66,12 +73,6 @@ S3Storage& S3Storage::operator =(const XmlNode& xmlNode)
     {
       m_prefix = StringUtils::Trim(prefixNode.GetText().c_str());
       m_prefixHasBeenSet = true;
-    }
-    XmlNode aWSAccessKeyIdNode = resultNode.FirstChild("AWSAccessKeyId");
-    if(!aWSAccessKeyIdNode.IsNull())
-    {
-      m_aWSAccessKeyId = StringUtils::Trim(aWSAccessKeyIdNode.GetText().c_str());
-      m_aWSAccessKeyIdHasBeenSet = true;
     }
     XmlNode uploadPolicyNode = resultNode.FirstChild("uploadPolicy");
     if(!uploadPolicyNode.IsNull())
@@ -92,6 +93,11 @@ S3Storage& S3Storage::operator =(const XmlNode& xmlNode)
 
 void S3Storage::OutputToStream(Aws::OStream& oStream, const char* location, unsigned index, const char* locationValue) const
 {
+  if(m_aWSAccessKeyIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".AWSAccessKeyId=" << StringUtils::URLEncode(m_aWSAccessKeyId.c_str()) << "&";
+  }
+
   if(m_bucketHasBeenSet)
   {
       oStream << location << index << locationValue << ".Bucket=" << StringUtils::URLEncode(m_bucket.c_str()) << "&";
@@ -100,11 +106,6 @@ void S3Storage::OutputToStream(Aws::OStream& oStream, const char* location, unsi
   if(m_prefixHasBeenSet)
   {
       oStream << location << index << locationValue << ".Prefix=" << StringUtils::URLEncode(m_prefix.c_str()) << "&";
-  }
-
-  if(m_aWSAccessKeyIdHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".AWSAccessKeyId=" << StringUtils::URLEncode(m_aWSAccessKeyId.c_str()) << "&";
   }
 
   if(m_uploadPolicyHasBeenSet)
@@ -121,6 +122,10 @@ void S3Storage::OutputToStream(Aws::OStream& oStream, const char* location, unsi
 
 void S3Storage::OutputToStream(Aws::OStream& oStream, const char* location) const
 {
+  if(m_aWSAccessKeyIdHasBeenSet)
+  {
+      oStream << location << ".AWSAccessKeyId=" << StringUtils::URLEncode(m_aWSAccessKeyId.c_str()) << "&";
+  }
   if(m_bucketHasBeenSet)
   {
       oStream << location << ".Bucket=" << StringUtils::URLEncode(m_bucket.c_str()) << "&";
@@ -128,10 +133,6 @@ void S3Storage::OutputToStream(Aws::OStream& oStream, const char* location) cons
   if(m_prefixHasBeenSet)
   {
       oStream << location << ".Prefix=" << StringUtils::URLEncode(m_prefix.c_str()) << "&";
-  }
-  if(m_aWSAccessKeyIdHasBeenSet)
-  {
-      oStream << location << ".AWSAccessKeyId=" << StringUtils::URLEncode(m_aWSAccessKeyId.c_str()) << "&";
   }
   if(m_uploadPolicyHasBeenSet)
   {

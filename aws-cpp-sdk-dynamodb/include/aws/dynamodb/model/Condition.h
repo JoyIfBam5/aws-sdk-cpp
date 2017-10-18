@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/dynamodb/DynamoDB_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/dynamodb/model/ComparisonOperator.h>
 #include <aws/dynamodb/model/AttributeValue.h>
+#include <utility>
 
 namespace Aws
 {
@@ -55,6 +57,7 @@ namespace Model
     Condition& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>One or more values to evaluate against the supplied attribute. The number of
      * values in the list depends on the <code>ComparisonOperator</code> being
@@ -92,7 +95,7 @@ namespace Model
      * <p>For Binary, DynamoDB treats each byte of the binary data as unsigned when it
      * compares binary values.</p>
      */
-    inline void SetAttributeValueList(Aws::Vector<AttributeValue>&& value) { m_attributeValueListHasBeenSet = true; m_attributeValueList = value; }
+    inline void SetAttributeValueList(Aws::Vector<AttributeValue>&& value) { m_attributeValueListHasBeenSet = true; m_attributeValueList = std::move(value); }
 
     /**
      * <p>One or more values to evaluate against the supplied attribute. The number of
@@ -118,7 +121,7 @@ namespace Model
      * <p>For Binary, DynamoDB treats each byte of the binary data as unsigned when it
      * compares binary values.</p>
      */
-    inline Condition& WithAttributeValueList(Aws::Vector<AttributeValue>&& value) { SetAttributeValueList(value); return *this;}
+    inline Condition& WithAttributeValueList(Aws::Vector<AttributeValue>&& value) { SetAttributeValueList(std::move(value)); return *this;}
 
     /**
      * <p>One or more values to evaluate against the supplied attribute. The number of
@@ -144,7 +147,8 @@ namespace Model
      * <p>For Binary, DynamoDB treats each byte of the binary data as unsigned when it
      * compares binary values.</p>
      */
-    inline Condition& AddAttributeValueList(AttributeValue&& value) { m_attributeValueListHasBeenSet = true; m_attributeValueList.push_back(value); return *this; }
+    inline Condition& AddAttributeValueList(AttributeValue&& value) { m_attributeValueListHasBeenSet = true; m_attributeValueList.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>A comparator for evaluating attributes. For example, equals, greater than,
@@ -477,7 +481,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.html">Legacy
      * Conditional Parameters</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline void SetComparisonOperator(ComparisonOperator&& value) { m_comparisonOperatorHasBeenSet = true; m_comparisonOperator = value; }
+    inline void SetComparisonOperator(ComparisonOperator&& value) { m_comparisonOperatorHasBeenSet = true; m_comparisonOperator = std::move(value); }
 
     /**
      * <p>A comparator for evaluating attributes. For example, equals, greater than,
@@ -699,11 +703,13 @@ namespace Model
      * href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.html">Legacy
      * Conditional Parameters</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>
      */
-    inline Condition& WithComparisonOperator(ComparisonOperator&& value) { SetComparisonOperator(value); return *this;}
+    inline Condition& WithComparisonOperator(ComparisonOperator&& value) { SetComparisonOperator(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<AttributeValue> m_attributeValueList;
     bool m_attributeValueListHasBeenSet;
+
     ComparisonOperator m_comparisonOperator;
     bool m_comparisonOperatorHasBeenSet;
   };

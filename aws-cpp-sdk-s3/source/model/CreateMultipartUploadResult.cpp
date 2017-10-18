@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/s3/model/CreateMultipartUploadResult.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
@@ -31,14 +32,14 @@ CreateMultipartUploadResult::CreateMultipartUploadResult() :
 {
 }
 
-CreateMultipartUploadResult::CreateMultipartUploadResult(const AmazonWebServiceResult<XmlDocument>& result) : 
+CreateMultipartUploadResult::CreateMultipartUploadResult(const Aws::AmazonWebServiceResult<XmlDocument>& result) : 
     m_serverSideEncryption(ServerSideEncryption::NOT_SET),
     m_requestCharged(RequestCharged::NOT_SET)
 {
   *this = result;
 }
 
-CreateMultipartUploadResult& CreateMultipartUploadResult::operator =(const AmazonWebServiceResult<XmlDocument>& result)
+CreateMultipartUploadResult& CreateMultipartUploadResult::operator =(const Aws::AmazonWebServiceResult<XmlDocument>& result)
 {
   const XmlDocument& xmlDocument = result.GetPayload();
   XmlNode resultNode = xmlDocument.GetRootElement();

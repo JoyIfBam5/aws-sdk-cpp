@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/storagegateway/StorageGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,6 +40,7 @@ namespace Model
     Disk& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     
     inline const Aws::String& GetDiskId() const{ return m_diskId; }
 
@@ -45,7 +48,7 @@ namespace Model
     inline void SetDiskId(const Aws::String& value) { m_diskIdHasBeenSet = true; m_diskId = value; }
 
     
-    inline void SetDiskId(Aws::String&& value) { m_diskIdHasBeenSet = true; m_diskId = value; }
+    inline void SetDiskId(Aws::String&& value) { m_diskIdHasBeenSet = true; m_diskId = std::move(value); }
 
     
     inline void SetDiskId(const char* value) { m_diskIdHasBeenSet = true; m_diskId.assign(value); }
@@ -54,10 +57,11 @@ namespace Model
     inline Disk& WithDiskId(const Aws::String& value) { SetDiskId(value); return *this;}
 
     
-    inline Disk& WithDiskId(Aws::String&& value) { SetDiskId(value); return *this;}
+    inline Disk& WithDiskId(Aws::String&& value) { SetDiskId(std::move(value)); return *this;}
 
     
     inline Disk& WithDiskId(const char* value) { SetDiskId(value); return *this;}
+
 
     
     inline const Aws::String& GetDiskPath() const{ return m_diskPath; }
@@ -66,7 +70,7 @@ namespace Model
     inline void SetDiskPath(const Aws::String& value) { m_diskPathHasBeenSet = true; m_diskPath = value; }
 
     
-    inline void SetDiskPath(Aws::String&& value) { m_diskPathHasBeenSet = true; m_diskPath = value; }
+    inline void SetDiskPath(Aws::String&& value) { m_diskPathHasBeenSet = true; m_diskPath = std::move(value); }
 
     
     inline void SetDiskPath(const char* value) { m_diskPathHasBeenSet = true; m_diskPath.assign(value); }
@@ -75,10 +79,11 @@ namespace Model
     inline Disk& WithDiskPath(const Aws::String& value) { SetDiskPath(value); return *this;}
 
     
-    inline Disk& WithDiskPath(Aws::String&& value) { SetDiskPath(value); return *this;}
+    inline Disk& WithDiskPath(Aws::String&& value) { SetDiskPath(std::move(value)); return *this;}
 
     
     inline Disk& WithDiskPath(const char* value) { SetDiskPath(value); return *this;}
+
 
     
     inline const Aws::String& GetDiskNode() const{ return m_diskNode; }
@@ -87,7 +92,7 @@ namespace Model
     inline void SetDiskNode(const Aws::String& value) { m_diskNodeHasBeenSet = true; m_diskNode = value; }
 
     
-    inline void SetDiskNode(Aws::String&& value) { m_diskNodeHasBeenSet = true; m_diskNode = value; }
+    inline void SetDiskNode(Aws::String&& value) { m_diskNodeHasBeenSet = true; m_diskNode = std::move(value); }
 
     
     inline void SetDiskNode(const char* value) { m_diskNodeHasBeenSet = true; m_diskNode.assign(value); }
@@ -96,10 +101,11 @@ namespace Model
     inline Disk& WithDiskNode(const Aws::String& value) { SetDiskNode(value); return *this;}
 
     
-    inline Disk& WithDiskNode(Aws::String&& value) { SetDiskNode(value); return *this;}
+    inline Disk& WithDiskNode(Aws::String&& value) { SetDiskNode(std::move(value)); return *this;}
 
     
     inline Disk& WithDiskNode(const char* value) { SetDiskNode(value); return *this;}
+
 
     
     inline const Aws::String& GetDiskStatus() const{ return m_diskStatus; }
@@ -108,7 +114,7 @@ namespace Model
     inline void SetDiskStatus(const Aws::String& value) { m_diskStatusHasBeenSet = true; m_diskStatus = value; }
 
     
-    inline void SetDiskStatus(Aws::String&& value) { m_diskStatusHasBeenSet = true; m_diskStatus = value; }
+    inline void SetDiskStatus(Aws::String&& value) { m_diskStatusHasBeenSet = true; m_diskStatus = std::move(value); }
 
     
     inline void SetDiskStatus(const char* value) { m_diskStatusHasBeenSet = true; m_diskStatus.assign(value); }
@@ -117,10 +123,11 @@ namespace Model
     inline Disk& WithDiskStatus(const Aws::String& value) { SetDiskStatus(value); return *this;}
 
     
-    inline Disk& WithDiskStatus(Aws::String&& value) { SetDiskStatus(value); return *this;}
+    inline Disk& WithDiskStatus(Aws::String&& value) { SetDiskStatus(std::move(value)); return *this;}
 
     
     inline Disk& WithDiskStatus(const char* value) { SetDiskStatus(value); return *this;}
+
 
     
     inline long long GetDiskSizeInBytes() const{ return m_diskSizeInBytes; }
@@ -131,6 +138,7 @@ namespace Model
     
     inline Disk& WithDiskSizeInBytes(long long value) { SetDiskSizeInBytes(value); return *this;}
 
+
     
     inline const Aws::String& GetDiskAllocationType() const{ return m_diskAllocationType; }
 
@@ -138,7 +146,7 @@ namespace Model
     inline void SetDiskAllocationType(const Aws::String& value) { m_diskAllocationTypeHasBeenSet = true; m_diskAllocationType = value; }
 
     
-    inline void SetDiskAllocationType(Aws::String&& value) { m_diskAllocationTypeHasBeenSet = true; m_diskAllocationType = value; }
+    inline void SetDiskAllocationType(Aws::String&& value) { m_diskAllocationTypeHasBeenSet = true; m_diskAllocationType = std::move(value); }
 
     
     inline void SetDiskAllocationType(const char* value) { m_diskAllocationTypeHasBeenSet = true; m_diskAllocationType.assign(value); }
@@ -147,10 +155,11 @@ namespace Model
     inline Disk& WithDiskAllocationType(const Aws::String& value) { SetDiskAllocationType(value); return *this;}
 
     
-    inline Disk& WithDiskAllocationType(Aws::String&& value) { SetDiskAllocationType(value); return *this;}
+    inline Disk& WithDiskAllocationType(Aws::String&& value) { SetDiskAllocationType(std::move(value)); return *this;}
 
     
     inline Disk& WithDiskAllocationType(const char* value) { SetDiskAllocationType(value); return *this;}
+
 
     
     inline const Aws::String& GetDiskAllocationResource() const{ return m_diskAllocationResource; }
@@ -159,7 +168,7 @@ namespace Model
     inline void SetDiskAllocationResource(const Aws::String& value) { m_diskAllocationResourceHasBeenSet = true; m_diskAllocationResource = value; }
 
     
-    inline void SetDiskAllocationResource(Aws::String&& value) { m_diskAllocationResourceHasBeenSet = true; m_diskAllocationResource = value; }
+    inline void SetDiskAllocationResource(Aws::String&& value) { m_diskAllocationResourceHasBeenSet = true; m_diskAllocationResource = std::move(value); }
 
     
     inline void SetDiskAllocationResource(const char* value) { m_diskAllocationResourceHasBeenSet = true; m_diskAllocationResource.assign(value); }
@@ -168,24 +177,31 @@ namespace Model
     inline Disk& WithDiskAllocationResource(const Aws::String& value) { SetDiskAllocationResource(value); return *this;}
 
     
-    inline Disk& WithDiskAllocationResource(Aws::String&& value) { SetDiskAllocationResource(value); return *this;}
+    inline Disk& WithDiskAllocationResource(Aws::String&& value) { SetDiskAllocationResource(std::move(value)); return *this;}
 
     
     inline Disk& WithDiskAllocationResource(const char* value) { SetDiskAllocationResource(value); return *this;}
 
   private:
+
     Aws::String m_diskId;
     bool m_diskIdHasBeenSet;
+
     Aws::String m_diskPath;
     bool m_diskPathHasBeenSet;
+
     Aws::String m_diskNode;
     bool m_diskNodeHasBeenSet;
+
     Aws::String m_diskStatus;
     bool m_diskStatusHasBeenSet;
+
     long long m_diskSizeInBytes;
     bool m_diskSizeInBytesHasBeenSet;
+
     Aws::String m_diskAllocationType;
     bool m_diskAllocationTypeHasBeenSet;
+
     Aws::String m_diskAllocationResource;
     bool m_diskAllocationResourceHasBeenSet;
   };

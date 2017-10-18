@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53/Route53_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
 
     void AddToNode(Aws::Utils::Xml::XmlNode& parentNode) const;
 
+
     /**
      * <p>Any comments that you want to include about the hosted zone.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>Any comments that you want to include about the hosted zone.</p>
      */
-    inline void SetComment(Aws::String&& value) { m_commentHasBeenSet = true; m_comment = value; }
+    inline void SetComment(Aws::String&& value) { m_commentHasBeenSet = true; m_comment = std::move(value); }
 
     /**
      * <p>Any comments that you want to include about the hosted zone.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>Any comments that you want to include about the hosted zone.</p>
      */
-    inline HostedZoneConfig& WithComment(Aws::String&& value) { SetComment(value); return *this;}
+    inline HostedZoneConfig& WithComment(Aws::String&& value) { SetComment(std::move(value)); return *this;}
 
     /**
      * <p>Any comments that you want to include about the hosted zone.</p>
      */
     inline HostedZoneConfig& WithComment(const char* value) { SetComment(value); return *this;}
+
 
     /**
      * <p>A value that indicates whether this is a private hosted zone.</p>
@@ -97,8 +101,10 @@ namespace Model
     inline HostedZoneConfig& WithPrivateZone(bool value) { SetPrivateZone(value); return *this;}
 
   private:
+
     Aws::String m_comment;
     bool m_commentHasBeenSet;
+
     bool m_privateZone;
     bool m_privateZoneHasBeenSet;
   };

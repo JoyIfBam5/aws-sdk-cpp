@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/route53/model/CloudWatchAlarmConfiguration.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -135,17 +136,17 @@ void CloudWatchAlarmConfiguration::AddToNode(XmlNode& parentNode) const
   if(m_evaluationPeriodsHasBeenSet)
   {
    XmlNode evaluationPeriodsNode = parentNode.CreateChildElement("EvaluationPeriods");
-  ss << m_evaluationPeriods;
+   ss << m_evaluationPeriods;
    evaluationPeriodsNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_thresholdHasBeenSet)
   {
    XmlNode thresholdNode = parentNode.CreateChildElement("Threshold");
-  ss << m_threshold;
+   ss << m_threshold;
    thresholdNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_comparisonOperatorHasBeenSet)
@@ -157,9 +158,9 @@ void CloudWatchAlarmConfiguration::AddToNode(XmlNode& parentNode) const
   if(m_periodHasBeenSet)
   {
    XmlNode periodNode = parentNode.CreateChildElement("Period");
-  ss << m_period;
+   ss << m_period;
    periodNode.SetText(ss.str());
-  ss.str("");
+   ss.str("");
   }
 
   if(m_metricNameHasBeenSet)

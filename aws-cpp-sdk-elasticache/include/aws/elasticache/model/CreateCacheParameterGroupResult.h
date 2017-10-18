@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticache/ElastiCache_EXPORTS.h>
 #include <aws/elasticache/model/CacheParameterGroup.h>
 #include <aws/elasticache/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     CreateCacheParameterGroupResult();
-    CreateCacheParameterGroupResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    CreateCacheParameterGroupResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CreateCacheParameterGroupResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    CreateCacheParameterGroupResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     
     inline const CacheParameterGroup& GetCacheParameterGroup() const{ return m_cacheParameterGroup; }
@@ -47,13 +50,14 @@ namespace Model
     inline void SetCacheParameterGroup(const CacheParameterGroup& value) { m_cacheParameterGroup = value; }
 
     
-    inline void SetCacheParameterGroup(CacheParameterGroup&& value) { m_cacheParameterGroup = value; }
+    inline void SetCacheParameterGroup(CacheParameterGroup&& value) { m_cacheParameterGroup = std::move(value); }
 
     
     inline CreateCacheParameterGroupResult& WithCacheParameterGroup(const CacheParameterGroup& value) { SetCacheParameterGroup(value); return *this;}
 
     
-    inline CreateCacheParameterGroupResult& WithCacheParameterGroup(CacheParameterGroup&& value) { SetCacheParameterGroup(value); return *this;}
+    inline CreateCacheParameterGroupResult& WithCacheParameterGroup(CacheParameterGroup&& value) { SetCacheParameterGroup(std::move(value)); return *this;}
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -62,16 +66,18 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline CreateCacheParameterGroupResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline CreateCacheParameterGroupResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline CreateCacheParameterGroupResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     CacheParameterGroup m_cacheParameterGroup;
+
     ResponseMetadata m_responseMetadata;
   };
 

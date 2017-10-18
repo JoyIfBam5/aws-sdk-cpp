@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ec2/EC2_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/ec2/model/InstanceCapacity.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The total number of instances that the Dedicated Host supports.</p>
      */
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>The total number of instances that the Dedicated Host supports.</p>
      */
-    inline void SetAvailableInstanceCapacity(Aws::Vector<InstanceCapacity>&& value) { m_availableInstanceCapacityHasBeenSet = true; m_availableInstanceCapacity = value; }
+    inline void SetAvailableInstanceCapacity(Aws::Vector<InstanceCapacity>&& value) { m_availableInstanceCapacityHasBeenSet = true; m_availableInstanceCapacity = std::move(value); }
 
     /**
      * <p>The total number of instances that the Dedicated Host supports.</p>
@@ -71,7 +74,7 @@ namespace Model
     /**
      * <p>The total number of instances that the Dedicated Host supports.</p>
      */
-    inline AvailableCapacity& WithAvailableInstanceCapacity(Aws::Vector<InstanceCapacity>&& value) { SetAvailableInstanceCapacity(value); return *this;}
+    inline AvailableCapacity& WithAvailableInstanceCapacity(Aws::Vector<InstanceCapacity>&& value) { SetAvailableInstanceCapacity(std::move(value)); return *this;}
 
     /**
      * <p>The total number of instances that the Dedicated Host supports.</p>
@@ -81,7 +84,8 @@ namespace Model
     /**
      * <p>The total number of instances that the Dedicated Host supports.</p>
      */
-    inline AvailableCapacity& AddAvailableInstanceCapacity(InstanceCapacity&& value) { m_availableInstanceCapacityHasBeenSet = true; m_availableInstanceCapacity.push_back(value); return *this; }
+    inline AvailableCapacity& AddAvailableInstanceCapacity(InstanceCapacity&& value) { m_availableInstanceCapacityHasBeenSet = true; m_availableInstanceCapacity.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The number of vCPUs available on the Dedicated Host.</p>
@@ -99,8 +103,10 @@ namespace Model
     inline AvailableCapacity& WithAvailableVCpus(int value) { SetAvailableVCpus(value); return *this;}
 
   private:
+
     Aws::Vector<InstanceCapacity> m_availableInstanceCapacity;
     bool m_availableInstanceCapacityHasBeenSet;
+
     int m_availableVCpus;
     bool m_availableVCpusHasBeenSet;
   };

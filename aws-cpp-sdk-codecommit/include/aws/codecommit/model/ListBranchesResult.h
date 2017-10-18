@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codecommit/CodeCommit_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     ListBranchesResult();
-    ListBranchesResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    ListBranchesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListBranchesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    ListBranchesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The list of branch names.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The list of branch names.</p>
      */
-    inline void SetBranches(Aws::Vector<Aws::String>&& value) { m_branches = value; }
+    inline void SetBranches(Aws::Vector<Aws::String>&& value) { m_branches = std::move(value); }
 
     /**
      * <p>The list of branch names.</p>
@@ -69,7 +72,7 @@ namespace Model
     /**
      * <p>The list of branch names.</p>
      */
-    inline ListBranchesResult& WithBranches(Aws::Vector<Aws::String>&& value) { SetBranches(value); return *this;}
+    inline ListBranchesResult& WithBranches(Aws::Vector<Aws::String>&& value) { SetBranches(std::move(value)); return *this;}
 
     /**
      * <p>The list of branch names.</p>
@@ -79,50 +82,53 @@ namespace Model
     /**
      * <p>The list of branch names.</p>
      */
-    inline ListBranchesResult& AddBranches(Aws::String&& value) { m_branches.push_back(value); return *this; }
+    inline ListBranchesResult& AddBranches(Aws::String&& value) { m_branches.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The list of branch names.</p>
      */
     inline ListBranchesResult& AddBranches(const char* value) { m_branches.push_back(value); return *this; }
 
+
     /**
-     * <p>An enumeration token that returns the batch of the results. </p>
+     * <p>An enumeration token that returns the batch of the results.</p>
      */
     inline const Aws::String& GetNextToken() const{ return m_nextToken; }
 
     /**
-     * <p>An enumeration token that returns the batch of the results. </p>
+     * <p>An enumeration token that returns the batch of the results.</p>
      */
     inline void SetNextToken(const Aws::String& value) { m_nextToken = value; }
 
     /**
-     * <p>An enumeration token that returns the batch of the results. </p>
+     * <p>An enumeration token that returns the batch of the results.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
-     * <p>An enumeration token that returns the batch of the results. </p>
+     * <p>An enumeration token that returns the batch of the results.</p>
      */
     inline void SetNextToken(const char* value) { m_nextToken.assign(value); }
 
     /**
-     * <p>An enumeration token that returns the batch of the results. </p>
+     * <p>An enumeration token that returns the batch of the results.</p>
      */
     inline ListBranchesResult& WithNextToken(const Aws::String& value) { SetNextToken(value); return *this;}
 
     /**
-     * <p>An enumeration token that returns the batch of the results. </p>
+     * <p>An enumeration token that returns the batch of the results.</p>
      */
-    inline ListBranchesResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline ListBranchesResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
-     * <p>An enumeration token that returns the batch of the results. </p>
+     * <p>An enumeration token that returns the batch of the results.</p>
      */
     inline ListBranchesResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<Aws::String> m_branches;
+
     Aws::String m_nextToken;
   };
 

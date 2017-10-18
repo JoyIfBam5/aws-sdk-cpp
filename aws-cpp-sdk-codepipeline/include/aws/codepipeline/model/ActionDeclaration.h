@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codepipeline/CodePipeline_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -20,6 +21,7 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/codepipeline/model/OutputArtifact.h>
 #include <aws/codepipeline/model/InputArtifact.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +51,7 @@ namespace Model
     ActionDeclaration& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The action declaration's name.</p>
      */
@@ -62,7 +65,7 @@ namespace Model
     /**
      * <p>The action declaration's name.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>The action declaration's name.</p>
@@ -77,12 +80,13 @@ namespace Model
     /**
      * <p>The action declaration's name.</p>
      */
-    inline ActionDeclaration& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline ActionDeclaration& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>The action declaration's name.</p>
      */
     inline ActionDeclaration& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>The configuration information for the action type.</p>
@@ -97,7 +101,7 @@ namespace Model
     /**
      * <p>The configuration information for the action type.</p>
      */
-    inline void SetActionTypeId(ActionTypeId&& value) { m_actionTypeIdHasBeenSet = true; m_actionTypeId = value; }
+    inline void SetActionTypeId(ActionTypeId&& value) { m_actionTypeIdHasBeenSet = true; m_actionTypeId = std::move(value); }
 
     /**
      * <p>The configuration information for the action type.</p>
@@ -107,7 +111,8 @@ namespace Model
     /**
      * <p>The configuration information for the action type.</p>
      */
-    inline ActionDeclaration& WithActionTypeId(ActionTypeId&& value) { SetActionTypeId(value); return *this;}
+    inline ActionDeclaration& WithActionTypeId(ActionTypeId&& value) { SetActionTypeId(std::move(value)); return *this;}
+
 
     /**
      * <p>The order in which actions are run.</p>
@@ -124,6 +129,7 @@ namespace Model
      */
     inline ActionDeclaration& WithRunOrder(int value) { SetRunOrder(value); return *this;}
 
+
     /**
      * <p>The action declaration's configuration.</p>
      */
@@ -137,7 +143,7 @@ namespace Model
     /**
      * <p>The action declaration's configuration.</p>
      */
-    inline void SetConfiguration(Aws::Map<Aws::String, Aws::String>&& value) { m_configurationHasBeenSet = true; m_configuration = value; }
+    inline void SetConfiguration(Aws::Map<Aws::String, Aws::String>&& value) { m_configurationHasBeenSet = true; m_configuration = std::move(value); }
 
     /**
      * <p>The action declaration's configuration.</p>
@@ -147,42 +153,43 @@ namespace Model
     /**
      * <p>The action declaration's configuration.</p>
      */
-    inline ActionDeclaration& WithConfiguration(Aws::Map<Aws::String, Aws::String>&& value) { SetConfiguration(value); return *this;}
+    inline ActionDeclaration& WithConfiguration(Aws::Map<Aws::String, Aws::String>&& value) { SetConfiguration(std::move(value)); return *this;}
 
     /**
      * <p>The action declaration's configuration.</p>
      */
-    inline ActionDeclaration& AddConfiguration(const Aws::String& key, const Aws::String& value) { m_configurationHasBeenSet = true; m_configuration[key] = value; return *this; }
+    inline ActionDeclaration& AddConfiguration(const Aws::String& key, const Aws::String& value) { m_configurationHasBeenSet = true; m_configuration.emplace(key, value); return *this; }
 
     /**
      * <p>The action declaration's configuration.</p>
      */
-    inline ActionDeclaration& AddConfiguration(Aws::String&& key, const Aws::String& value) { m_configurationHasBeenSet = true; m_configuration[key] = value; return *this; }
+    inline ActionDeclaration& AddConfiguration(Aws::String&& key, const Aws::String& value) { m_configurationHasBeenSet = true; m_configuration.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The action declaration's configuration.</p>
      */
-    inline ActionDeclaration& AddConfiguration(const Aws::String& key, Aws::String&& value) { m_configurationHasBeenSet = true; m_configuration[key] = value; return *this; }
+    inline ActionDeclaration& AddConfiguration(const Aws::String& key, Aws::String&& value) { m_configurationHasBeenSet = true; m_configuration.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The action declaration's configuration.</p>
      */
-    inline ActionDeclaration& AddConfiguration(Aws::String&& key, Aws::String&& value) { m_configurationHasBeenSet = true; m_configuration[key] = value; return *this; }
+    inline ActionDeclaration& AddConfiguration(Aws::String&& key, Aws::String&& value) { m_configurationHasBeenSet = true; m_configuration.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
      * <p>The action declaration's configuration.</p>
      */
-    inline ActionDeclaration& AddConfiguration(const char* key, Aws::String&& value) { m_configurationHasBeenSet = true; m_configuration[key] = value; return *this; }
+    inline ActionDeclaration& AddConfiguration(const char* key, Aws::String&& value) { m_configurationHasBeenSet = true; m_configuration.emplace(key, std::move(value)); return *this; }
 
     /**
      * <p>The action declaration's configuration.</p>
      */
-    inline ActionDeclaration& AddConfiguration(Aws::String&& key, const char* value) { m_configurationHasBeenSet = true; m_configuration[key] = value; return *this; }
+    inline ActionDeclaration& AddConfiguration(Aws::String&& key, const char* value) { m_configurationHasBeenSet = true; m_configuration.emplace(std::move(key), value); return *this; }
 
     /**
      * <p>The action declaration's configuration.</p>
      */
-    inline ActionDeclaration& AddConfiguration(const char* key, const char* value) { m_configurationHasBeenSet = true; m_configuration[key] = value; return *this; }
+    inline ActionDeclaration& AddConfiguration(const char* key, const char* value) { m_configurationHasBeenSet = true; m_configuration.emplace(key, value); return *this; }
+
 
     /**
      * <p>The name or ID of the result of the action declaration, such as a test or
@@ -200,7 +207,7 @@ namespace Model
      * <p>The name or ID of the result of the action declaration, such as a test or
      * build artifact.</p>
      */
-    inline void SetOutputArtifacts(Aws::Vector<OutputArtifact>&& value) { m_outputArtifactsHasBeenSet = true; m_outputArtifacts = value; }
+    inline void SetOutputArtifacts(Aws::Vector<OutputArtifact>&& value) { m_outputArtifactsHasBeenSet = true; m_outputArtifacts = std::move(value); }
 
     /**
      * <p>The name or ID of the result of the action declaration, such as a test or
@@ -212,7 +219,7 @@ namespace Model
      * <p>The name or ID of the result of the action declaration, such as a test or
      * build artifact.</p>
      */
-    inline ActionDeclaration& WithOutputArtifacts(Aws::Vector<OutputArtifact>&& value) { SetOutputArtifacts(value); return *this;}
+    inline ActionDeclaration& WithOutputArtifacts(Aws::Vector<OutputArtifact>&& value) { SetOutputArtifacts(std::move(value)); return *this;}
 
     /**
      * <p>The name or ID of the result of the action declaration, such as a test or
@@ -224,7 +231,8 @@ namespace Model
      * <p>The name or ID of the result of the action declaration, such as a test or
      * build artifact.</p>
      */
-    inline ActionDeclaration& AddOutputArtifacts(OutputArtifact&& value) { m_outputArtifactsHasBeenSet = true; m_outputArtifacts.push_back(value); return *this; }
+    inline ActionDeclaration& AddOutputArtifacts(OutputArtifact&& value) { m_outputArtifactsHasBeenSet = true; m_outputArtifacts.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The name or ID of the artifact consumed by the action, such as a test or
@@ -242,7 +250,7 @@ namespace Model
      * <p>The name or ID of the artifact consumed by the action, such as a test or
      * build artifact.</p>
      */
-    inline void SetInputArtifacts(Aws::Vector<InputArtifact>&& value) { m_inputArtifactsHasBeenSet = true; m_inputArtifacts = value; }
+    inline void SetInputArtifacts(Aws::Vector<InputArtifact>&& value) { m_inputArtifactsHasBeenSet = true; m_inputArtifacts = std::move(value); }
 
     /**
      * <p>The name or ID of the artifact consumed by the action, such as a test or
@@ -254,7 +262,7 @@ namespace Model
      * <p>The name or ID of the artifact consumed by the action, such as a test or
      * build artifact.</p>
      */
-    inline ActionDeclaration& WithInputArtifacts(Aws::Vector<InputArtifact>&& value) { SetInputArtifacts(value); return *this;}
+    inline ActionDeclaration& WithInputArtifacts(Aws::Vector<InputArtifact>&& value) { SetInputArtifacts(std::move(value)); return *this;}
 
     /**
      * <p>The name or ID of the artifact consumed by the action, such as a test or
@@ -266,7 +274,8 @@ namespace Model
      * <p>The name or ID of the artifact consumed by the action, such as a test or
      * build artifact.</p>
      */
-    inline ActionDeclaration& AddInputArtifacts(InputArtifact&& value) { m_inputArtifactsHasBeenSet = true; m_inputArtifacts.push_back(value); return *this; }
+    inline ActionDeclaration& AddInputArtifacts(InputArtifact&& value) { m_inputArtifactsHasBeenSet = true; m_inputArtifacts.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The ARN of the IAM service role that will perform the declared action. This
@@ -284,7 +293,7 @@ namespace Model
      * <p>The ARN of the IAM service role that will perform the declared action. This
      * is assumed through the roleArn for the pipeline.</p>
      */
-    inline void SetRoleArn(Aws::String&& value) { m_roleArnHasBeenSet = true; m_roleArn = value; }
+    inline void SetRoleArn(Aws::String&& value) { m_roleArnHasBeenSet = true; m_roleArn = std::move(value); }
 
     /**
      * <p>The ARN of the IAM service role that will perform the declared action. This
@@ -302,7 +311,7 @@ namespace Model
      * <p>The ARN of the IAM service role that will perform the declared action. This
      * is assumed through the roleArn for the pipeline.</p>
      */
-    inline ActionDeclaration& WithRoleArn(Aws::String&& value) { SetRoleArn(value); return *this;}
+    inline ActionDeclaration& WithRoleArn(Aws::String&& value) { SetRoleArn(std::move(value)); return *this;}
 
     /**
      * <p>The ARN of the IAM service role that will perform the declared action. This
@@ -311,18 +320,25 @@ namespace Model
     inline ActionDeclaration& WithRoleArn(const char* value) { SetRoleArn(value); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     ActionTypeId m_actionTypeId;
     bool m_actionTypeIdHasBeenSet;
+
     int m_runOrder;
     bool m_runOrderHasBeenSet;
+
     Aws::Map<Aws::String, Aws::String> m_configuration;
     bool m_configurationHasBeenSet;
+
     Aws::Vector<OutputArtifact> m_outputArtifacts;
     bool m_outputArtifactsHasBeenSet;
+
     Aws::Vector<InputArtifact> m_inputArtifacts;
     bool m_inputArtifactsHasBeenSet;
+
     Aws::String m_roleArn;
     bool m_roleArnHasBeenSet;
   };

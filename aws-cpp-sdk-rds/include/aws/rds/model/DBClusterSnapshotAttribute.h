@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/rds/RDS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -51,6 +53,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the manual DB cluster snapshot attribute.</p> <p>The attribute
      * named <code>restore</code> refers to the list of AWS accounts that have
@@ -73,7 +76,7 @@ namespace Model
      * permission to copy or restore the manual DB cluster snapshot. For more
      * information, see the <a>ModifyDBClusterSnapshotAttribute</a> API action.</p>
      */
-    inline void SetAttributeName(Aws::String&& value) { m_attributeNameHasBeenSet = true; m_attributeName = value; }
+    inline void SetAttributeName(Aws::String&& value) { m_attributeNameHasBeenSet = true; m_attributeName = std::move(value); }
 
     /**
      * <p>The name of the manual DB cluster snapshot attribute.</p> <p>The attribute
@@ -97,7 +100,7 @@ namespace Model
      * permission to copy or restore the manual DB cluster snapshot. For more
      * information, see the <a>ModifyDBClusterSnapshotAttribute</a> API action.</p>
      */
-    inline DBClusterSnapshotAttribute& WithAttributeName(Aws::String&& value) { SetAttributeName(value); return *this;}
+    inline DBClusterSnapshotAttribute& WithAttributeName(Aws::String&& value) { SetAttributeName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the manual DB cluster snapshot attribute.</p> <p>The attribute
@@ -106,6 +109,7 @@ namespace Model
      * information, see the <a>ModifyDBClusterSnapshotAttribute</a> API action.</p>
      */
     inline DBClusterSnapshotAttribute& WithAttributeName(const char* value) { SetAttributeName(value); return *this;}
+
 
     /**
      * <p>The value(s) for the manual DB cluster snapshot attribute.</p> <p>If the
@@ -135,7 +139,7 @@ namespace Model
      * list, then the manual DB cluster snapshot is public and available for any AWS
      * account to copy or restore.</p>
      */
-    inline void SetAttributeValues(Aws::Vector<Aws::String>&& value) { m_attributeValuesHasBeenSet = true; m_attributeValues = value; }
+    inline void SetAttributeValues(Aws::Vector<Aws::String>&& value) { m_attributeValuesHasBeenSet = true; m_attributeValues = std::move(value); }
 
     /**
      * <p>The value(s) for the manual DB cluster snapshot attribute.</p> <p>If the
@@ -155,7 +159,7 @@ namespace Model
      * list, then the manual DB cluster snapshot is public and available for any AWS
      * account to copy or restore.</p>
      */
-    inline DBClusterSnapshotAttribute& WithAttributeValues(Aws::Vector<Aws::String>&& value) { SetAttributeValues(value); return *this;}
+    inline DBClusterSnapshotAttribute& WithAttributeValues(Aws::Vector<Aws::String>&& value) { SetAttributeValues(std::move(value)); return *this;}
 
     /**
      * <p>The value(s) for the manual DB cluster snapshot attribute.</p> <p>If the
@@ -175,7 +179,7 @@ namespace Model
      * list, then the manual DB cluster snapshot is public and available for any AWS
      * account to copy or restore.</p>
      */
-    inline DBClusterSnapshotAttribute& AddAttributeValues(Aws::String&& value) { m_attributeValuesHasBeenSet = true; m_attributeValues.push_back(value); return *this; }
+    inline DBClusterSnapshotAttribute& AddAttributeValues(Aws::String&& value) { m_attributeValuesHasBeenSet = true; m_attributeValues.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The value(s) for the manual DB cluster snapshot attribute.</p> <p>If the
@@ -188,8 +192,10 @@ namespace Model
     inline DBClusterSnapshotAttribute& AddAttributeValues(const char* value) { m_attributeValuesHasBeenSet = true; m_attributeValues.push_back(value); return *this; }
 
   private:
+
     Aws::String m_attributeName;
     bool m_attributeNameHasBeenSet;
+
     Aws::Vector<Aws::String> m_attributeValues;
     bool m_attributeValuesHasBeenSet;
   };

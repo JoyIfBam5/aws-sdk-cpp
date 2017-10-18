@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cloudformation/CloudFormation_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/cloudformation/model/ResourceStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The unique ID name of the instance of the stack.</p>
      */
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>The unique ID name of the instance of the stack.</p>
      */
-    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = value; }
+    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = std::move(value); }
 
     /**
      * <p>The unique ID name of the instance of the stack.</p>
@@ -76,12 +79,13 @@ namespace Model
     /**
      * <p>The unique ID name of the instance of the stack.</p>
      */
-    inline StackEvent& WithStackId(Aws::String&& value) { SetStackId(value); return *this;}
+    inline StackEvent& WithStackId(Aws::String&& value) { SetStackId(std::move(value)); return *this;}
 
     /**
      * <p>The unique ID name of the instance of the stack.</p>
      */
     inline StackEvent& WithStackId(const char* value) { SetStackId(value); return *this;}
+
 
     /**
      * <p>The unique ID of this event.</p>
@@ -96,7 +100,7 @@ namespace Model
     /**
      * <p>The unique ID of this event.</p>
      */
-    inline void SetEventId(Aws::String&& value) { m_eventIdHasBeenSet = true; m_eventId = value; }
+    inline void SetEventId(Aws::String&& value) { m_eventIdHasBeenSet = true; m_eventId = std::move(value); }
 
     /**
      * <p>The unique ID of this event.</p>
@@ -111,12 +115,13 @@ namespace Model
     /**
      * <p>The unique ID of this event.</p>
      */
-    inline StackEvent& WithEventId(Aws::String&& value) { SetEventId(value); return *this;}
+    inline StackEvent& WithEventId(Aws::String&& value) { SetEventId(std::move(value)); return *this;}
 
     /**
      * <p>The unique ID of this event.</p>
      */
     inline StackEvent& WithEventId(const char* value) { SetEventId(value); return *this;}
+
 
     /**
      * <p>The name associated with a stack.</p>
@@ -131,7 +136,7 @@ namespace Model
     /**
      * <p>The name associated with a stack.</p>
      */
-    inline void SetStackName(Aws::String&& value) { m_stackNameHasBeenSet = true; m_stackName = value; }
+    inline void SetStackName(Aws::String&& value) { m_stackNameHasBeenSet = true; m_stackName = std::move(value); }
 
     /**
      * <p>The name associated with a stack.</p>
@@ -146,12 +151,13 @@ namespace Model
     /**
      * <p>The name associated with a stack.</p>
      */
-    inline StackEvent& WithStackName(Aws::String&& value) { SetStackName(value); return *this;}
+    inline StackEvent& WithStackName(Aws::String&& value) { SetStackName(std::move(value)); return *this;}
 
     /**
      * <p>The name associated with a stack.</p>
      */
     inline StackEvent& WithStackName(const char* value) { SetStackName(value); return *this;}
+
 
     /**
      * <p>The logical name of the resource specified in the template.</p>
@@ -166,7 +172,7 @@ namespace Model
     /**
      * <p>The logical name of the resource specified in the template.</p>
      */
-    inline void SetLogicalResourceId(Aws::String&& value) { m_logicalResourceIdHasBeenSet = true; m_logicalResourceId = value; }
+    inline void SetLogicalResourceId(Aws::String&& value) { m_logicalResourceIdHasBeenSet = true; m_logicalResourceId = std::move(value); }
 
     /**
      * <p>The logical name of the resource specified in the template.</p>
@@ -181,12 +187,13 @@ namespace Model
     /**
      * <p>The logical name of the resource specified in the template.</p>
      */
-    inline StackEvent& WithLogicalResourceId(Aws::String&& value) { SetLogicalResourceId(value); return *this;}
+    inline StackEvent& WithLogicalResourceId(Aws::String&& value) { SetLogicalResourceId(std::move(value)); return *this;}
 
     /**
      * <p>The logical name of the resource specified in the template.</p>
      */
     inline StackEvent& WithLogicalResourceId(const char* value) { SetLogicalResourceId(value); return *this;}
+
 
     /**
      * <p>The name or unique identifier associated with the physical instance of the
@@ -204,7 +211,7 @@ namespace Model
      * <p>The name or unique identifier associated with the physical instance of the
      * resource.</p>
      */
-    inline void SetPhysicalResourceId(Aws::String&& value) { m_physicalResourceIdHasBeenSet = true; m_physicalResourceId = value; }
+    inline void SetPhysicalResourceId(Aws::String&& value) { m_physicalResourceIdHasBeenSet = true; m_physicalResourceId = std::move(value); }
 
     /**
      * <p>The name or unique identifier associated with the physical instance of the
@@ -222,13 +229,14 @@ namespace Model
      * <p>The name or unique identifier associated with the physical instance of the
      * resource.</p>
      */
-    inline StackEvent& WithPhysicalResourceId(Aws::String&& value) { SetPhysicalResourceId(value); return *this;}
+    inline StackEvent& WithPhysicalResourceId(Aws::String&& value) { SetPhysicalResourceId(std::move(value)); return *this;}
 
     /**
      * <p>The name or unique identifier associated with the physical instance of the
      * resource.</p>
      */
     inline StackEvent& WithPhysicalResourceId(const char* value) { SetPhysicalResourceId(value); return *this;}
+
 
     /**
      * <p>Type of resource. (For more information, go to <a
@@ -249,7 +257,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">
      * AWS Resource Types Reference</a> in the AWS CloudFormation User Guide.)</p>
      */
-    inline void SetResourceType(Aws::String&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = value; }
+    inline void SetResourceType(Aws::String&& value) { m_resourceTypeHasBeenSet = true; m_resourceType = std::move(value); }
 
     /**
      * <p>Type of resource. (For more information, go to <a
@@ -270,7 +278,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">
      * AWS Resource Types Reference</a> in the AWS CloudFormation User Guide.)</p>
      */
-    inline StackEvent& WithResourceType(Aws::String&& value) { SetResourceType(value); return *this;}
+    inline StackEvent& WithResourceType(Aws::String&& value) { SetResourceType(std::move(value)); return *this;}
 
     /**
      * <p>Type of resource. (For more information, go to <a
@@ -278,6 +286,7 @@ namespace Model
      * AWS Resource Types Reference</a> in the AWS CloudFormation User Guide.)</p>
      */
     inline StackEvent& WithResourceType(const char* value) { SetResourceType(value); return *this;}
+
 
     /**
      * <p>Time the status was updated.</p>
@@ -292,7 +301,7 @@ namespace Model
     /**
      * <p>Time the status was updated.</p>
      */
-    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = value; }
+    inline void SetTimestamp(Aws::Utils::DateTime&& value) { m_timestampHasBeenSet = true; m_timestamp = std::move(value); }
 
     /**
      * <p>Time the status was updated.</p>
@@ -302,7 +311,8 @@ namespace Model
     /**
      * <p>Time the status was updated.</p>
      */
-    inline StackEvent& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(value); return *this;}
+    inline StackEvent& WithTimestamp(Aws::Utils::DateTime&& value) { SetTimestamp(std::move(value)); return *this;}
+
 
     /**
      * <p>Current status of the resource.</p>
@@ -317,7 +327,7 @@ namespace Model
     /**
      * <p>Current status of the resource.</p>
      */
-    inline void SetResourceStatus(ResourceStatus&& value) { m_resourceStatusHasBeenSet = true; m_resourceStatus = value; }
+    inline void SetResourceStatus(ResourceStatus&& value) { m_resourceStatusHasBeenSet = true; m_resourceStatus = std::move(value); }
 
     /**
      * <p>Current status of the resource.</p>
@@ -327,7 +337,8 @@ namespace Model
     /**
      * <p>Current status of the resource.</p>
      */
-    inline StackEvent& WithResourceStatus(ResourceStatus&& value) { SetResourceStatus(value); return *this;}
+    inline StackEvent& WithResourceStatus(ResourceStatus&& value) { SetResourceStatus(std::move(value)); return *this;}
+
 
     /**
      * <p>Success/failure message associated with the resource.</p>
@@ -342,7 +353,7 @@ namespace Model
     /**
      * <p>Success/failure message associated with the resource.</p>
      */
-    inline void SetResourceStatusReason(Aws::String&& value) { m_resourceStatusReasonHasBeenSet = true; m_resourceStatusReason = value; }
+    inline void SetResourceStatusReason(Aws::String&& value) { m_resourceStatusReasonHasBeenSet = true; m_resourceStatusReason = std::move(value); }
 
     /**
      * <p>Success/failure message associated with the resource.</p>
@@ -357,12 +368,13 @@ namespace Model
     /**
      * <p>Success/failure message associated with the resource.</p>
      */
-    inline StackEvent& WithResourceStatusReason(Aws::String&& value) { SetResourceStatusReason(value); return *this;}
+    inline StackEvent& WithResourceStatusReason(Aws::String&& value) { SetResourceStatusReason(std::move(value)); return *this;}
 
     /**
      * <p>Success/failure message associated with the resource.</p>
      */
     inline StackEvent& WithResourceStatusReason(const char* value) { SetResourceStatusReason(value); return *this;}
+
 
     /**
      * <p>BLOB of the properties used to create the resource.</p>
@@ -377,7 +389,7 @@ namespace Model
     /**
      * <p>BLOB of the properties used to create the resource.</p>
      */
-    inline void SetResourceProperties(Aws::String&& value) { m_resourcePropertiesHasBeenSet = true; m_resourceProperties = value; }
+    inline void SetResourceProperties(Aws::String&& value) { m_resourcePropertiesHasBeenSet = true; m_resourceProperties = std::move(value); }
 
     /**
      * <p>BLOB of the properties used to create the resource.</p>
@@ -392,34 +404,160 @@ namespace Model
     /**
      * <p>BLOB of the properties used to create the resource.</p>
      */
-    inline StackEvent& WithResourceProperties(Aws::String&& value) { SetResourceProperties(value); return *this;}
+    inline StackEvent& WithResourceProperties(Aws::String&& value) { SetResourceProperties(std::move(value)); return *this;}
 
     /**
      * <p>BLOB of the properties used to create the resource.</p>
      */
     inline StackEvent& WithResourceProperties(const char* value) { SetResourceProperties(value); return *this;}
 
+
+    /**
+     * <p>The token passed to the operation that generated this event.</p> <p>All
+     * events triggered by a given stack operation are assigned the same client request
+     * token, which you can use to track operations. For example, if you execute a
+     * <code>CreateStack</code> operation with the token <code>token1</code>, then all
+     * the <code>StackEvents</code> generated by that operation will have
+     * <code>ClientRequestToken</code> set as <code>token1</code>.</p> <p>In the
+     * console, stack operations display the client request token on the Events tab.
+     * Stack operations that are initiated from the console use the token format
+     * <i>Console-StackOperation-ID</i>, which helps you easily identify the stack
+     * operation . For example, if you create a stack using the console, each stack
+     * event would be assigned the same token in the following format:
+     * <code>Console-CreateStack-7f59c3cf-00d2-40c7-b2ff-e75db0987002</code>. </p>
+     */
+    inline const Aws::String& GetClientRequestToken() const{ return m_clientRequestToken; }
+
+    /**
+     * <p>The token passed to the operation that generated this event.</p> <p>All
+     * events triggered by a given stack operation are assigned the same client request
+     * token, which you can use to track operations. For example, if you execute a
+     * <code>CreateStack</code> operation with the token <code>token1</code>, then all
+     * the <code>StackEvents</code> generated by that operation will have
+     * <code>ClientRequestToken</code> set as <code>token1</code>.</p> <p>In the
+     * console, stack operations display the client request token on the Events tab.
+     * Stack operations that are initiated from the console use the token format
+     * <i>Console-StackOperation-ID</i>, which helps you easily identify the stack
+     * operation . For example, if you create a stack using the console, each stack
+     * event would be assigned the same token in the following format:
+     * <code>Console-CreateStack-7f59c3cf-00d2-40c7-b2ff-e75db0987002</code>. </p>
+     */
+    inline void SetClientRequestToken(const Aws::String& value) { m_clientRequestTokenHasBeenSet = true; m_clientRequestToken = value; }
+
+    /**
+     * <p>The token passed to the operation that generated this event.</p> <p>All
+     * events triggered by a given stack operation are assigned the same client request
+     * token, which you can use to track operations. For example, if you execute a
+     * <code>CreateStack</code> operation with the token <code>token1</code>, then all
+     * the <code>StackEvents</code> generated by that operation will have
+     * <code>ClientRequestToken</code> set as <code>token1</code>.</p> <p>In the
+     * console, stack operations display the client request token on the Events tab.
+     * Stack operations that are initiated from the console use the token format
+     * <i>Console-StackOperation-ID</i>, which helps you easily identify the stack
+     * operation . For example, if you create a stack using the console, each stack
+     * event would be assigned the same token in the following format:
+     * <code>Console-CreateStack-7f59c3cf-00d2-40c7-b2ff-e75db0987002</code>. </p>
+     */
+    inline void SetClientRequestToken(Aws::String&& value) { m_clientRequestTokenHasBeenSet = true; m_clientRequestToken = std::move(value); }
+
+    /**
+     * <p>The token passed to the operation that generated this event.</p> <p>All
+     * events triggered by a given stack operation are assigned the same client request
+     * token, which you can use to track operations. For example, if you execute a
+     * <code>CreateStack</code> operation with the token <code>token1</code>, then all
+     * the <code>StackEvents</code> generated by that operation will have
+     * <code>ClientRequestToken</code> set as <code>token1</code>.</p> <p>In the
+     * console, stack operations display the client request token on the Events tab.
+     * Stack operations that are initiated from the console use the token format
+     * <i>Console-StackOperation-ID</i>, which helps you easily identify the stack
+     * operation . For example, if you create a stack using the console, each stack
+     * event would be assigned the same token in the following format:
+     * <code>Console-CreateStack-7f59c3cf-00d2-40c7-b2ff-e75db0987002</code>. </p>
+     */
+    inline void SetClientRequestToken(const char* value) { m_clientRequestTokenHasBeenSet = true; m_clientRequestToken.assign(value); }
+
+    /**
+     * <p>The token passed to the operation that generated this event.</p> <p>All
+     * events triggered by a given stack operation are assigned the same client request
+     * token, which you can use to track operations. For example, if you execute a
+     * <code>CreateStack</code> operation with the token <code>token1</code>, then all
+     * the <code>StackEvents</code> generated by that operation will have
+     * <code>ClientRequestToken</code> set as <code>token1</code>.</p> <p>In the
+     * console, stack operations display the client request token on the Events tab.
+     * Stack operations that are initiated from the console use the token format
+     * <i>Console-StackOperation-ID</i>, which helps you easily identify the stack
+     * operation . For example, if you create a stack using the console, each stack
+     * event would be assigned the same token in the following format:
+     * <code>Console-CreateStack-7f59c3cf-00d2-40c7-b2ff-e75db0987002</code>. </p>
+     */
+    inline StackEvent& WithClientRequestToken(const Aws::String& value) { SetClientRequestToken(value); return *this;}
+
+    /**
+     * <p>The token passed to the operation that generated this event.</p> <p>All
+     * events triggered by a given stack operation are assigned the same client request
+     * token, which you can use to track operations. For example, if you execute a
+     * <code>CreateStack</code> operation with the token <code>token1</code>, then all
+     * the <code>StackEvents</code> generated by that operation will have
+     * <code>ClientRequestToken</code> set as <code>token1</code>.</p> <p>In the
+     * console, stack operations display the client request token on the Events tab.
+     * Stack operations that are initiated from the console use the token format
+     * <i>Console-StackOperation-ID</i>, which helps you easily identify the stack
+     * operation . For example, if you create a stack using the console, each stack
+     * event would be assigned the same token in the following format:
+     * <code>Console-CreateStack-7f59c3cf-00d2-40c7-b2ff-e75db0987002</code>. </p>
+     */
+    inline StackEvent& WithClientRequestToken(Aws::String&& value) { SetClientRequestToken(std::move(value)); return *this;}
+
+    /**
+     * <p>The token passed to the operation that generated this event.</p> <p>All
+     * events triggered by a given stack operation are assigned the same client request
+     * token, which you can use to track operations. For example, if you execute a
+     * <code>CreateStack</code> operation with the token <code>token1</code>, then all
+     * the <code>StackEvents</code> generated by that operation will have
+     * <code>ClientRequestToken</code> set as <code>token1</code>.</p> <p>In the
+     * console, stack operations display the client request token on the Events tab.
+     * Stack operations that are initiated from the console use the token format
+     * <i>Console-StackOperation-ID</i>, which helps you easily identify the stack
+     * operation . For example, if you create a stack using the console, each stack
+     * event would be assigned the same token in the following format:
+     * <code>Console-CreateStack-7f59c3cf-00d2-40c7-b2ff-e75db0987002</code>. </p>
+     */
+    inline StackEvent& WithClientRequestToken(const char* value) { SetClientRequestToken(value); return *this;}
+
   private:
+
     Aws::String m_stackId;
     bool m_stackIdHasBeenSet;
+
     Aws::String m_eventId;
     bool m_eventIdHasBeenSet;
+
     Aws::String m_stackName;
     bool m_stackNameHasBeenSet;
+
     Aws::String m_logicalResourceId;
     bool m_logicalResourceIdHasBeenSet;
+
     Aws::String m_physicalResourceId;
     bool m_physicalResourceIdHasBeenSet;
+
     Aws::String m_resourceType;
     bool m_resourceTypeHasBeenSet;
+
     Aws::Utils::DateTime m_timestamp;
     bool m_timestampHasBeenSet;
+
     ResourceStatus m_resourceStatus;
     bool m_resourceStatusHasBeenSet;
+
     Aws::String m_resourceStatusReason;
     bool m_resourceStatusReasonHasBeenSet;
+
     Aws::String m_resourceProperties;
     bool m_resourcePropertiesHasBeenSet;
+
+    Aws::String m_clientRequestToken;
+    bool m_clientRequestTokenHasBeenSet;
   };
 
 } // namespace Model

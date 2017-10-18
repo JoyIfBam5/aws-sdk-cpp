@@ -1,5 +1,5 @@
 /*
-  * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+  * Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
   *
   * Licensed under the Apache License, Version 2.0 (the "License").
   * You may not use this file except in compliance with the License.
@@ -58,6 +58,15 @@ static const char* SIMPLE_DATE_FORMAT_STR = "%Y%m%d";
 static const char* EMPTY_STRING_SHA256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
 
 static const char* v4LogTag = "AWSAuthV4Signer";
+
+namespace Aws
+{
+    namespace Auth
+    {
+        const char SIGV4_SIGNER[] = "SignatureV4";
+        const char NULL_SIGNER[] = "NullSigner";
+    }
+}
 
 static Aws::String CanonicalizeRequestSigningString(HttpRequest& request, bool urlEscapePath)
 {
@@ -150,6 +159,11 @@ bool AWSAuthV4Signer::ShouldSignHeader(const Aws::String& header) const
 
 bool AWSAuthV4Signer::SignRequest(Aws::Http::HttpRequest& request) const
 {
+    return SignRequest(request, m_signPayloads);
+}
+
+bool AWSAuthV4Signer::SignRequest(Aws::Http::HttpRequest& request, bool signBody) const
+{
     AWSCredentials credentials = m_credentialsProvider->GetAWSCredentials();
 
     //don't sign anonymous requests
@@ -164,7 +178,7 @@ bool AWSAuthV4Signer::SignRequest(Aws::Http::HttpRequest& request) const
     }
 
     Aws::String payloadHash(UNSIGNED_PAYLOAD);
-    if(m_signPayloads || request.GetUri().GetScheme() != Http::Scheme::HTTPS)
+    if(signBody || request.GetUri().GetScheme() != Http::Scheme::HTTPS)
     {
         payloadHash.assign(ComputePayloadHash(request));
         if (payloadHash.empty())
@@ -253,7 +267,12 @@ bool AWSAuthV4Signer::PresignRequest(Aws::Http::HttpRequest& request, long long 
     return PresignRequest(request, m_region.c_str(), expirationTimeInSeconds);
 }
 
-bool AWSAuthV4Signer::PresignRequest(Aws::Http::HttpRequest& request, const char* region, long long expirationTimeInSeconds) const
+bool AWSAuthV4Signer::PresignRequest(Aws::Http::HttpRequest& request, const char* region, long long expirationInSeconds) const
+{
+    return PresignRequest(request, region, m_serviceName.c_str(), expirationInSeconds);
+}
+
+bool AWSAuthV4Signer::PresignRequest(Aws::Http::HttpRequest& request, const char* region, const char* serviceName, long long expirationTimeInSeconds) const
 {
     AWSCredentials credentials = m_credentialsProvider->GetAWSCredentials();
 
@@ -292,7 +311,7 @@ bool AWSAuthV4Signer::PresignRequest(Aws::Http::HttpRequest& request, const char
 
     Aws::String simpleDate = now.ToGmtString(SIMPLE_DATE_FORMAT_STR);
     ss << credentials.GetAWSAccessKeyId() << "/" << simpleDate
-        << "/" << region << "/" << m_serviceName << "/" << AWS4_REQUEST;
+        << "/" << region << "/" << serviceName << "/" << AWS4_REQUEST;
 
     request.AddQueryStringParameter(X_AMZ_ALGORITHM, AWS_HMAC_SHA256);
     request.AddQueryStringParameter(X_AMZ_CREDENTIAL, ss.str());
@@ -377,7 +396,7 @@ Aws::String AWSAuthV4Signer::ComputePayloadHash(Aws::Http::HttpRequest& request)
 
     if (!hashResult.IsSuccess())
     {
-        AWS_LOG_ERROR(v4LogTag, "Unable to hash (sha256) request body");
+        AWS_LOGSTREAM_ERROR(v4LogTag, "Unable to hash (sha256) request body");
         return "";
     }
 

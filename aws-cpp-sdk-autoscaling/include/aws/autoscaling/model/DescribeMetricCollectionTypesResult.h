@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/autoscaling/AutoScaling_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/autoscaling/model/ResponseMetadata.h>
 #include <aws/autoscaling/model/MetricCollectionType.h>
 #include <aws/autoscaling/model/MetricGranularityType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -35,18 +37,13 @@ namespace AutoScaling
 {
 namespace Model
 {
-  /**
-   * <p>Contains the output of DescribeMetricsCollectionTypes.</p><p><h3>See
-   * Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/autoscaling-2011-01-01/DescribeMetricCollectionTypesAnswer">AWS
-   * API Reference</a></p>
-   */
   class AWS_AUTOSCALING_API DescribeMetricCollectionTypesResult
   {
   public:
     DescribeMetricCollectionTypesResult();
-    DescribeMetricCollectionTypesResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DescribeMetricCollectionTypesResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeMetricCollectionTypesResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DescribeMetricCollectionTypesResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>One or more metrics.</p>
@@ -61,7 +58,7 @@ namespace Model
     /**
      * <p>One or more metrics.</p>
      */
-    inline void SetMetrics(Aws::Vector<MetricCollectionType>&& value) { m_metrics = value; }
+    inline void SetMetrics(Aws::Vector<MetricCollectionType>&& value) { m_metrics = std::move(value); }
 
     /**
      * <p>One or more metrics.</p>
@@ -71,7 +68,7 @@ namespace Model
     /**
      * <p>One or more metrics.</p>
      */
-    inline DescribeMetricCollectionTypesResult& WithMetrics(Aws::Vector<MetricCollectionType>&& value) { SetMetrics(value); return *this;}
+    inline DescribeMetricCollectionTypesResult& WithMetrics(Aws::Vector<MetricCollectionType>&& value) { SetMetrics(std::move(value)); return *this;}
 
     /**
      * <p>One or more metrics.</p>
@@ -81,7 +78,8 @@ namespace Model
     /**
      * <p>One or more metrics.</p>
      */
-    inline DescribeMetricCollectionTypesResult& AddMetrics(MetricCollectionType&& value) { m_metrics.push_back(value); return *this; }
+    inline DescribeMetricCollectionTypesResult& AddMetrics(MetricCollectionType&& value) { m_metrics.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The granularities for the metrics.</p>
@@ -96,7 +94,7 @@ namespace Model
     /**
      * <p>The granularities for the metrics.</p>
      */
-    inline void SetGranularities(Aws::Vector<MetricGranularityType>&& value) { m_granularities = value; }
+    inline void SetGranularities(Aws::Vector<MetricGranularityType>&& value) { m_granularities = std::move(value); }
 
     /**
      * <p>The granularities for the metrics.</p>
@@ -106,7 +104,7 @@ namespace Model
     /**
      * <p>The granularities for the metrics.</p>
      */
-    inline DescribeMetricCollectionTypesResult& WithGranularities(Aws::Vector<MetricGranularityType>&& value) { SetGranularities(value); return *this;}
+    inline DescribeMetricCollectionTypesResult& WithGranularities(Aws::Vector<MetricGranularityType>&& value) { SetGranularities(std::move(value)); return *this;}
 
     /**
      * <p>The granularities for the metrics.</p>
@@ -116,7 +114,8 @@ namespace Model
     /**
      * <p>The granularities for the metrics.</p>
      */
-    inline DescribeMetricCollectionTypesResult& AddGranularities(MetricGranularityType&& value) { m_granularities.push_back(value); return *this; }
+    inline DescribeMetricCollectionTypesResult& AddGranularities(MetricGranularityType&& value) { m_granularities.push_back(std::move(value)); return *this; }
+
 
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
@@ -125,17 +124,20 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DescribeMetricCollectionTypesResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DescribeMetricCollectionTypesResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DescribeMetricCollectionTypesResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     Aws::Vector<MetricCollectionType> m_metrics;
+
     Aws::Vector<MetricGranularityType> m_granularities;
+
     ResponseMetadata m_responseMetadata;
   };
 

@@ -1,5 +1,5 @@
 /*
-* Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -30,6 +30,19 @@ public class JsonCppClientGenerator extends CppClientGenerator {
 
     public JsonCppClientGenerator() throws Exception {
         super();
+    }
+
+    @Override
+    protected SdkFileEntry generateErrorMarshallerHeaderFile(ServiceModel serviceModel) throws Exception {
+        Template template = velocityEngine.getTemplate("/com/amazonaws/util/awsclientgenerator/velocity/cpp/json/JsonErrorMarshallerHeader.vm", StandardCharsets.UTF_8.name());
+
+        VelocityContext context = createContext(serviceModel);
+        context.put("CppViewHelper", CppViewHelper.class);
+
+        String fileName = String.format("include/aws/%s/%sErrorMarshaller.h",
+                serviceModel.getMetadata().getProjectName(), serviceModel.getMetadata().getClassNamePrefix());
+
+        return makeFile(template, context, fileName, true);
     }
 
     @Override
@@ -94,6 +107,7 @@ public class JsonCppClientGenerator extends CppClientGenerator {
             context.put("shape", shape);
             context.put("typeInfo", new CppShapeInformation(shape, serviceModel));
             context.put("CppViewHelper", CppViewHelper.class);
+            context.put("presignerTemplate", "/com/amazonaws/util/awsclientgenerator/velocity/cpp/json/JsonDumpBodyToUrl.vm");
 
             String fileName = String.format("source/model/%s.cpp", shapeEntry.getKey());
 

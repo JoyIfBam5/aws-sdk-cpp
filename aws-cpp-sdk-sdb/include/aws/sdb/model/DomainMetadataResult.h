@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/sdb/SimpleDB_EXPORTS.h>
 #include <aws/sdb/model/ResponseMetadata.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     DomainMetadataResult();
-    DomainMetadataResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    DomainMetadataResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DomainMetadataResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    DomainMetadataResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * The number of all items in the domain.
@@ -54,6 +57,7 @@ namespace Model
      */
     inline DomainMetadataResult& WithItemCount(int value) { SetItemCount(value); return *this;}
 
+
     /**
      * The total size of all item names in the domain, in bytes.
      */
@@ -68,6 +72,7 @@ namespace Model
      * The total size of all item names in the domain, in bytes.
      */
     inline DomainMetadataResult& WithItemNamesSizeBytes(long long value) { SetItemNamesSizeBytes(value); return *this;}
+
 
     /**
      * The number of unique attribute names in the domain.
@@ -84,6 +89,7 @@ namespace Model
      */
     inline DomainMetadataResult& WithAttributeNameCount(int value) { SetAttributeNameCount(value); return *this;}
 
+
     /**
      * The total size of all unique attribute names in the domain, in bytes.
      */
@@ -98,6 +104,7 @@ namespace Model
      * The total size of all unique attribute names in the domain, in bytes.
      */
     inline DomainMetadataResult& WithAttributeNamesSizeBytes(long long value) { SetAttributeNamesSizeBytes(value); return *this;}
+
 
     /**
      * The number of all attribute name/value pairs in the domain.
@@ -114,6 +121,7 @@ namespace Model
      */
     inline DomainMetadataResult& WithAttributeValueCount(int value) { SetAttributeValueCount(value); return *this;}
 
+
     /**
      * The total size of all attribute values in the domain, in bytes.
      */
@@ -128,6 +136,7 @@ namespace Model
      * The total size of all attribute values in the domain, in bytes.
      */
     inline DomainMetadataResult& WithAttributeValuesSizeBytes(long long value) { SetAttributeValuesSizeBytes(value); return *this;}
+
 
     /**
      * The data and time when metadata was calculated, in Epoch (UNIX) seconds.
@@ -144,6 +153,7 @@ namespace Model
      */
     inline DomainMetadataResult& WithTimestamp(int value) { SetTimestamp(value); return *this;}
 
+
     
     inline const ResponseMetadata& GetResponseMetadata() const{ return m_responseMetadata; }
 
@@ -151,22 +161,30 @@ namespace Model
     inline void SetResponseMetadata(const ResponseMetadata& value) { m_responseMetadata = value; }
 
     
-    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = value; }
+    inline void SetResponseMetadata(ResponseMetadata&& value) { m_responseMetadata = std::move(value); }
 
     
     inline DomainMetadataResult& WithResponseMetadata(const ResponseMetadata& value) { SetResponseMetadata(value); return *this;}
 
     
-    inline DomainMetadataResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(value); return *this;}
+    inline DomainMetadataResult& WithResponseMetadata(ResponseMetadata&& value) { SetResponseMetadata(std::move(value)); return *this;}
 
   private:
+
     int m_itemCount;
+
     long long m_itemNamesSizeBytes;
+
     int m_attributeNameCount;
+
     long long m_attributeNamesSizeBytes;
+
     int m_attributeValueCount;
+
     long long m_attributeValuesSizeBytes;
+
     int m_timestamp;
+
     ResponseMetadata m_responseMetadata;
   };
 

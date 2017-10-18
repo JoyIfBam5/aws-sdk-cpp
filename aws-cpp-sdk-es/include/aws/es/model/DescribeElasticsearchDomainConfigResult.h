@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/es/ElasticsearchService_EXPORTS.h>
 #include <aws/es/model/ElasticsearchDomainConfig.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     DescribeElasticsearchDomainConfigResult();
-    DescribeElasticsearchDomainConfigResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeElasticsearchDomainConfigResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeElasticsearchDomainConfigResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeElasticsearchDomainConfigResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The configuration information of the domain requested in the
@@ -62,7 +65,7 @@ namespace Model
      * <p>The configuration information of the domain requested in the
      * <code>DescribeElasticsearchDomainConfig</code> request.</p>
      */
-    inline void SetDomainConfig(ElasticsearchDomainConfig&& value) { m_domainConfig = value; }
+    inline void SetDomainConfig(ElasticsearchDomainConfig&& value) { m_domainConfig = std::move(value); }
 
     /**
      * <p>The configuration information of the domain requested in the
@@ -74,9 +77,10 @@ namespace Model
      * <p>The configuration information of the domain requested in the
      * <code>DescribeElasticsearchDomainConfig</code> request.</p>
      */
-    inline DescribeElasticsearchDomainConfigResult& WithDomainConfig(ElasticsearchDomainConfig&& value) { SetDomainConfig(value); return *this;}
+    inline DescribeElasticsearchDomainConfigResult& WithDomainConfig(ElasticsearchDomainConfig&& value) { SetDomainConfig(std::move(value)); return *this;}
 
   private:
+
     ElasticsearchDomainConfig m_domainConfig;
   };
 

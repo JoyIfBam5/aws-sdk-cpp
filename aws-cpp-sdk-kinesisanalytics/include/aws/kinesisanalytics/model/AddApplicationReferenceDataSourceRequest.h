@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesisanalytics/KinesisAnalytics_EXPORTS.h>
 #include <aws/kinesisanalytics/KinesisAnalyticsRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/kinesisanalytics/model/ReferenceDataSource.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     AddApplicationReferenceDataSourceRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "AddApplicationReferenceDataSource"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>Name of an existing application.</p>
@@ -51,7 +61,7 @@ namespace Model
     /**
      * <p>Name of an existing application.</p>
      */
-    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = value; }
+    inline void SetApplicationName(Aws::String&& value) { m_applicationNameHasBeenSet = true; m_applicationName = std::move(value); }
 
     /**
      * <p>Name of an existing application.</p>
@@ -66,12 +76,13 @@ namespace Model
     /**
      * <p>Name of an existing application.</p>
      */
-    inline AddApplicationReferenceDataSourceRequest& WithApplicationName(Aws::String&& value) { SetApplicationName(value); return *this;}
+    inline AddApplicationReferenceDataSourceRequest& WithApplicationName(Aws::String&& value) { SetApplicationName(std::move(value)); return *this;}
 
     /**
      * <p>Name of an existing application.</p>
      */
     inline AddApplicationReferenceDataSourceRequest& WithApplicationName(const char* value) { SetApplicationName(value); return *this;}
+
 
     /**
      * <p>Version of the application for which you are adding the reference data
@@ -96,6 +107,7 @@ namespace Model
      * <code>ConcurrentModificationException</code> is returned.</p>
      */
     inline AddApplicationReferenceDataSourceRequest& WithCurrentApplicationVersionId(long long value) { SetCurrentApplicationVersionId(value); return *this;}
+
 
     /**
      * <p>The reference data source can be an object in your Amazon S3 bucket. Amazon
@@ -125,7 +137,7 @@ namespace Model
      * role with the necessary permissions that Amazon Kinesis Analytics can assume to
      * read the object from your S3 bucket on your behalf.</p>
      */
-    inline void SetReferenceDataSource(ReferenceDataSource&& value) { m_referenceDataSourceHasBeenSet = true; m_referenceDataSource = value; }
+    inline void SetReferenceDataSource(ReferenceDataSource&& value) { m_referenceDataSourceHasBeenSet = true; m_referenceDataSource = std::move(value); }
 
     /**
      * <p>The reference data source can be an object in your Amazon S3 bucket. Amazon
@@ -145,13 +157,16 @@ namespace Model
      * role with the necessary permissions that Amazon Kinesis Analytics can assume to
      * read the object from your S3 bucket on your behalf.</p>
      */
-    inline AddApplicationReferenceDataSourceRequest& WithReferenceDataSource(ReferenceDataSource&& value) { SetReferenceDataSource(value); return *this;}
+    inline AddApplicationReferenceDataSourceRequest& WithReferenceDataSource(ReferenceDataSource&& value) { SetReferenceDataSource(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_applicationName;
     bool m_applicationNameHasBeenSet;
+
     long long m_currentApplicationVersionId;
     bool m_currentApplicationVersionIdHasBeenSet;
+
     ReferenceDataSource m_referenceDataSource;
     bool m_referenceDataSourceHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/opsworks/OpsWorks_EXPORTS.h>
 #include <aws/opsworks/OpsWorksRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -30,9 +32,17 @@ namespace Model
   {
   public:
     RegisterRdsDbInstanceRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "RegisterRdsDbInstance"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The stack ID.</p>
@@ -47,7 +57,7 @@ namespace Model
     /**
      * <p>The stack ID.</p>
      */
-    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = value; }
+    inline void SetStackId(Aws::String&& value) { m_stackIdHasBeenSet = true; m_stackId = std::move(value); }
 
     /**
      * <p>The stack ID.</p>
@@ -62,12 +72,13 @@ namespace Model
     /**
      * <p>The stack ID.</p>
      */
-    inline RegisterRdsDbInstanceRequest& WithStackId(Aws::String&& value) { SetStackId(value); return *this;}
+    inline RegisterRdsDbInstanceRequest& WithStackId(Aws::String&& value) { SetStackId(std::move(value)); return *this;}
 
     /**
      * <p>The stack ID.</p>
      */
     inline RegisterRdsDbInstanceRequest& WithStackId(const char* value) { SetStackId(value); return *this;}
+
 
     /**
      * <p>The Amazon RDS instance's ARN.</p>
@@ -82,7 +93,7 @@ namespace Model
     /**
      * <p>The Amazon RDS instance's ARN.</p>
      */
-    inline void SetRdsDbInstanceArn(Aws::String&& value) { m_rdsDbInstanceArnHasBeenSet = true; m_rdsDbInstanceArn = value; }
+    inline void SetRdsDbInstanceArn(Aws::String&& value) { m_rdsDbInstanceArnHasBeenSet = true; m_rdsDbInstanceArn = std::move(value); }
 
     /**
      * <p>The Amazon RDS instance's ARN.</p>
@@ -97,12 +108,13 @@ namespace Model
     /**
      * <p>The Amazon RDS instance's ARN.</p>
      */
-    inline RegisterRdsDbInstanceRequest& WithRdsDbInstanceArn(Aws::String&& value) { SetRdsDbInstanceArn(value); return *this;}
+    inline RegisterRdsDbInstanceRequest& WithRdsDbInstanceArn(Aws::String&& value) { SetRdsDbInstanceArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon RDS instance's ARN.</p>
      */
     inline RegisterRdsDbInstanceRequest& WithRdsDbInstanceArn(const char* value) { SetRdsDbInstanceArn(value); return *this;}
+
 
     /**
      * <p>The database's master user name.</p>
@@ -117,7 +129,7 @@ namespace Model
     /**
      * <p>The database's master user name.</p>
      */
-    inline void SetDbUser(Aws::String&& value) { m_dbUserHasBeenSet = true; m_dbUser = value; }
+    inline void SetDbUser(Aws::String&& value) { m_dbUserHasBeenSet = true; m_dbUser = std::move(value); }
 
     /**
      * <p>The database's master user name.</p>
@@ -132,12 +144,13 @@ namespace Model
     /**
      * <p>The database's master user name.</p>
      */
-    inline RegisterRdsDbInstanceRequest& WithDbUser(Aws::String&& value) { SetDbUser(value); return *this;}
+    inline RegisterRdsDbInstanceRequest& WithDbUser(Aws::String&& value) { SetDbUser(std::move(value)); return *this;}
 
     /**
      * <p>The database's master user name.</p>
      */
     inline RegisterRdsDbInstanceRequest& WithDbUser(const char* value) { SetDbUser(value); return *this;}
+
 
     /**
      * <p>The database password.</p>
@@ -152,7 +165,7 @@ namespace Model
     /**
      * <p>The database password.</p>
      */
-    inline void SetDbPassword(Aws::String&& value) { m_dbPasswordHasBeenSet = true; m_dbPassword = value; }
+    inline void SetDbPassword(Aws::String&& value) { m_dbPasswordHasBeenSet = true; m_dbPassword = std::move(value); }
 
     /**
      * <p>The database password.</p>
@@ -167,7 +180,7 @@ namespace Model
     /**
      * <p>The database password.</p>
      */
-    inline RegisterRdsDbInstanceRequest& WithDbPassword(Aws::String&& value) { SetDbPassword(value); return *this;}
+    inline RegisterRdsDbInstanceRequest& WithDbPassword(Aws::String&& value) { SetDbPassword(std::move(value)); return *this;}
 
     /**
      * <p>The database password.</p>
@@ -175,12 +188,16 @@ namespace Model
     inline RegisterRdsDbInstanceRequest& WithDbPassword(const char* value) { SetDbPassword(value); return *this;}
 
   private:
+
     Aws::String m_stackId;
     bool m_stackIdHasBeenSet;
+
     Aws::String m_rdsDbInstanceArn;
     bool m_rdsDbInstanceArnHasBeenSet;
+
     Aws::String m_dbUser;
     bool m_dbUserHasBeenSet;
+
     Aws::String m_dbPassword;
     bool m_dbPasswordHasBeenSet;
   };

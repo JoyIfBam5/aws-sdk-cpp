@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/workspaces/WorkSpaces_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     RebootRequest& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The identifier of the WorkSpace to reboot.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The identifier of the WorkSpace to reboot.</p>
      */
-    inline void SetWorkspaceId(Aws::String&& value) { m_workspaceIdHasBeenSet = true; m_workspaceId = value; }
+    inline void SetWorkspaceId(Aws::String&& value) { m_workspaceIdHasBeenSet = true; m_workspaceId = std::move(value); }
 
     /**
      * <p>The identifier of the WorkSpace to reboot.</p>
@@ -72,7 +75,7 @@ namespace Model
     /**
      * <p>The identifier of the WorkSpace to reboot.</p>
      */
-    inline RebootRequest& WithWorkspaceId(Aws::String&& value) { SetWorkspaceId(value); return *this;}
+    inline RebootRequest& WithWorkspaceId(Aws::String&& value) { SetWorkspaceId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the WorkSpace to reboot.</p>
@@ -80,6 +83,7 @@ namespace Model
     inline RebootRequest& WithWorkspaceId(const char* value) { SetWorkspaceId(value); return *this;}
 
   private:
+
     Aws::String m_workspaceId;
     bool m_workspaceIdHasBeenSet;
   };

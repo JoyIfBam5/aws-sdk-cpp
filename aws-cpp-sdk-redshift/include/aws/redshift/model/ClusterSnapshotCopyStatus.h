@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The destination region that snapshots are automatically copied to when
      * cross-region snapshot copy is enabled.</p>
@@ -63,7 +66,7 @@ namespace Model
      * <p>The destination region that snapshots are automatically copied to when
      * cross-region snapshot copy is enabled.</p>
      */
-    inline void SetDestinationRegion(Aws::String&& value) { m_destinationRegionHasBeenSet = true; m_destinationRegion = value; }
+    inline void SetDestinationRegion(Aws::String&& value) { m_destinationRegionHasBeenSet = true; m_destinationRegion = std::move(value); }
 
     /**
      * <p>The destination region that snapshots are automatically copied to when
@@ -81,13 +84,14 @@ namespace Model
      * <p>The destination region that snapshots are automatically copied to when
      * cross-region snapshot copy is enabled.</p>
      */
-    inline ClusterSnapshotCopyStatus& WithDestinationRegion(Aws::String&& value) { SetDestinationRegion(value); return *this;}
+    inline ClusterSnapshotCopyStatus& WithDestinationRegion(Aws::String&& value) { SetDestinationRegion(std::move(value)); return *this;}
 
     /**
      * <p>The destination region that snapshots are automatically copied to when
      * cross-region snapshot copy is enabled.</p>
      */
     inline ClusterSnapshotCopyStatus& WithDestinationRegion(const char* value) { SetDestinationRegion(value); return *this;}
+
 
     /**
      * <p>The number of days that automated snapshots are retained in the destination
@@ -107,6 +111,7 @@ namespace Model
      */
     inline ClusterSnapshotCopyStatus& WithRetentionPeriod(long long value) { SetRetentionPeriod(value); return *this;}
 
+
     /**
      * <p>The name of the snapshot copy grant.</p>
      */
@@ -120,7 +125,7 @@ namespace Model
     /**
      * <p>The name of the snapshot copy grant.</p>
      */
-    inline void SetSnapshotCopyGrantName(Aws::String&& value) { m_snapshotCopyGrantNameHasBeenSet = true; m_snapshotCopyGrantName = value; }
+    inline void SetSnapshotCopyGrantName(Aws::String&& value) { m_snapshotCopyGrantNameHasBeenSet = true; m_snapshotCopyGrantName = std::move(value); }
 
     /**
      * <p>The name of the snapshot copy grant.</p>
@@ -135,7 +140,7 @@ namespace Model
     /**
      * <p>The name of the snapshot copy grant.</p>
      */
-    inline ClusterSnapshotCopyStatus& WithSnapshotCopyGrantName(Aws::String&& value) { SetSnapshotCopyGrantName(value); return *this;}
+    inline ClusterSnapshotCopyStatus& WithSnapshotCopyGrantName(Aws::String&& value) { SetSnapshotCopyGrantName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the snapshot copy grant.</p>
@@ -143,10 +148,13 @@ namespace Model
     inline ClusterSnapshotCopyStatus& WithSnapshotCopyGrantName(const char* value) { SetSnapshotCopyGrantName(value); return *this;}
 
   private:
+
     Aws::String m_destinationRegion;
     bool m_destinationRegionHasBeenSet;
+
     long long m_retentionPeriod;
     bool m_retentionPeriodHasBeenSet;
+
     Aws::String m_snapshotCopyGrantName;
     bool m_snapshotCopyGrantNameHasBeenSet;
   };

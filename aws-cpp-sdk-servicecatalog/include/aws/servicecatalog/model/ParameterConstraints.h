@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     ParameterConstraints& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The values that the administrator has allowed for the parameter.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The values that the administrator has allowed for the parameter.</p>
      */
-    inline void SetAllowedValues(Aws::Vector<Aws::String>&& value) { m_allowedValuesHasBeenSet = true; m_allowedValues = value; }
+    inline void SetAllowedValues(Aws::Vector<Aws::String>&& value) { m_allowedValuesHasBeenSet = true; m_allowedValues = std::move(value); }
 
     /**
      * <p>The values that the administrator has allowed for the parameter.</p>
@@ -68,7 +71,7 @@ namespace Model
     /**
      * <p>The values that the administrator has allowed for the parameter.</p>
      */
-    inline ParameterConstraints& WithAllowedValues(Aws::Vector<Aws::String>&& value) { SetAllowedValues(value); return *this;}
+    inline ParameterConstraints& WithAllowedValues(Aws::Vector<Aws::String>&& value) { SetAllowedValues(std::move(value)); return *this;}
 
     /**
      * <p>The values that the administrator has allowed for the parameter.</p>
@@ -78,7 +81,7 @@ namespace Model
     /**
      * <p>The values that the administrator has allowed for the parameter.</p>
      */
-    inline ParameterConstraints& AddAllowedValues(Aws::String&& value) { m_allowedValuesHasBeenSet = true; m_allowedValues.push_back(value); return *this; }
+    inline ParameterConstraints& AddAllowedValues(Aws::String&& value) { m_allowedValuesHasBeenSet = true; m_allowedValues.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The values that the administrator has allowed for the parameter.</p>
@@ -86,6 +89,7 @@ namespace Model
     inline ParameterConstraints& AddAllowedValues(const char* value) { m_allowedValuesHasBeenSet = true; m_allowedValues.push_back(value); return *this; }
 
   private:
+
     Aws::Vector<Aws::String> m_allowedValues;
     bool m_allowedValuesHasBeenSet;
   };

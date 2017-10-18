@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/budgets/Budgets_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,8 +33,8 @@ namespace Model
 {
 
   /**
-   * A structure represent either a cost spend or usage spend. Contains an amount and
-   * a unit.<p><h3>See Also:</h3>   <a
+   * A structure that represents either a cost spend or usage spend. Contains an
+   * amount and a unit.<p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/Spend">AWS API
    * Reference</a></p>
    */
@@ -44,6 +46,7 @@ namespace Model
     Spend& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     
     inline const Aws::String& GetAmount() const{ return m_amount; }
 
@@ -51,7 +54,7 @@ namespace Model
     inline void SetAmount(const Aws::String& value) { m_amountHasBeenSet = true; m_amount = value; }
 
     
-    inline void SetAmount(Aws::String&& value) { m_amountHasBeenSet = true; m_amount = value; }
+    inline void SetAmount(Aws::String&& value) { m_amountHasBeenSet = true; m_amount = std::move(value); }
 
     
     inline void SetAmount(const char* value) { m_amountHasBeenSet = true; m_amount.assign(value); }
@@ -60,10 +63,11 @@ namespace Model
     inline Spend& WithAmount(const Aws::String& value) { SetAmount(value); return *this;}
 
     
-    inline Spend& WithAmount(Aws::String&& value) { SetAmount(value); return *this;}
+    inline Spend& WithAmount(Aws::String&& value) { SetAmount(std::move(value)); return *this;}
 
     
     inline Spend& WithAmount(const char* value) { SetAmount(value); return *this;}
+
 
     
     inline const Aws::String& GetUnit() const{ return m_unit; }
@@ -72,7 +76,7 @@ namespace Model
     inline void SetUnit(const Aws::String& value) { m_unitHasBeenSet = true; m_unit = value; }
 
     
-    inline void SetUnit(Aws::String&& value) { m_unitHasBeenSet = true; m_unit = value; }
+    inline void SetUnit(Aws::String&& value) { m_unitHasBeenSet = true; m_unit = std::move(value); }
 
     
     inline void SetUnit(const char* value) { m_unitHasBeenSet = true; m_unit.assign(value); }
@@ -81,14 +85,16 @@ namespace Model
     inline Spend& WithUnit(const Aws::String& value) { SetUnit(value); return *this;}
 
     
-    inline Spend& WithUnit(Aws::String&& value) { SetUnit(value); return *this;}
+    inline Spend& WithUnit(Aws::String&& value) { SetUnit(std::move(value)); return *this;}
 
     
     inline Spend& WithUnit(const char* value) { SetUnit(value); return *this;}
 
   private:
+
     Aws::String m_amount;
     bool m_amountHasBeenSet;
+
     Aws::String m_unit;
     bool m_unitHasBeenSet;
   };

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/config/ConfigService_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/config/model/ConfigRuleEvaluationStatus.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     DescribeConfigRuleEvaluationStatusResult();
-    DescribeConfigRuleEvaluationStatusResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeConfigRuleEvaluationStatusResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeConfigRuleEvaluationStatusResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeConfigRuleEvaluationStatusResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Status information about your AWS managed Config rules.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>Status information about your AWS managed Config rules.</p>
      */
-    inline void SetConfigRulesEvaluationStatus(Aws::Vector<ConfigRuleEvaluationStatus>&& value) { m_configRulesEvaluationStatus = value; }
+    inline void SetConfigRulesEvaluationStatus(Aws::Vector<ConfigRuleEvaluationStatus>&& value) { m_configRulesEvaluationStatus = std::move(value); }
 
     /**
      * <p>Status information about your AWS managed Config rules.</p>
@@ -69,7 +72,7 @@ namespace Model
     /**
      * <p>Status information about your AWS managed Config rules.</p>
      */
-    inline DescribeConfigRuleEvaluationStatusResult& WithConfigRulesEvaluationStatus(Aws::Vector<ConfigRuleEvaluationStatus>&& value) { SetConfigRulesEvaluationStatus(value); return *this;}
+    inline DescribeConfigRuleEvaluationStatusResult& WithConfigRulesEvaluationStatus(Aws::Vector<ConfigRuleEvaluationStatus>&& value) { SetConfigRulesEvaluationStatus(std::move(value)); return *this;}
 
     /**
      * <p>Status information about your AWS managed Config rules.</p>
@@ -79,7 +82,8 @@ namespace Model
     /**
      * <p>Status information about your AWS managed Config rules.</p>
      */
-    inline DescribeConfigRuleEvaluationStatusResult& AddConfigRulesEvaluationStatus(ConfigRuleEvaluationStatus&& value) { m_configRulesEvaluationStatus.push_back(value); return *this; }
+    inline DescribeConfigRuleEvaluationStatusResult& AddConfigRulesEvaluationStatus(ConfigRuleEvaluationStatus&& value) { m_configRulesEvaluationStatus.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The string that you use in a subsequent request to get the next page of
@@ -97,7 +101,7 @@ namespace Model
      * <p>The string that you use in a subsequent request to get the next page of
      * results in a paginated response.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The string that you use in a subsequent request to get the next page of
@@ -115,7 +119,7 @@ namespace Model
      * <p>The string that you use in a subsequent request to get the next page of
      * results in a paginated response.</p>
      */
-    inline DescribeConfigRuleEvaluationStatusResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeConfigRuleEvaluationStatusResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The string that you use in a subsequent request to get the next page of
@@ -124,7 +128,9 @@ namespace Model
     inline DescribeConfigRuleEvaluationStatusResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<ConfigRuleEvaluationStatus> m_configRulesEvaluationStatus;
+
     Aws::String m_nextToken;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/route53/Route53_EXPORTS.h>
 #include <aws/route53/model/ChangeInfo.h>
+#include <utility>
 
 namespace Aws
 {
@@ -42,8 +44,9 @@ namespace Model
   {
   public:
     ChangeResourceRecordSetsResult();
-    ChangeResourceRecordSetsResult(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
-    ChangeResourceRecordSetsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ChangeResourceRecordSetsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+    ChangeResourceRecordSetsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Xml::XmlDocument>& result);
+
 
     /**
      * <p>A complex type that contains information about changes made to your hosted
@@ -64,7 +67,7 @@ namespace Model
      * zone.</p> <p>This element contains an ID that you use when performing a
      * <a>GetChange</a> action to get detailed information about the change.</p>
      */
-    inline void SetChangeInfo(ChangeInfo&& value) { m_changeInfo = value; }
+    inline void SetChangeInfo(ChangeInfo&& value) { m_changeInfo = std::move(value); }
 
     /**
      * <p>A complex type that contains information about changes made to your hosted
@@ -78,9 +81,10 @@ namespace Model
      * zone.</p> <p>This element contains an ID that you use when performing a
      * <a>GetChange</a> action to get detailed information about the change.</p>
      */
-    inline ChangeResourceRecordSetsResult& WithChangeInfo(ChangeInfo&& value) { SetChangeInfo(value); return *this;}
+    inline ChangeResourceRecordSetsResult& WithChangeInfo(ChangeInfo&& value) { SetChangeInfo(std::move(value)); return *this;}
 
   private:
+
     ChangeInfo m_changeInfo;
   };
 

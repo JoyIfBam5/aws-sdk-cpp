@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/machinelearning/MachineLearning_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/machinelearning/model/MLModel.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,8 +47,9 @@ namespace Model
   {
   public:
     DescribeMLModelsResult();
-    DescribeMLModelsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeMLModelsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeMLModelsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeMLModelsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>A list of <code>MLModel</code> that meet the search criteria.</p>
@@ -61,7 +64,7 @@ namespace Model
     /**
      * <p>A list of <code>MLModel</code> that meet the search criteria.</p>
      */
-    inline void SetResults(Aws::Vector<MLModel>&& value) { m_results = value; }
+    inline void SetResults(Aws::Vector<MLModel>&& value) { m_results = std::move(value); }
 
     /**
      * <p>A list of <code>MLModel</code> that meet the search criteria.</p>
@@ -71,7 +74,7 @@ namespace Model
     /**
      * <p>A list of <code>MLModel</code> that meet the search criteria.</p>
      */
-    inline DescribeMLModelsResult& WithResults(Aws::Vector<MLModel>&& value) { SetResults(value); return *this;}
+    inline DescribeMLModelsResult& WithResults(Aws::Vector<MLModel>&& value) { SetResults(std::move(value)); return *this;}
 
     /**
      * <p>A list of <code>MLModel</code> that meet the search criteria.</p>
@@ -81,7 +84,8 @@ namespace Model
     /**
      * <p>A list of <code>MLModel</code> that meet the search criteria.</p>
      */
-    inline DescribeMLModelsResult& AddResults(MLModel&& value) { m_results.push_back(value); return *this; }
+    inline DescribeMLModelsResult& AddResults(MLModel&& value) { m_results.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>The ID of the next page in the paginated results that indicates at least one
@@ -99,7 +103,7 @@ namespace Model
      * <p>The ID of the next page in the paginated results that indicates at least one
      * more page follows.</p>
      */
-    inline void SetNextToken(Aws::String&& value) { m_nextToken = value; }
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The ID of the next page in the paginated results that indicates at least one
@@ -117,7 +121,7 @@ namespace Model
      * <p>The ID of the next page in the paginated results that indicates at least one
      * more page follows.</p>
      */
-    inline DescribeMLModelsResult& WithNextToken(Aws::String&& value) { SetNextToken(value); return *this;}
+    inline DescribeMLModelsResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the next page in the paginated results that indicates at least one
@@ -126,7 +130,9 @@ namespace Model
     inline DescribeMLModelsResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
   private:
+
     Aws::Vector<MLModel> m_results;
+
     Aws::String m_nextToken;
   };
 

@@ -1,5 +1,5 @@
 /*
-* Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -70,15 +70,16 @@ public class CppViewHelper {
         CORAL_TYPE_TO_DEFAULT_VALUES.put("double", "0.0");
         CORAL_TYPE_TO_DEFAULT_VALUES.put("float", "0.0");
 
-        CORAL_TO_CONTENT_TYPE_MAPPING.put("json", "AMZN_JSON_CONTENT_TYPE_1_1");
-        CORAL_TO_CONTENT_TYPE_MAPPING.put("json1.0", "AMZN_JSON_CONTENT_TYPE_1_0");
-        CORAL_TO_CONTENT_TYPE_MAPPING.put("json1.1", "AMZN_JSON_CONTENT_TYPE_1_1");
-        CORAL_TO_CONTENT_TYPE_MAPPING.put("rest-json", "AMZN_JSON_CONTENT_TYPE_1_1");
-        CORAL_TO_CONTENT_TYPE_MAPPING.put("rest-json1.0", "AMZN_JSON_CONTENT_TYPE_1_0");
-        CORAL_TO_CONTENT_TYPE_MAPPING.put("rest-json1.1", "AMZN_JSON_CONTENT_TYPE_1_1");
-        CORAL_TO_CONTENT_TYPE_MAPPING.put("rest-xml", "AMZN_XML_CONTENT_TYPE");
-        CORAL_TO_CONTENT_TYPE_MAPPING.put("query", "FORM_CONTENT_TYPE");
-        CORAL_TO_CONTENT_TYPE_MAPPING.put("ec2", "FORM_CONTENT_TYPE");
+        CORAL_TO_CONTENT_TYPE_MAPPING.put("json", "Aws::AMZN_JSON_CONTENT_TYPE_1_1");
+        CORAL_TO_CONTENT_TYPE_MAPPING.put("json1.0", "Aws::AMZN_JSON_CONTENT_TYPE_1_0");
+        CORAL_TO_CONTENT_TYPE_MAPPING.put("json1.1", "Aws::AMZN_JSON_CONTENT_TYPE_1_1");
+        CORAL_TO_CONTENT_TYPE_MAPPING.put("rest-json", "Aws::AMZN_JSON_CONTENT_TYPE_1_1");
+        CORAL_TO_CONTENT_TYPE_MAPPING.put("rest-json1.0", "Aws::AMZN_JSON_CONTENT_TYPE_1_0");
+        CORAL_TO_CONTENT_TYPE_MAPPING.put("rest-json1.1", "Aws::AMZN_JSON_CONTENT_TYPE_1_1");
+        CORAL_TO_CONTENT_TYPE_MAPPING.put("rest-xml", "Aws::AMZN_XML_CONTENT_TYPE");
+        CORAL_TO_CONTENT_TYPE_MAPPING.put("query", "Aws::FORM_CONTENT_TYPE");
+        CORAL_TO_CONTENT_TYPE_MAPPING.put("ec2", "Aws::FORM_CONTENT_TYPE");
+        CORAL_TO_CONTENT_TYPE_MAPPING.put("application-json", "Aws::JSON_CONTENT_TYPE");
     }
 
     public static String computeExportValue(String classNamePrefix) {
@@ -172,6 +173,7 @@ public class CppViewHelper {
         Set<String> headers = new LinkedHashSet<>();
         Set<String> visited = new LinkedHashSet<>();
         Queue<Shape> toVisit = shape.getMembers().values().stream().map(ShapeMember::getShape).collect(Collectors.toCollection(() -> new LinkedList<>()));
+        boolean includeUtilityHeader = false;
 
         while(!toVisit.isEmpty()) {
             Shape next = toVisit.remove();
@@ -193,7 +195,12 @@ public class CppViewHelper {
             }
             if(!next.isPrimitive()) {
                 headers.add(formatModelIncludeName(projectName, next));
+                includeUtilityHeader = true;
             }
+        }
+
+        if(includeUtilityHeader) {
+            headers.add("<utility>");
         }
 
         headers.addAll(shape.getMembers().values().stream().filter(member -> member.isIdempotencyToken()).map(member -> "<aws/core/utils/UUID.h>").collect(Collectors.toList()));

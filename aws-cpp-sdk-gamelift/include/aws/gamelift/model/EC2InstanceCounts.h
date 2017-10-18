@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/gamelift/GameLift_EXPORTS.h>
 
@@ -34,7 +35,23 @@ namespace Model
    * or be in the process of matching the number of desired instances. Pending and
    * terminating counts are non-zero only if fleet capacity is adjusting to an
    * <a>UpdateFleetCapacity</a> request, or if access to resources is temporarily
-   * affected.</p><p><h3>See Also:</h3>   <a
+   * affected.</p> <p>Fleet-related operations include:</p> <ul> <li> <p>
+   * <a>CreateFleet</a> </p> </li> <li> <p> <a>ListFleets</a> </p> </li> <li>
+   * <p>Describe fleets:</p> <ul> <li> <p> <a>DescribeFleetAttributes</a> </p> </li>
+   * <li> <p> <a>DescribeFleetPortSettings</a> </p> </li> <li> <p>
+   * <a>DescribeFleetUtilization</a> </p> </li> <li> <p>
+   * <a>DescribeRuntimeConfiguration</a> </p> </li> <li> <p>
+   * <a>DescribeFleetEvents</a> </p> </li> </ul> </li> <li> <p>Update fleets:</p>
+   * <ul> <li> <p> <a>UpdateFleetAttributes</a> </p> </li> <li> <p>
+   * <a>UpdateFleetCapacity</a> </p> </li> <li> <p> <a>UpdateFleetPortSettings</a>
+   * </p> </li> <li> <p> <a>UpdateRuntimeConfiguration</a> </p> </li> </ul> </li>
+   * <li> <p>Manage fleet capacity:</p> <ul> <li> <p> <a>DescribeFleetCapacity</a>
+   * </p> </li> <li> <p> <a>UpdateFleetCapacity</a> </p> </li> <li> <p>
+   * <a>PutScalingPolicy</a> (automatic scaling)</p> </li> <li> <p>
+   * <a>DescribeScalingPolicies</a> (automatic scaling)</p> </li> <li> <p>
+   * <a>DeleteScalingPolicy</a> (automatic scaling)</p> </li> <li> <p>
+   * <a>DescribeEC2InstanceLimits</a> </p> </li> </ul> </li> <li> <p>
+   * <a>DeleteFleet</a> </p> </li> </ul><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/EC2InstanceCounts">AWS
    * API Reference</a></p>
    */
@@ -45,6 +62,7 @@ namespace Model
     EC2InstanceCounts(const Aws::Utils::Json::JsonValue& jsonValue);
     EC2InstanceCounts& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
+
 
     /**
      * <p>Ideal number of active instances in the fleet.</p>
@@ -61,6 +79,7 @@ namespace Model
      */
     inline EC2InstanceCounts& WithDESIRED(int value) { SetDESIRED(value); return *this;}
 
+
     /**
      * <p>Minimum value allowed for the fleet's instance count.</p>
      */
@@ -75,6 +94,7 @@ namespace Model
      * <p>Minimum value allowed for the fleet's instance count.</p>
      */
     inline EC2InstanceCounts& WithMINIMUM(int value) { SetMINIMUM(value); return *this;}
+
 
     /**
      * <p>Maximum value allowed for the fleet's instance count.</p>
@@ -91,6 +111,7 @@ namespace Model
      */
     inline EC2InstanceCounts& WithMAXIMUM(int value) { SetMAXIMUM(value); return *this;}
 
+
     /**
      * <p>Number of instances in the fleet that are starting but not yet active.</p>
      */
@@ -106,6 +127,7 @@ namespace Model
      */
     inline EC2InstanceCounts& WithPENDING(int value) { SetPENDING(value); return *this;}
 
+
     /**
      * <p>Actual number of active instances in the fleet.</p>
      */
@@ -120,6 +142,7 @@ namespace Model
      * <p>Actual number of active instances in the fleet.</p>
      */
     inline EC2InstanceCounts& WithACTIVE(int value) { SetACTIVE(value); return *this;}
+
 
     /**
      * <p>Number of active instances in the fleet that are not currently hosting a game
@@ -138,6 +161,7 @@ namespace Model
      * session.</p>
      */
     inline EC2InstanceCounts& WithIDLE(int value) { SetIDLE(value); return *this;}
+
 
     /**
      * <p>Number of instances in the fleet that are no longer active but haven't yet
@@ -158,18 +182,25 @@ namespace Model
     inline EC2InstanceCounts& WithTERMINATING(int value) { SetTERMINATING(value); return *this;}
 
   private:
+
     int m_dESIRED;
     bool m_dESIREDHasBeenSet;
+
     int m_mINIMUM;
     bool m_mINIMUMHasBeenSet;
+
     int m_mAXIMUM;
     bool m_mAXIMUMHasBeenSet;
+
     int m_pENDING;
     bool m_pENDINGHasBeenSet;
+
     int m_aCTIVE;
     bool m_aCTIVEHasBeenSet;
+
     int m_iDLE;
     bool m_iDLEHasBeenSet;
+
     int m_tERMINATING;
     bool m_tERMINATINGHasBeenSet;
   };

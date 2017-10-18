@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/shield/Shield_EXPORTS.h>
 #include <aws/shield/model/Protection.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     DescribeProtectionResult();
-    DescribeProtectionResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeProtectionResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeProtectionResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeProtectionResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>The <a>Protection</a> object that is described.</p>
@@ -52,7 +55,7 @@ namespace Model
     /**
      * <p>The <a>Protection</a> object that is described.</p>
      */
-    inline void SetProtection(Protection&& value) { m_protection = value; }
+    inline void SetProtection(Protection&& value) { m_protection = std::move(value); }
 
     /**
      * <p>The <a>Protection</a> object that is described.</p>
@@ -62,9 +65,10 @@ namespace Model
     /**
      * <p>The <a>Protection</a> object that is described.</p>
      */
-    inline DescribeProtectionResult& WithProtection(Protection&& value) { SetProtection(value); return *this;}
+    inline DescribeProtectionResult& WithProtection(Protection&& value) { SetProtection(std::move(value)); return *this;}
 
   private:
+
     Protection m_protection;
   };
 

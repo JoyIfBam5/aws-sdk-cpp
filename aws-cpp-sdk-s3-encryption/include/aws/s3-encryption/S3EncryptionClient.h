@@ -1,5 +1,5 @@
 /*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -60,6 +60,8 @@ namespace Aws
             */
             Aws::S3::Model::GetObjectOutcome GetObject(const Aws::S3::Model::GetObjectRequest& request) const override;
 
+            bool MultipartUploadSupported() const override;
+
         private:
             /*
             * Function to get the instruction file object of a encrypted object from S3. This instruction file object will be used to assist decryption.
@@ -68,7 +70,7 @@ namespace Aws
 
             Aws::S3Encryption::Modules::CryptoModuleFactory m_cryptoModuleFactory;
             std::shared_ptr<Aws::Utils::Crypto::EncryptionMaterials> m_encryptionMaterials;
-            const Aws::S3Encryption::CryptoConfiguration& m_cryptoConfig;
+            const Aws::S3Encryption::CryptoConfiguration m_cryptoConfig;
         };
     }
 }

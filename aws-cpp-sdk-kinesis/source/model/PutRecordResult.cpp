@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/kinesis/model/PutRecordResult.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 #include <aws/core/AmazonWebServiceResult.h>
+#include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/UnreferencedParam.h>
 
 #include <utility>
@@ -24,16 +26,18 @@ using namespace Aws::Utils::Json;
 using namespace Aws::Utils;
 using namespace Aws;
 
-PutRecordResult::PutRecordResult()
+PutRecordResult::PutRecordResult() : 
+    m_encryptionType(EncryptionType::NOT_SET)
 {
 }
 
-PutRecordResult::PutRecordResult(const AmazonWebServiceResult<JsonValue>& result)
+PutRecordResult::PutRecordResult(const Aws::AmazonWebServiceResult<JsonValue>& result) : 
+    m_encryptionType(EncryptionType::NOT_SET)
 {
   *this = result;
 }
 
-PutRecordResult& PutRecordResult::operator =(const AmazonWebServiceResult<JsonValue>& result)
+PutRecordResult& PutRecordResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
   const JsonValue& jsonValue = result.GetPayload();
   if(jsonValue.ValueExists("ShardId"))
@@ -45,6 +49,12 @@ PutRecordResult& PutRecordResult::operator =(const AmazonWebServiceResult<JsonVa
   if(jsonValue.ValueExists("SequenceNumber"))
   {
     m_sequenceNumber = jsonValue.GetString("SequenceNumber");
+
+  }
+
+  if(jsonValue.ValueExists("EncryptionType"))
+  {
+    m_encryptionType = EncryptionTypeMapper::GetEncryptionTypeForName(jsonValue.GetString("EncryptionType"));
 
   }
 

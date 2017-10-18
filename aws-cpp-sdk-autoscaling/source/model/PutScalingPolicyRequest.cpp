@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/autoscaling/model/PutScalingPolicyRequest.h>
 #include <aws/core/utils/StringUtils.h>
 #include <aws/core/utils/memory/stl/AWSStringStream.h>
@@ -35,7 +36,8 @@ PutScalingPolicyRequest::PutScalingPolicyRequest() :
     m_metricAggregationTypeHasBeenSet(false),
     m_stepAdjustmentsHasBeenSet(false),
     m_estimatedInstanceWarmup(0),
-    m_estimatedInstanceWarmupHasBeenSet(false)
+    m_estimatedInstanceWarmupHasBeenSet(false),
+    m_targetTrackingConfigurationHasBeenSet(false)
 {
 }
 
@@ -103,7 +105,17 @@ Aws::String PutScalingPolicyRequest::SerializePayload() const
     ss << "EstimatedInstanceWarmup=" << m_estimatedInstanceWarmup << "&";
   }
 
+  if(m_targetTrackingConfigurationHasBeenSet)
+  {
+    m_targetTrackingConfiguration.OutputToStream(ss, "TargetTrackingConfiguration");
+  }
+
   ss << "Version=2011-01-01";
   return ss.str();
 }
 
+
+void  PutScalingPolicyRequest::DumpBodyToUrl(Aws::Http::URI& uri ) const
+{
+  uri.SetQueryString(SerializePayload());
+}

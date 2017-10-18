@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/ds/DirectoryService_EXPORTS.h>
 #include <aws/ds/DirectoryServiceRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -34,9 +36,17 @@ namespace Model
   {
   public:
     DisableSsoRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "DisableSso"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The identifier of the directory for which to disable single-sign on.</p>
@@ -51,7 +61,7 @@ namespace Model
     /**
      * <p>The identifier of the directory for which to disable single-sign on.</p>
      */
-    inline void SetDirectoryId(Aws::String&& value) { m_directoryIdHasBeenSet = true; m_directoryId = value; }
+    inline void SetDirectoryId(Aws::String&& value) { m_directoryIdHasBeenSet = true; m_directoryId = std::move(value); }
 
     /**
      * <p>The identifier of the directory for which to disable single-sign on.</p>
@@ -66,12 +76,13 @@ namespace Model
     /**
      * <p>The identifier of the directory for which to disable single-sign on.</p>
      */
-    inline DisableSsoRequest& WithDirectoryId(Aws::String&& value) { SetDirectoryId(value); return *this;}
+    inline DisableSsoRequest& WithDirectoryId(Aws::String&& value) { SetDirectoryId(std::move(value)); return *this;}
 
     /**
      * <p>The identifier of the directory for which to disable single-sign on.</p>
      */
     inline DisableSsoRequest& WithDirectoryId(const char* value) { SetDirectoryId(value); return *this;}
+
 
     /**
      * <p>The username of an alternate account to use to disable single-sign on. This
@@ -104,7 +115,7 @@ namespace Model
      * credentials are only used to disable single sign-on and are not stored by the
      * service. The AD Connector service account is not changed.</p>
      */
-    inline void SetUserName(Aws::String&& value) { m_userNameHasBeenSet = true; m_userName = value; }
+    inline void SetUserName(Aws::String&& value) { m_userNameHasBeenSet = true; m_userName = std::move(value); }
 
     /**
      * <p>The username of an alternate account to use to disable single-sign on. This
@@ -137,7 +148,7 @@ namespace Model
      * credentials are only used to disable single sign-on and are not stored by the
      * service. The AD Connector service account is not changed.</p>
      */
-    inline DisableSsoRequest& WithUserName(Aws::String&& value) { SetUserName(value); return *this;}
+    inline DisableSsoRequest& WithUserName(Aws::String&& value) { SetUserName(std::move(value)); return *this;}
 
     /**
      * <p>The username of an alternate account to use to disable single-sign on. This
@@ -149,6 +160,7 @@ namespace Model
      * service. The AD Connector service account is not changed.</p>
      */
     inline DisableSsoRequest& WithUserName(const char* value) { SetUserName(value); return *this;}
+
 
     /**
      * <p>The password of an alternate account to use to disable single-sign on. This
@@ -169,7 +181,7 @@ namespace Model
      * is only used for AD Connector directories. For more information, see the
      * <i>UserName</i> parameter.</p>
      */
-    inline void SetPassword(Aws::String&& value) { m_passwordHasBeenSet = true; m_password = value; }
+    inline void SetPassword(Aws::String&& value) { m_passwordHasBeenSet = true; m_password = std::move(value); }
 
     /**
      * <p>The password of an alternate account to use to disable single-sign on. This
@@ -190,7 +202,7 @@ namespace Model
      * is only used for AD Connector directories. For more information, see the
      * <i>UserName</i> parameter.</p>
      */
-    inline DisableSsoRequest& WithPassword(Aws::String&& value) { SetPassword(value); return *this;}
+    inline DisableSsoRequest& WithPassword(Aws::String&& value) { SetPassword(std::move(value)); return *this;}
 
     /**
      * <p>The password of an alternate account to use to disable single-sign on. This
@@ -200,10 +212,13 @@ namespace Model
     inline DisableSsoRequest& WithPassword(const char* value) { SetPassword(value); return *this;}
 
   private:
+
     Aws::String m_directoryId;
     bool m_directoryIdHasBeenSet;
+
     Aws::String m_userName;
     bool m_userNameHasBeenSet;
+
     Aws::String m_password;
     bool m_passwordHasBeenSet;
   };

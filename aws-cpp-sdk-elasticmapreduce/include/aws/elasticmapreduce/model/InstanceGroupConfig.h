@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
@@ -21,6 +22,7 @@
 #include <aws/elasticmapreduce/model/EbsConfiguration.h>
 #include <aws/elasticmapreduce/model/AutoScalingPolicy.h>
 #include <aws/elasticmapreduce/model/Configuration.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +51,7 @@ namespace Model
     InstanceGroupConfig& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>Friendly name given to the instance group.</p>
      */
@@ -62,7 +65,7 @@ namespace Model
     /**
      * <p>Friendly name given to the instance group.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>Friendly name given to the instance group.</p>
@@ -77,12 +80,13 @@ namespace Model
     /**
      * <p>Friendly name given to the instance group.</p>
      */
-    inline InstanceGroupConfig& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline InstanceGroupConfig& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>Friendly name given to the instance group.</p>
      */
     inline InstanceGroupConfig& WithName(const char* value) { SetName(value); return *this;}
+
 
     /**
      * <p>Market type of the EC2 instances used to create a cluster node.</p>
@@ -97,7 +101,7 @@ namespace Model
     /**
      * <p>Market type of the EC2 instances used to create a cluster node.</p>
      */
-    inline void SetMarket(MarketType&& value) { m_marketHasBeenSet = true; m_market = value; }
+    inline void SetMarket(MarketType&& value) { m_marketHasBeenSet = true; m_market = std::move(value); }
 
     /**
      * <p>Market type of the EC2 instances used to create a cluster node.</p>
@@ -107,7 +111,8 @@ namespace Model
     /**
      * <p>Market type of the EC2 instances used to create a cluster node.</p>
      */
-    inline InstanceGroupConfig& WithMarket(MarketType&& value) { SetMarket(value); return *this;}
+    inline InstanceGroupConfig& WithMarket(MarketType&& value) { SetMarket(std::move(value)); return *this;}
+
 
     /**
      * <p>The role of the instance group in the cluster.</p>
@@ -122,7 +127,7 @@ namespace Model
     /**
      * <p>The role of the instance group in the cluster.</p>
      */
-    inline void SetInstanceRole(InstanceRoleType&& value) { m_instanceRoleHasBeenSet = true; m_instanceRole = value; }
+    inline void SetInstanceRole(InstanceRoleType&& value) { m_instanceRoleHasBeenSet = true; m_instanceRole = std::move(value); }
 
     /**
      * <p>The role of the instance group in the cluster.</p>
@@ -132,7 +137,8 @@ namespace Model
     /**
      * <p>The role of the instance group in the cluster.</p>
      */
-    inline InstanceGroupConfig& WithInstanceRole(InstanceRoleType&& value) { SetInstanceRole(value); return *this;}
+    inline InstanceGroupConfig& WithInstanceRole(InstanceRoleType&& value) { SetInstanceRole(std::move(value)); return *this;}
+
 
     /**
      * <p>Bid price for each EC2 instance in the instance group when launching nodes as
@@ -150,7 +156,7 @@ namespace Model
      * <p>Bid price for each EC2 instance in the instance group when launching nodes as
      * Spot Instances, expressed in USD.</p>
      */
-    inline void SetBidPrice(Aws::String&& value) { m_bidPriceHasBeenSet = true; m_bidPrice = value; }
+    inline void SetBidPrice(Aws::String&& value) { m_bidPriceHasBeenSet = true; m_bidPrice = std::move(value); }
 
     /**
      * <p>Bid price for each EC2 instance in the instance group when launching nodes as
@@ -168,13 +174,14 @@ namespace Model
      * <p>Bid price for each EC2 instance in the instance group when launching nodes as
      * Spot Instances, expressed in USD.</p>
      */
-    inline InstanceGroupConfig& WithBidPrice(Aws::String&& value) { SetBidPrice(value); return *this;}
+    inline InstanceGroupConfig& WithBidPrice(Aws::String&& value) { SetBidPrice(std::move(value)); return *this;}
 
     /**
      * <p>Bid price for each EC2 instance in the instance group when launching nodes as
      * Spot Instances, expressed in USD.</p>
      */
     inline InstanceGroupConfig& WithBidPrice(const char* value) { SetBidPrice(value); return *this;}
+
 
     /**
      * <p>The EC2 instance type for all instances in the instance group.</p>
@@ -189,7 +196,7 @@ namespace Model
     /**
      * <p>The EC2 instance type for all instances in the instance group.</p>
      */
-    inline void SetInstanceType(Aws::String&& value) { m_instanceTypeHasBeenSet = true; m_instanceType = value; }
+    inline void SetInstanceType(Aws::String&& value) { m_instanceTypeHasBeenSet = true; m_instanceType = std::move(value); }
 
     /**
      * <p>The EC2 instance type for all instances in the instance group.</p>
@@ -204,12 +211,13 @@ namespace Model
     /**
      * <p>The EC2 instance type for all instances in the instance group.</p>
      */
-    inline InstanceGroupConfig& WithInstanceType(Aws::String&& value) { SetInstanceType(value); return *this;}
+    inline InstanceGroupConfig& WithInstanceType(Aws::String&& value) { SetInstanceType(std::move(value)); return *this;}
 
     /**
      * <p>The EC2 instance type for all instances in the instance group.</p>
      */
     inline InstanceGroupConfig& WithInstanceType(const char* value) { SetInstanceType(value); return *this;}
+
 
     /**
      * <p>Target number of instances for the instance group.</p>
@@ -225,6 +233,7 @@ namespace Model
      * <p>Target number of instances for the instance group.</p>
      */
     inline InstanceGroupConfig& WithInstanceCount(int value) { SetInstanceCount(value); return *this;}
+
 
     /**
      * <note> <p>Amazon EMR releases 4.x or later.</p> </note> <p>The list of
@@ -245,7 +254,7 @@ namespace Model
      * configurations supplied for an EMR cluster instance group. You can specify a
      * separate configuration for each instance group (master, core, and task).</p>
      */
-    inline void SetConfigurations(Aws::Vector<Configuration>&& value) { m_configurationsHasBeenSet = true; m_configurations = value; }
+    inline void SetConfigurations(Aws::Vector<Configuration>&& value) { m_configurationsHasBeenSet = true; m_configurations = std::move(value); }
 
     /**
      * <note> <p>Amazon EMR releases 4.x or later.</p> </note> <p>The list of
@@ -259,7 +268,7 @@ namespace Model
      * configurations supplied for an EMR cluster instance group. You can specify a
      * separate configuration for each instance group (master, core, and task).</p>
      */
-    inline InstanceGroupConfig& WithConfigurations(Aws::Vector<Configuration>&& value) { SetConfigurations(value); return *this;}
+    inline InstanceGroupConfig& WithConfigurations(Aws::Vector<Configuration>&& value) { SetConfigurations(std::move(value)); return *this;}
 
     /**
      * <note> <p>Amazon EMR releases 4.x or later.</p> </note> <p>The list of
@@ -273,7 +282,8 @@ namespace Model
      * configurations supplied for an EMR cluster instance group. You can specify a
      * separate configuration for each instance group (master, core, and task).</p>
      */
-    inline InstanceGroupConfig& AddConfigurations(Configuration&& value) { m_configurationsHasBeenSet = true; m_configurations.push_back(value); return *this; }
+    inline InstanceGroupConfig& AddConfigurations(Configuration&& value) { m_configurationsHasBeenSet = true; m_configurations.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>EBS configurations that will be attached to each EC2 instance in the instance
@@ -291,7 +301,7 @@ namespace Model
      * <p>EBS configurations that will be attached to each EC2 instance in the instance
      * group.</p>
      */
-    inline void SetEbsConfiguration(EbsConfiguration&& value) { m_ebsConfigurationHasBeenSet = true; m_ebsConfiguration = value; }
+    inline void SetEbsConfiguration(EbsConfiguration&& value) { m_ebsConfigurationHasBeenSet = true; m_ebsConfiguration = std::move(value); }
 
     /**
      * <p>EBS configurations that will be attached to each EC2 instance in the instance
@@ -303,7 +313,8 @@ namespace Model
      * <p>EBS configurations that will be attached to each EC2 instance in the instance
      * group.</p>
      */
-    inline InstanceGroupConfig& WithEbsConfiguration(EbsConfiguration&& value) { SetEbsConfiguration(value); return *this;}
+    inline InstanceGroupConfig& WithEbsConfiguration(EbsConfiguration&& value) { SetEbsConfiguration(std::move(value)); return *this;}
+
 
     /**
      * <p>An automatic scaling policy for a core instance group or task instance group
@@ -327,7 +338,7 @@ namespace Model
      * group dynamically adds and terminates EC2 instances in response to the value of
      * a CloudWatch metric. See <a>PutAutoScalingPolicy</a>.</p>
      */
-    inline void SetAutoScalingPolicy(AutoScalingPolicy&& value) { m_autoScalingPolicyHasBeenSet = true; m_autoScalingPolicy = value; }
+    inline void SetAutoScalingPolicy(AutoScalingPolicy&& value) { m_autoScalingPolicyHasBeenSet = true; m_autoScalingPolicy = std::move(value); }
 
     /**
      * <p>An automatic scaling policy for a core instance group or task instance group
@@ -343,25 +354,34 @@ namespace Model
      * group dynamically adds and terminates EC2 instances in response to the value of
      * a CloudWatch metric. See <a>PutAutoScalingPolicy</a>.</p>
      */
-    inline InstanceGroupConfig& WithAutoScalingPolicy(AutoScalingPolicy&& value) { SetAutoScalingPolicy(value); return *this;}
+    inline InstanceGroupConfig& WithAutoScalingPolicy(AutoScalingPolicy&& value) { SetAutoScalingPolicy(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
+
     MarketType m_market;
     bool m_marketHasBeenSet;
+
     InstanceRoleType m_instanceRole;
     bool m_instanceRoleHasBeenSet;
+
     Aws::String m_bidPrice;
     bool m_bidPriceHasBeenSet;
+
     Aws::String m_instanceType;
     bool m_instanceTypeHasBeenSet;
+
     int m_instanceCount;
     bool m_instanceCountHasBeenSet;
+
     Aws::Vector<Configuration> m_configurations;
     bool m_configurationsHasBeenSet;
+
     EbsConfiguration m_ebsConfiguration;
     bool m_ebsConfigurationHasBeenSet;
+
     AutoScalingPolicy m_autoScalingPolicy;
     bool m_autoScalingPolicyHasBeenSet;
   };

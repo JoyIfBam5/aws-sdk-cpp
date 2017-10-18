@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/ec2/model/SpotInstanceStatus.h>
 #include <aws/core/utils/xml/XmlSerializer.h>
 #include <aws/core/utils/StringUtils.h>
@@ -31,15 +32,15 @@ namespace Model
 
 SpotInstanceStatus::SpotInstanceStatus() : 
     m_codeHasBeenSet(false),
-    m_updateTimeHasBeenSet(false),
-    m_messageHasBeenSet(false)
+    m_messageHasBeenSet(false),
+    m_updateTimeHasBeenSet(false)
 {
 }
 
 SpotInstanceStatus::SpotInstanceStatus(const XmlNode& xmlNode) : 
     m_codeHasBeenSet(false),
-    m_updateTimeHasBeenSet(false),
-    m_messageHasBeenSet(false)
+    m_messageHasBeenSet(false),
+    m_updateTimeHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -56,17 +57,17 @@ SpotInstanceStatus& SpotInstanceStatus::operator =(const XmlNode& xmlNode)
       m_code = StringUtils::Trim(codeNode.GetText().c_str());
       m_codeHasBeenSet = true;
     }
-    XmlNode updateTimeNode = resultNode.FirstChild("updateTime");
-    if(!updateTimeNode.IsNull())
-    {
-      m_updateTime = DateTime(StringUtils::Trim(updateTimeNode.GetText().c_str()).c_str(), DateFormat::ISO_8601);
-      m_updateTimeHasBeenSet = true;
-    }
     XmlNode messageNode = resultNode.FirstChild("message");
     if(!messageNode.IsNull())
     {
       m_message = StringUtils::Trim(messageNode.GetText().c_str());
       m_messageHasBeenSet = true;
+    }
+    XmlNode updateTimeNode = resultNode.FirstChild("updateTime");
+    if(!updateTimeNode.IsNull())
+    {
+      m_updateTime = DateTime(StringUtils::Trim(updateTimeNode.GetText().c_str()).c_str(), DateFormat::ISO_8601);
+      m_updateTimeHasBeenSet = true;
     }
   }
 
@@ -80,14 +81,14 @@ void SpotInstanceStatus::OutputToStream(Aws::OStream& oStream, const char* locat
       oStream << location << index << locationValue << ".Code=" << StringUtils::URLEncode(m_code.c_str()) << "&";
   }
 
-  if(m_updateTimeHasBeenSet)
-  {
-      oStream << location << index << locationValue << ".UpdateTime=" << StringUtils::URLEncode(m_updateTime.ToGmtString(DateFormat::ISO_8601).c_str()) << "&";
-  }
-
   if(m_messageHasBeenSet)
   {
       oStream << location << index << locationValue << ".Message=" << StringUtils::URLEncode(m_message.c_str()) << "&";
+  }
+
+  if(m_updateTimeHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".UpdateTime=" << StringUtils::URLEncode(m_updateTime.ToGmtString(DateFormat::ISO_8601).c_str()) << "&";
   }
 
 }
@@ -98,13 +99,13 @@ void SpotInstanceStatus::OutputToStream(Aws::OStream& oStream, const char* locat
   {
       oStream << location << ".Code=" << StringUtils::URLEncode(m_code.c_str()) << "&";
   }
-  if(m_updateTimeHasBeenSet)
-  {
-      oStream << location << ".UpdateTime=" << StringUtils::URLEncode(m_updateTime.ToGmtString(DateFormat::ISO_8601).c_str()) << "&";
-  }
   if(m_messageHasBeenSet)
   {
       oStream << location << ".Message=" << StringUtils::URLEncode(m_message.c_str()) << "&";
+  }
+  if(m_updateTimeHasBeenSet)
+  {
+      oStream << location << ".UpdateTime=" << StringUtils::URLEncode(m_updateTime.ToGmtString(DateFormat::ISO_8601).c_str()) << "&";
   }
 }
 

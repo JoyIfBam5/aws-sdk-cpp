@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/cognito-idp/CognitoIdentityProvider_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -44,6 +46,7 @@ namespace Model
     NumberAttributeConstraintsType& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The minimum value of an attribute that is of the number data type.</p>
      */
@@ -57,7 +60,7 @@ namespace Model
     /**
      * <p>The minimum value of an attribute that is of the number data type.</p>
      */
-    inline void SetMinValue(Aws::String&& value) { m_minValueHasBeenSet = true; m_minValue = value; }
+    inline void SetMinValue(Aws::String&& value) { m_minValueHasBeenSet = true; m_minValue = std::move(value); }
 
     /**
      * <p>The minimum value of an attribute that is of the number data type.</p>
@@ -72,12 +75,13 @@ namespace Model
     /**
      * <p>The minimum value of an attribute that is of the number data type.</p>
      */
-    inline NumberAttributeConstraintsType& WithMinValue(Aws::String&& value) { SetMinValue(value); return *this;}
+    inline NumberAttributeConstraintsType& WithMinValue(Aws::String&& value) { SetMinValue(std::move(value)); return *this;}
 
     /**
      * <p>The minimum value of an attribute that is of the number data type.</p>
      */
     inline NumberAttributeConstraintsType& WithMinValue(const char* value) { SetMinValue(value); return *this;}
+
 
     /**
      * <p>The maximum value of an attribute that is of the number data type.</p>
@@ -92,7 +96,7 @@ namespace Model
     /**
      * <p>The maximum value of an attribute that is of the number data type.</p>
      */
-    inline void SetMaxValue(Aws::String&& value) { m_maxValueHasBeenSet = true; m_maxValue = value; }
+    inline void SetMaxValue(Aws::String&& value) { m_maxValueHasBeenSet = true; m_maxValue = std::move(value); }
 
     /**
      * <p>The maximum value of an attribute that is of the number data type.</p>
@@ -107,7 +111,7 @@ namespace Model
     /**
      * <p>The maximum value of an attribute that is of the number data type.</p>
      */
-    inline NumberAttributeConstraintsType& WithMaxValue(Aws::String&& value) { SetMaxValue(value); return *this;}
+    inline NumberAttributeConstraintsType& WithMaxValue(Aws::String&& value) { SetMaxValue(std::move(value)); return *this;}
 
     /**
      * <p>The maximum value of an attribute that is of the number data type.</p>
@@ -115,8 +119,10 @@ namespace Model
     inline NumberAttributeConstraintsType& WithMaxValue(const char* value) { SetMaxValue(value); return *this;}
 
   private:
+
     Aws::String m_minValue;
     bool m_minValueHasBeenSet;
+
     Aws::String m_maxValue;
     bool m_maxValueHasBeenSet;
   };

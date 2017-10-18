@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/acm/ACM_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -36,8 +38,9 @@ namespace Model
   {
   public:
     GetCertificateResult();
-    GetCertificateResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetCertificateResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetCertificateResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetCertificateResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>String that contains the ACM Certificate represented by the ARN specified at
@@ -55,7 +58,7 @@ namespace Model
      * <p>String that contains the ACM Certificate represented by the ARN specified at
      * input.</p>
      */
-    inline void SetCertificate(Aws::String&& value) { m_certificate = value; }
+    inline void SetCertificate(Aws::String&& value) { m_certificate = std::move(value); }
 
     /**
      * <p>String that contains the ACM Certificate represented by the ARN specified at
@@ -73,13 +76,14 @@ namespace Model
      * <p>String that contains the ACM Certificate represented by the ARN specified at
      * input.</p>
      */
-    inline GetCertificateResult& WithCertificate(Aws::String&& value) { SetCertificate(value); return *this;}
+    inline GetCertificateResult& WithCertificate(Aws::String&& value) { SetCertificate(std::move(value)); return *this;}
 
     /**
      * <p>String that contains the ACM Certificate represented by the ARN specified at
      * input.</p>
      */
     inline GetCertificateResult& WithCertificate(const char* value) { SetCertificate(value); return *this;}
+
 
     /**
      * <p>The certificate chain that contains the root certificate issued by the
@@ -97,7 +101,7 @@ namespace Model
      * <p>The certificate chain that contains the root certificate issued by the
      * certificate authority (CA).</p>
      */
-    inline void SetCertificateChain(Aws::String&& value) { m_certificateChain = value; }
+    inline void SetCertificateChain(Aws::String&& value) { m_certificateChain = std::move(value); }
 
     /**
      * <p>The certificate chain that contains the root certificate issued by the
@@ -115,7 +119,7 @@ namespace Model
      * <p>The certificate chain that contains the root certificate issued by the
      * certificate authority (CA).</p>
      */
-    inline GetCertificateResult& WithCertificateChain(Aws::String&& value) { SetCertificateChain(value); return *this;}
+    inline GetCertificateResult& WithCertificateChain(Aws::String&& value) { SetCertificateChain(std::move(value)); return *this;}
 
     /**
      * <p>The certificate chain that contains the root certificate issued by the
@@ -124,7 +128,9 @@ namespace Model
     inline GetCertificateResult& WithCertificateChain(const char* value) { SetCertificateChain(value); return *this;}
 
   private:
+
     Aws::String m_certificate;
+
     Aws::String m_certificateChain;
   };
 

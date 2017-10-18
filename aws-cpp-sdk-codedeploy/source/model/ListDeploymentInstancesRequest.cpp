@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/codedeploy/model/ListDeploymentInstancesRequest.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -24,7 +25,8 @@ using namespace Aws::Utils;
 ListDeploymentInstancesRequest::ListDeploymentInstancesRequest() : 
     m_deploymentIdHasBeenSet(false),
     m_nextTokenHasBeenSet(false),
-    m_instanceStatusFilterHasBeenSet(false)
+    m_instanceStatusFilterHasBeenSet(false),
+    m_instanceTypeFilterHasBeenSet(false)
 {
 }
 
@@ -55,6 +57,17 @@ Aws::String ListDeploymentInstancesRequest::SerializePayload() const
 
   }
 
+  if(m_instanceTypeFilterHasBeenSet)
+  {
+   Array<JsonValue> instanceTypeFilterJsonList(m_instanceTypeFilter.size());
+   for(unsigned instanceTypeFilterIndex = 0; instanceTypeFilterIndex < instanceTypeFilterJsonList.GetLength(); ++instanceTypeFilterIndex)
+   {
+     instanceTypeFilterJsonList[instanceTypeFilterIndex].AsString(InstanceTypeMapper::GetNameForInstanceType(m_instanceTypeFilter[instanceTypeFilterIndex]));
+   }
+   payload.WithArray("instanceTypeFilter", std::move(instanceTypeFilterJsonList));
+
+  }
+
   return payload.WriteReadable();
 }
 
@@ -65,6 +78,7 @@ Aws::Http::HeaderValueCollection ListDeploymentInstancesRequest::GetRequestSpeci
   return headers;
 
 }
+
 
 
 

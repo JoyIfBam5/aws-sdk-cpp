@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,12 +12,14 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/servicecatalog/model/ConstraintSummary.h>
 #include <aws/servicecatalog/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -47,6 +49,7 @@ namespace Model
     LaunchPathSummary& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The unique identifier of the product path.</p>
      */
@@ -60,7 +63,7 @@ namespace Model
     /**
      * <p>The unique identifier of the product path.</p>
      */
-    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = value; }
+    inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
      * <p>The unique identifier of the product path.</p>
@@ -75,12 +78,13 @@ namespace Model
     /**
      * <p>The unique identifier of the product path.</p>
      */
-    inline LaunchPathSummary& WithId(Aws::String&& value) { SetId(value); return *this;}
+    inline LaunchPathSummary& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The unique identifier of the product path.</p>
      */
     inline LaunchPathSummary& WithId(const char* value) { SetId(value); return *this;}
+
 
     /**
      * <p>List of constraints on the portfolio-product relationship.</p>
@@ -95,7 +99,7 @@ namespace Model
     /**
      * <p>List of constraints on the portfolio-product relationship.</p>
      */
-    inline void SetConstraintSummaries(Aws::Vector<ConstraintSummary>&& value) { m_constraintSummariesHasBeenSet = true; m_constraintSummaries = value; }
+    inline void SetConstraintSummaries(Aws::Vector<ConstraintSummary>&& value) { m_constraintSummariesHasBeenSet = true; m_constraintSummaries = std::move(value); }
 
     /**
      * <p>List of constraints on the portfolio-product relationship.</p>
@@ -105,7 +109,7 @@ namespace Model
     /**
      * <p>List of constraints on the portfolio-product relationship.</p>
      */
-    inline LaunchPathSummary& WithConstraintSummaries(Aws::Vector<ConstraintSummary>&& value) { SetConstraintSummaries(value); return *this;}
+    inline LaunchPathSummary& WithConstraintSummaries(Aws::Vector<ConstraintSummary>&& value) { SetConstraintSummaries(std::move(value)); return *this;}
 
     /**
      * <p>List of constraints on the portfolio-product relationship.</p>
@@ -115,7 +119,8 @@ namespace Model
     /**
      * <p>List of constraints on the portfolio-product relationship.</p>
      */
-    inline LaunchPathSummary& AddConstraintSummaries(ConstraintSummary&& value) { m_constraintSummariesHasBeenSet = true; m_constraintSummaries.push_back(value); return *this; }
+    inline LaunchPathSummary& AddConstraintSummaries(ConstraintSummary&& value) { m_constraintSummariesHasBeenSet = true; m_constraintSummaries.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>List of tags used by this launch path.</p>
@@ -130,7 +135,7 @@ namespace Model
     /**
      * <p>List of tags used by this launch path.</p>
      */
-    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = std::move(value); }
 
     /**
      * <p>List of tags used by this launch path.</p>
@@ -140,7 +145,7 @@ namespace Model
     /**
      * <p>List of tags used by this launch path.</p>
      */
-    inline LaunchPathSummary& WithTags(Aws::Vector<Tag>&& value) { SetTags(value); return *this;}
+    inline LaunchPathSummary& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
      * <p>List of tags used by this launch path.</p>
@@ -150,7 +155,8 @@ namespace Model
     /**
      * <p>List of tags used by this launch path.</p>
      */
-    inline LaunchPathSummary& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
+    inline LaunchPathSummary& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Corresponds to the name of the portfolio to which the user was assigned.</p>
@@ -165,7 +171,7 @@ namespace Model
     /**
      * <p>Corresponds to the name of the portfolio to which the user was assigned.</p>
      */
-    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = value; }
+    inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
      * <p>Corresponds to the name of the portfolio to which the user was assigned.</p>
@@ -180,7 +186,7 @@ namespace Model
     /**
      * <p>Corresponds to the name of the portfolio to which the user was assigned.</p>
      */
-    inline LaunchPathSummary& WithName(Aws::String&& value) { SetName(value); return *this;}
+    inline LaunchPathSummary& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
      * <p>Corresponds to the name of the portfolio to which the user was assigned.</p>
@@ -188,12 +194,16 @@ namespace Model
     inline LaunchPathSummary& WithName(const char* value) { SetName(value); return *this;}
 
   private:
+
     Aws::String m_id;
     bool m_idHasBeenSet;
+
     Aws::Vector<ConstraintSummary> m_constraintSummaries;
     bool m_constraintSummariesHasBeenSet;
+
     Aws::Vector<Tag> m_tags;
     bool m_tagsHasBeenSet;
+
     Aws::String m_name;
     bool m_nameHasBeenSet;
   };

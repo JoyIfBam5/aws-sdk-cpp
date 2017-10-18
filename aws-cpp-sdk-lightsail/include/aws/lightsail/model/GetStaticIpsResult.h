@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lightsail/Lightsail_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/lightsail/model/StaticIp.h>
+#include <utility>
 
 namespace Aws
 {
@@ -38,8 +40,9 @@ namespace Model
   {
   public:
     GetStaticIpsResult();
-    GetStaticIpsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetStaticIpsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetStaticIpsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetStaticIpsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>An array of key-value pairs containing information about your get static IPs
@@ -57,7 +60,7 @@ namespace Model
      * <p>An array of key-value pairs containing information about your get static IPs
      * request.</p>
      */
-    inline void SetStaticIps(Aws::Vector<StaticIp>&& value) { m_staticIps = value; }
+    inline void SetStaticIps(Aws::Vector<StaticIp>&& value) { m_staticIps = std::move(value); }
 
     /**
      * <p>An array of key-value pairs containing information about your get static IPs
@@ -69,7 +72,7 @@ namespace Model
      * <p>An array of key-value pairs containing information about your get static IPs
      * request.</p>
      */
-    inline GetStaticIpsResult& WithStaticIps(Aws::Vector<StaticIp>&& value) { SetStaticIps(value); return *this;}
+    inline GetStaticIpsResult& WithStaticIps(Aws::Vector<StaticIp>&& value) { SetStaticIps(std::move(value)); return *this;}
 
     /**
      * <p>An array of key-value pairs containing information about your get static IPs
@@ -81,7 +84,8 @@ namespace Model
      * <p>An array of key-value pairs containing information about your get static IPs
      * request.</p>
      */
-    inline GetStaticIpsResult& AddStaticIps(StaticIp&& value) { m_staticIps.push_back(value); return *this; }
+    inline GetStaticIpsResult& AddStaticIps(StaticIp&& value) { m_staticIps.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>A token used for advancing to the next page of results from your get static
@@ -99,7 +103,7 @@ namespace Model
      * <p>A token used for advancing to the next page of results from your get static
      * IPs request.</p>
      */
-    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = value; }
+    inline void SetNextPageToken(Aws::String&& value) { m_nextPageToken = std::move(value); }
 
     /**
      * <p>A token used for advancing to the next page of results from your get static
@@ -117,7 +121,7 @@ namespace Model
      * <p>A token used for advancing to the next page of results from your get static
      * IPs request.</p>
      */
-    inline GetStaticIpsResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(value); return *this;}
+    inline GetStaticIpsResult& WithNextPageToken(Aws::String&& value) { SetNextPageToken(std::move(value)); return *this;}
 
     /**
      * <p>A token used for advancing to the next page of results from your get static
@@ -126,7 +130,9 @@ namespace Model
     inline GetStaticIpsResult& WithNextPageToken(const char* value) { SetNextPageToken(value); return *this;}
 
   private:
+
     Aws::Vector<StaticIp> m_staticIps;
+
     Aws::String m_nextPageToken;
   };
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/codedeploy/CodeDeploy_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/codedeploy/model/TagFilterType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     TagFilter& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The on-premises instance tag filter key.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The on-premises instance tag filter key.</p>
      */
-    inline void SetKey(Aws::String&& value) { m_keyHasBeenSet = true; m_key = value; }
+    inline void SetKey(Aws::String&& value) { m_keyHasBeenSet = true; m_key = std::move(value); }
 
     /**
      * <p>The on-premises instance tag filter key.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The on-premises instance tag filter key.</p>
      */
-    inline TagFilter& WithKey(Aws::String&& value) { SetKey(value); return *this;}
+    inline TagFilter& WithKey(Aws::String&& value) { SetKey(std::move(value)); return *this;}
 
     /**
      * <p>The on-premises instance tag filter key.</p>
      */
     inline TagFilter& WithKey(const char* value) { SetKey(value); return *this;}
+
 
     /**
      * <p>The on-premises instance tag filter value.</p>
@@ -93,7 +97,7 @@ namespace Model
     /**
      * <p>The on-premises instance tag filter value.</p>
      */
-    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = value; }
+    inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = std::move(value); }
 
     /**
      * <p>The on-premises instance tag filter value.</p>
@@ -108,12 +112,13 @@ namespace Model
     /**
      * <p>The on-premises instance tag filter value.</p>
      */
-    inline TagFilter& WithValue(Aws::String&& value) { SetValue(value); return *this;}
+    inline TagFilter& WithValue(Aws::String&& value) { SetValue(std::move(value)); return *this;}
 
     /**
      * <p>The on-premises instance tag filter value.</p>
      */
     inline TagFilter& WithValue(const char* value) { SetValue(value); return *this;}
+
 
     /**
      * <p>The on-premises instance tag filter type:</p> <ul> <li> <p>KEY_ONLY: Key
@@ -134,7 +139,7 @@ namespace Model
      * only.</p> </li> <li> <p>VALUE_ONLY: Value only.</p> </li> <li> <p>KEY_AND_VALUE:
      * Key and value.</p> </li> </ul>
      */
-    inline void SetType(TagFilterType&& value) { m_typeHasBeenSet = true; m_type = value; }
+    inline void SetType(TagFilterType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
      * <p>The on-premises instance tag filter type:</p> <ul> <li> <p>KEY_ONLY: Key
@@ -148,13 +153,16 @@ namespace Model
      * only.</p> </li> <li> <p>VALUE_ONLY: Value only.</p> </li> <li> <p>KEY_AND_VALUE:
      * Key and value.</p> </li> </ul>
      */
-    inline TagFilter& WithType(TagFilterType&& value) { SetType(value); return *this;}
+    inline TagFilter& WithType(TagFilterType&& value) { SetType(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_key;
     bool m_keyHasBeenSet;
+
     Aws::String m_value;
     bool m_valueHasBeenSet;
+
     TagFilterType m_type;
     bool m_typeHasBeenSet;
   };

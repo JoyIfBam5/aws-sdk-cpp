@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/lambda/Lambda_EXPORTS.h>
 #include <aws/lambda/model/AccountLimit.h>
 #include <aws/lambda/model/AccountUsage.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     GetAccountSettingsResult();
-    GetAccountSettingsResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetAccountSettingsResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetAccountSettingsResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetAccountSettingsResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     
     inline const AccountLimit& GetAccountLimit() const{ return m_accountLimit; }
@@ -47,13 +50,14 @@ namespace Model
     inline void SetAccountLimit(const AccountLimit& value) { m_accountLimit = value; }
 
     
-    inline void SetAccountLimit(AccountLimit&& value) { m_accountLimit = value; }
+    inline void SetAccountLimit(AccountLimit&& value) { m_accountLimit = std::move(value); }
 
     
     inline GetAccountSettingsResult& WithAccountLimit(const AccountLimit& value) { SetAccountLimit(value); return *this;}
 
     
-    inline GetAccountSettingsResult& WithAccountLimit(AccountLimit&& value) { SetAccountLimit(value); return *this;}
+    inline GetAccountSettingsResult& WithAccountLimit(AccountLimit&& value) { SetAccountLimit(std::move(value)); return *this;}
+
 
     
     inline const AccountUsage& GetAccountUsage() const{ return m_accountUsage; }
@@ -62,16 +66,18 @@ namespace Model
     inline void SetAccountUsage(const AccountUsage& value) { m_accountUsage = value; }
 
     
-    inline void SetAccountUsage(AccountUsage&& value) { m_accountUsage = value; }
+    inline void SetAccountUsage(AccountUsage&& value) { m_accountUsage = std::move(value); }
 
     
     inline GetAccountSettingsResult& WithAccountUsage(const AccountUsage& value) { SetAccountUsage(value); return *this;}
 
     
-    inline GetAccountSettingsResult& WithAccountUsage(AccountUsage&& value) { SetAccountUsage(value); return *this;}
+    inline GetAccountSettingsResult& WithAccountUsage(AccountUsage&& value) { SetAccountUsage(std::move(value)); return *this;}
 
   private:
+
     AccountLimit m_accountLimit;
+
     AccountUsage m_accountUsage;
   };
 

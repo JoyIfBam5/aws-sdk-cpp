@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/autoscaling/AutoScaling_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The granularity. The only valid value is <code>1Minute</code>.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The granularity. The only valid value is <code>1Minute</code>.</p>
      */
-    inline void SetGranularity(Aws::String&& value) { m_granularityHasBeenSet = true; m_granularity = value; }
+    inline void SetGranularity(Aws::String&& value) { m_granularityHasBeenSet = true; m_granularity = std::move(value); }
 
     /**
      * <p>The granularity. The only valid value is <code>1Minute</code>.</p>
@@ -74,7 +77,7 @@ namespace Model
     /**
      * <p>The granularity. The only valid value is <code>1Minute</code>.</p>
      */
-    inline MetricGranularityType& WithGranularity(Aws::String&& value) { SetGranularity(value); return *this;}
+    inline MetricGranularityType& WithGranularity(Aws::String&& value) { SetGranularity(std::move(value)); return *this;}
 
     /**
      * <p>The granularity. The only valid value is <code>1Minute</code>.</p>
@@ -82,6 +85,7 @@ namespace Model
     inline MetricGranularityType& WithGranularity(const char* value) { SetGranularity(value); return *this;}
 
   private:
+
     Aws::String m_granularity;
     bool m_granularityHasBeenSet;
   };

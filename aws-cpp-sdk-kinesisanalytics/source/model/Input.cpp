@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/kinesisanalytics/model/Input.h>
 #include <aws/core/utils/json/JsonSerializer.h>
 
@@ -29,6 +30,7 @@ namespace Model
 
 Input::Input() : 
     m_namePrefixHasBeenSet(false),
+    m_inputProcessingConfigurationHasBeenSet(false),
     m_kinesisStreamsInputHasBeenSet(false),
     m_kinesisFirehoseInputHasBeenSet(false),
     m_inputParallelismHasBeenSet(false),
@@ -38,6 +40,7 @@ Input::Input() :
 
 Input::Input(const JsonValue& jsonValue) : 
     m_namePrefixHasBeenSet(false),
+    m_inputProcessingConfigurationHasBeenSet(false),
     m_kinesisStreamsInputHasBeenSet(false),
     m_kinesisFirehoseInputHasBeenSet(false),
     m_inputParallelismHasBeenSet(false),
@@ -53,6 +56,13 @@ Input& Input::operator =(const JsonValue& jsonValue)
     m_namePrefix = jsonValue.GetString("NamePrefix");
 
     m_namePrefixHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("InputProcessingConfiguration"))
+  {
+    m_inputProcessingConfiguration = jsonValue.GetObject("InputProcessingConfiguration");
+
+    m_inputProcessingConfigurationHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("KinesisStreamsInput"))
@@ -93,6 +103,12 @@ JsonValue Input::Jsonize() const
   if(m_namePrefixHasBeenSet)
   {
    payload.WithString("NamePrefix", m_namePrefix);
+
+  }
+
+  if(m_inputProcessingConfigurationHasBeenSet)
+  {
+   payload.WithObject("InputProcessingConfiguration", m_inputProcessingConfiguration.Jsonize());
 
   }
 

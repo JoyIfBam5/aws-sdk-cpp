@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,11 +12,13 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/kinesis/Kinesis_EXPORTS.h>
 #include <aws/kinesis/KinesisRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/kinesis/model/ScalingType.h>
+#include <utility>
 
 namespace Aws
 {
@@ -31,9 +33,17 @@ namespace Model
   {
   public:
     UpdateShardCountRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateShardCount"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
+
 
     /**
      * <p>The name of the stream.</p>
@@ -48,7 +58,7 @@ namespace Model
     /**
      * <p>The name of the stream.</p>
      */
-    inline void SetStreamName(Aws::String&& value) { m_streamNameHasBeenSet = true; m_streamName = value; }
+    inline void SetStreamName(Aws::String&& value) { m_streamNameHasBeenSet = true; m_streamName = std::move(value); }
 
     /**
      * <p>The name of the stream.</p>
@@ -63,12 +73,13 @@ namespace Model
     /**
      * <p>The name of the stream.</p>
      */
-    inline UpdateShardCountRequest& WithStreamName(Aws::String&& value) { SetStreamName(value); return *this;}
+    inline UpdateShardCountRequest& WithStreamName(Aws::String&& value) { SetStreamName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the stream.</p>
      */
     inline UpdateShardCountRequest& WithStreamName(const char* value) { SetStreamName(value); return *this;}
+
 
     /**
      * <p>The new number of shards.</p>
@@ -85,6 +96,7 @@ namespace Model
      */
     inline UpdateShardCountRequest& WithTargetShardCount(int value) { SetTargetShardCount(value); return *this;}
 
+
     /**
      * <p>The scaling type. Uniform scaling creates shards of equal size.</p>
      */
@@ -98,7 +110,7 @@ namespace Model
     /**
      * <p>The scaling type. Uniform scaling creates shards of equal size.</p>
      */
-    inline void SetScalingType(ScalingType&& value) { m_scalingTypeHasBeenSet = true; m_scalingType = value; }
+    inline void SetScalingType(ScalingType&& value) { m_scalingTypeHasBeenSet = true; m_scalingType = std::move(value); }
 
     /**
      * <p>The scaling type. Uniform scaling creates shards of equal size.</p>
@@ -108,13 +120,16 @@ namespace Model
     /**
      * <p>The scaling type. Uniform scaling creates shards of equal size.</p>
      */
-    inline UpdateShardCountRequest& WithScalingType(ScalingType&& value) { SetScalingType(value); return *this;}
+    inline UpdateShardCountRequest& WithScalingType(ScalingType&& value) { SetScalingType(std::move(value)); return *this;}
 
   private:
+
     Aws::String m_streamName;
     bool m_streamNameHasBeenSet;
+
     int m_targetShardCount;
     bool m_targetShardCountHasBeenSet;
+
     ScalingType m_scalingType;
     bool m_scalingTypeHasBeenSet;
   };

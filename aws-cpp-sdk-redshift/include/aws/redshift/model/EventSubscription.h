@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -19,6 +20,7 @@
 #include <aws/core/utils/DateTime.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/redshift/model/Tag.h>
+#include <utility>
 
 namespace Aws
 {
@@ -49,6 +51,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The AWS customer account associated with the Amazon Redshift event
      * notification subscription.</p>
@@ -65,7 +68,7 @@ namespace Model
      * <p>The AWS customer account associated with the Amazon Redshift event
      * notification subscription.</p>
      */
-    inline void SetCustomerAwsId(Aws::String&& value) { m_customerAwsIdHasBeenSet = true; m_customerAwsId = value; }
+    inline void SetCustomerAwsId(Aws::String&& value) { m_customerAwsIdHasBeenSet = true; m_customerAwsId = std::move(value); }
 
     /**
      * <p>The AWS customer account associated with the Amazon Redshift event
@@ -83,13 +86,14 @@ namespace Model
      * <p>The AWS customer account associated with the Amazon Redshift event
      * notification subscription.</p>
      */
-    inline EventSubscription& WithCustomerAwsId(Aws::String&& value) { SetCustomerAwsId(value); return *this;}
+    inline EventSubscription& WithCustomerAwsId(Aws::String&& value) { SetCustomerAwsId(std::move(value)); return *this;}
 
     /**
      * <p>The AWS customer account associated with the Amazon Redshift event
      * notification subscription.</p>
      */
     inline EventSubscription& WithCustomerAwsId(const char* value) { SetCustomerAwsId(value); return *this;}
+
 
     /**
      * <p>The name of the Amazon Redshift event notification subscription.</p>
@@ -104,7 +108,7 @@ namespace Model
     /**
      * <p>The name of the Amazon Redshift event notification subscription.</p>
      */
-    inline void SetCustSubscriptionId(Aws::String&& value) { m_custSubscriptionIdHasBeenSet = true; m_custSubscriptionId = value; }
+    inline void SetCustSubscriptionId(Aws::String&& value) { m_custSubscriptionIdHasBeenSet = true; m_custSubscriptionId = std::move(value); }
 
     /**
      * <p>The name of the Amazon Redshift event notification subscription.</p>
@@ -119,12 +123,13 @@ namespace Model
     /**
      * <p>The name of the Amazon Redshift event notification subscription.</p>
      */
-    inline EventSubscription& WithCustSubscriptionId(Aws::String&& value) { SetCustSubscriptionId(value); return *this;}
+    inline EventSubscription& WithCustSubscriptionId(Aws::String&& value) { SetCustSubscriptionId(std::move(value)); return *this;}
 
     /**
      * <p>The name of the Amazon Redshift event notification subscription.</p>
      */
     inline EventSubscription& WithCustSubscriptionId(const char* value) { SetCustSubscriptionId(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the Amazon SNS topic used by the event
@@ -142,7 +147,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the Amazon SNS topic used by the event
      * notification subscription.</p>
      */
-    inline void SetSnsTopicArn(Aws::String&& value) { m_snsTopicArnHasBeenSet = true; m_snsTopicArn = value; }
+    inline void SetSnsTopicArn(Aws::String&& value) { m_snsTopicArnHasBeenSet = true; m_snsTopicArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the Amazon SNS topic used by the event
@@ -160,13 +165,14 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the Amazon SNS topic used by the event
      * notification subscription.</p>
      */
-    inline EventSubscription& WithSnsTopicArn(Aws::String&& value) { SetSnsTopicArn(value); return *this;}
+    inline EventSubscription& WithSnsTopicArn(Aws::String&& value) { SetSnsTopicArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the Amazon SNS topic used by the event
      * notification subscription.</p>
      */
     inline EventSubscription& WithSnsTopicArn(const char* value) { SetSnsTopicArn(value); return *this;}
+
 
     /**
      * <p>The status of the Amazon Redshift event notification subscription.</p>
@@ -196,7 +202,7 @@ namespace Model
      * SNS topic. The status "topic-not-exist" indicates that the topic was deleted
      * after the subscription was created.</p> </li> </ul>
      */
-    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = value; }
+    inline void SetStatus(Aws::String&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
      * <p>The status of the Amazon Redshift event notification subscription.</p>
@@ -226,7 +232,7 @@ namespace Model
      * SNS topic. The status "topic-not-exist" indicates that the topic was deleted
      * after the subscription was created.</p> </li> </ul>
      */
-    inline EventSubscription& WithStatus(Aws::String&& value) { SetStatus(value); return *this;}
+    inline EventSubscription& WithStatus(Aws::String&& value) { SetStatus(std::move(value)); return *this;}
 
     /**
      * <p>The status of the Amazon Redshift event notification subscription.</p>
@@ -237,6 +243,7 @@ namespace Model
      * after the subscription was created.</p> </li> </ul>
      */
     inline EventSubscription& WithStatus(const char* value) { SetStatus(value); return *this;}
+
 
     /**
      * <p>The date and time the Amazon Redshift event notification subscription was
@@ -254,7 +261,7 @@ namespace Model
      * <p>The date and time the Amazon Redshift event notification subscription was
      * created.</p>
      */
-    inline void SetSubscriptionCreationTime(Aws::Utils::DateTime&& value) { m_subscriptionCreationTimeHasBeenSet = true; m_subscriptionCreationTime = value; }
+    inline void SetSubscriptionCreationTime(Aws::Utils::DateTime&& value) { m_subscriptionCreationTimeHasBeenSet = true; m_subscriptionCreationTime = std::move(value); }
 
     /**
      * <p>The date and time the Amazon Redshift event notification subscription was
@@ -266,7 +273,8 @@ namespace Model
      * <p>The date and time the Amazon Redshift event notification subscription was
      * created.</p>
      */
-    inline EventSubscription& WithSubscriptionCreationTime(Aws::Utils::DateTime&& value) { SetSubscriptionCreationTime(value); return *this;}
+    inline EventSubscription& WithSubscriptionCreationTime(Aws::Utils::DateTime&& value) { SetSubscriptionCreationTime(std::move(value)); return *this;}
+
 
     /**
      * <p>The source type of the events returned the Amazon Redshift event
@@ -284,7 +292,7 @@ namespace Model
      * <p>The source type of the events returned the Amazon Redshift event
      * notification, such as cluster, or cluster-snapshot.</p>
      */
-    inline void SetSourceType(Aws::String&& value) { m_sourceTypeHasBeenSet = true; m_sourceType = value; }
+    inline void SetSourceType(Aws::String&& value) { m_sourceTypeHasBeenSet = true; m_sourceType = std::move(value); }
 
     /**
      * <p>The source type of the events returned the Amazon Redshift event
@@ -302,13 +310,14 @@ namespace Model
      * <p>The source type of the events returned the Amazon Redshift event
      * notification, such as cluster, or cluster-snapshot.</p>
      */
-    inline EventSubscription& WithSourceType(Aws::String&& value) { SetSourceType(value); return *this;}
+    inline EventSubscription& WithSourceType(Aws::String&& value) { SetSourceType(std::move(value)); return *this;}
 
     /**
      * <p>The source type of the events returned the Amazon Redshift event
      * notification, such as cluster, or cluster-snapshot.</p>
      */
     inline EventSubscription& WithSourceType(const char* value) { SetSourceType(value); return *this;}
+
 
     /**
      * <p>A list of the sources that publish events to the Amazon Redshift event
@@ -326,7 +335,7 @@ namespace Model
      * <p>A list of the sources that publish events to the Amazon Redshift event
      * notification subscription.</p>
      */
-    inline void SetSourceIdsList(Aws::Vector<Aws::String>&& value) { m_sourceIdsListHasBeenSet = true; m_sourceIdsList = value; }
+    inline void SetSourceIdsList(Aws::Vector<Aws::String>&& value) { m_sourceIdsListHasBeenSet = true; m_sourceIdsList = std::move(value); }
 
     /**
      * <p>A list of the sources that publish events to the Amazon Redshift event
@@ -338,7 +347,7 @@ namespace Model
      * <p>A list of the sources that publish events to the Amazon Redshift event
      * notification subscription.</p>
      */
-    inline EventSubscription& WithSourceIdsList(Aws::Vector<Aws::String>&& value) { SetSourceIdsList(value); return *this;}
+    inline EventSubscription& WithSourceIdsList(Aws::Vector<Aws::String>&& value) { SetSourceIdsList(std::move(value)); return *this;}
 
     /**
      * <p>A list of the sources that publish events to the Amazon Redshift event
@@ -350,13 +359,14 @@ namespace Model
      * <p>A list of the sources that publish events to the Amazon Redshift event
      * notification subscription.</p>
      */
-    inline EventSubscription& AddSourceIdsList(Aws::String&& value) { m_sourceIdsListHasBeenSet = true; m_sourceIdsList.push_back(value); return *this; }
+    inline EventSubscription& AddSourceIdsList(Aws::String&& value) { m_sourceIdsListHasBeenSet = true; m_sourceIdsList.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of the sources that publish events to the Amazon Redshift event
      * notification subscription.</p>
      */
     inline EventSubscription& AddSourceIdsList(const char* value) { m_sourceIdsListHasBeenSet = true; m_sourceIdsList.push_back(value); return *this; }
+
 
     /**
      * <p>The list of Amazon Redshift event categories specified in the event
@@ -377,7 +387,7 @@ namespace Model
      * notification subscription.</p> <p>Values: Configuration, Management, Monitoring,
      * Security</p>
      */
-    inline void SetEventCategoriesList(Aws::Vector<Aws::String>&& value) { m_eventCategoriesListHasBeenSet = true; m_eventCategoriesList = value; }
+    inline void SetEventCategoriesList(Aws::Vector<Aws::String>&& value) { m_eventCategoriesListHasBeenSet = true; m_eventCategoriesList = std::move(value); }
 
     /**
      * <p>The list of Amazon Redshift event categories specified in the event
@@ -391,7 +401,7 @@ namespace Model
      * notification subscription.</p> <p>Values: Configuration, Management, Monitoring,
      * Security</p>
      */
-    inline EventSubscription& WithEventCategoriesList(Aws::Vector<Aws::String>&& value) { SetEventCategoriesList(value); return *this;}
+    inline EventSubscription& WithEventCategoriesList(Aws::Vector<Aws::String>&& value) { SetEventCategoriesList(std::move(value)); return *this;}
 
     /**
      * <p>The list of Amazon Redshift event categories specified in the event
@@ -405,7 +415,7 @@ namespace Model
      * notification subscription.</p> <p>Values: Configuration, Management, Monitoring,
      * Security</p>
      */
-    inline EventSubscription& AddEventCategoriesList(Aws::String&& value) { m_eventCategoriesListHasBeenSet = true; m_eventCategoriesList.push_back(value); return *this; }
+    inline EventSubscription& AddEventCategoriesList(Aws::String&& value) { m_eventCategoriesListHasBeenSet = true; m_eventCategoriesList.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The list of Amazon Redshift event categories specified in the event
@@ -413,6 +423,7 @@ namespace Model
      * Security</p>
      */
     inline EventSubscription& AddEventCategoriesList(const char* value) { m_eventCategoriesListHasBeenSet = true; m_eventCategoriesList.push_back(value); return *this; }
+
 
     /**
      * <p>The event severity specified in the Amazon Redshift event notification
@@ -430,7 +441,7 @@ namespace Model
      * <p>The event severity specified in the Amazon Redshift event notification
      * subscription.</p> <p>Values: ERROR, INFO</p>
      */
-    inline void SetSeverity(Aws::String&& value) { m_severityHasBeenSet = true; m_severity = value; }
+    inline void SetSeverity(Aws::String&& value) { m_severityHasBeenSet = true; m_severity = std::move(value); }
 
     /**
      * <p>The event severity specified in the Amazon Redshift event notification
@@ -448,13 +459,14 @@ namespace Model
      * <p>The event severity specified in the Amazon Redshift event notification
      * subscription.</p> <p>Values: ERROR, INFO</p>
      */
-    inline EventSubscription& WithSeverity(Aws::String&& value) { SetSeverity(value); return *this;}
+    inline EventSubscription& WithSeverity(Aws::String&& value) { SetSeverity(std::move(value)); return *this;}
 
     /**
      * <p>The event severity specified in the Amazon Redshift event notification
      * subscription.</p> <p>Values: ERROR, INFO</p>
      */
     inline EventSubscription& WithSeverity(const char* value) { SetSeverity(value); return *this;}
+
 
     /**
      * <p>A Boolean value indicating whether the subscription is enabled.
@@ -474,6 +486,7 @@ namespace Model
      */
     inline EventSubscription& WithEnabled(bool value) { SetEnabled(value); return *this;}
 
+
     /**
      * <p>The list of tags for the event subscription.</p>
      */
@@ -487,7 +500,7 @@ namespace Model
     /**
      * <p>The list of tags for the event subscription.</p>
      */
-    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = value; }
+    inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = std::move(value); }
 
     /**
      * <p>The list of tags for the event subscription.</p>
@@ -497,7 +510,7 @@ namespace Model
     /**
      * <p>The list of tags for the event subscription.</p>
      */
-    inline EventSubscription& WithTags(Aws::Vector<Tag>&& value) { SetTags(value); return *this;}
+    inline EventSubscription& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
      * <p>The list of tags for the event subscription.</p>
@@ -507,29 +520,40 @@ namespace Model
     /**
      * <p>The list of tags for the event subscription.</p>
      */
-    inline EventSubscription& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
+    inline EventSubscription& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::String m_customerAwsId;
     bool m_customerAwsIdHasBeenSet;
+
     Aws::String m_custSubscriptionId;
     bool m_custSubscriptionIdHasBeenSet;
+
     Aws::String m_snsTopicArn;
     bool m_snsTopicArnHasBeenSet;
+
     Aws::String m_status;
     bool m_statusHasBeenSet;
+
     Aws::Utils::DateTime m_subscriptionCreationTime;
     bool m_subscriptionCreationTimeHasBeenSet;
+
     Aws::String m_sourceType;
     bool m_sourceTypeHasBeenSet;
+
     Aws::Vector<Aws::String> m_sourceIdsList;
     bool m_sourceIdsListHasBeenSet;
+
     Aws::Vector<Aws::String> m_eventCategoriesList;
     bool m_eventCategoriesListHasBeenSet;
+
     Aws::String m_severity;
     bool m_severityHasBeenSet;
+
     bool m_enabled;
     bool m_enabledHasBeenSet;
+
     Aws::Vector<Tag> m_tags;
     bool m_tagsHasBeenSet;
   };

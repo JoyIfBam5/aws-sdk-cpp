@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,9 +12,11 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/elasticmapreduce/EMR_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -45,6 +47,7 @@ namespace Model
     VolumeSpecification& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
+
     /**
      * <p>The volume type. Volume types supported are gp2, io1, standard.</p>
      */
@@ -58,7 +61,7 @@ namespace Model
     /**
      * <p>The volume type. Volume types supported are gp2, io1, standard.</p>
      */
-    inline void SetVolumeType(Aws::String&& value) { m_volumeTypeHasBeenSet = true; m_volumeType = value; }
+    inline void SetVolumeType(Aws::String&& value) { m_volumeTypeHasBeenSet = true; m_volumeType = std::move(value); }
 
     /**
      * <p>The volume type. Volume types supported are gp2, io1, standard.</p>
@@ -73,12 +76,13 @@ namespace Model
     /**
      * <p>The volume type. Volume types supported are gp2, io1, standard.</p>
      */
-    inline VolumeSpecification& WithVolumeType(Aws::String&& value) { SetVolumeType(value); return *this;}
+    inline VolumeSpecification& WithVolumeType(Aws::String&& value) { SetVolumeType(std::move(value)); return *this;}
 
     /**
      * <p>The volume type. Volume types supported are gp2, io1, standard.</p>
      */
     inline VolumeSpecification& WithVolumeType(const char* value) { SetVolumeType(value); return *this;}
+
 
     /**
      * <p>The number of I/O operations per second (IOPS) that the volume supports.</p>
@@ -94,6 +98,7 @@ namespace Model
      * <p>The number of I/O operations per second (IOPS) that the volume supports.</p>
      */
     inline VolumeSpecification& WithIops(int value) { SetIops(value); return *this;}
+
 
     /**
      * <p>The volume size, in gibibytes (GiB). This can be a number from 1 - 1024. If
@@ -114,10 +119,13 @@ namespace Model
     inline VolumeSpecification& WithSizeInGB(int value) { SetSizeInGB(value); return *this;}
 
   private:
+
     Aws::String m_volumeType;
     bool m_volumeTypeHasBeenSet;
+
     int m_iops;
     bool m_iopsHasBeenSet;
+
     int m_sizeInGB;
     bool m_sizeInGBHasBeenSet;
   };

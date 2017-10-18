@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/devicefarm/DeviceFarm_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/devicefarm/model/DevicePoolCompatibilityResult.h>
+#include <utility>
 
 namespace Aws
 {
@@ -43,8 +45,9 @@ namespace Model
   {
   public:
     GetDevicePoolCompatibilityResult();
-    GetDevicePoolCompatibilityResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    GetDevicePoolCompatibilityResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDevicePoolCompatibilityResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    GetDevicePoolCompatibilityResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     /**
      * <p>Information about compatible devices.</p>
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>Information about compatible devices.</p>
      */
-    inline void SetCompatibleDevices(Aws::Vector<DevicePoolCompatibilityResult>&& value) { m_compatibleDevices = value; }
+    inline void SetCompatibleDevices(Aws::Vector<DevicePoolCompatibilityResult>&& value) { m_compatibleDevices = std::move(value); }
 
     /**
      * <p>Information about compatible devices.</p>
@@ -69,7 +72,7 @@ namespace Model
     /**
      * <p>Information about compatible devices.</p>
      */
-    inline GetDevicePoolCompatibilityResult& WithCompatibleDevices(Aws::Vector<DevicePoolCompatibilityResult>&& value) { SetCompatibleDevices(value); return *this;}
+    inline GetDevicePoolCompatibilityResult& WithCompatibleDevices(Aws::Vector<DevicePoolCompatibilityResult>&& value) { SetCompatibleDevices(std::move(value)); return *this;}
 
     /**
      * <p>Information about compatible devices.</p>
@@ -79,7 +82,8 @@ namespace Model
     /**
      * <p>Information about compatible devices.</p>
      */
-    inline GetDevicePoolCompatibilityResult& AddCompatibleDevices(DevicePoolCompatibilityResult&& value) { m_compatibleDevices.push_back(value); return *this; }
+    inline GetDevicePoolCompatibilityResult& AddCompatibleDevices(DevicePoolCompatibilityResult&& value) { m_compatibleDevices.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Information about incompatible devices.</p>
@@ -94,7 +98,7 @@ namespace Model
     /**
      * <p>Information about incompatible devices.</p>
      */
-    inline void SetIncompatibleDevices(Aws::Vector<DevicePoolCompatibilityResult>&& value) { m_incompatibleDevices = value; }
+    inline void SetIncompatibleDevices(Aws::Vector<DevicePoolCompatibilityResult>&& value) { m_incompatibleDevices = std::move(value); }
 
     /**
      * <p>Information about incompatible devices.</p>
@@ -104,7 +108,7 @@ namespace Model
     /**
      * <p>Information about incompatible devices.</p>
      */
-    inline GetDevicePoolCompatibilityResult& WithIncompatibleDevices(Aws::Vector<DevicePoolCompatibilityResult>&& value) { SetIncompatibleDevices(value); return *this;}
+    inline GetDevicePoolCompatibilityResult& WithIncompatibleDevices(Aws::Vector<DevicePoolCompatibilityResult>&& value) { SetIncompatibleDevices(std::move(value)); return *this;}
 
     /**
      * <p>Information about incompatible devices.</p>
@@ -114,10 +118,12 @@ namespace Model
     /**
      * <p>Information about incompatible devices.</p>
      */
-    inline GetDevicePoolCompatibilityResult& AddIncompatibleDevices(DevicePoolCompatibilityResult&& value) { m_incompatibleDevices.push_back(value); return *this; }
+    inline GetDevicePoolCompatibilityResult& AddIncompatibleDevices(DevicePoolCompatibilityResult&& value) { m_incompatibleDevices.push_back(std::move(value)); return *this; }
 
   private:
+
     Aws::Vector<DevicePoolCompatibilityResult> m_compatibleDevices;
+
     Aws::Vector<DevicePoolCompatibilityResult> m_incompatibleDevices;
   };
 

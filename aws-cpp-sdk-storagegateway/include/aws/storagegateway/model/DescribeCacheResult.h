@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/storagegateway/StorageGateway_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <utility>
 
 namespace Aws
 {
@@ -37,8 +39,9 @@ namespace Model
   {
   public:
     DescribeCacheResult();
-    DescribeCacheResult(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
-    DescribeCacheResult& operator=(const AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeCacheResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+    DescribeCacheResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
 
     
     inline const Aws::String& GetGatewayARN() const{ return m_gatewayARN; }
@@ -47,7 +50,7 @@ namespace Model
     inline void SetGatewayARN(const Aws::String& value) { m_gatewayARN = value; }
 
     
-    inline void SetGatewayARN(Aws::String&& value) { m_gatewayARN = value; }
+    inline void SetGatewayARN(Aws::String&& value) { m_gatewayARN = std::move(value); }
 
     
     inline void SetGatewayARN(const char* value) { m_gatewayARN.assign(value); }
@@ -56,10 +59,11 @@ namespace Model
     inline DescribeCacheResult& WithGatewayARN(const Aws::String& value) { SetGatewayARN(value); return *this;}
 
     
-    inline DescribeCacheResult& WithGatewayARN(Aws::String&& value) { SetGatewayARN(value); return *this;}
+    inline DescribeCacheResult& WithGatewayARN(Aws::String&& value) { SetGatewayARN(std::move(value)); return *this;}
 
     
     inline DescribeCacheResult& WithGatewayARN(const char* value) { SetGatewayARN(value); return *this;}
+
 
     
     inline const Aws::Vector<Aws::String>& GetDiskIds() const{ return m_diskIds; }
@@ -68,22 +72,23 @@ namespace Model
     inline void SetDiskIds(const Aws::Vector<Aws::String>& value) { m_diskIds = value; }
 
     
-    inline void SetDiskIds(Aws::Vector<Aws::String>&& value) { m_diskIds = value; }
+    inline void SetDiskIds(Aws::Vector<Aws::String>&& value) { m_diskIds = std::move(value); }
 
     
     inline DescribeCacheResult& WithDiskIds(const Aws::Vector<Aws::String>& value) { SetDiskIds(value); return *this;}
 
     
-    inline DescribeCacheResult& WithDiskIds(Aws::Vector<Aws::String>&& value) { SetDiskIds(value); return *this;}
+    inline DescribeCacheResult& WithDiskIds(Aws::Vector<Aws::String>&& value) { SetDiskIds(std::move(value)); return *this;}
 
     
     inline DescribeCacheResult& AddDiskIds(const Aws::String& value) { m_diskIds.push_back(value); return *this; }
 
     
-    inline DescribeCacheResult& AddDiskIds(Aws::String&& value) { m_diskIds.push_back(value); return *this; }
+    inline DescribeCacheResult& AddDiskIds(Aws::String&& value) { m_diskIds.push_back(std::move(value)); return *this; }
 
     
     inline DescribeCacheResult& AddDiskIds(const char* value) { m_diskIds.push_back(value); return *this; }
+
 
     
     inline long long GetCacheAllocatedInBytes() const{ return m_cacheAllocatedInBytes; }
@@ -94,6 +99,7 @@ namespace Model
     
     inline DescribeCacheResult& WithCacheAllocatedInBytes(long long value) { SetCacheAllocatedInBytes(value); return *this;}
 
+
     
     inline double GetCacheUsedPercentage() const{ return m_cacheUsedPercentage; }
 
@@ -102,6 +108,7 @@ namespace Model
 
     
     inline DescribeCacheResult& WithCacheUsedPercentage(double value) { SetCacheUsedPercentage(value); return *this;}
+
 
     
     inline double GetCacheDirtyPercentage() const{ return m_cacheDirtyPercentage; }
@@ -112,6 +119,7 @@ namespace Model
     
     inline DescribeCacheResult& WithCacheDirtyPercentage(double value) { SetCacheDirtyPercentage(value); return *this;}
 
+
     
     inline double GetCacheHitPercentage() const{ return m_cacheHitPercentage; }
 
@@ -120,6 +128,7 @@ namespace Model
 
     
     inline DescribeCacheResult& WithCacheHitPercentage(double value) { SetCacheHitPercentage(value); return *this;}
+
 
     
     inline double GetCacheMissPercentage() const{ return m_cacheMissPercentage; }
@@ -131,12 +140,19 @@ namespace Model
     inline DescribeCacheResult& WithCacheMissPercentage(double value) { SetCacheMissPercentage(value); return *this;}
 
   private:
+
     Aws::String m_gatewayARN;
+
     Aws::Vector<Aws::String> m_diskIds;
+
     long long m_cacheAllocatedInBytes;
+
     double m_cacheUsedPercentage;
+
     double m_cacheDirtyPercentage;
+
     double m_cacheHitPercentage;
+
     double m_cacheMissPercentage;
   };
 

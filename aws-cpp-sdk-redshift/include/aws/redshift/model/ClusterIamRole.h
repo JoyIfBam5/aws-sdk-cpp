@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -48,6 +50,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role, for example,
      * <code>arn:aws:iam::123456789012:role/RedshiftCopyUnload</code>. </p>
@@ -64,7 +67,7 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the IAM role, for example,
      * <code>arn:aws:iam::123456789012:role/RedshiftCopyUnload</code>. </p>
      */
-    inline void SetIamRoleArn(Aws::String&& value) { m_iamRoleArnHasBeenSet = true; m_iamRoleArn = value; }
+    inline void SetIamRoleArn(Aws::String&& value) { m_iamRoleArnHasBeenSet = true; m_iamRoleArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role, for example,
@@ -82,13 +85,14 @@ namespace Model
      * <p>The Amazon Resource Name (ARN) of the IAM role, for example,
      * <code>arn:aws:iam::123456789012:role/RedshiftCopyUnload</code>. </p>
      */
-    inline ClusterIamRole& WithIamRoleArn(Aws::String&& value) { SetIamRoleArn(value); return *this;}
+    inline ClusterIamRole& WithIamRoleArn(Aws::String&& value) { SetIamRoleArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the IAM role, for example,
      * <code>arn:aws:iam::123456789012:role/RedshiftCopyUnload</code>. </p>
      */
     inline ClusterIamRole& WithIamRoleArn(const char* value) { SetIamRoleArn(value); return *this;}
+
 
     /**
      * <p>A value that describes the status of the IAM role's association with an
@@ -121,7 +125,7 @@ namespace Model
      * <code>removing</code>: The role is in the process of being disassociated with
      * the cluster.</p> </li> </ul>
      */
-    inline void SetApplyStatus(Aws::String&& value) { m_applyStatusHasBeenSet = true; m_applyStatus = value; }
+    inline void SetApplyStatus(Aws::String&& value) { m_applyStatusHasBeenSet = true; m_applyStatus = std::move(value); }
 
     /**
      * <p>A value that describes the status of the IAM role's association with an
@@ -154,7 +158,7 @@ namespace Model
      * <code>removing</code>: The role is in the process of being disassociated with
      * the cluster.</p> </li> </ul>
      */
-    inline ClusterIamRole& WithApplyStatus(Aws::String&& value) { SetApplyStatus(value); return *this;}
+    inline ClusterIamRole& WithApplyStatus(Aws::String&& value) { SetApplyStatus(std::move(value)); return *this;}
 
     /**
      * <p>A value that describes the status of the IAM role's association with an
@@ -168,8 +172,10 @@ namespace Model
     inline ClusterIamRole& WithApplyStatus(const char* value) { SetApplyStatus(value); return *this;}
 
   private:
+
     Aws::String m_iamRoleArn;
     bool m_iamRoleArnHasBeenSet;
+
     Aws::String m_applyStatus;
     bool m_applyStatusHasBeenSet;
   };

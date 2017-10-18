@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #include <aws/s3/model/GetObjectResult.h>
 #include <aws/core/AmazonWebServiceResult.h>
 #include <aws/core/utils/StringUtils.h>
@@ -66,7 +67,9 @@ GetObjectResult::GetObjectResult(GetObjectResult&& toMove) :
     m_requestCharged(toMove.m_requestCharged),
     m_replicationStatus(toMove.m_replicationStatus),
     m_partsCount(toMove.m_partsCount),
-    m_tagCount(toMove.m_tagCount)
+    m_tagCount(toMove.m_tagCount),
+    m_id2(std::move(toMove.m_id2)),
+    m_requestId(std::move(toMove.m_requestId))
 {
 }
 
@@ -105,11 +108,13 @@ GetObjectResult& GetObjectResult::operator=(GetObjectResult&& toMove)
    m_replicationStatus = toMove.m_replicationStatus;
    m_partsCount = toMove.m_partsCount;
    m_tagCount = toMove.m_tagCount;
+   m_id2 = std::move(toMove.m_id2);
+   m_requestId = std::move(toMove.m_requestId);
 
    return *this;
 }
 
-GetObjectResult::GetObjectResult(AmazonWebServiceResult<ResponseStream>&& result) : 
+GetObjectResult::GetObjectResult(Aws::AmazonWebServiceResult<ResponseStream>&& result) : 
     m_deleteMarker(false),
     m_contentLength(0),
     m_missingMeta(0),
@@ -123,7 +128,7 @@ GetObjectResult::GetObjectResult(AmazonWebServiceResult<ResponseStream>&& result
   *this = std::move(result);
 }
 
-GetObjectResult& GetObjectResult::operator =(AmazonWebServiceResult<ResponseStream>&& result)
+GetObjectResult& GetObjectResult::operator =(Aws::AmazonWebServiceResult<ResponseStream>&& result)
 {
   m_body = result.TakeOwnershipOfPayload();
 
@@ -293,6 +298,18 @@ GetObjectResult& GetObjectResult::operator =(AmazonWebServiceResult<ResponseStre
   if(tagCountIter != headers.end())
   {
      m_tagCount = StringUtils::ConvertToInt32(tagCountIter->second.c_str());
+  }
+
+  const auto& id2Iter = headers.find("x-amz-id-2");
+  if(id2Iter != headers.end())
+  {
+    m_id2 = id2Iter->second;
+  }
+
+  const auto& requestIdIter = headers.find("x-amz-request-id");
+  if(requestIdIter != headers.end())
+  {
+    m_requestId = requestIdIter->second;
   }
 
    return *this;

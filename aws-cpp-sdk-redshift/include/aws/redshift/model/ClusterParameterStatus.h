@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/redshift/Redshift_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -46,6 +48,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the parameter.</p>
      */
@@ -59,7 +62,7 @@ namespace Model
     /**
      * <p>The name of the parameter.</p>
      */
-    inline void SetParameterName(Aws::String&& value) { m_parameterNameHasBeenSet = true; m_parameterName = value; }
+    inline void SetParameterName(Aws::String&& value) { m_parameterNameHasBeenSet = true; m_parameterName = std::move(value); }
 
     /**
      * <p>The name of the parameter.</p>
@@ -74,12 +77,13 @@ namespace Model
     /**
      * <p>The name of the parameter.</p>
      */
-    inline ClusterParameterStatus& WithParameterName(Aws::String&& value) { SetParameterName(value); return *this;}
+    inline ClusterParameterStatus& WithParameterName(Aws::String&& value) { SetParameterName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the parameter.</p>
      */
     inline ClusterParameterStatus& WithParameterName(const char* value) { SetParameterName(value); return *this;}
+
 
     /**
      * <p>The status of the parameter that indicates whether the parameter is in sync
@@ -136,7 +140,7 @@ namespace Model
      * <code>unknown-error</code>: Cannot apply the parameter change right now. The
      * change will be applied after the cluster reboots.</p> </li> </ul>
      */
-    inline void SetParameterApplyStatus(Aws::String&& value) { m_parameterApplyStatusHasBeenSet = true; m_parameterApplyStatus = value; }
+    inline void SetParameterApplyStatus(Aws::String&& value) { m_parameterApplyStatusHasBeenSet = true; m_parameterApplyStatus = std::move(value); }
 
     /**
      * <p>The status of the parameter that indicates whether the parameter is in sync
@@ -193,7 +197,7 @@ namespace Model
      * <code>unknown-error</code>: Cannot apply the parameter change right now. The
      * change will be applied after the cluster reboots.</p> </li> </ul>
      */
-    inline ClusterParameterStatus& WithParameterApplyStatus(Aws::String&& value) { SetParameterApplyStatus(value); return *this;}
+    inline ClusterParameterStatus& WithParameterApplyStatus(Aws::String&& value) { SetParameterApplyStatus(std::move(value)); return *this;}
 
     /**
      * <p>The status of the parameter that indicates whether the parameter is in sync
@@ -214,6 +218,7 @@ namespace Model
      */
     inline ClusterParameterStatus& WithParameterApplyStatus(const char* value) { SetParameterApplyStatus(value); return *this;}
 
+
     /**
      * <p>The error that prevented the parameter from being applied to the
      * database.</p>
@@ -230,7 +235,7 @@ namespace Model
      * <p>The error that prevented the parameter from being applied to the
      * database.</p>
      */
-    inline void SetParameterApplyErrorDescription(Aws::String&& value) { m_parameterApplyErrorDescriptionHasBeenSet = true; m_parameterApplyErrorDescription = value; }
+    inline void SetParameterApplyErrorDescription(Aws::String&& value) { m_parameterApplyErrorDescriptionHasBeenSet = true; m_parameterApplyErrorDescription = std::move(value); }
 
     /**
      * <p>The error that prevented the parameter from being applied to the
@@ -248,7 +253,7 @@ namespace Model
      * <p>The error that prevented the parameter from being applied to the
      * database.</p>
      */
-    inline ClusterParameterStatus& WithParameterApplyErrorDescription(Aws::String&& value) { SetParameterApplyErrorDescription(value); return *this;}
+    inline ClusterParameterStatus& WithParameterApplyErrorDescription(Aws::String&& value) { SetParameterApplyErrorDescription(std::move(value)); return *this;}
 
     /**
      * <p>The error that prevented the parameter from being applied to the
@@ -257,10 +262,13 @@ namespace Model
     inline ClusterParameterStatus& WithParameterApplyErrorDescription(const char* value) { SetParameterApplyErrorDescription(value); return *this;}
 
   private:
+
     Aws::String m_parameterName;
     bool m_parameterNameHasBeenSet;
+
     Aws::String m_parameterApplyStatus;
     bool m_parameterApplyStatusHasBeenSet;
+
     Aws::String m_parameterApplyErrorDescription;
     bool m_parameterApplyErrorDescriptionHasBeenSet;
   };

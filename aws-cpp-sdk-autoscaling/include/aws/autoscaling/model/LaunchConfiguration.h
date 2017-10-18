@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/autoscaling/AutoScaling_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSStreamFwd.h>
@@ -20,6 +21,7 @@
 #include <aws/autoscaling/model/InstanceMonitoring.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/autoscaling/model/BlockDeviceMapping.h>
+#include <utility>
 
 namespace Aws
 {
@@ -50,6 +52,7 @@ namespace Model
     void OutputToStream(Aws::OStream& ostream, const char* location, unsigned index, const char* locationValue) const;
     void OutputToStream(Aws::OStream& oStream, const char* location) const;
 
+
     /**
      * <p>The name of the launch configuration.</p>
      */
@@ -63,7 +66,7 @@ namespace Model
     /**
      * <p>The name of the launch configuration.</p>
      */
-    inline void SetLaunchConfigurationName(Aws::String&& value) { m_launchConfigurationNameHasBeenSet = true; m_launchConfigurationName = value; }
+    inline void SetLaunchConfigurationName(Aws::String&& value) { m_launchConfigurationNameHasBeenSet = true; m_launchConfigurationName = std::move(value); }
 
     /**
      * <p>The name of the launch configuration.</p>
@@ -78,12 +81,13 @@ namespace Model
     /**
      * <p>The name of the launch configuration.</p>
      */
-    inline LaunchConfiguration& WithLaunchConfigurationName(Aws::String&& value) { SetLaunchConfigurationName(value); return *this;}
+    inline LaunchConfiguration& WithLaunchConfigurationName(Aws::String&& value) { SetLaunchConfigurationName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the launch configuration.</p>
      */
     inline LaunchConfiguration& WithLaunchConfigurationName(const char* value) { SetLaunchConfigurationName(value); return *this;}
+
 
     /**
      * <p>The Amazon Resource Name (ARN) of the launch configuration.</p>
@@ -98,7 +102,7 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the launch configuration.</p>
      */
-    inline void SetLaunchConfigurationARN(Aws::String&& value) { m_launchConfigurationARNHasBeenSet = true; m_launchConfigurationARN = value; }
+    inline void SetLaunchConfigurationARN(Aws::String&& value) { m_launchConfigurationARNHasBeenSet = true; m_launchConfigurationARN = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the launch configuration.</p>
@@ -113,12 +117,13 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the launch configuration.</p>
      */
-    inline LaunchConfiguration& WithLaunchConfigurationARN(Aws::String&& value) { SetLaunchConfigurationARN(value); return *this;}
+    inline LaunchConfiguration& WithLaunchConfigurationARN(Aws::String&& value) { SetLaunchConfigurationARN(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the launch configuration.</p>
      */
     inline LaunchConfiguration& WithLaunchConfigurationARN(const char* value) { SetLaunchConfigurationARN(value); return *this;}
+
 
     /**
      * <p>The ID of the Amazon Machine Image (AMI).</p>
@@ -133,7 +138,7 @@ namespace Model
     /**
      * <p>The ID of the Amazon Machine Image (AMI).</p>
      */
-    inline void SetImageId(Aws::String&& value) { m_imageIdHasBeenSet = true; m_imageId = value; }
+    inline void SetImageId(Aws::String&& value) { m_imageIdHasBeenSet = true; m_imageId = std::move(value); }
 
     /**
      * <p>The ID of the Amazon Machine Image (AMI).</p>
@@ -148,12 +153,13 @@ namespace Model
     /**
      * <p>The ID of the Amazon Machine Image (AMI).</p>
      */
-    inline LaunchConfiguration& WithImageId(Aws::String&& value) { SetImageId(value); return *this;}
+    inline LaunchConfiguration& WithImageId(Aws::String&& value) { SetImageId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the Amazon Machine Image (AMI).</p>
      */
     inline LaunchConfiguration& WithImageId(const char* value) { SetImageId(value); return *this;}
+
 
     /**
      * <p>The name of the key pair.</p>
@@ -168,7 +174,7 @@ namespace Model
     /**
      * <p>The name of the key pair.</p>
      */
-    inline void SetKeyName(Aws::String&& value) { m_keyNameHasBeenSet = true; m_keyName = value; }
+    inline void SetKeyName(Aws::String&& value) { m_keyNameHasBeenSet = true; m_keyName = std::move(value); }
 
     /**
      * <p>The name of the key pair.</p>
@@ -183,12 +189,13 @@ namespace Model
     /**
      * <p>The name of the key pair.</p>
      */
-    inline LaunchConfiguration& WithKeyName(Aws::String&& value) { SetKeyName(value); return *this;}
+    inline LaunchConfiguration& WithKeyName(Aws::String&& value) { SetKeyName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the key pair.</p>
      */
     inline LaunchConfiguration& WithKeyName(const char* value) { SetKeyName(value); return *this;}
+
 
     /**
      * <p>The security groups to associate with the instances.</p>
@@ -203,7 +210,7 @@ namespace Model
     /**
      * <p>The security groups to associate with the instances.</p>
      */
-    inline void SetSecurityGroups(Aws::Vector<Aws::String>&& value) { m_securityGroupsHasBeenSet = true; m_securityGroups = value; }
+    inline void SetSecurityGroups(Aws::Vector<Aws::String>&& value) { m_securityGroupsHasBeenSet = true; m_securityGroups = std::move(value); }
 
     /**
      * <p>The security groups to associate with the instances.</p>
@@ -213,7 +220,7 @@ namespace Model
     /**
      * <p>The security groups to associate with the instances.</p>
      */
-    inline LaunchConfiguration& WithSecurityGroups(Aws::Vector<Aws::String>&& value) { SetSecurityGroups(value); return *this;}
+    inline LaunchConfiguration& WithSecurityGroups(Aws::Vector<Aws::String>&& value) { SetSecurityGroups(std::move(value)); return *this;}
 
     /**
      * <p>The security groups to associate with the instances.</p>
@@ -223,12 +230,13 @@ namespace Model
     /**
      * <p>The security groups to associate with the instances.</p>
      */
-    inline LaunchConfiguration& AddSecurityGroups(Aws::String&& value) { m_securityGroupsHasBeenSet = true; m_securityGroups.push_back(value); return *this; }
+    inline LaunchConfiguration& AddSecurityGroups(Aws::String&& value) { m_securityGroupsHasBeenSet = true; m_securityGroups.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The security groups to associate with the instances.</p>
      */
     inline LaunchConfiguration& AddSecurityGroups(const char* value) { m_securityGroupsHasBeenSet = true; m_securityGroups.push_back(value); return *this; }
+
 
     /**
      * <p>The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances to.
@@ -255,7 +263,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
      */
-    inline void SetClassicLinkVPCId(Aws::String&& value) { m_classicLinkVPCIdHasBeenSet = true; m_classicLinkVPCId = value; }
+    inline void SetClassicLinkVPCId(Aws::String&& value) { m_classicLinkVPCIdHasBeenSet = true; m_classicLinkVPCId = std::move(value); }
 
     /**
      * <p>The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances to.
@@ -282,7 +290,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
      */
-    inline LaunchConfiguration& WithClassicLinkVPCId(Aws::String&& value) { SetClassicLinkVPCId(value); return *this;}
+    inline LaunchConfiguration& WithClassicLinkVPCId(Aws::String&& value) { SetClassicLinkVPCId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances to.
@@ -292,6 +300,7 @@ namespace Model
      * in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
      */
     inline LaunchConfiguration& WithClassicLinkVPCId(const char* value) { SetClassicLinkVPCId(value); return *this;}
+
 
     /**
      * <p>The IDs of one or more security groups for the VPC specified in
@@ -321,7 +330,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
      */
-    inline void SetClassicLinkVPCSecurityGroups(Aws::Vector<Aws::String>&& value) { m_classicLinkVPCSecurityGroupsHasBeenSet = true; m_classicLinkVPCSecurityGroups = value; }
+    inline void SetClassicLinkVPCSecurityGroups(Aws::Vector<Aws::String>&& value) { m_classicLinkVPCSecurityGroupsHasBeenSet = true; m_classicLinkVPCSecurityGroups = std::move(value); }
 
     /**
      * <p>The IDs of one or more security groups for the VPC specified in
@@ -341,7 +350,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
      */
-    inline LaunchConfiguration& WithClassicLinkVPCSecurityGroups(Aws::Vector<Aws::String>&& value) { SetClassicLinkVPCSecurityGroups(value); return *this;}
+    inline LaunchConfiguration& WithClassicLinkVPCSecurityGroups(Aws::Vector<Aws::String>&& value) { SetClassicLinkVPCSecurityGroups(std::move(value)); return *this;}
 
     /**
      * <p>The IDs of one or more security groups for the VPC specified in
@@ -361,7 +370,7 @@ namespace Model
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html">ClassicLink</a>
      * in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
      */
-    inline LaunchConfiguration& AddClassicLinkVPCSecurityGroups(Aws::String&& value) { m_classicLinkVPCSecurityGroupsHasBeenSet = true; m_classicLinkVPCSecurityGroups.push_back(value); return *this; }
+    inline LaunchConfiguration& AddClassicLinkVPCSecurityGroups(Aws::String&& value) { m_classicLinkVPCSecurityGroupsHasBeenSet = true; m_classicLinkVPCSecurityGroups.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The IDs of one or more security groups for the VPC specified in
@@ -372,6 +381,7 @@ namespace Model
      * in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
      */
     inline LaunchConfiguration& AddClassicLinkVPCSecurityGroups(const char* value) { m_classicLinkVPCSecurityGroupsHasBeenSet = true; m_classicLinkVPCSecurityGroups.push_back(value); return *this; }
+
 
     /**
      * <p>The user data available to the instances.</p>
@@ -386,7 +396,7 @@ namespace Model
     /**
      * <p>The user data available to the instances.</p>
      */
-    inline void SetUserData(Aws::String&& value) { m_userDataHasBeenSet = true; m_userData = value; }
+    inline void SetUserData(Aws::String&& value) { m_userDataHasBeenSet = true; m_userData = std::move(value); }
 
     /**
      * <p>The user data available to the instances.</p>
@@ -401,12 +411,13 @@ namespace Model
     /**
      * <p>The user data available to the instances.</p>
      */
-    inline LaunchConfiguration& WithUserData(Aws::String&& value) { SetUserData(value); return *this;}
+    inline LaunchConfiguration& WithUserData(Aws::String&& value) { SetUserData(std::move(value)); return *this;}
 
     /**
      * <p>The user data available to the instances.</p>
      */
     inline LaunchConfiguration& WithUserData(const char* value) { SetUserData(value); return *this;}
+
 
     /**
      * <p>The instance type for the instances.</p>
@@ -421,7 +432,7 @@ namespace Model
     /**
      * <p>The instance type for the instances.</p>
      */
-    inline void SetInstanceType(Aws::String&& value) { m_instanceTypeHasBeenSet = true; m_instanceType = value; }
+    inline void SetInstanceType(Aws::String&& value) { m_instanceTypeHasBeenSet = true; m_instanceType = std::move(value); }
 
     /**
      * <p>The instance type for the instances.</p>
@@ -436,12 +447,13 @@ namespace Model
     /**
      * <p>The instance type for the instances.</p>
      */
-    inline LaunchConfiguration& WithInstanceType(Aws::String&& value) { SetInstanceType(value); return *this;}
+    inline LaunchConfiguration& WithInstanceType(Aws::String&& value) { SetInstanceType(std::move(value)); return *this;}
 
     /**
      * <p>The instance type for the instances.</p>
      */
     inline LaunchConfiguration& WithInstanceType(const char* value) { SetInstanceType(value); return *this;}
+
 
     /**
      * <p>The ID of the kernel associated with the AMI.</p>
@@ -456,7 +468,7 @@ namespace Model
     /**
      * <p>The ID of the kernel associated with the AMI.</p>
      */
-    inline void SetKernelId(Aws::String&& value) { m_kernelIdHasBeenSet = true; m_kernelId = value; }
+    inline void SetKernelId(Aws::String&& value) { m_kernelIdHasBeenSet = true; m_kernelId = std::move(value); }
 
     /**
      * <p>The ID of the kernel associated with the AMI.</p>
@@ -471,12 +483,13 @@ namespace Model
     /**
      * <p>The ID of the kernel associated with the AMI.</p>
      */
-    inline LaunchConfiguration& WithKernelId(Aws::String&& value) { SetKernelId(value); return *this;}
+    inline LaunchConfiguration& WithKernelId(Aws::String&& value) { SetKernelId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the kernel associated with the AMI.</p>
      */
     inline LaunchConfiguration& WithKernelId(const char* value) { SetKernelId(value); return *this;}
+
 
     /**
      * <p>The ID of the RAM disk associated with the AMI.</p>
@@ -491,7 +504,7 @@ namespace Model
     /**
      * <p>The ID of the RAM disk associated with the AMI.</p>
      */
-    inline void SetRamdiskId(Aws::String&& value) { m_ramdiskIdHasBeenSet = true; m_ramdiskId = value; }
+    inline void SetRamdiskId(Aws::String&& value) { m_ramdiskIdHasBeenSet = true; m_ramdiskId = std::move(value); }
 
     /**
      * <p>The ID of the RAM disk associated with the AMI.</p>
@@ -506,12 +519,13 @@ namespace Model
     /**
      * <p>The ID of the RAM disk associated with the AMI.</p>
      */
-    inline LaunchConfiguration& WithRamdiskId(Aws::String&& value) { SetRamdiskId(value); return *this;}
+    inline LaunchConfiguration& WithRamdiskId(Aws::String&& value) { SetRamdiskId(std::move(value)); return *this;}
 
     /**
      * <p>The ID of the RAM disk associated with the AMI.</p>
      */
     inline LaunchConfiguration& WithRamdiskId(const char* value) { SetRamdiskId(value); return *this;}
+
 
     /**
      * <p>A block device mapping, which specifies the block devices for the
@@ -529,7 +543,7 @@ namespace Model
      * <p>A block device mapping, which specifies the block devices for the
      * instance.</p>
      */
-    inline void SetBlockDeviceMappings(Aws::Vector<BlockDeviceMapping>&& value) { m_blockDeviceMappingsHasBeenSet = true; m_blockDeviceMappings = value; }
+    inline void SetBlockDeviceMappings(Aws::Vector<BlockDeviceMapping>&& value) { m_blockDeviceMappingsHasBeenSet = true; m_blockDeviceMappings = std::move(value); }
 
     /**
      * <p>A block device mapping, which specifies the block devices for the
@@ -541,7 +555,7 @@ namespace Model
      * <p>A block device mapping, which specifies the block devices for the
      * instance.</p>
      */
-    inline LaunchConfiguration& WithBlockDeviceMappings(Aws::Vector<BlockDeviceMapping>&& value) { SetBlockDeviceMappings(value); return *this;}
+    inline LaunchConfiguration& WithBlockDeviceMappings(Aws::Vector<BlockDeviceMapping>&& value) { SetBlockDeviceMappings(std::move(value)); return *this;}
 
     /**
      * <p>A block device mapping, which specifies the block devices for the
@@ -553,7 +567,8 @@ namespace Model
      * <p>A block device mapping, which specifies the block devices for the
      * instance.</p>
      */
-    inline LaunchConfiguration& AddBlockDeviceMappings(BlockDeviceMapping&& value) { m_blockDeviceMappingsHasBeenSet = true; m_blockDeviceMappings.push_back(value); return *this; }
+    inline LaunchConfiguration& AddBlockDeviceMappings(BlockDeviceMapping&& value) { m_blockDeviceMappingsHasBeenSet = true; m_blockDeviceMappings.push_back(std::move(value)); return *this; }
+
 
     /**
      * <p>Controls whether instances in this group are launched with detailed
@@ -571,7 +586,7 @@ namespace Model
      * <p>Controls whether instances in this group are launched with detailed
      * (<code>true</code>) or basic (<code>false</code>) monitoring.</p>
      */
-    inline void SetInstanceMonitoring(InstanceMonitoring&& value) { m_instanceMonitoringHasBeenSet = true; m_instanceMonitoring = value; }
+    inline void SetInstanceMonitoring(InstanceMonitoring&& value) { m_instanceMonitoringHasBeenSet = true; m_instanceMonitoring = std::move(value); }
 
     /**
      * <p>Controls whether instances in this group are launched with detailed
@@ -583,7 +598,8 @@ namespace Model
      * <p>Controls whether instances in this group are launched with detailed
      * (<code>true</code>) or basic (<code>false</code>) monitoring.</p>
      */
-    inline LaunchConfiguration& WithInstanceMonitoring(InstanceMonitoring&& value) { SetInstanceMonitoring(value); return *this;}
+    inline LaunchConfiguration& WithInstanceMonitoring(InstanceMonitoring&& value) { SetInstanceMonitoring(std::move(value)); return *this;}
+
 
     /**
      * <p>The price to bid when launching Spot Instances.</p>
@@ -598,7 +614,7 @@ namespace Model
     /**
      * <p>The price to bid when launching Spot Instances.</p>
      */
-    inline void SetSpotPrice(Aws::String&& value) { m_spotPriceHasBeenSet = true; m_spotPrice = value; }
+    inline void SetSpotPrice(Aws::String&& value) { m_spotPriceHasBeenSet = true; m_spotPrice = std::move(value); }
 
     /**
      * <p>The price to bid when launching Spot Instances.</p>
@@ -613,12 +629,13 @@ namespace Model
     /**
      * <p>The price to bid when launching Spot Instances.</p>
      */
-    inline LaunchConfiguration& WithSpotPrice(Aws::String&& value) { SetSpotPrice(value); return *this;}
+    inline LaunchConfiguration& WithSpotPrice(Aws::String&& value) { SetSpotPrice(std::move(value)); return *this;}
 
     /**
      * <p>The price to bid when launching Spot Instances.</p>
      */
     inline LaunchConfiguration& WithSpotPrice(const char* value) { SetSpotPrice(value); return *this;}
+
 
     /**
      * <p>The name or Amazon Resource Name (ARN) of the instance profile associated
@@ -636,7 +653,7 @@ namespace Model
      * <p>The name or Amazon Resource Name (ARN) of the instance profile associated
      * with the IAM role for the instance.</p>
      */
-    inline void SetIamInstanceProfile(Aws::String&& value) { m_iamInstanceProfileHasBeenSet = true; m_iamInstanceProfile = value; }
+    inline void SetIamInstanceProfile(Aws::String&& value) { m_iamInstanceProfileHasBeenSet = true; m_iamInstanceProfile = std::move(value); }
 
     /**
      * <p>The name or Amazon Resource Name (ARN) of the instance profile associated
@@ -654,13 +671,14 @@ namespace Model
      * <p>The name or Amazon Resource Name (ARN) of the instance profile associated
      * with the IAM role for the instance.</p>
      */
-    inline LaunchConfiguration& WithIamInstanceProfile(Aws::String&& value) { SetIamInstanceProfile(value); return *this;}
+    inline LaunchConfiguration& WithIamInstanceProfile(Aws::String&& value) { SetIamInstanceProfile(std::move(value)); return *this;}
 
     /**
      * <p>The name or Amazon Resource Name (ARN) of the instance profile associated
      * with the IAM role for the instance.</p>
      */
     inline LaunchConfiguration& WithIamInstanceProfile(const char* value) { SetIamInstanceProfile(value); return *this;}
+
 
     /**
      * <p>The creation date and time for the launch configuration.</p>
@@ -675,7 +693,7 @@ namespace Model
     /**
      * <p>The creation date and time for the launch configuration.</p>
      */
-    inline void SetCreatedTime(Aws::Utils::DateTime&& value) { m_createdTimeHasBeenSet = true; m_createdTime = value; }
+    inline void SetCreatedTime(Aws::Utils::DateTime&& value) { m_createdTimeHasBeenSet = true; m_createdTime = std::move(value); }
 
     /**
      * <p>The creation date and time for the launch configuration.</p>
@@ -685,7 +703,8 @@ namespace Model
     /**
      * <p>The creation date and time for the launch configuration.</p>
      */
-    inline LaunchConfiguration& WithCreatedTime(Aws::Utils::DateTime&& value) { SetCreatedTime(value); return *this;}
+    inline LaunchConfiguration& WithCreatedTime(Aws::Utils::DateTime&& value) { SetCreatedTime(std::move(value)); return *this;}
+
 
     /**
      * <p>Controls whether the instance is optimized for EBS I/O (<code>true</code>) or
@@ -705,6 +724,7 @@ namespace Model
      */
     inline LaunchConfiguration& WithEbsOptimized(bool value) { SetEbsOptimized(value); return *this;}
 
+
     /**
      * <p>[EC2-VPC] Indicates whether to assign a public IP address to each
      * instance.</p>
@@ -722,6 +742,7 @@ namespace Model
      * instance.</p>
      */
     inline LaunchConfiguration& WithAssociatePublicIpAddress(bool value) { SetAssociatePublicIpAddress(value); return *this;}
+
 
     /**
      * <p>The tenancy of the instance, either <code>default</code> or
@@ -742,7 +763,7 @@ namespace Model
      * <code>dedicated</code>. An instance with <code>dedicated</code> tenancy runs in
      * an isolated, single-tenant hardware and can only be launched into a VPC.</p>
      */
-    inline void SetPlacementTenancy(Aws::String&& value) { m_placementTenancyHasBeenSet = true; m_placementTenancy = value; }
+    inline void SetPlacementTenancy(Aws::String&& value) { m_placementTenancyHasBeenSet = true; m_placementTenancy = std::move(value); }
 
     /**
      * <p>The tenancy of the instance, either <code>default</code> or
@@ -763,7 +784,7 @@ namespace Model
      * <code>dedicated</code>. An instance with <code>dedicated</code> tenancy runs in
      * an isolated, single-tenant hardware and can only be launched into a VPC.</p>
      */
-    inline LaunchConfiguration& WithPlacementTenancy(Aws::String&& value) { SetPlacementTenancy(value); return *this;}
+    inline LaunchConfiguration& WithPlacementTenancy(Aws::String&& value) { SetPlacementTenancy(std::move(value)); return *this;}
 
     /**
      * <p>The tenancy of the instance, either <code>default</code> or
@@ -773,42 +794,61 @@ namespace Model
     inline LaunchConfiguration& WithPlacementTenancy(const char* value) { SetPlacementTenancy(value); return *this;}
 
   private:
+
     Aws::String m_launchConfigurationName;
     bool m_launchConfigurationNameHasBeenSet;
+
     Aws::String m_launchConfigurationARN;
     bool m_launchConfigurationARNHasBeenSet;
+
     Aws::String m_imageId;
     bool m_imageIdHasBeenSet;
+
     Aws::String m_keyName;
     bool m_keyNameHasBeenSet;
+
     Aws::Vector<Aws::String> m_securityGroups;
     bool m_securityGroupsHasBeenSet;
+
     Aws::String m_classicLinkVPCId;
     bool m_classicLinkVPCIdHasBeenSet;
+
     Aws::Vector<Aws::String> m_classicLinkVPCSecurityGroups;
     bool m_classicLinkVPCSecurityGroupsHasBeenSet;
+
     Aws::String m_userData;
     bool m_userDataHasBeenSet;
+
     Aws::String m_instanceType;
     bool m_instanceTypeHasBeenSet;
+
     Aws::String m_kernelId;
     bool m_kernelIdHasBeenSet;
+
     Aws::String m_ramdiskId;
     bool m_ramdiskIdHasBeenSet;
+
     Aws::Vector<BlockDeviceMapping> m_blockDeviceMappings;
     bool m_blockDeviceMappingsHasBeenSet;
+
     InstanceMonitoring m_instanceMonitoring;
     bool m_instanceMonitoringHasBeenSet;
+
     Aws::String m_spotPrice;
     bool m_spotPriceHasBeenSet;
+
     Aws::String m_iamInstanceProfile;
     bool m_iamInstanceProfileHasBeenSet;
+
     Aws::Utils::DateTime m_createdTime;
     bool m_createdTimeHasBeenSet;
+
     bool m_ebsOptimized;
     bool m_ebsOptimizedHasBeenSet;
+
     bool m_associatePublicIpAddress;
     bool m_associatePublicIpAddressHasBeenSet;
+
     Aws::String m_placementTenancy;
     bool m_placementTenancyHasBeenSet;
   };

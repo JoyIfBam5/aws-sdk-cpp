@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright 2010-2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+* Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the "License").
 * You may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
+
 #pragma once
 #include <aws/gamelift/GameLift_EXPORTS.h>
 #include <aws/gamelift/GameLiftRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <utility>
 
 namespace Aws
 {
@@ -33,44 +35,53 @@ namespace Model
   {
   public:
     UpdateFleetCapacityRequest();
+    
+    // Service request name is the Operation name which will send this request out,
+    // each operation should has unique request name, so that we can get operation's name from this request.
+    // Note: this is not true for response, multiple operations may have the same response name,
+    // so we can not get operation's name from response.
+    inline virtual const char* GetServiceRequestName() const override { return "UpdateFleetCapacity"; }
+
     Aws::String SerializePayload() const override;
 
     Aws::Http::HeaderValueCollection GetRequestSpecificHeaders() const override;
 
+
     /**
-     * <p>Unique identifier for the fleet you want to update capacity for.</p>
+     * <p>Unique identifier for a fleet to update capacity for.</p>
      */
     inline const Aws::String& GetFleetId() const{ return m_fleetId; }
 
     /**
-     * <p>Unique identifier for the fleet you want to update capacity for.</p>
+     * <p>Unique identifier for a fleet to update capacity for.</p>
      */
     inline void SetFleetId(const Aws::String& value) { m_fleetIdHasBeenSet = true; m_fleetId = value; }
 
     /**
-     * <p>Unique identifier for the fleet you want to update capacity for.</p>
+     * <p>Unique identifier for a fleet to update capacity for.</p>
      */
-    inline void SetFleetId(Aws::String&& value) { m_fleetIdHasBeenSet = true; m_fleetId = value; }
+    inline void SetFleetId(Aws::String&& value) { m_fleetIdHasBeenSet = true; m_fleetId = std::move(value); }
 
     /**
-     * <p>Unique identifier for the fleet you want to update capacity for.</p>
+     * <p>Unique identifier for a fleet to update capacity for.</p>
      */
     inline void SetFleetId(const char* value) { m_fleetIdHasBeenSet = true; m_fleetId.assign(value); }
 
     /**
-     * <p>Unique identifier for the fleet you want to update capacity for.</p>
+     * <p>Unique identifier for a fleet to update capacity for.</p>
      */
     inline UpdateFleetCapacityRequest& WithFleetId(const Aws::String& value) { SetFleetId(value); return *this;}
 
     /**
-     * <p>Unique identifier for the fleet you want to update capacity for.</p>
+     * <p>Unique identifier for a fleet to update capacity for.</p>
      */
-    inline UpdateFleetCapacityRequest& WithFleetId(Aws::String&& value) { SetFleetId(value); return *this;}
+    inline UpdateFleetCapacityRequest& WithFleetId(Aws::String&& value) { SetFleetId(std::move(value)); return *this;}
 
     /**
-     * <p>Unique identifier for the fleet you want to update capacity for.</p>
+     * <p>Unique identifier for a fleet to update capacity for.</p>
      */
     inline UpdateFleetCapacityRequest& WithFleetId(const char* value) { SetFleetId(value); return *this;}
+
 
     /**
      * <p>Number of EC2 instances you want this fleet to host.</p>
@@ -86,6 +97,7 @@ namespace Model
      * <p>Number of EC2 instances you want this fleet to host.</p>
      */
     inline UpdateFleetCapacityRequest& WithDesiredInstances(int value) { SetDesiredInstances(value); return *this;}
+
 
     /**
      * <p>Minimum value allowed for the fleet's instance count. Default if not set is
@@ -104,6 +116,7 @@ namespace Model
      * 0.</p>
      */
     inline UpdateFleetCapacityRequest& WithMinSize(int value) { SetMinSize(value); return *this;}
+
 
     /**
      * <p>Maximum value allowed for the fleet's instance count. Default if not set is
@@ -124,12 +137,16 @@ namespace Model
     inline UpdateFleetCapacityRequest& WithMaxSize(int value) { SetMaxSize(value); return *this;}
 
   private:
+
     Aws::String m_fleetId;
     bool m_fleetIdHasBeenSet;
+
     int m_desiredInstances;
     bool m_desiredInstancesHasBeenSet;
+
     int m_minSize;
     bool m_minSizeHasBeenSet;
+
     int m_maxSize;
     bool m_maxSizeHasBeenSet;
   };

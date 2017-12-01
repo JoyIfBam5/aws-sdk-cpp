@@ -28,7 +28,8 @@ namespace Model
     NOT_SET,
     INVITE,
     ENABLE_ALL_FEATURES,
-    APPROVE_ALL_FEATURES
+    APPROVE_ALL_FEATURES,
+    ADD_ORGANIZATIONS_SERVICE_LINKED_ROLE
   };
 
 namespace ActionTypeMapper

@@ -81,37 +81,72 @@ namespace Model
 
 
     /**
-     * <p>The name of the state machine.</p>
+     * <p>The name of the state machine.</p> <p>A name must <i>not</i> contain:</p>
+     * <ul> <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [
+     * ]</code> </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline const Aws::String& GetName() const{ return m_name; }
 
     /**
-     * <p>The name of the state machine.</p>
+     * <p>The name of the state machine.</p> <p>A name must <i>not</i> contain:</p>
+     * <ul> <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [
+     * ]</code> </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline void SetName(const Aws::String& value) { m_name = value; }
 
     /**
-     * <p>The name of the state machine.</p>
+     * <p>The name of the state machine.</p> <p>A name must <i>not</i> contain:</p>
+     * <ul> <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [
+     * ]</code> </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline void SetName(Aws::String&& value) { m_name = std::move(value); }
 
     /**
-     * <p>The name of the state machine.</p>
+     * <p>The name of the state machine.</p> <p>A name must <i>not</i> contain:</p>
+     * <ul> <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [
+     * ]</code> </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline void SetName(const char* value) { m_name.assign(value); }
 
     /**
-     * <p>The name of the state machine.</p>
+     * <p>The name of the state machine.</p> <p>A name must <i>not</i> contain:</p>
+     * <ul> <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [
+     * ]</code> </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline DescribeStateMachineResult& WithName(const Aws::String& value) { SetName(value); return *this;}
 
     /**
-     * <p>The name of the state machine.</p>
+     * <p>The name of the state machine.</p> <p>A name must <i>not</i> contain:</p>
+     * <ul> <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [
+     * ]</code> </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline DescribeStateMachineResult& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
-     * <p>The name of the state machine.</p>
+     * <p>The name of the state machine.</p> <p>A name must <i>not</i> contain:</p>
+     * <ul> <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [
+     * ]</code> </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline DescribeStateMachineResult& WithName(const char* value) { SetName(value); return *this;}
 
@@ -179,70 +214,77 @@ namespace Model
 
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the IAM role used for executing this state
-     * machine.</p>
+     * <p>The Amazon Resource Name (ARN) of the IAM role used when creating this state
+     * machine. (The IAM role maintains security by granting Step Functions access to
+     * AWS resources.)</p>
      */
     inline const Aws::String& GetRoleArn() const{ return m_roleArn; }
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the IAM role used for executing this state
-     * machine.</p>
+     * <p>The Amazon Resource Name (ARN) of the IAM role used when creating this state
+     * machine. (The IAM role maintains security by granting Step Functions access to
+     * AWS resources.)</p>
      */
     inline void SetRoleArn(const Aws::String& value) { m_roleArn = value; }
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the IAM role used for executing this state
-     * machine.</p>
+     * <p>The Amazon Resource Name (ARN) of the IAM role used when creating this state
+     * machine. (The IAM role maintains security by granting Step Functions access to
+     * AWS resources.)</p>
      */
     inline void SetRoleArn(Aws::String&& value) { m_roleArn = std::move(value); }
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the IAM role used for executing this state
-     * machine.</p>
+     * <p>The Amazon Resource Name (ARN) of the IAM role used when creating this state
+     * machine. (The IAM role maintains security by granting Step Functions access to
+     * AWS resources.)</p>
      */
     inline void SetRoleArn(const char* value) { m_roleArn.assign(value); }
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the IAM role used for executing this state
-     * machine.</p>
+     * <p>The Amazon Resource Name (ARN) of the IAM role used when creating this state
+     * machine. (The IAM role maintains security by granting Step Functions access to
+     * AWS resources.)</p>
      */
     inline DescribeStateMachineResult& WithRoleArn(const Aws::String& value) { SetRoleArn(value); return *this;}
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the IAM role used for executing this state
-     * machine.</p>
+     * <p>The Amazon Resource Name (ARN) of the IAM role used when creating this state
+     * machine. (The IAM role maintains security by granting Step Functions access to
+     * AWS resources.)</p>
      */
     inline DescribeStateMachineResult& WithRoleArn(Aws::String&& value) { SetRoleArn(std::move(value)); return *this;}
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the IAM role used for executing this state
-     * machine.</p>
+     * <p>The Amazon Resource Name (ARN) of the IAM role used when creating this state
+     * machine. (The IAM role maintains security by granting Step Functions access to
+     * AWS resources.)</p>
      */
     inline DescribeStateMachineResult& WithRoleArn(const char* value) { SetRoleArn(value); return *this;}
 
 
     /**
-     * <p>The date the state machine was created.</p>
+     * <p>The date the state machine is created.</p>
      */
     inline const Aws::Utils::DateTime& GetCreationDate() const{ return m_creationDate; }
 
     /**
-     * <p>The date the state machine was created.</p>
+     * <p>The date the state machine is created.</p>
      */
     inline void SetCreationDate(const Aws::Utils::DateTime& value) { m_creationDate = value; }
 
     /**
-     * <p>The date the state machine was created.</p>
+     * <p>The date the state machine is created.</p>
      */
     inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDate = std::move(value); }
 
     /**
-     * <p>The date the state machine was created.</p>
+     * <p>The date the state machine is created.</p>
      */
     inline DescribeStateMachineResult& WithCreationDate(const Aws::Utils::DateTime& value) { SetCreationDate(value); return *this;}
 
     /**
-     * <p>The date the state machine was created.</p>
+     * <p>The date the state machine is created.</p>
      */
     inline DescribeStateMachineResult& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(std::move(value)); return *this;}
 

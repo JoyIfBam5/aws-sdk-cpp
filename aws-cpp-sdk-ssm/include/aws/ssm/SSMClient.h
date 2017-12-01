@@ -45,6 +45,7 @@
 #include <aws/ssm/model/DescribeActivationsResult.h>
 #include <aws/ssm/model/DescribeAssociationResult.h>
 #include <aws/ssm/model/DescribeAutomationExecutionsResult.h>
+#include <aws/ssm/model/DescribeAutomationStepExecutionsResult.h>
 #include <aws/ssm/model/DescribeAvailablePatchesResult.h>
 #include <aws/ssm/model/DescribeDocumentResult.h>
 #include <aws/ssm/model/DescribeDocumentPermissionResult.h>
@@ -186,6 +187,7 @@ namespace Model
         class DescribeActivationsRequest;
         class DescribeAssociationRequest;
         class DescribeAutomationExecutionsRequest;
+        class DescribeAutomationStepExecutionsRequest;
         class DescribeAvailablePatchesRequest;
         class DescribeDocumentRequest;
         class DescribeDocumentPermissionRequest;
@@ -283,6 +285,7 @@ namespace Model
         typedef Aws::Utils::Outcome<DescribeActivationsResult, Aws::Client::AWSError<SSMErrors>> DescribeActivationsOutcome;
         typedef Aws::Utils::Outcome<DescribeAssociationResult, Aws::Client::AWSError<SSMErrors>> DescribeAssociationOutcome;
         typedef Aws::Utils::Outcome<DescribeAutomationExecutionsResult, Aws::Client::AWSError<SSMErrors>> DescribeAutomationExecutionsOutcome;
+        typedef Aws::Utils::Outcome<DescribeAutomationStepExecutionsResult, Aws::Client::AWSError<SSMErrors>> DescribeAutomationStepExecutionsOutcome;
         typedef Aws::Utils::Outcome<DescribeAvailablePatchesResult, Aws::Client::AWSError<SSMErrors>> DescribeAvailablePatchesOutcome;
         typedef Aws::Utils::Outcome<DescribeDocumentResult, Aws::Client::AWSError<SSMErrors>> DescribeDocumentOutcome;
         typedef Aws::Utils::Outcome<DescribeDocumentPermissionResult, Aws::Client::AWSError<SSMErrors>> DescribeDocumentPermissionOutcome;
@@ -380,6 +383,7 @@ namespace Model
         typedef std::future<DescribeActivationsOutcome> DescribeActivationsOutcomeCallable;
         typedef std::future<DescribeAssociationOutcome> DescribeAssociationOutcomeCallable;
         typedef std::future<DescribeAutomationExecutionsOutcome> DescribeAutomationExecutionsOutcomeCallable;
+        typedef std::future<DescribeAutomationStepExecutionsOutcome> DescribeAutomationStepExecutionsOutcomeCallable;
         typedef std::future<DescribeAvailablePatchesOutcome> DescribeAvailablePatchesOutcomeCallable;
         typedef std::future<DescribeDocumentOutcome> DescribeDocumentOutcomeCallable;
         typedef std::future<DescribeDocumentPermissionOutcome> DescribeDocumentPermissionOutcomeCallable;
@@ -480,6 +484,7 @@ namespace Model
     typedef std::function<void(const SSMClient*, const Model::DescribeActivationsRequest&, const Model::DescribeActivationsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeActivationsResponseReceivedHandler;
     typedef std::function<void(const SSMClient*, const Model::DescribeAssociationRequest&, const Model::DescribeAssociationOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeAssociationResponseReceivedHandler;
     typedef std::function<void(const SSMClient*, const Model::DescribeAutomationExecutionsRequest&, const Model::DescribeAutomationExecutionsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeAutomationExecutionsResponseReceivedHandler;
+    typedef std::function<void(const SSMClient*, const Model::DescribeAutomationStepExecutionsRequest&, const Model::DescribeAutomationStepExecutionsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeAutomationStepExecutionsResponseReceivedHandler;
     typedef std::function<void(const SSMClient*, const Model::DescribeAvailablePatchesRequest&, const Model::DescribeAvailablePatchesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeAvailablePatchesResponseReceivedHandler;
     typedef std::function<void(const SSMClient*, const Model::DescribeDocumentRequest&, const Model::DescribeDocumentOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeDocumentResponseReceivedHandler;
     typedef std::function<void(const SSMClient*, const Model::DescribeDocumentPermissionRequest&, const Model::DescribeDocumentPermissionOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeDocumentPermissionResponseReceivedHandler;
@@ -554,17 +559,17 @@ namespace Model
     typedef std::function<void(const SSMClient*, const Model::UpdatePatchBaselineRequest&, const Model::UpdatePatchBaselineOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdatePatchBaselineResponseReceivedHandler;
 
   /**
-   * <fullname>Amazon EC2 Systems Manager</fullname> <p>Amazon EC2 Systems Manager is
-   * a collection of capabilities that helps you automate management tasks such as
-   * collecting system inventory, applying operating system (OS) patches, automating
-   * the creation of Amazon Machine Images (AMIs), and configuring operating systems
+   * <fullname>AWS Systems Manager</fullname> <p>AWS Systems Manager is a collection
+   * of capabilities that helps you automate management tasks such as collecting
+   * system inventory, applying operating system (OS) patches, automating the
+   * creation of Amazon Machine Images (AMIs), and configuring operating systems
    * (OSs) and applications at scale. Systems Manager lets you remotely and securely
    * manage the configuration of your managed instances. A <i>managed instance</i> is
    * any Amazon EC2 instance or on-premises machine in your hybrid environment that
    * has been configured for Systems Manager.</p> <p>This reference is intended to be
    * used with the <a
-   * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/">Amazon EC2
-   * Systems Manager User Guide</a>.</p> <p>To get started, verify prerequisites and
+   * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/">AWS Systems
+   * Manager User Guide</a>.</p> <p>To get started, verify prerequisites and
    * configure managed instances. For more information, see <a
    * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-setting-up.html">Systems
    * Manager Prerequisites</a>.</p> <p>For information about other API actions you
@@ -921,13 +926,12 @@ namespace Model
          * <p>Creates a resource data sync configuration to a single bucket in Amazon S3.
          * This is an asynchronous operation that returns immediately. After a successful
          * initial sync is completed, the system continuously syncs data to the Amazon S3
-         * bucket. To check the status of the sync, use the <a
-         * href="API_ListResourceDataSync.html">ListResourceDataSync</a> operation.</p>
-         * <p>By default, data is not encrypted in Amazon S3. We strongly recommend that
-         * you enable encryption in Amazon S3 to ensure secure data storage. We also
-         * recommend that you secure access to the Amazon S3 bucket by creating a
-         * restrictive bucket policy. To view an example of a restrictive Amazon S3 bucket
-         * policy for Resource Data Sync, see <a
+         * bucket. To check the status of the sync, use the
+         * <a>ListResourceDataSync</a>.</p> <p>By default, data is not encrypted in Amazon
+         * S3. We strongly recommend that you enable encryption in Amazon S3 to ensure
+         * secure data storage. We also recommend that you secure access to the Amazon S3
+         * bucket by creating a restrictive bucket policy. To view an example of a
+         * restrictive Amazon S3 bucket policy for Resource Data Sync, see <a
          * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-inventory-configuring.html#sysman-inventory-datasync">Configuring
          * Resource Data Sync for Inventory</a>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/CreateResourceDataSync">AWS
@@ -939,13 +943,12 @@ namespace Model
          * <p>Creates a resource data sync configuration to a single bucket in Amazon S3.
          * This is an asynchronous operation that returns immediately. After a successful
          * initial sync is completed, the system continuously syncs data to the Amazon S3
-         * bucket. To check the status of the sync, use the <a
-         * href="API_ListResourceDataSync.html">ListResourceDataSync</a> operation.</p>
-         * <p>By default, data is not encrypted in Amazon S3. We strongly recommend that
-         * you enable encryption in Amazon S3 to ensure secure data storage. We also
-         * recommend that you secure access to the Amazon S3 bucket by creating a
-         * restrictive bucket policy. To view an example of a restrictive Amazon S3 bucket
-         * policy for Resource Data Sync, see <a
+         * bucket. To check the status of the sync, use the
+         * <a>ListResourceDataSync</a>.</p> <p>By default, data is not encrypted in Amazon
+         * S3. We strongly recommend that you enable encryption in Amazon S3 to ensure
+         * secure data storage. We also recommend that you secure access to the Amazon S3
+         * bucket by creating a restrictive bucket policy. To view an example of a
+         * restrictive Amazon S3 bucket policy for Resource Data Sync, see <a
          * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-inventory-configuring.html#sysman-inventory-datasync">Configuring
          * Resource Data Sync for Inventory</a>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/CreateResourceDataSync">AWS
@@ -959,13 +962,12 @@ namespace Model
          * <p>Creates a resource data sync configuration to a single bucket in Amazon S3.
          * This is an asynchronous operation that returns immediately. After a successful
          * initial sync is completed, the system continuously syncs data to the Amazon S3
-         * bucket. To check the status of the sync, use the <a
-         * href="API_ListResourceDataSync.html">ListResourceDataSync</a> operation.</p>
-         * <p>By default, data is not encrypted in Amazon S3. We strongly recommend that
-         * you enable encryption in Amazon S3 to ensure secure data storage. We also
-         * recommend that you secure access to the Amazon S3 bucket by creating a
-         * restrictive bucket policy. To view an example of a restrictive Amazon S3 bucket
-         * policy for Resource Data Sync, see <a
+         * bucket. To check the status of the sync, use the
+         * <a>ListResourceDataSync</a>.</p> <p>By default, data is not encrypted in Amazon
+         * S3. We strongly recommend that you enable encryption in Amazon S3 to ensure
+         * secure data storage. We also recommend that you secure access to the Amazon S3
+         * bucket by creating a restrictive bucket policy. To view an example of a
+         * restrictive Amazon S3 bucket policy for Resource Data Sync, see <a
          * href="http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-inventory-configuring.html#sysman-inventory-datasync">Configuring
          * Resource Data Sync for Inventory</a>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/CreateResourceDataSync">AWS
@@ -1364,16 +1366,24 @@ namespace Model
         virtual void DescribeActivationsAsync(const Model::DescribeActivationsRequest& request, const DescribeActivationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Describes the associations for the specified Systems Manager document or
-         * instance.</p><p><h3>See Also:</h3>   <a
+         * <p>Describes the association for the specified target or instance. If you
+         * created the association by using the <code>Targets</code> parameter, then you
+         * must retrieve the association by using the association ID. If you created the
+         * association by specifying an instance ID and a Systems Manager document, then
+         * you retrieve the association by specifying the document name and the instance
+         * ID. </p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeAssociation">AWS
          * API Reference</a></p>
          */
         virtual Model::DescribeAssociationOutcome DescribeAssociation(const Model::DescribeAssociationRequest& request) const;
 
         /**
-         * <p>Describes the associations for the specified Systems Manager document or
-         * instance.</p><p><h3>See Also:</h3>   <a
+         * <p>Describes the association for the specified target or instance. If you
+         * created the association by using the <code>Targets</code> parameter, then you
+         * must retrieve the association by using the association ID. If you created the
+         * association by specifying an instance ID and a Systems Manager document, then
+         * you retrieve the association by specifying the document name and the instance
+         * ID. </p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeAssociation">AWS
          * API Reference</a></p>
          *
@@ -1382,8 +1392,12 @@ namespace Model
         virtual Model::DescribeAssociationOutcomeCallable DescribeAssociationCallable(const Model::DescribeAssociationRequest& request) const;
 
         /**
-         * <p>Describes the associations for the specified Systems Manager document or
-         * instance.</p><p><h3>See Also:</h3>   <a
+         * <p>Describes the association for the specified target or instance. If you
+         * created the association by using the <code>Targets</code> parameter, then you
+         * must retrieve the association by using the association ID. If you created the
+         * association by specifying an instance ID and a Systems Manager document, then
+         * you retrieve the association by specifying the document name and the instance
+         * ID. </p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeAssociation">AWS
          * API Reference</a></p>
          *
@@ -1418,6 +1432,34 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void DescribeAutomationExecutionsAsync(const Model::DescribeAutomationExecutionsRequest& request, const DescribeAutomationExecutionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Information about all active and terminated step executions in an Automation
+         * workflow.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeAutomationStepExecutions">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::DescribeAutomationStepExecutionsOutcome DescribeAutomationStepExecutions(const Model::DescribeAutomationStepExecutionsRequest& request) const;
+
+        /**
+         * <p>Information about all active and terminated step executions in an Automation
+         * workflow.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeAutomationStepExecutions">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::DescribeAutomationStepExecutionsOutcomeCallable DescribeAutomationStepExecutionsCallable(const Model::DescribeAutomationStepExecutionsRequest& request) const;
+
+        /**
+         * <p>Information about all active and terminated step executions in an Automation
+         * workflow.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeAutomationStepExecutions">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void DescribeAutomationStepExecutionsAsync(const Model::DescribeAutomationStepExecutionsRequest& request, const DescribeAutomationStepExecutionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Lists all patches that could possibly be included in a patch
@@ -3602,6 +3644,7 @@ namespace Model
         void DescribeActivationsAsyncHelper(const Model::DescribeActivationsRequest& request, const DescribeActivationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeAssociationAsyncHelper(const Model::DescribeAssociationRequest& request, const DescribeAssociationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeAutomationExecutionsAsyncHelper(const Model::DescribeAutomationExecutionsRequest& request, const DescribeAutomationExecutionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void DescribeAutomationStepExecutionsAsyncHelper(const Model::DescribeAutomationStepExecutionsRequest& request, const DescribeAutomationStepExecutionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeAvailablePatchesAsyncHelper(const Model::DescribeAvailablePatchesRequest& request, const DescribeAvailablePatchesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeDocumentAsyncHelper(const Model::DescribeDocumentRequest& request, const DescribeDocumentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribeDocumentPermissionAsyncHelper(const Model::DescribeDocumentPermissionRequest& request, const DescribeDocumentPermissionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;

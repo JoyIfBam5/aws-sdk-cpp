@@ -426,44 +426,44 @@ namespace Model
 
 
     /**
-     * <p>The name of the root device (for example, <code>/dev/sda1</code>, or
-     * <code>/dev/xvda</code>).</p>
+     * <p>The device name of the root device volume (for example,
+     * <code>/dev/sda1</code>).</p>
      */
     inline const Aws::String& GetRootDeviceName() const{ return m_rootDeviceName; }
 
     /**
-     * <p>The name of the root device (for example, <code>/dev/sda1</code>, or
-     * <code>/dev/xvda</code>).</p>
+     * <p>The device name of the root device volume (for example,
+     * <code>/dev/sda1</code>).</p>
      */
     inline void SetRootDeviceName(const Aws::String& value) { m_rootDeviceNameHasBeenSet = true; m_rootDeviceName = value; }
 
     /**
-     * <p>The name of the root device (for example, <code>/dev/sda1</code>, or
-     * <code>/dev/xvda</code>).</p>
+     * <p>The device name of the root device volume (for example,
+     * <code>/dev/sda1</code>).</p>
      */
     inline void SetRootDeviceName(Aws::String&& value) { m_rootDeviceNameHasBeenSet = true; m_rootDeviceName = std::move(value); }
 
     /**
-     * <p>The name of the root device (for example, <code>/dev/sda1</code>, or
-     * <code>/dev/xvda</code>).</p>
+     * <p>The device name of the root device volume (for example,
+     * <code>/dev/sda1</code>).</p>
      */
     inline void SetRootDeviceName(const char* value) { m_rootDeviceNameHasBeenSet = true; m_rootDeviceName.assign(value); }
 
     /**
-     * <p>The name of the root device (for example, <code>/dev/sda1</code>, or
-     * <code>/dev/xvda</code>).</p>
+     * <p>The device name of the root device volume (for example,
+     * <code>/dev/sda1</code>).</p>
      */
     inline RegisterImageRequest& WithRootDeviceName(const Aws::String& value) { SetRootDeviceName(value); return *this;}
 
     /**
-     * <p>The name of the root device (for example, <code>/dev/sda1</code>, or
-     * <code>/dev/xvda</code>).</p>
+     * <p>The device name of the root device volume (for example,
+     * <code>/dev/sda1</code>).</p>
      */
     inline RegisterImageRequest& WithRootDeviceName(Aws::String&& value) { SetRootDeviceName(std::move(value)); return *this;}
 
     /**
-     * <p>The name of the root device (for example, <code>/dev/sda1</code>, or
-     * <code>/dev/xvda</code>).</p>
+     * <p>The device name of the root device volume (for example,
+     * <code>/dev/sda1</code>).</p>
      */
     inline RegisterImageRequest& WithRootDeviceName(const char* value) { SetRootDeviceName(value); return *this;}
 
@@ -533,37 +533,44 @@ namespace Model
 
 
     /**
-     * <p>The type of virtualization.</p> <p>Default: <code>paravirtual</code> </p>
+     * <p>The type of virtualization (<code>hvm</code> | <code>paravirtual</code>).</p>
+     * <p>Default: <code>paravirtual</code> </p>
      */
     inline const Aws::String& GetVirtualizationType() const{ return m_virtualizationType; }
 
     /**
-     * <p>The type of virtualization.</p> <p>Default: <code>paravirtual</code> </p>
+     * <p>The type of virtualization (<code>hvm</code> | <code>paravirtual</code>).</p>
+     * <p>Default: <code>paravirtual</code> </p>
      */
     inline void SetVirtualizationType(const Aws::String& value) { m_virtualizationTypeHasBeenSet = true; m_virtualizationType = value; }
 
     /**
-     * <p>The type of virtualization.</p> <p>Default: <code>paravirtual</code> </p>
+     * <p>The type of virtualization (<code>hvm</code> | <code>paravirtual</code>).</p>
+     * <p>Default: <code>paravirtual</code> </p>
      */
     inline void SetVirtualizationType(Aws::String&& value) { m_virtualizationTypeHasBeenSet = true; m_virtualizationType = std::move(value); }
 
     /**
-     * <p>The type of virtualization.</p> <p>Default: <code>paravirtual</code> </p>
+     * <p>The type of virtualization (<code>hvm</code> | <code>paravirtual</code>).</p>
+     * <p>Default: <code>paravirtual</code> </p>
      */
     inline void SetVirtualizationType(const char* value) { m_virtualizationTypeHasBeenSet = true; m_virtualizationType.assign(value); }
 
     /**
-     * <p>The type of virtualization.</p> <p>Default: <code>paravirtual</code> </p>
+     * <p>The type of virtualization (<code>hvm</code> | <code>paravirtual</code>).</p>
+     * <p>Default: <code>paravirtual</code> </p>
      */
     inline RegisterImageRequest& WithVirtualizationType(const Aws::String& value) { SetVirtualizationType(value); return *this;}
 
     /**
-     * <p>The type of virtualization.</p> <p>Default: <code>paravirtual</code> </p>
+     * <p>The type of virtualization (<code>hvm</code> | <code>paravirtual</code>).</p>
+     * <p>Default: <code>paravirtual</code> </p>
      */
     inline RegisterImageRequest& WithVirtualizationType(Aws::String&& value) { SetVirtualizationType(std::move(value)); return *this;}
 
     /**
-     * <p>The type of virtualization.</p> <p>Default: <code>paravirtual</code> </p>
+     * <p>The type of virtualization (<code>hvm</code> | <code>paravirtual</code>).</p>
+     * <p>Default: <code>paravirtual</code> </p>
      */
     inline RegisterImageRequest& WithVirtualizationType(const char* value) { SetVirtualizationType(value); return *this;}
 

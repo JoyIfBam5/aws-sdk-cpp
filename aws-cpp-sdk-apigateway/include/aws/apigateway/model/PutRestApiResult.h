@@ -18,6 +18,7 @@
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <aws/apigateway/model/EndpointConfiguration.h>
 #include <utility>
 
 namespace Aws
@@ -53,43 +54,43 @@ namespace Model
 
     /**
      * <p>The API's identifier. This identifier is unique across all of your APIs in
-     * Amazon API Gateway.</p>
+     * API Gateway.</p>
      */
     inline const Aws::String& GetId() const{ return m_id; }
 
     /**
      * <p>The API's identifier. This identifier is unique across all of your APIs in
-     * Amazon API Gateway.</p>
+     * API Gateway.</p>
      */
     inline void SetId(const Aws::String& value) { m_id = value; }
 
     /**
      * <p>The API's identifier. This identifier is unique across all of your APIs in
-     * Amazon API Gateway.</p>
+     * API Gateway.</p>
      */
     inline void SetId(Aws::String&& value) { m_id = std::move(value); }
 
     /**
      * <p>The API's identifier. This identifier is unique across all of your APIs in
-     * Amazon API Gateway.</p>
+     * API Gateway.</p>
      */
     inline void SetId(const char* value) { m_id.assign(value); }
 
     /**
      * <p>The API's identifier. This identifier is unique across all of your APIs in
-     * Amazon API Gateway.</p>
+     * API Gateway.</p>
      */
     inline PutRestApiResult& WithId(const Aws::String& value) { SetId(value); return *this;}
 
     /**
      * <p>The API's identifier. This identifier is unique across all of your APIs in
-     * Amazon API Gateway.</p>
+     * API Gateway.</p>
      */
     inline PutRestApiResult& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
      * <p>The API's identifier. This identifier is unique across all of your APIs in
-     * Amazon API Gateway.</p>
+     * API Gateway.</p>
      */
     inline PutRestApiResult& WithId(const char* value) { SetId(value); return *this;}
 
@@ -325,6 +326,37 @@ namespace Model
      */
     inline PutRestApiResult& AddBinaryMediaTypes(const char* value) { m_binaryMediaTypes.push_back(value); return *this; }
 
+
+    /**
+     * <p>The endpoint configuration of this <a>RestApi</a> showing the endpoint types
+     * of the API. </p>
+     */
+    inline const EndpointConfiguration& GetEndpointConfiguration() const{ return m_endpointConfiguration; }
+
+    /**
+     * <p>The endpoint configuration of this <a>RestApi</a> showing the endpoint types
+     * of the API. </p>
+     */
+    inline void SetEndpointConfiguration(const EndpointConfiguration& value) { m_endpointConfiguration = value; }
+
+    /**
+     * <p>The endpoint configuration of this <a>RestApi</a> showing the endpoint types
+     * of the API. </p>
+     */
+    inline void SetEndpointConfiguration(EndpointConfiguration&& value) { m_endpointConfiguration = std::move(value); }
+
+    /**
+     * <p>The endpoint configuration of this <a>RestApi</a> showing the endpoint types
+     * of the API. </p>
+     */
+    inline PutRestApiResult& WithEndpointConfiguration(const EndpointConfiguration& value) { SetEndpointConfiguration(value); return *this;}
+
+    /**
+     * <p>The endpoint configuration of this <a>RestApi</a> showing the endpoint types
+     * of the API. </p>
+     */
+    inline PutRestApiResult& WithEndpointConfiguration(EndpointConfiguration&& value) { SetEndpointConfiguration(std::move(value)); return *this;}
+
   private:
 
     Aws::String m_id;
@@ -340,6 +372,8 @@ namespace Model
     Aws::Vector<Aws::String> m_warnings;
 
     Aws::Vector<Aws::String> m_binaryMediaTypes;
+
+    EndpointConfiguration m_endpointConfiguration;
   };
 
 } // namespace Model

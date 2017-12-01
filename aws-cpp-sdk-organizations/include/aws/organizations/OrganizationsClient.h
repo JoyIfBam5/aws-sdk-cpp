@@ -38,6 +38,7 @@
 #include <aws/organizations/model/EnableAllFeaturesResult.h>
 #include <aws/organizations/model/EnablePolicyTypeResult.h>
 #include <aws/organizations/model/InviteAccountToOrganizationResult.h>
+#include <aws/organizations/model/ListAWSServiceAccessForOrganizationResult.h>
 #include <aws/organizations/model/ListAccountsResult.h>
 #include <aws/organizations/model/ListAccountsForParentResult.h>
 #include <aws/organizations/model/ListChildrenResult.h>
@@ -114,10 +115,13 @@ namespace Model
         class DescribeOrganizationalUnitRequest;
         class DescribePolicyRequest;
         class DetachPolicyRequest;
+        class DisableAWSServiceAccessRequest;
         class DisablePolicyTypeRequest;
+        class EnableAWSServiceAccessRequest;
         class EnableAllFeaturesRequest;
         class EnablePolicyTypeRequest;
         class InviteAccountToOrganizationRequest;
+        class ListAWSServiceAccessForOrganizationRequest;
         class ListAccountsRequest;
         class ListAccountsForParentRequest;
         class ListChildrenRequest;
@@ -153,11 +157,14 @@ namespace Model
         typedef Aws::Utils::Outcome<DescribeOrganizationalUnitResult, Aws::Client::AWSError<OrganizationsErrors>> DescribeOrganizationalUnitOutcome;
         typedef Aws::Utils::Outcome<DescribePolicyResult, Aws::Client::AWSError<OrganizationsErrors>> DescribePolicyOutcome;
         typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<OrganizationsErrors>> DetachPolicyOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<OrganizationsErrors>> DisableAWSServiceAccessOutcome;
         typedef Aws::Utils::Outcome<DisablePolicyTypeResult, Aws::Client::AWSError<OrganizationsErrors>> DisablePolicyTypeOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<OrganizationsErrors>> EnableAWSServiceAccessOutcome;
         typedef Aws::Utils::Outcome<EnableAllFeaturesResult, Aws::Client::AWSError<OrganizationsErrors>> EnableAllFeaturesOutcome;
         typedef Aws::Utils::Outcome<EnablePolicyTypeResult, Aws::Client::AWSError<OrganizationsErrors>> EnablePolicyTypeOutcome;
         typedef Aws::Utils::Outcome<InviteAccountToOrganizationResult, Aws::Client::AWSError<OrganizationsErrors>> InviteAccountToOrganizationOutcome;
         typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<OrganizationsErrors>> LeaveOrganizationOutcome;
+        typedef Aws::Utils::Outcome<ListAWSServiceAccessForOrganizationResult, Aws::Client::AWSError<OrganizationsErrors>> ListAWSServiceAccessForOrganizationOutcome;
         typedef Aws::Utils::Outcome<ListAccountsResult, Aws::Client::AWSError<OrganizationsErrors>> ListAccountsOutcome;
         typedef Aws::Utils::Outcome<ListAccountsForParentResult, Aws::Client::AWSError<OrganizationsErrors>> ListAccountsForParentOutcome;
         typedef Aws::Utils::Outcome<ListChildrenResult, Aws::Client::AWSError<OrganizationsErrors>> ListChildrenOutcome;
@@ -193,11 +200,14 @@ namespace Model
         typedef std::future<DescribeOrganizationalUnitOutcome> DescribeOrganizationalUnitOutcomeCallable;
         typedef std::future<DescribePolicyOutcome> DescribePolicyOutcomeCallable;
         typedef std::future<DetachPolicyOutcome> DetachPolicyOutcomeCallable;
+        typedef std::future<DisableAWSServiceAccessOutcome> DisableAWSServiceAccessOutcomeCallable;
         typedef std::future<DisablePolicyTypeOutcome> DisablePolicyTypeOutcomeCallable;
+        typedef std::future<EnableAWSServiceAccessOutcome> EnableAWSServiceAccessOutcomeCallable;
         typedef std::future<EnableAllFeaturesOutcome> EnableAllFeaturesOutcomeCallable;
         typedef std::future<EnablePolicyTypeOutcome> EnablePolicyTypeOutcomeCallable;
         typedef std::future<InviteAccountToOrganizationOutcome> InviteAccountToOrganizationOutcomeCallable;
         typedef std::future<LeaveOrganizationOutcome> LeaveOrganizationOutcomeCallable;
+        typedef std::future<ListAWSServiceAccessForOrganizationOutcome> ListAWSServiceAccessForOrganizationOutcomeCallable;
         typedef std::future<ListAccountsOutcome> ListAccountsOutcomeCallable;
         typedef std::future<ListAccountsForParentOutcome> ListAccountsForParentOutcomeCallable;
         typedef std::future<ListChildrenOutcome> ListChildrenOutcomeCallable;
@@ -236,11 +246,14 @@ namespace Model
     typedef std::function<void(const OrganizationsClient*, const Model::DescribeOrganizationalUnitRequest&, const Model::DescribeOrganizationalUnitOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribeOrganizationalUnitResponseReceivedHandler;
     typedef std::function<void(const OrganizationsClient*, const Model::DescribePolicyRequest&, const Model::DescribePolicyOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DescribePolicyResponseReceivedHandler;
     typedef std::function<void(const OrganizationsClient*, const Model::DetachPolicyRequest&, const Model::DetachPolicyOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DetachPolicyResponseReceivedHandler;
+    typedef std::function<void(const OrganizationsClient*, const Model::DisableAWSServiceAccessRequest&, const Model::DisableAWSServiceAccessOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DisableAWSServiceAccessResponseReceivedHandler;
     typedef std::function<void(const OrganizationsClient*, const Model::DisablePolicyTypeRequest&, const Model::DisablePolicyTypeOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DisablePolicyTypeResponseReceivedHandler;
+    typedef std::function<void(const OrganizationsClient*, const Model::EnableAWSServiceAccessRequest&, const Model::EnableAWSServiceAccessOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > EnableAWSServiceAccessResponseReceivedHandler;
     typedef std::function<void(const OrganizationsClient*, const Model::EnableAllFeaturesRequest&, const Model::EnableAllFeaturesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > EnableAllFeaturesResponseReceivedHandler;
     typedef std::function<void(const OrganizationsClient*, const Model::EnablePolicyTypeRequest&, const Model::EnablePolicyTypeOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > EnablePolicyTypeResponseReceivedHandler;
     typedef std::function<void(const OrganizationsClient*, const Model::InviteAccountToOrganizationRequest&, const Model::InviteAccountToOrganizationOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > InviteAccountToOrganizationResponseReceivedHandler;
     typedef std::function<void(const OrganizationsClient*, const Model::LeaveOrganizationOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > LeaveOrganizationResponseReceivedHandler;
+    typedef std::function<void(const OrganizationsClient*, const Model::ListAWSServiceAccessForOrganizationRequest&, const Model::ListAWSServiceAccessForOrganizationOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListAWSServiceAccessForOrganizationResponseReceivedHandler;
     typedef std::function<void(const OrganizationsClient*, const Model::ListAccountsRequest&, const Model::ListAccountsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListAccountsResponseReceivedHandler;
     typedef std::function<void(const OrganizationsClient*, const Model::ListAccountsForParentRequest&, const Model::ListAccountsForParentOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListAccountsForParentResponseReceivedHandler;
     typedef std::function<void(const OrganizationsClient*, const Model::ListChildrenRequest&, const Model::ListChildrenOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ListChildrenResponseReceivedHandler;
@@ -306,11 +319,9 @@ namespace Model
    * multiple roots.</p> <p> <b>Support and Feedback for AWS Organizations</b> </p>
    * <p>We welcome your feedback. Send your comments to <a
    * href="mailto:feedback-awsorganizations@amazon.com">feedback-awsorganizations@amazon.com</a>
-   * or post your feedback and questions in our private <a
+   * or post your feedback and questions in the <a
    * href="http://forums.aws.amazon.com/forum.jspa?forumID=219">AWS Organizations
-   * support forum</a>. If you don't have access to the forum, send a request for
-   * access to the email address, along with your forum user ID. For more information
-   * about the AWS support forums, see <a
+   * support forum</a>. For more information about the AWS support forums, see <a
    * href="http://forums.aws.amazon.com/help.jspa">Forums Help</a>.</p> <p>
    * <b>Endpoint to Call When Using the CLI or the AWS API</b> </p> <p>For the
    * current release of Organizations, you must specify the <code>us-east-1</code>
@@ -381,9 +392,18 @@ namespace Model
          * proposed by the handshake request. </p> <p>This operation can be called only by
          * the following principals when they also have the relevant IAM permissions:</p>
          * <ul> <li> <p> <b>Invitation to join</b> or <b>Approve all features request</b>
-         * handshakes: only a principal from the member account. </p> </li> <li> <p>
-         * <b>Enable all features final confirmation</b> handshake: only a principal from
-         * the master account.</p> <p>For more information about invitations, see <a
+         * handshakes: only a principal from the member account. </p> <p>The user who calls
+         * the API for an invitation to join must have the
+         * <code>organizations:AcceptHandshake</code> permission. If you enabled all
+         * features in the organization, then the user must also have the
+         * <code>iam:CreateServiceLinkedRole</code> permission so that Organizations can
+         * create the required service-linked role named <i>OrgsServiceLinkedRoleName</i>.
+         * For more information, see <a
+         * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integration_services.html#orgs_integration_service-linked-roles">AWS
+         * Organizations and Service-Linked Roles</a> in the <i>AWS Organizations User
+         * Guide</i>.</p> </li> <li> <p> <b>Enable all features final confirmation</b>
+         * handshake: only a principal from the master account.</p> <p>For more information
+         * about invitations, see <a
          * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_invites.html">Inviting
          * an AWS Account to Join Your Organization</a> in the <i>AWS Organizations User
          * Guide</i>. For more information about requests to enable all features in the
@@ -403,9 +423,18 @@ namespace Model
          * proposed by the handshake request. </p> <p>This operation can be called only by
          * the following principals when they also have the relevant IAM permissions:</p>
          * <ul> <li> <p> <b>Invitation to join</b> or <b>Approve all features request</b>
-         * handshakes: only a principal from the member account. </p> </li> <li> <p>
-         * <b>Enable all features final confirmation</b> handshake: only a principal from
-         * the master account.</p> <p>For more information about invitations, see <a
+         * handshakes: only a principal from the member account. </p> <p>The user who calls
+         * the API for an invitation to join must have the
+         * <code>organizations:AcceptHandshake</code> permission. If you enabled all
+         * features in the organization, then the user must also have the
+         * <code>iam:CreateServiceLinkedRole</code> permission so that Organizations can
+         * create the required service-linked role named <i>OrgsServiceLinkedRoleName</i>.
+         * For more information, see <a
+         * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integration_services.html#orgs_integration_service-linked-roles">AWS
+         * Organizations and Service-Linked Roles</a> in the <i>AWS Organizations User
+         * Guide</i>.</p> </li> <li> <p> <b>Enable all features final confirmation</b>
+         * handshake: only a principal from the master account.</p> <p>For more information
+         * about invitations, see <a
          * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_invites.html">Inviting
          * an AWS Account to Join Your Organization</a> in the <i>AWS Organizations User
          * Guide</i>. For more information about requests to enable all features in the
@@ -427,9 +456,18 @@ namespace Model
          * proposed by the handshake request. </p> <p>This operation can be called only by
          * the following principals when they also have the relevant IAM permissions:</p>
          * <ul> <li> <p> <b>Invitation to join</b> or <b>Approve all features request</b>
-         * handshakes: only a principal from the member account. </p> </li> <li> <p>
-         * <b>Enable all features final confirmation</b> handshake: only a principal from
-         * the master account.</p> <p>For more information about invitations, see <a
+         * handshakes: only a principal from the member account. </p> <p>The user who calls
+         * the API for an invitation to join must have the
+         * <code>organizations:AcceptHandshake</code> permission. If you enabled all
+         * features in the organization, then the user must also have the
+         * <code>iam:CreateServiceLinkedRole</code> permission so that Organizations can
+         * create the required service-linked role named <i>OrgsServiceLinkedRoleName</i>.
+         * For more information, see <a
+         * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integration_services.html#orgs_integration_service-linked-roles">AWS
+         * Organizations and Service-Linked Roles</a> in the <i>AWS Organizations User
+         * Guide</i>.</p> </li> <li> <p> <b>Enable all features final confirmation</b>
+         * handshake: only a principal from the master account.</p> <p>For more information
+         * about invitations, see <a
          * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_invites.html">Inviting
          * an AWS Account to Join Your Organization</a> in the <i>AWS Organizations User
          * Guide</i>. For more information about requests to enable all features in the
@@ -610,12 +648,23 @@ namespace Model
          * performs in the background. If you want to check the status of the request
          * later, you need the <code>OperationId</code> response element from this
          * operation to provide as a parameter to the <a>DescribeCreateAccountStatus</a>
-         * operation.</p> <p>AWS Organizations preconfigures the new member account with a
-         * role (named <code>OrganizationAccountAccessRole</code> by default) that grants
-         * administrator permissions to the new account. Principals in the master account
-         * can assume the role. AWS Organizations clones the company name and address
-         * information for the new account from the organization's master account.</p>
-         * <p>For more information about creating accounts, see <a
+         * operation.</p> <p>The user who calls the API for an invitation to join must have
+         * the <code>organizations:CreateAccount</code> permission. If you enabled all
+         * features in the organization, then the user must also have the
+         * <code>iam:CreateServiceLinkedRole</code> permission so that Organizations can
+         * create the required service-linked role named <i>OrgsServiceLinkedRoleName</i>.
+         * For more information, see <a
+         * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integration_services.html#orgs_integration_service-linked-roles">AWS
+         * Organizations and Service-Linked Roles</a> in the <i>AWS Organizations User
+         * Guide</i>.</p> <p>The user in the master account who calls this API must also
+         * have the <code>iam:CreateRole</code> permission because AWS Organizations
+         * preconfigures the new member account with a role (named
+         * <code>OrganizationAccountAccessRole</code> by default) that grants users in the
+         * master account administrator permissions in the new member account. Principals
+         * in the master account can assume the role. AWS Organizations clones the company
+         * name and address information for the new account from the organization's master
+         * account.</p> <p>This operation can be called only from the organization's master
+         * account.</p> <p>For more information about creating accounts, see <a
          * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_create.html">Creating
          * an AWS Account in Your Organization</a> in the <i>AWS Organizations User
          * Guide</i>.</p> <important> <p>When you create an account in an organization
@@ -653,12 +702,23 @@ namespace Model
          * performs in the background. If you want to check the status of the request
          * later, you need the <code>OperationId</code> response element from this
          * operation to provide as a parameter to the <a>DescribeCreateAccountStatus</a>
-         * operation.</p> <p>AWS Organizations preconfigures the new member account with a
-         * role (named <code>OrganizationAccountAccessRole</code> by default) that grants
-         * administrator permissions to the new account. Principals in the master account
-         * can assume the role. AWS Organizations clones the company name and address
-         * information for the new account from the organization's master account.</p>
-         * <p>For more information about creating accounts, see <a
+         * operation.</p> <p>The user who calls the API for an invitation to join must have
+         * the <code>organizations:CreateAccount</code> permission. If you enabled all
+         * features in the organization, then the user must also have the
+         * <code>iam:CreateServiceLinkedRole</code> permission so that Organizations can
+         * create the required service-linked role named <i>OrgsServiceLinkedRoleName</i>.
+         * For more information, see <a
+         * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integration_services.html#orgs_integration_service-linked-roles">AWS
+         * Organizations and Service-Linked Roles</a> in the <i>AWS Organizations User
+         * Guide</i>.</p> <p>The user in the master account who calls this API must also
+         * have the <code>iam:CreateRole</code> permission because AWS Organizations
+         * preconfigures the new member account with a role (named
+         * <code>OrganizationAccountAccessRole</code> by default) that grants users in the
+         * master account administrator permissions in the new member account. Principals
+         * in the master account can assume the role. AWS Organizations clones the company
+         * name and address information for the new account from the organization's master
+         * account.</p> <p>This operation can be called only from the organization's master
+         * account.</p> <p>For more information about creating accounts, see <a
          * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_create.html">Creating
          * an AWS Account in Your Organization</a> in the <i>AWS Organizations User
          * Guide</i>.</p> <important> <p>When you create an account in an organization
@@ -698,12 +758,23 @@ namespace Model
          * performs in the background. If you want to check the status of the request
          * later, you need the <code>OperationId</code> response element from this
          * operation to provide as a parameter to the <a>DescribeCreateAccountStatus</a>
-         * operation.</p> <p>AWS Organizations preconfigures the new member account with a
-         * role (named <code>OrganizationAccountAccessRole</code> by default) that grants
-         * administrator permissions to the new account. Principals in the master account
-         * can assume the role. AWS Organizations clones the company name and address
-         * information for the new account from the organization's master account.</p>
-         * <p>For more information about creating accounts, see <a
+         * operation.</p> <p>The user who calls the API for an invitation to join must have
+         * the <code>organizations:CreateAccount</code> permission. If you enabled all
+         * features in the organization, then the user must also have the
+         * <code>iam:CreateServiceLinkedRole</code> permission so that Organizations can
+         * create the required service-linked role named <i>OrgsServiceLinkedRoleName</i>.
+         * For more information, see <a
+         * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integration_services.html#orgs_integration_service-linked-roles">AWS
+         * Organizations and Service-Linked Roles</a> in the <i>AWS Organizations User
+         * Guide</i>.</p> <p>The user in the master account who calls this API must also
+         * have the <code>iam:CreateRole</code> permission because AWS Organizations
+         * preconfigures the new member account with a role (named
+         * <code>OrganizationAccountAccessRole</code> by default) that grants users in the
+         * master account administrator permissions in the new member account. Principals
+         * in the master account can assume the role. AWS Organizations clones the company
+         * name and address information for the new account from the organization's master
+         * account.</p> <p>This operation can be called only from the organization's master
+         * account.</p> <p>For more information about creating accounts, see <a
          * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_create.html">Creating
          * an AWS Account in Your Organization</a> in the <i>AWS Organizations User
          * Guide</i>.</p> <important> <p>When you create an account in an organization
@@ -1299,6 +1370,103 @@ namespace Model
         virtual void DetachPolicyAsync(const Model::DetachPolicyRequest& request, const DetachPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
+         * <p>Disables the integration of an AWS service (the service that is specified by
+         * <code>ServicePrincipal</code>) with AWS Organizations. When you disable
+         * integration, the specified service no longer can create a <a
+         * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html">service-linked
+         * role</a> in <i>new</i> accounts in your organization. This means the service
+         * can't perform operations on your behalf on any new accounts in your
+         * organization. The service can still perform operations in older accounts until
+         * the service completes its clean-up from AWS Organizations.</p> <p/> <important>
+         * <p>We recommend that you disable integration between AWS Organizations and the
+         * specified AWS service by using the console or commands that are provided by the
+         * specified service. Doing so ensures that the other service is aware that it can
+         * clean up any resources that are required only for the integration. How the
+         * service cleans up its resources in the organization's accounts depends on that
+         * service. For more information, see the documentation for the other AWS
+         * service.</p> </important> <p>After you perform the
+         * <code>DisableAWSServiceAccess</code> operation, the specified service can no
+         * longer perform operations in your organization's accounts unless the operations
+         * are explicitly permitted by the IAM policies that are attached to your roles.
+         * </p> <p>For more information about integrating other services with AWS
+         * Organizations, including the list of services that work with Organizations, see
+         * <a
+         * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html">Integrating
+         * AWS Organizations with Other AWS Services</a> in the <i>AWS Organizations User
+         * Guide</i>.</p> <p>This operation can be called only from the organization's
+         * master account.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/DisableAWSServiceAccess">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::DisableAWSServiceAccessOutcome DisableAWSServiceAccess(const Model::DisableAWSServiceAccessRequest& request) const;
+
+        /**
+         * <p>Disables the integration of an AWS service (the service that is specified by
+         * <code>ServicePrincipal</code>) with AWS Organizations. When you disable
+         * integration, the specified service no longer can create a <a
+         * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html">service-linked
+         * role</a> in <i>new</i> accounts in your organization. This means the service
+         * can't perform operations on your behalf on any new accounts in your
+         * organization. The service can still perform operations in older accounts until
+         * the service completes its clean-up from AWS Organizations.</p> <p/> <important>
+         * <p>We recommend that you disable integration between AWS Organizations and the
+         * specified AWS service by using the console or commands that are provided by the
+         * specified service. Doing so ensures that the other service is aware that it can
+         * clean up any resources that are required only for the integration. How the
+         * service cleans up its resources in the organization's accounts depends on that
+         * service. For more information, see the documentation for the other AWS
+         * service.</p> </important> <p>After you perform the
+         * <code>DisableAWSServiceAccess</code> operation, the specified service can no
+         * longer perform operations in your organization's accounts unless the operations
+         * are explicitly permitted by the IAM policies that are attached to your roles.
+         * </p> <p>For more information about integrating other services with AWS
+         * Organizations, including the list of services that work with Organizations, see
+         * <a
+         * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html">Integrating
+         * AWS Organizations with Other AWS Services</a> in the <i>AWS Organizations User
+         * Guide</i>.</p> <p>This operation can be called only from the organization's
+         * master account.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/DisableAWSServiceAccess">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::DisableAWSServiceAccessOutcomeCallable DisableAWSServiceAccessCallable(const Model::DisableAWSServiceAccessRequest& request) const;
+
+        /**
+         * <p>Disables the integration of an AWS service (the service that is specified by
+         * <code>ServicePrincipal</code>) with AWS Organizations. When you disable
+         * integration, the specified service no longer can create a <a
+         * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html">service-linked
+         * role</a> in <i>new</i> accounts in your organization. This means the service
+         * can't perform operations on your behalf on any new accounts in your
+         * organization. The service can still perform operations in older accounts until
+         * the service completes its clean-up from AWS Organizations.</p> <p/> <important>
+         * <p>We recommend that you disable integration between AWS Organizations and the
+         * specified AWS service by using the console or commands that are provided by the
+         * specified service. Doing so ensures that the other service is aware that it can
+         * clean up any resources that are required only for the integration. How the
+         * service cleans up its resources in the organization's accounts depends on that
+         * service. For more information, see the documentation for the other AWS
+         * service.</p> </important> <p>After you perform the
+         * <code>DisableAWSServiceAccess</code> operation, the specified service can no
+         * longer perform operations in your organization's accounts unless the operations
+         * are explicitly permitted by the IAM policies that are attached to your roles.
+         * </p> <p>For more information about integrating other services with AWS
+         * Organizations, including the list of services that work with Organizations, see
+         * <a
+         * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html">Integrating
+         * AWS Organizations with Other AWS Services</a> in the <i>AWS Organizations User
+         * Guide</i>.</p> <p>This operation can be called only from the organization's
+         * master account.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/DisableAWSServiceAccess">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void DisableAWSServiceAccessAsync(const Model::DisableAWSServiceAccessRequest& request, const DisableAWSServiceAccessResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
          * <p>Disables an organizational control policy type in a root. A policy of a
          * certain type can be attached to entities in a root only if that type is enabled
          * in the root. After you perform this operation, you no longer can attach policies
@@ -1340,6 +1508,88 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void DisablePolicyTypeAsync(const Model::DisablePolicyTypeRequest& request, const DisablePolicyTypeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Enables the integration of an AWS service (the service that is specified by
+         * <code>ServicePrincipal</code>) with AWS Organizations. When you enable
+         * integration, you allow the specified service to create a <a
+         * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html">service-linked
+         * role</a> in all the accounts in your organization. This allows the service to
+         * perform operations on your behalf in your organization and its accounts.</p>
+         * <important> <p>We recommend that you enable integration between AWS
+         * Organizations and the specified AWS service by using the console or commands
+         * that are provided by the specified service. Doing so ensures that the service is
+         * aware that it can create the resources that are required for the integration.
+         * How the service creates those resources in the organization's accounts depends
+         * on that service. For more information, see the documentation for the other AWS
+         * service.</p> </important> <p>For more information about enabling services to
+         * integrate with AWS Organizations, see <a
+         * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html">Integrating
+         * AWS Organizations with Other AWS Services</a> in the <i>AWS Organizations User
+         * Guide</i>.</p> <p>This operation can be called only from the organization's
+         * master account and only if the organization has <a
+         * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html">enabled
+         * all features</a>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/EnableAWSServiceAccess">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::EnableAWSServiceAccessOutcome EnableAWSServiceAccess(const Model::EnableAWSServiceAccessRequest& request) const;
+
+        /**
+         * <p>Enables the integration of an AWS service (the service that is specified by
+         * <code>ServicePrincipal</code>) with AWS Organizations. When you enable
+         * integration, you allow the specified service to create a <a
+         * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html">service-linked
+         * role</a> in all the accounts in your organization. This allows the service to
+         * perform operations on your behalf in your organization and its accounts.</p>
+         * <important> <p>We recommend that you enable integration between AWS
+         * Organizations and the specified AWS service by using the console or commands
+         * that are provided by the specified service. Doing so ensures that the service is
+         * aware that it can create the resources that are required for the integration.
+         * How the service creates those resources in the organization's accounts depends
+         * on that service. For more information, see the documentation for the other AWS
+         * service.</p> </important> <p>For more information about enabling services to
+         * integrate with AWS Organizations, see <a
+         * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html">Integrating
+         * AWS Organizations with Other AWS Services</a> in the <i>AWS Organizations User
+         * Guide</i>.</p> <p>This operation can be called only from the organization's
+         * master account and only if the organization has <a
+         * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html">enabled
+         * all features</a>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/EnableAWSServiceAccess">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::EnableAWSServiceAccessOutcomeCallable EnableAWSServiceAccessCallable(const Model::EnableAWSServiceAccessRequest& request) const;
+
+        /**
+         * <p>Enables the integration of an AWS service (the service that is specified by
+         * <code>ServicePrincipal</code>) with AWS Organizations. When you enable
+         * integration, you allow the specified service to create a <a
+         * href="http://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html">service-linked
+         * role</a> in all the accounts in your organization. This allows the service to
+         * perform operations on your behalf in your organization and its accounts.</p>
+         * <important> <p>We recommend that you enable integration between AWS
+         * Organizations and the specified AWS service by using the console or commands
+         * that are provided by the specified service. Doing so ensures that the service is
+         * aware that it can create the resources that are required for the integration.
+         * How the service creates those resources in the organization's accounts depends
+         * on that service. For more information, see the documentation for the other AWS
+         * service.</p> </important> <p>For more information about enabling services to
+         * integrate with AWS Organizations, see <a
+         * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html">Integrating
+         * AWS Organizations with Other AWS Services</a> in the <i>AWS Organizations User
+         * Guide</i>.</p> <p>This operation can be called only from the organization's
+         * master account and only if the organization has <a
+         * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html">enabled
+         * all features</a>.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/EnableAWSServiceAccess">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void EnableAWSServiceAccessAsync(const Model::EnableAWSServiceAccessRequest& request, const EnableAWSServiceAccessResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Enables all features in an organization. This enables the use of organization
@@ -1645,6 +1895,58 @@ namespace Model
          */
         virtual void LeaveOrganizationAsync(const LeaveOrganizationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
         /**
+         * <p>Returns a list of the AWS services that you enabled to integrate with your
+         * organization. After a service on this list creates the resources that it
+         * requires for the integration, it can perform operations on your organization and
+         * its accounts.</p> <p>For more information about integrating other services with
+         * AWS Organizations, including the list of services that currently work with
+         * Organizations, see <a
+         * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html">Integrating
+         * AWS Organizations with Other AWS Services</a> in the <i>AWS Organizations User
+         * Guide</i>.</p> <p>This operation can be called only from the organization's
+         * master account.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/ListAWSServiceAccessForOrganization">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::ListAWSServiceAccessForOrganizationOutcome ListAWSServiceAccessForOrganization(const Model::ListAWSServiceAccessForOrganizationRequest& request) const;
+
+        /**
+         * <p>Returns a list of the AWS services that you enabled to integrate with your
+         * organization. After a service on this list creates the resources that it
+         * requires for the integration, it can perform operations on your organization and
+         * its accounts.</p> <p>For more information about integrating other services with
+         * AWS Organizations, including the list of services that currently work with
+         * Organizations, see <a
+         * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html">Integrating
+         * AWS Organizations with Other AWS Services</a> in the <i>AWS Organizations User
+         * Guide</i>.</p> <p>This operation can be called only from the organization's
+         * master account.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/ListAWSServiceAccessForOrganization">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::ListAWSServiceAccessForOrganizationOutcomeCallable ListAWSServiceAccessForOrganizationCallable(const Model::ListAWSServiceAccessForOrganizationRequest& request) const;
+
+        /**
+         * <p>Returns a list of the AWS services that you enabled to integrate with your
+         * organization. After a service on this list creates the resources that it
+         * requires for the integration, it can perform operations on your organization and
+         * its accounts.</p> <p>For more information about integrating other services with
+         * AWS Organizations, including the list of services that currently work with
+         * Organizations, see <a
+         * href="http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html">Integrating
+         * AWS Organizations with Other AWS Services</a> in the <i>AWS Organizations User
+         * Guide</i>.</p> <p>This operation can be called only from the organization's
+         * master account.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/ListAWSServiceAccessForOrganization">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void ListAWSServiceAccessForOrganizationAsync(const Model::ListAWSServiceAccessForOrganizationRequest& request, const ListAWSServiceAccessForOrganizationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
          * <p>Lists all the accounts in the organization. To request only the accounts in a
          * root or OU, use the <a>ListAccountsForParent</a> operation instead.</p> <p>This
          * operation can be called only from the organization's master
@@ -1683,8 +1985,9 @@ namespace Model
          * target root or organizational unit (OU). If you specify the root, you get a list
          * of all the accounts that are not in any OU. If you specify an OU, you get a list
          * of all the accounts in only that OU, and not in any child OUs. To get a list of
-         * all accounts in the organization, use the <a>ListAccounts</a>
-         * operation.</p><p><h3>See Also:</h3>   <a
+         * all accounts in the organization, use the <a>ListAccounts</a> operation.</p>
+         * <p>This operation can be called only from the organization's master
+         * account.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/ListAccountsForParent">AWS
          * API Reference</a></p>
          */
@@ -1695,8 +1998,9 @@ namespace Model
          * target root or organizational unit (OU). If you specify the root, you get a list
          * of all the accounts that are not in any OU. If you specify an OU, you get a list
          * of all the accounts in only that OU, and not in any child OUs. To get a list of
-         * all accounts in the organization, use the <a>ListAccounts</a>
-         * operation.</p><p><h3>See Also:</h3>   <a
+         * all accounts in the organization, use the <a>ListAccounts</a> operation.</p>
+         * <p>This operation can be called only from the organization's master
+         * account.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/ListAccountsForParent">AWS
          * API Reference</a></p>
          *
@@ -1709,8 +2013,9 @@ namespace Model
          * target root or organizational unit (OU). If you specify the root, you get a list
          * of all the accounts that are not in any OU. If you specify an OU, you get a list
          * of all the accounts in only that OU, and not in any child OUs. To get a list of
-         * all accounts in the organization, use the <a>ListAccounts</a>
-         * operation.</p><p><h3>See Also:</h3>   <a
+         * all accounts in the organization, use the <a>ListAccounts</a> operation.</p>
+         * <p>This operation can be called only from the organization's master
+         * account.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/ListAccountsForParent">AWS
          * API Reference</a></p>
          *
@@ -1721,7 +2026,8 @@ namespace Model
         /**
          * <p>Lists all of the OUs or accounts that are contained in the specified parent
          * OU or root. This operation, along with <a>ListParents</a> enables you to
-         * traverse the tree structure that makes up this root.</p><p><h3>See Also:</h3>  
+         * traverse the tree structure that makes up this root.</p> <p>This operation can
+         * be called only from the organization's master account.</p><p><h3>See Also:</h3> 
          * <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/ListChildren">AWS
          * API Reference</a></p>
@@ -1731,7 +2037,8 @@ namespace Model
         /**
          * <p>Lists all of the OUs or accounts that are contained in the specified parent
          * OU or root. This operation, along with <a>ListParents</a> enables you to
-         * traverse the tree structure that makes up this root.</p><p><h3>See Also:</h3>  
+         * traverse the tree structure that makes up this root.</p> <p>This operation can
+         * be called only from the organization's master account.</p><p><h3>See Also:</h3> 
          * <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/ListChildren">AWS
          * API Reference</a></p>
@@ -1743,7 +2050,8 @@ namespace Model
         /**
          * <p>Lists all of the OUs or accounts that are contained in the specified parent
          * OU or root. This operation, along with <a>ListParents</a> enables you to
-         * traverse the tree structure that makes up this root.</p><p><h3>See Also:</h3>  
+         * traverse the tree structure that makes up this root.</p> <p>This operation can
+         * be called only from the organization's master account.</p><p><h3>See Also:</h3> 
          * <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/organizations-2016-11-28/ListChildren">AWS
          * API Reference</a></p>
@@ -2295,11 +2603,14 @@ namespace Model
         void DescribeOrganizationalUnitAsyncHelper(const Model::DescribeOrganizationalUnitRequest& request, const DescribeOrganizationalUnitResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DescribePolicyAsyncHelper(const Model::DescribePolicyRequest& request, const DescribePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DetachPolicyAsyncHelper(const Model::DetachPolicyRequest& request, const DetachPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void DisableAWSServiceAccessAsyncHelper(const Model::DisableAWSServiceAccessRequest& request, const DisableAWSServiceAccessResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DisablePolicyTypeAsyncHelper(const Model::DisablePolicyTypeRequest& request, const DisablePolicyTypeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void EnableAWSServiceAccessAsyncHelper(const Model::EnableAWSServiceAccessRequest& request, const EnableAWSServiceAccessResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void EnableAllFeaturesAsyncHelper(const Model::EnableAllFeaturesRequest& request, const EnableAllFeaturesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void EnablePolicyTypeAsyncHelper(const Model::EnablePolicyTypeRequest& request, const EnablePolicyTypeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void InviteAccountToOrganizationAsyncHelper(const Model::InviteAccountToOrganizationRequest& request, const InviteAccountToOrganizationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void LeaveOrganizationAsyncHelper(const LeaveOrganizationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void ListAWSServiceAccessForOrganizationAsyncHelper(const Model::ListAWSServiceAccessForOrganizationRequest& request, const ListAWSServiceAccessForOrganizationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListAccountsAsyncHelper(const Model::ListAccountsRequest& request, const ListAccountsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListAccountsForParentAsyncHelper(const Model::ListAccountsForParentRequest& request, const ListAccountsForParentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ListChildrenAsyncHelper(const Model::ListChildrenRequest& request, const ListChildrenResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;

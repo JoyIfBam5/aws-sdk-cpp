@@ -117,37 +117,72 @@ namespace Model
 
 
     /**
-     * <p>The name of the execution.</p>
+     * <p>The name of the execution.</p> <p>A name must <i>not</i> contain:</p> <ul>
+     * <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code>
+     * </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline const Aws::String& GetName() const{ return m_name; }
 
     /**
-     * <p>The name of the execution.</p>
+     * <p>The name of the execution.</p> <p>A name must <i>not</i> contain:</p> <ul>
+     * <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code>
+     * </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline void SetName(const Aws::String& value) { m_name = value; }
 
     /**
-     * <p>The name of the execution.</p>
+     * <p>The name of the execution.</p> <p>A name must <i>not</i> contain:</p> <ul>
+     * <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code>
+     * </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline void SetName(Aws::String&& value) { m_name = std::move(value); }
 
     /**
-     * <p>The name of the execution.</p>
+     * <p>The name of the execution.</p> <p>A name must <i>not</i> contain:</p> <ul>
+     * <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code>
+     * </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline void SetName(const char* value) { m_name.assign(value); }
 
     /**
-     * <p>The name of the execution.</p>
+     * <p>The name of the execution.</p> <p>A name must <i>not</i> contain:</p> <ul>
+     * <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code>
+     * </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline DescribeExecutionResult& WithName(const Aws::String& value) { SetName(value); return *this;}
 
     /**
-     * <p>The name of the execution.</p>
+     * <p>The name of the execution.</p> <p>A name must <i>not</i> contain:</p> <ul>
+     * <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code>
+     * </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline DescribeExecutionResult& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
-     * <p>The name of the execution.</p>
+     * <p>The name of the execution.</p> <p>A name must <i>not</i> contain:</p> <ul>
+     * <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code>
+     * </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline DescribeExecutionResult& WithName(const char* value) { SetName(value); return *this;}
 
@@ -179,27 +214,27 @@ namespace Model
 
 
     /**
-     * <p>The date the execution was started.</p>
+     * <p>The date the execution is started.</p>
      */
     inline const Aws::Utils::DateTime& GetStartDate() const{ return m_startDate; }
 
     /**
-     * <p>The date the execution was started.</p>
+     * <p>The date the execution is started.</p>
      */
     inline void SetStartDate(const Aws::Utils::DateTime& value) { m_startDate = value; }
 
     /**
-     * <p>The date the execution was started.</p>
+     * <p>The date the execution is started.</p>
      */
     inline void SetStartDate(Aws::Utils::DateTime&& value) { m_startDate = std::move(value); }
 
     /**
-     * <p>The date the execution was started.</p>
+     * <p>The date the execution is started.</p>
      */
     inline DescribeExecutionResult& WithStartDate(const Aws::Utils::DateTime& value) { SetStartDate(value); return *this;}
 
     /**
-     * <p>The date the execution was started.</p>
+     * <p>The date the execution is started.</p>
      */
     inline DescribeExecutionResult& WithStartDate(Aws::Utils::DateTime&& value) { SetStartDate(std::move(value)); return *this;}
 
@@ -231,73 +266,87 @@ namespace Model
 
 
     /**
-     * <p>The JSON input data of the execution.</p>
+     * <p>The string that contains the JSON input data of the execution.</p>
      */
     inline const Aws::String& GetInput() const{ return m_input; }
 
     /**
-     * <p>The JSON input data of the execution.</p>
+     * <p>The string that contains the JSON input data of the execution.</p>
      */
     inline void SetInput(const Aws::String& value) { m_input = value; }
 
     /**
-     * <p>The JSON input data of the execution.</p>
+     * <p>The string that contains the JSON input data of the execution.</p>
      */
     inline void SetInput(Aws::String&& value) { m_input = std::move(value); }
 
     /**
-     * <p>The JSON input data of the execution.</p>
+     * <p>The string that contains the JSON input data of the execution.</p>
      */
     inline void SetInput(const char* value) { m_input.assign(value); }
 
     /**
-     * <p>The JSON input data of the execution.</p>
+     * <p>The string that contains the JSON input data of the execution.</p>
      */
     inline DescribeExecutionResult& WithInput(const Aws::String& value) { SetInput(value); return *this;}
 
     /**
-     * <p>The JSON input data of the execution.</p>
+     * <p>The string that contains the JSON input data of the execution.</p>
      */
     inline DescribeExecutionResult& WithInput(Aws::String&& value) { SetInput(std::move(value)); return *this;}
 
     /**
-     * <p>The JSON input data of the execution.</p>
+     * <p>The string that contains the JSON input data of the execution.</p>
      */
     inline DescribeExecutionResult& WithInput(const char* value) { SetInput(value); return *this;}
 
 
     /**
-     * <p>The JSON output data of the execution.</p>
+     * <p>The JSON output data of the execution.</p> <note> <p>This field is set only
+     * if the execution succeeds. If the execution fails, this field is null.</p>
+     * </note>
      */
     inline const Aws::String& GetOutput() const{ return m_output; }
 
     /**
-     * <p>The JSON output data of the execution.</p>
+     * <p>The JSON output data of the execution.</p> <note> <p>This field is set only
+     * if the execution succeeds. If the execution fails, this field is null.</p>
+     * </note>
      */
     inline void SetOutput(const Aws::String& value) { m_output = value; }
 
     /**
-     * <p>The JSON output data of the execution.</p>
+     * <p>The JSON output data of the execution.</p> <note> <p>This field is set only
+     * if the execution succeeds. If the execution fails, this field is null.</p>
+     * </note>
      */
     inline void SetOutput(Aws::String&& value) { m_output = std::move(value); }
 
     /**
-     * <p>The JSON output data of the execution.</p>
+     * <p>The JSON output data of the execution.</p> <note> <p>This field is set only
+     * if the execution succeeds. If the execution fails, this field is null.</p>
+     * </note>
      */
     inline void SetOutput(const char* value) { m_output.assign(value); }
 
     /**
-     * <p>The JSON output data of the execution.</p>
+     * <p>The JSON output data of the execution.</p> <note> <p>This field is set only
+     * if the execution succeeds. If the execution fails, this field is null.</p>
+     * </note>
      */
     inline DescribeExecutionResult& WithOutput(const Aws::String& value) { SetOutput(value); return *this;}
 
     /**
-     * <p>The JSON output data of the execution.</p>
+     * <p>The JSON output data of the execution.</p> <note> <p>This field is set only
+     * if the execution succeeds. If the execution fails, this field is null.</p>
+     * </note>
      */
     inline DescribeExecutionResult& WithOutput(Aws::String&& value) { SetOutput(std::move(value)); return *this;}
 
     /**
-     * <p>The JSON output data of the execution.</p>
+     * <p>The JSON output data of the execution.</p> <note> <p>This field is set only
+     * if the execution succeeds. If the execution fails, this field is null.</p>
+     * </note>
      */
     inline DescribeExecutionResult& WithOutput(const char* value) { SetOutput(value); return *this;}
 

@@ -23,6 +23,9 @@
 #include <aws/ec2/model/Placement.h>
 #include <aws/ec2/model/IamInstanceProfileSpecification.h>
 #include <aws/ec2/model/ShutdownBehavior.h>
+#include <aws/ec2/model/LaunchTemplateSpecification.h>
+#include <aws/ec2/model/InstanceMarketOptionsRequest.h>
+#include <aws/ec2/model/CreditSpecificationRequest.h>
 #include <aws/ec2/model/BlockDeviceMapping.h>
 #include <aws/ec2/model/InstanceIpv6Address.h>
 #include <aws/ec2/model/InstanceNetworkInterfaceSpecification.h>
@@ -61,72 +64,58 @@ namespace Model
   public:
 
     /**
-     * <p>The block device mapping.</p> <important> <p>Supplying both a snapshot ID and
-     * an encryption value as arguments for block-device mapping results in an error.
-     * This is because only blank volumes can be encrypted on start, and these are not
-     * created from a snapshot. If a snapshot is the basis for the volume, it contains
-     * data by definition and its encryption status cannot be changed using this
-     * action.</p> </important>
+     * <p>One or more block device mapping entries. You can't specify both a snapshot
+     * ID and an encryption value. This is because only blank volumes can be encrypted
+     * on creation. If a snapshot is the basis for a volume, it is not blank and its
+     * encryption status is used for the volume encryption status.</p>
      */
     inline const Aws::Vector<BlockDeviceMapping>& GetBlockDeviceMappings() const{ return m_blockDeviceMappings; }
 
     /**
-     * <p>The block device mapping.</p> <important> <p>Supplying both a snapshot ID and
-     * an encryption value as arguments for block-device mapping results in an error.
-     * This is because only blank volumes can be encrypted on start, and these are not
-     * created from a snapshot. If a snapshot is the basis for the volume, it contains
-     * data by definition and its encryption status cannot be changed using this
-     * action.</p> </important>
+     * <p>One or more block device mapping entries. You can't specify both a snapshot
+     * ID and an encryption value. This is because only blank volumes can be encrypted
+     * on creation. If a snapshot is the basis for a volume, it is not blank and its
+     * encryption status is used for the volume encryption status.</p>
      */
     inline void SetBlockDeviceMappings(const Aws::Vector<BlockDeviceMapping>& value) { m_blockDeviceMappingsHasBeenSet = true; m_blockDeviceMappings = value; }
 
     /**
-     * <p>The block device mapping.</p> <important> <p>Supplying both a snapshot ID and
-     * an encryption value as arguments for block-device mapping results in an error.
-     * This is because only blank volumes can be encrypted on start, and these are not
-     * created from a snapshot. If a snapshot is the basis for the volume, it contains
-     * data by definition and its encryption status cannot be changed using this
-     * action.</p> </important>
+     * <p>One or more block device mapping entries. You can't specify both a snapshot
+     * ID and an encryption value. This is because only blank volumes can be encrypted
+     * on creation. If a snapshot is the basis for a volume, it is not blank and its
+     * encryption status is used for the volume encryption status.</p>
      */
     inline void SetBlockDeviceMappings(Aws::Vector<BlockDeviceMapping>&& value) { m_blockDeviceMappingsHasBeenSet = true; m_blockDeviceMappings = std::move(value); }
 
     /**
-     * <p>The block device mapping.</p> <important> <p>Supplying both a snapshot ID and
-     * an encryption value as arguments for block-device mapping results in an error.
-     * This is because only blank volumes can be encrypted on start, and these are not
-     * created from a snapshot. If a snapshot is the basis for the volume, it contains
-     * data by definition and its encryption status cannot be changed using this
-     * action.</p> </important>
+     * <p>One or more block device mapping entries. You can't specify both a snapshot
+     * ID and an encryption value. This is because only blank volumes can be encrypted
+     * on creation. If a snapshot is the basis for a volume, it is not blank and its
+     * encryption status is used for the volume encryption status.</p>
      */
     inline RunInstancesRequest& WithBlockDeviceMappings(const Aws::Vector<BlockDeviceMapping>& value) { SetBlockDeviceMappings(value); return *this;}
 
     /**
-     * <p>The block device mapping.</p> <important> <p>Supplying both a snapshot ID and
-     * an encryption value as arguments for block-device mapping results in an error.
-     * This is because only blank volumes can be encrypted on start, and these are not
-     * created from a snapshot. If a snapshot is the basis for the volume, it contains
-     * data by definition and its encryption status cannot be changed using this
-     * action.</p> </important>
+     * <p>One or more block device mapping entries. You can't specify both a snapshot
+     * ID and an encryption value. This is because only blank volumes can be encrypted
+     * on creation. If a snapshot is the basis for a volume, it is not blank and its
+     * encryption status is used for the volume encryption status.</p>
      */
     inline RunInstancesRequest& WithBlockDeviceMappings(Aws::Vector<BlockDeviceMapping>&& value) { SetBlockDeviceMappings(std::move(value)); return *this;}
 
     /**
-     * <p>The block device mapping.</p> <important> <p>Supplying both a snapshot ID and
-     * an encryption value as arguments for block-device mapping results in an error.
-     * This is because only blank volumes can be encrypted on start, and these are not
-     * created from a snapshot. If a snapshot is the basis for the volume, it contains
-     * data by definition and its encryption status cannot be changed using this
-     * action.</p> </important>
+     * <p>One or more block device mapping entries. You can't specify both a snapshot
+     * ID and an encryption value. This is because only blank volumes can be encrypted
+     * on creation. If a snapshot is the basis for a volume, it is not blank and its
+     * encryption status is used for the volume encryption status.</p>
      */
     inline RunInstancesRequest& AddBlockDeviceMappings(const BlockDeviceMapping& value) { m_blockDeviceMappingsHasBeenSet = true; m_blockDeviceMappings.push_back(value); return *this; }
 
     /**
-     * <p>The block device mapping.</p> <important> <p>Supplying both a snapshot ID and
-     * an encryption value as arguments for block-device mapping results in an error.
-     * This is because only blank volumes can be encrypted on start, and these are not
-     * created from a snapshot. If a snapshot is the basis for the volume, it contains
-     * data by definition and its encryption status cannot be changed using this
-     * action.</p> </important>
+     * <p>One or more block device mapping entries. You can't specify both a snapshot
+     * ID and an encryption value. This is because only blank volumes can be encrypted
+     * on creation. If a snapshot is the basis for a volume, it is not blank and its
+     * encryption status is used for the volume encryption status.</p>
      */
     inline RunInstancesRequest& AddBlockDeviceMappings(BlockDeviceMapping&& value) { m_blockDeviceMappingsHasBeenSet = true; m_blockDeviceMappings.push_back(std::move(value)); return *this; }
 
@@ -1189,37 +1178,37 @@ namespace Model
 
 
     /**
-     * <p>An Elastic GPU to associate with the instance.</p>
+     * <p>An elastic GPU to associate with the instance.</p>
      */
     inline const Aws::Vector<ElasticGpuSpecification>& GetElasticGpuSpecification() const{ return m_elasticGpuSpecification; }
 
     /**
-     * <p>An Elastic GPU to associate with the instance.</p>
+     * <p>An elastic GPU to associate with the instance.</p>
      */
     inline void SetElasticGpuSpecification(const Aws::Vector<ElasticGpuSpecification>& value) { m_elasticGpuSpecificationHasBeenSet = true; m_elasticGpuSpecification = value; }
 
     /**
-     * <p>An Elastic GPU to associate with the instance.</p>
+     * <p>An elastic GPU to associate with the instance.</p>
      */
     inline void SetElasticGpuSpecification(Aws::Vector<ElasticGpuSpecification>&& value) { m_elasticGpuSpecificationHasBeenSet = true; m_elasticGpuSpecification = std::move(value); }
 
     /**
-     * <p>An Elastic GPU to associate with the instance.</p>
+     * <p>An elastic GPU to associate with the instance.</p>
      */
     inline RunInstancesRequest& WithElasticGpuSpecification(const Aws::Vector<ElasticGpuSpecification>& value) { SetElasticGpuSpecification(value); return *this;}
 
     /**
-     * <p>An Elastic GPU to associate with the instance.</p>
+     * <p>An elastic GPU to associate with the instance.</p>
      */
     inline RunInstancesRequest& WithElasticGpuSpecification(Aws::Vector<ElasticGpuSpecification>&& value) { SetElasticGpuSpecification(std::move(value)); return *this;}
 
     /**
-     * <p>An Elastic GPU to associate with the instance.</p>
+     * <p>An elastic GPU to associate with the instance.</p>
      */
     inline RunInstancesRequest& AddElasticGpuSpecification(const ElasticGpuSpecification& value) { m_elasticGpuSpecificationHasBeenSet = true; m_elasticGpuSpecification.push_back(value); return *this; }
 
     /**
-     * <p>An Elastic GPU to associate with the instance.</p>
+     * <p>An elastic GPU to associate with the instance.</p>
      */
     inline RunInstancesRequest& AddElasticGpuSpecification(ElasticGpuSpecification&& value) { m_elasticGpuSpecificationHasBeenSet = true; m_elasticGpuSpecification.push_back(std::move(value)); return *this; }
 
@@ -1272,6 +1261,124 @@ namespace Model
      * created during launch.</p>
      */
     inline RunInstancesRequest& AddTagSpecifications(TagSpecification&& value) { m_tagSpecificationsHasBeenSet = true; m_tagSpecifications.push_back(std::move(value)); return *this; }
+
+
+    /**
+     * <p>The launch template to use to launch the instances. Any parameters that you
+     * specify in <a>RunInstances</a> override the same parameters in the launch
+     * template.</p>
+     */
+    inline const LaunchTemplateSpecification& GetLaunchTemplate() const{ return m_launchTemplate; }
+
+    /**
+     * <p>The launch template to use to launch the instances. Any parameters that you
+     * specify in <a>RunInstances</a> override the same parameters in the launch
+     * template.</p>
+     */
+    inline void SetLaunchTemplate(const LaunchTemplateSpecification& value) { m_launchTemplateHasBeenSet = true; m_launchTemplate = value; }
+
+    /**
+     * <p>The launch template to use to launch the instances. Any parameters that you
+     * specify in <a>RunInstances</a> override the same parameters in the launch
+     * template.</p>
+     */
+    inline void SetLaunchTemplate(LaunchTemplateSpecification&& value) { m_launchTemplateHasBeenSet = true; m_launchTemplate = std::move(value); }
+
+    /**
+     * <p>The launch template to use to launch the instances. Any parameters that you
+     * specify in <a>RunInstances</a> override the same parameters in the launch
+     * template.</p>
+     */
+    inline RunInstancesRequest& WithLaunchTemplate(const LaunchTemplateSpecification& value) { SetLaunchTemplate(value); return *this;}
+
+    /**
+     * <p>The launch template to use to launch the instances. Any parameters that you
+     * specify in <a>RunInstances</a> override the same parameters in the launch
+     * template.</p>
+     */
+    inline RunInstancesRequest& WithLaunchTemplate(LaunchTemplateSpecification&& value) { SetLaunchTemplate(std::move(value)); return *this;}
+
+
+    /**
+     * <p>The market (purchasing) option for the instances.</p>
+     */
+    inline const InstanceMarketOptionsRequest& GetInstanceMarketOptions() const{ return m_instanceMarketOptions; }
+
+    /**
+     * <p>The market (purchasing) option for the instances.</p>
+     */
+    inline void SetInstanceMarketOptions(const InstanceMarketOptionsRequest& value) { m_instanceMarketOptionsHasBeenSet = true; m_instanceMarketOptions = value; }
+
+    /**
+     * <p>The market (purchasing) option for the instances.</p>
+     */
+    inline void SetInstanceMarketOptions(InstanceMarketOptionsRequest&& value) { m_instanceMarketOptionsHasBeenSet = true; m_instanceMarketOptions = std::move(value); }
+
+    /**
+     * <p>The market (purchasing) option for the instances.</p>
+     */
+    inline RunInstancesRequest& WithInstanceMarketOptions(const InstanceMarketOptionsRequest& value) { SetInstanceMarketOptions(value); return *this;}
+
+    /**
+     * <p>The market (purchasing) option for the instances.</p>
+     */
+    inline RunInstancesRequest& WithInstanceMarketOptions(InstanceMarketOptionsRequest&& value) { SetInstanceMarketOptions(std::move(value)); return *this;}
+
+
+    /**
+     * <p>The credit option for CPU usage of the instance. Valid values are
+     * <code>standard</code> and <code>unlimited</code>. To change this attribute after
+     * launch, use <a>ModifyInstanceCreditSpecification</a>. For more information, see
+     * <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/t2-instances.html">T2
+     * Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+     * <p>Default: <code>standard</code> </p>
+     */
+    inline const CreditSpecificationRequest& GetCreditSpecification() const{ return m_creditSpecification; }
+
+    /**
+     * <p>The credit option for CPU usage of the instance. Valid values are
+     * <code>standard</code> and <code>unlimited</code>. To change this attribute after
+     * launch, use <a>ModifyInstanceCreditSpecification</a>. For more information, see
+     * <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/t2-instances.html">T2
+     * Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+     * <p>Default: <code>standard</code> </p>
+     */
+    inline void SetCreditSpecification(const CreditSpecificationRequest& value) { m_creditSpecificationHasBeenSet = true; m_creditSpecification = value; }
+
+    /**
+     * <p>The credit option for CPU usage of the instance. Valid values are
+     * <code>standard</code> and <code>unlimited</code>. To change this attribute after
+     * launch, use <a>ModifyInstanceCreditSpecification</a>. For more information, see
+     * <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/t2-instances.html">T2
+     * Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+     * <p>Default: <code>standard</code> </p>
+     */
+    inline void SetCreditSpecification(CreditSpecificationRequest&& value) { m_creditSpecificationHasBeenSet = true; m_creditSpecification = std::move(value); }
+
+    /**
+     * <p>The credit option for CPU usage of the instance. Valid values are
+     * <code>standard</code> and <code>unlimited</code>. To change this attribute after
+     * launch, use <a>ModifyInstanceCreditSpecification</a>. For more information, see
+     * <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/t2-instances.html">T2
+     * Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+     * <p>Default: <code>standard</code> </p>
+     */
+    inline RunInstancesRequest& WithCreditSpecification(const CreditSpecificationRequest& value) { SetCreditSpecification(value); return *this;}
+
+    /**
+     * <p>The credit option for CPU usage of the instance. Valid values are
+     * <code>standard</code> and <code>unlimited</code>. To change this attribute after
+     * launch, use <a>ModifyInstanceCreditSpecification</a>. For more information, see
+     * <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/t2-instances.html">T2
+     * Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+     * <p>Default: <code>standard</code> </p>
+     */
+    inline RunInstancesRequest& WithCreditSpecification(CreditSpecificationRequest&& value) { SetCreditSpecification(std::move(value)); return *this;}
 
   private:
 
@@ -1355,6 +1462,15 @@ namespace Model
 
     Aws::Vector<TagSpecification> m_tagSpecifications;
     bool m_tagSpecificationsHasBeenSet;
+
+    LaunchTemplateSpecification m_launchTemplate;
+    bool m_launchTemplateHasBeenSet;
+
+    InstanceMarketOptionsRequest m_instanceMarketOptions;
+    bool m_instanceMarketOptionsHasBeenSet;
+
+    CreditSpecificationRequest m_creditSpecification;
+    bool m_creditSpecificationHasBeenSet;
   };
 
 } // namespace Model

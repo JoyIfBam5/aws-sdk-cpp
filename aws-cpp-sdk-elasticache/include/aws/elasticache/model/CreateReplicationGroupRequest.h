@@ -154,8 +154,8 @@ namespace Model
 
 
     /**
-     * <p>The identifier of the cache cluster that serves as the primary for this
-     * replication group. This cache cluster must already exist and have a status of
+     * <p>The identifier of the cluster that serves as the primary for this replication
+     * group. This cluster must already exist and have a status of
      * <code>available</code>.</p> <p>This parameter is not required if
      * <code>NumCacheClusters</code>, <code>NumNodeGroups</code>, or
      * <code>ReplicasPerNodeGroup</code> is specified.</p>
@@ -163,8 +163,8 @@ namespace Model
     inline const Aws::String& GetPrimaryClusterId() const{ return m_primaryClusterId; }
 
     /**
-     * <p>The identifier of the cache cluster that serves as the primary for this
-     * replication group. This cache cluster must already exist and have a status of
+     * <p>The identifier of the cluster that serves as the primary for this replication
+     * group. This cluster must already exist and have a status of
      * <code>available</code>.</p> <p>This parameter is not required if
      * <code>NumCacheClusters</code>, <code>NumNodeGroups</code>, or
      * <code>ReplicasPerNodeGroup</code> is specified.</p>
@@ -172,8 +172,8 @@ namespace Model
     inline void SetPrimaryClusterId(const Aws::String& value) { m_primaryClusterIdHasBeenSet = true; m_primaryClusterId = value; }
 
     /**
-     * <p>The identifier of the cache cluster that serves as the primary for this
-     * replication group. This cache cluster must already exist and have a status of
+     * <p>The identifier of the cluster that serves as the primary for this replication
+     * group. This cluster must already exist and have a status of
      * <code>available</code>.</p> <p>This parameter is not required if
      * <code>NumCacheClusters</code>, <code>NumNodeGroups</code>, or
      * <code>ReplicasPerNodeGroup</code> is specified.</p>
@@ -181,8 +181,8 @@ namespace Model
     inline void SetPrimaryClusterId(Aws::String&& value) { m_primaryClusterIdHasBeenSet = true; m_primaryClusterId = std::move(value); }
 
     /**
-     * <p>The identifier of the cache cluster that serves as the primary for this
-     * replication group. This cache cluster must already exist and have a status of
+     * <p>The identifier of the cluster that serves as the primary for this replication
+     * group. This cluster must already exist and have a status of
      * <code>available</code>.</p> <p>This parameter is not required if
      * <code>NumCacheClusters</code>, <code>NumNodeGroups</code>, or
      * <code>ReplicasPerNodeGroup</code> is specified.</p>
@@ -190,8 +190,8 @@ namespace Model
     inline void SetPrimaryClusterId(const char* value) { m_primaryClusterIdHasBeenSet = true; m_primaryClusterId.assign(value); }
 
     /**
-     * <p>The identifier of the cache cluster that serves as the primary for this
-     * replication group. This cache cluster must already exist and have a status of
+     * <p>The identifier of the cluster that serves as the primary for this replication
+     * group. This cluster must already exist and have a status of
      * <code>available</code>.</p> <p>This parameter is not required if
      * <code>NumCacheClusters</code>, <code>NumNodeGroups</code>, or
      * <code>ReplicasPerNodeGroup</code> is specified.</p>
@@ -199,8 +199,8 @@ namespace Model
     inline CreateReplicationGroupRequest& WithPrimaryClusterId(const Aws::String& value) { SetPrimaryClusterId(value); return *this;}
 
     /**
-     * <p>The identifier of the cache cluster that serves as the primary for this
-     * replication group. This cache cluster must already exist and have a status of
+     * <p>The identifier of the cluster that serves as the primary for this replication
+     * group. This cluster must already exist and have a status of
      * <code>available</code>.</p> <p>This parameter is not required if
      * <code>NumCacheClusters</code>, <code>NumNodeGroups</code>, or
      * <code>ReplicasPerNodeGroup</code> is specified.</p>
@@ -208,8 +208,8 @@ namespace Model
     inline CreateReplicationGroupRequest& WithPrimaryClusterId(Aws::String&& value) { SetPrimaryClusterId(std::move(value)); return *this;}
 
     /**
-     * <p>The identifier of the cache cluster that serves as the primary for this
-     * replication group. This cache cluster must already exist and have a status of
+     * <p>The identifier of the cluster that serves as the primary for this replication
+     * group. This cluster must already exist and have a status of
      * <code>available</code>.</p> <p>This parameter is not required if
      * <code>NumCacheClusters</code>, <code>NumNodeGroups</code>, or
      * <code>ReplicasPerNodeGroup</code> is specified.</p>
@@ -223,10 +223,10 @@ namespace Model
      * enabled for this replication group. If <code>false</code>, Multi-AZ is disabled
      * for this replication group.</p> <p> <code>AutomaticFailoverEnabled</code> must
      * be enabled for Redis (cluster mode enabled) replication groups.</p> <p>Default:
-     * false</p> <note> <p>ElastiCache Multi-AZ replication groups is not supported
-     * on:</p> <ul> <li> <p>Redis versions earlier than 2.8.6.</p> </li> <li> <p>Redis
-     * (cluster mode disabled): T1 and T2 node types.</p> <p>Redis (cluster mode
-     * enabled): T2 node types.</p> </li> </ul> </note>
+     * false</p> <p>Amazon ElastiCache for Redis does not support Multi-AZ with
+     * automatic failover on:</p> <ul> <li> <p>Redis versions earlier than 2.8.6.</p>
+     * </li> <li> <p>Redis (cluster mode disabled): T1 and T2 cache node types.</p>
+     * </li> <li> <p>Redis (cluster mode enabled): T1 node types.</p> </li> </ul>
      */
     inline bool GetAutomaticFailoverEnabled() const{ return m_automaticFailoverEnabled; }
 
@@ -236,10 +236,10 @@ namespace Model
      * enabled for this replication group. If <code>false</code>, Multi-AZ is disabled
      * for this replication group.</p> <p> <code>AutomaticFailoverEnabled</code> must
      * be enabled for Redis (cluster mode enabled) replication groups.</p> <p>Default:
-     * false</p> <note> <p>ElastiCache Multi-AZ replication groups is not supported
-     * on:</p> <ul> <li> <p>Redis versions earlier than 2.8.6.</p> </li> <li> <p>Redis
-     * (cluster mode disabled): T1 and T2 node types.</p> <p>Redis (cluster mode
-     * enabled): T2 node types.</p> </li> </ul> </note>
+     * false</p> <p>Amazon ElastiCache for Redis does not support Multi-AZ with
+     * automatic failover on:</p> <ul> <li> <p>Redis versions earlier than 2.8.6.</p>
+     * </li> <li> <p>Redis (cluster mode disabled): T1 and T2 cache node types.</p>
+     * </li> <li> <p>Redis (cluster mode enabled): T1 node types.</p> </li> </ul>
      */
     inline void SetAutomaticFailoverEnabled(bool value) { m_automaticFailoverEnabledHasBeenSet = true; m_automaticFailoverEnabled = value; }
 
@@ -249,10 +249,10 @@ namespace Model
      * enabled for this replication group. If <code>false</code>, Multi-AZ is disabled
      * for this replication group.</p> <p> <code>AutomaticFailoverEnabled</code> must
      * be enabled for Redis (cluster mode enabled) replication groups.</p> <p>Default:
-     * false</p> <note> <p>ElastiCache Multi-AZ replication groups is not supported
-     * on:</p> <ul> <li> <p>Redis versions earlier than 2.8.6.</p> </li> <li> <p>Redis
-     * (cluster mode disabled): T1 and T2 node types.</p> <p>Redis (cluster mode
-     * enabled): T2 node types.</p> </li> </ul> </note>
+     * false</p> <p>Amazon ElastiCache for Redis does not support Multi-AZ with
+     * automatic failover on:</p> <ul> <li> <p>Redis versions earlier than 2.8.6.</p>
+     * </li> <li> <p>Redis (cluster mode disabled): T1 and T2 cache node types.</p>
+     * </li> <li> <p>Redis (cluster mode enabled): T1 node types.</p> </li> </ul>
      */
     inline CreateReplicationGroupRequest& WithAutomaticFailoverEnabled(bool value) { SetAutomaticFailoverEnabled(value); return *this;}
 
@@ -295,122 +295,114 @@ namespace Model
 
 
     /**
-     * <p>A list of EC2 Availability Zones in which the replication group's cache
-     * clusters are created. The order of the Availability Zones in the list is the
-     * order in which clusters are allocated. The primary cluster is created in the
-     * first AZ in the list.</p> <p>This parameter is not used if there is more than
-     * one node group (shard). You should use <code>NodeGroupConfiguration</code>
-     * instead.</p> <note> <p>If you are creating your replication group in an Amazon
-     * VPC (recommended), you can only locate cache clusters in Availability Zones
-     * associated with the subnets in the selected subnet group.</p> <p>The number of
-     * Availability Zones listed must equal the value of
-     * <code>NumCacheClusters</code>.</p> </note> <p>Default: system chosen
-     * Availability Zones.</p>
+     * <p>A list of EC2 Availability Zones in which the replication group's clusters
+     * are created. The order of the Availability Zones in the list is the order in
+     * which clusters are allocated. The primary cluster is created in the first AZ in
+     * the list.</p> <p>This parameter is not used if there is more than one node group
+     * (shard). You should use <code>NodeGroupConfiguration</code> instead.</p> <note>
+     * <p>If you are creating your replication group in an Amazon VPC (recommended),
+     * you can only locate clusters in Availability Zones associated with the subnets
+     * in the selected subnet group.</p> <p>The number of Availability Zones listed
+     * must equal the value of <code>NumCacheClusters</code>.</p> </note> <p>Default:
+     * system chosen Availability Zones.</p>
      */
     inline const Aws::Vector<Aws::String>& GetPreferredCacheClusterAZs() const{ return m_preferredCacheClusterAZs; }
 
     /**
-     * <p>A list of EC2 Availability Zones in which the replication group's cache
-     * clusters are created. The order of the Availability Zones in the list is the
-     * order in which clusters are allocated. The primary cluster is created in the
-     * first AZ in the list.</p> <p>This parameter is not used if there is more than
-     * one node group (shard). You should use <code>NodeGroupConfiguration</code>
-     * instead.</p> <note> <p>If you are creating your replication group in an Amazon
-     * VPC (recommended), you can only locate cache clusters in Availability Zones
-     * associated with the subnets in the selected subnet group.</p> <p>The number of
-     * Availability Zones listed must equal the value of
-     * <code>NumCacheClusters</code>.</p> </note> <p>Default: system chosen
-     * Availability Zones.</p>
+     * <p>A list of EC2 Availability Zones in which the replication group's clusters
+     * are created. The order of the Availability Zones in the list is the order in
+     * which clusters are allocated. The primary cluster is created in the first AZ in
+     * the list.</p> <p>This parameter is not used if there is more than one node group
+     * (shard). You should use <code>NodeGroupConfiguration</code> instead.</p> <note>
+     * <p>If you are creating your replication group in an Amazon VPC (recommended),
+     * you can only locate clusters in Availability Zones associated with the subnets
+     * in the selected subnet group.</p> <p>The number of Availability Zones listed
+     * must equal the value of <code>NumCacheClusters</code>.</p> </note> <p>Default:
+     * system chosen Availability Zones.</p>
      */
     inline void SetPreferredCacheClusterAZs(const Aws::Vector<Aws::String>& value) { m_preferredCacheClusterAZsHasBeenSet = true; m_preferredCacheClusterAZs = value; }
 
     /**
-     * <p>A list of EC2 Availability Zones in which the replication group's cache
-     * clusters are created. The order of the Availability Zones in the list is the
-     * order in which clusters are allocated. The primary cluster is created in the
-     * first AZ in the list.</p> <p>This parameter is not used if there is more than
-     * one node group (shard). You should use <code>NodeGroupConfiguration</code>
-     * instead.</p> <note> <p>If you are creating your replication group in an Amazon
-     * VPC (recommended), you can only locate cache clusters in Availability Zones
-     * associated with the subnets in the selected subnet group.</p> <p>The number of
-     * Availability Zones listed must equal the value of
-     * <code>NumCacheClusters</code>.</p> </note> <p>Default: system chosen
-     * Availability Zones.</p>
+     * <p>A list of EC2 Availability Zones in which the replication group's clusters
+     * are created. The order of the Availability Zones in the list is the order in
+     * which clusters are allocated. The primary cluster is created in the first AZ in
+     * the list.</p> <p>This parameter is not used if there is more than one node group
+     * (shard). You should use <code>NodeGroupConfiguration</code> instead.</p> <note>
+     * <p>If you are creating your replication group in an Amazon VPC (recommended),
+     * you can only locate clusters in Availability Zones associated with the subnets
+     * in the selected subnet group.</p> <p>The number of Availability Zones listed
+     * must equal the value of <code>NumCacheClusters</code>.</p> </note> <p>Default:
+     * system chosen Availability Zones.</p>
      */
     inline void SetPreferredCacheClusterAZs(Aws::Vector<Aws::String>&& value) { m_preferredCacheClusterAZsHasBeenSet = true; m_preferredCacheClusterAZs = std::move(value); }
 
     /**
-     * <p>A list of EC2 Availability Zones in which the replication group's cache
-     * clusters are created. The order of the Availability Zones in the list is the
-     * order in which clusters are allocated. The primary cluster is created in the
-     * first AZ in the list.</p> <p>This parameter is not used if there is more than
-     * one node group (shard). You should use <code>NodeGroupConfiguration</code>
-     * instead.</p> <note> <p>If you are creating your replication group in an Amazon
-     * VPC (recommended), you can only locate cache clusters in Availability Zones
-     * associated with the subnets in the selected subnet group.</p> <p>The number of
-     * Availability Zones listed must equal the value of
-     * <code>NumCacheClusters</code>.</p> </note> <p>Default: system chosen
-     * Availability Zones.</p>
+     * <p>A list of EC2 Availability Zones in which the replication group's clusters
+     * are created. The order of the Availability Zones in the list is the order in
+     * which clusters are allocated. The primary cluster is created in the first AZ in
+     * the list.</p> <p>This parameter is not used if there is more than one node group
+     * (shard). You should use <code>NodeGroupConfiguration</code> instead.</p> <note>
+     * <p>If you are creating your replication group in an Amazon VPC (recommended),
+     * you can only locate clusters in Availability Zones associated with the subnets
+     * in the selected subnet group.</p> <p>The number of Availability Zones listed
+     * must equal the value of <code>NumCacheClusters</code>.</p> </note> <p>Default:
+     * system chosen Availability Zones.</p>
      */
     inline CreateReplicationGroupRequest& WithPreferredCacheClusterAZs(const Aws::Vector<Aws::String>& value) { SetPreferredCacheClusterAZs(value); return *this;}
 
     /**
-     * <p>A list of EC2 Availability Zones in which the replication group's cache
-     * clusters are created. The order of the Availability Zones in the list is the
-     * order in which clusters are allocated. The primary cluster is created in the
-     * first AZ in the list.</p> <p>This parameter is not used if there is more than
-     * one node group (shard). You should use <code>NodeGroupConfiguration</code>
-     * instead.</p> <note> <p>If you are creating your replication group in an Amazon
-     * VPC (recommended), you can only locate cache clusters in Availability Zones
-     * associated with the subnets in the selected subnet group.</p> <p>The number of
-     * Availability Zones listed must equal the value of
-     * <code>NumCacheClusters</code>.</p> </note> <p>Default: system chosen
-     * Availability Zones.</p>
+     * <p>A list of EC2 Availability Zones in which the replication group's clusters
+     * are created. The order of the Availability Zones in the list is the order in
+     * which clusters are allocated. The primary cluster is created in the first AZ in
+     * the list.</p> <p>This parameter is not used if there is more than one node group
+     * (shard). You should use <code>NodeGroupConfiguration</code> instead.</p> <note>
+     * <p>If you are creating your replication group in an Amazon VPC (recommended),
+     * you can only locate clusters in Availability Zones associated with the subnets
+     * in the selected subnet group.</p> <p>The number of Availability Zones listed
+     * must equal the value of <code>NumCacheClusters</code>.</p> </note> <p>Default:
+     * system chosen Availability Zones.</p>
      */
     inline CreateReplicationGroupRequest& WithPreferredCacheClusterAZs(Aws::Vector<Aws::String>&& value) { SetPreferredCacheClusterAZs(std::move(value)); return *this;}
 
     /**
-     * <p>A list of EC2 Availability Zones in which the replication group's cache
-     * clusters are created. The order of the Availability Zones in the list is the
-     * order in which clusters are allocated. The primary cluster is created in the
-     * first AZ in the list.</p> <p>This parameter is not used if there is more than
-     * one node group (shard). You should use <code>NodeGroupConfiguration</code>
-     * instead.</p> <note> <p>If you are creating your replication group in an Amazon
-     * VPC (recommended), you can only locate cache clusters in Availability Zones
-     * associated with the subnets in the selected subnet group.</p> <p>The number of
-     * Availability Zones listed must equal the value of
-     * <code>NumCacheClusters</code>.</p> </note> <p>Default: system chosen
-     * Availability Zones.</p>
+     * <p>A list of EC2 Availability Zones in which the replication group's clusters
+     * are created. The order of the Availability Zones in the list is the order in
+     * which clusters are allocated. The primary cluster is created in the first AZ in
+     * the list.</p> <p>This parameter is not used if there is more than one node group
+     * (shard). You should use <code>NodeGroupConfiguration</code> instead.</p> <note>
+     * <p>If you are creating your replication group in an Amazon VPC (recommended),
+     * you can only locate clusters in Availability Zones associated with the subnets
+     * in the selected subnet group.</p> <p>The number of Availability Zones listed
+     * must equal the value of <code>NumCacheClusters</code>.</p> </note> <p>Default:
+     * system chosen Availability Zones.</p>
      */
     inline CreateReplicationGroupRequest& AddPreferredCacheClusterAZs(const Aws::String& value) { m_preferredCacheClusterAZsHasBeenSet = true; m_preferredCacheClusterAZs.push_back(value); return *this; }
 
     /**
-     * <p>A list of EC2 Availability Zones in which the replication group's cache
-     * clusters are created. The order of the Availability Zones in the list is the
-     * order in which clusters are allocated. The primary cluster is created in the
-     * first AZ in the list.</p> <p>This parameter is not used if there is more than
-     * one node group (shard). You should use <code>NodeGroupConfiguration</code>
-     * instead.</p> <note> <p>If you are creating your replication group in an Amazon
-     * VPC (recommended), you can only locate cache clusters in Availability Zones
-     * associated with the subnets in the selected subnet group.</p> <p>The number of
-     * Availability Zones listed must equal the value of
-     * <code>NumCacheClusters</code>.</p> </note> <p>Default: system chosen
-     * Availability Zones.</p>
+     * <p>A list of EC2 Availability Zones in which the replication group's clusters
+     * are created. The order of the Availability Zones in the list is the order in
+     * which clusters are allocated. The primary cluster is created in the first AZ in
+     * the list.</p> <p>This parameter is not used if there is more than one node group
+     * (shard). You should use <code>NodeGroupConfiguration</code> instead.</p> <note>
+     * <p>If you are creating your replication group in an Amazon VPC (recommended),
+     * you can only locate clusters in Availability Zones associated with the subnets
+     * in the selected subnet group.</p> <p>The number of Availability Zones listed
+     * must equal the value of <code>NumCacheClusters</code>.</p> </note> <p>Default:
+     * system chosen Availability Zones.</p>
      */
     inline CreateReplicationGroupRequest& AddPreferredCacheClusterAZs(Aws::String&& value) { m_preferredCacheClusterAZsHasBeenSet = true; m_preferredCacheClusterAZs.push_back(std::move(value)); return *this; }
 
     /**
-     * <p>A list of EC2 Availability Zones in which the replication group's cache
-     * clusters are created. The order of the Availability Zones in the list is the
-     * order in which clusters are allocated. The primary cluster is created in the
-     * first AZ in the list.</p> <p>This parameter is not used if there is more than
-     * one node group (shard). You should use <code>NodeGroupConfiguration</code>
-     * instead.</p> <note> <p>If you are creating your replication group in an Amazon
-     * VPC (recommended), you can only locate cache clusters in Availability Zones
-     * associated with the subnets in the selected subnet group.</p> <p>The number of
-     * Availability Zones listed must equal the value of
-     * <code>NumCacheClusters</code>.</p> </note> <p>Default: system chosen
-     * Availability Zones.</p>
+     * <p>A list of EC2 Availability Zones in which the replication group's clusters
+     * are created. The order of the Availability Zones in the list is the order in
+     * which clusters are allocated. The primary cluster is created in the first AZ in
+     * the list.</p> <p>This parameter is not used if there is more than one node group
+     * (shard). You should use <code>NodeGroupConfiguration</code> instead.</p> <note>
+     * <p>If you are creating your replication group in an Amazon VPC (recommended),
+     * you can only locate clusters in Availability Zones associated with the subnets
+     * in the selected subnet group.</p> <p>The number of Availability Zones listed
+     * must equal the value of <code>NumCacheClusters</code>.</p> </note> <p>Default:
+     * system chosen Availability Zones.</p>
      */
     inline CreateReplicationGroupRequest& AddPreferredCacheClusterAZs(const char* value) { m_preferredCacheClusterAZsHasBeenSet = true; m_preferredCacheClusterAZs.push_back(value); return *this; }
 
@@ -529,32 +521,37 @@ namespace Model
 
     /**
      * <p>The compute and memory capacity of the nodes in the node group (shard).</p>
-     * <p>Valid node types are as follows:</p> <ul> <li> <p>General purpose:</p> <ul>
-     * <li> <p>Current generation: <code>cache.t2.micro</code>,
-     * <code>cache.t2.small</code>, <code>cache.t2.medium</code>,
-     * <code>cache.m3.medium</code>, <code>cache.m3.large</code>,
-     * <code>cache.m3.xlarge</code>, <code>cache.m3.2xlarge</code>,
-     * <code>cache.m4.large</code>, <code>cache.m4.xlarge</code>,
+     * <p>The following node types are supported by ElastiCache. Generally speaking,
+     * the current generation types provide more memory and computational power at
+     * lower cost when compared to their equivalent previous generation
+     * counterparts.</p> <ul> <li> <p>General purpose:</p> <ul> <li> <p>Current
+     * generation: </p> <p> <b>T2 node types:</b> <code>cache.t2.micro</code>,
+     * <code>cache.t2.small</code>, <code>cache.t2.medium</code> </p> <p> <b>M3 node
+     * types:</b> <code>cache.m3.medium</code>, <code>cache.m3.large</code>,
+     * <code>cache.m3.xlarge</code>, <code>cache.m3.2xlarge</code> </p> <p> <b>M4 node
+     * types:</b> <code>cache.m4.large</code>, <code>cache.m4.xlarge</code>,
      * <code>cache.m4.2xlarge</code>, <code>cache.m4.4xlarge</code>,
-     * <code>cache.m4.10xlarge</code> </p> </li> <li> <p>Previous generation:
-     * <code>cache.t1.micro</code>, <code>cache.m1.small</code>,
-     * <code>cache.m1.medium</code>, <code>cache.m1.large</code>,
-     * <code>cache.m1.xlarge</code> </p> </li> </ul> </li> <li> <p>Compute optimized:
-     * <code>cache.c1.xlarge</code> </p> </li> <li> <p>Memory optimized:</p> <ul> <li>
-     * <p>Current generation: <code>cache.r3.large</code>,
+     * <code>cache.m4.10xlarge</code> </p> </li> <li> <p>Previous generation: (not
+     * recommended)</p> <p> <b>T1 node types:</b> <code>cache.t1.micro</code> </p> <p>
+     * <b>M1 node types:</b> <code>cache.m1.small</code>, <code>cache.m1.medium</code>,
+     * <code>cache.m1.large</code>, <code>cache.m1.xlarge</code> </p> </li> </ul> </li>
+     * <li> <p>Compute optimized:</p> <ul> <li> <p>Previous generation: (not
+     * recommended)</p> <p> <b>C1 node types:</b> <code>cache.c1.xlarge</code> </p>
+     * </li> </ul> </li> <li> <p>Memory optimized:</p> <ul> <li> <p>Current generation:
+     * </p> <p> <b>R3 node types:</b> <code>cache.r3.large</code>,
      * <code>cache.r3.xlarge</code>, <code>cache.r3.2xlarge</code>,
      * <code>cache.r3.4xlarge</code>, <code>cache.r3.8xlarge</code> </p> </li> <li>
-     * <p>Previous generation: <code>cache.m2.xlarge</code>,
-     * <code>cache.m2.2xlarge</code>, <code>cache.m2.4xlarge</code> </p> </li> </ul>
-     * </li> </ul> <p> <b>Notes:</b> </p> <ul> <li> <p>All T2 instances are created in
-     * an Amazon Virtual Private Cloud (Amazon VPC).</p> </li> <li> <p>Redis
-     * backup/restore is not supported for Redis (cluster mode disabled) T1 and T2
-     * instances. Backup/restore is supported on Redis (cluster mode enabled) T2
-     * instances.</p> </li> <li> <p>Redis Append-only files (AOF) functionality is not
-     * supported for T1 or T2 instances.</p> </li> </ul> <p>For a complete listing of
-     * node types and specifications, see <a
-     * href="http://aws.amazon.com/elasticache/details">Amazon ElastiCache Product
-     * Features and Details</a> and either <a
+     * <p>Previous generation: (not recommended)</p> <p> <b>M2 node types:</b>
+     * <code>cache.m2.xlarge</code>, <code>cache.m2.2xlarge</code>,
+     * <code>cache.m2.4xlarge</code> </p> </li> </ul> </li> </ul> <p> <b>Notes:</b>
+     * </p> <ul> <li> <p>All T2 instances are created in an Amazon Virtual Private
+     * Cloud (Amazon VPC).</p> </li> <li> <p>Redis (cluster mode disabled): Redis
+     * backup/restore is not supported on T1 and T2 instances. </p> </li> <li> <p>Redis
+     * (cluster mode enabled): Backup/restore is not supported on T1 instances.</p>
+     * </li> <li> <p>Redis Append-only files (AOF) functionality is not supported for
+     * T1 or T2 instances.</p> </li> </ul> <p>For a complete listing of node types and
+     * specifications, see <a href="http://aws.amazon.com/elasticache/details">Amazon
+     * ElastiCache Product Features and Details</a> and either <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#ParameterGroups.Memcached.NodeSpecific">Cache
      * Node Type-Specific Parameters for Memcached</a> or <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#ParameterGroups.Redis.NodeSpecific">Cache
@@ -564,32 +561,37 @@ namespace Model
 
     /**
      * <p>The compute and memory capacity of the nodes in the node group (shard).</p>
-     * <p>Valid node types are as follows:</p> <ul> <li> <p>General purpose:</p> <ul>
-     * <li> <p>Current generation: <code>cache.t2.micro</code>,
-     * <code>cache.t2.small</code>, <code>cache.t2.medium</code>,
-     * <code>cache.m3.medium</code>, <code>cache.m3.large</code>,
-     * <code>cache.m3.xlarge</code>, <code>cache.m3.2xlarge</code>,
-     * <code>cache.m4.large</code>, <code>cache.m4.xlarge</code>,
+     * <p>The following node types are supported by ElastiCache. Generally speaking,
+     * the current generation types provide more memory and computational power at
+     * lower cost when compared to their equivalent previous generation
+     * counterparts.</p> <ul> <li> <p>General purpose:</p> <ul> <li> <p>Current
+     * generation: </p> <p> <b>T2 node types:</b> <code>cache.t2.micro</code>,
+     * <code>cache.t2.small</code>, <code>cache.t2.medium</code> </p> <p> <b>M3 node
+     * types:</b> <code>cache.m3.medium</code>, <code>cache.m3.large</code>,
+     * <code>cache.m3.xlarge</code>, <code>cache.m3.2xlarge</code> </p> <p> <b>M4 node
+     * types:</b> <code>cache.m4.large</code>, <code>cache.m4.xlarge</code>,
      * <code>cache.m4.2xlarge</code>, <code>cache.m4.4xlarge</code>,
-     * <code>cache.m4.10xlarge</code> </p> </li> <li> <p>Previous generation:
-     * <code>cache.t1.micro</code>, <code>cache.m1.small</code>,
-     * <code>cache.m1.medium</code>, <code>cache.m1.large</code>,
-     * <code>cache.m1.xlarge</code> </p> </li> </ul> </li> <li> <p>Compute optimized:
-     * <code>cache.c1.xlarge</code> </p> </li> <li> <p>Memory optimized:</p> <ul> <li>
-     * <p>Current generation: <code>cache.r3.large</code>,
+     * <code>cache.m4.10xlarge</code> </p> </li> <li> <p>Previous generation: (not
+     * recommended)</p> <p> <b>T1 node types:</b> <code>cache.t1.micro</code> </p> <p>
+     * <b>M1 node types:</b> <code>cache.m1.small</code>, <code>cache.m1.medium</code>,
+     * <code>cache.m1.large</code>, <code>cache.m1.xlarge</code> </p> </li> </ul> </li>
+     * <li> <p>Compute optimized:</p> <ul> <li> <p>Previous generation: (not
+     * recommended)</p> <p> <b>C1 node types:</b> <code>cache.c1.xlarge</code> </p>
+     * </li> </ul> </li> <li> <p>Memory optimized:</p> <ul> <li> <p>Current generation:
+     * </p> <p> <b>R3 node types:</b> <code>cache.r3.large</code>,
      * <code>cache.r3.xlarge</code>, <code>cache.r3.2xlarge</code>,
      * <code>cache.r3.4xlarge</code>, <code>cache.r3.8xlarge</code> </p> </li> <li>
-     * <p>Previous generation: <code>cache.m2.xlarge</code>,
-     * <code>cache.m2.2xlarge</code>, <code>cache.m2.4xlarge</code> </p> </li> </ul>
-     * </li> </ul> <p> <b>Notes:</b> </p> <ul> <li> <p>All T2 instances are created in
-     * an Amazon Virtual Private Cloud (Amazon VPC).</p> </li> <li> <p>Redis
-     * backup/restore is not supported for Redis (cluster mode disabled) T1 and T2
-     * instances. Backup/restore is supported on Redis (cluster mode enabled) T2
-     * instances.</p> </li> <li> <p>Redis Append-only files (AOF) functionality is not
-     * supported for T1 or T2 instances.</p> </li> </ul> <p>For a complete listing of
-     * node types and specifications, see <a
-     * href="http://aws.amazon.com/elasticache/details">Amazon ElastiCache Product
-     * Features and Details</a> and either <a
+     * <p>Previous generation: (not recommended)</p> <p> <b>M2 node types:</b>
+     * <code>cache.m2.xlarge</code>, <code>cache.m2.2xlarge</code>,
+     * <code>cache.m2.4xlarge</code> </p> </li> </ul> </li> </ul> <p> <b>Notes:</b>
+     * </p> <ul> <li> <p>All T2 instances are created in an Amazon Virtual Private
+     * Cloud (Amazon VPC).</p> </li> <li> <p>Redis (cluster mode disabled): Redis
+     * backup/restore is not supported on T1 and T2 instances. </p> </li> <li> <p>Redis
+     * (cluster mode enabled): Backup/restore is not supported on T1 instances.</p>
+     * </li> <li> <p>Redis Append-only files (AOF) functionality is not supported for
+     * T1 or T2 instances.</p> </li> </ul> <p>For a complete listing of node types and
+     * specifications, see <a href="http://aws.amazon.com/elasticache/details">Amazon
+     * ElastiCache Product Features and Details</a> and either <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#ParameterGroups.Memcached.NodeSpecific">Cache
      * Node Type-Specific Parameters for Memcached</a> or <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#ParameterGroups.Redis.NodeSpecific">Cache
@@ -599,32 +601,37 @@ namespace Model
 
     /**
      * <p>The compute and memory capacity of the nodes in the node group (shard).</p>
-     * <p>Valid node types are as follows:</p> <ul> <li> <p>General purpose:</p> <ul>
-     * <li> <p>Current generation: <code>cache.t2.micro</code>,
-     * <code>cache.t2.small</code>, <code>cache.t2.medium</code>,
-     * <code>cache.m3.medium</code>, <code>cache.m3.large</code>,
-     * <code>cache.m3.xlarge</code>, <code>cache.m3.2xlarge</code>,
-     * <code>cache.m4.large</code>, <code>cache.m4.xlarge</code>,
+     * <p>The following node types are supported by ElastiCache. Generally speaking,
+     * the current generation types provide more memory and computational power at
+     * lower cost when compared to their equivalent previous generation
+     * counterparts.</p> <ul> <li> <p>General purpose:</p> <ul> <li> <p>Current
+     * generation: </p> <p> <b>T2 node types:</b> <code>cache.t2.micro</code>,
+     * <code>cache.t2.small</code>, <code>cache.t2.medium</code> </p> <p> <b>M3 node
+     * types:</b> <code>cache.m3.medium</code>, <code>cache.m3.large</code>,
+     * <code>cache.m3.xlarge</code>, <code>cache.m3.2xlarge</code> </p> <p> <b>M4 node
+     * types:</b> <code>cache.m4.large</code>, <code>cache.m4.xlarge</code>,
      * <code>cache.m4.2xlarge</code>, <code>cache.m4.4xlarge</code>,
-     * <code>cache.m4.10xlarge</code> </p> </li> <li> <p>Previous generation:
-     * <code>cache.t1.micro</code>, <code>cache.m1.small</code>,
-     * <code>cache.m1.medium</code>, <code>cache.m1.large</code>,
-     * <code>cache.m1.xlarge</code> </p> </li> </ul> </li> <li> <p>Compute optimized:
-     * <code>cache.c1.xlarge</code> </p> </li> <li> <p>Memory optimized:</p> <ul> <li>
-     * <p>Current generation: <code>cache.r3.large</code>,
+     * <code>cache.m4.10xlarge</code> </p> </li> <li> <p>Previous generation: (not
+     * recommended)</p> <p> <b>T1 node types:</b> <code>cache.t1.micro</code> </p> <p>
+     * <b>M1 node types:</b> <code>cache.m1.small</code>, <code>cache.m1.medium</code>,
+     * <code>cache.m1.large</code>, <code>cache.m1.xlarge</code> </p> </li> </ul> </li>
+     * <li> <p>Compute optimized:</p> <ul> <li> <p>Previous generation: (not
+     * recommended)</p> <p> <b>C1 node types:</b> <code>cache.c1.xlarge</code> </p>
+     * </li> </ul> </li> <li> <p>Memory optimized:</p> <ul> <li> <p>Current generation:
+     * </p> <p> <b>R3 node types:</b> <code>cache.r3.large</code>,
      * <code>cache.r3.xlarge</code>, <code>cache.r3.2xlarge</code>,
      * <code>cache.r3.4xlarge</code>, <code>cache.r3.8xlarge</code> </p> </li> <li>
-     * <p>Previous generation: <code>cache.m2.xlarge</code>,
-     * <code>cache.m2.2xlarge</code>, <code>cache.m2.4xlarge</code> </p> </li> </ul>
-     * </li> </ul> <p> <b>Notes:</b> </p> <ul> <li> <p>All T2 instances are created in
-     * an Amazon Virtual Private Cloud (Amazon VPC).</p> </li> <li> <p>Redis
-     * backup/restore is not supported for Redis (cluster mode disabled) T1 and T2
-     * instances. Backup/restore is supported on Redis (cluster mode enabled) T2
-     * instances.</p> </li> <li> <p>Redis Append-only files (AOF) functionality is not
-     * supported for T1 or T2 instances.</p> </li> </ul> <p>For a complete listing of
-     * node types and specifications, see <a
-     * href="http://aws.amazon.com/elasticache/details">Amazon ElastiCache Product
-     * Features and Details</a> and either <a
+     * <p>Previous generation: (not recommended)</p> <p> <b>M2 node types:</b>
+     * <code>cache.m2.xlarge</code>, <code>cache.m2.2xlarge</code>,
+     * <code>cache.m2.4xlarge</code> </p> </li> </ul> </li> </ul> <p> <b>Notes:</b>
+     * </p> <ul> <li> <p>All T2 instances are created in an Amazon Virtual Private
+     * Cloud (Amazon VPC).</p> </li> <li> <p>Redis (cluster mode disabled): Redis
+     * backup/restore is not supported on T1 and T2 instances. </p> </li> <li> <p>Redis
+     * (cluster mode enabled): Backup/restore is not supported on T1 instances.</p>
+     * </li> <li> <p>Redis Append-only files (AOF) functionality is not supported for
+     * T1 or T2 instances.</p> </li> </ul> <p>For a complete listing of node types and
+     * specifications, see <a href="http://aws.amazon.com/elasticache/details">Amazon
+     * ElastiCache Product Features and Details</a> and either <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#ParameterGroups.Memcached.NodeSpecific">Cache
      * Node Type-Specific Parameters for Memcached</a> or <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#ParameterGroups.Redis.NodeSpecific">Cache
@@ -634,32 +641,37 @@ namespace Model
 
     /**
      * <p>The compute and memory capacity of the nodes in the node group (shard).</p>
-     * <p>Valid node types are as follows:</p> <ul> <li> <p>General purpose:</p> <ul>
-     * <li> <p>Current generation: <code>cache.t2.micro</code>,
-     * <code>cache.t2.small</code>, <code>cache.t2.medium</code>,
-     * <code>cache.m3.medium</code>, <code>cache.m3.large</code>,
-     * <code>cache.m3.xlarge</code>, <code>cache.m3.2xlarge</code>,
-     * <code>cache.m4.large</code>, <code>cache.m4.xlarge</code>,
+     * <p>The following node types are supported by ElastiCache. Generally speaking,
+     * the current generation types provide more memory and computational power at
+     * lower cost when compared to their equivalent previous generation
+     * counterparts.</p> <ul> <li> <p>General purpose:</p> <ul> <li> <p>Current
+     * generation: </p> <p> <b>T2 node types:</b> <code>cache.t2.micro</code>,
+     * <code>cache.t2.small</code>, <code>cache.t2.medium</code> </p> <p> <b>M3 node
+     * types:</b> <code>cache.m3.medium</code>, <code>cache.m3.large</code>,
+     * <code>cache.m3.xlarge</code>, <code>cache.m3.2xlarge</code> </p> <p> <b>M4 node
+     * types:</b> <code>cache.m4.large</code>, <code>cache.m4.xlarge</code>,
      * <code>cache.m4.2xlarge</code>, <code>cache.m4.4xlarge</code>,
-     * <code>cache.m4.10xlarge</code> </p> </li> <li> <p>Previous generation:
-     * <code>cache.t1.micro</code>, <code>cache.m1.small</code>,
-     * <code>cache.m1.medium</code>, <code>cache.m1.large</code>,
-     * <code>cache.m1.xlarge</code> </p> </li> </ul> </li> <li> <p>Compute optimized:
-     * <code>cache.c1.xlarge</code> </p> </li> <li> <p>Memory optimized:</p> <ul> <li>
-     * <p>Current generation: <code>cache.r3.large</code>,
+     * <code>cache.m4.10xlarge</code> </p> </li> <li> <p>Previous generation: (not
+     * recommended)</p> <p> <b>T1 node types:</b> <code>cache.t1.micro</code> </p> <p>
+     * <b>M1 node types:</b> <code>cache.m1.small</code>, <code>cache.m1.medium</code>,
+     * <code>cache.m1.large</code>, <code>cache.m1.xlarge</code> </p> </li> </ul> </li>
+     * <li> <p>Compute optimized:</p> <ul> <li> <p>Previous generation: (not
+     * recommended)</p> <p> <b>C1 node types:</b> <code>cache.c1.xlarge</code> </p>
+     * </li> </ul> </li> <li> <p>Memory optimized:</p> <ul> <li> <p>Current generation:
+     * </p> <p> <b>R3 node types:</b> <code>cache.r3.large</code>,
      * <code>cache.r3.xlarge</code>, <code>cache.r3.2xlarge</code>,
      * <code>cache.r3.4xlarge</code>, <code>cache.r3.8xlarge</code> </p> </li> <li>
-     * <p>Previous generation: <code>cache.m2.xlarge</code>,
-     * <code>cache.m2.2xlarge</code>, <code>cache.m2.4xlarge</code> </p> </li> </ul>
-     * </li> </ul> <p> <b>Notes:</b> </p> <ul> <li> <p>All T2 instances are created in
-     * an Amazon Virtual Private Cloud (Amazon VPC).</p> </li> <li> <p>Redis
-     * backup/restore is not supported for Redis (cluster mode disabled) T1 and T2
-     * instances. Backup/restore is supported on Redis (cluster mode enabled) T2
-     * instances.</p> </li> <li> <p>Redis Append-only files (AOF) functionality is not
-     * supported for T1 or T2 instances.</p> </li> </ul> <p>For a complete listing of
-     * node types and specifications, see <a
-     * href="http://aws.amazon.com/elasticache/details">Amazon ElastiCache Product
-     * Features and Details</a> and either <a
+     * <p>Previous generation: (not recommended)</p> <p> <b>M2 node types:</b>
+     * <code>cache.m2.xlarge</code>, <code>cache.m2.2xlarge</code>,
+     * <code>cache.m2.4xlarge</code> </p> </li> </ul> </li> </ul> <p> <b>Notes:</b>
+     * </p> <ul> <li> <p>All T2 instances are created in an Amazon Virtual Private
+     * Cloud (Amazon VPC).</p> </li> <li> <p>Redis (cluster mode disabled): Redis
+     * backup/restore is not supported on T1 and T2 instances. </p> </li> <li> <p>Redis
+     * (cluster mode enabled): Backup/restore is not supported on T1 instances.</p>
+     * </li> <li> <p>Redis Append-only files (AOF) functionality is not supported for
+     * T1 or T2 instances.</p> </li> </ul> <p>For a complete listing of node types and
+     * specifications, see <a href="http://aws.amazon.com/elasticache/details">Amazon
+     * ElastiCache Product Features and Details</a> and either <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#ParameterGroups.Memcached.NodeSpecific">Cache
      * Node Type-Specific Parameters for Memcached</a> or <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#ParameterGroups.Redis.NodeSpecific">Cache
@@ -669,32 +681,37 @@ namespace Model
 
     /**
      * <p>The compute and memory capacity of the nodes in the node group (shard).</p>
-     * <p>Valid node types are as follows:</p> <ul> <li> <p>General purpose:</p> <ul>
-     * <li> <p>Current generation: <code>cache.t2.micro</code>,
-     * <code>cache.t2.small</code>, <code>cache.t2.medium</code>,
-     * <code>cache.m3.medium</code>, <code>cache.m3.large</code>,
-     * <code>cache.m3.xlarge</code>, <code>cache.m3.2xlarge</code>,
-     * <code>cache.m4.large</code>, <code>cache.m4.xlarge</code>,
+     * <p>The following node types are supported by ElastiCache. Generally speaking,
+     * the current generation types provide more memory and computational power at
+     * lower cost when compared to their equivalent previous generation
+     * counterparts.</p> <ul> <li> <p>General purpose:</p> <ul> <li> <p>Current
+     * generation: </p> <p> <b>T2 node types:</b> <code>cache.t2.micro</code>,
+     * <code>cache.t2.small</code>, <code>cache.t2.medium</code> </p> <p> <b>M3 node
+     * types:</b> <code>cache.m3.medium</code>, <code>cache.m3.large</code>,
+     * <code>cache.m3.xlarge</code>, <code>cache.m3.2xlarge</code> </p> <p> <b>M4 node
+     * types:</b> <code>cache.m4.large</code>, <code>cache.m4.xlarge</code>,
      * <code>cache.m4.2xlarge</code>, <code>cache.m4.4xlarge</code>,
-     * <code>cache.m4.10xlarge</code> </p> </li> <li> <p>Previous generation:
-     * <code>cache.t1.micro</code>, <code>cache.m1.small</code>,
-     * <code>cache.m1.medium</code>, <code>cache.m1.large</code>,
-     * <code>cache.m1.xlarge</code> </p> </li> </ul> </li> <li> <p>Compute optimized:
-     * <code>cache.c1.xlarge</code> </p> </li> <li> <p>Memory optimized:</p> <ul> <li>
-     * <p>Current generation: <code>cache.r3.large</code>,
+     * <code>cache.m4.10xlarge</code> </p> </li> <li> <p>Previous generation: (not
+     * recommended)</p> <p> <b>T1 node types:</b> <code>cache.t1.micro</code> </p> <p>
+     * <b>M1 node types:</b> <code>cache.m1.small</code>, <code>cache.m1.medium</code>,
+     * <code>cache.m1.large</code>, <code>cache.m1.xlarge</code> </p> </li> </ul> </li>
+     * <li> <p>Compute optimized:</p> <ul> <li> <p>Previous generation: (not
+     * recommended)</p> <p> <b>C1 node types:</b> <code>cache.c1.xlarge</code> </p>
+     * </li> </ul> </li> <li> <p>Memory optimized:</p> <ul> <li> <p>Current generation:
+     * </p> <p> <b>R3 node types:</b> <code>cache.r3.large</code>,
      * <code>cache.r3.xlarge</code>, <code>cache.r3.2xlarge</code>,
      * <code>cache.r3.4xlarge</code>, <code>cache.r3.8xlarge</code> </p> </li> <li>
-     * <p>Previous generation: <code>cache.m2.xlarge</code>,
-     * <code>cache.m2.2xlarge</code>, <code>cache.m2.4xlarge</code> </p> </li> </ul>
-     * </li> </ul> <p> <b>Notes:</b> </p> <ul> <li> <p>All T2 instances are created in
-     * an Amazon Virtual Private Cloud (Amazon VPC).</p> </li> <li> <p>Redis
-     * backup/restore is not supported for Redis (cluster mode disabled) T1 and T2
-     * instances. Backup/restore is supported on Redis (cluster mode enabled) T2
-     * instances.</p> </li> <li> <p>Redis Append-only files (AOF) functionality is not
-     * supported for T1 or T2 instances.</p> </li> </ul> <p>For a complete listing of
-     * node types and specifications, see <a
-     * href="http://aws.amazon.com/elasticache/details">Amazon ElastiCache Product
-     * Features and Details</a> and either <a
+     * <p>Previous generation: (not recommended)</p> <p> <b>M2 node types:</b>
+     * <code>cache.m2.xlarge</code>, <code>cache.m2.2xlarge</code>,
+     * <code>cache.m2.4xlarge</code> </p> </li> </ul> </li> </ul> <p> <b>Notes:</b>
+     * </p> <ul> <li> <p>All T2 instances are created in an Amazon Virtual Private
+     * Cloud (Amazon VPC).</p> </li> <li> <p>Redis (cluster mode disabled): Redis
+     * backup/restore is not supported on T1 and T2 instances. </p> </li> <li> <p>Redis
+     * (cluster mode enabled): Backup/restore is not supported on T1 instances.</p>
+     * </li> <li> <p>Redis Append-only files (AOF) functionality is not supported for
+     * T1 or T2 instances.</p> </li> </ul> <p>For a complete listing of node types and
+     * specifications, see <a href="http://aws.amazon.com/elasticache/details">Amazon
+     * ElastiCache Product Features and Details</a> and either <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#ParameterGroups.Memcached.NodeSpecific">Cache
      * Node Type-Specific Parameters for Memcached</a> or <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#ParameterGroups.Redis.NodeSpecific">Cache
@@ -704,32 +721,37 @@ namespace Model
 
     /**
      * <p>The compute and memory capacity of the nodes in the node group (shard).</p>
-     * <p>Valid node types are as follows:</p> <ul> <li> <p>General purpose:</p> <ul>
-     * <li> <p>Current generation: <code>cache.t2.micro</code>,
-     * <code>cache.t2.small</code>, <code>cache.t2.medium</code>,
-     * <code>cache.m3.medium</code>, <code>cache.m3.large</code>,
-     * <code>cache.m3.xlarge</code>, <code>cache.m3.2xlarge</code>,
-     * <code>cache.m4.large</code>, <code>cache.m4.xlarge</code>,
+     * <p>The following node types are supported by ElastiCache. Generally speaking,
+     * the current generation types provide more memory and computational power at
+     * lower cost when compared to their equivalent previous generation
+     * counterparts.</p> <ul> <li> <p>General purpose:</p> <ul> <li> <p>Current
+     * generation: </p> <p> <b>T2 node types:</b> <code>cache.t2.micro</code>,
+     * <code>cache.t2.small</code>, <code>cache.t2.medium</code> </p> <p> <b>M3 node
+     * types:</b> <code>cache.m3.medium</code>, <code>cache.m3.large</code>,
+     * <code>cache.m3.xlarge</code>, <code>cache.m3.2xlarge</code> </p> <p> <b>M4 node
+     * types:</b> <code>cache.m4.large</code>, <code>cache.m4.xlarge</code>,
      * <code>cache.m4.2xlarge</code>, <code>cache.m4.4xlarge</code>,
-     * <code>cache.m4.10xlarge</code> </p> </li> <li> <p>Previous generation:
-     * <code>cache.t1.micro</code>, <code>cache.m1.small</code>,
-     * <code>cache.m1.medium</code>, <code>cache.m1.large</code>,
-     * <code>cache.m1.xlarge</code> </p> </li> </ul> </li> <li> <p>Compute optimized:
-     * <code>cache.c1.xlarge</code> </p> </li> <li> <p>Memory optimized:</p> <ul> <li>
-     * <p>Current generation: <code>cache.r3.large</code>,
+     * <code>cache.m4.10xlarge</code> </p> </li> <li> <p>Previous generation: (not
+     * recommended)</p> <p> <b>T1 node types:</b> <code>cache.t1.micro</code> </p> <p>
+     * <b>M1 node types:</b> <code>cache.m1.small</code>, <code>cache.m1.medium</code>,
+     * <code>cache.m1.large</code>, <code>cache.m1.xlarge</code> </p> </li> </ul> </li>
+     * <li> <p>Compute optimized:</p> <ul> <li> <p>Previous generation: (not
+     * recommended)</p> <p> <b>C1 node types:</b> <code>cache.c1.xlarge</code> </p>
+     * </li> </ul> </li> <li> <p>Memory optimized:</p> <ul> <li> <p>Current generation:
+     * </p> <p> <b>R3 node types:</b> <code>cache.r3.large</code>,
      * <code>cache.r3.xlarge</code>, <code>cache.r3.2xlarge</code>,
      * <code>cache.r3.4xlarge</code>, <code>cache.r3.8xlarge</code> </p> </li> <li>
-     * <p>Previous generation: <code>cache.m2.xlarge</code>,
-     * <code>cache.m2.2xlarge</code>, <code>cache.m2.4xlarge</code> </p> </li> </ul>
-     * </li> </ul> <p> <b>Notes:</b> </p> <ul> <li> <p>All T2 instances are created in
-     * an Amazon Virtual Private Cloud (Amazon VPC).</p> </li> <li> <p>Redis
-     * backup/restore is not supported for Redis (cluster mode disabled) T1 and T2
-     * instances. Backup/restore is supported on Redis (cluster mode enabled) T2
-     * instances.</p> </li> <li> <p>Redis Append-only files (AOF) functionality is not
-     * supported for T1 or T2 instances.</p> </li> </ul> <p>For a complete listing of
-     * node types and specifications, see <a
-     * href="http://aws.amazon.com/elasticache/details">Amazon ElastiCache Product
-     * Features and Details</a> and either <a
+     * <p>Previous generation: (not recommended)</p> <p> <b>M2 node types:</b>
+     * <code>cache.m2.xlarge</code>, <code>cache.m2.2xlarge</code>,
+     * <code>cache.m2.4xlarge</code> </p> </li> </ul> </li> </ul> <p> <b>Notes:</b>
+     * </p> <ul> <li> <p>All T2 instances are created in an Amazon Virtual Private
+     * Cloud (Amazon VPC).</p> </li> <li> <p>Redis (cluster mode disabled): Redis
+     * backup/restore is not supported on T1 and T2 instances. </p> </li> <li> <p>Redis
+     * (cluster mode enabled): Backup/restore is not supported on T1 instances.</p>
+     * </li> <li> <p>Redis Append-only files (AOF) functionality is not supported for
+     * T1 or T2 instances.</p> </li> </ul> <p>For a complete listing of node types and
+     * specifications, see <a href="http://aws.amazon.com/elasticache/details">Amazon
+     * ElastiCache Product Features and Details</a> and either <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#ParameterGroups.Memcached.NodeSpecific">Cache
      * Node Type-Specific Parameters for Memcached</a> or <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#ParameterGroups.Redis.NodeSpecific">Cache
@@ -739,32 +761,37 @@ namespace Model
 
     /**
      * <p>The compute and memory capacity of the nodes in the node group (shard).</p>
-     * <p>Valid node types are as follows:</p> <ul> <li> <p>General purpose:</p> <ul>
-     * <li> <p>Current generation: <code>cache.t2.micro</code>,
-     * <code>cache.t2.small</code>, <code>cache.t2.medium</code>,
-     * <code>cache.m3.medium</code>, <code>cache.m3.large</code>,
-     * <code>cache.m3.xlarge</code>, <code>cache.m3.2xlarge</code>,
-     * <code>cache.m4.large</code>, <code>cache.m4.xlarge</code>,
+     * <p>The following node types are supported by ElastiCache. Generally speaking,
+     * the current generation types provide more memory and computational power at
+     * lower cost when compared to their equivalent previous generation
+     * counterparts.</p> <ul> <li> <p>General purpose:</p> <ul> <li> <p>Current
+     * generation: </p> <p> <b>T2 node types:</b> <code>cache.t2.micro</code>,
+     * <code>cache.t2.small</code>, <code>cache.t2.medium</code> </p> <p> <b>M3 node
+     * types:</b> <code>cache.m3.medium</code>, <code>cache.m3.large</code>,
+     * <code>cache.m3.xlarge</code>, <code>cache.m3.2xlarge</code> </p> <p> <b>M4 node
+     * types:</b> <code>cache.m4.large</code>, <code>cache.m4.xlarge</code>,
      * <code>cache.m4.2xlarge</code>, <code>cache.m4.4xlarge</code>,
-     * <code>cache.m4.10xlarge</code> </p> </li> <li> <p>Previous generation:
-     * <code>cache.t1.micro</code>, <code>cache.m1.small</code>,
-     * <code>cache.m1.medium</code>, <code>cache.m1.large</code>,
-     * <code>cache.m1.xlarge</code> </p> </li> </ul> </li> <li> <p>Compute optimized:
-     * <code>cache.c1.xlarge</code> </p> </li> <li> <p>Memory optimized:</p> <ul> <li>
-     * <p>Current generation: <code>cache.r3.large</code>,
+     * <code>cache.m4.10xlarge</code> </p> </li> <li> <p>Previous generation: (not
+     * recommended)</p> <p> <b>T1 node types:</b> <code>cache.t1.micro</code> </p> <p>
+     * <b>M1 node types:</b> <code>cache.m1.small</code>, <code>cache.m1.medium</code>,
+     * <code>cache.m1.large</code>, <code>cache.m1.xlarge</code> </p> </li> </ul> </li>
+     * <li> <p>Compute optimized:</p> <ul> <li> <p>Previous generation: (not
+     * recommended)</p> <p> <b>C1 node types:</b> <code>cache.c1.xlarge</code> </p>
+     * </li> </ul> </li> <li> <p>Memory optimized:</p> <ul> <li> <p>Current generation:
+     * </p> <p> <b>R3 node types:</b> <code>cache.r3.large</code>,
      * <code>cache.r3.xlarge</code>, <code>cache.r3.2xlarge</code>,
      * <code>cache.r3.4xlarge</code>, <code>cache.r3.8xlarge</code> </p> </li> <li>
-     * <p>Previous generation: <code>cache.m2.xlarge</code>,
-     * <code>cache.m2.2xlarge</code>, <code>cache.m2.4xlarge</code> </p> </li> </ul>
-     * </li> </ul> <p> <b>Notes:</b> </p> <ul> <li> <p>All T2 instances are created in
-     * an Amazon Virtual Private Cloud (Amazon VPC).</p> </li> <li> <p>Redis
-     * backup/restore is not supported for Redis (cluster mode disabled) T1 and T2
-     * instances. Backup/restore is supported on Redis (cluster mode enabled) T2
-     * instances.</p> </li> <li> <p>Redis Append-only files (AOF) functionality is not
-     * supported for T1 or T2 instances.</p> </li> </ul> <p>For a complete listing of
-     * node types and specifications, see <a
-     * href="http://aws.amazon.com/elasticache/details">Amazon ElastiCache Product
-     * Features and Details</a> and either <a
+     * <p>Previous generation: (not recommended)</p> <p> <b>M2 node types:</b>
+     * <code>cache.m2.xlarge</code>, <code>cache.m2.2xlarge</code>,
+     * <code>cache.m2.4xlarge</code> </p> </li> </ul> </li> </ul> <p> <b>Notes:</b>
+     * </p> <ul> <li> <p>All T2 instances are created in an Amazon Virtual Private
+     * Cloud (Amazon VPC).</p> </li> <li> <p>Redis (cluster mode disabled): Redis
+     * backup/restore is not supported on T1 and T2 instances. </p> </li> <li> <p>Redis
+     * (cluster mode enabled): Backup/restore is not supported on T1 instances.</p>
+     * </li> <li> <p>Redis Append-only files (AOF) functionality is not supported for
+     * T1 or T2 instances.</p> </li> </ul> <p>For a complete listing of node types and
+     * specifications, see <a href="http://aws.amazon.com/elasticache/details">Amazon
+     * ElastiCache Product Features and Details</a> and either <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#ParameterGroups.Memcached.NodeSpecific">Cache
      * Node Type-Specific Parameters for Memcached</a> or <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#ParameterGroups.Redis.NodeSpecific">Cache
@@ -774,136 +801,136 @@ namespace Model
 
 
     /**
-     * <p>The name of the cache engine to be used for the cache clusters in this
-     * replication group.</p>
+     * <p>The name of the cache engine to be used for the clusters in this replication
+     * group.</p>
      */
     inline const Aws::String& GetEngine() const{ return m_engine; }
 
     /**
-     * <p>The name of the cache engine to be used for the cache clusters in this
-     * replication group.</p>
+     * <p>The name of the cache engine to be used for the clusters in this replication
+     * group.</p>
      */
     inline void SetEngine(const Aws::String& value) { m_engineHasBeenSet = true; m_engine = value; }
 
     /**
-     * <p>The name of the cache engine to be used for the cache clusters in this
-     * replication group.</p>
+     * <p>The name of the cache engine to be used for the clusters in this replication
+     * group.</p>
      */
     inline void SetEngine(Aws::String&& value) { m_engineHasBeenSet = true; m_engine = std::move(value); }
 
     /**
-     * <p>The name of the cache engine to be used for the cache clusters in this
-     * replication group.</p>
+     * <p>The name of the cache engine to be used for the clusters in this replication
+     * group.</p>
      */
     inline void SetEngine(const char* value) { m_engineHasBeenSet = true; m_engine.assign(value); }
 
     /**
-     * <p>The name of the cache engine to be used for the cache clusters in this
-     * replication group.</p>
+     * <p>The name of the cache engine to be used for the clusters in this replication
+     * group.</p>
      */
     inline CreateReplicationGroupRequest& WithEngine(const Aws::String& value) { SetEngine(value); return *this;}
 
     /**
-     * <p>The name of the cache engine to be used for the cache clusters in this
-     * replication group.</p>
+     * <p>The name of the cache engine to be used for the clusters in this replication
+     * group.</p>
      */
     inline CreateReplicationGroupRequest& WithEngine(Aws::String&& value) { SetEngine(std::move(value)); return *this;}
 
     /**
-     * <p>The name of the cache engine to be used for the cache clusters in this
-     * replication group.</p>
+     * <p>The name of the cache engine to be used for the clusters in this replication
+     * group.</p>
      */
     inline CreateReplicationGroupRequest& WithEngine(const char* value) { SetEngine(value); return *this;}
 
 
     /**
-     * <p>The version number of the cache engine to be used for the cache clusters in
-     * this replication group. To view the supported cache engine versions, use the
+     * <p>The version number of the cache engine to be used for the clusters in this
+     * replication group. To view the supported cache engine versions, use the
      * <code>DescribeCacheEngineVersions</code> operation.</p> <p> <b>Important:</b>
      * You can upgrade to a newer engine version (see <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/SelectEngine.html#VersionManagement">Selecting
      * a Cache Engine and Version</a>) in the <i>ElastiCache User Guide</i>, but you
      * cannot downgrade to an earlier engine version. If you want to use an earlier
-     * engine version, you must delete the existing cache cluster or replication group
-     * and create it anew with the earlier engine version. </p>
+     * engine version, you must delete the existing cluster or replication group and
+     * create it anew with the earlier engine version. </p>
      */
     inline const Aws::String& GetEngineVersion() const{ return m_engineVersion; }
 
     /**
-     * <p>The version number of the cache engine to be used for the cache clusters in
-     * this replication group. To view the supported cache engine versions, use the
+     * <p>The version number of the cache engine to be used for the clusters in this
+     * replication group. To view the supported cache engine versions, use the
      * <code>DescribeCacheEngineVersions</code> operation.</p> <p> <b>Important:</b>
      * You can upgrade to a newer engine version (see <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/SelectEngine.html#VersionManagement">Selecting
      * a Cache Engine and Version</a>) in the <i>ElastiCache User Guide</i>, but you
      * cannot downgrade to an earlier engine version. If you want to use an earlier
-     * engine version, you must delete the existing cache cluster or replication group
-     * and create it anew with the earlier engine version. </p>
+     * engine version, you must delete the existing cluster or replication group and
+     * create it anew with the earlier engine version. </p>
      */
     inline void SetEngineVersion(const Aws::String& value) { m_engineVersionHasBeenSet = true; m_engineVersion = value; }
 
     /**
-     * <p>The version number of the cache engine to be used for the cache clusters in
-     * this replication group. To view the supported cache engine versions, use the
+     * <p>The version number of the cache engine to be used for the clusters in this
+     * replication group. To view the supported cache engine versions, use the
      * <code>DescribeCacheEngineVersions</code> operation.</p> <p> <b>Important:</b>
      * You can upgrade to a newer engine version (see <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/SelectEngine.html#VersionManagement">Selecting
      * a Cache Engine and Version</a>) in the <i>ElastiCache User Guide</i>, but you
      * cannot downgrade to an earlier engine version. If you want to use an earlier
-     * engine version, you must delete the existing cache cluster or replication group
-     * and create it anew with the earlier engine version. </p>
+     * engine version, you must delete the existing cluster or replication group and
+     * create it anew with the earlier engine version. </p>
      */
     inline void SetEngineVersion(Aws::String&& value) { m_engineVersionHasBeenSet = true; m_engineVersion = std::move(value); }
 
     /**
-     * <p>The version number of the cache engine to be used for the cache clusters in
-     * this replication group. To view the supported cache engine versions, use the
+     * <p>The version number of the cache engine to be used for the clusters in this
+     * replication group. To view the supported cache engine versions, use the
      * <code>DescribeCacheEngineVersions</code> operation.</p> <p> <b>Important:</b>
      * You can upgrade to a newer engine version (see <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/SelectEngine.html#VersionManagement">Selecting
      * a Cache Engine and Version</a>) in the <i>ElastiCache User Guide</i>, but you
      * cannot downgrade to an earlier engine version. If you want to use an earlier
-     * engine version, you must delete the existing cache cluster or replication group
-     * and create it anew with the earlier engine version. </p>
+     * engine version, you must delete the existing cluster or replication group and
+     * create it anew with the earlier engine version. </p>
      */
     inline void SetEngineVersion(const char* value) { m_engineVersionHasBeenSet = true; m_engineVersion.assign(value); }
 
     /**
-     * <p>The version number of the cache engine to be used for the cache clusters in
-     * this replication group. To view the supported cache engine versions, use the
+     * <p>The version number of the cache engine to be used for the clusters in this
+     * replication group. To view the supported cache engine versions, use the
      * <code>DescribeCacheEngineVersions</code> operation.</p> <p> <b>Important:</b>
      * You can upgrade to a newer engine version (see <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/SelectEngine.html#VersionManagement">Selecting
      * a Cache Engine and Version</a>) in the <i>ElastiCache User Guide</i>, but you
      * cannot downgrade to an earlier engine version. If you want to use an earlier
-     * engine version, you must delete the existing cache cluster or replication group
-     * and create it anew with the earlier engine version. </p>
+     * engine version, you must delete the existing cluster or replication group and
+     * create it anew with the earlier engine version. </p>
      */
     inline CreateReplicationGroupRequest& WithEngineVersion(const Aws::String& value) { SetEngineVersion(value); return *this;}
 
     /**
-     * <p>The version number of the cache engine to be used for the cache clusters in
-     * this replication group. To view the supported cache engine versions, use the
+     * <p>The version number of the cache engine to be used for the clusters in this
+     * replication group. To view the supported cache engine versions, use the
      * <code>DescribeCacheEngineVersions</code> operation.</p> <p> <b>Important:</b>
      * You can upgrade to a newer engine version (see <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/SelectEngine.html#VersionManagement">Selecting
      * a Cache Engine and Version</a>) in the <i>ElastiCache User Guide</i>, but you
      * cannot downgrade to an earlier engine version. If you want to use an earlier
-     * engine version, you must delete the existing cache cluster or replication group
-     * and create it anew with the earlier engine version. </p>
+     * engine version, you must delete the existing cluster or replication group and
+     * create it anew with the earlier engine version. </p>
      */
     inline CreateReplicationGroupRequest& WithEngineVersion(Aws::String&& value) { SetEngineVersion(std::move(value)); return *this;}
 
     /**
-     * <p>The version number of the cache engine to be used for the cache clusters in
-     * this replication group. To view the supported cache engine versions, use the
+     * <p>The version number of the cache engine to be used for the clusters in this
+     * replication group. To view the supported cache engine versions, use the
      * <code>DescribeCacheEngineVersions</code> operation.</p> <p> <b>Important:</b>
      * You can upgrade to a newer engine version (see <a
      * href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/SelectEngine.html#VersionManagement">Selecting
      * a Cache Engine and Version</a>) in the <i>ElastiCache User Guide</i>, but you
      * cannot downgrade to an earlier engine version. If you want to use an earlier
-     * engine version, you must delete the existing cache cluster or replication group
-     * and create it anew with the earlier engine version. </p>
+     * engine version, you must delete the existing cluster or replication group and
+     * create it anew with the earlier engine version. </p>
      */
     inline CreateReplicationGroupRequest& WithEngineVersion(const char* value) { SetEngineVersion(value); return *this;}
 
@@ -1186,43 +1213,43 @@ namespace Model
 
     /**
      * <p>A list of cost allocation tags to be added to this resource. A tag is a
-     * key-value pair. A tag key must be accompanied by a tag value.</p>
+     * key-value pair. A tag key does not have to be accompanied by a tag value.</p>
      */
     inline const Aws::Vector<Tag>& GetTags() const{ return m_tags; }
 
     /**
      * <p>A list of cost allocation tags to be added to this resource. A tag is a
-     * key-value pair. A tag key must be accompanied by a tag value.</p>
+     * key-value pair. A tag key does not have to be accompanied by a tag value.</p>
      */
     inline void SetTags(const Aws::Vector<Tag>& value) { m_tagsHasBeenSet = true; m_tags = value; }
 
     /**
      * <p>A list of cost allocation tags to be added to this resource. A tag is a
-     * key-value pair. A tag key must be accompanied by a tag value.</p>
+     * key-value pair. A tag key does not have to be accompanied by a tag value.</p>
      */
     inline void SetTags(Aws::Vector<Tag>&& value) { m_tagsHasBeenSet = true; m_tags = std::move(value); }
 
     /**
      * <p>A list of cost allocation tags to be added to this resource. A tag is a
-     * key-value pair. A tag key must be accompanied by a tag value.</p>
+     * key-value pair. A tag key does not have to be accompanied by a tag value.</p>
      */
     inline CreateReplicationGroupRequest& WithTags(const Aws::Vector<Tag>& value) { SetTags(value); return *this;}
 
     /**
      * <p>A list of cost allocation tags to be added to this resource. A tag is a
-     * key-value pair. A tag key must be accompanied by a tag value.</p>
+     * key-value pair. A tag key does not have to be accompanied by a tag value.</p>
      */
     inline CreateReplicationGroupRequest& WithTags(Aws::Vector<Tag>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
      * <p>A list of cost allocation tags to be added to this resource. A tag is a
-     * key-value pair. A tag key must be accompanied by a tag value.</p>
+     * key-value pair. A tag key does not have to be accompanied by a tag value.</p>
      */
     inline CreateReplicationGroupRequest& AddTags(const Tag& value) { m_tagsHasBeenSet = true; m_tags.push_back(value); return *this; }
 
     /**
      * <p>A list of cost allocation tags to be added to this resource. A tag is a
-     * key-value pair. A tag key must be accompanied by a tag value.</p>
+     * key-value pair. A tag key does not have to be accompanied by a tag value.</p>
      */
     inline CreateReplicationGroupRequest& AddTags(Tag&& value) { m_tagsHasBeenSet = true; m_tags.push_back(std::move(value)); return *this; }
 
@@ -1234,9 +1261,8 @@ namespace Model
      * commas. The new replication group will have the number of node groups (console:
      * shards) specified by the parameter <i>NumNodeGroups</i> or the number of node
      * groups configured by <i>NodeGroupConfiguration</i> regardless of the number of
-     * ARNs specified here.</p> <note> <p>This parameter is only valid if the
-     * <code>Engine</code> parameter is <code>redis</code>.</p> </note> <p>Example of
-     * an Amazon S3 ARN: <code>arn:aws:s3:::my_bucket/snapshot1.rdb</code> </p>
+     * ARNs specified here.</p> <p>Example of an Amazon S3 ARN:
+     * <code>arn:aws:s3:::my_bucket/snapshot1.rdb</code> </p>
      */
     inline const Aws::Vector<Aws::String>& GetSnapshotArns() const{ return m_snapshotArns; }
 
@@ -1247,9 +1273,8 @@ namespace Model
      * commas. The new replication group will have the number of node groups (console:
      * shards) specified by the parameter <i>NumNodeGroups</i> or the number of node
      * groups configured by <i>NodeGroupConfiguration</i> regardless of the number of
-     * ARNs specified here.</p> <note> <p>This parameter is only valid if the
-     * <code>Engine</code> parameter is <code>redis</code>.</p> </note> <p>Example of
-     * an Amazon S3 ARN: <code>arn:aws:s3:::my_bucket/snapshot1.rdb</code> </p>
+     * ARNs specified here.</p> <p>Example of an Amazon S3 ARN:
+     * <code>arn:aws:s3:::my_bucket/snapshot1.rdb</code> </p>
      */
     inline void SetSnapshotArns(const Aws::Vector<Aws::String>& value) { m_snapshotArnsHasBeenSet = true; m_snapshotArns = value; }
 
@@ -1260,9 +1285,8 @@ namespace Model
      * commas. The new replication group will have the number of node groups (console:
      * shards) specified by the parameter <i>NumNodeGroups</i> or the number of node
      * groups configured by <i>NodeGroupConfiguration</i> regardless of the number of
-     * ARNs specified here.</p> <note> <p>This parameter is only valid if the
-     * <code>Engine</code> parameter is <code>redis</code>.</p> </note> <p>Example of
-     * an Amazon S3 ARN: <code>arn:aws:s3:::my_bucket/snapshot1.rdb</code> </p>
+     * ARNs specified here.</p> <p>Example of an Amazon S3 ARN:
+     * <code>arn:aws:s3:::my_bucket/snapshot1.rdb</code> </p>
      */
     inline void SetSnapshotArns(Aws::Vector<Aws::String>&& value) { m_snapshotArnsHasBeenSet = true; m_snapshotArns = std::move(value); }
 
@@ -1273,9 +1297,8 @@ namespace Model
      * commas. The new replication group will have the number of node groups (console:
      * shards) specified by the parameter <i>NumNodeGroups</i> or the number of node
      * groups configured by <i>NodeGroupConfiguration</i> regardless of the number of
-     * ARNs specified here.</p> <note> <p>This parameter is only valid if the
-     * <code>Engine</code> parameter is <code>redis</code>.</p> </note> <p>Example of
-     * an Amazon S3 ARN: <code>arn:aws:s3:::my_bucket/snapshot1.rdb</code> </p>
+     * ARNs specified here.</p> <p>Example of an Amazon S3 ARN:
+     * <code>arn:aws:s3:::my_bucket/snapshot1.rdb</code> </p>
      */
     inline CreateReplicationGroupRequest& WithSnapshotArns(const Aws::Vector<Aws::String>& value) { SetSnapshotArns(value); return *this;}
 
@@ -1286,9 +1309,8 @@ namespace Model
      * commas. The new replication group will have the number of node groups (console:
      * shards) specified by the parameter <i>NumNodeGroups</i> or the number of node
      * groups configured by <i>NodeGroupConfiguration</i> regardless of the number of
-     * ARNs specified here.</p> <note> <p>This parameter is only valid if the
-     * <code>Engine</code> parameter is <code>redis</code>.</p> </note> <p>Example of
-     * an Amazon S3 ARN: <code>arn:aws:s3:::my_bucket/snapshot1.rdb</code> </p>
+     * ARNs specified here.</p> <p>Example of an Amazon S3 ARN:
+     * <code>arn:aws:s3:::my_bucket/snapshot1.rdb</code> </p>
      */
     inline CreateReplicationGroupRequest& WithSnapshotArns(Aws::Vector<Aws::String>&& value) { SetSnapshotArns(std::move(value)); return *this;}
 
@@ -1299,9 +1321,8 @@ namespace Model
      * commas. The new replication group will have the number of node groups (console:
      * shards) specified by the parameter <i>NumNodeGroups</i> or the number of node
      * groups configured by <i>NodeGroupConfiguration</i> regardless of the number of
-     * ARNs specified here.</p> <note> <p>This parameter is only valid if the
-     * <code>Engine</code> parameter is <code>redis</code>.</p> </note> <p>Example of
-     * an Amazon S3 ARN: <code>arn:aws:s3:::my_bucket/snapshot1.rdb</code> </p>
+     * ARNs specified here.</p> <p>Example of an Amazon S3 ARN:
+     * <code>arn:aws:s3:::my_bucket/snapshot1.rdb</code> </p>
      */
     inline CreateReplicationGroupRequest& AddSnapshotArns(const Aws::String& value) { m_snapshotArnsHasBeenSet = true; m_snapshotArns.push_back(value); return *this; }
 
@@ -1312,9 +1333,8 @@ namespace Model
      * commas. The new replication group will have the number of node groups (console:
      * shards) specified by the parameter <i>NumNodeGroups</i> or the number of node
      * groups configured by <i>NodeGroupConfiguration</i> regardless of the number of
-     * ARNs specified here.</p> <note> <p>This parameter is only valid if the
-     * <code>Engine</code> parameter is <code>redis</code>.</p> </note> <p>Example of
-     * an Amazon S3 ARN: <code>arn:aws:s3:::my_bucket/snapshot1.rdb</code> </p>
+     * ARNs specified here.</p> <p>Example of an Amazon S3 ARN:
+     * <code>arn:aws:s3:::my_bucket/snapshot1.rdb</code> </p>
      */
     inline CreateReplicationGroupRequest& AddSnapshotArns(Aws::String&& value) { m_snapshotArnsHasBeenSet = true; m_snapshotArns.push_back(std::move(value)); return *this; }
 
@@ -1325,9 +1345,8 @@ namespace Model
      * commas. The new replication group will have the number of node groups (console:
      * shards) specified by the parameter <i>NumNodeGroups</i> or the number of node
      * groups configured by <i>NodeGroupConfiguration</i> regardless of the number of
-     * ARNs specified here.</p> <note> <p>This parameter is only valid if the
-     * <code>Engine</code> parameter is <code>redis</code>.</p> </note> <p>Example of
-     * an Amazon S3 ARN: <code>arn:aws:s3:::my_bucket/snapshot1.rdb</code> </p>
+     * ARNs specified here.</p> <p>Example of an Amazon S3 ARN:
+     * <code>arn:aws:s3:::my_bucket/snapshot1.rdb</code> </p>
      */
     inline CreateReplicationGroupRequest& AddSnapshotArns(const char* value) { m_snapshotArnsHasBeenSet = true; m_snapshotArns.push_back(value); return *this; }
 
@@ -1335,66 +1354,59 @@ namespace Model
     /**
      * <p>The name of a snapshot from which to restore data into the new replication
      * group. The snapshot status changes to <code>restoring</code> while the new
-     * replication group is being created.</p> <note> <p>This parameter is only valid
-     * if the <code>Engine</code> parameter is <code>redis</code>.</p> </note>
+     * replication group is being created.</p>
      */
     inline const Aws::String& GetSnapshotName() const{ return m_snapshotName; }
 
     /**
      * <p>The name of a snapshot from which to restore data into the new replication
      * group. The snapshot status changes to <code>restoring</code> while the new
-     * replication group is being created.</p> <note> <p>This parameter is only valid
-     * if the <code>Engine</code> parameter is <code>redis</code>.</p> </note>
+     * replication group is being created.</p>
      */
     inline void SetSnapshotName(const Aws::String& value) { m_snapshotNameHasBeenSet = true; m_snapshotName = value; }
 
     /**
      * <p>The name of a snapshot from which to restore data into the new replication
      * group. The snapshot status changes to <code>restoring</code> while the new
-     * replication group is being created.</p> <note> <p>This parameter is only valid
-     * if the <code>Engine</code> parameter is <code>redis</code>.</p> </note>
+     * replication group is being created.</p>
      */
     inline void SetSnapshotName(Aws::String&& value) { m_snapshotNameHasBeenSet = true; m_snapshotName = std::move(value); }
 
     /**
      * <p>The name of a snapshot from which to restore data into the new replication
      * group. The snapshot status changes to <code>restoring</code> while the new
-     * replication group is being created.</p> <note> <p>This parameter is only valid
-     * if the <code>Engine</code> parameter is <code>redis</code>.</p> </note>
+     * replication group is being created.</p>
      */
     inline void SetSnapshotName(const char* value) { m_snapshotNameHasBeenSet = true; m_snapshotName.assign(value); }
 
     /**
      * <p>The name of a snapshot from which to restore data into the new replication
      * group. The snapshot status changes to <code>restoring</code> while the new
-     * replication group is being created.</p> <note> <p>This parameter is only valid
-     * if the <code>Engine</code> parameter is <code>redis</code>.</p> </note>
+     * replication group is being created.</p>
      */
     inline CreateReplicationGroupRequest& WithSnapshotName(const Aws::String& value) { SetSnapshotName(value); return *this;}
 
     /**
      * <p>The name of a snapshot from which to restore data into the new replication
      * group. The snapshot status changes to <code>restoring</code> while the new
-     * replication group is being created.</p> <note> <p>This parameter is only valid
-     * if the <code>Engine</code> parameter is <code>redis</code>.</p> </note>
+     * replication group is being created.</p>
      */
     inline CreateReplicationGroupRequest& WithSnapshotName(Aws::String&& value) { SetSnapshotName(std::move(value)); return *this;}
 
     /**
      * <p>The name of a snapshot from which to restore data into the new replication
      * group. The snapshot status changes to <code>restoring</code> while the new
-     * replication group is being created.</p> <note> <p>This parameter is only valid
-     * if the <code>Engine</code> parameter is <code>redis</code>.</p> </note>
+     * replication group is being created.</p>
      */
     inline CreateReplicationGroupRequest& WithSnapshotName(const char* value) { SetSnapshotName(value); return *this;}
 
 
     /**
-     * <p>Specifies the weekly time range during which maintenance on the cache cluster
-     * is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
-     * (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
-     * values for <code>ddd</code> are:</p> <p>Specifies the weekly time range during
-     * which maintenance on the cluster is performed. It is specified as a range in the
+     * <p>Specifies the weekly time range during which maintenance on the cluster is
+     * performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H
+     * Clock UTC). The minimum maintenance window is a 60 minute period. Valid values
+     * for <code>ddd</code> are:</p> <p>Specifies the weekly time range during which
+     * maintenance on the cluster is performed. It is specified as a range in the
      * format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window
      * is a 60 minute period.</p> <p>Valid values for <code>ddd</code> are:</p> <ul>
      * <li> <p> <code>sun</code> </p> </li> <li> <p> <code>mon</code> </p> </li> <li>
@@ -1406,11 +1418,11 @@ namespace Model
     inline const Aws::String& GetPreferredMaintenanceWindow() const{ return m_preferredMaintenanceWindow; }
 
     /**
-     * <p>Specifies the weekly time range during which maintenance on the cache cluster
-     * is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
-     * (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
-     * values for <code>ddd</code> are:</p> <p>Specifies the weekly time range during
-     * which maintenance on the cluster is performed. It is specified as a range in the
+     * <p>Specifies the weekly time range during which maintenance on the cluster is
+     * performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H
+     * Clock UTC). The minimum maintenance window is a 60 minute period. Valid values
+     * for <code>ddd</code> are:</p> <p>Specifies the weekly time range during which
+     * maintenance on the cluster is performed. It is specified as a range in the
      * format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window
      * is a 60 minute period.</p> <p>Valid values for <code>ddd</code> are:</p> <ul>
      * <li> <p> <code>sun</code> </p> </li> <li> <p> <code>mon</code> </p> </li> <li>
@@ -1422,11 +1434,11 @@ namespace Model
     inline void SetPreferredMaintenanceWindow(const Aws::String& value) { m_preferredMaintenanceWindowHasBeenSet = true; m_preferredMaintenanceWindow = value; }
 
     /**
-     * <p>Specifies the weekly time range during which maintenance on the cache cluster
-     * is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
-     * (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
-     * values for <code>ddd</code> are:</p> <p>Specifies the weekly time range during
-     * which maintenance on the cluster is performed. It is specified as a range in the
+     * <p>Specifies the weekly time range during which maintenance on the cluster is
+     * performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H
+     * Clock UTC). The minimum maintenance window is a 60 minute period. Valid values
+     * for <code>ddd</code> are:</p> <p>Specifies the weekly time range during which
+     * maintenance on the cluster is performed. It is specified as a range in the
      * format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window
      * is a 60 minute period.</p> <p>Valid values for <code>ddd</code> are:</p> <ul>
      * <li> <p> <code>sun</code> </p> </li> <li> <p> <code>mon</code> </p> </li> <li>
@@ -1438,11 +1450,11 @@ namespace Model
     inline void SetPreferredMaintenanceWindow(Aws::String&& value) { m_preferredMaintenanceWindowHasBeenSet = true; m_preferredMaintenanceWindow = std::move(value); }
 
     /**
-     * <p>Specifies the weekly time range during which maintenance on the cache cluster
-     * is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
-     * (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
-     * values for <code>ddd</code> are:</p> <p>Specifies the weekly time range during
-     * which maintenance on the cluster is performed. It is specified as a range in the
+     * <p>Specifies the weekly time range during which maintenance on the cluster is
+     * performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H
+     * Clock UTC). The minimum maintenance window is a 60 minute period. Valid values
+     * for <code>ddd</code> are:</p> <p>Specifies the weekly time range during which
+     * maintenance on the cluster is performed. It is specified as a range in the
      * format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window
      * is a 60 minute period.</p> <p>Valid values for <code>ddd</code> are:</p> <ul>
      * <li> <p> <code>sun</code> </p> </li> <li> <p> <code>mon</code> </p> </li> <li>
@@ -1454,11 +1466,11 @@ namespace Model
     inline void SetPreferredMaintenanceWindow(const char* value) { m_preferredMaintenanceWindowHasBeenSet = true; m_preferredMaintenanceWindow.assign(value); }
 
     /**
-     * <p>Specifies the weekly time range during which maintenance on the cache cluster
-     * is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
-     * (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
-     * values for <code>ddd</code> are:</p> <p>Specifies the weekly time range during
-     * which maintenance on the cluster is performed. It is specified as a range in the
+     * <p>Specifies the weekly time range during which maintenance on the cluster is
+     * performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H
+     * Clock UTC). The minimum maintenance window is a 60 minute period. Valid values
+     * for <code>ddd</code> are:</p> <p>Specifies the weekly time range during which
+     * maintenance on the cluster is performed. It is specified as a range in the
      * format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window
      * is a 60 minute period.</p> <p>Valid values for <code>ddd</code> are:</p> <ul>
      * <li> <p> <code>sun</code> </p> </li> <li> <p> <code>mon</code> </p> </li> <li>
@@ -1470,11 +1482,11 @@ namespace Model
     inline CreateReplicationGroupRequest& WithPreferredMaintenanceWindow(const Aws::String& value) { SetPreferredMaintenanceWindow(value); return *this;}
 
     /**
-     * <p>Specifies the weekly time range during which maintenance on the cache cluster
-     * is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
-     * (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
-     * values for <code>ddd</code> are:</p> <p>Specifies the weekly time range during
-     * which maintenance on the cluster is performed. It is specified as a range in the
+     * <p>Specifies the weekly time range during which maintenance on the cluster is
+     * performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H
+     * Clock UTC). The minimum maintenance window is a 60 minute period. Valid values
+     * for <code>ddd</code> are:</p> <p>Specifies the weekly time range during which
+     * maintenance on the cluster is performed. It is specified as a range in the
      * format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window
      * is a 60 minute period.</p> <p>Valid values for <code>ddd</code> are:</p> <ul>
      * <li> <p> <code>sun</code> </p> </li> <li> <p> <code>mon</code> </p> </li> <li>
@@ -1486,11 +1498,11 @@ namespace Model
     inline CreateReplicationGroupRequest& WithPreferredMaintenanceWindow(Aws::String&& value) { SetPreferredMaintenanceWindow(std::move(value)); return *this;}
 
     /**
-     * <p>Specifies the weekly time range during which maintenance on the cache cluster
-     * is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
-     * (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
-     * values for <code>ddd</code> are:</p> <p>Specifies the weekly time range during
-     * which maintenance on the cluster is performed. It is specified as a range in the
+     * <p>Specifies the weekly time range during which maintenance on the cluster is
+     * performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H
+     * Clock UTC). The minimum maintenance window is a 60 minute period. Valid values
+     * for <code>ddd</code> are:</p> <p>Specifies the weekly time range during which
+     * maintenance on the cluster is performed. It is specified as a range in the
      * format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window
      * is a 60 minute period.</p> <p>Valid values for <code>ddd</code> are:</p> <ul>
      * <li> <p> <code>sun</code> </p> </li> <li> <p> <code>mon</code> </p> </li> <li>
@@ -1524,49 +1536,49 @@ namespace Model
     /**
      * <p>The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
      * (SNS) topic to which notifications are sent.</p> <note> <p>The Amazon SNS topic
-     * owner must be the same as the cache cluster owner.</p> </note>
+     * owner must be the same as the cluster owner.</p> </note>
      */
     inline const Aws::String& GetNotificationTopicArn() const{ return m_notificationTopicArn; }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
      * (SNS) topic to which notifications are sent.</p> <note> <p>The Amazon SNS topic
-     * owner must be the same as the cache cluster owner.</p> </note>
+     * owner must be the same as the cluster owner.</p> </note>
      */
     inline void SetNotificationTopicArn(const Aws::String& value) { m_notificationTopicArnHasBeenSet = true; m_notificationTopicArn = value; }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
      * (SNS) topic to which notifications are sent.</p> <note> <p>The Amazon SNS topic
-     * owner must be the same as the cache cluster owner.</p> </note>
+     * owner must be the same as the cluster owner.</p> </note>
      */
     inline void SetNotificationTopicArn(Aws::String&& value) { m_notificationTopicArnHasBeenSet = true; m_notificationTopicArn = std::move(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
      * (SNS) topic to which notifications are sent.</p> <note> <p>The Amazon SNS topic
-     * owner must be the same as the cache cluster owner.</p> </note>
+     * owner must be the same as the cluster owner.</p> </note>
      */
     inline void SetNotificationTopicArn(const char* value) { m_notificationTopicArnHasBeenSet = true; m_notificationTopicArn.assign(value); }
 
     /**
      * <p>The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
      * (SNS) topic to which notifications are sent.</p> <note> <p>The Amazon SNS topic
-     * owner must be the same as the cache cluster owner.</p> </note>
+     * owner must be the same as the cluster owner.</p> </note>
      */
     inline CreateReplicationGroupRequest& WithNotificationTopicArn(const Aws::String& value) { SetNotificationTopicArn(value); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
      * (SNS) topic to which notifications are sent.</p> <note> <p>The Amazon SNS topic
-     * owner must be the same as the cache cluster owner.</p> </note>
+     * owner must be the same as the cluster owner.</p> </note>
      */
     inline CreateReplicationGroupRequest& WithNotificationTopicArn(Aws::String&& value) { SetNotificationTopicArn(std::move(value)); return *this;}
 
     /**
      * <p>The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
      * (SNS) topic to which notifications are sent.</p> <note> <p>The Amazon SNS topic
-     * owner must be the same as the cache cluster owner.</p> </note>
+     * owner must be the same as the cluster owner.</p> </note>
      */
     inline CreateReplicationGroupRequest& WithNotificationTopicArn(const char* value) { SetNotificationTopicArn(value); return *this;}
 
@@ -1591,9 +1603,7 @@ namespace Model
      * <p>The number of days for which ElastiCache retains automatic snapshots before
      * deleting them. For example, if you set <code>SnapshotRetentionLimit</code> to 5,
      * a snapshot that was taken today is retained for 5 days before being deleted.</p>
-     * <note> <p>This parameter is only valid if the <code>Engine</code> parameter is
-     * <code>redis</code>.</p> </note> <p>Default: 0 (i.e., automatic backups are
-     * disabled for this cache cluster).</p>
+     * <p>Default: 0 (i.e., automatic backups are disabled for this cluster).</p>
      */
     inline int GetSnapshotRetentionLimit() const{ return m_snapshotRetentionLimit; }
 
@@ -1601,9 +1611,7 @@ namespace Model
      * <p>The number of days for which ElastiCache retains automatic snapshots before
      * deleting them. For example, if you set <code>SnapshotRetentionLimit</code> to 5,
      * a snapshot that was taken today is retained for 5 days before being deleted.</p>
-     * <note> <p>This parameter is only valid if the <code>Engine</code> parameter is
-     * <code>redis</code>.</p> </note> <p>Default: 0 (i.e., automatic backups are
-     * disabled for this cache cluster).</p>
+     * <p>Default: 0 (i.e., automatic backups are disabled for this cluster).</p>
      */
     inline void SetSnapshotRetentionLimit(int value) { m_snapshotRetentionLimitHasBeenSet = true; m_snapshotRetentionLimit = value; }
 
@@ -1611,9 +1619,7 @@ namespace Model
      * <p>The number of days for which ElastiCache retains automatic snapshots before
      * deleting them. For example, if you set <code>SnapshotRetentionLimit</code> to 5,
      * a snapshot that was taken today is retained for 5 days before being deleted.</p>
-     * <note> <p>This parameter is only valid if the <code>Engine</code> parameter is
-     * <code>redis</code>.</p> </note> <p>Default: 0 (i.e., automatic backups are
-     * disabled for this cache cluster).</p>
+     * <p>Default: 0 (i.e., automatic backups are disabled for this cluster).</p>
      */
     inline CreateReplicationGroupRequest& WithSnapshotRetentionLimit(int value) { SetSnapshotRetentionLimit(value); return *this;}
 
@@ -1622,8 +1628,7 @@ namespace Model
      * <p>The daily time range (in UTC) during which ElastiCache begins taking a daily
      * snapshot of your node group (shard).</p> <p>Example: <code>05:00-09:00</code>
      * </p> <p>If you do not specify this parameter, ElastiCache automatically chooses
-     * an appropriate time range.</p> <note> <p>This parameter is only valid if the
-     * <code>Engine</code> parameter is <code>redis</code>.</p> </note>
+     * an appropriate time range.</p>
      */
     inline const Aws::String& GetSnapshotWindow() const{ return m_snapshotWindow; }
 
@@ -1631,8 +1636,7 @@ namespace Model
      * <p>The daily time range (in UTC) during which ElastiCache begins taking a daily
      * snapshot of your node group (shard).</p> <p>Example: <code>05:00-09:00</code>
      * </p> <p>If you do not specify this parameter, ElastiCache automatically chooses
-     * an appropriate time range.</p> <note> <p>This parameter is only valid if the
-     * <code>Engine</code> parameter is <code>redis</code>.</p> </note>
+     * an appropriate time range.</p>
      */
     inline void SetSnapshotWindow(const Aws::String& value) { m_snapshotWindowHasBeenSet = true; m_snapshotWindow = value; }
 
@@ -1640,8 +1644,7 @@ namespace Model
      * <p>The daily time range (in UTC) during which ElastiCache begins taking a daily
      * snapshot of your node group (shard).</p> <p>Example: <code>05:00-09:00</code>
      * </p> <p>If you do not specify this parameter, ElastiCache automatically chooses
-     * an appropriate time range.</p> <note> <p>This parameter is only valid if the
-     * <code>Engine</code> parameter is <code>redis</code>.</p> </note>
+     * an appropriate time range.</p>
      */
     inline void SetSnapshotWindow(Aws::String&& value) { m_snapshotWindowHasBeenSet = true; m_snapshotWindow = std::move(value); }
 
@@ -1649,8 +1652,7 @@ namespace Model
      * <p>The daily time range (in UTC) during which ElastiCache begins taking a daily
      * snapshot of your node group (shard).</p> <p>Example: <code>05:00-09:00</code>
      * </p> <p>If you do not specify this parameter, ElastiCache automatically chooses
-     * an appropriate time range.</p> <note> <p>This parameter is only valid if the
-     * <code>Engine</code> parameter is <code>redis</code>.</p> </note>
+     * an appropriate time range.</p>
      */
     inline void SetSnapshotWindow(const char* value) { m_snapshotWindowHasBeenSet = true; m_snapshotWindow.assign(value); }
 
@@ -1658,8 +1660,7 @@ namespace Model
      * <p>The daily time range (in UTC) during which ElastiCache begins taking a daily
      * snapshot of your node group (shard).</p> <p>Example: <code>05:00-09:00</code>
      * </p> <p>If you do not specify this parameter, ElastiCache automatically chooses
-     * an appropriate time range.</p> <note> <p>This parameter is only valid if the
-     * <code>Engine</code> parameter is <code>redis</code>.</p> </note>
+     * an appropriate time range.</p>
      */
     inline CreateReplicationGroupRequest& WithSnapshotWindow(const Aws::String& value) { SetSnapshotWindow(value); return *this;}
 
@@ -1667,8 +1668,7 @@ namespace Model
      * <p>The daily time range (in UTC) during which ElastiCache begins taking a daily
      * snapshot of your node group (shard).</p> <p>Example: <code>05:00-09:00</code>
      * </p> <p>If you do not specify this parameter, ElastiCache automatically chooses
-     * an appropriate time range.</p> <note> <p>This parameter is only valid if the
-     * <code>Engine</code> parameter is <code>redis</code>.</p> </note>
+     * an appropriate time range.</p>
      */
     inline CreateReplicationGroupRequest& WithSnapshotWindow(Aws::String&& value) { SetSnapshotWindow(std::move(value)); return *this;}
 
@@ -1676,88 +1676,192 @@ namespace Model
      * <p>The daily time range (in UTC) during which ElastiCache begins taking a daily
      * snapshot of your node group (shard).</p> <p>Example: <code>05:00-09:00</code>
      * </p> <p>If you do not specify this parameter, ElastiCache automatically chooses
-     * an appropriate time range.</p> <note> <p>This parameter is only valid if the
-     * <code>Engine</code> parameter is <code>redis</code>.</p> </note>
+     * an appropriate time range.</p>
      */
     inline CreateReplicationGroupRequest& WithSnapshotWindow(const char* value) { SetSnapshotWindow(value); return *this;}
 
 
     /**
      * <p> <b>Reserved parameter.</b> The password used to access a password protected
-     * server.</p> <p>Password constraints:</p> <ul> <li> <p>Must be only printable
-     * ASCII characters.</p> </li> <li> <p>Must be at least 16 characters and no more
-     * than 128 characters in length.</p> </li> <li> <p>Cannot contain any of the
-     * following characters: '/', '"', or "@". </p> </li> </ul> <p>For more
-     * information, see <a href="http://redis.io/commands/AUTH">AUTH password</a> at
-     * Redis.</p>
+     * server.</p> <p>This parameter is valid only if:</p> <ul> <li> <p>The parameter
+     * <code>TransitEncryptionEnabled</code> was set to <code>true</code> when the
+     * cluster was created.</p> </li> <li> <p>The line <code>requirepass</code> was
+     * added to the database configuration file.</p> </li> </ul> <p>Password
+     * constraints:</p> <ul> <li> <p>Must be only printable ASCII characters.</p> </li>
+     * <li> <p>Must be at least 16 characters and no more than 128 characters in
+     * length.</p> </li> <li> <p>Cannot contain any of the following characters: '/',
+     * '"', or '@'. </p> </li> </ul> <p>For more information, see <a
+     * href="http://redis.io/commands/AUTH">AUTH password</a> at
+     * http://redis.io/commands/AUTH.</p>
      */
     inline const Aws::String& GetAuthToken() const{ return m_authToken; }
 
     /**
      * <p> <b>Reserved parameter.</b> The password used to access a password protected
-     * server.</p> <p>Password constraints:</p> <ul> <li> <p>Must be only printable
-     * ASCII characters.</p> </li> <li> <p>Must be at least 16 characters and no more
-     * than 128 characters in length.</p> </li> <li> <p>Cannot contain any of the
-     * following characters: '/', '"', or "@". </p> </li> </ul> <p>For more
-     * information, see <a href="http://redis.io/commands/AUTH">AUTH password</a> at
-     * Redis.</p>
+     * server.</p> <p>This parameter is valid only if:</p> <ul> <li> <p>The parameter
+     * <code>TransitEncryptionEnabled</code> was set to <code>true</code> when the
+     * cluster was created.</p> </li> <li> <p>The line <code>requirepass</code> was
+     * added to the database configuration file.</p> </li> </ul> <p>Password
+     * constraints:</p> <ul> <li> <p>Must be only printable ASCII characters.</p> </li>
+     * <li> <p>Must be at least 16 characters and no more than 128 characters in
+     * length.</p> </li> <li> <p>Cannot contain any of the following characters: '/',
+     * '"', or '@'. </p> </li> </ul> <p>For more information, see <a
+     * href="http://redis.io/commands/AUTH">AUTH password</a> at
+     * http://redis.io/commands/AUTH.</p>
      */
     inline void SetAuthToken(const Aws::String& value) { m_authTokenHasBeenSet = true; m_authToken = value; }
 
     /**
      * <p> <b>Reserved parameter.</b> The password used to access a password protected
-     * server.</p> <p>Password constraints:</p> <ul> <li> <p>Must be only printable
-     * ASCII characters.</p> </li> <li> <p>Must be at least 16 characters and no more
-     * than 128 characters in length.</p> </li> <li> <p>Cannot contain any of the
-     * following characters: '/', '"', or "@". </p> </li> </ul> <p>For more
-     * information, see <a href="http://redis.io/commands/AUTH">AUTH password</a> at
-     * Redis.</p>
+     * server.</p> <p>This parameter is valid only if:</p> <ul> <li> <p>The parameter
+     * <code>TransitEncryptionEnabled</code> was set to <code>true</code> when the
+     * cluster was created.</p> </li> <li> <p>The line <code>requirepass</code> was
+     * added to the database configuration file.</p> </li> </ul> <p>Password
+     * constraints:</p> <ul> <li> <p>Must be only printable ASCII characters.</p> </li>
+     * <li> <p>Must be at least 16 characters and no more than 128 characters in
+     * length.</p> </li> <li> <p>Cannot contain any of the following characters: '/',
+     * '"', or '@'. </p> </li> </ul> <p>For more information, see <a
+     * href="http://redis.io/commands/AUTH">AUTH password</a> at
+     * http://redis.io/commands/AUTH.</p>
      */
     inline void SetAuthToken(Aws::String&& value) { m_authTokenHasBeenSet = true; m_authToken = std::move(value); }
 
     /**
      * <p> <b>Reserved parameter.</b> The password used to access a password protected
-     * server.</p> <p>Password constraints:</p> <ul> <li> <p>Must be only printable
-     * ASCII characters.</p> </li> <li> <p>Must be at least 16 characters and no more
-     * than 128 characters in length.</p> </li> <li> <p>Cannot contain any of the
-     * following characters: '/', '"', or "@". </p> </li> </ul> <p>For more
-     * information, see <a href="http://redis.io/commands/AUTH">AUTH password</a> at
-     * Redis.</p>
+     * server.</p> <p>This parameter is valid only if:</p> <ul> <li> <p>The parameter
+     * <code>TransitEncryptionEnabled</code> was set to <code>true</code> when the
+     * cluster was created.</p> </li> <li> <p>The line <code>requirepass</code> was
+     * added to the database configuration file.</p> </li> </ul> <p>Password
+     * constraints:</p> <ul> <li> <p>Must be only printable ASCII characters.</p> </li>
+     * <li> <p>Must be at least 16 characters and no more than 128 characters in
+     * length.</p> </li> <li> <p>Cannot contain any of the following characters: '/',
+     * '"', or '@'. </p> </li> </ul> <p>For more information, see <a
+     * href="http://redis.io/commands/AUTH">AUTH password</a> at
+     * http://redis.io/commands/AUTH.</p>
      */
     inline void SetAuthToken(const char* value) { m_authTokenHasBeenSet = true; m_authToken.assign(value); }
 
     /**
      * <p> <b>Reserved parameter.</b> The password used to access a password protected
-     * server.</p> <p>Password constraints:</p> <ul> <li> <p>Must be only printable
-     * ASCII characters.</p> </li> <li> <p>Must be at least 16 characters and no more
-     * than 128 characters in length.</p> </li> <li> <p>Cannot contain any of the
-     * following characters: '/', '"', or "@". </p> </li> </ul> <p>For more
-     * information, see <a href="http://redis.io/commands/AUTH">AUTH password</a> at
-     * Redis.</p>
+     * server.</p> <p>This parameter is valid only if:</p> <ul> <li> <p>The parameter
+     * <code>TransitEncryptionEnabled</code> was set to <code>true</code> when the
+     * cluster was created.</p> </li> <li> <p>The line <code>requirepass</code> was
+     * added to the database configuration file.</p> </li> </ul> <p>Password
+     * constraints:</p> <ul> <li> <p>Must be only printable ASCII characters.</p> </li>
+     * <li> <p>Must be at least 16 characters and no more than 128 characters in
+     * length.</p> </li> <li> <p>Cannot contain any of the following characters: '/',
+     * '"', or '@'. </p> </li> </ul> <p>For more information, see <a
+     * href="http://redis.io/commands/AUTH">AUTH password</a> at
+     * http://redis.io/commands/AUTH.</p>
      */
     inline CreateReplicationGroupRequest& WithAuthToken(const Aws::String& value) { SetAuthToken(value); return *this;}
 
     /**
      * <p> <b>Reserved parameter.</b> The password used to access a password protected
-     * server.</p> <p>Password constraints:</p> <ul> <li> <p>Must be only printable
-     * ASCII characters.</p> </li> <li> <p>Must be at least 16 characters and no more
-     * than 128 characters in length.</p> </li> <li> <p>Cannot contain any of the
-     * following characters: '/', '"', or "@". </p> </li> </ul> <p>For more
-     * information, see <a href="http://redis.io/commands/AUTH">AUTH password</a> at
-     * Redis.</p>
+     * server.</p> <p>This parameter is valid only if:</p> <ul> <li> <p>The parameter
+     * <code>TransitEncryptionEnabled</code> was set to <code>true</code> when the
+     * cluster was created.</p> </li> <li> <p>The line <code>requirepass</code> was
+     * added to the database configuration file.</p> </li> </ul> <p>Password
+     * constraints:</p> <ul> <li> <p>Must be only printable ASCII characters.</p> </li>
+     * <li> <p>Must be at least 16 characters and no more than 128 characters in
+     * length.</p> </li> <li> <p>Cannot contain any of the following characters: '/',
+     * '"', or '@'. </p> </li> </ul> <p>For more information, see <a
+     * href="http://redis.io/commands/AUTH">AUTH password</a> at
+     * http://redis.io/commands/AUTH.</p>
      */
     inline CreateReplicationGroupRequest& WithAuthToken(Aws::String&& value) { SetAuthToken(std::move(value)); return *this;}
 
     /**
      * <p> <b>Reserved parameter.</b> The password used to access a password protected
-     * server.</p> <p>Password constraints:</p> <ul> <li> <p>Must be only printable
-     * ASCII characters.</p> </li> <li> <p>Must be at least 16 characters and no more
-     * than 128 characters in length.</p> </li> <li> <p>Cannot contain any of the
-     * following characters: '/', '"', or "@". </p> </li> </ul> <p>For more
-     * information, see <a href="http://redis.io/commands/AUTH">AUTH password</a> at
-     * Redis.</p>
+     * server.</p> <p>This parameter is valid only if:</p> <ul> <li> <p>The parameter
+     * <code>TransitEncryptionEnabled</code> was set to <code>true</code> when the
+     * cluster was created.</p> </li> <li> <p>The line <code>requirepass</code> was
+     * added to the database configuration file.</p> </li> </ul> <p>Password
+     * constraints:</p> <ul> <li> <p>Must be only printable ASCII characters.</p> </li>
+     * <li> <p>Must be at least 16 characters and no more than 128 characters in
+     * length.</p> </li> <li> <p>Cannot contain any of the following characters: '/',
+     * '"', or '@'. </p> </li> </ul> <p>For more information, see <a
+     * href="http://redis.io/commands/AUTH">AUTH password</a> at
+     * http://redis.io/commands/AUTH.</p>
      */
     inline CreateReplicationGroupRequest& WithAuthToken(const char* value) { SetAuthToken(value); return *this;}
+
+
+    /**
+     * <p>A flag that enables in-transit encryption when set to <code>true</code>.</p>
+     * <p>You cannot modify the value of <code>TransitEncryptionEnabled</code> after
+     * the cluster is created. To enable in-transit encryption on a cluster you must
+     * set <code>TransitEncryptionEnabled</code> to <code>true</code> when you create a
+     * cluster.</p> <p>This parameter is valid only if the <code>Engine</code>
+     * parameter is <code>redis</code>, the <code>EngineVersion</code> parameter is
+     * <code>3.2.4</code> or later, and the cluster is being created in an Amazon
+     * VPC.</p> <p>If you enable in-transit encryption, you must also specify a value
+     * for <code>CacheSubnetGroup</code>.</p> <p>Default: <code>false</code> </p>
+     */
+    inline bool GetTransitEncryptionEnabled() const{ return m_transitEncryptionEnabled; }
+
+    /**
+     * <p>A flag that enables in-transit encryption when set to <code>true</code>.</p>
+     * <p>You cannot modify the value of <code>TransitEncryptionEnabled</code> after
+     * the cluster is created. To enable in-transit encryption on a cluster you must
+     * set <code>TransitEncryptionEnabled</code> to <code>true</code> when you create a
+     * cluster.</p> <p>This parameter is valid only if the <code>Engine</code>
+     * parameter is <code>redis</code>, the <code>EngineVersion</code> parameter is
+     * <code>3.2.4</code> or later, and the cluster is being created in an Amazon
+     * VPC.</p> <p>If you enable in-transit encryption, you must also specify a value
+     * for <code>CacheSubnetGroup</code>.</p> <p>Default: <code>false</code> </p>
+     */
+    inline void SetTransitEncryptionEnabled(bool value) { m_transitEncryptionEnabledHasBeenSet = true; m_transitEncryptionEnabled = value; }
+
+    /**
+     * <p>A flag that enables in-transit encryption when set to <code>true</code>.</p>
+     * <p>You cannot modify the value of <code>TransitEncryptionEnabled</code> after
+     * the cluster is created. To enable in-transit encryption on a cluster you must
+     * set <code>TransitEncryptionEnabled</code> to <code>true</code> when you create a
+     * cluster.</p> <p>This parameter is valid only if the <code>Engine</code>
+     * parameter is <code>redis</code>, the <code>EngineVersion</code> parameter is
+     * <code>3.2.4</code> or later, and the cluster is being created in an Amazon
+     * VPC.</p> <p>If you enable in-transit encryption, you must also specify a value
+     * for <code>CacheSubnetGroup</code>.</p> <p>Default: <code>false</code> </p>
+     */
+    inline CreateReplicationGroupRequest& WithTransitEncryptionEnabled(bool value) { SetTransitEncryptionEnabled(value); return *this;}
+
+
+    /**
+     * <p>A flag that enables encryption at rest when set to <code>true</code>.</p>
+     * <p>You cannot modify the value of <code>AtRestEncryptionEnabled</code> after the
+     * replication group is created. To enable encryption at rest on a replication
+     * group you must set <code>AtRestEncryptionEnabled</code> to <code>true</code>
+     * when you create the replication group. </p> <note> <p>This parameter is valid
+     * only if the <code>Engine</code> parameter is <code>redis</code> and the cluster
+     * is being created in an Amazon VPC.</p> </note> <p>Default: <code>false</code>
+     * </p>
+     */
+    inline bool GetAtRestEncryptionEnabled() const{ return m_atRestEncryptionEnabled; }
+
+    /**
+     * <p>A flag that enables encryption at rest when set to <code>true</code>.</p>
+     * <p>You cannot modify the value of <code>AtRestEncryptionEnabled</code> after the
+     * replication group is created. To enable encryption at rest on a replication
+     * group you must set <code>AtRestEncryptionEnabled</code> to <code>true</code>
+     * when you create the replication group. </p> <note> <p>This parameter is valid
+     * only if the <code>Engine</code> parameter is <code>redis</code> and the cluster
+     * is being created in an Amazon VPC.</p> </note> <p>Default: <code>false</code>
+     * </p>
+     */
+    inline void SetAtRestEncryptionEnabled(bool value) { m_atRestEncryptionEnabledHasBeenSet = true; m_atRestEncryptionEnabled = value; }
+
+    /**
+     * <p>A flag that enables encryption at rest when set to <code>true</code>.</p>
+     * <p>You cannot modify the value of <code>AtRestEncryptionEnabled</code> after the
+     * replication group is created. To enable encryption at rest on a replication
+     * group you must set <code>AtRestEncryptionEnabled</code> to <code>true</code>
+     * when you create the replication group. </p> <note> <p>This parameter is valid
+     * only if the <code>Engine</code> parameter is <code>redis</code> and the cluster
+     * is being created in an Amazon VPC.</p> </note> <p>Default: <code>false</code>
+     * </p>
+     */
+    inline CreateReplicationGroupRequest& WithAtRestEncryptionEnabled(bool value) { SetAtRestEncryptionEnabled(value); return *this;}
 
   private:
 
@@ -1838,6 +1942,12 @@ namespace Model
 
     Aws::String m_authToken;
     bool m_authTokenHasBeenSet;
+
+    bool m_transitEncryptionEnabled;
+    bool m_transitEncryptionEnabledHasBeenSet;
+
+    bool m_atRestEncryptionEnabled;
+    bool m_atRestEncryptionEnabledHasBeenSet;
   };
 
 } // namespace Model

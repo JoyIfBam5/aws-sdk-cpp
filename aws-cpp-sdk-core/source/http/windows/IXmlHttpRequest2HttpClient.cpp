@@ -321,7 +321,6 @@ namespace Aws
                                         Aws::Utils::RateLimits::RateLimiterInterface* readLimiter, Aws::Utils::RateLimits::RateLimiterInterface* writeLimiter) const
         {
             auto uri = request.GetUri();
-            uri.SetPath(URI::URLEncodePath(uri.GetPath()));
             auto fullUriString = uri.GetURIString();
             AWS_LOGSTREAM_DEBUG(CLASS_TAG, "Making " << HttpMethodMapper::GetNameForHttpMethod(request.GetMethod()) 
                         << " request to url: " << fullUriString);
@@ -341,7 +340,8 @@ namespace Aws
 
             if (FAILED(hrResult))
             {
-                AWS_LOGSTREAM_ERROR(CLASS_TAG, "Error opening http request to " << uri.GetURIString() << " with status code " << hrResult);
+                AWS_LOGSTREAM_ERROR(CLASS_TAG, "Error opening http request with status code " << hrResult);
+                AWS_LOGSTREAM_DEBUG(CLASS_TAG, "The http request is: " << uri.GetURIString());
                 return nullptr;
             }
 
@@ -354,7 +354,8 @@ namespace Aws
 
                 if (FAILED(hrResult))
                 {
-                    AWS_LOGSTREAM_ERROR(CLASS_TAG, "Error setting http header " << header.first << "  " << header.second << " With status code: " << hrResult);
+                    AWS_LOGSTREAM_ERROR(CLASS_TAG, "Error setting http header " << header.first << " With status code: " << hrResult);
+                    AWS_LOGSTREAM_DEBUG(CLASS_TAG, "Corresponding header's value is: " << header.second);
                     return nullptr;
                 }
             }

@@ -17,6 +17,8 @@
 #include <aws/ecs/ECS_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
+#include <aws/ecs/model/LaunchType.h>
+#include <aws/ecs/model/NetworkConfiguration.h>
 #include <utility>
 
 namespace Aws
@@ -248,55 +250,153 @@ namespace Model
 
 
     /**
-     * <p>The Unix timestamp for when the service was created.</p>
+     * <p>The Unix time stamp for when the service was created.</p>
      */
     inline const Aws::Utils::DateTime& GetCreatedAt() const{ return m_createdAt; }
 
     /**
-     * <p>The Unix timestamp for when the service was created.</p>
+     * <p>The Unix time stamp for when the service was created.</p>
      */
     inline void SetCreatedAt(const Aws::Utils::DateTime& value) { m_createdAtHasBeenSet = true; m_createdAt = value; }
 
     /**
-     * <p>The Unix timestamp for when the service was created.</p>
+     * <p>The Unix time stamp for when the service was created.</p>
      */
     inline void SetCreatedAt(Aws::Utils::DateTime&& value) { m_createdAtHasBeenSet = true; m_createdAt = std::move(value); }
 
     /**
-     * <p>The Unix timestamp for when the service was created.</p>
+     * <p>The Unix time stamp for when the service was created.</p>
      */
     inline Deployment& WithCreatedAt(const Aws::Utils::DateTime& value) { SetCreatedAt(value); return *this;}
 
     /**
-     * <p>The Unix timestamp for when the service was created.</p>
+     * <p>The Unix time stamp for when the service was created.</p>
      */
     inline Deployment& WithCreatedAt(Aws::Utils::DateTime&& value) { SetCreatedAt(std::move(value)); return *this;}
 
 
     /**
-     * <p>The Unix timestamp for when the service was last updated.</p>
+     * <p>The Unix time stamp for when the service was last updated.</p>
      */
     inline const Aws::Utils::DateTime& GetUpdatedAt() const{ return m_updatedAt; }
 
     /**
-     * <p>The Unix timestamp for when the service was last updated.</p>
+     * <p>The Unix time stamp for when the service was last updated.</p>
      */
     inline void SetUpdatedAt(const Aws::Utils::DateTime& value) { m_updatedAtHasBeenSet = true; m_updatedAt = value; }
 
     /**
-     * <p>The Unix timestamp for when the service was last updated.</p>
+     * <p>The Unix time stamp for when the service was last updated.</p>
      */
     inline void SetUpdatedAt(Aws::Utils::DateTime&& value) { m_updatedAtHasBeenSet = true; m_updatedAt = std::move(value); }
 
     /**
-     * <p>The Unix timestamp for when the service was last updated.</p>
+     * <p>The Unix time stamp for when the service was last updated.</p>
      */
     inline Deployment& WithUpdatedAt(const Aws::Utils::DateTime& value) { SetUpdatedAt(value); return *this;}
 
     /**
-     * <p>The Unix timestamp for when the service was last updated.</p>
+     * <p>The Unix time stamp for when the service was last updated.</p>
      */
     inline Deployment& WithUpdatedAt(Aws::Utils::DateTime&& value) { SetUpdatedAt(std::move(value)); return *this;}
+
+
+    /**
+     * <p>The launch type on which your service is running.</p>
+     */
+    inline const LaunchType& GetLaunchType() const{ return m_launchType; }
+
+    /**
+     * <p>The launch type on which your service is running.</p>
+     */
+    inline void SetLaunchType(const LaunchType& value) { m_launchTypeHasBeenSet = true; m_launchType = value; }
+
+    /**
+     * <p>The launch type on which your service is running.</p>
+     */
+    inline void SetLaunchType(LaunchType&& value) { m_launchTypeHasBeenSet = true; m_launchType = std::move(value); }
+
+    /**
+     * <p>The launch type on which your service is running.</p>
+     */
+    inline Deployment& WithLaunchType(const LaunchType& value) { SetLaunchType(value); return *this;}
+
+    /**
+     * <p>The launch type on which your service is running.</p>
+     */
+    inline Deployment& WithLaunchType(LaunchType&& value) { SetLaunchType(std::move(value)); return *this;}
+
+
+    /**
+     * <p>The platform version on which your service is running.</p>
+     */
+    inline const Aws::String& GetPlatformVersion() const{ return m_platformVersion; }
+
+    /**
+     * <p>The platform version on which your service is running.</p>
+     */
+    inline void SetPlatformVersion(const Aws::String& value) { m_platformVersionHasBeenSet = true; m_platformVersion = value; }
+
+    /**
+     * <p>The platform version on which your service is running.</p>
+     */
+    inline void SetPlatformVersion(Aws::String&& value) { m_platformVersionHasBeenSet = true; m_platformVersion = std::move(value); }
+
+    /**
+     * <p>The platform version on which your service is running.</p>
+     */
+    inline void SetPlatformVersion(const char* value) { m_platformVersionHasBeenSet = true; m_platformVersion.assign(value); }
+
+    /**
+     * <p>The platform version on which your service is running.</p>
+     */
+    inline Deployment& WithPlatformVersion(const Aws::String& value) { SetPlatformVersion(value); return *this;}
+
+    /**
+     * <p>The platform version on which your service is running.</p>
+     */
+    inline Deployment& WithPlatformVersion(Aws::String&& value) { SetPlatformVersion(std::move(value)); return *this;}
+
+    /**
+     * <p>The platform version on which your service is running.</p>
+     */
+    inline Deployment& WithPlatformVersion(const char* value) { SetPlatformVersion(value); return *this;}
+
+
+    /**
+     * <p>The VPC subnet and security group configuration for tasks that receive their
+     * own Elastic Network Interface by using the <code>awsvpc</code> networking
+     * mode.</p>
+     */
+    inline const NetworkConfiguration& GetNetworkConfiguration() const{ return m_networkConfiguration; }
+
+    /**
+     * <p>The VPC subnet and security group configuration for tasks that receive their
+     * own Elastic Network Interface by using the <code>awsvpc</code> networking
+     * mode.</p>
+     */
+    inline void SetNetworkConfiguration(const NetworkConfiguration& value) { m_networkConfigurationHasBeenSet = true; m_networkConfiguration = value; }
+
+    /**
+     * <p>The VPC subnet and security group configuration for tasks that receive their
+     * own Elastic Network Interface by using the <code>awsvpc</code> networking
+     * mode.</p>
+     */
+    inline void SetNetworkConfiguration(NetworkConfiguration&& value) { m_networkConfigurationHasBeenSet = true; m_networkConfiguration = std::move(value); }
+
+    /**
+     * <p>The VPC subnet and security group configuration for tasks that receive their
+     * own Elastic Network Interface by using the <code>awsvpc</code> networking
+     * mode.</p>
+     */
+    inline Deployment& WithNetworkConfiguration(const NetworkConfiguration& value) { SetNetworkConfiguration(value); return *this;}
+
+    /**
+     * <p>The VPC subnet and security group configuration for tasks that receive their
+     * own Elastic Network Interface by using the <code>awsvpc</code> networking
+     * mode.</p>
+     */
+    inline Deployment& WithNetworkConfiguration(NetworkConfiguration&& value) { SetNetworkConfiguration(std::move(value)); return *this;}
 
   private:
 
@@ -323,6 +423,15 @@ namespace Model
 
     Aws::Utils::DateTime m_updatedAt;
     bool m_updatedAtHasBeenSet;
+
+    LaunchType m_launchType;
+    bool m_launchTypeHasBeenSet;
+
+    Aws::String m_platformVersion;
+    bool m_platformVersionHasBeenSet;
+
+    NetworkConfiguration m_networkConfiguration;
+    bool m_networkConfigurationHasBeenSet;
   };
 
 } // namespace Model

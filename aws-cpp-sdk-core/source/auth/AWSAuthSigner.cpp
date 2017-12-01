@@ -74,11 +74,24 @@ static Aws::String CanonicalizeRequestSigningString(HttpRequest& request, bool u
     Aws::StringStream signingStringStream;
     signingStringStream << HttpMethodMapper::GetNameForHttpMethod(request.GetMethod());
 
-    //double encode paths unless explicitly stated otherwise (for s3 compatibility)
     URI uriCpy = request.GetUri();
-    uriCpy.SetPath(uriCpy.GetURLEncodedPath());
-
-    signingStringStream << NEWLINE << (urlEscapePath ? uriCpy.GetURLEncodedPath() : uriCpy.GetPath()) << NEWLINE;
+    // Many AWS services do not decode the URL before calculating SignatureV4 on their end.
+    // This results in the signature getting calculated with a double encoded URL.
+    // That means we have to double encode it here for the signature to match on the service side.
+    if(urlEscapePath)
+    {
+        // RFC3986 is how we encode the URL before sending it on the wire.
+        auto rfc3986EncodedPath = URI::URLEncodePathRFC3986(uriCpy.GetPath());
+        uriCpy.SetPath(rfc3986EncodedPath);
+        // However, SignatureV4 uses this URL encoding scheme
+        signingStringStream << NEWLINE << uriCpy.GetURLEncodedPath() << NEWLINE;
+    }
+    else
+    {
+        // For the services that DO decode the URL first; we don't need to double encode it.
+        uriCpy.SetPath(uriCpy.GetURLEncodedPath());
+        signingStringStream << NEWLINE << uriCpy.GetPath() << NEWLINE;
+    }
 
     if (request.GetQueryString().size() > 1 && request.GetQueryString().find("=") != std::string::npos)
     {
@@ -106,7 +119,7 @@ static Http::HeaderValueCollection CanonicalizeHeaders(Http::HeaderValueCollecti
 
         //multiline gets converted to line1,line2,etc...
         auto headerMultiLine = StringUtils::SplitOnLine(trimmedHeaderValue);
-        Aws::String headerValue = headerMultiLine[0];
+        Aws::String headerValue = headerMultiLine.size() == 0 ? "" : headerMultiLine[0];
 
         if (headerMultiLine.size() > 1)
         {
@@ -131,7 +144,7 @@ static Http::HeaderValueCollection CanonicalizeHeaders(Http::HeaderValueCollecti
 }
 
 AWSAuthV4Signer::AWSAuthV4Signer(const std::shared_ptr<Auth::AWSCredentialsProvider>& credentialsProvider,
-    const char* serviceName, const Aws::String& region, bool signPayloads, bool urlEscapePath) :
+    const char* serviceName, const Aws::String& region, PayloadSigningPolicy signingPolicy, bool urlEscapePath) :
     m_includeSha256HashHeader(true),
     m_credentialsProvider(credentialsProvider),
     m_serviceName(serviceName),
@@ -139,7 +152,7 @@ AWSAuthV4Signer::AWSAuthV4Signer(const std::shared_ptr<Auth::AWSCredentialsProvi
     m_hash(Aws::MakeUnique<Aws::Utils::Crypto::Sha256>(v4LogTag)),
     m_HMAC(Aws::MakeUnique<Aws::Utils::Crypto::Sha256HMAC>(v4LogTag)),
     m_unsignedHeaders({"user-agent", "x-amzn-trace-id"}),
-    m_signPayloads(signPayloads),
+    m_payloadSigningPolicy(signingPolicy),
     m_urlEscapePath(urlEscapePath)
 {
     //go ahead and warm up the signing cache.
@@ -159,7 +172,7 @@ bool AWSAuthV4Signer::ShouldSignHeader(const Aws::String& header) const
 
 bool AWSAuthV4Signer::SignRequest(Aws::Http::HttpRequest& request) const
 {
-    return SignRequest(request, m_signPayloads);
+    return SignRequest(request, true/*signBody*/);
 }
 
 bool AWSAuthV4Signer::SignRequest(Aws::Http::HttpRequest& request, bool signBody) const
@@ -178,6 +191,20 @@ bool AWSAuthV4Signer::SignRequest(Aws::Http::HttpRequest& request, bool signBody
     }
 
     Aws::String payloadHash(UNSIGNED_PAYLOAD);
+    switch(m_payloadSigningPolicy)
+    {
+        case PayloadSigningPolicy::Always:
+            signBody = true;
+            break;
+        case PayloadSigningPolicy::Never:
+            signBody = false;
+            break;
+        case PayloadSigningPolicy::RequestDependent:
+            // respect the request setting
+        default:
+            break;
+    }
+
     if(signBody || request.GetUri().GetScheme() != Http::Scheme::HTTPS)
     {
         payloadHash.assign(ComputePayloadHash(request));
@@ -188,7 +215,7 @@ bool AWSAuthV4Signer::SignRequest(Aws::Http::HttpRequest& request, bool signBody
     }
     else
     {
-        AWS_LOGSTREAM_DEBUG(v4LogTag, "Note: Http payloads are not being signed. signPayloads=" << m_signPayloads
+        AWS_LOGSTREAM_DEBUG(v4LogTag, "Note: Http payloads are not being signed. signPayloads=" << signBody
                 << " http scheme=" << Http::SchemeMapper::ToString(request.GetUri().GetScheme()));
     }
 
@@ -239,7 +266,8 @@ bool AWSAuthV4Signer::SignRequest(Aws::Http::HttpRequest& request, bool signBody
     auto hashResult = m_hash->Calculate(canonicalRequestString);
     if (!hashResult.IsSuccess())
     {
-        AWS_LOGSTREAM_ERROR(v4LogTag, "Failed to hash (sha256) request string \"" << canonicalRequestString << "\"");
+        AWS_LOGSTREAM_ERROR(v4LogTag, "Failed to hash (sha256) request string");
+        AWS_LOGSTREAM_DEBUG(v4LogTag, "The request string is: \"" << canonicalRequestString << "\"");
         return false;
     }
 
@@ -332,7 +360,8 @@ bool AWSAuthV4Signer::PresignRequest(Aws::Http::HttpRequest& request, const char
     auto hashResult = m_hash->Calculate(canonicalRequestString);
     if (!hashResult.IsSuccess())
     {
-        AWS_LOGSTREAM_ERROR(v4LogTag, "Failed to hash (sha256) request string \"" << canonicalRequestString << "\"");
+        AWS_LOGSTREAM_ERROR(v4LogTag, "Failed to hash (sha256) request string");
+        AWS_LOGSTREAM_DEBUG(v4LogTag, "The request string is: \"" << canonicalRequestString << "\"");
         return false;
     }
 
@@ -364,7 +393,8 @@ Aws::String AWSAuthV4Signer::GenerateSignature(const AWSCredentials& credentials
     auto hashResult = m_HMAC->Calculate(ByteBuffer((unsigned char*)stringToSign.c_str(), stringToSign.length()), partialSignature);
     if (!hashResult.IsSuccess())
     {
-        AWS_LOGSTREAM_ERROR(v4LogTag, "Unable to hmac (sha256) final string \"" << stringToSign << "\"");
+        AWS_LOGSTREAM_ERROR(v4LogTag, "Unable to hmac (sha256) final string");
+        AWS_LOGSTREAM_DEBUG(v4LogTag, "The final string is: \"" << stringToSign << "\"");
         return "";
     }
 
@@ -467,7 +497,8 @@ const Aws::Utils::Array<unsigned char>& AWSAuthV4Signer::ComputeLongLivedHash(co
             hashResult = m_HMAC->Calculate(ByteBuffer((unsigned char*)AWS4_REQUEST, strlen(AWS4_REQUEST)), kService);
             if (!hashResult.IsSuccess())
             {
-                AWS_LOGSTREAM_ERROR(v4LogTag, "Unable to hmac (sha256) request string \"" << AWS4_REQUEST << "\"");
+                AWS_LOGSTREAM_ERROR(v4LogTag, "Unable to hmac (sha256) request string");
+                AWS_LOGSTREAM_DEBUG(v4LogTag, "The request string is: \"" << AWS4_REQUEST << "\"");
                 m_partialSignature = ByteBuffer();
                 return m_partialSignature;
             }

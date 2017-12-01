@@ -40,13 +40,9 @@ namespace Model
 {
 
   /**
-   * <p>Contains the result of a successful invocation of the following actions:</p>
-   * <ul> <li> <p> <a>CreateDBCluster</a> </p> </li> <li> <p> <a>DeleteDBCluster</a>
-   * </p> </li> <li> <p> <a>FailoverDBCluster</a> </p> </li> <li> <p>
-   * <a>ModifyDBCluster</a> </p> </li> <li> <p> <a>RestoreDBClusterFromSnapshot</a>
-   * </p> </li> <li> <p> <a>RestoreDBClusterToPointInTime</a> </p> </li> </ul>
-   * <p>This data type is used as a response element in the <a>DescribeDBClusters</a>
-   * action.</p><p><h3>See Also:</h3>   <a
+   * <p>Contains the details of an Amazon RDS DB cluster. </p> <p>This data type is
+   * used as a response element in the <a>DescribeDBClusters</a> action.
+   * </p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBCluster">AWS API
    * Reference</a></p>
    */
@@ -523,9 +519,8 @@ namespace Model
      * This functionality can help balance your read workload across multiple Aurora
      * Replicas in your DB cluster. </p> <p>If a failover occurs, and the Aurora
      * Replica that you are connected to is promoted to be the primary instance, your
-     * connection will be dropped. To continue sending your read workload to other
-     * Aurora Replicas in the cluster, you can then reconnect to the reader
-     * endpoint.</p>
+     * connection is dropped. To continue sending your read workload to other Aurora
+     * Replicas in the cluster, you can then reconnect to the reader endpoint.</p>
      */
     inline const Aws::String& GetReaderEndpoint() const{ return m_readerEndpoint; }
 
@@ -537,9 +532,8 @@ namespace Model
      * This functionality can help balance your read workload across multiple Aurora
      * Replicas in your DB cluster. </p> <p>If a failover occurs, and the Aurora
      * Replica that you are connected to is promoted to be the primary instance, your
-     * connection will be dropped. To continue sending your read workload to other
-     * Aurora Replicas in the cluster, you can then reconnect to the reader
-     * endpoint.</p>
+     * connection is dropped. To continue sending your read workload to other Aurora
+     * Replicas in the cluster, you can then reconnect to the reader endpoint.</p>
      */
     inline void SetReaderEndpoint(const Aws::String& value) { m_readerEndpointHasBeenSet = true; m_readerEndpoint = value; }
 
@@ -551,9 +545,8 @@ namespace Model
      * This functionality can help balance your read workload across multiple Aurora
      * Replicas in your DB cluster. </p> <p>If a failover occurs, and the Aurora
      * Replica that you are connected to is promoted to be the primary instance, your
-     * connection will be dropped. To continue sending your read workload to other
-     * Aurora Replicas in the cluster, you can then reconnect to the reader
-     * endpoint.</p>
+     * connection is dropped. To continue sending your read workload to other Aurora
+     * Replicas in the cluster, you can then reconnect to the reader endpoint.</p>
      */
     inline void SetReaderEndpoint(Aws::String&& value) { m_readerEndpointHasBeenSet = true; m_readerEndpoint = std::move(value); }
 
@@ -565,9 +558,8 @@ namespace Model
      * This functionality can help balance your read workload across multiple Aurora
      * Replicas in your DB cluster. </p> <p>If a failover occurs, and the Aurora
      * Replica that you are connected to is promoted to be the primary instance, your
-     * connection will be dropped. To continue sending your read workload to other
-     * Aurora Replicas in the cluster, you can then reconnect to the reader
-     * endpoint.</p>
+     * connection is dropped. To continue sending your read workload to other Aurora
+     * Replicas in the cluster, you can then reconnect to the reader endpoint.</p>
      */
     inline void SetReaderEndpoint(const char* value) { m_readerEndpointHasBeenSet = true; m_readerEndpoint.assign(value); }
 
@@ -579,9 +571,8 @@ namespace Model
      * This functionality can help balance your read workload across multiple Aurora
      * Replicas in your DB cluster. </p> <p>If a failover occurs, and the Aurora
      * Replica that you are connected to is promoted to be the primary instance, your
-     * connection will be dropped. To continue sending your read workload to other
-     * Aurora Replicas in the cluster, you can then reconnect to the reader
-     * endpoint.</p>
+     * connection is dropped. To continue sending your read workload to other Aurora
+     * Replicas in the cluster, you can then reconnect to the reader endpoint.</p>
      */
     inline DBCluster& WithReaderEndpoint(const Aws::String& value) { SetReaderEndpoint(value); return *this;}
 
@@ -593,9 +584,8 @@ namespace Model
      * This functionality can help balance your read workload across multiple Aurora
      * Replicas in your DB cluster. </p> <p>If a failover occurs, and the Aurora
      * Replica that you are connected to is promoted to be the primary instance, your
-     * connection will be dropped. To continue sending your read workload to other
-     * Aurora Replicas in the cluster, you can then reconnect to the reader
-     * endpoint.</p>
+     * connection is dropped. To continue sending your read workload to other Aurora
+     * Replicas in the cluster, you can then reconnect to the reader endpoint.</p>
      */
     inline DBCluster& WithReaderEndpoint(Aws::String&& value) { SetReaderEndpoint(std::move(value)); return *this;}
 
@@ -607,9 +597,8 @@ namespace Model
      * This functionality can help balance your read workload across multiple Aurora
      * Replicas in your DB cluster. </p> <p>If a failover occurs, and the Aurora
      * Replica that you are connected to is promoted to be the primary instance, your
-     * connection will be dropped. To continue sending your read workload to other
-     * Aurora Replicas in the cluster, you can then reconnect to the reader
-     * endpoint.</p>
+     * connection is dropped. To continue sending your read workload to other Aurora
+     * Replicas in the cluster, you can then reconnect to the reader endpoint.</p>
      */
     inline DBCluster& WithReaderEndpoint(const char* value) { SetReaderEndpoint(value); return *this;}
 
@@ -1141,94 +1130,94 @@ namespace Model
 
 
     /**
-     * <p>If <code>StorageEncrypted</code> is true, the KMS key identifier for the
+     * <p>If <code>StorageEncrypted</code> is true, the AWS KMS key identifier for the
      * encrypted DB cluster.</p>
      */
     inline const Aws::String& GetKmsKeyId() const{ return m_kmsKeyId; }
 
     /**
-     * <p>If <code>StorageEncrypted</code> is true, the KMS key identifier for the
+     * <p>If <code>StorageEncrypted</code> is true, the AWS KMS key identifier for the
      * encrypted DB cluster.</p>
      */
     inline void SetKmsKeyId(const Aws::String& value) { m_kmsKeyIdHasBeenSet = true; m_kmsKeyId = value; }
 
     /**
-     * <p>If <code>StorageEncrypted</code> is true, the KMS key identifier for the
+     * <p>If <code>StorageEncrypted</code> is true, the AWS KMS key identifier for the
      * encrypted DB cluster.</p>
      */
     inline void SetKmsKeyId(Aws::String&& value) { m_kmsKeyIdHasBeenSet = true; m_kmsKeyId = std::move(value); }
 
     /**
-     * <p>If <code>StorageEncrypted</code> is true, the KMS key identifier for the
+     * <p>If <code>StorageEncrypted</code> is true, the AWS KMS key identifier for the
      * encrypted DB cluster.</p>
      */
     inline void SetKmsKeyId(const char* value) { m_kmsKeyIdHasBeenSet = true; m_kmsKeyId.assign(value); }
 
     /**
-     * <p>If <code>StorageEncrypted</code> is true, the KMS key identifier for the
+     * <p>If <code>StorageEncrypted</code> is true, the AWS KMS key identifier for the
      * encrypted DB cluster.</p>
      */
     inline DBCluster& WithKmsKeyId(const Aws::String& value) { SetKmsKeyId(value); return *this;}
 
     /**
-     * <p>If <code>StorageEncrypted</code> is true, the KMS key identifier for the
+     * <p>If <code>StorageEncrypted</code> is true, the AWS KMS key identifier for the
      * encrypted DB cluster.</p>
      */
     inline DBCluster& WithKmsKeyId(Aws::String&& value) { SetKmsKeyId(std::move(value)); return *this;}
 
     /**
-     * <p>If <code>StorageEncrypted</code> is true, the KMS key identifier for the
+     * <p>If <code>StorageEncrypted</code> is true, the AWS KMS key identifier for the
      * encrypted DB cluster.</p>
      */
     inline DBCluster& WithKmsKeyId(const char* value) { SetKmsKeyId(value); return *this;}
 
 
     /**
-     * <p>The region-unique, immutable identifier for the DB cluster. This identifier
-     * is found in AWS CloudTrail log entries whenever the KMS key for the DB cluster
-     * is accessed.</p>
+     * <p>The AWS Region-unique, immutable identifier for the DB cluster. This
+     * identifier is found in AWS CloudTrail log entries whenever the AWS KMS key for
+     * the DB cluster is accessed.</p>
      */
     inline const Aws::String& GetDbClusterResourceId() const{ return m_dbClusterResourceId; }
 
     /**
-     * <p>The region-unique, immutable identifier for the DB cluster. This identifier
-     * is found in AWS CloudTrail log entries whenever the KMS key for the DB cluster
-     * is accessed.</p>
+     * <p>The AWS Region-unique, immutable identifier for the DB cluster. This
+     * identifier is found in AWS CloudTrail log entries whenever the AWS KMS key for
+     * the DB cluster is accessed.</p>
      */
     inline void SetDbClusterResourceId(const Aws::String& value) { m_dbClusterResourceIdHasBeenSet = true; m_dbClusterResourceId = value; }
 
     /**
-     * <p>The region-unique, immutable identifier for the DB cluster. This identifier
-     * is found in AWS CloudTrail log entries whenever the KMS key for the DB cluster
-     * is accessed.</p>
+     * <p>The AWS Region-unique, immutable identifier for the DB cluster. This
+     * identifier is found in AWS CloudTrail log entries whenever the AWS KMS key for
+     * the DB cluster is accessed.</p>
      */
     inline void SetDbClusterResourceId(Aws::String&& value) { m_dbClusterResourceIdHasBeenSet = true; m_dbClusterResourceId = std::move(value); }
 
     /**
-     * <p>The region-unique, immutable identifier for the DB cluster. This identifier
-     * is found in AWS CloudTrail log entries whenever the KMS key for the DB cluster
-     * is accessed.</p>
+     * <p>The AWS Region-unique, immutable identifier for the DB cluster. This
+     * identifier is found in AWS CloudTrail log entries whenever the AWS KMS key for
+     * the DB cluster is accessed.</p>
      */
     inline void SetDbClusterResourceId(const char* value) { m_dbClusterResourceIdHasBeenSet = true; m_dbClusterResourceId.assign(value); }
 
     /**
-     * <p>The region-unique, immutable identifier for the DB cluster. This identifier
-     * is found in AWS CloudTrail log entries whenever the KMS key for the DB cluster
-     * is accessed.</p>
+     * <p>The AWS Region-unique, immutable identifier for the DB cluster. This
+     * identifier is found in AWS CloudTrail log entries whenever the AWS KMS key for
+     * the DB cluster is accessed.</p>
      */
     inline DBCluster& WithDbClusterResourceId(const Aws::String& value) { SetDbClusterResourceId(value); return *this;}
 
     /**
-     * <p>The region-unique, immutable identifier for the DB cluster. This identifier
-     * is found in AWS CloudTrail log entries whenever the KMS key for the DB cluster
-     * is accessed.</p>
+     * <p>The AWS Region-unique, immutable identifier for the DB cluster. This
+     * identifier is found in AWS CloudTrail log entries whenever the AWS KMS key for
+     * the DB cluster is accessed.</p>
      */
     inline DBCluster& WithDbClusterResourceId(Aws::String&& value) { SetDbClusterResourceId(std::move(value)); return *this;}
 
     /**
-     * <p>The region-unique, immutable identifier for the DB cluster. This identifier
-     * is found in AWS CloudTrail log entries whenever the KMS key for the DB cluster
-     * is accessed.</p>
+     * <p>The AWS Region-unique, immutable identifier for the DB cluster. This
+     * identifier is found in AWS CloudTrail log entries whenever the AWS KMS key for
+     * the DB cluster is accessed.</p>
      */
     inline DBCluster& WithDbClusterResourceId(const char* value) { SetDbClusterResourceId(value); return *this;}
 
@@ -1328,19 +1317,19 @@ namespace Model
 
     /**
      * <p>True if mapping of AWS Identity and Access Management (IAM) accounts to
-     * database accounts is enabled; otherwise false.</p>
+     * database accounts is enabled, and otherwise false.</p>
      */
     inline bool GetIAMDatabaseAuthenticationEnabled() const{ return m_iAMDatabaseAuthenticationEnabled; }
 
     /**
      * <p>True if mapping of AWS Identity and Access Management (IAM) accounts to
-     * database accounts is enabled; otherwise false.</p>
+     * database accounts is enabled, and otherwise false.</p>
      */
     inline void SetIAMDatabaseAuthenticationEnabled(bool value) { m_iAMDatabaseAuthenticationEnabledHasBeenSet = true; m_iAMDatabaseAuthenticationEnabled = value; }
 
     /**
      * <p>True if mapping of AWS Identity and Access Management (IAM) accounts to
-     * database accounts is enabled; otherwise false.</p>
+     * database accounts is enabled, and otherwise false.</p>
      */
     inline DBCluster& WithIAMDatabaseAuthenticationEnabled(bool value) { SetIAMDatabaseAuthenticationEnabled(value); return *this;}
 

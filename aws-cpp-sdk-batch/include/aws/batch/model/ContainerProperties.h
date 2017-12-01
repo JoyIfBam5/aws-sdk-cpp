@@ -236,7 +236,7 @@ namespace Model
      * href="https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/">Docker
      * Remote API</a> and the <code>--cpu-shares</code> option to <a
      * href="https://docs.docker.com/engine/reference/run/">docker run</a>. Each vCPU
-     * is equivalent to 1,024 CPU shares. You must specify at least 1 vCPU.</p>
+     * is equivalent to 1,024 CPU shares. You must specify at least one vCPU.</p>
      */
     inline int GetVcpus() const{ return m_vcpus; }
 
@@ -248,7 +248,7 @@ namespace Model
      * href="https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/">Docker
      * Remote API</a> and the <code>--cpu-shares</code> option to <a
      * href="https://docs.docker.com/engine/reference/run/">docker run</a>. Each vCPU
-     * is equivalent to 1,024 CPU shares. You must specify at least 1 vCPU.</p>
+     * is equivalent to 1,024 CPU shares. You must specify at least one vCPU.</p>
      */
     inline void SetVcpus(int value) { m_vcpusHasBeenSet = true; m_vcpus = value; }
 
@@ -260,7 +260,7 @@ namespace Model
      * href="https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/">Docker
      * Remote API</a> and the <code>--cpu-shares</code> option to <a
      * href="https://docs.docker.com/engine/reference/run/">docker run</a>. Each vCPU
-     * is equivalent to 1,024 CPU shares. You must specify at least 1 vCPU.</p>
+     * is equivalent to 1,024 CPU shares. You must specify at least one vCPU.</p>
      */
     inline ContainerProperties& WithVcpus(int value) { SetVcpus(value); return *this;}
 
@@ -497,8 +497,11 @@ namespace Model
      * href="https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/">Docker
      * Remote API</a> and the <code>--env</code> option to <a
      * href="https://docs.docker.com/engine/reference/run/">docker run</a>.</p>
-     * <important> <p>We do not recommend using plain text environment variables for
-     * sensitive information, such as credential data.</p> </important>
+     * <important> <p>We do not recommend using plaintext environment variables for
+     * sensitive information, such as credential data.</p> </important> <note>
+     * <p>Environment variables must not start with <code>AWS_BATCH</code>; this naming
+     * convention is reserved for variables that are set by the AWS Batch service.</p>
+     * </note>
      */
     inline const Aws::Vector<KeyValuePair>& GetEnvironment() const{ return m_environment; }
 
@@ -510,8 +513,11 @@ namespace Model
      * href="https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/">Docker
      * Remote API</a> and the <code>--env</code> option to <a
      * href="https://docs.docker.com/engine/reference/run/">docker run</a>.</p>
-     * <important> <p>We do not recommend using plain text environment variables for
-     * sensitive information, such as credential data.</p> </important>
+     * <important> <p>We do not recommend using plaintext environment variables for
+     * sensitive information, such as credential data.</p> </important> <note>
+     * <p>Environment variables must not start with <code>AWS_BATCH</code>; this naming
+     * convention is reserved for variables that are set by the AWS Batch service.</p>
+     * </note>
      */
     inline void SetEnvironment(const Aws::Vector<KeyValuePair>& value) { m_environmentHasBeenSet = true; m_environment = value; }
 
@@ -523,8 +529,11 @@ namespace Model
      * href="https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/">Docker
      * Remote API</a> and the <code>--env</code> option to <a
      * href="https://docs.docker.com/engine/reference/run/">docker run</a>.</p>
-     * <important> <p>We do not recommend using plain text environment variables for
-     * sensitive information, such as credential data.</p> </important>
+     * <important> <p>We do not recommend using plaintext environment variables for
+     * sensitive information, such as credential data.</p> </important> <note>
+     * <p>Environment variables must not start with <code>AWS_BATCH</code>; this naming
+     * convention is reserved for variables that are set by the AWS Batch service.</p>
+     * </note>
      */
     inline void SetEnvironment(Aws::Vector<KeyValuePair>&& value) { m_environmentHasBeenSet = true; m_environment = std::move(value); }
 
@@ -536,8 +545,11 @@ namespace Model
      * href="https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/">Docker
      * Remote API</a> and the <code>--env</code> option to <a
      * href="https://docs.docker.com/engine/reference/run/">docker run</a>.</p>
-     * <important> <p>We do not recommend using plain text environment variables for
-     * sensitive information, such as credential data.</p> </important>
+     * <important> <p>We do not recommend using plaintext environment variables for
+     * sensitive information, such as credential data.</p> </important> <note>
+     * <p>Environment variables must not start with <code>AWS_BATCH</code>; this naming
+     * convention is reserved for variables that are set by the AWS Batch service.</p>
+     * </note>
      */
     inline ContainerProperties& WithEnvironment(const Aws::Vector<KeyValuePair>& value) { SetEnvironment(value); return *this;}
 
@@ -549,8 +561,11 @@ namespace Model
      * href="https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/">Docker
      * Remote API</a> and the <code>--env</code> option to <a
      * href="https://docs.docker.com/engine/reference/run/">docker run</a>.</p>
-     * <important> <p>We do not recommend using plain text environment variables for
-     * sensitive information, such as credential data.</p> </important>
+     * <important> <p>We do not recommend using plaintext environment variables for
+     * sensitive information, such as credential data.</p> </important> <note>
+     * <p>Environment variables must not start with <code>AWS_BATCH</code>; this naming
+     * convention is reserved for variables that are set by the AWS Batch service.</p>
+     * </note>
      */
     inline ContainerProperties& WithEnvironment(Aws::Vector<KeyValuePair>&& value) { SetEnvironment(std::move(value)); return *this;}
 
@@ -562,8 +577,11 @@ namespace Model
      * href="https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/">Docker
      * Remote API</a> and the <code>--env</code> option to <a
      * href="https://docs.docker.com/engine/reference/run/">docker run</a>.</p>
-     * <important> <p>We do not recommend using plain text environment variables for
-     * sensitive information, such as credential data.</p> </important>
+     * <important> <p>We do not recommend using plaintext environment variables for
+     * sensitive information, such as credential data.</p> </important> <note>
+     * <p>Environment variables must not start with <code>AWS_BATCH</code>; this naming
+     * convention is reserved for variables that are set by the AWS Batch service.</p>
+     * </note>
      */
     inline ContainerProperties& AddEnvironment(const KeyValuePair& value) { m_environmentHasBeenSet = true; m_environment.push_back(value); return *this; }
 
@@ -575,8 +593,11 @@ namespace Model
      * href="https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/">Docker
      * Remote API</a> and the <code>--env</code> option to <a
      * href="https://docs.docker.com/engine/reference/run/">docker run</a>.</p>
-     * <important> <p>We do not recommend using plain text environment variables for
-     * sensitive information, such as credential data.</p> </important>
+     * <important> <p>We do not recommend using plaintext environment variables for
+     * sensitive information, such as credential data.</p> </important> <note>
+     * <p>Environment variables must not start with <code>AWS_BATCH</code>; this naming
+     * convention is reserved for variables that are set by the AWS Batch service.</p>
+     * </note>
      */
     inline ContainerProperties& AddEnvironment(KeyValuePair&& value) { m_environmentHasBeenSet = true; m_environment.push_back(std::move(value)); return *this; }
 

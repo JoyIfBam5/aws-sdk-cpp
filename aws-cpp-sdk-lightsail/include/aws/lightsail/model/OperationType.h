@@ -44,7 +44,22 @@ namespace Model
     DeleteDomain,
     CreateInstanceSnapshot,
     DeleteInstanceSnapshot,
-    CreateInstancesFromSnapshot
+    CreateInstancesFromSnapshot,
+    CreateLoadBalancer,
+    DeleteLoadBalancer,
+    AttachInstancesToLoadBalancer,
+    DetachInstancesFromLoadBalancer,
+    UpdateLoadBalancerAttribute,
+    CreateLoadBalancerTlsCertificate,
+    DeleteLoadBalancerTlsCertificate,
+    AttachLoadBalancerTlsCertificate,
+    CreateDisk,
+    DeleteDisk,
+    AttachDisk,
+    DetachDisk,
+    CreateDiskSnapshot,
+    DeleteDiskSnapshot,
+    CreateDiskFromSnapshot
   };
 
 namespace OperationTypeMapper

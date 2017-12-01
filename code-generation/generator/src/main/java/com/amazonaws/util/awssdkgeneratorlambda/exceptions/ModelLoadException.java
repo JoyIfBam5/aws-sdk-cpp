@@ -22,11 +22,11 @@ import com.amazonaws.util.awssdkgeneratorlambda.GenerationStage;
  * Thrown if model is invalid, non-existent, or otherwise can't be loaded from input.
  */
 public class ModelLoadException extends ApiGatewayCausedException {
-    public ModelLoadException(String msg) {
-        super(GenerationStage.MODEL_LOAD, msg);
+    public ModelLoadException(String message) {
+        super(GenerationStage.MODEL_LOAD, message);
     }
 
-    public ModelLoadException(String msg, Throwable t) {
-        super(GenerationStage.MODEL_LOAD, msg, t);
+    public ModelLoadException(String message, Throwable cause) {
+        super(GenerationStage.MODEL_LOAD, message, cause);
     }
 }

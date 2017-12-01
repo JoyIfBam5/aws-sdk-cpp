@@ -19,6 +19,7 @@
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ecs/model/TaskOverride.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <aws/ecs/model/NetworkConfiguration.h>
 #include <utility>
 
 namespace Aws
@@ -98,57 +99,57 @@ namespace Model
 
     /**
      * <p>The <code>family</code> and <code>revision</code>
-     * (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task
-     * definition to start. If a <code>revision</code> is not specified, the latest
-     * <code>ACTIVE</code> revision is used.</p>
+     * (<code>family:revision</code>) or full ARN of the task definition to start. If a
+     * <code>revision</code> is not specified, the latest <code>ACTIVE</code> revision
+     * is used.</p>
      */
     inline const Aws::String& GetTaskDefinition() const{ return m_taskDefinition; }
 
     /**
      * <p>The <code>family</code> and <code>revision</code>
-     * (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task
-     * definition to start. If a <code>revision</code> is not specified, the latest
-     * <code>ACTIVE</code> revision is used.</p>
+     * (<code>family:revision</code>) or full ARN of the task definition to start. If a
+     * <code>revision</code> is not specified, the latest <code>ACTIVE</code> revision
+     * is used.</p>
      */
     inline void SetTaskDefinition(const Aws::String& value) { m_taskDefinitionHasBeenSet = true; m_taskDefinition = value; }
 
     /**
      * <p>The <code>family</code> and <code>revision</code>
-     * (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task
-     * definition to start. If a <code>revision</code> is not specified, the latest
-     * <code>ACTIVE</code> revision is used.</p>
+     * (<code>family:revision</code>) or full ARN of the task definition to start. If a
+     * <code>revision</code> is not specified, the latest <code>ACTIVE</code> revision
+     * is used.</p>
      */
     inline void SetTaskDefinition(Aws::String&& value) { m_taskDefinitionHasBeenSet = true; m_taskDefinition = std::move(value); }
 
     /**
      * <p>The <code>family</code> and <code>revision</code>
-     * (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task
-     * definition to start. If a <code>revision</code> is not specified, the latest
-     * <code>ACTIVE</code> revision is used.</p>
+     * (<code>family:revision</code>) or full ARN of the task definition to start. If a
+     * <code>revision</code> is not specified, the latest <code>ACTIVE</code> revision
+     * is used.</p>
      */
     inline void SetTaskDefinition(const char* value) { m_taskDefinitionHasBeenSet = true; m_taskDefinition.assign(value); }
 
     /**
      * <p>The <code>family</code> and <code>revision</code>
-     * (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task
-     * definition to start. If a <code>revision</code> is not specified, the latest
-     * <code>ACTIVE</code> revision is used.</p>
+     * (<code>family:revision</code>) or full ARN of the task definition to start. If a
+     * <code>revision</code> is not specified, the latest <code>ACTIVE</code> revision
+     * is used.</p>
      */
     inline StartTaskRequest& WithTaskDefinition(const Aws::String& value) { SetTaskDefinition(value); return *this;}
 
     /**
      * <p>The <code>family</code> and <code>revision</code>
-     * (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task
-     * definition to start. If a <code>revision</code> is not specified, the latest
-     * <code>ACTIVE</code> revision is used.</p>
+     * (<code>family:revision</code>) or full ARN of the task definition to start. If a
+     * <code>revision</code> is not specified, the latest <code>ACTIVE</code> revision
+     * is used.</p>
      */
     inline StartTaskRequest& WithTaskDefinition(Aws::String&& value) { SetTaskDefinition(std::move(value)); return *this;}
 
     /**
      * <p>The <code>family</code> and <code>revision</code>
-     * (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task
-     * definition to start. If a <code>revision</code> is not specified, the latest
-     * <code>ACTIVE</code> revision is used.</p>
+     * (<code>family:revision</code>) or full ARN of the task definition to start. If a
+     * <code>revision</code> is not specified, the latest <code>ACTIVE</code> revision
+     * is used.</p>
      */
     inline StartTaskRequest& WithTaskDefinition(const char* value) { SetTaskDefinition(value); return *this;}
 
@@ -220,58 +221,58 @@ namespace Model
 
 
     /**
-     * <p>The container instance IDs or full Amazon Resource Name (ARN) entries for the
-     * container instances on which you would like to place your task. You can specify
-     * up to 10 container instances.</p>
+     * <p>The container instance IDs or full ARN entries for the container instances on
+     * which you would like to place your task. You can specify up to 10 container
+     * instances.</p>
      */
     inline const Aws::Vector<Aws::String>& GetContainerInstances() const{ return m_containerInstances; }
 
     /**
-     * <p>The container instance IDs or full Amazon Resource Name (ARN) entries for the
-     * container instances on which you would like to place your task. You can specify
-     * up to 10 container instances.</p>
+     * <p>The container instance IDs or full ARN entries for the container instances on
+     * which you would like to place your task. You can specify up to 10 container
+     * instances.</p>
      */
     inline void SetContainerInstances(const Aws::Vector<Aws::String>& value) { m_containerInstancesHasBeenSet = true; m_containerInstances = value; }
 
     /**
-     * <p>The container instance IDs or full Amazon Resource Name (ARN) entries for the
-     * container instances on which you would like to place your task. You can specify
-     * up to 10 container instances.</p>
+     * <p>The container instance IDs or full ARN entries for the container instances on
+     * which you would like to place your task. You can specify up to 10 container
+     * instances.</p>
      */
     inline void SetContainerInstances(Aws::Vector<Aws::String>&& value) { m_containerInstancesHasBeenSet = true; m_containerInstances = std::move(value); }
 
     /**
-     * <p>The container instance IDs or full Amazon Resource Name (ARN) entries for the
-     * container instances on which you would like to place your task. You can specify
-     * up to 10 container instances.</p>
+     * <p>The container instance IDs or full ARN entries for the container instances on
+     * which you would like to place your task. You can specify up to 10 container
+     * instances.</p>
      */
     inline StartTaskRequest& WithContainerInstances(const Aws::Vector<Aws::String>& value) { SetContainerInstances(value); return *this;}
 
     /**
-     * <p>The container instance IDs or full Amazon Resource Name (ARN) entries for the
-     * container instances on which you would like to place your task. You can specify
-     * up to 10 container instances.</p>
+     * <p>The container instance IDs or full ARN entries for the container instances on
+     * which you would like to place your task. You can specify up to 10 container
+     * instances.</p>
      */
     inline StartTaskRequest& WithContainerInstances(Aws::Vector<Aws::String>&& value) { SetContainerInstances(std::move(value)); return *this;}
 
     /**
-     * <p>The container instance IDs or full Amazon Resource Name (ARN) entries for the
-     * container instances on which you would like to place your task. You can specify
-     * up to 10 container instances.</p>
+     * <p>The container instance IDs or full ARN entries for the container instances on
+     * which you would like to place your task. You can specify up to 10 container
+     * instances.</p>
      */
     inline StartTaskRequest& AddContainerInstances(const Aws::String& value) { m_containerInstancesHasBeenSet = true; m_containerInstances.push_back(value); return *this; }
 
     /**
-     * <p>The container instance IDs or full Amazon Resource Name (ARN) entries for the
-     * container instances on which you would like to place your task. You can specify
-     * up to 10 container instances.</p>
+     * <p>The container instance IDs or full ARN entries for the container instances on
+     * which you would like to place your task. You can specify up to 10 container
+     * instances.</p>
      */
     inline StartTaskRequest& AddContainerInstances(Aws::String&& value) { m_containerInstancesHasBeenSet = true; m_containerInstances.push_back(std::move(value)); return *this; }
 
     /**
-     * <p>The container instance IDs or full Amazon Resource Name (ARN) entries for the
-     * container instances on which you would like to place your task. You can specify
-     * up to 10 container instances.</p>
+     * <p>The container instance IDs or full ARN entries for the container instances on
+     * which you would like to place your task. You can specify up to 10 container
+     * instances.</p>
      */
     inline StartTaskRequest& AddContainerInstances(const char* value) { m_containerInstancesHasBeenSet = true; m_containerInstances.push_back(value); return *this; }
 
@@ -410,6 +411,42 @@ namespace Model
      */
     inline StartTaskRequest& WithGroup(const char* value) { SetGroup(value); return *this;}
 
+
+    /**
+     * <p>The VPC subnet and security group configuration for tasks that receive their
+     * own Elastic Network Interface by using the <code>awsvpc</code> networking
+     * mode.</p>
+     */
+    inline const NetworkConfiguration& GetNetworkConfiguration() const{ return m_networkConfiguration; }
+
+    /**
+     * <p>The VPC subnet and security group configuration for tasks that receive their
+     * own Elastic Network Interface by using the <code>awsvpc</code> networking
+     * mode.</p>
+     */
+    inline void SetNetworkConfiguration(const NetworkConfiguration& value) { m_networkConfigurationHasBeenSet = true; m_networkConfiguration = value; }
+
+    /**
+     * <p>The VPC subnet and security group configuration for tasks that receive their
+     * own Elastic Network Interface by using the <code>awsvpc</code> networking
+     * mode.</p>
+     */
+    inline void SetNetworkConfiguration(NetworkConfiguration&& value) { m_networkConfigurationHasBeenSet = true; m_networkConfiguration = std::move(value); }
+
+    /**
+     * <p>The VPC subnet and security group configuration for tasks that receive their
+     * own Elastic Network Interface by using the <code>awsvpc</code> networking
+     * mode.</p>
+     */
+    inline StartTaskRequest& WithNetworkConfiguration(const NetworkConfiguration& value) { SetNetworkConfiguration(value); return *this;}
+
+    /**
+     * <p>The VPC subnet and security group configuration for tasks that receive their
+     * own Elastic Network Interface by using the <code>awsvpc</code> networking
+     * mode.</p>
+     */
+    inline StartTaskRequest& WithNetworkConfiguration(NetworkConfiguration&& value) { SetNetworkConfiguration(std::move(value)); return *this;}
+
   private:
 
     Aws::String m_cluster;
@@ -429,6 +466,9 @@ namespace Model
 
     Aws::String m_group;
     bool m_groupHasBeenSet;
+
+    NetworkConfiguration m_networkConfiguration;
+    bool m_networkConfigurationHasBeenSet;
   };
 
 } // namespace Model

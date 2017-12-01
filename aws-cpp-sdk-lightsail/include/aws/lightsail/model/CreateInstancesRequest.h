@@ -104,7 +104,7 @@ namespace Model
 
     /**
      * <p>The Availability Zone in which to create your instance. Use the following
-     * format: <code>us-east-1a</code> (case sensitive). You can get a list of
+     * format: <code>us-east-2a</code> (case sensitive). You can get a list of
      * availability zones by using the <a
      * href="http://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetRegions.html">get
      * regions</a> operation. Be sure to add the <code>include availability
@@ -114,7 +114,7 @@ namespace Model
 
     /**
      * <p>The Availability Zone in which to create your instance. Use the following
-     * format: <code>us-east-1a</code> (case sensitive). You can get a list of
+     * format: <code>us-east-2a</code> (case sensitive). You can get a list of
      * availability zones by using the <a
      * href="http://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetRegions.html">get
      * regions</a> operation. Be sure to add the <code>include availability
@@ -124,7 +124,7 @@ namespace Model
 
     /**
      * <p>The Availability Zone in which to create your instance. Use the following
-     * format: <code>us-east-1a</code> (case sensitive). You can get a list of
+     * format: <code>us-east-2a</code> (case sensitive). You can get a list of
      * availability zones by using the <a
      * href="http://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetRegions.html">get
      * regions</a> operation. Be sure to add the <code>include availability
@@ -134,7 +134,7 @@ namespace Model
 
     /**
      * <p>The Availability Zone in which to create your instance. Use the following
-     * format: <code>us-east-1a</code> (case sensitive). You can get a list of
+     * format: <code>us-east-2a</code> (case sensitive). You can get a list of
      * availability zones by using the <a
      * href="http://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetRegions.html">get
      * regions</a> operation. Be sure to add the <code>include availability
@@ -144,7 +144,7 @@ namespace Model
 
     /**
      * <p>The Availability Zone in which to create your instance. Use the following
-     * format: <code>us-east-1a</code> (case sensitive). You can get a list of
+     * format: <code>us-east-2a</code> (case sensitive). You can get a list of
      * availability zones by using the <a
      * href="http://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetRegions.html">get
      * regions</a> operation. Be sure to add the <code>include availability
@@ -154,7 +154,7 @@ namespace Model
 
     /**
      * <p>The Availability Zone in which to create your instance. Use the following
-     * format: <code>us-east-1a</code> (case sensitive). You can get a list of
+     * format: <code>us-east-2a</code> (case sensitive). You can get a list of
      * availability zones by using the <a
      * href="http://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetRegions.html">get
      * regions</a> operation. Be sure to add the <code>include availability
@@ -164,7 +164,7 @@ namespace Model
 
     /**
      * <p>The Availability Zone in which to create your instance. Use the following
-     * format: <code>us-east-1a</code> (case sensitive). You can get a list of
+     * format: <code>us-east-2a</code> (case sensitive). You can get a list of
      * availability zones by using the <a
      * href="http://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetRegions.html">get
      * regions</a> operation. Be sure to add the <code>include availability
@@ -275,84 +275,84 @@ namespace Model
 
     /**
      * <p>A launch script you can create that configures a server with additional user
-     * data. For example, you might want to run <code>apt-get –y update</code>.</p>
+     * data. For example, you might want to run <code>apt-get -y update</code>.</p>
      * <note> <p>Depending on the machine image you choose, the command to get software
      * on your instance varies. Amazon Linux and CentOS use <code>yum</code>, Debian
      * and Ubuntu use <code>apt-get</code>, and FreeBSD uses <code>pkg</code>. For a
      * complete list, see the <a
-     * href="http://lightsail.aws.amazon.com/ls/docs/getting-started/articles/pre-installed-apps">Dev
+     * href="https://lightsail.aws.amazon.com/ls/docs/getting-started/article/compare-options-choose-lightsail-instance-image">Dev
      * Guide</a>.</p> </note>
      */
     inline const Aws::String& GetUserData() const{ return m_userData; }
 
     /**
      * <p>A launch script you can create that configures a server with additional user
-     * data. For example, you might want to run <code>apt-get –y update</code>.</p>
+     * data. For example, you might want to run <code>apt-get -y update</code>.</p>
      * <note> <p>Depending on the machine image you choose, the command to get software
      * on your instance varies. Amazon Linux and CentOS use <code>yum</code>, Debian
      * and Ubuntu use <code>apt-get</code>, and FreeBSD uses <code>pkg</code>. For a
      * complete list, see the <a
-     * href="http://lightsail.aws.amazon.com/ls/docs/getting-started/articles/pre-installed-apps">Dev
+     * href="https://lightsail.aws.amazon.com/ls/docs/getting-started/article/compare-options-choose-lightsail-instance-image">Dev
      * Guide</a>.</p> </note>
      */
     inline void SetUserData(const Aws::String& value) { m_userDataHasBeenSet = true; m_userData = value; }
 
     /**
      * <p>A launch script you can create that configures a server with additional user
-     * data. For example, you might want to run <code>apt-get –y update</code>.</p>
+     * data. For example, you might want to run <code>apt-get -y update</code>.</p>
      * <note> <p>Depending on the machine image you choose, the command to get software
      * on your instance varies. Amazon Linux and CentOS use <code>yum</code>, Debian
      * and Ubuntu use <code>apt-get</code>, and FreeBSD uses <code>pkg</code>. For a
      * complete list, see the <a
-     * href="http://lightsail.aws.amazon.com/ls/docs/getting-started/articles/pre-installed-apps">Dev
+     * href="https://lightsail.aws.amazon.com/ls/docs/getting-started/article/compare-options-choose-lightsail-instance-image">Dev
      * Guide</a>.</p> </note>
      */
     inline void SetUserData(Aws::String&& value) { m_userDataHasBeenSet = true; m_userData = std::move(value); }
 
     /**
      * <p>A launch script you can create that configures a server with additional user
-     * data. For example, you might want to run <code>apt-get –y update</code>.</p>
+     * data. For example, you might want to run <code>apt-get -y update</code>.</p>
      * <note> <p>Depending on the machine image you choose, the command to get software
      * on your instance varies. Amazon Linux and CentOS use <code>yum</code>, Debian
      * and Ubuntu use <code>apt-get</code>, and FreeBSD uses <code>pkg</code>. For a
      * complete list, see the <a
-     * href="http://lightsail.aws.amazon.com/ls/docs/getting-started/articles/pre-installed-apps">Dev
+     * href="https://lightsail.aws.amazon.com/ls/docs/getting-started/article/compare-options-choose-lightsail-instance-image">Dev
      * Guide</a>.</p> </note>
      */
     inline void SetUserData(const char* value) { m_userDataHasBeenSet = true; m_userData.assign(value); }
 
     /**
      * <p>A launch script you can create that configures a server with additional user
-     * data. For example, you might want to run <code>apt-get –y update</code>.</p>
+     * data. For example, you might want to run <code>apt-get -y update</code>.</p>
      * <note> <p>Depending on the machine image you choose, the command to get software
      * on your instance varies. Amazon Linux and CentOS use <code>yum</code>, Debian
      * and Ubuntu use <code>apt-get</code>, and FreeBSD uses <code>pkg</code>. For a
      * complete list, see the <a
-     * href="http://lightsail.aws.amazon.com/ls/docs/getting-started/articles/pre-installed-apps">Dev
+     * href="https://lightsail.aws.amazon.com/ls/docs/getting-started/article/compare-options-choose-lightsail-instance-image">Dev
      * Guide</a>.</p> </note>
      */
     inline CreateInstancesRequest& WithUserData(const Aws::String& value) { SetUserData(value); return *this;}
 
     /**
      * <p>A launch script you can create that configures a server with additional user
-     * data. For example, you might want to run <code>apt-get –y update</code>.</p>
+     * data. For example, you might want to run <code>apt-get -y update</code>.</p>
      * <note> <p>Depending on the machine image you choose, the command to get software
      * on your instance varies. Amazon Linux and CentOS use <code>yum</code>, Debian
      * and Ubuntu use <code>apt-get</code>, and FreeBSD uses <code>pkg</code>. For a
      * complete list, see the <a
-     * href="http://lightsail.aws.amazon.com/ls/docs/getting-started/articles/pre-installed-apps">Dev
+     * href="https://lightsail.aws.amazon.com/ls/docs/getting-started/article/compare-options-choose-lightsail-instance-image">Dev
      * Guide</a>.</p> </note>
      */
     inline CreateInstancesRequest& WithUserData(Aws::String&& value) { SetUserData(std::move(value)); return *this;}
 
     /**
      * <p>A launch script you can create that configures a server with additional user
-     * data. For example, you might want to run <code>apt-get –y update</code>.</p>
+     * data. For example, you might want to run <code>apt-get -y update</code>.</p>
      * <note> <p>Depending on the machine image you choose, the command to get software
      * on your instance varies. Amazon Linux and CentOS use <code>yum</code>, Debian
      * and Ubuntu use <code>apt-get</code>, and FreeBSD uses <code>pkg</code>. For a
      * complete list, see the <a
-     * href="http://lightsail.aws.amazon.com/ls/docs/getting-started/articles/pre-installed-apps">Dev
+     * href="https://lightsail.aws.amazon.com/ls/docs/getting-started/article/compare-options-choose-lightsail-instance-image">Dev
      * Guide</a>.</p> </note>
      */
     inline CreateInstancesRequest& WithUserData(const char* value) { SetUserData(value); return *this;}

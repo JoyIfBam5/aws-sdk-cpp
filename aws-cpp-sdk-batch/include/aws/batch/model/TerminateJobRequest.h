@@ -43,85 +43,85 @@ namespace Model
 
 
     /**
-     * <p>Job IDs to be terminated. Up to 100 jobs can be specified.</p>
+     * <p>The AWS Batch job ID of the job to terminate.</p>
      */
     inline const Aws::String& GetJobId() const{ return m_jobId; }
 
     /**
-     * <p>Job IDs to be terminated. Up to 100 jobs can be specified.</p>
+     * <p>The AWS Batch job ID of the job to terminate.</p>
      */
     inline void SetJobId(const Aws::String& value) { m_jobIdHasBeenSet = true; m_jobId = value; }
 
     /**
-     * <p>Job IDs to be terminated. Up to 100 jobs can be specified.</p>
+     * <p>The AWS Batch job ID of the job to terminate.</p>
      */
     inline void SetJobId(Aws::String&& value) { m_jobIdHasBeenSet = true; m_jobId = std::move(value); }
 
     /**
-     * <p>Job IDs to be terminated. Up to 100 jobs can be specified.</p>
+     * <p>The AWS Batch job ID of the job to terminate.</p>
      */
     inline void SetJobId(const char* value) { m_jobIdHasBeenSet = true; m_jobId.assign(value); }
 
     /**
-     * <p>Job IDs to be terminated. Up to 100 jobs can be specified.</p>
+     * <p>The AWS Batch job ID of the job to terminate.</p>
      */
     inline TerminateJobRequest& WithJobId(const Aws::String& value) { SetJobId(value); return *this;}
 
     /**
-     * <p>Job IDs to be terminated. Up to 100 jobs can be specified.</p>
+     * <p>The AWS Batch job ID of the job to terminate.</p>
      */
     inline TerminateJobRequest& WithJobId(Aws::String&& value) { SetJobId(std::move(value)); return *this;}
 
     /**
-     * <p>Job IDs to be terminated. Up to 100 jobs can be specified.</p>
+     * <p>The AWS Batch job ID of the job to terminate.</p>
      */
     inline TerminateJobRequest& WithJobId(const char* value) { SetJobId(value); return *this;}
 
 
     /**
-     * <p>A message to attach to the job that explains the reason for cancelling it.
+     * <p>A message to attach to the job that explains the reason for canceling it.
      * This message is returned by future <a>DescribeJobs</a> operations on the job.
      * This message is also recorded in the AWS Batch activity logs. </p>
      */
     inline const Aws::String& GetReason() const{ return m_reason; }
 
     /**
-     * <p>A message to attach to the job that explains the reason for cancelling it.
+     * <p>A message to attach to the job that explains the reason for canceling it.
      * This message is returned by future <a>DescribeJobs</a> operations on the job.
      * This message is also recorded in the AWS Batch activity logs. </p>
      */
     inline void SetReason(const Aws::String& value) { m_reasonHasBeenSet = true; m_reason = value; }
 
     /**
-     * <p>A message to attach to the job that explains the reason for cancelling it.
+     * <p>A message to attach to the job that explains the reason for canceling it.
      * This message is returned by future <a>DescribeJobs</a> operations on the job.
      * This message is also recorded in the AWS Batch activity logs. </p>
      */
     inline void SetReason(Aws::String&& value) { m_reasonHasBeenSet = true; m_reason = std::move(value); }
 
     /**
-     * <p>A message to attach to the job that explains the reason for cancelling it.
+     * <p>A message to attach to the job that explains the reason for canceling it.
      * This message is returned by future <a>DescribeJobs</a> operations on the job.
      * This message is also recorded in the AWS Batch activity logs. </p>
      */
     inline void SetReason(const char* value) { m_reasonHasBeenSet = true; m_reason.assign(value); }
 
     /**
-     * <p>A message to attach to the job that explains the reason for cancelling it.
+     * <p>A message to attach to the job that explains the reason for canceling it.
      * This message is returned by future <a>DescribeJobs</a> operations on the job.
      * This message is also recorded in the AWS Batch activity logs. </p>
      */
     inline TerminateJobRequest& WithReason(const Aws::String& value) { SetReason(value); return *this;}
 
     /**
-     * <p>A message to attach to the job that explains the reason for cancelling it.
+     * <p>A message to attach to the job that explains the reason for canceling it.
      * This message is returned by future <a>DescribeJobs</a> operations on the job.
      * This message is also recorded in the AWS Batch activity logs. </p>
      */
     inline TerminateJobRequest& WithReason(Aws::String&& value) { SetReason(std::move(value)); return *this;}
 
     /**
-     * <p>A message to attach to the job that explains the reason for cancelling it.
+     * <p>A message to attach to the job that explains the reason for canceling it.
      * This message is returned by future <a>DescribeJobs</a> operations on the job.
      * This message is also recorded in the AWS Batch activity logs. </p>
      */

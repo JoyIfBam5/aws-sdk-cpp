@@ -31,7 +31,11 @@ namespace Model
     KeyPair,
     InstanceSnapshot,
     Domain,
-    PeeredVpc
+    PeeredVpc,
+    LoadBalancer,
+    LoadBalancerTlsCertificate,
+    Disk,
+    DiskSnapshot
   };
 
 namespace ResourceTypeMapper

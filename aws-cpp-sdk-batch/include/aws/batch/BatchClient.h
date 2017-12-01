@@ -201,11 +201,11 @@ namespace Model
 
 
         /**
-         * <p>Cancels jobs in an AWS Batch job queue. Jobs that are in the
+         * <p>Cancels a job in an AWS Batch job queue. Jobs that are in the
          * <code>SUBMITTED</code>, <code>PENDING</code>, or <code>RUNNABLE</code> state are
          * cancelled. Jobs that have progressed to <code>STARTING</code> or
          * <code>RUNNING</code> are not cancelled (but the API operation still succeeds,
-         * even if no jobs are cancelled); these jobs must be terminated with the
+         * even if no job is cancelled); these jobs must be terminated with the
          * <a>TerminateJob</a> operation.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CancelJob">AWS API
          * Reference</a></p>
@@ -213,11 +213,11 @@ namespace Model
         virtual Model::CancelJobOutcome CancelJob(const Model::CancelJobRequest& request) const;
 
         /**
-         * <p>Cancels jobs in an AWS Batch job queue. Jobs that are in the
+         * <p>Cancels a job in an AWS Batch job queue. Jobs that are in the
          * <code>SUBMITTED</code>, <code>PENDING</code>, or <code>RUNNABLE</code> state are
          * cancelled. Jobs that have progressed to <code>STARTING</code> or
          * <code>RUNNING</code> are not cancelled (but the API operation still succeeds,
-         * even if no jobs are cancelled); these jobs must be terminated with the
+         * even if no job is cancelled); these jobs must be terminated with the
          * <a>TerminateJob</a> operation.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CancelJob">AWS API
          * Reference</a></p>
@@ -227,11 +227,11 @@ namespace Model
         virtual Model::CancelJobOutcomeCallable CancelJobCallable(const Model::CancelJobRequest& request) const;
 
         /**
-         * <p>Cancels jobs in an AWS Batch job queue. Jobs that are in the
+         * <p>Cancels a job in an AWS Batch job queue. Jobs that are in the
          * <code>SUBMITTED</code>, <code>PENDING</code>, or <code>RUNNABLE</code> state are
          * cancelled. Jobs that have progressed to <code>STARTING</code> or
          * <code>RUNNING</code> are not cancelled (but the API operation still succeeds,
-         * even if no jobs are cancelled); these jobs must be terminated with the
+         * even if no job is cancelled); these jobs must be terminated with the
          * <a>TerminateJob</a> operation.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CancelJob">AWS API
          * Reference</a></p>
@@ -246,21 +246,21 @@ namespace Model
          * environment, AWS Batch manages the compute resources within the environment,
          * based on the compute resources that you specify. Instances launched into a
          * managed compute environment use a recent, approved version of the Amazon
-         * ECS-optimized AMI. You can choose to use Amazon EC2 On-Demand instances in your
-         * managed compute environment, or you can use Amazon EC2 Spot instances that only
+         * ECS-optimized AMI. You can choose to use Amazon EC2 On-Demand Instances in your
+         * managed compute environment, or you can use Amazon EC2 Spot Instances that only
          * launch when the Spot bid price is below a specified percentage of the On-Demand
          * price.</p> <p>In an unmanaged compute environment, you can manage your own
          * compute resources. This provides more compute resource configuration options,
          * such as using a custom AMI, but you must ensure that your AMI meets the Amazon
          * ECS container instance AMI specification. For more information, see <a
          * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/container_instance_AMIs.html">Container
-         * Instance AMIs</a> in the <i>Amazon EC2 Container Service Developer Guide</i>.
-         * After you have created your unmanaged compute environment, you can use the
-         * <a>DescribeComputeEnvironments</a> operation to find the Amazon ECS cluster that
-         * is associated with it and then manually launch your container instances into
-         * that Amazon ECS cluster. For more information, see <a
+         * Instance AMIs</a> in the <i>Amazon Elastic Container Service Developer
+         * Guide</i>. After you have created your unmanaged compute environment, you can
+         * use the <a>DescribeComputeEnvironments</a> operation to find the Amazon ECS
+         * cluster that is associated with it and then manually launch your container
+         * instances into that Amazon ECS cluster. For more information, see <a
          * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html">Launching
-         * an Amazon ECS Container Instance</a> in the <i>Amazon EC2 Container Service
+         * an Amazon ECS Container Instance</a> in the <i>Amazon Elastic Container Service
          * Developer Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateComputeEnvironment">AWS
          * API Reference</a></p>
@@ -273,21 +273,21 @@ namespace Model
          * environment, AWS Batch manages the compute resources within the environment,
          * based on the compute resources that you specify. Instances launched into a
          * managed compute environment use a recent, approved version of the Amazon
-         * ECS-optimized AMI. You can choose to use Amazon EC2 On-Demand instances in your
-         * managed compute environment, or you can use Amazon EC2 Spot instances that only
+         * ECS-optimized AMI. You can choose to use Amazon EC2 On-Demand Instances in your
+         * managed compute environment, or you can use Amazon EC2 Spot Instances that only
          * launch when the Spot bid price is below a specified percentage of the On-Demand
          * price.</p> <p>In an unmanaged compute environment, you can manage your own
          * compute resources. This provides more compute resource configuration options,
          * such as using a custom AMI, but you must ensure that your AMI meets the Amazon
          * ECS container instance AMI specification. For more information, see <a
          * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/container_instance_AMIs.html">Container
-         * Instance AMIs</a> in the <i>Amazon EC2 Container Service Developer Guide</i>.
-         * After you have created your unmanaged compute environment, you can use the
-         * <a>DescribeComputeEnvironments</a> operation to find the Amazon ECS cluster that
-         * is associated with it and then manually launch your container instances into
-         * that Amazon ECS cluster. For more information, see <a
+         * Instance AMIs</a> in the <i>Amazon Elastic Container Service Developer
+         * Guide</i>. After you have created your unmanaged compute environment, you can
+         * use the <a>DescribeComputeEnvironments</a> operation to find the Amazon ECS
+         * cluster that is associated with it and then manually launch your container
+         * instances into that Amazon ECS cluster. For more information, see <a
          * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html">Launching
-         * an Amazon ECS Container Instance</a> in the <i>Amazon EC2 Container Service
+         * an Amazon ECS Container Instance</a> in the <i>Amazon Elastic Container Service
          * Developer Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateComputeEnvironment">AWS
          * API Reference</a></p>
@@ -302,21 +302,21 @@ namespace Model
          * environment, AWS Batch manages the compute resources within the environment,
          * based on the compute resources that you specify. Instances launched into a
          * managed compute environment use a recent, approved version of the Amazon
-         * ECS-optimized AMI. You can choose to use Amazon EC2 On-Demand instances in your
-         * managed compute environment, or you can use Amazon EC2 Spot instances that only
+         * ECS-optimized AMI. You can choose to use Amazon EC2 On-Demand Instances in your
+         * managed compute environment, or you can use Amazon EC2 Spot Instances that only
          * launch when the Spot bid price is below a specified percentage of the On-Demand
          * price.</p> <p>In an unmanaged compute environment, you can manage your own
          * compute resources. This provides more compute resource configuration options,
          * such as using a custom AMI, but you must ensure that your AMI meets the Amazon
          * ECS container instance AMI specification. For more information, see <a
          * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/container_instance_AMIs.html">Container
-         * Instance AMIs</a> in the <i>Amazon EC2 Container Service Developer Guide</i>.
-         * After you have created your unmanaged compute environment, you can use the
-         * <a>DescribeComputeEnvironments</a> operation to find the Amazon ECS cluster that
-         * is associated with it and then manually launch your container instances into
-         * that Amazon ECS cluster. For more information, see <a
+         * Instance AMIs</a> in the <i>Amazon Elastic Container Service Developer
+         * Guide</i>. After you have created your unmanaged compute environment, you can
+         * use the <a>DescribeComputeEnvironments</a> operation to find the Amazon ECS
+         * cluster that is associated with it and then manually launch your container
+         * instances into that Amazon ECS cluster. For more information, see <a
          * href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html">Launching
-         * an Amazon ECS Container Instance</a> in the <i>Amazon EC2 Container Service
+         * an Amazon ECS Container Instance</a> in the <i>Amazon Elastic Container Service
          * Developer Guide</i>.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateComputeEnvironment">AWS
          * API Reference</a></p>
@@ -679,8 +679,8 @@ namespace Model
         virtual void SubmitJobAsync(const Model::SubmitJobRequest& request, const SubmitJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Terminates jobs in a job queue. Jobs that are in the <code>STARTING</code> or
-         * <code>RUNNING</code> state are terminated, which causes them to transition to
+         * <p>Terminates a job in a job queue. Jobs that are in the <code>STARTING</code>
+         * or <code>RUNNING</code> state are terminated, which causes them to transition to
          * <code>FAILED</code>. Jobs that have not progressed to the <code>STARTING</code>
          * state are cancelled.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/TerminateJob">AWS
@@ -689,8 +689,8 @@ namespace Model
         virtual Model::TerminateJobOutcome TerminateJob(const Model::TerminateJobRequest& request) const;
 
         /**
-         * <p>Terminates jobs in a job queue. Jobs that are in the <code>STARTING</code> or
-         * <code>RUNNING</code> state are terminated, which causes them to transition to
+         * <p>Terminates a job in a job queue. Jobs that are in the <code>STARTING</code>
+         * or <code>RUNNING</code> state are terminated, which causes them to transition to
          * <code>FAILED</code>. Jobs that have not progressed to the <code>STARTING</code>
          * state are cancelled.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/TerminateJob">AWS
@@ -701,8 +701,8 @@ namespace Model
         virtual Model::TerminateJobOutcomeCallable TerminateJobCallable(const Model::TerminateJobRequest& request) const;
 
         /**
-         * <p>Terminates jobs in a job queue. Jobs that are in the <code>STARTING</code> or
-         * <code>RUNNING</code> state are terminated, which causes them to transition to
+         * <p>Terminates a job in a job queue. Jobs that are in the <code>STARTING</code>
+         * or <code>RUNNING</code> state are terminated, which causes them to transition to
          * <code>FAILED</code>. Jobs that have not progressed to the <code>STARTING</code>
          * state are cancelled.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/TerminateJob">AWS

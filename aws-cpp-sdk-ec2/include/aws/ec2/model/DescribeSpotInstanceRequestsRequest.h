@@ -55,34 +55,35 @@ namespace Model
     /**
      * <p>One or more filters.</p> <ul> <li> <p> <code>availability-zone-group</code> -
      * The Availability Zone group.</p> </li> <li> <p> <code>create-time</code> - The
-     * time stamp when the Spot instance request was created.</p> </li> <li> <p>
+     * time stamp when the Spot Instance request was created.</p> </li> <li> <p>
      * <code>fault-code</code> - The fault code related to the request.</p> </li> <li>
      * <p> <code>fault-message</code> - The fault message related to the request.</p>
      * </li> <li> <p> <code>instance-id</code> - The ID of the instance that fulfilled
-     * the request.</p> </li> <li> <p> <code>launch-group</code> - The Spot instance
+     * the request.</p> </li> <li> <p> <code>launch-group</code> - The Spot Instance
      * launch group.</p> </li> <li> <p>
      * <code>launch.block-device-mapping.delete-on-termination</code> - Indicates
-     * whether the Amazon EBS volume is deleted on instance termination.</p> </li> <li>
-     * <p> <code>launch.block-device-mapping.device-name</code> - The device name for
-     * the Amazon EBS volume (for example, <code>/dev/sdh</code>).</p> </li> <li> <p>
+     * whether the EBS volume is deleted on instance termination.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.device-name</code> - The device name for the
+     * volume in the block device mapping (for example, <code>/dev/sdh</code> or
+     * <code>xvdh</code>).</p> </li> <li> <p>
      * <code>launch.block-device-mapping.snapshot-id</code> - The ID of the snapshot
-     * used for the Amazon EBS volume.</p> </li> <li> <p>
-     * <code>launch.block-device-mapping.volume-size</code> - The size of the Amazon
-     * EBS volume, in GiB.</p> </li> <li> <p>
-     * <code>launch.block-device-mapping.volume-type</code> - The type of the Amazon
-     * EBS volume: <code>gp2</code> for General Purpose SSD, <code>io1</code> for
-     * Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD,
-     * <code>sc1</code>for Cold HDD, or <code>standard</code> for Magnetic.</p> </li>
-     * <li> <p> <code>launch.group-id</code> - The security group for the instance.</p>
-     * </li> <li> <p> <code>launch.image-id</code> - The ID of the AMI.</p> </li> <li>
-     * <p> <code>launch.instance-type</code> - The type of instance (for example,
+     * for the EBS volume.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.volume-size</code> - The size of the EBS
+     * volume, in GiB.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.volume-type</code> - The type of EBS volume:
+     * <code>gp2</code> for General Purpose SSD, <code>io1</code> for Provisioned IOPS
+     * SSD, <code>st1</code> for Throughput Optimized HDD, <code>sc1</code>for Cold
+     * HDD, or <code>standard</code> for Magnetic.</p> </li> <li> <p>
+     * <code>launch.group-id</code> - The security group for the instance.</p> </li>
+     * <li> <p> <code>launch.image-id</code> - The ID of the AMI.</p> </li> <li> <p>
+     * <code>launch.instance-type</code> - The type of instance (for example,
      * <code>m3.medium</code>).</p> </li> <li> <p> <code>launch.kernel-id</code> - The
      * kernel ID.</p> </li> <li> <p> <code>launch.key-name</code> - The name of the key
      * pair the instance launched with.</p> </li> <li> <p>
      * <code>launch.monitoring-enabled</code> - Whether detailed monitoring is enabled
-     * for the Spot instance.</p> </li> <li> <p> <code>launch.ramdisk-id</code> - The
+     * for the Spot Instance.</p> </li> <li> <p> <code>launch.ramdisk-id</code> - The
      * RAM disk ID.</p> </li> <li> <p> <code>launched-availability-zone</code> - The
-     * Availability Zone in which the bid is launched.</p> </li> <li> <p>
+     * Availability Zone in which the request is launched.</p> </li> <li> <p>
      * <code>network-interface.addresses.primary</code> - Indicates whether the IP
      * address is the primary private IP address.</p> </li> <li> <p>
      * <code>network-interface.delete-on-termination</code> - Indicates whether the
@@ -99,19 +100,19 @@ namespace Model
      * instance.</p> </li> <li> <p> <code>product-description</code> - The product
      * description associated with the instance (<code>Linux/UNIX</code> |
      * <code>Windows</code>).</p> </li> <li> <p> <code>spot-instance-request-id</code>
-     * - The Spot instance request ID.</p> </li> <li> <p> <code>spot-price</code> - The
-     * maximum hourly price for any Spot instance launched to fulfill the request.</p>
-     * </li> <li> <p> <code>state</code> - The state of the Spot instance request
+     * - The Spot Instance request ID.</p> </li> <li> <p> <code>spot-price</code> - The
+     * maximum hourly price for any Spot Instance launched to fulfill the request.</p>
+     * </li> <li> <p> <code>state</code> - The state of the Spot Instance request
      * (<code>open</code> | <code>active</code> | <code>closed</code> |
-     * <code>cancelled</code> | <code>failed</code>). Spot bid status information can
-     * help you track your Amazon EC2 Spot instance requests. For more information, see
-     * <a
+     * <code>cancelled</code> | <code>failed</code>). Spot request status information
+     * can help you track your Amazon EC2 Spot Instance requests. For more information,
+     * see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html">Spot
-     * Bid Status</a> in the Amazon Elastic Compute Cloud User Guide.</p> </li> <li>
-     * <p> <code>status-code</code> - The short code describing the most recent
-     * evaluation of your Spot instance request.</p> </li> <li> <p>
+     * Request Status</a> in the Amazon Elastic Compute Cloud User Guide.</p> </li>
+     * <li> <p> <code>status-code</code> - The short code describing the most recent
+     * evaluation of your Spot Instance request.</p> </li> <li> <p>
      * <code>status-message</code> - The message explaining the status of the Spot
-     * instance request.</p> </li> <li> <p> <code>tag</code>:<i>key</i>=<i>value</i> -
+     * Instance request.</p> </li> <li> <p> <code>tag</code>:<i>key</i>=<i>value</i> -
      * The key/value combination of a tag assigned to the resource. Specify the key of
      * the tag in the filter name and the value of the tag in the filter value. For
      * example, for the tag Purpose=X, specify <code>tag:Purpose</code> for the filter
@@ -124,7 +125,7 @@ namespace Model
      * resources where Purpose is X, see the <code>tag</code>:<i>key</i>=<i>value</i>
      * filter.</p> </li> <li> <p> <code>tag-value</code> - The value of a tag assigned
      * to the resource. This filter is independent of the <code>tag-key</code>
-     * filter.</p> </li> <li> <p> <code>type</code> - The type of Spot instance request
+     * filter.</p> </li> <li> <p> <code>type</code> - The type of Spot Instance request
      * (<code>one-time</code> | <code>persistent</code>).</p> </li> <li> <p>
      * <code>valid-from</code> - The start date of the request.</p> </li> <li> <p>
      * <code>valid-until</code> - The end date of the request.</p> </li> </ul>
@@ -134,34 +135,35 @@ namespace Model
     /**
      * <p>One or more filters.</p> <ul> <li> <p> <code>availability-zone-group</code> -
      * The Availability Zone group.</p> </li> <li> <p> <code>create-time</code> - The
-     * time stamp when the Spot instance request was created.</p> </li> <li> <p>
+     * time stamp when the Spot Instance request was created.</p> </li> <li> <p>
      * <code>fault-code</code> - The fault code related to the request.</p> </li> <li>
      * <p> <code>fault-message</code> - The fault message related to the request.</p>
      * </li> <li> <p> <code>instance-id</code> - The ID of the instance that fulfilled
-     * the request.</p> </li> <li> <p> <code>launch-group</code> - The Spot instance
+     * the request.</p> </li> <li> <p> <code>launch-group</code> - The Spot Instance
      * launch group.</p> </li> <li> <p>
      * <code>launch.block-device-mapping.delete-on-termination</code> - Indicates
-     * whether the Amazon EBS volume is deleted on instance termination.</p> </li> <li>
-     * <p> <code>launch.block-device-mapping.device-name</code> - The device name for
-     * the Amazon EBS volume (for example, <code>/dev/sdh</code>).</p> </li> <li> <p>
+     * whether the EBS volume is deleted on instance termination.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.device-name</code> - The device name for the
+     * volume in the block device mapping (for example, <code>/dev/sdh</code> or
+     * <code>xvdh</code>).</p> </li> <li> <p>
      * <code>launch.block-device-mapping.snapshot-id</code> - The ID of the snapshot
-     * used for the Amazon EBS volume.</p> </li> <li> <p>
-     * <code>launch.block-device-mapping.volume-size</code> - The size of the Amazon
-     * EBS volume, in GiB.</p> </li> <li> <p>
-     * <code>launch.block-device-mapping.volume-type</code> - The type of the Amazon
-     * EBS volume: <code>gp2</code> for General Purpose SSD, <code>io1</code> for
-     * Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD,
-     * <code>sc1</code>for Cold HDD, or <code>standard</code> for Magnetic.</p> </li>
-     * <li> <p> <code>launch.group-id</code> - The security group for the instance.</p>
-     * </li> <li> <p> <code>launch.image-id</code> - The ID of the AMI.</p> </li> <li>
-     * <p> <code>launch.instance-type</code> - The type of instance (for example,
+     * for the EBS volume.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.volume-size</code> - The size of the EBS
+     * volume, in GiB.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.volume-type</code> - The type of EBS volume:
+     * <code>gp2</code> for General Purpose SSD, <code>io1</code> for Provisioned IOPS
+     * SSD, <code>st1</code> for Throughput Optimized HDD, <code>sc1</code>for Cold
+     * HDD, or <code>standard</code> for Magnetic.</p> </li> <li> <p>
+     * <code>launch.group-id</code> - The security group for the instance.</p> </li>
+     * <li> <p> <code>launch.image-id</code> - The ID of the AMI.</p> </li> <li> <p>
+     * <code>launch.instance-type</code> - The type of instance (for example,
      * <code>m3.medium</code>).</p> </li> <li> <p> <code>launch.kernel-id</code> - The
      * kernel ID.</p> </li> <li> <p> <code>launch.key-name</code> - The name of the key
      * pair the instance launched with.</p> </li> <li> <p>
      * <code>launch.monitoring-enabled</code> - Whether detailed monitoring is enabled
-     * for the Spot instance.</p> </li> <li> <p> <code>launch.ramdisk-id</code> - The
+     * for the Spot Instance.</p> </li> <li> <p> <code>launch.ramdisk-id</code> - The
      * RAM disk ID.</p> </li> <li> <p> <code>launched-availability-zone</code> - The
-     * Availability Zone in which the bid is launched.</p> </li> <li> <p>
+     * Availability Zone in which the request is launched.</p> </li> <li> <p>
      * <code>network-interface.addresses.primary</code> - Indicates whether the IP
      * address is the primary private IP address.</p> </li> <li> <p>
      * <code>network-interface.delete-on-termination</code> - Indicates whether the
@@ -178,19 +180,19 @@ namespace Model
      * instance.</p> </li> <li> <p> <code>product-description</code> - The product
      * description associated with the instance (<code>Linux/UNIX</code> |
      * <code>Windows</code>).</p> </li> <li> <p> <code>spot-instance-request-id</code>
-     * - The Spot instance request ID.</p> </li> <li> <p> <code>spot-price</code> - The
-     * maximum hourly price for any Spot instance launched to fulfill the request.</p>
-     * </li> <li> <p> <code>state</code> - The state of the Spot instance request
+     * - The Spot Instance request ID.</p> </li> <li> <p> <code>spot-price</code> - The
+     * maximum hourly price for any Spot Instance launched to fulfill the request.</p>
+     * </li> <li> <p> <code>state</code> - The state of the Spot Instance request
      * (<code>open</code> | <code>active</code> | <code>closed</code> |
-     * <code>cancelled</code> | <code>failed</code>). Spot bid status information can
-     * help you track your Amazon EC2 Spot instance requests. For more information, see
-     * <a
+     * <code>cancelled</code> | <code>failed</code>). Spot request status information
+     * can help you track your Amazon EC2 Spot Instance requests. For more information,
+     * see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html">Spot
-     * Bid Status</a> in the Amazon Elastic Compute Cloud User Guide.</p> </li> <li>
-     * <p> <code>status-code</code> - The short code describing the most recent
-     * evaluation of your Spot instance request.</p> </li> <li> <p>
+     * Request Status</a> in the Amazon Elastic Compute Cloud User Guide.</p> </li>
+     * <li> <p> <code>status-code</code> - The short code describing the most recent
+     * evaluation of your Spot Instance request.</p> </li> <li> <p>
      * <code>status-message</code> - The message explaining the status of the Spot
-     * instance request.</p> </li> <li> <p> <code>tag</code>:<i>key</i>=<i>value</i> -
+     * Instance request.</p> </li> <li> <p> <code>tag</code>:<i>key</i>=<i>value</i> -
      * The key/value combination of a tag assigned to the resource. Specify the key of
      * the tag in the filter name and the value of the tag in the filter value. For
      * example, for the tag Purpose=X, specify <code>tag:Purpose</code> for the filter
@@ -203,7 +205,7 @@ namespace Model
      * resources where Purpose is X, see the <code>tag</code>:<i>key</i>=<i>value</i>
      * filter.</p> </li> <li> <p> <code>tag-value</code> - The value of a tag assigned
      * to the resource. This filter is independent of the <code>tag-key</code>
-     * filter.</p> </li> <li> <p> <code>type</code> - The type of Spot instance request
+     * filter.</p> </li> <li> <p> <code>type</code> - The type of Spot Instance request
      * (<code>one-time</code> | <code>persistent</code>).</p> </li> <li> <p>
      * <code>valid-from</code> - The start date of the request.</p> </li> <li> <p>
      * <code>valid-until</code> - The end date of the request.</p> </li> </ul>
@@ -213,34 +215,35 @@ namespace Model
     /**
      * <p>One or more filters.</p> <ul> <li> <p> <code>availability-zone-group</code> -
      * The Availability Zone group.</p> </li> <li> <p> <code>create-time</code> - The
-     * time stamp when the Spot instance request was created.</p> </li> <li> <p>
+     * time stamp when the Spot Instance request was created.</p> </li> <li> <p>
      * <code>fault-code</code> - The fault code related to the request.</p> </li> <li>
      * <p> <code>fault-message</code> - The fault message related to the request.</p>
      * </li> <li> <p> <code>instance-id</code> - The ID of the instance that fulfilled
-     * the request.</p> </li> <li> <p> <code>launch-group</code> - The Spot instance
+     * the request.</p> </li> <li> <p> <code>launch-group</code> - The Spot Instance
      * launch group.</p> </li> <li> <p>
      * <code>launch.block-device-mapping.delete-on-termination</code> - Indicates
-     * whether the Amazon EBS volume is deleted on instance termination.</p> </li> <li>
-     * <p> <code>launch.block-device-mapping.device-name</code> - The device name for
-     * the Amazon EBS volume (for example, <code>/dev/sdh</code>).</p> </li> <li> <p>
+     * whether the EBS volume is deleted on instance termination.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.device-name</code> - The device name for the
+     * volume in the block device mapping (for example, <code>/dev/sdh</code> or
+     * <code>xvdh</code>).</p> </li> <li> <p>
      * <code>launch.block-device-mapping.snapshot-id</code> - The ID of the snapshot
-     * used for the Amazon EBS volume.</p> </li> <li> <p>
-     * <code>launch.block-device-mapping.volume-size</code> - The size of the Amazon
-     * EBS volume, in GiB.</p> </li> <li> <p>
-     * <code>launch.block-device-mapping.volume-type</code> - The type of the Amazon
-     * EBS volume: <code>gp2</code> for General Purpose SSD, <code>io1</code> for
-     * Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD,
-     * <code>sc1</code>for Cold HDD, or <code>standard</code> for Magnetic.</p> </li>
-     * <li> <p> <code>launch.group-id</code> - The security group for the instance.</p>
-     * </li> <li> <p> <code>launch.image-id</code> - The ID of the AMI.</p> </li> <li>
-     * <p> <code>launch.instance-type</code> - The type of instance (for example,
+     * for the EBS volume.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.volume-size</code> - The size of the EBS
+     * volume, in GiB.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.volume-type</code> - The type of EBS volume:
+     * <code>gp2</code> for General Purpose SSD, <code>io1</code> for Provisioned IOPS
+     * SSD, <code>st1</code> for Throughput Optimized HDD, <code>sc1</code>for Cold
+     * HDD, or <code>standard</code> for Magnetic.</p> </li> <li> <p>
+     * <code>launch.group-id</code> - The security group for the instance.</p> </li>
+     * <li> <p> <code>launch.image-id</code> - The ID of the AMI.</p> </li> <li> <p>
+     * <code>launch.instance-type</code> - The type of instance (for example,
      * <code>m3.medium</code>).</p> </li> <li> <p> <code>launch.kernel-id</code> - The
      * kernel ID.</p> </li> <li> <p> <code>launch.key-name</code> - The name of the key
      * pair the instance launched with.</p> </li> <li> <p>
      * <code>launch.monitoring-enabled</code> - Whether detailed monitoring is enabled
-     * for the Spot instance.</p> </li> <li> <p> <code>launch.ramdisk-id</code> - The
+     * for the Spot Instance.</p> </li> <li> <p> <code>launch.ramdisk-id</code> - The
      * RAM disk ID.</p> </li> <li> <p> <code>launched-availability-zone</code> - The
-     * Availability Zone in which the bid is launched.</p> </li> <li> <p>
+     * Availability Zone in which the request is launched.</p> </li> <li> <p>
      * <code>network-interface.addresses.primary</code> - Indicates whether the IP
      * address is the primary private IP address.</p> </li> <li> <p>
      * <code>network-interface.delete-on-termination</code> - Indicates whether the
@@ -257,19 +260,19 @@ namespace Model
      * instance.</p> </li> <li> <p> <code>product-description</code> - The product
      * description associated with the instance (<code>Linux/UNIX</code> |
      * <code>Windows</code>).</p> </li> <li> <p> <code>spot-instance-request-id</code>
-     * - The Spot instance request ID.</p> </li> <li> <p> <code>spot-price</code> - The
-     * maximum hourly price for any Spot instance launched to fulfill the request.</p>
-     * </li> <li> <p> <code>state</code> - The state of the Spot instance request
+     * - The Spot Instance request ID.</p> </li> <li> <p> <code>spot-price</code> - The
+     * maximum hourly price for any Spot Instance launched to fulfill the request.</p>
+     * </li> <li> <p> <code>state</code> - The state of the Spot Instance request
      * (<code>open</code> | <code>active</code> | <code>closed</code> |
-     * <code>cancelled</code> | <code>failed</code>). Spot bid status information can
-     * help you track your Amazon EC2 Spot instance requests. For more information, see
-     * <a
+     * <code>cancelled</code> | <code>failed</code>). Spot request status information
+     * can help you track your Amazon EC2 Spot Instance requests. For more information,
+     * see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html">Spot
-     * Bid Status</a> in the Amazon Elastic Compute Cloud User Guide.</p> </li> <li>
-     * <p> <code>status-code</code> - The short code describing the most recent
-     * evaluation of your Spot instance request.</p> </li> <li> <p>
+     * Request Status</a> in the Amazon Elastic Compute Cloud User Guide.</p> </li>
+     * <li> <p> <code>status-code</code> - The short code describing the most recent
+     * evaluation of your Spot Instance request.</p> </li> <li> <p>
      * <code>status-message</code> - The message explaining the status of the Spot
-     * instance request.</p> </li> <li> <p> <code>tag</code>:<i>key</i>=<i>value</i> -
+     * Instance request.</p> </li> <li> <p> <code>tag</code>:<i>key</i>=<i>value</i> -
      * The key/value combination of a tag assigned to the resource. Specify the key of
      * the tag in the filter name and the value of the tag in the filter value. For
      * example, for the tag Purpose=X, specify <code>tag:Purpose</code> for the filter
@@ -282,7 +285,7 @@ namespace Model
      * resources where Purpose is X, see the <code>tag</code>:<i>key</i>=<i>value</i>
      * filter.</p> </li> <li> <p> <code>tag-value</code> - The value of a tag assigned
      * to the resource. This filter is independent of the <code>tag-key</code>
-     * filter.</p> </li> <li> <p> <code>type</code> - The type of Spot instance request
+     * filter.</p> </li> <li> <p> <code>type</code> - The type of Spot Instance request
      * (<code>one-time</code> | <code>persistent</code>).</p> </li> <li> <p>
      * <code>valid-from</code> - The start date of the request.</p> </li> <li> <p>
      * <code>valid-until</code> - The end date of the request.</p> </li> </ul>
@@ -292,34 +295,35 @@ namespace Model
     /**
      * <p>One or more filters.</p> <ul> <li> <p> <code>availability-zone-group</code> -
      * The Availability Zone group.</p> </li> <li> <p> <code>create-time</code> - The
-     * time stamp when the Spot instance request was created.</p> </li> <li> <p>
+     * time stamp when the Spot Instance request was created.</p> </li> <li> <p>
      * <code>fault-code</code> - The fault code related to the request.</p> </li> <li>
      * <p> <code>fault-message</code> - The fault message related to the request.</p>
      * </li> <li> <p> <code>instance-id</code> - The ID of the instance that fulfilled
-     * the request.</p> </li> <li> <p> <code>launch-group</code> - The Spot instance
+     * the request.</p> </li> <li> <p> <code>launch-group</code> - The Spot Instance
      * launch group.</p> </li> <li> <p>
      * <code>launch.block-device-mapping.delete-on-termination</code> - Indicates
-     * whether the Amazon EBS volume is deleted on instance termination.</p> </li> <li>
-     * <p> <code>launch.block-device-mapping.device-name</code> - The device name for
-     * the Amazon EBS volume (for example, <code>/dev/sdh</code>).</p> </li> <li> <p>
+     * whether the EBS volume is deleted on instance termination.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.device-name</code> - The device name for the
+     * volume in the block device mapping (for example, <code>/dev/sdh</code> or
+     * <code>xvdh</code>).</p> </li> <li> <p>
      * <code>launch.block-device-mapping.snapshot-id</code> - The ID of the snapshot
-     * used for the Amazon EBS volume.</p> </li> <li> <p>
-     * <code>launch.block-device-mapping.volume-size</code> - The size of the Amazon
-     * EBS volume, in GiB.</p> </li> <li> <p>
-     * <code>launch.block-device-mapping.volume-type</code> - The type of the Amazon
-     * EBS volume: <code>gp2</code> for General Purpose SSD, <code>io1</code> for
-     * Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD,
-     * <code>sc1</code>for Cold HDD, or <code>standard</code> for Magnetic.</p> </li>
-     * <li> <p> <code>launch.group-id</code> - The security group for the instance.</p>
-     * </li> <li> <p> <code>launch.image-id</code> - The ID of the AMI.</p> </li> <li>
-     * <p> <code>launch.instance-type</code> - The type of instance (for example,
+     * for the EBS volume.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.volume-size</code> - The size of the EBS
+     * volume, in GiB.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.volume-type</code> - The type of EBS volume:
+     * <code>gp2</code> for General Purpose SSD, <code>io1</code> for Provisioned IOPS
+     * SSD, <code>st1</code> for Throughput Optimized HDD, <code>sc1</code>for Cold
+     * HDD, or <code>standard</code> for Magnetic.</p> </li> <li> <p>
+     * <code>launch.group-id</code> - The security group for the instance.</p> </li>
+     * <li> <p> <code>launch.image-id</code> - The ID of the AMI.</p> </li> <li> <p>
+     * <code>launch.instance-type</code> - The type of instance (for example,
      * <code>m3.medium</code>).</p> </li> <li> <p> <code>launch.kernel-id</code> - The
      * kernel ID.</p> </li> <li> <p> <code>launch.key-name</code> - The name of the key
      * pair the instance launched with.</p> </li> <li> <p>
      * <code>launch.monitoring-enabled</code> - Whether detailed monitoring is enabled
-     * for the Spot instance.</p> </li> <li> <p> <code>launch.ramdisk-id</code> - The
+     * for the Spot Instance.</p> </li> <li> <p> <code>launch.ramdisk-id</code> - The
      * RAM disk ID.</p> </li> <li> <p> <code>launched-availability-zone</code> - The
-     * Availability Zone in which the bid is launched.</p> </li> <li> <p>
+     * Availability Zone in which the request is launched.</p> </li> <li> <p>
      * <code>network-interface.addresses.primary</code> - Indicates whether the IP
      * address is the primary private IP address.</p> </li> <li> <p>
      * <code>network-interface.delete-on-termination</code> - Indicates whether the
@@ -336,19 +340,19 @@ namespace Model
      * instance.</p> </li> <li> <p> <code>product-description</code> - The product
      * description associated with the instance (<code>Linux/UNIX</code> |
      * <code>Windows</code>).</p> </li> <li> <p> <code>spot-instance-request-id</code>
-     * - The Spot instance request ID.</p> </li> <li> <p> <code>spot-price</code> - The
-     * maximum hourly price for any Spot instance launched to fulfill the request.</p>
-     * </li> <li> <p> <code>state</code> - The state of the Spot instance request
+     * - The Spot Instance request ID.</p> </li> <li> <p> <code>spot-price</code> - The
+     * maximum hourly price for any Spot Instance launched to fulfill the request.</p>
+     * </li> <li> <p> <code>state</code> - The state of the Spot Instance request
      * (<code>open</code> | <code>active</code> | <code>closed</code> |
-     * <code>cancelled</code> | <code>failed</code>). Spot bid status information can
-     * help you track your Amazon EC2 Spot instance requests. For more information, see
-     * <a
+     * <code>cancelled</code> | <code>failed</code>). Spot request status information
+     * can help you track your Amazon EC2 Spot Instance requests. For more information,
+     * see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html">Spot
-     * Bid Status</a> in the Amazon Elastic Compute Cloud User Guide.</p> </li> <li>
-     * <p> <code>status-code</code> - The short code describing the most recent
-     * evaluation of your Spot instance request.</p> </li> <li> <p>
+     * Request Status</a> in the Amazon Elastic Compute Cloud User Guide.</p> </li>
+     * <li> <p> <code>status-code</code> - The short code describing the most recent
+     * evaluation of your Spot Instance request.</p> </li> <li> <p>
      * <code>status-message</code> - The message explaining the status of the Spot
-     * instance request.</p> </li> <li> <p> <code>tag</code>:<i>key</i>=<i>value</i> -
+     * Instance request.</p> </li> <li> <p> <code>tag</code>:<i>key</i>=<i>value</i> -
      * The key/value combination of a tag assigned to the resource. Specify the key of
      * the tag in the filter name and the value of the tag in the filter value. For
      * example, for the tag Purpose=X, specify <code>tag:Purpose</code> for the filter
@@ -361,7 +365,7 @@ namespace Model
      * resources where Purpose is X, see the <code>tag</code>:<i>key</i>=<i>value</i>
      * filter.</p> </li> <li> <p> <code>tag-value</code> - The value of a tag assigned
      * to the resource. This filter is independent of the <code>tag-key</code>
-     * filter.</p> </li> <li> <p> <code>type</code> - The type of Spot instance request
+     * filter.</p> </li> <li> <p> <code>type</code> - The type of Spot Instance request
      * (<code>one-time</code> | <code>persistent</code>).</p> </li> <li> <p>
      * <code>valid-from</code> - The start date of the request.</p> </li> <li> <p>
      * <code>valid-until</code> - The end date of the request.</p> </li> </ul>
@@ -371,34 +375,35 @@ namespace Model
     /**
      * <p>One or more filters.</p> <ul> <li> <p> <code>availability-zone-group</code> -
      * The Availability Zone group.</p> </li> <li> <p> <code>create-time</code> - The
-     * time stamp when the Spot instance request was created.</p> </li> <li> <p>
+     * time stamp when the Spot Instance request was created.</p> </li> <li> <p>
      * <code>fault-code</code> - The fault code related to the request.</p> </li> <li>
      * <p> <code>fault-message</code> - The fault message related to the request.</p>
      * </li> <li> <p> <code>instance-id</code> - The ID of the instance that fulfilled
-     * the request.</p> </li> <li> <p> <code>launch-group</code> - The Spot instance
+     * the request.</p> </li> <li> <p> <code>launch-group</code> - The Spot Instance
      * launch group.</p> </li> <li> <p>
      * <code>launch.block-device-mapping.delete-on-termination</code> - Indicates
-     * whether the Amazon EBS volume is deleted on instance termination.</p> </li> <li>
-     * <p> <code>launch.block-device-mapping.device-name</code> - The device name for
-     * the Amazon EBS volume (for example, <code>/dev/sdh</code>).</p> </li> <li> <p>
+     * whether the EBS volume is deleted on instance termination.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.device-name</code> - The device name for the
+     * volume in the block device mapping (for example, <code>/dev/sdh</code> or
+     * <code>xvdh</code>).</p> </li> <li> <p>
      * <code>launch.block-device-mapping.snapshot-id</code> - The ID of the snapshot
-     * used for the Amazon EBS volume.</p> </li> <li> <p>
-     * <code>launch.block-device-mapping.volume-size</code> - The size of the Amazon
-     * EBS volume, in GiB.</p> </li> <li> <p>
-     * <code>launch.block-device-mapping.volume-type</code> - The type of the Amazon
-     * EBS volume: <code>gp2</code> for General Purpose SSD, <code>io1</code> for
-     * Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD,
-     * <code>sc1</code>for Cold HDD, or <code>standard</code> for Magnetic.</p> </li>
-     * <li> <p> <code>launch.group-id</code> - The security group for the instance.</p>
-     * </li> <li> <p> <code>launch.image-id</code> - The ID of the AMI.</p> </li> <li>
-     * <p> <code>launch.instance-type</code> - The type of instance (for example,
+     * for the EBS volume.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.volume-size</code> - The size of the EBS
+     * volume, in GiB.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.volume-type</code> - The type of EBS volume:
+     * <code>gp2</code> for General Purpose SSD, <code>io1</code> for Provisioned IOPS
+     * SSD, <code>st1</code> for Throughput Optimized HDD, <code>sc1</code>for Cold
+     * HDD, or <code>standard</code> for Magnetic.</p> </li> <li> <p>
+     * <code>launch.group-id</code> - The security group for the instance.</p> </li>
+     * <li> <p> <code>launch.image-id</code> - The ID of the AMI.</p> </li> <li> <p>
+     * <code>launch.instance-type</code> - The type of instance (for example,
      * <code>m3.medium</code>).</p> </li> <li> <p> <code>launch.kernel-id</code> - The
      * kernel ID.</p> </li> <li> <p> <code>launch.key-name</code> - The name of the key
      * pair the instance launched with.</p> </li> <li> <p>
      * <code>launch.monitoring-enabled</code> - Whether detailed monitoring is enabled
-     * for the Spot instance.</p> </li> <li> <p> <code>launch.ramdisk-id</code> - The
+     * for the Spot Instance.</p> </li> <li> <p> <code>launch.ramdisk-id</code> - The
      * RAM disk ID.</p> </li> <li> <p> <code>launched-availability-zone</code> - The
-     * Availability Zone in which the bid is launched.</p> </li> <li> <p>
+     * Availability Zone in which the request is launched.</p> </li> <li> <p>
      * <code>network-interface.addresses.primary</code> - Indicates whether the IP
      * address is the primary private IP address.</p> </li> <li> <p>
      * <code>network-interface.delete-on-termination</code> - Indicates whether the
@@ -415,19 +420,19 @@ namespace Model
      * instance.</p> </li> <li> <p> <code>product-description</code> - The product
      * description associated with the instance (<code>Linux/UNIX</code> |
      * <code>Windows</code>).</p> </li> <li> <p> <code>spot-instance-request-id</code>
-     * - The Spot instance request ID.</p> </li> <li> <p> <code>spot-price</code> - The
-     * maximum hourly price for any Spot instance launched to fulfill the request.</p>
-     * </li> <li> <p> <code>state</code> - The state of the Spot instance request
+     * - The Spot Instance request ID.</p> </li> <li> <p> <code>spot-price</code> - The
+     * maximum hourly price for any Spot Instance launched to fulfill the request.</p>
+     * </li> <li> <p> <code>state</code> - The state of the Spot Instance request
      * (<code>open</code> | <code>active</code> | <code>closed</code> |
-     * <code>cancelled</code> | <code>failed</code>). Spot bid status information can
-     * help you track your Amazon EC2 Spot instance requests. For more information, see
-     * <a
+     * <code>cancelled</code> | <code>failed</code>). Spot request status information
+     * can help you track your Amazon EC2 Spot Instance requests. For more information,
+     * see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html">Spot
-     * Bid Status</a> in the Amazon Elastic Compute Cloud User Guide.</p> </li> <li>
-     * <p> <code>status-code</code> - The short code describing the most recent
-     * evaluation of your Spot instance request.</p> </li> <li> <p>
+     * Request Status</a> in the Amazon Elastic Compute Cloud User Guide.</p> </li>
+     * <li> <p> <code>status-code</code> - The short code describing the most recent
+     * evaluation of your Spot Instance request.</p> </li> <li> <p>
      * <code>status-message</code> - The message explaining the status of the Spot
-     * instance request.</p> </li> <li> <p> <code>tag</code>:<i>key</i>=<i>value</i> -
+     * Instance request.</p> </li> <li> <p> <code>tag</code>:<i>key</i>=<i>value</i> -
      * The key/value combination of a tag assigned to the resource. Specify the key of
      * the tag in the filter name and the value of the tag in the filter value. For
      * example, for the tag Purpose=X, specify <code>tag:Purpose</code> for the filter
@@ -440,7 +445,7 @@ namespace Model
      * resources where Purpose is X, see the <code>tag</code>:<i>key</i>=<i>value</i>
      * filter.</p> </li> <li> <p> <code>tag-value</code> - The value of a tag assigned
      * to the resource. This filter is independent of the <code>tag-key</code>
-     * filter.</p> </li> <li> <p> <code>type</code> - The type of Spot instance request
+     * filter.</p> </li> <li> <p> <code>type</code> - The type of Spot Instance request
      * (<code>one-time</code> | <code>persistent</code>).</p> </li> <li> <p>
      * <code>valid-from</code> - The start date of the request.</p> </li> <li> <p>
      * <code>valid-until</code> - The end date of the request.</p> </li> </ul>
@@ -450,34 +455,35 @@ namespace Model
     /**
      * <p>One or more filters.</p> <ul> <li> <p> <code>availability-zone-group</code> -
      * The Availability Zone group.</p> </li> <li> <p> <code>create-time</code> - The
-     * time stamp when the Spot instance request was created.</p> </li> <li> <p>
+     * time stamp when the Spot Instance request was created.</p> </li> <li> <p>
      * <code>fault-code</code> - The fault code related to the request.</p> </li> <li>
      * <p> <code>fault-message</code> - The fault message related to the request.</p>
      * </li> <li> <p> <code>instance-id</code> - The ID of the instance that fulfilled
-     * the request.</p> </li> <li> <p> <code>launch-group</code> - The Spot instance
+     * the request.</p> </li> <li> <p> <code>launch-group</code> - The Spot Instance
      * launch group.</p> </li> <li> <p>
      * <code>launch.block-device-mapping.delete-on-termination</code> - Indicates
-     * whether the Amazon EBS volume is deleted on instance termination.</p> </li> <li>
-     * <p> <code>launch.block-device-mapping.device-name</code> - The device name for
-     * the Amazon EBS volume (for example, <code>/dev/sdh</code>).</p> </li> <li> <p>
+     * whether the EBS volume is deleted on instance termination.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.device-name</code> - The device name for the
+     * volume in the block device mapping (for example, <code>/dev/sdh</code> or
+     * <code>xvdh</code>).</p> </li> <li> <p>
      * <code>launch.block-device-mapping.snapshot-id</code> - The ID of the snapshot
-     * used for the Amazon EBS volume.</p> </li> <li> <p>
-     * <code>launch.block-device-mapping.volume-size</code> - The size of the Amazon
-     * EBS volume, in GiB.</p> </li> <li> <p>
-     * <code>launch.block-device-mapping.volume-type</code> - The type of the Amazon
-     * EBS volume: <code>gp2</code> for General Purpose SSD, <code>io1</code> for
-     * Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD,
-     * <code>sc1</code>for Cold HDD, or <code>standard</code> for Magnetic.</p> </li>
-     * <li> <p> <code>launch.group-id</code> - The security group for the instance.</p>
-     * </li> <li> <p> <code>launch.image-id</code> - The ID of the AMI.</p> </li> <li>
-     * <p> <code>launch.instance-type</code> - The type of instance (for example,
+     * for the EBS volume.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.volume-size</code> - The size of the EBS
+     * volume, in GiB.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.volume-type</code> - The type of EBS volume:
+     * <code>gp2</code> for General Purpose SSD, <code>io1</code> for Provisioned IOPS
+     * SSD, <code>st1</code> for Throughput Optimized HDD, <code>sc1</code>for Cold
+     * HDD, or <code>standard</code> for Magnetic.</p> </li> <li> <p>
+     * <code>launch.group-id</code> - The security group for the instance.</p> </li>
+     * <li> <p> <code>launch.image-id</code> - The ID of the AMI.</p> </li> <li> <p>
+     * <code>launch.instance-type</code> - The type of instance (for example,
      * <code>m3.medium</code>).</p> </li> <li> <p> <code>launch.kernel-id</code> - The
      * kernel ID.</p> </li> <li> <p> <code>launch.key-name</code> - The name of the key
      * pair the instance launched with.</p> </li> <li> <p>
      * <code>launch.monitoring-enabled</code> - Whether detailed monitoring is enabled
-     * for the Spot instance.</p> </li> <li> <p> <code>launch.ramdisk-id</code> - The
+     * for the Spot Instance.</p> </li> <li> <p> <code>launch.ramdisk-id</code> - The
      * RAM disk ID.</p> </li> <li> <p> <code>launched-availability-zone</code> - The
-     * Availability Zone in which the bid is launched.</p> </li> <li> <p>
+     * Availability Zone in which the request is launched.</p> </li> <li> <p>
      * <code>network-interface.addresses.primary</code> - Indicates whether the IP
      * address is the primary private IP address.</p> </li> <li> <p>
      * <code>network-interface.delete-on-termination</code> - Indicates whether the
@@ -494,19 +500,19 @@ namespace Model
      * instance.</p> </li> <li> <p> <code>product-description</code> - The product
      * description associated with the instance (<code>Linux/UNIX</code> |
      * <code>Windows</code>).</p> </li> <li> <p> <code>spot-instance-request-id</code>
-     * - The Spot instance request ID.</p> </li> <li> <p> <code>spot-price</code> - The
-     * maximum hourly price for any Spot instance launched to fulfill the request.</p>
-     * </li> <li> <p> <code>state</code> - The state of the Spot instance request
+     * - The Spot Instance request ID.</p> </li> <li> <p> <code>spot-price</code> - The
+     * maximum hourly price for any Spot Instance launched to fulfill the request.</p>
+     * </li> <li> <p> <code>state</code> - The state of the Spot Instance request
      * (<code>open</code> | <code>active</code> | <code>closed</code> |
-     * <code>cancelled</code> | <code>failed</code>). Spot bid status information can
-     * help you track your Amazon EC2 Spot instance requests. For more information, see
-     * <a
+     * <code>cancelled</code> | <code>failed</code>). Spot request status information
+     * can help you track your Amazon EC2 Spot Instance requests. For more information,
+     * see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html">Spot
-     * Bid Status</a> in the Amazon Elastic Compute Cloud User Guide.</p> </li> <li>
-     * <p> <code>status-code</code> - The short code describing the most recent
-     * evaluation of your Spot instance request.</p> </li> <li> <p>
+     * Request Status</a> in the Amazon Elastic Compute Cloud User Guide.</p> </li>
+     * <li> <p> <code>status-code</code> - The short code describing the most recent
+     * evaluation of your Spot Instance request.</p> </li> <li> <p>
      * <code>status-message</code> - The message explaining the status of the Spot
-     * instance request.</p> </li> <li> <p> <code>tag</code>:<i>key</i>=<i>value</i> -
+     * Instance request.</p> </li> <li> <p> <code>tag</code>:<i>key</i>=<i>value</i> -
      * The key/value combination of a tag assigned to the resource. Specify the key of
      * the tag in the filter name and the value of the tag in the filter value. For
      * example, for the tag Purpose=X, specify <code>tag:Purpose</code> for the filter
@@ -519,7 +525,7 @@ namespace Model
      * resources where Purpose is X, see the <code>tag</code>:<i>key</i>=<i>value</i>
      * filter.</p> </li> <li> <p> <code>tag-value</code> - The value of a tag assigned
      * to the resource. This filter is independent of the <code>tag-key</code>
-     * filter.</p> </li> <li> <p> <code>type</code> - The type of Spot instance request
+     * filter.</p> </li> <li> <p> <code>type</code> - The type of Spot Instance request
      * (<code>one-time</code> | <code>persistent</code>).</p> </li> <li> <p>
      * <code>valid-from</code> - The start date of the request.</p> </li> <li> <p>
      * <code>valid-until</code> - The end date of the request.</p> </li> </ul>
@@ -529,34 +535,35 @@ namespace Model
     /**
      * <p>One or more filters.</p> <ul> <li> <p> <code>availability-zone-group</code> -
      * The Availability Zone group.</p> </li> <li> <p> <code>create-time</code> - The
-     * time stamp when the Spot instance request was created.</p> </li> <li> <p>
+     * time stamp when the Spot Instance request was created.</p> </li> <li> <p>
      * <code>fault-code</code> - The fault code related to the request.</p> </li> <li>
      * <p> <code>fault-message</code> - The fault message related to the request.</p>
      * </li> <li> <p> <code>instance-id</code> - The ID of the instance that fulfilled
-     * the request.</p> </li> <li> <p> <code>launch-group</code> - The Spot instance
+     * the request.</p> </li> <li> <p> <code>launch-group</code> - The Spot Instance
      * launch group.</p> </li> <li> <p>
      * <code>launch.block-device-mapping.delete-on-termination</code> - Indicates
-     * whether the Amazon EBS volume is deleted on instance termination.</p> </li> <li>
-     * <p> <code>launch.block-device-mapping.device-name</code> - The device name for
-     * the Amazon EBS volume (for example, <code>/dev/sdh</code>).</p> </li> <li> <p>
+     * whether the EBS volume is deleted on instance termination.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.device-name</code> - The device name for the
+     * volume in the block device mapping (for example, <code>/dev/sdh</code> or
+     * <code>xvdh</code>).</p> </li> <li> <p>
      * <code>launch.block-device-mapping.snapshot-id</code> - The ID of the snapshot
-     * used for the Amazon EBS volume.</p> </li> <li> <p>
-     * <code>launch.block-device-mapping.volume-size</code> - The size of the Amazon
-     * EBS volume, in GiB.</p> </li> <li> <p>
-     * <code>launch.block-device-mapping.volume-type</code> - The type of the Amazon
-     * EBS volume: <code>gp2</code> for General Purpose SSD, <code>io1</code> for
-     * Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD,
-     * <code>sc1</code>for Cold HDD, or <code>standard</code> for Magnetic.</p> </li>
-     * <li> <p> <code>launch.group-id</code> - The security group for the instance.</p>
-     * </li> <li> <p> <code>launch.image-id</code> - The ID of the AMI.</p> </li> <li>
-     * <p> <code>launch.instance-type</code> - The type of instance (for example,
+     * for the EBS volume.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.volume-size</code> - The size of the EBS
+     * volume, in GiB.</p> </li> <li> <p>
+     * <code>launch.block-device-mapping.volume-type</code> - The type of EBS volume:
+     * <code>gp2</code> for General Purpose SSD, <code>io1</code> for Provisioned IOPS
+     * SSD, <code>st1</code> for Throughput Optimized HDD, <code>sc1</code>for Cold
+     * HDD, or <code>standard</code> for Magnetic.</p> </li> <li> <p>
+     * <code>launch.group-id</code> - The security group for the instance.</p> </li>
+     * <li> <p> <code>launch.image-id</code> - The ID of the AMI.</p> </li> <li> <p>
+     * <code>launch.instance-type</code> - The type of instance (for example,
      * <code>m3.medium</code>).</p> </li> <li> <p> <code>launch.kernel-id</code> - The
      * kernel ID.</p> </li> <li> <p> <code>launch.key-name</code> - The name of the key
      * pair the instance launched with.</p> </li> <li> <p>
      * <code>launch.monitoring-enabled</code> - Whether detailed monitoring is enabled
-     * for the Spot instance.</p> </li> <li> <p> <code>launch.ramdisk-id</code> - The
+     * for the Spot Instance.</p> </li> <li> <p> <code>launch.ramdisk-id</code> - The
      * RAM disk ID.</p> </li> <li> <p> <code>launched-availability-zone</code> - The
-     * Availability Zone in which the bid is launched.</p> </li> <li> <p>
+     * Availability Zone in which the request is launched.</p> </li> <li> <p>
      * <code>network-interface.addresses.primary</code> - Indicates whether the IP
      * address is the primary private IP address.</p> </li> <li> <p>
      * <code>network-interface.delete-on-termination</code> - Indicates whether the
@@ -573,19 +580,19 @@ namespace Model
      * instance.</p> </li> <li> <p> <code>product-description</code> - The product
      * description associated with the instance (<code>Linux/UNIX</code> |
      * <code>Windows</code>).</p> </li> <li> <p> <code>spot-instance-request-id</code>
-     * - The Spot instance request ID.</p> </li> <li> <p> <code>spot-price</code> - The
-     * maximum hourly price for any Spot instance launched to fulfill the request.</p>
-     * </li> <li> <p> <code>state</code> - The state of the Spot instance request
+     * - The Spot Instance request ID.</p> </li> <li> <p> <code>spot-price</code> - The
+     * maximum hourly price for any Spot Instance launched to fulfill the request.</p>
+     * </li> <li> <p> <code>state</code> - The state of the Spot Instance request
      * (<code>open</code> | <code>active</code> | <code>closed</code> |
-     * <code>cancelled</code> | <code>failed</code>). Spot bid status information can
-     * help you track your Amazon EC2 Spot instance requests. For more information, see
-     * <a
+     * <code>cancelled</code> | <code>failed</code>). Spot request status information
+     * can help you track your Amazon EC2 Spot Instance requests. For more information,
+     * see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html">Spot
-     * Bid Status</a> in the Amazon Elastic Compute Cloud User Guide.</p> </li> <li>
-     * <p> <code>status-code</code> - The short code describing the most recent
-     * evaluation of your Spot instance request.</p> </li> <li> <p>
+     * Request Status</a> in the Amazon Elastic Compute Cloud User Guide.</p> </li>
+     * <li> <p> <code>status-code</code> - The short code describing the most recent
+     * evaluation of your Spot Instance request.</p> </li> <li> <p>
      * <code>status-message</code> - The message explaining the status of the Spot
-     * instance request.</p> </li> <li> <p> <code>tag</code>:<i>key</i>=<i>value</i> -
+     * Instance request.</p> </li> <li> <p> <code>tag</code>:<i>key</i>=<i>value</i> -
      * The key/value combination of a tag assigned to the resource. Specify the key of
      * the tag in the filter name and the value of the tag in the filter value. For
      * example, for the tag Purpose=X, specify <code>tag:Purpose</code> for the filter
@@ -598,7 +605,7 @@ namespace Model
      * resources where Purpose is X, see the <code>tag</code>:<i>key</i>=<i>value</i>
      * filter.</p> </li> <li> <p> <code>tag-value</code> - The value of a tag assigned
      * to the resource. This filter is independent of the <code>tag-key</code>
-     * filter.</p> </li> <li> <p> <code>type</code> - The type of Spot instance request
+     * filter.</p> </li> <li> <p> <code>type</code> - The type of Spot Instance request
      * (<code>one-time</code> | <code>persistent</code>).</p> </li> <li> <p>
      * <code>valid-from</code> - The start date of the request.</p> </li> <li> <p>
      * <code>valid-until</code> - The end date of the request.</p> </li> </ul>
@@ -632,42 +639,42 @@ namespace Model
 
 
     /**
-     * <p>One or more Spot instance request IDs.</p>
+     * <p>One or more Spot Instance request IDs.</p>
      */
     inline const Aws::Vector<Aws::String>& GetSpotInstanceRequestIds() const{ return m_spotInstanceRequestIds; }
 
     /**
-     * <p>One or more Spot instance request IDs.</p>
+     * <p>One or more Spot Instance request IDs.</p>
      */
     inline void SetSpotInstanceRequestIds(const Aws::Vector<Aws::String>& value) { m_spotInstanceRequestIdsHasBeenSet = true; m_spotInstanceRequestIds = value; }
 
     /**
-     * <p>One or more Spot instance request IDs.</p>
+     * <p>One or more Spot Instance request IDs.</p>
      */
     inline void SetSpotInstanceRequestIds(Aws::Vector<Aws::String>&& value) { m_spotInstanceRequestIdsHasBeenSet = true; m_spotInstanceRequestIds = std::move(value); }
 
     /**
-     * <p>One or more Spot instance request IDs.</p>
+     * <p>One or more Spot Instance request IDs.</p>
      */
     inline DescribeSpotInstanceRequestsRequest& WithSpotInstanceRequestIds(const Aws::Vector<Aws::String>& value) { SetSpotInstanceRequestIds(value); return *this;}
 
     /**
-     * <p>One or more Spot instance request IDs.</p>
+     * <p>One or more Spot Instance request IDs.</p>
      */
     inline DescribeSpotInstanceRequestsRequest& WithSpotInstanceRequestIds(Aws::Vector<Aws::String>&& value) { SetSpotInstanceRequestIds(std::move(value)); return *this;}
 
     /**
-     * <p>One or more Spot instance request IDs.</p>
+     * <p>One or more Spot Instance request IDs.</p>
      */
     inline DescribeSpotInstanceRequestsRequest& AddSpotInstanceRequestIds(const Aws::String& value) { m_spotInstanceRequestIdsHasBeenSet = true; m_spotInstanceRequestIds.push_back(value); return *this; }
 
     /**
-     * <p>One or more Spot instance request IDs.</p>
+     * <p>One or more Spot Instance request IDs.</p>
      */
     inline DescribeSpotInstanceRequestsRequest& AddSpotInstanceRequestIds(Aws::String&& value) { m_spotInstanceRequestIdsHasBeenSet = true; m_spotInstanceRequestIds.push_back(std::move(value)); return *this; }
 
     /**
-     * <p>One or more Spot instance request IDs.</p>
+     * <p>One or more Spot Instance request IDs.</p>
      */
     inline DescribeSpotInstanceRequestsRequest& AddSpotInstanceRequestIds(const char* value) { m_spotInstanceRequestIdsHasBeenSet = true; m_spotInstanceRequestIds.push_back(value); return *this; }
 

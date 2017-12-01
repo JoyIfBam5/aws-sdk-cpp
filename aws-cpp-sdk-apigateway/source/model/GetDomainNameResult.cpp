@@ -62,9 +62,45 @@ GetDomainNameResult& GetDomainNameResult::operator =(const Aws::AmazonWebService
 
   }
 
+  if(jsonValue.ValueExists("regionalDomainName"))
+  {
+    m_regionalDomainName = jsonValue.GetString("regionalDomainName");
+
+  }
+
+  if(jsonValue.ValueExists("regionalHostedZoneId"))
+  {
+    m_regionalHostedZoneId = jsonValue.GetString("regionalHostedZoneId");
+
+  }
+
+  if(jsonValue.ValueExists("regionalCertificateName"))
+  {
+    m_regionalCertificateName = jsonValue.GetString("regionalCertificateName");
+
+  }
+
+  if(jsonValue.ValueExists("regionalCertificateArn"))
+  {
+    m_regionalCertificateArn = jsonValue.GetString("regionalCertificateArn");
+
+  }
+
   if(jsonValue.ValueExists("distributionDomainName"))
   {
     m_distributionDomainName = jsonValue.GetString("distributionDomainName");
+
+  }
+
+  if(jsonValue.ValueExists("distributionHostedZoneId"))
+  {
+    m_distributionHostedZoneId = jsonValue.GetString("distributionHostedZoneId");
+
+  }
+
+  if(jsonValue.ValueExists("endpointConfiguration"))
+  {
+    m_endpointConfiguration = jsonValue.GetObject("endpointConfiguration");
 
   }
 

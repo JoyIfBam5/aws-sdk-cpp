@@ -80,63 +80,98 @@ namespace Model
 
 
     /**
-     * <p>The name of the activity.</p>
+     * <p>The name of the activity.</p> <p>A name must <i>not</i> contain:</p> <ul>
+     * <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code>
+     * </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline const Aws::String& GetName() const{ return m_name; }
 
     /**
-     * <p>The name of the activity.</p>
+     * <p>The name of the activity.</p> <p>A name must <i>not</i> contain:</p> <ul>
+     * <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code>
+     * </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline void SetName(const Aws::String& value) { m_name = value; }
 
     /**
-     * <p>The name of the activity.</p>
+     * <p>The name of the activity.</p> <p>A name must <i>not</i> contain:</p> <ul>
+     * <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code>
+     * </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline void SetName(Aws::String&& value) { m_name = std::move(value); }
 
     /**
-     * <p>The name of the activity.</p>
+     * <p>The name of the activity.</p> <p>A name must <i>not</i> contain:</p> <ul>
+     * <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code>
+     * </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline void SetName(const char* value) { m_name.assign(value); }
 
     /**
-     * <p>The name of the activity.</p>
+     * <p>The name of the activity.</p> <p>A name must <i>not</i> contain:</p> <ul>
+     * <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code>
+     * </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline DescribeActivityResult& WithName(const Aws::String& value) { SetName(value); return *this;}
 
     /**
-     * <p>The name of the activity.</p>
+     * <p>The name of the activity.</p> <p>A name must <i>not</i> contain:</p> <ul>
+     * <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code>
+     * </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline DescribeActivityResult& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
-     * <p>The name of the activity.</p>
+     * <p>The name of the activity.</p> <p>A name must <i>not</i> contain:</p> <ul>
+     * <li> <p>whitespace</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code>
+     * </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li>
+     * <p>special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> </p> </li>
+     * <li> <p>control characters (<code>U+0000-001F</code>,
+     * <code>U+007F-009F</code>)</p> </li> </ul>
      */
     inline DescribeActivityResult& WithName(const char* value) { SetName(value); return *this;}
 
 
     /**
-     * <p>The date the activity was created.</p>
+     * <p>The date the activity is created.</p>
      */
     inline const Aws::Utils::DateTime& GetCreationDate() const{ return m_creationDate; }
 
     /**
-     * <p>The date the activity was created.</p>
+     * <p>The date the activity is created.</p>
      */
     inline void SetCreationDate(const Aws::Utils::DateTime& value) { m_creationDate = value; }
 
     /**
-     * <p>The date the activity was created.</p>
+     * <p>The date the activity is created.</p>
      */
     inline void SetCreationDate(Aws::Utils::DateTime&& value) { m_creationDate = std::move(value); }
 
     /**
-     * <p>The date the activity was created.</p>
+     * <p>The date the activity is created.</p>
      */
     inline DescribeActivityResult& WithCreationDate(const Aws::Utils::DateTime& value) { SetCreationDate(value); return *this;}
 
     /**
-     * <p>The date the activity was created.</p>
+     * <p>The date the activity is created.</p>
      */
     inline DescribeActivityResult& WithCreationDate(Aws::Utils::DateTime&& value) { SetCreationDate(std::move(value)); return *this;}
 

@@ -40,6 +40,7 @@ SpotFleetRequestConfigData::SpotFleetRequestConfigData() :
     m_fulfilledCapacityHasBeenSet(false),
     m_iamFleetRoleHasBeenSet(false),
     m_launchSpecificationsHasBeenSet(false),
+    m_launchTemplateConfigsHasBeenSet(false),
     m_spotPriceHasBeenSet(false),
     m_targetCapacity(0),
     m_targetCapacityHasBeenSet(false),
@@ -52,7 +53,8 @@ SpotFleetRequestConfigData::SpotFleetRequestConfigData() :
     m_replaceUnhealthyInstances(false),
     m_replaceUnhealthyInstancesHasBeenSet(false),
     m_instanceInterruptionBehavior(InstanceInterruptionBehavior::NOT_SET),
-    m_instanceInterruptionBehaviorHasBeenSet(false)
+    m_instanceInterruptionBehaviorHasBeenSet(false),
+    m_loadBalancersConfigHasBeenSet(false)
 {
 }
 
@@ -66,6 +68,7 @@ SpotFleetRequestConfigData::SpotFleetRequestConfigData(const XmlNode& xmlNode) :
     m_fulfilledCapacityHasBeenSet(false),
     m_iamFleetRoleHasBeenSet(false),
     m_launchSpecificationsHasBeenSet(false),
+    m_launchTemplateConfigsHasBeenSet(false),
     m_spotPriceHasBeenSet(false),
     m_targetCapacity(0),
     m_targetCapacityHasBeenSet(false),
@@ -78,7 +81,8 @@ SpotFleetRequestConfigData::SpotFleetRequestConfigData(const XmlNode& xmlNode) :
     m_replaceUnhealthyInstances(false),
     m_replaceUnhealthyInstancesHasBeenSet(false),
     m_instanceInterruptionBehavior(InstanceInterruptionBehavior::NOT_SET),
-    m_instanceInterruptionBehaviorHasBeenSet(false)
+    m_instanceInterruptionBehaviorHasBeenSet(false),
+    m_loadBalancersConfigHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -131,6 +135,18 @@ SpotFleetRequestConfigData& SpotFleetRequestConfigData::operator =(const XmlNode
 
       m_launchSpecificationsHasBeenSet = true;
     }
+    XmlNode launchTemplateConfigsNode = resultNode.FirstChild("launchTemplateConfigs");
+    if(!launchTemplateConfigsNode.IsNull())
+    {
+      XmlNode launchTemplateConfigsMember = launchTemplateConfigsNode.FirstChild("item");
+      while(!launchTemplateConfigsMember.IsNull())
+      {
+        m_launchTemplateConfigs.push_back(launchTemplateConfigsMember);
+        launchTemplateConfigsMember = launchTemplateConfigsMember.NextNode("item");
+      }
+
+      m_launchTemplateConfigsHasBeenSet = true;
+    }
     XmlNode spotPriceNode = resultNode.FirstChild("spotPrice");
     if(!spotPriceNode.IsNull())
     {
@@ -179,6 +195,12 @@ SpotFleetRequestConfigData& SpotFleetRequestConfigData::operator =(const XmlNode
       m_instanceInterruptionBehavior = InstanceInterruptionBehaviorMapper::GetInstanceInterruptionBehaviorForName(StringUtils::Trim(instanceInterruptionBehaviorNode.GetText().c_str()).c_str());
       m_instanceInterruptionBehaviorHasBeenSet = true;
     }
+    XmlNode loadBalancersConfigNode = resultNode.FirstChild("loadBalancersConfig");
+    if(!loadBalancersConfigNode.IsNull())
+    {
+      m_loadBalancersConfig = loadBalancersConfigNode;
+      m_loadBalancersConfigHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -222,6 +244,17 @@ void SpotFleetRequestConfigData::OutputToStream(Aws::OStream& oStream, const cha
       }
   }
 
+  if(m_launchTemplateConfigsHasBeenSet)
+  {
+      unsigned launchTemplateConfigsIdx = 1;
+      for(auto& item : m_launchTemplateConfigs)
+      {
+        Aws::StringStream launchTemplateConfigsSs;
+        launchTemplateConfigsSs << location << index << locationValue << ".LaunchTemplateConfigs." << launchTemplateConfigsIdx++;
+        item.OutputToStream(oStream, launchTemplateConfigsSs.str().c_str());
+      }
+  }
+
   if(m_spotPriceHasBeenSet)
   {
       oStream << location << index << locationValue << ".SpotPrice=" << StringUtils::URLEncode(m_spotPrice.c_str()) << "&";
@@ -262,6 +295,13 @@ void SpotFleetRequestConfigData::OutputToStream(Aws::OStream& oStream, const cha
       oStream << location << index << locationValue << ".InstanceInterruptionBehavior=" << InstanceInterruptionBehaviorMapper::GetNameForInstanceInterruptionBehavior(m_instanceInterruptionBehavior) << "&";
   }
 
+  if(m_loadBalancersConfigHasBeenSet)
+  {
+      Aws::StringStream loadBalancersConfigLocationAndMemberSs;
+      loadBalancersConfigLocationAndMemberSs << location << index << locationValue << ".LoadBalancersConfig";
+      m_loadBalancersConfig.OutputToStream(oStream, loadBalancersConfigLocationAndMemberSs.str().c_str());
+  }
+
 }
 
 void SpotFleetRequestConfigData::OutputToStream(Aws::OStream& oStream, const char* location) const
@@ -296,6 +336,16 @@ void SpotFleetRequestConfigData::OutputToStream(Aws::OStream& oStream, const cha
         item.OutputToStream(oStream, launchSpecificationsSs.str().c_str());
       }
   }
+  if(m_launchTemplateConfigsHasBeenSet)
+  {
+      unsigned launchTemplateConfigsIdx = 1;
+      for(auto& item : m_launchTemplateConfigs)
+      {
+        Aws::StringStream launchTemplateConfigsSs;
+        launchTemplateConfigsSs << location <<  ".LaunchTemplateConfigs." << launchTemplateConfigsIdx++;
+        item.OutputToStream(oStream, launchTemplateConfigsSs.str().c_str());
+      }
+  }
   if(m_spotPriceHasBeenSet)
   {
       oStream << location << ".SpotPrice=" << StringUtils::URLEncode(m_spotPrice.c_str()) << "&";
@@ -327,6 +377,12 @@ void SpotFleetRequestConfigData::OutputToStream(Aws::OStream& oStream, const cha
   if(m_instanceInterruptionBehaviorHasBeenSet)
   {
       oStream << location << ".InstanceInterruptionBehavior=" << InstanceInterruptionBehaviorMapper::GetNameForInstanceInterruptionBehavior(m_instanceInterruptionBehavior) << "&";
+  }
+  if(m_loadBalancersConfigHasBeenSet)
+  {
+      Aws::String loadBalancersConfigLocationAndMember(location);
+      loadBalancersConfigLocationAndMember += ".LoadBalancersConfig";
+      m_loadBalancersConfig.OutputToStream(oStream, loadBalancersConfigLocationAndMember.c_str());
   }
 }
 

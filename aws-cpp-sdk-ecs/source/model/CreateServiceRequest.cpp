@@ -30,10 +30,14 @@ CreateServiceRequest::CreateServiceRequest() :
     m_desiredCount(0),
     m_desiredCountHasBeenSet(false),
     m_clientTokenHasBeenSet(false),
+    m_launchType(LaunchType::NOT_SET),
+    m_launchTypeHasBeenSet(false),
+    m_platformVersionHasBeenSet(false),
     m_roleHasBeenSet(false),
     m_deploymentConfigurationHasBeenSet(false),
     m_placementConstraintsHasBeenSet(false),
-    m_placementStrategyHasBeenSet(false)
+    m_placementStrategyHasBeenSet(false),
+    m_networkConfigurationHasBeenSet(false)
 {
 }
 
@@ -82,6 +86,17 @@ Aws::String CreateServiceRequest::SerializePayload() const
 
   }
 
+  if(m_launchTypeHasBeenSet)
+  {
+   payload.WithString("launchType", LaunchTypeMapper::GetNameForLaunchType(m_launchType));
+  }
+
+  if(m_platformVersionHasBeenSet)
+  {
+   payload.WithString("platformVersion", m_platformVersion);
+
+  }
+
   if(m_roleHasBeenSet)
   {
    payload.WithString("role", m_role);
@@ -113,6 +128,12 @@ Aws::String CreateServiceRequest::SerializePayload() const
      placementStrategyJsonList[placementStrategyIndex].AsObject(m_placementStrategy[placementStrategyIndex].Jsonize());
    }
    payload.WithArray("placementStrategy", std::move(placementStrategyJsonList));
+
+  }
+
+  if(m_networkConfigurationHasBeenSet)
+  {
+   payload.WithObject("networkConfiguration", m_networkConfiguration.Jsonize());
 
   }
 

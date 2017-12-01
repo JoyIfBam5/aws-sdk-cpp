@@ -28,24 +28,42 @@
 #include <aws/lightsail/LightsailEndpoint.h>
 #include <aws/lightsail/LightsailErrorMarshaller.h>
 #include <aws/lightsail/model/AllocateStaticIpRequest.h>
+#include <aws/lightsail/model/AttachDiskRequest.h>
+#include <aws/lightsail/model/AttachInstancesToLoadBalancerRequest.h>
+#include <aws/lightsail/model/AttachLoadBalancerTlsCertificateRequest.h>
 #include <aws/lightsail/model/AttachStaticIpRequest.h>
 #include <aws/lightsail/model/CloseInstancePublicPortsRequest.h>
+#include <aws/lightsail/model/CreateDiskRequest.h>
+#include <aws/lightsail/model/CreateDiskFromSnapshotRequest.h>
+#include <aws/lightsail/model/CreateDiskSnapshotRequest.h>
 #include <aws/lightsail/model/CreateDomainRequest.h>
 #include <aws/lightsail/model/CreateDomainEntryRequest.h>
 #include <aws/lightsail/model/CreateInstanceSnapshotRequest.h>
 #include <aws/lightsail/model/CreateInstancesRequest.h>
 #include <aws/lightsail/model/CreateInstancesFromSnapshotRequest.h>
 #include <aws/lightsail/model/CreateKeyPairRequest.h>
+#include <aws/lightsail/model/CreateLoadBalancerRequest.h>
+#include <aws/lightsail/model/CreateLoadBalancerTlsCertificateRequest.h>
+#include <aws/lightsail/model/DeleteDiskRequest.h>
+#include <aws/lightsail/model/DeleteDiskSnapshotRequest.h>
 #include <aws/lightsail/model/DeleteDomainRequest.h>
 #include <aws/lightsail/model/DeleteDomainEntryRequest.h>
 #include <aws/lightsail/model/DeleteInstanceRequest.h>
 #include <aws/lightsail/model/DeleteInstanceSnapshotRequest.h>
 #include <aws/lightsail/model/DeleteKeyPairRequest.h>
+#include <aws/lightsail/model/DeleteLoadBalancerRequest.h>
+#include <aws/lightsail/model/DeleteLoadBalancerTlsCertificateRequest.h>
+#include <aws/lightsail/model/DetachDiskRequest.h>
+#include <aws/lightsail/model/DetachInstancesFromLoadBalancerRequest.h>
 #include <aws/lightsail/model/DetachStaticIpRequest.h>
 #include <aws/lightsail/model/DownloadDefaultKeyPairRequest.h>
 #include <aws/lightsail/model/GetActiveNamesRequest.h>
 #include <aws/lightsail/model/GetBlueprintsRequest.h>
 #include <aws/lightsail/model/GetBundlesRequest.h>
+#include <aws/lightsail/model/GetDiskRequest.h>
+#include <aws/lightsail/model/GetDiskSnapshotRequest.h>
+#include <aws/lightsail/model/GetDiskSnapshotsRequest.h>
+#include <aws/lightsail/model/GetDisksRequest.h>
 #include <aws/lightsail/model/GetDomainRequest.h>
 #include <aws/lightsail/model/GetDomainsRequest.h>
 #include <aws/lightsail/model/GetInstanceRequest.h>
@@ -58,6 +76,10 @@
 #include <aws/lightsail/model/GetInstancesRequest.h>
 #include <aws/lightsail/model/GetKeyPairRequest.h>
 #include <aws/lightsail/model/GetKeyPairsRequest.h>
+#include <aws/lightsail/model/GetLoadBalancerRequest.h>
+#include <aws/lightsail/model/GetLoadBalancerMetricDataRequest.h>
+#include <aws/lightsail/model/GetLoadBalancerTlsCertificatesRequest.h>
+#include <aws/lightsail/model/GetLoadBalancersRequest.h>
 #include <aws/lightsail/model/GetOperationRequest.h>
 #include <aws/lightsail/model/GetOperationsRequest.h>
 #include <aws/lightsail/model/GetOperationsForResourceRequest.h>
@@ -75,6 +97,7 @@
 #include <aws/lightsail/model/StopInstanceRequest.h>
 #include <aws/lightsail/model/UnpeerVpcRequest.h>
 #include <aws/lightsail/model/UpdateDomainEntryRequest.h>
+#include <aws/lightsail/model/UpdateLoadBalancerAttributeRequest.h>
 
 using namespace Aws;
 using namespace Aws::Auth;
@@ -175,6 +198,111 @@ void LightsailClient::AllocateStaticIpAsyncHelper(const AllocateStaticIpRequest&
   handler(this, request, AllocateStaticIp(request), context);
 }
 
+AttachDiskOutcome LightsailClient::AttachDisk(const AttachDiskRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return AttachDiskOutcome(AttachDiskResult(outcome.GetResult()));
+  }
+  else
+  {
+    return AttachDiskOutcome(outcome.GetError());
+  }
+}
+
+AttachDiskOutcomeCallable LightsailClient::AttachDiskCallable(const AttachDiskRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< AttachDiskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AttachDisk(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::AttachDiskAsync(const AttachDiskRequest& request, const AttachDiskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->AttachDiskAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::AttachDiskAsyncHelper(const AttachDiskRequest& request, const AttachDiskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, AttachDisk(request), context);
+}
+
+AttachInstancesToLoadBalancerOutcome LightsailClient::AttachInstancesToLoadBalancer(const AttachInstancesToLoadBalancerRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return AttachInstancesToLoadBalancerOutcome(AttachInstancesToLoadBalancerResult(outcome.GetResult()));
+  }
+  else
+  {
+    return AttachInstancesToLoadBalancerOutcome(outcome.GetError());
+  }
+}
+
+AttachInstancesToLoadBalancerOutcomeCallable LightsailClient::AttachInstancesToLoadBalancerCallable(const AttachInstancesToLoadBalancerRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< AttachInstancesToLoadBalancerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AttachInstancesToLoadBalancer(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::AttachInstancesToLoadBalancerAsync(const AttachInstancesToLoadBalancerRequest& request, const AttachInstancesToLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->AttachInstancesToLoadBalancerAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::AttachInstancesToLoadBalancerAsyncHelper(const AttachInstancesToLoadBalancerRequest& request, const AttachInstancesToLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, AttachInstancesToLoadBalancer(request), context);
+}
+
+AttachLoadBalancerTlsCertificateOutcome LightsailClient::AttachLoadBalancerTlsCertificate(const AttachLoadBalancerTlsCertificateRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return AttachLoadBalancerTlsCertificateOutcome(AttachLoadBalancerTlsCertificateResult(outcome.GetResult()));
+  }
+  else
+  {
+    return AttachLoadBalancerTlsCertificateOutcome(outcome.GetError());
+  }
+}
+
+AttachLoadBalancerTlsCertificateOutcomeCallable LightsailClient::AttachLoadBalancerTlsCertificateCallable(const AttachLoadBalancerTlsCertificateRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< AttachLoadBalancerTlsCertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AttachLoadBalancerTlsCertificate(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::AttachLoadBalancerTlsCertificateAsync(const AttachLoadBalancerTlsCertificateRequest& request, const AttachLoadBalancerTlsCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->AttachLoadBalancerTlsCertificateAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::AttachLoadBalancerTlsCertificateAsyncHelper(const AttachLoadBalancerTlsCertificateRequest& request, const AttachLoadBalancerTlsCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, AttachLoadBalancerTlsCertificate(request), context);
+}
+
 AttachStaticIpOutcome LightsailClient::AttachStaticIp(const AttachStaticIpRequest& request) const
 {
   Aws::StringStream ss;
@@ -243,6 +371,111 @@ void LightsailClient::CloseInstancePublicPortsAsync(const CloseInstancePublicPor
 void LightsailClient::CloseInstancePublicPortsAsyncHelper(const CloseInstancePublicPortsRequest& request, const CloseInstancePublicPortsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
   handler(this, request, CloseInstancePublicPorts(request), context);
+}
+
+CreateDiskOutcome LightsailClient::CreateDisk(const CreateDiskRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return CreateDiskOutcome(CreateDiskResult(outcome.GetResult()));
+  }
+  else
+  {
+    return CreateDiskOutcome(outcome.GetError());
+  }
+}
+
+CreateDiskOutcomeCallable LightsailClient::CreateDiskCallable(const CreateDiskRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< CreateDiskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDisk(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::CreateDiskAsync(const CreateDiskRequest& request, const CreateDiskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->CreateDiskAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::CreateDiskAsyncHelper(const CreateDiskRequest& request, const CreateDiskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, CreateDisk(request), context);
+}
+
+CreateDiskFromSnapshotOutcome LightsailClient::CreateDiskFromSnapshot(const CreateDiskFromSnapshotRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return CreateDiskFromSnapshotOutcome(CreateDiskFromSnapshotResult(outcome.GetResult()));
+  }
+  else
+  {
+    return CreateDiskFromSnapshotOutcome(outcome.GetError());
+  }
+}
+
+CreateDiskFromSnapshotOutcomeCallable LightsailClient::CreateDiskFromSnapshotCallable(const CreateDiskFromSnapshotRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< CreateDiskFromSnapshotOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDiskFromSnapshot(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::CreateDiskFromSnapshotAsync(const CreateDiskFromSnapshotRequest& request, const CreateDiskFromSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->CreateDiskFromSnapshotAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::CreateDiskFromSnapshotAsyncHelper(const CreateDiskFromSnapshotRequest& request, const CreateDiskFromSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, CreateDiskFromSnapshot(request), context);
+}
+
+CreateDiskSnapshotOutcome LightsailClient::CreateDiskSnapshot(const CreateDiskSnapshotRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return CreateDiskSnapshotOutcome(CreateDiskSnapshotResult(outcome.GetResult()));
+  }
+  else
+  {
+    return CreateDiskSnapshotOutcome(outcome.GetError());
+  }
+}
+
+CreateDiskSnapshotOutcomeCallable LightsailClient::CreateDiskSnapshotCallable(const CreateDiskSnapshotRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< CreateDiskSnapshotOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDiskSnapshot(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::CreateDiskSnapshotAsync(const CreateDiskSnapshotRequest& request, const CreateDiskSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->CreateDiskSnapshotAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::CreateDiskSnapshotAsyncHelper(const CreateDiskSnapshotRequest& request, const CreateDiskSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, CreateDiskSnapshot(request), context);
 }
 
 CreateDomainOutcome LightsailClient::CreateDomain(const CreateDomainRequest& request) const
@@ -455,6 +688,146 @@ void LightsailClient::CreateKeyPairAsyncHelper(const CreateKeyPairRequest& reque
   handler(this, request, CreateKeyPair(request), context);
 }
 
+CreateLoadBalancerOutcome LightsailClient::CreateLoadBalancer(const CreateLoadBalancerRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return CreateLoadBalancerOutcome(CreateLoadBalancerResult(outcome.GetResult()));
+  }
+  else
+  {
+    return CreateLoadBalancerOutcome(outcome.GetError());
+  }
+}
+
+CreateLoadBalancerOutcomeCallable LightsailClient::CreateLoadBalancerCallable(const CreateLoadBalancerRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< CreateLoadBalancerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateLoadBalancer(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::CreateLoadBalancerAsync(const CreateLoadBalancerRequest& request, const CreateLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->CreateLoadBalancerAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::CreateLoadBalancerAsyncHelper(const CreateLoadBalancerRequest& request, const CreateLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, CreateLoadBalancer(request), context);
+}
+
+CreateLoadBalancerTlsCertificateOutcome LightsailClient::CreateLoadBalancerTlsCertificate(const CreateLoadBalancerTlsCertificateRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return CreateLoadBalancerTlsCertificateOutcome(CreateLoadBalancerTlsCertificateResult(outcome.GetResult()));
+  }
+  else
+  {
+    return CreateLoadBalancerTlsCertificateOutcome(outcome.GetError());
+  }
+}
+
+CreateLoadBalancerTlsCertificateOutcomeCallable LightsailClient::CreateLoadBalancerTlsCertificateCallable(const CreateLoadBalancerTlsCertificateRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< CreateLoadBalancerTlsCertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateLoadBalancerTlsCertificate(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::CreateLoadBalancerTlsCertificateAsync(const CreateLoadBalancerTlsCertificateRequest& request, const CreateLoadBalancerTlsCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->CreateLoadBalancerTlsCertificateAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::CreateLoadBalancerTlsCertificateAsyncHelper(const CreateLoadBalancerTlsCertificateRequest& request, const CreateLoadBalancerTlsCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, CreateLoadBalancerTlsCertificate(request), context);
+}
+
+DeleteDiskOutcome LightsailClient::DeleteDisk(const DeleteDiskRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return DeleteDiskOutcome(DeleteDiskResult(outcome.GetResult()));
+  }
+  else
+  {
+    return DeleteDiskOutcome(outcome.GetError());
+  }
+}
+
+DeleteDiskOutcomeCallable LightsailClient::DeleteDiskCallable(const DeleteDiskRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< DeleteDiskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDisk(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::DeleteDiskAsync(const DeleteDiskRequest& request, const DeleteDiskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->DeleteDiskAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::DeleteDiskAsyncHelper(const DeleteDiskRequest& request, const DeleteDiskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, DeleteDisk(request), context);
+}
+
+DeleteDiskSnapshotOutcome LightsailClient::DeleteDiskSnapshot(const DeleteDiskSnapshotRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return DeleteDiskSnapshotOutcome(DeleteDiskSnapshotResult(outcome.GetResult()));
+  }
+  else
+  {
+    return DeleteDiskSnapshotOutcome(outcome.GetError());
+  }
+}
+
+DeleteDiskSnapshotOutcomeCallable LightsailClient::DeleteDiskSnapshotCallable(const DeleteDiskSnapshotRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< DeleteDiskSnapshotOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDiskSnapshot(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::DeleteDiskSnapshotAsync(const DeleteDiskSnapshotRequest& request, const DeleteDiskSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->DeleteDiskSnapshotAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::DeleteDiskSnapshotAsyncHelper(const DeleteDiskSnapshotRequest& request, const DeleteDiskSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, DeleteDiskSnapshot(request), context);
+}
+
 DeleteDomainOutcome LightsailClient::DeleteDomain(const DeleteDomainRequest& request) const
 {
   Aws::StringStream ss;
@@ -630,6 +1003,146 @@ void LightsailClient::DeleteKeyPairAsyncHelper(const DeleteKeyPairRequest& reque
   handler(this, request, DeleteKeyPair(request), context);
 }
 
+DeleteLoadBalancerOutcome LightsailClient::DeleteLoadBalancer(const DeleteLoadBalancerRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return DeleteLoadBalancerOutcome(DeleteLoadBalancerResult(outcome.GetResult()));
+  }
+  else
+  {
+    return DeleteLoadBalancerOutcome(outcome.GetError());
+  }
+}
+
+DeleteLoadBalancerOutcomeCallable LightsailClient::DeleteLoadBalancerCallable(const DeleteLoadBalancerRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< DeleteLoadBalancerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteLoadBalancer(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::DeleteLoadBalancerAsync(const DeleteLoadBalancerRequest& request, const DeleteLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->DeleteLoadBalancerAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::DeleteLoadBalancerAsyncHelper(const DeleteLoadBalancerRequest& request, const DeleteLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, DeleteLoadBalancer(request), context);
+}
+
+DeleteLoadBalancerTlsCertificateOutcome LightsailClient::DeleteLoadBalancerTlsCertificate(const DeleteLoadBalancerTlsCertificateRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return DeleteLoadBalancerTlsCertificateOutcome(DeleteLoadBalancerTlsCertificateResult(outcome.GetResult()));
+  }
+  else
+  {
+    return DeleteLoadBalancerTlsCertificateOutcome(outcome.GetError());
+  }
+}
+
+DeleteLoadBalancerTlsCertificateOutcomeCallable LightsailClient::DeleteLoadBalancerTlsCertificateCallable(const DeleteLoadBalancerTlsCertificateRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< DeleteLoadBalancerTlsCertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteLoadBalancerTlsCertificate(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::DeleteLoadBalancerTlsCertificateAsync(const DeleteLoadBalancerTlsCertificateRequest& request, const DeleteLoadBalancerTlsCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->DeleteLoadBalancerTlsCertificateAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::DeleteLoadBalancerTlsCertificateAsyncHelper(const DeleteLoadBalancerTlsCertificateRequest& request, const DeleteLoadBalancerTlsCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, DeleteLoadBalancerTlsCertificate(request), context);
+}
+
+DetachDiskOutcome LightsailClient::DetachDisk(const DetachDiskRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return DetachDiskOutcome(DetachDiskResult(outcome.GetResult()));
+  }
+  else
+  {
+    return DetachDiskOutcome(outcome.GetError());
+  }
+}
+
+DetachDiskOutcomeCallable LightsailClient::DetachDiskCallable(const DetachDiskRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< DetachDiskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DetachDisk(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::DetachDiskAsync(const DetachDiskRequest& request, const DetachDiskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->DetachDiskAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::DetachDiskAsyncHelper(const DetachDiskRequest& request, const DetachDiskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, DetachDisk(request), context);
+}
+
+DetachInstancesFromLoadBalancerOutcome LightsailClient::DetachInstancesFromLoadBalancer(const DetachInstancesFromLoadBalancerRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return DetachInstancesFromLoadBalancerOutcome(DetachInstancesFromLoadBalancerResult(outcome.GetResult()));
+  }
+  else
+  {
+    return DetachInstancesFromLoadBalancerOutcome(outcome.GetError());
+  }
+}
+
+DetachInstancesFromLoadBalancerOutcomeCallable LightsailClient::DetachInstancesFromLoadBalancerCallable(const DetachInstancesFromLoadBalancerRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< DetachInstancesFromLoadBalancerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DetachInstancesFromLoadBalancer(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::DetachInstancesFromLoadBalancerAsync(const DetachInstancesFromLoadBalancerRequest& request, const DetachInstancesFromLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->DetachInstancesFromLoadBalancerAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::DetachInstancesFromLoadBalancerAsyncHelper(const DetachInstancesFromLoadBalancerRequest& request, const DetachInstancesFromLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, DetachInstancesFromLoadBalancer(request), context);
+}
+
 DetachStaticIpOutcome LightsailClient::DetachStaticIp(const DetachStaticIpRequest& request) const
 {
   Aws::StringStream ss;
@@ -803,6 +1316,146 @@ void LightsailClient::GetBundlesAsync(const GetBundlesRequest& request, const Ge
 void LightsailClient::GetBundlesAsyncHelper(const GetBundlesRequest& request, const GetBundlesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
   handler(this, request, GetBundles(request), context);
+}
+
+GetDiskOutcome LightsailClient::GetDisk(const GetDiskRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return GetDiskOutcome(GetDiskResult(outcome.GetResult()));
+  }
+  else
+  {
+    return GetDiskOutcome(outcome.GetError());
+  }
+}
+
+GetDiskOutcomeCallable LightsailClient::GetDiskCallable(const GetDiskRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< GetDiskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetDisk(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::GetDiskAsync(const GetDiskRequest& request, const GetDiskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->GetDiskAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::GetDiskAsyncHelper(const GetDiskRequest& request, const GetDiskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, GetDisk(request), context);
+}
+
+GetDiskSnapshotOutcome LightsailClient::GetDiskSnapshot(const GetDiskSnapshotRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return GetDiskSnapshotOutcome(GetDiskSnapshotResult(outcome.GetResult()));
+  }
+  else
+  {
+    return GetDiskSnapshotOutcome(outcome.GetError());
+  }
+}
+
+GetDiskSnapshotOutcomeCallable LightsailClient::GetDiskSnapshotCallable(const GetDiskSnapshotRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< GetDiskSnapshotOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetDiskSnapshot(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::GetDiskSnapshotAsync(const GetDiskSnapshotRequest& request, const GetDiskSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->GetDiskSnapshotAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::GetDiskSnapshotAsyncHelper(const GetDiskSnapshotRequest& request, const GetDiskSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, GetDiskSnapshot(request), context);
+}
+
+GetDiskSnapshotsOutcome LightsailClient::GetDiskSnapshots(const GetDiskSnapshotsRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return GetDiskSnapshotsOutcome(GetDiskSnapshotsResult(outcome.GetResult()));
+  }
+  else
+  {
+    return GetDiskSnapshotsOutcome(outcome.GetError());
+  }
+}
+
+GetDiskSnapshotsOutcomeCallable LightsailClient::GetDiskSnapshotsCallable(const GetDiskSnapshotsRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< GetDiskSnapshotsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetDiskSnapshots(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::GetDiskSnapshotsAsync(const GetDiskSnapshotsRequest& request, const GetDiskSnapshotsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->GetDiskSnapshotsAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::GetDiskSnapshotsAsyncHelper(const GetDiskSnapshotsRequest& request, const GetDiskSnapshotsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, GetDiskSnapshots(request), context);
+}
+
+GetDisksOutcome LightsailClient::GetDisks(const GetDisksRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return GetDisksOutcome(GetDisksResult(outcome.GetResult()));
+  }
+  else
+  {
+    return GetDisksOutcome(outcome.GetError());
+  }
+}
+
+GetDisksOutcomeCallable LightsailClient::GetDisksCallable(const GetDisksRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< GetDisksOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetDisks(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::GetDisksAsync(const GetDisksRequest& request, const GetDisksResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->GetDisksAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::GetDisksAsyncHelper(const GetDisksRequest& request, const GetDisksResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, GetDisks(request), context);
 }
 
 GetDomainOutcome LightsailClient::GetDomain(const GetDomainRequest& request) const
@@ -1223,6 +1876,146 @@ void LightsailClient::GetKeyPairsAsync(const GetKeyPairsRequest& request, const 
 void LightsailClient::GetKeyPairsAsyncHelper(const GetKeyPairsRequest& request, const GetKeyPairsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
   handler(this, request, GetKeyPairs(request), context);
+}
+
+GetLoadBalancerOutcome LightsailClient::GetLoadBalancer(const GetLoadBalancerRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return GetLoadBalancerOutcome(GetLoadBalancerResult(outcome.GetResult()));
+  }
+  else
+  {
+    return GetLoadBalancerOutcome(outcome.GetError());
+  }
+}
+
+GetLoadBalancerOutcomeCallable LightsailClient::GetLoadBalancerCallable(const GetLoadBalancerRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< GetLoadBalancerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetLoadBalancer(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::GetLoadBalancerAsync(const GetLoadBalancerRequest& request, const GetLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->GetLoadBalancerAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::GetLoadBalancerAsyncHelper(const GetLoadBalancerRequest& request, const GetLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, GetLoadBalancer(request), context);
+}
+
+GetLoadBalancerMetricDataOutcome LightsailClient::GetLoadBalancerMetricData(const GetLoadBalancerMetricDataRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return GetLoadBalancerMetricDataOutcome(GetLoadBalancerMetricDataResult(outcome.GetResult()));
+  }
+  else
+  {
+    return GetLoadBalancerMetricDataOutcome(outcome.GetError());
+  }
+}
+
+GetLoadBalancerMetricDataOutcomeCallable LightsailClient::GetLoadBalancerMetricDataCallable(const GetLoadBalancerMetricDataRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< GetLoadBalancerMetricDataOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetLoadBalancerMetricData(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::GetLoadBalancerMetricDataAsync(const GetLoadBalancerMetricDataRequest& request, const GetLoadBalancerMetricDataResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->GetLoadBalancerMetricDataAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::GetLoadBalancerMetricDataAsyncHelper(const GetLoadBalancerMetricDataRequest& request, const GetLoadBalancerMetricDataResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, GetLoadBalancerMetricData(request), context);
+}
+
+GetLoadBalancerTlsCertificatesOutcome LightsailClient::GetLoadBalancerTlsCertificates(const GetLoadBalancerTlsCertificatesRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return GetLoadBalancerTlsCertificatesOutcome(GetLoadBalancerTlsCertificatesResult(outcome.GetResult()));
+  }
+  else
+  {
+    return GetLoadBalancerTlsCertificatesOutcome(outcome.GetError());
+  }
+}
+
+GetLoadBalancerTlsCertificatesOutcomeCallable LightsailClient::GetLoadBalancerTlsCertificatesCallable(const GetLoadBalancerTlsCertificatesRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< GetLoadBalancerTlsCertificatesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetLoadBalancerTlsCertificates(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::GetLoadBalancerTlsCertificatesAsync(const GetLoadBalancerTlsCertificatesRequest& request, const GetLoadBalancerTlsCertificatesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->GetLoadBalancerTlsCertificatesAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::GetLoadBalancerTlsCertificatesAsyncHelper(const GetLoadBalancerTlsCertificatesRequest& request, const GetLoadBalancerTlsCertificatesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, GetLoadBalancerTlsCertificates(request), context);
+}
+
+GetLoadBalancersOutcome LightsailClient::GetLoadBalancers(const GetLoadBalancersRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return GetLoadBalancersOutcome(GetLoadBalancersResult(outcome.GetResult()));
+  }
+  else
+  {
+    return GetLoadBalancersOutcome(outcome.GetError());
+  }
+}
+
+GetLoadBalancersOutcomeCallable LightsailClient::GetLoadBalancersCallable(const GetLoadBalancersRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< GetLoadBalancersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetLoadBalancers(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::GetLoadBalancersAsync(const GetLoadBalancersRequest& request, const GetLoadBalancersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->GetLoadBalancersAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::GetLoadBalancersAsyncHelper(const GetLoadBalancersRequest& request, const GetLoadBalancersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, GetLoadBalancers(request), context);
 }
 
 GetOperationOutcome LightsailClient::GetOperation(const GetOperationRequest& request) const
@@ -1818,5 +2611,40 @@ void LightsailClient::UpdateDomainEntryAsync(const UpdateDomainEntryRequest& req
 void LightsailClient::UpdateDomainEntryAsyncHelper(const UpdateDomainEntryRequest& request, const UpdateDomainEntryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
   handler(this, request, UpdateDomainEntry(request), context);
+}
+
+UpdateLoadBalancerAttributeOutcome LightsailClient::UpdateLoadBalancerAttribute(const UpdateLoadBalancerAttributeRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return UpdateLoadBalancerAttributeOutcome(UpdateLoadBalancerAttributeResult(outcome.GetResult()));
+  }
+  else
+  {
+    return UpdateLoadBalancerAttributeOutcome(outcome.GetError());
+  }
+}
+
+UpdateLoadBalancerAttributeOutcomeCallable LightsailClient::UpdateLoadBalancerAttributeCallable(const UpdateLoadBalancerAttributeRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< UpdateLoadBalancerAttributeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateLoadBalancerAttribute(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void LightsailClient::UpdateLoadBalancerAttributeAsync(const UpdateLoadBalancerAttributeRequest& request, const UpdateLoadBalancerAttributeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->UpdateLoadBalancerAttributeAsyncHelper( request, handler, context ); } );
+}
+
+void LightsailClient::UpdateLoadBalancerAttributeAsyncHelper(const UpdateLoadBalancerAttributeRequest& request, const UpdateLoadBalancerAttributeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, UpdateLoadBalancerAttribute(request), context);
 }
 

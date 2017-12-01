@@ -82,7 +82,7 @@ namespace Aws
              */
             std::shared_ptr<RetryStrategy> retryStrategy;
             /**
-             * override the http endpoint used to talk to a service. Use this in conjunction with authenticationRegion.
+             * Override the http endpoint used to talk to a service.
              */
             Aws::String endpointOverride;
             /**
@@ -142,6 +142,10 @@ namespace Aws
              * If set to true the http stack will follow 300 redirect codes.
              */
             bool followRedirects;
+            /**
+             * If set to true clock skew will be adjusted after each http attempt, default to true.
+             */
+            bool enableClockSkewAdjustment;
         };
 
     } // namespace Client

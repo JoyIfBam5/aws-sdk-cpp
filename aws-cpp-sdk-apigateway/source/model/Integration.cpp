@@ -33,12 +33,17 @@ Integration::Integration() :
     m_typeHasBeenSet(false),
     m_httpMethodHasBeenSet(false),
     m_uriHasBeenSet(false),
+    m_connectionType(ConnectionType::NOT_SET),
+    m_connectionTypeHasBeenSet(false),
+    m_connectionIdHasBeenSet(false),
     m_credentialsHasBeenSet(false),
     m_requestParametersHasBeenSet(false),
     m_requestTemplatesHasBeenSet(false),
     m_passthroughBehaviorHasBeenSet(false),
     m_contentHandling(ContentHandlingStrategy::NOT_SET),
     m_contentHandlingHasBeenSet(false),
+    m_timeoutInMillis(0),
+    m_timeoutInMillisHasBeenSet(false),
     m_cacheNamespaceHasBeenSet(false),
     m_cacheKeyParametersHasBeenSet(false),
     m_integrationResponsesHasBeenSet(false)
@@ -50,12 +55,17 @@ Integration::Integration(const JsonValue& jsonValue) :
     m_typeHasBeenSet(false),
     m_httpMethodHasBeenSet(false),
     m_uriHasBeenSet(false),
+    m_connectionType(ConnectionType::NOT_SET),
+    m_connectionTypeHasBeenSet(false),
+    m_connectionIdHasBeenSet(false),
     m_credentialsHasBeenSet(false),
     m_requestParametersHasBeenSet(false),
     m_requestTemplatesHasBeenSet(false),
     m_passthroughBehaviorHasBeenSet(false),
     m_contentHandling(ContentHandlingStrategy::NOT_SET),
     m_contentHandlingHasBeenSet(false),
+    m_timeoutInMillis(0),
+    m_timeoutInMillisHasBeenSet(false),
     m_cacheNamespaceHasBeenSet(false),
     m_cacheKeyParametersHasBeenSet(false),
     m_integrationResponsesHasBeenSet(false)
@@ -84,6 +94,20 @@ Integration& Integration::operator =(const JsonValue& jsonValue)
     m_uri = jsonValue.GetString("uri");
 
     m_uriHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("connectionType"))
+  {
+    m_connectionType = ConnectionTypeMapper::GetConnectionTypeForName(jsonValue.GetString("connectionType"));
+
+    m_connectionTypeHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("connectionId"))
+  {
+    m_connectionId = jsonValue.GetString("connectionId");
+
+    m_connectionIdHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("credentials"))
@@ -125,6 +149,13 @@ Integration& Integration::operator =(const JsonValue& jsonValue)
     m_contentHandling = ContentHandlingStrategyMapper::GetContentHandlingStrategyForName(jsonValue.GetString("contentHandling"));
 
     m_contentHandlingHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("timeoutInMillis"))
+  {
+    m_timeoutInMillis = jsonValue.GetInteger("timeoutInMillis");
+
+    m_timeoutInMillisHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("cacheNamespace"))
@@ -178,6 +209,17 @@ JsonValue Integration::Jsonize() const
 
   }
 
+  if(m_connectionTypeHasBeenSet)
+  {
+   payload.WithString("connectionType", ConnectionTypeMapper::GetNameForConnectionType(m_connectionType));
+  }
+
+  if(m_connectionIdHasBeenSet)
+  {
+   payload.WithString("connectionId", m_connectionId);
+
+  }
+
   if(m_credentialsHasBeenSet)
   {
    payload.WithString("credentials", m_credentials);
@@ -215,6 +257,12 @@ JsonValue Integration::Jsonize() const
   if(m_contentHandlingHasBeenSet)
   {
    payload.WithString("contentHandling", ContentHandlingStrategyMapper::GetNameForContentHandlingStrategy(m_contentHandling));
+  }
+
+  if(m_timeoutInMillisHasBeenSet)
+  {
+   payload.WithInteger("timeoutInMillis", m_timeoutInMillis);
+
   }
 
   if(m_cacheNamespaceHasBeenSet)

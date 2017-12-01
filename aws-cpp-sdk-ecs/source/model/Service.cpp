@@ -40,6 +40,9 @@ Service::Service() :
     m_runningCountHasBeenSet(false),
     m_pendingCount(0),
     m_pendingCountHasBeenSet(false),
+    m_launchType(LaunchType::NOT_SET),
+    m_launchTypeHasBeenSet(false),
+    m_platformVersionHasBeenSet(false),
     m_taskDefinitionHasBeenSet(false),
     m_deploymentConfigurationHasBeenSet(false),
     m_deploymentsHasBeenSet(false),
@@ -47,7 +50,8 @@ Service::Service() :
     m_eventsHasBeenSet(false),
     m_createdAtHasBeenSet(false),
     m_placementConstraintsHasBeenSet(false),
-    m_placementStrategyHasBeenSet(false)
+    m_placementStrategyHasBeenSet(false),
+    m_networkConfigurationHasBeenSet(false)
 {
 }
 
@@ -63,6 +67,9 @@ Service::Service(const JsonValue& jsonValue) :
     m_runningCountHasBeenSet(false),
     m_pendingCount(0),
     m_pendingCountHasBeenSet(false),
+    m_launchType(LaunchType::NOT_SET),
+    m_launchTypeHasBeenSet(false),
+    m_platformVersionHasBeenSet(false),
     m_taskDefinitionHasBeenSet(false),
     m_deploymentConfigurationHasBeenSet(false),
     m_deploymentsHasBeenSet(false),
@@ -70,7 +77,8 @@ Service::Service(const JsonValue& jsonValue) :
     m_eventsHasBeenSet(false),
     m_createdAtHasBeenSet(false),
     m_placementConstraintsHasBeenSet(false),
-    m_placementStrategyHasBeenSet(false)
+    m_placementStrategyHasBeenSet(false),
+    m_networkConfigurationHasBeenSet(false)
 {
   *this = jsonValue;
 }
@@ -134,6 +142,20 @@ Service& Service::operator =(const JsonValue& jsonValue)
     m_pendingCount = jsonValue.GetInteger("pendingCount");
 
     m_pendingCountHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("launchType"))
+  {
+    m_launchType = LaunchTypeMapper::GetLaunchTypeForName(jsonValue.GetString("launchType"));
+
+    m_launchTypeHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("platformVersion"))
+  {
+    m_platformVersion = jsonValue.GetString("platformVersion");
+
+    m_platformVersionHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("taskDefinition"))
@@ -204,6 +226,13 @@ Service& Service::operator =(const JsonValue& jsonValue)
     m_placementStrategyHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("networkConfiguration"))
+  {
+    m_networkConfiguration = jsonValue.GetObject("networkConfiguration");
+
+    m_networkConfigurationHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -261,6 +290,17 @@ JsonValue Service::Jsonize() const
   if(m_pendingCountHasBeenSet)
   {
    payload.WithInteger("pendingCount", m_pendingCount);
+
+  }
+
+  if(m_launchTypeHasBeenSet)
+  {
+   payload.WithString("launchType", LaunchTypeMapper::GetNameForLaunchType(m_launchType));
+  }
+
+  if(m_platformVersionHasBeenSet)
+  {
+   payload.WithString("platformVersion", m_platformVersion);
 
   }
 
@@ -328,6 +368,12 @@ JsonValue Service::Jsonize() const
      placementStrategyJsonList[placementStrategyIndex].AsObject(m_placementStrategy[placementStrategyIndex].Jsonize());
    }
    payload.WithArray("placementStrategy", std::move(placementStrategyJsonList));
+
+  }
+
+  if(m_networkConfigurationHasBeenSet)
+  {
+   payload.WithObject("networkConfiguration", m_networkConfiguration.Jsonize());
 
   }
 

@@ -32,6 +32,12 @@ namespace Aws
 
         static const int DynamoDBReadCapacityUtilization_HASH = HashingUtils::HashString("DynamoDBReadCapacityUtilization");
         static const int DynamoDBWriteCapacityUtilization_HASH = HashingUtils::HashString("DynamoDBWriteCapacityUtilization");
+        static const int ALBRequestCountPerTarget_HASH = HashingUtils::HashString("ALBRequestCountPerTarget");
+        static const int RDSReaderAverageCPUUtilization_HASH = HashingUtils::HashString("RDSReaderAverageCPUUtilization");
+        static const int RDSReaderAverageDatabaseConnections_HASH = HashingUtils::HashString("RDSReaderAverageDatabaseConnections");
+        static const int EC2SpotFleetRequestAverageCPUUtilization_HASH = HashingUtils::HashString("EC2SpotFleetRequestAverageCPUUtilization");
+        static const int EC2SpotFleetRequestAverageNetworkIn_HASH = HashingUtils::HashString("EC2SpotFleetRequestAverageNetworkIn");
+        static const int EC2SpotFleetRequestAverageNetworkOut_HASH = HashingUtils::HashString("EC2SpotFleetRequestAverageNetworkOut");
 
 
         MetricType GetMetricTypeForName(const Aws::String& name)
@@ -44,6 +50,30 @@ namespace Aws
           else if (hashCode == DynamoDBWriteCapacityUtilization_HASH)
           {
             return MetricType::DynamoDBWriteCapacityUtilization;
+          }
+          else if (hashCode == ALBRequestCountPerTarget_HASH)
+          {
+            return MetricType::ALBRequestCountPerTarget;
+          }
+          else if (hashCode == RDSReaderAverageCPUUtilization_HASH)
+          {
+            return MetricType::RDSReaderAverageCPUUtilization;
+          }
+          else if (hashCode == RDSReaderAverageDatabaseConnections_HASH)
+          {
+            return MetricType::RDSReaderAverageDatabaseConnections;
+          }
+          else if (hashCode == EC2SpotFleetRequestAverageCPUUtilization_HASH)
+          {
+            return MetricType::EC2SpotFleetRequestAverageCPUUtilization;
+          }
+          else if (hashCode == EC2SpotFleetRequestAverageNetworkIn_HASH)
+          {
+            return MetricType::EC2SpotFleetRequestAverageNetworkIn;
+          }
+          else if (hashCode == EC2SpotFleetRequestAverageNetworkOut_HASH)
+          {
+            return MetricType::EC2SpotFleetRequestAverageNetworkOut;
           }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
@@ -63,6 +93,18 @@ namespace Aws
             return "DynamoDBReadCapacityUtilization";
           case MetricType::DynamoDBWriteCapacityUtilization:
             return "DynamoDBWriteCapacityUtilization";
+          case MetricType::ALBRequestCountPerTarget:
+            return "ALBRequestCountPerTarget";
+          case MetricType::RDSReaderAverageCPUUtilization:
+            return "RDSReaderAverageCPUUtilization";
+          case MetricType::RDSReaderAverageDatabaseConnections:
+            return "RDSReaderAverageDatabaseConnections";
+          case MetricType::EC2SpotFleetRequestAverageCPUUtilization:
+            return "EC2SpotFleetRequestAverageCPUUtilization";
+          case MetricType::EC2SpotFleetRequestAverageNetworkIn:
+            return "EC2SpotFleetRequestAverageNetworkIn";
+          case MetricType::EC2SpotFleetRequestAverageNetworkOut:
+            return "EC2SpotFleetRequestAverageNetworkOut";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

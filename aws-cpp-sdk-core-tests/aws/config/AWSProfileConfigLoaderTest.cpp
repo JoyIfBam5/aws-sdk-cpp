@@ -28,7 +28,7 @@ static void WriteDefaultConfigFile(Aws::OStream& stream, bool useProfilePrefix =
     stream << "[" << profilePrefix << "default ]" << std::endl;
     stream << "aws_access_key_id=AKIAKEY" << std::endl;
     stream << "aws_secret_access_key=foobarbarfoo  " << std::endl;
-    stream << "  aws_session_token=tokentokentoken" << std::endl;
+    stream << "  aws_session_token= \"tokentokentoken==\"" << std::endl;
     stream << "region=us-east-1" << std::endl << std::endl;
     stream << "s3=" << std::endl;
     stream << "    max_concurrent_requests=10;" << std::endl;
@@ -36,6 +36,7 @@ static void WriteDefaultConfigFile(Aws::OStream& stream, bool useProfilePrefix =
 
     stream << "[ " << profilePrefix << "assumes_role]" << std::endl;
     stream << "role_arn =arn:aws:iam::123456789:role/foo" << std::endl;
+    stream << "external_id = some-random-characters" << std::endl;
     stream << "source_profile= default" << std::endl;
     stream << "region = us-west-2" << std::endl;
 }
@@ -57,12 +58,13 @@ TEST(AWSConfigFileProfileConfigLoaderTest, TestCredentialsFileLoad)
 
     ASSERT_STREQ("AKIAKEY", profiles["default"].GetCredentials().GetAWSAccessKeyId().c_str());
     ASSERT_STREQ("foobarbarfoo", profiles["default"].GetCredentials().GetAWSSecretKey().c_str());
-    ASSERT_STREQ("tokentokentoken", profiles["default"].GetCredentials().GetSessionToken().c_str());
+    ASSERT_STREQ("\"tokentokentoken==\"", profiles["default"].GetCredentials().GetSessionToken().c_str());
     ASSERT_STREQ("us-east-1", profiles["default"].GetRegion().c_str());
     ASSERT_TRUE(profiles["default"].GetRoleArn().empty());
     ASSERT_TRUE(profiles["default"].GetSourceProfile().empty());
 
     ASSERT_STREQ("arn:aws:iam::123456789:role/foo", profiles["assumes_role"].GetRoleArn().c_str());
+    ASSERT_STREQ("some-random-characters", profiles["assumes_role"].GetExternalId().c_str());
     ASSERT_STREQ("default", profiles["assumes_role"].GetSourceProfile().c_str());
     ASSERT_STREQ("us-west-2", profiles["assumes_role"].GetRegion().c_str());
     ASSERT_TRUE(profiles["assumes_role"].GetCredentials().GetAWSAccessKeyId().empty());
@@ -86,7 +88,7 @@ TEST(AWSConfigFileProfileConfigLoaderTest, TestConfigFileLoad)
 
     ASSERT_STREQ("AKIAKEY", profiles["default"].GetCredentials().GetAWSAccessKeyId().c_str());
     ASSERT_STREQ("foobarbarfoo", profiles["default"].GetCredentials().GetAWSSecretKey().c_str());
-    ASSERT_STREQ("tokentokentoken", profiles["default"].GetCredentials().GetSessionToken().c_str());
+    ASSERT_STREQ("\"tokentokentoken==\"", profiles["default"].GetCredentials().GetSessionToken().c_str());
     ASSERT_STREQ("us-east-1", profiles["default"].GetRegion().c_str());
     ASSERT_TRUE(profiles["default"].GetRoleArn().empty());
     ASSERT_TRUE(profiles["default"].GetSourceProfile().empty());

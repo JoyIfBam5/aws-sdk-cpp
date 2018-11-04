@@ -16,9 +16,11 @@
 #pragma once
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <aws/s3/model/ReplicationRuleFilter.h>
 #include <aws/s3/model/ReplicationRuleStatus.h>
 #include <aws/s3/model/SourceSelectionCriteria.h>
 #include <aws/s3/model/Destination.h>
+#include <aws/s3/model/DeleteMarkerReplication.h>
 #include <utility>
 
 namespace Aws
@@ -36,7 +38,7 @@ namespace Model
 {
 
   /**
-   * Container for information about a particular replication rule.<p><h3>See
+   * <p>Container for information about a particular replication rule.</p><p><h3>See
    * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/ReplicationRule">AWS
    * API Reference</a></p>
@@ -52,175 +54,235 @@ namespace Model
 
 
     /**
-     * Unique identifier for the rule. The value cannot be longer than 255 characters.
+     * <p>Unique identifier for the rule. The value cannot be longer than 255
+     * characters.</p>
      */
     inline const Aws::String& GetID() const{ return m_iD; }
 
     /**
-     * Unique identifier for the rule. The value cannot be longer than 255 characters.
+     * <p>Unique identifier for the rule. The value cannot be longer than 255
+     * characters.</p>
      */
     inline void SetID(const Aws::String& value) { m_iDHasBeenSet = true; m_iD = value; }
 
     /**
-     * Unique identifier for the rule. The value cannot be longer than 255 characters.
+     * <p>Unique identifier for the rule. The value cannot be longer than 255
+     * characters.</p>
      */
     inline void SetID(Aws::String&& value) { m_iDHasBeenSet = true; m_iD = std::move(value); }
 
     /**
-     * Unique identifier for the rule. The value cannot be longer than 255 characters.
+     * <p>Unique identifier for the rule. The value cannot be longer than 255
+     * characters.</p>
      */
     inline void SetID(const char* value) { m_iDHasBeenSet = true; m_iD.assign(value); }
 
     /**
-     * Unique identifier for the rule. The value cannot be longer than 255 characters.
+     * <p>Unique identifier for the rule. The value cannot be longer than 255
+     * characters.</p>
      */
     inline ReplicationRule& WithID(const Aws::String& value) { SetID(value); return *this;}
 
     /**
-     * Unique identifier for the rule. The value cannot be longer than 255 characters.
+     * <p>Unique identifier for the rule. The value cannot be longer than 255
+     * characters.</p>
      */
     inline ReplicationRule& WithID(Aws::String&& value) { SetID(std::move(value)); return *this;}
 
     /**
-     * Unique identifier for the rule. The value cannot be longer than 255 characters.
+     * <p>Unique identifier for the rule. The value cannot be longer than 255
+     * characters.</p>
      */
     inline ReplicationRule& WithID(const char* value) { SetID(value); return *this;}
 
 
     /**
-     * Object keyname prefix identifying one or more objects to which the rule applies.
-     * Maximum prefix length can be up to 1,024 characters. Overlapping prefixes are
-     * not supported.
+     * <p>The priority associated with the rule. If you specify multiple rules in a
+     * replication configuration, then Amazon S3 applies rule priority in the event
+     * there are conflicts (two or more rules identify the same object based on filter
+     * specified). The rule with higher priority takes precedence. For example,</p>
+     * <ul> <li> <p>Same object quality prefix based filter criteria If prefixes you
+     * specified in multiple rules overlap. </p> </li> <li> <p>Same object qualify tag
+     * based filter criteria specified in multiple rules</p> </li> </ul> <p>For more
+     * information, see <a href="
+     * https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html">Cross-Region
+     * Replication (CRR)</a> in the Amazon S3 Developer Guide.</p>
      */
-    inline const Aws::String& GetPrefix() const{ return m_prefix; }
+    inline int GetPriority() const{ return m_priority; }
 
     /**
-     * Object keyname prefix identifying one or more objects to which the rule applies.
-     * Maximum prefix length can be up to 1,024 characters. Overlapping prefixes are
-     * not supported.
+     * <p>The priority associated with the rule. If you specify multiple rules in a
+     * replication configuration, then Amazon S3 applies rule priority in the event
+     * there are conflicts (two or more rules identify the same object based on filter
+     * specified). The rule with higher priority takes precedence. For example,</p>
+     * <ul> <li> <p>Same object quality prefix based filter criteria If prefixes you
+     * specified in multiple rules overlap. </p> </li> <li> <p>Same object qualify tag
+     * based filter criteria specified in multiple rules</p> </li> </ul> <p>For more
+     * information, see <a href="
+     * https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html">Cross-Region
+     * Replication (CRR)</a> in the Amazon S3 Developer Guide.</p>
      */
-    inline void SetPrefix(const Aws::String& value) { m_prefixHasBeenSet = true; m_prefix = value; }
+    inline void SetPriority(int value) { m_priorityHasBeenSet = true; m_priority = value; }
 
     /**
-     * Object keyname prefix identifying one or more objects to which the rule applies.
-     * Maximum prefix length can be up to 1,024 characters. Overlapping prefixes are
-     * not supported.
+     * <p>The priority associated with the rule. If you specify multiple rules in a
+     * replication configuration, then Amazon S3 applies rule priority in the event
+     * there are conflicts (two or more rules identify the same object based on filter
+     * specified). The rule with higher priority takes precedence. For example,</p>
+     * <ul> <li> <p>Same object quality prefix based filter criteria If prefixes you
+     * specified in multiple rules overlap. </p> </li> <li> <p>Same object qualify tag
+     * based filter criteria specified in multiple rules</p> </li> </ul> <p>For more
+     * information, see <a href="
+     * https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html">Cross-Region
+     * Replication (CRR)</a> in the Amazon S3 Developer Guide.</p>
      */
-    inline void SetPrefix(Aws::String&& value) { m_prefixHasBeenSet = true; m_prefix = std::move(value); }
+    inline ReplicationRule& WithPriority(int value) { SetPriority(value); return *this;}
 
-    /**
-     * Object keyname prefix identifying one or more objects to which the rule applies.
-     * Maximum prefix length can be up to 1,024 characters. Overlapping prefixes are
-     * not supported.
-     */
-    inline void SetPrefix(const char* value) { m_prefixHasBeenSet = true; m_prefix.assign(value); }
 
-    /**
-     * Object keyname prefix identifying one or more objects to which the rule applies.
-     * Maximum prefix length can be up to 1,024 characters. Overlapping prefixes are
-     * not supported.
-     */
-    inline ReplicationRule& WithPrefix(const Aws::String& value) { SetPrefix(value); return *this;}
+    
+    inline const ReplicationRuleFilter& GetFilter() const{ return m_filter; }
 
-    /**
-     * Object keyname prefix identifying one or more objects to which the rule applies.
-     * Maximum prefix length can be up to 1,024 characters. Overlapping prefixes are
-     * not supported.
-     */
-    inline ReplicationRule& WithPrefix(Aws::String&& value) { SetPrefix(std::move(value)); return *this;}
+    
+    inline void SetFilter(const ReplicationRuleFilter& value) { m_filterHasBeenSet = true; m_filter = value; }
 
-    /**
-     * Object keyname prefix identifying one or more objects to which the rule applies.
-     * Maximum prefix length can be up to 1,024 characters. Overlapping prefixes are
-     * not supported.
-     */
-    inline ReplicationRule& WithPrefix(const char* value) { SetPrefix(value); return *this;}
+    
+    inline void SetFilter(ReplicationRuleFilter&& value) { m_filterHasBeenSet = true; m_filter = std::move(value); }
+
+    
+    inline ReplicationRule& WithFilter(const ReplicationRuleFilter& value) { SetFilter(value); return *this;}
+
+    
+    inline ReplicationRule& WithFilter(ReplicationRuleFilter&& value) { SetFilter(std::move(value)); return *this;}
 
 
     /**
-     * The rule is ignored if status is not Enabled.
+     * <p>The rule is ignored if status is not Enabled.</p>
      */
     inline const ReplicationRuleStatus& GetStatus() const{ return m_status; }
 
     /**
-     * The rule is ignored if status is not Enabled.
+     * <p>The rule is ignored if status is not Enabled.</p>
      */
     inline void SetStatus(const ReplicationRuleStatus& value) { m_statusHasBeenSet = true; m_status = value; }
 
     /**
-     * The rule is ignored if status is not Enabled.
+     * <p>The rule is ignored if status is not Enabled.</p>
      */
     inline void SetStatus(ReplicationRuleStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
-     * The rule is ignored if status is not Enabled.
+     * <p>The rule is ignored if status is not Enabled.</p>
      */
     inline ReplicationRule& WithStatus(const ReplicationRuleStatus& value) { SetStatus(value); return *this;}
 
     /**
-     * The rule is ignored if status is not Enabled.
+     * <p>The rule is ignored if status is not Enabled.</p>
      */
     inline ReplicationRule& WithStatus(ReplicationRuleStatus&& value) { SetStatus(std::move(value)); return *this;}
 
 
     /**
-     * Container for filters that define which source objects should be replicated.
+     * <p> Container that describes additional filters in identifying source objects
+     * that you want to replicate. Currently, Amazon S3 supports only the filter that
+     * you can specify for objects created with server-side encryption using an AWS
+     * KMS-managed key. You can choose to enable or disable replication of these
+     * objects. </p> <p> if you want Amazon S3 to replicate objects created with
+     * server-side encryption using AWS KMS-managed keys. </p>
      */
     inline const SourceSelectionCriteria& GetSourceSelectionCriteria() const{ return m_sourceSelectionCriteria; }
 
     /**
-     * Container for filters that define which source objects should be replicated.
+     * <p> Container that describes additional filters in identifying source objects
+     * that you want to replicate. Currently, Amazon S3 supports only the filter that
+     * you can specify for objects created with server-side encryption using an AWS
+     * KMS-managed key. You can choose to enable or disable replication of these
+     * objects. </p> <p> if you want Amazon S3 to replicate objects created with
+     * server-side encryption using AWS KMS-managed keys. </p>
      */
     inline void SetSourceSelectionCriteria(const SourceSelectionCriteria& value) { m_sourceSelectionCriteriaHasBeenSet = true; m_sourceSelectionCriteria = value; }
 
     /**
-     * Container for filters that define which source objects should be replicated.
+     * <p> Container that describes additional filters in identifying source objects
+     * that you want to replicate. Currently, Amazon S3 supports only the filter that
+     * you can specify for objects created with server-side encryption using an AWS
+     * KMS-managed key. You can choose to enable or disable replication of these
+     * objects. </p> <p> if you want Amazon S3 to replicate objects created with
+     * server-side encryption using AWS KMS-managed keys. </p>
      */
     inline void SetSourceSelectionCriteria(SourceSelectionCriteria&& value) { m_sourceSelectionCriteriaHasBeenSet = true; m_sourceSelectionCriteria = std::move(value); }
 
     /**
-     * Container for filters that define which source objects should be replicated.
+     * <p> Container that describes additional filters in identifying source objects
+     * that you want to replicate. Currently, Amazon S3 supports only the filter that
+     * you can specify for objects created with server-side encryption using an AWS
+     * KMS-managed key. You can choose to enable or disable replication of these
+     * objects. </p> <p> if you want Amazon S3 to replicate objects created with
+     * server-side encryption using AWS KMS-managed keys. </p>
      */
     inline ReplicationRule& WithSourceSelectionCriteria(const SourceSelectionCriteria& value) { SetSourceSelectionCriteria(value); return *this;}
 
     /**
-     * Container for filters that define which source objects should be replicated.
+     * <p> Container that describes additional filters in identifying source objects
+     * that you want to replicate. Currently, Amazon S3 supports only the filter that
+     * you can specify for objects created with server-side encryption using an AWS
+     * KMS-managed key. You can choose to enable or disable replication of these
+     * objects. </p> <p> if you want Amazon S3 to replicate objects created with
+     * server-side encryption using AWS KMS-managed keys. </p>
      */
     inline ReplicationRule& WithSourceSelectionCriteria(SourceSelectionCriteria&& value) { SetSourceSelectionCriteria(std::move(value)); return *this;}
 
 
     /**
-     * Container for replication destination information.
+     * <p>Container for replication destination information.</p>
      */
     inline const Destination& GetDestination() const{ return m_destination; }
 
     /**
-     * Container for replication destination information.
+     * <p>Container for replication destination information.</p>
      */
     inline void SetDestination(const Destination& value) { m_destinationHasBeenSet = true; m_destination = value; }
 
     /**
-     * Container for replication destination information.
+     * <p>Container for replication destination information.</p>
      */
     inline void SetDestination(Destination&& value) { m_destinationHasBeenSet = true; m_destination = std::move(value); }
 
     /**
-     * Container for replication destination information.
+     * <p>Container for replication destination information.</p>
      */
     inline ReplicationRule& WithDestination(const Destination& value) { SetDestination(value); return *this;}
 
     /**
-     * Container for replication destination information.
+     * <p>Container for replication destination information.</p>
      */
     inline ReplicationRule& WithDestination(Destination&& value) { SetDestination(std::move(value)); return *this;}
+
+
+    
+    inline const DeleteMarkerReplication& GetDeleteMarkerReplication() const{ return m_deleteMarkerReplication; }
+
+    
+    inline void SetDeleteMarkerReplication(const DeleteMarkerReplication& value) { m_deleteMarkerReplicationHasBeenSet = true; m_deleteMarkerReplication = value; }
+
+    
+    inline void SetDeleteMarkerReplication(DeleteMarkerReplication&& value) { m_deleteMarkerReplicationHasBeenSet = true; m_deleteMarkerReplication = std::move(value); }
+
+    
+    inline ReplicationRule& WithDeleteMarkerReplication(const DeleteMarkerReplication& value) { SetDeleteMarkerReplication(value); return *this;}
+
+    
+    inline ReplicationRule& WithDeleteMarkerReplication(DeleteMarkerReplication&& value) { SetDeleteMarkerReplication(std::move(value)); return *this;}
 
   private:
 
     Aws::String m_iD;
     bool m_iDHasBeenSet;
 
-    Aws::String m_prefix;
-    bool m_prefixHasBeenSet;
+    int m_priority;
+    bool m_priorityHasBeenSet;
+
+    ReplicationRuleFilter m_filter;
+    bool m_filterHasBeenSet;
 
     ReplicationRuleStatus m_status;
     bool m_statusHasBeenSet;
@@ -230,6 +292,9 @@ namespace Model
 
     Destination m_destination;
     bool m_destinationHasBeenSet;
+
+    DeleteMarkerReplication m_deleteMarkerReplication;
+    bool m_deleteMarkerReplicationHasBeenSet;
   };
 
 } // namespace Model

@@ -180,9 +180,9 @@ namespace Model
      * deleted and your connection is switched to the new cluster. When the new
      * connection is complete, the original access permissions for the cluster are
      * restored. You can use <a>DescribeResize</a> to track the progress of the resize
-     * request. </p> <p>Valid Values: <code> ds1.xlarge</code> |
-     * <code>ds1.8xlarge</code> | <code> ds2.xlarge</code> | <code>ds2.8xlarge</code> |
-     * <code>dc1.large</code> | <code>dc1.8xlarge</code>.</p>
+     * request. </p> <p>Valid Values: <code>ds2.xlarge</code> |
+     * <code>ds2.8xlarge</code> | <code>dc1.large</code> | <code>dc1.8xlarge</code> |
+     * <code>dc2.large</code> | <code>dc2.8xlarge</code> </p>
      */
     inline const Aws::String& GetNodeType() const{ return m_nodeType; }
 
@@ -195,9 +195,9 @@ namespace Model
      * deleted and your connection is switched to the new cluster. When the new
      * connection is complete, the original access permissions for the cluster are
      * restored. You can use <a>DescribeResize</a> to track the progress of the resize
-     * request. </p> <p>Valid Values: <code> ds1.xlarge</code> |
-     * <code>ds1.8xlarge</code> | <code> ds2.xlarge</code> | <code>ds2.8xlarge</code> |
-     * <code>dc1.large</code> | <code>dc1.8xlarge</code>.</p>
+     * request. </p> <p>Valid Values: <code>ds2.xlarge</code> |
+     * <code>ds2.8xlarge</code> | <code>dc1.large</code> | <code>dc1.8xlarge</code> |
+     * <code>dc2.large</code> | <code>dc2.8xlarge</code> </p>
      */
     inline void SetNodeType(const Aws::String& value) { m_nodeTypeHasBeenSet = true; m_nodeType = value; }
 
@@ -210,9 +210,9 @@ namespace Model
      * deleted and your connection is switched to the new cluster. When the new
      * connection is complete, the original access permissions for the cluster are
      * restored. You can use <a>DescribeResize</a> to track the progress of the resize
-     * request. </p> <p>Valid Values: <code> ds1.xlarge</code> |
-     * <code>ds1.8xlarge</code> | <code> ds2.xlarge</code> | <code>ds2.8xlarge</code> |
-     * <code>dc1.large</code> | <code>dc1.8xlarge</code>.</p>
+     * request. </p> <p>Valid Values: <code>ds2.xlarge</code> |
+     * <code>ds2.8xlarge</code> | <code>dc1.large</code> | <code>dc1.8xlarge</code> |
+     * <code>dc2.large</code> | <code>dc2.8xlarge</code> </p>
      */
     inline void SetNodeType(Aws::String&& value) { m_nodeTypeHasBeenSet = true; m_nodeType = std::move(value); }
 
@@ -225,9 +225,9 @@ namespace Model
      * deleted and your connection is switched to the new cluster. When the new
      * connection is complete, the original access permissions for the cluster are
      * restored. You can use <a>DescribeResize</a> to track the progress of the resize
-     * request. </p> <p>Valid Values: <code> ds1.xlarge</code> |
-     * <code>ds1.8xlarge</code> | <code> ds2.xlarge</code> | <code>ds2.8xlarge</code> |
-     * <code>dc1.large</code> | <code>dc1.8xlarge</code>.</p>
+     * request. </p> <p>Valid Values: <code>ds2.xlarge</code> |
+     * <code>ds2.8xlarge</code> | <code>dc1.large</code> | <code>dc1.8xlarge</code> |
+     * <code>dc2.large</code> | <code>dc2.8xlarge</code> </p>
      */
     inline void SetNodeType(const char* value) { m_nodeTypeHasBeenSet = true; m_nodeType.assign(value); }
 
@@ -240,9 +240,9 @@ namespace Model
      * deleted and your connection is switched to the new cluster. When the new
      * connection is complete, the original access permissions for the cluster are
      * restored. You can use <a>DescribeResize</a> to track the progress of the resize
-     * request. </p> <p>Valid Values: <code> ds1.xlarge</code> |
-     * <code>ds1.8xlarge</code> | <code> ds2.xlarge</code> | <code>ds2.8xlarge</code> |
-     * <code>dc1.large</code> | <code>dc1.8xlarge</code>.</p>
+     * request. </p> <p>Valid Values: <code>ds2.xlarge</code> |
+     * <code>ds2.8xlarge</code> | <code>dc1.large</code> | <code>dc1.8xlarge</code> |
+     * <code>dc2.large</code> | <code>dc2.8xlarge</code> </p>
      */
     inline ModifyClusterRequest& WithNodeType(const Aws::String& value) { SetNodeType(value); return *this;}
 
@@ -255,9 +255,9 @@ namespace Model
      * deleted and your connection is switched to the new cluster. When the new
      * connection is complete, the original access permissions for the cluster are
      * restored. You can use <a>DescribeResize</a> to track the progress of the resize
-     * request. </p> <p>Valid Values: <code> ds1.xlarge</code> |
-     * <code>ds1.8xlarge</code> | <code> ds2.xlarge</code> | <code>ds2.8xlarge</code> |
-     * <code>dc1.large</code> | <code>dc1.8xlarge</code>.</p>
+     * request. </p> <p>Valid Values: <code>ds2.xlarge</code> |
+     * <code>ds2.8xlarge</code> | <code>dc1.large</code> | <code>dc1.8xlarge</code> |
+     * <code>dc2.large</code> | <code>dc2.8xlarge</code> </p>
      */
     inline ModifyClusterRequest& WithNodeType(Aws::String&& value) { SetNodeType(std::move(value)); return *this;}
 
@@ -270,9 +270,9 @@ namespace Model
      * deleted and your connection is switched to the new cluster. When the new
      * connection is complete, the original access permissions for the cluster are
      * restored. You can use <a>DescribeResize</a> to track the progress of the resize
-     * request. </p> <p>Valid Values: <code> ds1.xlarge</code> |
-     * <code>ds1.8xlarge</code> | <code> ds2.xlarge</code> | <code>ds2.8xlarge</code> |
-     * <code>dc1.large</code> | <code>dc1.8xlarge</code>.</p>
+     * request. </p> <p>Valid Values: <code>ds2.xlarge</code> |
+     * <code>ds2.8xlarge</code> | <code>dc1.large</code> | <code>dc1.8xlarge</code> |
+     * <code>dc2.large</code> | <code>dc2.8xlarge</code> </p>
      */
     inline ModifyClusterRequest& WithNodeType(const char* value) { SetNodeType(value); return *this;}
 
@@ -408,49 +408,49 @@ namespace Model
 
     /**
      * <p>A list of virtual private cloud (VPC) security groups to be associated with
-     * the cluster.</p>
+     * the cluster. This change is asynchronously applied as soon as possible.</p>
      */
     inline const Aws::Vector<Aws::String>& GetVpcSecurityGroupIds() const{ return m_vpcSecurityGroupIds; }
 
     /**
      * <p>A list of virtual private cloud (VPC) security groups to be associated with
-     * the cluster.</p>
+     * the cluster. This change is asynchronously applied as soon as possible.</p>
      */
     inline void SetVpcSecurityGroupIds(const Aws::Vector<Aws::String>& value) { m_vpcSecurityGroupIdsHasBeenSet = true; m_vpcSecurityGroupIds = value; }
 
     /**
      * <p>A list of virtual private cloud (VPC) security groups to be associated with
-     * the cluster.</p>
+     * the cluster. This change is asynchronously applied as soon as possible.</p>
      */
     inline void SetVpcSecurityGroupIds(Aws::Vector<Aws::String>&& value) { m_vpcSecurityGroupIdsHasBeenSet = true; m_vpcSecurityGroupIds = std::move(value); }
 
     /**
      * <p>A list of virtual private cloud (VPC) security groups to be associated with
-     * the cluster.</p>
+     * the cluster. This change is asynchronously applied as soon as possible.</p>
      */
     inline ModifyClusterRequest& WithVpcSecurityGroupIds(const Aws::Vector<Aws::String>& value) { SetVpcSecurityGroupIds(value); return *this;}
 
     /**
      * <p>A list of virtual private cloud (VPC) security groups to be associated with
-     * the cluster.</p>
+     * the cluster. This change is asynchronously applied as soon as possible.</p>
      */
     inline ModifyClusterRequest& WithVpcSecurityGroupIds(Aws::Vector<Aws::String>&& value) { SetVpcSecurityGroupIds(std::move(value)); return *this;}
 
     /**
      * <p>A list of virtual private cloud (VPC) security groups to be associated with
-     * the cluster.</p>
+     * the cluster. This change is asynchronously applied as soon as possible.</p>
      */
     inline ModifyClusterRequest& AddVpcSecurityGroupIds(const Aws::String& value) { m_vpcSecurityGroupIdsHasBeenSet = true; m_vpcSecurityGroupIds.push_back(value); return *this; }
 
     /**
      * <p>A list of virtual private cloud (VPC) security groups to be associated with
-     * the cluster.</p>
+     * the cluster. This change is asynchronously applied as soon as possible.</p>
      */
     inline ModifyClusterRequest& AddVpcSecurityGroupIds(Aws::String&& value) { m_vpcSecurityGroupIdsHasBeenSet = true; m_vpcSecurityGroupIds.push_back(std::move(value)); return *this; }
 
     /**
      * <p>A list of virtual private cloud (VPC) security groups to be associated with
-     * the cluster.</p>
+     * the cluster. This change is asynchronously applied as soon as possible.</p>
      */
     inline ModifyClusterRequest& AddVpcSecurityGroupIds(const char* value) { m_vpcSecurityGroupIdsHasBeenSet = true; m_vpcSecurityGroupIds.push_back(value); return *this; }
 
@@ -1152,6 +1152,148 @@ namespace Model
      */
     inline ModifyClusterRequest& WithEnhancedVpcRouting(bool value) { SetEnhancedVpcRouting(value); return *this;}
 
+
+    /**
+     * <p>The name for the maintenance track that you want to assign for the cluster.
+     * This name change is asynchronous. The new track name stays in the
+     * <code>PendingModifiedValues</code> for the cluster until the next maintenance
+     * window. When the maintenance track changes, the cluster is switched to the
+     * latest cluster release available for the maintenance track. At this point, the
+     * maintenance track name is applied.</p>
+     */
+    inline const Aws::String& GetMaintenanceTrackName() const{ return m_maintenanceTrackName; }
+
+    /**
+     * <p>The name for the maintenance track that you want to assign for the cluster.
+     * This name change is asynchronous. The new track name stays in the
+     * <code>PendingModifiedValues</code> for the cluster until the next maintenance
+     * window. When the maintenance track changes, the cluster is switched to the
+     * latest cluster release available for the maintenance track. At this point, the
+     * maintenance track name is applied.</p>
+     */
+    inline void SetMaintenanceTrackName(const Aws::String& value) { m_maintenanceTrackNameHasBeenSet = true; m_maintenanceTrackName = value; }
+
+    /**
+     * <p>The name for the maintenance track that you want to assign for the cluster.
+     * This name change is asynchronous. The new track name stays in the
+     * <code>PendingModifiedValues</code> for the cluster until the next maintenance
+     * window. When the maintenance track changes, the cluster is switched to the
+     * latest cluster release available for the maintenance track. At this point, the
+     * maintenance track name is applied.</p>
+     */
+    inline void SetMaintenanceTrackName(Aws::String&& value) { m_maintenanceTrackNameHasBeenSet = true; m_maintenanceTrackName = std::move(value); }
+
+    /**
+     * <p>The name for the maintenance track that you want to assign for the cluster.
+     * This name change is asynchronous. The new track name stays in the
+     * <code>PendingModifiedValues</code> for the cluster until the next maintenance
+     * window. When the maintenance track changes, the cluster is switched to the
+     * latest cluster release available for the maintenance track. At this point, the
+     * maintenance track name is applied.</p>
+     */
+    inline void SetMaintenanceTrackName(const char* value) { m_maintenanceTrackNameHasBeenSet = true; m_maintenanceTrackName.assign(value); }
+
+    /**
+     * <p>The name for the maintenance track that you want to assign for the cluster.
+     * This name change is asynchronous. The new track name stays in the
+     * <code>PendingModifiedValues</code> for the cluster until the next maintenance
+     * window. When the maintenance track changes, the cluster is switched to the
+     * latest cluster release available for the maintenance track. At this point, the
+     * maintenance track name is applied.</p>
+     */
+    inline ModifyClusterRequest& WithMaintenanceTrackName(const Aws::String& value) { SetMaintenanceTrackName(value); return *this;}
+
+    /**
+     * <p>The name for the maintenance track that you want to assign for the cluster.
+     * This name change is asynchronous. The new track name stays in the
+     * <code>PendingModifiedValues</code> for the cluster until the next maintenance
+     * window. When the maintenance track changes, the cluster is switched to the
+     * latest cluster release available for the maintenance track. At this point, the
+     * maintenance track name is applied.</p>
+     */
+    inline ModifyClusterRequest& WithMaintenanceTrackName(Aws::String&& value) { SetMaintenanceTrackName(std::move(value)); return *this;}
+
+    /**
+     * <p>The name for the maintenance track that you want to assign for the cluster.
+     * This name change is asynchronous. The new track name stays in the
+     * <code>PendingModifiedValues</code> for the cluster until the next maintenance
+     * window. When the maintenance track changes, the cluster is switched to the
+     * latest cluster release available for the maintenance track. At this point, the
+     * maintenance track name is applied.</p>
+     */
+    inline ModifyClusterRequest& WithMaintenanceTrackName(const char* value) { SetMaintenanceTrackName(value); return *this;}
+
+
+    /**
+     * <p>Indicates whether the cluster is encrypted. If the cluster is encrypted and
+     * you provide a value for the <code>KmsKeyId</code> parameter, we will encrypt the
+     * cluster with the provided <code>KmsKeyId</code>. If you don't provide a
+     * <code>KmsKeyId</code>, we will encrypt with the default key. In the China region
+     * we will use legacy encryption if you specify that the cluster is encrypted.</p>
+     */
+    inline bool GetEncrypted() const{ return m_encrypted; }
+
+    /**
+     * <p>Indicates whether the cluster is encrypted. If the cluster is encrypted and
+     * you provide a value for the <code>KmsKeyId</code> parameter, we will encrypt the
+     * cluster with the provided <code>KmsKeyId</code>. If you don't provide a
+     * <code>KmsKeyId</code>, we will encrypt with the default key. In the China region
+     * we will use legacy encryption if you specify that the cluster is encrypted.</p>
+     */
+    inline void SetEncrypted(bool value) { m_encryptedHasBeenSet = true; m_encrypted = value; }
+
+    /**
+     * <p>Indicates whether the cluster is encrypted. If the cluster is encrypted and
+     * you provide a value for the <code>KmsKeyId</code> parameter, we will encrypt the
+     * cluster with the provided <code>KmsKeyId</code>. If you don't provide a
+     * <code>KmsKeyId</code>, we will encrypt with the default key. In the China region
+     * we will use legacy encryption if you specify that the cluster is encrypted.</p>
+     */
+    inline ModifyClusterRequest& WithEncrypted(bool value) { SetEncrypted(value); return *this;}
+
+
+    /**
+     * <p>The AWS Key Management Service (KMS) key ID of the encryption key that you
+     * want to use to encrypt data in the cluster.</p>
+     */
+    inline const Aws::String& GetKmsKeyId() const{ return m_kmsKeyId; }
+
+    /**
+     * <p>The AWS Key Management Service (KMS) key ID of the encryption key that you
+     * want to use to encrypt data in the cluster.</p>
+     */
+    inline void SetKmsKeyId(const Aws::String& value) { m_kmsKeyIdHasBeenSet = true; m_kmsKeyId = value; }
+
+    /**
+     * <p>The AWS Key Management Service (KMS) key ID of the encryption key that you
+     * want to use to encrypt data in the cluster.</p>
+     */
+    inline void SetKmsKeyId(Aws::String&& value) { m_kmsKeyIdHasBeenSet = true; m_kmsKeyId = std::move(value); }
+
+    /**
+     * <p>The AWS Key Management Service (KMS) key ID of the encryption key that you
+     * want to use to encrypt data in the cluster.</p>
+     */
+    inline void SetKmsKeyId(const char* value) { m_kmsKeyIdHasBeenSet = true; m_kmsKeyId.assign(value); }
+
+    /**
+     * <p>The AWS Key Management Service (KMS) key ID of the encryption key that you
+     * want to use to encrypt data in the cluster.</p>
+     */
+    inline ModifyClusterRequest& WithKmsKeyId(const Aws::String& value) { SetKmsKeyId(value); return *this;}
+
+    /**
+     * <p>The AWS Key Management Service (KMS) key ID of the encryption key that you
+     * want to use to encrypt data in the cluster.</p>
+     */
+    inline ModifyClusterRequest& WithKmsKeyId(Aws::String&& value) { SetKmsKeyId(std::move(value)); return *this;}
+
+    /**
+     * <p>The AWS Key Management Service (KMS) key ID of the encryption key that you
+     * want to use to encrypt data in the cluster.</p>
+     */
+    inline ModifyClusterRequest& WithKmsKeyId(const char* value) { SetKmsKeyId(value); return *this;}
+
   private:
 
     Aws::String m_clusterIdentifier;
@@ -1207,6 +1349,15 @@ namespace Model
 
     bool m_enhancedVpcRouting;
     bool m_enhancedVpcRoutingHasBeenSet;
+
+    Aws::String m_maintenanceTrackName;
+    bool m_maintenanceTrackNameHasBeenSet;
+
+    bool m_encrypted;
+    bool m_encryptedHasBeenSet;
+
+    Aws::String m_kmsKeyId;
+    bool m_kmsKeyIdHasBeenSet;
   };
 
 } // namespace Model

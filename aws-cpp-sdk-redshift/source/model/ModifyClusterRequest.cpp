@@ -43,7 +43,11 @@ ModifyClusterRequest::ModifyClusterRequest() :
     m_publiclyAccessibleHasBeenSet(false),
     m_elasticIpHasBeenSet(false),
     m_enhancedVpcRouting(false),
-    m_enhancedVpcRoutingHasBeenSet(false)
+    m_enhancedVpcRoutingHasBeenSet(false),
+    m_maintenanceTrackNameHasBeenSet(false),
+    m_encrypted(false),
+    m_encryptedHasBeenSet(false),
+    m_kmsKeyIdHasBeenSet(false)
 {
 }
 
@@ -151,6 +155,21 @@ Aws::String ModifyClusterRequest::SerializePayload() const
   if(m_enhancedVpcRoutingHasBeenSet)
   {
     ss << "EnhancedVpcRouting=" << std::boolalpha << m_enhancedVpcRouting << "&";
+  }
+
+  if(m_maintenanceTrackNameHasBeenSet)
+  {
+    ss << "MaintenanceTrackName=" << StringUtils::URLEncode(m_maintenanceTrackName.c_str()) << "&";
+  }
+
+  if(m_encryptedHasBeenSet)
+  {
+    ss << "Encrypted=" << std::boolalpha << m_encrypted << "&";
+  }
+
+  if(m_kmsKeyIdHasBeenSet)
+  {
+    ss << "KmsKeyId=" << StringUtils::URLEncode(m_kmsKeyId.c_str()) << "&";
   }
 
   ss << "Version=2012-12-01";

@@ -51,135 +51,135 @@ namespace Model
 
 
     /**
-     * <p>The string identifier of the associated <a>RestApi</a>.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline const Aws::String& GetRestApiId() const{ return m_restApiId; }
 
     /**
-     * <p>The string identifier of the associated <a>RestApi</a>.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline void SetRestApiId(const Aws::String& value) { m_restApiIdHasBeenSet = true; m_restApiId = value; }
 
     /**
-     * <p>The string identifier of the associated <a>RestApi</a>.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline void SetRestApiId(Aws::String&& value) { m_restApiIdHasBeenSet = true; m_restApiId = std::move(value); }
 
     /**
-     * <p>The string identifier of the associated <a>RestApi</a>.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline void SetRestApiId(const char* value) { m_restApiIdHasBeenSet = true; m_restApiId.assign(value); }
 
     /**
-     * <p>The string identifier of the associated <a>RestApi</a>.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline PutIntegrationRequest& WithRestApiId(const Aws::String& value) { SetRestApiId(value); return *this;}
 
     /**
-     * <p>The string identifier of the associated <a>RestApi</a>.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline PutIntegrationRequest& WithRestApiId(Aws::String&& value) { SetRestApiId(std::move(value)); return *this;}
 
     /**
-     * <p>The string identifier of the associated <a>RestApi</a>.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline PutIntegrationRequest& WithRestApiId(const char* value) { SetRestApiId(value); return *this;}
 
 
     /**
-     * <p>Specifies a put integration request's resource ID.</p>
+     * <p>[Required] Specifies a put integration request's resource ID.</p>
      */
     inline const Aws::String& GetResourceId() const{ return m_resourceId; }
 
     /**
-     * <p>Specifies a put integration request's resource ID.</p>
+     * <p>[Required] Specifies a put integration request's resource ID.</p>
      */
     inline void SetResourceId(const Aws::String& value) { m_resourceIdHasBeenSet = true; m_resourceId = value; }
 
     /**
-     * <p>Specifies a put integration request's resource ID.</p>
+     * <p>[Required] Specifies a put integration request's resource ID.</p>
      */
     inline void SetResourceId(Aws::String&& value) { m_resourceIdHasBeenSet = true; m_resourceId = std::move(value); }
 
     /**
-     * <p>Specifies a put integration request's resource ID.</p>
+     * <p>[Required] Specifies a put integration request's resource ID.</p>
      */
     inline void SetResourceId(const char* value) { m_resourceIdHasBeenSet = true; m_resourceId.assign(value); }
 
     /**
-     * <p>Specifies a put integration request's resource ID.</p>
+     * <p>[Required] Specifies a put integration request's resource ID.</p>
      */
     inline PutIntegrationRequest& WithResourceId(const Aws::String& value) { SetResourceId(value); return *this;}
 
     /**
-     * <p>Specifies a put integration request's resource ID.</p>
+     * <p>[Required] Specifies a put integration request's resource ID.</p>
      */
     inline PutIntegrationRequest& WithResourceId(Aws::String&& value) { SetResourceId(std::move(value)); return *this;}
 
     /**
-     * <p>Specifies a put integration request's resource ID.</p>
+     * <p>[Required] Specifies a put integration request's resource ID.</p>
      */
     inline PutIntegrationRequest& WithResourceId(const char* value) { SetResourceId(value); return *this;}
 
 
     /**
-     * <p>Specifies a put integration request's HTTP method.</p>
+     * <p>[Required] Specifies a put integration request's HTTP method.</p>
      */
     inline const Aws::String& GetHttpMethod() const{ return m_httpMethod; }
 
     /**
-     * <p>Specifies a put integration request's HTTP method.</p>
+     * <p>[Required] Specifies a put integration request's HTTP method.</p>
      */
     inline void SetHttpMethod(const Aws::String& value) { m_httpMethodHasBeenSet = true; m_httpMethod = value; }
 
     /**
-     * <p>Specifies a put integration request's HTTP method.</p>
+     * <p>[Required] Specifies a put integration request's HTTP method.</p>
      */
     inline void SetHttpMethod(Aws::String&& value) { m_httpMethodHasBeenSet = true; m_httpMethod = std::move(value); }
 
     /**
-     * <p>Specifies a put integration request's HTTP method.</p>
+     * <p>[Required] Specifies a put integration request's HTTP method.</p>
      */
     inline void SetHttpMethod(const char* value) { m_httpMethodHasBeenSet = true; m_httpMethod.assign(value); }
 
     /**
-     * <p>Specifies a put integration request's HTTP method.</p>
+     * <p>[Required] Specifies a put integration request's HTTP method.</p>
      */
     inline PutIntegrationRequest& WithHttpMethod(const Aws::String& value) { SetHttpMethod(value); return *this;}
 
     /**
-     * <p>Specifies a put integration request's HTTP method.</p>
+     * <p>[Required] Specifies a put integration request's HTTP method.</p>
      */
     inline PutIntegrationRequest& WithHttpMethod(Aws::String&& value) { SetHttpMethod(std::move(value)); return *this;}
 
     /**
-     * <p>Specifies a put integration request's HTTP method.</p>
+     * <p>[Required] Specifies a put integration request's HTTP method.</p>
      */
     inline PutIntegrationRequest& WithHttpMethod(const char* value) { SetHttpMethod(value); return *this;}
 
 
     /**
-     * <p>Specifies a put integration input's type.</p>
+     * <p>[Required] Specifies a put integration input's type.</p>
      */
     inline const IntegrationType& GetType() const{ return m_type; }
 
     /**
-     * <p>Specifies a put integration input's type.</p>
+     * <p>[Required] Specifies a put integration input's type.</p>
      */
     inline void SetType(const IntegrationType& value) { m_typeHasBeenSet = true; m_type = value; }
 
     /**
-     * <p>Specifies a put integration input's type.</p>
+     * <p>[Required] Specifies a put integration input's type.</p>
      */
     inline void SetType(IntegrationType&& value) { m_typeHasBeenSet = true; m_type = std::move(value); }
 
     /**
-     * <p>Specifies a put integration input's type.</p>
+     * <p>[Required] Specifies a put integration input's type.</p>
      */
     inline PutIntegrationRequest& WithType(const IntegrationType& value) { SetType(value); return *this;}
 
     /**
-     * <p>Specifies a put integration input's type.</p>
+     * <p>[Required] Specifies a put integration input's type.</p>
      */
     inline PutIntegrationRequest& WithType(IntegrationType&& value) { SetType(std::move(value)); return *this;}
 
@@ -252,7 +252,7 @@ namespace Model
      * <code>service_api</code> refers to the path to an AWS service resource,
      * including the region of the integrated AWS service, if applicable. For example,
      * for integration with the S3 API of <code><a
-     * href="http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html">GetObject</a></code>,
+     * href="https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html">GetObject</a></code>,
      * the <code>uri</code> can be either
      * <code>arn:aws:apigateway:us-west-2:s3:action/GetObject&amp;Bucket={bucket}&amp;Key={key}</code>
      * or <code>arn:aws:apigateway:us-west-2:s3:path/{bucket}/{key}</code></p>
@@ -285,7 +285,7 @@ namespace Model
      * <code>service_api</code> refers to the path to an AWS service resource,
      * including the region of the integrated AWS service, if applicable. For example,
      * for integration with the S3 API of <code><a
-     * href="http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html">GetObject</a></code>,
+     * href="https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html">GetObject</a></code>,
      * the <code>uri</code> can be either
      * <code>arn:aws:apigateway:us-west-2:s3:action/GetObject&amp;Bucket={bucket}&amp;Key={key}</code>
      * or <code>arn:aws:apigateway:us-west-2:s3:path/{bucket}/{key}</code></p>
@@ -318,7 +318,7 @@ namespace Model
      * <code>service_api</code> refers to the path to an AWS service resource,
      * including the region of the integrated AWS service, if applicable. For example,
      * for integration with the S3 API of <code><a
-     * href="http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html">GetObject</a></code>,
+     * href="https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html">GetObject</a></code>,
      * the <code>uri</code> can be either
      * <code>arn:aws:apigateway:us-west-2:s3:action/GetObject&amp;Bucket={bucket}&amp;Key={key}</code>
      * or <code>arn:aws:apigateway:us-west-2:s3:path/{bucket}/{key}</code></p>
@@ -351,7 +351,7 @@ namespace Model
      * <code>service_api</code> refers to the path to an AWS service resource,
      * including the region of the integrated AWS service, if applicable. For example,
      * for integration with the S3 API of <code><a
-     * href="http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html">GetObject</a></code>,
+     * href="https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html">GetObject</a></code>,
      * the <code>uri</code> can be either
      * <code>arn:aws:apigateway:us-west-2:s3:action/GetObject&amp;Bucket={bucket}&amp;Key={key}</code>
      * or <code>arn:aws:apigateway:us-west-2:s3:path/{bucket}/{key}</code></p>
@@ -384,7 +384,7 @@ namespace Model
      * <code>service_api</code> refers to the path to an AWS service resource,
      * including the region of the integrated AWS service, if applicable. For example,
      * for integration with the S3 API of <code><a
-     * href="http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html">GetObject</a></code>,
+     * href="https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html">GetObject</a></code>,
      * the <code>uri</code> can be either
      * <code>arn:aws:apigateway:us-west-2:s3:action/GetObject&amp;Bucket={bucket}&amp;Key={key}</code>
      * or <code>arn:aws:apigateway:us-west-2:s3:path/{bucket}/{key}</code></p>
@@ -417,7 +417,7 @@ namespace Model
      * <code>service_api</code> refers to the path to an AWS service resource,
      * including the region of the integrated AWS service, if applicable. For example,
      * for integration with the S3 API of <code><a
-     * href="http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html">GetObject</a></code>,
+     * href="https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html">GetObject</a></code>,
      * the <code>uri</code> can be either
      * <code>arn:aws:apigateway:us-west-2:s3:action/GetObject&amp;Bucket={bucket}&amp;Key={key}</code>
      * or <code>arn:aws:apigateway:us-west-2:s3:path/{bucket}/{key}</code></p>
@@ -450,7 +450,7 @@ namespace Model
      * <code>service_api</code> refers to the path to an AWS service resource,
      * including the region of the integrated AWS service, if applicable. For example,
      * for integration with the S3 API of <code><a
-     * href="http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html">GetObject</a></code>,
+     * href="https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html">GetObject</a></code>,
      * the <code>uri</code> can be either
      * <code>arn:aws:apigateway:us-west-2:s3:action/GetObject&amp;Bucket={bucket}&amp;Key={key}</code>
      * or <code>arn:aws:apigateway:us-west-2:s3:path/{bucket}/{key}</code></p>
@@ -463,7 +463,7 @@ namespace Model
      * <p>The type of the network connection to the integration endpoint. The valid
      * value is <code>INTERNET</code> for connections through the public routable
      * internet or <code>VPC_LINK</code> for private connections between API Gateway
-     * and an network load balancer in a VPC. The default value is
+     * and a network load balancer in a VPC. The default value is
      * <code>INTERNET</code>.</p>
      */
     inline const ConnectionType& GetConnectionType() const{ return m_connectionType; }
@@ -472,7 +472,7 @@ namespace Model
      * <p>The type of the network connection to the integration endpoint. The valid
      * value is <code>INTERNET</code> for connections through the public routable
      * internet or <code>VPC_LINK</code> for private connections between API Gateway
-     * and an network load balancer in a VPC. The default value is
+     * and a network load balancer in a VPC. The default value is
      * <code>INTERNET</code>.</p>
      */
     inline void SetConnectionType(const ConnectionType& value) { m_connectionTypeHasBeenSet = true; m_connectionType = value; }
@@ -481,7 +481,7 @@ namespace Model
      * <p>The type of the network connection to the integration endpoint. The valid
      * value is <code>INTERNET</code> for connections through the public routable
      * internet or <code>VPC_LINK</code> for private connections between API Gateway
-     * and an network load balancer in a VPC. The default value is
+     * and a network load balancer in a VPC. The default value is
      * <code>INTERNET</code>.</p>
      */
     inline void SetConnectionType(ConnectionType&& value) { m_connectionTypeHasBeenSet = true; m_connectionType = std::move(value); }
@@ -490,7 +490,7 @@ namespace Model
      * <p>The type of the network connection to the integration endpoint. The valid
      * value is <code>INTERNET</code> for connections through the public routable
      * internet or <code>VPC_LINK</code> for private connections between API Gateway
-     * and an network load balancer in a VPC. The default value is
+     * and a network load balancer in a VPC. The default value is
      * <code>INTERNET</code>.</p>
      */
     inline PutIntegrationRequest& WithConnectionType(const ConnectionType& value) { SetConnectionType(value); return *this;}
@@ -499,7 +499,7 @@ namespace Model
      * <p>The type of the network connection to the integration endpoint. The valid
      * value is <code>INTERNET</code> for connections through the public routable
      * internet or <code>VPC_LINK</code> for private connections between API Gateway
-     * and an network load balancer in a VPC. The default value is
+     * and a network load balancer in a VPC. The default value is
      * <code>INTERNET</code>.</p>
      */
     inline PutIntegrationRequest& WithConnectionType(ConnectionType&& value) { SetConnectionType(std::move(value)); return *this;}
@@ -507,7 +507,7 @@ namespace Model
 
     /**
      * <p>The (<a
-     * href="http://docs.aws.amazon.com/apigateway/api-reference/resource/vpc-link/#id"><code>id</code></a>)
+     * href="https://docs.aws.amazon.com/apigateway/api-reference/resource/vpc-link/#id"><code>id</code></a>)
      * of the <a>VpcLink</a> used for the integration when
      * <code>connectionType=VPC_LINK</code> and undefined, otherwise.</p>
      */
@@ -515,7 +515,7 @@ namespace Model
 
     /**
      * <p>The (<a
-     * href="http://docs.aws.amazon.com/apigateway/api-reference/resource/vpc-link/#id"><code>id</code></a>)
+     * href="https://docs.aws.amazon.com/apigateway/api-reference/resource/vpc-link/#id"><code>id</code></a>)
      * of the <a>VpcLink</a> used for the integration when
      * <code>connectionType=VPC_LINK</code> and undefined, otherwise.</p>
      */
@@ -523,7 +523,7 @@ namespace Model
 
     /**
      * <p>The (<a
-     * href="http://docs.aws.amazon.com/apigateway/api-reference/resource/vpc-link/#id"><code>id</code></a>)
+     * href="https://docs.aws.amazon.com/apigateway/api-reference/resource/vpc-link/#id"><code>id</code></a>)
      * of the <a>VpcLink</a> used for the integration when
      * <code>connectionType=VPC_LINK</code> and undefined, otherwise.</p>
      */
@@ -531,7 +531,7 @@ namespace Model
 
     /**
      * <p>The (<a
-     * href="http://docs.aws.amazon.com/apigateway/api-reference/resource/vpc-link/#id"><code>id</code></a>)
+     * href="https://docs.aws.amazon.com/apigateway/api-reference/resource/vpc-link/#id"><code>id</code></a>)
      * of the <a>VpcLink</a> used for the integration when
      * <code>connectionType=VPC_LINK</code> and undefined, otherwise.</p>
      */
@@ -539,7 +539,7 @@ namespace Model
 
     /**
      * <p>The (<a
-     * href="http://docs.aws.amazon.com/apigateway/api-reference/resource/vpc-link/#id"><code>id</code></a>)
+     * href="https://docs.aws.amazon.com/apigateway/api-reference/resource/vpc-link/#id"><code>id</code></a>)
      * of the <a>VpcLink</a> used for the integration when
      * <code>connectionType=VPC_LINK</code> and undefined, otherwise.</p>
      */
@@ -547,7 +547,7 @@ namespace Model
 
     /**
      * <p>The (<a
-     * href="http://docs.aws.amazon.com/apigateway/api-reference/resource/vpc-link/#id"><code>id</code></a>)
+     * href="https://docs.aws.amazon.com/apigateway/api-reference/resource/vpc-link/#id"><code>id</code></a>)
      * of the <a>VpcLink</a> used for the integration when
      * <code>connectionType=VPC_LINK</code> and undefined, otherwise.</p>
      */
@@ -555,7 +555,7 @@ namespace Model
 
     /**
      * <p>The (<a
-     * href="http://docs.aws.amazon.com/apigateway/api-reference/resource/vpc-link/#id"><code>id</code></a>)
+     * href="https://docs.aws.amazon.com/apigateway/api-reference/resource/vpc-link/#id"><code>id</code></a>)
      * of the <a>VpcLink</a> used for the integration when
      * <code>connectionType=VPC_LINK</code> and undefined, otherwise.</p>
      */

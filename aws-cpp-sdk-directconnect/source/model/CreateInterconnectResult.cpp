@@ -27,19 +27,21 @@ using namespace Aws::Utils;
 using namespace Aws;
 
 CreateInterconnectResult::CreateInterconnectResult() : 
-    m_interconnectState(InterconnectState::NOT_SET)
+    m_interconnectState(InterconnectState::NOT_SET),
+    m_jumboFrameCapable(false)
 {
 }
 
 CreateInterconnectResult::CreateInterconnectResult(const Aws::AmazonWebServiceResult<JsonValue>& result) : 
-    m_interconnectState(InterconnectState::NOT_SET)
+    m_interconnectState(InterconnectState::NOT_SET),
+    m_jumboFrameCapable(false)
 {
   *this = result;
 }
 
 CreateInterconnectResult& CreateInterconnectResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
-  const JsonValue& jsonValue = result.GetPayload();
+  JsonView jsonValue = result.GetPayload().View();
   if(jsonValue.ValueExists("interconnectId"))
   {
     m_interconnectId = jsonValue.GetString("interconnectId");
@@ -91,6 +93,18 @@ CreateInterconnectResult& CreateInterconnectResult::operator =(const Aws::Amazon
   if(jsonValue.ValueExists("awsDevice"))
   {
     m_awsDevice = jsonValue.GetString("awsDevice");
+
+  }
+
+  if(jsonValue.ValueExists("jumboFrameCapable"))
+  {
+    m_jumboFrameCapable = jsonValue.GetBool("jumboFrameCapable");
+
+  }
+
+  if(jsonValue.ValueExists("awsDeviceV2"))
+  {
+    m_awsDeviceV2 = jsonValue.GetString("awsDeviceV2");
 
   }
 

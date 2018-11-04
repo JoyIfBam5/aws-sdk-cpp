@@ -28,6 +28,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace Glue
@@ -36,8 +37,9 @@ namespace Model
 {
 
   /**
-   * <p>A structure used to provide information used to updata a
-   * trigger.</p><p><h3>See Also:</h3>   <a
+   * <p>A structure used to provide information used to update a trigger. This object
+   * will update the the previous trigger definition by overwriting it
+   * completely.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/TriggerUpdate">AWS
    * API Reference</a></p>
    */
@@ -45,43 +47,43 @@ namespace Model
   {
   public:
     TriggerUpdate();
-    TriggerUpdate(const Aws::Utils::Json::JsonValue& jsonValue);
-    TriggerUpdate& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    TriggerUpdate(Aws::Utils::Json::JsonView jsonValue);
+    TriggerUpdate& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
     /**
-     * <p>The name of the trigger.</p>
+     * <p>Reserved for future use.</p>
      */
     inline const Aws::String& GetName() const{ return m_name; }
 
     /**
-     * <p>The name of the trigger.</p>
+     * <p>Reserved for future use.</p>
      */
     inline void SetName(const Aws::String& value) { m_nameHasBeenSet = true; m_name = value; }
 
     /**
-     * <p>The name of the trigger.</p>
+     * <p>Reserved for future use.</p>
      */
     inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
-     * <p>The name of the trigger.</p>
+     * <p>Reserved for future use.</p>
      */
     inline void SetName(const char* value) { m_nameHasBeenSet = true; m_name.assign(value); }
 
     /**
-     * <p>The name of the trigger.</p>
+     * <p>Reserved for future use.</p>
      */
     inline TriggerUpdate& WithName(const Aws::String& value) { SetName(value); return *this;}
 
     /**
-     * <p>The name of the trigger.</p>
+     * <p>Reserved for future use.</p>
      */
     inline TriggerUpdate& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
-     * <p>The name of the trigger.</p>
+     * <p>Reserved for future use.</p>
      */
     inline TriggerUpdate& WithName(const char* value) { SetName(value); return *this;}
 
@@ -123,7 +125,7 @@ namespace Model
 
 
     /**
-     * <p>An updated <code>cron</code> expression used to specify the schedule (see <a
+     * <p>A <code>cron</code> expression used to specify the schedule (see <a
      * href="http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html">Time-Based
      * Schedules for Jobs and Crawlers</a>. For example, to run something every day at
      * 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>
@@ -131,7 +133,7 @@ namespace Model
     inline const Aws::String& GetSchedule() const{ return m_schedule; }
 
     /**
-     * <p>An updated <code>cron</code> expression used to specify the schedule (see <a
+     * <p>A <code>cron</code> expression used to specify the schedule (see <a
      * href="http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html">Time-Based
      * Schedules for Jobs and Crawlers</a>. For example, to run something every day at
      * 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>
@@ -139,7 +141,7 @@ namespace Model
     inline void SetSchedule(const Aws::String& value) { m_scheduleHasBeenSet = true; m_schedule = value; }
 
     /**
-     * <p>An updated <code>cron</code> expression used to specify the schedule (see <a
+     * <p>A <code>cron</code> expression used to specify the schedule (see <a
      * href="http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html">Time-Based
      * Schedules for Jobs and Crawlers</a>. For example, to run something every day at
      * 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>
@@ -147,7 +149,7 @@ namespace Model
     inline void SetSchedule(Aws::String&& value) { m_scheduleHasBeenSet = true; m_schedule = std::move(value); }
 
     /**
-     * <p>An updated <code>cron</code> expression used to specify the schedule (see <a
+     * <p>A <code>cron</code> expression used to specify the schedule (see <a
      * href="http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html">Time-Based
      * Schedules for Jobs and Crawlers</a>. For example, to run something every day at
      * 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>
@@ -155,7 +157,7 @@ namespace Model
     inline void SetSchedule(const char* value) { m_scheduleHasBeenSet = true; m_schedule.assign(value); }
 
     /**
-     * <p>An updated <code>cron</code> expression used to specify the schedule (see <a
+     * <p>A <code>cron</code> expression used to specify the schedule (see <a
      * href="http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html">Time-Based
      * Schedules for Jobs and Crawlers</a>. For example, to run something every day at
      * 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>
@@ -163,7 +165,7 @@ namespace Model
     inline TriggerUpdate& WithSchedule(const Aws::String& value) { SetSchedule(value); return *this;}
 
     /**
-     * <p>An updated <code>cron</code> expression used to specify the schedule (see <a
+     * <p>A <code>cron</code> expression used to specify the schedule (see <a
      * href="http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html">Time-Based
      * Schedules for Jobs and Crawlers</a>. For example, to run something every day at
      * 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>
@@ -171,7 +173,7 @@ namespace Model
     inline TriggerUpdate& WithSchedule(Aws::String&& value) { SetSchedule(std::move(value)); return *this;}
 
     /**
-     * <p>An updated <code>cron</code> expression used to specify the schedule (see <a
+     * <p>A <code>cron</code> expression used to specify the schedule (see <a
      * href="http://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html">Time-Based
      * Schedules for Jobs and Crawlers</a>. For example, to run something every day at
      * 12:15 UTC, you would specify: <code>cron(15 12 * * ? *)</code>.</p>

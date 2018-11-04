@@ -24,6 +24,10 @@ using namespace Aws::Utils;
 
 ListSkillsRequest::ListSkillsRequest() : 
     m_skillGroupArnHasBeenSet(false),
+    m_enablementType(EnablementTypeFilter::NOT_SET),
+    m_enablementTypeHasBeenSet(false),
+    m_skillType(SkillTypeFilter::NOT_SET),
+    m_skillTypeHasBeenSet(false),
     m_nextTokenHasBeenSet(false),
     m_maxResults(0),
     m_maxResultsHasBeenSet(false)
@@ -40,6 +44,16 @@ Aws::String ListSkillsRequest::SerializePayload() const
 
   }
 
+  if(m_enablementTypeHasBeenSet)
+  {
+   payload.WithString("EnablementType", EnablementTypeFilterMapper::GetNameForEnablementTypeFilter(m_enablementType));
+  }
+
+  if(m_skillTypeHasBeenSet)
+  {
+   payload.WithString("SkillType", SkillTypeFilterMapper::GetNameForSkillTypeFilter(m_skillType));
+  }
+
   if(m_nextTokenHasBeenSet)
   {
    payload.WithString("NextToken", m_nextToken);
@@ -52,7 +66,7 @@ Aws::String ListSkillsRequest::SerializePayload() const
 
   }
 
-  return payload.WriteReadable();
+  return payload.View().WriteReadable();
 }
 
 Aws::Http::HeaderValueCollection ListSkillsRequest::GetRequestSpecificHeaders() const

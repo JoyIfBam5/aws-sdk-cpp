@@ -34,6 +34,8 @@ NewPrivateVirtualInterface::NewPrivateVirtualInterface() :
     m_vlanHasBeenSet(false),
     m_asn(0),
     m_asnHasBeenSet(false),
+    m_mtu(0),
+    m_mtuHasBeenSet(false),
     m_authKeyHasBeenSet(false),
     m_amazonAddressHasBeenSet(false),
     m_customerAddressHasBeenSet(false),
@@ -44,12 +46,14 @@ NewPrivateVirtualInterface::NewPrivateVirtualInterface() :
 {
 }
 
-NewPrivateVirtualInterface::NewPrivateVirtualInterface(const JsonValue& jsonValue) : 
+NewPrivateVirtualInterface::NewPrivateVirtualInterface(JsonView jsonValue) : 
     m_virtualInterfaceNameHasBeenSet(false),
     m_vlan(0),
     m_vlanHasBeenSet(false),
     m_asn(0),
     m_asnHasBeenSet(false),
+    m_mtu(0),
+    m_mtuHasBeenSet(false),
     m_authKeyHasBeenSet(false),
     m_amazonAddressHasBeenSet(false),
     m_customerAddressHasBeenSet(false),
@@ -61,7 +65,7 @@ NewPrivateVirtualInterface::NewPrivateVirtualInterface(const JsonValue& jsonValu
   *this = jsonValue;
 }
 
-NewPrivateVirtualInterface& NewPrivateVirtualInterface::operator =(const JsonValue& jsonValue)
+NewPrivateVirtualInterface& NewPrivateVirtualInterface::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("virtualInterfaceName"))
   {
@@ -82,6 +86,13 @@ NewPrivateVirtualInterface& NewPrivateVirtualInterface::operator =(const JsonVal
     m_asn = jsonValue.GetInteger("asn");
 
     m_asnHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("mtu"))
+  {
+    m_mtu = jsonValue.GetInteger("mtu");
+
+    m_mtuHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("authKey"))
@@ -148,6 +159,12 @@ JsonValue NewPrivateVirtualInterface::Jsonize() const
   if(m_asnHasBeenSet)
   {
    payload.WithInteger("asn", m_asn);
+
+  }
+
+  if(m_mtuHasBeenSet)
+  {
+   payload.WithInteger("mtu", m_mtu);
 
   }
 

@@ -83,7 +83,9 @@ namespace Model
      * Rekognition is that the moderated content is correctly identified. 0 is the
      * lowest confidence. 100 is the highest confidence. Amazon Rekognition doesn't
      * return any moderated content labels with a confidence level lower than this
-     * specified value.</p>
+     * specified value. If you don't specify <code>MinConfidence</code>,
+     * <code>GetContentModeration</code> returns labels with confidence values greater
+     * than or equal to 50 percent.</p>
      */
     inline double GetMinConfidence() const{ return m_minConfidence; }
 
@@ -93,7 +95,9 @@ namespace Model
      * Rekognition is that the moderated content is correctly identified. 0 is the
      * lowest confidence. 100 is the highest confidence. Amazon Rekognition doesn't
      * return any moderated content labels with a confidence level lower than this
-     * specified value.</p>
+     * specified value. If you don't specify <code>MinConfidence</code>,
+     * <code>GetContentModeration</code> returns labels with confidence values greater
+     * than or equal to 50 percent.</p>
      */
     inline void SetMinConfidence(double value) { m_minConfidenceHasBeenSet = true; m_minConfidence = value; }
 
@@ -103,7 +107,9 @@ namespace Model
      * Rekognition is that the moderated content is correctly identified. 0 is the
      * lowest confidence. 100 is the highest confidence. Amazon Rekognition doesn't
      * return any moderated content labels with a confidence level lower than this
-     * specified value.</p>
+     * specified value. If you don't specify <code>MinConfidence</code>,
+     * <code>GetContentModeration</code> returns labels with confidence values greater
+     * than or equal to 50 percent.</p>
      */
     inline StartContentModerationRequest& WithMinConfidence(double value) { SetMinConfidence(value); return *this;}
 
@@ -166,32 +172,32 @@ namespace Model
 
 
     /**
-     * <p>The Amazon SNS topic ARN that you want Rekognition Video to publish the
-     * completion status of the content moderation analysis to.</p>
+     * <p>The Amazon SNS topic ARN that you want Amazon Rekognition Video to publish
+     * the completion status of the content moderation analysis to.</p>
      */
     inline const NotificationChannel& GetNotificationChannel() const{ return m_notificationChannel; }
 
     /**
-     * <p>The Amazon SNS topic ARN that you want Rekognition Video to publish the
-     * completion status of the content moderation analysis to.</p>
+     * <p>The Amazon SNS topic ARN that you want Amazon Rekognition Video to publish
+     * the completion status of the content moderation analysis to.</p>
      */
     inline void SetNotificationChannel(const NotificationChannel& value) { m_notificationChannelHasBeenSet = true; m_notificationChannel = value; }
 
     /**
-     * <p>The Amazon SNS topic ARN that you want Rekognition Video to publish the
-     * completion status of the content moderation analysis to.</p>
+     * <p>The Amazon SNS topic ARN that you want Amazon Rekognition Video to publish
+     * the completion status of the content moderation analysis to.</p>
      */
     inline void SetNotificationChannel(NotificationChannel&& value) { m_notificationChannelHasBeenSet = true; m_notificationChannel = std::move(value); }
 
     /**
-     * <p>The Amazon SNS topic ARN that you want Rekognition Video to publish the
-     * completion status of the content moderation analysis to.</p>
+     * <p>The Amazon SNS topic ARN that you want Amazon Rekognition Video to publish
+     * the completion status of the content moderation analysis to.</p>
      */
     inline StartContentModerationRequest& WithNotificationChannel(const NotificationChannel& value) { SetNotificationChannel(value); return *this;}
 
     /**
-     * <p>The Amazon SNS topic ARN that you want Rekognition Video to publish the
-     * completion status of the content moderation analysis to.</p>
+     * <p>The Amazon SNS topic ARN that you want Amazon Rekognition Video to publish
+     * the completion status of the content moderation analysis to.</p>
      */
     inline StartContentModerationRequest& WithNotificationChannel(NotificationChannel&& value) { SetNotificationChannel(std::move(value)); return *this;}
 

@@ -26,6 +26,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace Lambda
@@ -34,7 +35,7 @@ namespace Model
 {
 
   /**
-   * <p>Describes mapping between an Amazon Kinesis stream and a Lambda
+   * <p>Describes mapping between an Amazon Kinesis or DynamoDB stream and a Lambda
    * function.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/EventSourceMappingConfiguration">AWS
    * API Reference</a></p>
@@ -43,8 +44,8 @@ namespace Model
   {
   public:
     EventSourceMappingConfiguration();
-    EventSourceMappingConfiguration(const Aws::Utils::Json::JsonValue& jsonValue);
-    EventSourceMappingConfiguration& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    EventSourceMappingConfiguration(Aws::Utils::Json::JsonView jsonValue);
+    EventSourceMappingConfiguration& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -107,87 +108,87 @@ namespace Model
 
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the Amazon Kinesis stream that is the
-     * source of events.</p>
+     * <p>The Amazon Resource Name (ARN) of the Amazon Kinesis or DynamoDB stream that
+     * is the source of events.</p>
      */
     inline const Aws::String& GetEventSourceArn() const{ return m_eventSourceArn; }
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the Amazon Kinesis stream that is the
-     * source of events.</p>
+     * <p>The Amazon Resource Name (ARN) of the Amazon Kinesis or DynamoDB stream that
+     * is the source of events.</p>
      */
     inline void SetEventSourceArn(const Aws::String& value) { m_eventSourceArnHasBeenSet = true; m_eventSourceArn = value; }
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the Amazon Kinesis stream that is the
-     * source of events.</p>
+     * <p>The Amazon Resource Name (ARN) of the Amazon Kinesis or DynamoDB stream that
+     * is the source of events.</p>
      */
     inline void SetEventSourceArn(Aws::String&& value) { m_eventSourceArnHasBeenSet = true; m_eventSourceArn = std::move(value); }
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the Amazon Kinesis stream that is the
-     * source of events.</p>
+     * <p>The Amazon Resource Name (ARN) of the Amazon Kinesis or DynamoDB stream that
+     * is the source of events.</p>
      */
     inline void SetEventSourceArn(const char* value) { m_eventSourceArnHasBeenSet = true; m_eventSourceArn.assign(value); }
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the Amazon Kinesis stream that is the
-     * source of events.</p>
+     * <p>The Amazon Resource Name (ARN) of the Amazon Kinesis or DynamoDB stream that
+     * is the source of events.</p>
      */
     inline EventSourceMappingConfiguration& WithEventSourceArn(const Aws::String& value) { SetEventSourceArn(value); return *this;}
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the Amazon Kinesis stream that is the
-     * source of events.</p>
+     * <p>The Amazon Resource Name (ARN) of the Amazon Kinesis or DynamoDB stream that
+     * is the source of events.</p>
      */
     inline EventSourceMappingConfiguration& WithEventSourceArn(Aws::String&& value) { SetEventSourceArn(std::move(value)); return *this;}
 
     /**
-     * <p>The Amazon Resource Name (ARN) of the Amazon Kinesis stream that is the
-     * source of events.</p>
+     * <p>The Amazon Resource Name (ARN) of the Amazon Kinesis or DynamoDB stream that
+     * is the source of events.</p>
      */
     inline EventSourceMappingConfiguration& WithEventSourceArn(const char* value) { SetEventSourceArn(value); return *this;}
 
 
     /**
      * <p>The Lambda function to invoke when AWS Lambda detects an event on the
-     * stream.</p>
+     * poll-based source.</p>
      */
     inline const Aws::String& GetFunctionArn() const{ return m_functionArn; }
 
     /**
      * <p>The Lambda function to invoke when AWS Lambda detects an event on the
-     * stream.</p>
+     * poll-based source.</p>
      */
     inline void SetFunctionArn(const Aws::String& value) { m_functionArnHasBeenSet = true; m_functionArn = value; }
 
     /**
      * <p>The Lambda function to invoke when AWS Lambda detects an event on the
-     * stream.</p>
+     * poll-based source.</p>
      */
     inline void SetFunctionArn(Aws::String&& value) { m_functionArnHasBeenSet = true; m_functionArn = std::move(value); }
 
     /**
      * <p>The Lambda function to invoke when AWS Lambda detects an event on the
-     * stream.</p>
+     * poll-based source.</p>
      */
     inline void SetFunctionArn(const char* value) { m_functionArnHasBeenSet = true; m_functionArn.assign(value); }
 
     /**
      * <p>The Lambda function to invoke when AWS Lambda detects an event on the
-     * stream.</p>
+     * poll-based source.</p>
      */
     inline EventSourceMappingConfiguration& WithFunctionArn(const Aws::String& value) { SetFunctionArn(value); return *this;}
 
     /**
      * <p>The Lambda function to invoke when AWS Lambda detects an event on the
-     * stream.</p>
+     * poll-based source.</p>
      */
     inline EventSourceMappingConfiguration& WithFunctionArn(Aws::String&& value) { SetFunctionArn(std::move(value)); return *this;}
 
     /**
      * <p>The Lambda function to invoke when AWS Lambda detects an event on the
-     * stream.</p>
+     * poll-based source.</p>
      */
     inline EventSourceMappingConfiguration& WithFunctionArn(const char* value) { SetFunctionArn(value); return *this;}
 
@@ -224,37 +225,44 @@ namespace Model
 
 
     /**
-     * <p>The result of the last AWS Lambda invocation of your Lambda function.</p>
+     * <p>The result of the last AWS Lambda invocation of your Lambda function. This
+     * value will be null if an SQS queue is the event source.</p>
      */
     inline const Aws::String& GetLastProcessingResult() const{ return m_lastProcessingResult; }
 
     /**
-     * <p>The result of the last AWS Lambda invocation of your Lambda function.</p>
+     * <p>The result of the last AWS Lambda invocation of your Lambda function. This
+     * value will be null if an SQS queue is the event source.</p>
      */
     inline void SetLastProcessingResult(const Aws::String& value) { m_lastProcessingResultHasBeenSet = true; m_lastProcessingResult = value; }
 
     /**
-     * <p>The result of the last AWS Lambda invocation of your Lambda function.</p>
+     * <p>The result of the last AWS Lambda invocation of your Lambda function. This
+     * value will be null if an SQS queue is the event source.</p>
      */
     inline void SetLastProcessingResult(Aws::String&& value) { m_lastProcessingResultHasBeenSet = true; m_lastProcessingResult = std::move(value); }
 
     /**
-     * <p>The result of the last AWS Lambda invocation of your Lambda function.</p>
+     * <p>The result of the last AWS Lambda invocation of your Lambda function. This
+     * value will be null if an SQS queue is the event source.</p>
      */
     inline void SetLastProcessingResult(const char* value) { m_lastProcessingResultHasBeenSet = true; m_lastProcessingResult.assign(value); }
 
     /**
-     * <p>The result of the last AWS Lambda invocation of your Lambda function.</p>
+     * <p>The result of the last AWS Lambda invocation of your Lambda function. This
+     * value will be null if an SQS queue is the event source.</p>
      */
     inline EventSourceMappingConfiguration& WithLastProcessingResult(const Aws::String& value) { SetLastProcessingResult(value); return *this;}
 
     /**
-     * <p>The result of the last AWS Lambda invocation of your Lambda function.</p>
+     * <p>The result of the last AWS Lambda invocation of your Lambda function. This
+     * value will be null if an SQS queue is the event source.</p>
      */
     inline EventSourceMappingConfiguration& WithLastProcessingResult(Aws::String&& value) { SetLastProcessingResult(std::move(value)); return *this;}
 
     /**
-     * <p>The result of the last AWS Lambda invocation of your Lambda function.</p>
+     * <p>The result of the last AWS Lambda invocation of your Lambda function. This
+     * value will be null if an SQS queue is the event source.</p>
      */
     inline EventSourceMappingConfiguration& WithLastProcessingResult(const char* value) { SetLastProcessingResult(value); return *this;}
 

@@ -36,6 +36,7 @@ static const int INVALID_DEPLOYED_STATE_FILTER_HASH = HashingUtils::HashString("
 static const int INVALID_INPUT_HASH = HashingUtils::HashString("InvalidInputException");
 static const int INVALID_DEPLOYMENT_GROUP_NAME_HASH = HashingUtils::HashString("InvalidDeploymentGroupNameException");
 static const int APPLICATION_NAME_REQUIRED_HASH = HashingUtils::HashString("ApplicationNameRequiredException");
+static const int GIT_HUB_ACCOUNT_TOKEN_NAME_REQUIRED_HASH = HashingUtils::HashString("GitHubAccountTokenNameRequiredException");
 static const int INSTANCE_DOES_NOT_EXIST_HASH = HashingUtils::HashString("InstanceDoesNotExistException");
 static const int INVALID_DEPLOYMENT_INSTANCE_TYPE_HASH = HashingUtils::HashString("InvalidDeploymentInstanceTypeException");
 static const int INVALID_BUCKET_NAME_FILTER_HASH = HashingUtils::HashString("InvalidBucketNameFilterException");
@@ -67,6 +68,7 @@ static const int DEPLOYMENT_ID_REQUIRED_HASH = HashingUtils::HashString("Deploym
 static const int INVALID_IGNORE_APPLICATION_STOP_FAILURES_VALUE_HASH = HashingUtils::HashString("InvalidIgnoreApplicationStopFailuresValueException");
 static const int INVALID_REGISTRATION_STATUS_HASH = HashingUtils::HashString("InvalidRegistrationStatusException");
 static const int INVALID_TARGET_INSTANCES_HASH = HashingUtils::HashString("InvalidTargetInstancesException");
+static const int GIT_HUB_ACCOUNT_TOKEN_DOES_NOT_EXIST_HASH = HashingUtils::HashString("GitHubAccountTokenDoesNotExistException");
 static const int INVALID_TRIGGER_CONFIG_HASH = HashingUtils::HashString("InvalidTriggerConfigException");
 static const int INVALID_OPERATION_HASH = HashingUtils::HashString("InvalidOperationException");
 static const int TAG_REQUIRED_HASH = HashingUtils::HashString("TagRequiredException");
@@ -91,6 +93,7 @@ static const int DEPLOYMENT_CONFIG_ALREADY_EXISTS_HASH = HashingUtils::HashStrin
 static const int INVALID_ROLE_HASH = HashingUtils::HashString("InvalidRoleException");
 static const int INVALID_TRAFFIC_ROUTING_CONFIGURATION_HASH = HashingUtils::HashString("InvalidTrafficRoutingConfigurationException");
 static const int INVALID_TAG_FILTER_HASH = HashingUtils::HashString("InvalidTagFilterException");
+static const int INVALID_GIT_HUB_ACCOUNT_TOKEN_HASH = HashingUtils::HashString("InvalidGitHubAccountTokenException");
 static const int IAM_SESSION_ARN_ALREADY_REGISTERED_HASH = HashingUtils::HashString("IamSessionArnAlreadyRegisteredException");
 static const int MULTIPLE_IAM_ARNS_PROVIDED_HASH = HashingUtils::HashString("MultipleIamArnsProvidedException");
 static const int INVALID_BLUE_GREEN_DEPLOYMENT_CONFIGURATION_HASH = HashingUtils::HashString("InvalidBlueGreenDeploymentConfigurationException");
@@ -109,6 +112,7 @@ static const int IAM_USER_ARN_ALREADY_REGISTERED_HASH = HashingUtils::HashString
 static const int DEPLOYMENT_ALREADY_COMPLETED_HASH = HashingUtils::HashString("DeploymentAlreadyCompletedException");
 static const int REVISION_REQUIRED_HASH = HashingUtils::HashString("RevisionRequiredException");
 static const int APPLICATION_LIMIT_EXCEEDED_HASH = HashingUtils::HashString("ApplicationLimitExceededException");
+static const int INVALID_GIT_HUB_ACCOUNT_TOKEN_NAME_HASH = HashingUtils::HashString("InvalidGitHubAccountTokenNameException");
 static const int INSTANCE_NOT_REGISTERED_HASH = HashingUtils::HashString("InstanceNotRegisteredException");
 static const int BUCKET_NAME_FILTER_REQUIRED_HASH = HashingUtils::HashString("BucketNameFilterRequiredException");
 static const int TAG_LIMIT_EXCEEDED_HASH = HashingUtils::HashString("TagLimitExceededException");
@@ -155,6 +159,10 @@ AWSError<CoreErrors> GetErrorForName(const char* errorName)
   else if (hashCode == APPLICATION_NAME_REQUIRED_HASH)
   {
     return AWSError<CoreErrors>(static_cast<CoreErrors>(CodeDeployErrors::APPLICATION_NAME_REQUIRED), false);
+  }
+  else if (hashCode == GIT_HUB_ACCOUNT_TOKEN_NAME_REQUIRED_HASH)
+  {
+    return AWSError<CoreErrors>(static_cast<CoreErrors>(CodeDeployErrors::GIT_HUB_ACCOUNT_TOKEN_NAME_REQUIRED), false);
   }
   else if (hashCode == INSTANCE_DOES_NOT_EXIST_HASH)
   {
@@ -280,6 +288,10 @@ AWSError<CoreErrors> GetErrorForName(const char* errorName)
   {
     return AWSError<CoreErrors>(static_cast<CoreErrors>(CodeDeployErrors::INVALID_TARGET_INSTANCES), false);
   }
+  else if (hashCode == GIT_HUB_ACCOUNT_TOKEN_DOES_NOT_EXIST_HASH)
+  {
+    return AWSError<CoreErrors>(static_cast<CoreErrors>(CodeDeployErrors::GIT_HUB_ACCOUNT_TOKEN_DOES_NOT_EXIST), false);
+  }
   else if (hashCode == INVALID_TRIGGER_CONFIG_HASH)
   {
     return AWSError<CoreErrors>(static_cast<CoreErrors>(CodeDeployErrors::INVALID_TRIGGER_CONFIG), false);
@@ -376,6 +388,10 @@ AWSError<CoreErrors> GetErrorForName(const char* errorName)
   {
     return AWSError<CoreErrors>(static_cast<CoreErrors>(CodeDeployErrors::INVALID_TAG_FILTER), false);
   }
+  else if (hashCode == INVALID_GIT_HUB_ACCOUNT_TOKEN_HASH)
+  {
+    return AWSError<CoreErrors>(static_cast<CoreErrors>(CodeDeployErrors::INVALID_GIT_HUB_ACCOUNT_TOKEN), false);
+  }
   else if (hashCode == IAM_SESSION_ARN_ALREADY_REGISTERED_HASH)
   {
     return AWSError<CoreErrors>(static_cast<CoreErrors>(CodeDeployErrors::IAM_SESSION_ARN_ALREADY_REGISTERED), false);
@@ -447,6 +463,10 @@ AWSError<CoreErrors> GetErrorForName(const char* errorName)
   else if (hashCode == APPLICATION_LIMIT_EXCEEDED_HASH)
   {
     return AWSError<CoreErrors>(static_cast<CoreErrors>(CodeDeployErrors::APPLICATION_LIMIT_EXCEEDED), false);
+  }
+  else if (hashCode == INVALID_GIT_HUB_ACCOUNT_TOKEN_NAME_HASH)
+  {
+    return AWSError<CoreErrors>(static_cast<CoreErrors>(CodeDeployErrors::INVALID_GIT_HUB_ACCOUNT_TOKEN_NAME), false);
   }
   else if (hashCode == INSTANCE_NOT_REGISTERED_HASH)
   {

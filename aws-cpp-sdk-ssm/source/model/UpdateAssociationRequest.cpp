@@ -31,7 +31,11 @@ UpdateAssociationRequest::UpdateAssociationRequest() :
     m_nameHasBeenSet(false),
     m_targetsHasBeenSet(false),
     m_associationNameHasBeenSet(false),
-    m_associationVersionHasBeenSet(false)
+    m_associationVersionHasBeenSet(false),
+    m_maxErrorsHasBeenSet(false),
+    m_maxConcurrencyHasBeenSet(false),
+    m_complianceSeverity(AssociationComplianceSeverity::NOT_SET),
+    m_complianceSeverityHasBeenSet(false)
 {
 }
 
@@ -108,7 +112,24 @@ Aws::String UpdateAssociationRequest::SerializePayload() const
 
   }
 
-  return payload.WriteReadable();
+  if(m_maxErrorsHasBeenSet)
+  {
+   payload.WithString("MaxErrors", m_maxErrors);
+
+  }
+
+  if(m_maxConcurrencyHasBeenSet)
+  {
+   payload.WithString("MaxConcurrency", m_maxConcurrency);
+
+  }
+
+  if(m_complianceSeverityHasBeenSet)
+  {
+   payload.WithString("ComplianceSeverity", AssociationComplianceSeverityMapper::GetNameForAssociationComplianceSeverity(m_complianceSeverity));
+  }
+
+  return payload.View().WriteReadable();
 }
 
 Aws::Http::HeaderValueCollection UpdateAssociationRequest::GetRequestSpecificHeaders() const

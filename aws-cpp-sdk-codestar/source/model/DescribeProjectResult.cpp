@@ -37,7 +37,7 @@ DescribeProjectResult::DescribeProjectResult(const Aws::AmazonWebServiceResult<J
 
 DescribeProjectResult& DescribeProjectResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
-  const JsonValue& jsonValue = result.GetPayload();
+  JsonView jsonValue = result.GetPayload().View();
   if(jsonValue.ValueExists("name"))
   {
     m_name = jsonValue.GetString("name");
@@ -83,6 +83,12 @@ DescribeProjectResult& DescribeProjectResult::operator =(const Aws::AmazonWebSer
   if(jsonValue.ValueExists("projectTemplateId"))
   {
     m_projectTemplateId = jsonValue.GetString("projectTemplateId");
+
+  }
+
+  if(jsonValue.ValueExists("status"))
+  {
+    m_status = jsonValue.GetObject("status");
 
   }
 

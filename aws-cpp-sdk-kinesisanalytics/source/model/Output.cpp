@@ -32,20 +32,22 @@ Output::Output() :
     m_nameHasBeenSet(false),
     m_kinesisStreamsOutputHasBeenSet(false),
     m_kinesisFirehoseOutputHasBeenSet(false),
+    m_lambdaOutputHasBeenSet(false),
     m_destinationSchemaHasBeenSet(false)
 {
 }
 
-Output::Output(const JsonValue& jsonValue) : 
+Output::Output(JsonView jsonValue) : 
     m_nameHasBeenSet(false),
     m_kinesisStreamsOutputHasBeenSet(false),
     m_kinesisFirehoseOutputHasBeenSet(false),
+    m_lambdaOutputHasBeenSet(false),
     m_destinationSchemaHasBeenSet(false)
 {
   *this = jsonValue;
 }
 
-Output& Output::operator =(const JsonValue& jsonValue)
+Output& Output::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("Name"))
   {
@@ -66,6 +68,13 @@ Output& Output::operator =(const JsonValue& jsonValue)
     m_kinesisFirehoseOutput = jsonValue.GetObject("KinesisFirehoseOutput");
 
     m_kinesisFirehoseOutputHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("LambdaOutput"))
+  {
+    m_lambdaOutput = jsonValue.GetObject("LambdaOutput");
+
+    m_lambdaOutputHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("DestinationSchema"))
@@ -97,6 +106,12 @@ JsonValue Output::Jsonize() const
   if(m_kinesisFirehoseOutputHasBeenSet)
   {
    payload.WithObject("KinesisFirehoseOutput", m_kinesisFirehoseOutput.Jsonize());
+
+  }
+
+  if(m_lambdaOutputHasBeenSet)
+  {
+   payload.WithObject("LambdaOutput", m_lambdaOutput.Jsonize());
 
   }
 

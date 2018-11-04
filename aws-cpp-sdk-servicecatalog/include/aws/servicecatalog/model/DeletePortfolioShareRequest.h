@@ -17,6 +17,7 @@
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/servicecatalog/ServiceCatalogRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <aws/servicecatalog/model/OrganizationNode.h>
 #include <utility>
 
 namespace Aws
@@ -131,39 +132,65 @@ namespace Model
 
 
     /**
-     * <p>The account ID associated with the share to delete.</p>
+     * <p>The AWS account ID.</p>
      */
     inline const Aws::String& GetAccountId() const{ return m_accountId; }
 
     /**
-     * <p>The account ID associated with the share to delete.</p>
+     * <p>The AWS account ID.</p>
      */
     inline void SetAccountId(const Aws::String& value) { m_accountIdHasBeenSet = true; m_accountId = value; }
 
     /**
-     * <p>The account ID associated with the share to delete.</p>
+     * <p>The AWS account ID.</p>
      */
     inline void SetAccountId(Aws::String&& value) { m_accountIdHasBeenSet = true; m_accountId = std::move(value); }
 
     /**
-     * <p>The account ID associated with the share to delete.</p>
+     * <p>The AWS account ID.</p>
      */
     inline void SetAccountId(const char* value) { m_accountIdHasBeenSet = true; m_accountId.assign(value); }
 
     /**
-     * <p>The account ID associated with the share to delete.</p>
+     * <p>The AWS account ID.</p>
      */
     inline DeletePortfolioShareRequest& WithAccountId(const Aws::String& value) { SetAccountId(value); return *this;}
 
     /**
-     * <p>The account ID associated with the share to delete.</p>
+     * <p>The AWS account ID.</p>
      */
     inline DeletePortfolioShareRequest& WithAccountId(Aws::String&& value) { SetAccountId(std::move(value)); return *this;}
 
     /**
-     * <p>The account ID associated with the share to delete.</p>
+     * <p>The AWS account ID.</p>
      */
     inline DeletePortfolioShareRequest& WithAccountId(const char* value) { SetAccountId(value); return *this;}
+
+
+    /**
+     * <p>The organization node to whom you are going to stop sharing.</p>
+     */
+    inline const OrganizationNode& GetOrganizationNode() const{ return m_organizationNode; }
+
+    /**
+     * <p>The organization node to whom you are going to stop sharing.</p>
+     */
+    inline void SetOrganizationNode(const OrganizationNode& value) { m_organizationNodeHasBeenSet = true; m_organizationNode = value; }
+
+    /**
+     * <p>The organization node to whom you are going to stop sharing.</p>
+     */
+    inline void SetOrganizationNode(OrganizationNode&& value) { m_organizationNodeHasBeenSet = true; m_organizationNode = std::move(value); }
+
+    /**
+     * <p>The organization node to whom you are going to stop sharing.</p>
+     */
+    inline DeletePortfolioShareRequest& WithOrganizationNode(const OrganizationNode& value) { SetOrganizationNode(value); return *this;}
+
+    /**
+     * <p>The organization node to whom you are going to stop sharing.</p>
+     */
+    inline DeletePortfolioShareRequest& WithOrganizationNode(OrganizationNode&& value) { SetOrganizationNode(std::move(value)); return *this;}
 
   private:
 
@@ -175,6 +202,9 @@ namespace Model
 
     Aws::String m_accountId;
     bool m_accountIdHasBeenSet;
+
+    OrganizationNode m_organizationNode;
+    bool m_organizationNodeHasBeenSet;
   };
 
 } // namespace Model

@@ -67,7 +67,7 @@
         {"shape":"AccountSetupInProgressException"},
         {"shape":"UnauthenticatedException"}
       ],
-      "documentation":"<p>Attaches one or more Lightsail instances to a load balancer.</p>"
+      "documentation":"<p>Attaches one or more Lightsail instances to a load balancer.</p> <p>After some time, the instances are attached to the load balancer and the health check status is available.</p>"
     },
     "AttachLoadBalancerTlsCertificate":{
       "name":"AttachLoadBalancerTlsCertificate",
@@ -86,7 +86,7 @@
         {"shape":"AccountSetupInProgressException"},
         {"shape":"UnauthenticatedException"}
       ],
-      "documentation":"<p>Attaches a Transport Layer Security (TLS) certificate to your load balancer.</p> <p>TLS is just an updated, more secure version of Secure Socket Layer (SSL).</p>"
+      "documentation":"<p>Attaches a Transport Layer Security (TLS) certificate to your load balancer. TLS is just an updated, more secure version of Secure Socket Layer (SSL).</p> <p>Once you create and validate your certificate, you can attach it to your load balancer. You can also use this API to rotate the certificates on your account. Use the <code>AttachLoadBalancerTlsCertificate</code> operation with the non-attached certificate, and it will replace the existing one and become the attached certificate.</p>"
     },
     "AttachStaticIp":{
       "name":"AttachStaticIp",
@@ -257,7 +257,7 @@
         {"shape":"AccountSetupInProgressException"},
         {"shape":"UnauthenticatedException"}
       ],
-      "documentation":"<p>Creates one or more Amazon Lightsail virtual private servers, or <i>instances</i>.</p>"
+      "documentation":"<p>Creates one or more Amazon Lightsail virtual private servers, or <i>instances</i>. Create instances using active blueprints. Inactive blueprints are listed to support customers with existing instances but are not necessarily available for launch of new instances. Blueprints are marked inactive when they become outdated due to operating system updates or new application releases. Use the get blueprints operation to return a list of available blueprints.</p>"
     },
     "CreateInstancesFromSnapshot":{
       "name":"CreateInstancesFromSnapshot",
@@ -295,7 +295,7 @@
         {"shape":"AccountSetupInProgressException"},
         {"shape":"UnauthenticatedException"}
       ],
-      "documentation":"<p>Creates sn SSH key pair.</p>"
+      "documentation":"<p>Creates an SSH key pair.</p>"
     },
     "CreateLoadBalancer":{
       "name":"CreateLoadBalancer",
@@ -314,7 +314,7 @@
         {"shape":"AccountSetupInProgressException"},
         {"shape":"UnauthenticatedException"}
       ],
-      "documentation":"<p>Creates a Lightsail load balancer.</p> <p>When you create a load balancer, you can specify certificates and port settings. You can create up to 5 load balancers per AWS Region in your account.</p>"
+      "documentation":"<p>Creates a Lightsail load balancer. To learn more about deciding whether to load balance your application, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/how-to/article/configure-lightsail-instances-for-load-balancing\">Configure your Lightsail instances for load balancing</a>. You can create up to 5 load balancers per AWS Region in your account.</p> <p>When you create a load balancer, you can specify a unique name and port settings. To change additional load balancer settings, use the <code>UpdateLoadBalancerAttribute</code> operation.</p>"
     },
     "CreateLoadBalancerTlsCertificate":{
       "name":"CreateLoadBalancerTlsCertificate",
@@ -334,6 +334,63 @@
         {"shape":"UnauthenticatedException"}
       ],
       "documentation":"<p>Creates a Lightsail load balancer TLS certificate.</p> <p>TLS is just an updated, more secure version of Secure Socket Layer (SSL).</p>"
+    },
+    "CreateRelationalDatabase":{
+      "name":"CreateRelationalDatabase",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateRelationalDatabaseRequest"},
+      "output":{"shape":"CreateRelationalDatabaseResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Creates a new database in Amazon Lightsail.</p>"
+    },
+    "CreateRelationalDatabaseFromSnapshot":{
+      "name":"CreateRelationalDatabaseFromSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateRelationalDatabaseFromSnapshotRequest"},
+      "output":{"shape":"CreateRelationalDatabaseFromSnapshotResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Creates a new database from an existing database snapshot in Amazon Lightsail.</p> <p>You can create a new database from a snapshot in if something goes wrong with your original database, or to change it to a different plan, such as a high availability or standard plan.</p>"
+    },
+    "CreateRelationalDatabaseSnapshot":{
+      "name":"CreateRelationalDatabaseSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateRelationalDatabaseSnapshotRequest"},
+      "output":{"shape":"CreateRelationalDatabaseSnapshotResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Creates a snapshot of your database in Amazon Lightsail. You can use snapshots for backups, to make copies of a database, and to save data before deleting a database.</p>"
     },
     "DeleteDisk":{
       "name":"DeleteDisk",
@@ -485,7 +542,7 @@
         {"shape":"AccountSetupInProgressException"},
         {"shape":"UnauthenticatedException"}
       ],
-      "documentation":"<p>Deletes a Lightsail load balancer.</p>"
+      "documentation":"<p>Deletes a Lightsail load balancer and all its associated SSL/TLS certificates. Once the load balancer is deleted, you will need to create a new load balancer, create a new certificate, and verify domain ownership again.</p>"
     },
     "DeleteLoadBalancerTlsCertificate":{
       "name":"DeleteLoadBalancerTlsCertificate",
@@ -504,7 +561,45 @@
         {"shape":"AccountSetupInProgressException"},
         {"shape":"UnauthenticatedException"}
       ],
-      "documentation":"<p>Deletes a TLS/SSL certificate associated with a Lightsail load balancer.</p>"
+      "documentation":"<p>Deletes an SSL/TLS certificate associated with a Lightsail load balancer.</p>"
+    },
+    "DeleteRelationalDatabase":{
+      "name":"DeleteRelationalDatabase",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteRelationalDatabaseRequest"},
+      "output":{"shape":"DeleteRelationalDatabaseResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Deletes a database in Amazon Lightsail.</p>"
+    },
+    "DeleteRelationalDatabaseSnapshot":{
+      "name":"DeleteRelationalDatabaseSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteRelationalDatabaseSnapshotRequest"},
+      "output":{"shape":"DeleteRelationalDatabaseSnapshotResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Deletes a database snapshot in Amazon Lightsail.</p>"
     },
     "DetachDisk":{
       "name":"DetachDisk",
@@ -542,7 +637,7 @@
         {"shape":"AccountSetupInProgressException"},
         {"shape":"UnauthenticatedException"}
       ],
-      "documentation":"<p>Detaches the specified instances from a Lightsail load balancer.</p>"
+      "documentation":"<p>Detaches the specified instances from a Lightsail load balancer.</p> <p>This operation waits until the instances are no longer needed before they are detached from the load balancer.</p>"
     },
     "DetachStaticIp":{
       "name":"DetachStaticIp",
@@ -998,7 +1093,7 @@
         {"shape":"AccountSetupInProgressException"},
         {"shape":"UnauthenticatedException"}
       ],
-      "documentation":"<p>Returns information about the TLS certificates that are associated with the specified Lightsail load balancer.</p> <p>TLS is just an updated, more secure version of Secure Socket Layer (SSL).</p>"
+      "documentation":"<p>Returns information about the TLS certificates that are associated with the specified Lightsail load balancer.</p> <p>TLS is just an updated, more secure version of Secure Socket Layer (SSL).</p> <p>You can have a maximum of 2 certificates associated with a Lightsail load balancer. One is active and the other is inactive.</p>"
     },
     "GetLoadBalancers":{
       "name":"GetLoadBalancers",
@@ -1093,7 +1188,235 @@
         {"shape":"AccountSetupInProgressException"},
         {"shape":"UnauthenticatedException"}
       ],
-      "documentation":"<p>Returns a list of all valid regions for Amazon Lightsail. Use the <code>include availability zones</code> parameter to also return the availability zones in a region.</p>"
+      "documentation":"<p>Returns a list of all valid regions for Amazon Lightsail. Use the <code>include availability zones</code> parameter to also return the Availability Zones in a region.</p>"
+    },
+    "GetRelationalDatabase":{
+      "name":"GetRelationalDatabase",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetRelationalDatabaseRequest"},
+      "output":{"shape":"GetRelationalDatabaseResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Returns information about a specific database in Amazon Lightsail.</p>"
+    },
+    "GetRelationalDatabaseBlueprints":{
+      "name":"GetRelationalDatabaseBlueprints",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetRelationalDatabaseBlueprintsRequest"},
+      "output":{"shape":"GetRelationalDatabaseBlueprintsResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Returns a list of available database blueprints in Amazon Lightsail. A blueprint describes the major engine version of a database.</p> <p>You can use a blueprint ID to create a new database that runs a specific database engine.</p>"
+    },
+    "GetRelationalDatabaseBundles":{
+      "name":"GetRelationalDatabaseBundles",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetRelationalDatabaseBundlesRequest"},
+      "output":{"shape":"GetRelationalDatabaseBundlesResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Returns the list of bundles that are available in Amazon Lightsail. A bundle describes the performance specifications for a database.</p> <p>You can use a bundle ID to create a new database with explicit performance specifications.</p>"
+    },
+    "GetRelationalDatabaseEvents":{
+      "name":"GetRelationalDatabaseEvents",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetRelationalDatabaseEventsRequest"},
+      "output":{"shape":"GetRelationalDatabaseEventsResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Returns a list of events for a specific database in Amazon Lightsail.</p>"
+    },
+    "GetRelationalDatabaseLogEvents":{
+      "name":"GetRelationalDatabaseLogEvents",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetRelationalDatabaseLogEventsRequest"},
+      "output":{"shape":"GetRelationalDatabaseLogEventsResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Returns a list of log events for a database in Amazon Lightsail.</p>"
+    },
+    "GetRelationalDatabaseLogStreams":{
+      "name":"GetRelationalDatabaseLogStreams",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetRelationalDatabaseLogStreamsRequest"},
+      "output":{"shape":"GetRelationalDatabaseLogStreamsResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Returns a list of available log streams for a specific database in Amazon Lightsail.</p>"
+    },
+    "GetRelationalDatabaseMasterUserPassword":{
+      "name":"GetRelationalDatabaseMasterUserPassword",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetRelationalDatabaseMasterUserPasswordRequest"},
+      "output":{"shape":"GetRelationalDatabaseMasterUserPasswordResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Returns the current, previous, or pending versions of the master user password for a Lightsail database.</p>"
+    },
+    "GetRelationalDatabaseMetricData":{
+      "name":"GetRelationalDatabaseMetricData",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetRelationalDatabaseMetricDataRequest"},
+      "output":{"shape":"GetRelationalDatabaseMetricDataResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Returns the data points of the specified metric for a database in Amazon Lightsail.</p>"
+    },
+    "GetRelationalDatabaseParameters":{
+      "name":"GetRelationalDatabaseParameters",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetRelationalDatabaseParametersRequest"},
+      "output":{"shape":"GetRelationalDatabaseParametersResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Returns all of the runtime parameters offered by the underlying database software, or engine, for a specific database in Amazon Lightsail.</p> <p>In addition to the parameter names and values, this operation returns other information about each parameter. This information includes whether changes require a reboot, whether the parameter is modifiable, the allowed values, and the data types.</p>"
+    },
+    "GetRelationalDatabaseSnapshot":{
+      "name":"GetRelationalDatabaseSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetRelationalDatabaseSnapshotRequest"},
+      "output":{"shape":"GetRelationalDatabaseSnapshotResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Returns information about a specific database snapshot in Amazon Lightsail.</p>"
+    },
+    "GetRelationalDatabaseSnapshots":{
+      "name":"GetRelationalDatabaseSnapshots",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetRelationalDatabaseSnapshotsRequest"},
+      "output":{"shape":"GetRelationalDatabaseSnapshotsResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Returns information about all of your database snapshots in Amazon Lightsail.</p>"
+    },
+    "GetRelationalDatabases":{
+      "name":"GetRelationalDatabases",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetRelationalDatabasesRequest"},
+      "output":{"shape":"GetRelationalDatabasesResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Returns information about all of your databases in Amazon Lightsail.</p>"
     },
     "GetStaticIp":{
       "name":"GetStaticIp",
@@ -1247,6 +1570,25 @@
       ],
       "documentation":"<p>Restarts a specific instance. When your Amazon Lightsail instance is finished rebooting, Lightsail assigns a new public IP address. To use the same IP address after restarting, create a static IP address and attach it to the instance.</p>"
     },
+    "RebootRelationalDatabase":{
+      "name":"RebootRelationalDatabase",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RebootRelationalDatabaseRequest"},
+      "output":{"shape":"RebootRelationalDatabaseResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Restarts a specific database in Amazon Lightsail.</p>"
+    },
     "ReleaseStaticIp":{
       "name":"ReleaseStaticIp",
       "http":{
@@ -1285,6 +1627,25 @@
       ],
       "documentation":"<p>Starts a specific Amazon Lightsail instance from a stopped state. To restart an instance, use the reboot instance operation.</p>"
     },
+    "StartRelationalDatabase":{
+      "name":"StartRelationalDatabase",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartRelationalDatabaseRequest"},
+      "output":{"shape":"StartRelationalDatabaseResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Starts a specific database from a stopped state in Amazon Lightsail. To restart a database, use the <code>reboot relational database</code> operation.</p>"
+    },
     "StopInstance":{
       "name":"StopInstance",
       "http":{
@@ -1303,6 +1664,25 @@
         {"shape":"UnauthenticatedException"}
       ],
       "documentation":"<p>Stops a specific Amazon Lightsail instance that is currently running.</p>"
+    },
+    "StopRelationalDatabase":{
+      "name":"StopRelationalDatabase",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopRelationalDatabaseRequest"},
+      "output":{"shape":"StopRelationalDatabaseResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Stops a specific database that is currently running in Amazon Lightsail.</p>"
     },
     "UnpeerVpc":{
       "name":"UnpeerVpc",
@@ -1359,7 +1739,45 @@
         {"shape":"AccountSetupInProgressException"},
         {"shape":"UnauthenticatedException"}
       ],
-      "documentation":"<p>Updates the specified attribute for a load balancer.</p>"
+      "documentation":"<p>Updates the specified attribute for a load balancer. You can only update one attribute at a time.</p>"
+    },
+    "UpdateRelationalDatabase":{
+      "name":"UpdateRelationalDatabase",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateRelationalDatabaseRequest"},
+      "output":{"shape":"UpdateRelationalDatabaseResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Allows the update of one or more attributes of a database in Amazon Lightsail.</p> <p>Updates are applied immediately, or in cases where the updates could result in an outage, are applied during the database's predefined maintenance window.</p>"
+    },
+    "UpdateRelationalDatabaseParameters":{
+      "name":"UpdateRelationalDatabaseParameters",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateRelationalDatabaseParametersRequest"},
+      "output":{"shape":"UpdateRelationalDatabaseParametersResult"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"OperationFailureException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ],
+      "documentation":"<p>Allows the update of one or more parameters of a database in Amazon Lightsail.</p> <p>Parameter updates don't cause outages; therefore, their application is not subject to the preferred maintenance window. However, there are two ways in which paramater updates are applied: <code>dynamic</code> or <code>pending-reboot</code>. Parameters marked with a <code>dynamic</code> apply type are applied immediately. Parameters marked with a <code>pending-reboot</code> apply type are applied only after the database is rebooted using the <code>reboot relational database</code> operation.</p>"
     }
   },
   "shapes":{
@@ -1455,7 +1873,7 @@
         },
         "instanceNames":{
           "shape":"ResourceNameList",
-          "documentation":"<p>An array of strings representing the instance name(s) you want to attach to your load balancer.</p>"
+          "documentation":"<p>An array of strings representing the instance name(s) you want to attach to your load balancer.</p> <p>An instance must be <code>running</code> before you can attach it to your load balancer.</p> <p>There are no additional limits on the number of instances you can attach to your load balancer, aside from the limit of Lightsail instances you can create in your account (20).</p>"
         }
       }
     },
@@ -1477,11 +1895,11 @@
       "members":{
         "loadBalancerName":{
           "shape":"ResourceName",
-          "documentation":"<p>The name of the load balancer to which you want to associate the TLS/SSL certificate.</p>"
+          "documentation":"<p>The name of the load balancer to which you want to associate the SSL/TLS certificate.</p>"
         },
         "certificateName":{
           "shape":"ResourceName",
-          "documentation":"<p>The name of your TLS/SSL certificate.</p>"
+          "documentation":"<p>The name of your SSL/TLS certificate.</p>"
         }
       }
     },
@@ -1490,7 +1908,7 @@
       "members":{
         "operations":{
           "shape":"OperationList",
-          "documentation":"<p>An object representing the API operations.</p>"
+          "documentation":"<p>An object representing the API operations.</p> <p>These SSL/TLS certificates are only usable by Lightsail load balancers. You can't get the certificate and use it for another purpose.</p>"
         }
       }
     },
@@ -1569,7 +1987,7 @@
         },
         "isActive":{
           "shape":"boolean",
-          "documentation":"<p>A Boolean value indicating whether the blueprint is active. When you update your blueprints, you will inactivate old blueprints and keep the most recent versions active.</p>"
+          "documentation":"<p>A Boolean value indicating whether the blueprint is active. Inactive blueprints are listed to support customers with existing instances but are not necessarily available for launch of new instances. Blueprints are marked inactive when they become outdated due to operating system updates or new application releases.</p>"
         },
         "minPower":{
           "shape":"integer",
@@ -1872,7 +2290,7 @@
         },
         "availabilityZone":{
           "shape":"string",
-          "documentation":"<p>The Availability Zone where you want to create your instances. Use the following formatting: <code>us-east-2a</code> (case sensitive). You can get a list of availability zones by using the <a href=\"http://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetRegions.html\">get regions</a> operation. Be sure to add the <code>include availability zones</code> parameter to your request.</p>"
+          "documentation":"<p>The Availability Zone where you want to create your instances. Use the following formatting: <code>us-east-2a</code> (case sensitive). You can get a list of Availability Zones by using the <a href=\"http://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetRegions.html\">get regions</a> operation. Be sure to add the <code>include Availability Zones</code> parameter to your request.</p>"
         },
         "instanceSnapshotName":{
           "shape":"ResourceName",
@@ -1884,7 +2302,7 @@
         },
         "userData":{
           "shape":"string",
-          "documentation":"<p>You can create a launch script that configures a server with additional user data. For example, <code>apt-get -y update</code>.</p> <note> <p>Depending on the machine image you choose, the command to get software on your instance varies. Amazon Linux and CentOS use <code>yum</code>, Debian and Ubuntu use <code>apt-get</code>, and FreeBSD uses <code>pkg</code>. For a complete list, see the <a href=\"http://lightsail.aws.amazon.com/ls/docs/getting-started/articles/pre-installed-apps\">Dev Guide</a>.</p> </note>"
+          "documentation":"<p>You can create a launch script that configures a server with additional user data. For example, <code>apt-get -y update</code>.</p> <note> <p>Depending on the machine image you choose, the command to get software on your instance varies. Amazon Linux and CentOS use <code>yum</code>, Debian and Ubuntu use <code>apt-get</code>, and FreeBSD uses <code>pkg</code>. For a complete list, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/getting-started/article/compare-options-choose-lightsail-instance-image\">Dev Guide</a>.</p> </note>"
         },
         "keyPairName":{
           "shape":"ResourceName",
@@ -1916,7 +2334,7 @@
         },
         "availabilityZone":{
           "shape":"string",
-          "documentation":"<p>The Availability Zone in which to create your instance. Use the following format: <code>us-east-2a</code> (case sensitive). You can get a list of availability zones by using the <a href=\"http://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetRegions.html\">get regions</a> operation. Be sure to add the <code>include availability zones</code> parameter to your request.</p>"
+          "documentation":"<p>The Availability Zone in which to create your instance. Use the following format: <code>us-east-2a</code> (case sensitive). You can get a list of Availability Zones by using the <a href=\"http://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetRegions.html\">get regions</a> operation. Be sure to add the <code>include Availability Zones</code> parameter to your request.</p>"
         },
         "customImageName":{
           "shape":"ResourceName",
@@ -1998,11 +2416,11 @@
         },
         "healthCheckPath":{
           "shape":"string",
-          "documentation":"<p>The path you provided to perform the load balancer health check. If you didn't specify a health check path, Lightsail uses the root path of your website (e.g., <code>\"/\"</code>).</p>"
+          "documentation":"<p>The path you provided to perform the load balancer health check. If you didn't specify a health check path, Lightsail uses the root path of your website (e.g., <code>\"/\"</code>).</p> <p>You may want to specify a custom health check path other than the root of your application if your home page loads slowly or has a lot of media or scripting on it.</p>"
         },
         "certificateName":{
           "shape":"ResourceName",
-          "documentation":"<p>The name of the TLS/SSL certificate.</p> <p>If you specify <code>certificateName</code>, then <code>certificateDomainName</code> is required (and vice-versa).</p>"
+          "documentation":"<p>The name of the SSL/TLS certificate.</p> <p>If you specify <code>certificateName</code>, then <code>certificateDomainName</code> is required (and vice-versa).</p>"
         },
         "certificateDomainName":{
           "shape":"DomainName",
@@ -2010,7 +2428,7 @@
         },
         "certificateAlternativeNames":{
           "shape":"DomainNameList",
-          "documentation":"<p>The alternative domain names to use with your TLS/SSL certificate (e.g., <code>www.example.com</code>, <code>www.ejemplo.com</code>, <code>ejemplo.com</code>).</p>"
+          "documentation":"<p>The optional alternative domains and subdomains to use with your SSL/TLS certificate (e.g., <code>www.example.com</code>, <code>example.com</code>, <code>m.example.com</code>, <code>blog.example.com</code>).</p>"
         }
       }
     },
@@ -2033,19 +2451,19 @@
       "members":{
         "loadBalancerName":{
           "shape":"ResourceName",
-          "documentation":"<p>The load balancer name where you want to create the TLS/SSL certificate.</p>"
+          "documentation":"<p>The load balancer name where you want to create the SSL/TLS certificate.</p>"
         },
         "certificateName":{
           "shape":"ResourceName",
-          "documentation":"<p>The TLS/SSL certificate name.</p>"
+          "documentation":"<p>The SSL/TLS certificate name.</p> <p>You can have up to 10 certificates in your account at one time. Each Lightsail load balancer can have up to 2 certificates associated with it at one time. There is also an overall limit to the number of certificates that can be issue in a 365-day period. For more information, see <a href=\"http://docs.aws.amazon.com/acm/latest/userguide/acm-limits.html\">Limits</a>.</p>"
         },
         "certificateDomainName":{
           "shape":"DomainName",
-          "documentation":"<p>The domain name (e.g., <code>example.com</code>) for your TLS/SSL certificate.</p>"
+          "documentation":"<p>The domain name (e.g., <code>example.com</code>) for your SSL/TLS certificate.</p>"
         },
         "certificateAlternativeNames":{
           "shape":"DomainNameList",
-          "documentation":"<p>An array of strings listing alternative domain names for your TLS/SSL certificate.</p>"
+          "documentation":"<p>An array of strings listing alternative domains and subdomains for your SSL/TLS certificate. Lightsail will de-dupe the names for you. You can have a maximum of 9 alternative names (in addition to the 1 primary domain). We do not support wildcards (e.g., <code>*.example.com</code>).</p>"
         }
       }
     },
@@ -2055,6 +2473,140 @@
         "operations":{
           "shape":"OperationList",
           "documentation":"<p>An object containing information about the API operations.</p>"
+        }
+      }
+    },
+    "CreateRelationalDatabaseFromSnapshotRequest":{
+      "type":"structure",
+      "required":["relationalDatabaseName"],
+      "members":{
+        "relationalDatabaseName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name to use for your new database.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 2 to 255 alphanumeric characters, or hyphens.</p> </li> <li> <p>The first and last character must be a letter or number.</p> </li> </ul>"
+        },
+        "availabilityZone":{
+          "shape":"string",
+          "documentation":"<p>The Availability Zone in which to create your new database. Use the <code>us-east-2a</code> case-sensitive format.</p> <p>You can get a list of Availability Zones by using the <code>get regions</code> operation. Be sure to add the <code>include relational database Availability Zones</code> parameter to your request.</p>"
+        },
+        "publiclyAccessible":{
+          "shape":"boolean",
+          "documentation":"<p>Specifies the accessibility options for your new database. A value of <code>true</code> specifies a database that is available to resources outside of your Lightsail account. A value of <code>false</code> specifies a database that is available only to your Lightsail resources in the same region as your database.</p>"
+        },
+        "relationalDatabaseSnapshotName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of the database snapshot from which to create your new database.</p>"
+        },
+        "relationalDatabaseBundleId":{
+          "shape":"string",
+          "documentation":"<p>The bundle ID for your new database. A bundle describes the performance specifications for your database.</p> <p>You can get a list of database bundle IDs by using the <code>get relational database bundles</code> operation.</p> <p>When creating a new database from a snapshot, you cannot choose a bundle that is smaller than the bundle of the source database.</p>"
+        },
+        "sourceRelationalDatabaseName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of the source database.</p>"
+        },
+        "restoreTime":{
+          "shape":"IsoDate",
+          "documentation":"<p>The date and time to restore your database from.</p> <p>Constraints:</p> <ul> <li> <p>Must be before the latest restorable time for the database.</p> </li> <li> <p>Cannot be specified if the <code>use latest restorable time</code> parameter is <code>true</code>.</p> </li> <li> <p>Specified in Universal Coordinated Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use a restore time of October 1, 2018, at 8 PM UTC, then you input <code>1538424000</code> as the restore time.</p> </li> </ul>"
+        },
+        "useLatestRestorableTime":{
+          "shape":"boolean",
+          "documentation":"<p>Specifies whether your database is restored from the latest backup time. A value of <code>true</code> restores from the latest backup time. </p> <p>Default: <code>false</code> </p> <p>Constraints: Cannot be specified if the <code>restore time</code> parameter is provided.</p>"
+        }
+      }
+    },
+    "CreateRelationalDatabaseFromSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "operations":{
+          "shape":"OperationList",
+          "documentation":"<p>An object describing the result of your create relational database from snapshot request.</p>"
+        }
+      }
+    },
+    "CreateRelationalDatabaseRequest":{
+      "type":"structure",
+      "required":[
+        "relationalDatabaseName",
+        "relationalDatabaseBlueprintId",
+        "relationalDatabaseBundleId",
+        "masterDatabaseName",
+        "masterUsername"
+      ],
+      "members":{
+        "relationalDatabaseName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name to use for your new database.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 2 to 255 alphanumeric characters, or hyphens.</p> </li> <li> <p>The first and last character must be a letter or number.</p> </li> </ul>"
+        },
+        "availabilityZone":{
+          "shape":"string",
+          "documentation":"<p>The Availability Zone in which to create your new database. Use the <code>us-east-2a</code> case-sensitive format.</p> <p>You can get a list of Availability Zones by using the <code>get regions</code> operation. Be sure to add the <code>include relational database Availability Zones</code> parameter to your request.</p>"
+        },
+        "relationalDatabaseBlueprintId":{
+          "shape":"string",
+          "documentation":"<p>The blueprint ID for your new database. A blueprint describes the major engine version of a database.</p> <p>You can get a list of database blueprints IDs by using the <code>get relational database blueprints</code> operation.</p>"
+        },
+        "relationalDatabaseBundleId":{
+          "shape":"string",
+          "documentation":"<p>The bundle ID for your new database. A bundle describes the performance specifications for your database.</p> <p>You can get a list of database bundle IDs by using the <code>get relational database bundles</code> operation.</p>"
+        },
+        "masterDatabaseName":{
+          "shape":"string",
+          "documentation":"<p>The name of the master database created when the Lightsail database resource is created.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 64 alphanumeric characters.</p> </li> <li> <p>Cannot be a word reserved by the specified database engine</p> </li> </ul>"
+        },
+        "masterUsername":{
+          "shape":"string",
+          "documentation":"<p>The master user name for your new database.</p> <p>Constraints:</p> <ul> <li> <p>Master user name is required.</p> </li> <li> <p>Must contain from 1 to 16 alphanumeric characters.</p> </li> <li> <p>The first character must be a letter.</p> </li> <li> <p>Cannot be a reserved word for the database engine you choose.</p> <p>For more information about reserved words in MySQL 5.6 or 5.7, see the Keywords and Reserved Words articles for <a href=\"https://dev.mysql.com/doc/refman/5.6/en/keywords.html\">MySQL 5.6</a> or <a href=\"https://dev.mysql.com/doc/refman/5.7/en/keywords.html\">MySQL 5.7</a> respectively.</p> </li> </ul>"
+        },
+        "masterUserPassword":{
+          "shape":"SensitiveString",
+          "documentation":"<p>The password for the master user of your new database. The password can include any printable ASCII character except \"/\", \"\"\", or \"@\".</p> <p>Constraints: Must contain 8 to 41 characters.</p>"
+        },
+        "preferredBackupWindow":{
+          "shape":"string",
+          "documentation":"<p>The daily time range during which automated backups are created for your new database if automated backups are enabled.</p> <p>The default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region. For more information about the preferred backup window time blocks for each region, see the <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupWindow\">Working With Backups</a> guide in the Amazon Relational Database Service (Amazon RDS) documentation.</p> <p>Constraints:</p> <ul> <li> <p>Must be in the <code>hh24:mi-hh24:mi</code> format.</p> <p>Example: <code>16:00-16:30</code> </p> </li> <li> <p>Specified in Universal Coordinated Time (UTC).</p> </li> <li> <p>Must not conflict with the preferred maintenance window.</p> </li> <li> <p>Must be at least 30 minutes.</p> </li> </ul>"
+        },
+        "preferredMaintenanceWindow":{
+          "shape":"string",
+          "documentation":"<p>The weekly time range during which system maintenance can occur on your new database.</p> <p>The default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region, occurring on a random day of the week.</p> <p>Constraints:</p> <ul> <li> <p>Must be in the <code>ddd:hh24:mi-ddd:hh24:mi</code> format.</p> </li> <li> <p>Valid days: Mon, Tue, Wed, Thu, Fri, Sat, Sun.</p> </li> <li> <p>Must be at least 30 minutes.</p> </li> <li> <p>Specified in Universal Coordinated Time (UTC).</p> </li> <li> <p>Example: <code>Tue:17:00-Tue:17:30</code> </p> </li> </ul>"
+        },
+        "publiclyAccessible":{
+          "shape":"boolean",
+          "documentation":"<p>Specifies the accessibility options for your new database. A value of <code>true</code> specifies a database that is available to resources outside of your Lightsail account. A value of <code>false</code> specifies a database that is available only to your Lightsail resources in the same region as your database.</p>"
+        }
+      }
+    },
+    "CreateRelationalDatabaseResult":{
+      "type":"structure",
+      "members":{
+        "operations":{
+          "shape":"OperationList",
+          "documentation":"<p>An object describing the result of your create relational database request.</p>"
+        }
+      }
+    },
+    "CreateRelationalDatabaseSnapshotRequest":{
+      "type":"structure",
+      "required":[
+        "relationalDatabaseName",
+        "relationalDatabaseSnapshotName"
+      ],
+      "members":{
+        "relationalDatabaseName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of the database on which to base your new snapshot.</p>"
+        },
+        "relationalDatabaseSnapshotName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name for your new database snapshot.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 2 to 255 alphanumeric characters, or hyphens.</p> </li> <li> <p>The first and last character must be a letter or number.</p> </li> </ul>"
+        }
+      }
+    },
+    "CreateRelationalDatabaseSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "operations":{
+          "shape":"OperationList",
+          "documentation":"<p>An object describing the result of your create relational database snapshot request.</p>"
         }
       }
     },
@@ -2230,11 +2782,11 @@
         },
         "certificateName":{
           "shape":"ResourceName",
-          "documentation":"<p>The TLS/SSL certificate name.</p>"
+          "documentation":"<p>The SSL/TLS certificate name.</p>"
         },
         "force":{
           "shape":"boolean",
-          "documentation":"<p>When <code>true</code>, forces the deletion of a TLS/SSL certificate.</p>"
+          "documentation":"<p>When <code>true</code>, forces the deletion of an SSL/TLS certificate.</p> <p>There can be two certificates associated with a Lightsail load balancer: the primary and the backup. The <code>force</code> parameter is required when the primary SSL/TLS certificate is in use by an instance attached to the load balancer.</p>"
         }
       }
     },
@@ -2244,6 +2796,52 @@
         "operations":{
           "shape":"OperationList",
           "documentation":"<p>An object describing the API operations.</p>"
+        }
+      }
+    },
+    "DeleteRelationalDatabaseRequest":{
+      "type":"structure",
+      "required":["relationalDatabaseName"],
+      "members":{
+        "relationalDatabaseName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of the database that you are deleting.</p>"
+        },
+        "skipFinalSnapshot":{
+          "shape":"boolean",
+          "documentation":"<p>Determines whether a final database snapshot is created before your database is deleted. If <code>true</code> is specified, no database snapshot is created. If <code>false</code> is specified, a database snapshot is created before your database is deleted.</p> <p>You must specify the <code>final relational database snapshot name</code> parameter if the <code>skip final snapshot</code> parameter is <code>false</code>.</p> <p>Default: <code>false</code> </p>"
+        },
+        "finalRelationalDatabaseSnapshotName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of the database snapshot created if <code>skip final snapshot</code> is <code>false</code>, which is the default value for that parameter.</p> <note> <p>Specifying this parameter and also specifying the <code>skip final snapshot</code> parameter to <code>true</code> results in an error.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must contain from 2 to 255 alphanumeric characters, or hyphens.</p> </li> <li> <p>The first and last character must be a letter or number.</p> </li> </ul>"
+        }
+      }
+    },
+    "DeleteRelationalDatabaseResult":{
+      "type":"structure",
+      "members":{
+        "operations":{
+          "shape":"OperationList",
+          "documentation":"<p>An object describing the result of your delete relational database request.</p>"
+        }
+      }
+    },
+    "DeleteRelationalDatabaseSnapshotRequest":{
+      "type":"structure",
+      "required":["relationalDatabaseSnapshotName"],
+      "members":{
+        "relationalDatabaseSnapshotName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of the database snapshot that you are deleting.</p>"
+        }
+      }
+    },
+    "DeleteRelationalDatabaseSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "operations":{
+          "shape":"OperationList",
+          "documentation":"<p>An object describing the result of your delete relational database snapshot request.</p>"
         }
       }
     },
@@ -2521,11 +3119,11 @@
         },
         "target":{
           "shape":"string",
-          "documentation":"<p>The target AWS name server (e.g., <code>ns-111.awsdns-22.com.</code>).</p>"
+          "documentation":"<p>The target AWS name server (e.g., <code>ns-111.awsdns-22.com.</code>).</p> <p>For Lightsail load balancers, the value looks like <code>ab1234c56789c6b86aba6fb203d443bc-123456789.us-east-2.elb.amazonaws.com</code>. Be sure to also set <code>isAlias</code> to <code>true</code> when setting up an A record for a load balancer.</p>"
         },
         "isAlias":{
           "shape":"boolean",
-          "documentation":"<p>When <code>true</code>, specifies whether the domain entry is an alias used by the Lightsail load balancer.</p>"
+          "documentation":"<p>When <code>true</code>, specifies whether the domain entry is an alias used by the Lightsail load balancer. You can include an alias (A type) record in your request, which points to a load balancer DNS name and routes traffic to your load balancer</p>"
         },
         "type":{
           "shape":"DomainEntryType",
@@ -2819,7 +3417,7 @@
         },
         "period":{
           "shape":"MetricPeriod",
-          "documentation":"<p>The time period for which you are requesting data.</p>"
+          "documentation":"<p>The granularity, in seconds, of the returned data points.</p>"
         },
         "startTime":{
           "shape":"timestamp",
@@ -3035,7 +3633,7 @@
         },
         "period":{
           "shape":"MetricPeriod",
-          "documentation":"<p>The time period duration for your health data request.</p>"
+          "documentation":"<p>The granularity, in seconds, of the returned data points.</p>"
         },
         "startTime":{
           "shape":"timestamp",
@@ -3051,7 +3649,7 @@
         },
         "statistics":{
           "shape":"MetricStatisticList",
-          "documentation":"<p>An array of statistics that you want to request metrics for. Valid values are listed below.</p>"
+          "documentation":"<p>An array of statistics that you want to request metrics for. Valid values are listed below.</p> <ul> <li> <p> <b> <code>SampleCount</code> </b> - The count (number) of data points used for the statistical calculation.</p> </li> <li> <p> <b> <code>Average</code> </b> - The value of Sum / SampleCount during the specified period. By comparing this statistic with the Minimum and Maximum, you can determine the full scope of a metric and how close the average use is to the Minimum and Maximum. This comparison helps you to know when to increase or decrease your resources as needed.</p> </li> <li> <p> <b> <code>Sum</code> </b> - All values submitted for the matching metric added together. This statistic can be useful for determining the total volume of a metric.</p> </li> <li> <p> <b> <code>Minimum</code> </b> - The lowest value observed during the specified period. You can use this value to determine low volumes of activity for your application.</p> </li> <li> <p> <b> <code>Maximum</code> </b> - The highest value observed during the specified period. You can use this value to determine high volumes of activity for your application.</p> </li> </ul>"
         }
       }
     },
@@ -3060,7 +3658,7 @@
       "members":{
         "metricName":{
           "shape":"LoadBalancerMetricName",
-          "documentation":"<p>The metric about which you are receiving information. Valid values are listed below.</p>"
+          "documentation":"<p>The metric about which you are receiving information. Valid values are listed below, along with the most useful <code>statistics</code> to include in your request.</p> <ul> <li> <p> <b> <code>ClientTLSNegotiationErrorCount</code> </b> - The number of TLS connections initiated by the client that did not establish a session with the load balancer. Possible causes include a mismatch of ciphers or protocols.</p> <p> <code>Statistics</code>: The most useful statistic is <code>Sum</code>.</p> </li> <li> <p> <b> <code>HealthyHostCount</code> </b> - The number of target instances that are considered healthy.</p> <p> <code>Statistics</code>: The most useful statistic are <code>Average</code>, <code>Minimum</code>, and <code>Maximum</code>.</p> </li> <li> <p> <b> <code>UnhealthyHostCount</code> </b> - The number of target instances that are considered unhealthy.</p> <p> <code>Statistics</code>: The most useful statistic are <code>Average</code>, <code>Minimum</code>, and <code>Maximum</code>.</p> </li> <li> <p> <b> <code>HTTPCode_LB_4XX_Count</code> </b> - The number of HTTP 4XX client error codes that originate from the load balancer. Client errors are generated when requests are malformed or incomplete. These requests have not been received by the target instance. This count does not include any response codes generated by the target instances.</p> <p> <code>Statistics</code>: The most useful statistic is <code>Sum</code>. Note that <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code> all return <code>1</code>.</p> </li> <li> <p> <b> <code>HTTPCode_LB_5XX_Count</code> </b> - The number of HTTP 5XX server error codes that originate from the load balancer. This count does not include any response codes generated by the target instances.</p> <p> <code>Statistics</code>: The most useful statistic is <code>Sum</code>. Note that <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code> all return <code>1</code>. Note that <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code> all return <code>1</code>.</p> </li> <li> <p> <b> <code>HTTPCode_Instance_2XX_Count</code> </b> - The number of HTTP response codes generated by the target instances. This does not include any response codes generated by the load balancer.</p> <p> <code>Statistics</code>: The most useful statistic is <code>Sum</code>. Note that <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code> all return <code>1</code>.</p> </li> <li> <p> <b> <code>HTTPCode_Instance_3XX_Count</code> </b> - The number of HTTP response codes generated by the target instances. This does not include any response codes generated by the load balancer. </p> <p> <code>Statistics</code>: The most useful statistic is <code>Sum</code>. Note that <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code> all return <code>1</code>.</p> </li> <li> <p> <b> <code>HTTPCode_Instance_4XX_Count</code> </b> - The number of HTTP response codes generated by the target instances. This does not include any response codes generated by the load balancer.</p> <p> <code>Statistics</code>: The most useful statistic is <code>Sum</code>. Note that <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code> all return <code>1</code>.</p> </li> <li> <p> <b> <code>HTTPCode_Instance_5XX_Count</code> </b> - The number of HTTP response codes generated by the target instances. This does not include any response codes generated by the load balancer.</p> <p> <code>Statistics</code>: The most useful statistic is <code>Sum</code>. Note that <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code> all return <code>1</code>.</p> </li> <li> <p> <b> <code>InstanceResponseTime</code> </b> - The time elapsed, in seconds, after the request leaves the load balancer until a response from the target instance is received.</p> <p> <code>Statistics</code>: The most useful statistic is <code>Average</code>.</p> </li> <li> <p> <b> <code>RejectedConnectionCount</code> </b> - The number of connections that were rejected because the load balancer had reached its maximum number of connections.</p> <p> <code>Statistics</code>: The most useful statistic is <code>Sum</code>.</p> </li> <li> <p> <b> <code>RequestCount</code> </b> - The number of requests processed over IPv4. This count includes only the requests with a response generated by a target instance of the load balancer.</p> <p> <code>Statistics</code>: The most useful statistic is <code>Sum</code>. Note that <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code> all return <code>1</code>.</p> </li> </ul>"
         },
         "metricData":{
           "shape":"MetricDatapointList",
@@ -3093,7 +3691,7 @@
       "members":{
         "loadBalancerName":{
           "shape":"ResourceName",
-          "documentation":"<p>The name of the load balancer where you stored your TLS/SSL certificate.</p>"
+          "documentation":"<p>The name of the load balancer you associated with your SSL/TLS certificate.</p>"
         }
       }
     },
@@ -3102,7 +3700,7 @@
       "members":{
         "tlsCertificates":{
           "shape":"LoadBalancerTlsCertificateList",
-          "documentation":"<p>An array of LoadBalancerTlsCertificate objects describing your TLS/SSL certificates.</p>"
+          "documentation":"<p>An array of LoadBalancerTlsCertificate objects describing your SSL/TLS certificates.</p>"
         }
       }
     },
@@ -3170,7 +3768,7 @@
         },
         "nextPageCount":{
           "shape":"string",
-          "documentation":"<p>(Deprecated) Returns the number of pages of results that remain.</p> <note> <p>In releases prior to June 12, 2017, this parameter returned <code>null</code> by the API. It is now deprecated, and the API returns the <code>nextPageToken</code> parameter instead.</p> </note>",
+          "documentation":"<p>(Deprecated) Returns the number of pages of results that remain.</p> <note> <p>In releases prior to June 12, 2017, this parameter returned <code>null</code> by the API. It is now deprecated, and the API returns the <code>next page token</code> parameter instead.</p> </note>",
           "deprecated":true
         },
         "nextPageToken":{
@@ -3207,6 +3805,10 @@
         "includeAvailabilityZones":{
           "shape":"boolean",
           "documentation":"<p>A Boolean value indicating whether to also include Availability Zones in your get regions request. Availability Zones are indicated with a letter: e.g., <code>us-east-2a</code>.</p>"
+        },
+        "includeRelationalDatabaseAvailabilityZones":{
+          "shape":"boolean",
+          "documentation":"<p>&gt;A Boolean value indicating whether to also include Availability Zones for databases in your get regions request. Availability Zones are indicated with a letter (e.g., <code>us-east-2a</code>).</p>"
         }
       }
     },
@@ -3216,6 +3818,341 @@
         "regions":{
           "shape":"RegionList",
           "documentation":"<p>An array of key-value pairs containing information about your get regions request.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseBlueprintsRequest":{
+      "type":"structure",
+      "members":{
+        "pageToken":{
+          "shape":"string",
+          "documentation":"<p>A token used for advancing to a specific page of results for your get relational database blueprints request.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseBlueprintsResult":{
+      "type":"structure",
+      "members":{
+        "blueprints":{
+          "shape":"RelationalDatabaseBlueprintList",
+          "documentation":"<p>An object describing the result of your get relational database blueprints request.</p>"
+        },
+        "nextPageToken":{
+          "shape":"string",
+          "documentation":"<p>A token used for advancing to the next page of results of your get relational database blueprints request.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseBundlesRequest":{
+      "type":"structure",
+      "members":{
+        "pageToken":{
+          "shape":"string",
+          "documentation":"<p>A token used for advancing to a specific page of results for your get relational database bundles request.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseBundlesResult":{
+      "type":"structure",
+      "members":{
+        "bundles":{
+          "shape":"RelationalDatabaseBundleList",
+          "documentation":"<p>An object describing the result of your get relational database bundles request.</p>"
+        },
+        "nextPageToken":{
+          "shape":"string",
+          "documentation":"<p>A token used for advancing to the next page of results of your get relational database bundles request.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseEventsRequest":{
+      "type":"structure",
+      "required":["relationalDatabaseName"],
+      "members":{
+        "relationalDatabaseName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of the database from which to get events.</p>"
+        },
+        "durationInMinutes":{
+          "shape":"integer",
+          "documentation":"<p>The number of minutes in the past from which to retrieve events. For example, to get all events from the past 2 hours, enter 120.</p> <p>Default: <code>60</code> </p> <p>The minimum is 1 and the maximum is 14 days (20160 minutes).</p>"
+        },
+        "pageToken":{
+          "shape":"string",
+          "documentation":"<p>A token used for advancing to a specific page of results from for get relational database events request.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseEventsResult":{
+      "type":"structure",
+      "members":{
+        "relationalDatabaseEvents":{
+          "shape":"RelationalDatabaseEventList",
+          "documentation":"<p>An object describing the result of your get relational database events request.</p>"
+        },
+        "nextPageToken":{
+          "shape":"string",
+          "documentation":"<p>A token used for advancing to the next page of results from your get relational database events request.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseLogEventsRequest":{
+      "type":"structure",
+      "required":[
+        "relationalDatabaseName",
+        "logStreamName"
+      ],
+      "members":{
+        "relationalDatabaseName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of your database for which to get log events.</p>"
+        },
+        "logStreamName":{
+          "shape":"string",
+          "documentation":"<p>The name of the log stream.</p> <p>Use the <code>get relational database log streams</code> operation to get a list of available log streams.</p>"
+        },
+        "startTime":{
+          "shape":"IsoDate",
+          "documentation":"<p>The start of the time interval from which to get log events.</p> <p>Constraints:</p> <ul> <li> <p>Specified in Universal Coordinated Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use a start time of October 1, 2018, at 8 PM UTC, then you input <code>1538424000</code> as the start time.</p> </li> </ul>"
+        },
+        "endTime":{
+          "shape":"IsoDate",
+          "documentation":"<p>The end of the time interval from which to get log events.</p> <p>Constraints:</p> <ul> <li> <p>Specified in Universal Coordinated Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use an end time of October 1, 2018, at 8 PM UTC, then you input <code>1538424000</code> as the end time.</p> </li> </ul>"
+        },
+        "startFromHead":{
+          "shape":"boolean",
+          "documentation":"<p>Parameter to specify if the log should start from head or tail. If <code>true</code> is specified, the log event starts from the head of the log. If <code>false</code> is specified, the log event starts from the tail of the log.</p> <p>Default: <code>false</code> </p>"
+        },
+        "pageToken":{
+          "shape":"string",
+          "documentation":"<p>A token used for advancing to a specific page of results for your get relational database log events request.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseLogEventsResult":{
+      "type":"structure",
+      "members":{
+        "resourceLogEvents":{
+          "shape":"LogEventList",
+          "documentation":"<p>An object describing the result of your get relational database log events request.</p>"
+        },
+        "nextBackwardToken":{
+          "shape":"string",
+          "documentation":"<p>A token used for advancing to the previous page of results from your get relational database log events request.</p>"
+        },
+        "nextForwardToken":{
+          "shape":"string",
+          "documentation":"<p>A token used for advancing to the next page of results from your get relational database log events request.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseLogStreamsRequest":{
+      "type":"structure",
+      "required":["relationalDatabaseName"],
+      "members":{
+        "relationalDatabaseName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of your database for which to get log streams.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseLogStreamsResult":{
+      "type":"structure",
+      "members":{
+        "logStreams":{
+          "shape":"StringList",
+          "documentation":"<p>An object describing the result of your get relational database log streams request.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseMasterUserPasswordRequest":{
+      "type":"structure",
+      "required":["relationalDatabaseName"],
+      "members":{
+        "relationalDatabaseName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of your database for which to get the master user password.</p>"
+        },
+        "passwordVersion":{
+          "shape":"RelationalDatabasePasswordVersion",
+          "documentation":"<p>The password version to return.</p> <p>Specifying <code>CURRENT</code> or <code>PREVIOUS</code> returns the current or previous passwords respectively. Specifying <code>PENDING</code> returns the newest version of the password that will rotate to <code>CURRENT</code>. After the <code>PENDING</code> password rotates to <code>CURRENT</code>, the <code>PENDING</code> password is no longer available.</p> <p>Default: <code>CURRENT</code> </p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseMasterUserPasswordResult":{
+      "type":"structure",
+      "members":{
+        "masterUserPassword":{
+          "shape":"SensitiveString",
+          "documentation":"<p>The master user password for the <code>password version</code> specified.</p>"
+        },
+        "createdAt":{
+          "shape":"IsoDate",
+          "documentation":"<p>The timestamp when the specified version of the master user password was created.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseMetricDataRequest":{
+      "type":"structure",
+      "required":[
+        "relationalDatabaseName",
+        "metricName",
+        "period",
+        "startTime",
+        "endTime",
+        "unit",
+        "statistics"
+      ],
+      "members":{
+        "relationalDatabaseName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of your database from which to get metric data.</p>"
+        },
+        "metricName":{
+          "shape":"RelationalDatabaseMetricName",
+          "documentation":"<p>The name of the metric data to return.</p>"
+        },
+        "period":{
+          "shape":"MetricPeriod",
+          "documentation":"<p>The granularity, in seconds, of the returned data points.</p>"
+        },
+        "startTime":{
+          "shape":"IsoDate",
+          "documentation":"<p>The start of the time interval from which to get metric data.</p> <p>Constraints:</p> <ul> <li> <p>Specified in Universal Coordinated Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use a start time of October 1, 2018, at 8 PM UTC, then you input <code>1538424000</code> as the start time.</p> </li> </ul>"
+        },
+        "endTime":{
+          "shape":"IsoDate",
+          "documentation":"<p>The end of the time interval from which to get metric data.</p> <p>Constraints:</p> <ul> <li> <p>Specified in Universal Coordinated Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use an end time of October 1, 2018, at 8 PM UTC, then you input <code>1538424000</code> as the end time.</p> </li> </ul>"
+        },
+        "unit":{
+          "shape":"MetricUnit",
+          "documentation":"<p>The unit for the metric data request.</p>"
+        },
+        "statistics":{
+          "shape":"MetricStatisticList",
+          "documentation":"<p>The array of statistics for your metric data request.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseMetricDataResult":{
+      "type":"structure",
+      "members":{
+        "metricName":{
+          "shape":"RelationalDatabaseMetricName",
+          "documentation":"<p>The name of the metric.</p>"
+        },
+        "metricData":{
+          "shape":"MetricDatapointList",
+          "documentation":"<p>An object describing the result of your get relational database metric data request.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseParametersRequest":{
+      "type":"structure",
+      "required":["relationalDatabaseName"],
+      "members":{
+        "relationalDatabaseName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of your database for which to get parameters.</p>"
+        },
+        "pageToken":{
+          "shape":"string",
+          "documentation":"<p>A token used for advancing to a specific page of results for your get relational database parameters request.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseParametersResult":{
+      "type":"structure",
+      "members":{
+        "parameters":{
+          "shape":"RelationalDatabaseParameterList",
+          "documentation":"<p>An object describing the result of your get relational database parameters request.</p>"
+        },
+        "nextPageToken":{
+          "shape":"string",
+          "documentation":"<p>A token used for advancing to the next page of results from your get static IPs request.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseRequest":{
+      "type":"structure",
+      "required":["relationalDatabaseName"],
+      "members":{
+        "relationalDatabaseName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of the database that you are looking up.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseResult":{
+      "type":"structure",
+      "members":{
+        "relationalDatabase":{
+          "shape":"RelationalDatabase",
+          "documentation":"<p>An object describing the specified database.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseSnapshotRequest":{
+      "type":"structure",
+      "required":["relationalDatabaseSnapshotName"],
+      "members":{
+        "relationalDatabaseSnapshotName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of the database snapshot for which to get information.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "relationalDatabaseSnapshot":{
+          "shape":"RelationalDatabaseSnapshot",
+          "documentation":"<p>An object describing the specified database snapshot.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseSnapshotsRequest":{
+      "type":"structure",
+      "members":{
+        "pageToken":{
+          "shape":"string",
+          "documentation":"<p>A token used for advancing to a specific page of results for your get relational database snapshots request.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabaseSnapshotsResult":{
+      "type":"structure",
+      "members":{
+        "relationalDatabaseSnapshots":{
+          "shape":"RelationalDatabaseSnapshotList",
+          "documentation":"<p>An object describing the result of your get relational database snapshots request.</p>"
+        },
+        "nextPageToken":{
+          "shape":"string",
+          "documentation":"<p>A token used for advancing to the next page of results from your get relational database snapshots request.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabasesRequest":{
+      "type":"structure",
+      "members":{
+        "pageToken":{
+          "shape":"string",
+          "documentation":"<p>A token used for advancing to a specific page of results for your get relational database request.</p>"
+        }
+      }
+    },
+    "GetRelationalDatabasesResult":{
+      "type":"structure",
+      "members":{
+        "relationalDatabases":{
+          "shape":"RelationalDatabaseList",
+          "documentation":"<p>An object describing the result of your get relational databases request.</p>"
+        },
+        "nextPageToken":{
+          "shape":"string",
+          "documentation":"<p>A token used for advancing to the next page of results from your get relational databases request.</p>"
         }
       }
     },
@@ -3307,7 +4244,7 @@
         },
         "location":{
           "shape":"ResourceLocation",
-          "documentation":"<p>The region name and availability zone where the instance is located.</p>"
+          "documentation":"<p>The region name and Availability Zone where the instance is located.</p>"
         },
         "resourceType":{
           "shape":"ResourceType",
@@ -3471,7 +4408,7 @@
         },
         "instanceHealthReason":{
           "shape":"InstanceHealthReason",
-          "documentation":"<p>More information about the instance health. Valid values are below.</p>"
+          "documentation":"<p>More information about the instance health. If the <code>instanceHealth</code> is <code>healthy</code>, then an <code>instanceHealthReason</code> value is not provided.</p> <p>If <b> <code>instanceHealth</code> </b> is <code>initial</code>, the <b> <code>instanceHealthReason</code> </b> value can be one of the following:</p> <ul> <li> <p> <b> <code>Lb.RegistrationInProgress</code> </b> - The target instance is in the process of being registered with the load balancer.</p> </li> <li> <p> <b> <code>Lb.InitialHealthChecking</code> </b> - The Lightsail load balancer is still sending the target instance the minimum number of health checks required to determine its health status.</p> </li> </ul> <p>If <b> <code>instanceHealth</code> </b> is <code>unhealthy</code>, the <b> <code>instanceHealthReason</code> </b> value can be one of the following:</p> <ul> <li> <p> <b> <code>Instance.ResponseCodeMismatch</code> </b> - The health checks did not return an expected HTTP code.</p> </li> <li> <p> <b> <code>Instance.Timeout</code> </b> - The health check requests timed out.</p> </li> <li> <p> <b> <code>Instance.FailedHealthChecks</code> </b> - The health checks failed because the connection to the target instance timed out, the target instance response was malformed, or the target instance failed the health check for an unknown reason.</p> </li> <li> <p> <b> <code>Lb.InternalError</code> </b> - The health checks failed due to an internal error.</p> </li> </ul> <p>If <b> <code>instanceHealth</code> </b> is <code>unused</code>, the <b> <code>instanceHealthReason</code> </b> value can be one of the following:</p> <ul> <li> <p> <b> <code>Instance.NotRegistered</code> </b> - The target instance is not registered with the target group.</p> </li> <li> <p> <b> <code>Instance.NotInUse</code> </b> - The target group is not used by any load balancer, or the target instance is in an Availability Zone that is not enabled for its load balancer.</p> </li> <li> <p> <b> <code>Instance.IpUnusable</code> </b> - The target IP address is reserved for use by a Lightsail load balancer.</p> </li> <li> <p> <b> <code>Instance.InvalidState</code> </b> - The target is in the stopped or terminated state.</p> </li> </ul> <p>If <b> <code>instanceHealth</code> </b> is <code>draining</code>, the <b> <code>instanceHealthReason</code> </b> value can be one of the following:</p> <ul> <li> <p> <b> <code>Instance.DeregistrationInProgress</code> </b> - The target instance is in the process of being deregistered and the deregistration delay period has not expired.</p> </li> </ul>"
         }
       },
       "documentation":"<p>Describes information about the health of the instance.</p>"
@@ -3605,7 +4542,7 @@
         },
         "location":{
           "shape":"ResourceLocation",
-          "documentation":"<p>The region name and availability zone where you created the snapshot.</p>"
+          "documentation":"<p>The region name and Availability Zone where you created the snapshot.</p>"
         },
         "resourceType":{
           "shape":"ResourceType",
@@ -3680,7 +4617,7 @@
         "message":{"shape":"string"},
         "tip":{"shape":"string"}
       },
-      "documentation":"<p>Lightsail throws this exception when user input does not conform to the validation rules of an input field.</p> <note> <p>Domain-related APIs are only available in the N. Virginia (us-east-1) Region. Please set your Region configuration to us-east-1 to create, view, or edit these resources.</p> </note>",
+      "documentation":"<p>Lightsail throws this exception when user input does not conform to the validation rules of an input field.</p> <note> <p>Domain-related APIs are only available in the N. Virginia (us-east-1) Region. Please set your AWS Region configuration to us-east-1 to create, view, or edit these resources.</p> </note>",
       "exception":true
     },
     "IpAddress":{
@@ -3765,7 +4702,7 @@
         },
         "location":{
           "shape":"ResourceLocation",
-          "documentation":"<p>The AWS Region and Availability Zone where your load balancer was created (e.g., <code>us-east-2a</code>).</p>"
+          "documentation":"<p>The AWS Region where your load balancer was created (e.g., <code>us-east-2a</code>). Lightsail automatically creates your load balancer across Availability Zones.</p>"
         },
         "resourceType":{
           "shape":"ResourceType",
@@ -3781,11 +4718,11 @@
         },
         "protocol":{
           "shape":"LoadBalancerProtocol",
-          "documentation":"<p>The protocol you have enabled for your load balancer. Valid values are below.</p>"
+          "documentation":"<p>The protocol you have enabled for your load balancer. Valid values are below.</p> <p>You can't just have <code>HTTP_HTTPS</code>, but you can have just <code>HTTP</code>.</p>"
         },
         "publicPorts":{
           "shape":"PortList",
-          "documentation":"<p>An array of public port settings for your load balancer.</p>"
+          "documentation":"<p>An array of public port settings for your load balancer. For HTTP, use port 80. For HTTPS, use port 443.</p>"
         },
         "healthCheckPath":{
           "shape":"NonEmptyString",
@@ -3793,7 +4730,7 @@
         },
         "instancePort":{
           "shape":"integer",
-          "documentation":"<p>The instance port where the load balancer is listening.</p>"
+          "documentation":"<p>The port where the load balancer will direct traffic to your Lightsail instances. For HTTP traffic, it's port 80. For HTTPS traffic, it's port 443.</p>"
         },
         "instanceHealthSummary":{
           "shape":"InstanceHealthSummaryList",
@@ -3801,7 +4738,7 @@
         },
         "tlsCertificateSummaries":{
           "shape":"LoadBalancerTlsCertificateSummaryList",
-          "documentation":"<p>An array of LoadBalancerTlsCertificateSummary objects that provide additional information about the TLS/SSL certificates.</p>"
+          "documentation":"<p>An array of LoadBalancerTlsCertificateSummary objects that provide additional information about the SSL/TLS certificates. For example, if <code>true</code>, the certificate is attached to the load balancer.</p>"
         },
         "configurationOptions":{
           "shape":"LoadBalancerConfigurationOptions",
@@ -3866,19 +4803,19 @@
       "members":{
         "name":{
           "shape":"ResourceName",
-          "documentation":"<p>The name of the TLS/SSL certificate (e.g., <code>my-certificate</code>).</p>"
+          "documentation":"<p>The name of the SSL/TLS certificate (e.g., <code>my-certificate</code>).</p>"
         },
         "arn":{
           "shape":"NonEmptyString",
-          "documentation":"<p>The Amazon Resource Name (ARN) of the TLS/SSL certificate.</p>"
+          "documentation":"<p>The Amazon Resource Name (ARN) of the SSL/TLS certificate.</p>"
         },
         "supportCode":{
           "shape":"string",
-          "documentation":"<p>The support code. Include this code in your email to support when you have questions about your Lightsail load balancer or TLS/SSL certificate. This code enables our support team to look up your Lightsail information more easily.</p>"
+          "documentation":"<p>The support code. Include this code in your email to support when you have questions about your Lightsail load balancer or SSL/TLS certificate. This code enables our support team to look up your Lightsail information more easily.</p>"
         },
         "createdAt":{
           "shape":"IsoDate",
-          "documentation":"<p>The time when you created your TLS/SSL certificate.</p>"
+          "documentation":"<p>The time when you created your SSL/TLS certificate.</p>"
         },
         "location":{
           "shape":"ResourceLocation",
@@ -3886,23 +4823,23 @@
         },
         "resourceType":{
           "shape":"ResourceType",
-          "documentation":"<p>The resource type (e.g., <code>LoadBalancerTlsCertificate</code>.</p>"
+          "documentation":"<p>The resource type (e.g., <code>LoadBalancerTlsCertificate</code>).</p> <ul> <li> <p> <b> <code>Instance</code> </b> - A Lightsail instance (a virtual private server)</p> </li> <li> <p> <b> <code>StaticIp</code> </b> - A static IP address</p> </li> <li> <p> <b> <code>KeyPair</code> </b> - The key pair used to connect to a Lightsail instance</p> </li> <li> <p> <b> <code>InstanceSnapshot</code> </b> - A Lightsail instance snapshot</p> </li> <li> <p> <b> <code>Domain</code> </b> - A DNS zone</p> </li> <li> <p> <b> <code>PeeredVpc</code> </b> - A peered VPC</p> </li> <li> <p> <b> <code>LoadBalancer</code> </b> - A Lightsail load balancer</p> </li> <li> <p> <b> <code>LoadBalancerTlsCertificate</code> </b> - An SSL/TLS certificate associated with a Lightsail load balancer</p> </li> <li> <p> <b> <code>Disk</code> </b> - A Lightsail block storage disk</p> </li> <li> <p> <b> <code>DiskSnapshot</code> </b> - A block storage disk snapshot</p> </li> </ul>"
         },
         "loadBalancerName":{
           "shape":"ResourceName",
-          "documentation":"<p>The load balancer name where your TLS/SSL certificate is attached.</p>"
+          "documentation":"<p>The load balancer name where your SSL/TLS certificate is attached.</p>"
         },
         "isAttached":{
           "shape":"boolean",
-          "documentation":"<p>When <code>true</code>, the TLS/SSL certificate is attached to the Lightsail load balancer.</p>"
+          "documentation":"<p>When <code>true</code>, the SSL/TLS certificate is attached to the Lightsail load balancer.</p>"
         },
         "status":{
           "shape":"LoadBalancerTlsCertificateStatus",
-          "documentation":"<p>The status of the TLS/SSL certificate. Valid values are below.</p>"
+          "documentation":"<p>The status of the SSL/TLS certificate. Valid values are below.</p>"
         },
         "domainName":{
           "shape":"DomainName",
-          "documentation":"<p>The domain name for your TLS/SSL certificate.</p>"
+          "documentation":"<p>The domain name for your SSL/TLS certificate.</p>"
         },
         "domainValidationRecords":{
           "shape":"LoadBalancerTlsCertificateDomainValidationRecordList",
@@ -3910,11 +4847,11 @@
         },
         "failureReason":{
           "shape":"LoadBalancerTlsCertificateFailureReason",
-          "documentation":"<p>The reason for the TLS/SSL certificate validation failure.</p>"
+          "documentation":"<p>The reason for the SSL/TLS certificate validation failure.</p>"
         },
         "issuedAt":{
           "shape":"IsoDate",
-          "documentation":"<p>The time when the TLS/SSL certificate was issued.</p>"
+          "documentation":"<p>The time when the SSL/TLS certificate was issued.</p>"
         },
         "issuer":{
           "shape":"NonEmptyString",
@@ -3926,11 +4863,11 @@
         },
         "notAfter":{
           "shape":"IsoDate",
-          "documentation":"<p>The timestamp when the TLS/SSL certificate expires.</p>"
+          "documentation":"<p>The timestamp when the SSL/TLS certificate expires.</p>"
         },
         "notBefore":{
           "shape":"IsoDate",
-          "documentation":"<p>The timestamp when the TLS/SSL certificate is first valid.</p>"
+          "documentation":"<p>The timestamp when the SSL/TLS certificate is first valid.</p>"
         },
         "renewalSummary":{
           "shape":"LoadBalancerTlsCertificateRenewalSummary",
@@ -3942,7 +4879,7 @@
         },
         "revokedAt":{
           "shape":"IsoDate",
-          "documentation":"<p>The timestamp when the TLS/SSL certificate was revoked.</p>"
+          "documentation":"<p>The timestamp when the SSL/TLS certificate was revoked.</p>"
         },
         "serial":{
           "shape":"NonEmptyString",
@@ -3958,10 +4895,10 @@
         },
         "subjectAlternativeNames":{
           "shape":"StringList",
-          "documentation":"<p>One or more domain names (subject alternative names) included in the certificate. This list contains the domain names that are bound to the public key that is contained in the certificate. The subject alternative names include the canonical domain name (CN) of the certificate and additional domain names that can be used to connect to the website.</p>"
+          "documentation":"<p>One or more domains or subdomains included in the certificate. This list contains the domain names that are bound to the public key that is contained in the certificate. The subject alternative names include the canonical domain name (CNAME) of the certificate and additional domain names that can be used to connect to the website, such as <code>example.com</code>, <code>www.example.com</code>, or <code>m.example.com</code>.</p>"
         }
       },
-      "documentation":"<p>Describes a load balancer TLS/SSL certificate.</p> <p>TLS is just an updated, more secure version of Secure Socket Layer (SSL).</p>"
+      "documentation":"<p>Describes a load balancer SSL/TLS certificate.</p> <p>TLS is just an updated, more secure version of Secure Socket Layer (SSL).</p>"
     },
     "LoadBalancerTlsCertificateDomainStatus":{
       "type":"string",
@@ -3976,14 +4913,14 @@
       "members":{
         "domainName":{
           "shape":"DomainName",
-          "documentation":"<p>A fully qualified domain name in the certificate request.</p>"
+          "documentation":"<p>The fully qualified domain name in the certificate request.</p>"
         },
         "validationStatus":{
           "shape":"LoadBalancerTlsCertificateDomainStatus",
           "documentation":"<p>The status of the domain validation. Valid values are listed below.</p>"
         }
       },
-      "documentation":"<p>Contains information about the domain names on a TLS/SSL certificate that you will use to validate domain ownership.</p>"
+      "documentation":"<p>Contains information about the domain names on an SSL/TLS certificate that you will use to validate domain ownership.</p>"
     },
     "LoadBalancerTlsCertificateDomainValidationOptionList":{
       "type":"list",
@@ -4010,10 +4947,10 @@
         },
         "domainName":{
           "shape":"DomainName",
-          "documentation":"<p>The domain name against which your TLS/SSL certificate was validated.</p>"
+          "documentation":"<p>The domain name against which your SSL/TLS certificate was validated.</p>"
         }
       },
-      "documentation":"<p>Describes the validation record of each domain name in the TLS/SSL certificate.</p>"
+      "documentation":"<p>Describes the validation record of each domain name in the SSL/TLS certificate.</p>"
     },
     "LoadBalancerTlsCertificateDomainValidationRecordList":{
       "type":"list",
@@ -4089,18 +5026,36 @@
       "members":{
         "name":{
           "shape":"ResourceName",
-          "documentation":"<p>The name of the TLS/SSL certificate.</p>"
+          "documentation":"<p>The name of the SSL/TLS certificate.</p>"
         },
         "isAttached":{
           "shape":"boolean",
-          "documentation":"<p>When <code>true</code>, the TLS/SSL certificate is attached to the Lightsail load balancer.</p>"
+          "documentation":"<p>When <code>true</code>, the SSL/TLS certificate is attached to the Lightsail load balancer.</p>"
         }
       },
-      "documentation":"<p>Provides a summary of TLS/SSL certificate metadata.</p>"
+      "documentation":"<p>Provides a summary of SSL/TLS certificate metadata.</p>"
     },
     "LoadBalancerTlsCertificateSummaryList":{
       "type":"list",
       "member":{"shape":"LoadBalancerTlsCertificateSummary"}
+    },
+    "LogEvent":{
+      "type":"structure",
+      "members":{
+        "createdAt":{
+          "shape":"IsoDate",
+          "documentation":"<p>The timestamp when the database log event was created.</p>"
+        },
+        "message":{
+          "shape":"string",
+          "documentation":"<p>The message of the database log event.</p>"
+        }
+      },
+      "documentation":"<p>Describes a database log event.</p>"
+    },
+    "LogEventList":{
+      "type":"list",
+      "member":{"shape":"LogEvent"}
     },
     "MetricDatapoint":{
       "type":"structure",
@@ -4325,7 +5280,8 @@
         "NotStarted",
         "Started",
         "Failed",
-        "Completed"
+        "Completed",
+        "Succeeded"
       ]
     },
     "OperationType":{
@@ -4394,6 +5350,46 @@
           "documentation":"<p>An array of key-value pairs containing information about the request operation.</p>"
         }
       }
+    },
+    "PendingMaintenanceAction":{
+      "type":"structure",
+      "members":{
+        "action":{
+          "shape":"NonEmptyString",
+          "documentation":"<p>The type of pending database maintenance action.</p>"
+        },
+        "description":{
+          "shape":"NonEmptyString",
+          "documentation":"<p>Additional detail about the pending database maintenance action.</p>"
+        },
+        "currentApplyDate":{
+          "shape":"IsoDate",
+          "documentation":"<p>The effective date of the pending database maintenance action.</p>"
+        }
+      },
+      "documentation":"<p>Describes a pending database maintenance action.</p>"
+    },
+    "PendingMaintenanceActionList":{
+      "type":"list",
+      "member":{"shape":"PendingMaintenanceAction"}
+    },
+    "PendingModifiedRelationalDatabaseValues":{
+      "type":"structure",
+      "members":{
+        "masterUserPassword":{
+          "shape":"string",
+          "documentation":"<p>The password for the master user of the database.</p>"
+        },
+        "engineVersion":{
+          "shape":"string",
+          "documentation":"<p>The database engine version.</p>"
+        },
+        "backupRetentionEnabled":{
+          "shape":"boolean",
+          "documentation":"<p>A Boolean value indicating whether automated backup retention is enabled.</p>"
+        }
+      },
+      "documentation":"<p>Describes a pending database value modification.</p>"
     },
     "Port":{
       "type":"integer",
@@ -4481,7 +5477,26 @@
       "members":{
         "operations":{
           "shape":"OperationList",
-          "documentation":"<p>An array of key-value pairs containing information about the request operation.</p>"
+          "documentation":"<p>An array of key-value pairs containing information about the request operations.</p>"
+        }
+      }
+    },
+    "RebootRelationalDatabaseRequest":{
+      "type":"structure",
+      "required":["relationalDatabaseName"],
+      "members":{
+        "relationalDatabaseName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of your database to reboot.</p>"
+        }
+      }
+    },
+    "RebootRelationalDatabaseResult":{
+      "type":"structure",
+      "members":{
+        "operations":{
+          "shape":"OperationList",
+          "documentation":"<p>An object describing the result of your reboot relational database request.</p>"
         }
       }
     },
@@ -4507,6 +5522,10 @@
         "availabilityZones":{
           "shape":"AvailabilityZoneList",
           "documentation":"<p>The Availability Zones. Follows the format <code>us-east-2a</code> (case-sensitive).</p>"
+        },
+        "relationalDatabaseAvailabilityZones":{
+          "shape":"AvailabilityZoneList",
+          "documentation":"<p>The Availability Zones for databases. Follows the format <code>us-east-2a</code> (case-sensitive).</p>"
         }
       },
       "documentation":"<p>Describes the AWS Region.</p>"
@@ -4523,13 +5542,391 @@
         "us-west-1",
         "us-west-2",
         "eu-west-1",
+        "eu-west-2",
+        "eu-west-3",
         "eu-central-1",
+        "ca-central-1",
         "ap-south-1",
         "ap-southeast-1",
         "ap-southeast-2",
         "ap-northeast-1",
         "ap-northeast-2"
       ]
+    },
+    "RelationalDatabase":{
+      "type":"structure",
+      "members":{
+        "name":{
+          "shape":"ResourceName",
+          "documentation":"<p>The unique name of the database resource in Lightsail.</p>"
+        },
+        "arn":{
+          "shape":"NonEmptyString",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the database.</p>"
+        },
+        "supportCode":{
+          "shape":"string",
+          "documentation":"<p>The support code for the database. Include this code in your email to support when you have questions about a database in Lightsail. This code enables our support team to look up your Lightsail information more easily.</p>"
+        },
+        "createdAt":{
+          "shape":"IsoDate",
+          "documentation":"<p>The timestamp when the database was created. Formatted in Unix time.</p>"
+        },
+        "location":{
+          "shape":"ResourceLocation",
+          "documentation":"<p>The Region name and Availability Zone where the database is located.</p>"
+        },
+        "resourceType":{
+          "shape":"ResourceType",
+          "documentation":"<p>The Lightsail resource type for the database (for example, <code>RelationalDatabase</code>).</p>"
+        },
+        "relationalDatabaseBlueprintId":{
+          "shape":"NonEmptyString",
+          "documentation":"<p>The blueprint ID for the database. A blueprint describes the major engine version of a database.</p>"
+        },
+        "relationalDatabaseBundleId":{
+          "shape":"NonEmptyString",
+          "documentation":"<p>The bundle ID for the database. A bundle describes the performance specifications for your database.</p>"
+        },
+        "masterDatabaseName":{
+          "shape":"string",
+          "documentation":"<p>The name of the master database created when the Lightsail database resource is created.</p>"
+        },
+        "hardware":{
+          "shape":"RelationalDatabaseHardware",
+          "documentation":"<p>Describes the hardware of the database.</p>"
+        },
+        "state":{
+          "shape":"NonEmptyString",
+          "documentation":"<p>Describes the current state of the database.</p>"
+        },
+        "secondaryAvailabilityZone":{
+          "shape":"string",
+          "documentation":"<p>Describes the secondary Availability Zone of a high availability database.</p> <p>The secondary database is used for failover support of a high availability database.</p>"
+        },
+        "backupRetentionEnabled":{
+          "shape":"boolean",
+          "documentation":"<p>A Boolean value indicating whether automated backup retention is enabled for the database.</p>"
+        },
+        "pendingModifiedValues":{
+          "shape":"PendingModifiedRelationalDatabaseValues",
+          "documentation":"<p>Describes pending database value modifications.</p>"
+        },
+        "engine":{
+          "shape":"NonEmptyString",
+          "documentation":"<p>The database software (for example, <code>MySQL</code>).</p>"
+        },
+        "engineVersion":{
+          "shape":"NonEmptyString",
+          "documentation":"<p>The database engine version (for example, <code>5.7.23</code>).</p>"
+        },
+        "latestRestorableTime":{
+          "shape":"IsoDate",
+          "documentation":"<p>The latest point in time to which the database can be restored. Formatted in Unix time.</p>"
+        },
+        "masterUsername":{
+          "shape":"NonEmptyString",
+          "documentation":"<p>The master user name of the database.</p>"
+        },
+        "parameterApplyStatus":{
+          "shape":"NonEmptyString",
+          "documentation":"<p>The status of parameter updates for the database.</p>"
+        },
+        "preferredBackupWindow":{
+          "shape":"NonEmptyString",
+          "documentation":"<p>The daily time range during which automated backups are created for the database (for example, <code>16:00-16:30</code>).</p>"
+        },
+        "preferredMaintenanceWindow":{
+          "shape":"NonEmptyString",
+          "documentation":"<p>The weekly time range during which system maintenance can occur on the database.</p> <p>In the format <code>ddd:hh24:mi-ddd:hh24:mi</code>. For example, <code>Tue:17:00-Tue:17:30</code>.</p>"
+        },
+        "publiclyAccessible":{
+          "shape":"boolean",
+          "documentation":"<p>A Boolean value indicating whether the database is publicly accessible.</p>"
+        },
+        "masterEndpoint":{
+          "shape":"RelationalDatabaseEndpoint",
+          "documentation":"<p>The master endpoint for the database.</p>"
+        },
+        "pendingMaintenanceActions":{
+          "shape":"PendingMaintenanceActionList",
+          "documentation":"<p>Describes the pending maintenance actions for the database.</p>"
+        }
+      },
+      "documentation":"<p>Describes a database.</p>"
+    },
+    "RelationalDatabaseBlueprint":{
+      "type":"structure",
+      "members":{
+        "blueprintId":{
+          "shape":"string",
+          "documentation":"<p>The ID for the database blueprint.</p>"
+        },
+        "engine":{
+          "shape":"RelationalDatabaseEngine",
+          "documentation":"<p>The database software of the database blueprint (for example, <code>MySQL</code>).</p>"
+        },
+        "engineVersion":{
+          "shape":"string",
+          "documentation":"<p>The database engine version for the database blueprint (for example, <code>5.7.23</code>).</p>"
+        },
+        "engineDescription":{
+          "shape":"string",
+          "documentation":"<p>The description of the database engine for the database blueprint.</p>"
+        },
+        "engineVersionDescription":{
+          "shape":"string",
+          "documentation":"<p>The description of the database engine version for the database blueprint.</p>"
+        },
+        "isEngineDefault":{
+          "shape":"boolean",
+          "documentation":"<p>A Boolean value indicating whether the engine version is the default for the database blueprint.</p>"
+        }
+      },
+      "documentation":"<p>Describes a database image, or blueprint. A blueprint describes the major engine version of a database.</p>"
+    },
+    "RelationalDatabaseBlueprintList":{
+      "type":"list",
+      "member":{"shape":"RelationalDatabaseBlueprint"}
+    },
+    "RelationalDatabaseBundle":{
+      "type":"structure",
+      "members":{
+        "bundleId":{
+          "shape":"string",
+          "documentation":"<p>The ID for the database bundle.</p>"
+        },
+        "name":{
+          "shape":"string",
+          "documentation":"<p>The name for the database bundle.</p>"
+        },
+        "price":{
+          "shape":"float",
+          "documentation":"<p>The cost of the database bundle in US currency.</p>"
+        },
+        "ramSizeInGb":{
+          "shape":"float",
+          "documentation":"<p>The amount of RAM in GB (for example, <code>2.0</code>) for the database bundle.</p>"
+        },
+        "diskSizeInGb":{
+          "shape":"integer",
+          "documentation":"<p>The size of the disk for the database bundle.</p>"
+        },
+        "transferPerMonthInGb":{
+          "shape":"integer",
+          "documentation":"<p>The data transfer rate per month in GB for the database bundle.</p>"
+        },
+        "cpuCount":{
+          "shape":"integer",
+          "documentation":"<p>The number of virtual CPUs (vCPUs) for the database bundle.</p>"
+        },
+        "isEncrypted":{
+          "shape":"boolean",
+          "documentation":"<p>A Boolean value indicating whether the database bundle is encrypted.</p>"
+        },
+        "isActive":{
+          "shape":"boolean",
+          "documentation":"<p>A Boolean value indicating whether the database bundle is active.</p>"
+        }
+      },
+      "documentation":"<p>Describes a database bundle. A bundle describes the performance specifications of the database.</p>"
+    },
+    "RelationalDatabaseBundleList":{
+      "type":"list",
+      "member":{"shape":"RelationalDatabaseBundle"}
+    },
+    "RelationalDatabaseEndpoint":{
+      "type":"structure",
+      "members":{
+        "port":{
+          "shape":"integer",
+          "documentation":"<p>Specifies the port that the database is listening on.</p>"
+        },
+        "address":{
+          "shape":"NonEmptyString",
+          "documentation":"<p>Specifies the DNS address of the database.</p>"
+        }
+      },
+      "documentation":"<p>Describes an endpoint for a database.</p>"
+    },
+    "RelationalDatabaseEngine":{
+      "type":"string",
+      "enum":["mysql"]
+    },
+    "RelationalDatabaseEvent":{
+      "type":"structure",
+      "members":{
+        "resource":{
+          "shape":"ResourceName",
+          "documentation":"<p>The database that the database event relates to.</p>"
+        },
+        "createdAt":{
+          "shape":"IsoDate",
+          "documentation":"<p>The timestamp when the database event was created.</p>"
+        },
+        "message":{
+          "shape":"string",
+          "documentation":"<p>The message of the database event.</p>"
+        },
+        "eventCategories":{
+          "shape":"StringList",
+          "documentation":"<p>The category that the database event belongs to.</p>"
+        }
+      },
+      "documentation":"<p>Describes an event for a database.</p>"
+    },
+    "RelationalDatabaseEventList":{
+      "type":"list",
+      "member":{"shape":"RelationalDatabaseEvent"}
+    },
+    "RelationalDatabaseHardware":{
+      "type":"structure",
+      "members":{
+        "cpuCount":{
+          "shape":"integer",
+          "documentation":"<p>The number of vCPUs for the database.</p>"
+        },
+        "diskSizeInGb":{
+          "shape":"integer",
+          "documentation":"<p>The size of the disk for the database.</p>"
+        },
+        "ramSizeInGb":{
+          "shape":"float",
+          "documentation":"<p>The amount of RAM in GB for the database.</p>"
+        }
+      },
+      "documentation":"<p>Describes the hardware of a database.</p>"
+    },
+    "RelationalDatabaseList":{
+      "type":"list",
+      "member":{"shape":"RelationalDatabase"}
+    },
+    "RelationalDatabaseMetricName":{
+      "type":"string",
+      "enum":[
+        "CPUUtilization",
+        "DatabaseConnections",
+        "DiskQueueDepth",
+        "FreeStorageSpace",
+        "NetworkReceiveThroughput",
+        "NetworkTransmitThroughput"
+      ]
+    },
+    "RelationalDatabaseParameter":{
+      "type":"structure",
+      "members":{
+        "allowedValues":{
+          "shape":"string",
+          "documentation":"<p>Specifies the valid range of values for the parameter.</p>"
+        },
+        "applyMethod":{
+          "shape":"string",
+          "documentation":"<p>Indicates when parameter updates are applied.</p> <p>Can be <code>immediate</code> or <code>pending-reboot</code>.</p>"
+        },
+        "applyType":{
+          "shape":"string",
+          "documentation":"<p>Specifies the engine-specific parameter type.</p>"
+        },
+        "dataType":{
+          "shape":"string",
+          "documentation":"<p>Specifies the valid data type for the parameter.</p>"
+        },
+        "description":{
+          "shape":"string",
+          "documentation":"<p>Provides a description of the parameter.</p>"
+        },
+        "isModifiable":{
+          "shape":"boolean",
+          "documentation":"<p>A Boolean value indicating whether the parameter can be modified.</p>"
+        },
+        "parameterName":{
+          "shape":"string",
+          "documentation":"<p>Specifies the name of the parameter.</p>"
+        },
+        "parameterValue":{
+          "shape":"string",
+          "documentation":"<p>Specifies the value of the parameter.</p>"
+        }
+      },
+      "documentation":"<p>Describes the parameters of a database.</p>"
+    },
+    "RelationalDatabaseParameterList":{
+      "type":"list",
+      "member":{"shape":"RelationalDatabaseParameter"}
+    },
+    "RelationalDatabasePasswordVersion":{
+      "type":"string",
+      "enum":[
+        "CURRENT",
+        "PREVIOUS",
+        "PENDING"
+      ]
+    },
+    "RelationalDatabaseSnapshot":{
+      "type":"structure",
+      "members":{
+        "name":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of the database snapshot.</p>"
+        },
+        "arn":{
+          "shape":"NonEmptyString",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the database snapshot.</p>"
+        },
+        "supportCode":{
+          "shape":"string",
+          "documentation":"<p>The support code for the database snapshot. Include this code in your email to support when you have questions about a database snapshot in Lightsail. This code enables our support team to look up your Lightsail information more easily.</p>"
+        },
+        "createdAt":{
+          "shape":"IsoDate",
+          "documentation":"<p>The timestamp when the database snapshot was created.</p>"
+        },
+        "location":{
+          "shape":"ResourceLocation",
+          "documentation":"<p>The Region name and Availability Zone where the database snapshot is located.</p>"
+        },
+        "resourceType":{
+          "shape":"ResourceType",
+          "documentation":"<p>The Lightsail resource type.</p>"
+        },
+        "engine":{
+          "shape":"NonEmptyString",
+          "documentation":"<p>The software of the database snapshot (for example, <code>MySQL</code>)</p>"
+        },
+        "engineVersion":{
+          "shape":"NonEmptyString",
+          "documentation":"<p>The database engine version for the database snapshot (for example, <code>5.7.23</code>).</p>"
+        },
+        "sizeInGb":{
+          "shape":"integer",
+          "documentation":"<p>The size of the disk in GB (for example, <code>32</code>) for the database snapshot.</p>"
+        },
+        "state":{
+          "shape":"NonEmptyString",
+          "documentation":"<p>The state of the database snapshot.</p>"
+        },
+        "fromRelationalDatabaseName":{
+          "shape":"NonEmptyString",
+          "documentation":"<p>The name of the source database from which the database snapshot was created.</p>"
+        },
+        "fromRelationalDatabaseArn":{
+          "shape":"NonEmptyString",
+          "documentation":"<p>The Amazon Resource Name (ARN) of the database from which the database snapshot was created.</p>"
+        },
+        "fromRelationalDatabaseBundleId":{
+          "shape":"string",
+          "documentation":"<p>The bundle ID of the database from which the database snapshot was created.</p>"
+        },
+        "fromRelationalDatabaseBlueprintId":{
+          "shape":"string",
+          "documentation":"<p>The blueprint ID of the database from which the database snapshot was created. A blueprint describes the major engine version of a database.</p>"
+        }
+      },
+      "documentation":"<p>Describes a database snapshot.</p>"
+    },
+    "RelationalDatabaseSnapshotList":{
+      "type":"list",
+      "member":{"shape":"RelationalDatabaseSnapshot"}
     },
     "ReleaseStaticIpRequest":{
       "type":"structure",
@@ -4584,8 +5981,14 @@
         "LoadBalancer",
         "LoadBalancerTlsCertificate",
         "Disk",
-        "DiskSnapshot"
+        "DiskSnapshot",
+        "RelationalDatabase",
+        "RelationalDatabaseSnapshot"
       ]
+    },
+    "SensitiveString":{
+      "type":"string",
+      "sensitive":true
     },
     "ServiceException":{
       "type":"structure",
@@ -4615,6 +6018,25 @@
         "operations":{
           "shape":"OperationList",
           "documentation":"<p>An array of key-value pairs containing information about the request operation.</p>"
+        }
+      }
+    },
+    "StartRelationalDatabaseRequest":{
+      "type":"structure",
+      "required":["relationalDatabaseName"],
+      "members":{
+        "relationalDatabaseName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of your database to start.</p>"
+        }
+      }
+    },
+    "StartRelationalDatabaseResult":{
+      "type":"structure",
+      "members":{
+        "operations":{
+          "shape":"OperationList",
+          "documentation":"<p>An object describing the result of your start relational database request.</p>"
         }
       }
     },
@@ -4684,6 +6106,29 @@
         "operations":{
           "shape":"OperationList",
           "documentation":"<p>An array of key-value pairs containing information about the request operation.</p>"
+        }
+      }
+    },
+    "StopRelationalDatabaseRequest":{
+      "type":"structure",
+      "required":["relationalDatabaseName"],
+      "members":{
+        "relationalDatabaseName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of your database to stop.</p>"
+        },
+        "relationalDatabaseSnapshotName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of your new database snapshot to be created before stopping your database.</p>"
+        }
+      }
+    },
+    "StopRelationalDatabaseResult":{
+      "type":"structure",
+      "members":{
+        "operations":{
+          "shape":"OperationList",
+          "documentation":"<p>An object describing the result of your stop relational database request.</p>"
         }
       }
     },
@@ -4757,7 +6202,7 @@
       "members":{
         "loadBalancerName":{
           "shape":"ResourceName",
-          "documentation":"<p>The name of the load balancer that you want to modify.</p>"
+          "documentation":"<p>The name of the load balancer that you want to modify (e.g., <code>my-load-balancer</code>.</p>"
         },
         "attributeName":{
           "shape":"LoadBalancerAttributeName",
@@ -4775,6 +6220,83 @@
         "operations":{
           "shape":"OperationList",
           "documentation":"<p>An object describing the API operations.</p>"
+        }
+      }
+    },
+    "UpdateRelationalDatabaseParametersRequest":{
+      "type":"structure",
+      "required":[
+        "relationalDatabaseName",
+        "parameters"
+      ],
+      "members":{
+        "relationalDatabaseName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of your database for which to update parameters.</p>"
+        },
+        "parameters":{
+          "shape":"RelationalDatabaseParameterList",
+          "documentation":"<p>The database parameters to update.</p>"
+        }
+      }
+    },
+    "UpdateRelationalDatabaseParametersResult":{
+      "type":"structure",
+      "members":{
+        "operations":{
+          "shape":"OperationList",
+          "documentation":"<p>An object describing the result of your update relational database parameters request.</p>"
+        }
+      }
+    },
+    "UpdateRelationalDatabaseRequest":{
+      "type":"structure",
+      "required":["relationalDatabaseName"],
+      "members":{
+        "relationalDatabaseName":{
+          "shape":"ResourceName",
+          "documentation":"<p>The name of your database to update.</p>"
+        },
+        "masterUserPassword":{
+          "shape":"SensitiveString",
+          "documentation":"<p>The password for the master user of your database. The password can include any printable ASCII character except \"/\", \"\"\", or \"@\".</p> <p>Constraints: Must contain 8 to 41 characters.</p>"
+        },
+        "rotateMasterUserPassword":{
+          "shape":"boolean",
+          "documentation":"<p>When <code>true</code>, the master user password is changed to a new strong password generated by Lightsail.</p> <p>Use the <code>get relational database master user password</code> operation to get the new password.</p>"
+        },
+        "preferredBackupWindow":{
+          "shape":"string",
+          "documentation":"<p>The daily time range during which automated backups are created for your database if automated backups are enabled.</p> <p>Constraints:</p> <ul> <li> <p>Must be in the <code>hh24:mi-hh24:mi</code> format.</p> <p>Example: <code>16:00-16:30</code> </p> </li> <li> <p>Specified in Universal Coordinated Time (UTC).</p> </li> <li> <p>Must not conflict with the preferred maintenance window.</p> </li> <li> <p>Must be at least 30 minutes.</p> </li> </ul>"
+        },
+        "preferredMaintenanceWindow":{
+          "shape":"string",
+          "documentation":"<p>The weekly time range during which system maintenance can occur on your database.</p> <p>The default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region, occurring on a random day of the week.</p> <p>Constraints:</p> <ul> <li> <p>Must be in the <code>ddd:hh24:mi-ddd:hh24:mi</code> format.</p> </li> <li> <p>Valid days: Mon, Tue, Wed, Thu, Fri, Sat, Sun.</p> </li> <li> <p>Must be at least 30 minutes.</p> </li> <li> <p>Specified in Universal Coordinated Time (UTC).</p> </li> <li> <p>Example: <code>Tue:17:00-Tue:17:30</code> </p> </li> </ul>"
+        },
+        "enableBackupRetention":{
+          "shape":"boolean",
+          "documentation":"<p>When <code>true</code>, enables automated backup retention for your database.</p> <p>Updates are applied during the next maintenance window because this can result in an outage.</p>"
+        },
+        "disableBackupRetention":{
+          "shape":"boolean",
+          "documentation":"<p>When <code>true</code>, disables automated backup retention for your database.</p> <p>Disabling backup retention deletes all automated database backups. Before disabling this, you may want to create a snapshot of your database using the <code>create relational database snapshot</code> operation.</p> <p>Updates are applied during the next maintenance window because this can result in an outage.</p>"
+        },
+        "publiclyAccessible":{
+          "shape":"boolean",
+          "documentation":"<p>Specifies the accessibility options for your database. A value of <code>true</code> specifies a database that is available to resources outside of your Lightsail account. A value of <code>false</code> specifies a database that is available only to your Lightsail resources in the same region as your database.</p>"
+        },
+        "applyImmediately":{
+          "shape":"boolean",
+          "documentation":"<p>When <code>true</code>, applies changes immediately. When <code>false</code>, applies changes during the preferred maintenance window. Some changes may cause an outage.</p> <p>Default: <code>false</code> </p>"
+        }
+      }
+    },
+    "UpdateRelationalDatabaseResult":{
+      "type":"structure",
+      "members":{
+        "operations":{
+          "shape":"OperationList",
+          "documentation":"<p>An object describing the result of your update relational database request.</p>"
         }
       }
     },

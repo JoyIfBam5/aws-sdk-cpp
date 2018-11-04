@@ -38,11 +38,13 @@ ProvisionedProductDetail::ProvisionedProductDetail() :
     m_statusMessageHasBeenSet(false),
     m_createdTimeHasBeenSet(false),
     m_idempotencyTokenHasBeenSet(false),
-    m_lastRecordIdHasBeenSet(false)
+    m_lastRecordIdHasBeenSet(false),
+    m_productIdHasBeenSet(false),
+    m_provisioningArtifactIdHasBeenSet(false)
 {
 }
 
-ProvisionedProductDetail::ProvisionedProductDetail(const JsonValue& jsonValue) : 
+ProvisionedProductDetail::ProvisionedProductDetail(JsonView jsonValue) : 
     m_nameHasBeenSet(false),
     m_arnHasBeenSet(false),
     m_typeHasBeenSet(false),
@@ -52,12 +54,14 @@ ProvisionedProductDetail::ProvisionedProductDetail(const JsonValue& jsonValue) :
     m_statusMessageHasBeenSet(false),
     m_createdTimeHasBeenSet(false),
     m_idempotencyTokenHasBeenSet(false),
-    m_lastRecordIdHasBeenSet(false)
+    m_lastRecordIdHasBeenSet(false),
+    m_productIdHasBeenSet(false),
+    m_provisioningArtifactIdHasBeenSet(false)
 {
   *this = jsonValue;
 }
 
-ProvisionedProductDetail& ProvisionedProductDetail::operator =(const JsonValue& jsonValue)
+ProvisionedProductDetail& ProvisionedProductDetail::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("Name"))
   {
@@ -122,6 +126,20 @@ ProvisionedProductDetail& ProvisionedProductDetail::operator =(const JsonValue& 
     m_lastRecordIdHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("ProductId"))
+  {
+    m_productId = jsonValue.GetString("ProductId");
+
+    m_productIdHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("ProvisioningArtifactId"))
+  {
+    m_provisioningArtifactId = jsonValue.GetString("ProvisioningArtifactId");
+
+    m_provisioningArtifactIdHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -178,6 +196,18 @@ JsonValue ProvisionedProductDetail::Jsonize() const
   if(m_lastRecordIdHasBeenSet)
   {
    payload.WithString("LastRecordId", m_lastRecordId);
+
+  }
+
+  if(m_productIdHasBeenSet)
+  {
+   payload.WithString("ProductId", m_productId);
+
+  }
+
+  if(m_provisioningArtifactIdHasBeenSet)
+  {
+   payload.WithString("ProvisioningArtifactId", m_provisioningArtifactId);
 
   }
 

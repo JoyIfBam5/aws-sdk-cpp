@@ -27,6 +27,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace Glue
@@ -44,43 +45,50 @@ namespace Model
   {
   public:
     Database();
-    Database(const Aws::Utils::Json::JsonValue& jsonValue);
-    Database& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    Database(Aws::Utils::Json::JsonView jsonValue);
+    Database& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
     /**
-     * <p>Name of the database.</p>
+     * <p>Name of the database. For Hive compatibility, this is folded to lowercase
+     * when it is stored.</p>
      */
     inline const Aws::String& GetName() const{ return m_name; }
 
     /**
-     * <p>Name of the database.</p>
+     * <p>Name of the database. For Hive compatibility, this is folded to lowercase
+     * when it is stored.</p>
      */
     inline void SetName(const Aws::String& value) { m_nameHasBeenSet = true; m_name = value; }
 
     /**
-     * <p>Name of the database.</p>
+     * <p>Name of the database. For Hive compatibility, this is folded to lowercase
+     * when it is stored.</p>
      */
     inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
-     * <p>Name of the database.</p>
+     * <p>Name of the database. For Hive compatibility, this is folded to lowercase
+     * when it is stored.</p>
      */
     inline void SetName(const char* value) { m_nameHasBeenSet = true; m_name.assign(value); }
 
     /**
-     * <p>Name of the database.</p>
+     * <p>Name of the database. For Hive compatibility, this is folded to lowercase
+     * when it is stored.</p>
      */
     inline Database& WithName(const Aws::String& value) { SetName(value); return *this;}
 
     /**
-     * <p>Name of the database.</p>
+     * <p>Name of the database. For Hive compatibility, this is folded to lowercase
+     * when it is stored.</p>
      */
     inline Database& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
-     * <p>Name of the database.</p>
+     * <p>Name of the database. For Hive compatibility, this is folded to lowercase
+     * when it is stored.</p>
      */
     inline Database& WithName(const char* value) { SetName(value); return *this;}
 
@@ -158,74 +166,62 @@ namespace Model
 
 
     /**
-     * <p>A list of key-value pairs that define parameters and properties of the
-     * database.</p>
+     * <p>These key-value pairs define parameters and properties of the database.</p>
      */
     inline const Aws::Map<Aws::String, Aws::String>& GetParameters() const{ return m_parameters; }
 
     /**
-     * <p>A list of key-value pairs that define parameters and properties of the
-     * database.</p>
+     * <p>These key-value pairs define parameters and properties of the database.</p>
      */
     inline void SetParameters(const Aws::Map<Aws::String, Aws::String>& value) { m_parametersHasBeenSet = true; m_parameters = value; }
 
     /**
-     * <p>A list of key-value pairs that define parameters and properties of the
-     * database.</p>
+     * <p>These key-value pairs define parameters and properties of the database.</p>
      */
     inline void SetParameters(Aws::Map<Aws::String, Aws::String>&& value) { m_parametersHasBeenSet = true; m_parameters = std::move(value); }
 
     /**
-     * <p>A list of key-value pairs that define parameters and properties of the
-     * database.</p>
+     * <p>These key-value pairs define parameters and properties of the database.</p>
      */
     inline Database& WithParameters(const Aws::Map<Aws::String, Aws::String>& value) { SetParameters(value); return *this;}
 
     /**
-     * <p>A list of key-value pairs that define parameters and properties of the
-     * database.</p>
+     * <p>These key-value pairs define parameters and properties of the database.</p>
      */
     inline Database& WithParameters(Aws::Map<Aws::String, Aws::String>&& value) { SetParameters(std::move(value)); return *this;}
 
     /**
-     * <p>A list of key-value pairs that define parameters and properties of the
-     * database.</p>
+     * <p>These key-value pairs define parameters and properties of the database.</p>
      */
     inline Database& AddParameters(const Aws::String& key, const Aws::String& value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, value); return *this; }
 
     /**
-     * <p>A list of key-value pairs that define parameters and properties of the
-     * database.</p>
+     * <p>These key-value pairs define parameters and properties of the database.</p>
      */
     inline Database& AddParameters(Aws::String&& key, const Aws::String& value) { m_parametersHasBeenSet = true; m_parameters.emplace(std::move(key), value); return *this; }
 
     /**
-     * <p>A list of key-value pairs that define parameters and properties of the
-     * database.</p>
+     * <p>These key-value pairs define parameters and properties of the database.</p>
      */
     inline Database& AddParameters(const Aws::String& key, Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, std::move(value)); return *this; }
 
     /**
-     * <p>A list of key-value pairs that define parameters and properties of the
-     * database.</p>
+     * <p>These key-value pairs define parameters and properties of the database.</p>
      */
     inline Database& AddParameters(Aws::String&& key, Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
-     * <p>A list of key-value pairs that define parameters and properties of the
-     * database.</p>
+     * <p>These key-value pairs define parameters and properties of the database.</p>
      */
     inline Database& AddParameters(const char* key, Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, std::move(value)); return *this; }
 
     /**
-     * <p>A list of key-value pairs that define parameters and properties of the
-     * database.</p>
+     * <p>These key-value pairs define parameters and properties of the database.</p>
      */
     inline Database& AddParameters(Aws::String&& key, const char* value) { m_parametersHasBeenSet = true; m_parameters.emplace(std::move(key), value); return *this; }
 
     /**
-     * <p>A list of key-value pairs that define parameters and properties of the
-     * database.</p>
+     * <p>These key-value pairs define parameters and properties of the database.</p>
      */
     inline Database& AddParameters(const char* key, const char* value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, value); return *this; }
 

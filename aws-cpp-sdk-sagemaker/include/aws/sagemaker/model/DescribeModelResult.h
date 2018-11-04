@@ -17,7 +17,7 @@
 #include <aws/sagemaker/SageMaker_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/sagemaker/model/ContainerDefinition.h>
-#include <aws/core/utils/memory/stl/AWSVector.h>
+#include <aws/sagemaker/model/VpcConfig.h>
 #include <aws/core/utils/DateTime.h>
 #include <utility>
 
@@ -118,49 +118,6 @@ namespace Model
 
 
     /**
-     * <p>The description of additional optional containers that you defined when
-     * creating the model.</p>
-     */
-    inline const Aws::Vector<ContainerDefinition>& GetSupplementalContainers() const{ return m_supplementalContainers; }
-
-    /**
-     * <p>The description of additional optional containers that you defined when
-     * creating the model.</p>
-     */
-    inline void SetSupplementalContainers(const Aws::Vector<ContainerDefinition>& value) { m_supplementalContainers = value; }
-
-    /**
-     * <p>The description of additional optional containers that you defined when
-     * creating the model.</p>
-     */
-    inline void SetSupplementalContainers(Aws::Vector<ContainerDefinition>&& value) { m_supplementalContainers = std::move(value); }
-
-    /**
-     * <p>The description of additional optional containers that you defined when
-     * creating the model.</p>
-     */
-    inline DescribeModelResult& WithSupplementalContainers(const Aws::Vector<ContainerDefinition>& value) { SetSupplementalContainers(value); return *this;}
-
-    /**
-     * <p>The description of additional optional containers that you defined when
-     * creating the model.</p>
-     */
-    inline DescribeModelResult& WithSupplementalContainers(Aws::Vector<ContainerDefinition>&& value) { SetSupplementalContainers(std::move(value)); return *this;}
-
-    /**
-     * <p>The description of additional optional containers that you defined when
-     * creating the model.</p>
-     */
-    inline DescribeModelResult& AddSupplementalContainers(const ContainerDefinition& value) { m_supplementalContainers.push_back(value); return *this; }
-
-    /**
-     * <p>The description of additional optional containers that you defined when
-     * creating the model.</p>
-     */
-    inline DescribeModelResult& AddSupplementalContainers(ContainerDefinition&& value) { m_supplementalContainers.push_back(std::move(value)); return *this; }
-
-
-    /**
      * <p>The Amazon Resource Name (ARN) of the IAM role that you specified for the
      * model.</p>
      */
@@ -201,6 +158,47 @@ namespace Model
      * model.</p>
      */
     inline DescribeModelResult& WithExecutionRoleArn(const char* value) { SetExecutionRoleArn(value); return *this;}
+
+
+    /**
+     * <p>A <a>VpcConfig</a> object that specifies the VPC that this model has access
+     * to. For more information, see <a
+     * href="http://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html">Protect
+     * Endpoints by Using an Amazon Virtual Private Cloud</a> </p>
+     */
+    inline const VpcConfig& GetVpcConfig() const{ return m_vpcConfig; }
+
+    /**
+     * <p>A <a>VpcConfig</a> object that specifies the VPC that this model has access
+     * to. For more information, see <a
+     * href="http://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html">Protect
+     * Endpoints by Using an Amazon Virtual Private Cloud</a> </p>
+     */
+    inline void SetVpcConfig(const VpcConfig& value) { m_vpcConfig = value; }
+
+    /**
+     * <p>A <a>VpcConfig</a> object that specifies the VPC that this model has access
+     * to. For more information, see <a
+     * href="http://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html">Protect
+     * Endpoints by Using an Amazon Virtual Private Cloud</a> </p>
+     */
+    inline void SetVpcConfig(VpcConfig&& value) { m_vpcConfig = std::move(value); }
+
+    /**
+     * <p>A <a>VpcConfig</a> object that specifies the VPC that this model has access
+     * to. For more information, see <a
+     * href="http://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html">Protect
+     * Endpoints by Using an Amazon Virtual Private Cloud</a> </p>
+     */
+    inline DescribeModelResult& WithVpcConfig(const VpcConfig& value) { SetVpcConfig(value); return *this;}
+
+    /**
+     * <p>A <a>VpcConfig</a> object that specifies the VPC that this model has access
+     * to. For more information, see <a
+     * href="http://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html">Protect
+     * Endpoints by Using an Amazon Virtual Private Cloud</a> </p>
+     */
+    inline DescribeModelResult& WithVpcConfig(VpcConfig&& value) { SetVpcConfig(std::move(value)); return *this;}
 
 
     /**
@@ -270,9 +268,9 @@ namespace Model
 
     ContainerDefinition m_primaryContainer;
 
-    Aws::Vector<ContainerDefinition> m_supplementalContainers;
-
     Aws::String m_executionRoleArn;
+
+    VpcConfig m_vpcConfig;
 
     Aws::Utils::DateTime m_creationTime;
 

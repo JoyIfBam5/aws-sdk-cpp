@@ -26,18 +26,22 @@ using namespace Aws::Utils::Json;
 using namespace Aws::Utils;
 using namespace Aws;
 
-CreateRestApiResult::CreateRestApiResult()
+CreateRestApiResult::CreateRestApiResult() : 
+    m_minimumCompressionSize(0),
+    m_apiKeySource(ApiKeySourceType::NOT_SET)
 {
 }
 
-CreateRestApiResult::CreateRestApiResult(const Aws::AmazonWebServiceResult<JsonValue>& result)
+CreateRestApiResult::CreateRestApiResult(const Aws::AmazonWebServiceResult<JsonValue>& result) : 
+    m_minimumCompressionSize(0),
+    m_apiKeySource(ApiKeySourceType::NOT_SET)
 {
   *this = result;
 }
 
 CreateRestApiResult& CreateRestApiResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
-  const JsonValue& jsonValue = result.GetPayload();
+  JsonView jsonValue = result.GetPayload().View();
   if(jsonValue.ValueExists("id"))
   {
     m_id = jsonValue.GetString("id");
@@ -70,7 +74,7 @@ CreateRestApiResult& CreateRestApiResult::operator =(const Aws::AmazonWebService
 
   if(jsonValue.ValueExists("warnings"))
   {
-    Array<JsonValue> warningsJsonList = jsonValue.GetArray("warnings");
+    Array<JsonView> warningsJsonList = jsonValue.GetArray("warnings");
     for(unsigned warningsIndex = 0; warningsIndex < warningsJsonList.GetLength(); ++warningsIndex)
     {
       m_warnings.push_back(warningsJsonList[warningsIndex].AsString());
@@ -79,16 +83,34 @@ CreateRestApiResult& CreateRestApiResult::operator =(const Aws::AmazonWebService
 
   if(jsonValue.ValueExists("binaryMediaTypes"))
   {
-    Array<JsonValue> binaryMediaTypesJsonList = jsonValue.GetArray("binaryMediaTypes");
+    Array<JsonView> binaryMediaTypesJsonList = jsonValue.GetArray("binaryMediaTypes");
     for(unsigned binaryMediaTypesIndex = 0; binaryMediaTypesIndex < binaryMediaTypesJsonList.GetLength(); ++binaryMediaTypesIndex)
     {
       m_binaryMediaTypes.push_back(binaryMediaTypesJsonList[binaryMediaTypesIndex].AsString());
     }
   }
 
+  if(jsonValue.ValueExists("minimumCompressionSize"))
+  {
+    m_minimumCompressionSize = jsonValue.GetInteger("minimumCompressionSize");
+
+  }
+
+  if(jsonValue.ValueExists("apiKeySource"))
+  {
+    m_apiKeySource = ApiKeySourceTypeMapper::GetApiKeySourceTypeForName(jsonValue.GetString("apiKeySource"));
+
+  }
+
   if(jsonValue.ValueExists("endpointConfiguration"))
   {
     m_endpointConfiguration = jsonValue.GetObject("endpointConfiguration");
+
+  }
+
+  if(jsonValue.ValueExists("policy"))
+  {
+    m_policy = jsonValue.GetString("policy");
 
   }
 

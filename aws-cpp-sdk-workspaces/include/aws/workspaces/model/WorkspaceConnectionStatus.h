@@ -27,6 +27,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace WorkSpaces
@@ -43,8 +44,8 @@ namespace Model
   {
   public:
     WorkspaceConnectionStatus();
-    WorkspaceConnectionStatus(const Aws::Utils::Json::JsonValue& jsonValue);
-    WorkspaceConnectionStatus& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    WorkspaceConnectionStatus(Aws::Utils::Json::JsonView jsonValue);
+    WorkspaceConnectionStatus& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -85,32 +86,32 @@ namespace Model
 
 
     /**
-     * <p>The connection state of the WorkSpace. Returns UNKOWN if the WorkSpace is in
-     * a Stopped state.</p>
+     * <p>The connection state of the WorkSpace. The connection state is unknown if the
+     * WorkSpace is stopped.</p>
      */
     inline const ConnectionState& GetConnectionState() const{ return m_connectionState; }
 
     /**
-     * <p>The connection state of the WorkSpace. Returns UNKOWN if the WorkSpace is in
-     * a Stopped state.</p>
+     * <p>The connection state of the WorkSpace. The connection state is unknown if the
+     * WorkSpace is stopped.</p>
      */
     inline void SetConnectionState(const ConnectionState& value) { m_connectionStateHasBeenSet = true; m_connectionState = value; }
 
     /**
-     * <p>The connection state of the WorkSpace. Returns UNKOWN if the WorkSpace is in
-     * a Stopped state.</p>
+     * <p>The connection state of the WorkSpace. The connection state is unknown if the
+     * WorkSpace is stopped.</p>
      */
     inline void SetConnectionState(ConnectionState&& value) { m_connectionStateHasBeenSet = true; m_connectionState = std::move(value); }
 
     /**
-     * <p>The connection state of the WorkSpace. Returns UNKOWN if the WorkSpace is in
-     * a Stopped state.</p>
+     * <p>The connection state of the WorkSpace. The connection state is unknown if the
+     * WorkSpace is stopped.</p>
      */
     inline WorkspaceConnectionStatus& WithConnectionState(const ConnectionState& value) { SetConnectionState(value); return *this;}
 
     /**
-     * <p>The connection state of the WorkSpace. Returns UNKOWN if the WorkSpace is in
-     * a Stopped state.</p>
+     * <p>The connection state of the WorkSpace. The connection state is unknown if the
+     * WorkSpace is stopped.</p>
      */
     inline WorkspaceConnectionStatus& WithConnectionState(ConnectionState&& value) { SetConnectionState(std::move(value)); return *this;}
 

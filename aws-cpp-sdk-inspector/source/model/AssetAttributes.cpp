@@ -35,23 +35,27 @@ AssetAttributes::AssetAttributes() :
     m_autoScalingGroupHasBeenSet(false),
     m_amiIdHasBeenSet(false),
     m_hostnameHasBeenSet(false),
-    m_ipv4AddressesHasBeenSet(false)
+    m_ipv4AddressesHasBeenSet(false),
+    m_tagsHasBeenSet(false),
+    m_networkInterfacesHasBeenSet(false)
 {
 }
 
-AssetAttributes::AssetAttributes(const JsonValue& jsonValue) : 
+AssetAttributes::AssetAttributes(JsonView jsonValue) : 
     m_schemaVersion(0),
     m_schemaVersionHasBeenSet(false),
     m_agentIdHasBeenSet(false),
     m_autoScalingGroupHasBeenSet(false),
     m_amiIdHasBeenSet(false),
     m_hostnameHasBeenSet(false),
-    m_ipv4AddressesHasBeenSet(false)
+    m_ipv4AddressesHasBeenSet(false),
+    m_tagsHasBeenSet(false),
+    m_networkInterfacesHasBeenSet(false)
 {
   *this = jsonValue;
 }
 
-AssetAttributes& AssetAttributes::operator =(const JsonValue& jsonValue)
+AssetAttributes& AssetAttributes::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("schemaVersion"))
   {
@@ -90,12 +94,32 @@ AssetAttributes& AssetAttributes::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("ipv4Addresses"))
   {
-    Array<JsonValue> ipv4AddressesJsonList = jsonValue.GetArray("ipv4Addresses");
+    Array<JsonView> ipv4AddressesJsonList = jsonValue.GetArray("ipv4Addresses");
     for(unsigned ipv4AddressesIndex = 0; ipv4AddressesIndex < ipv4AddressesJsonList.GetLength(); ++ipv4AddressesIndex)
     {
       m_ipv4Addresses.push_back(ipv4AddressesJsonList[ipv4AddressesIndex].AsString());
     }
     m_ipv4AddressesHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("tags"))
+  {
+    Array<JsonView> tagsJsonList = jsonValue.GetArray("tags");
+    for(unsigned tagsIndex = 0; tagsIndex < tagsJsonList.GetLength(); ++tagsIndex)
+    {
+      m_tags.push_back(tagsJsonList[tagsIndex].AsObject());
+    }
+    m_tagsHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("networkInterfaces"))
+  {
+    Array<JsonView> networkInterfacesJsonList = jsonValue.GetArray("networkInterfaces");
+    for(unsigned networkInterfacesIndex = 0; networkInterfacesIndex < networkInterfacesJsonList.GetLength(); ++networkInterfacesIndex)
+    {
+      m_networkInterfaces.push_back(networkInterfacesJsonList[networkInterfacesIndex].AsObject());
+    }
+    m_networkInterfacesHasBeenSet = true;
   }
 
   return *this;
@@ -143,6 +167,28 @@ JsonValue AssetAttributes::Jsonize() const
      ipv4AddressesJsonList[ipv4AddressesIndex].AsString(m_ipv4Addresses[ipv4AddressesIndex]);
    }
    payload.WithArray("ipv4Addresses", std::move(ipv4AddressesJsonList));
+
+  }
+
+  if(m_tagsHasBeenSet)
+  {
+   Array<JsonValue> tagsJsonList(m_tags.size());
+   for(unsigned tagsIndex = 0; tagsIndex < tagsJsonList.GetLength(); ++tagsIndex)
+   {
+     tagsJsonList[tagsIndex].AsObject(m_tags[tagsIndex].Jsonize());
+   }
+   payload.WithArray("tags", std::move(tagsJsonList));
+
+  }
+
+  if(m_networkInterfacesHasBeenSet)
+  {
+   Array<JsonValue> networkInterfacesJsonList(m_networkInterfaces.size());
+   for(unsigned networkInterfacesIndex = 0; networkInterfacesIndex < networkInterfacesJsonList.GetLength(); ++networkInterfacesIndex)
+   {
+     networkInterfacesJsonList[networkInterfacesIndex].AsObject(m_networkInterfaces[networkInterfacesIndex].Jsonize());
+   }
+   payload.WithArray("networkInterfaces", std::move(networkInterfacesJsonList));
 
   }
 

@@ -37,11 +37,6 @@ namespace EC2
 {
 namespace Model
 {
-  /**
-   * <p>Contains the output of DescribeTags.</p><p><h3>See Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/DescribeTagsResult">AWS
-   * API Reference</a></p>
-   */
   class AWS_EC2_API DescribeTagsResponse
   {
   public:
@@ -52,79 +47,79 @@ namespace Model
 
     /**
      * <p>The token to use to retrieve the next page of results. This value is
-     * <code>null</code> when there are no more results to return..</p>
+     * <code>null</code> when there are no more results to return.</p>
      */
     inline const Aws::String& GetNextToken() const{ return m_nextToken; }
 
     /**
      * <p>The token to use to retrieve the next page of results. This value is
-     * <code>null</code> when there are no more results to return..</p>
+     * <code>null</code> when there are no more results to return.</p>
      */
     inline void SetNextToken(const Aws::String& value) { m_nextToken = value; }
 
     /**
      * <p>The token to use to retrieve the next page of results. This value is
-     * <code>null</code> when there are no more results to return..</p>
+     * <code>null</code> when there are no more results to return.</p>
      */
     inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
 
     /**
      * <p>The token to use to retrieve the next page of results. This value is
-     * <code>null</code> when there are no more results to return..</p>
+     * <code>null</code> when there are no more results to return.</p>
      */
     inline void SetNextToken(const char* value) { m_nextToken.assign(value); }
 
     /**
      * <p>The token to use to retrieve the next page of results. This value is
-     * <code>null</code> when there are no more results to return..</p>
+     * <code>null</code> when there are no more results to return.</p>
      */
     inline DescribeTagsResponse& WithNextToken(const Aws::String& value) { SetNextToken(value); return *this;}
 
     /**
      * <p>The token to use to retrieve the next page of results. This value is
-     * <code>null</code> when there are no more results to return..</p>
+     * <code>null</code> when there are no more results to return.</p>
      */
     inline DescribeTagsResponse& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
 
     /**
      * <p>The token to use to retrieve the next page of results. This value is
-     * <code>null</code> when there are no more results to return..</p>
+     * <code>null</code> when there are no more results to return.</p>
      */
     inline DescribeTagsResponse& WithNextToken(const char* value) { SetNextToken(value); return *this;}
 
 
     /**
-     * <p>A list of tags.</p>
+     * <p>The tags.</p>
      */
     inline const Aws::Vector<TagDescription>& GetTags() const{ return m_tags; }
 
     /**
-     * <p>A list of tags.</p>
+     * <p>The tags.</p>
      */
     inline void SetTags(const Aws::Vector<TagDescription>& value) { m_tags = value; }
 
     /**
-     * <p>A list of tags.</p>
+     * <p>The tags.</p>
      */
     inline void SetTags(Aws::Vector<TagDescription>&& value) { m_tags = std::move(value); }
 
     /**
-     * <p>A list of tags.</p>
+     * <p>The tags.</p>
      */
     inline DescribeTagsResponse& WithTags(const Aws::Vector<TagDescription>& value) { SetTags(value); return *this;}
 
     /**
-     * <p>A list of tags.</p>
+     * <p>The tags.</p>
      */
     inline DescribeTagsResponse& WithTags(Aws::Vector<TagDescription>&& value) { SetTags(std::move(value)); return *this;}
 
     /**
-     * <p>A list of tags.</p>
+     * <p>The tags.</p>
      */
     inline DescribeTagsResponse& AddTags(const TagDescription& value) { m_tags.push_back(value); return *this; }
 
     /**
-     * <p>A list of tags.</p>
+     * <p>The tags.</p>
      */
     inline DescribeTagsResponse& AddTags(TagDescription&& value) { m_tags.push_back(std::move(value)); return *this; }
 

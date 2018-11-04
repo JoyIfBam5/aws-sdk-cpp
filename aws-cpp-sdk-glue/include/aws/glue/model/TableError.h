@@ -26,6 +26,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace Glue
@@ -42,43 +43,50 @@ namespace Model
   {
   public:
     TableError();
-    TableError(const Aws::Utils::Json::JsonValue& jsonValue);
-    TableError& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    TableError(Aws::Utils::Json::JsonView jsonValue);
+    TableError& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
     /**
-     * <p>Name of the table.</p>
+     * <p>Name of the table. For Hive compatibility, this must be entirely
+     * lowercase.</p>
      */
     inline const Aws::String& GetTableName() const{ return m_tableName; }
 
     /**
-     * <p>Name of the table.</p>
+     * <p>Name of the table. For Hive compatibility, this must be entirely
+     * lowercase.</p>
      */
     inline void SetTableName(const Aws::String& value) { m_tableNameHasBeenSet = true; m_tableName = value; }
 
     /**
-     * <p>Name of the table.</p>
+     * <p>Name of the table. For Hive compatibility, this must be entirely
+     * lowercase.</p>
      */
     inline void SetTableName(Aws::String&& value) { m_tableNameHasBeenSet = true; m_tableName = std::move(value); }
 
     /**
-     * <p>Name of the table.</p>
+     * <p>Name of the table. For Hive compatibility, this must be entirely
+     * lowercase.</p>
      */
     inline void SetTableName(const char* value) { m_tableNameHasBeenSet = true; m_tableName.assign(value); }
 
     /**
-     * <p>Name of the table.</p>
+     * <p>Name of the table. For Hive compatibility, this must be entirely
+     * lowercase.</p>
      */
     inline TableError& WithTableName(const Aws::String& value) { SetTableName(value); return *this;}
 
     /**
-     * <p>Name of the table.</p>
+     * <p>Name of the table. For Hive compatibility, this must be entirely
+     * lowercase.</p>
      */
     inline TableError& WithTableName(Aws::String&& value) { SetTableName(std::move(value)); return *this;}
 
     /**
-     * <p>Name of the table.</p>
+     * <p>Name of the table. For Hive compatibility, this must be entirely
+     * lowercase.</p>
      */
     inline TableError& WithTableName(const char* value) { SetTableName(value); return *this;}
 

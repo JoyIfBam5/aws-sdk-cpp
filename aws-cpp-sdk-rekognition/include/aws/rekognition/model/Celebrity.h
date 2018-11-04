@@ -27,6 +27,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace Rekognition
@@ -44,8 +45,8 @@ namespace Model
   {
   public:
     Celebrity();
-    Celebrity(const Aws::Utils::Json::JsonValue& jsonValue);
-    Celebrity& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    Celebrity(Aws::Utils::Json::JsonView jsonValue);
+    Celebrity& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -202,20 +203,20 @@ namespace Model
 
 
     /**
-     * <p>The confidence, in percentage, that Rekognition has that the recognized face
-     * is the celebrity.</p>
+     * <p>The confidence, in percentage, that Amazon Rekognition has that the
+     * recognized face is the celebrity.</p>
      */
     inline double GetMatchConfidence() const{ return m_matchConfidence; }
 
     /**
-     * <p>The confidence, in percentage, that Rekognition has that the recognized face
-     * is the celebrity.</p>
+     * <p>The confidence, in percentage, that Amazon Rekognition has that the
+     * recognized face is the celebrity.</p>
      */
     inline void SetMatchConfidence(double value) { m_matchConfidenceHasBeenSet = true; m_matchConfidence = value; }
 
     /**
-     * <p>The confidence, in percentage, that Rekognition has that the recognized face
-     * is the celebrity.</p>
+     * <p>The confidence, in percentage, that Amazon Rekognition has that the
+     * recognized face is the celebrity.</p>
      */
     inline Celebrity& WithMatchConfidence(double value) { SetMatchConfidence(value); return *this;}
 

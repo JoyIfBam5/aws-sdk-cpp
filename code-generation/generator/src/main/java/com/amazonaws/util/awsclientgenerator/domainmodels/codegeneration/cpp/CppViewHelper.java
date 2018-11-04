@@ -48,7 +48,6 @@ public class CppViewHelper {
         CORAL_TO_JSON_CPP_TYPE_MAPPING.put("long", "Int64");
         CORAL_TO_JSON_CPP_TYPE_MAPPING.put("integer", "Integer");
         CORAL_TO_JSON_CPP_TYPE_MAPPING.put("string", "String");
-        CORAL_TO_JSON_CPP_TYPE_MAPPING.put("timestamp", "Double");
         CORAL_TO_JSON_CPP_TYPE_MAPPING.put("boolean", "Bool");
         CORAL_TO_JSON_CPP_TYPE_MAPPING.put("double", "Double");
         CORAL_TO_JSON_CPP_TYPE_MAPPING.put("map", "Object");
@@ -56,6 +55,10 @@ public class CppViewHelper {
         CORAL_TO_JSON_CPP_TYPE_MAPPING.put("structure", "Object");
         CORAL_TO_JSON_CPP_TYPE_MAPPING.put("blob", "String");
         CORAL_TO_JSON_CPP_TYPE_MAPPING.put("float", "Double");
+        CORAL_TO_JSON_CPP_TYPE_MAPPING.put("timestamp", "Double");
+        CORAL_TO_JSON_CPP_TYPE_MAPPING.put("unixtimestamp", "Double");
+        CORAL_TO_JSON_CPP_TYPE_MAPPING.put("rfc822", "String");
+        CORAL_TO_JSON_CPP_TYPE_MAPPING.put("iso8601", "String");
 
         CORAL_TO_XML_CONVERSION_MAPPING.put("long", "StringUtils::ConvertToInt64");
         CORAL_TO_XML_CONVERSION_MAPPING.put("integer", "StringUtils::ConvertToInt32");
@@ -119,6 +122,20 @@ public class CppViewHelper {
             return jsonizeString;
         }
 
+        if(shape.isTimeStamp()) {
+            if(shape.getTimestampFormat() == null || CORAL_TO_JSON_CPP_TYPE_MAPPING.get(shape.getTimestampFormat().toLowerCase()).equalsIgnoreCase("Double")) {
+                return ".SecondsWithMSPrecision()";
+            }
+
+            if(shape.getTimestampFormat().toLowerCase().equalsIgnoreCase("rfc822")) {
+                return ".ToGmtString(DateFormat::RFC822)";
+            }
+
+            if(shape.getTimestampFormat().toLowerCase().equalsIgnoreCase("iso8601")) {
+                return ".ToGmtString(DateFormat::ISO_8601)";
+            }
+        }
+
         return "";
     }
 
@@ -152,6 +169,9 @@ public class CppViewHelper {
     }
 
     public static String computeJsonCppType(Shape shape) {
+        if(shape.isTimeStamp() && shape.getTimestampFormat() != null) {
+            return CORAL_TO_JSON_CPP_TYPE_MAPPING.get(shape.getTimestampFormat().toLowerCase());
+        }
         return CORAL_TO_JSON_CPP_TYPE_MAPPING.get(shape.getType());
     }
 
@@ -237,7 +257,12 @@ public class CppViewHelper {
 
         for(Map.Entry<String, ShapeMember> entry : shape.getMembers().entrySet()) {
             Shape innerShape = entry.getValue().getShape();
-            if (innerShape.isBlob()) {
+            // if the shape is a blob, list of blobs or a map with a value blob. It's very unlikely that a blob would be
+            // the key in a map, but we check it anyways.
+            if (innerShape.isBlob() ||
+                (innerShape.isList() && innerShape.getListMember().getShape().isBlob()) ||
+                (innerShape.isMap() && innerShape.getMapValue().getShape().isBlob()) ||
+                (innerShape.isMap() && innerShape.getMapKey().getShape().isBlob())) {
                 headers.add("<aws/core/utils/HashingUtils.h>");
             }
             else if(entry.getValue().isUsedForHeader() || entry.getValue().isUsedForQueryString()) {

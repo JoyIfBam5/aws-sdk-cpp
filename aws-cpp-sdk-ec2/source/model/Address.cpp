@@ -39,7 +39,9 @@ Address::Address() :
     m_domainHasBeenSet(false),
     m_networkInterfaceIdHasBeenSet(false),
     m_networkInterfaceOwnerIdHasBeenSet(false),
-    m_privateIpAddressHasBeenSet(false)
+    m_privateIpAddressHasBeenSet(false),
+    m_tagsHasBeenSet(false),
+    m_publicIpv4PoolHasBeenSet(false)
 {
 }
 
@@ -52,7 +54,9 @@ Address::Address(const XmlNode& xmlNode) :
     m_domainHasBeenSet(false),
     m_networkInterfaceIdHasBeenSet(false),
     m_networkInterfaceOwnerIdHasBeenSet(false),
-    m_privateIpAddressHasBeenSet(false)
+    m_privateIpAddressHasBeenSet(false),
+    m_tagsHasBeenSet(false),
+    m_publicIpv4PoolHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -111,6 +115,24 @@ Address& Address::operator =(const XmlNode& xmlNode)
       m_privateIpAddress = StringUtils::Trim(privateIpAddressNode.GetText().c_str());
       m_privateIpAddressHasBeenSet = true;
     }
+    XmlNode tagsNode = resultNode.FirstChild("tagSet");
+    if(!tagsNode.IsNull())
+    {
+      XmlNode tagsMember = tagsNode.FirstChild("item");
+      while(!tagsMember.IsNull())
+      {
+        m_tags.push_back(tagsMember);
+        tagsMember = tagsMember.NextNode("item");
+      }
+
+      m_tagsHasBeenSet = true;
+    }
+    XmlNode publicIpv4PoolNode = resultNode.FirstChild("publicIpv4Pool");
+    if(!publicIpv4PoolNode.IsNull())
+    {
+      m_publicIpv4Pool = StringUtils::Trim(publicIpv4PoolNode.GetText().c_str());
+      m_publicIpv4PoolHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -158,6 +180,22 @@ void Address::OutputToStream(Aws::OStream& oStream, const char* location, unsign
       oStream << location << index << locationValue << ".PrivateIpAddress=" << StringUtils::URLEncode(m_privateIpAddress.c_str()) << "&";
   }
 
+  if(m_tagsHasBeenSet)
+  {
+      unsigned tagsIdx = 1;
+      for(auto& item : m_tags)
+      {
+        Aws::StringStream tagsSs;
+        tagsSs << location << index << locationValue << ".TagSet." << tagsIdx++;
+        item.OutputToStream(oStream, tagsSs.str().c_str());
+      }
+  }
+
+  if(m_publicIpv4PoolHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".PublicIpv4Pool=" << StringUtils::URLEncode(m_publicIpv4Pool.c_str()) << "&";
+  }
+
 }
 
 void Address::OutputToStream(Aws::OStream& oStream, const char* location) const
@@ -193,6 +231,20 @@ void Address::OutputToStream(Aws::OStream& oStream, const char* location) const
   if(m_privateIpAddressHasBeenSet)
   {
       oStream << location << ".PrivateIpAddress=" << StringUtils::URLEncode(m_privateIpAddress.c_str()) << "&";
+  }
+  if(m_tagsHasBeenSet)
+  {
+      unsigned tagsIdx = 1;
+      for(auto& item : m_tags)
+      {
+        Aws::StringStream tagsSs;
+        tagsSs << location <<  ".TagSet." << tagsIdx++;
+        item.OutputToStream(oStream, tagsSs.str().c_str());
+      }
+  }
+  if(m_publicIpv4PoolHasBeenSet)
+  {
+      oStream << location << ".PublicIpv4Pool=" << StringUtils::URLEncode(m_publicIpv4Pool.c_str()) << "&";
   }
 }
 

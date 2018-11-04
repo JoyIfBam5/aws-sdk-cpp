@@ -491,92 +491,108 @@ namespace Model
     /**
      * <p>The percentile statistics. Specify values between p0.0 and p100. When calling
      * <code>GetMetricStatistics</code>, you must specify either
-     * <code>Statistics</code> or <code>ExtendedStatistics</code>, but not both.</p>
+     * <code>Statistics</code> or <code>ExtendedStatistics</code>, but not both.
+     * Percentile statistics are not available for metrics when any of the metric
+     * values are negative numbers.</p>
      */
     inline const Aws::Vector<Aws::String>& GetExtendedStatistics() const{ return m_extendedStatistics; }
 
     /**
      * <p>The percentile statistics. Specify values between p0.0 and p100. When calling
      * <code>GetMetricStatistics</code>, you must specify either
-     * <code>Statistics</code> or <code>ExtendedStatistics</code>, but not both.</p>
+     * <code>Statistics</code> or <code>ExtendedStatistics</code>, but not both.
+     * Percentile statistics are not available for metrics when any of the metric
+     * values are negative numbers.</p>
      */
     inline void SetExtendedStatistics(const Aws::Vector<Aws::String>& value) { m_extendedStatisticsHasBeenSet = true; m_extendedStatistics = value; }
 
     /**
      * <p>The percentile statistics. Specify values between p0.0 and p100. When calling
      * <code>GetMetricStatistics</code>, you must specify either
-     * <code>Statistics</code> or <code>ExtendedStatistics</code>, but not both.</p>
+     * <code>Statistics</code> or <code>ExtendedStatistics</code>, but not both.
+     * Percentile statistics are not available for metrics when any of the metric
+     * values are negative numbers.</p>
      */
     inline void SetExtendedStatistics(Aws::Vector<Aws::String>&& value) { m_extendedStatisticsHasBeenSet = true; m_extendedStatistics = std::move(value); }
 
     /**
      * <p>The percentile statistics. Specify values between p0.0 and p100. When calling
      * <code>GetMetricStatistics</code>, you must specify either
-     * <code>Statistics</code> or <code>ExtendedStatistics</code>, but not both.</p>
+     * <code>Statistics</code> or <code>ExtendedStatistics</code>, but not both.
+     * Percentile statistics are not available for metrics when any of the metric
+     * values are negative numbers.</p>
      */
     inline GetMetricStatisticsRequest& WithExtendedStatistics(const Aws::Vector<Aws::String>& value) { SetExtendedStatistics(value); return *this;}
 
     /**
      * <p>The percentile statistics. Specify values between p0.0 and p100. When calling
      * <code>GetMetricStatistics</code>, you must specify either
-     * <code>Statistics</code> or <code>ExtendedStatistics</code>, but not both.</p>
+     * <code>Statistics</code> or <code>ExtendedStatistics</code>, but not both.
+     * Percentile statistics are not available for metrics when any of the metric
+     * values are negative numbers.</p>
      */
     inline GetMetricStatisticsRequest& WithExtendedStatistics(Aws::Vector<Aws::String>&& value) { SetExtendedStatistics(std::move(value)); return *this;}
 
     /**
      * <p>The percentile statistics. Specify values between p0.0 and p100. When calling
      * <code>GetMetricStatistics</code>, you must specify either
-     * <code>Statistics</code> or <code>ExtendedStatistics</code>, but not both.</p>
+     * <code>Statistics</code> or <code>ExtendedStatistics</code>, but not both.
+     * Percentile statistics are not available for metrics when any of the metric
+     * values are negative numbers.</p>
      */
     inline GetMetricStatisticsRequest& AddExtendedStatistics(const Aws::String& value) { m_extendedStatisticsHasBeenSet = true; m_extendedStatistics.push_back(value); return *this; }
 
     /**
      * <p>The percentile statistics. Specify values between p0.0 and p100. When calling
      * <code>GetMetricStatistics</code>, you must specify either
-     * <code>Statistics</code> or <code>ExtendedStatistics</code>, but not both.</p>
+     * <code>Statistics</code> or <code>ExtendedStatistics</code>, but not both.
+     * Percentile statistics are not available for metrics when any of the metric
+     * values are negative numbers.</p>
      */
     inline GetMetricStatisticsRequest& AddExtendedStatistics(Aws::String&& value) { m_extendedStatisticsHasBeenSet = true; m_extendedStatistics.push_back(std::move(value)); return *this; }
 
     /**
      * <p>The percentile statistics. Specify values between p0.0 and p100. When calling
      * <code>GetMetricStatistics</code>, you must specify either
-     * <code>Statistics</code> or <code>ExtendedStatistics</code>, but not both.</p>
+     * <code>Statistics</code> or <code>ExtendedStatistics</code>, but not both.
+     * Percentile statistics are not available for metrics when any of the metric
+     * values are negative numbers.</p>
      */
     inline GetMetricStatisticsRequest& AddExtendedStatistics(const char* value) { m_extendedStatisticsHasBeenSet = true; m_extendedStatistics.push_back(value); return *this; }
 
 
     /**
      * <p>The unit for a given metric. Metrics may be reported in multiple units. Not
-     * supplying a unit results in all units being returned. If the metric only ever
-     * reports one unit, specifying a unit has no effect.</p>
+     * supplying a unit results in all units being returned. If you specify only a unit
+     * that the metric does not report, the results of the call are null.</p>
      */
     inline const StandardUnit& GetUnit() const{ return m_unit; }
 
     /**
      * <p>The unit for a given metric. Metrics may be reported in multiple units. Not
-     * supplying a unit results in all units being returned. If the metric only ever
-     * reports one unit, specifying a unit has no effect.</p>
+     * supplying a unit results in all units being returned. If you specify only a unit
+     * that the metric does not report, the results of the call are null.</p>
      */
     inline void SetUnit(const StandardUnit& value) { m_unitHasBeenSet = true; m_unit = value; }
 
     /**
      * <p>The unit for a given metric. Metrics may be reported in multiple units. Not
-     * supplying a unit results in all units being returned. If the metric only ever
-     * reports one unit, specifying a unit has no effect.</p>
+     * supplying a unit results in all units being returned. If you specify only a unit
+     * that the metric does not report, the results of the call are null.</p>
      */
     inline void SetUnit(StandardUnit&& value) { m_unitHasBeenSet = true; m_unit = std::move(value); }
 
     /**
      * <p>The unit for a given metric. Metrics may be reported in multiple units. Not
-     * supplying a unit results in all units being returned. If the metric only ever
-     * reports one unit, specifying a unit has no effect.</p>
+     * supplying a unit results in all units being returned. If you specify only a unit
+     * that the metric does not report, the results of the call are null.</p>
      */
     inline GetMetricStatisticsRequest& WithUnit(const StandardUnit& value) { SetUnit(value); return *this;}
 
     /**
      * <p>The unit for a given metric. Metrics may be reported in multiple units. Not
-     * supplying a unit results in all units being returned. If the metric only ever
-     * reports one unit, specifying a unit has no effect.</p>
+     * supplying a unit results in all units being returned. If you specify only a unit
+     * that the metric does not report, the results of the call are null.</p>
      */
     inline GetMetricStatisticsRequest& WithUnit(StandardUnit&& value) { SetUnit(std::move(value)); return *this;}
 

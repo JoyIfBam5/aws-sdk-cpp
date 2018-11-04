@@ -27,7 +27,9 @@ UpdateProvisioningArtifactRequest::UpdateProvisioningArtifactRequest() :
     m_productIdHasBeenSet(false),
     m_provisioningArtifactIdHasBeenSet(false),
     m_nameHasBeenSet(false),
-    m_descriptionHasBeenSet(false)
+    m_descriptionHasBeenSet(false),
+    m_active(false),
+    m_activeHasBeenSet(false)
 {
 }
 
@@ -65,7 +67,13 @@ Aws::String UpdateProvisioningArtifactRequest::SerializePayload() const
 
   }
 
-  return payload.WriteReadable();
+  if(m_activeHasBeenSet)
+  {
+   payload.WithBool("Active", m_active);
+
+  }
+
+  return payload.View().WriteReadable();
 }
 
 Aws::Http::HeaderValueCollection UpdateProvisioningArtifactRequest::GetRequestSpecificHeaders() const

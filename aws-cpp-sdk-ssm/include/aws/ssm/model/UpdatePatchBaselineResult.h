@@ -21,7 +21,9 @@
 #include <aws/ssm/model/PatchRuleGroup.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/ssm/model/PatchComplianceLevel.h>
+#include <aws/ssm/model/PatchAction.h>
 #include <aws/core/utils/DateTime.h>
+#include <aws/ssm/model/PatchSource.h>
 #include <utility>
 
 namespace Aws
@@ -271,6 +273,28 @@ namespace Model
 
 
     /**
+     * <p>Indicates whether the list of approved patches includes non-security updates
+     * that should be applied to the instances. The default value is 'false'. Applies
+     * to Linux instances only.</p>
+     */
+    inline bool GetApprovedPatchesEnableNonSecurity() const{ return m_approvedPatchesEnableNonSecurity; }
+
+    /**
+     * <p>Indicates whether the list of approved patches includes non-security updates
+     * that should be applied to the instances. The default value is 'false'. Applies
+     * to Linux instances only.</p>
+     */
+    inline void SetApprovedPatchesEnableNonSecurity(bool value) { m_approvedPatchesEnableNonSecurity = value; }
+
+    /**
+     * <p>Indicates whether the list of approved patches includes non-security updates
+     * that should be applied to the instances. The default value is 'false'. Applies
+     * to Linux instances only.</p>
+     */
+    inline UpdatePatchBaselineResult& WithApprovedPatchesEnableNonSecurity(bool value) { SetApprovedPatchesEnableNonSecurity(value); return *this;}
+
+
+    /**
      * <p>A list of explicitly rejected patches for the baseline.</p>
      */
     inline const Aws::Vector<Aws::String>& GetRejectedPatches() const{ return m_rejectedPatches; }
@@ -309,6 +333,42 @@ namespace Model
      * <p>A list of explicitly rejected patches for the baseline.</p>
      */
     inline UpdatePatchBaselineResult& AddRejectedPatches(const char* value) { m_rejectedPatches.push_back(value); return *this; }
+
+
+    /**
+     * <p>The action specified to take on patches included in the RejectedPatches list.
+     * A patch can be allowed only if it is a dependency of another package, or blocked
+     * entirely along with packages that include it as a dependency.</p>
+     */
+    inline const PatchAction& GetRejectedPatchesAction() const{ return m_rejectedPatchesAction; }
+
+    /**
+     * <p>The action specified to take on patches included in the RejectedPatches list.
+     * A patch can be allowed only if it is a dependency of another package, or blocked
+     * entirely along with packages that include it as a dependency.</p>
+     */
+    inline void SetRejectedPatchesAction(const PatchAction& value) { m_rejectedPatchesAction = value; }
+
+    /**
+     * <p>The action specified to take on patches included in the RejectedPatches list.
+     * A patch can be allowed only if it is a dependency of another package, or blocked
+     * entirely along with packages that include it as a dependency.</p>
+     */
+    inline void SetRejectedPatchesAction(PatchAction&& value) { m_rejectedPatchesAction = std::move(value); }
+
+    /**
+     * <p>The action specified to take on patches included in the RejectedPatches list.
+     * A patch can be allowed only if it is a dependency of another package, or blocked
+     * entirely along with packages that include it as a dependency.</p>
+     */
+    inline UpdatePatchBaselineResult& WithRejectedPatchesAction(const PatchAction& value) { SetRejectedPatchesAction(value); return *this;}
+
+    /**
+     * <p>The action specified to take on patches included in the RejectedPatches list.
+     * A patch can be allowed only if it is a dependency of another package, or blocked
+     * entirely along with packages that include it as a dependency.</p>
+     */
+    inline UpdatePatchBaselineResult& WithRejectedPatchesAction(PatchAction&& value) { SetRejectedPatchesAction(std::move(value)); return *this;}
 
 
     /**
@@ -398,6 +458,56 @@ namespace Model
      */
     inline UpdatePatchBaselineResult& WithDescription(const char* value) { SetDescription(value); return *this;}
 
+
+    /**
+     * <p>Information about the patches to use to update the instances, including
+     * target operating systems and source repositories. Applies to Linux instances
+     * only.</p>
+     */
+    inline const Aws::Vector<PatchSource>& GetSources() const{ return m_sources; }
+
+    /**
+     * <p>Information about the patches to use to update the instances, including
+     * target operating systems and source repositories. Applies to Linux instances
+     * only.</p>
+     */
+    inline void SetSources(const Aws::Vector<PatchSource>& value) { m_sources = value; }
+
+    /**
+     * <p>Information about the patches to use to update the instances, including
+     * target operating systems and source repositories. Applies to Linux instances
+     * only.</p>
+     */
+    inline void SetSources(Aws::Vector<PatchSource>&& value) { m_sources = std::move(value); }
+
+    /**
+     * <p>Information about the patches to use to update the instances, including
+     * target operating systems and source repositories. Applies to Linux instances
+     * only.</p>
+     */
+    inline UpdatePatchBaselineResult& WithSources(const Aws::Vector<PatchSource>& value) { SetSources(value); return *this;}
+
+    /**
+     * <p>Information about the patches to use to update the instances, including
+     * target operating systems and source repositories. Applies to Linux instances
+     * only.</p>
+     */
+    inline UpdatePatchBaselineResult& WithSources(Aws::Vector<PatchSource>&& value) { SetSources(std::move(value)); return *this;}
+
+    /**
+     * <p>Information about the patches to use to update the instances, including
+     * target operating systems and source repositories. Applies to Linux instances
+     * only.</p>
+     */
+    inline UpdatePatchBaselineResult& AddSources(const PatchSource& value) { m_sources.push_back(value); return *this; }
+
+    /**
+     * <p>Information about the patches to use to update the instances, including
+     * target operating systems and source repositories. Applies to Linux instances
+     * only.</p>
+     */
+    inline UpdatePatchBaselineResult& AddSources(PatchSource&& value) { m_sources.push_back(std::move(value)); return *this; }
+
   private:
 
     Aws::String m_baselineId;
@@ -414,13 +524,19 @@ namespace Model
 
     PatchComplianceLevel m_approvedPatchesComplianceLevel;
 
+    bool m_approvedPatchesEnableNonSecurity;
+
     Aws::Vector<Aws::String> m_rejectedPatches;
+
+    PatchAction m_rejectedPatchesAction;
 
     Aws::Utils::DateTime m_createdDate;
 
     Aws::Utils::DateTime m_modifiedDate;
 
     Aws::String m_description;
+
+    Aws::Vector<PatchSource> m_sources;
   };
 
 } // namespace Model

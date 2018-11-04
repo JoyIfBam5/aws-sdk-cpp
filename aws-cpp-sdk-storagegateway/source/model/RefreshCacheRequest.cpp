@@ -23,7 +23,10 @@ using namespace Aws::Utils::Json;
 using namespace Aws::Utils;
 
 RefreshCacheRequest::RefreshCacheRequest() : 
-    m_fileShareARNHasBeenSet(false)
+    m_fileShareARNHasBeenSet(false),
+    m_folderListHasBeenSet(false),
+    m_recursive(false),
+    m_recursiveHasBeenSet(false)
 {
 }
 
@@ -37,7 +40,24 @@ Aws::String RefreshCacheRequest::SerializePayload() const
 
   }
 
-  return payload.WriteReadable();
+  if(m_folderListHasBeenSet)
+  {
+   Array<JsonValue> folderListJsonList(m_folderList.size());
+   for(unsigned folderListIndex = 0; folderListIndex < folderListJsonList.GetLength(); ++folderListIndex)
+   {
+     folderListJsonList[folderListIndex].AsString(m_folderList[folderListIndex]);
+   }
+   payload.WithArray("FolderList", std::move(folderListJsonList));
+
+  }
+
+  if(m_recursiveHasBeenSet)
+  {
+   payload.WithBool("Recursive", m_recursive);
+
+  }
+
+  return payload.View().WriteReadable();
 }
 
 Aws::Http::HeaderValueCollection RefreshCacheRequest::GetRequestSpecificHeaders() const

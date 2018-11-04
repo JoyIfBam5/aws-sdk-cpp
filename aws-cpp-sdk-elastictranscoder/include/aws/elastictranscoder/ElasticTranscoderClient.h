@@ -59,11 +59,6 @@ namespace Threading
 {
   class Executor;
 } // namespace Threading
-
-namespace Json
-{
-  class JsonValue;
-} // namespace Json
 } // namespace Utils
 
 namespace Auth
@@ -183,7 +178,7 @@ namespace Model
 
         virtual ~ElasticTranscoderClient();
 
-        inline virtual const char* GetServiceClientName() const override { return "elastictranscoder"; }
+        inline virtual const char* GetServiceClientName() const override { return "Elastic Transcoder"; }
 
 
         /**

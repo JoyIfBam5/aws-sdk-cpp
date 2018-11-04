@@ -25,6 +25,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace CloudDirectory
@@ -34,50 +35,71 @@ namespace Model
 
   /**
    * <p>A facet.</p><p><h3>See Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/SchemaFacet">AWS
+   * href="http://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2017-01-11/SchemaFacet">AWS
    * API Reference</a></p>
    */
   class AWS_CLOUDDIRECTORY_API SchemaFacet
   {
   public:
     SchemaFacet();
-    SchemaFacet(const Aws::Utils::Json::JsonValue& jsonValue);
-    SchemaFacet& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    SchemaFacet(Aws::Utils::Json::JsonView jsonValue);
+    SchemaFacet& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
     /**
-     * <p>The ARN of the schema that contains the facet.</p>
+     * <p>The ARN of the schema that contains the facet with no minor component. See
+     * <a>arns</a> and <a
+     * href="https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_inplaceschemaupgrade.html">In-Place
+     * Schema Upgrade</a> for a description of when to provide minor versions.</p>
      */
     inline const Aws::String& GetSchemaArn() const{ return m_schemaArn; }
 
     /**
-     * <p>The ARN of the schema that contains the facet.</p>
+     * <p>The ARN of the schema that contains the facet with no minor component. See
+     * <a>arns</a> and <a
+     * href="https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_inplaceschemaupgrade.html">In-Place
+     * Schema Upgrade</a> for a description of when to provide minor versions.</p>
      */
     inline void SetSchemaArn(const Aws::String& value) { m_schemaArnHasBeenSet = true; m_schemaArn = value; }
 
     /**
-     * <p>The ARN of the schema that contains the facet.</p>
+     * <p>The ARN of the schema that contains the facet with no minor component. See
+     * <a>arns</a> and <a
+     * href="https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_inplaceschemaupgrade.html">In-Place
+     * Schema Upgrade</a> for a description of when to provide minor versions.</p>
      */
     inline void SetSchemaArn(Aws::String&& value) { m_schemaArnHasBeenSet = true; m_schemaArn = std::move(value); }
 
     /**
-     * <p>The ARN of the schema that contains the facet.</p>
+     * <p>The ARN of the schema that contains the facet with no minor component. See
+     * <a>arns</a> and <a
+     * href="https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_inplaceschemaupgrade.html">In-Place
+     * Schema Upgrade</a> for a description of when to provide minor versions.</p>
      */
     inline void SetSchemaArn(const char* value) { m_schemaArnHasBeenSet = true; m_schemaArn.assign(value); }
 
     /**
-     * <p>The ARN of the schema that contains the facet.</p>
+     * <p>The ARN of the schema that contains the facet with no minor component. See
+     * <a>arns</a> and <a
+     * href="https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_inplaceschemaupgrade.html">In-Place
+     * Schema Upgrade</a> for a description of when to provide minor versions.</p>
      */
     inline SchemaFacet& WithSchemaArn(const Aws::String& value) { SetSchemaArn(value); return *this;}
 
     /**
-     * <p>The ARN of the schema that contains the facet.</p>
+     * <p>The ARN of the schema that contains the facet with no minor component. See
+     * <a>arns</a> and <a
+     * href="https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_inplaceschemaupgrade.html">In-Place
+     * Schema Upgrade</a> for a description of when to provide minor versions.</p>
      */
     inline SchemaFacet& WithSchemaArn(Aws::String&& value) { SetSchemaArn(std::move(value)); return *this;}
 
     /**
-     * <p>The ARN of the schema that contains the facet.</p>
+     * <p>The ARN of the schema that contains the facet with no minor component. See
+     * <a>arns</a> and <a
+     * href="https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_inplaceschemaupgrade.html">In-Place
+     * Schema Upgrade</a> for a description of when to provide minor versions.</p>
      */
     inline SchemaFacet& WithSchemaArn(const char* value) { SetSchemaArn(value); return *this;}
 

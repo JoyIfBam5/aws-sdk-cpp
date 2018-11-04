@@ -65,6 +65,7 @@
 #include <aws/directconnect/model/TagResourceRequest.h>
 #include <aws/directconnect/model/UntagResourceRequest.h>
 #include <aws/directconnect/model/UpdateLagRequest.h>
+#include <aws/directconnect/model/UpdateVirtualInterfaceAttributesRequest.h>
 
 using namespace Aws;
 using namespace Aws::Auth;
@@ -1255,7 +1256,7 @@ DescribeLocationsOutcome DirectConnectClient::DescribeLocations() const
   Aws::StringStream ss;
   ss << m_uri << "/";
 
-  JsonOutcome outcome = MakeRequest(ss.str(), HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER, "{operation.name}");
+  JsonOutcome outcome = MakeRequest(ss.str(), HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER, "DescribeLocations");
   if(outcome.IsSuccess())
   {
     return DescribeLocationsOutcome(DescribeLocationsResult(outcome.GetResult()));
@@ -1324,7 +1325,7 @@ DescribeVirtualGatewaysOutcome DirectConnectClient::DescribeVirtualGateways() co
   Aws::StringStream ss;
   ss << m_uri << "/";
 
-  JsonOutcome outcome = MakeRequest(ss.str(), HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER, "{operation.name}");
+  JsonOutcome outcome = MakeRequest(ss.str(), HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER, "DescribeVirtualGateways");
   if(outcome.IsSuccess())
   {
     return DescribeVirtualGatewaysOutcome(DescribeVirtualGatewaysResult(outcome.GetResult()));
@@ -1526,5 +1527,40 @@ void DirectConnectClient::UpdateLagAsync(const UpdateLagRequest& request, const 
 void DirectConnectClient::UpdateLagAsyncHelper(const UpdateLagRequest& request, const UpdateLagResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
   handler(this, request, UpdateLag(request), context);
+}
+
+UpdateVirtualInterfaceAttributesOutcome DirectConnectClient::UpdateVirtualInterfaceAttributes(const UpdateVirtualInterfaceAttributesRequest& request) const
+{
+  Aws::StringStream ss;
+  Aws::Http::URI uri = m_uri;
+  ss << "/";
+  uri.SetPath(uri.GetPath() + ss.str());
+  JsonOutcome outcome = MakeRequest(uri, request, HttpMethod::HTTP_POST, Aws::Auth::SIGV4_SIGNER);
+  if(outcome.IsSuccess())
+  {
+    return UpdateVirtualInterfaceAttributesOutcome(UpdateVirtualInterfaceAttributesResult(outcome.GetResult()));
+  }
+  else
+  {
+    return UpdateVirtualInterfaceAttributesOutcome(outcome.GetError());
+  }
+}
+
+UpdateVirtualInterfaceAttributesOutcomeCallable DirectConnectClient::UpdateVirtualInterfaceAttributesCallable(const UpdateVirtualInterfaceAttributesRequest& request) const
+{
+  auto task = Aws::MakeShared< std::packaged_task< UpdateVirtualInterfaceAttributesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateVirtualInterfaceAttributes(request); } );
+  auto packagedFunction = [task]() { (*task)(); };
+  m_executor->Submit(packagedFunction);
+  return task->get_future();
+}
+
+void DirectConnectClient::UpdateVirtualInterfaceAttributesAsync(const UpdateVirtualInterfaceAttributesRequest& request, const UpdateVirtualInterfaceAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  m_executor->Submit( [this, request, handler, context](){ this->UpdateVirtualInterfaceAttributesAsyncHelper( request, handler, context ); } );
+}
+
+void DirectConnectClient::UpdateVirtualInterfaceAttributesAsyncHelper(const UpdateVirtualInterfaceAttributesRequest& request, const UpdateVirtualInterfaceAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
+{
+  handler(this, request, UpdateVirtualInterfaceAttributes(request), context);
 }
 

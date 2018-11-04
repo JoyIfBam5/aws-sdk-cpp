@@ -86,35 +86,45 @@ namespace Model
 
 
     /**
-     * <p>The namespace of the AWS service. For more information, see <a
+     * <p>The namespace of the AWS service that provides the resource or
+     * <code>custom-resource</code> for a resource provided by your own application or
+     * service. For more information, see <a
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces">AWS
      * Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>
      */
     inline const ServiceNamespace& GetServiceNamespace() const{ return m_serviceNamespace; }
 
     /**
-     * <p>The namespace of the AWS service. For more information, see <a
+     * <p>The namespace of the AWS service that provides the resource or
+     * <code>custom-resource</code> for a resource provided by your own application or
+     * service. For more information, see <a
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces">AWS
      * Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>
      */
     inline void SetServiceNamespace(const ServiceNamespace& value) { m_serviceNamespaceHasBeenSet = true; m_serviceNamespace = value; }
 
     /**
-     * <p>The namespace of the AWS service. For more information, see <a
+     * <p>The namespace of the AWS service that provides the resource or
+     * <code>custom-resource</code> for a resource provided by your own application or
+     * service. For more information, see <a
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces">AWS
      * Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>
      */
     inline void SetServiceNamespace(ServiceNamespace&& value) { m_serviceNamespaceHasBeenSet = true; m_serviceNamespace = std::move(value); }
 
     /**
-     * <p>The namespace of the AWS service. For more information, see <a
+     * <p>The namespace of the AWS service that provides the resource or
+     * <code>custom-resource</code> for a resource provided by your own application or
+     * service. For more information, see <a
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces">AWS
      * Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>
      */
     inline PutScalingPolicyRequest& WithServiceNamespace(const ServiceNamespace& value) { SetServiceNamespace(value); return *this;}
 
     /**
-     * <p>The namespace of the AWS service. For more information, see <a
+     * <p>The namespace of the AWS service that provides the resource or
+     * <code>custom-resource</code> for a resource provided by your own application or
+     * service. For more information, see <a
      * href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces">AWS
      * Service Namespaces</a> in the <i>Amazon Web Services General Reference</i>.</p>
      */
@@ -141,7 +151,14 @@ namespace Model
      * <code>index</code> and the unique identifier is the resource ID. Example:
      * <code>table/my-table/index/my-table-index</code>.</p> </li> <li> <p>Aurora DB
      * cluster - The resource type is <code>cluster</code> and the unique identifier is
-     * the cluster name. Example: <code>cluster:my-db-cluster</code>.</p> </li> </ul>
+     * the cluster name. Example: <code>cluster:my-db-cluster</code>.</p> </li> <li>
+     * <p>Amazon SageMaker endpoint variants - The resource type is
+     * <code>variant</code> and the unique identifier is the resource ID. Example:
+     * <code>endpoint/my-end-point/variant/KMeansClustering</code>.</p> </li> <li>
+     * <p>Custom resources are not supported with a resource type. This parameter must
+     * specify the <code>OutputValue</code> from the CloudFormation template stack used
+     * to access the resources. The unique identifier is defined by the service
+     * provider.</p> </li> </ul>
      */
     inline const Aws::String& GetResourceId() const{ return m_resourceId; }
 
@@ -165,7 +182,14 @@ namespace Model
      * <code>index</code> and the unique identifier is the resource ID. Example:
      * <code>table/my-table/index/my-table-index</code>.</p> </li> <li> <p>Aurora DB
      * cluster - The resource type is <code>cluster</code> and the unique identifier is
-     * the cluster name. Example: <code>cluster:my-db-cluster</code>.</p> </li> </ul>
+     * the cluster name. Example: <code>cluster:my-db-cluster</code>.</p> </li> <li>
+     * <p>Amazon SageMaker endpoint variants - The resource type is
+     * <code>variant</code> and the unique identifier is the resource ID. Example:
+     * <code>endpoint/my-end-point/variant/KMeansClustering</code>.</p> </li> <li>
+     * <p>Custom resources are not supported with a resource type. This parameter must
+     * specify the <code>OutputValue</code> from the CloudFormation template stack used
+     * to access the resources. The unique identifier is defined by the service
+     * provider.</p> </li> </ul>
      */
     inline void SetResourceId(const Aws::String& value) { m_resourceIdHasBeenSet = true; m_resourceId = value; }
 
@@ -189,7 +213,14 @@ namespace Model
      * <code>index</code> and the unique identifier is the resource ID. Example:
      * <code>table/my-table/index/my-table-index</code>.</p> </li> <li> <p>Aurora DB
      * cluster - The resource type is <code>cluster</code> and the unique identifier is
-     * the cluster name. Example: <code>cluster:my-db-cluster</code>.</p> </li> </ul>
+     * the cluster name. Example: <code>cluster:my-db-cluster</code>.</p> </li> <li>
+     * <p>Amazon SageMaker endpoint variants - The resource type is
+     * <code>variant</code> and the unique identifier is the resource ID. Example:
+     * <code>endpoint/my-end-point/variant/KMeansClustering</code>.</p> </li> <li>
+     * <p>Custom resources are not supported with a resource type. This parameter must
+     * specify the <code>OutputValue</code> from the CloudFormation template stack used
+     * to access the resources. The unique identifier is defined by the service
+     * provider.</p> </li> </ul>
      */
     inline void SetResourceId(Aws::String&& value) { m_resourceIdHasBeenSet = true; m_resourceId = std::move(value); }
 
@@ -213,7 +244,14 @@ namespace Model
      * <code>index</code> and the unique identifier is the resource ID. Example:
      * <code>table/my-table/index/my-table-index</code>.</p> </li> <li> <p>Aurora DB
      * cluster - The resource type is <code>cluster</code> and the unique identifier is
-     * the cluster name. Example: <code>cluster:my-db-cluster</code>.</p> </li> </ul>
+     * the cluster name. Example: <code>cluster:my-db-cluster</code>.</p> </li> <li>
+     * <p>Amazon SageMaker endpoint variants - The resource type is
+     * <code>variant</code> and the unique identifier is the resource ID. Example:
+     * <code>endpoint/my-end-point/variant/KMeansClustering</code>.</p> </li> <li>
+     * <p>Custom resources are not supported with a resource type. This parameter must
+     * specify the <code>OutputValue</code> from the CloudFormation template stack used
+     * to access the resources. The unique identifier is defined by the service
+     * provider.</p> </li> </ul>
      */
     inline void SetResourceId(const char* value) { m_resourceIdHasBeenSet = true; m_resourceId.assign(value); }
 
@@ -237,7 +275,14 @@ namespace Model
      * <code>index</code> and the unique identifier is the resource ID. Example:
      * <code>table/my-table/index/my-table-index</code>.</p> </li> <li> <p>Aurora DB
      * cluster - The resource type is <code>cluster</code> and the unique identifier is
-     * the cluster name. Example: <code>cluster:my-db-cluster</code>.</p> </li> </ul>
+     * the cluster name. Example: <code>cluster:my-db-cluster</code>.</p> </li> <li>
+     * <p>Amazon SageMaker endpoint variants - The resource type is
+     * <code>variant</code> and the unique identifier is the resource ID. Example:
+     * <code>endpoint/my-end-point/variant/KMeansClustering</code>.</p> </li> <li>
+     * <p>Custom resources are not supported with a resource type. This parameter must
+     * specify the <code>OutputValue</code> from the CloudFormation template stack used
+     * to access the resources. The unique identifier is defined by the service
+     * provider.</p> </li> </ul>
      */
     inline PutScalingPolicyRequest& WithResourceId(const Aws::String& value) { SetResourceId(value); return *this;}
 
@@ -261,7 +306,14 @@ namespace Model
      * <code>index</code> and the unique identifier is the resource ID. Example:
      * <code>table/my-table/index/my-table-index</code>.</p> </li> <li> <p>Aurora DB
      * cluster - The resource type is <code>cluster</code> and the unique identifier is
-     * the cluster name. Example: <code>cluster:my-db-cluster</code>.</p> </li> </ul>
+     * the cluster name. Example: <code>cluster:my-db-cluster</code>.</p> </li> <li>
+     * <p>Amazon SageMaker endpoint variants - The resource type is
+     * <code>variant</code> and the unique identifier is the resource ID. Example:
+     * <code>endpoint/my-end-point/variant/KMeansClustering</code>.</p> </li> <li>
+     * <p>Custom resources are not supported with a resource type. This parameter must
+     * specify the <code>OutputValue</code> from the CloudFormation template stack used
+     * to access the resources. The unique identifier is defined by the service
+     * provider.</p> </li> </ul>
      */
     inline PutScalingPolicyRequest& WithResourceId(Aws::String&& value) { SetResourceId(std::move(value)); return *this;}
 
@@ -285,7 +337,14 @@ namespace Model
      * <code>index</code> and the unique identifier is the resource ID. Example:
      * <code>table/my-table/index/my-table-index</code>.</p> </li> <li> <p>Aurora DB
      * cluster - The resource type is <code>cluster</code> and the unique identifier is
-     * the cluster name. Example: <code>cluster:my-db-cluster</code>.</p> </li> </ul>
+     * the cluster name. Example: <code>cluster:my-db-cluster</code>.</p> </li> <li>
+     * <p>Amazon SageMaker endpoint variants - The resource type is
+     * <code>variant</code> and the unique identifier is the resource ID. Example:
+     * <code>endpoint/my-end-point/variant/KMeansClustering</code>.</p> </li> <li>
+     * <p>Custom resources are not supported with a resource type. This parameter must
+     * specify the <code>OutputValue</code> from the CloudFormation template stack used
+     * to access the resources. The unique identifier is defined by the service
+     * provider.</p> </li> </ul>
      */
     inline PutScalingPolicyRequest& WithResourceId(const char* value) { SetResourceId(value); return *this;}
 
@@ -309,8 +368,11 @@ namespace Model
      * <code>dynamodb:index:WriteCapacityUnits</code> - The provisioned write capacity
      * for a DynamoDB global secondary index.</p> </li> <li> <p>
      * <code>rds:cluster:ReadReplicaCount</code> - The count of Aurora Replicas in an
-     * Aurora DB cluster. Available for Aurora MySQL-compatible edition.</p> </li>
-     * </ul>
+     * Aurora DB cluster. Available for Aurora MySQL-compatible edition.</p> </li> <li>
+     * <p> <code>sagemaker:variant:DesiredInstanceCount</code> - The number of EC2
+     * instances for an Amazon SageMaker model endpoint variant.</p> </li> <li> <p>
+     * <code>custom-resource:ResourceType:Property</code> - The scalable dimension for
+     * a custom resource provided by your own application or service.</p> </li> </ul>
      */
     inline const ScalableDimension& GetScalableDimension() const{ return m_scalableDimension; }
 
@@ -333,8 +395,11 @@ namespace Model
      * <code>dynamodb:index:WriteCapacityUnits</code> - The provisioned write capacity
      * for a DynamoDB global secondary index.</p> </li> <li> <p>
      * <code>rds:cluster:ReadReplicaCount</code> - The count of Aurora Replicas in an
-     * Aurora DB cluster. Available for Aurora MySQL-compatible edition.</p> </li>
-     * </ul>
+     * Aurora DB cluster. Available for Aurora MySQL-compatible edition.</p> </li> <li>
+     * <p> <code>sagemaker:variant:DesiredInstanceCount</code> - The number of EC2
+     * instances for an Amazon SageMaker model endpoint variant.</p> </li> <li> <p>
+     * <code>custom-resource:ResourceType:Property</code> - The scalable dimension for
+     * a custom resource provided by your own application or service.</p> </li> </ul>
      */
     inline void SetScalableDimension(const ScalableDimension& value) { m_scalableDimensionHasBeenSet = true; m_scalableDimension = value; }
 
@@ -357,8 +422,11 @@ namespace Model
      * <code>dynamodb:index:WriteCapacityUnits</code> - The provisioned write capacity
      * for a DynamoDB global secondary index.</p> </li> <li> <p>
      * <code>rds:cluster:ReadReplicaCount</code> - The count of Aurora Replicas in an
-     * Aurora DB cluster. Available for Aurora MySQL-compatible edition.</p> </li>
-     * </ul>
+     * Aurora DB cluster. Available for Aurora MySQL-compatible edition.</p> </li> <li>
+     * <p> <code>sagemaker:variant:DesiredInstanceCount</code> - The number of EC2
+     * instances for an Amazon SageMaker model endpoint variant.</p> </li> <li> <p>
+     * <code>custom-resource:ResourceType:Property</code> - The scalable dimension for
+     * a custom resource provided by your own application or service.</p> </li> </ul>
      */
     inline void SetScalableDimension(ScalableDimension&& value) { m_scalableDimensionHasBeenSet = true; m_scalableDimension = std::move(value); }
 
@@ -381,8 +449,11 @@ namespace Model
      * <code>dynamodb:index:WriteCapacityUnits</code> - The provisioned write capacity
      * for a DynamoDB global secondary index.</p> </li> <li> <p>
      * <code>rds:cluster:ReadReplicaCount</code> - The count of Aurora Replicas in an
-     * Aurora DB cluster. Available for Aurora MySQL-compatible edition.</p> </li>
-     * </ul>
+     * Aurora DB cluster. Available for Aurora MySQL-compatible edition.</p> </li> <li>
+     * <p> <code>sagemaker:variant:DesiredInstanceCount</code> - The number of EC2
+     * instances for an Amazon SageMaker model endpoint variant.</p> </li> <li> <p>
+     * <code>custom-resource:ResourceType:Property</code> - The scalable dimension for
+     * a custom resource provided by your own application or service.</p> </li> </ul>
      */
     inline PutScalingPolicyRequest& WithScalableDimension(const ScalableDimension& value) { SetScalableDimension(value); return *this;}
 
@@ -405,49 +476,57 @@ namespace Model
      * <code>dynamodb:index:WriteCapacityUnits</code> - The provisioned write capacity
      * for a DynamoDB global secondary index.</p> </li> <li> <p>
      * <code>rds:cluster:ReadReplicaCount</code> - The count of Aurora Replicas in an
-     * Aurora DB cluster. Available for Aurora MySQL-compatible edition.</p> </li>
-     * </ul>
+     * Aurora DB cluster. Available for Aurora MySQL-compatible edition.</p> </li> <li>
+     * <p> <code>sagemaker:variant:DesiredInstanceCount</code> - The number of EC2
+     * instances for an Amazon SageMaker model endpoint variant.</p> </li> <li> <p>
+     * <code>custom-resource:ResourceType:Property</code> - The scalable dimension for
+     * a custom resource provided by your own application or service.</p> </li> </ul>
      */
     inline PutScalingPolicyRequest& WithScalableDimension(ScalableDimension&& value) { SetScalableDimension(std::move(value)); return *this;}
 
 
     /**
-     * <p>The policy type. If you are creating a new policy, this parameter is
-     * required. If you are updating a policy, this parameter is not required.</p>
-     * <p>For DynamoDB, only <code>TargetTrackingScaling</code> is supported. For any
-     * other service, only <code>StepScaling</code> is supported.</p>
+     * <p>The policy type. This parameter is required if you are creating a policy.</p>
+     * <p>For DynamoDB, only <code>TargetTrackingScaling</code> is supported. For
+     * Amazon ECS, Spot Fleet, and Amazon RDS, both <code>StepScaling</code> and
+     * <code>TargetTrackingScaling</code> are supported. For any other service, only
+     * <code>StepScaling</code> is supported.</p>
      */
     inline const PolicyType& GetPolicyType() const{ return m_policyType; }
 
     /**
-     * <p>The policy type. If you are creating a new policy, this parameter is
-     * required. If you are updating a policy, this parameter is not required.</p>
-     * <p>For DynamoDB, only <code>TargetTrackingScaling</code> is supported. For any
-     * other service, only <code>StepScaling</code> is supported.</p>
+     * <p>The policy type. This parameter is required if you are creating a policy.</p>
+     * <p>For DynamoDB, only <code>TargetTrackingScaling</code> is supported. For
+     * Amazon ECS, Spot Fleet, and Amazon RDS, both <code>StepScaling</code> and
+     * <code>TargetTrackingScaling</code> are supported. For any other service, only
+     * <code>StepScaling</code> is supported.</p>
      */
     inline void SetPolicyType(const PolicyType& value) { m_policyTypeHasBeenSet = true; m_policyType = value; }
 
     /**
-     * <p>The policy type. If you are creating a new policy, this parameter is
-     * required. If you are updating a policy, this parameter is not required.</p>
-     * <p>For DynamoDB, only <code>TargetTrackingScaling</code> is supported. For any
-     * other service, only <code>StepScaling</code> is supported.</p>
+     * <p>The policy type. This parameter is required if you are creating a policy.</p>
+     * <p>For DynamoDB, only <code>TargetTrackingScaling</code> is supported. For
+     * Amazon ECS, Spot Fleet, and Amazon RDS, both <code>StepScaling</code> and
+     * <code>TargetTrackingScaling</code> are supported. For any other service, only
+     * <code>StepScaling</code> is supported.</p>
      */
     inline void SetPolicyType(PolicyType&& value) { m_policyTypeHasBeenSet = true; m_policyType = std::move(value); }
 
     /**
-     * <p>The policy type. If you are creating a new policy, this parameter is
-     * required. If you are updating a policy, this parameter is not required.</p>
-     * <p>For DynamoDB, only <code>TargetTrackingScaling</code> is supported. For any
-     * other service, only <code>StepScaling</code> is supported.</p>
+     * <p>The policy type. This parameter is required if you are creating a policy.</p>
+     * <p>For DynamoDB, only <code>TargetTrackingScaling</code> is supported. For
+     * Amazon ECS, Spot Fleet, and Amazon RDS, both <code>StepScaling</code> and
+     * <code>TargetTrackingScaling</code> are supported. For any other service, only
+     * <code>StepScaling</code> is supported.</p>
      */
     inline PutScalingPolicyRequest& WithPolicyType(const PolicyType& value) { SetPolicyType(value); return *this;}
 
     /**
-     * <p>The policy type. If you are creating a new policy, this parameter is
-     * required. If you are updating a policy, this parameter is not required.</p>
-     * <p>For DynamoDB, only <code>TargetTrackingScaling</code> is supported. For any
-     * other service, only <code>StepScaling</code> is supported.</p>
+     * <p>The policy type. This parameter is required if you are creating a policy.</p>
+     * <p>For DynamoDB, only <code>TargetTrackingScaling</code> is supported. For
+     * Amazon ECS, Spot Fleet, and Amazon RDS, both <code>StepScaling</code> and
+     * <code>TargetTrackingScaling</code> are supported. For any other service, only
+     * <code>StepScaling</code> is supported.</p>
      */
     inline PutScalingPolicyRequest& WithPolicyType(PolicyType&& value) { SetPolicyType(std::move(value)); return *this;}
 
@@ -485,36 +564,31 @@ namespace Model
 
     /**
      * <p>A target tracking policy.</p> <p>This parameter is required if you are
-     * creating a new policy and the policy type is
-     * <code>TargetTrackingScaling</code>.</p>
+     * creating a policy and the policy type is <code>TargetTrackingScaling</code>.</p>
      */
     inline const TargetTrackingScalingPolicyConfiguration& GetTargetTrackingScalingPolicyConfiguration() const{ return m_targetTrackingScalingPolicyConfiguration; }
 
     /**
      * <p>A target tracking policy.</p> <p>This parameter is required if you are
-     * creating a new policy and the policy type is
-     * <code>TargetTrackingScaling</code>.</p>
+     * creating a policy and the policy type is <code>TargetTrackingScaling</code>.</p>
      */
     inline void SetTargetTrackingScalingPolicyConfiguration(const TargetTrackingScalingPolicyConfiguration& value) { m_targetTrackingScalingPolicyConfigurationHasBeenSet = true; m_targetTrackingScalingPolicyConfiguration = value; }
 
     /**
      * <p>A target tracking policy.</p> <p>This parameter is required if you are
-     * creating a new policy and the policy type is
-     * <code>TargetTrackingScaling</code>.</p>
+     * creating a policy and the policy type is <code>TargetTrackingScaling</code>.</p>
      */
     inline void SetTargetTrackingScalingPolicyConfiguration(TargetTrackingScalingPolicyConfiguration&& value) { m_targetTrackingScalingPolicyConfigurationHasBeenSet = true; m_targetTrackingScalingPolicyConfiguration = std::move(value); }
 
     /**
      * <p>A target tracking policy.</p> <p>This parameter is required if you are
-     * creating a new policy and the policy type is
-     * <code>TargetTrackingScaling</code>.</p>
+     * creating a policy and the policy type is <code>TargetTrackingScaling</code>.</p>
      */
     inline PutScalingPolicyRequest& WithTargetTrackingScalingPolicyConfiguration(const TargetTrackingScalingPolicyConfiguration& value) { SetTargetTrackingScalingPolicyConfiguration(value); return *this;}
 
     /**
      * <p>A target tracking policy.</p> <p>This parameter is required if you are
-     * creating a new policy and the policy type is
-     * <code>TargetTrackingScaling</code>.</p>
+     * creating a policy and the policy type is <code>TargetTrackingScaling</code>.</p>
      */
     inline PutScalingPolicyRequest& WithTargetTrackingScalingPolicyConfiguration(TargetTrackingScalingPolicyConfiguration&& value) { SetTargetTrackingScalingPolicyConfiguration(std::move(value)); return *this;}
 

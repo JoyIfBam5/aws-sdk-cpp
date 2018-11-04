@@ -25,6 +25,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace Rekognition
@@ -35,8 +36,8 @@ namespace Model
   /**
    * <p>Provides information about a single type of moderated content found in an
    * image or video. Each type of moderated content has a label within a hierarchical
-   * taxonomy. For more information, see <a>moderation</a>.</p><p><h3>See Also:</h3> 
-   * <a
+   * taxonomy. For more information, see Detecting Unsafe Content in the Amazon
+   * Rekognition Developer Guide.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/ModerationLabel">AWS
    * API Reference</a></p>
    */
@@ -44,8 +45,8 @@ namespace Model
   {
   public:
     ModerationLabel();
-    ModerationLabel(const Aws::Utils::Json::JsonValue& jsonValue);
-    ModerationLabel& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    ModerationLabel(Aws::Utils::Json::JsonView jsonValue);
+    ModerationLabel& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -111,43 +112,43 @@ namespace Model
 
 
     /**
-     * <p>The name for the parent label. Labels at the top-level of the hierarchy have
+     * <p>The name for the parent label. Labels at the top level of the hierarchy have
      * the parent label <code>""</code>.</p>
      */
     inline const Aws::String& GetParentName() const{ return m_parentName; }
 
     /**
-     * <p>The name for the parent label. Labels at the top-level of the hierarchy have
+     * <p>The name for the parent label. Labels at the top level of the hierarchy have
      * the parent label <code>""</code>.</p>
      */
     inline void SetParentName(const Aws::String& value) { m_parentNameHasBeenSet = true; m_parentName = value; }
 
     /**
-     * <p>The name for the parent label. Labels at the top-level of the hierarchy have
+     * <p>The name for the parent label. Labels at the top level of the hierarchy have
      * the parent label <code>""</code>.</p>
      */
     inline void SetParentName(Aws::String&& value) { m_parentNameHasBeenSet = true; m_parentName = std::move(value); }
 
     /**
-     * <p>The name for the parent label. Labels at the top-level of the hierarchy have
+     * <p>The name for the parent label. Labels at the top level of the hierarchy have
      * the parent label <code>""</code>.</p>
      */
     inline void SetParentName(const char* value) { m_parentNameHasBeenSet = true; m_parentName.assign(value); }
 
     /**
-     * <p>The name for the parent label. Labels at the top-level of the hierarchy have
+     * <p>The name for the parent label. Labels at the top level of the hierarchy have
      * the parent label <code>""</code>.</p>
      */
     inline ModerationLabel& WithParentName(const Aws::String& value) { SetParentName(value); return *this;}
 
     /**
-     * <p>The name for the parent label. Labels at the top-level of the hierarchy have
+     * <p>The name for the parent label. Labels at the top level of the hierarchy have
      * the parent label <code>""</code>.</p>
      */
     inline ModerationLabel& WithParentName(Aws::String&& value) { SetParentName(std::move(value)); return *this;}
 
     /**
-     * <p>The name for the parent label. Labels at the top-level of the hierarchy have
+     * <p>The name for the parent label. Labels at the top level of the hierarchy have
      * the parent label <code>""</code>.</p>
      */
     inline ModerationLabel& WithParentName(const char* value) { SetParentName(value); return *this;}

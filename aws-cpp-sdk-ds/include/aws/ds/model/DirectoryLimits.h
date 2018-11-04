@@ -23,6 +23,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace DirectoryService
@@ -40,8 +41,8 @@ namespace Model
   {
   public:
     DirectoryLimits();
-    DirectoryLimits(const Aws::Utils::Json::JsonValue& jsonValue);
-    DirectoryLimits& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    DirectoryLimits(Aws::Utils::Json::JsonView jsonValue);
+    DirectoryLimits& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -94,49 +95,55 @@ namespace Model
 
 
     /**
-     * <p>The maximum number of Microsoft AD directories allowed in the region.</p>
+     * <p>The maximum number of AWS Managed Microsoft AD directories allowed in the
+     * region.</p>
      */
     inline int GetCloudOnlyMicrosoftADLimit() const{ return m_cloudOnlyMicrosoftADLimit; }
 
     /**
-     * <p>The maximum number of Microsoft AD directories allowed in the region.</p>
+     * <p>The maximum number of AWS Managed Microsoft AD directories allowed in the
+     * region.</p>
      */
     inline void SetCloudOnlyMicrosoftADLimit(int value) { m_cloudOnlyMicrosoftADLimitHasBeenSet = true; m_cloudOnlyMicrosoftADLimit = value; }
 
     /**
-     * <p>The maximum number of Microsoft AD directories allowed in the region.</p>
+     * <p>The maximum number of AWS Managed Microsoft AD directories allowed in the
+     * region.</p>
      */
     inline DirectoryLimits& WithCloudOnlyMicrosoftADLimit(int value) { SetCloudOnlyMicrosoftADLimit(value); return *this;}
 
 
     /**
-     * <p>The current number of Microsoft AD directories in the region.</p>
+     * <p>The current number of AWS Managed Microsoft AD directories in the region.</p>
      */
     inline int GetCloudOnlyMicrosoftADCurrentCount() const{ return m_cloudOnlyMicrosoftADCurrentCount; }
 
     /**
-     * <p>The current number of Microsoft AD directories in the region.</p>
+     * <p>The current number of AWS Managed Microsoft AD directories in the region.</p>
      */
     inline void SetCloudOnlyMicrosoftADCurrentCount(int value) { m_cloudOnlyMicrosoftADCurrentCountHasBeenSet = true; m_cloudOnlyMicrosoftADCurrentCount = value; }
 
     /**
-     * <p>The current number of Microsoft AD directories in the region.</p>
+     * <p>The current number of AWS Managed Microsoft AD directories in the region.</p>
      */
     inline DirectoryLimits& WithCloudOnlyMicrosoftADCurrentCount(int value) { SetCloudOnlyMicrosoftADCurrentCount(value); return *this;}
 
 
     /**
-     * <p>Indicates if the Microsoft AD directory limit has been reached.</p>
+     * <p>Indicates if the AWS Managed Microsoft AD directory limit has been
+     * reached.</p>
      */
     inline bool GetCloudOnlyMicrosoftADLimitReached() const{ return m_cloudOnlyMicrosoftADLimitReached; }
 
     /**
-     * <p>Indicates if the Microsoft AD directory limit has been reached.</p>
+     * <p>Indicates if the AWS Managed Microsoft AD directory limit has been
+     * reached.</p>
      */
     inline void SetCloudOnlyMicrosoftADLimitReached(bool value) { m_cloudOnlyMicrosoftADLimitReachedHasBeenSet = true; m_cloudOnlyMicrosoftADLimitReached = value; }
 
     /**
-     * <p>Indicates if the Microsoft AD directory limit has been reached.</p>
+     * <p>Indicates if the AWS Managed Microsoft AD directory limit has been
+     * reached.</p>
      */
     inline DirectoryLimits& WithCloudOnlyMicrosoftADLimitReached(bool value) { SetCloudOnlyMicrosoftADLimitReached(value); return *this;}
 

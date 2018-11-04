@@ -25,7 +25,8 @@ using namespace Aws::Utils;
 CreatePortfolioShareRequest::CreatePortfolioShareRequest() : 
     m_acceptLanguageHasBeenSet(false),
     m_portfolioIdHasBeenSet(false),
-    m_accountIdHasBeenSet(false)
+    m_accountIdHasBeenSet(false),
+    m_organizationNodeHasBeenSet(false)
 {
 }
 
@@ -51,7 +52,13 @@ Aws::String CreatePortfolioShareRequest::SerializePayload() const
 
   }
 
-  return payload.WriteReadable();
+  if(m_organizationNodeHasBeenSet)
+  {
+   payload.WithObject("OrganizationNode", m_organizationNode.Jsonize());
+
+  }
+
+  return payload.View().WriteReadable();
 }
 
 Aws::Http::HeaderValueCollection CreatePortfolioShareRequest::GetRequestSpecificHeaders() const

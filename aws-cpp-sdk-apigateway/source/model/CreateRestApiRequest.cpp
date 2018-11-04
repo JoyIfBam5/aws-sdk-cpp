@@ -28,7 +28,12 @@ CreateRestApiRequest::CreateRestApiRequest() :
     m_versionHasBeenSet(false),
     m_cloneFromHasBeenSet(false),
     m_binaryMediaTypesHasBeenSet(false),
-    m_endpointConfigurationHasBeenSet(false)
+    m_minimumCompressionSize(0),
+    m_minimumCompressionSizeHasBeenSet(false),
+    m_apiKeySource(ApiKeySourceType::NOT_SET),
+    m_apiKeySourceHasBeenSet(false),
+    m_endpointConfigurationHasBeenSet(false),
+    m_policyHasBeenSet(false)
 {
 }
 
@@ -71,13 +76,30 @@ Aws::String CreateRestApiRequest::SerializePayload() const
 
   }
 
+  if(m_minimumCompressionSizeHasBeenSet)
+  {
+   payload.WithInteger("minimumCompressionSize", m_minimumCompressionSize);
+
+  }
+
+  if(m_apiKeySourceHasBeenSet)
+  {
+   payload.WithString("apiKeySource", ApiKeySourceTypeMapper::GetNameForApiKeySourceType(m_apiKeySource));
+  }
+
   if(m_endpointConfigurationHasBeenSet)
   {
    payload.WithObject("endpointConfiguration", m_endpointConfiguration.Jsonize());
 
   }
 
-  return payload.WriteReadable();
+  if(m_policyHasBeenSet)
+  {
+   payload.WithString("policy", m_policy);
+
+  }
+
+  return payload.View().WriteReadable();
 }
 
 

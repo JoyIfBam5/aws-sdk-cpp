@@ -27,6 +27,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace SSM
@@ -35,8 +36,8 @@ namespace Model
 {
 
   /**
-   * <p>One or more filters. Use a filter to return a more specific list of
-   * results.</p><p><h3>See Also:</h3>   <a
+   * <p>This data type is deprecated. Instead, use
+   * <a>ParameterStringFilter</a>.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/ParametersFilter">AWS
    * API Reference</a></p>
    */
@@ -44,8 +45,8 @@ namespace Model
   {
   public:
     ParametersFilter();
-    ParametersFilter(const Aws::Utils::Json::JsonValue& jsonValue);
-    ParametersFilter& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    ParametersFilter(Aws::Utils::Json::JsonView jsonValue);
+    ParametersFilter& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 

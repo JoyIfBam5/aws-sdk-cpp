@@ -40,6 +40,8 @@ JobExecution::JobExecution() :
     m_startedAtHasBeenSet(false),
     m_lastUpdatedAt(0),
     m_lastUpdatedAtHasBeenSet(false),
+    m_approximateSecondsBeforeTimedOut(0),
+    m_approximateSecondsBeforeTimedOutHasBeenSet(false),
     m_versionNumber(0),
     m_versionNumberHasBeenSet(false),
     m_executionNumber(0),
@@ -48,7 +50,7 @@ JobExecution::JobExecution() :
 {
 }
 
-JobExecution::JobExecution(const JsonValue& jsonValue) : 
+JobExecution::JobExecution(JsonView jsonValue) : 
     m_jobIdHasBeenSet(false),
     m_thingNameHasBeenSet(false),
     m_status(JobExecutionStatus::NOT_SET),
@@ -60,6 +62,8 @@ JobExecution::JobExecution(const JsonValue& jsonValue) :
     m_startedAtHasBeenSet(false),
     m_lastUpdatedAt(0),
     m_lastUpdatedAtHasBeenSet(false),
+    m_approximateSecondsBeforeTimedOut(0),
+    m_approximateSecondsBeforeTimedOutHasBeenSet(false),
     m_versionNumber(0),
     m_versionNumberHasBeenSet(false),
     m_executionNumber(0),
@@ -69,7 +73,7 @@ JobExecution::JobExecution(const JsonValue& jsonValue) :
   *this = jsonValue;
 }
 
-JobExecution& JobExecution::operator =(const JsonValue& jsonValue)
+JobExecution& JobExecution::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("jobId"))
   {
@@ -94,7 +98,7 @@ JobExecution& JobExecution::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("statusDetails"))
   {
-    Aws::Map<Aws::String, JsonValue> statusDetailsJsonMap = jsonValue.GetObject("statusDetails").GetAllObjects();
+    Aws::Map<Aws::String, JsonView> statusDetailsJsonMap = jsonValue.GetObject("statusDetails").GetAllObjects();
     for(auto& statusDetailsItem : statusDetailsJsonMap)
     {
       m_statusDetails[statusDetailsItem.first] = statusDetailsItem.second.AsString();
@@ -121,6 +125,13 @@ JobExecution& JobExecution::operator =(const JsonValue& jsonValue)
     m_lastUpdatedAt = jsonValue.GetInt64("lastUpdatedAt");
 
     m_lastUpdatedAtHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("approximateSecondsBeforeTimedOut"))
+  {
+    m_approximateSecondsBeforeTimedOut = jsonValue.GetInt64("approximateSecondsBeforeTimedOut");
+
+    m_approximateSecondsBeforeTimedOutHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("versionNumber"))
@@ -194,6 +205,12 @@ JsonValue JobExecution::Jsonize() const
   if(m_lastUpdatedAtHasBeenSet)
   {
    payload.WithInt64("lastUpdatedAt", m_lastUpdatedAt);
+
+  }
+
+  if(m_approximateSecondsBeforeTimedOutHasBeenSet)
+  {
+   payload.WithInt64("approximateSecondsBeforeTimedOut", m_approximateSecondsBeforeTimedOut);
 
   }
 

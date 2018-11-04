@@ -35,7 +35,15 @@ RestoreDBClusterFromSnapshotRequest::RestoreDBClusterFromSnapshotRequest() :
     m_tagsHasBeenSet(false),
     m_kmsKeyIdHasBeenSet(false),
     m_enableIAMDatabaseAuthentication(false),
-    m_enableIAMDatabaseAuthenticationHasBeenSet(false)
+    m_enableIAMDatabaseAuthenticationHasBeenSet(false),
+    m_backtrackWindow(0),
+    m_backtrackWindowHasBeenSet(false),
+    m_enableCloudwatchLogsExportsHasBeenSet(false),
+    m_engineModeHasBeenSet(false),
+    m_scalingConfigurationHasBeenSet(false),
+    m_dBClusterParameterGroupNameHasBeenSet(false),
+    m_deletionProtection(false),
+    m_deletionProtectionHasBeenSet(false)
 {
 }
 
@@ -123,6 +131,42 @@ Aws::String RestoreDBClusterFromSnapshotRequest::SerializePayload() const
   if(m_enableIAMDatabaseAuthenticationHasBeenSet)
   {
     ss << "EnableIAMDatabaseAuthentication=" << std::boolalpha << m_enableIAMDatabaseAuthentication << "&";
+  }
+
+  if(m_backtrackWindowHasBeenSet)
+  {
+    ss << "BacktrackWindow=" << m_backtrackWindow << "&";
+  }
+
+  if(m_enableCloudwatchLogsExportsHasBeenSet)
+  {
+    unsigned enableCloudwatchLogsExportsCount = 1;
+    for(auto& item : m_enableCloudwatchLogsExports)
+    {
+      ss << "EnableCloudwatchLogsExports.member." << enableCloudwatchLogsExportsCount << "="
+          << StringUtils::URLEncode(item.c_str()) << "&";
+      enableCloudwatchLogsExportsCount++;
+    }
+  }
+
+  if(m_engineModeHasBeenSet)
+  {
+    ss << "EngineMode=" << StringUtils::URLEncode(m_engineMode.c_str()) << "&";
+  }
+
+  if(m_scalingConfigurationHasBeenSet)
+  {
+    m_scalingConfiguration.OutputToStream(ss, "ScalingConfiguration");
+  }
+
+  if(m_dBClusterParameterGroupNameHasBeenSet)
+  {
+    ss << "DBClusterParameterGroupName=" << StringUtils::URLEncode(m_dBClusterParameterGroupName.c_str()) << "&";
+  }
+
+  if(m_deletionProtectionHasBeenSet)
+  {
+    ss << "DeletionProtection=" << std::boolalpha << m_deletionProtection << "&";
   }
 
   ss << "Version=2014-10-31";

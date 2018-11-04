@@ -17,10 +17,15 @@
 #include <aws/s3/S3_EXPORTS.h>
 #include <aws/s3/S3Request.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <aws/core/utils/memory/stl/AWSMap.h>
 #include <utility>
 
 namespace Aws
 {
+namespace Http
+{
+    class URI;
+} //namespace Http
 namespace S3
 {
 namespace Model
@@ -41,32 +46,123 @@ namespace Model
 
     Aws::String SerializePayload() const override;
 
+    void AddQueryStringParameters(Aws::Http::URI& uri) const override;
 
-    
+
+    /**
+     * <p>Deletes the replication subresource associated with the specified bucket.</p>
+     * <note> <p>There is usually some time lag before replication configuration
+     * deletion is fully propagated to all the Amazon S3 systems.</p> </note> <p> For
+     * more information, see <a href="
+     * https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html">Cross-Region
+     * Replication (CRR)</a> in the Amazon S3 Developer Guide. </p>
+     */
     inline const Aws::String& GetBucket() const{ return m_bucket; }
 
-    
+    /**
+     * <p>Deletes the replication subresource associated with the specified bucket.</p>
+     * <note> <p>There is usually some time lag before replication configuration
+     * deletion is fully propagated to all the Amazon S3 systems.</p> </note> <p> For
+     * more information, see <a href="
+     * https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html">Cross-Region
+     * Replication (CRR)</a> in the Amazon S3 Developer Guide. </p>
+     */
     inline void SetBucket(const Aws::String& value) { m_bucketHasBeenSet = true; m_bucket = value; }
 
-    
+    /**
+     * <p>Deletes the replication subresource associated with the specified bucket.</p>
+     * <note> <p>There is usually some time lag before replication configuration
+     * deletion is fully propagated to all the Amazon S3 systems.</p> </note> <p> For
+     * more information, see <a href="
+     * https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html">Cross-Region
+     * Replication (CRR)</a> in the Amazon S3 Developer Guide. </p>
+     */
     inline void SetBucket(Aws::String&& value) { m_bucketHasBeenSet = true; m_bucket = std::move(value); }
 
-    
+    /**
+     * <p>Deletes the replication subresource associated with the specified bucket.</p>
+     * <note> <p>There is usually some time lag before replication configuration
+     * deletion is fully propagated to all the Amazon S3 systems.</p> </note> <p> For
+     * more information, see <a href="
+     * https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html">Cross-Region
+     * Replication (CRR)</a> in the Amazon S3 Developer Guide. </p>
+     */
     inline void SetBucket(const char* value) { m_bucketHasBeenSet = true; m_bucket.assign(value); }
 
-    
+    /**
+     * <p>Deletes the replication subresource associated with the specified bucket.</p>
+     * <note> <p>There is usually some time lag before replication configuration
+     * deletion is fully propagated to all the Amazon S3 systems.</p> </note> <p> For
+     * more information, see <a href="
+     * https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html">Cross-Region
+     * Replication (CRR)</a> in the Amazon S3 Developer Guide. </p>
+     */
     inline DeleteBucketReplicationRequest& WithBucket(const Aws::String& value) { SetBucket(value); return *this;}
 
-    
+    /**
+     * <p>Deletes the replication subresource associated with the specified bucket.</p>
+     * <note> <p>There is usually some time lag before replication configuration
+     * deletion is fully propagated to all the Amazon S3 systems.</p> </note> <p> For
+     * more information, see <a href="
+     * https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html">Cross-Region
+     * Replication (CRR)</a> in the Amazon S3 Developer Guide. </p>
+     */
     inline DeleteBucketReplicationRequest& WithBucket(Aws::String&& value) { SetBucket(std::move(value)); return *this;}
 
-    
+    /**
+     * <p>Deletes the replication subresource associated with the specified bucket.</p>
+     * <note> <p>There is usually some time lag before replication configuration
+     * deletion is fully propagated to all the Amazon S3 systems.</p> </note> <p> For
+     * more information, see <a href="
+     * https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html">Cross-Region
+     * Replication (CRR)</a> in the Amazon S3 Developer Guide. </p>
+     */
     inline DeleteBucketReplicationRequest& WithBucket(const char* value) { SetBucket(value); return *this;}
+
+
+    
+    inline const Aws::Map<Aws::String, Aws::String>& GetCustomizedAccessLogTag() const{ return m_customizedAccessLogTag; }
+
+    
+    inline void SetCustomizedAccessLogTag(const Aws::Map<Aws::String, Aws::String>& value) { m_customizedAccessLogTagHasBeenSet = true; m_customizedAccessLogTag = value; }
+
+    
+    inline void SetCustomizedAccessLogTag(Aws::Map<Aws::String, Aws::String>&& value) { m_customizedAccessLogTagHasBeenSet = true; m_customizedAccessLogTag = std::move(value); }
+
+    
+    inline DeleteBucketReplicationRequest& WithCustomizedAccessLogTag(const Aws::Map<Aws::String, Aws::String>& value) { SetCustomizedAccessLogTag(value); return *this;}
+
+    
+    inline DeleteBucketReplicationRequest& WithCustomizedAccessLogTag(Aws::Map<Aws::String, Aws::String>&& value) { SetCustomizedAccessLogTag(std::move(value)); return *this;}
+
+    
+    inline DeleteBucketReplicationRequest& AddCustomizedAccessLogTag(const Aws::String& key, const Aws::String& value) { m_customizedAccessLogTagHasBeenSet = true; m_customizedAccessLogTag.emplace(key, value); return *this; }
+
+    
+    inline DeleteBucketReplicationRequest& AddCustomizedAccessLogTag(Aws::String&& key, const Aws::String& value) { m_customizedAccessLogTagHasBeenSet = true; m_customizedAccessLogTag.emplace(std::move(key), value); return *this; }
+
+    
+    inline DeleteBucketReplicationRequest& AddCustomizedAccessLogTag(const Aws::String& key, Aws::String&& value) { m_customizedAccessLogTagHasBeenSet = true; m_customizedAccessLogTag.emplace(key, std::move(value)); return *this; }
+
+    
+    inline DeleteBucketReplicationRequest& AddCustomizedAccessLogTag(Aws::String&& key, Aws::String&& value) { m_customizedAccessLogTagHasBeenSet = true; m_customizedAccessLogTag.emplace(std::move(key), std::move(value)); return *this; }
+
+    
+    inline DeleteBucketReplicationRequest& AddCustomizedAccessLogTag(const char* key, Aws::String&& value) { m_customizedAccessLogTagHasBeenSet = true; m_customizedAccessLogTag.emplace(key, std::move(value)); return *this; }
+
+    
+    inline DeleteBucketReplicationRequest& AddCustomizedAccessLogTag(Aws::String&& key, const char* value) { m_customizedAccessLogTagHasBeenSet = true; m_customizedAccessLogTag.emplace(std::move(key), value); return *this; }
+
+    
+    inline DeleteBucketReplicationRequest& AddCustomizedAccessLogTag(const char* key, const char* value) { m_customizedAccessLogTagHasBeenSet = true; m_customizedAccessLogTag.emplace(key, value); return *this; }
 
   private:
 
     Aws::String m_bucket;
     bool m_bucketHasBeenSet;
+
+    Aws::Map<Aws::String, Aws::String> m_customizedAccessLogTag;
+    bool m_customizedAccessLogTagHasBeenSet;
   };
 
 } // namespace Model

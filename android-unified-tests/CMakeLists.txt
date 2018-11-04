@@ -65,6 +65,8 @@ set(AWS_UNIFIED_INTEGRATION_TEST_APPLICATION_INCLUDES
     "${AWS_NATIVE_SDK_ROOT}/aws-cpp-sdk-transfer/include/"
     "${AWS_NATIVE_SDK_ROOT}/aws-cpp-sdk-logging/include/"
     "${AWS_NATIVE_SDK_ROOT}/aws-cpp-sdk-iam/include/"
+    "${AWS_NATIVE_SDK_ROOT}/aws-cpp-sdk-sts/include/"
+    "${AWS_NATIVE_SDK_ROOT}/aws-cpp-sdk-kms/include/"
     "${AWS_NATIVE_SDK_ROOT}/aws-cpp-sdk-identity-management/include/"
     "${AWS_NATIVE_SDK_ROOT}/aws-cpp-sdk-access-management/include/"
     "${AWS_NATIVE_SDK_ROOT}/testing-resources/include/"
@@ -83,6 +85,10 @@ SET(LIBTYPE SHARED)
 SET(SUFFIX so)
 
 add_library(android-unified-tests ${LIBTYPE} ${AWS_UNIFIED_INTEGRATION_TESTS_SRC})
+
+set_compiler_flags(${PROJECT_NAME})
+set_compiler_warnings(${PROJECT_NAME})
+
 target_link_libraries(android-unified-tests 
                       aws-cpp-sdk-dynamodb 
                       aws-cpp-sdk-sqs

@@ -16,6 +16,7 @@
 #pragma once
 #include <aws/codebuild/CodeBuild_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <aws/core/utils/memory/stl/AWSVector.h>
 #include <utility>
 
 namespace Aws
@@ -25,6 +26,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace CodeBuild
@@ -42,8 +44,8 @@ namespace Model
   {
   public:
     EnvironmentImage();
-    EnvironmentImage(const Aws::Utils::Json::JsonValue& jsonValue);
-    EnvironmentImage& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    EnvironmentImage(Aws::Utils::Json::JsonView jsonValue);
+    EnvironmentImage& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -118,6 +120,47 @@ namespace Model
      */
     inline EnvironmentImage& WithDescription(const char* value) { SetDescription(value); return *this;}
 
+
+    /**
+     * <p>A list of environment image versions.</p>
+     */
+    inline const Aws::Vector<Aws::String>& GetVersions() const{ return m_versions; }
+
+    /**
+     * <p>A list of environment image versions.</p>
+     */
+    inline void SetVersions(const Aws::Vector<Aws::String>& value) { m_versionsHasBeenSet = true; m_versions = value; }
+
+    /**
+     * <p>A list of environment image versions.</p>
+     */
+    inline void SetVersions(Aws::Vector<Aws::String>&& value) { m_versionsHasBeenSet = true; m_versions = std::move(value); }
+
+    /**
+     * <p>A list of environment image versions.</p>
+     */
+    inline EnvironmentImage& WithVersions(const Aws::Vector<Aws::String>& value) { SetVersions(value); return *this;}
+
+    /**
+     * <p>A list of environment image versions.</p>
+     */
+    inline EnvironmentImage& WithVersions(Aws::Vector<Aws::String>&& value) { SetVersions(std::move(value)); return *this;}
+
+    /**
+     * <p>A list of environment image versions.</p>
+     */
+    inline EnvironmentImage& AddVersions(const Aws::String& value) { m_versionsHasBeenSet = true; m_versions.push_back(value); return *this; }
+
+    /**
+     * <p>A list of environment image versions.</p>
+     */
+    inline EnvironmentImage& AddVersions(Aws::String&& value) { m_versionsHasBeenSet = true; m_versions.push_back(std::move(value)); return *this; }
+
+    /**
+     * <p>A list of environment image versions.</p>
+     */
+    inline EnvironmentImage& AddVersions(const char* value) { m_versionsHasBeenSet = true; m_versions.push_back(value); return *this; }
+
   private:
 
     Aws::String m_name;
@@ -125,6 +168,9 @@ namespace Model
 
     Aws::String m_description;
     bool m_descriptionHasBeenSet;
+
+    Aws::Vector<Aws::String> m_versions;
+    bool m_versionsHasBeenSet;
   };
 
 } // namespace Model

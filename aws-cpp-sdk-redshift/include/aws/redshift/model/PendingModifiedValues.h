@@ -325,6 +325,92 @@ namespace Model
      */
     inline PendingModifiedValues& WithEnhancedVpcRouting(bool value) { SetEnhancedVpcRouting(value); return *this;}
 
+
+    /**
+     * <p>The name of the maintenance track that the cluster will change to during the
+     * next maintenance window.</p>
+     */
+    inline const Aws::String& GetMaintenanceTrackName() const{ return m_maintenanceTrackName; }
+
+    /**
+     * <p>The name of the maintenance track that the cluster will change to during the
+     * next maintenance window.</p>
+     */
+    inline void SetMaintenanceTrackName(const Aws::String& value) { m_maintenanceTrackNameHasBeenSet = true; m_maintenanceTrackName = value; }
+
+    /**
+     * <p>The name of the maintenance track that the cluster will change to during the
+     * next maintenance window.</p>
+     */
+    inline void SetMaintenanceTrackName(Aws::String&& value) { m_maintenanceTrackNameHasBeenSet = true; m_maintenanceTrackName = std::move(value); }
+
+    /**
+     * <p>The name of the maintenance track that the cluster will change to during the
+     * next maintenance window.</p>
+     */
+    inline void SetMaintenanceTrackName(const char* value) { m_maintenanceTrackNameHasBeenSet = true; m_maintenanceTrackName.assign(value); }
+
+    /**
+     * <p>The name of the maintenance track that the cluster will change to during the
+     * next maintenance window.</p>
+     */
+    inline PendingModifiedValues& WithMaintenanceTrackName(const Aws::String& value) { SetMaintenanceTrackName(value); return *this;}
+
+    /**
+     * <p>The name of the maintenance track that the cluster will change to during the
+     * next maintenance window.</p>
+     */
+    inline PendingModifiedValues& WithMaintenanceTrackName(Aws::String&& value) { SetMaintenanceTrackName(std::move(value)); return *this;}
+
+    /**
+     * <p>The name of the maintenance track that the cluster will change to during the
+     * next maintenance window.</p>
+     */
+    inline PendingModifiedValues& WithMaintenanceTrackName(const char* value) { SetMaintenanceTrackName(value); return *this;}
+
+
+    /**
+     * <p>The encryption type for a cluster. Possible values are: KMS and None. For the
+     * China region the possible values are None, and Legacy. </p>
+     */
+    inline const Aws::String& GetEncryptionType() const{ return m_encryptionType; }
+
+    /**
+     * <p>The encryption type for a cluster. Possible values are: KMS and None. For the
+     * China region the possible values are None, and Legacy. </p>
+     */
+    inline void SetEncryptionType(const Aws::String& value) { m_encryptionTypeHasBeenSet = true; m_encryptionType = value; }
+
+    /**
+     * <p>The encryption type for a cluster. Possible values are: KMS and None. For the
+     * China region the possible values are None, and Legacy. </p>
+     */
+    inline void SetEncryptionType(Aws::String&& value) { m_encryptionTypeHasBeenSet = true; m_encryptionType = std::move(value); }
+
+    /**
+     * <p>The encryption type for a cluster. Possible values are: KMS and None. For the
+     * China region the possible values are None, and Legacy. </p>
+     */
+    inline void SetEncryptionType(const char* value) { m_encryptionTypeHasBeenSet = true; m_encryptionType.assign(value); }
+
+    /**
+     * <p>The encryption type for a cluster. Possible values are: KMS and None. For the
+     * China region the possible values are None, and Legacy. </p>
+     */
+    inline PendingModifiedValues& WithEncryptionType(const Aws::String& value) { SetEncryptionType(value); return *this;}
+
+    /**
+     * <p>The encryption type for a cluster. Possible values are: KMS and None. For the
+     * China region the possible values are None, and Legacy. </p>
+     */
+    inline PendingModifiedValues& WithEncryptionType(Aws::String&& value) { SetEncryptionType(std::move(value)); return *this;}
+
+    /**
+     * <p>The encryption type for a cluster. Possible values are: KMS and None. For the
+     * China region the possible values are None, and Legacy. </p>
+     */
+    inline PendingModifiedValues& WithEncryptionType(const char* value) { SetEncryptionType(value); return *this;}
+
   private:
 
     Aws::String m_masterUserPassword;
@@ -353,6 +439,12 @@ namespace Model
 
     bool m_enhancedVpcRouting;
     bool m_enhancedVpcRoutingHasBeenSet;
+
+    Aws::String m_maintenanceTrackName;
+    bool m_maintenanceTrackNameHasBeenSet;
+
+    Aws::String m_encryptionType;
+    bool m_encryptionTypeHasBeenSet;
   };
 
 } // namespace Model

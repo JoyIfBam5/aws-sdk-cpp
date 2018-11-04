@@ -25,6 +25,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace APIGateway
@@ -37,7 +38,7 @@ namespace Model
    * URL after the domain name.</p> <div class="remarks">A custom domain name plus a
    * <code>BasePathMapping</code> specification identifies a deployed <a>RestApi</a>
    * in a given stage of the owner <a>Account</a>.</div> <div class="seeAlso"> <a
-   * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html">Use
+   * href="https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html">Use
    * Custom Domain Names</a> </div><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/BasePathMapping">AWS
    * API Reference</a></p>
@@ -46,8 +47,8 @@ namespace Model
   {
   public:
     BasePathMapping();
-    BasePathMapping(const Aws::Utils::Json::JsonValue& jsonValue);
-    BasePathMapping& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    BasePathMapping(Aws::Utils::Json::JsonView jsonValue);
+    BasePathMapping& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 

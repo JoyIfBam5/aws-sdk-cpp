@@ -263,7 +263,7 @@ void URI::CanonicalizeQueryString()
         queryStringStream << "?";
     }
 
-    if(m_queryString.find("=") != std::string::npos)
+    if(m_queryString.find('=') != std::string::npos)
     {
         for (QueryStringParameterCollection::iterator iter = sortedParameters.begin();
              iter != sortedParameters.end(); ++iter)
@@ -293,6 +293,14 @@ void URI::AddQueryStringParameter(const char* key, const Aws::String& value)
     }
 
     m_queryString.append(StringUtils::URLEncode(key) + "=" + StringUtils::URLEncode(value.c_str()));
+}
+
+void URI::AddQueryStringParameter(const Aws::Map<Aws::String, Aws::String>& queryStringPairs)
+{
+    for(const auto& entry: queryStringPairs)
+    {
+        AddQueryStringParameter(entry.first.c_str(), entry.second);
+    }
 }
 
 void URI::SetQueryString(const Aws::String& str)

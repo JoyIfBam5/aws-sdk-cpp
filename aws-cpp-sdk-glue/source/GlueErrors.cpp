@@ -30,8 +30,8 @@ namespace GlueErrorMapper
 
 static const int OPERATION_TIMEOUT_HASH = HashingUtils::HashString("OperationTimeoutException");
 static const int ALREADY_EXISTS_HASH = HashingUtils::HashString("AlreadyExistsException");
-static const int CRAWLER_NOT_RUNNING_HASH = HashingUtils::HashString("CrawlerNotRunningException");
 static const int CONCURRENT_MODIFICATION_HASH = HashingUtils::HashString("ConcurrentModificationException");
+static const int CRAWLER_NOT_RUNNING_HASH = HashingUtils::HashString("CrawlerNotRunningException");
 static const int INVALID_INPUT_HASH = HashingUtils::HashString("InvalidInputException");
 static const int SCHEDULER_NOT_RUNNING_HASH = HashingUtils::HashString("SchedulerNotRunningException");
 static const int ENTITY_NOT_FOUND_HASH = HashingUtils::HashString("EntityNotFoundException");
@@ -40,7 +40,9 @@ static const int SCHEDULER_RUNNING_HASH = HashingUtils::HashString("SchedulerRun
 static const int VERSION_MISMATCH_HASH = HashingUtils::HashString("VersionMismatchException");
 static const int INTERNAL_SERVICE_HASH = HashingUtils::HashString("InternalServiceException");
 static const int RESOURCE_NUMBER_LIMIT_EXCEEDED_HASH = HashingUtils::HashString("ResourceNumberLimitExceededException");
+static const int GLUE_ENCRYPTION_HASH = HashingUtils::HashString("GlueEncryptionException");
 static const int CRAWLER_RUNNING_HASH = HashingUtils::HashString("CrawlerRunningException");
+static const int CONDITION_CHECK_FAILURE_HASH = HashingUtils::HashString("ConditionCheckFailureException");
 static const int CRAWLER_STOPPING_HASH = HashingUtils::HashString("CrawlerStoppingException");
 static const int NO_SCHEDULE_HASH = HashingUtils::HashString("NoScheduleException");
 static const int CONCURRENT_RUNS_EXCEEDED_HASH = HashingUtils::HashString("ConcurrentRunsExceededException");
@@ -59,13 +61,13 @@ AWSError<CoreErrors> GetErrorForName(const char* errorName)
   {
     return AWSError<CoreErrors>(static_cast<CoreErrors>(GlueErrors::ALREADY_EXISTS), false);
   }
-  else if (hashCode == CRAWLER_NOT_RUNNING_HASH)
-  {
-    return AWSError<CoreErrors>(static_cast<CoreErrors>(GlueErrors::CRAWLER_NOT_RUNNING), false);
-  }
   else if (hashCode == CONCURRENT_MODIFICATION_HASH)
   {
     return AWSError<CoreErrors>(static_cast<CoreErrors>(GlueErrors::CONCURRENT_MODIFICATION), false);
+  }
+  else if (hashCode == CRAWLER_NOT_RUNNING_HASH)
+  {
+    return AWSError<CoreErrors>(static_cast<CoreErrors>(GlueErrors::CRAWLER_NOT_RUNNING), false);
   }
   else if (hashCode == INVALID_INPUT_HASH)
   {
@@ -99,9 +101,17 @@ AWSError<CoreErrors> GetErrorForName(const char* errorName)
   {
     return AWSError<CoreErrors>(static_cast<CoreErrors>(GlueErrors::RESOURCE_NUMBER_LIMIT_EXCEEDED), false);
   }
+  else if (hashCode == GLUE_ENCRYPTION_HASH)
+  {
+    return AWSError<CoreErrors>(static_cast<CoreErrors>(GlueErrors::GLUE_ENCRYPTION), false);
+  }
   else if (hashCode == CRAWLER_RUNNING_HASH)
   {
     return AWSError<CoreErrors>(static_cast<CoreErrors>(GlueErrors::CRAWLER_RUNNING), false);
+  }
+  else if (hashCode == CONDITION_CHECK_FAILURE_HASH)
+  {
+    return AWSError<CoreErrors>(static_cast<CoreErrors>(GlueErrors::CONDITION_CHECK_FAILURE), false);
   }
   else if (hashCode == CRAWLER_STOPPING_HASH)
   {

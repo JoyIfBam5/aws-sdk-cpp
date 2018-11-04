@@ -38,9 +38,11 @@ namespace Aws
         static const int STARTING_HASH = HashingUtils::HashString("STARTING");
         static const int REBUILDING_HASH = HashingUtils::HashString("REBUILDING");
         static const int MAINTENANCE_HASH = HashingUtils::HashString("MAINTENANCE");
+        static const int ADMIN_MAINTENANCE_HASH = HashingUtils::HashString("ADMIN_MAINTENANCE");
         static const int TERMINATING_HASH = HashingUtils::HashString("TERMINATING");
         static const int TERMINATED_HASH = HashingUtils::HashString("TERMINATED");
         static const int SUSPENDED_HASH = HashingUtils::HashString("SUSPENDED");
+        static const int UPDATING_HASH = HashingUtils::HashString("UPDATING");
         static const int STOPPING_HASH = HashingUtils::HashString("STOPPING");
         static const int STOPPED_HASH = HashingUtils::HashString("STOPPED");
         static const int ERROR__HASH = HashingUtils::HashString("ERROR");
@@ -81,6 +83,10 @@ namespace Aws
           {
             return WorkspaceState::MAINTENANCE;
           }
+          else if (hashCode == ADMIN_MAINTENANCE_HASH)
+          {
+            return WorkspaceState::ADMIN_MAINTENANCE;
+          }
           else if (hashCode == TERMINATING_HASH)
           {
             return WorkspaceState::TERMINATING;
@@ -92,6 +98,10 @@ namespace Aws
           else if (hashCode == SUSPENDED_HASH)
           {
             return WorkspaceState::SUSPENDED;
+          }
+          else if (hashCode == UPDATING_HASH)
+          {
+            return WorkspaceState::UPDATING;
           }
           else if (hashCode == STOPPING_HASH)
           {
@@ -135,12 +145,16 @@ namespace Aws
             return "REBUILDING";
           case WorkspaceState::MAINTENANCE:
             return "MAINTENANCE";
+          case WorkspaceState::ADMIN_MAINTENANCE:
+            return "ADMIN_MAINTENANCE";
           case WorkspaceState::TERMINATING:
             return "TERMINATING";
           case WorkspaceState::TERMINATED:
             return "TERMINATED";
           case WorkspaceState::SUSPENDED:
             return "SUSPENDED";
+          case WorkspaceState::UPDATING:
+            return "UPDATING";
           case WorkspaceState::STOPPING:
             return "STOPPING";
           case WorkspaceState::STOPPED:

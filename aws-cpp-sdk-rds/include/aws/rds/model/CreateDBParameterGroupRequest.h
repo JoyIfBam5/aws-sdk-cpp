@@ -54,63 +54,63 @@ namespace Model
     /**
      * <p>The name of the DB parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Must
      * be 1 to 255 letters, numbers, or hyphens.</p> </li> <li> <p>First character must
-     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
-     * lowercase string.</p> </note>
+     * be a letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive
+     * hyphens</p> </li> </ul> <note> <p>This value is stored as a lowercase
+     * string.</p> </note>
      */
     inline const Aws::String& GetDBParameterGroupName() const{ return m_dBParameterGroupName; }
 
     /**
      * <p>The name of the DB parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Must
      * be 1 to 255 letters, numbers, or hyphens.</p> </li> <li> <p>First character must
-     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
-     * lowercase string.</p> </note>
+     * be a letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive
+     * hyphens</p> </li> </ul> <note> <p>This value is stored as a lowercase
+     * string.</p> </note>
      */
     inline void SetDBParameterGroupName(const Aws::String& value) { m_dBParameterGroupNameHasBeenSet = true; m_dBParameterGroupName = value; }
 
     /**
      * <p>The name of the DB parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Must
      * be 1 to 255 letters, numbers, or hyphens.</p> </li> <li> <p>First character must
-     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
-     * lowercase string.</p> </note>
+     * be a letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive
+     * hyphens</p> </li> </ul> <note> <p>This value is stored as a lowercase
+     * string.</p> </note>
      */
     inline void SetDBParameterGroupName(Aws::String&& value) { m_dBParameterGroupNameHasBeenSet = true; m_dBParameterGroupName = std::move(value); }
 
     /**
      * <p>The name of the DB parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Must
      * be 1 to 255 letters, numbers, or hyphens.</p> </li> <li> <p>First character must
-     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
-     * lowercase string.</p> </note>
+     * be a letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive
+     * hyphens</p> </li> </ul> <note> <p>This value is stored as a lowercase
+     * string.</p> </note>
      */
     inline void SetDBParameterGroupName(const char* value) { m_dBParameterGroupNameHasBeenSet = true; m_dBParameterGroupName.assign(value); }
 
     /**
      * <p>The name of the DB parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Must
      * be 1 to 255 letters, numbers, or hyphens.</p> </li> <li> <p>First character must
-     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
-     * lowercase string.</p> </note>
+     * be a letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive
+     * hyphens</p> </li> </ul> <note> <p>This value is stored as a lowercase
+     * string.</p> </note>
      */
     inline CreateDBParameterGroupRequest& WithDBParameterGroupName(const Aws::String& value) { SetDBParameterGroupName(value); return *this;}
 
     /**
      * <p>The name of the DB parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Must
      * be 1 to 255 letters, numbers, or hyphens.</p> </li> <li> <p>First character must
-     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
-     * lowercase string.</p> </note>
+     * be a letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive
+     * hyphens</p> </li> </ul> <note> <p>This value is stored as a lowercase
+     * string.</p> </note>
      */
     inline CreateDBParameterGroupRequest& WithDBParameterGroupName(Aws::String&& value) { SetDBParameterGroupName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the DB parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Must
      * be 1 to 255 letters, numbers, or hyphens.</p> </li> <li> <p>First character must
-     * be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two
-     * consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a
-     * lowercase string.</p> </note>
+     * be a letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive
+     * hyphens</p> </li> </ul> <note> <p>This value is stored as a lowercase
+     * string.</p> </note>
      */
     inline CreateDBParameterGroupRequest& WithDBParameterGroupName(const char* value) { SetDBParameterGroupName(value); return *this;}
 
@@ -119,7 +119,11 @@ namespace Model
      * <p>The DB parameter group family name. A DB parameter group can be associated
      * with one and only one DB parameter group family, and can be applied only to a DB
      * instance running a database engine and engine version compatible with that DB
-     * parameter group family.</p>
+     * parameter group family.</p> <p>To list all of the available parameter group
+     * families, use the following command:</p> <p> <code>aws rds
+     * describe-db-engine-versions --query
+     * "DBEngineVersions[].DBParameterGroupFamily"</code> </p> <note> <p>The output
+     * contains duplicates.</p> </note>
      */
     inline const Aws::String& GetDBParameterGroupFamily() const{ return m_dBParameterGroupFamily; }
 
@@ -127,7 +131,11 @@ namespace Model
      * <p>The DB parameter group family name. A DB parameter group can be associated
      * with one and only one DB parameter group family, and can be applied only to a DB
      * instance running a database engine and engine version compatible with that DB
-     * parameter group family.</p>
+     * parameter group family.</p> <p>To list all of the available parameter group
+     * families, use the following command:</p> <p> <code>aws rds
+     * describe-db-engine-versions --query
+     * "DBEngineVersions[].DBParameterGroupFamily"</code> </p> <note> <p>The output
+     * contains duplicates.</p> </note>
      */
     inline void SetDBParameterGroupFamily(const Aws::String& value) { m_dBParameterGroupFamilyHasBeenSet = true; m_dBParameterGroupFamily = value; }
 
@@ -135,7 +143,11 @@ namespace Model
      * <p>The DB parameter group family name. A DB parameter group can be associated
      * with one and only one DB parameter group family, and can be applied only to a DB
      * instance running a database engine and engine version compatible with that DB
-     * parameter group family.</p>
+     * parameter group family.</p> <p>To list all of the available parameter group
+     * families, use the following command:</p> <p> <code>aws rds
+     * describe-db-engine-versions --query
+     * "DBEngineVersions[].DBParameterGroupFamily"</code> </p> <note> <p>The output
+     * contains duplicates.</p> </note>
      */
     inline void SetDBParameterGroupFamily(Aws::String&& value) { m_dBParameterGroupFamilyHasBeenSet = true; m_dBParameterGroupFamily = std::move(value); }
 
@@ -143,7 +155,11 @@ namespace Model
      * <p>The DB parameter group family name. A DB parameter group can be associated
      * with one and only one DB parameter group family, and can be applied only to a DB
      * instance running a database engine and engine version compatible with that DB
-     * parameter group family.</p>
+     * parameter group family.</p> <p>To list all of the available parameter group
+     * families, use the following command:</p> <p> <code>aws rds
+     * describe-db-engine-versions --query
+     * "DBEngineVersions[].DBParameterGroupFamily"</code> </p> <note> <p>The output
+     * contains duplicates.</p> </note>
      */
     inline void SetDBParameterGroupFamily(const char* value) { m_dBParameterGroupFamilyHasBeenSet = true; m_dBParameterGroupFamily.assign(value); }
 
@@ -151,7 +167,11 @@ namespace Model
      * <p>The DB parameter group family name. A DB parameter group can be associated
      * with one and only one DB parameter group family, and can be applied only to a DB
      * instance running a database engine and engine version compatible with that DB
-     * parameter group family.</p>
+     * parameter group family.</p> <p>To list all of the available parameter group
+     * families, use the following command:</p> <p> <code>aws rds
+     * describe-db-engine-versions --query
+     * "DBEngineVersions[].DBParameterGroupFamily"</code> </p> <note> <p>The output
+     * contains duplicates.</p> </note>
      */
     inline CreateDBParameterGroupRequest& WithDBParameterGroupFamily(const Aws::String& value) { SetDBParameterGroupFamily(value); return *this;}
 
@@ -159,7 +179,11 @@ namespace Model
      * <p>The DB parameter group family name. A DB parameter group can be associated
      * with one and only one DB parameter group family, and can be applied only to a DB
      * instance running a database engine and engine version compatible with that DB
-     * parameter group family.</p>
+     * parameter group family.</p> <p>To list all of the available parameter group
+     * families, use the following command:</p> <p> <code>aws rds
+     * describe-db-engine-versions --query
+     * "DBEngineVersions[].DBParameterGroupFamily"</code> </p> <note> <p>The output
+     * contains duplicates.</p> </note>
      */
     inline CreateDBParameterGroupRequest& WithDBParameterGroupFamily(Aws::String&& value) { SetDBParameterGroupFamily(std::move(value)); return *this;}
 
@@ -167,7 +191,11 @@ namespace Model
      * <p>The DB parameter group family name. A DB parameter group can be associated
      * with one and only one DB parameter group family, and can be applied only to a DB
      * instance running a database engine and engine version compatible with that DB
-     * parameter group family.</p>
+     * parameter group family.</p> <p>To list all of the available parameter group
+     * families, use the following command:</p> <p> <code>aws rds
+     * describe-db-engine-versions --query
+     * "DBEngineVersions[].DBParameterGroupFamily"</code> </p> <note> <p>The output
+     * contains duplicates.</p> </note>
      */
     inline CreateDBParameterGroupRequest& WithDBParameterGroupFamily(const char* value) { SetDBParameterGroupFamily(value); return *this;}
 

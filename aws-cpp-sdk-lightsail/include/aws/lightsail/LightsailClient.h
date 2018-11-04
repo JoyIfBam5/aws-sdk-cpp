@@ -38,6 +38,9 @@
 #include <aws/lightsail/model/CreateKeyPairResult.h>
 #include <aws/lightsail/model/CreateLoadBalancerResult.h>
 #include <aws/lightsail/model/CreateLoadBalancerTlsCertificateResult.h>
+#include <aws/lightsail/model/CreateRelationalDatabaseResult.h>
+#include <aws/lightsail/model/CreateRelationalDatabaseFromSnapshotResult.h>
+#include <aws/lightsail/model/CreateRelationalDatabaseSnapshotResult.h>
 #include <aws/lightsail/model/DeleteDiskResult.h>
 #include <aws/lightsail/model/DeleteDiskSnapshotResult.h>
 #include <aws/lightsail/model/DeleteDomainResult.h>
@@ -47,6 +50,8 @@
 #include <aws/lightsail/model/DeleteKeyPairResult.h>
 #include <aws/lightsail/model/DeleteLoadBalancerResult.h>
 #include <aws/lightsail/model/DeleteLoadBalancerTlsCertificateResult.h>
+#include <aws/lightsail/model/DeleteRelationalDatabaseResult.h>
+#include <aws/lightsail/model/DeleteRelationalDatabaseSnapshotResult.h>
 #include <aws/lightsail/model/DetachDiskResult.h>
 #include <aws/lightsail/model/DetachInstancesFromLoadBalancerResult.h>
 #include <aws/lightsail/model/DetachStaticIpResult.h>
@@ -78,6 +83,18 @@
 #include <aws/lightsail/model/GetOperationsResult.h>
 #include <aws/lightsail/model/GetOperationsForResourceResult.h>
 #include <aws/lightsail/model/GetRegionsResult.h>
+#include <aws/lightsail/model/GetRelationalDatabaseResult.h>
+#include <aws/lightsail/model/GetRelationalDatabaseBlueprintsResult.h>
+#include <aws/lightsail/model/GetRelationalDatabaseBundlesResult.h>
+#include <aws/lightsail/model/GetRelationalDatabaseEventsResult.h>
+#include <aws/lightsail/model/GetRelationalDatabaseLogEventsResult.h>
+#include <aws/lightsail/model/GetRelationalDatabaseLogStreamsResult.h>
+#include <aws/lightsail/model/GetRelationalDatabaseMasterUserPasswordResult.h>
+#include <aws/lightsail/model/GetRelationalDatabaseMetricDataResult.h>
+#include <aws/lightsail/model/GetRelationalDatabaseParametersResult.h>
+#include <aws/lightsail/model/GetRelationalDatabaseSnapshotResult.h>
+#include <aws/lightsail/model/GetRelationalDatabaseSnapshotsResult.h>
+#include <aws/lightsail/model/GetRelationalDatabasesResult.h>
 #include <aws/lightsail/model/GetStaticIpResult.h>
 #include <aws/lightsail/model/GetStaticIpsResult.h>
 #include <aws/lightsail/model/ImportKeyPairResult.h>
@@ -86,12 +103,17 @@
 #include <aws/lightsail/model/PeerVpcResult.h>
 #include <aws/lightsail/model/PutInstancePublicPortsResult.h>
 #include <aws/lightsail/model/RebootInstanceResult.h>
+#include <aws/lightsail/model/RebootRelationalDatabaseResult.h>
 #include <aws/lightsail/model/ReleaseStaticIpResult.h>
 #include <aws/lightsail/model/StartInstanceResult.h>
+#include <aws/lightsail/model/StartRelationalDatabaseResult.h>
 #include <aws/lightsail/model/StopInstanceResult.h>
+#include <aws/lightsail/model/StopRelationalDatabaseResult.h>
 #include <aws/lightsail/model/UnpeerVpcResult.h>
 #include <aws/lightsail/model/UpdateDomainEntryResult.h>
 #include <aws/lightsail/model/UpdateLoadBalancerAttributeResult.h>
+#include <aws/lightsail/model/UpdateRelationalDatabaseResult.h>
+#include <aws/lightsail/model/UpdateRelationalDatabaseParametersResult.h>
 #include <aws/core/client/AsyncCallerContext.h>
 #include <aws/core/http/HttpTypes.h>
 #include <future>
@@ -114,11 +136,6 @@ namespace Threading
 {
   class Executor;
 } // namespace Threading
-
-namespace Json
-{
-  class JsonValue;
-} // namespace Json
 } // namespace Utils
 
 namespace Auth
@@ -154,6 +171,9 @@ namespace Model
         class CreateKeyPairRequest;
         class CreateLoadBalancerRequest;
         class CreateLoadBalancerTlsCertificateRequest;
+        class CreateRelationalDatabaseRequest;
+        class CreateRelationalDatabaseFromSnapshotRequest;
+        class CreateRelationalDatabaseSnapshotRequest;
         class DeleteDiskRequest;
         class DeleteDiskSnapshotRequest;
         class DeleteDomainRequest;
@@ -163,6 +183,8 @@ namespace Model
         class DeleteKeyPairRequest;
         class DeleteLoadBalancerRequest;
         class DeleteLoadBalancerTlsCertificateRequest;
+        class DeleteRelationalDatabaseRequest;
+        class DeleteRelationalDatabaseSnapshotRequest;
         class DetachDiskRequest;
         class DetachInstancesFromLoadBalancerRequest;
         class DetachStaticIpRequest;
@@ -194,6 +216,18 @@ namespace Model
         class GetOperationsRequest;
         class GetOperationsForResourceRequest;
         class GetRegionsRequest;
+        class GetRelationalDatabaseRequest;
+        class GetRelationalDatabaseBlueprintsRequest;
+        class GetRelationalDatabaseBundlesRequest;
+        class GetRelationalDatabaseEventsRequest;
+        class GetRelationalDatabaseLogEventsRequest;
+        class GetRelationalDatabaseLogStreamsRequest;
+        class GetRelationalDatabaseMasterUserPasswordRequest;
+        class GetRelationalDatabaseMetricDataRequest;
+        class GetRelationalDatabaseParametersRequest;
+        class GetRelationalDatabaseSnapshotRequest;
+        class GetRelationalDatabaseSnapshotsRequest;
+        class GetRelationalDatabasesRequest;
         class GetStaticIpRequest;
         class GetStaticIpsRequest;
         class ImportKeyPairRequest;
@@ -202,12 +236,17 @@ namespace Model
         class PeerVpcRequest;
         class PutInstancePublicPortsRequest;
         class RebootInstanceRequest;
+        class RebootRelationalDatabaseRequest;
         class ReleaseStaticIpRequest;
         class StartInstanceRequest;
+        class StartRelationalDatabaseRequest;
         class StopInstanceRequest;
+        class StopRelationalDatabaseRequest;
         class UnpeerVpcRequest;
         class UpdateDomainEntryRequest;
         class UpdateLoadBalancerAttributeRequest;
+        class UpdateRelationalDatabaseRequest;
+        class UpdateRelationalDatabaseParametersRequest;
 
         typedef Aws::Utils::Outcome<AllocateStaticIpResult, Aws::Client::AWSError<LightsailErrors>> AllocateStaticIpOutcome;
         typedef Aws::Utils::Outcome<AttachDiskResult, Aws::Client::AWSError<LightsailErrors>> AttachDiskOutcome;
@@ -226,6 +265,9 @@ namespace Model
         typedef Aws::Utils::Outcome<CreateKeyPairResult, Aws::Client::AWSError<LightsailErrors>> CreateKeyPairOutcome;
         typedef Aws::Utils::Outcome<CreateLoadBalancerResult, Aws::Client::AWSError<LightsailErrors>> CreateLoadBalancerOutcome;
         typedef Aws::Utils::Outcome<CreateLoadBalancerTlsCertificateResult, Aws::Client::AWSError<LightsailErrors>> CreateLoadBalancerTlsCertificateOutcome;
+        typedef Aws::Utils::Outcome<CreateRelationalDatabaseResult, Aws::Client::AWSError<LightsailErrors>> CreateRelationalDatabaseOutcome;
+        typedef Aws::Utils::Outcome<CreateRelationalDatabaseFromSnapshotResult, Aws::Client::AWSError<LightsailErrors>> CreateRelationalDatabaseFromSnapshotOutcome;
+        typedef Aws::Utils::Outcome<CreateRelationalDatabaseSnapshotResult, Aws::Client::AWSError<LightsailErrors>> CreateRelationalDatabaseSnapshotOutcome;
         typedef Aws::Utils::Outcome<DeleteDiskResult, Aws::Client::AWSError<LightsailErrors>> DeleteDiskOutcome;
         typedef Aws::Utils::Outcome<DeleteDiskSnapshotResult, Aws::Client::AWSError<LightsailErrors>> DeleteDiskSnapshotOutcome;
         typedef Aws::Utils::Outcome<DeleteDomainResult, Aws::Client::AWSError<LightsailErrors>> DeleteDomainOutcome;
@@ -235,6 +277,8 @@ namespace Model
         typedef Aws::Utils::Outcome<DeleteKeyPairResult, Aws::Client::AWSError<LightsailErrors>> DeleteKeyPairOutcome;
         typedef Aws::Utils::Outcome<DeleteLoadBalancerResult, Aws::Client::AWSError<LightsailErrors>> DeleteLoadBalancerOutcome;
         typedef Aws::Utils::Outcome<DeleteLoadBalancerTlsCertificateResult, Aws::Client::AWSError<LightsailErrors>> DeleteLoadBalancerTlsCertificateOutcome;
+        typedef Aws::Utils::Outcome<DeleteRelationalDatabaseResult, Aws::Client::AWSError<LightsailErrors>> DeleteRelationalDatabaseOutcome;
+        typedef Aws::Utils::Outcome<DeleteRelationalDatabaseSnapshotResult, Aws::Client::AWSError<LightsailErrors>> DeleteRelationalDatabaseSnapshotOutcome;
         typedef Aws::Utils::Outcome<DetachDiskResult, Aws::Client::AWSError<LightsailErrors>> DetachDiskOutcome;
         typedef Aws::Utils::Outcome<DetachInstancesFromLoadBalancerResult, Aws::Client::AWSError<LightsailErrors>> DetachInstancesFromLoadBalancerOutcome;
         typedef Aws::Utils::Outcome<DetachStaticIpResult, Aws::Client::AWSError<LightsailErrors>> DetachStaticIpOutcome;
@@ -266,6 +310,18 @@ namespace Model
         typedef Aws::Utils::Outcome<GetOperationsResult, Aws::Client::AWSError<LightsailErrors>> GetOperationsOutcome;
         typedef Aws::Utils::Outcome<GetOperationsForResourceResult, Aws::Client::AWSError<LightsailErrors>> GetOperationsForResourceOutcome;
         typedef Aws::Utils::Outcome<GetRegionsResult, Aws::Client::AWSError<LightsailErrors>> GetRegionsOutcome;
+        typedef Aws::Utils::Outcome<GetRelationalDatabaseResult, Aws::Client::AWSError<LightsailErrors>> GetRelationalDatabaseOutcome;
+        typedef Aws::Utils::Outcome<GetRelationalDatabaseBlueprintsResult, Aws::Client::AWSError<LightsailErrors>> GetRelationalDatabaseBlueprintsOutcome;
+        typedef Aws::Utils::Outcome<GetRelationalDatabaseBundlesResult, Aws::Client::AWSError<LightsailErrors>> GetRelationalDatabaseBundlesOutcome;
+        typedef Aws::Utils::Outcome<GetRelationalDatabaseEventsResult, Aws::Client::AWSError<LightsailErrors>> GetRelationalDatabaseEventsOutcome;
+        typedef Aws::Utils::Outcome<GetRelationalDatabaseLogEventsResult, Aws::Client::AWSError<LightsailErrors>> GetRelationalDatabaseLogEventsOutcome;
+        typedef Aws::Utils::Outcome<GetRelationalDatabaseLogStreamsResult, Aws::Client::AWSError<LightsailErrors>> GetRelationalDatabaseLogStreamsOutcome;
+        typedef Aws::Utils::Outcome<GetRelationalDatabaseMasterUserPasswordResult, Aws::Client::AWSError<LightsailErrors>> GetRelationalDatabaseMasterUserPasswordOutcome;
+        typedef Aws::Utils::Outcome<GetRelationalDatabaseMetricDataResult, Aws::Client::AWSError<LightsailErrors>> GetRelationalDatabaseMetricDataOutcome;
+        typedef Aws::Utils::Outcome<GetRelationalDatabaseParametersResult, Aws::Client::AWSError<LightsailErrors>> GetRelationalDatabaseParametersOutcome;
+        typedef Aws::Utils::Outcome<GetRelationalDatabaseSnapshotResult, Aws::Client::AWSError<LightsailErrors>> GetRelationalDatabaseSnapshotOutcome;
+        typedef Aws::Utils::Outcome<GetRelationalDatabaseSnapshotsResult, Aws::Client::AWSError<LightsailErrors>> GetRelationalDatabaseSnapshotsOutcome;
+        typedef Aws::Utils::Outcome<GetRelationalDatabasesResult, Aws::Client::AWSError<LightsailErrors>> GetRelationalDatabasesOutcome;
         typedef Aws::Utils::Outcome<GetStaticIpResult, Aws::Client::AWSError<LightsailErrors>> GetStaticIpOutcome;
         typedef Aws::Utils::Outcome<GetStaticIpsResult, Aws::Client::AWSError<LightsailErrors>> GetStaticIpsOutcome;
         typedef Aws::Utils::Outcome<ImportKeyPairResult, Aws::Client::AWSError<LightsailErrors>> ImportKeyPairOutcome;
@@ -274,12 +330,17 @@ namespace Model
         typedef Aws::Utils::Outcome<PeerVpcResult, Aws::Client::AWSError<LightsailErrors>> PeerVpcOutcome;
         typedef Aws::Utils::Outcome<PutInstancePublicPortsResult, Aws::Client::AWSError<LightsailErrors>> PutInstancePublicPortsOutcome;
         typedef Aws::Utils::Outcome<RebootInstanceResult, Aws::Client::AWSError<LightsailErrors>> RebootInstanceOutcome;
+        typedef Aws::Utils::Outcome<RebootRelationalDatabaseResult, Aws::Client::AWSError<LightsailErrors>> RebootRelationalDatabaseOutcome;
         typedef Aws::Utils::Outcome<ReleaseStaticIpResult, Aws::Client::AWSError<LightsailErrors>> ReleaseStaticIpOutcome;
         typedef Aws::Utils::Outcome<StartInstanceResult, Aws::Client::AWSError<LightsailErrors>> StartInstanceOutcome;
+        typedef Aws::Utils::Outcome<StartRelationalDatabaseResult, Aws::Client::AWSError<LightsailErrors>> StartRelationalDatabaseOutcome;
         typedef Aws::Utils::Outcome<StopInstanceResult, Aws::Client::AWSError<LightsailErrors>> StopInstanceOutcome;
+        typedef Aws::Utils::Outcome<StopRelationalDatabaseResult, Aws::Client::AWSError<LightsailErrors>> StopRelationalDatabaseOutcome;
         typedef Aws::Utils::Outcome<UnpeerVpcResult, Aws::Client::AWSError<LightsailErrors>> UnpeerVpcOutcome;
         typedef Aws::Utils::Outcome<UpdateDomainEntryResult, Aws::Client::AWSError<LightsailErrors>> UpdateDomainEntryOutcome;
         typedef Aws::Utils::Outcome<UpdateLoadBalancerAttributeResult, Aws::Client::AWSError<LightsailErrors>> UpdateLoadBalancerAttributeOutcome;
+        typedef Aws::Utils::Outcome<UpdateRelationalDatabaseResult, Aws::Client::AWSError<LightsailErrors>> UpdateRelationalDatabaseOutcome;
+        typedef Aws::Utils::Outcome<UpdateRelationalDatabaseParametersResult, Aws::Client::AWSError<LightsailErrors>> UpdateRelationalDatabaseParametersOutcome;
 
         typedef std::future<AllocateStaticIpOutcome> AllocateStaticIpOutcomeCallable;
         typedef std::future<AttachDiskOutcome> AttachDiskOutcomeCallable;
@@ -298,6 +359,9 @@ namespace Model
         typedef std::future<CreateKeyPairOutcome> CreateKeyPairOutcomeCallable;
         typedef std::future<CreateLoadBalancerOutcome> CreateLoadBalancerOutcomeCallable;
         typedef std::future<CreateLoadBalancerTlsCertificateOutcome> CreateLoadBalancerTlsCertificateOutcomeCallable;
+        typedef std::future<CreateRelationalDatabaseOutcome> CreateRelationalDatabaseOutcomeCallable;
+        typedef std::future<CreateRelationalDatabaseFromSnapshotOutcome> CreateRelationalDatabaseFromSnapshotOutcomeCallable;
+        typedef std::future<CreateRelationalDatabaseSnapshotOutcome> CreateRelationalDatabaseSnapshotOutcomeCallable;
         typedef std::future<DeleteDiskOutcome> DeleteDiskOutcomeCallable;
         typedef std::future<DeleteDiskSnapshotOutcome> DeleteDiskSnapshotOutcomeCallable;
         typedef std::future<DeleteDomainOutcome> DeleteDomainOutcomeCallable;
@@ -307,6 +371,8 @@ namespace Model
         typedef std::future<DeleteKeyPairOutcome> DeleteKeyPairOutcomeCallable;
         typedef std::future<DeleteLoadBalancerOutcome> DeleteLoadBalancerOutcomeCallable;
         typedef std::future<DeleteLoadBalancerTlsCertificateOutcome> DeleteLoadBalancerTlsCertificateOutcomeCallable;
+        typedef std::future<DeleteRelationalDatabaseOutcome> DeleteRelationalDatabaseOutcomeCallable;
+        typedef std::future<DeleteRelationalDatabaseSnapshotOutcome> DeleteRelationalDatabaseSnapshotOutcomeCallable;
         typedef std::future<DetachDiskOutcome> DetachDiskOutcomeCallable;
         typedef std::future<DetachInstancesFromLoadBalancerOutcome> DetachInstancesFromLoadBalancerOutcomeCallable;
         typedef std::future<DetachStaticIpOutcome> DetachStaticIpOutcomeCallable;
@@ -338,6 +404,18 @@ namespace Model
         typedef std::future<GetOperationsOutcome> GetOperationsOutcomeCallable;
         typedef std::future<GetOperationsForResourceOutcome> GetOperationsForResourceOutcomeCallable;
         typedef std::future<GetRegionsOutcome> GetRegionsOutcomeCallable;
+        typedef std::future<GetRelationalDatabaseOutcome> GetRelationalDatabaseOutcomeCallable;
+        typedef std::future<GetRelationalDatabaseBlueprintsOutcome> GetRelationalDatabaseBlueprintsOutcomeCallable;
+        typedef std::future<GetRelationalDatabaseBundlesOutcome> GetRelationalDatabaseBundlesOutcomeCallable;
+        typedef std::future<GetRelationalDatabaseEventsOutcome> GetRelationalDatabaseEventsOutcomeCallable;
+        typedef std::future<GetRelationalDatabaseLogEventsOutcome> GetRelationalDatabaseLogEventsOutcomeCallable;
+        typedef std::future<GetRelationalDatabaseLogStreamsOutcome> GetRelationalDatabaseLogStreamsOutcomeCallable;
+        typedef std::future<GetRelationalDatabaseMasterUserPasswordOutcome> GetRelationalDatabaseMasterUserPasswordOutcomeCallable;
+        typedef std::future<GetRelationalDatabaseMetricDataOutcome> GetRelationalDatabaseMetricDataOutcomeCallable;
+        typedef std::future<GetRelationalDatabaseParametersOutcome> GetRelationalDatabaseParametersOutcomeCallable;
+        typedef std::future<GetRelationalDatabaseSnapshotOutcome> GetRelationalDatabaseSnapshotOutcomeCallable;
+        typedef std::future<GetRelationalDatabaseSnapshotsOutcome> GetRelationalDatabaseSnapshotsOutcomeCallable;
+        typedef std::future<GetRelationalDatabasesOutcome> GetRelationalDatabasesOutcomeCallable;
         typedef std::future<GetStaticIpOutcome> GetStaticIpOutcomeCallable;
         typedef std::future<GetStaticIpsOutcome> GetStaticIpsOutcomeCallable;
         typedef std::future<ImportKeyPairOutcome> ImportKeyPairOutcomeCallable;
@@ -346,12 +424,17 @@ namespace Model
         typedef std::future<PeerVpcOutcome> PeerVpcOutcomeCallable;
         typedef std::future<PutInstancePublicPortsOutcome> PutInstancePublicPortsOutcomeCallable;
         typedef std::future<RebootInstanceOutcome> RebootInstanceOutcomeCallable;
+        typedef std::future<RebootRelationalDatabaseOutcome> RebootRelationalDatabaseOutcomeCallable;
         typedef std::future<ReleaseStaticIpOutcome> ReleaseStaticIpOutcomeCallable;
         typedef std::future<StartInstanceOutcome> StartInstanceOutcomeCallable;
+        typedef std::future<StartRelationalDatabaseOutcome> StartRelationalDatabaseOutcomeCallable;
         typedef std::future<StopInstanceOutcome> StopInstanceOutcomeCallable;
+        typedef std::future<StopRelationalDatabaseOutcome> StopRelationalDatabaseOutcomeCallable;
         typedef std::future<UnpeerVpcOutcome> UnpeerVpcOutcomeCallable;
         typedef std::future<UpdateDomainEntryOutcome> UpdateDomainEntryOutcomeCallable;
         typedef std::future<UpdateLoadBalancerAttributeOutcome> UpdateLoadBalancerAttributeOutcomeCallable;
+        typedef std::future<UpdateRelationalDatabaseOutcome> UpdateRelationalDatabaseOutcomeCallable;
+        typedef std::future<UpdateRelationalDatabaseParametersOutcome> UpdateRelationalDatabaseParametersOutcomeCallable;
 } // namespace Model
 
   class LightsailClient;
@@ -373,6 +456,9 @@ namespace Model
     typedef std::function<void(const LightsailClient*, const Model::CreateKeyPairRequest&, const Model::CreateKeyPairOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateKeyPairResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::CreateLoadBalancerRequest&, const Model::CreateLoadBalancerOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateLoadBalancerResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::CreateLoadBalancerTlsCertificateRequest&, const Model::CreateLoadBalancerTlsCertificateOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateLoadBalancerTlsCertificateResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::CreateRelationalDatabaseRequest&, const Model::CreateRelationalDatabaseOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateRelationalDatabaseResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::CreateRelationalDatabaseFromSnapshotRequest&, const Model::CreateRelationalDatabaseFromSnapshotOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateRelationalDatabaseFromSnapshotResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::CreateRelationalDatabaseSnapshotRequest&, const Model::CreateRelationalDatabaseSnapshotOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > CreateRelationalDatabaseSnapshotResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::DeleteDiskRequest&, const Model::DeleteDiskOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteDiskResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::DeleteDiskSnapshotRequest&, const Model::DeleteDiskSnapshotOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteDiskSnapshotResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::DeleteDomainRequest&, const Model::DeleteDomainOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteDomainResponseReceivedHandler;
@@ -382,6 +468,8 @@ namespace Model
     typedef std::function<void(const LightsailClient*, const Model::DeleteKeyPairRequest&, const Model::DeleteKeyPairOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteKeyPairResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::DeleteLoadBalancerRequest&, const Model::DeleteLoadBalancerOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteLoadBalancerResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::DeleteLoadBalancerTlsCertificateRequest&, const Model::DeleteLoadBalancerTlsCertificateOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteLoadBalancerTlsCertificateResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::DeleteRelationalDatabaseRequest&, const Model::DeleteRelationalDatabaseOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteRelationalDatabaseResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::DeleteRelationalDatabaseSnapshotRequest&, const Model::DeleteRelationalDatabaseSnapshotOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteRelationalDatabaseSnapshotResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::DetachDiskRequest&, const Model::DetachDiskOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DetachDiskResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::DetachInstancesFromLoadBalancerRequest&, const Model::DetachInstancesFromLoadBalancerOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DetachInstancesFromLoadBalancerResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::DetachStaticIpRequest&, const Model::DetachStaticIpOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DetachStaticIpResponseReceivedHandler;
@@ -413,6 +501,18 @@ namespace Model
     typedef std::function<void(const LightsailClient*, const Model::GetOperationsRequest&, const Model::GetOperationsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetOperationsResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::GetOperationsForResourceRequest&, const Model::GetOperationsForResourceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetOperationsForResourceResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::GetRegionsRequest&, const Model::GetRegionsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetRegionsResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::GetRelationalDatabaseRequest&, const Model::GetRelationalDatabaseOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetRelationalDatabaseResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::GetRelationalDatabaseBlueprintsRequest&, const Model::GetRelationalDatabaseBlueprintsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetRelationalDatabaseBlueprintsResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::GetRelationalDatabaseBundlesRequest&, const Model::GetRelationalDatabaseBundlesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetRelationalDatabaseBundlesResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::GetRelationalDatabaseEventsRequest&, const Model::GetRelationalDatabaseEventsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetRelationalDatabaseEventsResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::GetRelationalDatabaseLogEventsRequest&, const Model::GetRelationalDatabaseLogEventsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetRelationalDatabaseLogEventsResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::GetRelationalDatabaseLogStreamsRequest&, const Model::GetRelationalDatabaseLogStreamsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetRelationalDatabaseLogStreamsResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::GetRelationalDatabaseMasterUserPasswordRequest&, const Model::GetRelationalDatabaseMasterUserPasswordOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetRelationalDatabaseMasterUserPasswordResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::GetRelationalDatabaseMetricDataRequest&, const Model::GetRelationalDatabaseMetricDataOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetRelationalDatabaseMetricDataResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::GetRelationalDatabaseParametersRequest&, const Model::GetRelationalDatabaseParametersOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetRelationalDatabaseParametersResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::GetRelationalDatabaseSnapshotRequest&, const Model::GetRelationalDatabaseSnapshotOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetRelationalDatabaseSnapshotResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::GetRelationalDatabaseSnapshotsRequest&, const Model::GetRelationalDatabaseSnapshotsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetRelationalDatabaseSnapshotsResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::GetRelationalDatabasesRequest&, const Model::GetRelationalDatabasesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetRelationalDatabasesResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::GetStaticIpRequest&, const Model::GetStaticIpOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetStaticIpResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::GetStaticIpsRequest&, const Model::GetStaticIpsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetStaticIpsResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::ImportKeyPairRequest&, const Model::ImportKeyPairOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ImportKeyPairResponseReceivedHandler;
@@ -421,12 +521,17 @@ namespace Model
     typedef std::function<void(const LightsailClient*, const Model::PeerVpcRequest&, const Model::PeerVpcOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > PeerVpcResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::PutInstancePublicPortsRequest&, const Model::PutInstancePublicPortsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > PutInstancePublicPortsResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::RebootInstanceRequest&, const Model::RebootInstanceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > RebootInstanceResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::RebootRelationalDatabaseRequest&, const Model::RebootRelationalDatabaseOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > RebootRelationalDatabaseResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::ReleaseStaticIpRequest&, const Model::ReleaseStaticIpOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > ReleaseStaticIpResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::StartInstanceRequest&, const Model::StartInstanceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > StartInstanceResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::StartRelationalDatabaseRequest&, const Model::StartRelationalDatabaseOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > StartRelationalDatabaseResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::StopInstanceRequest&, const Model::StopInstanceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > StopInstanceResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::StopRelationalDatabaseRequest&, const Model::StopRelationalDatabaseOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > StopRelationalDatabaseResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::UnpeerVpcRequest&, const Model::UnpeerVpcOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UnpeerVpcResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::UpdateDomainEntryRequest&, const Model::UpdateDomainEntryOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateDomainEntryResponseReceivedHandler;
     typedef std::function<void(const LightsailClient*, const Model::UpdateLoadBalancerAttributeRequest&, const Model::UpdateLoadBalancerAttributeOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateLoadBalancerAttributeResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::UpdateRelationalDatabaseRequest&, const Model::UpdateRelationalDatabaseOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateRelationalDatabaseResponseReceivedHandler;
+    typedef std::function<void(const LightsailClient*, const Model::UpdateRelationalDatabaseParametersRequest&, const Model::UpdateRelationalDatabaseParametersOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateRelationalDatabaseParametersResponseReceivedHandler;
 
   /**
    * <p>Amazon Lightsail is the easiest way to get started with AWS for developers
@@ -469,7 +574,7 @@ namespace Model
 
         virtual ~LightsailClient();
 
-        inline virtual const char* GetServiceClientName() const override { return "lightsail"; }
+        inline virtual const char* GetServiceClientName() const override { return "Lightsail"; }
 
 
         /**
@@ -529,16 +634,18 @@ namespace Model
         virtual void AttachDiskAsync(const Model::AttachDiskRequest& request, const AttachDiskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Attaches one or more Lightsail instances to a load balancer.</p><p><h3>See
-         * Also:</h3>   <a
+         * <p>Attaches one or more Lightsail instances to a load balancer.</p> <p>After
+         * some time, the instances are attached to the load balancer and the health check
+         * status is available.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/AttachInstancesToLoadBalancer">AWS
          * API Reference</a></p>
          */
         virtual Model::AttachInstancesToLoadBalancerOutcome AttachInstancesToLoadBalancer(const Model::AttachInstancesToLoadBalancerRequest& request) const;
 
         /**
-         * <p>Attaches one or more Lightsail instances to a load balancer.</p><p><h3>See
-         * Also:</h3>   <a
+         * <p>Attaches one or more Lightsail instances to a load balancer.</p> <p>After
+         * some time, the instances are attached to the load balancer and the health check
+         * status is available.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/AttachInstancesToLoadBalancer">AWS
          * API Reference</a></p>
          *
@@ -547,8 +654,9 @@ namespace Model
         virtual Model::AttachInstancesToLoadBalancerOutcomeCallable AttachInstancesToLoadBalancerCallable(const Model::AttachInstancesToLoadBalancerRequest& request) const;
 
         /**
-         * <p>Attaches one or more Lightsail instances to a load balancer.</p><p><h3>See
-         * Also:</h3>   <a
+         * <p>Attaches one or more Lightsail instances to a load balancer.</p> <p>After
+         * some time, the instances are attached to the load balancer and the health check
+         * status is available.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/AttachInstancesToLoadBalancer">AWS
          * API Reference</a></p>
          *
@@ -557,18 +665,26 @@ namespace Model
         virtual void AttachInstancesToLoadBalancerAsync(const Model::AttachInstancesToLoadBalancerRequest& request, const AttachInstancesToLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Attaches a Transport Layer Security (TLS) certificate to your load
-         * balancer.</p> <p>TLS is just an updated, more secure version of Secure Socket
-         * Layer (SSL).</p><p><h3>See Also:</h3>   <a
+         * <p>Attaches a Transport Layer Security (TLS) certificate to your load balancer.
+         * TLS is just an updated, more secure version of Secure Socket Layer (SSL).</p>
+         * <p>Once you create and validate your certificate, you can attach it to your load
+         * balancer. You can also use this API to rotate the certificates on your account.
+         * Use the <code>AttachLoadBalancerTlsCertificate</code> operation with the
+         * non-attached certificate, and it will replace the existing one and become the
+         * attached certificate.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/AttachLoadBalancerTlsCertificate">AWS
          * API Reference</a></p>
          */
         virtual Model::AttachLoadBalancerTlsCertificateOutcome AttachLoadBalancerTlsCertificate(const Model::AttachLoadBalancerTlsCertificateRequest& request) const;
 
         /**
-         * <p>Attaches a Transport Layer Security (TLS) certificate to your load
-         * balancer.</p> <p>TLS is just an updated, more secure version of Secure Socket
-         * Layer (SSL).</p><p><h3>See Also:</h3>   <a
+         * <p>Attaches a Transport Layer Security (TLS) certificate to your load balancer.
+         * TLS is just an updated, more secure version of Secure Socket Layer (SSL).</p>
+         * <p>Once you create and validate your certificate, you can attach it to your load
+         * balancer. You can also use this API to rotate the certificates on your account.
+         * Use the <code>AttachLoadBalancerTlsCertificate</code> operation with the
+         * non-attached certificate, and it will replace the existing one and become the
+         * attached certificate.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/AttachLoadBalancerTlsCertificate">AWS
          * API Reference</a></p>
          *
@@ -577,9 +693,13 @@ namespace Model
         virtual Model::AttachLoadBalancerTlsCertificateOutcomeCallable AttachLoadBalancerTlsCertificateCallable(const Model::AttachLoadBalancerTlsCertificateRequest& request) const;
 
         /**
-         * <p>Attaches a Transport Layer Security (TLS) certificate to your load
-         * balancer.</p> <p>TLS is just an updated, more secure version of Secure Socket
-         * Layer (SSL).</p><p><h3>See Also:</h3>   <a
+         * <p>Attaches a Transport Layer Security (TLS) certificate to your load balancer.
+         * TLS is just an updated, more secure version of Secure Socket Layer (SSL).</p>
+         * <p>Once you create and validate your certificate, you can attach it to your load
+         * balancer. You can also use this API to rotate the certificates on your account.
+         * Use the <code>AttachLoadBalancerTlsCertificate</code> operation with the
+         * non-attached certificate, and it will replace the existing one and become the
+         * attached certificate.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/AttachLoadBalancerTlsCertificate">AWS
          * API Reference</a></p>
          *
@@ -870,7 +990,12 @@ namespace Model
 
         /**
          * <p>Creates one or more Amazon Lightsail virtual private servers, or
-         * <i>instances</i>.</p><p><h3>See Also:</h3>   <a
+         * <i>instances</i>. Create instances using active blueprints. Inactive blueprints
+         * are listed to support customers with existing instances but are not necessarily
+         * available for launch of new instances. Blueprints are marked inactive when they
+         * become outdated due to operating system updates or new application releases. Use
+         * the get blueprints operation to return a list of available
+         * blueprints.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateInstances">AWS
          * API Reference</a></p>
          */
@@ -878,7 +1003,12 @@ namespace Model
 
         /**
          * <p>Creates one or more Amazon Lightsail virtual private servers, or
-         * <i>instances</i>.</p><p><h3>See Also:</h3>   <a
+         * <i>instances</i>. Create instances using active blueprints. Inactive blueprints
+         * are listed to support customers with existing instances but are not necessarily
+         * available for launch of new instances. Blueprints are marked inactive when they
+         * become outdated due to operating system updates or new application releases. Use
+         * the get blueprints operation to return a list of available
+         * blueprints.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateInstances">AWS
          * API Reference</a></p>
          *
@@ -888,7 +1018,12 @@ namespace Model
 
         /**
          * <p>Creates one or more Amazon Lightsail virtual private servers, or
-         * <i>instances</i>.</p><p><h3>See Also:</h3>   <a
+         * <i>instances</i>. Create instances using active blueprints. Inactive blueprints
+         * are listed to support customers with existing instances but are not necessarily
+         * available for launch of new instances. Blueprints are marked inactive when they
+         * become outdated due to operating system updates or new application releases. Use
+         * the get blueprints operation to return a list of available
+         * blueprints.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateInstances">AWS
          * API Reference</a></p>
          *
@@ -928,14 +1063,14 @@ namespace Model
         virtual void CreateInstancesFromSnapshotAsync(const Model::CreateInstancesFromSnapshotRequest& request, const CreateInstancesFromSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Creates sn SSH key pair.</p><p><h3>See Also:</h3>   <a
+         * <p>Creates an SSH key pair.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateKeyPair">AWS
          * API Reference</a></p>
          */
         virtual Model::CreateKeyPairOutcome CreateKeyPair(const Model::CreateKeyPairRequest& request) const;
 
         /**
-         * <p>Creates sn SSH key pair.</p><p><h3>See Also:</h3>   <a
+         * <p>Creates an SSH key pair.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateKeyPair">AWS
          * API Reference</a></p>
          *
@@ -944,7 +1079,7 @@ namespace Model
         virtual Model::CreateKeyPairOutcomeCallable CreateKeyPairCallable(const Model::CreateKeyPairRequest& request) const;
 
         /**
-         * <p>Creates sn SSH key pair.</p><p><h3>See Also:</h3>   <a
+         * <p>Creates an SSH key pair.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateKeyPair">AWS
          * API Reference</a></p>
          *
@@ -953,18 +1088,28 @@ namespace Model
         virtual void CreateKeyPairAsync(const Model::CreateKeyPairRequest& request, const CreateKeyPairResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Creates a Lightsail load balancer.</p> <p>When you create a load balancer,
-         * you can specify certificates and port settings. You can create up to 5 load
-         * balancers per AWS Region in your account.</p><p><h3>See Also:</h3>   <a
+         * <p>Creates a Lightsail load balancer. To learn more about deciding whether to
+         * load balance your application, see <a
+         * href="https://lightsail.aws.amazon.com/ls/docs/how-to/article/configure-lightsail-instances-for-load-balancing">Configure
+         * your Lightsail instances for load balancing</a>. You can create up to 5 load
+         * balancers per AWS Region in your account.</p> <p>When you create a load
+         * balancer, you can specify a unique name and port settings. To change additional
+         * load balancer settings, use the <code>UpdateLoadBalancerAttribute</code>
+         * operation.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateLoadBalancer">AWS
          * API Reference</a></p>
          */
         virtual Model::CreateLoadBalancerOutcome CreateLoadBalancer(const Model::CreateLoadBalancerRequest& request) const;
 
         /**
-         * <p>Creates a Lightsail load balancer.</p> <p>When you create a load balancer,
-         * you can specify certificates and port settings. You can create up to 5 load
-         * balancers per AWS Region in your account.</p><p><h3>See Also:</h3>   <a
+         * <p>Creates a Lightsail load balancer. To learn more about deciding whether to
+         * load balance your application, see <a
+         * href="https://lightsail.aws.amazon.com/ls/docs/how-to/article/configure-lightsail-instances-for-load-balancing">Configure
+         * your Lightsail instances for load balancing</a>. You can create up to 5 load
+         * balancers per AWS Region in your account.</p> <p>When you create a load
+         * balancer, you can specify a unique name and port settings. To change additional
+         * load balancer settings, use the <code>UpdateLoadBalancerAttribute</code>
+         * operation.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateLoadBalancer">AWS
          * API Reference</a></p>
          *
@@ -973,9 +1118,14 @@ namespace Model
         virtual Model::CreateLoadBalancerOutcomeCallable CreateLoadBalancerCallable(const Model::CreateLoadBalancerRequest& request) const;
 
         /**
-         * <p>Creates a Lightsail load balancer.</p> <p>When you create a load balancer,
-         * you can specify certificates and port settings. You can create up to 5 load
-         * balancers per AWS Region in your account.</p><p><h3>See Also:</h3>   <a
+         * <p>Creates a Lightsail load balancer. To learn more about deciding whether to
+         * load balance your application, see <a
+         * href="https://lightsail.aws.amazon.com/ls/docs/how-to/article/configure-lightsail-instances-for-load-balancing">Configure
+         * your Lightsail instances for load balancing</a>. You can create up to 5 load
+         * balancers per AWS Region in your account.</p> <p>When you create a load
+         * balancer, you can specify a unique name and port settings. To change additional
+         * load balancer settings, use the <code>UpdateLoadBalancerAttribute</code>
+         * operation.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateLoadBalancer">AWS
          * API Reference</a></p>
          *
@@ -1013,6 +1163,96 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void CreateLoadBalancerTlsCertificateAsync(const Model::CreateLoadBalancerTlsCertificateRequest& request, const CreateLoadBalancerTlsCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Creates a new database in Amazon Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateRelationalDatabase">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::CreateRelationalDatabaseOutcome CreateRelationalDatabase(const Model::CreateRelationalDatabaseRequest& request) const;
+
+        /**
+         * <p>Creates a new database in Amazon Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateRelationalDatabase">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::CreateRelationalDatabaseOutcomeCallable CreateRelationalDatabaseCallable(const Model::CreateRelationalDatabaseRequest& request) const;
+
+        /**
+         * <p>Creates a new database in Amazon Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateRelationalDatabase">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void CreateRelationalDatabaseAsync(const Model::CreateRelationalDatabaseRequest& request, const CreateRelationalDatabaseResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Creates a new database from an existing database snapshot in Amazon
+         * Lightsail.</p> <p>You can create a new database from a snapshot in if something
+         * goes wrong with your original database, or to change it to a different plan,
+         * such as a high availability or standard plan.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateRelationalDatabaseFromSnapshot">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::CreateRelationalDatabaseFromSnapshotOutcome CreateRelationalDatabaseFromSnapshot(const Model::CreateRelationalDatabaseFromSnapshotRequest& request) const;
+
+        /**
+         * <p>Creates a new database from an existing database snapshot in Amazon
+         * Lightsail.</p> <p>You can create a new database from a snapshot in if something
+         * goes wrong with your original database, or to change it to a different plan,
+         * such as a high availability or standard plan.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateRelationalDatabaseFromSnapshot">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::CreateRelationalDatabaseFromSnapshotOutcomeCallable CreateRelationalDatabaseFromSnapshotCallable(const Model::CreateRelationalDatabaseFromSnapshotRequest& request) const;
+
+        /**
+         * <p>Creates a new database from an existing database snapshot in Amazon
+         * Lightsail.</p> <p>You can create a new database from a snapshot in if something
+         * goes wrong with your original database, or to change it to a different plan,
+         * such as a high availability or standard plan.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateRelationalDatabaseFromSnapshot">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void CreateRelationalDatabaseFromSnapshotAsync(const Model::CreateRelationalDatabaseFromSnapshotRequest& request, const CreateRelationalDatabaseFromSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Creates a snapshot of your database in Amazon Lightsail. You can use
+         * snapshots for backups, to make copies of a database, and to save data before
+         * deleting a database.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateRelationalDatabaseSnapshot">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::CreateRelationalDatabaseSnapshotOutcome CreateRelationalDatabaseSnapshot(const Model::CreateRelationalDatabaseSnapshotRequest& request) const;
+
+        /**
+         * <p>Creates a snapshot of your database in Amazon Lightsail. You can use
+         * snapshots for backups, to make copies of a database, and to save data before
+         * deleting a database.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateRelationalDatabaseSnapshot">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::CreateRelationalDatabaseSnapshotOutcomeCallable CreateRelationalDatabaseSnapshotCallable(const Model::CreateRelationalDatabaseSnapshotRequest& request) const;
+
+        /**
+         * <p>Creates a snapshot of your database in Amazon Lightsail. You can use
+         * snapshots for backups, to make copies of a database, and to save data before
+         * deleting a database.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateRelationalDatabaseSnapshot">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void CreateRelationalDatabaseSnapshotAsync(const Model::CreateRelationalDatabaseSnapshotRequest& request, const CreateRelationalDatabaseSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Deletes the specified block storage disk. The disk must be in the
@@ -1226,14 +1466,20 @@ namespace Model
         virtual void DeleteKeyPairAsync(const Model::DeleteKeyPairRequest& request, const DeleteKeyPairResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Deletes a Lightsail load balancer.</p><p><h3>See Also:</h3>   <a
+         * <p>Deletes a Lightsail load balancer and all its associated SSL/TLS
+         * certificates. Once the load balancer is deleted, you will need to create a new
+         * load balancer, create a new certificate, and verify domain ownership
+         * again.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteLoadBalancer">AWS
          * API Reference</a></p>
          */
         virtual Model::DeleteLoadBalancerOutcome DeleteLoadBalancer(const Model::DeleteLoadBalancerRequest& request) const;
 
         /**
-         * <p>Deletes a Lightsail load balancer.</p><p><h3>See Also:</h3>   <a
+         * <p>Deletes a Lightsail load balancer and all its associated SSL/TLS
+         * certificates. Once the load balancer is deleted, you will need to create a new
+         * load balancer, create a new certificate, and verify domain ownership
+         * again.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteLoadBalancer">AWS
          * API Reference</a></p>
          *
@@ -1242,7 +1488,10 @@ namespace Model
         virtual Model::DeleteLoadBalancerOutcomeCallable DeleteLoadBalancerCallable(const Model::DeleteLoadBalancerRequest& request) const;
 
         /**
-         * <p>Deletes a Lightsail load balancer.</p><p><h3>See Also:</h3>   <a
+         * <p>Deletes a Lightsail load balancer and all its associated SSL/TLS
+         * certificates. Once the load balancer is deleted, you will need to create a new
+         * load balancer, create a new certificate, and verify domain ownership
+         * again.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteLoadBalancer">AWS
          * API Reference</a></p>
          *
@@ -1251,7 +1500,7 @@ namespace Model
         virtual void DeleteLoadBalancerAsync(const Model::DeleteLoadBalancerRequest& request, const DeleteLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Deletes a TLS/SSL certificate associated with a Lightsail load
+         * <p>Deletes an SSL/TLS certificate associated with a Lightsail load
          * balancer.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteLoadBalancerTlsCertificate">AWS
          * API Reference</a></p>
@@ -1259,7 +1508,7 @@ namespace Model
         virtual Model::DeleteLoadBalancerTlsCertificateOutcome DeleteLoadBalancerTlsCertificate(const Model::DeleteLoadBalancerTlsCertificateRequest& request) const;
 
         /**
-         * <p>Deletes a TLS/SSL certificate associated with a Lightsail load
+         * <p>Deletes an SSL/TLS certificate associated with a Lightsail load
          * balancer.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteLoadBalancerTlsCertificate">AWS
          * API Reference</a></p>
@@ -1269,7 +1518,7 @@ namespace Model
         virtual Model::DeleteLoadBalancerTlsCertificateOutcomeCallable DeleteLoadBalancerTlsCertificateCallable(const Model::DeleteLoadBalancerTlsCertificateRequest& request) const;
 
         /**
-         * <p>Deletes a TLS/SSL certificate associated with a Lightsail load
+         * <p>Deletes an SSL/TLS certificate associated with a Lightsail load
          * balancer.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteLoadBalancerTlsCertificate">AWS
          * API Reference</a></p>
@@ -1277,6 +1526,59 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void DeleteLoadBalancerTlsCertificateAsync(const Model::DeleteLoadBalancerTlsCertificateRequest& request, const DeleteLoadBalancerTlsCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Deletes a database in Amazon Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteRelationalDatabase">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::DeleteRelationalDatabaseOutcome DeleteRelationalDatabase(const Model::DeleteRelationalDatabaseRequest& request) const;
+
+        /**
+         * <p>Deletes a database in Amazon Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteRelationalDatabase">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::DeleteRelationalDatabaseOutcomeCallable DeleteRelationalDatabaseCallable(const Model::DeleteRelationalDatabaseRequest& request) const;
+
+        /**
+         * <p>Deletes a database in Amazon Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteRelationalDatabase">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void DeleteRelationalDatabaseAsync(const Model::DeleteRelationalDatabaseRequest& request, const DeleteRelationalDatabaseResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Deletes a database snapshot in Amazon Lightsail.</p><p><h3>See Also:</h3>  
+         * <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteRelationalDatabaseSnapshot">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::DeleteRelationalDatabaseSnapshotOutcome DeleteRelationalDatabaseSnapshot(const Model::DeleteRelationalDatabaseSnapshotRequest& request) const;
+
+        /**
+         * <p>Deletes a database snapshot in Amazon Lightsail.</p><p><h3>See Also:</h3>  
+         * <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteRelationalDatabaseSnapshot">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::DeleteRelationalDatabaseSnapshotOutcomeCallable DeleteRelationalDatabaseSnapshotCallable(const Model::DeleteRelationalDatabaseSnapshotRequest& request) const;
+
+        /**
+         * <p>Deletes a database snapshot in Amazon Lightsail.</p><p><h3>See Also:</h3>  
+         * <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteRelationalDatabaseSnapshot">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void DeleteRelationalDatabaseSnapshotAsync(const Model::DeleteRelationalDatabaseSnapshotRequest& request, const DeleteRelationalDatabaseSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Detaches a stopped block storage disk from a Lightsail instance. Make sure to
@@ -1310,16 +1612,18 @@ namespace Model
         virtual void DetachDiskAsync(const Model::DetachDiskRequest& request, const DetachDiskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Detaches the specified instances from a Lightsail load
-         * balancer.</p><p><h3>See Also:</h3>   <a
+         * <p>Detaches the specified instances from a Lightsail load balancer.</p> <p>This
+         * operation waits until the instances are no longer needed before they are
+         * detached from the load balancer.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DetachInstancesFromLoadBalancer">AWS
          * API Reference</a></p>
          */
         virtual Model::DetachInstancesFromLoadBalancerOutcome DetachInstancesFromLoadBalancer(const Model::DetachInstancesFromLoadBalancerRequest& request) const;
 
         /**
-         * <p>Detaches the specified instances from a Lightsail load
-         * balancer.</p><p><h3>See Also:</h3>   <a
+         * <p>Detaches the specified instances from a Lightsail load balancer.</p> <p>This
+         * operation waits until the instances are no longer needed before they are
+         * detached from the load balancer.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DetachInstancesFromLoadBalancer">AWS
          * API Reference</a></p>
          *
@@ -1328,8 +1632,9 @@ namespace Model
         virtual Model::DetachInstancesFromLoadBalancerOutcomeCallable DetachInstancesFromLoadBalancerCallable(const Model::DetachInstancesFromLoadBalancerRequest& request) const;
 
         /**
-         * <p>Detaches the specified instances from a Lightsail load
-         * balancer.</p><p><h3>See Also:</h3>   <a
+         * <p>Detaches the specified instances from a Lightsail load balancer.</p> <p>This
+         * operation waits until the instances are no longer needed before they are
+         * detached from the load balancer.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DetachInstancesFromLoadBalancer">AWS
          * API Reference</a></p>
          *
@@ -2011,7 +2316,9 @@ namespace Model
         /**
          * <p>Returns information about the TLS certificates that are associated with the
          * specified Lightsail load balancer.</p> <p>TLS is just an updated, more secure
-         * version of Secure Socket Layer (SSL).</p><p><h3>See Also:</h3>   <a
+         * version of Secure Socket Layer (SSL).</p> <p>You can have a maximum of 2
+         * certificates associated with a Lightsail load balancer. One is active and the
+         * other is inactive.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetLoadBalancerTlsCertificates">AWS
          * API Reference</a></p>
          */
@@ -2020,7 +2327,9 @@ namespace Model
         /**
          * <p>Returns information about the TLS certificates that are associated with the
          * specified Lightsail load balancer.</p> <p>TLS is just an updated, more secure
-         * version of Secure Socket Layer (SSL).</p><p><h3>See Also:</h3>   <a
+         * version of Secure Socket Layer (SSL).</p> <p>You can have a maximum of 2
+         * certificates associated with a Lightsail load balancer. One is active and the
+         * other is inactive.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetLoadBalancerTlsCertificates">AWS
          * API Reference</a></p>
          *
@@ -2031,7 +2340,9 @@ namespace Model
         /**
          * <p>Returns information about the TLS certificates that are associated with the
          * specified Lightsail load balancer.</p> <p>TLS is just an updated, more secure
-         * version of Secure Socket Layer (SSL).</p><p><h3>See Also:</h3>   <a
+         * version of Secure Socket Layer (SSL).</p> <p>You can have a maximum of 2
+         * certificates associated with a Lightsail load balancer. One is active and the
+         * other is inactive.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetLoadBalancerTlsCertificates">AWS
          * API Reference</a></p>
          *
@@ -2172,7 +2483,7 @@ namespace Model
         /**
          * <p>Returns a list of all valid regions for Amazon Lightsail. Use the
          * <code>include availability zones</code> parameter to also return the
-         * availability zones in a region.</p><p><h3>See Also:</h3>   <a
+         * Availability Zones in a region.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRegions">AWS
          * API Reference</a></p>
          */
@@ -2181,7 +2492,7 @@ namespace Model
         /**
          * <p>Returns a list of all valid regions for Amazon Lightsail. Use the
          * <code>include availability zones</code> parameter to also return the
-         * availability zones in a region.</p><p><h3>See Also:</h3>   <a
+         * Availability Zones in a region.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRegions">AWS
          * API Reference</a></p>
          *
@@ -2192,13 +2503,373 @@ namespace Model
         /**
          * <p>Returns a list of all valid regions for Amazon Lightsail. Use the
          * <code>include availability zones</code> parameter to also return the
-         * availability zones in a region.</p><p><h3>See Also:</h3>   <a
+         * Availability Zones in a region.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRegions">AWS
          * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void GetRegionsAsync(const Model::GetRegionsRequest& request, const GetRegionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Returns information about a specific database in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabase">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::GetRelationalDatabaseOutcome GetRelationalDatabase(const Model::GetRelationalDatabaseRequest& request) const;
+
+        /**
+         * <p>Returns information about a specific database in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabase">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::GetRelationalDatabaseOutcomeCallable GetRelationalDatabaseCallable(const Model::GetRelationalDatabaseRequest& request) const;
+
+        /**
+         * <p>Returns information about a specific database in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabase">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void GetRelationalDatabaseAsync(const Model::GetRelationalDatabaseRequest& request, const GetRelationalDatabaseResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Returns a list of available database blueprints in Amazon Lightsail. A
+         * blueprint describes the major engine version of a database.</p> <p>You can use a
+         * blueprint ID to create a new database that runs a specific database
+         * engine.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseBlueprints">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::GetRelationalDatabaseBlueprintsOutcome GetRelationalDatabaseBlueprints(const Model::GetRelationalDatabaseBlueprintsRequest& request) const;
+
+        /**
+         * <p>Returns a list of available database blueprints in Amazon Lightsail. A
+         * blueprint describes the major engine version of a database.</p> <p>You can use a
+         * blueprint ID to create a new database that runs a specific database
+         * engine.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseBlueprints">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::GetRelationalDatabaseBlueprintsOutcomeCallable GetRelationalDatabaseBlueprintsCallable(const Model::GetRelationalDatabaseBlueprintsRequest& request) const;
+
+        /**
+         * <p>Returns a list of available database blueprints in Amazon Lightsail. A
+         * blueprint describes the major engine version of a database.</p> <p>You can use a
+         * blueprint ID to create a new database that runs a specific database
+         * engine.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseBlueprints">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void GetRelationalDatabaseBlueprintsAsync(const Model::GetRelationalDatabaseBlueprintsRequest& request, const GetRelationalDatabaseBlueprintsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Returns the list of bundles that are available in Amazon Lightsail. A bundle
+         * describes the performance specifications for a database.</p> <p>You can use a
+         * bundle ID to create a new database with explicit performance
+         * specifications.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseBundles">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::GetRelationalDatabaseBundlesOutcome GetRelationalDatabaseBundles(const Model::GetRelationalDatabaseBundlesRequest& request) const;
+
+        /**
+         * <p>Returns the list of bundles that are available in Amazon Lightsail. A bundle
+         * describes the performance specifications for a database.</p> <p>You can use a
+         * bundle ID to create a new database with explicit performance
+         * specifications.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseBundles">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::GetRelationalDatabaseBundlesOutcomeCallable GetRelationalDatabaseBundlesCallable(const Model::GetRelationalDatabaseBundlesRequest& request) const;
+
+        /**
+         * <p>Returns the list of bundles that are available in Amazon Lightsail. A bundle
+         * describes the performance specifications for a database.</p> <p>You can use a
+         * bundle ID to create a new database with explicit performance
+         * specifications.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseBundles">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void GetRelationalDatabaseBundlesAsync(const Model::GetRelationalDatabaseBundlesRequest& request, const GetRelationalDatabaseBundlesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Returns a list of events for a specific database in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseEvents">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::GetRelationalDatabaseEventsOutcome GetRelationalDatabaseEvents(const Model::GetRelationalDatabaseEventsRequest& request) const;
+
+        /**
+         * <p>Returns a list of events for a specific database in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseEvents">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::GetRelationalDatabaseEventsOutcomeCallable GetRelationalDatabaseEventsCallable(const Model::GetRelationalDatabaseEventsRequest& request) const;
+
+        /**
+         * <p>Returns a list of events for a specific database in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseEvents">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void GetRelationalDatabaseEventsAsync(const Model::GetRelationalDatabaseEventsRequest& request, const GetRelationalDatabaseEventsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Returns a list of log events for a database in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseLogEvents">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::GetRelationalDatabaseLogEventsOutcome GetRelationalDatabaseLogEvents(const Model::GetRelationalDatabaseLogEventsRequest& request) const;
+
+        /**
+         * <p>Returns a list of log events for a database in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseLogEvents">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::GetRelationalDatabaseLogEventsOutcomeCallable GetRelationalDatabaseLogEventsCallable(const Model::GetRelationalDatabaseLogEventsRequest& request) const;
+
+        /**
+         * <p>Returns a list of log events for a database in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseLogEvents">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void GetRelationalDatabaseLogEventsAsync(const Model::GetRelationalDatabaseLogEventsRequest& request, const GetRelationalDatabaseLogEventsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Returns a list of available log streams for a specific database in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseLogStreams">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::GetRelationalDatabaseLogStreamsOutcome GetRelationalDatabaseLogStreams(const Model::GetRelationalDatabaseLogStreamsRequest& request) const;
+
+        /**
+         * <p>Returns a list of available log streams for a specific database in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseLogStreams">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::GetRelationalDatabaseLogStreamsOutcomeCallable GetRelationalDatabaseLogStreamsCallable(const Model::GetRelationalDatabaseLogStreamsRequest& request) const;
+
+        /**
+         * <p>Returns a list of available log streams for a specific database in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseLogStreams">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void GetRelationalDatabaseLogStreamsAsync(const Model::GetRelationalDatabaseLogStreamsRequest& request, const GetRelationalDatabaseLogStreamsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Returns the current, previous, or pending versions of the master user
+         * password for a Lightsail database.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseMasterUserPassword">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::GetRelationalDatabaseMasterUserPasswordOutcome GetRelationalDatabaseMasterUserPassword(const Model::GetRelationalDatabaseMasterUserPasswordRequest& request) const;
+
+        /**
+         * <p>Returns the current, previous, or pending versions of the master user
+         * password for a Lightsail database.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseMasterUserPassword">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::GetRelationalDatabaseMasterUserPasswordOutcomeCallable GetRelationalDatabaseMasterUserPasswordCallable(const Model::GetRelationalDatabaseMasterUserPasswordRequest& request) const;
+
+        /**
+         * <p>Returns the current, previous, or pending versions of the master user
+         * password for a Lightsail database.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseMasterUserPassword">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void GetRelationalDatabaseMasterUserPasswordAsync(const Model::GetRelationalDatabaseMasterUserPasswordRequest& request, const GetRelationalDatabaseMasterUserPasswordResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Returns the data points of the specified metric for a database in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseMetricData">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::GetRelationalDatabaseMetricDataOutcome GetRelationalDatabaseMetricData(const Model::GetRelationalDatabaseMetricDataRequest& request) const;
+
+        /**
+         * <p>Returns the data points of the specified metric for a database in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseMetricData">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::GetRelationalDatabaseMetricDataOutcomeCallable GetRelationalDatabaseMetricDataCallable(const Model::GetRelationalDatabaseMetricDataRequest& request) const;
+
+        /**
+         * <p>Returns the data points of the specified metric for a database in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseMetricData">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void GetRelationalDatabaseMetricDataAsync(const Model::GetRelationalDatabaseMetricDataRequest& request, const GetRelationalDatabaseMetricDataResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Returns all of the runtime parameters offered by the underlying database
+         * software, or engine, for a specific database in Amazon Lightsail.</p> <p>In
+         * addition to the parameter names and values, this operation returns other
+         * information about each parameter. This information includes whether changes
+         * require a reboot, whether the parameter is modifiable, the allowed values, and
+         * the data types.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseParameters">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::GetRelationalDatabaseParametersOutcome GetRelationalDatabaseParameters(const Model::GetRelationalDatabaseParametersRequest& request) const;
+
+        /**
+         * <p>Returns all of the runtime parameters offered by the underlying database
+         * software, or engine, for a specific database in Amazon Lightsail.</p> <p>In
+         * addition to the parameter names and values, this operation returns other
+         * information about each parameter. This information includes whether changes
+         * require a reboot, whether the parameter is modifiable, the allowed values, and
+         * the data types.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseParameters">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::GetRelationalDatabaseParametersOutcomeCallable GetRelationalDatabaseParametersCallable(const Model::GetRelationalDatabaseParametersRequest& request) const;
+
+        /**
+         * <p>Returns all of the runtime parameters offered by the underlying database
+         * software, or engine, for a specific database in Amazon Lightsail.</p> <p>In
+         * addition to the parameter names and values, this operation returns other
+         * information about each parameter. This information includes whether changes
+         * require a reboot, whether the parameter is modifiable, the allowed values, and
+         * the data types.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseParameters">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void GetRelationalDatabaseParametersAsync(const Model::GetRelationalDatabaseParametersRequest& request, const GetRelationalDatabaseParametersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Returns information about a specific database snapshot in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseSnapshot">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::GetRelationalDatabaseSnapshotOutcome GetRelationalDatabaseSnapshot(const Model::GetRelationalDatabaseSnapshotRequest& request) const;
+
+        /**
+         * <p>Returns information about a specific database snapshot in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseSnapshot">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::GetRelationalDatabaseSnapshotOutcomeCallable GetRelationalDatabaseSnapshotCallable(const Model::GetRelationalDatabaseSnapshotRequest& request) const;
+
+        /**
+         * <p>Returns information about a specific database snapshot in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseSnapshot">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void GetRelationalDatabaseSnapshotAsync(const Model::GetRelationalDatabaseSnapshotRequest& request, const GetRelationalDatabaseSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Returns information about all of your database snapshots in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseSnapshots">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::GetRelationalDatabaseSnapshotsOutcome GetRelationalDatabaseSnapshots(const Model::GetRelationalDatabaseSnapshotsRequest& request) const;
+
+        /**
+         * <p>Returns information about all of your database snapshots in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseSnapshots">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::GetRelationalDatabaseSnapshotsOutcomeCallable GetRelationalDatabaseSnapshotsCallable(const Model::GetRelationalDatabaseSnapshotsRequest& request) const;
+
+        /**
+         * <p>Returns information about all of your database snapshots in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabaseSnapshots">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void GetRelationalDatabaseSnapshotsAsync(const Model::GetRelationalDatabaseSnapshotsRequest& request, const GetRelationalDatabaseSnapshotsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Returns information about all of your databases in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabases">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::GetRelationalDatabasesOutcome GetRelationalDatabases(const Model::GetRelationalDatabasesRequest& request) const;
+
+        /**
+         * <p>Returns information about all of your databases in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabases">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::GetRelationalDatabasesOutcomeCallable GetRelationalDatabasesCallable(const Model::GetRelationalDatabasesRequest& request) const;
+
+        /**
+         * <p>Returns information about all of your databases in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRelationalDatabases">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void GetRelationalDatabasesAsync(const Model::GetRelationalDatabasesRequest& request, const GetRelationalDatabasesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Returns information about a specific static IP.</p><p><h3>See Also:</h3>   <a
@@ -2431,6 +3102,34 @@ namespace Model
         virtual void RebootInstanceAsync(const Model::RebootInstanceRequest& request, const RebootInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
+         * <p>Restarts a specific database in Amazon Lightsail.</p><p><h3>See Also:</h3>  
+         * <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/RebootRelationalDatabase">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::RebootRelationalDatabaseOutcome RebootRelationalDatabase(const Model::RebootRelationalDatabaseRequest& request) const;
+
+        /**
+         * <p>Restarts a specific database in Amazon Lightsail.</p><p><h3>See Also:</h3>  
+         * <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/RebootRelationalDatabase">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::RebootRelationalDatabaseOutcomeCallable RebootRelationalDatabaseCallable(const Model::RebootRelationalDatabaseRequest& request) const;
+
+        /**
+         * <p>Restarts a specific database in Amazon Lightsail.</p><p><h3>See Also:</h3>  
+         * <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/RebootRelationalDatabase">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void RebootRelationalDatabaseAsync(const Model::RebootRelationalDatabaseRequest& request, const RebootRelationalDatabaseResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
          * <p>Deletes a specific static IP from your account.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/ReleaseStaticIp">AWS
          * API Reference</a></p>
@@ -2484,6 +3183,37 @@ namespace Model
         virtual void StartInstanceAsync(const Model::StartInstanceRequest& request, const StartInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
+         * <p>Starts a specific database from a stopped state in Amazon Lightsail. To
+         * restart a database, use the <code>reboot relational database</code>
+         * operation.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/StartRelationalDatabase">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::StartRelationalDatabaseOutcome StartRelationalDatabase(const Model::StartRelationalDatabaseRequest& request) const;
+
+        /**
+         * <p>Starts a specific database from a stopped state in Amazon Lightsail. To
+         * restart a database, use the <code>reboot relational database</code>
+         * operation.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/StartRelationalDatabase">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::StartRelationalDatabaseOutcomeCallable StartRelationalDatabaseCallable(const Model::StartRelationalDatabaseRequest& request) const;
+
+        /**
+         * <p>Starts a specific database from a stopped state in Amazon Lightsail. To
+         * restart a database, use the <code>reboot relational database</code>
+         * operation.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/StartRelationalDatabase">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void StartRelationalDatabaseAsync(const Model::StartRelationalDatabaseRequest& request, const StartRelationalDatabaseResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
          * <p>Stops a specific Amazon Lightsail instance that is currently
          * running.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/StopInstance">AWS
@@ -2510,6 +3240,34 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void StopInstanceAsync(const Model::StopInstanceRequest& request, const StopInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Stops a specific database that is currently running in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/StopRelationalDatabase">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::StopRelationalDatabaseOutcome StopRelationalDatabase(const Model::StopRelationalDatabaseRequest& request) const;
+
+        /**
+         * <p>Stops a specific database that is currently running in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/StopRelationalDatabase">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::StopRelationalDatabaseOutcomeCallable StopRelationalDatabaseCallable(const Model::StopRelationalDatabaseRequest& request) const;
+
+        /**
+         * <p>Stops a specific database that is currently running in Amazon
+         * Lightsail.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/StopRelationalDatabase">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void StopRelationalDatabaseAsync(const Model::StopRelationalDatabaseRequest& request, const StopRelationalDatabaseResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Attempts to unpeer the Lightsail VPC from the user's default
@@ -2565,16 +3323,16 @@ namespace Model
         virtual void UpdateDomainEntryAsync(const Model::UpdateDomainEntryRequest& request, const UpdateDomainEntryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Updates the specified attribute for a load balancer.</p><p><h3>See Also:</h3>
-         * <a
+         * <p>Updates the specified attribute for a load balancer. You can only update one
+         * attribute at a time.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/UpdateLoadBalancerAttribute">AWS
          * API Reference</a></p>
          */
         virtual Model::UpdateLoadBalancerAttributeOutcome UpdateLoadBalancerAttribute(const Model::UpdateLoadBalancerAttributeRequest& request) const;
 
         /**
-         * <p>Updates the specified attribute for a load balancer.</p><p><h3>See Also:</h3>
-         * <a
+         * <p>Updates the specified attribute for a load balancer. You can only update one
+         * attribute at a time.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/UpdateLoadBalancerAttribute">AWS
          * API Reference</a></p>
          *
@@ -2583,14 +3341,97 @@ namespace Model
         virtual Model::UpdateLoadBalancerAttributeOutcomeCallable UpdateLoadBalancerAttributeCallable(const Model::UpdateLoadBalancerAttributeRequest& request) const;
 
         /**
-         * <p>Updates the specified attribute for a load balancer.</p><p><h3>See Also:</h3>
-         * <a
+         * <p>Updates the specified attribute for a load balancer. You can only update one
+         * attribute at a time.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/UpdateLoadBalancerAttribute">AWS
          * API Reference</a></p>
          *
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void UpdateLoadBalancerAttributeAsync(const Model::UpdateLoadBalancerAttributeRequest& request, const UpdateLoadBalancerAttributeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Allows the update of one or more attributes of a database in Amazon
+         * Lightsail.</p> <p>Updates are applied immediately, or in cases where the updates
+         * could result in an outage, are applied during the database's predefined
+         * maintenance window.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/UpdateRelationalDatabase">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::UpdateRelationalDatabaseOutcome UpdateRelationalDatabase(const Model::UpdateRelationalDatabaseRequest& request) const;
+
+        /**
+         * <p>Allows the update of one or more attributes of a database in Amazon
+         * Lightsail.</p> <p>Updates are applied immediately, or in cases where the updates
+         * could result in an outage, are applied during the database's predefined
+         * maintenance window.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/UpdateRelationalDatabase">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::UpdateRelationalDatabaseOutcomeCallable UpdateRelationalDatabaseCallable(const Model::UpdateRelationalDatabaseRequest& request) const;
+
+        /**
+         * <p>Allows the update of one or more attributes of a database in Amazon
+         * Lightsail.</p> <p>Updates are applied immediately, or in cases where the updates
+         * could result in an outage, are applied during the database's predefined
+         * maintenance window.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/UpdateRelationalDatabase">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void UpdateRelationalDatabaseAsync(const Model::UpdateRelationalDatabaseRequest& request, const UpdateRelationalDatabaseResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Allows the update of one or more parameters of a database in Amazon
+         * Lightsail.</p> <p>Parameter updates don't cause outages; therefore, their
+         * application is not subject to the preferred maintenance window. However, there
+         * are two ways in which paramater updates are applied: <code>dynamic</code> or
+         * <code>pending-reboot</code>. Parameters marked with a <code>dynamic</code> apply
+         * type are applied immediately. Parameters marked with a
+         * <code>pending-reboot</code> apply type are applied only after the database is
+         * rebooted using the <code>reboot relational database</code>
+         * operation.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/UpdateRelationalDatabaseParameters">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::UpdateRelationalDatabaseParametersOutcome UpdateRelationalDatabaseParameters(const Model::UpdateRelationalDatabaseParametersRequest& request) const;
+
+        /**
+         * <p>Allows the update of one or more parameters of a database in Amazon
+         * Lightsail.</p> <p>Parameter updates don't cause outages; therefore, their
+         * application is not subject to the preferred maintenance window. However, there
+         * are two ways in which paramater updates are applied: <code>dynamic</code> or
+         * <code>pending-reboot</code>. Parameters marked with a <code>dynamic</code> apply
+         * type are applied immediately. Parameters marked with a
+         * <code>pending-reboot</code> apply type are applied only after the database is
+         * rebooted using the <code>reboot relational database</code>
+         * operation.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/UpdateRelationalDatabaseParameters">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::UpdateRelationalDatabaseParametersOutcomeCallable UpdateRelationalDatabaseParametersCallable(const Model::UpdateRelationalDatabaseParametersRequest& request) const;
+
+        /**
+         * <p>Allows the update of one or more parameters of a database in Amazon
+         * Lightsail.</p> <p>Parameter updates don't cause outages; therefore, their
+         * application is not subject to the preferred maintenance window. However, there
+         * are two ways in which paramater updates are applied: <code>dynamic</code> or
+         * <code>pending-reboot</code>. Parameters marked with a <code>dynamic</code> apply
+         * type are applied immediately. Parameters marked with a
+         * <code>pending-reboot</code> apply type are applied only after the database is
+         * rebooted using the <code>reboot relational database</code>
+         * operation.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/UpdateRelationalDatabaseParameters">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void UpdateRelationalDatabaseParametersAsync(const Model::UpdateRelationalDatabaseParametersRequest& request, const UpdateRelationalDatabaseParametersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
 
     private:
@@ -2614,6 +3455,9 @@ namespace Model
         void CreateKeyPairAsyncHelper(const Model::CreateKeyPairRequest& request, const CreateKeyPairResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void CreateLoadBalancerAsyncHelper(const Model::CreateLoadBalancerRequest& request, const CreateLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void CreateLoadBalancerTlsCertificateAsyncHelper(const Model::CreateLoadBalancerTlsCertificateRequest& request, const CreateLoadBalancerTlsCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void CreateRelationalDatabaseAsyncHelper(const Model::CreateRelationalDatabaseRequest& request, const CreateRelationalDatabaseResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void CreateRelationalDatabaseFromSnapshotAsyncHelper(const Model::CreateRelationalDatabaseFromSnapshotRequest& request, const CreateRelationalDatabaseFromSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void CreateRelationalDatabaseSnapshotAsyncHelper(const Model::CreateRelationalDatabaseSnapshotRequest& request, const CreateRelationalDatabaseSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteDiskAsyncHelper(const Model::DeleteDiskRequest& request, const DeleteDiskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteDiskSnapshotAsyncHelper(const Model::DeleteDiskSnapshotRequest& request, const DeleteDiskSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteDomainAsyncHelper(const Model::DeleteDomainRequest& request, const DeleteDomainResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -2623,6 +3467,8 @@ namespace Model
         void DeleteKeyPairAsyncHelper(const Model::DeleteKeyPairRequest& request, const DeleteKeyPairResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteLoadBalancerAsyncHelper(const Model::DeleteLoadBalancerRequest& request, const DeleteLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteLoadBalancerTlsCertificateAsyncHelper(const Model::DeleteLoadBalancerTlsCertificateRequest& request, const DeleteLoadBalancerTlsCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void DeleteRelationalDatabaseAsyncHelper(const Model::DeleteRelationalDatabaseRequest& request, const DeleteRelationalDatabaseResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void DeleteRelationalDatabaseSnapshotAsyncHelper(const Model::DeleteRelationalDatabaseSnapshotRequest& request, const DeleteRelationalDatabaseSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DetachDiskAsyncHelper(const Model::DetachDiskRequest& request, const DetachDiskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DetachInstancesFromLoadBalancerAsyncHelper(const Model::DetachInstancesFromLoadBalancerRequest& request, const DetachInstancesFromLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DetachStaticIpAsyncHelper(const Model::DetachStaticIpRequest& request, const DetachStaticIpResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -2654,6 +3500,18 @@ namespace Model
         void GetOperationsAsyncHelper(const Model::GetOperationsRequest& request, const GetOperationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void GetOperationsForResourceAsyncHelper(const Model::GetOperationsForResourceRequest& request, const GetOperationsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void GetRegionsAsyncHelper(const Model::GetRegionsRequest& request, const GetRegionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void GetRelationalDatabaseAsyncHelper(const Model::GetRelationalDatabaseRequest& request, const GetRelationalDatabaseResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void GetRelationalDatabaseBlueprintsAsyncHelper(const Model::GetRelationalDatabaseBlueprintsRequest& request, const GetRelationalDatabaseBlueprintsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void GetRelationalDatabaseBundlesAsyncHelper(const Model::GetRelationalDatabaseBundlesRequest& request, const GetRelationalDatabaseBundlesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void GetRelationalDatabaseEventsAsyncHelper(const Model::GetRelationalDatabaseEventsRequest& request, const GetRelationalDatabaseEventsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void GetRelationalDatabaseLogEventsAsyncHelper(const Model::GetRelationalDatabaseLogEventsRequest& request, const GetRelationalDatabaseLogEventsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void GetRelationalDatabaseLogStreamsAsyncHelper(const Model::GetRelationalDatabaseLogStreamsRequest& request, const GetRelationalDatabaseLogStreamsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void GetRelationalDatabaseMasterUserPasswordAsyncHelper(const Model::GetRelationalDatabaseMasterUserPasswordRequest& request, const GetRelationalDatabaseMasterUserPasswordResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void GetRelationalDatabaseMetricDataAsyncHelper(const Model::GetRelationalDatabaseMetricDataRequest& request, const GetRelationalDatabaseMetricDataResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void GetRelationalDatabaseParametersAsyncHelper(const Model::GetRelationalDatabaseParametersRequest& request, const GetRelationalDatabaseParametersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void GetRelationalDatabaseSnapshotAsyncHelper(const Model::GetRelationalDatabaseSnapshotRequest& request, const GetRelationalDatabaseSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void GetRelationalDatabaseSnapshotsAsyncHelper(const Model::GetRelationalDatabaseSnapshotsRequest& request, const GetRelationalDatabaseSnapshotsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void GetRelationalDatabasesAsyncHelper(const Model::GetRelationalDatabasesRequest& request, const GetRelationalDatabasesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void GetStaticIpAsyncHelper(const Model::GetStaticIpRequest& request, const GetStaticIpResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void GetStaticIpsAsyncHelper(const Model::GetStaticIpsRequest& request, const GetStaticIpsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ImportKeyPairAsyncHelper(const Model::ImportKeyPairRequest& request, const ImportKeyPairResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -2662,12 +3520,17 @@ namespace Model
         void PeerVpcAsyncHelper(const Model::PeerVpcRequest& request, const PeerVpcResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void PutInstancePublicPortsAsyncHelper(const Model::PutInstancePublicPortsRequest& request, const PutInstancePublicPortsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void RebootInstanceAsyncHelper(const Model::RebootInstanceRequest& request, const RebootInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void RebootRelationalDatabaseAsyncHelper(const Model::RebootRelationalDatabaseRequest& request, const RebootRelationalDatabaseResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void ReleaseStaticIpAsyncHelper(const Model::ReleaseStaticIpRequest& request, const ReleaseStaticIpResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void StartInstanceAsyncHelper(const Model::StartInstanceRequest& request, const StartInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void StartRelationalDatabaseAsyncHelper(const Model::StartRelationalDatabaseRequest& request, const StartRelationalDatabaseResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void StopInstanceAsyncHelper(const Model::StopInstanceRequest& request, const StopInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void StopRelationalDatabaseAsyncHelper(const Model::StopRelationalDatabaseRequest& request, const StopRelationalDatabaseResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UnpeerVpcAsyncHelper(const Model::UnpeerVpcRequest& request, const UnpeerVpcResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateDomainEntryAsyncHelper(const Model::UpdateDomainEntryRequest& request, const UpdateDomainEntryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateLoadBalancerAttributeAsyncHelper(const Model::UpdateLoadBalancerAttributeRequest& request, const UpdateLoadBalancerAttributeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void UpdateRelationalDatabaseAsyncHelper(const Model::UpdateRelationalDatabaseRequest& request, const UpdateRelationalDatabaseResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void UpdateRelationalDatabaseParametersAsyncHelper(const Model::UpdateRelationalDatabaseParametersRequest& request, const UpdateRelationalDatabaseParametersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
 
       Aws::String m_uri;
       std::shared_ptr<Aws::Utils::Threading::Executor> m_executor;

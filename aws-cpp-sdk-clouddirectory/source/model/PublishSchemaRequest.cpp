@@ -26,6 +26,7 @@ using namespace Aws::Utils;
 PublishSchemaRequest::PublishSchemaRequest() : 
     m_developmentSchemaArnHasBeenSet(false),
     m_versionHasBeenSet(false),
+    m_minorVersionHasBeenSet(false),
     m_nameHasBeenSet(false)
 {
 }
@@ -40,13 +41,19 @@ Aws::String PublishSchemaRequest::SerializePayload() const
 
   }
 
+  if(m_minorVersionHasBeenSet)
+  {
+   payload.WithString("MinorVersion", m_minorVersion);
+
+  }
+
   if(m_nameHasBeenSet)
   {
    payload.WithString("Name", m_name);
 
   }
 
-  return payload.WriteReadable();
+  return payload.View().WriteReadable();
 }
 
 Aws::Http::HeaderValueCollection PublishSchemaRequest::GetRequestSpecificHeaders() const
@@ -56,7 +63,7 @@ Aws::Http::HeaderValueCollection PublishSchemaRequest::GetRequestSpecificHeaders
   if(m_developmentSchemaArnHasBeenSet)
   {
     ss << m_developmentSchemaArn;
-    headers.insert(Aws::Http::HeaderValuePair("x-amz-data-partition", ss.str()));
+    headers.emplace("x-amz-data-partition",  ss.str());
     ss.str("");
   }
 

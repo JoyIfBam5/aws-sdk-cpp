@@ -26,6 +26,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace CodeBuild
@@ -34,11 +35,8 @@ namespace Model
 {
 
   /**
-   * <p>If your AWS CodeBuild project accesses resources in an Amazon VPC, you
-   * provide this parameter that identifies the VPC ID and the list of security group
-   * IDs and subnet IDs. The security groups and subnets must belong to the same VPC.
-   * You must provide at least one security group and one subnet ID.</p><p><h3>See
-   * Also:</h3>   <a
+   * <p>Information about the VPC configuration that AWS CodeBuild will
+   * access.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/VpcConfig">AWS
    * API Reference</a></p>
    */
@@ -46,8 +44,8 @@ namespace Model
   {
   public:
     VpcConfig();
-    VpcConfig(const Aws::Utils::Json::JsonValue& jsonValue);
-    VpcConfig& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    VpcConfig(Aws::Utils::Json::JsonView jsonValue);
+    VpcConfig& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 

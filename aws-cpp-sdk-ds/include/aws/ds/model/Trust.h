@@ -20,6 +20,7 @@
 #include <aws/ds/model/TrustDirection.h>
 #include <aws/ds/model/TrustState.h>
 #include <aws/core/utils/DateTime.h>
+#include <aws/ds/model/SelectiveAuth.h>
 #include <utility>
 
 namespace Aws
@@ -29,6 +30,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace DirectoryService
@@ -37,8 +39,8 @@ namespace Model
 {
 
   /**
-   * <p>Describes a trust relationship between an Microsoft AD in the AWS cloud and
-   * an external domain.</p><p><h3>See Also:</h3>   <a
+   * <p>Describes a trust relationship between an AWS Managed Microsoft AD directory
+   * and an external domain.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/Trust">AWS API
    * Reference</a></p>
    */
@@ -46,8 +48,8 @@ namespace Model
   {
   public:
     Trust();
-    Trust(const Aws::Utils::Json::JsonValue& jsonValue);
-    Trust& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    Trust(Aws::Utils::Json::JsonView jsonValue);
+    Trust& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -167,27 +169,27 @@ namespace Model
 
 
     /**
-     * <p>The trust relationship type.</p>
+     * <p>The trust relationship type. <code>Forest</code> is the default.</p>
      */
     inline const TrustType& GetTrustType() const{ return m_trustType; }
 
     /**
-     * <p>The trust relationship type.</p>
+     * <p>The trust relationship type. <code>Forest</code> is the default.</p>
      */
     inline void SetTrustType(const TrustType& value) { m_trustTypeHasBeenSet = true; m_trustType = value; }
 
     /**
-     * <p>The trust relationship type.</p>
+     * <p>The trust relationship type. <code>Forest</code> is the default.</p>
      */
     inline void SetTrustType(TrustType&& value) { m_trustTypeHasBeenSet = true; m_trustType = std::move(value); }
 
     /**
-     * <p>The trust relationship type.</p>
+     * <p>The trust relationship type. <code>Forest</code> is the default.</p>
      */
     inline Trust& WithTrustType(const TrustType& value) { SetTrustType(value); return *this;}
 
     /**
-     * <p>The trust relationship type.</p>
+     * <p>The trust relationship type. <code>Forest</code> is the default.</p>
      */
     inline Trust& WithTrustType(TrustType&& value) { SetTrustType(std::move(value)); return *this;}
 
@@ -357,6 +359,32 @@ namespace Model
      */
     inline Trust& WithTrustStateReason(const char* value) { SetTrustStateReason(value); return *this;}
 
+
+    /**
+     * <p>Current state of selective authentication for the trust.</p>
+     */
+    inline const SelectiveAuth& GetSelectiveAuth() const{ return m_selectiveAuth; }
+
+    /**
+     * <p>Current state of selective authentication for the trust.</p>
+     */
+    inline void SetSelectiveAuth(const SelectiveAuth& value) { m_selectiveAuthHasBeenSet = true; m_selectiveAuth = value; }
+
+    /**
+     * <p>Current state of selective authentication for the trust.</p>
+     */
+    inline void SetSelectiveAuth(SelectiveAuth&& value) { m_selectiveAuthHasBeenSet = true; m_selectiveAuth = std::move(value); }
+
+    /**
+     * <p>Current state of selective authentication for the trust.</p>
+     */
+    inline Trust& WithSelectiveAuth(const SelectiveAuth& value) { SetSelectiveAuth(value); return *this;}
+
+    /**
+     * <p>Current state of selective authentication for the trust.</p>
+     */
+    inline Trust& WithSelectiveAuth(SelectiveAuth&& value) { SetSelectiveAuth(std::move(value)); return *this;}
+
   private:
 
     Aws::String m_directoryId;
@@ -388,6 +416,9 @@ namespace Model
 
     Aws::String m_trustStateReason;
     bool m_trustStateReasonHasBeenSet;
+
+    SelectiveAuth m_selectiveAuth;
+    bool m_selectiveAuthHasBeenSet;
   };
 
 } // namespace Model

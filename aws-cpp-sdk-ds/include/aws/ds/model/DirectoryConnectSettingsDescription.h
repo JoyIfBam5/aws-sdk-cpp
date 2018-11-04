@@ -26,6 +26,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace DirectoryService
@@ -43,8 +44,8 @@ namespace Model
   {
   public:
     DirectoryConnectSettingsDescription();
-    DirectoryConnectSettingsDescription(const Aws::Utils::Json::JsonValue& jsonValue);
-    DirectoryConnectSettingsDescription& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    DirectoryConnectSettingsDescription(Aws::Utils::Json::JsonView jsonValue);
+    DirectoryConnectSettingsDescription& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -126,37 +127,37 @@ namespace Model
 
 
     /**
-     * <p>The username of the service account in the on-premises directory.</p>
+     * <p>The user name of the service account in the on-premises directory.</p>
      */
     inline const Aws::String& GetCustomerUserName() const{ return m_customerUserName; }
 
     /**
-     * <p>The username of the service account in the on-premises directory.</p>
+     * <p>The user name of the service account in the on-premises directory.</p>
      */
     inline void SetCustomerUserName(const Aws::String& value) { m_customerUserNameHasBeenSet = true; m_customerUserName = value; }
 
     /**
-     * <p>The username of the service account in the on-premises directory.</p>
+     * <p>The user name of the service account in the on-premises directory.</p>
      */
     inline void SetCustomerUserName(Aws::String&& value) { m_customerUserNameHasBeenSet = true; m_customerUserName = std::move(value); }
 
     /**
-     * <p>The username of the service account in the on-premises directory.</p>
+     * <p>The user name of the service account in the on-premises directory.</p>
      */
     inline void SetCustomerUserName(const char* value) { m_customerUserNameHasBeenSet = true; m_customerUserName.assign(value); }
 
     /**
-     * <p>The username of the service account in the on-premises directory.</p>
+     * <p>The user name of the service account in the on-premises directory.</p>
      */
     inline DirectoryConnectSettingsDescription& WithCustomerUserName(const Aws::String& value) { SetCustomerUserName(value); return *this;}
 
     /**
-     * <p>The username of the service account in the on-premises directory.</p>
+     * <p>The user name of the service account in the on-premises directory.</p>
      */
     inline DirectoryConnectSettingsDescription& WithCustomerUserName(Aws::String&& value) { SetCustomerUserName(std::move(value)); return *this;}
 
     /**
-     * <p>The username of the service account in the on-premises directory.</p>
+     * <p>The user name of the service account in the on-premises directory.</p>
      */
     inline DirectoryConnectSettingsDescription& WithCustomerUserName(const char* value) { SetCustomerUserName(value); return *this;}
 

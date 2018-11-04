@@ -45,7 +45,7 @@ GetMaintenanceWindowResult::GetMaintenanceWindowResult(const Aws::AmazonWebServi
 
 GetMaintenanceWindowResult& GetMaintenanceWindowResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
-  const JsonValue& jsonValue = result.GetPayload();
+  JsonView jsonValue = result.GetPayload().View();
   if(jsonValue.ValueExists("WindowId"))
   {
     m_windowId = jsonValue.GetString("WindowId");
@@ -64,9 +64,33 @@ GetMaintenanceWindowResult& GetMaintenanceWindowResult::operator =(const Aws::Am
 
   }
 
+  if(jsonValue.ValueExists("StartDate"))
+  {
+    m_startDate = jsonValue.GetString("StartDate");
+
+  }
+
+  if(jsonValue.ValueExists("EndDate"))
+  {
+    m_endDate = jsonValue.GetString("EndDate");
+
+  }
+
   if(jsonValue.ValueExists("Schedule"))
   {
     m_schedule = jsonValue.GetString("Schedule");
+
+  }
+
+  if(jsonValue.ValueExists("ScheduleTimezone"))
+  {
+    m_scheduleTimezone = jsonValue.GetString("ScheduleTimezone");
+
+  }
+
+  if(jsonValue.ValueExists("NextExecutionTime"))
+  {
+    m_nextExecutionTime = jsonValue.GetString("NextExecutionTime");
 
   }
 

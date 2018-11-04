@@ -25,6 +25,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace WorkSpaces
@@ -33,8 +34,7 @@ namespace Model
 {
 
   /**
-   * <p>Contains information about the compute type of a WorkSpace
-   * bundle.</p><p><h3>See Also:</h3>   <a
+   * <p>Information about the compute type.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/ComputeType">AWS
    * API Reference</a></p>
    */
@@ -42,33 +42,33 @@ namespace Model
   {
   public:
     ComputeType();
-    ComputeType(const Aws::Utils::Json::JsonValue& jsonValue);
-    ComputeType& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    ComputeType(Aws::Utils::Json::JsonView jsonValue);
+    ComputeType& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
     /**
-     * <p>The name of the compute type for the bundle.</p>
+     * <p>The compute type.</p>
      */
     inline const Compute& GetName() const{ return m_name; }
 
     /**
-     * <p>The name of the compute type for the bundle.</p>
+     * <p>The compute type.</p>
      */
     inline void SetName(const Compute& value) { m_nameHasBeenSet = true; m_name = value; }
 
     /**
-     * <p>The name of the compute type for the bundle.</p>
+     * <p>The compute type.</p>
      */
     inline void SetName(Compute&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
-     * <p>The name of the compute type for the bundle.</p>
+     * <p>The compute type.</p>
      */
     inline ComputeType& WithName(const Compute& value) { SetName(value); return *this;}
 
     /**
-     * <p>The name of the compute type for the bundle.</p>
+     * <p>The compute type.</p>
      */
     inline ComputeType& WithName(Compute&& value) { SetName(std::move(value)); return *this;}
 

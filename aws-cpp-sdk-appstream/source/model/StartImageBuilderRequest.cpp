@@ -23,7 +23,8 @@ using namespace Aws::Utils::Json;
 using namespace Aws::Utils;
 
 StartImageBuilderRequest::StartImageBuilderRequest() : 
-    m_nameHasBeenSet(false)
+    m_nameHasBeenSet(false),
+    m_appstreamAgentVersionHasBeenSet(false)
 {
 }
 
@@ -37,7 +38,13 @@ Aws::String StartImageBuilderRequest::SerializePayload() const
 
   }
 
-  return payload.WriteReadable();
+  if(m_appstreamAgentVersionHasBeenSet)
+  {
+   payload.WithString("AppstreamAgentVersion", m_appstreamAgentVersion);
+
+  }
+
+  return payload.View().WriteReadable();
 }
 
 Aws::Http::HeaderValueCollection StartImageBuilderRequest::GetRequestSpecificHeaders() const

@@ -36,11 +36,16 @@ RestApi::RestApi() :
     m_versionHasBeenSet(false),
     m_warningsHasBeenSet(false),
     m_binaryMediaTypesHasBeenSet(false),
-    m_endpointConfigurationHasBeenSet(false)
+    m_minimumCompressionSize(0),
+    m_minimumCompressionSizeHasBeenSet(false),
+    m_apiKeySource(ApiKeySourceType::NOT_SET),
+    m_apiKeySourceHasBeenSet(false),
+    m_endpointConfigurationHasBeenSet(false),
+    m_policyHasBeenSet(false)
 {
 }
 
-RestApi::RestApi(const JsonValue& jsonValue) : 
+RestApi::RestApi(JsonView jsonValue) : 
     m_idHasBeenSet(false),
     m_nameHasBeenSet(false),
     m_descriptionHasBeenSet(false),
@@ -48,12 +53,17 @@ RestApi::RestApi(const JsonValue& jsonValue) :
     m_versionHasBeenSet(false),
     m_warningsHasBeenSet(false),
     m_binaryMediaTypesHasBeenSet(false),
-    m_endpointConfigurationHasBeenSet(false)
+    m_minimumCompressionSize(0),
+    m_minimumCompressionSizeHasBeenSet(false),
+    m_apiKeySource(ApiKeySourceType::NOT_SET),
+    m_apiKeySourceHasBeenSet(false),
+    m_endpointConfigurationHasBeenSet(false),
+    m_policyHasBeenSet(false)
 {
   *this = jsonValue;
 }
 
-RestApi& RestApi::operator =(const JsonValue& jsonValue)
+RestApi& RestApi::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("id"))
   {
@@ -92,7 +102,7 @@ RestApi& RestApi::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("warnings"))
   {
-    Array<JsonValue> warningsJsonList = jsonValue.GetArray("warnings");
+    Array<JsonView> warningsJsonList = jsonValue.GetArray("warnings");
     for(unsigned warningsIndex = 0; warningsIndex < warningsJsonList.GetLength(); ++warningsIndex)
     {
       m_warnings.push_back(warningsJsonList[warningsIndex].AsString());
@@ -102,7 +112,7 @@ RestApi& RestApi::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("binaryMediaTypes"))
   {
-    Array<JsonValue> binaryMediaTypesJsonList = jsonValue.GetArray("binaryMediaTypes");
+    Array<JsonView> binaryMediaTypesJsonList = jsonValue.GetArray("binaryMediaTypes");
     for(unsigned binaryMediaTypesIndex = 0; binaryMediaTypesIndex < binaryMediaTypesJsonList.GetLength(); ++binaryMediaTypesIndex)
     {
       m_binaryMediaTypes.push_back(binaryMediaTypesJsonList[binaryMediaTypesIndex].AsString());
@@ -110,11 +120,32 @@ RestApi& RestApi::operator =(const JsonValue& jsonValue)
     m_binaryMediaTypesHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("minimumCompressionSize"))
+  {
+    m_minimumCompressionSize = jsonValue.GetInteger("minimumCompressionSize");
+
+    m_minimumCompressionSizeHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("apiKeySource"))
+  {
+    m_apiKeySource = ApiKeySourceTypeMapper::GetApiKeySourceTypeForName(jsonValue.GetString("apiKeySource"));
+
+    m_apiKeySourceHasBeenSet = true;
+  }
+
   if(jsonValue.ValueExists("endpointConfiguration"))
   {
     m_endpointConfiguration = jsonValue.GetObject("endpointConfiguration");
 
     m_endpointConfigurationHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("policy"))
+  {
+    m_policy = jsonValue.GetString("policy");
+
+    m_policyHasBeenSet = true;
   }
 
   return *this;
@@ -175,9 +206,26 @@ JsonValue RestApi::Jsonize() const
 
   }
 
+  if(m_minimumCompressionSizeHasBeenSet)
+  {
+   payload.WithInteger("minimumCompressionSize", m_minimumCompressionSize);
+
+  }
+
+  if(m_apiKeySourceHasBeenSet)
+  {
+   payload.WithString("apiKeySource", ApiKeySourceTypeMapper::GetNameForApiKeySourceType(m_apiKeySource));
+  }
+
   if(m_endpointConfigurationHasBeenSet)
   {
    payload.WithObject("endpointConfiguration", m_endpointConfiguration.Jsonize());
+
+  }
+
+  if(m_policyHasBeenSet)
+  {
+   payload.WithString("policy", m_policy);
 
   }
 

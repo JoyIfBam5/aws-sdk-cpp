@@ -26,6 +26,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace WorkSpaces
@@ -34,8 +35,8 @@ namespace Model
 {
 
   /**
-   * <p>Contains information about a WorkSpace that could not be
-   * created.</p><p><h3>See Also:</h3>   <a
+   * <p>Information about a WorkSpace that could not be created.</p><p><h3>See
+   * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/FailedCreateWorkspaceRequest">AWS
    * API Reference</a></p>
    */
@@ -43,38 +44,33 @@ namespace Model
   {
   public:
     FailedCreateWorkspaceRequest();
-    FailedCreateWorkspaceRequest(const Aws::Utils::Json::JsonValue& jsonValue);
-    FailedCreateWorkspaceRequest& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    FailedCreateWorkspaceRequest(Aws::Utils::Json::JsonView jsonValue);
+    FailedCreateWorkspaceRequest& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
     /**
-     * <p>A <a>FailedCreateWorkspaceRequest$WorkspaceRequest</a> object that contains
-     * the information about the WorkSpace that could not be created.</p>
+     * <p>Information about the WorkSpace.</p>
      */
     inline const WorkspaceRequest& GetWorkspaceRequest() const{ return m_workspaceRequest; }
 
     /**
-     * <p>A <a>FailedCreateWorkspaceRequest$WorkspaceRequest</a> object that contains
-     * the information about the WorkSpace that could not be created.</p>
+     * <p>Information about the WorkSpace.</p>
      */
     inline void SetWorkspaceRequest(const WorkspaceRequest& value) { m_workspaceRequestHasBeenSet = true; m_workspaceRequest = value; }
 
     /**
-     * <p>A <a>FailedCreateWorkspaceRequest$WorkspaceRequest</a> object that contains
-     * the information about the WorkSpace that could not be created.</p>
+     * <p>Information about the WorkSpace.</p>
      */
     inline void SetWorkspaceRequest(WorkspaceRequest&& value) { m_workspaceRequestHasBeenSet = true; m_workspaceRequest = std::move(value); }
 
     /**
-     * <p>A <a>FailedCreateWorkspaceRequest$WorkspaceRequest</a> object that contains
-     * the information about the WorkSpace that could not be created.</p>
+     * <p>Information about the WorkSpace.</p>
      */
     inline FailedCreateWorkspaceRequest& WithWorkspaceRequest(const WorkspaceRequest& value) { SetWorkspaceRequest(value); return *this;}
 
     /**
-     * <p>A <a>FailedCreateWorkspaceRequest$WorkspaceRequest</a> object that contains
-     * the information about the WorkSpace that could not be created.</p>
+     * <p>Information about the WorkSpace.</p>
      */
     inline FailedCreateWorkspaceRequest& WithWorkspaceRequest(WorkspaceRequest&& value) { SetWorkspaceRequest(std::move(value)); return *this;}
 

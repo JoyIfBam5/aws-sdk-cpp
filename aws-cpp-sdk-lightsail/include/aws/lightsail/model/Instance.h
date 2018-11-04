@@ -31,6 +31,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace Lightsail
@@ -48,8 +49,8 @@ namespace Model
   {
   public:
     Instance();
-    Instance(const Aws::Utils::Json::JsonValue& jsonValue);
-    Instance& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    Instance(Aws::Utils::Json::JsonView jsonValue);
+    Instance& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -221,27 +222,27 @@ namespace Model
 
 
     /**
-     * <p>The region name and availability zone where the instance is located.</p>
+     * <p>The region name and Availability Zone where the instance is located.</p>
      */
     inline const ResourceLocation& GetLocation() const{ return m_location; }
 
     /**
-     * <p>The region name and availability zone where the instance is located.</p>
+     * <p>The region name and Availability Zone where the instance is located.</p>
      */
     inline void SetLocation(const ResourceLocation& value) { m_locationHasBeenSet = true; m_location = value; }
 
     /**
-     * <p>The region name and availability zone where the instance is located.</p>
+     * <p>The region name and Availability Zone where the instance is located.</p>
      */
     inline void SetLocation(ResourceLocation&& value) { m_locationHasBeenSet = true; m_location = std::move(value); }
 
     /**
-     * <p>The region name and availability zone where the instance is located.</p>
+     * <p>The region name and Availability Zone where the instance is located.</p>
      */
     inline Instance& WithLocation(const ResourceLocation& value) { SetLocation(value); return *this;}
 
     /**
-     * <p>The region name and availability zone where the instance is located.</p>
+     * <p>The region name and Availability Zone where the instance is located.</p>
      */
     inline Instance& WithLocation(ResourceLocation&& value) { SetLocation(std::move(value)); return *this;}
 

@@ -44,171 +44,221 @@ namespace Model
 
 
     /**
-     * Arn of the device definition version.
+     * The ARN of the device definition version.
      */
     inline const Aws::String& GetArn() const{ return m_arn; }
 
     /**
-     * Arn of the device definition version.
+     * The ARN of the device definition version.
      */
     inline void SetArn(const Aws::String& value) { m_arn = value; }
 
     /**
-     * Arn of the device definition version.
+     * The ARN of the device definition version.
      */
     inline void SetArn(Aws::String&& value) { m_arn = std::move(value); }
 
     /**
-     * Arn of the device definition version.
+     * The ARN of the device definition version.
      */
     inline void SetArn(const char* value) { m_arn.assign(value); }
 
     /**
-     * Arn of the device definition version.
+     * The ARN of the device definition version.
      */
     inline GetDeviceDefinitionVersionResult& WithArn(const Aws::String& value) { SetArn(value); return *this;}
 
     /**
-     * Arn of the device definition version.
+     * The ARN of the device definition version.
      */
     inline GetDeviceDefinitionVersionResult& WithArn(Aws::String&& value) { SetArn(std::move(value)); return *this;}
 
     /**
-     * Arn of the device definition version.
+     * The ARN of the device definition version.
      */
     inline GetDeviceDefinitionVersionResult& WithArn(const char* value) { SetArn(value); return *this;}
 
 
     /**
-     * Timestamp of when the device definition version was created.
+     * The time, in milliseconds since the epoch, when the device definition version
+     * was created.
      */
     inline const Aws::String& GetCreationTimestamp() const{ return m_creationTimestamp; }
 
     /**
-     * Timestamp of when the device definition version was created.
+     * The time, in milliseconds since the epoch, when the device definition version
+     * was created.
      */
     inline void SetCreationTimestamp(const Aws::String& value) { m_creationTimestamp = value; }
 
     /**
-     * Timestamp of when the device definition version was created.
+     * The time, in milliseconds since the epoch, when the device definition version
+     * was created.
      */
     inline void SetCreationTimestamp(Aws::String&& value) { m_creationTimestamp = std::move(value); }
 
     /**
-     * Timestamp of when the device definition version was created.
+     * The time, in milliseconds since the epoch, when the device definition version
+     * was created.
      */
     inline void SetCreationTimestamp(const char* value) { m_creationTimestamp.assign(value); }
 
     /**
-     * Timestamp of when the device definition version was created.
+     * The time, in milliseconds since the epoch, when the device definition version
+     * was created.
      */
     inline GetDeviceDefinitionVersionResult& WithCreationTimestamp(const Aws::String& value) { SetCreationTimestamp(value); return *this;}
 
     /**
-     * Timestamp of when the device definition version was created.
+     * The time, in milliseconds since the epoch, when the device definition version
+     * was created.
      */
     inline GetDeviceDefinitionVersionResult& WithCreationTimestamp(Aws::String&& value) { SetCreationTimestamp(std::move(value)); return *this;}
 
     /**
-     * Timestamp of when the device definition version was created.
+     * The time, in milliseconds since the epoch, when the device definition version
+     * was created.
      */
     inline GetDeviceDefinitionVersionResult& WithCreationTimestamp(const char* value) { SetCreationTimestamp(value); return *this;}
 
 
     /**
-     * Device definition version
+     * Information about the device definition version.
      */
     inline const DeviceDefinitionVersion& GetDefinition() const{ return m_definition; }
 
     /**
-     * Device definition version
+     * Information about the device definition version.
      */
     inline void SetDefinition(const DeviceDefinitionVersion& value) { m_definition = value; }
 
     /**
-     * Device definition version
+     * Information about the device definition version.
      */
     inline void SetDefinition(DeviceDefinitionVersion&& value) { m_definition = std::move(value); }
 
     /**
-     * Device definition version
+     * Information about the device definition version.
      */
     inline GetDeviceDefinitionVersionResult& WithDefinition(const DeviceDefinitionVersion& value) { SetDefinition(value); return *this;}
 
     /**
-     * Device definition version
+     * Information about the device definition version.
      */
     inline GetDeviceDefinitionVersionResult& WithDefinition(DeviceDefinitionVersion&& value) { SetDefinition(std::move(value)); return *this;}
 
 
     /**
-     * Id of the device definition the version belongs to.
+     * The ID of the device definition version.
      */
     inline const Aws::String& GetId() const{ return m_id; }
 
     /**
-     * Id of the device definition the version belongs to.
+     * The ID of the device definition version.
      */
     inline void SetId(const Aws::String& value) { m_id = value; }
 
     /**
-     * Id of the device definition the version belongs to.
+     * The ID of the device definition version.
      */
     inline void SetId(Aws::String&& value) { m_id = std::move(value); }
 
     /**
-     * Id of the device definition the version belongs to.
+     * The ID of the device definition version.
      */
     inline void SetId(const char* value) { m_id.assign(value); }
 
     /**
-     * Id of the device definition the version belongs to.
+     * The ID of the device definition version.
      */
     inline GetDeviceDefinitionVersionResult& WithId(const Aws::String& value) { SetId(value); return *this;}
 
     /**
-     * Id of the device definition the version belongs to.
+     * The ID of the device definition version.
      */
     inline GetDeviceDefinitionVersionResult& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
-     * Id of the device definition the version belongs to.
+     * The ID of the device definition version.
      */
     inline GetDeviceDefinitionVersionResult& WithId(const char* value) { SetId(value); return *this;}
 
 
     /**
-     * Version of the device definition version.
+     * The token for the next set of results, or ''null'' if there are no additional
+     * results.
+     */
+    inline const Aws::String& GetNextToken() const{ return m_nextToken; }
+
+    /**
+     * The token for the next set of results, or ''null'' if there are no additional
+     * results.
+     */
+    inline void SetNextToken(const Aws::String& value) { m_nextToken = value; }
+
+    /**
+     * The token for the next set of results, or ''null'' if there are no additional
+     * results.
+     */
+    inline void SetNextToken(Aws::String&& value) { m_nextToken = std::move(value); }
+
+    /**
+     * The token for the next set of results, or ''null'' if there are no additional
+     * results.
+     */
+    inline void SetNextToken(const char* value) { m_nextToken.assign(value); }
+
+    /**
+     * The token for the next set of results, or ''null'' if there are no additional
+     * results.
+     */
+    inline GetDeviceDefinitionVersionResult& WithNextToken(const Aws::String& value) { SetNextToken(value); return *this;}
+
+    /**
+     * The token for the next set of results, or ''null'' if there are no additional
+     * results.
+     */
+    inline GetDeviceDefinitionVersionResult& WithNextToken(Aws::String&& value) { SetNextToken(std::move(value)); return *this;}
+
+    /**
+     * The token for the next set of results, or ''null'' if there are no additional
+     * results.
+     */
+    inline GetDeviceDefinitionVersionResult& WithNextToken(const char* value) { SetNextToken(value); return *this;}
+
+
+    /**
+     * The version of the device definition version.
      */
     inline const Aws::String& GetVersion() const{ return m_version; }
 
     /**
-     * Version of the device definition version.
+     * The version of the device definition version.
      */
     inline void SetVersion(const Aws::String& value) { m_version = value; }
 
     /**
-     * Version of the device definition version.
+     * The version of the device definition version.
      */
     inline void SetVersion(Aws::String&& value) { m_version = std::move(value); }
 
     /**
-     * Version of the device definition version.
+     * The version of the device definition version.
      */
     inline void SetVersion(const char* value) { m_version.assign(value); }
 
     /**
-     * Version of the device definition version.
+     * The version of the device definition version.
      */
     inline GetDeviceDefinitionVersionResult& WithVersion(const Aws::String& value) { SetVersion(value); return *this;}
 
     /**
-     * Version of the device definition version.
+     * The version of the device definition version.
      */
     inline GetDeviceDefinitionVersionResult& WithVersion(Aws::String&& value) { SetVersion(std::move(value)); return *this;}
 
     /**
-     * Version of the device definition version.
+     * The version of the device definition version.
      */
     inline GetDeviceDefinitionVersionResult& WithVersion(const char* value) { SetVersion(value); return *this;}
 
@@ -221,6 +271,8 @@ namespace Model
     DeviceDefinitionVersion m_definition;
 
     Aws::String m_id;
+
+    Aws::String m_nextToken;
 
     Aws::String m_version;
   };

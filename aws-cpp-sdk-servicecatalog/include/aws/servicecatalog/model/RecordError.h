@@ -25,6 +25,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace ServiceCatalog
@@ -42,8 +43,8 @@ namespace Model
   {
   public:
     RecordError();
-    RecordError(const Aws::Utils::Json::JsonValue& jsonValue);
-    RecordError& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    RecordError(Aws::Utils::Json::JsonView jsonValue);
+    RecordError& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -84,37 +85,37 @@ namespace Model
 
 
     /**
-     * <p>The text description of the error.</p>
+     * <p>The description of the error.</p>
      */
     inline const Aws::String& GetDescription() const{ return m_description; }
 
     /**
-     * <p>The text description of the error.</p>
+     * <p>The description of the error.</p>
      */
     inline void SetDescription(const Aws::String& value) { m_descriptionHasBeenSet = true; m_description = value; }
 
     /**
-     * <p>The text description of the error.</p>
+     * <p>The description of the error.</p>
      */
     inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
-     * <p>The text description of the error.</p>
+     * <p>The description of the error.</p>
      */
     inline void SetDescription(const char* value) { m_descriptionHasBeenSet = true; m_description.assign(value); }
 
     /**
-     * <p>The text description of the error.</p>
+     * <p>The description of the error.</p>
      */
     inline RecordError& WithDescription(const Aws::String& value) { SetDescription(value); return *this;}
 
     /**
-     * <p>The text description of the error.</p>
+     * <p>The description of the error.</p>
      */
     inline RecordError& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
-     * <p>The text description of the error.</p>
+     * <p>The description of the error.</p>
      */
     inline RecordError& WithDescription(const char* value) { SetDescription(value); return *this;}
 

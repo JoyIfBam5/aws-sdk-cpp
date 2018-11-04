@@ -30,7 +30,9 @@ ListObjectParentsRequest::ListObjectParentsRequest() :
     m_maxResults(0),
     m_maxResultsHasBeenSet(false),
     m_consistencyLevel(ConsistencyLevel::NOT_SET),
-    m_consistencyLevelHasBeenSet(false)
+    m_consistencyLevelHasBeenSet(false),
+    m_includeAllLinksToEachParent(false),
+    m_includeAllLinksToEachParentHasBeenSet(false)
 {
 }
 
@@ -56,7 +58,13 @@ Aws::String ListObjectParentsRequest::SerializePayload() const
 
   }
 
-  return payload.WriteReadable();
+  if(m_includeAllLinksToEachParentHasBeenSet)
+  {
+   payload.WithBool("IncludeAllLinksToEachParent", m_includeAllLinksToEachParent);
+
+  }
+
+  return payload.View().WriteReadable();
 }
 
 Aws::Http::HeaderValueCollection ListObjectParentsRequest::GetRequestSpecificHeaders() const
@@ -66,13 +74,13 @@ Aws::Http::HeaderValueCollection ListObjectParentsRequest::GetRequestSpecificHea
   if(m_directoryArnHasBeenSet)
   {
     ss << m_directoryArn;
-    headers.insert(Aws::Http::HeaderValuePair("x-amz-data-partition", ss.str()));
+    headers.emplace("x-amz-data-partition",  ss.str());
     ss.str("");
   }
 
   if(m_consistencyLevelHasBeenSet)
   {
-    headers.insert(Aws::Http::HeaderValuePair("x-amz-consistency-level", ConsistencyLevelMapper::GetNameForConsistencyLevel(m_consistencyLevel)));
+    headers.emplace("x-amz-consistency-level", ConsistencyLevelMapper::GetNameForConsistencyLevel(m_consistencyLevel));
   }
 
   return headers;

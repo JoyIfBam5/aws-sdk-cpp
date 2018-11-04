@@ -39,11 +39,12 @@ Method::Method() :
     m_requestParametersHasBeenSet(false),
     m_requestModelsHasBeenSet(false),
     m_methodResponsesHasBeenSet(false),
-    m_methodIntegrationHasBeenSet(false)
+    m_methodIntegrationHasBeenSet(false),
+    m_authorizationScopesHasBeenSet(false)
 {
 }
 
-Method::Method(const JsonValue& jsonValue) : 
+Method::Method(JsonView jsonValue) : 
     m_httpMethodHasBeenSet(false),
     m_authorizationTypeHasBeenSet(false),
     m_authorizerIdHasBeenSet(false),
@@ -54,12 +55,13 @@ Method::Method(const JsonValue& jsonValue) :
     m_requestParametersHasBeenSet(false),
     m_requestModelsHasBeenSet(false),
     m_methodResponsesHasBeenSet(false),
-    m_methodIntegrationHasBeenSet(false)
+    m_methodIntegrationHasBeenSet(false),
+    m_authorizationScopesHasBeenSet(false)
 {
   *this = jsonValue;
 }
 
-Method& Method::operator =(const JsonValue& jsonValue)
+Method& Method::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("httpMethod"))
   {
@@ -105,7 +107,7 @@ Method& Method::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("requestParameters"))
   {
-    Aws::Map<Aws::String, JsonValue> requestParametersJsonMap = jsonValue.GetObject("requestParameters").GetAllObjects();
+    Aws::Map<Aws::String, JsonView> requestParametersJsonMap = jsonValue.GetObject("requestParameters").GetAllObjects();
     for(auto& requestParametersItem : requestParametersJsonMap)
     {
       m_requestParameters[requestParametersItem.first] = requestParametersItem.second.AsBool();
@@ -115,7 +117,7 @@ Method& Method::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("requestModels"))
   {
-    Aws::Map<Aws::String, JsonValue> requestModelsJsonMap = jsonValue.GetObject("requestModels").GetAllObjects();
+    Aws::Map<Aws::String, JsonView> requestModelsJsonMap = jsonValue.GetObject("requestModels").GetAllObjects();
     for(auto& requestModelsItem : requestModelsJsonMap)
     {
       m_requestModels[requestModelsItem.first] = requestModelsItem.second.AsString();
@@ -125,7 +127,7 @@ Method& Method::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("methodResponses"))
   {
-    Aws::Map<Aws::String, JsonValue> methodResponsesJsonMap = jsonValue.GetObject("methodResponses").GetAllObjects();
+    Aws::Map<Aws::String, JsonView> methodResponsesJsonMap = jsonValue.GetObject("methodResponses").GetAllObjects();
     for(auto& methodResponsesItem : methodResponsesJsonMap)
     {
       m_methodResponses[methodResponsesItem.first] = methodResponsesItem.second.AsObject();
@@ -138,6 +140,16 @@ Method& Method::operator =(const JsonValue& jsonValue)
     m_methodIntegration = jsonValue.GetObject("methodIntegration");
 
     m_methodIntegrationHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("authorizationScopes"))
+  {
+    Array<JsonView> authorizationScopesJsonList = jsonValue.GetArray("authorizationScopes");
+    for(unsigned authorizationScopesIndex = 0; authorizationScopesIndex < authorizationScopesJsonList.GetLength(); ++authorizationScopesIndex)
+    {
+      m_authorizationScopes.push_back(authorizationScopesJsonList[authorizationScopesIndex].AsString());
+    }
+    m_authorizationScopesHasBeenSet = true;
   }
 
   return *this;
@@ -219,6 +231,17 @@ JsonValue Method::Jsonize() const
   if(m_methodIntegrationHasBeenSet)
   {
    payload.WithObject("methodIntegration", m_methodIntegration.Jsonize());
+
+  }
+
+  if(m_authorizationScopesHasBeenSet)
+  {
+   Array<JsonValue> authorizationScopesJsonList(m_authorizationScopes.size());
+   for(unsigned authorizationScopesIndex = 0; authorizationScopesIndex < authorizationScopesJsonList.GetLength(); ++authorizationScopesIndex)
+   {
+     authorizationScopesJsonList[authorizationScopesIndex].AsString(m_authorizationScopes[authorizationScopesIndex]);
+   }
+   payload.WithArray("authorizationScopes", std::move(authorizationScopesJsonList));
 
   }
 

@@ -37,7 +37,7 @@ GetCoreDefinitionVersionResult::GetCoreDefinitionVersionResult(const Aws::Amazon
 
 GetCoreDefinitionVersionResult& GetCoreDefinitionVersionResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
-  const JsonValue& jsonValue = result.GetPayload();
+  JsonView jsonValue = result.GetPayload().View();
   if(jsonValue.ValueExists("Arn"))
   {
     m_arn = jsonValue.GetString("Arn");
@@ -59,6 +59,12 @@ GetCoreDefinitionVersionResult& GetCoreDefinitionVersionResult::operator =(const
   if(jsonValue.ValueExists("Id"))
   {
     m_id = jsonValue.GetString("Id");
+
+  }
+
+  if(jsonValue.ValueExists("NextToken"))
+  {
+    m_nextToken = jsonValue.GetString("NextToken");
 
   }
 

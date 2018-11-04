@@ -33,7 +33,10 @@ CreateStageRequest::CreateStageRequest() :
     m_cacheClusterSizeHasBeenSet(false),
     m_variablesHasBeenSet(false),
     m_documentationVersionHasBeenSet(false),
-    m_canarySettingsHasBeenSet(false)
+    m_canarySettingsHasBeenSet(false),
+    m_tracingEnabled(false),
+    m_tracingEnabledHasBeenSet(false),
+    m_tagsHasBeenSet(false)
 {
 }
 
@@ -93,7 +96,24 @@ Aws::String CreateStageRequest::SerializePayload() const
 
   }
 
-  return payload.WriteReadable();
+  if(m_tracingEnabledHasBeenSet)
+  {
+   payload.WithBool("tracingEnabled", m_tracingEnabled);
+
+  }
+
+  if(m_tagsHasBeenSet)
+  {
+   JsonValue tagsJsonMap;
+   for(auto& tagsItem : m_tags)
+   {
+     tagsJsonMap.WithString(tagsItem.first, tagsItem.second);
+   }
+   payload.WithObject("tags", std::move(tagsJsonMap));
+
+  }
+
+  return payload.View().WriteReadable();
 }
 
 

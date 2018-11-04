@@ -26,6 +26,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace ApplicationAutoScaling
@@ -43,38 +44,38 @@ namespace Model
   {
   public:
     PredefinedMetricSpecification();
-    PredefinedMetricSpecification(const Aws::Utils::Json::JsonValue& jsonValue);
-    PredefinedMetricSpecification& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    PredefinedMetricSpecification(Aws::Utils::Json::JsonView jsonValue);
+    PredefinedMetricSpecification& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
     /**
      * <p>The metric type. The <code>ALBRequestCountPerTarget</code> metric type
-     * applies only to Spot fleet requests.</p>
+     * applies only to Spot fleet requests and ECS services.</p>
      */
     inline const MetricType& GetPredefinedMetricType() const{ return m_predefinedMetricType; }
 
     /**
      * <p>The metric type. The <code>ALBRequestCountPerTarget</code> metric type
-     * applies only to Spot fleet requests.</p>
+     * applies only to Spot fleet requests and ECS services.</p>
      */
     inline void SetPredefinedMetricType(const MetricType& value) { m_predefinedMetricTypeHasBeenSet = true; m_predefinedMetricType = value; }
 
     /**
      * <p>The metric type. The <code>ALBRequestCountPerTarget</code> metric type
-     * applies only to Spot fleet requests.</p>
+     * applies only to Spot fleet requests and ECS services.</p>
      */
     inline void SetPredefinedMetricType(MetricType&& value) { m_predefinedMetricTypeHasBeenSet = true; m_predefinedMetricType = std::move(value); }
 
     /**
      * <p>The metric type. The <code>ALBRequestCountPerTarget</code> metric type
-     * applies only to Spot fleet requests.</p>
+     * applies only to Spot fleet requests and ECS services.</p>
      */
     inline PredefinedMetricSpecification& WithPredefinedMetricType(const MetricType& value) { SetPredefinedMetricType(value); return *this;}
 
     /**
      * <p>The metric type. The <code>ALBRequestCountPerTarget</code> metric type
-     * applies only to Spot fleet requests.</p>
+     * applies only to Spot fleet requests and ECS services.</p>
      */
     inline PredefinedMetricSpecification& WithPredefinedMetricType(MetricType&& value) { SetPredefinedMetricType(std::move(value)); return *this;}
 
@@ -82,8 +83,8 @@ namespace Model
     /**
      * <p>Identifies the resource associated with the metric type. You can't specify a
      * resource label unless the metric type is <code>ALBRequestCountPerTarget</code>
-     * and there is a target group attached to the Spot fleet request.</p> <p>The
-     * format is
+     * and there is a target group attached to the Spot fleet request or ECS
+     * service.</p> <p>The format is
      * app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt;/targetgroup/&lt;target-group-name&gt;/&lt;target-group-id&gt;,
      * where:</p> <ul> <li> <p>app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt;
      * is the final portion of the load balancer ARN</p> </li> <li>
@@ -95,8 +96,8 @@ namespace Model
     /**
      * <p>Identifies the resource associated with the metric type. You can't specify a
      * resource label unless the metric type is <code>ALBRequestCountPerTarget</code>
-     * and there is a target group attached to the Spot fleet request.</p> <p>The
-     * format is
+     * and there is a target group attached to the Spot fleet request or ECS
+     * service.</p> <p>The format is
      * app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt;/targetgroup/&lt;target-group-name&gt;/&lt;target-group-id&gt;,
      * where:</p> <ul> <li> <p>app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt;
      * is the final portion of the load balancer ARN</p> </li> <li>
@@ -108,8 +109,8 @@ namespace Model
     /**
      * <p>Identifies the resource associated with the metric type. You can't specify a
      * resource label unless the metric type is <code>ALBRequestCountPerTarget</code>
-     * and there is a target group attached to the Spot fleet request.</p> <p>The
-     * format is
+     * and there is a target group attached to the Spot fleet request or ECS
+     * service.</p> <p>The format is
      * app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt;/targetgroup/&lt;target-group-name&gt;/&lt;target-group-id&gt;,
      * where:</p> <ul> <li> <p>app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt;
      * is the final portion of the load balancer ARN</p> </li> <li>
@@ -121,8 +122,8 @@ namespace Model
     /**
      * <p>Identifies the resource associated with the metric type. You can't specify a
      * resource label unless the metric type is <code>ALBRequestCountPerTarget</code>
-     * and there is a target group attached to the Spot fleet request.</p> <p>The
-     * format is
+     * and there is a target group attached to the Spot fleet request or ECS
+     * service.</p> <p>The format is
      * app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt;/targetgroup/&lt;target-group-name&gt;/&lt;target-group-id&gt;,
      * where:</p> <ul> <li> <p>app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt;
      * is the final portion of the load balancer ARN</p> </li> <li>
@@ -134,8 +135,8 @@ namespace Model
     /**
      * <p>Identifies the resource associated with the metric type. You can't specify a
      * resource label unless the metric type is <code>ALBRequestCountPerTarget</code>
-     * and there is a target group attached to the Spot fleet request.</p> <p>The
-     * format is
+     * and there is a target group attached to the Spot fleet request or ECS
+     * service.</p> <p>The format is
      * app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt;/targetgroup/&lt;target-group-name&gt;/&lt;target-group-id&gt;,
      * where:</p> <ul> <li> <p>app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt;
      * is the final portion of the load balancer ARN</p> </li> <li>
@@ -147,8 +148,8 @@ namespace Model
     /**
      * <p>Identifies the resource associated with the metric type. You can't specify a
      * resource label unless the metric type is <code>ALBRequestCountPerTarget</code>
-     * and there is a target group attached to the Spot fleet request.</p> <p>The
-     * format is
+     * and there is a target group attached to the Spot fleet request or ECS
+     * service.</p> <p>The format is
      * app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt;/targetgroup/&lt;target-group-name&gt;/&lt;target-group-id&gt;,
      * where:</p> <ul> <li> <p>app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt;
      * is the final portion of the load balancer ARN</p> </li> <li>
@@ -160,8 +161,8 @@ namespace Model
     /**
      * <p>Identifies the resource associated with the metric type. You can't specify a
      * resource label unless the metric type is <code>ALBRequestCountPerTarget</code>
-     * and there is a target group attached to the Spot fleet request.</p> <p>The
-     * format is
+     * and there is a target group attached to the Spot fleet request or ECS
+     * service.</p> <p>The format is
      * app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt;/targetgroup/&lt;target-group-name&gt;/&lt;target-group-id&gt;,
      * where:</p> <ul> <li> <p>app/&lt;load-balancer-name&gt;/&lt;load-balancer-id&gt;
      * is the final portion of the load balancer ARN</p> </li> <li>

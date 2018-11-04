@@ -18,6 +18,8 @@
 #include <aws/ec2/EC2Request.h>
 #include <aws/ec2/model/AutoPlacement.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <aws/core/utils/memory/stl/AWSVector.h>
+#include <aws/ec2/model/TagSpecification.h>
 #include <utility>
 
 namespace Aws
@@ -28,9 +30,6 @@ namespace Model
 {
 
   /**
-   * <p>Contains the parameters for AllocateHosts.</p><p><h3>See Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/AllocateHostsRequest">AWS
-   * API Reference</a></p>
    */
   class AWS_EC2_API AllocateHostsRequest : public EC2Request
   {
@@ -123,8 +122,8 @@ namespace Model
 
 
     /**
-     * <p>Unique, case-sensitive identifier you provide to ensure idempotency of the
-     * request. For more information, see <a
+     * <p>Unique, case-sensitive identifier that you provide to ensure the idempotency
+     * of the request. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How
      * to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * </p>
@@ -132,8 +131,8 @@ namespace Model
     inline const Aws::String& GetClientToken() const{ return m_clientToken; }
 
     /**
-     * <p>Unique, case-sensitive identifier you provide to ensure idempotency of the
-     * request. For more information, see <a
+     * <p>Unique, case-sensitive identifier that you provide to ensure the idempotency
+     * of the request. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How
      * to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * </p>
@@ -141,8 +140,8 @@ namespace Model
     inline void SetClientToken(const Aws::String& value) { m_clientTokenHasBeenSet = true; m_clientToken = value; }
 
     /**
-     * <p>Unique, case-sensitive identifier you provide to ensure idempotency of the
-     * request. For more information, see <a
+     * <p>Unique, case-sensitive identifier that you provide to ensure the idempotency
+     * of the request. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How
      * to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * </p>
@@ -150,8 +149,8 @@ namespace Model
     inline void SetClientToken(Aws::String&& value) { m_clientTokenHasBeenSet = true; m_clientToken = std::move(value); }
 
     /**
-     * <p>Unique, case-sensitive identifier you provide to ensure idempotency of the
-     * request. For more information, see <a
+     * <p>Unique, case-sensitive identifier that you provide to ensure the idempotency
+     * of the request. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How
      * to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * </p>
@@ -159,8 +158,8 @@ namespace Model
     inline void SetClientToken(const char* value) { m_clientTokenHasBeenSet = true; m_clientToken.assign(value); }
 
     /**
-     * <p>Unique, case-sensitive identifier you provide to ensure idempotency of the
-     * request. For more information, see <a
+     * <p>Unique, case-sensitive identifier that you provide to ensure the idempotency
+     * of the request. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How
      * to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * </p>
@@ -168,8 +167,8 @@ namespace Model
     inline AllocateHostsRequest& WithClientToken(const Aws::String& value) { SetClientToken(value); return *this;}
 
     /**
-     * <p>Unique, case-sensitive identifier you provide to ensure idempotency of the
-     * request. For more information, see <a
+     * <p>Unique, case-sensitive identifier that you provide to ensure the idempotency
+     * of the request. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How
      * to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * </p>
@@ -177,8 +176,8 @@ namespace Model
     inline AllocateHostsRequest& WithClientToken(Aws::String&& value) { SetClientToken(std::move(value)); return *this;}
 
     /**
-     * <p>Unique, case-sensitive identifier you provide to ensure idempotency of the
-     * request. For more information, see <a
+     * <p>Unique, case-sensitive identifier that you provide to ensure the idempotency
+     * of the request. For more information, see <a
      * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How
      * to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
      * </p>
@@ -187,72 +186,108 @@ namespace Model
 
 
     /**
-     * <p>Specify the instance type that you want your Dedicated Hosts to be configured
-     * for. When you specify the instance type, that is the only instance type that you
-     * can launch onto that host.</p>
+     * <p>Specify the instance type for which to configure your Dedicated Hosts. When
+     * you specify the instance type, that is the only instance type that you can
+     * launch onto that host.</p>
      */
     inline const Aws::String& GetInstanceType() const{ return m_instanceType; }
 
     /**
-     * <p>Specify the instance type that you want your Dedicated Hosts to be configured
-     * for. When you specify the instance type, that is the only instance type that you
-     * can launch onto that host.</p>
+     * <p>Specify the instance type for which to configure your Dedicated Hosts. When
+     * you specify the instance type, that is the only instance type that you can
+     * launch onto that host.</p>
      */
     inline void SetInstanceType(const Aws::String& value) { m_instanceTypeHasBeenSet = true; m_instanceType = value; }
 
     /**
-     * <p>Specify the instance type that you want your Dedicated Hosts to be configured
-     * for. When you specify the instance type, that is the only instance type that you
-     * can launch onto that host.</p>
+     * <p>Specify the instance type for which to configure your Dedicated Hosts. When
+     * you specify the instance type, that is the only instance type that you can
+     * launch onto that host.</p>
      */
     inline void SetInstanceType(Aws::String&& value) { m_instanceTypeHasBeenSet = true; m_instanceType = std::move(value); }
 
     /**
-     * <p>Specify the instance type that you want your Dedicated Hosts to be configured
-     * for. When you specify the instance type, that is the only instance type that you
-     * can launch onto that host.</p>
+     * <p>Specify the instance type for which to configure your Dedicated Hosts. When
+     * you specify the instance type, that is the only instance type that you can
+     * launch onto that host.</p>
      */
     inline void SetInstanceType(const char* value) { m_instanceTypeHasBeenSet = true; m_instanceType.assign(value); }
 
     /**
-     * <p>Specify the instance type that you want your Dedicated Hosts to be configured
-     * for. When you specify the instance type, that is the only instance type that you
-     * can launch onto that host.</p>
+     * <p>Specify the instance type for which to configure your Dedicated Hosts. When
+     * you specify the instance type, that is the only instance type that you can
+     * launch onto that host.</p>
      */
     inline AllocateHostsRequest& WithInstanceType(const Aws::String& value) { SetInstanceType(value); return *this;}
 
     /**
-     * <p>Specify the instance type that you want your Dedicated Hosts to be configured
-     * for. When you specify the instance type, that is the only instance type that you
-     * can launch onto that host.</p>
+     * <p>Specify the instance type for which to configure your Dedicated Hosts. When
+     * you specify the instance type, that is the only instance type that you can
+     * launch onto that host.</p>
      */
     inline AllocateHostsRequest& WithInstanceType(Aws::String&& value) { SetInstanceType(std::move(value)); return *this;}
 
     /**
-     * <p>Specify the instance type that you want your Dedicated Hosts to be configured
-     * for. When you specify the instance type, that is the only instance type that you
-     * can launch onto that host.</p>
+     * <p>Specify the instance type for which to configure your Dedicated Hosts. When
+     * you specify the instance type, that is the only instance type that you can
+     * launch onto that host.</p>
      */
     inline AllocateHostsRequest& WithInstanceType(const char* value) { SetInstanceType(value); return *this;}
 
 
     /**
-     * <p>The number of Dedicated Hosts you want to allocate to your account with these
+     * <p>The number of Dedicated Hosts to allocate to your account with these
      * parameters.</p>
      */
     inline int GetQuantity() const{ return m_quantity; }
 
     /**
-     * <p>The number of Dedicated Hosts you want to allocate to your account with these
+     * <p>The number of Dedicated Hosts to allocate to your account with these
      * parameters.</p>
      */
     inline void SetQuantity(int value) { m_quantityHasBeenSet = true; m_quantity = value; }
 
     /**
-     * <p>The number of Dedicated Hosts you want to allocate to your account with these
+     * <p>The number of Dedicated Hosts to allocate to your account with these
      * parameters.</p>
      */
     inline AllocateHostsRequest& WithQuantity(int value) { SetQuantity(value); return *this;}
+
+
+    /**
+     * <p>The tags to apply to the Dedicated Host during creation.</p>
+     */
+    inline const Aws::Vector<TagSpecification>& GetTagSpecifications() const{ return m_tagSpecifications; }
+
+    /**
+     * <p>The tags to apply to the Dedicated Host during creation.</p>
+     */
+    inline void SetTagSpecifications(const Aws::Vector<TagSpecification>& value) { m_tagSpecificationsHasBeenSet = true; m_tagSpecifications = value; }
+
+    /**
+     * <p>The tags to apply to the Dedicated Host during creation.</p>
+     */
+    inline void SetTagSpecifications(Aws::Vector<TagSpecification>&& value) { m_tagSpecificationsHasBeenSet = true; m_tagSpecifications = std::move(value); }
+
+    /**
+     * <p>The tags to apply to the Dedicated Host during creation.</p>
+     */
+    inline AllocateHostsRequest& WithTagSpecifications(const Aws::Vector<TagSpecification>& value) { SetTagSpecifications(value); return *this;}
+
+    /**
+     * <p>The tags to apply to the Dedicated Host during creation.</p>
+     */
+    inline AllocateHostsRequest& WithTagSpecifications(Aws::Vector<TagSpecification>&& value) { SetTagSpecifications(std::move(value)); return *this;}
+
+    /**
+     * <p>The tags to apply to the Dedicated Host during creation.</p>
+     */
+    inline AllocateHostsRequest& AddTagSpecifications(const TagSpecification& value) { m_tagSpecificationsHasBeenSet = true; m_tagSpecifications.push_back(value); return *this; }
+
+    /**
+     * <p>The tags to apply to the Dedicated Host during creation.</p>
+     */
+    inline AllocateHostsRequest& AddTagSpecifications(TagSpecification&& value) { m_tagSpecificationsHasBeenSet = true; m_tagSpecifications.push_back(std::move(value)); return *this; }
 
   private:
 
@@ -270,6 +305,9 @@ namespace Model
 
     int m_quantity;
     bool m_quantityHasBeenSet;
+
+    Aws::Vector<TagSpecification> m_tagSpecifications;
+    bool m_tagSpecificationsHasBeenSet;
   };
 
 } // namespace Model

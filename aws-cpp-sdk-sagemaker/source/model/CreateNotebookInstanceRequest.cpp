@@ -30,7 +30,12 @@ CreateNotebookInstanceRequest::CreateNotebookInstanceRequest() :
     m_securityGroupIdsHasBeenSet(false),
     m_roleArnHasBeenSet(false),
     m_kmsKeyIdHasBeenSet(false),
-    m_tagsHasBeenSet(false)
+    m_tagsHasBeenSet(false),
+    m_lifecycleConfigNameHasBeenSet(false),
+    m_directInternetAccess(DirectInternetAccess::NOT_SET),
+    m_directInternetAccessHasBeenSet(false),
+    m_volumeSizeInGB(0),
+    m_volumeSizeInGBHasBeenSet(false)
 {
 }
 
@@ -89,7 +94,24 @@ Aws::String CreateNotebookInstanceRequest::SerializePayload() const
 
   }
 
-  return payload.WriteReadable();
+  if(m_lifecycleConfigNameHasBeenSet)
+  {
+   payload.WithString("LifecycleConfigName", m_lifecycleConfigName);
+
+  }
+
+  if(m_directInternetAccessHasBeenSet)
+  {
+   payload.WithString("DirectInternetAccess", DirectInternetAccessMapper::GetNameForDirectInternetAccess(m_directInternetAccess));
+  }
+
+  if(m_volumeSizeInGBHasBeenSet)
+  {
+   payload.WithInteger("VolumeSizeInGB", m_volumeSizeInGB);
+
+  }
+
+  return payload.View().WriteReadable();
 }
 
 Aws::Http::HeaderValueCollection CreateNotebookInstanceRequest::GetRequestSpecificHeaders() const

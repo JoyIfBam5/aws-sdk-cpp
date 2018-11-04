@@ -93,7 +93,7 @@ public:
     static std::shared_ptr<Aws::Utils::RateLimits::RateLimiterInterface> m_limiter;
     static std::shared_ptr<Aws::IAM::Model::Role> m_role;
     static std::shared_ptr<Aws::AccessManagement::AccessManagementClient> m_accessManagementClient;
-    static Aws::Map<Aws::String, Aws::String> functionArnMapping;
+    static std::map<Aws::String, Aws::String> functionArnMapping;
 
 protected:
 
@@ -145,7 +145,9 @@ protected:
         DeleteAllFunctions();
         DeleteKinesisStream();
         DeleteIAMRole();
-
+        // Return the memory claimed for static variables to memory manager before shutting down memory manager.
+        // Otherwise there will be double free crash.
+        functionArnMapping.clear();
         m_limiter = nullptr;
         m_client = nullptr;
         m_kinesis_client = nullptr;
@@ -265,14 +267,14 @@ protected:
 
         functionCode.SetZipFile(Aws::Utils::ByteBuffer((unsigned char*)buffer.str().c_str(), buffer.str().length()));
         createFunctionRequest.SetCode(functionCode);
-        createFunctionRequest.SetRuntime(Aws::Lambda::Model::Runtime::nodejs4_3);
+        createFunctionRequest.SetRuntime(Aws::Lambda::Model::Runtime::nodejs8_10);
 
         CreateFunctionOutcome createFunctionOutcome = m_client->CreateFunction(createFunctionRequest);
         ASSERT_TRUE(createFunctionOutcome.IsSuccess());
         ASSERT_EQ(functionName,createFunctionOutcome.GetResult().GetFunctionName());
         ASSERT_EQ("test.handler",createFunctionOutcome.GetResult().GetHandler());
         ASSERT_EQ(roleARN,createFunctionOutcome.GetResult().GetRole());
-        ASSERT_EQ(Aws::Lambda::Model::Runtime::nodejs4_3, createFunctionOutcome.GetResult().GetRuntime());
+        ASSERT_EQ(Aws::Lambda::Model::Runtime::nodejs8_10, createFunctionOutcome.GetResult().GetRuntime());
         functionArnMapping[functionName] = createFunctionOutcome.GetResult().GetFunctionArn();
 
         WaitForFunctionStatus(functionName, ResourceStatusType::READY);
@@ -381,7 +383,7 @@ std::shared_ptr<KinesisClient> FunctionTest::m_kinesis_client(nullptr);
 std::shared_ptr<Aws::Utils::RateLimits::RateLimiterInterface> FunctionTest::m_limiter(nullptr);
 std::shared_ptr<Aws::IAM::Model::Role> FunctionTest::m_role(nullptr);
 std::shared_ptr< Aws::AccessManagement::AccessManagementClient > FunctionTest::m_accessManagementClient(nullptr);
-Aws::Map<Aws::String, Aws::String> FunctionTest::functionArnMapping;
+std::map<Aws::String, Aws::String> FunctionTest::functionArnMapping;
 
 
 TEST_F(FunctionTest, TestListFunction)
@@ -412,7 +414,7 @@ TEST_F(FunctionTest, TestGetFunction)
     EXPECT_TRUE(getFunctionOutcome.IsSuccess());
 
     GetFunctionResult getFunctionResult = getFunctionOutcome.GetResult();
-    EXPECT_EQ(Runtime::nodejs4_3, getFunctionResult.GetConfiguration().GetRuntime());
+    EXPECT_EQ(Runtime::nodejs8_10, getFunctionResult.GetConfiguration().GetRuntime());
     EXPECT_EQ("test.handler",getFunctionResult.GetConfiguration().GetHandler());
     EXPECT_EQ(simpleFunctionName,getFunctionResult.GetConfiguration().GetFunctionName());
     //Just see that is looks like an aws url
@@ -430,7 +432,7 @@ TEST_F(FunctionTest, TestGetFunctionConfiguration)
     EXPECT_TRUE(getFunctionConfigurationOutcome.IsSuccess());
 
     GetFunctionConfigurationResult getFunctionConfigurationResult = getFunctionConfigurationOutcome.GetResult();
-    EXPECT_EQ(Runtime::nodejs4_3, getFunctionConfigurationResult.GetRuntime());
+    EXPECT_EQ(Runtime::nodejs8_10, getFunctionConfigurationResult.GetRuntime());
     EXPECT_EQ("test.handler",getFunctionConfigurationResult.GetHandler());
     EXPECT_EQ(simpleFunctionName,getFunctionConfigurationResult.GetFunctionName());
 }
@@ -484,7 +486,7 @@ TEST_F(FunctionTest, TestInvokeSync)
     std::shared_ptr<Aws::IOStream> payload = Aws::MakeShared<Aws::StringStream>("FunctionTest");
     Aws::Utils::Json::JsonValue jsonPayload;
     jsonPayload.WithString("input", "ThePayload");
-    *payload << jsonPayload.WriteReadable();
+    *payload << jsonPayload.View().WriteReadable();
     invokeRequest.SetBody(payload);
 
 
@@ -510,7 +512,7 @@ TEST_F(FunctionTest, TestInvokeSync)
     //Our 'happy case' script simply echos the input to the output, so we should get the same thing here that we
     //sent above
     auto jsonResponse = Aws::Utils::Json::JsonValue(result.GetPayload());
-    EXPECT_EQ("ThePayload", jsonResponse.GetString("input"));
+    EXPECT_EQ("ThePayload", jsonResponse.View().GetString("input"));
 }
 
 
@@ -524,7 +526,7 @@ TEST_F(FunctionTest, TestInvokeSyncHandledFunctionError)
     std::shared_ptr<Aws::IOStream> payload = Aws::MakeShared<Aws::StringStream>("FunctionTest");
     Aws::Utils::Json::JsonValue jsonPayload;
     jsonPayload.WithString("input", "ThePayload");
-    *payload << jsonPayload.WriteReadable();
+    *payload << jsonPayload.View().WriteReadable();
     invokeRequest.SetBody(payload);
 
 
@@ -554,8 +556,8 @@ TEST_F(FunctionTest, TestPermissions)
     AddPermissionResult result = outcome.GetResult();
     auto statement = Aws::Utils::Json::JsonValue(result.GetStatement());
 
-    EXPECT_EQ("12345",statement.GetString("Sid"));
-    EXPECT_NE(std::string::npos, statement.GetString("Resource").find(simpleFunctionName));
+    EXPECT_EQ("12345",statement.View().GetString("Sid"));
+    EXPECT_NE(std::string::npos, statement.View().GetString("Resource").find(simpleFunctionName));
 
 
     GetPolicyRequest getPolicyRequest;
@@ -566,8 +568,8 @@ TEST_F(FunctionTest, TestPermissions)
     GetPolicyResult getPolicyResult = getPolicyOutcome.GetResult();
     auto getPolicyStatement = Aws::Utils::Json::JsonValue(getPolicyResult.GetPolicy());
 
-    EXPECT_EQ("12345", getPolicyStatement.GetArray("Statement").GetItem(0).GetString("Sid"));
-    EXPECT_EQ("lambda:Invoke", getPolicyStatement.GetArray("Statement").GetItem(0).GetString("Action"));
+    EXPECT_EQ("12345", getPolicyStatement.View().GetArray("Statement").GetItem(0).GetString("Sid"));
+    EXPECT_EQ("lambda:Invoke", getPolicyStatement.View().GetArray("Statement").GetItem(0).GetString("Action"));
 
     RemovePermissionRequest removePermissionRequest;
     removePermissionRequest.SetFunctionName(simpleFunctionName);
@@ -588,7 +590,7 @@ TEST_F(FunctionTest, TestPermissions)
     {
         GetPolicyResult getRemovedPolicyResult = getRemovedPolicyOutcome.GetResult();
         auto getNewPolicy = Aws::Utils::Json::JsonValue(getRemovedPolicyResult.GetPolicy());
-        EXPECT_EQ(0uL, getNewPolicy.GetArray("Statement").GetLength());
+        EXPECT_EQ(0uL, getNewPolicy.View().GetArray("Statement").GetLength());
     }
 }
 

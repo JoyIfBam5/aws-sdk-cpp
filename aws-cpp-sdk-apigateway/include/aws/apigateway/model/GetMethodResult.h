@@ -18,6 +18,7 @@
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
 #include <aws/apigateway/model/Integration.h>
+#include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/apigateway/model/MethodResponse.h>
 #include <utility>
 
@@ -60,13 +61,13 @@ namespace Model
    * <h5>Response</h5> <p>The successful response returns a <code>200 OK</code>
    * status code and a payload similar to the following:</p> <pre><code>{ "_links": {
    * "curies": [ { "href":
-   * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html",
+   * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html",
    * "name": "integration", "templated": true }, { "href":
-   * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
+   * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
    * "name": "integrationresponse", "templated": true }, { "href":
-   * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-{rel}.html",
+   * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-{rel}.html",
    * "name": "method", "templated": true }, { "href":
-   * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
+   * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
    * "name": "methodresponse", "templated": true } ], "self": { "href":
    * "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET", "name": "GET", "title":
    * "GET" }, "integration:put": { "href":
@@ -119,10 +120,10 @@ namespace Model
    * in the back end to an XML output. The mapping template is URL-encoded as
    * <code>%3CkinesisStreams%3E%23foreach(%24stream%20in%20%24input.path(%27%24.StreamNames%27))%3Cstream%3E%3Cname%3E%24stream%3C%2Fname%3E%3C%2Fstream%3E%23end%3C%2FkinesisStreams%3E</code>
    * and the output is decoded using the <a
-   * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html#util-templat-reference">$util.urlDecode()</a>
+   * href="https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html#util-templat-reference">$util.urlDecode()</a>
    * helper function.</p> </div> <div class="seeAlso"> <a>MethodResponse</a>,
    * <a>Integration</a>, <a>IntegrationResponse</a>, <a>Resource</a>, <a
-   * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-method-settings.html">Set
+   * href="https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-method-settings.html">Set
    * up an API's method</a> </div><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/Method">AWS
    * API Reference</a></p>
@@ -330,7 +331,7 @@ namespace Model
      * <p>A human-friendly operation identifier for the method. For example, you can
      * assign the <code>operationName</code> of <code>ListPets</code> for the <code>GET
      * /pets</code> method in <a
-     * href="http://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
+     * href="https://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
      * example.</p>
      */
     inline const Aws::String& GetOperationName() const{ return m_operationName; }
@@ -339,7 +340,7 @@ namespace Model
      * <p>A human-friendly operation identifier for the method. For example, you can
      * assign the <code>operationName</code> of <code>ListPets</code> for the <code>GET
      * /pets</code> method in <a
-     * href="http://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
+     * href="https://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
      * example.</p>
      */
     inline void SetOperationName(const Aws::String& value) { m_operationName = value; }
@@ -348,7 +349,7 @@ namespace Model
      * <p>A human-friendly operation identifier for the method. For example, you can
      * assign the <code>operationName</code> of <code>ListPets</code> for the <code>GET
      * /pets</code> method in <a
-     * href="http://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
+     * href="https://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
      * example.</p>
      */
     inline void SetOperationName(Aws::String&& value) { m_operationName = std::move(value); }
@@ -357,7 +358,7 @@ namespace Model
      * <p>A human-friendly operation identifier for the method. For example, you can
      * assign the <code>operationName</code> of <code>ListPets</code> for the <code>GET
      * /pets</code> method in <a
-     * href="http://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
+     * href="https://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
      * example.</p>
      */
     inline void SetOperationName(const char* value) { m_operationName.assign(value); }
@@ -366,7 +367,7 @@ namespace Model
      * <p>A human-friendly operation identifier for the method. For example, you can
      * assign the <code>operationName</code> of <code>ListPets</code> for the <code>GET
      * /pets</code> method in <a
-     * href="http://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
+     * href="https://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
      * example.</p>
      */
     inline GetMethodResult& WithOperationName(const Aws::String& value) { SetOperationName(value); return *this;}
@@ -375,7 +376,7 @@ namespace Model
      * <p>A human-friendly operation identifier for the method. For example, you can
      * assign the <code>operationName</code> of <code>ListPets</code> for the <code>GET
      * /pets</code> method in <a
-     * href="http://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
+     * href="https://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
      * example.</p>
      */
     inline GetMethodResult& WithOperationName(Aws::String&& value) { SetOperationName(std::move(value)); return *this;}
@@ -384,7 +385,7 @@ namespace Model
      * <p>A human-friendly operation identifier for the method. For example, you can
      * assign the <code>operationName</code> of <code>ListPets</code> for the <code>GET
      * /pets</code> method in <a
-     * href="http://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
+     * href="https://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
      * example.</p>
      */
     inline GetMethodResult& WithOperationName(const char* value) { SetOperationName(value); return *this;}
@@ -595,7 +596,7 @@ namespace Model
      * <h5>Response</h5> <p>The successful response returns a <code>200 OK</code>
      * status code and a payload similar to the following:</p> <pre><code>{ "_links": {
      * "curies": { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
      * "name": "methodresponse", "templated": true }, "self": { "href":
      * "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200", "title":
      * "200" }, "methodresponse:delete": { "href":
@@ -606,7 +607,7 @@ namespace Model
      * "method.response.header.operator": false, "method.response.header.operand_2":
      * false, "method.response.header.operand_1": false }, "statusCode": "200"
      * }</code></pre> <p/> </div> <div class="seeAlso"> <a
-     * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
+     * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
      * CLI</a> </div>
      */
     inline const Aws::Map<Aws::String, MethodResponse>& GetMethodResponses() const{ return m_methodResponses; }
@@ -626,7 +627,7 @@ namespace Model
      * <h5>Response</h5> <p>The successful response returns a <code>200 OK</code>
      * status code and a payload similar to the following:</p> <pre><code>{ "_links": {
      * "curies": { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
      * "name": "methodresponse", "templated": true }, "self": { "href":
      * "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200", "title":
      * "200" }, "methodresponse:delete": { "href":
@@ -637,7 +638,7 @@ namespace Model
      * "method.response.header.operator": false, "method.response.header.operand_2":
      * false, "method.response.header.operand_1": false }, "statusCode": "200"
      * }</code></pre> <p/> </div> <div class="seeAlso"> <a
-     * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
+     * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
      * CLI</a> </div>
      */
     inline void SetMethodResponses(const Aws::Map<Aws::String, MethodResponse>& value) { m_methodResponses = value; }
@@ -657,7 +658,7 @@ namespace Model
      * <h5>Response</h5> <p>The successful response returns a <code>200 OK</code>
      * status code and a payload similar to the following:</p> <pre><code>{ "_links": {
      * "curies": { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
      * "name": "methodresponse", "templated": true }, "self": { "href":
      * "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200", "title":
      * "200" }, "methodresponse:delete": { "href":
@@ -668,7 +669,7 @@ namespace Model
      * "method.response.header.operator": false, "method.response.header.operand_2":
      * false, "method.response.header.operand_1": false }, "statusCode": "200"
      * }</code></pre> <p/> </div> <div class="seeAlso"> <a
-     * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
+     * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
      * CLI</a> </div>
      */
     inline void SetMethodResponses(Aws::Map<Aws::String, MethodResponse>&& value) { m_methodResponses = std::move(value); }
@@ -688,7 +689,7 @@ namespace Model
      * <h5>Response</h5> <p>The successful response returns a <code>200 OK</code>
      * status code and a payload similar to the following:</p> <pre><code>{ "_links": {
      * "curies": { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
      * "name": "methodresponse", "templated": true }, "self": { "href":
      * "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200", "title":
      * "200" }, "methodresponse:delete": { "href":
@@ -699,7 +700,7 @@ namespace Model
      * "method.response.header.operator": false, "method.response.header.operand_2":
      * false, "method.response.header.operand_1": false }, "statusCode": "200"
      * }</code></pre> <p/> </div> <div class="seeAlso"> <a
-     * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
+     * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
      * CLI</a> </div>
      */
     inline GetMethodResult& WithMethodResponses(const Aws::Map<Aws::String, MethodResponse>& value) { SetMethodResponses(value); return *this;}
@@ -719,7 +720,7 @@ namespace Model
      * <h5>Response</h5> <p>The successful response returns a <code>200 OK</code>
      * status code and a payload similar to the following:</p> <pre><code>{ "_links": {
      * "curies": { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
      * "name": "methodresponse", "templated": true }, "self": { "href":
      * "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200", "title":
      * "200" }, "methodresponse:delete": { "href":
@@ -730,7 +731,7 @@ namespace Model
      * "method.response.header.operator": false, "method.response.header.operand_2":
      * false, "method.response.header.operand_1": false }, "statusCode": "200"
      * }</code></pre> <p/> </div> <div class="seeAlso"> <a
-     * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
+     * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
      * CLI</a> </div>
      */
     inline GetMethodResult& WithMethodResponses(Aws::Map<Aws::String, MethodResponse>&& value) { SetMethodResponses(std::move(value)); return *this;}
@@ -750,7 +751,7 @@ namespace Model
      * <h5>Response</h5> <p>The successful response returns a <code>200 OK</code>
      * status code and a payload similar to the following:</p> <pre><code>{ "_links": {
      * "curies": { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
      * "name": "methodresponse", "templated": true }, "self": { "href":
      * "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200", "title":
      * "200" }, "methodresponse:delete": { "href":
@@ -761,7 +762,7 @@ namespace Model
      * "method.response.header.operator": false, "method.response.header.operand_2":
      * false, "method.response.header.operand_1": false }, "statusCode": "200"
      * }</code></pre> <p/> </div> <div class="seeAlso"> <a
-     * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
+     * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
      * CLI</a> </div>
      */
     inline GetMethodResult& AddMethodResponses(const Aws::String& key, const MethodResponse& value) { m_methodResponses.emplace(key, value); return *this; }
@@ -781,7 +782,7 @@ namespace Model
      * <h5>Response</h5> <p>The successful response returns a <code>200 OK</code>
      * status code and a payload similar to the following:</p> <pre><code>{ "_links": {
      * "curies": { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
      * "name": "methodresponse", "templated": true }, "self": { "href":
      * "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200", "title":
      * "200" }, "methodresponse:delete": { "href":
@@ -792,7 +793,7 @@ namespace Model
      * "method.response.header.operator": false, "method.response.header.operand_2":
      * false, "method.response.header.operand_1": false }, "statusCode": "200"
      * }</code></pre> <p/> </div> <div class="seeAlso"> <a
-     * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
+     * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
      * CLI</a> </div>
      */
     inline GetMethodResult& AddMethodResponses(Aws::String&& key, const MethodResponse& value) { m_methodResponses.emplace(std::move(key), value); return *this; }
@@ -812,7 +813,7 @@ namespace Model
      * <h5>Response</h5> <p>The successful response returns a <code>200 OK</code>
      * status code and a payload similar to the following:</p> <pre><code>{ "_links": {
      * "curies": { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
      * "name": "methodresponse", "templated": true }, "self": { "href":
      * "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200", "title":
      * "200" }, "methodresponse:delete": { "href":
@@ -823,7 +824,7 @@ namespace Model
      * "method.response.header.operator": false, "method.response.header.operand_2":
      * false, "method.response.header.operand_1": false }, "statusCode": "200"
      * }</code></pre> <p/> </div> <div class="seeAlso"> <a
-     * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
+     * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
      * CLI</a> </div>
      */
     inline GetMethodResult& AddMethodResponses(const Aws::String& key, MethodResponse&& value) { m_methodResponses.emplace(key, std::move(value)); return *this; }
@@ -843,7 +844,7 @@ namespace Model
      * <h5>Response</h5> <p>The successful response returns a <code>200 OK</code>
      * status code and a payload similar to the following:</p> <pre><code>{ "_links": {
      * "curies": { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
      * "name": "methodresponse", "templated": true }, "self": { "href":
      * "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200", "title":
      * "200" }, "methodresponse:delete": { "href":
@@ -854,7 +855,7 @@ namespace Model
      * "method.response.header.operator": false, "method.response.header.operand_2":
      * false, "method.response.header.operand_1": false }, "statusCode": "200"
      * }</code></pre> <p/> </div> <div class="seeAlso"> <a
-     * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
+     * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
      * CLI</a> </div>
      */
     inline GetMethodResult& AddMethodResponses(Aws::String&& key, MethodResponse&& value) { m_methodResponses.emplace(std::move(key), std::move(value)); return *this; }
@@ -874,7 +875,7 @@ namespace Model
      * <h5>Response</h5> <p>The successful response returns a <code>200 OK</code>
      * status code and a payload similar to the following:</p> <pre><code>{ "_links": {
      * "curies": { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
      * "name": "methodresponse", "templated": true }, "self": { "href":
      * "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200", "title":
      * "200" }, "methodresponse:delete": { "href":
@@ -885,7 +886,7 @@ namespace Model
      * "method.response.header.operator": false, "method.response.header.operand_2":
      * false, "method.response.header.operand_1": false }, "statusCode": "200"
      * }</code></pre> <p/> </div> <div class="seeAlso"> <a
-     * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
+     * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
      * CLI</a> </div>
      */
     inline GetMethodResult& AddMethodResponses(const char* key, MethodResponse&& value) { m_methodResponses.emplace(key, std::move(value)); return *this; }
@@ -905,7 +906,7 @@ namespace Model
      * <h5>Response</h5> <p>The successful response returns a <code>200 OK</code>
      * status code and a payload similar to the following:</p> <pre><code>{ "_links": {
      * "curies": { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
      * "name": "methodresponse", "templated": true }, "self": { "href":
      * "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200", "title":
      * "200" }, "methodresponse:delete": { "href":
@@ -916,7 +917,7 @@ namespace Model
      * "method.response.header.operator": false, "method.response.header.operand_2":
      * false, "method.response.header.operand_1": false }, "statusCode": "200"
      * }</code></pre> <p/> </div> <div class="seeAlso"> <a
-     * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
+     * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html">AWS
      * CLI</a> </div>
      */
     inline GetMethodResult& AddMethodResponses(const char* key, const MethodResponse& value) { m_methodResponses.emplace(key, value); return *this; }
@@ -935,9 +936,9 @@ namespace Model
      * <h5>Response</h5> <p>The successful response returns a <code>200 OK</code>
      * status code and a payload similar to the following:</p> <pre><code>{ "_links": {
      * "curies": [ { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html",
      * "name": "integration", "templated": true }, { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
      * "name": "integrationresponse", "templated": true } ], "self": { "href":
      * "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration" },
      * "integration:delete": { "href":
@@ -969,7 +970,7 @@ namespace Model
      * $res.c\",\n \"a\" : \"$res.a\",\n \"b\" : \"$res.b\",\n \"op\" : \"$res.op\",\n
      * \"c\" : \"$res.c\"\n}" }, "selectionPattern": "", "statusCode": "200" } }
      * }</code></pre> <p/> </div> <div class="seeAlso"> <a
-     * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-integration.html">AWS
+     * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-integration.html">AWS
      * CLI</a> </div>
      */
     inline const Integration& GetMethodIntegration() const{ return m_methodIntegration; }
@@ -987,9 +988,9 @@ namespace Model
      * <h5>Response</h5> <p>The successful response returns a <code>200 OK</code>
      * status code and a payload similar to the following:</p> <pre><code>{ "_links": {
      * "curies": [ { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html",
      * "name": "integration", "templated": true }, { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
      * "name": "integrationresponse", "templated": true } ], "self": { "href":
      * "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration" },
      * "integration:delete": { "href":
@@ -1021,7 +1022,7 @@ namespace Model
      * $res.c\",\n \"a\" : \"$res.a\",\n \"b\" : \"$res.b\",\n \"op\" : \"$res.op\",\n
      * \"c\" : \"$res.c\"\n}" }, "selectionPattern": "", "statusCode": "200" } }
      * }</code></pre> <p/> </div> <div class="seeAlso"> <a
-     * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-integration.html">AWS
+     * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-integration.html">AWS
      * CLI</a> </div>
      */
     inline void SetMethodIntegration(const Integration& value) { m_methodIntegration = value; }
@@ -1039,9 +1040,9 @@ namespace Model
      * <h5>Response</h5> <p>The successful response returns a <code>200 OK</code>
      * status code and a payload similar to the following:</p> <pre><code>{ "_links": {
      * "curies": [ { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html",
      * "name": "integration", "templated": true }, { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
      * "name": "integrationresponse", "templated": true } ], "self": { "href":
      * "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration" },
      * "integration:delete": { "href":
@@ -1073,7 +1074,7 @@ namespace Model
      * $res.c\",\n \"a\" : \"$res.a\",\n \"b\" : \"$res.b\",\n \"op\" : \"$res.op\",\n
      * \"c\" : \"$res.c\"\n}" }, "selectionPattern": "", "statusCode": "200" } }
      * }</code></pre> <p/> </div> <div class="seeAlso"> <a
-     * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-integration.html">AWS
+     * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-integration.html">AWS
      * CLI</a> </div>
      */
     inline void SetMethodIntegration(Integration&& value) { m_methodIntegration = std::move(value); }
@@ -1091,9 +1092,9 @@ namespace Model
      * <h5>Response</h5> <p>The successful response returns a <code>200 OK</code>
      * status code and a payload similar to the following:</p> <pre><code>{ "_links": {
      * "curies": [ { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html",
      * "name": "integration", "templated": true }, { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
      * "name": "integrationresponse", "templated": true } ], "self": { "href":
      * "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration" },
      * "integration:delete": { "href":
@@ -1125,7 +1126,7 @@ namespace Model
      * $res.c\",\n \"a\" : \"$res.a\",\n \"b\" : \"$res.b\",\n \"op\" : \"$res.op\",\n
      * \"c\" : \"$res.c\"\n}" }, "selectionPattern": "", "statusCode": "200" } }
      * }</code></pre> <p/> </div> <div class="seeAlso"> <a
-     * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-integration.html">AWS
+     * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-integration.html">AWS
      * CLI</a> </div>
      */
     inline GetMethodResult& WithMethodIntegration(const Integration& value) { SetMethodIntegration(value); return *this;}
@@ -1143,9 +1144,9 @@ namespace Model
      * <h5>Response</h5> <p>The successful response returns a <code>200 OK</code>
      * status code and a payload similar to the following:</p> <pre><code>{ "_links": {
      * "curies": [ { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html",
      * "name": "integration", "templated": true }, { "href":
-     * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
+     * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
      * "name": "integrationresponse", "templated": true } ], "self": { "href":
      * "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration" },
      * "integration:delete": { "href":
@@ -1177,10 +1178,107 @@ namespace Model
      * $res.c\",\n \"a\" : \"$res.a\",\n \"b\" : \"$res.b\",\n \"op\" : \"$res.op\",\n
      * \"c\" : \"$res.c\"\n}" }, "selectionPattern": "", "statusCode": "200" } }
      * }</code></pre> <p/> </div> <div class="seeAlso"> <a
-     * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-integration.html">AWS
+     * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-integration.html">AWS
      * CLI</a> </div>
      */
     inline GetMethodResult& WithMethodIntegration(Integration&& value) { SetMethodIntegration(std::move(value)); return *this;}
+
+
+    /**
+     * <p>A list of authorization scopes configured on the method. The scopes are used
+     * with a <code>COGNITO_USER_POOLS</code> authorizer to authorize the method
+     * invocation. The authorization works by matching the method scopes against the
+     * scopes parsed from the access token in the incoming request. The method
+     * invocation is authorized if any method scopes matches a claimed scope in the
+     * access token. Otherwise, the invocation is not authorized. When the method scope
+     * is configured, the client must provide an access token instead of an identity
+     * token for authorization purposes.</p>
+     */
+    inline const Aws::Vector<Aws::String>& GetAuthorizationScopes() const{ return m_authorizationScopes; }
+
+    /**
+     * <p>A list of authorization scopes configured on the method. The scopes are used
+     * with a <code>COGNITO_USER_POOLS</code> authorizer to authorize the method
+     * invocation. The authorization works by matching the method scopes against the
+     * scopes parsed from the access token in the incoming request. The method
+     * invocation is authorized if any method scopes matches a claimed scope in the
+     * access token. Otherwise, the invocation is not authorized. When the method scope
+     * is configured, the client must provide an access token instead of an identity
+     * token for authorization purposes.</p>
+     */
+    inline void SetAuthorizationScopes(const Aws::Vector<Aws::String>& value) { m_authorizationScopes = value; }
+
+    /**
+     * <p>A list of authorization scopes configured on the method. The scopes are used
+     * with a <code>COGNITO_USER_POOLS</code> authorizer to authorize the method
+     * invocation. The authorization works by matching the method scopes against the
+     * scopes parsed from the access token in the incoming request. The method
+     * invocation is authorized if any method scopes matches a claimed scope in the
+     * access token. Otherwise, the invocation is not authorized. When the method scope
+     * is configured, the client must provide an access token instead of an identity
+     * token for authorization purposes.</p>
+     */
+    inline void SetAuthorizationScopes(Aws::Vector<Aws::String>&& value) { m_authorizationScopes = std::move(value); }
+
+    /**
+     * <p>A list of authorization scopes configured on the method. The scopes are used
+     * with a <code>COGNITO_USER_POOLS</code> authorizer to authorize the method
+     * invocation. The authorization works by matching the method scopes against the
+     * scopes parsed from the access token in the incoming request. The method
+     * invocation is authorized if any method scopes matches a claimed scope in the
+     * access token. Otherwise, the invocation is not authorized. When the method scope
+     * is configured, the client must provide an access token instead of an identity
+     * token for authorization purposes.</p>
+     */
+    inline GetMethodResult& WithAuthorizationScopes(const Aws::Vector<Aws::String>& value) { SetAuthorizationScopes(value); return *this;}
+
+    /**
+     * <p>A list of authorization scopes configured on the method. The scopes are used
+     * with a <code>COGNITO_USER_POOLS</code> authorizer to authorize the method
+     * invocation. The authorization works by matching the method scopes against the
+     * scopes parsed from the access token in the incoming request. The method
+     * invocation is authorized if any method scopes matches a claimed scope in the
+     * access token. Otherwise, the invocation is not authorized. When the method scope
+     * is configured, the client must provide an access token instead of an identity
+     * token for authorization purposes.</p>
+     */
+    inline GetMethodResult& WithAuthorizationScopes(Aws::Vector<Aws::String>&& value) { SetAuthorizationScopes(std::move(value)); return *this;}
+
+    /**
+     * <p>A list of authorization scopes configured on the method. The scopes are used
+     * with a <code>COGNITO_USER_POOLS</code> authorizer to authorize the method
+     * invocation. The authorization works by matching the method scopes against the
+     * scopes parsed from the access token in the incoming request. The method
+     * invocation is authorized if any method scopes matches a claimed scope in the
+     * access token. Otherwise, the invocation is not authorized. When the method scope
+     * is configured, the client must provide an access token instead of an identity
+     * token for authorization purposes.</p>
+     */
+    inline GetMethodResult& AddAuthorizationScopes(const Aws::String& value) { m_authorizationScopes.push_back(value); return *this; }
+
+    /**
+     * <p>A list of authorization scopes configured on the method. The scopes are used
+     * with a <code>COGNITO_USER_POOLS</code> authorizer to authorize the method
+     * invocation. The authorization works by matching the method scopes against the
+     * scopes parsed from the access token in the incoming request. The method
+     * invocation is authorized if any method scopes matches a claimed scope in the
+     * access token. Otherwise, the invocation is not authorized. When the method scope
+     * is configured, the client must provide an access token instead of an identity
+     * token for authorization purposes.</p>
+     */
+    inline GetMethodResult& AddAuthorizationScopes(Aws::String&& value) { m_authorizationScopes.push_back(std::move(value)); return *this; }
+
+    /**
+     * <p>A list of authorization scopes configured on the method. The scopes are used
+     * with a <code>COGNITO_USER_POOLS</code> authorizer to authorize the method
+     * invocation. The authorization works by matching the method scopes against the
+     * scopes parsed from the access token in the incoming request. The method
+     * invocation is authorized if any method scopes matches a claimed scope in the
+     * access token. Otherwise, the invocation is not authorized. When the method scope
+     * is configured, the client must provide an access token instead of an identity
+     * token for authorization purposes.</p>
+     */
+    inline GetMethodResult& AddAuthorizationScopes(const char* value) { m_authorizationScopes.push_back(value); return *this; }
 
   private:
 
@@ -1203,6 +1301,8 @@ namespace Model
     Aws::Map<Aws::String, MethodResponse> m_methodResponses;
 
     Integration m_methodIntegration;
+
+    Aws::Vector<Aws::String> m_authorizationScopes;
   };
 
 } // namespace Model

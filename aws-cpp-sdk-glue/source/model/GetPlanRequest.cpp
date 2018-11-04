@@ -26,7 +26,9 @@ GetPlanRequest::GetPlanRequest() :
     m_mappingHasBeenSet(false),
     m_sourceHasBeenSet(false),
     m_sinksHasBeenSet(false),
-    m_locationHasBeenSet(false)
+    m_locationHasBeenSet(false),
+    m_language(Language::NOT_SET),
+    m_languageHasBeenSet(false)
 {
 }
 
@@ -68,7 +70,12 @@ Aws::String GetPlanRequest::SerializePayload() const
 
   }
 
-  return payload.WriteReadable();
+  if(m_languageHasBeenSet)
+  {
+   payload.WithString("Language", LanguageMapper::GetNameForLanguage(m_language));
+  }
+
+  return payload.View().WriteReadable();
 }
 
 Aws::Http::HeaderValueCollection GetPlanRequest::GetRequestSpecificHeaders() const

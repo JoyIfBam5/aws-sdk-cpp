@@ -28,6 +28,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace IoT
@@ -45,8 +46,8 @@ namespace Model
   {
   public:
     JobExecution();
-    JobExecution(const Aws::Utils::Json::JsonValue& jsonValue);
-    JobExecution& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    JobExecution(Aws::Utils::Json::JsonView jsonValue);
+    JobExecution& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -87,34 +88,53 @@ namespace Model
 
 
     /**
-     * <p>The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCESS,
-     * CANCELED, or REJECTED).</p>
+     * <p>The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCEEDED,
+     * TIMED_OUT, CANCELED, or REJECTED).</p>
      */
     inline const JobExecutionStatus& GetStatus() const{ return m_status; }
 
     /**
-     * <p>The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCESS,
-     * CANCELED, or REJECTED).</p>
+     * <p>The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCEEDED,
+     * TIMED_OUT, CANCELED, or REJECTED).</p>
      */
     inline void SetStatus(const JobExecutionStatus& value) { m_statusHasBeenSet = true; m_status = value; }
 
     /**
-     * <p>The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCESS,
-     * CANCELED, or REJECTED).</p>
+     * <p>The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCEEDED,
+     * TIMED_OUT, CANCELED, or REJECTED).</p>
      */
     inline void SetStatus(JobExecutionStatus&& value) { m_statusHasBeenSet = true; m_status = std::move(value); }
 
     /**
-     * <p>The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCESS,
-     * CANCELED, or REJECTED).</p>
+     * <p>The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCEEDED,
+     * TIMED_OUT, CANCELED, or REJECTED).</p>
      */
     inline JobExecution& WithStatus(const JobExecutionStatus& value) { SetStatus(value); return *this;}
 
     /**
-     * <p>The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCESS,
-     * CANCELED, or REJECTED).</p>
+     * <p>The status of the job execution (IN_PROGRESS, QUEUED, FAILED, SUCCEEDED,
+     * TIMED_OUT, CANCELED, or REJECTED).</p>
      */
     inline JobExecution& WithStatus(JobExecutionStatus&& value) { SetStatus(std::move(value)); return *this;}
+
+
+    /**
+     * <p>Will be <code>true</code> if the job execution was canceled with the optional
+     * <code>force</code> parameter set to <code>true</code>.</p>
+     */
+    inline bool GetForceCanceled() const{ return m_forceCanceled; }
+
+    /**
+     * <p>Will be <code>true</code> if the job execution was canceled with the optional
+     * <code>force</code> parameter set to <code>true</code>.</p>
+     */
+    inline void SetForceCanceled(bool value) { m_forceCanceledHasBeenSet = true; m_forceCanceled = value; }
+
+    /**
+     * <p>Will be <code>true</code> if the job execution was canceled with the optional
+     * <code>force</code> parameter set to <code>true</code>.</p>
+     */
+    inline JobExecution& WithForceCanceled(bool value) { SetForceCanceled(value); return *this;}
 
 
     /**
@@ -298,6 +318,44 @@ namespace Model
      */
     inline JobExecution& WithExecutionNumber(long long value) { SetExecutionNumber(value); return *this;}
 
+
+    /**
+     * <p>The version of the job execution. Job execution versions are incremented each
+     * time they are updated by a device.</p>
+     */
+    inline long long GetVersionNumber() const{ return m_versionNumber; }
+
+    /**
+     * <p>The version of the job execution. Job execution versions are incremented each
+     * time they are updated by a device.</p>
+     */
+    inline void SetVersionNumber(long long value) { m_versionNumberHasBeenSet = true; m_versionNumber = value; }
+
+    /**
+     * <p>The version of the job execution. Job execution versions are incremented each
+     * time they are updated by a device.</p>
+     */
+    inline JobExecution& WithVersionNumber(long long value) { SetVersionNumber(value); return *this;}
+
+
+    /**
+     * <p>The estimated number of seconds that remain before the job execution status
+     * will be changed to <code>TIMED_OUT</code>.</p>
+     */
+    inline long long GetApproximateSecondsBeforeTimedOut() const{ return m_approximateSecondsBeforeTimedOut; }
+
+    /**
+     * <p>The estimated number of seconds that remain before the job execution status
+     * will be changed to <code>TIMED_OUT</code>.</p>
+     */
+    inline void SetApproximateSecondsBeforeTimedOut(long long value) { m_approximateSecondsBeforeTimedOutHasBeenSet = true; m_approximateSecondsBeforeTimedOut = value; }
+
+    /**
+     * <p>The estimated number of seconds that remain before the job execution status
+     * will be changed to <code>TIMED_OUT</code>.</p>
+     */
+    inline JobExecution& WithApproximateSecondsBeforeTimedOut(long long value) { SetApproximateSecondsBeforeTimedOut(value); return *this;}
+
   private:
 
     Aws::String m_jobId;
@@ -305,6 +363,9 @@ namespace Model
 
     JobExecutionStatus m_status;
     bool m_statusHasBeenSet;
+
+    bool m_forceCanceled;
+    bool m_forceCanceledHasBeenSet;
 
     JobExecutionStatusDetails m_statusDetails;
     bool m_statusDetailsHasBeenSet;
@@ -323,6 +384,12 @@ namespace Model
 
     long long m_executionNumber;
     bool m_executionNumberHasBeenSet;
+
+    long long m_versionNumber;
+    bool m_versionNumberHasBeenSet;
+
+    long long m_approximateSecondsBeforeTimedOut;
+    bool m_approximateSecondsBeforeTimedOutHasBeenSet;
   };
 
 } // namespace Model

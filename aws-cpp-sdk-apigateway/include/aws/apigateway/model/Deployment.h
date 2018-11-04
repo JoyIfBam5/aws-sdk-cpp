@@ -28,6 +28,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace APIGateway
@@ -45,7 +46,7 @@ namespace Model
    * the specified deployment resource
    * (<code>/restapis/{restapi_id}/deployments/{deployment_id}</code>).</div> <div
    * class="seeAlso"><a>RestApi</a>, <a>Deployments</a>, <a>Stage</a>, <a
-   * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-deployment.html">AWS
+   * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-deployment.html">AWS
    * CLI</a>, <a href="https://aws.amazon.com/tools/">AWS SDKs</a> </div><p><h3>See
    * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/Deployment">AWS
@@ -55,8 +56,8 @@ namespace Model
   {
   public:
     Deployment();
-    Deployment(const Aws::Utils::Json::JsonValue& jsonValue);
-    Deployment& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    Deployment(Aws::Utils::Json::JsonView jsonValue);
+    Deployment& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 

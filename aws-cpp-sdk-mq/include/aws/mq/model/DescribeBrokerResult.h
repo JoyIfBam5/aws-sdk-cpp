@@ -19,8 +19,10 @@
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/mq/model/BrokerState.h>
 #include <aws/mq/model/Configurations.h>
+#include <aws/core/utils/DateTime.h>
 #include <aws/mq/model/DeploymentMode.h>
 #include <aws/mq/model/EngineType.h>
+#include <aws/mq/model/LogsSummary.h>
 #include <aws/mq/model/WeeklyStartTime.h>
 #include <aws/mq/model/BrokerInstance.h>
 #include <aws/mq/model/UserSummary.h>
@@ -238,32 +240,27 @@ namespace Model
 
 
     /**
-     * The status of the broker. Possible values: CREATION_IN_PROGRESS,
-     * CREATION_FAILED, DELETION_IN_PROGRESS, RUNNING, REBOOT_IN_PROGRESS
+     * The status of the broker.
      */
     inline const BrokerState& GetBrokerState() const{ return m_brokerState; }
 
     /**
-     * The status of the broker. Possible values: CREATION_IN_PROGRESS,
-     * CREATION_FAILED, DELETION_IN_PROGRESS, RUNNING, REBOOT_IN_PROGRESS
+     * The status of the broker.
      */
     inline void SetBrokerState(const BrokerState& value) { m_brokerState = value; }
 
     /**
-     * The status of the broker. Possible values: CREATION_IN_PROGRESS,
-     * CREATION_FAILED, DELETION_IN_PROGRESS, RUNNING, REBOOT_IN_PROGRESS
+     * The status of the broker.
      */
     inline void SetBrokerState(BrokerState&& value) { m_brokerState = std::move(value); }
 
     /**
-     * The status of the broker. Possible values: CREATION_IN_PROGRESS,
-     * CREATION_FAILED, DELETION_IN_PROGRESS, RUNNING, REBOOT_IN_PROGRESS
+     * The status of the broker.
      */
     inline DescribeBrokerResult& WithBrokerState(const BrokerState& value) { SetBrokerState(value); return *this;}
 
     /**
-     * The status of the broker. Possible values: CREATION_IN_PROGRESS,
-     * CREATION_FAILED, DELETION_IN_PROGRESS, RUNNING, REBOOT_IN_PROGRESS
+     * The status of the broker.
      */
     inline DescribeBrokerResult& WithBrokerState(BrokerState&& value) { SetBrokerState(std::move(value)); return *this;}
 
@@ -295,42 +292,53 @@ namespace Model
 
 
     /**
-     * Required. The deployment mode of the broker. Possible values: SINGLE_INSTANCE,
-     * ACTIVE_STANDBY_MULTI_AZ SINGLE_INSTANCE creates a single-instance broker in a
-     * single Availability Zone. ACTIVE_STANDBY_MULTI_AZ creates an active/standby
-     * broker for high availability.
+     * The time when the broker was created.
+     */
+    inline const Aws::Utils::DateTime& GetCreated() const{ return m_created; }
+
+    /**
+     * The time when the broker was created.
+     */
+    inline void SetCreated(const Aws::Utils::DateTime& value) { m_created = value; }
+
+    /**
+     * The time when the broker was created.
+     */
+    inline void SetCreated(Aws::Utils::DateTime&& value) { m_created = std::move(value); }
+
+    /**
+     * The time when the broker was created.
+     */
+    inline DescribeBrokerResult& WithCreated(const Aws::Utils::DateTime& value) { SetCreated(value); return *this;}
+
+    /**
+     * The time when the broker was created.
+     */
+    inline DescribeBrokerResult& WithCreated(Aws::Utils::DateTime&& value) { SetCreated(std::move(value)); return *this;}
+
+
+    /**
+     * Required. The deployment mode of the broker.
      */
     inline const DeploymentMode& GetDeploymentMode() const{ return m_deploymentMode; }
 
     /**
-     * Required. The deployment mode of the broker. Possible values: SINGLE_INSTANCE,
-     * ACTIVE_STANDBY_MULTI_AZ SINGLE_INSTANCE creates a single-instance broker in a
-     * single Availability Zone. ACTIVE_STANDBY_MULTI_AZ creates an active/standby
-     * broker for high availability.
+     * Required. The deployment mode of the broker.
      */
     inline void SetDeploymentMode(const DeploymentMode& value) { m_deploymentMode = value; }
 
     /**
-     * Required. The deployment mode of the broker. Possible values: SINGLE_INSTANCE,
-     * ACTIVE_STANDBY_MULTI_AZ SINGLE_INSTANCE creates a single-instance broker in a
-     * single Availability Zone. ACTIVE_STANDBY_MULTI_AZ creates an active/standby
-     * broker for high availability.
+     * Required. The deployment mode of the broker.
      */
     inline void SetDeploymentMode(DeploymentMode&& value) { m_deploymentMode = std::move(value); }
 
     /**
-     * Required. The deployment mode of the broker. Possible values: SINGLE_INSTANCE,
-     * ACTIVE_STANDBY_MULTI_AZ SINGLE_INSTANCE creates a single-instance broker in a
-     * single Availability Zone. ACTIVE_STANDBY_MULTI_AZ creates an active/standby
-     * broker for high availability.
+     * Required. The deployment mode of the broker.
      */
     inline DescribeBrokerResult& WithDeploymentMode(const DeploymentMode& value) { SetDeploymentMode(value); return *this;}
 
     /**
-     * Required. The deployment mode of the broker. Possible values: SINGLE_INSTANCE,
-     * ACTIVE_STANDBY_MULTI_AZ SINGLE_INSTANCE creates a single-instance broker in a
-     * single Availability Zone. ACTIVE_STANDBY_MULTI_AZ creates an active/standby
-     * broker for high availability.
+     * Required. The deployment mode of the broker.
      */
     inline DescribeBrokerResult& WithDeploymentMode(DeploymentMode&& value) { SetDeploymentMode(std::move(value)); return *this;}
 
@@ -368,81 +376,112 @@ namespace Model
 
     /**
      * The version of the broker engine. Note: Currently, Amazon MQ supports only
-     * 5.15.0.
+     * 5.15.6 and 5.15.0.
      */
     inline const Aws::String& GetEngineVersion() const{ return m_engineVersion; }
 
     /**
      * The version of the broker engine. Note: Currently, Amazon MQ supports only
-     * 5.15.0.
+     * 5.15.6 and 5.15.0.
      */
     inline void SetEngineVersion(const Aws::String& value) { m_engineVersion = value; }
 
     /**
      * The version of the broker engine. Note: Currently, Amazon MQ supports only
-     * 5.15.0.
+     * 5.15.6 and 5.15.0.
      */
     inline void SetEngineVersion(Aws::String&& value) { m_engineVersion = std::move(value); }
 
     /**
      * The version of the broker engine. Note: Currently, Amazon MQ supports only
-     * 5.15.0.
+     * 5.15.6 and 5.15.0.
      */
     inline void SetEngineVersion(const char* value) { m_engineVersion.assign(value); }
 
     /**
      * The version of the broker engine. Note: Currently, Amazon MQ supports only
-     * 5.15.0.
+     * 5.15.6 and 5.15.0.
      */
     inline DescribeBrokerResult& WithEngineVersion(const Aws::String& value) { SetEngineVersion(value); return *this;}
 
     /**
      * The version of the broker engine. Note: Currently, Amazon MQ supports only
-     * 5.15.0.
+     * 5.15.6 and 5.15.0.
      */
     inline DescribeBrokerResult& WithEngineVersion(Aws::String&& value) { SetEngineVersion(std::move(value)); return *this;}
 
     /**
      * The version of the broker engine. Note: Currently, Amazon MQ supports only
-     * 5.15.0.
+     * 5.15.6 and 5.15.0.
      */
     inline DescribeBrokerResult& WithEngineVersion(const char* value) { SetEngineVersion(value); return *this;}
 
 
     /**
-     * The broker's instance type. Possible values: mq.t2.micro, mq.m4.large
+     * The broker's instance type.
      */
     inline const Aws::String& GetHostInstanceType() const{ return m_hostInstanceType; }
 
     /**
-     * The broker's instance type. Possible values: mq.t2.micro, mq.m4.large
+     * The broker's instance type.
      */
     inline void SetHostInstanceType(const Aws::String& value) { m_hostInstanceType = value; }
 
     /**
-     * The broker's instance type. Possible values: mq.t2.micro, mq.m4.large
+     * The broker's instance type.
      */
     inline void SetHostInstanceType(Aws::String&& value) { m_hostInstanceType = std::move(value); }
 
     /**
-     * The broker's instance type. Possible values: mq.t2.micro, mq.m4.large
+     * The broker's instance type.
      */
     inline void SetHostInstanceType(const char* value) { m_hostInstanceType.assign(value); }
 
     /**
-     * The broker's instance type. Possible values: mq.t2.micro, mq.m4.large
+     * The broker's instance type.
      */
     inline DescribeBrokerResult& WithHostInstanceType(const Aws::String& value) { SetHostInstanceType(value); return *this;}
 
     /**
-     * The broker's instance type. Possible values: mq.t2.micro, mq.m4.large
+     * The broker's instance type.
      */
     inline DescribeBrokerResult& WithHostInstanceType(Aws::String&& value) { SetHostInstanceType(std::move(value)); return *this;}
 
     /**
-     * The broker's instance type. Possible values: mq.t2.micro, mq.m4.large
+     * The broker's instance type.
      */
     inline DescribeBrokerResult& WithHostInstanceType(const char* value) { SetHostInstanceType(value); return *this;}
+
+
+    /**
+     * The list of information about logs currently enabled and pending to be deployed
+     * for the specified broker.
+     */
+    inline const LogsSummary& GetLogs() const{ return m_logs; }
+
+    /**
+     * The list of information about logs currently enabled and pending to be deployed
+     * for the specified broker.
+     */
+    inline void SetLogs(const LogsSummary& value) { m_logs = value; }
+
+    /**
+     * The list of information about logs currently enabled and pending to be deployed
+     * for the specified broker.
+     */
+    inline void SetLogs(LogsSummary&& value) { m_logs = std::move(value); }
+
+    /**
+     * The list of information about logs currently enabled and pending to be deployed
+     * for the specified broker.
+     */
+    inline DescribeBrokerResult& WithLogs(const LogsSummary& value) { SetLogs(value); return *this;}
+
+    /**
+     * The list of information about logs currently enabled and pending to be deployed
+     * for the specified broker.
+     */
+    inline DescribeBrokerResult& WithLogs(LogsSummary&& value) { SetLogs(std::move(value)); return *this;}
 
 
     /**
@@ -469,6 +508,42 @@ namespace Model
      * The parameters that determine the WeeklyStartTime.
      */
     inline DescribeBrokerResult& WithMaintenanceWindowStartTime(WeeklyStartTime&& value) { SetMaintenanceWindowStartTime(std::move(value)); return *this;}
+
+
+    /**
+     * The version of the broker engine to upgrade to.
+     */
+    inline const Aws::String& GetPendingEngineVersion() const{ return m_pendingEngineVersion; }
+
+    /**
+     * The version of the broker engine to upgrade to.
+     */
+    inline void SetPendingEngineVersion(const Aws::String& value) { m_pendingEngineVersion = value; }
+
+    /**
+     * The version of the broker engine to upgrade to.
+     */
+    inline void SetPendingEngineVersion(Aws::String&& value) { m_pendingEngineVersion = std::move(value); }
+
+    /**
+     * The version of the broker engine to upgrade to.
+     */
+    inline void SetPendingEngineVersion(const char* value) { m_pendingEngineVersion.assign(value); }
+
+    /**
+     * The version of the broker engine to upgrade to.
+     */
+    inline DescribeBrokerResult& WithPendingEngineVersion(const Aws::String& value) { SetPendingEngineVersion(value); return *this;}
+
+    /**
+     * The version of the broker engine to upgrade to.
+     */
+    inline DescribeBrokerResult& WithPendingEngineVersion(Aws::String&& value) { SetPendingEngineVersion(std::move(value)); return *this;}
+
+    /**
+     * The version of the broker engine to upgrade to.
+     */
+    inline DescribeBrokerResult& WithPendingEngineVersion(const char* value) { SetPendingEngineVersion(value); return *this;}
 
 
     /**
@@ -655,6 +730,8 @@ namespace Model
 
     Configurations m_configurations;
 
+    Aws::Utils::DateTime m_created;
+
     DeploymentMode m_deploymentMode;
 
     EngineType m_engineType;
@@ -663,7 +740,11 @@ namespace Model
 
     Aws::String m_hostInstanceType;
 
+    LogsSummary m_logs;
+
     WeeklyStartTime m_maintenanceWindowStartTime;
+
+    Aws::String m_pendingEngineVersion;
 
     bool m_publiclyAccessible;
 

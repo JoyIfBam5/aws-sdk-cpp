@@ -32,7 +32,9 @@ UpdateServiceRequest::UpdateServiceRequest() :
     m_networkConfigurationHasBeenSet(false),
     m_platformVersionHasBeenSet(false),
     m_forceNewDeployment(false),
-    m_forceNewDeploymentHasBeenSet(false)
+    m_forceNewDeploymentHasBeenSet(false),
+    m_healthCheckGracePeriodSeconds(0),
+    m_healthCheckGracePeriodSecondsHasBeenSet(false)
 {
 }
 
@@ -88,7 +90,13 @@ Aws::String UpdateServiceRequest::SerializePayload() const
 
   }
 
-  return payload.WriteReadable();
+  if(m_healthCheckGracePeriodSecondsHasBeenSet)
+  {
+   payload.WithInteger("healthCheckGracePeriodSeconds", m_healthCheckGracePeriodSeconds);
+
+  }
+
+  return payload.View().WriteReadable();
 }
 
 Aws::Http::HeaderValueCollection UpdateServiceRequest::GetRequestSpecificHeaders() const

@@ -49,7 +49,14 @@ RestoreDBInstanceFromDBSnapshotRequest::RestoreDBInstanceFromDBSnapshotRequest()
     m_copyTagsToSnapshotHasBeenSet(false),
     m_domainIAMRoleNameHasBeenSet(false),
     m_enableIAMDatabaseAuthentication(false),
-    m_enableIAMDatabaseAuthenticationHasBeenSet(false)
+    m_enableIAMDatabaseAuthenticationHasBeenSet(false),
+    m_enableCloudwatchLogsExportsHasBeenSet(false),
+    m_processorFeaturesHasBeenSet(false),
+    m_useDefaultProcessorFeatures(false),
+    m_useDefaultProcessorFeaturesHasBeenSet(false),
+    m_dBParameterGroupNameHasBeenSet(false),
+    m_deletionProtection(false),
+    m_deletionProtectionHasBeenSet(false)
 {
 }
 
@@ -170,6 +177,42 @@ Aws::String RestoreDBInstanceFromDBSnapshotRequest::SerializePayload() const
   if(m_enableIAMDatabaseAuthenticationHasBeenSet)
   {
     ss << "EnableIAMDatabaseAuthentication=" << std::boolalpha << m_enableIAMDatabaseAuthentication << "&";
+  }
+
+  if(m_enableCloudwatchLogsExportsHasBeenSet)
+  {
+    unsigned enableCloudwatchLogsExportsCount = 1;
+    for(auto& item : m_enableCloudwatchLogsExports)
+    {
+      ss << "EnableCloudwatchLogsExports.member." << enableCloudwatchLogsExportsCount << "="
+          << StringUtils::URLEncode(item.c_str()) << "&";
+      enableCloudwatchLogsExportsCount++;
+    }
+  }
+
+  if(m_processorFeaturesHasBeenSet)
+  {
+    unsigned processorFeaturesCount = 1;
+    for(auto& item : m_processorFeatures)
+    {
+      item.OutputToStream(ss, "ProcessorFeatures.member.", processorFeaturesCount, "");
+      processorFeaturesCount++;
+    }
+  }
+
+  if(m_useDefaultProcessorFeaturesHasBeenSet)
+  {
+    ss << "UseDefaultProcessorFeatures=" << std::boolalpha << m_useDefaultProcessorFeatures << "&";
+  }
+
+  if(m_dBParameterGroupNameHasBeenSet)
+  {
+    ss << "DBParameterGroupName=" << StringUtils::URLEncode(m_dBParameterGroupName.c_str()) << "&";
+  }
+
+  if(m_deletionProtectionHasBeenSet)
+  {
+    ss << "DeletionProtection=" << std::boolalpha << m_deletionProtection << "&";
   }
 
   ss << "Version=2014-10-31";

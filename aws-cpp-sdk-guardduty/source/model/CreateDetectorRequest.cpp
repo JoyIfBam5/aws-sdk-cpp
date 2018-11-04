@@ -23,8 +23,12 @@ using namespace Aws::Utils::Json;
 using namespace Aws::Utils;
 
 CreateDetectorRequest::CreateDetectorRequest() : 
+    m_clientToken(Aws::Utils::UUID::RandomUUID()),
+    m_clientTokenHasBeenSet(true),
     m_enable(false),
-    m_enableHasBeenSet(false)
+    m_enableHasBeenSet(false),
+    m_findingPublishingFrequency(FindingPublishingFrequency::NOT_SET),
+    m_findingPublishingFrequencyHasBeenSet(false)
 {
 }
 
@@ -32,13 +36,24 @@ Aws::String CreateDetectorRequest::SerializePayload() const
 {
   JsonValue payload;
 
+  if(m_clientTokenHasBeenSet)
+  {
+   payload.WithString("clientToken", m_clientToken);
+
+  }
+
   if(m_enableHasBeenSet)
   {
    payload.WithBool("enable", m_enable);
 
   }
 
-  return payload.WriteReadable();
+  if(m_findingPublishingFrequencyHasBeenSet)
+  {
+   payload.WithString("findingPublishingFrequency", FindingPublishingFrequencyMapper::GetNameForFindingPublishingFrequency(m_findingPublishingFrequency));
+  }
+
+  return payload.View().WriteReadable();
 }
 
 

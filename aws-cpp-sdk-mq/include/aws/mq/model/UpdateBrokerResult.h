@@ -17,6 +17,7 @@
 #include <aws/mq/MQ_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/mq/model/ConfigurationId.h>
+#include <aws/mq/model/Logs.h>
 #include <utility>
 
 namespace Aws
@@ -41,6 +42,22 @@ namespace Model
     UpdateBrokerResult();
     UpdateBrokerResult(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
     UpdateBrokerResult& operator=(const Aws::AmazonWebServiceResult<Aws::Utils::Json::JsonValue>& result);
+
+
+    /**
+     * The new value of automatic upgrades to new minor version for brokers.
+     */
+    inline bool GetAutoMinorVersionUpgrade() const{ return m_autoMinorVersionUpgrade; }
+
+    /**
+     * The new value of automatic upgrades to new minor version for brokers.
+     */
+    inline void SetAutoMinorVersionUpgrade(bool value) { m_autoMinorVersionUpgrade = value; }
+
+    /**
+     * The new value of automatic upgrades to new minor version for brokers.
+     */
+    inline UpdateBrokerResult& WithAutoMinorVersionUpgrade(bool value) { SetAutoMinorVersionUpgrade(value); return *this;}
 
 
     /**
@@ -104,11 +121,79 @@ namespace Model
      */
     inline UpdateBrokerResult& WithConfiguration(ConfigurationId&& value) { SetConfiguration(std::move(value)); return *this;}
 
+
+    /**
+     * The version of the broker engine to upgrade to.
+     */
+    inline const Aws::String& GetEngineVersion() const{ return m_engineVersion; }
+
+    /**
+     * The version of the broker engine to upgrade to.
+     */
+    inline void SetEngineVersion(const Aws::String& value) { m_engineVersion = value; }
+
+    /**
+     * The version of the broker engine to upgrade to.
+     */
+    inline void SetEngineVersion(Aws::String&& value) { m_engineVersion = std::move(value); }
+
+    /**
+     * The version of the broker engine to upgrade to.
+     */
+    inline void SetEngineVersion(const char* value) { m_engineVersion.assign(value); }
+
+    /**
+     * The version of the broker engine to upgrade to.
+     */
+    inline UpdateBrokerResult& WithEngineVersion(const Aws::String& value) { SetEngineVersion(value); return *this;}
+
+    /**
+     * The version of the broker engine to upgrade to.
+     */
+    inline UpdateBrokerResult& WithEngineVersion(Aws::String&& value) { SetEngineVersion(std::move(value)); return *this;}
+
+    /**
+     * The version of the broker engine to upgrade to.
+     */
+    inline UpdateBrokerResult& WithEngineVersion(const char* value) { SetEngineVersion(value); return *this;}
+
+
+    /**
+     * The list of information about logs to be enabled for the specified broker.
+     */
+    inline const Logs& GetLogs() const{ return m_logs; }
+
+    /**
+     * The list of information about logs to be enabled for the specified broker.
+     */
+    inline void SetLogs(const Logs& value) { m_logs = value; }
+
+    /**
+     * The list of information about logs to be enabled for the specified broker.
+     */
+    inline void SetLogs(Logs&& value) { m_logs = std::move(value); }
+
+    /**
+     * The list of information about logs to be enabled for the specified broker.
+     */
+    inline UpdateBrokerResult& WithLogs(const Logs& value) { SetLogs(value); return *this;}
+
+    /**
+     * The list of information about logs to be enabled for the specified broker.
+     */
+    inline UpdateBrokerResult& WithLogs(Logs&& value) { SetLogs(std::move(value)); return *this;}
+
   private:
+
+    bool m_autoMinorVersionUpgrade;
 
     Aws::String m_brokerId;
 
     ConfigurationId m_configuration;
+
+    Aws::String m_engineVersion;
+
+    Logs m_logs;
   };
 
 } // namespace Model

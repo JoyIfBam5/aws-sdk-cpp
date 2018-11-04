@@ -25,13 +25,15 @@ using namespace Aws::Utils;
 CreateImageBuilderRequest::CreateImageBuilderRequest() : 
     m_nameHasBeenSet(false),
     m_imageNameHasBeenSet(false),
+    m_imageArnHasBeenSet(false),
     m_instanceTypeHasBeenSet(false),
     m_descriptionHasBeenSet(false),
     m_displayNameHasBeenSet(false),
     m_vpcConfigHasBeenSet(false),
     m_enableDefaultInternetAccess(false),
     m_enableDefaultInternetAccessHasBeenSet(false),
-    m_domainJoinInfoHasBeenSet(false)
+    m_domainJoinInfoHasBeenSet(false),
+    m_appstreamAgentVersionHasBeenSet(false)
 {
 }
 
@@ -48,6 +50,12 @@ Aws::String CreateImageBuilderRequest::SerializePayload() const
   if(m_imageNameHasBeenSet)
   {
    payload.WithString("ImageName", m_imageName);
+
+  }
+
+  if(m_imageArnHasBeenSet)
+  {
+   payload.WithString("ImageArn", m_imageArn);
 
   }
 
@@ -87,7 +95,13 @@ Aws::String CreateImageBuilderRequest::SerializePayload() const
 
   }
 
-  return payload.WriteReadable();
+  if(m_appstreamAgentVersionHasBeenSet)
+  {
+   payload.WithString("AppstreamAgentVersion", m_appstreamAgentVersion);
+
+  }
+
+  return payload.View().WriteReadable();
 }
 
 Aws::Http::HeaderValueCollection CreateImageBuilderRequest::GetRequestSpecificHeaders() const

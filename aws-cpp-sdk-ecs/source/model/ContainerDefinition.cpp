@@ -31,6 +31,7 @@ namespace Model
 ContainerDefinition::ContainerDefinition() : 
     m_nameHasBeenSet(false),
     m_imageHasBeenSet(false),
+    m_repositoryCredentialsHasBeenSet(false),
     m_cpu(0),
     m_cpuHasBeenSet(false),
     m_memory(0),
@@ -60,15 +61,22 @@ ContainerDefinition::ContainerDefinition() :
     m_dnsSearchDomainsHasBeenSet(false),
     m_extraHostsHasBeenSet(false),
     m_dockerSecurityOptionsHasBeenSet(false),
+    m_interactive(false),
+    m_interactiveHasBeenSet(false),
+    m_pseudoTerminal(false),
+    m_pseudoTerminalHasBeenSet(false),
     m_dockerLabelsHasBeenSet(false),
     m_ulimitsHasBeenSet(false),
-    m_logConfigurationHasBeenSet(false)
+    m_logConfigurationHasBeenSet(false),
+    m_healthCheckHasBeenSet(false),
+    m_systemControlsHasBeenSet(false)
 {
 }
 
-ContainerDefinition::ContainerDefinition(const JsonValue& jsonValue) : 
+ContainerDefinition::ContainerDefinition(JsonView jsonValue) : 
     m_nameHasBeenSet(false),
     m_imageHasBeenSet(false),
+    m_repositoryCredentialsHasBeenSet(false),
     m_cpu(0),
     m_cpuHasBeenSet(false),
     m_memory(0),
@@ -98,14 +106,20 @@ ContainerDefinition::ContainerDefinition(const JsonValue& jsonValue) :
     m_dnsSearchDomainsHasBeenSet(false),
     m_extraHostsHasBeenSet(false),
     m_dockerSecurityOptionsHasBeenSet(false),
+    m_interactive(false),
+    m_interactiveHasBeenSet(false),
+    m_pseudoTerminal(false),
+    m_pseudoTerminalHasBeenSet(false),
     m_dockerLabelsHasBeenSet(false),
     m_ulimitsHasBeenSet(false),
-    m_logConfigurationHasBeenSet(false)
+    m_logConfigurationHasBeenSet(false),
+    m_healthCheckHasBeenSet(false),
+    m_systemControlsHasBeenSet(false)
 {
   *this = jsonValue;
 }
 
-ContainerDefinition& ContainerDefinition::operator =(const JsonValue& jsonValue)
+ContainerDefinition& ContainerDefinition::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("name"))
   {
@@ -119,6 +133,13 @@ ContainerDefinition& ContainerDefinition::operator =(const JsonValue& jsonValue)
     m_image = jsonValue.GetString("image");
 
     m_imageHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("repositoryCredentials"))
+  {
+    m_repositoryCredentials = jsonValue.GetObject("repositoryCredentials");
+
+    m_repositoryCredentialsHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("cpu"))
@@ -144,7 +165,7 @@ ContainerDefinition& ContainerDefinition::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("links"))
   {
-    Array<JsonValue> linksJsonList = jsonValue.GetArray("links");
+    Array<JsonView> linksJsonList = jsonValue.GetArray("links");
     for(unsigned linksIndex = 0; linksIndex < linksJsonList.GetLength(); ++linksIndex)
     {
       m_links.push_back(linksJsonList[linksIndex].AsString());
@@ -154,7 +175,7 @@ ContainerDefinition& ContainerDefinition::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("portMappings"))
   {
-    Array<JsonValue> portMappingsJsonList = jsonValue.GetArray("portMappings");
+    Array<JsonView> portMappingsJsonList = jsonValue.GetArray("portMappings");
     for(unsigned portMappingsIndex = 0; portMappingsIndex < portMappingsJsonList.GetLength(); ++portMappingsIndex)
     {
       m_portMappings.push_back(portMappingsJsonList[portMappingsIndex].AsObject());
@@ -171,7 +192,7 @@ ContainerDefinition& ContainerDefinition::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("entryPoint"))
   {
-    Array<JsonValue> entryPointJsonList = jsonValue.GetArray("entryPoint");
+    Array<JsonView> entryPointJsonList = jsonValue.GetArray("entryPoint");
     for(unsigned entryPointIndex = 0; entryPointIndex < entryPointJsonList.GetLength(); ++entryPointIndex)
     {
       m_entryPoint.push_back(entryPointJsonList[entryPointIndex].AsString());
@@ -181,7 +202,7 @@ ContainerDefinition& ContainerDefinition::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("command"))
   {
-    Array<JsonValue> commandJsonList = jsonValue.GetArray("command");
+    Array<JsonView> commandJsonList = jsonValue.GetArray("command");
     for(unsigned commandIndex = 0; commandIndex < commandJsonList.GetLength(); ++commandIndex)
     {
       m_command.push_back(commandJsonList[commandIndex].AsString());
@@ -191,7 +212,7 @@ ContainerDefinition& ContainerDefinition::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("environment"))
   {
-    Array<JsonValue> environmentJsonList = jsonValue.GetArray("environment");
+    Array<JsonView> environmentJsonList = jsonValue.GetArray("environment");
     for(unsigned environmentIndex = 0; environmentIndex < environmentJsonList.GetLength(); ++environmentIndex)
     {
       m_environment.push_back(environmentJsonList[environmentIndex].AsObject());
@@ -201,7 +222,7 @@ ContainerDefinition& ContainerDefinition::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("mountPoints"))
   {
-    Array<JsonValue> mountPointsJsonList = jsonValue.GetArray("mountPoints");
+    Array<JsonView> mountPointsJsonList = jsonValue.GetArray("mountPoints");
     for(unsigned mountPointsIndex = 0; mountPointsIndex < mountPointsJsonList.GetLength(); ++mountPointsIndex)
     {
       m_mountPoints.push_back(mountPointsJsonList[mountPointsIndex].AsObject());
@@ -211,7 +232,7 @@ ContainerDefinition& ContainerDefinition::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("volumesFrom"))
   {
-    Array<JsonValue> volumesFromJsonList = jsonValue.GetArray("volumesFrom");
+    Array<JsonView> volumesFromJsonList = jsonValue.GetArray("volumesFrom");
     for(unsigned volumesFromIndex = 0; volumesFromIndex < volumesFromJsonList.GetLength(); ++volumesFromIndex)
     {
       m_volumesFrom.push_back(volumesFromJsonList[volumesFromIndex].AsObject());
@@ -270,7 +291,7 @@ ContainerDefinition& ContainerDefinition::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("dnsServers"))
   {
-    Array<JsonValue> dnsServersJsonList = jsonValue.GetArray("dnsServers");
+    Array<JsonView> dnsServersJsonList = jsonValue.GetArray("dnsServers");
     for(unsigned dnsServersIndex = 0; dnsServersIndex < dnsServersJsonList.GetLength(); ++dnsServersIndex)
     {
       m_dnsServers.push_back(dnsServersJsonList[dnsServersIndex].AsString());
@@ -280,7 +301,7 @@ ContainerDefinition& ContainerDefinition::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("dnsSearchDomains"))
   {
-    Array<JsonValue> dnsSearchDomainsJsonList = jsonValue.GetArray("dnsSearchDomains");
+    Array<JsonView> dnsSearchDomainsJsonList = jsonValue.GetArray("dnsSearchDomains");
     for(unsigned dnsSearchDomainsIndex = 0; dnsSearchDomainsIndex < dnsSearchDomainsJsonList.GetLength(); ++dnsSearchDomainsIndex)
     {
       m_dnsSearchDomains.push_back(dnsSearchDomainsJsonList[dnsSearchDomainsIndex].AsString());
@@ -290,7 +311,7 @@ ContainerDefinition& ContainerDefinition::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("extraHosts"))
   {
-    Array<JsonValue> extraHostsJsonList = jsonValue.GetArray("extraHosts");
+    Array<JsonView> extraHostsJsonList = jsonValue.GetArray("extraHosts");
     for(unsigned extraHostsIndex = 0; extraHostsIndex < extraHostsJsonList.GetLength(); ++extraHostsIndex)
     {
       m_extraHosts.push_back(extraHostsJsonList[extraHostsIndex].AsObject());
@@ -300,7 +321,7 @@ ContainerDefinition& ContainerDefinition::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("dockerSecurityOptions"))
   {
-    Array<JsonValue> dockerSecurityOptionsJsonList = jsonValue.GetArray("dockerSecurityOptions");
+    Array<JsonView> dockerSecurityOptionsJsonList = jsonValue.GetArray("dockerSecurityOptions");
     for(unsigned dockerSecurityOptionsIndex = 0; dockerSecurityOptionsIndex < dockerSecurityOptionsJsonList.GetLength(); ++dockerSecurityOptionsIndex)
     {
       m_dockerSecurityOptions.push_back(dockerSecurityOptionsJsonList[dockerSecurityOptionsIndex].AsString());
@@ -308,9 +329,23 @@ ContainerDefinition& ContainerDefinition::operator =(const JsonValue& jsonValue)
     m_dockerSecurityOptionsHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("interactive"))
+  {
+    m_interactive = jsonValue.GetBool("interactive");
+
+    m_interactiveHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("pseudoTerminal"))
+  {
+    m_pseudoTerminal = jsonValue.GetBool("pseudoTerminal");
+
+    m_pseudoTerminalHasBeenSet = true;
+  }
+
   if(jsonValue.ValueExists("dockerLabels"))
   {
-    Aws::Map<Aws::String, JsonValue> dockerLabelsJsonMap = jsonValue.GetObject("dockerLabels").GetAllObjects();
+    Aws::Map<Aws::String, JsonView> dockerLabelsJsonMap = jsonValue.GetObject("dockerLabels").GetAllObjects();
     for(auto& dockerLabelsItem : dockerLabelsJsonMap)
     {
       m_dockerLabels[dockerLabelsItem.first] = dockerLabelsItem.second.AsString();
@@ -320,7 +355,7 @@ ContainerDefinition& ContainerDefinition::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("ulimits"))
   {
-    Array<JsonValue> ulimitsJsonList = jsonValue.GetArray("ulimits");
+    Array<JsonView> ulimitsJsonList = jsonValue.GetArray("ulimits");
     for(unsigned ulimitsIndex = 0; ulimitsIndex < ulimitsJsonList.GetLength(); ++ulimitsIndex)
     {
       m_ulimits.push_back(ulimitsJsonList[ulimitsIndex].AsObject());
@@ -333,6 +368,23 @@ ContainerDefinition& ContainerDefinition::operator =(const JsonValue& jsonValue)
     m_logConfiguration = jsonValue.GetObject("logConfiguration");
 
     m_logConfigurationHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("healthCheck"))
+  {
+    m_healthCheck = jsonValue.GetObject("healthCheck");
+
+    m_healthCheckHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("systemControls"))
+  {
+    Array<JsonView> systemControlsJsonList = jsonValue.GetArray("systemControls");
+    for(unsigned systemControlsIndex = 0; systemControlsIndex < systemControlsJsonList.GetLength(); ++systemControlsIndex)
+    {
+      m_systemControls.push_back(systemControlsJsonList[systemControlsIndex].AsObject());
+    }
+    m_systemControlsHasBeenSet = true;
   }
 
   return *this;
@@ -351,6 +403,12 @@ JsonValue ContainerDefinition::Jsonize() const
   if(m_imageHasBeenSet)
   {
    payload.WithString("image", m_image);
+
+  }
+
+  if(m_repositoryCredentialsHasBeenSet)
+  {
+   payload.WithObject("repositoryCredentials", m_repositoryCredentials.Jsonize());
 
   }
 
@@ -541,6 +599,18 @@ JsonValue ContainerDefinition::Jsonize() const
 
   }
 
+  if(m_interactiveHasBeenSet)
+  {
+   payload.WithBool("interactive", m_interactive);
+
+  }
+
+  if(m_pseudoTerminalHasBeenSet)
+  {
+   payload.WithBool("pseudoTerminal", m_pseudoTerminal);
+
+  }
+
   if(m_dockerLabelsHasBeenSet)
   {
    JsonValue dockerLabelsJsonMap;
@@ -566,6 +636,23 @@ JsonValue ContainerDefinition::Jsonize() const
   if(m_logConfigurationHasBeenSet)
   {
    payload.WithObject("logConfiguration", m_logConfiguration.Jsonize());
+
+  }
+
+  if(m_healthCheckHasBeenSet)
+  {
+   payload.WithObject("healthCheck", m_healthCheck.Jsonize());
+
+  }
+
+  if(m_systemControlsHasBeenSet)
+  {
+   Array<JsonValue> systemControlsJsonList(m_systemControls.size());
+   for(unsigned systemControlsIndex = 0; systemControlsIndex < systemControlsJsonList.GetLength(); ++systemControlsIndex)
+   {
+     systemControlsJsonList[systemControlsIndex].AsObject(m_systemControls[systemControlsIndex].Jsonize());
+   }
+   payload.WithArray("systemControls", std::move(systemControlsJsonList));
 
   }
 

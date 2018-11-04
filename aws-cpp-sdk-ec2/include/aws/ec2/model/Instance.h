@@ -31,6 +31,8 @@
 #include <aws/ec2/model/DeviceType.h>
 #include <aws/ec2/model/StateReason.h>
 #include <aws/ec2/model/VirtualizationType.h>
+#include <aws/ec2/model/CpuOptions.h>
+#include <aws/ec2/model/CapacityReservationSpecificationResponse.h>
 #include <aws/ec2/model/ProductCode.h>
 #include <aws/ec2/model/InstanceBlockDeviceMapping.h>
 #include <aws/ec2/model/ElasticGpuAssociation.h>
@@ -1391,6 +1393,94 @@ namespace Model
      */
     inline Instance& WithVirtualizationType(VirtualizationType&& value) { SetVirtualizationType(std::move(value)); return *this;}
 
+
+    /**
+     * <p>The CPU options for the instance.</p>
+     */
+    inline const CpuOptions& GetCpuOptions() const{ return m_cpuOptions; }
+
+    /**
+     * <p>The CPU options for the instance.</p>
+     */
+    inline void SetCpuOptions(const CpuOptions& value) { m_cpuOptionsHasBeenSet = true; m_cpuOptions = value; }
+
+    /**
+     * <p>The CPU options for the instance.</p>
+     */
+    inline void SetCpuOptions(CpuOptions&& value) { m_cpuOptionsHasBeenSet = true; m_cpuOptions = std::move(value); }
+
+    /**
+     * <p>The CPU options for the instance.</p>
+     */
+    inline Instance& WithCpuOptions(const CpuOptions& value) { SetCpuOptions(value); return *this;}
+
+    /**
+     * <p>The CPU options for the instance.</p>
+     */
+    inline Instance& WithCpuOptions(CpuOptions&& value) { SetCpuOptions(std::move(value)); return *this;}
+
+
+    /**
+     * <p>The ID of the Capacity Reservation.</p>
+     */
+    inline const Aws::String& GetCapacityReservationId() const{ return m_capacityReservationId; }
+
+    /**
+     * <p>The ID of the Capacity Reservation.</p>
+     */
+    inline void SetCapacityReservationId(const Aws::String& value) { m_capacityReservationIdHasBeenSet = true; m_capacityReservationId = value; }
+
+    /**
+     * <p>The ID of the Capacity Reservation.</p>
+     */
+    inline void SetCapacityReservationId(Aws::String&& value) { m_capacityReservationIdHasBeenSet = true; m_capacityReservationId = std::move(value); }
+
+    /**
+     * <p>The ID of the Capacity Reservation.</p>
+     */
+    inline void SetCapacityReservationId(const char* value) { m_capacityReservationIdHasBeenSet = true; m_capacityReservationId.assign(value); }
+
+    /**
+     * <p>The ID of the Capacity Reservation.</p>
+     */
+    inline Instance& WithCapacityReservationId(const Aws::String& value) { SetCapacityReservationId(value); return *this;}
+
+    /**
+     * <p>The ID of the Capacity Reservation.</p>
+     */
+    inline Instance& WithCapacityReservationId(Aws::String&& value) { SetCapacityReservationId(std::move(value)); return *this;}
+
+    /**
+     * <p>The ID of the Capacity Reservation.</p>
+     */
+    inline Instance& WithCapacityReservationId(const char* value) { SetCapacityReservationId(value); return *this;}
+
+
+    /**
+     * <p>Information about the Capacity Reservation targeting option.</p>
+     */
+    inline const CapacityReservationSpecificationResponse& GetCapacityReservationSpecification() const{ return m_capacityReservationSpecification; }
+
+    /**
+     * <p>Information about the Capacity Reservation targeting option.</p>
+     */
+    inline void SetCapacityReservationSpecification(const CapacityReservationSpecificationResponse& value) { m_capacityReservationSpecificationHasBeenSet = true; m_capacityReservationSpecification = value; }
+
+    /**
+     * <p>Information about the Capacity Reservation targeting option.</p>
+     */
+    inline void SetCapacityReservationSpecification(CapacityReservationSpecificationResponse&& value) { m_capacityReservationSpecificationHasBeenSet = true; m_capacityReservationSpecification = std::move(value); }
+
+    /**
+     * <p>Information about the Capacity Reservation targeting option.</p>
+     */
+    inline Instance& WithCapacityReservationSpecification(const CapacityReservationSpecificationResponse& value) { SetCapacityReservationSpecification(value); return *this;}
+
+    /**
+     * <p>Information about the Capacity Reservation targeting option.</p>
+     */
+    inline Instance& WithCapacityReservationSpecification(CapacityReservationSpecificationResponse&& value) { SetCapacityReservationSpecification(std::move(value)); return *this;}
+
   private:
 
     int m_amiLaunchIndex;
@@ -1509,6 +1599,15 @@ namespace Model
 
     VirtualizationType m_virtualizationType;
     bool m_virtualizationTypeHasBeenSet;
+
+    CpuOptions m_cpuOptions;
+    bool m_cpuOptionsHasBeenSet;
+
+    Aws::String m_capacityReservationId;
+    bool m_capacityReservationIdHasBeenSet;
+
+    CapacityReservationSpecificationResponse m_capacityReservationSpecification;
+    bool m_capacityReservationSpecificationHasBeenSet;
   };
 
 } // namespace Model

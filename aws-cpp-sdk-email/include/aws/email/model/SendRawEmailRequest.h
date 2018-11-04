@@ -58,105 +58,168 @@ namespace Model
     /**
      * <p>The identity's email address. If you do not provide a value for this
      * parameter, you must specify a "From" address in the raw text of the message.
-     * (You can also specify both.)</p> <p> By default, the string must be 7-bit ASCII.
-     * If the text must contain any other characters, then you must use MIME
-     * encoded-word syntax (RFC 2047) instead of a literal string. MIME encoded-word
-     * syntax uses the following form: <code>=?charset?encoding?encoded-text?=</code>.
-     * For more information, see <a href="https://tools.ietf.org/html/rfc2047">RFC
-     * 2047</a>. </p> <note> <p>If you specify the <code>Source</code> parameter and
-     * have feedback forwarding enabled, then bounces and complaints will be sent to
-     * this email address. This takes precedence over any Return-Path header that you
-     * might include in the raw text of the message.</p> </note>
+     * (You can also specify both.)</p> <note> <p>Amazon SES does not support the
+     * SMTPUTF8 extension, as described in<a
+     * href="https://tools.ietf.org/html/rfc6531">RFC6531</a>. For this reason, the
+     * <i>local part</i> of a source email address (the part of the email address that
+     * precedes the @ sign) may only contain <a
+     * href="https://en.wikipedia.org/wiki/Email_address#Local-part">7-bit ASCII
+     * characters</a>. If the <i>domain part</i> of an address (the part after the @
+     * sign) contains non-ASCII characters, they must be encoded using Punycode, as
+     * described in <a href="https://tools.ietf.org/html/rfc3492.html">RFC3492</a>. The
+     * sender name (also known as the <i>friendly name</i>) may contain non-ASCII
+     * characters. These characters must be encoded using MIME encoded-word syntax, as
+     * described in <a href="https://tools.ietf.org/html/rfc2047">RFC 2047</a>. MIME
+     * encoded-word syntax uses the following form:
+     * <code>=?charset?encoding?encoded-text?=</code>.</p> </note> <p>If you specify
+     * the <code>Source</code> parameter and have feedback forwarding enabled, then
+     * bounces and complaints will be sent to this email address. This takes precedence
+     * over any Return-Path header that you might include in the raw text of the
+     * message.</p>
      */
     inline const Aws::String& GetSource() const{ return m_source; }
 
     /**
      * <p>The identity's email address. If you do not provide a value for this
      * parameter, you must specify a "From" address in the raw text of the message.
-     * (You can also specify both.)</p> <p> By default, the string must be 7-bit ASCII.
-     * If the text must contain any other characters, then you must use MIME
-     * encoded-word syntax (RFC 2047) instead of a literal string. MIME encoded-word
-     * syntax uses the following form: <code>=?charset?encoding?encoded-text?=</code>.
-     * For more information, see <a href="https://tools.ietf.org/html/rfc2047">RFC
-     * 2047</a>. </p> <note> <p>If you specify the <code>Source</code> parameter and
-     * have feedback forwarding enabled, then bounces and complaints will be sent to
-     * this email address. This takes precedence over any Return-Path header that you
-     * might include in the raw text of the message.</p> </note>
+     * (You can also specify both.)</p> <note> <p>Amazon SES does not support the
+     * SMTPUTF8 extension, as described in<a
+     * href="https://tools.ietf.org/html/rfc6531">RFC6531</a>. For this reason, the
+     * <i>local part</i> of a source email address (the part of the email address that
+     * precedes the @ sign) may only contain <a
+     * href="https://en.wikipedia.org/wiki/Email_address#Local-part">7-bit ASCII
+     * characters</a>. If the <i>domain part</i> of an address (the part after the @
+     * sign) contains non-ASCII characters, they must be encoded using Punycode, as
+     * described in <a href="https://tools.ietf.org/html/rfc3492.html">RFC3492</a>. The
+     * sender name (also known as the <i>friendly name</i>) may contain non-ASCII
+     * characters. These characters must be encoded using MIME encoded-word syntax, as
+     * described in <a href="https://tools.ietf.org/html/rfc2047">RFC 2047</a>. MIME
+     * encoded-word syntax uses the following form:
+     * <code>=?charset?encoding?encoded-text?=</code>.</p> </note> <p>If you specify
+     * the <code>Source</code> parameter and have feedback forwarding enabled, then
+     * bounces and complaints will be sent to this email address. This takes precedence
+     * over any Return-Path header that you might include in the raw text of the
+     * message.</p>
      */
     inline void SetSource(const Aws::String& value) { m_sourceHasBeenSet = true; m_source = value; }
 
     /**
      * <p>The identity's email address. If you do not provide a value for this
      * parameter, you must specify a "From" address in the raw text of the message.
-     * (You can also specify both.)</p> <p> By default, the string must be 7-bit ASCII.
-     * If the text must contain any other characters, then you must use MIME
-     * encoded-word syntax (RFC 2047) instead of a literal string. MIME encoded-word
-     * syntax uses the following form: <code>=?charset?encoding?encoded-text?=</code>.
-     * For more information, see <a href="https://tools.ietf.org/html/rfc2047">RFC
-     * 2047</a>. </p> <note> <p>If you specify the <code>Source</code> parameter and
-     * have feedback forwarding enabled, then bounces and complaints will be sent to
-     * this email address. This takes precedence over any Return-Path header that you
-     * might include in the raw text of the message.</p> </note>
+     * (You can also specify both.)</p> <note> <p>Amazon SES does not support the
+     * SMTPUTF8 extension, as described in<a
+     * href="https://tools.ietf.org/html/rfc6531">RFC6531</a>. For this reason, the
+     * <i>local part</i> of a source email address (the part of the email address that
+     * precedes the @ sign) may only contain <a
+     * href="https://en.wikipedia.org/wiki/Email_address#Local-part">7-bit ASCII
+     * characters</a>. If the <i>domain part</i> of an address (the part after the @
+     * sign) contains non-ASCII characters, they must be encoded using Punycode, as
+     * described in <a href="https://tools.ietf.org/html/rfc3492.html">RFC3492</a>. The
+     * sender name (also known as the <i>friendly name</i>) may contain non-ASCII
+     * characters. These characters must be encoded using MIME encoded-word syntax, as
+     * described in <a href="https://tools.ietf.org/html/rfc2047">RFC 2047</a>. MIME
+     * encoded-word syntax uses the following form:
+     * <code>=?charset?encoding?encoded-text?=</code>.</p> </note> <p>If you specify
+     * the <code>Source</code> parameter and have feedback forwarding enabled, then
+     * bounces and complaints will be sent to this email address. This takes precedence
+     * over any Return-Path header that you might include in the raw text of the
+     * message.</p>
      */
     inline void SetSource(Aws::String&& value) { m_sourceHasBeenSet = true; m_source = std::move(value); }
 
     /**
      * <p>The identity's email address. If you do not provide a value for this
      * parameter, you must specify a "From" address in the raw text of the message.
-     * (You can also specify both.)</p> <p> By default, the string must be 7-bit ASCII.
-     * If the text must contain any other characters, then you must use MIME
-     * encoded-word syntax (RFC 2047) instead of a literal string. MIME encoded-word
-     * syntax uses the following form: <code>=?charset?encoding?encoded-text?=</code>.
-     * For more information, see <a href="https://tools.ietf.org/html/rfc2047">RFC
-     * 2047</a>. </p> <note> <p>If you specify the <code>Source</code> parameter and
-     * have feedback forwarding enabled, then bounces and complaints will be sent to
-     * this email address. This takes precedence over any Return-Path header that you
-     * might include in the raw text of the message.</p> </note>
+     * (You can also specify both.)</p> <note> <p>Amazon SES does not support the
+     * SMTPUTF8 extension, as described in<a
+     * href="https://tools.ietf.org/html/rfc6531">RFC6531</a>. For this reason, the
+     * <i>local part</i> of a source email address (the part of the email address that
+     * precedes the @ sign) may only contain <a
+     * href="https://en.wikipedia.org/wiki/Email_address#Local-part">7-bit ASCII
+     * characters</a>. If the <i>domain part</i> of an address (the part after the @
+     * sign) contains non-ASCII characters, they must be encoded using Punycode, as
+     * described in <a href="https://tools.ietf.org/html/rfc3492.html">RFC3492</a>. The
+     * sender name (also known as the <i>friendly name</i>) may contain non-ASCII
+     * characters. These characters must be encoded using MIME encoded-word syntax, as
+     * described in <a href="https://tools.ietf.org/html/rfc2047">RFC 2047</a>. MIME
+     * encoded-word syntax uses the following form:
+     * <code>=?charset?encoding?encoded-text?=</code>.</p> </note> <p>If you specify
+     * the <code>Source</code> parameter and have feedback forwarding enabled, then
+     * bounces and complaints will be sent to this email address. This takes precedence
+     * over any Return-Path header that you might include in the raw text of the
+     * message.</p>
      */
     inline void SetSource(const char* value) { m_sourceHasBeenSet = true; m_source.assign(value); }
 
     /**
      * <p>The identity's email address. If you do not provide a value for this
      * parameter, you must specify a "From" address in the raw text of the message.
-     * (You can also specify both.)</p> <p> By default, the string must be 7-bit ASCII.
-     * If the text must contain any other characters, then you must use MIME
-     * encoded-word syntax (RFC 2047) instead of a literal string. MIME encoded-word
-     * syntax uses the following form: <code>=?charset?encoding?encoded-text?=</code>.
-     * For more information, see <a href="https://tools.ietf.org/html/rfc2047">RFC
-     * 2047</a>. </p> <note> <p>If you specify the <code>Source</code> parameter and
-     * have feedback forwarding enabled, then bounces and complaints will be sent to
-     * this email address. This takes precedence over any Return-Path header that you
-     * might include in the raw text of the message.</p> </note>
+     * (You can also specify both.)</p> <note> <p>Amazon SES does not support the
+     * SMTPUTF8 extension, as described in<a
+     * href="https://tools.ietf.org/html/rfc6531">RFC6531</a>. For this reason, the
+     * <i>local part</i> of a source email address (the part of the email address that
+     * precedes the @ sign) may only contain <a
+     * href="https://en.wikipedia.org/wiki/Email_address#Local-part">7-bit ASCII
+     * characters</a>. If the <i>domain part</i> of an address (the part after the @
+     * sign) contains non-ASCII characters, they must be encoded using Punycode, as
+     * described in <a href="https://tools.ietf.org/html/rfc3492.html">RFC3492</a>. The
+     * sender name (also known as the <i>friendly name</i>) may contain non-ASCII
+     * characters. These characters must be encoded using MIME encoded-word syntax, as
+     * described in <a href="https://tools.ietf.org/html/rfc2047">RFC 2047</a>. MIME
+     * encoded-word syntax uses the following form:
+     * <code>=?charset?encoding?encoded-text?=</code>.</p> </note> <p>If you specify
+     * the <code>Source</code> parameter and have feedback forwarding enabled, then
+     * bounces and complaints will be sent to this email address. This takes precedence
+     * over any Return-Path header that you might include in the raw text of the
+     * message.</p>
      */
     inline SendRawEmailRequest& WithSource(const Aws::String& value) { SetSource(value); return *this;}
 
     /**
      * <p>The identity's email address. If you do not provide a value for this
      * parameter, you must specify a "From" address in the raw text of the message.
-     * (You can also specify both.)</p> <p> By default, the string must be 7-bit ASCII.
-     * If the text must contain any other characters, then you must use MIME
-     * encoded-word syntax (RFC 2047) instead of a literal string. MIME encoded-word
-     * syntax uses the following form: <code>=?charset?encoding?encoded-text?=</code>.
-     * For more information, see <a href="https://tools.ietf.org/html/rfc2047">RFC
-     * 2047</a>. </p> <note> <p>If you specify the <code>Source</code> parameter and
-     * have feedback forwarding enabled, then bounces and complaints will be sent to
-     * this email address. This takes precedence over any Return-Path header that you
-     * might include in the raw text of the message.</p> </note>
+     * (You can also specify both.)</p> <note> <p>Amazon SES does not support the
+     * SMTPUTF8 extension, as described in<a
+     * href="https://tools.ietf.org/html/rfc6531">RFC6531</a>. For this reason, the
+     * <i>local part</i> of a source email address (the part of the email address that
+     * precedes the @ sign) may only contain <a
+     * href="https://en.wikipedia.org/wiki/Email_address#Local-part">7-bit ASCII
+     * characters</a>. If the <i>domain part</i> of an address (the part after the @
+     * sign) contains non-ASCII characters, they must be encoded using Punycode, as
+     * described in <a href="https://tools.ietf.org/html/rfc3492.html">RFC3492</a>. The
+     * sender name (also known as the <i>friendly name</i>) may contain non-ASCII
+     * characters. These characters must be encoded using MIME encoded-word syntax, as
+     * described in <a href="https://tools.ietf.org/html/rfc2047">RFC 2047</a>. MIME
+     * encoded-word syntax uses the following form:
+     * <code>=?charset?encoding?encoded-text?=</code>.</p> </note> <p>If you specify
+     * the <code>Source</code> parameter and have feedback forwarding enabled, then
+     * bounces and complaints will be sent to this email address. This takes precedence
+     * over any Return-Path header that you might include in the raw text of the
+     * message.</p>
      */
     inline SendRawEmailRequest& WithSource(Aws::String&& value) { SetSource(std::move(value)); return *this;}
 
     /**
      * <p>The identity's email address. If you do not provide a value for this
      * parameter, you must specify a "From" address in the raw text of the message.
-     * (You can also specify both.)</p> <p> By default, the string must be 7-bit ASCII.
-     * If the text must contain any other characters, then you must use MIME
-     * encoded-word syntax (RFC 2047) instead of a literal string. MIME encoded-word
-     * syntax uses the following form: <code>=?charset?encoding?encoded-text?=</code>.
-     * For more information, see <a href="https://tools.ietf.org/html/rfc2047">RFC
-     * 2047</a>. </p> <note> <p>If you specify the <code>Source</code> parameter and
-     * have feedback forwarding enabled, then bounces and complaints will be sent to
-     * this email address. This takes precedence over any Return-Path header that you
-     * might include in the raw text of the message.</p> </note>
+     * (You can also specify both.)</p> <note> <p>Amazon SES does not support the
+     * SMTPUTF8 extension, as described in<a
+     * href="https://tools.ietf.org/html/rfc6531">RFC6531</a>. For this reason, the
+     * <i>local part</i> of a source email address (the part of the email address that
+     * precedes the @ sign) may only contain <a
+     * href="https://en.wikipedia.org/wiki/Email_address#Local-part">7-bit ASCII
+     * characters</a>. If the <i>domain part</i> of an address (the part after the @
+     * sign) contains non-ASCII characters, they must be encoded using Punycode, as
+     * described in <a href="https://tools.ietf.org/html/rfc3492.html">RFC3492</a>. The
+     * sender name (also known as the <i>friendly name</i>) may contain non-ASCII
+     * characters. These characters must be encoded using MIME encoded-word syntax, as
+     * described in <a href="https://tools.ietf.org/html/rfc2047">RFC 2047</a>. MIME
+     * encoded-word syntax uses the following form:
+     * <code>=?charset?encoding?encoded-text?=</code>.</p> </note> <p>If you specify
+     * the <code>Source</code> parameter and have feedback forwarding enabled, then
+     * bounces and complaints will be sent to this email address. This takes precedence
+     * over any Return-Path header that you might include in the raw text of the
+     * message.</p>
      */
     inline SendRawEmailRequest& WithSource(const char* value) { SetSource(value); return *this;}
 
@@ -211,77 +274,112 @@ namespace Model
 
 
     /**
-     * <p>The raw text of the message. The client is responsible for ensuring the
-     * following:</p> <ul> <li> <p>Message must contain a header and a body, separated
-     * by a blank line.</p> </li> <li> <p>All required header fields must be
-     * present.</p> </li> <li> <p>Each part of a multipart MIME message must be
-     * formatted properly.</p> </li> <li> <p>MIME content types must be among those
-     * supported by Amazon SES. For more information, go to the <a
-     * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html">Amazon
-     * SES Developer Guide</a>.</p> </li> <li> <p>Must be base64-encoded.</p> </li>
-     * <li> <p>Per <a href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC
-     * 5321</a>, the maximum length of each line of text, including the &lt;CRLF&gt;,
-     * must not exceed 1,000 characters.</p> </li> </ul>
+     * <p>The raw email message itself. The message has to meet the following
+     * criteria:</p> <ul> <li> <p>The message has to contain a header and a body,
+     * separated by a blank line.</p> </li> <li> <p>All of the required header fields
+     * must be present in the message.</p> </li> <li> <p>Each part of a multipart MIME
+     * message must be formatted properly.</p> </li> <li> <p>Attachments must be of a
+     * content type that Amazon SES supports. For a list on unsupported content types,
+     * see <a
+     * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html">Unsupported
+     * Attachment Types</a> in the <i>Amazon SES Developer Guide</i>.</p> </li> <li>
+     * <p>The entire message must be base64-encoded.</p> </li> <li> <p>If any of the
+     * MIME parts in your message contain content that is outside of the 7-bit ASCII
+     * character range, we highly recommend that you encode that content. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html">Sending
+     * Raw Email</a> in the <i>Amazon SES Developer Guide</i>.</p> </li> <li> <p>Per <a
+     * href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC 5321</a>, the
+     * maximum length of each line of text, including the &lt;CRLF&gt;, must not exceed
+     * 1,000 characters.</p> </li> </ul>
      */
     inline const RawMessage& GetRawMessage() const{ return m_rawMessage; }
 
     /**
-     * <p>The raw text of the message. The client is responsible for ensuring the
-     * following:</p> <ul> <li> <p>Message must contain a header and a body, separated
-     * by a blank line.</p> </li> <li> <p>All required header fields must be
-     * present.</p> </li> <li> <p>Each part of a multipart MIME message must be
-     * formatted properly.</p> </li> <li> <p>MIME content types must be among those
-     * supported by Amazon SES. For more information, go to the <a
-     * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html">Amazon
-     * SES Developer Guide</a>.</p> </li> <li> <p>Must be base64-encoded.</p> </li>
-     * <li> <p>Per <a href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC
-     * 5321</a>, the maximum length of each line of text, including the &lt;CRLF&gt;,
-     * must not exceed 1,000 characters.</p> </li> </ul>
+     * <p>The raw email message itself. The message has to meet the following
+     * criteria:</p> <ul> <li> <p>The message has to contain a header and a body,
+     * separated by a blank line.</p> </li> <li> <p>All of the required header fields
+     * must be present in the message.</p> </li> <li> <p>Each part of a multipart MIME
+     * message must be formatted properly.</p> </li> <li> <p>Attachments must be of a
+     * content type that Amazon SES supports. For a list on unsupported content types,
+     * see <a
+     * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html">Unsupported
+     * Attachment Types</a> in the <i>Amazon SES Developer Guide</i>.</p> </li> <li>
+     * <p>The entire message must be base64-encoded.</p> </li> <li> <p>If any of the
+     * MIME parts in your message contain content that is outside of the 7-bit ASCII
+     * character range, we highly recommend that you encode that content. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html">Sending
+     * Raw Email</a> in the <i>Amazon SES Developer Guide</i>.</p> </li> <li> <p>Per <a
+     * href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC 5321</a>, the
+     * maximum length of each line of text, including the &lt;CRLF&gt;, must not exceed
+     * 1,000 characters.</p> </li> </ul>
      */
     inline void SetRawMessage(const RawMessage& value) { m_rawMessageHasBeenSet = true; m_rawMessage = value; }
 
     /**
-     * <p>The raw text of the message. The client is responsible for ensuring the
-     * following:</p> <ul> <li> <p>Message must contain a header and a body, separated
-     * by a blank line.</p> </li> <li> <p>All required header fields must be
-     * present.</p> </li> <li> <p>Each part of a multipart MIME message must be
-     * formatted properly.</p> </li> <li> <p>MIME content types must be among those
-     * supported by Amazon SES. For more information, go to the <a
-     * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html">Amazon
-     * SES Developer Guide</a>.</p> </li> <li> <p>Must be base64-encoded.</p> </li>
-     * <li> <p>Per <a href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC
-     * 5321</a>, the maximum length of each line of text, including the &lt;CRLF&gt;,
-     * must not exceed 1,000 characters.</p> </li> </ul>
+     * <p>The raw email message itself. The message has to meet the following
+     * criteria:</p> <ul> <li> <p>The message has to contain a header and a body,
+     * separated by a blank line.</p> </li> <li> <p>All of the required header fields
+     * must be present in the message.</p> </li> <li> <p>Each part of a multipart MIME
+     * message must be formatted properly.</p> </li> <li> <p>Attachments must be of a
+     * content type that Amazon SES supports. For a list on unsupported content types,
+     * see <a
+     * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html">Unsupported
+     * Attachment Types</a> in the <i>Amazon SES Developer Guide</i>.</p> </li> <li>
+     * <p>The entire message must be base64-encoded.</p> </li> <li> <p>If any of the
+     * MIME parts in your message contain content that is outside of the 7-bit ASCII
+     * character range, we highly recommend that you encode that content. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html">Sending
+     * Raw Email</a> in the <i>Amazon SES Developer Guide</i>.</p> </li> <li> <p>Per <a
+     * href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC 5321</a>, the
+     * maximum length of each line of text, including the &lt;CRLF&gt;, must not exceed
+     * 1,000 characters.</p> </li> </ul>
      */
     inline void SetRawMessage(RawMessage&& value) { m_rawMessageHasBeenSet = true; m_rawMessage = std::move(value); }
 
     /**
-     * <p>The raw text of the message. The client is responsible for ensuring the
-     * following:</p> <ul> <li> <p>Message must contain a header and a body, separated
-     * by a blank line.</p> </li> <li> <p>All required header fields must be
-     * present.</p> </li> <li> <p>Each part of a multipart MIME message must be
-     * formatted properly.</p> </li> <li> <p>MIME content types must be among those
-     * supported by Amazon SES. For more information, go to the <a
-     * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html">Amazon
-     * SES Developer Guide</a>.</p> </li> <li> <p>Must be base64-encoded.</p> </li>
-     * <li> <p>Per <a href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC
-     * 5321</a>, the maximum length of each line of text, including the &lt;CRLF&gt;,
-     * must not exceed 1,000 characters.</p> </li> </ul>
+     * <p>The raw email message itself. The message has to meet the following
+     * criteria:</p> <ul> <li> <p>The message has to contain a header and a body,
+     * separated by a blank line.</p> </li> <li> <p>All of the required header fields
+     * must be present in the message.</p> </li> <li> <p>Each part of a multipart MIME
+     * message must be formatted properly.</p> </li> <li> <p>Attachments must be of a
+     * content type that Amazon SES supports. For a list on unsupported content types,
+     * see <a
+     * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html">Unsupported
+     * Attachment Types</a> in the <i>Amazon SES Developer Guide</i>.</p> </li> <li>
+     * <p>The entire message must be base64-encoded.</p> </li> <li> <p>If any of the
+     * MIME parts in your message contain content that is outside of the 7-bit ASCII
+     * character range, we highly recommend that you encode that content. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html">Sending
+     * Raw Email</a> in the <i>Amazon SES Developer Guide</i>.</p> </li> <li> <p>Per <a
+     * href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC 5321</a>, the
+     * maximum length of each line of text, including the &lt;CRLF&gt;, must not exceed
+     * 1,000 characters.</p> </li> </ul>
      */
     inline SendRawEmailRequest& WithRawMessage(const RawMessage& value) { SetRawMessage(value); return *this;}
 
     /**
-     * <p>The raw text of the message. The client is responsible for ensuring the
-     * following:</p> <ul> <li> <p>Message must contain a header and a body, separated
-     * by a blank line.</p> </li> <li> <p>All required header fields must be
-     * present.</p> </li> <li> <p>Each part of a multipart MIME message must be
-     * formatted properly.</p> </li> <li> <p>MIME content types must be among those
-     * supported by Amazon SES. For more information, go to the <a
-     * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html">Amazon
-     * SES Developer Guide</a>.</p> </li> <li> <p>Must be base64-encoded.</p> </li>
-     * <li> <p>Per <a href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC
-     * 5321</a>, the maximum length of each line of text, including the &lt;CRLF&gt;,
-     * must not exceed 1,000 characters.</p> </li> </ul>
+     * <p>The raw email message itself. The message has to meet the following
+     * criteria:</p> <ul> <li> <p>The message has to contain a header and a body,
+     * separated by a blank line.</p> </li> <li> <p>All of the required header fields
+     * must be present in the message.</p> </li> <li> <p>Each part of a multipart MIME
+     * message must be formatted properly.</p> </li> <li> <p>Attachments must be of a
+     * content type that Amazon SES supports. For a list on unsupported content types,
+     * see <a
+     * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html">Unsupported
+     * Attachment Types</a> in the <i>Amazon SES Developer Guide</i>.</p> </li> <li>
+     * <p>The entire message must be base64-encoded.</p> </li> <li> <p>If any of the
+     * MIME parts in your message contain content that is outside of the 7-bit ASCII
+     * character range, we highly recommend that you encode that content. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html">Sending
+     * Raw Email</a> in the <i>Amazon SES Developer Guide</i>.</p> </li> <li> <p>Per <a
+     * href="https://tools.ietf.org/html/rfc5321#section-4.5.3.1.6">RFC 5321</a>, the
+     * maximum length of each line of text, including the &lt;CRLF&gt;, must not exceed
+     * 1,000 characters.</p> </li> </ul>
      */
     inline SendRawEmailRequest& WithRawMessage(RawMessage&& value) { SetRawMessage(std::move(value)); return *this;}
 

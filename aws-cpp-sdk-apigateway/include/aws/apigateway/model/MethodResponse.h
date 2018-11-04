@@ -26,6 +26,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace APIGateway
@@ -47,7 +48,7 @@ namespace Model
    * SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}</code></pre>
    * <h5>Response</h5> <p>The successful response returns <code>200 OK</code> status
    * and a payload as follows:</p> <pre><code>{ "_links": { "curies": { "href":
-   * "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
+   * "https://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
    * "name": "methodresponse", "templated": true }, "self": { "href":
    * "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200", "title":
    * "200" }, "methodresponse:delete": { "href":
@@ -58,7 +59,7 @@ namespace Model
    * "method.response.header.Content-Type": false }, "statusCode": "200"
    * }</code></pre> <p/> </div> <div class="seeAlso"> <a>Method</a>,
    * <a>IntegrationResponse</a>, <a>Integration</a> <a
-   * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html">Creating
+   * href="https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html">Creating
    * an API</a> </div><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/MethodResponse">AWS
    * API Reference</a></p>
@@ -67,8 +68,8 @@ namespace Model
   {
   public:
     MethodResponse();
-    MethodResponse(const Aws::Utils::Json::JsonValue& jsonValue);
-    MethodResponse& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    MethodResponse(Aws::Utils::Json::JsonView jsonValue);
+    MethodResponse& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 

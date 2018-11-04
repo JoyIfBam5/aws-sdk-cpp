@@ -37,7 +37,7 @@ DescribeEndpointConfigResult::DescribeEndpointConfigResult(const Aws::AmazonWebS
 
 DescribeEndpointConfigResult& DescribeEndpointConfigResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
-  const JsonValue& jsonValue = result.GetPayload();
+  JsonView jsonValue = result.GetPayload().View();
   if(jsonValue.ValueExists("EndpointConfigName"))
   {
     m_endpointConfigName = jsonValue.GetString("EndpointConfigName");
@@ -52,11 +52,17 @@ DescribeEndpointConfigResult& DescribeEndpointConfigResult::operator =(const Aws
 
   if(jsonValue.ValueExists("ProductionVariants"))
   {
-    Array<JsonValue> productionVariantsJsonList = jsonValue.GetArray("ProductionVariants");
+    Array<JsonView> productionVariantsJsonList = jsonValue.GetArray("ProductionVariants");
     for(unsigned productionVariantsIndex = 0; productionVariantsIndex < productionVariantsJsonList.GetLength(); ++productionVariantsIndex)
     {
       m_productionVariants.push_back(productionVariantsJsonList[productionVariantsIndex].AsObject());
     }
+  }
+
+  if(jsonValue.ValueExists("KmsKeyId"))
+  {
+    m_kmsKeyId = jsonValue.GetString("KmsKeyId");
+
   }
 
   if(jsonValue.ValueExists("CreationTime"))

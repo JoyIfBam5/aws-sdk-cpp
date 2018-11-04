@@ -36,11 +36,14 @@ AssessmentTemplate::AssessmentTemplate() :
     m_durationInSecondsHasBeenSet(false),
     m_rulesPackageArnsHasBeenSet(false),
     m_userAttributesForFindingsHasBeenSet(false),
+    m_lastAssessmentRunArnHasBeenSet(false),
+    m_assessmentRunCount(0),
+    m_assessmentRunCountHasBeenSet(false),
     m_createdAtHasBeenSet(false)
 {
 }
 
-AssessmentTemplate::AssessmentTemplate(const JsonValue& jsonValue) : 
+AssessmentTemplate::AssessmentTemplate(JsonView jsonValue) : 
     m_arnHasBeenSet(false),
     m_nameHasBeenSet(false),
     m_assessmentTargetArnHasBeenSet(false),
@@ -48,12 +51,15 @@ AssessmentTemplate::AssessmentTemplate(const JsonValue& jsonValue) :
     m_durationInSecondsHasBeenSet(false),
     m_rulesPackageArnsHasBeenSet(false),
     m_userAttributesForFindingsHasBeenSet(false),
+    m_lastAssessmentRunArnHasBeenSet(false),
+    m_assessmentRunCount(0),
+    m_assessmentRunCountHasBeenSet(false),
     m_createdAtHasBeenSet(false)
 {
   *this = jsonValue;
 }
 
-AssessmentTemplate& AssessmentTemplate::operator =(const JsonValue& jsonValue)
+AssessmentTemplate& AssessmentTemplate::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("arn"))
   {
@@ -85,7 +91,7 @@ AssessmentTemplate& AssessmentTemplate::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("rulesPackageArns"))
   {
-    Array<JsonValue> rulesPackageArnsJsonList = jsonValue.GetArray("rulesPackageArns");
+    Array<JsonView> rulesPackageArnsJsonList = jsonValue.GetArray("rulesPackageArns");
     for(unsigned rulesPackageArnsIndex = 0; rulesPackageArnsIndex < rulesPackageArnsJsonList.GetLength(); ++rulesPackageArnsIndex)
     {
       m_rulesPackageArns.push_back(rulesPackageArnsJsonList[rulesPackageArnsIndex].AsString());
@@ -95,12 +101,26 @@ AssessmentTemplate& AssessmentTemplate::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("userAttributesForFindings"))
   {
-    Array<JsonValue> userAttributesForFindingsJsonList = jsonValue.GetArray("userAttributesForFindings");
+    Array<JsonView> userAttributesForFindingsJsonList = jsonValue.GetArray("userAttributesForFindings");
     for(unsigned userAttributesForFindingsIndex = 0; userAttributesForFindingsIndex < userAttributesForFindingsJsonList.GetLength(); ++userAttributesForFindingsIndex)
     {
       m_userAttributesForFindings.push_back(userAttributesForFindingsJsonList[userAttributesForFindingsIndex].AsObject());
     }
     m_userAttributesForFindingsHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("lastAssessmentRunArn"))
+  {
+    m_lastAssessmentRunArn = jsonValue.GetString("lastAssessmentRunArn");
+
+    m_lastAssessmentRunArnHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("assessmentRunCount"))
+  {
+    m_assessmentRunCount = jsonValue.GetInteger("assessmentRunCount");
+
+    m_assessmentRunCountHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("createdAt"))
@@ -160,6 +180,18 @@ JsonValue AssessmentTemplate::Jsonize() const
      userAttributesForFindingsJsonList[userAttributesForFindingsIndex].AsObject(m_userAttributesForFindings[userAttributesForFindingsIndex].Jsonize());
    }
    payload.WithArray("userAttributesForFindings", std::move(userAttributesForFindingsJsonList));
+
+  }
+
+  if(m_lastAssessmentRunArnHasBeenSet)
+  {
+   payload.WithString("lastAssessmentRunArn", m_lastAssessmentRunArn);
+
+  }
+
+  if(m_assessmentRunCountHasBeenSet)
+  {
+   payload.WithInteger("assessmentRunCount", m_assessmentRunCount);
 
   }
 

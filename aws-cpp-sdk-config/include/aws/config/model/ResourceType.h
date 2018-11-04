@@ -67,7 +67,29 @@ namespace Model
     AWS_AutoScaling_LaunchConfiguration,
     AWS_AutoScaling_ScalingPolicy,
     AWS_AutoScaling_ScheduledAction,
-    AWS_CodeBuild_Project
+    AWS_CodeBuild_Project,
+    AWS_WAF_RateBasedRule,
+    AWS_WAF_Rule,
+    AWS_WAF_WebACL,
+    AWS_WAFRegional_RateBasedRule,
+    AWS_WAFRegional_Rule,
+    AWS_WAFRegional_WebACL,
+    AWS_CloudFront_Distribution,
+    AWS_CloudFront_StreamingDistribution,
+    AWS_WAF_RuleGroup,
+    AWS_WAFRegional_RuleGroup,
+    AWS_Lambda_Function,
+    AWS_ElasticBeanstalk_Application,
+    AWS_ElasticBeanstalk_ApplicationVersion,
+    AWS_ElasticBeanstalk_Environment,
+    AWS_ElasticLoadBalancing_LoadBalancer,
+    AWS_XRay_EncryptionConfig,
+    AWS_SSM_AssociationCompliance,
+    AWS_SSM_PatchCompliance,
+    AWS_Shield_Protection,
+    AWS_ShieldRegional_Protection,
+    AWS_Config_ResourceCompliance,
+    AWS_CodePipeline_Pipeline
   };
 
 namespace ResourceTypeMapper

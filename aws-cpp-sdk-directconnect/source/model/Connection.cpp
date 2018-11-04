@@ -42,11 +42,14 @@ Connection::Connection() :
     m_partnerNameHasBeenSet(false),
     m_loaIssueTimeHasBeenSet(false),
     m_lagIdHasBeenSet(false),
-    m_awsDeviceHasBeenSet(false)
+    m_awsDeviceHasBeenSet(false),
+    m_jumboFrameCapable(false),
+    m_jumboFrameCapableHasBeenSet(false),
+    m_awsDeviceV2HasBeenSet(false)
 {
 }
 
-Connection::Connection(const JsonValue& jsonValue) : 
+Connection::Connection(JsonView jsonValue) : 
     m_ownerAccountHasBeenSet(false),
     m_connectionIdHasBeenSet(false),
     m_connectionNameHasBeenSet(false),
@@ -60,12 +63,15 @@ Connection::Connection(const JsonValue& jsonValue) :
     m_partnerNameHasBeenSet(false),
     m_loaIssueTimeHasBeenSet(false),
     m_lagIdHasBeenSet(false),
-    m_awsDeviceHasBeenSet(false)
+    m_awsDeviceHasBeenSet(false),
+    m_jumboFrameCapable(false),
+    m_jumboFrameCapableHasBeenSet(false),
+    m_awsDeviceV2HasBeenSet(false)
 {
   *this = jsonValue;
 }
 
-Connection& Connection::operator =(const JsonValue& jsonValue)
+Connection& Connection::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("ownerAccount"))
   {
@@ -151,6 +157,20 @@ Connection& Connection::operator =(const JsonValue& jsonValue)
     m_awsDeviceHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("jumboFrameCapable"))
+  {
+    m_jumboFrameCapable = jsonValue.GetBool("jumboFrameCapable");
+
+    m_jumboFrameCapableHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("awsDeviceV2"))
+  {
+    m_awsDeviceV2 = jsonValue.GetString("awsDeviceV2");
+
+    m_awsDeviceV2HasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -225,6 +245,18 @@ JsonValue Connection::Jsonize() const
   if(m_awsDeviceHasBeenSet)
   {
    payload.WithString("awsDevice", m_awsDevice);
+
+  }
+
+  if(m_jumboFrameCapableHasBeenSet)
+  {
+   payload.WithBool("jumboFrameCapable", m_jumboFrameCapable);
+
+  }
+
+  if(m_awsDeviceV2HasBeenSet)
+  {
+   payload.WithString("awsDeviceV2", m_awsDeviceV2);
 
   }
 

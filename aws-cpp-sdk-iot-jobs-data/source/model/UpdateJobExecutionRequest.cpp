@@ -28,6 +28,8 @@ UpdateJobExecutionRequest::UpdateJobExecutionRequest() :
     m_status(JobExecutionStatus::NOT_SET),
     m_statusHasBeenSet(false),
     m_statusDetailsHasBeenSet(false),
+    m_stepTimeoutInMinutes(0),
+    m_stepTimeoutInMinutesHasBeenSet(false),
     m_expectedVersion(0),
     m_expectedVersionHasBeenSet(false),
     m_includeJobExecutionState(false),
@@ -59,6 +61,12 @@ Aws::String UpdateJobExecutionRequest::SerializePayload() const
 
   }
 
+  if(m_stepTimeoutInMinutesHasBeenSet)
+  {
+   payload.WithInt64("stepTimeoutInMinutes", m_stepTimeoutInMinutes);
+
+  }
+
   if(m_expectedVersionHasBeenSet)
   {
    payload.WithInt64("expectedVersion", m_expectedVersion);
@@ -83,7 +91,7 @@ Aws::String UpdateJobExecutionRequest::SerializePayload() const
 
   }
 
-  return payload.WriteReadable();
+  return payload.View().WriteReadable();
 }
 
 

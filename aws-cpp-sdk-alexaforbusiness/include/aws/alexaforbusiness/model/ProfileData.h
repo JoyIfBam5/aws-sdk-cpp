@@ -28,6 +28,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace AlexaForBusiness
@@ -44,8 +45,8 @@ namespace Model
   {
   public:
     ProfileData();
-    ProfileData(const Aws::Utils::Json::JsonValue& jsonValue);
-    ProfileData& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    ProfileData(Aws::Utils::Json::JsonView jsonValue);
+    ProfileData& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -119,6 +120,22 @@ namespace Model
      * <p>The name of a room profile.</p>
      */
     inline ProfileData& WithProfileName(const char* value) { SetProfileName(value); return *this;}
+
+
+    /**
+     * <p>Retrieves if the profile data is default or not.</p>
+     */
+    inline bool GetIsDefault() const{ return m_isDefault; }
+
+    /**
+     * <p>Retrieves if the profile data is default or not.</p>
+     */
+    inline void SetIsDefault(bool value) { m_isDefaultHasBeenSet = true; m_isDefault = value; }
+
+    /**
+     * <p>Retrieves if the profile data is default or not.</p>
+     */
+    inline ProfileData& WithIsDefault(bool value) { SetIsDefault(value); return *this;}
 
 
     /**
@@ -277,6 +294,9 @@ namespace Model
 
     Aws::String m_profileName;
     bool m_profileNameHasBeenSet;
+
+    bool m_isDefault;
+    bool m_isDefaultHasBeenSet;
 
     Aws::String m_address;
     bool m_addressHasBeenSet;

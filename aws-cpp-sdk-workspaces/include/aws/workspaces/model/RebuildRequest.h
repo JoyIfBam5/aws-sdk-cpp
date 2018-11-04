@@ -25,6 +25,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace WorkSpaces
@@ -33,8 +34,7 @@ namespace Model
 {
 
   /**
-   * <p>Contains information used with the <a>RebuildWorkspaces</a> operation to
-   * rebuild a WorkSpace.</p><p><h3>See Also:</h3>   <a
+   * <p>Information used to rebuild a WorkSpace.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/RebuildRequest">AWS
    * API Reference</a></p>
    */
@@ -42,43 +42,43 @@ namespace Model
   {
   public:
     RebuildRequest();
-    RebuildRequest(const Aws::Utils::Json::JsonValue& jsonValue);
-    RebuildRequest& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    RebuildRequest(Aws::Utils::Json::JsonView jsonValue);
+    RebuildRequest& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
     /**
-     * <p>The identifier of the WorkSpace to rebuild.</p>
+     * <p>The ID of the WorkSpace.</p>
      */
     inline const Aws::String& GetWorkspaceId() const{ return m_workspaceId; }
 
     /**
-     * <p>The identifier of the WorkSpace to rebuild.</p>
+     * <p>The ID of the WorkSpace.</p>
      */
     inline void SetWorkspaceId(const Aws::String& value) { m_workspaceIdHasBeenSet = true; m_workspaceId = value; }
 
     /**
-     * <p>The identifier of the WorkSpace to rebuild.</p>
+     * <p>The ID of the WorkSpace.</p>
      */
     inline void SetWorkspaceId(Aws::String&& value) { m_workspaceIdHasBeenSet = true; m_workspaceId = std::move(value); }
 
     /**
-     * <p>The identifier of the WorkSpace to rebuild.</p>
+     * <p>The ID of the WorkSpace.</p>
      */
     inline void SetWorkspaceId(const char* value) { m_workspaceIdHasBeenSet = true; m_workspaceId.assign(value); }
 
     /**
-     * <p>The identifier of the WorkSpace to rebuild.</p>
+     * <p>The ID of the WorkSpace.</p>
      */
     inline RebuildRequest& WithWorkspaceId(const Aws::String& value) { SetWorkspaceId(value); return *this;}
 
     /**
-     * <p>The identifier of the WorkSpace to rebuild.</p>
+     * <p>The ID of the WorkSpace.</p>
      */
     inline RebuildRequest& WithWorkspaceId(Aws::String&& value) { SetWorkspaceId(std::move(value)); return *this;}
 
     /**
-     * <p>The identifier of the WorkSpace to rebuild.</p>
+     * <p>The ID of the WorkSpace.</p>
      */
     inline RebuildRequest& WithWorkspaceId(const char* value) { SetWorkspaceId(value); return *this;}
 

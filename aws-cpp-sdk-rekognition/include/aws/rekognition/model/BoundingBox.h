@@ -23,6 +23,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace Rekognition
@@ -31,7 +32,7 @@ namespace Model
 {
 
   /**
-   * <p>Identifies the bounding box around the object, face or text. The
+   * <p>Identifies the bounding box around the label, face, or text. The
    * <code>left</code> (x-coordinate) and <code>top</code> (y-coordinate) are
    * coordinates representing the top and left sides of the bounding box. Note that
    * the upper-left corner of the image is the origin (0,0). </p> <p>The
@@ -56,8 +57,8 @@ namespace Model
   {
   public:
     BoundingBox();
-    BoundingBox(const Aws::Utils::Json::JsonValue& jsonValue);
-    BoundingBox& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    BoundingBox(Aws::Utils::Json::JsonView jsonValue);
+    BoundingBox& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 

@@ -81,6 +81,8 @@ H264Settings::H264Settings() :
     m_parNumeratorHasBeenSet(false),
     m_profile(H264Profile::NOT_SET),
     m_profileHasBeenSet(false),
+    m_qvbrQualityLevel(0),
+    m_qvbrQualityLevelHasBeenSet(false),
     m_rateControlMode(H264RateControlMode::NOT_SET),
     m_rateControlModeHasBeenSet(false),
     m_scanType(H264ScanType::NOT_SET),
@@ -102,7 +104,7 @@ H264Settings::H264Settings() :
 {
 }
 
-H264Settings::H264Settings(const JsonValue& jsonValue) : 
+H264Settings::H264Settings(JsonView jsonValue) : 
     m_adaptiveQuantization(H264AdaptiveQuantization::NOT_SET),
     m_adaptiveQuantizationHasBeenSet(false),
     m_afdSignaling(AfdSignaling::NOT_SET),
@@ -155,6 +157,8 @@ H264Settings::H264Settings(const JsonValue& jsonValue) :
     m_parNumeratorHasBeenSet(false),
     m_profile(H264Profile::NOT_SET),
     m_profileHasBeenSet(false),
+    m_qvbrQualityLevel(0),
+    m_qvbrQualityLevelHasBeenSet(false),
     m_rateControlMode(H264RateControlMode::NOT_SET),
     m_rateControlModeHasBeenSet(false),
     m_scanType(H264ScanType::NOT_SET),
@@ -177,7 +181,7 @@ H264Settings::H264Settings(const JsonValue& jsonValue) :
   *this = jsonValue;
 }
 
-H264Settings& H264Settings::operator =(const JsonValue& jsonValue)
+H264Settings& H264Settings::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("adaptiveQuantization"))
   {
@@ -359,6 +363,13 @@ H264Settings& H264Settings::operator =(const JsonValue& jsonValue)
     m_profile = H264ProfileMapper::GetH264ProfileForName(jsonValue.GetString("profile"));
 
     m_profileHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("qvbrQualityLevel"))
+  {
+    m_qvbrQualityLevel = jsonValue.GetInteger("qvbrQualityLevel");
+
+    m_qvbrQualityLevelHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("rateControlMode"))
@@ -572,6 +583,12 @@ JsonValue H264Settings::Jsonize() const
   if(m_profileHasBeenSet)
   {
    payload.WithString("profile", H264ProfileMapper::GetNameForH264Profile(m_profile));
+  }
+
+  if(m_qvbrQualityLevelHasBeenSet)
+  {
+   payload.WithInteger("qvbrQualityLevel", m_qvbrQualityLevel);
+
   }
 
   if(m_rateControlModeHasBeenSet)

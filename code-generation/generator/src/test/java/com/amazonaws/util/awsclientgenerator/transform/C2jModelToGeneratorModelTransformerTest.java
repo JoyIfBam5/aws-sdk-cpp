@@ -43,6 +43,7 @@ public class C2jModelToGeneratorModelTransformerTest {
         c2jMetadata.setSignatureVersion("v4");
         c2jMetadata.setTargetPrefix("ServiceAbbr.");
         c2jMetadata.setUid("service-9089-34-54");
+        c2jMetadata.setTimestampFormat("iso8601");
 
         c2jServiceModel.setMetadata(c2jMetadata);
         C2jModelToGeneratorModelTransformer c2jModelToGeneratorModelTransformer = new C2jModelToGeneratorModelTransformer(c2jServiceModel, false);
@@ -55,6 +56,7 @@ public class C2jModelToGeneratorModelTransformerTest {
         assertEquals(c2jMetadata.getServiceFullName(), metadata.getServiceFullName());
         assertEquals(c2jMetadata.getSignatureVersion(), metadata.getSignatureVersion());
         assertEquals(c2jMetadata.getTargetPrefix(), metadata.getTargetPrefix());
+        assertEquals(c2jMetadata.getTimestampFormat(), metadata.getTimestampFormat());
 
         c2jMetadata.setServiceAbbreviation(null);
 
@@ -87,6 +89,7 @@ public class C2jModelToGeneratorModelTransformerTest {
         C2jModelToGeneratorModelTransformer c2jModelToGeneratorModelTransformer = new C2jModelToGeneratorModelTransformer(c2jServiceModel, true);
         Metadata metadata = c2jModelToGeneratorModelTransformer.convertMetadata();
         assertTrue(metadata.isStandalone());
+        assertEquals("service-abbr.execute-api", metadata.getEndpointPrefix());
         assertEquals("application-json", metadata.getProtocol());
     }
 
@@ -95,26 +98,34 @@ public class C2jModelToGeneratorModelTransformerTest {
         C2jServiceModel c2jServiceModel = new C2jServiceModel();
         c2jServiceModel.setMetadata(new C2jMetadata());
         c2jServiceModel.getMetadata().setUid("service-7869-05-67");
+        c2jServiceModel.getMetadata().setTimestampFormat("unixTimestamp");
 
         Map<String, C2jShape> c2jShapeMap = new HashMap<>();
 
         C2jShape stringShape = new C2jShape();
         stringShape.setDocumentation("String Shape Documentation");
         stringShape.setType("string");
-
         c2jShapeMap.put("StringShape", stringShape);
 
         C2jShape numberShape = new C2jShape();
         numberShape.setType("integer");
-
         c2jShapeMap.put("NumberShape", numberShape);
+
+        C2jShape timestampShape = new C2jShape();
+        timestampShape.setType("timestamp");
+        c2jShapeMap.put("TimestampShape", timestampShape);
 
         C2jShape inputShape = new C2jShape();
         inputShape.setType("structure");
         C2jShapeMember inputStringShapeMember = new C2jShapeMember();
         inputStringShapeMember.setShape("StringShape");
+
+        C2jShapeMember inputTimestampShapeMember = new C2jShapeMember();
+        inputTimestampShapeMember.setShape("TimestampShape");
+
         inputShape.setMembers(new HashMap<>());
         inputShape.getMembers().put("StringShape", inputStringShapeMember);
+        inputShape.getMembers().put("TimestampShape", inputTimestampShapeMember);
         inputShape.setMember(inputStringShapeMember);
 
         c2jShapeMap.put("InputShape", inputShape);
@@ -134,15 +145,19 @@ public class C2jModelToGeneratorModelTransformerTest {
         c2jModelToGeneratorModelTransformer.convertShapes();
 
         Map<String, Shape> shapes = c2jModelToGeneratorModelTransformer.shapes;
-        assertEquals(4, shapes.size());
+        assertEquals(5, shapes.size());
         assertEquals("StringShape", shapes.get("StringShape").getName());
+        assertEquals("TimestampShape", shapes.get("TimestampShape").getName());
         assertEquals("NumberShape", shapes.get("NumberShape").getName());
         assertEquals("InputShape", shapes.get("InputShape").getName());
         assertEquals("OutputShape", shapes.get("OutputShape").getName());
-        assertEquals(1, shapes.get("InputShape").getMembers().size());
+        assertEquals(2, shapes.get("InputShape").getMembers().size());
         assertEquals("StringShape", shapes.get("InputShape").getMembers().get("StringShape").getShape().getName());
+        assertEquals("TimestampShape", shapes.get("InputShape").getMembers().get("TimestampShape").getShape().getName());
         assertEquals(1, shapes.get("OutputShape").getMembers().size());
         assertEquals("NumberShape", shapes.get("OutputShape").getMembers().get("NumberShape").getShape().getName());
+        assertEquals("unixTimestamp", shapes.get("TimestampShape").getTimestampFormat());
+
     }
 
     @Test
@@ -326,5 +341,113 @@ public class C2jModelToGeneratorModelTransformerTest {
         assertEquals("POST", c2jModelToGeneratorModelTransformer.operations.get("Operation").getHttp().getMethod());
         assertEquals("/", c2jModelToGeneratorModelTransformer.operations.get("Operation").getHttp().getRequestUri());
         assertEquals("200", c2jModelToGeneratorModelTransformer.operations.get("Operation").getHttp().getResponseCode());
+    }
+
+    @Test
+    public void testRemoveSpecifiedOperationsAndShapes() {
+        C2jServiceModel c2jServiceModel = new C2jServiceModel();
+        Map<String, C2jShape> c2jShapeMap = new HashMap<>();
+        c2jServiceModel.setMetadata(new C2jMetadata());
+        c2jServiceModel.getMetadata().setUid("service-7869-05-67");
+
+        C2jShape stringShape = new C2jShape();
+        stringShape.setDocumentation("String Shape Documentation");
+        stringShape.setType("string");
+
+        c2jShapeMap.put("StringShape", stringShape);
+
+        C2jShape numberShape = new C2jShape();
+        numberShape.setType("integer");
+
+        c2jShapeMap.put("NumberShape", numberShape);
+
+        C2jShape removedShape = new C2jShape();
+        removedShape.setDocumentation("Specified shape which should be removed");
+        removedShape.setType("structure");
+        removedShape.setEventstream(true);
+        C2jShapeMember removedShapeMember = new C2jShapeMember();
+        removedShapeMember.setShape("NumberShape");
+        removedShape.setMembers(new HashMap<>());
+        removedShape.getMembers().put("NumberShape", removedShapeMember);
+        removedShape.setMember(removedShapeMember);
+
+        c2jShapeMap.put("RemovedShape", removedShape);
+
+        C2jShape inputShape = new C2jShape();
+        inputShape.setType("structure");
+        C2jShapeMember inputStringShapeMember = new C2jShapeMember();
+        inputStringShapeMember.setShape("StringShape");
+        inputShape.setMembers(new HashMap<>());
+        inputShape.getMembers().put("StringShape", inputStringShapeMember);
+
+        c2jShapeMap.put("OperationRequest", inputShape);
+
+        C2jShape outputShape = new C2jShape();
+        outputShape.setType("structure");
+        C2jShapeMember outputNumberShapeMember = new C2jShapeMember();
+        outputNumberShapeMember.setShape("RemovedShape");
+        outputShape.setMembers(new HashMap<>());
+        outputShape.getMembers().put("RemovedShape", outputNumberShapeMember);
+
+        c2jShapeMap.put("OperationResult", outputShape);
+
+        c2jServiceModel.setShapes(c2jShapeMap);
+
+        C2jOperation operation = new C2jOperation();
+        C2jShapeMember inputShapeMember = new C2jShapeMember();
+        inputShapeMember.setShape("OperationRequest");
+        operation.setInput(inputShapeMember);
+        C2jShapeMember outputShapeMember = new C2jShapeMember();
+        outputShapeMember.setShape("OperationResult");
+        operation.setOutput(outputShapeMember);
+
+        C2jShape errorShape = new C2jShape();
+        errorShape.setType("structure");
+        errorShape.setMembers(new HashMap<>());
+        errorShape.getMembers().put("StringShape", inputStringShapeMember);
+        c2jShapeMap.put("ErrorShape", errorShape);
+
+        C2jError error = new C2jError();
+        error.setShape("ErrorShape");
+        operation.setErrors(new LinkedList<>());
+        operation.getErrors().add(error);
+        operation.setName("Operation");
+        C2jHttp http = new C2jHttp();
+        http.setMethod("POST");
+        http.setRequestUri("/");
+        http.setResponseCode("200");
+        operation.setHttp(http);
+
+        c2jServiceModel.setOperations(new HashMap<>());
+        c2jServiceModel.getOperations().put("Operation", operation);
+
+        C2jModelToGeneratorModelTransformer c2jModelToGeneratorModelTransformer = new C2jModelToGeneratorModelTransformer(c2jServiceModel, false);
+        c2jModelToGeneratorModelTransformer.convertShapes();
+        c2jModelToGeneratorModelTransformer.convertOperations();
+
+        Map<String, Shape> shapes = c2jModelToGeneratorModelTransformer.shapes;
+        assertEquals(6, shapes.size());
+        assertEquals(0, shapes.get("NumberShape").getReferencedBy().size());
+        assertEquals(2, shapes.get("StringShape").getReferencedBy().size());
+        assertTrue(shapes.get("StringShape").getReferencedBy().contains("OperationRequest"));        
+        assertTrue(shapes.get("StringShape").getReferencedBy().contains("ErrorShape"));        
+        assertEquals(1, shapes.get("RemovedShape").getReferencedBy().size());
+        assertTrue(shapes.get("RemovedShape").getReferencedBy().contains("OperationResult"));
+        assertTrue(c2jModelToGeneratorModelTransformer.removedShapes.contains("RemovedShape"));
+        assertEquals(1, shapes.get("OperationRequest").getReferencedBy().size());
+        assertTrue(shapes.get("OperationRequest").getReferencedBy().contains("Operation"));
+        assertEquals(1, shapes.get("OperationResult").getReferencedBy().size());
+        assertTrue(shapes.get("OperationResult").getReferencedBy().contains("Operation"));
+
+        c2jModelToGeneratorModelTransformer.removeIgnoredOperations();
+
+        assertEquals(0, c2jModelToGeneratorModelTransformer.operations.size());
+        assertEquals(6, shapes.size());
+        assertEquals(0, shapes.get("NumberShape").getReferencedBy().size());
+        assertEquals(1, shapes.get("StringShape").getReferencedBy().size());
+        assertTrue(shapes.get("StringShape").getReferencedBy().contains("ErrorShape"));
+        assertEquals(0, shapes.get("RemovedShape").getReferencedBy().size());
+        assertEquals(0, shapes.get("OperationRequest").getReferencedBy().size());
+        assertEquals(0, shapes.get("OperationResult").getReferencedBy().size());
     }
 }

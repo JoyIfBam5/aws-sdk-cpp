@@ -52,6 +52,7 @@ namespace Model
     Penelope,
     Chantal,
     Celine,
+    Lea,
     Mathieu,
     Dora,
     Karl,
@@ -77,7 +78,8 @@ namespace Model
     Vicki,
     Takumi,
     Seoyeon,
-    Aditi
+    Aditi,
+    Zhiyu
   };
 
 namespace VoiceIdMapper

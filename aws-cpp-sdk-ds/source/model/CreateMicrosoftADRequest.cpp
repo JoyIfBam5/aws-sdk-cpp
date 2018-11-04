@@ -27,7 +27,9 @@ CreateMicrosoftADRequest::CreateMicrosoftADRequest() :
     m_shortNameHasBeenSet(false),
     m_passwordHasBeenSet(false),
     m_descriptionHasBeenSet(false),
-    m_vpcSettingsHasBeenSet(false)
+    m_vpcSettingsHasBeenSet(false),
+    m_edition(DirectoryEdition::NOT_SET),
+    m_editionHasBeenSet(false)
 {
 }
 
@@ -65,7 +67,12 @@ Aws::String CreateMicrosoftADRequest::SerializePayload() const
 
   }
 
-  return payload.WriteReadable();
+  if(m_editionHasBeenSet)
+  {
+   payload.WithString("Edition", DirectoryEditionMapper::GetNameForDirectoryEdition(m_edition));
+  }
+
+  return payload.View().WriteReadable();
 }
 
 Aws::Http::HeaderValueCollection CreateMicrosoftADRequest::GetRequestSpecificHeaders() const

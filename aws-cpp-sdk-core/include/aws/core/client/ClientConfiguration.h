@@ -69,14 +69,30 @@ namespace Aws
              */
             unsigned maxConnections;
             /**
-             * Socket read timeouts. Default 3000 ms. This should be more than adequate for most services. However, if you are transfering large amounts of data
-             * or are worried about higher latencies, you should set to something that makes more sense for your use case. 
+             * Socket read timeouts for HTTP clients on Windows. Default 3000 ms. This should be more than adequate for most services. However, if you are transfering large amounts of data
+             * or are worried about higher latencies, you should set to something that makes more sense for your use case.
+             * For Curl, it's the low speed time, which contains the time in number milliseconds that transfer speed should be below "lowSpeedLimit" for the library to consider it too slow and abort.
              */
             long requestTimeoutMs;
             /**
              * Socket connect timeout. Default 1000 ms. Unless you are very far away from your the data center you are talking to. 1000ms is more than sufficient.
              */
             long connectTimeoutMs;
+            /**
+             * Enable TCP keep-alive. Default true;
+             * No-op for WinINet and IXMLHTTPRequest2 client.
+             */
+            bool enableTcpKeepAlive;
+            /**
+             * Interval to send a keep-alive packet over the connection. Default 30 s. Minimal 15 s.
+             * No-op for WinINet and IXMLHTTPRequest2 client.
+             */
+            unsigned long tcpKeepAliveIntervalMs;
+            /**
+             * Average transfer speed in bytes per second that the transfer should be below during the request timeout interval for it to be considered too slow and abort.
+             * Default 1 byte/second. Only for CURL client currently.
+             */
+            unsigned long lowSpeedLimit;
             /**
              * Strategy to use in case of failed requests. Default is DefaultRetryStrategy (e.g. exponential backoff)
              */
@@ -142,6 +158,18 @@ namespace Aws
              * If set to true the http stack will follow 300 redirect codes.
              */
             bool followRedirects;
+
+            /**
+             * Only works for Curl http client.
+             * Curl will by default add "Expect: 100-Continue" header in a Http request so as to avoid sending http
+             * payload to wire if server respond error immediately after receiving the header.
+             * Set this option to true will tell Curl to send http request header and body together.
+             * This can save one round-trip time and especially useful when the payload is small and network latency is more important.
+             * But be careful when Http request has large payload such S3 PutObject. You don't want to spend long time sending a large payload just geting a error response for server.
+             * The default value will be false.
+             */
+            bool disableExpectHeader;
+
             /**
              * If set to true clock skew will be adjusted after each http attempt, default to true.
              */

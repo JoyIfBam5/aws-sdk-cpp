@@ -23,8 +23,12 @@ using namespace Aws::Utils::Json;
 using namespace Aws::Utils;
 
 UpdateBrokerRequest::UpdateBrokerRequest() : 
+    m_autoMinorVersionUpgrade(false),
+    m_autoMinorVersionUpgradeHasBeenSet(false),
     m_brokerIdHasBeenSet(false),
-    m_configurationHasBeenSet(false)
+    m_configurationHasBeenSet(false),
+    m_engineVersionHasBeenSet(false),
+    m_logsHasBeenSet(false)
 {
 }
 
@@ -32,13 +36,31 @@ Aws::String UpdateBrokerRequest::SerializePayload() const
 {
   JsonValue payload;
 
+  if(m_autoMinorVersionUpgradeHasBeenSet)
+  {
+   payload.WithBool("autoMinorVersionUpgrade", m_autoMinorVersionUpgrade);
+
+  }
+
   if(m_configurationHasBeenSet)
   {
    payload.WithObject("configuration", m_configuration.Jsonize());
 
   }
 
-  return payload.WriteReadable();
+  if(m_engineVersionHasBeenSet)
+  {
+   payload.WithString("engineVersion", m_engineVersion);
+
+  }
+
+  if(m_logsHasBeenSet)
+  {
+   payload.WithObject("logs", m_logs.Jsonize());
+
+  }
+
+  return payload.View().WriteReadable();
 }
 
 

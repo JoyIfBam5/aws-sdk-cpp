@@ -25,6 +25,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace ServiceCatalog
@@ -33,7 +34,7 @@ namespace Model
 {
 
   /**
-   * <p>The ListTagOptions filters.</p><p><h3>See Also:</h3>   <a
+   * <p>Filters to use when listing TagOptions.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListTagOptionsFilters">AWS
    * API Reference</a></p>
    */
@@ -41,95 +42,95 @@ namespace Model
   {
   public:
     ListTagOptionsFilters();
-    ListTagOptionsFilters(const Aws::Utils::Json::JsonValue& jsonValue);
-    ListTagOptionsFilters& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    ListTagOptionsFilters(Aws::Utils::Json::JsonView jsonValue);
+    ListTagOptionsFilters& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
     /**
-     * <p>The ListTagOptionsFilters key.</p>
+     * <p>The TagOption key.</p>
      */
     inline const Aws::String& GetKey() const{ return m_key; }
 
     /**
-     * <p>The ListTagOptionsFilters key.</p>
+     * <p>The TagOption key.</p>
      */
     inline void SetKey(const Aws::String& value) { m_keyHasBeenSet = true; m_key = value; }
 
     /**
-     * <p>The ListTagOptionsFilters key.</p>
+     * <p>The TagOption key.</p>
      */
     inline void SetKey(Aws::String&& value) { m_keyHasBeenSet = true; m_key = std::move(value); }
 
     /**
-     * <p>The ListTagOptionsFilters key.</p>
+     * <p>The TagOption key.</p>
      */
     inline void SetKey(const char* value) { m_keyHasBeenSet = true; m_key.assign(value); }
 
     /**
-     * <p>The ListTagOptionsFilters key.</p>
+     * <p>The TagOption key.</p>
      */
     inline ListTagOptionsFilters& WithKey(const Aws::String& value) { SetKey(value); return *this;}
 
     /**
-     * <p>The ListTagOptionsFilters key.</p>
+     * <p>The TagOption key.</p>
      */
     inline ListTagOptionsFilters& WithKey(Aws::String&& value) { SetKey(std::move(value)); return *this;}
 
     /**
-     * <p>The ListTagOptionsFilters key.</p>
+     * <p>The TagOption key.</p>
      */
     inline ListTagOptionsFilters& WithKey(const char* value) { SetKey(value); return *this;}
 
 
     /**
-     * <p>The ListTagOptionsFilters value.</p>
+     * <p>The TagOption value.</p>
      */
     inline const Aws::String& GetValue() const{ return m_value; }
 
     /**
-     * <p>The ListTagOptionsFilters value.</p>
+     * <p>The TagOption value.</p>
      */
     inline void SetValue(const Aws::String& value) { m_valueHasBeenSet = true; m_value = value; }
 
     /**
-     * <p>The ListTagOptionsFilters value.</p>
+     * <p>The TagOption value.</p>
      */
     inline void SetValue(Aws::String&& value) { m_valueHasBeenSet = true; m_value = std::move(value); }
 
     /**
-     * <p>The ListTagOptionsFilters value.</p>
+     * <p>The TagOption value.</p>
      */
     inline void SetValue(const char* value) { m_valueHasBeenSet = true; m_value.assign(value); }
 
     /**
-     * <p>The ListTagOptionsFilters value.</p>
+     * <p>The TagOption value.</p>
      */
     inline ListTagOptionsFilters& WithValue(const Aws::String& value) { SetValue(value); return *this;}
 
     /**
-     * <p>The ListTagOptionsFilters value.</p>
+     * <p>The TagOption value.</p>
      */
     inline ListTagOptionsFilters& WithValue(Aws::String&& value) { SetValue(std::move(value)); return *this;}
 
     /**
-     * <p>The ListTagOptionsFilters value.</p>
+     * <p>The TagOption value.</p>
      */
     inline ListTagOptionsFilters& WithValue(const char* value) { SetValue(value); return *this;}
 
 
     /**
-     * <p>The ListTagOptionsFilters active state.</p>
+     * <p>The active state.</p>
      */
     inline bool GetActive() const{ return m_active; }
 
     /**
-     * <p>The ListTagOptionsFilters active state.</p>
+     * <p>The active state.</p>
      */
     inline void SetActive(bool value) { m_activeHasBeenSet = true; m_active = value; }
 
     /**
-     * <p>The ListTagOptionsFilters active state.</p>
+     * <p>The active state.</p>
      */
     inline ListTagOptionsFilters& WithActive(bool value) { SetActive(value); return *this;}
 

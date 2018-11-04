@@ -29,6 +29,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace CloudDirectory
@@ -38,17 +39,17 @@ namespace Model
 
   /**
    * <p>A facet attribute definition. See <a
-   * href="http://docs.aws.amazon.com/directoryservice/latest/admin-guide/cd_advanced.html#attributereferences">Attribute
+   * href="https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_attributereferences.html">Attribute
    * References</a> for more information.</p><p><h3>See Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2016-05-10/FacetAttributeDefinition">AWS
+   * href="http://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2017-01-11/FacetAttributeDefinition">AWS
    * API Reference</a></p>
    */
   class AWS_CLOUDDIRECTORY_API FacetAttributeDefinition
   {
   public:
     FacetAttributeDefinition();
-    FacetAttributeDefinition(const Aws::Utils::Json::JsonValue& jsonValue);
-    FacetAttributeDefinition& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    FacetAttributeDefinition(Aws::Utils::Json::JsonView jsonValue);
+    FacetAttributeDefinition& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 

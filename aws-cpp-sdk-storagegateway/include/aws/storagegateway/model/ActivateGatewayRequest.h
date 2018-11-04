@@ -62,7 +62,9 @@ namespace Model
      * gateway in the query string parameter <code>activationKey</code>. It may also
      * include other activation-related parameters, however, these are merely defaults
      * -- the arguments you pass to the <code>ActivateGateway</code> API call determine
-     * the actual configuration of your gateway.</p>
+     * the actual configuration of your gateway. </p> <p>For more information, see
+     * https://docs.aws.amazon.com/storagegateway/latest/userguide/get-activation-key.html
+     * in the Storage Gateway User Guide.</p>
      */
     inline const Aws::String& GetActivationKey() const{ return m_activationKey; }
 
@@ -73,7 +75,9 @@ namespace Model
      * gateway in the query string parameter <code>activationKey</code>. It may also
      * include other activation-related parameters, however, these are merely defaults
      * -- the arguments you pass to the <code>ActivateGateway</code> API call determine
-     * the actual configuration of your gateway.</p>
+     * the actual configuration of your gateway. </p> <p>For more information, see
+     * https://docs.aws.amazon.com/storagegateway/latest/userguide/get-activation-key.html
+     * in the Storage Gateway User Guide.</p>
      */
     inline void SetActivationKey(const Aws::String& value) { m_activationKeyHasBeenSet = true; m_activationKey = value; }
 
@@ -84,7 +88,9 @@ namespace Model
      * gateway in the query string parameter <code>activationKey</code>. It may also
      * include other activation-related parameters, however, these are merely defaults
      * -- the arguments you pass to the <code>ActivateGateway</code> API call determine
-     * the actual configuration of your gateway.</p>
+     * the actual configuration of your gateway. </p> <p>For more information, see
+     * https://docs.aws.amazon.com/storagegateway/latest/userguide/get-activation-key.html
+     * in the Storage Gateway User Guide.</p>
      */
     inline void SetActivationKey(Aws::String&& value) { m_activationKeyHasBeenSet = true; m_activationKey = std::move(value); }
 
@@ -95,7 +101,9 @@ namespace Model
      * gateway in the query string parameter <code>activationKey</code>. It may also
      * include other activation-related parameters, however, these are merely defaults
      * -- the arguments you pass to the <code>ActivateGateway</code> API call determine
-     * the actual configuration of your gateway.</p>
+     * the actual configuration of your gateway. </p> <p>For more information, see
+     * https://docs.aws.amazon.com/storagegateway/latest/userguide/get-activation-key.html
+     * in the Storage Gateway User Guide.</p>
      */
     inline void SetActivationKey(const char* value) { m_activationKeyHasBeenSet = true; m_activationKey.assign(value); }
 
@@ -106,7 +114,9 @@ namespace Model
      * gateway in the query string parameter <code>activationKey</code>. It may also
      * include other activation-related parameters, however, these are merely defaults
      * -- the arguments you pass to the <code>ActivateGateway</code> API call determine
-     * the actual configuration of your gateway.</p>
+     * the actual configuration of your gateway. </p> <p>For more information, see
+     * https://docs.aws.amazon.com/storagegateway/latest/userguide/get-activation-key.html
+     * in the Storage Gateway User Guide.</p>
      */
     inline ActivateGatewayRequest& WithActivationKey(const Aws::String& value) { SetActivationKey(value); return *this;}
 
@@ -117,7 +127,9 @@ namespace Model
      * gateway in the query string parameter <code>activationKey</code>. It may also
      * include other activation-related parameters, however, these are merely defaults
      * -- the arguments you pass to the <code>ActivateGateway</code> API call determine
-     * the actual configuration of your gateway.</p>
+     * the actual configuration of your gateway. </p> <p>For more information, see
+     * https://docs.aws.amazon.com/storagegateway/latest/userguide/get-activation-key.html
+     * in the Storage Gateway User Guide.</p>
      */
     inline ActivateGatewayRequest& WithActivationKey(Aws::String&& value) { SetActivationKey(std::move(value)); return *this;}
 
@@ -128,7 +140,9 @@ namespace Model
      * gateway in the query string parameter <code>activationKey</code>. It may also
      * include other activation-related parameters, however, these are merely defaults
      * -- the arguments you pass to the <code>ActivateGateway</code> API call determine
-     * the actual configuration of your gateway.</p>
+     * the actual configuration of your gateway. </p> <p>For more information, see
+     * https://docs.aws.amazon.com/storagegateway/latest/userguide/get-activation-key.html
+     * in the Storage Gateway User Guide.</p>
      */
     inline ActivateGatewayRequest& WithActivationKey(const char* value) { SetActivationKey(value); return *this;}
 
@@ -241,8 +255,9 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html#sg_region">Regions
      * and Endpoints</a> in the <i>Amazon Web Services Glossary</i>.</p> <p> Valid
      * Values: "us-east-1", "us-east-2", "us-west-1", "us-west-2", "ca-central-1",
-     * "eu-west-1", "eu-central-1", "eu-west-2", "ap-northeast-1", "ap-northeast-2",
-     * "ap-southeast-1", "ap-southeast-2", "ap-south-1", "sa-east-1"</p>
+     * "eu-west-1", "eu-central-1", "eu-west-2", "eu-west-3", "ap-northeast-1",
+     * "ap-northeast-2", "ap-southeast-1", "ap-southeast-2", "ap-south-1",
+     * "sa-east-1"</p>
      */
     inline const Aws::String& GetGatewayRegion() const{ return m_gatewayRegion; }
 
@@ -254,8 +269,9 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html#sg_region">Regions
      * and Endpoints</a> in the <i>Amazon Web Services Glossary</i>.</p> <p> Valid
      * Values: "us-east-1", "us-east-2", "us-west-1", "us-west-2", "ca-central-1",
-     * "eu-west-1", "eu-central-1", "eu-west-2", "ap-northeast-1", "ap-northeast-2",
-     * "ap-southeast-1", "ap-southeast-2", "ap-south-1", "sa-east-1"</p>
+     * "eu-west-1", "eu-central-1", "eu-west-2", "eu-west-3", "ap-northeast-1",
+     * "ap-northeast-2", "ap-southeast-1", "ap-southeast-2", "ap-south-1",
+     * "sa-east-1"</p>
      */
     inline void SetGatewayRegion(const Aws::String& value) { m_gatewayRegionHasBeenSet = true; m_gatewayRegion = value; }
 
@@ -267,8 +283,9 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html#sg_region">Regions
      * and Endpoints</a> in the <i>Amazon Web Services Glossary</i>.</p> <p> Valid
      * Values: "us-east-1", "us-east-2", "us-west-1", "us-west-2", "ca-central-1",
-     * "eu-west-1", "eu-central-1", "eu-west-2", "ap-northeast-1", "ap-northeast-2",
-     * "ap-southeast-1", "ap-southeast-2", "ap-south-1", "sa-east-1"</p>
+     * "eu-west-1", "eu-central-1", "eu-west-2", "eu-west-3", "ap-northeast-1",
+     * "ap-northeast-2", "ap-southeast-1", "ap-southeast-2", "ap-south-1",
+     * "sa-east-1"</p>
      */
     inline void SetGatewayRegion(Aws::String&& value) { m_gatewayRegionHasBeenSet = true; m_gatewayRegion = std::move(value); }
 
@@ -280,8 +297,9 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html#sg_region">Regions
      * and Endpoints</a> in the <i>Amazon Web Services Glossary</i>.</p> <p> Valid
      * Values: "us-east-1", "us-east-2", "us-west-1", "us-west-2", "ca-central-1",
-     * "eu-west-1", "eu-central-1", "eu-west-2", "ap-northeast-1", "ap-northeast-2",
-     * "ap-southeast-1", "ap-southeast-2", "ap-south-1", "sa-east-1"</p>
+     * "eu-west-1", "eu-central-1", "eu-west-2", "eu-west-3", "ap-northeast-1",
+     * "ap-northeast-2", "ap-southeast-1", "ap-southeast-2", "ap-south-1",
+     * "sa-east-1"</p>
      */
     inline void SetGatewayRegion(const char* value) { m_gatewayRegionHasBeenSet = true; m_gatewayRegion.assign(value); }
 
@@ -293,8 +311,9 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html#sg_region">Regions
      * and Endpoints</a> in the <i>Amazon Web Services Glossary</i>.</p> <p> Valid
      * Values: "us-east-1", "us-east-2", "us-west-1", "us-west-2", "ca-central-1",
-     * "eu-west-1", "eu-central-1", "eu-west-2", "ap-northeast-1", "ap-northeast-2",
-     * "ap-southeast-1", "ap-southeast-2", "ap-south-1", "sa-east-1"</p>
+     * "eu-west-1", "eu-central-1", "eu-west-2", "eu-west-3", "ap-northeast-1",
+     * "ap-northeast-2", "ap-southeast-1", "ap-southeast-2", "ap-south-1",
+     * "sa-east-1"</p>
      */
     inline ActivateGatewayRequest& WithGatewayRegion(const Aws::String& value) { SetGatewayRegion(value); return *this;}
 
@@ -306,8 +325,9 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html#sg_region">Regions
      * and Endpoints</a> in the <i>Amazon Web Services Glossary</i>.</p> <p> Valid
      * Values: "us-east-1", "us-east-2", "us-west-1", "us-west-2", "ca-central-1",
-     * "eu-west-1", "eu-central-1", "eu-west-2", "ap-northeast-1", "ap-northeast-2",
-     * "ap-southeast-1", "ap-southeast-2", "ap-south-1", "sa-east-1"</p>
+     * "eu-west-1", "eu-central-1", "eu-west-2", "eu-west-3", "ap-northeast-1",
+     * "ap-northeast-2", "ap-southeast-1", "ap-southeast-2", "ap-south-1",
+     * "sa-east-1"</p>
      */
     inline ActivateGatewayRequest& WithGatewayRegion(Aws::String&& value) { SetGatewayRegion(std::move(value)); return *this;}
 
@@ -319,8 +339,9 @@ namespace Model
      * href="http://docs.aws.amazon.com/general/latest/gr/rande.html#sg_region">Regions
      * and Endpoints</a> in the <i>Amazon Web Services Glossary</i>.</p> <p> Valid
      * Values: "us-east-1", "us-east-2", "us-west-1", "us-west-2", "ca-central-1",
-     * "eu-west-1", "eu-central-1", "eu-west-2", "ap-northeast-1", "ap-northeast-2",
-     * "ap-southeast-1", "ap-southeast-2", "ap-south-1", "sa-east-1"</p>
+     * "eu-west-1", "eu-central-1", "eu-west-2", "eu-west-3", "ap-northeast-1",
+     * "ap-northeast-2", "ap-southeast-1", "ap-southeast-2", "ap-south-1",
+     * "sa-east-1"</p>
      */
     inline ActivateGatewayRequest& WithGatewayRegion(const char* value) { SetGatewayRegion(value); return *this;}
 
@@ -328,7 +349,7 @@ namespace Model
     /**
      * <p>A value that defines the type of gateway to activate. The type specified is
      * critical to all later functions of the gateway and cannot be changed after
-     * activation. The default value is <code>STORED</code>. </p> <p> Valid Values:
+     * activation. The default value is <code>CACHED</code>. </p> <p> Valid Values:
      * "STORED", "CACHED", "VTL", "FILE_S3"</p>
      */
     inline const Aws::String& GetGatewayType() const{ return m_gatewayType; }
@@ -336,7 +357,7 @@ namespace Model
     /**
      * <p>A value that defines the type of gateway to activate. The type specified is
      * critical to all later functions of the gateway and cannot be changed after
-     * activation. The default value is <code>STORED</code>. </p> <p> Valid Values:
+     * activation. The default value is <code>CACHED</code>. </p> <p> Valid Values:
      * "STORED", "CACHED", "VTL", "FILE_S3"</p>
      */
     inline void SetGatewayType(const Aws::String& value) { m_gatewayTypeHasBeenSet = true; m_gatewayType = value; }
@@ -344,7 +365,7 @@ namespace Model
     /**
      * <p>A value that defines the type of gateway to activate. The type specified is
      * critical to all later functions of the gateway and cannot be changed after
-     * activation. The default value is <code>STORED</code>. </p> <p> Valid Values:
+     * activation. The default value is <code>CACHED</code>. </p> <p> Valid Values:
      * "STORED", "CACHED", "VTL", "FILE_S3"</p>
      */
     inline void SetGatewayType(Aws::String&& value) { m_gatewayTypeHasBeenSet = true; m_gatewayType = std::move(value); }
@@ -352,7 +373,7 @@ namespace Model
     /**
      * <p>A value that defines the type of gateway to activate. The type specified is
      * critical to all later functions of the gateway and cannot be changed after
-     * activation. The default value is <code>STORED</code>. </p> <p> Valid Values:
+     * activation. The default value is <code>CACHED</code>. </p> <p> Valid Values:
      * "STORED", "CACHED", "VTL", "FILE_S3"</p>
      */
     inline void SetGatewayType(const char* value) { m_gatewayTypeHasBeenSet = true; m_gatewayType.assign(value); }
@@ -360,7 +381,7 @@ namespace Model
     /**
      * <p>A value that defines the type of gateway to activate. The type specified is
      * critical to all later functions of the gateway and cannot be changed after
-     * activation. The default value is <code>STORED</code>. </p> <p> Valid Values:
+     * activation. The default value is <code>CACHED</code>. </p> <p> Valid Values:
      * "STORED", "CACHED", "VTL", "FILE_S3"</p>
      */
     inline ActivateGatewayRequest& WithGatewayType(const Aws::String& value) { SetGatewayType(value); return *this;}
@@ -368,7 +389,7 @@ namespace Model
     /**
      * <p>A value that defines the type of gateway to activate. The type specified is
      * critical to all later functions of the gateway and cannot be changed after
-     * activation. The default value is <code>STORED</code>. </p> <p> Valid Values:
+     * activation. The default value is <code>CACHED</code>. </p> <p> Valid Values:
      * "STORED", "CACHED", "VTL", "FILE_S3"</p>
      */
     inline ActivateGatewayRequest& WithGatewayType(Aws::String&& value) { SetGatewayType(std::move(value)); return *this;}
@@ -376,7 +397,7 @@ namespace Model
     /**
      * <p>A value that defines the type of gateway to activate. The type specified is
      * critical to all later functions of the gateway and cannot be changed after
-     * activation. The default value is <code>STORED</code>. </p> <p> Valid Values:
+     * activation. The default value is <code>CACHED</code>. </p> <p> Valid Values:
      * "STORED", "CACHED", "VTL", "FILE_S3"</p>
      */
     inline ActivateGatewayRequest& WithGatewayType(const char* value) { SetGatewayType(value); return *this;}

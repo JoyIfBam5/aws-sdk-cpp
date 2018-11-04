@@ -34,11 +34,6 @@ namespace Lambda
 {
 namespace Model
 {
-  /**
-   * <p/><p><h3>See Also:</h3>   <a
-   * href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetPolicyResponse">AWS
-   * API Reference</a></p>
-   */
   class AWS_LAMBDA_API GetPolicyResult
   {
   public:
@@ -96,9 +91,47 @@ namespace Model
      */
     inline GetPolicyResult& WithPolicy(const char* value) { SetPolicy(value); return *this;}
 
+
+    /**
+     * <p>Represents the latest updated revision of the function or alias.</p>
+     */
+    inline const Aws::String& GetRevisionId() const{ return m_revisionId; }
+
+    /**
+     * <p>Represents the latest updated revision of the function or alias.</p>
+     */
+    inline void SetRevisionId(const Aws::String& value) { m_revisionId = value; }
+
+    /**
+     * <p>Represents the latest updated revision of the function or alias.</p>
+     */
+    inline void SetRevisionId(Aws::String&& value) { m_revisionId = std::move(value); }
+
+    /**
+     * <p>Represents the latest updated revision of the function or alias.</p>
+     */
+    inline void SetRevisionId(const char* value) { m_revisionId.assign(value); }
+
+    /**
+     * <p>Represents the latest updated revision of the function or alias.</p>
+     */
+    inline GetPolicyResult& WithRevisionId(const Aws::String& value) { SetRevisionId(value); return *this;}
+
+    /**
+     * <p>Represents the latest updated revision of the function or alias.</p>
+     */
+    inline GetPolicyResult& WithRevisionId(Aws::String&& value) { SetRevisionId(std::move(value)); return *this;}
+
+    /**
+     * <p>Represents the latest updated revision of the function or alias.</p>
+     */
+    inline GetPolicyResult& WithRevisionId(const char* value) { SetRevisionId(value); return *this;}
+
   private:
 
     Aws::String m_policy;
+
+    Aws::String m_revisionId;
   };
 
 } // namespace Model

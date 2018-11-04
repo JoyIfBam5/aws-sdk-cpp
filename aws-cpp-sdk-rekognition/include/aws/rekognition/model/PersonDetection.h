@@ -25,6 +25,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace Rekognition
@@ -33,10 +34,12 @@ namespace Model
 {
 
   /**
-   * <p>Details and tracking information for a single time a person is tracked in a
-   * video. Amazon Rekognition operations that track persons return an array of
-   * <code>PersonDetection</code> objects with elements for each time a person is
-   * tracked in a video. For more information, see . </p><p><h3>See Also:</h3>   <a
+   * <p>Details and path tracking information for a single time a person's path is
+   * tracked in a video. Amazon Rekognition operations that track people's paths
+   * return an array of <code>PersonDetection</code> objects with elements for each
+   * time a person's path is tracked in a video. </p> <p>For more information, see
+   * API_GetPersonTracking in the Amazon Rekognition Developer Guide. </p><p><h3>See
+   * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/PersonDetection">AWS
    * API Reference</a></p>
    */
@@ -44,52 +47,52 @@ namespace Model
   {
   public:
     PersonDetection();
-    PersonDetection(const Aws::Utils::Json::JsonValue& jsonValue);
-    PersonDetection& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    PersonDetection(Aws::Utils::Json::JsonView jsonValue);
+    PersonDetection& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
     /**
-     * <p>The time, in milliseconds from the start of the video, that the person was
-     * tracked.</p>
+     * <p>The time, in milliseconds from the start of the video, that the person's path
+     * was tracked.</p>
      */
     inline long long GetTimestamp() const{ return m_timestamp; }
 
     /**
-     * <p>The time, in milliseconds from the start of the video, that the person was
-     * tracked.</p>
+     * <p>The time, in milliseconds from the start of the video, that the person's path
+     * was tracked.</p>
      */
     inline void SetTimestamp(long long value) { m_timestampHasBeenSet = true; m_timestamp = value; }
 
     /**
-     * <p>The time, in milliseconds from the start of the video, that the person was
-     * tracked.</p>
+     * <p>The time, in milliseconds from the start of the video, that the person's path
+     * was tracked.</p>
      */
     inline PersonDetection& WithTimestamp(long long value) { SetTimestamp(value); return *this;}
 
 
     /**
-     * <p>Details about a person tracked in a video.</p>
+     * <p>Details about a person whose path was tracked in a video.</p>
      */
     inline const PersonDetail& GetPerson() const{ return m_person; }
 
     /**
-     * <p>Details about a person tracked in a video.</p>
+     * <p>Details about a person whose path was tracked in a video.</p>
      */
     inline void SetPerson(const PersonDetail& value) { m_personHasBeenSet = true; m_person = value; }
 
     /**
-     * <p>Details about a person tracked in a video.</p>
+     * <p>Details about a person whose path was tracked in a video.</p>
      */
     inline void SetPerson(PersonDetail&& value) { m_personHasBeenSet = true; m_person = std::move(value); }
 
     /**
-     * <p>Details about a person tracked in a video.</p>
+     * <p>Details about a person whose path was tracked in a video.</p>
      */
     inline PersonDetection& WithPerson(const PersonDetail& value) { SetPerson(value); return *this;}
 
     /**
-     * <p>Details about a person tracked in a video.</p>
+     * <p>Details about a person whose path was tracked in a video.</p>
      */
     inline PersonDetection& WithPerson(PersonDetail&& value) { SetPerson(std::move(value)); return *this;}
 

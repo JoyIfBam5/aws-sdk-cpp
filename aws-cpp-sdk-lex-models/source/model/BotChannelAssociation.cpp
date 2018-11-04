@@ -36,11 +36,14 @@ BotChannelAssociation::BotChannelAssociation() :
     m_createdDateHasBeenSet(false),
     m_type(ChannelType::NOT_SET),
     m_typeHasBeenSet(false),
-    m_botConfigurationHasBeenSet(false)
+    m_botConfigurationHasBeenSet(false),
+    m_status(ChannelStatus::NOT_SET),
+    m_statusHasBeenSet(false),
+    m_failureReasonHasBeenSet(false)
 {
 }
 
-BotChannelAssociation::BotChannelAssociation(const JsonValue& jsonValue) : 
+BotChannelAssociation::BotChannelAssociation(JsonView jsonValue) : 
     m_nameHasBeenSet(false),
     m_descriptionHasBeenSet(false),
     m_botAliasHasBeenSet(false),
@@ -48,12 +51,15 @@ BotChannelAssociation::BotChannelAssociation(const JsonValue& jsonValue) :
     m_createdDateHasBeenSet(false),
     m_type(ChannelType::NOT_SET),
     m_typeHasBeenSet(false),
-    m_botConfigurationHasBeenSet(false)
+    m_botConfigurationHasBeenSet(false),
+    m_status(ChannelStatus::NOT_SET),
+    m_statusHasBeenSet(false),
+    m_failureReasonHasBeenSet(false)
 {
   *this = jsonValue;
 }
 
-BotChannelAssociation& BotChannelAssociation::operator =(const JsonValue& jsonValue)
+BotChannelAssociation& BotChannelAssociation::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("name"))
   {
@@ -99,12 +105,26 @@ BotChannelAssociation& BotChannelAssociation::operator =(const JsonValue& jsonVa
 
   if(jsonValue.ValueExists("botConfiguration"))
   {
-    Aws::Map<Aws::String, JsonValue> botConfigurationJsonMap = jsonValue.GetObject("botConfiguration").GetAllObjects();
+    Aws::Map<Aws::String, JsonView> botConfigurationJsonMap = jsonValue.GetObject("botConfiguration").GetAllObjects();
     for(auto& botConfigurationItem : botConfigurationJsonMap)
     {
       m_botConfiguration[botConfigurationItem.first] = botConfigurationItem.second.AsString();
     }
     m_botConfigurationHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("status"))
+  {
+    m_status = ChannelStatusMapper::GetChannelStatusForName(jsonValue.GetString("status"));
+
+    m_statusHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("failureReason"))
+  {
+    m_failureReason = jsonValue.GetString("failureReason");
+
+    m_failureReasonHasBeenSet = true;
   }
 
   return *this;
@@ -156,6 +176,17 @@ JsonValue BotChannelAssociation::Jsonize() const
      botConfigurationJsonMap.WithString(botConfigurationItem.first, botConfigurationItem.second);
    }
    payload.WithObject("botConfiguration", std::move(botConfigurationJsonMap));
+
+  }
+
+  if(m_statusHasBeenSet)
+  {
+   payload.WithString("status", ChannelStatusMapper::GetNameForChannelStatus(m_status));
+  }
+
+  if(m_failureReasonHasBeenSet)
+  {
+   payload.WithString("failureReason", m_failureReason);
 
   }
 

@@ -16,6 +16,8 @@
 #pragma once
 #include <aws/codebuild/CodeBuild_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <aws/codebuild/model/CloudWatchLogsConfig.h>
+#include <aws/codebuild/model/S3LogsConfig.h>
 #include <utility>
 
 namespace Aws
@@ -25,6 +27,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace CodeBuild
@@ -42,8 +45,8 @@ namespace Model
   {
   public:
     LogsLocation();
-    LogsLocation(const Aws::Utils::Json::JsonValue& jsonValue);
-    LogsLocation& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    LogsLocation(Aws::Utils::Json::JsonView jsonValue);
+    LogsLocation& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -154,6 +157,94 @@ namespace Model
      */
     inline LogsLocation& WithDeepLink(const char* value) { SetDeepLink(value); return *this;}
 
+
+    /**
+     * <p> The URL to an individual build log in an S3 bucket. </p>
+     */
+    inline const Aws::String& GetS3DeepLink() const{ return m_s3DeepLink; }
+
+    /**
+     * <p> The URL to an individual build log in an S3 bucket. </p>
+     */
+    inline void SetS3DeepLink(const Aws::String& value) { m_s3DeepLinkHasBeenSet = true; m_s3DeepLink = value; }
+
+    /**
+     * <p> The URL to an individual build log in an S3 bucket. </p>
+     */
+    inline void SetS3DeepLink(Aws::String&& value) { m_s3DeepLinkHasBeenSet = true; m_s3DeepLink = std::move(value); }
+
+    /**
+     * <p> The URL to an individual build log in an S3 bucket. </p>
+     */
+    inline void SetS3DeepLink(const char* value) { m_s3DeepLinkHasBeenSet = true; m_s3DeepLink.assign(value); }
+
+    /**
+     * <p> The URL to an individual build log in an S3 bucket. </p>
+     */
+    inline LogsLocation& WithS3DeepLink(const Aws::String& value) { SetS3DeepLink(value); return *this;}
+
+    /**
+     * <p> The URL to an individual build log in an S3 bucket. </p>
+     */
+    inline LogsLocation& WithS3DeepLink(Aws::String&& value) { SetS3DeepLink(std::move(value)); return *this;}
+
+    /**
+     * <p> The URL to an individual build log in an S3 bucket. </p>
+     */
+    inline LogsLocation& WithS3DeepLink(const char* value) { SetS3DeepLink(value); return *this;}
+
+
+    /**
+     * <p> Information about Amazon CloudWatch Logs for a build project. </p>
+     */
+    inline const CloudWatchLogsConfig& GetCloudWatchLogs() const{ return m_cloudWatchLogs; }
+
+    /**
+     * <p> Information about Amazon CloudWatch Logs for a build project. </p>
+     */
+    inline void SetCloudWatchLogs(const CloudWatchLogsConfig& value) { m_cloudWatchLogsHasBeenSet = true; m_cloudWatchLogs = value; }
+
+    /**
+     * <p> Information about Amazon CloudWatch Logs for a build project. </p>
+     */
+    inline void SetCloudWatchLogs(CloudWatchLogsConfig&& value) { m_cloudWatchLogsHasBeenSet = true; m_cloudWatchLogs = std::move(value); }
+
+    /**
+     * <p> Information about Amazon CloudWatch Logs for a build project. </p>
+     */
+    inline LogsLocation& WithCloudWatchLogs(const CloudWatchLogsConfig& value) { SetCloudWatchLogs(value); return *this;}
+
+    /**
+     * <p> Information about Amazon CloudWatch Logs for a build project. </p>
+     */
+    inline LogsLocation& WithCloudWatchLogs(CloudWatchLogsConfig&& value) { SetCloudWatchLogs(std::move(value)); return *this;}
+
+
+    /**
+     * <p> Information about S3 logs for a build project. </p>
+     */
+    inline const S3LogsConfig& GetS3Logs() const{ return m_s3Logs; }
+
+    /**
+     * <p> Information about S3 logs for a build project. </p>
+     */
+    inline void SetS3Logs(const S3LogsConfig& value) { m_s3LogsHasBeenSet = true; m_s3Logs = value; }
+
+    /**
+     * <p> Information about S3 logs for a build project. </p>
+     */
+    inline void SetS3Logs(S3LogsConfig&& value) { m_s3LogsHasBeenSet = true; m_s3Logs = std::move(value); }
+
+    /**
+     * <p> Information about S3 logs for a build project. </p>
+     */
+    inline LogsLocation& WithS3Logs(const S3LogsConfig& value) { SetS3Logs(value); return *this;}
+
+    /**
+     * <p> Information about S3 logs for a build project. </p>
+     */
+    inline LogsLocation& WithS3Logs(S3LogsConfig&& value) { SetS3Logs(std::move(value)); return *this;}
+
   private:
 
     Aws::String m_groupName;
@@ -164,6 +255,15 @@ namespace Model
 
     Aws::String m_deepLink;
     bool m_deepLinkHasBeenSet;
+
+    Aws::String m_s3DeepLink;
+    bool m_s3DeepLinkHasBeenSet;
+
+    CloudWatchLogsConfig m_cloudWatchLogs;
+    bool m_cloudWatchLogsHasBeenSet;
+
+    S3LogsConfig m_s3Logs;
+    bool m_s3LogsHasBeenSet;
   };
 
 } // namespace Model

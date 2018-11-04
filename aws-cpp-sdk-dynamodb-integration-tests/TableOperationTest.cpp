@@ -68,11 +68,11 @@ static const char* ALLOCATION_TAG = "TableOperationTest";
 
 namespace {
 
-Aws::String DYNAMODB_INTEGRATION_TEST_ID = "";
+static std::string DYNAMODB_INTEGRATION_TEST_ID;
 
 Aws::String GetTablePrefix()
 {
-    return Aws::Testing::GetAwsResourcePrefix() + TEST_TABLE_PREFIX + DYNAMODB_INTEGRATION_TEST_ID + "_";
+    return Aws::Testing::GetAwsResourcePrefix() + TEST_TABLE_PREFIX + DYNAMODB_INTEGRATION_TEST_ID.c_str() + "_";
 }
 
 Aws::String BuildTableName(const char* baseName)
@@ -180,6 +180,7 @@ protected:
         config.writeRateLimiter = m_limiter;
         config.httpLibOverride = transferType;
         config.executor = Aws::MakeShared<Aws::Utils::Threading::PooledThreadExecutor>(ALLOCATION_TAG, 4);
+        config.disableExpectHeader = true;
 
         //to test proxy functionality, uncomment the next two lines.
         //config.proxyHost = "localhost";
@@ -191,7 +192,7 @@ protected:
     {
         m_limiter = Aws::MakeShared<Aws::Utils::RateLimits::DefaultRateLimiter<>>(ALLOCATION_TAG, 200000);
         SetUpClient(Aws::Http::TransferLibType::DEFAULT_CLIENT);
-        DYNAMODB_INTEGRATION_TEST_ID = Aws::Utils::UUID::RandomUUID();
+        DYNAMODB_INTEGRATION_TEST_ID = Aws::String(Aws::Utils::UUID::RandomUUID()).c_str();
         // delete all tables, just in case
         DeleteAllTables();
     }
@@ -199,7 +200,6 @@ protected:
     static void TearDownTestCase()
     {
         DeleteAllTables();
-
         m_limiter = nullptr;
         m_client = nullptr;
     }
@@ -287,8 +287,7 @@ protected:
 
         while (shouldContinue)
         {     
-            EXPECT_TRUE(outcome.IsSuccess());
-            if (outcome.GetResult().GetTable().GetTableStatus() == TableStatus::ACTIVE)
+            if (outcome.IsSuccess() && outcome.GetResult().GetTable().GetTableStatus() == TableStatus::ACTIVE)
             {
                 break;
             }
@@ -1246,6 +1245,42 @@ TEST_F(TableOperationTest, TestAttributeValues)
         ASSERT_EQ("ernie", m.find("bert")->second->GetS());
     }
 
+    // Empty Map
+    {
+        // Update
+        UpdateItemRequest updateItemRequest;
+        updateItemRequest.SetTableName(attributeValueTestTableName);
+        updateItemRequest.AddKey(HASH_KEY_NAME, hashKey);
+
+        Aws::String updateExpression = "SET EmptyMap = :map";
+        updateItemRequest.SetUpdateExpression(updateExpression);
+
+        Aws::Map<Aws::String, Aws::DynamoDB::Model::AttributeValue> expressionAttributeValues;
+        AttributeValue mapValueAttribute;
+        Aws::Map<Aws::String, const std::shared_ptr<Aws::DynamoDB::Model::AttributeValue>> emptyMap;
+        mapValueAttribute.SetM(emptyMap);
+        expressionAttributeValues[":map"] = mapValueAttribute;
+        updateItemRequest.SetExpressionAttributeValues(expressionAttributeValues);
+
+        UpdateItemOutcome updateOutcome = m_client->UpdateItem(updateItemRequest);
+        ASSERT_TRUE(updateOutcome.IsSuccess());
+
+        // Get
+        GetItemRequest getItemRequest;
+        getItemRequest.AddKey(HASH_KEY_NAME, hashKey);
+        getItemRequest.SetTableName(attributeValueTestTableName);
+
+        GetItemOutcome getOutcome = m_client->GetItem(getItemRequest);
+        ASSERT_TRUE(getOutcome.IsSuccess());
+
+        // Parse
+        GetItemResult result = getOutcome.GetResult();
+        auto returnedItemCollection = result.GetItem();
+        ASSERT_TRUE(returnedItemCollection.find("EmptyMap") != returnedItemCollection.end());
+        auto map = returnedItemCollection["EmptyMap"].GetM();
+        ASSERT_EQ(0u, map.size());
+    }
+
     // Attribute List
     {
         // Update
@@ -1305,6 +1340,42 @@ TEST_F(TableOperationTest, TestAttributeValues)
         ASSERT_EQ(2u, list.size());
         ASSERT_EQ("foo", list[0]->GetS());
         ASSERT_EQ("bar", list[1]->GetS());
+    }
+
+    // Empty List
+    {
+        // Update
+        UpdateItemRequest updateItemRequest;
+        updateItemRequest.SetTableName(attributeValueTestTableName);
+        updateItemRequest.AddKey(HASH_KEY_NAME, hashKey);
+
+        Aws::String updateExpression = "SET EmptyList = :list";
+        updateItemRequest.SetUpdateExpression(updateExpression);
+
+        Aws::Map<Aws::String, Aws::DynamoDB::Model::AttributeValue> expressionAttributeValues;
+        AttributeValue listValueAttribute;
+        Aws::Vector<std::shared_ptr<Aws::DynamoDB::Model::AttributeValue>> emptyList;
+        listValueAttribute.SetL(emptyList);
+        expressionAttributeValues[":list"] = listValueAttribute;
+        updateItemRequest.SetExpressionAttributeValues(expressionAttributeValues);
+
+        UpdateItemOutcome updateOutcome = m_client->UpdateItem(updateItemRequest);
+        ASSERT_TRUE(updateOutcome.IsSuccess());
+
+        // Get
+        GetItemRequest getItemRequest;
+        getItemRequest.AddKey(HASH_KEY_NAME, hashKey);
+        getItemRequest.SetTableName(attributeValueTestTableName);
+
+        GetItemOutcome getOutcome = m_client->GetItem(getItemRequest);
+        ASSERT_TRUE(getOutcome.IsSuccess());
+
+        // Parse
+        GetItemResult result = getOutcome.GetResult();
+        auto returnedItemCollection = result.GetItem();
+        ASSERT_TRUE(returnedItemCollection.find("EmptyList") != returnedItemCollection.end());
+        auto list = returnedItemCollection["EmptyList"].GetL();
+        ASSERT_EQ(0u, list.size());
     }
 
     // Bool

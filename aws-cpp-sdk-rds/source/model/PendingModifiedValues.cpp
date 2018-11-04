@@ -48,7 +48,9 @@ PendingModifiedValues::PendingModifiedValues() :
     m_dBInstanceIdentifierHasBeenSet(false),
     m_storageTypeHasBeenSet(false),
     m_cACertificateIdentifierHasBeenSet(false),
-    m_dBSubnetGroupNameHasBeenSet(false)
+    m_dBSubnetGroupNameHasBeenSet(false),
+    m_pendingCloudwatchLogsExportsHasBeenSet(false),
+    m_processorFeaturesHasBeenSet(false)
 {
 }
 
@@ -70,7 +72,9 @@ PendingModifiedValues::PendingModifiedValues(const XmlNode& xmlNode) :
     m_dBInstanceIdentifierHasBeenSet(false),
     m_storageTypeHasBeenSet(false),
     m_cACertificateIdentifierHasBeenSet(false),
-    m_dBSubnetGroupNameHasBeenSet(false)
+    m_dBSubnetGroupNameHasBeenSet(false),
+    m_pendingCloudwatchLogsExportsHasBeenSet(false),
+    m_processorFeaturesHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -159,6 +163,24 @@ PendingModifiedValues& PendingModifiedValues::operator =(const XmlNode& xmlNode)
       m_dBSubnetGroupName = StringUtils::Trim(dBSubnetGroupNameNode.GetText().c_str());
       m_dBSubnetGroupNameHasBeenSet = true;
     }
+    XmlNode pendingCloudwatchLogsExportsNode = resultNode.FirstChild("PendingCloudwatchLogsExports");
+    if(!pendingCloudwatchLogsExportsNode.IsNull())
+    {
+      m_pendingCloudwatchLogsExports = pendingCloudwatchLogsExportsNode;
+      m_pendingCloudwatchLogsExportsHasBeenSet = true;
+    }
+    XmlNode processorFeaturesNode = resultNode.FirstChild("ProcessorFeatures");
+    if(!processorFeaturesNode.IsNull())
+    {
+      XmlNode processorFeaturesMember = processorFeaturesNode.FirstChild("ProcessorFeature");
+      while(!processorFeaturesMember.IsNull())
+      {
+        m_processorFeatures.push_back(processorFeaturesMember);
+        processorFeaturesMember = processorFeaturesMember.NextNode("ProcessorFeature");
+      }
+
+      m_processorFeaturesHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -231,6 +253,24 @@ void PendingModifiedValues::OutputToStream(Aws::OStream& oStream, const char* lo
       oStream << location << index << locationValue << ".DBSubnetGroupName=" << StringUtils::URLEncode(m_dBSubnetGroupName.c_str()) << "&";
   }
 
+  if(m_pendingCloudwatchLogsExportsHasBeenSet)
+  {
+      Aws::StringStream pendingCloudwatchLogsExportsLocationAndMemberSs;
+      pendingCloudwatchLogsExportsLocationAndMemberSs << location << index << locationValue << ".PendingCloudwatchLogsExports";
+      m_pendingCloudwatchLogsExports.OutputToStream(oStream, pendingCloudwatchLogsExportsLocationAndMemberSs.str().c_str());
+  }
+
+  if(m_processorFeaturesHasBeenSet)
+  {
+      unsigned processorFeaturesIdx = 1;
+      for(auto& item : m_processorFeatures)
+      {
+        Aws::StringStream processorFeaturesSs;
+        processorFeaturesSs << location << index << locationValue << ".ProcessorFeature." << processorFeaturesIdx++;
+        item.OutputToStream(oStream, processorFeaturesSs.str().c_str());
+      }
+  }
+
 }
 
 void PendingModifiedValues::OutputToStream(Aws::OStream& oStream, const char* location) const
@@ -286,6 +326,22 @@ void PendingModifiedValues::OutputToStream(Aws::OStream& oStream, const char* lo
   if(m_dBSubnetGroupNameHasBeenSet)
   {
       oStream << location << ".DBSubnetGroupName=" << StringUtils::URLEncode(m_dBSubnetGroupName.c_str()) << "&";
+  }
+  if(m_pendingCloudwatchLogsExportsHasBeenSet)
+  {
+      Aws::String pendingCloudwatchLogsExportsLocationAndMember(location);
+      pendingCloudwatchLogsExportsLocationAndMember += ".PendingCloudwatchLogsExports";
+      m_pendingCloudwatchLogsExports.OutputToStream(oStream, pendingCloudwatchLogsExportsLocationAndMember.c_str());
+  }
+  if(m_processorFeaturesHasBeenSet)
+  {
+      unsigned processorFeaturesIdx = 1;
+      for(auto& item : m_processorFeatures)
+      {
+        Aws::StringStream processorFeaturesSs;
+        processorFeaturesSs << location <<  ".ProcessorFeature." << processorFeaturesIdx++;
+        item.OutputToStream(oStream, processorFeaturesSs.str().c_str());
+      }
   }
 }
 

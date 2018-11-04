@@ -29,6 +29,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace WorkSpaces
@@ -37,8 +38,8 @@ namespace Model
 {
 
   /**
-   * <p>Contains information about an AWS Directory Service directory for use with
-   * Amazon WorkSpaces.</p><p><h3>See Also:</h3>   <a
+   * <p>Information about an AWS Directory Service directory for use with Amazon
+   * WorkSpaces.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/WorkspaceDirectory">AWS
    * API Reference</a></p>
    */
@@ -46,8 +47,8 @@ namespace Model
   {
   public:
     WorkspaceDirectory();
-    WorkspaceDirectory(const Aws::Utils::Json::JsonValue& jsonValue);
-    WorkspaceDirectory& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    WorkspaceDirectory(Aws::Utils::Json::JsonView jsonValue);
+    WorkspaceDirectory& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -203,99 +204,83 @@ namespace Model
 
 
     /**
-     * <p>An array of strings that contains the identifiers of the subnets used with
-     * the directory.</p>
+     * <p>The identifiers of the subnets used with the directory.</p>
      */
     inline const Aws::Vector<Aws::String>& GetSubnetIds() const{ return m_subnetIds; }
 
     /**
-     * <p>An array of strings that contains the identifiers of the subnets used with
-     * the directory.</p>
+     * <p>The identifiers of the subnets used with the directory.</p>
      */
     inline void SetSubnetIds(const Aws::Vector<Aws::String>& value) { m_subnetIdsHasBeenSet = true; m_subnetIds = value; }
 
     /**
-     * <p>An array of strings that contains the identifiers of the subnets used with
-     * the directory.</p>
+     * <p>The identifiers of the subnets used with the directory.</p>
      */
     inline void SetSubnetIds(Aws::Vector<Aws::String>&& value) { m_subnetIdsHasBeenSet = true; m_subnetIds = std::move(value); }
 
     /**
-     * <p>An array of strings that contains the identifiers of the subnets used with
-     * the directory.</p>
+     * <p>The identifiers of the subnets used with the directory.</p>
      */
     inline WorkspaceDirectory& WithSubnetIds(const Aws::Vector<Aws::String>& value) { SetSubnetIds(value); return *this;}
 
     /**
-     * <p>An array of strings that contains the identifiers of the subnets used with
-     * the directory.</p>
+     * <p>The identifiers of the subnets used with the directory.</p>
      */
     inline WorkspaceDirectory& WithSubnetIds(Aws::Vector<Aws::String>&& value) { SetSubnetIds(std::move(value)); return *this;}
 
     /**
-     * <p>An array of strings that contains the identifiers of the subnets used with
-     * the directory.</p>
+     * <p>The identifiers of the subnets used with the directory.</p>
      */
     inline WorkspaceDirectory& AddSubnetIds(const Aws::String& value) { m_subnetIdsHasBeenSet = true; m_subnetIds.push_back(value); return *this; }
 
     /**
-     * <p>An array of strings that contains the identifiers of the subnets used with
-     * the directory.</p>
+     * <p>The identifiers of the subnets used with the directory.</p>
      */
     inline WorkspaceDirectory& AddSubnetIds(Aws::String&& value) { m_subnetIdsHasBeenSet = true; m_subnetIds.push_back(std::move(value)); return *this; }
 
     /**
-     * <p>An array of strings that contains the identifiers of the subnets used with
-     * the directory.</p>
+     * <p>The identifiers of the subnets used with the directory.</p>
      */
     inline WorkspaceDirectory& AddSubnetIds(const char* value) { m_subnetIdsHasBeenSet = true; m_subnetIds.push_back(value); return *this; }
 
 
     /**
-     * <p>An array of strings that contains the IP addresses of the DNS servers for the
-     * directory.</p>
+     * <p>The IP addresses of the DNS servers for the directory.</p>
      */
     inline const Aws::Vector<Aws::String>& GetDnsIpAddresses() const{ return m_dnsIpAddresses; }
 
     /**
-     * <p>An array of strings that contains the IP addresses of the DNS servers for the
-     * directory.</p>
+     * <p>The IP addresses of the DNS servers for the directory.</p>
      */
     inline void SetDnsIpAddresses(const Aws::Vector<Aws::String>& value) { m_dnsIpAddressesHasBeenSet = true; m_dnsIpAddresses = value; }
 
     /**
-     * <p>An array of strings that contains the IP addresses of the DNS servers for the
-     * directory.</p>
+     * <p>The IP addresses of the DNS servers for the directory.</p>
      */
     inline void SetDnsIpAddresses(Aws::Vector<Aws::String>&& value) { m_dnsIpAddressesHasBeenSet = true; m_dnsIpAddresses = std::move(value); }
 
     /**
-     * <p>An array of strings that contains the IP addresses of the DNS servers for the
-     * directory.</p>
+     * <p>The IP addresses of the DNS servers for the directory.</p>
      */
     inline WorkspaceDirectory& WithDnsIpAddresses(const Aws::Vector<Aws::String>& value) { SetDnsIpAddresses(value); return *this;}
 
     /**
-     * <p>An array of strings that contains the IP addresses of the DNS servers for the
-     * directory.</p>
+     * <p>The IP addresses of the DNS servers for the directory.</p>
      */
     inline WorkspaceDirectory& WithDnsIpAddresses(Aws::Vector<Aws::String>&& value) { SetDnsIpAddresses(std::move(value)); return *this;}
 
     /**
-     * <p>An array of strings that contains the IP addresses of the DNS servers for the
-     * directory.</p>
+     * <p>The IP addresses of the DNS servers for the directory.</p>
      */
     inline WorkspaceDirectory& AddDnsIpAddresses(const Aws::String& value) { m_dnsIpAddressesHasBeenSet = true; m_dnsIpAddresses.push_back(value); return *this; }
 
     /**
-     * <p>An array of strings that contains the IP addresses of the DNS servers for the
-     * directory.</p>
+     * <p>The IP addresses of the DNS servers for the directory.</p>
      */
     inline WorkspaceDirectory& AddDnsIpAddresses(Aws::String&& value) { m_dnsIpAddressesHasBeenSet = true; m_dnsIpAddresses.push_back(std::move(value)); return *this; }
 
     /**
-     * <p>An array of strings that contains the IP addresses of the DNS servers for the
-     * directory.</p>
+     * <p>The IP addresses of the DNS servers for the directory.</p>
      */
     inline WorkspaceDirectory& AddDnsIpAddresses(const char* value) { m_dnsIpAddressesHasBeenSet = true; m_dnsIpAddresses.push_back(value); return *this; }
 
@@ -475,34 +460,78 @@ namespace Model
 
 
     /**
-     * <p>A structure that specifies the default creation properties for all WorkSpaces
-     * in the directory.</p>
+     * <p>The default creation properties for all WorkSpaces in the directory.</p>
      */
     inline const DefaultWorkspaceCreationProperties& GetWorkspaceCreationProperties() const{ return m_workspaceCreationProperties; }
 
     /**
-     * <p>A structure that specifies the default creation properties for all WorkSpaces
-     * in the directory.</p>
+     * <p>The default creation properties for all WorkSpaces in the directory.</p>
      */
     inline void SetWorkspaceCreationProperties(const DefaultWorkspaceCreationProperties& value) { m_workspaceCreationPropertiesHasBeenSet = true; m_workspaceCreationProperties = value; }
 
     /**
-     * <p>A structure that specifies the default creation properties for all WorkSpaces
-     * in the directory.</p>
+     * <p>The default creation properties for all WorkSpaces in the directory.</p>
      */
     inline void SetWorkspaceCreationProperties(DefaultWorkspaceCreationProperties&& value) { m_workspaceCreationPropertiesHasBeenSet = true; m_workspaceCreationProperties = std::move(value); }
 
     /**
-     * <p>A structure that specifies the default creation properties for all WorkSpaces
-     * in the directory.</p>
+     * <p>The default creation properties for all WorkSpaces in the directory.</p>
      */
     inline WorkspaceDirectory& WithWorkspaceCreationProperties(const DefaultWorkspaceCreationProperties& value) { SetWorkspaceCreationProperties(value); return *this;}
 
     /**
-     * <p>A structure that specifies the default creation properties for all WorkSpaces
-     * in the directory.</p>
+     * <p>The default creation properties for all WorkSpaces in the directory.</p>
      */
     inline WorkspaceDirectory& WithWorkspaceCreationProperties(DefaultWorkspaceCreationProperties&& value) { SetWorkspaceCreationProperties(std::move(value)); return *this;}
+
+
+    /**
+     * <p>The identifiers of the IP access control groups associated with the
+     * directory.</p>
+     */
+    inline const Aws::Vector<Aws::String>& GetIpGroupIds() const{ return m_ipGroupIds; }
+
+    /**
+     * <p>The identifiers of the IP access control groups associated with the
+     * directory.</p>
+     */
+    inline void SetIpGroupIds(const Aws::Vector<Aws::String>& value) { m_ipGroupIdsHasBeenSet = true; m_ipGroupIds = value; }
+
+    /**
+     * <p>The identifiers of the IP access control groups associated with the
+     * directory.</p>
+     */
+    inline void SetIpGroupIds(Aws::Vector<Aws::String>&& value) { m_ipGroupIdsHasBeenSet = true; m_ipGroupIds = std::move(value); }
+
+    /**
+     * <p>The identifiers of the IP access control groups associated with the
+     * directory.</p>
+     */
+    inline WorkspaceDirectory& WithIpGroupIds(const Aws::Vector<Aws::String>& value) { SetIpGroupIds(value); return *this;}
+
+    /**
+     * <p>The identifiers of the IP access control groups associated with the
+     * directory.</p>
+     */
+    inline WorkspaceDirectory& WithIpGroupIds(Aws::Vector<Aws::String>&& value) { SetIpGroupIds(std::move(value)); return *this;}
+
+    /**
+     * <p>The identifiers of the IP access control groups associated with the
+     * directory.</p>
+     */
+    inline WorkspaceDirectory& AddIpGroupIds(const Aws::String& value) { m_ipGroupIdsHasBeenSet = true; m_ipGroupIds.push_back(value); return *this; }
+
+    /**
+     * <p>The identifiers of the IP access control groups associated with the
+     * directory.</p>
+     */
+    inline WorkspaceDirectory& AddIpGroupIds(Aws::String&& value) { m_ipGroupIdsHasBeenSet = true; m_ipGroupIds.push_back(std::move(value)); return *this; }
+
+    /**
+     * <p>The identifiers of the IP access control groups associated with the
+     * directory.</p>
+     */
+    inline WorkspaceDirectory& AddIpGroupIds(const char* value) { m_ipGroupIdsHasBeenSet = true; m_ipGroupIds.push_back(value); return *this; }
 
   private:
 
@@ -541,6 +570,9 @@ namespace Model
 
     DefaultWorkspaceCreationProperties m_workspaceCreationProperties;
     bool m_workspaceCreationPropertiesHasBeenSet;
+
+    Aws::Vector<Aws::String> m_ipGroupIds;
+    bool m_ipGroupIdsHasBeenSet;
   };
 
 } // namespace Model

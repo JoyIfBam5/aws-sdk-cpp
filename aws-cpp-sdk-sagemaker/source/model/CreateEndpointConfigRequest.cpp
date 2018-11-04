@@ -25,7 +25,8 @@ using namespace Aws::Utils;
 CreateEndpointConfigRequest::CreateEndpointConfigRequest() : 
     m_endpointConfigNameHasBeenSet(false),
     m_productionVariantsHasBeenSet(false),
-    m_tagsHasBeenSet(false)
+    m_tagsHasBeenSet(false),
+    m_kmsKeyIdHasBeenSet(false)
 {
 }
 
@@ -61,7 +62,13 @@ Aws::String CreateEndpointConfigRequest::SerializePayload() const
 
   }
 
-  return payload.WriteReadable();
+  if(m_kmsKeyIdHasBeenSet)
+  {
+   payload.WithString("KmsKeyId", m_kmsKeyId);
+
+  }
+
+  return payload.View().WriteReadable();
 }
 
 Aws::Http::HeaderValueCollection CreateEndpointConfigRequest::GetRequestSpecificHeaders() const

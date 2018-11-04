@@ -21,6 +21,9 @@
 #include <aws/es/model/AccessPoliciesStatus.h>
 #include <aws/es/model/SnapshotOptionsStatus.h>
 #include <aws/es/model/VPCDerivedInfoStatus.h>
+#include <aws/es/model/CognitoOptionsStatus.h>
+#include <aws/es/model/EncryptionAtRestOptionsStatus.h>
+#include <aws/es/model/NodeToNodeEncryptionOptionsStatus.h>
 #include <aws/es/model/AdvancedOptionsStatus.h>
 #include <aws/es/model/LogPublishingOptionsStatus.h>
 #include <utility>
@@ -32,6 +35,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace ElasticsearchService
@@ -48,8 +52,8 @@ namespace Model
   {
   public:
     ElasticsearchDomainConfig();
-    ElasticsearchDomainConfig(const Aws::Utils::Json::JsonValue& jsonValue);
-    ElasticsearchDomainConfig& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    ElasticsearchDomainConfig(Aws::Utils::Json::JsonView jsonValue);
+    ElasticsearchDomainConfig& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -230,6 +234,109 @@ namespace Model
 
 
     /**
+     * <p>The <code>CognitoOptions</code> for the specified domain. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html"
+     * target="_blank">Amazon Cognito Authentication for Kibana</a>.</p>
+     */
+    inline const CognitoOptionsStatus& GetCognitoOptions() const{ return m_cognitoOptions; }
+
+    /**
+     * <p>The <code>CognitoOptions</code> for the specified domain. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html"
+     * target="_blank">Amazon Cognito Authentication for Kibana</a>.</p>
+     */
+    inline void SetCognitoOptions(const CognitoOptionsStatus& value) { m_cognitoOptionsHasBeenSet = true; m_cognitoOptions = value; }
+
+    /**
+     * <p>The <code>CognitoOptions</code> for the specified domain. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html"
+     * target="_blank">Amazon Cognito Authentication for Kibana</a>.</p>
+     */
+    inline void SetCognitoOptions(CognitoOptionsStatus&& value) { m_cognitoOptionsHasBeenSet = true; m_cognitoOptions = std::move(value); }
+
+    /**
+     * <p>The <code>CognitoOptions</code> for the specified domain. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html"
+     * target="_blank">Amazon Cognito Authentication for Kibana</a>.</p>
+     */
+    inline ElasticsearchDomainConfig& WithCognitoOptions(const CognitoOptionsStatus& value) { SetCognitoOptions(value); return *this;}
+
+    /**
+     * <p>The <code>CognitoOptions</code> for the specified domain. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html"
+     * target="_blank">Amazon Cognito Authentication for Kibana</a>.</p>
+     */
+    inline ElasticsearchDomainConfig& WithCognitoOptions(CognitoOptionsStatus&& value) { SetCognitoOptions(std::move(value)); return *this;}
+
+
+    /**
+     * <p>Specifies the <code>EncryptionAtRestOptions</code> for the Elasticsearch
+     * domain.</p>
+     */
+    inline const EncryptionAtRestOptionsStatus& GetEncryptionAtRestOptions() const{ return m_encryptionAtRestOptions; }
+
+    /**
+     * <p>Specifies the <code>EncryptionAtRestOptions</code> for the Elasticsearch
+     * domain.</p>
+     */
+    inline void SetEncryptionAtRestOptions(const EncryptionAtRestOptionsStatus& value) { m_encryptionAtRestOptionsHasBeenSet = true; m_encryptionAtRestOptions = value; }
+
+    /**
+     * <p>Specifies the <code>EncryptionAtRestOptions</code> for the Elasticsearch
+     * domain.</p>
+     */
+    inline void SetEncryptionAtRestOptions(EncryptionAtRestOptionsStatus&& value) { m_encryptionAtRestOptionsHasBeenSet = true; m_encryptionAtRestOptions = std::move(value); }
+
+    /**
+     * <p>Specifies the <code>EncryptionAtRestOptions</code> for the Elasticsearch
+     * domain.</p>
+     */
+    inline ElasticsearchDomainConfig& WithEncryptionAtRestOptions(const EncryptionAtRestOptionsStatus& value) { SetEncryptionAtRestOptions(value); return *this;}
+
+    /**
+     * <p>Specifies the <code>EncryptionAtRestOptions</code> for the Elasticsearch
+     * domain.</p>
+     */
+    inline ElasticsearchDomainConfig& WithEncryptionAtRestOptions(EncryptionAtRestOptionsStatus&& value) { SetEncryptionAtRestOptions(std::move(value)); return *this;}
+
+
+    /**
+     * <p>Specifies the <code>NodeToNodeEncryptionOptions</code> for the Elasticsearch
+     * domain.</p>
+     */
+    inline const NodeToNodeEncryptionOptionsStatus& GetNodeToNodeEncryptionOptions() const{ return m_nodeToNodeEncryptionOptions; }
+
+    /**
+     * <p>Specifies the <code>NodeToNodeEncryptionOptions</code> for the Elasticsearch
+     * domain.</p>
+     */
+    inline void SetNodeToNodeEncryptionOptions(const NodeToNodeEncryptionOptionsStatus& value) { m_nodeToNodeEncryptionOptionsHasBeenSet = true; m_nodeToNodeEncryptionOptions = value; }
+
+    /**
+     * <p>Specifies the <code>NodeToNodeEncryptionOptions</code> for the Elasticsearch
+     * domain.</p>
+     */
+    inline void SetNodeToNodeEncryptionOptions(NodeToNodeEncryptionOptionsStatus&& value) { m_nodeToNodeEncryptionOptionsHasBeenSet = true; m_nodeToNodeEncryptionOptions = std::move(value); }
+
+    /**
+     * <p>Specifies the <code>NodeToNodeEncryptionOptions</code> for the Elasticsearch
+     * domain.</p>
+     */
+    inline ElasticsearchDomainConfig& WithNodeToNodeEncryptionOptions(const NodeToNodeEncryptionOptionsStatus& value) { SetNodeToNodeEncryptionOptions(value); return *this;}
+
+    /**
+     * <p>Specifies the <code>NodeToNodeEncryptionOptions</code> for the Elasticsearch
+     * domain.</p>
+     */
+    inline ElasticsearchDomainConfig& WithNodeToNodeEncryptionOptions(NodeToNodeEncryptionOptionsStatus&& value) { SetNodeToNodeEncryptionOptions(std::move(value)); return *this;}
+
+
+    /**
      * <p>Specifies the <code>AdvancedOptions</code> for the domain. See <a
      * href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options"
      * target="_blank">Configuring Advanced Options</a> for more information.</p>
@@ -309,6 +416,15 @@ namespace Model
 
     VPCDerivedInfoStatus m_vPCOptions;
     bool m_vPCOptionsHasBeenSet;
+
+    CognitoOptionsStatus m_cognitoOptions;
+    bool m_cognitoOptionsHasBeenSet;
+
+    EncryptionAtRestOptionsStatus m_encryptionAtRestOptions;
+    bool m_encryptionAtRestOptionsHasBeenSet;
+
+    NodeToNodeEncryptionOptionsStatus m_nodeToNodeEncryptionOptions;
+    bool m_nodeToNodeEncryptionOptionsHasBeenSet;
 
     AdvancedOptionsStatus m_advancedOptions;
     bool m_advancedOptionsHasBeenSet;

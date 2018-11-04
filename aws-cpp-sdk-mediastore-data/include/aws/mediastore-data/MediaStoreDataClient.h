@@ -48,11 +48,6 @@ namespace Threading
 {
   class Executor;
 } // namespace Threading
-
-namespace Json
-{
-  class JsonValue;
-} // namespace Json
 } // namespace Utils
 
 namespace Auth
@@ -129,7 +124,7 @@ namespace Model
 
         virtual ~MediaStoreDataClient();
 
-        inline virtual const char* GetServiceClientName() const override { return "mediastore"; }
+        inline virtual const char* GetServiceClientName() const override { return "MediaStore Data"; }
 
 
         /**
@@ -158,16 +153,16 @@ namespace Model
         virtual void DeleteObjectAsync(const Model::DeleteObjectRequest& request, const DeleteObjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Gets the header for an object at the specified path.</p><p><h3>See Also:</h3>
-         * <a
+         * <p>Gets the headers for an object at the specified path.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/mediastore-data-2017-09-01/DescribeObject">AWS
          * API Reference</a></p>
          */
         virtual Model::DescribeObjectOutcome DescribeObject(const Model::DescribeObjectRequest& request) const;
 
         /**
-         * <p>Gets the header for an object at the specified path.</p><p><h3>See Also:</h3>
-         * <a
+         * <p>Gets the headers for an object at the specified path.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/mediastore-data-2017-09-01/DescribeObject">AWS
          * API Reference</a></p>
          *
@@ -176,8 +171,8 @@ namespace Model
         virtual Model::DescribeObjectOutcomeCallable DescribeObjectCallable(const Model::DescribeObjectRequest& request) const;
 
         /**
-         * <p>Gets the header for an object at the specified path.</p><p><h3>See Also:</h3>
-         * <a
+         * <p>Gets the headers for an object at the specified path.</p><p><h3>See
+         * Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/mediastore-data-2017-09-01/DescribeObject">AWS
          * API Reference</a></p>
          *
@@ -239,7 +234,7 @@ namespace Model
         virtual void ListItemsAsync(const Model::ListItemsRequest& request, const ListItemsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
-         * <p>Uploads an object to the specified path. Object sizes are limited to 10
+         * <p>Uploads an object to the specified path. Object sizes are limited to 25
          * MB.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/mediastore-data-2017-09-01/PutObject">AWS
          * API Reference</a></p>
@@ -247,7 +242,7 @@ namespace Model
         virtual Model::PutObjectOutcome PutObject(const Model::PutObjectRequest& request) const;
 
         /**
-         * <p>Uploads an object to the specified path. Object sizes are limited to 10
+         * <p>Uploads an object to the specified path. Object sizes are limited to 25
          * MB.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/mediastore-data-2017-09-01/PutObject">AWS
          * API Reference</a></p>
@@ -257,7 +252,7 @@ namespace Model
         virtual Model::PutObjectOutcomeCallable PutObjectCallable(const Model::PutObjectRequest& request) const;
 
         /**
-         * <p>Uploads an object to the specified path. Object sizes are limited to 10
+         * <p>Uploads an object to the specified path. Object sizes are limited to 25
          * MB.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/mediastore-data-2017-09-01/PutObject">AWS
          * API Reference</a></p>

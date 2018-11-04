@@ -33,11 +33,14 @@ InstancePatchState::InstancePatchState() :
     m_patchGroupHasBeenSet(false),
     m_baselineIdHasBeenSet(false),
     m_snapshotIdHasBeenSet(false),
+    m_installOverrideListHasBeenSet(false),
     m_ownerInformationHasBeenSet(false),
     m_installedCount(0),
     m_installedCountHasBeenSet(false),
     m_installedOtherCount(0),
     m_installedOtherCountHasBeenSet(false),
+    m_installedRejectedCount(0),
+    m_installedRejectedCountHasBeenSet(false),
     m_missingCount(0),
     m_missingCountHasBeenSet(false),
     m_failedCount(0),
@@ -51,16 +54,19 @@ InstancePatchState::InstancePatchState() :
 {
 }
 
-InstancePatchState::InstancePatchState(const JsonValue& jsonValue) : 
+InstancePatchState::InstancePatchState(JsonView jsonValue) : 
     m_instanceIdHasBeenSet(false),
     m_patchGroupHasBeenSet(false),
     m_baselineIdHasBeenSet(false),
     m_snapshotIdHasBeenSet(false),
+    m_installOverrideListHasBeenSet(false),
     m_ownerInformationHasBeenSet(false),
     m_installedCount(0),
     m_installedCountHasBeenSet(false),
     m_installedOtherCount(0),
     m_installedOtherCountHasBeenSet(false),
+    m_installedRejectedCount(0),
+    m_installedRejectedCountHasBeenSet(false),
     m_missingCount(0),
     m_missingCountHasBeenSet(false),
     m_failedCount(0),
@@ -75,7 +81,7 @@ InstancePatchState::InstancePatchState(const JsonValue& jsonValue) :
   *this = jsonValue;
 }
 
-InstancePatchState& InstancePatchState::operator =(const JsonValue& jsonValue)
+InstancePatchState& InstancePatchState::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("InstanceId"))
   {
@@ -105,6 +111,13 @@ InstancePatchState& InstancePatchState::operator =(const JsonValue& jsonValue)
     m_snapshotIdHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("InstallOverrideList"))
+  {
+    m_installOverrideList = jsonValue.GetString("InstallOverrideList");
+
+    m_installOverrideListHasBeenSet = true;
+  }
+
   if(jsonValue.ValueExists("OwnerInformation"))
   {
     m_ownerInformation = jsonValue.GetString("OwnerInformation");
@@ -124,6 +137,13 @@ InstancePatchState& InstancePatchState::operator =(const JsonValue& jsonValue)
     m_installedOtherCount = jsonValue.GetInteger("InstalledOtherCount");
 
     m_installedOtherCountHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("InstalledRejectedCount"))
+  {
+    m_installedRejectedCount = jsonValue.GetInteger("InstalledRejectedCount");
+
+    m_installedRejectedCountHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("MissingCount"))
@@ -199,6 +219,12 @@ JsonValue InstancePatchState::Jsonize() const
 
   }
 
+  if(m_installOverrideListHasBeenSet)
+  {
+   payload.WithString("InstallOverrideList", m_installOverrideList);
+
+  }
+
   if(m_ownerInformationHasBeenSet)
   {
    payload.WithString("OwnerInformation", m_ownerInformation);
@@ -214,6 +240,12 @@ JsonValue InstancePatchState::Jsonize() const
   if(m_installedOtherCountHasBeenSet)
   {
    payload.WithInteger("InstalledOtherCount", m_installedOtherCount);
+
+  }
+
+  if(m_installedRejectedCountHasBeenSet)
+  {
+   payload.WithInteger("InstalledRejectedCount", m_installedRejectedCount);
 
   }
 

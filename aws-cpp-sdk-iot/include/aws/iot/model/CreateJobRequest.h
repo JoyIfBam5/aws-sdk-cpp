@@ -21,7 +21,7 @@
 #include <aws/iot/model/PresignedUrlConfig.h>
 #include <aws/iot/model/TargetSelection.h>
 #include <aws/iot/model/JobExecutionsRolloutConfig.h>
-#include <aws/core/utils/memory/stl/AWSMap.h>
+#include <aws/iot/model/TimeoutConfig.h>
 #include <utility>
 
 namespace Aws
@@ -343,64 +343,49 @@ namespace Model
 
 
     /**
-     * <p>Parameters for the job document.</p>
+     * <p>Specifies the amount of time each device has to finish its execution of the
+     * job. The timer is started when the job execution status is set to
+     * <code>IN_PROGRESS</code>. If the job execution status is not set to another
+     * terminal state before the time expires, it will be automatically set to
+     * <code>TIMED_OUT</code>.</p>
      */
-    inline const Aws::Map<Aws::String, Aws::String>& GetDocumentParameters() const{ return m_documentParameters; }
+    inline const TimeoutConfig& GetTimeoutConfig() const{ return m_timeoutConfig; }
 
     /**
-     * <p>Parameters for the job document.</p>
+     * <p>Specifies the amount of time each device has to finish its execution of the
+     * job. The timer is started when the job execution status is set to
+     * <code>IN_PROGRESS</code>. If the job execution status is not set to another
+     * terminal state before the time expires, it will be automatically set to
+     * <code>TIMED_OUT</code>.</p>
      */
-    inline void SetDocumentParameters(const Aws::Map<Aws::String, Aws::String>& value) { m_documentParametersHasBeenSet = true; m_documentParameters = value; }
+    inline void SetTimeoutConfig(const TimeoutConfig& value) { m_timeoutConfigHasBeenSet = true; m_timeoutConfig = value; }
 
     /**
-     * <p>Parameters for the job document.</p>
+     * <p>Specifies the amount of time each device has to finish its execution of the
+     * job. The timer is started when the job execution status is set to
+     * <code>IN_PROGRESS</code>. If the job execution status is not set to another
+     * terminal state before the time expires, it will be automatically set to
+     * <code>TIMED_OUT</code>.</p>
      */
-    inline void SetDocumentParameters(Aws::Map<Aws::String, Aws::String>&& value) { m_documentParametersHasBeenSet = true; m_documentParameters = std::move(value); }
+    inline void SetTimeoutConfig(TimeoutConfig&& value) { m_timeoutConfigHasBeenSet = true; m_timeoutConfig = std::move(value); }
 
     /**
-     * <p>Parameters for the job document.</p>
+     * <p>Specifies the amount of time each device has to finish its execution of the
+     * job. The timer is started when the job execution status is set to
+     * <code>IN_PROGRESS</code>. If the job execution status is not set to another
+     * terminal state before the time expires, it will be automatically set to
+     * <code>TIMED_OUT</code>.</p>
      */
-    inline CreateJobRequest& WithDocumentParameters(const Aws::Map<Aws::String, Aws::String>& value) { SetDocumentParameters(value); return *this;}
+    inline CreateJobRequest& WithTimeoutConfig(const TimeoutConfig& value) { SetTimeoutConfig(value); return *this;}
 
     /**
-     * <p>Parameters for the job document.</p>
+     * <p>Specifies the amount of time each device has to finish its execution of the
+     * job. The timer is started when the job execution status is set to
+     * <code>IN_PROGRESS</code>. If the job execution status is not set to another
+     * terminal state before the time expires, it will be automatically set to
+     * <code>TIMED_OUT</code>.</p>
      */
-    inline CreateJobRequest& WithDocumentParameters(Aws::Map<Aws::String, Aws::String>&& value) { SetDocumentParameters(std::move(value)); return *this;}
-
-    /**
-     * <p>Parameters for the job document.</p>
-     */
-    inline CreateJobRequest& AddDocumentParameters(const Aws::String& key, const Aws::String& value) { m_documentParametersHasBeenSet = true; m_documentParameters.emplace(key, value); return *this; }
-
-    /**
-     * <p>Parameters for the job document.</p>
-     */
-    inline CreateJobRequest& AddDocumentParameters(Aws::String&& key, const Aws::String& value) { m_documentParametersHasBeenSet = true; m_documentParameters.emplace(std::move(key), value); return *this; }
-
-    /**
-     * <p>Parameters for the job document.</p>
-     */
-    inline CreateJobRequest& AddDocumentParameters(const Aws::String& key, Aws::String&& value) { m_documentParametersHasBeenSet = true; m_documentParameters.emplace(key, std::move(value)); return *this; }
-
-    /**
-     * <p>Parameters for the job document.</p>
-     */
-    inline CreateJobRequest& AddDocumentParameters(Aws::String&& key, Aws::String&& value) { m_documentParametersHasBeenSet = true; m_documentParameters.emplace(std::move(key), std::move(value)); return *this; }
-
-    /**
-     * <p>Parameters for the job document.</p>
-     */
-    inline CreateJobRequest& AddDocumentParameters(const char* key, Aws::String&& value) { m_documentParametersHasBeenSet = true; m_documentParameters.emplace(key, std::move(value)); return *this; }
-
-    /**
-     * <p>Parameters for the job document.</p>
-     */
-    inline CreateJobRequest& AddDocumentParameters(Aws::String&& key, const char* value) { m_documentParametersHasBeenSet = true; m_documentParameters.emplace(std::move(key), value); return *this; }
-
-    /**
-     * <p>Parameters for the job document.</p>
-     */
-    inline CreateJobRequest& AddDocumentParameters(const char* key, const char* value) { m_documentParametersHasBeenSet = true; m_documentParameters.emplace(key, value); return *this; }
+    inline CreateJobRequest& WithTimeoutConfig(TimeoutConfig&& value) { SetTimeoutConfig(std::move(value)); return *this;}
 
   private:
 
@@ -428,8 +413,8 @@ namespace Model
     JobExecutionsRolloutConfig m_jobExecutionsRolloutConfig;
     bool m_jobExecutionsRolloutConfigHasBeenSet;
 
-    Aws::Map<Aws::String, Aws::String> m_documentParameters;
-    bool m_documentParametersHasBeenSet;
+    TimeoutConfig m_timeoutConfig;
+    bool m_timeoutConfigHasBeenSet;
   };
 
 } // namespace Model

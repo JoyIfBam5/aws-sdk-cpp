@@ -54,7 +54,9 @@ RequestLaunchTemplateData::RequestLaunchTemplateData() :
     m_securityGroupIdsHasBeenSet(false),
     m_securityGroupsHasBeenSet(false),
     m_instanceMarketOptionsHasBeenSet(false),
-    m_creditSpecificationHasBeenSet(false)
+    m_creditSpecificationHasBeenSet(false),
+    m_cpuOptionsHasBeenSet(false),
+    m_capacityReservationSpecificationHasBeenSet(false)
 {
 }
 
@@ -82,7 +84,9 @@ RequestLaunchTemplateData::RequestLaunchTemplateData(const XmlNode& xmlNode) :
     m_securityGroupIdsHasBeenSet(false),
     m_securityGroupsHasBeenSet(false),
     m_instanceMarketOptionsHasBeenSet(false),
-    m_creditSpecificationHasBeenSet(false)
+    m_creditSpecificationHasBeenSet(false),
+    m_cpuOptionsHasBeenSet(false),
+    m_capacityReservationSpecificationHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -249,6 +253,18 @@ RequestLaunchTemplateData& RequestLaunchTemplateData::operator =(const XmlNode& 
       m_creditSpecification = creditSpecificationNode;
       m_creditSpecificationHasBeenSet = true;
     }
+    XmlNode cpuOptionsNode = resultNode.FirstChild("CpuOptions");
+    if(!cpuOptionsNode.IsNull())
+    {
+      m_cpuOptions = cpuOptionsNode;
+      m_cpuOptionsHasBeenSet = true;
+    }
+    XmlNode capacityReservationSpecificationNode = resultNode.FirstChild("CapacityReservationSpecification");
+    if(!capacityReservationSpecificationNode.IsNull())
+    {
+      m_capacityReservationSpecification = capacityReservationSpecificationNode;
+      m_capacityReservationSpecificationHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -398,6 +414,20 @@ void RequestLaunchTemplateData::OutputToStream(Aws::OStream& oStream, const char
       m_creditSpecification.OutputToStream(oStream, creditSpecificationLocationAndMemberSs.str().c_str());
   }
 
+  if(m_cpuOptionsHasBeenSet)
+  {
+      Aws::StringStream cpuOptionsLocationAndMemberSs;
+      cpuOptionsLocationAndMemberSs << location << index << locationValue << ".CpuOptions";
+      m_cpuOptions.OutputToStream(oStream, cpuOptionsLocationAndMemberSs.str().c_str());
+  }
+
+  if(m_capacityReservationSpecificationHasBeenSet)
+  {
+      Aws::StringStream capacityReservationSpecificationLocationAndMemberSs;
+      capacityReservationSpecificationLocationAndMemberSs << location << index << locationValue << ".CapacityReservationSpecification";
+      m_capacityReservationSpecification.OutputToStream(oStream, capacityReservationSpecificationLocationAndMemberSs.str().c_str());
+  }
+
 }
 
 void RequestLaunchTemplateData::OutputToStream(Aws::OStream& oStream, const char* location) const
@@ -523,6 +553,18 @@ void RequestLaunchTemplateData::OutputToStream(Aws::OStream& oStream, const char
       Aws::String creditSpecificationLocationAndMember(location);
       creditSpecificationLocationAndMember += ".CreditSpecification";
       m_creditSpecification.OutputToStream(oStream, creditSpecificationLocationAndMember.c_str());
+  }
+  if(m_cpuOptionsHasBeenSet)
+  {
+      Aws::String cpuOptionsLocationAndMember(location);
+      cpuOptionsLocationAndMember += ".CpuOptions";
+      m_cpuOptions.OutputToStream(oStream, cpuOptionsLocationAndMember.c_str());
+  }
+  if(m_capacityReservationSpecificationHasBeenSet)
+  {
+      Aws::String capacityReservationSpecificationLocationAndMember(location);
+      capacityReservationSpecificationLocationAndMember += ".CapacityReservationSpecification";
+      m_capacityReservationSpecification.OutputToStream(oStream, capacityReservationSpecificationLocationAndMember.c_str());
   }
 }
 

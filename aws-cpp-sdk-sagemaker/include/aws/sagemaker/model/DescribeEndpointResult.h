@@ -155,70 +155,180 @@ namespace Model
 
 
     /**
-     * <p> An array of ProductionVariant objects, one for each model hosted behind this
-     * endpoint. </p>
+     * <p> An array of <a>ProductionVariantSummary</a> objects, one for each model
+     * hosted behind this endpoint. </p>
      */
     inline const Aws::Vector<ProductionVariantSummary>& GetProductionVariants() const{ return m_productionVariants; }
 
     /**
-     * <p> An array of ProductionVariant objects, one for each model hosted behind this
-     * endpoint. </p>
+     * <p> An array of <a>ProductionVariantSummary</a> objects, one for each model
+     * hosted behind this endpoint. </p>
      */
     inline void SetProductionVariants(const Aws::Vector<ProductionVariantSummary>& value) { m_productionVariants = value; }
 
     /**
-     * <p> An array of ProductionVariant objects, one for each model hosted behind this
-     * endpoint. </p>
+     * <p> An array of <a>ProductionVariantSummary</a> objects, one for each model
+     * hosted behind this endpoint. </p>
      */
     inline void SetProductionVariants(Aws::Vector<ProductionVariantSummary>&& value) { m_productionVariants = std::move(value); }
 
     /**
-     * <p> An array of ProductionVariant objects, one for each model hosted behind this
-     * endpoint. </p>
+     * <p> An array of <a>ProductionVariantSummary</a> objects, one for each model
+     * hosted behind this endpoint. </p>
      */
     inline DescribeEndpointResult& WithProductionVariants(const Aws::Vector<ProductionVariantSummary>& value) { SetProductionVariants(value); return *this;}
 
     /**
-     * <p> An array of ProductionVariant objects, one for each model hosted behind this
-     * endpoint. </p>
+     * <p> An array of <a>ProductionVariantSummary</a> objects, one for each model
+     * hosted behind this endpoint. </p>
      */
     inline DescribeEndpointResult& WithProductionVariants(Aws::Vector<ProductionVariantSummary>&& value) { SetProductionVariants(std::move(value)); return *this;}
 
     /**
-     * <p> An array of ProductionVariant objects, one for each model hosted behind this
-     * endpoint. </p>
+     * <p> An array of <a>ProductionVariantSummary</a> objects, one for each model
+     * hosted behind this endpoint. </p>
      */
     inline DescribeEndpointResult& AddProductionVariants(const ProductionVariantSummary& value) { m_productionVariants.push_back(value); return *this; }
 
     /**
-     * <p> An array of ProductionVariant objects, one for each model hosted behind this
-     * endpoint. </p>
+     * <p> An array of <a>ProductionVariantSummary</a> objects, one for each model
+     * hosted behind this endpoint. </p>
      */
     inline DescribeEndpointResult& AddProductionVariants(ProductionVariantSummary&& value) { m_productionVariants.push_back(std::move(value)); return *this; }
 
 
     /**
-     * <p>The status of the endpoint.</p>
+     * <p>The status of the endpoint.</p> <ul> <li> <p> <code>OutOfService</code>:
+     * Endpoint is not available to take incoming requests.</p> </li> <li> <p>
+     * <code>Creating</code>: <a>CreateEndpoint</a> is executing.</p> </li> <li> <p>
+     * <code>Updating</code>: <a>UpdateEndpoint</a> or
+     * <a>UpdateEndpointWeightsAndCapacities</a> is executing.</p> </li> <li> <p>
+     * <code>SystemUpdating</code>: Endpoint is undergoing maintenance and cannot be
+     * updated or deleted or re-scaled until it has completed. This maintenance
+     * operation does not change any customer-specified values such as VPC config, KMS
+     * encryption, model, instance type, or instance count.</p> </li> <li> <p>
+     * <code>RollingBack</code>: Endpoint fails to scale up or down or change its
+     * variant weight and is in the process of rolling back to its previous
+     * configuration. Once the rollback completes, endpoint returns to an
+     * <code>InService</code> status. This transitional status only applies to an
+     * endpoint that has autoscaling enabled and is undergoing variant weight or
+     * capacity changes as part of an <a>UpdateEndpointWeightsAndCapacities</a> call or
+     * when the <a>UpdateEndpointWeightsAndCapacities</a> operation is called
+     * explicitly.</p> </li> <li> <p> <code>InService</code>: Endpoint is available to
+     * process incoming requests.</p> </li> <li> <p> <code>Deleting</code>:
+     * <a>DeleteEndpoint</a> is executing.</p> </li> <li> <p> <code>Failed</code>:
+     * Endpoint could not be created, updated, or re-scaled. Use
+     * <a>DescribeEndpointOutput$FailureReason</a> for information about the failure.
+     * <a>DeleteEndpoint</a> is the only operation that can be performed on a failed
+     * endpoint.</p> </li> </ul>
      */
     inline const EndpointStatus& GetEndpointStatus() const{ return m_endpointStatus; }
 
     /**
-     * <p>The status of the endpoint.</p>
+     * <p>The status of the endpoint.</p> <ul> <li> <p> <code>OutOfService</code>:
+     * Endpoint is not available to take incoming requests.</p> </li> <li> <p>
+     * <code>Creating</code>: <a>CreateEndpoint</a> is executing.</p> </li> <li> <p>
+     * <code>Updating</code>: <a>UpdateEndpoint</a> or
+     * <a>UpdateEndpointWeightsAndCapacities</a> is executing.</p> </li> <li> <p>
+     * <code>SystemUpdating</code>: Endpoint is undergoing maintenance and cannot be
+     * updated or deleted or re-scaled until it has completed. This maintenance
+     * operation does not change any customer-specified values such as VPC config, KMS
+     * encryption, model, instance type, or instance count.</p> </li> <li> <p>
+     * <code>RollingBack</code>: Endpoint fails to scale up or down or change its
+     * variant weight and is in the process of rolling back to its previous
+     * configuration. Once the rollback completes, endpoint returns to an
+     * <code>InService</code> status. This transitional status only applies to an
+     * endpoint that has autoscaling enabled and is undergoing variant weight or
+     * capacity changes as part of an <a>UpdateEndpointWeightsAndCapacities</a> call or
+     * when the <a>UpdateEndpointWeightsAndCapacities</a> operation is called
+     * explicitly.</p> </li> <li> <p> <code>InService</code>: Endpoint is available to
+     * process incoming requests.</p> </li> <li> <p> <code>Deleting</code>:
+     * <a>DeleteEndpoint</a> is executing.</p> </li> <li> <p> <code>Failed</code>:
+     * Endpoint could not be created, updated, or re-scaled. Use
+     * <a>DescribeEndpointOutput$FailureReason</a> for information about the failure.
+     * <a>DeleteEndpoint</a> is the only operation that can be performed on a failed
+     * endpoint.</p> </li> </ul>
      */
     inline void SetEndpointStatus(const EndpointStatus& value) { m_endpointStatus = value; }
 
     /**
-     * <p>The status of the endpoint.</p>
+     * <p>The status of the endpoint.</p> <ul> <li> <p> <code>OutOfService</code>:
+     * Endpoint is not available to take incoming requests.</p> </li> <li> <p>
+     * <code>Creating</code>: <a>CreateEndpoint</a> is executing.</p> </li> <li> <p>
+     * <code>Updating</code>: <a>UpdateEndpoint</a> or
+     * <a>UpdateEndpointWeightsAndCapacities</a> is executing.</p> </li> <li> <p>
+     * <code>SystemUpdating</code>: Endpoint is undergoing maintenance and cannot be
+     * updated or deleted or re-scaled until it has completed. This maintenance
+     * operation does not change any customer-specified values such as VPC config, KMS
+     * encryption, model, instance type, or instance count.</p> </li> <li> <p>
+     * <code>RollingBack</code>: Endpoint fails to scale up or down or change its
+     * variant weight and is in the process of rolling back to its previous
+     * configuration. Once the rollback completes, endpoint returns to an
+     * <code>InService</code> status. This transitional status only applies to an
+     * endpoint that has autoscaling enabled and is undergoing variant weight or
+     * capacity changes as part of an <a>UpdateEndpointWeightsAndCapacities</a> call or
+     * when the <a>UpdateEndpointWeightsAndCapacities</a> operation is called
+     * explicitly.</p> </li> <li> <p> <code>InService</code>: Endpoint is available to
+     * process incoming requests.</p> </li> <li> <p> <code>Deleting</code>:
+     * <a>DeleteEndpoint</a> is executing.</p> </li> <li> <p> <code>Failed</code>:
+     * Endpoint could not be created, updated, or re-scaled. Use
+     * <a>DescribeEndpointOutput$FailureReason</a> for information about the failure.
+     * <a>DeleteEndpoint</a> is the only operation that can be performed on a failed
+     * endpoint.</p> </li> </ul>
      */
     inline void SetEndpointStatus(EndpointStatus&& value) { m_endpointStatus = std::move(value); }
 
     /**
-     * <p>The status of the endpoint.</p>
+     * <p>The status of the endpoint.</p> <ul> <li> <p> <code>OutOfService</code>:
+     * Endpoint is not available to take incoming requests.</p> </li> <li> <p>
+     * <code>Creating</code>: <a>CreateEndpoint</a> is executing.</p> </li> <li> <p>
+     * <code>Updating</code>: <a>UpdateEndpoint</a> or
+     * <a>UpdateEndpointWeightsAndCapacities</a> is executing.</p> </li> <li> <p>
+     * <code>SystemUpdating</code>: Endpoint is undergoing maintenance and cannot be
+     * updated or deleted or re-scaled until it has completed. This maintenance
+     * operation does not change any customer-specified values such as VPC config, KMS
+     * encryption, model, instance type, or instance count.</p> </li> <li> <p>
+     * <code>RollingBack</code>: Endpoint fails to scale up or down or change its
+     * variant weight and is in the process of rolling back to its previous
+     * configuration. Once the rollback completes, endpoint returns to an
+     * <code>InService</code> status. This transitional status only applies to an
+     * endpoint that has autoscaling enabled and is undergoing variant weight or
+     * capacity changes as part of an <a>UpdateEndpointWeightsAndCapacities</a> call or
+     * when the <a>UpdateEndpointWeightsAndCapacities</a> operation is called
+     * explicitly.</p> </li> <li> <p> <code>InService</code>: Endpoint is available to
+     * process incoming requests.</p> </li> <li> <p> <code>Deleting</code>:
+     * <a>DeleteEndpoint</a> is executing.</p> </li> <li> <p> <code>Failed</code>:
+     * Endpoint could not be created, updated, or re-scaled. Use
+     * <a>DescribeEndpointOutput$FailureReason</a> for information about the failure.
+     * <a>DeleteEndpoint</a> is the only operation that can be performed on a failed
+     * endpoint.</p> </li> </ul>
      */
     inline DescribeEndpointResult& WithEndpointStatus(const EndpointStatus& value) { SetEndpointStatus(value); return *this;}
 
     /**
-     * <p>The status of the endpoint.</p>
+     * <p>The status of the endpoint.</p> <ul> <li> <p> <code>OutOfService</code>:
+     * Endpoint is not available to take incoming requests.</p> </li> <li> <p>
+     * <code>Creating</code>: <a>CreateEndpoint</a> is executing.</p> </li> <li> <p>
+     * <code>Updating</code>: <a>UpdateEndpoint</a> or
+     * <a>UpdateEndpointWeightsAndCapacities</a> is executing.</p> </li> <li> <p>
+     * <code>SystemUpdating</code>: Endpoint is undergoing maintenance and cannot be
+     * updated or deleted or re-scaled until it has completed. This maintenance
+     * operation does not change any customer-specified values such as VPC config, KMS
+     * encryption, model, instance type, or instance count.</p> </li> <li> <p>
+     * <code>RollingBack</code>: Endpoint fails to scale up or down or change its
+     * variant weight and is in the process of rolling back to its previous
+     * configuration. Once the rollback completes, endpoint returns to an
+     * <code>InService</code> status. This transitional status only applies to an
+     * endpoint that has autoscaling enabled and is undergoing variant weight or
+     * capacity changes as part of an <a>UpdateEndpointWeightsAndCapacities</a> call or
+     * when the <a>UpdateEndpointWeightsAndCapacities</a> operation is called
+     * explicitly.</p> </li> <li> <p> <code>InService</code>: Endpoint is available to
+     * process incoming requests.</p> </li> <li> <p> <code>Deleting</code>:
+     * <a>DeleteEndpoint</a> is executing.</p> </li> <li> <p> <code>Failed</code>:
+     * Endpoint could not be created, updated, or re-scaled. Use
+     * <a>DescribeEndpointOutput$FailureReason</a> for information about the failure.
+     * <a>DeleteEndpoint</a> is the only operation that can be performed on a failed
+     * endpoint.</p> </li> </ul>
      */
     inline DescribeEndpointResult& WithEndpointStatus(EndpointStatus&& value) { SetEndpointStatus(std::move(value)); return *this;}
 

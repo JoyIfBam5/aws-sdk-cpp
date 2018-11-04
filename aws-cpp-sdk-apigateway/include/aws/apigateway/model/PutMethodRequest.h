@@ -18,6 +18,7 @@
 #include <aws/apigateway/APIGatewayRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
+#include <aws/core/utils/memory/stl/AWSVector.h>
 #include <utility>
 
 namespace Aws
@@ -48,209 +49,223 @@ namespace Model
 
 
     /**
-     * <p>The string identifier of the associated <a>RestApi</a>.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline const Aws::String& GetRestApiId() const{ return m_restApiId; }
 
     /**
-     * <p>The string identifier of the associated <a>RestApi</a>.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline void SetRestApiId(const Aws::String& value) { m_restApiIdHasBeenSet = true; m_restApiId = value; }
 
     /**
-     * <p>The string identifier of the associated <a>RestApi</a>.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline void SetRestApiId(Aws::String&& value) { m_restApiIdHasBeenSet = true; m_restApiId = std::move(value); }
 
     /**
-     * <p>The string identifier of the associated <a>RestApi</a>.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline void SetRestApiId(const char* value) { m_restApiIdHasBeenSet = true; m_restApiId.assign(value); }
 
     /**
-     * <p>The string identifier of the associated <a>RestApi</a>.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline PutMethodRequest& WithRestApiId(const Aws::String& value) { SetRestApiId(value); return *this;}
 
     /**
-     * <p>The string identifier of the associated <a>RestApi</a>.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline PutMethodRequest& WithRestApiId(Aws::String&& value) { SetRestApiId(std::move(value)); return *this;}
 
     /**
-     * <p>The string identifier of the associated <a>RestApi</a>.</p>
+     * <p>[Required] The string identifier of the associated <a>RestApi</a>.</p>
      */
     inline PutMethodRequest& WithRestApiId(const char* value) { SetRestApiId(value); return *this;}
 
 
     /**
-     * <p>The <a>Resource</a> identifier for the new <a>Method</a> resource.</p>
+     * <p>[Required] The <a>Resource</a> identifier for the new <a>Method</a>
+     * resource.</p>
      */
     inline const Aws::String& GetResourceId() const{ return m_resourceId; }
 
     /**
-     * <p>The <a>Resource</a> identifier for the new <a>Method</a> resource.</p>
+     * <p>[Required] The <a>Resource</a> identifier for the new <a>Method</a>
+     * resource.</p>
      */
     inline void SetResourceId(const Aws::String& value) { m_resourceIdHasBeenSet = true; m_resourceId = value; }
 
     /**
-     * <p>The <a>Resource</a> identifier for the new <a>Method</a> resource.</p>
+     * <p>[Required] The <a>Resource</a> identifier for the new <a>Method</a>
+     * resource.</p>
      */
     inline void SetResourceId(Aws::String&& value) { m_resourceIdHasBeenSet = true; m_resourceId = std::move(value); }
 
     /**
-     * <p>The <a>Resource</a> identifier for the new <a>Method</a> resource.</p>
+     * <p>[Required] The <a>Resource</a> identifier for the new <a>Method</a>
+     * resource.</p>
      */
     inline void SetResourceId(const char* value) { m_resourceIdHasBeenSet = true; m_resourceId.assign(value); }
 
     /**
-     * <p>The <a>Resource</a> identifier for the new <a>Method</a> resource.</p>
+     * <p>[Required] The <a>Resource</a> identifier for the new <a>Method</a>
+     * resource.</p>
      */
     inline PutMethodRequest& WithResourceId(const Aws::String& value) { SetResourceId(value); return *this;}
 
     /**
-     * <p>The <a>Resource</a> identifier for the new <a>Method</a> resource.</p>
+     * <p>[Required] The <a>Resource</a> identifier for the new <a>Method</a>
+     * resource.</p>
      */
     inline PutMethodRequest& WithResourceId(Aws::String&& value) { SetResourceId(std::move(value)); return *this;}
 
     /**
-     * <p>The <a>Resource</a> identifier for the new <a>Method</a> resource.</p>
+     * <p>[Required] The <a>Resource</a> identifier for the new <a>Method</a>
+     * resource.</p>
      */
     inline PutMethodRequest& WithResourceId(const char* value) { SetResourceId(value); return *this;}
 
 
     /**
-     * <p>Specifies the method request's HTTP method type.</p>
+     * <p>[Required] Specifies the method request's HTTP method type.</p>
      */
     inline const Aws::String& GetHttpMethod() const{ return m_httpMethod; }
 
     /**
-     * <p>Specifies the method request's HTTP method type.</p>
+     * <p>[Required] Specifies the method request's HTTP method type.</p>
      */
     inline void SetHttpMethod(const Aws::String& value) { m_httpMethodHasBeenSet = true; m_httpMethod = value; }
 
     /**
-     * <p>Specifies the method request's HTTP method type.</p>
+     * <p>[Required] Specifies the method request's HTTP method type.</p>
      */
     inline void SetHttpMethod(Aws::String&& value) { m_httpMethodHasBeenSet = true; m_httpMethod = std::move(value); }
 
     /**
-     * <p>Specifies the method request's HTTP method type.</p>
+     * <p>[Required] Specifies the method request's HTTP method type.</p>
      */
     inline void SetHttpMethod(const char* value) { m_httpMethodHasBeenSet = true; m_httpMethod.assign(value); }
 
     /**
-     * <p>Specifies the method request's HTTP method type.</p>
+     * <p>[Required] Specifies the method request's HTTP method type.</p>
      */
     inline PutMethodRequest& WithHttpMethod(const Aws::String& value) { SetHttpMethod(value); return *this;}
 
     /**
-     * <p>Specifies the method request's HTTP method type.</p>
+     * <p>[Required] Specifies the method request's HTTP method type.</p>
      */
     inline PutMethodRequest& WithHttpMethod(Aws::String&& value) { SetHttpMethod(std::move(value)); return *this;}
 
     /**
-     * <p>Specifies the method request's HTTP method type.</p>
+     * <p>[Required] Specifies the method request's HTTP method type.</p>
      */
     inline PutMethodRequest& WithHttpMethod(const char* value) { SetHttpMethod(value); return *this;}
 
 
     /**
-     * <p>The method's authorization type. Valid values are <code>NONE</code> for open
-     * access, <code>AWS_IAM</code> for using AWS IAM permissions, <code>CUSTOM</code>
-     * for using a custom authorizer, or <code>COGNITO_USER_POOLS</code> for using a
-     * Cognito user pool.</p>
+     * <p>[Required] The method's authorization type. Valid values are
+     * <code>NONE</code> for open access, <code>AWS_IAM</code> for using AWS IAM
+     * permissions, <code>CUSTOM</code> for using a custom authorizer, or
+     * <code>COGNITO_USER_POOLS</code> for using a Cognito user pool.</p>
      */
     inline const Aws::String& GetAuthorizationType() const{ return m_authorizationType; }
 
     /**
-     * <p>The method's authorization type. Valid values are <code>NONE</code> for open
-     * access, <code>AWS_IAM</code> for using AWS IAM permissions, <code>CUSTOM</code>
-     * for using a custom authorizer, or <code>COGNITO_USER_POOLS</code> for using a
-     * Cognito user pool.</p>
+     * <p>[Required] The method's authorization type. Valid values are
+     * <code>NONE</code> for open access, <code>AWS_IAM</code> for using AWS IAM
+     * permissions, <code>CUSTOM</code> for using a custom authorizer, or
+     * <code>COGNITO_USER_POOLS</code> for using a Cognito user pool.</p>
      */
     inline void SetAuthorizationType(const Aws::String& value) { m_authorizationTypeHasBeenSet = true; m_authorizationType = value; }
 
     /**
-     * <p>The method's authorization type. Valid values are <code>NONE</code> for open
-     * access, <code>AWS_IAM</code> for using AWS IAM permissions, <code>CUSTOM</code>
-     * for using a custom authorizer, or <code>COGNITO_USER_POOLS</code> for using a
-     * Cognito user pool.</p>
+     * <p>[Required] The method's authorization type. Valid values are
+     * <code>NONE</code> for open access, <code>AWS_IAM</code> for using AWS IAM
+     * permissions, <code>CUSTOM</code> for using a custom authorizer, or
+     * <code>COGNITO_USER_POOLS</code> for using a Cognito user pool.</p>
      */
     inline void SetAuthorizationType(Aws::String&& value) { m_authorizationTypeHasBeenSet = true; m_authorizationType = std::move(value); }
 
     /**
-     * <p>The method's authorization type. Valid values are <code>NONE</code> for open
-     * access, <code>AWS_IAM</code> for using AWS IAM permissions, <code>CUSTOM</code>
-     * for using a custom authorizer, or <code>COGNITO_USER_POOLS</code> for using a
-     * Cognito user pool.</p>
+     * <p>[Required] The method's authorization type. Valid values are
+     * <code>NONE</code> for open access, <code>AWS_IAM</code> for using AWS IAM
+     * permissions, <code>CUSTOM</code> for using a custom authorizer, or
+     * <code>COGNITO_USER_POOLS</code> for using a Cognito user pool.</p>
      */
     inline void SetAuthorizationType(const char* value) { m_authorizationTypeHasBeenSet = true; m_authorizationType.assign(value); }
 
     /**
-     * <p>The method's authorization type. Valid values are <code>NONE</code> for open
-     * access, <code>AWS_IAM</code> for using AWS IAM permissions, <code>CUSTOM</code>
-     * for using a custom authorizer, or <code>COGNITO_USER_POOLS</code> for using a
-     * Cognito user pool.</p>
+     * <p>[Required] The method's authorization type. Valid values are
+     * <code>NONE</code> for open access, <code>AWS_IAM</code> for using AWS IAM
+     * permissions, <code>CUSTOM</code> for using a custom authorizer, or
+     * <code>COGNITO_USER_POOLS</code> for using a Cognito user pool.</p>
      */
     inline PutMethodRequest& WithAuthorizationType(const Aws::String& value) { SetAuthorizationType(value); return *this;}
 
     /**
-     * <p>The method's authorization type. Valid values are <code>NONE</code> for open
-     * access, <code>AWS_IAM</code> for using AWS IAM permissions, <code>CUSTOM</code>
-     * for using a custom authorizer, or <code>COGNITO_USER_POOLS</code> for using a
-     * Cognito user pool.</p>
+     * <p>[Required] The method's authorization type. Valid values are
+     * <code>NONE</code> for open access, <code>AWS_IAM</code> for using AWS IAM
+     * permissions, <code>CUSTOM</code> for using a custom authorizer, or
+     * <code>COGNITO_USER_POOLS</code> for using a Cognito user pool.</p>
      */
     inline PutMethodRequest& WithAuthorizationType(Aws::String&& value) { SetAuthorizationType(std::move(value)); return *this;}
 
     /**
-     * <p>The method's authorization type. Valid values are <code>NONE</code> for open
-     * access, <code>AWS_IAM</code> for using AWS IAM permissions, <code>CUSTOM</code>
-     * for using a custom authorizer, or <code>COGNITO_USER_POOLS</code> for using a
-     * Cognito user pool.</p>
+     * <p>[Required] The method's authorization type. Valid values are
+     * <code>NONE</code> for open access, <code>AWS_IAM</code> for using AWS IAM
+     * permissions, <code>CUSTOM</code> for using a custom authorizer, or
+     * <code>COGNITO_USER_POOLS</code> for using a Cognito user pool.</p>
      */
     inline PutMethodRequest& WithAuthorizationType(const char* value) { SetAuthorizationType(value); return *this;}
 
 
     /**
      * <p>Specifies the identifier of an <a>Authorizer</a> to use on this Method, if
-     * the type is CUSTOM.</p>
+     * the type is CUSTOM or COGNITO_USER_POOLS. The authorizer identifier is generated
+     * by API Gateway when you created the authorizer.</p>
      */
     inline const Aws::String& GetAuthorizerId() const{ return m_authorizerId; }
 
     /**
      * <p>Specifies the identifier of an <a>Authorizer</a> to use on this Method, if
-     * the type is CUSTOM.</p>
+     * the type is CUSTOM or COGNITO_USER_POOLS. The authorizer identifier is generated
+     * by API Gateway when you created the authorizer.</p>
      */
     inline void SetAuthorizerId(const Aws::String& value) { m_authorizerIdHasBeenSet = true; m_authorizerId = value; }
 
     /**
      * <p>Specifies the identifier of an <a>Authorizer</a> to use on this Method, if
-     * the type is CUSTOM.</p>
+     * the type is CUSTOM or COGNITO_USER_POOLS. The authorizer identifier is generated
+     * by API Gateway when you created the authorizer.</p>
      */
     inline void SetAuthorizerId(Aws::String&& value) { m_authorizerIdHasBeenSet = true; m_authorizerId = std::move(value); }
 
     /**
      * <p>Specifies the identifier of an <a>Authorizer</a> to use on this Method, if
-     * the type is CUSTOM.</p>
+     * the type is CUSTOM or COGNITO_USER_POOLS. The authorizer identifier is generated
+     * by API Gateway when you created the authorizer.</p>
      */
     inline void SetAuthorizerId(const char* value) { m_authorizerIdHasBeenSet = true; m_authorizerId.assign(value); }
 
     /**
      * <p>Specifies the identifier of an <a>Authorizer</a> to use on this Method, if
-     * the type is CUSTOM.</p>
+     * the type is CUSTOM or COGNITO_USER_POOLS. The authorizer identifier is generated
+     * by API Gateway when you created the authorizer.</p>
      */
     inline PutMethodRequest& WithAuthorizerId(const Aws::String& value) { SetAuthorizerId(value); return *this;}
 
     /**
      * <p>Specifies the identifier of an <a>Authorizer</a> to use on this Method, if
-     * the type is CUSTOM.</p>
+     * the type is CUSTOM or COGNITO_USER_POOLS. The authorizer identifier is generated
+     * by API Gateway when you created the authorizer.</p>
      */
     inline PutMethodRequest& WithAuthorizerId(Aws::String&& value) { SetAuthorizerId(std::move(value)); return *this;}
 
     /**
      * <p>Specifies the identifier of an <a>Authorizer</a> to use on this Method, if
-     * the type is CUSTOM.</p>
+     * the type is CUSTOM or COGNITO_USER_POOLS. The authorizer identifier is generated
+     * by API Gateway when you created the authorizer.</p>
      */
     inline PutMethodRequest& WithAuthorizerId(const char* value) { SetAuthorizerId(value); return *this;}
 
@@ -275,7 +290,7 @@ namespace Model
      * <p>A human-friendly operation identifier for the method. For example, you can
      * assign the <code>operationName</code> of <code>ListPets</code> for the <code>GET
      * /pets</code> method in <a
-     * href="http://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
+     * href="https://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
      * example.</p>
      */
     inline const Aws::String& GetOperationName() const{ return m_operationName; }
@@ -284,7 +299,7 @@ namespace Model
      * <p>A human-friendly operation identifier for the method. For example, you can
      * assign the <code>operationName</code> of <code>ListPets</code> for the <code>GET
      * /pets</code> method in <a
-     * href="http://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
+     * href="https://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
      * example.</p>
      */
     inline void SetOperationName(const Aws::String& value) { m_operationNameHasBeenSet = true; m_operationName = value; }
@@ -293,7 +308,7 @@ namespace Model
      * <p>A human-friendly operation identifier for the method. For example, you can
      * assign the <code>operationName</code> of <code>ListPets</code> for the <code>GET
      * /pets</code> method in <a
-     * href="http://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
+     * href="https://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
      * example.</p>
      */
     inline void SetOperationName(Aws::String&& value) { m_operationNameHasBeenSet = true; m_operationName = std::move(value); }
@@ -302,7 +317,7 @@ namespace Model
      * <p>A human-friendly operation identifier for the method. For example, you can
      * assign the <code>operationName</code> of <code>ListPets</code> for the <code>GET
      * /pets</code> method in <a
-     * href="http://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
+     * href="https://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
      * example.</p>
      */
     inline void SetOperationName(const char* value) { m_operationNameHasBeenSet = true; m_operationName.assign(value); }
@@ -311,7 +326,7 @@ namespace Model
      * <p>A human-friendly operation identifier for the method. For example, you can
      * assign the <code>operationName</code> of <code>ListPets</code> for the <code>GET
      * /pets</code> method in <a
-     * href="http://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
+     * href="https://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
      * example.</p>
      */
     inline PutMethodRequest& WithOperationName(const Aws::String& value) { SetOperationName(value); return *this;}
@@ -320,7 +335,7 @@ namespace Model
      * <p>A human-friendly operation identifier for the method. For example, you can
      * assign the <code>operationName</code> of <code>ListPets</code> for the <code>GET
      * /pets</code> method in <a
-     * href="http://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
+     * href="https://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
      * example.</p>
      */
     inline PutMethodRequest& WithOperationName(Aws::String&& value) { SetOperationName(std::move(value)); return *this;}
@@ -329,7 +344,7 @@ namespace Model
      * <p>A human-friendly operation identifier for the method. For example, you can
      * assign the <code>operationName</code> of <code>ListPets</code> for the <code>GET
      * /pets</code> method in <a
-     * href="http://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
+     * href="https://petstore-demo-endpoint.execute-api.com/petstore/pets">PetStore</a>
      * example.</p>
      */
     inline PutMethodRequest& WithOperationName(const char* value) { SetOperationName(value); return *this;}
@@ -567,6 +582,103 @@ namespace Model
      */
     inline PutMethodRequest& WithRequestValidatorId(const char* value) { SetRequestValidatorId(value); return *this;}
 
+
+    /**
+     * <p>A list of authorization scopes configured on the method. The scopes are used
+     * with a <code>COGNITO_USER_POOLS</code> authorizer to authorize the method
+     * invocation. The authorization works by matching the method scopes against the
+     * scopes parsed from the access token in the incoming request. The method
+     * invocation is authorized if any method scopes matches a claimed scope in the
+     * access token. Otherwise, the invocation is not authorized. When the method scope
+     * is configured, the client must provide an access token instead of an identity
+     * token for authorization purposes.</p>
+     */
+    inline const Aws::Vector<Aws::String>& GetAuthorizationScopes() const{ return m_authorizationScopes; }
+
+    /**
+     * <p>A list of authorization scopes configured on the method. The scopes are used
+     * with a <code>COGNITO_USER_POOLS</code> authorizer to authorize the method
+     * invocation. The authorization works by matching the method scopes against the
+     * scopes parsed from the access token in the incoming request. The method
+     * invocation is authorized if any method scopes matches a claimed scope in the
+     * access token. Otherwise, the invocation is not authorized. When the method scope
+     * is configured, the client must provide an access token instead of an identity
+     * token for authorization purposes.</p>
+     */
+    inline void SetAuthorizationScopes(const Aws::Vector<Aws::String>& value) { m_authorizationScopesHasBeenSet = true; m_authorizationScopes = value; }
+
+    /**
+     * <p>A list of authorization scopes configured on the method. The scopes are used
+     * with a <code>COGNITO_USER_POOLS</code> authorizer to authorize the method
+     * invocation. The authorization works by matching the method scopes against the
+     * scopes parsed from the access token in the incoming request. The method
+     * invocation is authorized if any method scopes matches a claimed scope in the
+     * access token. Otherwise, the invocation is not authorized. When the method scope
+     * is configured, the client must provide an access token instead of an identity
+     * token for authorization purposes.</p>
+     */
+    inline void SetAuthorizationScopes(Aws::Vector<Aws::String>&& value) { m_authorizationScopesHasBeenSet = true; m_authorizationScopes = std::move(value); }
+
+    /**
+     * <p>A list of authorization scopes configured on the method. The scopes are used
+     * with a <code>COGNITO_USER_POOLS</code> authorizer to authorize the method
+     * invocation. The authorization works by matching the method scopes against the
+     * scopes parsed from the access token in the incoming request. The method
+     * invocation is authorized if any method scopes matches a claimed scope in the
+     * access token. Otherwise, the invocation is not authorized. When the method scope
+     * is configured, the client must provide an access token instead of an identity
+     * token for authorization purposes.</p>
+     */
+    inline PutMethodRequest& WithAuthorizationScopes(const Aws::Vector<Aws::String>& value) { SetAuthorizationScopes(value); return *this;}
+
+    /**
+     * <p>A list of authorization scopes configured on the method. The scopes are used
+     * with a <code>COGNITO_USER_POOLS</code> authorizer to authorize the method
+     * invocation. The authorization works by matching the method scopes against the
+     * scopes parsed from the access token in the incoming request. The method
+     * invocation is authorized if any method scopes matches a claimed scope in the
+     * access token. Otherwise, the invocation is not authorized. When the method scope
+     * is configured, the client must provide an access token instead of an identity
+     * token for authorization purposes.</p>
+     */
+    inline PutMethodRequest& WithAuthorizationScopes(Aws::Vector<Aws::String>&& value) { SetAuthorizationScopes(std::move(value)); return *this;}
+
+    /**
+     * <p>A list of authorization scopes configured on the method. The scopes are used
+     * with a <code>COGNITO_USER_POOLS</code> authorizer to authorize the method
+     * invocation. The authorization works by matching the method scopes against the
+     * scopes parsed from the access token in the incoming request. The method
+     * invocation is authorized if any method scopes matches a claimed scope in the
+     * access token. Otherwise, the invocation is not authorized. When the method scope
+     * is configured, the client must provide an access token instead of an identity
+     * token for authorization purposes.</p>
+     */
+    inline PutMethodRequest& AddAuthorizationScopes(const Aws::String& value) { m_authorizationScopesHasBeenSet = true; m_authorizationScopes.push_back(value); return *this; }
+
+    /**
+     * <p>A list of authorization scopes configured on the method. The scopes are used
+     * with a <code>COGNITO_USER_POOLS</code> authorizer to authorize the method
+     * invocation. The authorization works by matching the method scopes against the
+     * scopes parsed from the access token in the incoming request. The method
+     * invocation is authorized if any method scopes matches a claimed scope in the
+     * access token. Otherwise, the invocation is not authorized. When the method scope
+     * is configured, the client must provide an access token instead of an identity
+     * token for authorization purposes.</p>
+     */
+    inline PutMethodRequest& AddAuthorizationScopes(Aws::String&& value) { m_authorizationScopesHasBeenSet = true; m_authorizationScopes.push_back(std::move(value)); return *this; }
+
+    /**
+     * <p>A list of authorization scopes configured on the method. The scopes are used
+     * with a <code>COGNITO_USER_POOLS</code> authorizer to authorize the method
+     * invocation. The authorization works by matching the method scopes against the
+     * scopes parsed from the access token in the incoming request. The method
+     * invocation is authorized if any method scopes matches a claimed scope in the
+     * access token. Otherwise, the invocation is not authorized. When the method scope
+     * is configured, the client must provide an access token instead of an identity
+     * token for authorization purposes.</p>
+     */
+    inline PutMethodRequest& AddAuthorizationScopes(const char* value) { m_authorizationScopesHasBeenSet = true; m_authorizationScopes.push_back(value); return *this; }
+
   private:
 
     Aws::String m_restApiId;
@@ -598,6 +710,9 @@ namespace Model
 
     Aws::String m_requestValidatorId;
     bool m_requestValidatorIdHasBeenSet;
+
+    Aws::Vector<Aws::String> m_authorizationScopes;
+    bool m_authorizationScopesHasBeenSet;
   };
 
 } // namespace Model

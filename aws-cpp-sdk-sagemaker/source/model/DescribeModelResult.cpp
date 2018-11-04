@@ -37,7 +37,7 @@ DescribeModelResult::DescribeModelResult(const Aws::AmazonWebServiceResult<JsonV
 
 DescribeModelResult& DescribeModelResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
-  const JsonValue& jsonValue = result.GetPayload();
+  JsonView jsonValue = result.GetPayload().View();
   if(jsonValue.ValueExists("ModelName"))
   {
     m_modelName = jsonValue.GetString("ModelName");
@@ -50,18 +50,15 @@ DescribeModelResult& DescribeModelResult::operator =(const Aws::AmazonWebService
 
   }
 
-  if(jsonValue.ValueExists("SupplementalContainers"))
-  {
-    Array<JsonValue> supplementalContainersJsonList = jsonValue.GetArray("SupplementalContainers");
-    for(unsigned supplementalContainersIndex = 0; supplementalContainersIndex < supplementalContainersJsonList.GetLength(); ++supplementalContainersIndex)
-    {
-      m_supplementalContainers.push_back(supplementalContainersJsonList[supplementalContainersIndex].AsObject());
-    }
-  }
-
   if(jsonValue.ValueExists("ExecutionRoleArn"))
   {
     m_executionRoleArn = jsonValue.GetString("ExecutionRoleArn");
+
+  }
+
+  if(jsonValue.ValueExists("VpcConfig"))
+  {
+    m_vpcConfig = jsonValue.GetObject("VpcConfig");
 
   }
 

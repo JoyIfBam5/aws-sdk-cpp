@@ -29,6 +29,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace Rekognition
@@ -37,7 +38,7 @@ namespace Model
 {
 
   /**
-   * <p>Provides face metadata for target image faces that are analysed by
+   * <p>Provides face metadata for target image faces that are analyzed by
    * <code>CompareFaces</code> and <code>RecognizeCelebrities</code>.</p><p><h3>See
    * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/ComparedFace">AWS
@@ -47,8 +48,8 @@ namespace Model
   {
   public:
     ComparedFace();
-    ComparedFace(const Aws::Utils::Json::JsonValue& jsonValue);
-    ComparedFace& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    ComparedFace(Aws::Utils::Json::JsonView jsonValue);
+    ComparedFace& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 

@@ -33,7 +33,8 @@ PutMethodRequest::PutMethodRequest() :
     m_operationNameHasBeenSet(false),
     m_requestParametersHasBeenSet(false),
     m_requestModelsHasBeenSet(false),
-    m_requestValidatorIdHasBeenSet(false)
+    m_requestValidatorIdHasBeenSet(false),
+    m_authorizationScopesHasBeenSet(false)
 {
 }
 
@@ -93,7 +94,18 @@ Aws::String PutMethodRequest::SerializePayload() const
 
   }
 
-  return payload.WriteReadable();
+  if(m_authorizationScopesHasBeenSet)
+  {
+   Array<JsonValue> authorizationScopesJsonList(m_authorizationScopes.size());
+   for(unsigned authorizationScopesIndex = 0; authorizationScopesIndex < authorizationScopesJsonList.GetLength(); ++authorizationScopesIndex)
+   {
+     authorizationScopesJsonList[authorizationScopesIndex].AsString(m_authorizationScopes[authorizationScopesIndex]);
+   }
+   payload.WithArray("authorizationScopes", std::move(authorizationScopesJsonList));
+
+  }
+
+  return payload.View().WriteReadable();
 }
 
 

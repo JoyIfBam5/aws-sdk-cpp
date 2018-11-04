@@ -49,7 +49,12 @@ RestoreDBClusterFromS3Request::RestoreDBClusterFromS3Request() :
     m_sourceEngineVersionHasBeenSet(false),
     m_s3BucketNameHasBeenSet(false),
     m_s3PrefixHasBeenSet(false),
-    m_s3IngestionRoleArnHasBeenSet(false)
+    m_s3IngestionRoleArnHasBeenSet(false),
+    m_backtrackWindow(0),
+    m_backtrackWindowHasBeenSet(false),
+    m_enableCloudwatchLogsExportsHasBeenSet(false),
+    m_deletionProtection(false),
+    m_deletionProtectionHasBeenSet(false)
 {
 }
 
@@ -197,6 +202,27 @@ Aws::String RestoreDBClusterFromS3Request::SerializePayload() const
   if(m_s3IngestionRoleArnHasBeenSet)
   {
     ss << "S3IngestionRoleArn=" << StringUtils::URLEncode(m_s3IngestionRoleArn.c_str()) << "&";
+  }
+
+  if(m_backtrackWindowHasBeenSet)
+  {
+    ss << "BacktrackWindow=" << m_backtrackWindow << "&";
+  }
+
+  if(m_enableCloudwatchLogsExportsHasBeenSet)
+  {
+    unsigned enableCloudwatchLogsExportsCount = 1;
+    for(auto& item : m_enableCloudwatchLogsExports)
+    {
+      ss << "EnableCloudwatchLogsExports.member." << enableCloudwatchLogsExportsCount << "="
+          << StringUtils::URLEncode(item.c_str()) << "&";
+      enableCloudwatchLogsExportsCount++;
+    }
+  }
+
+  if(m_deletionProtectionHasBeenSet)
+  {
+    ss << "DeletionProtection=" << std::boolalpha << m_deletionProtection << "&";
   }
 
   ss << "Version=2014-10-31";

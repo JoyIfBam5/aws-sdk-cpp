@@ -28,6 +28,7 @@ namespace ElasticLoadBalancingv2
 namespace ElasticLoadBalancingv2ErrorMapper
 {
 
+static const int INVALID_LOAD_BALANCER_ACTION_HASH = HashingUtils::HashString("InvalidLoadBalancerAction");
 static const int LOAD_BALANCER_NOT_FOUND_HASH = HashingUtils::HashString("LoadBalancerNotFound");
 static const int PRIORITY_IN_USE_HASH = HashingUtils::HashString("PriorityInUse");
 static const int INVALID_SUBNET_HASH = HashingUtils::HashString("InvalidSubnet");
@@ -49,6 +50,7 @@ static const int DUPLICATE_LISTENER_HASH = HashingUtils::HashString("DuplicateLi
 static const int TOO_MANY_REGISTRATIONS_FOR_TARGET_ID_HASH = HashingUtils::HashString("TooManyRegistrationsForTargetId");
 static const int UNSUPPORTED_PROTOCOL_HASH = HashingUtils::HashString("UnsupportedProtocol");
 static const int RULE_NOT_FOUND_HASH = HashingUtils::HashString("RuleNotFound");
+static const int TOO_MANY_ACTIONS_HASH = HashingUtils::HashString("TooManyActions");
 static const int ALLOCATION_ID_NOT_FOUND_HASH = HashingUtils::HashString("AllocationIdNotFound");
 static const int TOO_MANY_LISTENERS_HASH = HashingUtils::HashString("TooManyListeners");
 static const int RESOURCE_IN_USE_HASH = HashingUtils::HashString("ResourceInUse");
@@ -57,8 +59,8 @@ static const int DUPLICATE_LOAD_BALANCER_NAME_HASH = HashingUtils::HashString("D
 static const int DUPLICATE_TARGET_GROUP_NAME_HASH = HashingUtils::HashString("DuplicateTargetGroupName");
 static const int S_S_L_POLICY_NOT_FOUND_HASH = HashingUtils::HashString("SSLPolicyNotFound");
 static const int TOO_MANY_CERTIFICATES_HASH = HashingUtils::HashString("TooManyCertificates");
-static const int TOO_MANY_RULES_HASH = HashingUtils::HashString("TooManyRules");
 static const int OPERATION_NOT_PERMITTED_HASH = HashingUtils::HashString("OperationNotPermitted");
+static const int TOO_MANY_RULES_HASH = HashingUtils::HashString("TooManyRules");
 static const int LISTENER_NOT_FOUND_HASH = HashingUtils::HashString("ListenerNotFound");
 static const int HEALTH_UNAVAILABLE_HASH = HashingUtils::HashString("HealthUnavailable");
 
@@ -67,7 +69,11 @@ AWSError<CoreErrors> GetErrorForName(const char* errorName)
 {
   int hashCode = HashingUtils::HashString(errorName);
 
-  if (hashCode == LOAD_BALANCER_NOT_FOUND_HASH)
+  if (hashCode == INVALID_LOAD_BALANCER_ACTION_HASH)
+  {
+    return AWSError<CoreErrors>(static_cast<CoreErrors>(ElasticLoadBalancingv2Errors::INVALID_LOAD_BALANCER_ACTION), false);
+  }
+  else if (hashCode == LOAD_BALANCER_NOT_FOUND_HASH)
   {
     return AWSError<CoreErrors>(static_cast<CoreErrors>(ElasticLoadBalancingv2Errors::LOAD_BALANCER_NOT_FOUND), false);
   }
@@ -151,6 +157,10 @@ AWSError<CoreErrors> GetErrorForName(const char* errorName)
   {
     return AWSError<CoreErrors>(static_cast<CoreErrors>(ElasticLoadBalancingv2Errors::RULE_NOT_FOUND), false);
   }
+  else if (hashCode == TOO_MANY_ACTIONS_HASH)
+  {
+    return AWSError<CoreErrors>(static_cast<CoreErrors>(ElasticLoadBalancingv2Errors::TOO_MANY_ACTIONS), false);
+  }
   else if (hashCode == ALLOCATION_ID_NOT_FOUND_HASH)
   {
     return AWSError<CoreErrors>(static_cast<CoreErrors>(ElasticLoadBalancingv2Errors::ALLOCATION_ID_NOT_FOUND), false);
@@ -183,13 +193,13 @@ AWSError<CoreErrors> GetErrorForName(const char* errorName)
   {
     return AWSError<CoreErrors>(static_cast<CoreErrors>(ElasticLoadBalancingv2Errors::TOO_MANY_CERTIFICATES), false);
   }
-  else if (hashCode == TOO_MANY_RULES_HASH)
-  {
-    return AWSError<CoreErrors>(static_cast<CoreErrors>(ElasticLoadBalancingv2Errors::TOO_MANY_RULES), false);
-  }
   else if (hashCode == OPERATION_NOT_PERMITTED_HASH)
   {
     return AWSError<CoreErrors>(static_cast<CoreErrors>(ElasticLoadBalancingv2Errors::OPERATION_NOT_PERMITTED), false);
+  }
+  else if (hashCode == TOO_MANY_RULES_HASH)
+  {
+    return AWSError<CoreErrors>(static_cast<CoreErrors>(ElasticLoadBalancingv2Errors::TOO_MANY_RULES), false);
   }
   else if (hashCode == LISTENER_NOT_FOUND_HASH)
   {

@@ -23,6 +23,7 @@
       "input":{"shape":"AddTagsToOnPremisesInstancesInput"},
       "errors":[
         {"shape":"InstanceNameRequiredException"},
+        {"shape":"InvalidInstanceNameException"},
         {"shape":"TagRequiredException"},
         {"shape":"InvalidTagException"},
         {"shape":"TagLimitExceededException"},
@@ -195,7 +196,8 @@
         {"shape":"InvalidAutoScalingGroupException"},
         {"shape":"ThrottlingException"},
         {"shape":"InvalidUpdateOutdatedInstancesOnlyValueException"},
-        {"shape":"InvalidIgnoreApplicationStopFailuresValueException"}
+        {"shape":"InvalidIgnoreApplicationStopFailuresValueException"},
+        {"shape":"InvalidGitHubAccountTokenException"}
       ],
       "documentation":"<p>Deploys an application revision through the specified deployment group.</p>"
     },
@@ -301,6 +303,23 @@
         {"shape":"InvalidRoleException"}
       ],
       "documentation":"<p>Deletes a deployment group.</p>"
+    },
+    "DeleteGitHubAccountToken":{
+      "name":"DeleteGitHubAccountToken",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteGitHubAccountTokenInput"},
+      "output":{"shape":"DeleteGitHubAccountTokenOutput"},
+      "errors":[
+        {"shape":"GitHubAccountTokenNameRequiredException"},
+        {"shape":"GitHubAccountTokenDoesNotExistException"},
+        {"shape":"InvalidGitHubAccountTokenNameException"},
+        {"shape":"ResourceValidationException"},
+        {"shape":"OperationNotSupportedException"}
+      ],
+      "documentation":"<p>Deletes a GitHub account connection.</p>"
     },
     "DeregisterOnPremisesInstance":{
       "name":"DeregisterOnPremisesInstance",
@@ -630,6 +649,7 @@
       "input":{"shape":"RemoveTagsFromOnPremisesInstancesInput"},
       "errors":[
         {"shape":"InstanceNameRequiredException"},
+        {"shape":"InvalidInstanceNameException"},
         {"shape":"TagRequiredException"},
         {"shape":"InvalidTagException"},
         {"shape":"TagLimitExceededException"},
@@ -1115,7 +1135,7 @@
         },
         "terminationWaitTimeInMinutes":{
           "shape":"Duration",
-          "documentation":"<p>The number of minutes to wait after a successful blue/green deployment before terminating instances from the original environment.</p>"
+          "documentation":"<p>The number of minutes to wait after a successful blue/green deployment before terminating instances from the original environment. The maximum setting is 2880 minutes (2 days).</p>"
         }
       },
       "documentation":"<p>Information about whether instances in the original environment are terminated when a blue/green deployment is successful.</p>"
@@ -1165,7 +1185,7 @@
         },
         "computePlatform":{
           "shape":"ComputePlatform",
-          "documentation":"<p>The destination platform type for the deployment <code>Lambda</code> or <code>Server</code>).</p>"
+          "documentation":"<p> The destination platform type for the deployment (<code>Lambda</code> or <code>Server</code>).</p>"
         }
       },
       "documentation":"<p>Represents the input of a CreateApplication operation.</p>"
@@ -1182,10 +1202,7 @@
     },
     "CreateDeploymentConfigInput":{
       "type":"structure",
-      "required":[
-        "deploymentConfigName",
-        "minimumHealthyHosts"
-      ],
+      "required":["deploymentConfigName"],
       "members":{
         "deploymentConfigName":{
           "shape":"DeploymentConfigName",
@@ -1197,7 +1214,7 @@
         },
         "trafficRoutingConfig":{
           "shape":"TrafficRoutingConfig",
-          "documentation":"<p>The configuration specifying how the deployment traffic will be routed.</p>"
+          "documentation":"<p>The configuration that specifies how the deployment traffic will be routed.</p>"
         },
         "computePlatform":{
           "shape":"ComputePlatform",
@@ -1403,6 +1420,26 @@
         }
       },
       "documentation":"<p>Represents the output of a DeleteDeploymentGroup operation.</p>"
+    },
+    "DeleteGitHubAccountTokenInput":{
+      "type":"structure",
+      "members":{
+        "tokenName":{
+          "shape":"GitHubAccountTokenName",
+          "documentation":"<p>The name of the GitHub account connection to delete.</p>"
+        }
+      },
+      "documentation":"<p>Represents the input of a DeleteGitHubAccount operation.</p>"
+    },
+    "DeleteGitHubAccountTokenOutput":{
+      "type":"structure",
+      "members":{
+        "tokenName":{
+          "shape":"GitHubAccountTokenName",
+          "documentation":"<p>The name of the GitHub account connection that was deleted.</p>"
+        }
+      },
+      "documentation":"<p>Represents the output of a DeleteGitHubAccountToken operation.</p>"
     },
     "DeploymentAlreadyCompletedException":{
       "type":"structure",
@@ -1821,7 +1858,7 @@
       "members":{
         "actionOnTimeout":{
           "shape":"DeploymentReadyAction",
-          "documentation":"<p>Information about when to reroute traffic from an original environment to a replacement environment in a blue/green deployment.</p> <ul> <li> <p>CONTINUE_DEPLOYMENT: Register new instances with the load balancer immediately after the new application revision is installed on the instances in the replacement environment.</p> </li> <li> <p>STOP_DEPLOYMENT: Do not register new instances with load balancer unless traffic is rerouted manually. If traffic is not rerouted manually before the end of the specified wait period, the deployment status is changed to Stopped.</p> </li> </ul>"
+          "documentation":"<p>Information about when to reroute traffic from an original environment to a replacement environment in a blue/green deployment.</p> <ul> <li> <p>CONTINUE_DEPLOYMENT: Register new instances with the load balancer immediately after the new application revision is installed on the instances in the replacement environment.</p> </li> <li> <p>STOP_DEPLOYMENT: Do not register new instances with a load balancer unless traffic rerouting is started using <a>ContinueDeployment</a>. If traffic rerouting is not started before the end of the specified wait period, the deployment status is changed to Stopped.</p> </li> </ul>"
         },
         "waitTimeInMinutes":{
           "shape":"Duration",
@@ -2249,6 +2286,13 @@
       "type":"list",
       "member":{"shape":"GitHubAccountTokenName"}
     },
+    "GitHubAccountTokenNameRequiredException":{
+      "type":"structure",
+      "members":{
+      },
+      "documentation":"<p>The call is missing a required GitHub account connection name.</p>",
+      "exception":true
+    },
     "GitHubLocation":{
       "type":"structure",
       "members":{
@@ -2589,6 +2633,13 @@
       "documentation":"<p>An invalid fileExistsBehavior option was specified to determine how AWS CodeDeploy handles files or directories that already exist in a deployment target location but weren't part of the previous successful deployment. Valid values include \"DISALLOW\", \"OVERWRITE\", and \"RETAIN\".</p>",
       "exception":true
     },
+    "InvalidGitHubAccountTokenException":{
+      "type":"structure",
+      "members":{
+      },
+      "documentation":"<p>The GitHub token is not valid.</p>",
+      "exception":true
+    },
     "InvalidGitHubAccountTokenNameException":{
       "type":"structure",
       "members":{
@@ -2663,7 +2714,7 @@
       "type":"structure",
       "members":{
       },
-      "documentation":"<p>A lifecycle event hook is invalid. Review the <code>hooks</code> section in your AppSpec file to ensure the lifecycle events and <code>hooks</code> functions are valide.</p>",
+      "documentation":"<p>A lifecycle event hook is invalid. Review the <code>hooks</code> section in your AppSpec file to ensure the lifecycle events and <code>hooks</code> functions are valid.</p>",
       "exception":true
     },
     "InvalidLifecycleEventHookExecutionStatusException":{
@@ -2775,7 +2826,7 @@
       "type":"structure",
       "members":{
       },
-      "documentation":"<p>The configuration that specifies how traffic routes during a deployment is invalid.</p>",
+      "documentation":"<p> The configuration that specifies how traffic is routed during a deployment is invalid.</p>",
       "exception":true
     },
     "InvalidTriggerConfigException":{
@@ -2856,7 +2907,7 @@
       "type":"structure",
       "members":{
       },
-      "documentation":"<p>An attempt to return the status of a lifecycle event that already completed occurred.</p>",
+      "documentation":"<p>An attempt to return the status of an already completed lifecycle event occurred.</p>",
       "exception":true
     },
     "LifecycleEventHookExecutionId":{"type":"string"},
@@ -3160,11 +3211,11 @@
       "members":{
         "elbInfoList":{
           "shape":"ELBInfoList",
-          "documentation":"<p>An array containing information about the load balancer to use for load balancing in a deployment. In Elastic Load Balancing, load balancers are used with Classic Load Balancers.</p>"
+          "documentation":"<p>An array containing information about the load balancer to use for load balancing in a deployment. In Elastic Load Balancing, load balancers are used with Classic Load Balancers.</p> <note> <p> Adding more than one load balancer to the array is not supported. </p> </note>"
         },
         "targetGroupInfoList":{
           "shape":"TargetGroupInfoList",
-          "documentation":"<p>An array containing information about the target group to use for load balancing in a deployment. In Elastic Load Balancing, target groups are used with Application Load Balancers.</p>"
+          "documentation":"<p>An array containing information about the target group to use for load balancing in a deployment. In Elastic Load Balancing, target groups are used with Application Load Balancers.</p> <note> <p> Adding more than one target group to the array is not supported. </p> </note>"
         }
       },
       "documentation":"<p>Information about the Elastic Load Balancing load balancer or target group used in a deployment.</p>"
@@ -3255,7 +3306,7 @@
       "members":{
         "content":{
           "shape":"RawStringContent",
-          "documentation":"<p>The YAML-formatted or JSON-formatted revision string. It includes information about what Lambda function to update and optional Lambda functions that validate deployment lifecycle events.</p>"
+          "documentation":"<p>The YAML-formatted or JSON-formatted revision string. It includes information about which Lambda function to update and optional Lambda functions that validate deployment lifecycle events.</p>"
         },
         "sha256":{
           "shape":"RawStringSha256",
@@ -3670,7 +3721,7 @@
       "members":{
         "type":{
           "shape":"TrafficRoutingType",
-          "documentation":"<p>The type of traffic shifting a deployment configuration uses (<code>TimeBasedCanary</code> or <code>TimeBasedLinear</code>).</p>"
+          "documentation":"<p>The type of traffic shifting (<code>TimeBasedCanary</code> or <code>TimeBasedLinear</code>) used by a deployment configuration .</p>"
         },
         "timeBasedCanary":{
           "shape":"TimeBasedCanary",
@@ -3681,7 +3732,7 @@
           "documentation":"<p>A configuration that shifts traffic from one version of a Lambda function to another in equal increments, with an equal number of minutes between each increment. The original and target Lambda function versions are specified in the deployment's AppSpec file.</p>"
         }
       },
-      "documentation":"<p>The configuration specifying how traffic is shifted from one version of a Lambda function to another version during an AWS Lambda deployment.</p>"
+      "documentation":"<p>The configuration that specifies how traffic is shifted from one version of a Lambda function to another version during an AWS Lambda deployment.</p>"
     },
     "TrafficRoutingType":{
       "type":"string",
@@ -3850,5 +3901,5 @@
     "VersionId":{"type":"string"},
     "WaitTimeInMins":{"type":"integer"}
   },
-  "documentation":"<fullname>AWS CodeDeploy</fullname> <p>AWS CodeDeploy is a deployment service that automates application deployments to Amazon EC2 instances, on-premises instances running in your own facility, or serverless AWS Lambda functions.</p> <p>You can deploy a nearly unlimited variety of application content, such as an updated Lambda function, code, web and configuration files, executables, packages, scripts, multimedia files, and so on. AWS CodeDeploy can deploy application content stored in Amazon S3 buckets, GitHub repositories, or Bitbucket repositories. You do not need to make changes to your existing code before you can use AWS CodeDeploy.</p> <p>AWS CodeDeploy makes it easier for you to rapidly release new features, helps you avoid downtime during application deployment, and handles the complexity of updating your applications, without many of the risks associated with error-prone manual deployments.</p> <p> <b>AWS CodeDeploy Components</b> </p> <p>Use the information in this guide to help you work with the following AWS CodeDeploy components:</p> <ul> <li> <p> <b>Application</b>: A name that uniquely identifies the application you want to deploy. AWS CodeDeploy uses this name, which functions as a container, to ensure the correct combination of revision, deployment configuration, and deployment group are referenced during a deployment.</p> </li> <li> <p> <b>Deployment group</b>: A set of individual instances or CodeDeploy Lambda applications. A Lambda deployment group contains a group of applications. An EC2/On-premises deployment group contains individually tagged instances, Amazon EC2 instances in Auto Scaling groups, or both. </p> </li> <li> <p> <b>Deployment configuration</b>: A set of deployment rules and deployment success and failure conditions used by AWS CodeDeploy during a deployment.</p> </li> <li> <p> <b>Deployment</b>: The process, and the components involved in the process, of updating a Lambda function or of installing content on one or more instances. </p> </li> <li> <p> <b>Application revisions</b>: For an AWS Lambda deployment this is an AppSpec file that specifies the Lambda function to update and one or more functions to validate deployment lifecycle events. For an EC2/On-premises deployment, this is an archive file containing source content—source code, web pages, executable files, and deployment scripts—along with an application specification file (AppSpec file). Revisions are stored in Amazon S3 buckets or GitHub repositories. For Amazon S3, a revision is uniquely identified by its Amazon S3 object key and its ETag, version, or both. For GitHub, a revision is uniquely identified by its commit ID.</p> </li> </ul> <p>This guide also contains information to help you get details about the instances in your deployments, to make on-premises instances available for AWS CodeDeploy deployments, and to get details about a Lambda function deployment.</p> <p> <b>AWS CodeDeploy Information Resources</b> </p> <ul> <li> <p> <a href=\"http://docs.aws.amazon.com/codedeploy/latest/userguide\">AWS CodeDeploy User Guide</a> </p> </li> <li> <p> <a href=\"http://docs.aws.amazon.com/codedeploy/latest/APIReference/\">AWS CodeDeploy API Reference Guide</a> </p> </li> <li> <p> <a href=\"http://docs.aws.amazon.com/cli/latest/reference/deploy/index.html\">AWS CLI Reference for AWS CodeDeploy</a> </p> </li> <li> <p> <a href=\"https://forums.aws.amazon.com/forum.jspa?forumID=179\">AWS CodeDeploy Developer Forum</a> </p> </li> </ul>"
+  "documentation":"<fullname>AWS CodeDeploy</fullname> <p>AWS CodeDeploy is a deployment service that automates application deployments to Amazon EC2 instances, on-premises instances running in your own facility, or serverless AWS Lambda functions.</p> <p>You can deploy a nearly unlimited variety of application content, such as an updated Lambda function, code, web and configuration files, executables, packages, scripts, multimedia files, and so on. AWS CodeDeploy can deploy application content stored in Amazon S3 buckets, GitHub repositories, or Bitbucket repositories. You do not need to make changes to your existing code before you can use AWS CodeDeploy.</p> <p>AWS CodeDeploy makes it easier for you to rapidly release new features, helps you avoid downtime during application deployment, and handles the complexity of updating your applications, without many of the risks associated with error-prone manual deployments.</p> <p> <b>AWS CodeDeploy Components</b> </p> <p>Use the information in this guide to help you work with the following AWS CodeDeploy components:</p> <ul> <li> <p> <b>Application</b>: A name that uniquely identifies the application you want to deploy. AWS CodeDeploy uses this name, which functions as a container, to ensure the correct combination of revision, deployment configuration, and deployment group are referenced during a deployment.</p> </li> <li> <p> <b>Deployment group</b>: A set of individual instances or CodeDeploy Lambda applications. A Lambda deployment group contains a group of applications. An EC2/On-premises deployment group contains individually tagged instances, Amazon EC2 instances in Auto Scaling groups, or both. </p> </li> <li> <p> <b>Deployment configuration</b>: A set of deployment rules and deployment success and failure conditions used by AWS CodeDeploy during a deployment.</p> </li> <li> <p> <b>Deployment</b>: The process and the components used in the process of updating a Lambda function or of installing content on one or more instances. </p> </li> <li> <p> <b>Application revisions</b>: For an AWS Lambda deployment, this is an AppSpec file that specifies the Lambda function to update and one or more functions to validate deployment lifecycle events. For an EC2/On-premises deployment, this is an archive file containing source content—source code, web pages, executable files, and deployment scripts—along with an AppSpec file. Revisions are stored in Amazon S3 buckets or GitHub repositories. For Amazon S3, a revision is uniquely identified by its Amazon S3 object key and its ETag, version, or both. For GitHub, a revision is uniquely identified by its commit ID.</p> </li> </ul> <p>This guide also contains information to help you get details about the instances in your deployments, to make on-premises instances available for AWS CodeDeploy deployments, and to get details about a Lambda function deployment.</p> <p> <b>AWS CodeDeploy Information Resources</b> </p> <ul> <li> <p> <a href=\"http://docs.aws.amazon.com/codedeploy/latest/userguide\">AWS CodeDeploy User Guide</a> </p> </li> <li> <p> <a href=\"http://docs.aws.amazon.com/codedeploy/latest/APIReference/\">AWS CodeDeploy API Reference Guide</a> </p> </li> <li> <p> <a href=\"http://docs.aws.amazon.com/cli/latest/reference/deploy/index.html\">AWS CLI Reference for AWS CodeDeploy</a> </p> </li> <li> <p> <a href=\"https://forums.aws.amazon.com/forum.jspa?forumID=179\">AWS CodeDeploy Developer Forum</a> </p> </li> </ul>"
 }

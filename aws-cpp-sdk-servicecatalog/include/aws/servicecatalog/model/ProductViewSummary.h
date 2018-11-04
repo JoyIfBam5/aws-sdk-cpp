@@ -26,6 +26,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace ServiceCatalog
@@ -34,8 +35,7 @@ namespace Model
 {
 
   /**
-   * <p>The summary metadata about the specified product.</p><p><h3>See Also:</h3>  
-   * <a
+   * <p>Summary information about a product view.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProductViewSummary">AWS
    * API Reference</a></p>
    */
@@ -43,8 +43,8 @@ namespace Model
   {
   public:
     ProductViewSummary();
-    ProductViewSummary(const Aws::Utils::Json::JsonValue& jsonValue);
-    ProductViewSummary& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    ProductViewSummary(Aws::Utils::Json::JsonView jsonValue);
+    ProductViewSummary& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -315,31 +315,28 @@ namespace Model
 
 
     /**
-     * <p>A value of <code>false</code> indicates that the product does not have a
-     * default path, while a value of <code>true</code> indicates that it does. If it's
-     * false, call <a>ListLaunchPaths</a> to disambiguate between paths. If true,
-     * <a>ListLaunchPaths</a> is not required, and the output of the
-     * <a>ProductViewSummary</a> operation can be used directly with
+     * <p>Indicates whether the product has a default path. If the product does not
+     * have a default path, call <a>ListLaunchPaths</a> to disambiguate between paths.
+     * Otherwise, <a>ListLaunchPaths</a> is not required, and the output of
+     * <a>ProductViewSummary</a> can be used directly with
      * <a>DescribeProvisioningParameters</a>.</p>
      */
     inline bool GetHasDefaultPath() const{ return m_hasDefaultPath; }
 
     /**
-     * <p>A value of <code>false</code> indicates that the product does not have a
-     * default path, while a value of <code>true</code> indicates that it does. If it's
-     * false, call <a>ListLaunchPaths</a> to disambiguate between paths. If true,
-     * <a>ListLaunchPaths</a> is not required, and the output of the
-     * <a>ProductViewSummary</a> operation can be used directly with
+     * <p>Indicates whether the product has a default path. If the product does not
+     * have a default path, call <a>ListLaunchPaths</a> to disambiguate between paths.
+     * Otherwise, <a>ListLaunchPaths</a> is not required, and the output of
+     * <a>ProductViewSummary</a> can be used directly with
      * <a>DescribeProvisioningParameters</a>.</p>
      */
     inline void SetHasDefaultPath(bool value) { m_hasDefaultPathHasBeenSet = true; m_hasDefaultPath = value; }
 
     /**
-     * <p>A value of <code>false</code> indicates that the product does not have a
-     * default path, while a value of <code>true</code> indicates that it does. If it's
-     * false, call <a>ListLaunchPaths</a> to disambiguate between paths. If true,
-     * <a>ListLaunchPaths</a> is not required, and the output of the
-     * <a>ProductViewSummary</a> operation can be used directly with
+     * <p>Indicates whether the product has a default path. If the product does not
+     * have a default path, call <a>ListLaunchPaths</a> to disambiguate between paths.
+     * Otherwise, <a>ListLaunchPaths</a> is not required, and the output of
+     * <a>ProductViewSummary</a> can be used directly with
      * <a>DescribeProvisioningParameters</a>.</p>
      */
     inline ProductViewSummary& WithHasDefaultPath(bool value) { SetHasDefaultPath(value); return *this;}

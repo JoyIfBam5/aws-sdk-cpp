@@ -17,6 +17,7 @@
 #include <aws/servicecatalog/ServiceCatalog_EXPORTS.h>
 #include <aws/servicecatalog/ServiceCatalogRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <aws/servicecatalog/model/PortfolioShareType.h>
 #include <utility>
 
 namespace Aws
@@ -95,68 +96,108 @@ namespace Model
 
 
     /**
-     * <p>The page token of the first page retrieved. If null, this retrieves the first
-     * page of size <code>PageSize</code>.</p>
+     * <p>The page token for the next set of results. To retrieve the first set of
+     * results, use null.</p>
      */
     inline const Aws::String& GetPageToken() const{ return m_pageToken; }
 
     /**
-     * <p>The page token of the first page retrieved. If null, this retrieves the first
-     * page of size <code>PageSize</code>.</p>
+     * <p>The page token for the next set of results. To retrieve the first set of
+     * results, use null.</p>
      */
     inline void SetPageToken(const Aws::String& value) { m_pageTokenHasBeenSet = true; m_pageToken = value; }
 
     /**
-     * <p>The page token of the first page retrieved. If null, this retrieves the first
-     * page of size <code>PageSize</code>.</p>
+     * <p>The page token for the next set of results. To retrieve the first set of
+     * results, use null.</p>
      */
     inline void SetPageToken(Aws::String&& value) { m_pageTokenHasBeenSet = true; m_pageToken = std::move(value); }
 
     /**
-     * <p>The page token of the first page retrieved. If null, this retrieves the first
-     * page of size <code>PageSize</code>.</p>
+     * <p>The page token for the next set of results. To retrieve the first set of
+     * results, use null.</p>
      */
     inline void SetPageToken(const char* value) { m_pageTokenHasBeenSet = true; m_pageToken.assign(value); }
 
     /**
-     * <p>The page token of the first page retrieved. If null, this retrieves the first
-     * page of size <code>PageSize</code>.</p>
+     * <p>The page token for the next set of results. To retrieve the first set of
+     * results, use null.</p>
      */
     inline ListAcceptedPortfolioSharesRequest& WithPageToken(const Aws::String& value) { SetPageToken(value); return *this;}
 
     /**
-     * <p>The page token of the first page retrieved. If null, this retrieves the first
-     * page of size <code>PageSize</code>.</p>
+     * <p>The page token for the next set of results. To retrieve the first set of
+     * results, use null.</p>
      */
     inline ListAcceptedPortfolioSharesRequest& WithPageToken(Aws::String&& value) { SetPageToken(std::move(value)); return *this;}
 
     /**
-     * <p>The page token of the first page retrieved. If null, this retrieves the first
-     * page of size <code>PageSize</code>.</p>
+     * <p>The page token for the next set of results. To retrieve the first set of
+     * results, use null.</p>
      */
     inline ListAcceptedPortfolioSharesRequest& WithPageToken(const char* value) { SetPageToken(value); return *this;}
 
 
     /**
-     * <p>The maximum number of items to return in the results. If more results exist
-     * than fit in the specified <code>PageSize</code>, the value of
-     * <code>NextPageToken</code> in the response is non-null.</p>
+     * <p>The maximum number of items to return with this call.</p>
      */
     inline int GetPageSize() const{ return m_pageSize; }
 
     /**
-     * <p>The maximum number of items to return in the results. If more results exist
-     * than fit in the specified <code>PageSize</code>, the value of
-     * <code>NextPageToken</code> in the response is non-null.</p>
+     * <p>The maximum number of items to return with this call.</p>
      */
     inline void SetPageSize(int value) { m_pageSizeHasBeenSet = true; m_pageSize = value; }
 
     /**
-     * <p>The maximum number of items to return in the results. If more results exist
-     * than fit in the specified <code>PageSize</code>, the value of
-     * <code>NextPageToken</code> in the response is non-null.</p>
+     * <p>The maximum number of items to return with this call.</p>
      */
     inline ListAcceptedPortfolioSharesRequest& WithPageSize(int value) { SetPageSize(value); return *this;}
+
+
+    /**
+     * <p>The type of shared portfolios to list. The default is to list imported
+     * portfolios.</p> <ul> <li> <p> <code>AWS_ORGANIZATIONS</code> - List portfolios
+     * shared by the master account of your organization</p> </li> <li> <p>
+     * <code>AWS_SERVICECATALOG</code> - List default portfolios</p> </li> <li> <p>
+     * <code>IMPORTED</code> - List imported portfolios</p> </li> </ul>
+     */
+    inline const PortfolioShareType& GetPortfolioShareType() const{ return m_portfolioShareType; }
+
+    /**
+     * <p>The type of shared portfolios to list. The default is to list imported
+     * portfolios.</p> <ul> <li> <p> <code>AWS_ORGANIZATIONS</code> - List portfolios
+     * shared by the master account of your organization</p> </li> <li> <p>
+     * <code>AWS_SERVICECATALOG</code> - List default portfolios</p> </li> <li> <p>
+     * <code>IMPORTED</code> - List imported portfolios</p> </li> </ul>
+     */
+    inline void SetPortfolioShareType(const PortfolioShareType& value) { m_portfolioShareTypeHasBeenSet = true; m_portfolioShareType = value; }
+
+    /**
+     * <p>The type of shared portfolios to list. The default is to list imported
+     * portfolios.</p> <ul> <li> <p> <code>AWS_ORGANIZATIONS</code> - List portfolios
+     * shared by the master account of your organization</p> </li> <li> <p>
+     * <code>AWS_SERVICECATALOG</code> - List default portfolios</p> </li> <li> <p>
+     * <code>IMPORTED</code> - List imported portfolios</p> </li> </ul>
+     */
+    inline void SetPortfolioShareType(PortfolioShareType&& value) { m_portfolioShareTypeHasBeenSet = true; m_portfolioShareType = std::move(value); }
+
+    /**
+     * <p>The type of shared portfolios to list. The default is to list imported
+     * portfolios.</p> <ul> <li> <p> <code>AWS_ORGANIZATIONS</code> - List portfolios
+     * shared by the master account of your organization</p> </li> <li> <p>
+     * <code>AWS_SERVICECATALOG</code> - List default portfolios</p> </li> <li> <p>
+     * <code>IMPORTED</code> - List imported portfolios</p> </li> </ul>
+     */
+    inline ListAcceptedPortfolioSharesRequest& WithPortfolioShareType(const PortfolioShareType& value) { SetPortfolioShareType(value); return *this;}
+
+    /**
+     * <p>The type of shared portfolios to list. The default is to list imported
+     * portfolios.</p> <ul> <li> <p> <code>AWS_ORGANIZATIONS</code> - List portfolios
+     * shared by the master account of your organization</p> </li> <li> <p>
+     * <code>AWS_SERVICECATALOG</code> - List default portfolios</p> </li> <li> <p>
+     * <code>IMPORTED</code> - List imported portfolios</p> </li> </ul>
+     */
+    inline ListAcceptedPortfolioSharesRequest& WithPortfolioShareType(PortfolioShareType&& value) { SetPortfolioShareType(std::move(value)); return *this;}
 
   private:
 
@@ -168,6 +209,9 @@ namespace Model
 
     int m_pageSize;
     bool m_pageSizeHasBeenSet;
+
+    PortfolioShareType m_portfolioShareType;
+    bool m_portfolioShareTypeHasBeenSet;
   };
 
 } // namespace Model

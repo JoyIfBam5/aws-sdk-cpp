@@ -34,22 +34,26 @@ ProvisioningArtifactDetail::ProvisioningArtifactDetail() :
     m_descriptionHasBeenSet(false),
     m_type(ProvisioningArtifactType::NOT_SET),
     m_typeHasBeenSet(false),
-    m_createdTimeHasBeenSet(false)
+    m_createdTimeHasBeenSet(false),
+    m_active(false),
+    m_activeHasBeenSet(false)
 {
 }
 
-ProvisioningArtifactDetail::ProvisioningArtifactDetail(const JsonValue& jsonValue) : 
+ProvisioningArtifactDetail::ProvisioningArtifactDetail(JsonView jsonValue) : 
     m_idHasBeenSet(false),
     m_nameHasBeenSet(false),
     m_descriptionHasBeenSet(false),
     m_type(ProvisioningArtifactType::NOT_SET),
     m_typeHasBeenSet(false),
-    m_createdTimeHasBeenSet(false)
+    m_createdTimeHasBeenSet(false),
+    m_active(false),
+    m_activeHasBeenSet(false)
 {
   *this = jsonValue;
 }
 
-ProvisioningArtifactDetail& ProvisioningArtifactDetail::operator =(const JsonValue& jsonValue)
+ProvisioningArtifactDetail& ProvisioningArtifactDetail::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("Id"))
   {
@@ -86,6 +90,13 @@ ProvisioningArtifactDetail& ProvisioningArtifactDetail::operator =(const JsonVal
     m_createdTimeHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("Active"))
+  {
+    m_active = jsonValue.GetBool("Active");
+
+    m_activeHasBeenSet = true;
+  }
+
   return *this;
 }
 
@@ -119,6 +130,12 @@ JsonValue ProvisioningArtifactDetail::Jsonize() const
   if(m_createdTimeHasBeenSet)
   {
    payload.WithDouble("CreatedTime", m_createdTime.SecondsWithMSPrecision());
+  }
+
+  if(m_activeHasBeenSet)
+  {
+   payload.WithBool("Active", m_active);
+
   }
 
   return payload;

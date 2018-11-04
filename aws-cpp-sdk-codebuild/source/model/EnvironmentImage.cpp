@@ -30,18 +30,20 @@ namespace Model
 
 EnvironmentImage::EnvironmentImage() : 
     m_nameHasBeenSet(false),
-    m_descriptionHasBeenSet(false)
+    m_descriptionHasBeenSet(false),
+    m_versionsHasBeenSet(false)
 {
 }
 
-EnvironmentImage::EnvironmentImage(const JsonValue& jsonValue) : 
+EnvironmentImage::EnvironmentImage(JsonView jsonValue) : 
     m_nameHasBeenSet(false),
-    m_descriptionHasBeenSet(false)
+    m_descriptionHasBeenSet(false),
+    m_versionsHasBeenSet(false)
 {
   *this = jsonValue;
 }
 
-EnvironmentImage& EnvironmentImage::operator =(const JsonValue& jsonValue)
+EnvironmentImage& EnvironmentImage::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("name"))
   {
@@ -55,6 +57,16 @@ EnvironmentImage& EnvironmentImage::operator =(const JsonValue& jsonValue)
     m_description = jsonValue.GetString("description");
 
     m_descriptionHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("versions"))
+  {
+    Array<JsonView> versionsJsonList = jsonValue.GetArray("versions");
+    for(unsigned versionsIndex = 0; versionsIndex < versionsJsonList.GetLength(); ++versionsIndex)
+    {
+      m_versions.push_back(versionsJsonList[versionsIndex].AsString());
+    }
+    m_versionsHasBeenSet = true;
   }
 
   return *this;
@@ -73,6 +85,17 @@ JsonValue EnvironmentImage::Jsonize() const
   if(m_descriptionHasBeenSet)
   {
    payload.WithString("description", m_description);
+
+  }
+
+  if(m_versionsHasBeenSet)
+  {
+   Array<JsonValue> versionsJsonList(m_versions.size());
+   for(unsigned versionsIndex = 0; versionsIndex < versionsJsonList.GetLength(); ++versionsIndex)
+   {
+     versionsJsonList[versionsIndex].AsString(m_versions[versionsIndex]);
+   }
+   payload.WithArray("versions", std::move(versionsJsonList));
 
   }
 

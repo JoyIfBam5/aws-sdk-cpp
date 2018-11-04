@@ -26,6 +26,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace DirectoryService
@@ -42,8 +43,8 @@ namespace Model
   {
   public:
     DirectoryVpcSettingsDescription();
-    DirectoryVpcSettingsDescription(const Aws::Utils::Json::JsonValue& jsonValue);
-    DirectoryVpcSettingsDescription& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    DirectoryVpcSettingsDescription(Aws::Utils::Json::JsonView jsonValue);
+    DirectoryVpcSettingsDescription& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -125,58 +126,37 @@ namespace Model
 
 
     /**
-     * <p>The security group identifier for the directory. If the directory was created
-     * before 8/1/2014, this is the identifier of the directory members security group
-     * that was created when the directory was created. If the directory was created
-     * after this date, this value is null.</p>
+     * <p>The domain controller security group identifier for the directory.</p>
      */
     inline const Aws::String& GetSecurityGroupId() const{ return m_securityGroupId; }
 
     /**
-     * <p>The security group identifier for the directory. If the directory was created
-     * before 8/1/2014, this is the identifier of the directory members security group
-     * that was created when the directory was created. If the directory was created
-     * after this date, this value is null.</p>
+     * <p>The domain controller security group identifier for the directory.</p>
      */
     inline void SetSecurityGroupId(const Aws::String& value) { m_securityGroupIdHasBeenSet = true; m_securityGroupId = value; }
 
     /**
-     * <p>The security group identifier for the directory. If the directory was created
-     * before 8/1/2014, this is the identifier of the directory members security group
-     * that was created when the directory was created. If the directory was created
-     * after this date, this value is null.</p>
+     * <p>The domain controller security group identifier for the directory.</p>
      */
     inline void SetSecurityGroupId(Aws::String&& value) { m_securityGroupIdHasBeenSet = true; m_securityGroupId = std::move(value); }
 
     /**
-     * <p>The security group identifier for the directory. If the directory was created
-     * before 8/1/2014, this is the identifier of the directory members security group
-     * that was created when the directory was created. If the directory was created
-     * after this date, this value is null.</p>
+     * <p>The domain controller security group identifier for the directory.</p>
      */
     inline void SetSecurityGroupId(const char* value) { m_securityGroupIdHasBeenSet = true; m_securityGroupId.assign(value); }
 
     /**
-     * <p>The security group identifier for the directory. If the directory was created
-     * before 8/1/2014, this is the identifier of the directory members security group
-     * that was created when the directory was created. If the directory was created
-     * after this date, this value is null.</p>
+     * <p>The domain controller security group identifier for the directory.</p>
      */
     inline DirectoryVpcSettingsDescription& WithSecurityGroupId(const Aws::String& value) { SetSecurityGroupId(value); return *this;}
 
     /**
-     * <p>The security group identifier for the directory. If the directory was created
-     * before 8/1/2014, this is the identifier of the directory members security group
-     * that was created when the directory was created. If the directory was created
-     * after this date, this value is null.</p>
+     * <p>The domain controller security group identifier for the directory.</p>
      */
     inline DirectoryVpcSettingsDescription& WithSecurityGroupId(Aws::String&& value) { SetSecurityGroupId(std::move(value)); return *this;}
 
     /**
-     * <p>The security group identifier for the directory. If the directory was created
-     * before 8/1/2014, this is the identifier of the directory members security group
-     * that was created when the directory was created. If the directory was created
-     * after this date, this value is null.</p>
+     * <p>The domain controller security group identifier for the directory.</p>
      */
     inline DirectoryVpcSettingsDescription& WithSecurityGroupId(const char* value) { SetSecurityGroupId(value); return *this;}
 

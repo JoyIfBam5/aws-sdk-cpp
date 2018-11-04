@@ -22,6 +22,7 @@
 #include <aws/appstream/model/ImageStateChangeReason.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/DateTime.h>
+#include <aws/appstream/model/ImagePermissions.h>
 #include <aws/appstream/model/Application.h>
 #include <utility>
 
@@ -32,6 +33,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace AppStream
@@ -48,8 +50,8 @@ namespace Model
   {
   public:
     Image();
-    Image(const Aws::Utils::Json::JsonValue& jsonValue);
-    Image& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    Image(Aws::Utils::Json::JsonView jsonValue);
+    Image& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -162,37 +164,37 @@ namespace Model
 
 
     /**
-     * <p>The image name displayed to end users.</p>
+     * <p>The image name for display.</p>
      */
     inline const Aws::String& GetDisplayName() const{ return m_displayName; }
 
     /**
-     * <p>The image name displayed to end users.</p>
+     * <p>The image name for display.</p>
      */
     inline void SetDisplayName(const Aws::String& value) { m_displayNameHasBeenSet = true; m_displayName = value; }
 
     /**
-     * <p>The image name displayed to end users.</p>
+     * <p>The image name for display.</p>
      */
     inline void SetDisplayName(Aws::String&& value) { m_displayNameHasBeenSet = true; m_displayName = std::move(value); }
 
     /**
-     * <p>The image name displayed to end users.</p>
+     * <p>The image name for display.</p>
      */
     inline void SetDisplayName(const char* value) { m_displayNameHasBeenSet = true; m_displayName.assign(value); }
 
     /**
-     * <p>The image name displayed to end users.</p>
+     * <p>The image name for display.</p>
      */
     inline Image& WithDisplayName(const Aws::String& value) { SetDisplayName(value); return *this;}
 
     /**
-     * <p>The image name displayed to end users.</p>
+     * <p>The image name for display.</p>
      */
     inline Image& WithDisplayName(Aws::String&& value) { SetDisplayName(std::move(value)); return *this;}
 
     /**
-     * <p>The image name displayed to end users.</p>
+     * <p>The image name for display.</p>
      */
     inline Image& WithDisplayName(const char* value) { SetDisplayName(value); return *this;}
 
@@ -302,37 +304,37 @@ namespace Model
 
 
     /**
-     * <p>The description displayed to end users.</p>
+     * <p>The description for display.</p>
      */
     inline const Aws::String& GetDescription() const{ return m_description; }
 
     /**
-     * <p>The description displayed to end users.</p>
+     * <p>The description for display.</p>
      */
     inline void SetDescription(const Aws::String& value) { m_descriptionHasBeenSet = true; m_description = value; }
 
     /**
-     * <p>The description displayed to end users.</p>
+     * <p>The description for display.</p>
      */
     inline void SetDescription(Aws::String&& value) { m_descriptionHasBeenSet = true; m_description = std::move(value); }
 
     /**
-     * <p>The description displayed to end users.</p>
+     * <p>The description for display.</p>
      */
     inline void SetDescription(const char* value) { m_descriptionHasBeenSet = true; m_description.assign(value); }
 
     /**
-     * <p>The description displayed to end users.</p>
+     * <p>The description for display.</p>
      */
     inline Image& WithDescription(const Aws::String& value) { SetDescription(value); return *this;}
 
     /**
-     * <p>The description displayed to end users.</p>
+     * <p>The description for display.</p>
      */
     inline Image& WithDescription(Aws::String&& value) { SetDescription(std::move(value)); return *this;}
 
     /**
-     * <p>The description displayed to end users.</p>
+     * <p>The description for display.</p>
      */
     inline Image& WithDescription(const char* value) { SetDescription(value); return *this;}
 
@@ -455,6 +457,80 @@ namespace Model
      */
     inline Image& WithPublicBaseImageReleasedDate(Aws::Utils::DateTime&& value) { SetPublicBaseImageReleasedDate(std::move(value)); return *this;}
 
+
+    /**
+     * <p>The version of the AppStream 2.0 agent to use for instances that are launched
+     * from this image. </p>
+     */
+    inline const Aws::String& GetAppstreamAgentVersion() const{ return m_appstreamAgentVersion; }
+
+    /**
+     * <p>The version of the AppStream 2.0 agent to use for instances that are launched
+     * from this image. </p>
+     */
+    inline void SetAppstreamAgentVersion(const Aws::String& value) { m_appstreamAgentVersionHasBeenSet = true; m_appstreamAgentVersion = value; }
+
+    /**
+     * <p>The version of the AppStream 2.0 agent to use for instances that are launched
+     * from this image. </p>
+     */
+    inline void SetAppstreamAgentVersion(Aws::String&& value) { m_appstreamAgentVersionHasBeenSet = true; m_appstreamAgentVersion = std::move(value); }
+
+    /**
+     * <p>The version of the AppStream 2.0 agent to use for instances that are launched
+     * from this image. </p>
+     */
+    inline void SetAppstreamAgentVersion(const char* value) { m_appstreamAgentVersionHasBeenSet = true; m_appstreamAgentVersion.assign(value); }
+
+    /**
+     * <p>The version of the AppStream 2.0 agent to use for instances that are launched
+     * from this image. </p>
+     */
+    inline Image& WithAppstreamAgentVersion(const Aws::String& value) { SetAppstreamAgentVersion(value); return *this;}
+
+    /**
+     * <p>The version of the AppStream 2.0 agent to use for instances that are launched
+     * from this image. </p>
+     */
+    inline Image& WithAppstreamAgentVersion(Aws::String&& value) { SetAppstreamAgentVersion(std::move(value)); return *this;}
+
+    /**
+     * <p>The version of the AppStream 2.0 agent to use for instances that are launched
+     * from this image. </p>
+     */
+    inline Image& WithAppstreamAgentVersion(const char* value) { SetAppstreamAgentVersion(value); return *this;}
+
+
+    /**
+     * <p>The permissions to provide to the destination AWS account for the specified
+     * image.</p>
+     */
+    inline const ImagePermissions& GetImagePermissions() const{ return m_imagePermissions; }
+
+    /**
+     * <p>The permissions to provide to the destination AWS account for the specified
+     * image.</p>
+     */
+    inline void SetImagePermissions(const ImagePermissions& value) { m_imagePermissionsHasBeenSet = true; m_imagePermissions = value; }
+
+    /**
+     * <p>The permissions to provide to the destination AWS account for the specified
+     * image.</p>
+     */
+    inline void SetImagePermissions(ImagePermissions&& value) { m_imagePermissionsHasBeenSet = true; m_imagePermissions = std::move(value); }
+
+    /**
+     * <p>The permissions to provide to the destination AWS account for the specified
+     * image.</p>
+     */
+    inline Image& WithImagePermissions(const ImagePermissions& value) { SetImagePermissions(value); return *this;}
+
+    /**
+     * <p>The permissions to provide to the destination AWS account for the specified
+     * image.</p>
+     */
+    inline Image& WithImagePermissions(ImagePermissions&& value) { SetImagePermissions(std::move(value)); return *this;}
+
   private:
 
     Aws::String m_name;
@@ -495,6 +571,12 @@ namespace Model
 
     Aws::Utils::DateTime m_publicBaseImageReleasedDate;
     bool m_publicBaseImageReleasedDateHasBeenSet;
+
+    Aws::String m_appstreamAgentVersion;
+    bool m_appstreamAgentVersionHasBeenSet;
+
+    ImagePermissions m_imagePermissions;
+    bool m_imagePermissionsHasBeenSet;
   };
 
 } // namespace Model

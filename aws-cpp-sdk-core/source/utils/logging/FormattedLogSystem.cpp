@@ -62,7 +62,7 @@ static Aws::String CreateLogPrefixLine(LogLevel logLevel, const char* tag)
             break;
     }
 
-    ss << DateTime::CalculateLocalTimestampAsString("%Y-%m-%d %H:%M:%S") << " " << tag << " [" << std::this_thread::get_id() << "] ";
+    ss << DateTime::CalculateGmtTimestampAsString("%Y-%m-%d %H:%M:%S") << " " << tag << " [" << std::this_thread::get_id() << "] ";
 
     return ss.str();
 }
@@ -105,8 +105,5 @@ void FormattedLogSystem::Log(LogLevel logLevel, const char* tag, const char* for
 
 void FormattedLogSystem::LogStream(LogLevel logLevel, const char* tag, const Aws::OStringStream &message_stream)
 {
-    Aws::StringStream ss;
-    ss << CreateLogPrefixLine(logLevel, tag) << message_stream.rdbuf()->str() << std::endl;
-
-    ProcessFormattedStatement(ss.str());
+    ProcessFormattedStatement(CreateLogPrefixLine(logLevel, tag) + message_stream.str() + "\n");
 }

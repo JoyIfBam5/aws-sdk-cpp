@@ -43,7 +43,9 @@ PendingModifiedValues::PendingModifiedValues() :
     m_publiclyAccessible(false),
     m_publiclyAccessibleHasBeenSet(false),
     m_enhancedVpcRouting(false),
-    m_enhancedVpcRoutingHasBeenSet(false)
+    m_enhancedVpcRoutingHasBeenSet(false),
+    m_maintenanceTrackNameHasBeenSet(false),
+    m_encryptionTypeHasBeenSet(false)
 {
 }
 
@@ -60,7 +62,9 @@ PendingModifiedValues::PendingModifiedValues(const XmlNode& xmlNode) :
     m_publiclyAccessible(false),
     m_publiclyAccessibleHasBeenSet(false),
     m_enhancedVpcRouting(false),
-    m_enhancedVpcRoutingHasBeenSet(false)
+    m_enhancedVpcRoutingHasBeenSet(false),
+    m_maintenanceTrackNameHasBeenSet(false),
+    m_encryptionTypeHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -125,6 +129,18 @@ PendingModifiedValues& PendingModifiedValues::operator =(const XmlNode& xmlNode)
       m_enhancedVpcRouting = StringUtils::ConvertToBool(StringUtils::Trim(enhancedVpcRoutingNode.GetText().c_str()).c_str());
       m_enhancedVpcRoutingHasBeenSet = true;
     }
+    XmlNode maintenanceTrackNameNode = resultNode.FirstChild("MaintenanceTrackName");
+    if(!maintenanceTrackNameNode.IsNull())
+    {
+      m_maintenanceTrackName = StringUtils::Trim(maintenanceTrackNameNode.GetText().c_str());
+      m_maintenanceTrackNameHasBeenSet = true;
+    }
+    XmlNode encryptionTypeNode = resultNode.FirstChild("EncryptionType");
+    if(!encryptionTypeNode.IsNull())
+    {
+      m_encryptionType = StringUtils::Trim(encryptionTypeNode.GetText().c_str());
+      m_encryptionTypeHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -177,6 +193,16 @@ void PendingModifiedValues::OutputToStream(Aws::OStream& oStream, const char* lo
       oStream << location << index << locationValue << ".EnhancedVpcRouting=" << std::boolalpha << m_enhancedVpcRouting << "&";
   }
 
+  if(m_maintenanceTrackNameHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".MaintenanceTrackName=" << StringUtils::URLEncode(m_maintenanceTrackName.c_str()) << "&";
+  }
+
+  if(m_encryptionTypeHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".EncryptionType=" << StringUtils::URLEncode(m_encryptionType.c_str()) << "&";
+  }
+
 }
 
 void PendingModifiedValues::OutputToStream(Aws::OStream& oStream, const char* location) const
@@ -216,6 +242,14 @@ void PendingModifiedValues::OutputToStream(Aws::OStream& oStream, const char* lo
   if(m_enhancedVpcRoutingHasBeenSet)
   {
       oStream << location << ".EnhancedVpcRouting=" << std::boolalpha << m_enhancedVpcRouting << "&";
+  }
+  if(m_maintenanceTrackNameHasBeenSet)
+  {
+      oStream << location << ".MaintenanceTrackName=" << StringUtils::URLEncode(m_maintenanceTrackName.c_str()) << "&";
+  }
+  if(m_encryptionTypeHasBeenSet)
+  {
+      oStream << location << ".EncryptionType=" << StringUtils::URLEncode(m_encryptionType.c_str()) << "&";
   }
 }
 

@@ -28,20 +28,24 @@ using namespace Aws;
 
 DescribeNotebookInstanceResult::DescribeNotebookInstanceResult() : 
     m_notebookInstanceStatus(NotebookInstanceStatus::NOT_SET),
-    m_instanceType(InstanceType::NOT_SET)
+    m_instanceType(InstanceType::NOT_SET),
+    m_directInternetAccess(DirectInternetAccess::NOT_SET),
+    m_volumeSizeInGB(0)
 {
 }
 
 DescribeNotebookInstanceResult::DescribeNotebookInstanceResult(const Aws::AmazonWebServiceResult<JsonValue>& result) : 
     m_notebookInstanceStatus(NotebookInstanceStatus::NOT_SET),
-    m_instanceType(InstanceType::NOT_SET)
+    m_instanceType(InstanceType::NOT_SET),
+    m_directInternetAccess(DirectInternetAccess::NOT_SET),
+    m_volumeSizeInGB(0)
 {
   *this = result;
 }
 
 DescribeNotebookInstanceResult& DescribeNotebookInstanceResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
-  const JsonValue& jsonValue = result.GetPayload();
+  JsonView jsonValue = result.GetPayload().View();
   if(jsonValue.ValueExists("NotebookInstanceArn"))
   {
     m_notebookInstanceArn = jsonValue.GetString("NotebookInstanceArn");
@@ -86,7 +90,7 @@ DescribeNotebookInstanceResult& DescribeNotebookInstanceResult::operator =(const
 
   if(jsonValue.ValueExists("SecurityGroups"))
   {
-    Array<JsonValue> securityGroupsJsonList = jsonValue.GetArray("SecurityGroups");
+    Array<JsonView> securityGroupsJsonList = jsonValue.GetArray("SecurityGroups");
     for(unsigned securityGroupsIndex = 0; securityGroupsIndex < securityGroupsJsonList.GetLength(); ++securityGroupsIndex)
     {
       m_securityGroups.push_back(securityGroupsJsonList[securityGroupsIndex].AsString());
@@ -120,6 +124,24 @@ DescribeNotebookInstanceResult& DescribeNotebookInstanceResult::operator =(const
   if(jsonValue.ValueExists("CreationTime"))
   {
     m_creationTime = jsonValue.GetDouble("CreationTime");
+
+  }
+
+  if(jsonValue.ValueExists("NotebookInstanceLifecycleConfigName"))
+  {
+    m_notebookInstanceLifecycleConfigName = jsonValue.GetString("NotebookInstanceLifecycleConfigName");
+
+  }
+
+  if(jsonValue.ValueExists("DirectInternetAccess"))
+  {
+    m_directInternetAccess = DirectInternetAccessMapper::GetDirectInternetAccessForName(jsonValue.GetString("DirectInternetAccess"));
+
+  }
+
+  if(jsonValue.ValueExists("VolumeSizeInGB"))
+  {
+    m_volumeSizeInGB = jsonValue.GetInteger("VolumeSizeInGB");
 
   }
 

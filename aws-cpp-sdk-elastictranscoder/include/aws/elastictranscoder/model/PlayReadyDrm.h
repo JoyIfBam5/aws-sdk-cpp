@@ -25,6 +25,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace ElasticTranscoder
@@ -35,7 +36,7 @@ namespace Model
   /**
    * <p>The PlayReady DRM settings, if any, that you want Elastic Transcoder to apply
    * to the output files associated with this playlist.</p> <p>PlayReady DRM encrypts
-   * your media files using <code>AES-CTR</code> encryption.</p> <p>If you use DRM
+   * your media files using <code>aes-ctr</code> encryption.</p> <p>If you use DRM
    * for an <code>HLSv3</code> playlist, your outputs must have a master
    * playlist.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/PlayReadyDrm">AWS
@@ -45,8 +46,8 @@ namespace Model
   {
   public:
     PlayReadyDrm();
-    PlayReadyDrm(const Aws::Utils::Json::JsonValue& jsonValue);
-    PlayReadyDrm& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    PlayReadyDrm(Aws::Utils::Json::JsonView jsonValue);
+    PlayReadyDrm& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 

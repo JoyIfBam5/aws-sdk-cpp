@@ -30,6 +30,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace Glue
@@ -46,8 +47,8 @@ namespace Model
   {
   public:
     Trigger();
-    Trigger(const Aws::Utils::Json::JsonValue& jsonValue);
-    Trigger& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    Trigger(Aws::Utils::Json::JsonView jsonValue);
+    Trigger& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -88,37 +89,37 @@ namespace Model
 
 
     /**
-     * <p>The trigger ID.</p>
+     * <p>Reserved for future use.</p>
      */
     inline const Aws::String& GetId() const{ return m_id; }
 
     /**
-     * <p>The trigger ID.</p>
+     * <p>Reserved for future use.</p>
      */
     inline void SetId(const Aws::String& value) { m_idHasBeenSet = true; m_id = value; }
 
     /**
-     * <p>The trigger ID.</p>
+     * <p>Reserved for future use.</p>
      */
     inline void SetId(Aws::String&& value) { m_idHasBeenSet = true; m_id = std::move(value); }
 
     /**
-     * <p>The trigger ID.</p>
+     * <p>Reserved for future use.</p>
      */
     inline void SetId(const char* value) { m_idHasBeenSet = true; m_id.assign(value); }
 
     /**
-     * <p>The trigger ID.</p>
+     * <p>Reserved for future use.</p>
      */
     inline Trigger& WithId(const Aws::String& value) { SetId(value); return *this;}
 
     /**
-     * <p>The trigger ID.</p>
+     * <p>Reserved for future use.</p>
      */
     inline Trigger& WithId(Aws::String&& value) { SetId(std::move(value)); return *this;}
 
     /**
-     * <p>The trigger ID.</p>
+     * <p>Reserved for future use.</p>
      */
     inline Trigger& WithId(const char* value) { SetId(value); return *this;}
 
@@ -305,27 +306,27 @@ namespace Model
 
 
     /**
-     * <p>The predicate of this trigger.</p>
+     * <p>The predicate of this trigger, which defines when it will fire.</p>
      */
     inline const Predicate& GetPredicate() const{ return m_predicate; }
 
     /**
-     * <p>The predicate of this trigger.</p>
+     * <p>The predicate of this trigger, which defines when it will fire.</p>
      */
     inline void SetPredicate(const Predicate& value) { m_predicateHasBeenSet = true; m_predicate = value; }
 
     /**
-     * <p>The predicate of this trigger.</p>
+     * <p>The predicate of this trigger, which defines when it will fire.</p>
      */
     inline void SetPredicate(Predicate&& value) { m_predicateHasBeenSet = true; m_predicate = std::move(value); }
 
     /**
-     * <p>The predicate of this trigger.</p>
+     * <p>The predicate of this trigger, which defines when it will fire.</p>
      */
     inline Trigger& WithPredicate(const Predicate& value) { SetPredicate(value); return *this;}
 
     /**
-     * <p>The predicate of this trigger.</p>
+     * <p>The predicate of this trigger, which defines when it will fire.</p>
      */
     inline Trigger& WithPredicate(Predicate&& value) { SetPredicate(std::move(value)); return *this;}
 

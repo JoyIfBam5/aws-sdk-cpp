@@ -26,6 +26,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace KinesisAnalytics
@@ -43,8 +44,8 @@ namespace Model
   {
   public:
     RecordFormat();
-    RecordFormat(const Aws::Utils::Json::JsonValue& jsonValue);
-    RecordFormat& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    RecordFormat(Aws::Utils::Json::JsonView jsonValue);
+    RecordFormat& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -74,19 +75,44 @@ namespace Model
     inline RecordFormat& WithRecordFormatType(RecordFormatType&& value) { SetRecordFormatType(std::move(value)); return *this;}
 
 
-    
+    /**
+     * <p>When configuring application input at the time of creating or updating an
+     * application, provides additional mapping information specific to the record
+     * format (such as JSON, CSV, or record fields delimited by some delimiter) on the
+     * streaming source.</p>
+     */
     inline const MappingParameters& GetMappingParameters() const{ return m_mappingParameters; }
 
-    
+    /**
+     * <p>When configuring application input at the time of creating or updating an
+     * application, provides additional mapping information specific to the record
+     * format (such as JSON, CSV, or record fields delimited by some delimiter) on the
+     * streaming source.</p>
+     */
     inline void SetMappingParameters(const MappingParameters& value) { m_mappingParametersHasBeenSet = true; m_mappingParameters = value; }
 
-    
+    /**
+     * <p>When configuring application input at the time of creating or updating an
+     * application, provides additional mapping information specific to the record
+     * format (such as JSON, CSV, or record fields delimited by some delimiter) on the
+     * streaming source.</p>
+     */
     inline void SetMappingParameters(MappingParameters&& value) { m_mappingParametersHasBeenSet = true; m_mappingParameters = std::move(value); }
 
-    
+    /**
+     * <p>When configuring application input at the time of creating or updating an
+     * application, provides additional mapping information specific to the record
+     * format (such as JSON, CSV, or record fields delimited by some delimiter) on the
+     * streaming source.</p>
+     */
     inline RecordFormat& WithMappingParameters(const MappingParameters& value) { SetMappingParameters(value); return *this;}
 
-    
+    /**
+     * <p>When configuring application input at the time of creating or updating an
+     * application, provides additional mapping information specific to the record
+     * format (such as JSON, CSV, or record fields delimited by some delimiter) on the
+     * streaming source.</p>
+     */
     inline RecordFormat& WithMappingParameters(MappingParameters&& value) { SetMappingParameters(std::move(value)); return *this;}
 
   private:

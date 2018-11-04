@@ -18,6 +18,7 @@
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
+#include <aws/apigateway/model/ApiKeySourceType.h>
 #include <aws/apigateway/model/EndpointConfiguration.h>
 #include <utility>
 
@@ -28,6 +29,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace APIGateway
@@ -37,7 +39,7 @@ namespace Model
 
   /**
    * <p>Represents a REST API.</p> <div class="seeAlso"> <a
-   * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html">Create
+   * href="https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html">Create
    * an API</a> </div><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/RestApi">AWS
    * API Reference</a></p>
@@ -46,8 +48,8 @@ namespace Model
   {
   public:
     RestApi();
-    RestApi(const Aws::Utils::Json::JsonValue& jsonValue);
-    RestApi& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    RestApi(Aws::Utils::Json::JsonView jsonValue);
+    RestApi& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -327,6 +329,80 @@ namespace Model
 
 
     /**
+     * <p>A nullable integer that is used to enable compression (with non-negative
+     * between 0 and 10485760 (10M) bytes, inclusive) or disable compression (with a
+     * null value) on an API. When compression is enabled, compression or decompression
+     * is not applied on the payload if the payload size is smaller than this value.
+     * Setting it to zero allows compression for any payload size.</p>
+     */
+    inline int GetMinimumCompressionSize() const{ return m_minimumCompressionSize; }
+
+    /**
+     * <p>A nullable integer that is used to enable compression (with non-negative
+     * between 0 and 10485760 (10M) bytes, inclusive) or disable compression (with a
+     * null value) on an API. When compression is enabled, compression or decompression
+     * is not applied on the payload if the payload size is smaller than this value.
+     * Setting it to zero allows compression for any payload size.</p>
+     */
+    inline void SetMinimumCompressionSize(int value) { m_minimumCompressionSizeHasBeenSet = true; m_minimumCompressionSize = value; }
+
+    /**
+     * <p>A nullable integer that is used to enable compression (with non-negative
+     * between 0 and 10485760 (10M) bytes, inclusive) or disable compression (with a
+     * null value) on an API. When compression is enabled, compression or decompression
+     * is not applied on the payload if the payload size is smaller than this value.
+     * Setting it to zero allows compression for any payload size.</p>
+     */
+    inline RestApi& WithMinimumCompressionSize(int value) { SetMinimumCompressionSize(value); return *this;}
+
+
+    /**
+     * <p>The source of the API key for metering requests according to a usage plan.
+     * Valid values are: <ul><li><code>HEADER</code> to read the API key from the
+     * <code>X-API-Key</code> header of a request. </li><li><code>AUTHORIZER</code> to
+     * read the API key from the <code>UsageIdentifierKey</code> from a custom
+     * authorizer.</li></ul> </p>
+     */
+    inline const ApiKeySourceType& GetApiKeySource() const{ return m_apiKeySource; }
+
+    /**
+     * <p>The source of the API key for metering requests according to a usage plan.
+     * Valid values are: <ul><li><code>HEADER</code> to read the API key from the
+     * <code>X-API-Key</code> header of a request. </li><li><code>AUTHORIZER</code> to
+     * read the API key from the <code>UsageIdentifierKey</code> from a custom
+     * authorizer.</li></ul> </p>
+     */
+    inline void SetApiKeySource(const ApiKeySourceType& value) { m_apiKeySourceHasBeenSet = true; m_apiKeySource = value; }
+
+    /**
+     * <p>The source of the API key for metering requests according to a usage plan.
+     * Valid values are: <ul><li><code>HEADER</code> to read the API key from the
+     * <code>X-API-Key</code> header of a request. </li><li><code>AUTHORIZER</code> to
+     * read the API key from the <code>UsageIdentifierKey</code> from a custom
+     * authorizer.</li></ul> </p>
+     */
+    inline void SetApiKeySource(ApiKeySourceType&& value) { m_apiKeySourceHasBeenSet = true; m_apiKeySource = std::move(value); }
+
+    /**
+     * <p>The source of the API key for metering requests according to a usage plan.
+     * Valid values are: <ul><li><code>HEADER</code> to read the API key from the
+     * <code>X-API-Key</code> header of a request. </li><li><code>AUTHORIZER</code> to
+     * read the API key from the <code>UsageIdentifierKey</code> from a custom
+     * authorizer.</li></ul> </p>
+     */
+    inline RestApi& WithApiKeySource(const ApiKeySourceType& value) { SetApiKeySource(value); return *this;}
+
+    /**
+     * <p>The source of the API key for metering requests according to a usage plan.
+     * Valid values are: <ul><li><code>HEADER</code> to read the API key from the
+     * <code>X-API-Key</code> header of a request. </li><li><code>AUTHORIZER</code> to
+     * read the API key from the <code>UsageIdentifierKey</code> from a custom
+     * authorizer.</li></ul> </p>
+     */
+    inline RestApi& WithApiKeySource(ApiKeySourceType&& value) { SetApiKeySource(std::move(value)); return *this;}
+
+
+    /**
      * <p>The endpoint configuration of this <a>RestApi</a> showing the endpoint types
      * of the API. </p>
      */
@@ -356,6 +432,49 @@ namespace Model
      */
     inline RestApi& WithEndpointConfiguration(EndpointConfiguration&& value) { SetEndpointConfiguration(std::move(value)); return *this;}
 
+
+    /**
+     * A stringified JSON policy document that applies to this RestApi regardless of
+     * the caller and <a>Method</a> configuration.
+     */
+    inline const Aws::String& GetPolicy() const{ return m_policy; }
+
+    /**
+     * A stringified JSON policy document that applies to this RestApi regardless of
+     * the caller and <a>Method</a> configuration.
+     */
+    inline void SetPolicy(const Aws::String& value) { m_policyHasBeenSet = true; m_policy = value; }
+
+    /**
+     * A stringified JSON policy document that applies to this RestApi regardless of
+     * the caller and <a>Method</a> configuration.
+     */
+    inline void SetPolicy(Aws::String&& value) { m_policyHasBeenSet = true; m_policy = std::move(value); }
+
+    /**
+     * A stringified JSON policy document that applies to this RestApi regardless of
+     * the caller and <a>Method</a> configuration.
+     */
+    inline void SetPolicy(const char* value) { m_policyHasBeenSet = true; m_policy.assign(value); }
+
+    /**
+     * A stringified JSON policy document that applies to this RestApi regardless of
+     * the caller and <a>Method</a> configuration.
+     */
+    inline RestApi& WithPolicy(const Aws::String& value) { SetPolicy(value); return *this;}
+
+    /**
+     * A stringified JSON policy document that applies to this RestApi regardless of
+     * the caller and <a>Method</a> configuration.
+     */
+    inline RestApi& WithPolicy(Aws::String&& value) { SetPolicy(std::move(value)); return *this;}
+
+    /**
+     * A stringified JSON policy document that applies to this RestApi regardless of
+     * the caller and <a>Method</a> configuration.
+     */
+    inline RestApi& WithPolicy(const char* value) { SetPolicy(value); return *this;}
+
   private:
 
     Aws::String m_id;
@@ -379,8 +498,17 @@ namespace Model
     Aws::Vector<Aws::String> m_binaryMediaTypes;
     bool m_binaryMediaTypesHasBeenSet;
 
+    int m_minimumCompressionSize;
+    bool m_minimumCompressionSizeHasBeenSet;
+
+    ApiKeySourceType m_apiKeySource;
+    bool m_apiKeySourceHasBeenSet;
+
     EndpointConfiguration m_endpointConfiguration;
     bool m_endpointConfigurationHasBeenSet;
+
+    Aws::String m_policy;
+    bool m_policyHasBeenSet;
   };
 
 } // namespace Model

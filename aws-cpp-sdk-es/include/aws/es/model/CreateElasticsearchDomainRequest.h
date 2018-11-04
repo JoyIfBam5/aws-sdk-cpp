@@ -21,6 +21,9 @@
 #include <aws/es/model/EBSOptions.h>
 #include <aws/es/model/SnapshotOptions.h>
 #include <aws/es/model/VPCOptions.h>
+#include <aws/es/model/CognitoOptions.h>
+#include <aws/es/model/EncryptionAtRestOptions.h>
+#include <aws/es/model/NodeToNodeEncryptionOptions.h>
 #include <aws/core/utils/memory/stl/AWSMap.h>
 #include <aws/es/model/LogType.h>
 #include <aws/es/model/LogPublishingOption.h>
@@ -346,6 +349,99 @@ namespace Model
 
 
     /**
+     * <p>Options to specify the Cognito user and identity pools for Kibana
+     * authentication. For more information, see <a
+     * href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html"
+     * target="_blank">Amazon Cognito Authentication for Kibana</a>.</p>
+     */
+    inline const CognitoOptions& GetCognitoOptions() const{ return m_cognitoOptions; }
+
+    /**
+     * <p>Options to specify the Cognito user and identity pools for Kibana
+     * authentication. For more information, see <a
+     * href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html"
+     * target="_blank">Amazon Cognito Authentication for Kibana</a>.</p>
+     */
+    inline void SetCognitoOptions(const CognitoOptions& value) { m_cognitoOptionsHasBeenSet = true; m_cognitoOptions = value; }
+
+    /**
+     * <p>Options to specify the Cognito user and identity pools for Kibana
+     * authentication. For more information, see <a
+     * href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html"
+     * target="_blank">Amazon Cognito Authentication for Kibana</a>.</p>
+     */
+    inline void SetCognitoOptions(CognitoOptions&& value) { m_cognitoOptionsHasBeenSet = true; m_cognitoOptions = std::move(value); }
+
+    /**
+     * <p>Options to specify the Cognito user and identity pools for Kibana
+     * authentication. For more information, see <a
+     * href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html"
+     * target="_blank">Amazon Cognito Authentication for Kibana</a>.</p>
+     */
+    inline CreateElasticsearchDomainRequest& WithCognitoOptions(const CognitoOptions& value) { SetCognitoOptions(value); return *this;}
+
+    /**
+     * <p>Options to specify the Cognito user and identity pools for Kibana
+     * authentication. For more information, see <a
+     * href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html"
+     * target="_blank">Amazon Cognito Authentication for Kibana</a>.</p>
+     */
+    inline CreateElasticsearchDomainRequest& WithCognitoOptions(CognitoOptions&& value) { SetCognitoOptions(std::move(value)); return *this;}
+
+
+    /**
+     * <p>Specifies the Encryption At Rest Options.</p>
+     */
+    inline const EncryptionAtRestOptions& GetEncryptionAtRestOptions() const{ return m_encryptionAtRestOptions; }
+
+    /**
+     * <p>Specifies the Encryption At Rest Options.</p>
+     */
+    inline void SetEncryptionAtRestOptions(const EncryptionAtRestOptions& value) { m_encryptionAtRestOptionsHasBeenSet = true; m_encryptionAtRestOptions = value; }
+
+    /**
+     * <p>Specifies the Encryption At Rest Options.</p>
+     */
+    inline void SetEncryptionAtRestOptions(EncryptionAtRestOptions&& value) { m_encryptionAtRestOptionsHasBeenSet = true; m_encryptionAtRestOptions = std::move(value); }
+
+    /**
+     * <p>Specifies the Encryption At Rest Options.</p>
+     */
+    inline CreateElasticsearchDomainRequest& WithEncryptionAtRestOptions(const EncryptionAtRestOptions& value) { SetEncryptionAtRestOptions(value); return *this;}
+
+    /**
+     * <p>Specifies the Encryption At Rest Options.</p>
+     */
+    inline CreateElasticsearchDomainRequest& WithEncryptionAtRestOptions(EncryptionAtRestOptions&& value) { SetEncryptionAtRestOptions(std::move(value)); return *this;}
+
+
+    /**
+     * <p>Specifies the NodeToNodeEncryptionOptions.</p>
+     */
+    inline const NodeToNodeEncryptionOptions& GetNodeToNodeEncryptionOptions() const{ return m_nodeToNodeEncryptionOptions; }
+
+    /**
+     * <p>Specifies the NodeToNodeEncryptionOptions.</p>
+     */
+    inline void SetNodeToNodeEncryptionOptions(const NodeToNodeEncryptionOptions& value) { m_nodeToNodeEncryptionOptionsHasBeenSet = true; m_nodeToNodeEncryptionOptions = value; }
+
+    /**
+     * <p>Specifies the NodeToNodeEncryptionOptions.</p>
+     */
+    inline void SetNodeToNodeEncryptionOptions(NodeToNodeEncryptionOptions&& value) { m_nodeToNodeEncryptionOptionsHasBeenSet = true; m_nodeToNodeEncryptionOptions = std::move(value); }
+
+    /**
+     * <p>Specifies the NodeToNodeEncryptionOptions.</p>
+     */
+    inline CreateElasticsearchDomainRequest& WithNodeToNodeEncryptionOptions(const NodeToNodeEncryptionOptions& value) { SetNodeToNodeEncryptionOptions(value); return *this;}
+
+    /**
+     * <p>Specifies the NodeToNodeEncryptionOptions.</p>
+     */
+    inline CreateElasticsearchDomainRequest& WithNodeToNodeEncryptionOptions(NodeToNodeEncryptionOptions&& value) { SetNodeToNodeEncryptionOptions(std::move(value)); return *this;}
+
+
+    /**
      * <p> Option to allow references to indices in an HTTP request body. Must be
      * <code>false</code> when configuring access to individual sub-resources. By
      * default, the value is <code>true</code>. See <a
@@ -530,6 +626,15 @@ namespace Model
 
     VPCOptions m_vPCOptions;
     bool m_vPCOptionsHasBeenSet;
+
+    CognitoOptions m_cognitoOptions;
+    bool m_cognitoOptionsHasBeenSet;
+
+    EncryptionAtRestOptions m_encryptionAtRestOptions;
+    bool m_encryptionAtRestOptionsHasBeenSet;
+
+    NodeToNodeEncryptionOptions m_nodeToNodeEncryptionOptions;
+    bool m_nodeToNodeEncryptionOptionsHasBeenSet;
 
     Aws::Map<Aws::String, Aws::String> m_advancedOptions;
     bool m_advancedOptionsHasBeenSet;

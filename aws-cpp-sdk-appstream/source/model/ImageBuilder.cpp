@@ -45,11 +45,12 @@ ImageBuilder::ImageBuilder() :
     m_enableDefaultInternetAccess(false),
     m_enableDefaultInternetAccessHasBeenSet(false),
     m_domainJoinInfoHasBeenSet(false),
-    m_imageBuilderErrorsHasBeenSet(false)
+    m_imageBuilderErrorsHasBeenSet(false),
+    m_appstreamAgentVersionHasBeenSet(false)
 {
 }
 
-ImageBuilder::ImageBuilder(const JsonValue& jsonValue) : 
+ImageBuilder::ImageBuilder(JsonView jsonValue) : 
     m_nameHasBeenSet(false),
     m_arnHasBeenSet(false),
     m_imageArnHasBeenSet(false),
@@ -66,12 +67,13 @@ ImageBuilder::ImageBuilder(const JsonValue& jsonValue) :
     m_enableDefaultInternetAccess(false),
     m_enableDefaultInternetAccessHasBeenSet(false),
     m_domainJoinInfoHasBeenSet(false),
-    m_imageBuilderErrorsHasBeenSet(false)
+    m_imageBuilderErrorsHasBeenSet(false),
+    m_appstreamAgentVersionHasBeenSet(false)
 {
   *this = jsonValue;
 }
 
-ImageBuilder& ImageBuilder::operator =(const JsonValue& jsonValue)
+ImageBuilder& ImageBuilder::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("Name"))
   {
@@ -166,12 +168,19 @@ ImageBuilder& ImageBuilder::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("ImageBuilderErrors"))
   {
-    Array<JsonValue> imageBuilderErrorsJsonList = jsonValue.GetArray("ImageBuilderErrors");
+    Array<JsonView> imageBuilderErrorsJsonList = jsonValue.GetArray("ImageBuilderErrors");
     for(unsigned imageBuilderErrorsIndex = 0; imageBuilderErrorsIndex < imageBuilderErrorsJsonList.GetLength(); ++imageBuilderErrorsIndex)
     {
       m_imageBuilderErrors.push_back(imageBuilderErrorsJsonList[imageBuilderErrorsIndex].AsObject());
     }
     m_imageBuilderErrorsHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("AppstreamAgentVersion"))
+  {
+    m_appstreamAgentVersion = jsonValue.GetString("AppstreamAgentVersion");
+
+    m_appstreamAgentVersionHasBeenSet = true;
   }
 
   return *this;
@@ -264,6 +273,12 @@ JsonValue ImageBuilder::Jsonize() const
      imageBuilderErrorsJsonList[imageBuilderErrorsIndex].AsObject(m_imageBuilderErrors[imageBuilderErrorsIndex].Jsonize());
    }
    payload.WithArray("ImageBuilderErrors", std::move(imageBuilderErrorsJsonList));
+
+  }
+
+  if(m_appstreamAgentVersionHasBeenSet)
+  {
+   payload.WithString("AppstreamAgentVersion", m_appstreamAgentVersion);
 
   }
 

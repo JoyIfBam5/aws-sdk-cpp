@@ -32,7 +32,8 @@ static const char* CLIENT_CONFIGURATION_ALLOCATION_TAG = "ClientConfiguration";
 static Aws::String ComputeUserAgentString()
 {
   Aws::StringStream ss;
-  ss << "aws-sdk-cpp/" << Version::GetVersionString() << " " <<  Aws::OSVersionInfo::ComputeOSVersionString();
+  ss << "aws-sdk-cpp/" << Version::GetVersionString() << " " <<  Aws::OSVersionInfo::ComputeOSVersionString()
+      << " " << Version::GetCompilerVersionString();
   return ss.str();
 }
 
@@ -44,6 +45,9 @@ ClientConfiguration::ClientConfiguration() :
     maxConnections(25), 
     requestTimeoutMs(3000), 
     connectTimeoutMs(1000),
+    enableTcpKeepAlive(true),
+    tcpKeepAliveIntervalMs(30000),
+    lowSpeedLimit(1),
     retryStrategy(Aws::MakeShared<DefaultRetryStrategy>(CLIENT_CONFIGURATION_ALLOCATION_TAG)),
     proxyScheme(Aws::Http::Scheme::HTTP),
     proxyPort(0),
@@ -53,6 +57,7 @@ ClientConfiguration::ClientConfiguration() :
     readRateLimiter(nullptr),
     httpLibOverride(Aws::Http::TransferLibType::DEFAULT_CLIENT),
     followRedirects(true),
+    disableExpectHeader(false),
     enableClockSkewAdjustment(true)
 {
 }

@@ -18,6 +18,7 @@
 #include <aws/ds/DirectoryServiceRequest.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/ds/model/DirectoryVpcSettings.h>
+#include <aws/ds/model/DirectoryEdition.h>
 #include <utility>
 
 namespace Aws
@@ -28,7 +29,7 @@ namespace Model
 {
 
   /**
-   * <p>Creates a Microsoft AD in the AWS cloud.</p><p><h3>See Also:</h3>   <a
+   * <p>Creates an AWS Managed Microsoft AD directory.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/CreateMicrosoftADRequest">AWS
    * API Reference</a></p>
    */
@@ -271,6 +272,37 @@ namespace Model
      */
     inline CreateMicrosoftADRequest& WithVpcSettings(DirectoryVpcSettings&& value) { SetVpcSettings(std::move(value)); return *this;}
 
+
+    /**
+     * <p>AWS Managed Microsoft AD is available in two editions: Standard and
+     * Enterprise. Enterprise is the default.</p>
+     */
+    inline const DirectoryEdition& GetEdition() const{ return m_edition; }
+
+    /**
+     * <p>AWS Managed Microsoft AD is available in two editions: Standard and
+     * Enterprise. Enterprise is the default.</p>
+     */
+    inline void SetEdition(const DirectoryEdition& value) { m_editionHasBeenSet = true; m_edition = value; }
+
+    /**
+     * <p>AWS Managed Microsoft AD is available in two editions: Standard and
+     * Enterprise. Enterprise is the default.</p>
+     */
+    inline void SetEdition(DirectoryEdition&& value) { m_editionHasBeenSet = true; m_edition = std::move(value); }
+
+    /**
+     * <p>AWS Managed Microsoft AD is available in two editions: Standard and
+     * Enterprise. Enterprise is the default.</p>
+     */
+    inline CreateMicrosoftADRequest& WithEdition(const DirectoryEdition& value) { SetEdition(value); return *this;}
+
+    /**
+     * <p>AWS Managed Microsoft AD is available in two editions: Standard and
+     * Enterprise. Enterprise is the default.</p>
+     */
+    inline CreateMicrosoftADRequest& WithEdition(DirectoryEdition&& value) { SetEdition(std::move(value)); return *this;}
+
   private:
 
     Aws::String m_name;
@@ -287,6 +319,9 @@ namespace Model
 
     DirectoryVpcSettings m_vpcSettings;
     bool m_vpcSettingsHasBeenSet;
+
+    DirectoryEdition m_edition;
+    bool m_editionHasBeenSet;
   };
 
 } // namespace Model

@@ -27,6 +27,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace KinesisAnalytics
@@ -46,8 +47,8 @@ namespace Model
   {
   public:
     ReferenceDataSource();
-    ReferenceDataSource(const Aws::Utils::Json::JsonValue& jsonValue);
-    ReferenceDataSource& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    ReferenceDataSource(Aws::Utils::Json::JsonView jsonValue);
+    ReferenceDataSource& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -87,35 +88,80 @@ namespace Model
     inline ReferenceDataSource& WithTableName(const char* value) { SetTableName(value); return *this;}
 
 
-    
+    /**
+     * <p>Identifies the S3 bucket and object that contains the reference data. Also
+     * identifies the IAM role Amazon Kinesis Analytics can assume to read this object
+     * on your behalf. An Amazon Kinesis Analytics application loads reference data
+     * only once. If the data changes, you call the <a>UpdateApplication</a> operation
+     * to trigger reloading of data into your application. </p>
+     */
     inline const S3ReferenceDataSource& GetS3ReferenceDataSource() const{ return m_s3ReferenceDataSource; }
 
-    
+    /**
+     * <p>Identifies the S3 bucket and object that contains the reference data. Also
+     * identifies the IAM role Amazon Kinesis Analytics can assume to read this object
+     * on your behalf. An Amazon Kinesis Analytics application loads reference data
+     * only once. If the data changes, you call the <a>UpdateApplication</a> operation
+     * to trigger reloading of data into your application. </p>
+     */
     inline void SetS3ReferenceDataSource(const S3ReferenceDataSource& value) { m_s3ReferenceDataSourceHasBeenSet = true; m_s3ReferenceDataSource = value; }
 
-    
+    /**
+     * <p>Identifies the S3 bucket and object that contains the reference data. Also
+     * identifies the IAM role Amazon Kinesis Analytics can assume to read this object
+     * on your behalf. An Amazon Kinesis Analytics application loads reference data
+     * only once. If the data changes, you call the <a>UpdateApplication</a> operation
+     * to trigger reloading of data into your application. </p>
+     */
     inline void SetS3ReferenceDataSource(S3ReferenceDataSource&& value) { m_s3ReferenceDataSourceHasBeenSet = true; m_s3ReferenceDataSource = std::move(value); }
 
-    
+    /**
+     * <p>Identifies the S3 bucket and object that contains the reference data. Also
+     * identifies the IAM role Amazon Kinesis Analytics can assume to read this object
+     * on your behalf. An Amazon Kinesis Analytics application loads reference data
+     * only once. If the data changes, you call the <a>UpdateApplication</a> operation
+     * to trigger reloading of data into your application. </p>
+     */
     inline ReferenceDataSource& WithS3ReferenceDataSource(const S3ReferenceDataSource& value) { SetS3ReferenceDataSource(value); return *this;}
 
-    
+    /**
+     * <p>Identifies the S3 bucket and object that contains the reference data. Also
+     * identifies the IAM role Amazon Kinesis Analytics can assume to read this object
+     * on your behalf. An Amazon Kinesis Analytics application loads reference data
+     * only once. If the data changes, you call the <a>UpdateApplication</a> operation
+     * to trigger reloading of data into your application. </p>
+     */
     inline ReferenceDataSource& WithS3ReferenceDataSource(S3ReferenceDataSource&& value) { SetS3ReferenceDataSource(std::move(value)); return *this;}
 
 
-    
+    /**
+     * <p>Describes the format of the data in the streaming source, and how each data
+     * element maps to corresponding columns created in the in-application stream.</p>
+     */
     inline const SourceSchema& GetReferenceSchema() const{ return m_referenceSchema; }
 
-    
+    /**
+     * <p>Describes the format of the data in the streaming source, and how each data
+     * element maps to corresponding columns created in the in-application stream.</p>
+     */
     inline void SetReferenceSchema(const SourceSchema& value) { m_referenceSchemaHasBeenSet = true; m_referenceSchema = value; }
 
-    
+    /**
+     * <p>Describes the format of the data in the streaming source, and how each data
+     * element maps to corresponding columns created in the in-application stream.</p>
+     */
     inline void SetReferenceSchema(SourceSchema&& value) { m_referenceSchemaHasBeenSet = true; m_referenceSchema = std::move(value); }
 
-    
+    /**
+     * <p>Describes the format of the data in the streaming source, and how each data
+     * element maps to corresponding columns created in the in-application stream.</p>
+     */
     inline ReferenceDataSource& WithReferenceSchema(const SourceSchema& value) { SetReferenceSchema(value); return *this;}
 
-    
+    /**
+     * <p>Describes the format of the data in the streaming source, and how each data
+     * element maps to corresponding columns created in the in-application stream.</p>
+     */
     inline ReferenceDataSource& WithReferenceSchema(SourceSchema&& value) { SetReferenceSchema(std::move(value)); return *this;}
 
   private:

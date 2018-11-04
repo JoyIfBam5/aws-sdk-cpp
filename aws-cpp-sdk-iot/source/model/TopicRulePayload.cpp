@@ -34,22 +34,24 @@ TopicRulePayload::TopicRulePayload() :
     m_actionsHasBeenSet(false),
     m_ruleDisabled(false),
     m_ruleDisabledHasBeenSet(false),
-    m_awsIotSqlVersionHasBeenSet(false)
+    m_awsIotSqlVersionHasBeenSet(false),
+    m_errorActionHasBeenSet(false)
 {
 }
 
-TopicRulePayload::TopicRulePayload(const JsonValue& jsonValue) : 
+TopicRulePayload::TopicRulePayload(JsonView jsonValue) : 
     m_sqlHasBeenSet(false),
     m_descriptionHasBeenSet(false),
     m_actionsHasBeenSet(false),
     m_ruleDisabled(false),
     m_ruleDisabledHasBeenSet(false),
-    m_awsIotSqlVersionHasBeenSet(false)
+    m_awsIotSqlVersionHasBeenSet(false),
+    m_errorActionHasBeenSet(false)
 {
   *this = jsonValue;
 }
 
-TopicRulePayload& TopicRulePayload::operator =(const JsonValue& jsonValue)
+TopicRulePayload& TopicRulePayload::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("sql"))
   {
@@ -67,7 +69,7 @@ TopicRulePayload& TopicRulePayload::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("actions"))
   {
-    Array<JsonValue> actionsJsonList = jsonValue.GetArray("actions");
+    Array<JsonView> actionsJsonList = jsonValue.GetArray("actions");
     for(unsigned actionsIndex = 0; actionsIndex < actionsJsonList.GetLength(); ++actionsIndex)
     {
       m_actions.push_back(actionsJsonList[actionsIndex].AsObject());
@@ -87,6 +89,13 @@ TopicRulePayload& TopicRulePayload::operator =(const JsonValue& jsonValue)
     m_awsIotSqlVersion = jsonValue.GetString("awsIotSqlVersion");
 
     m_awsIotSqlVersionHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("errorAction"))
+  {
+    m_errorAction = jsonValue.GetObject("errorAction");
+
+    m_errorActionHasBeenSet = true;
   }
 
   return *this;
@@ -128,6 +137,12 @@ JsonValue TopicRulePayload::Jsonize() const
   if(m_awsIotSqlVersionHasBeenSet)
   {
    payload.WithString("awsIotSqlVersion", m_awsIotSqlVersion);
+
+  }
+
+  if(m_errorActionHasBeenSet)
+  {
+   payload.WithObject("errorAction", m_errorAction.Jsonize());
 
   }
 

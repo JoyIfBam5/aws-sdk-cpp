@@ -24,7 +24,9 @@ using namespace Aws::Utils;
 
 RejectPortfolioShareRequest::RejectPortfolioShareRequest() : 
     m_acceptLanguageHasBeenSet(false),
-    m_portfolioIdHasBeenSet(false)
+    m_portfolioIdHasBeenSet(false),
+    m_portfolioShareType(PortfolioShareType::NOT_SET),
+    m_portfolioShareTypeHasBeenSet(false)
 {
 }
 
@@ -44,7 +46,12 @@ Aws::String RejectPortfolioShareRequest::SerializePayload() const
 
   }
 
-  return payload.WriteReadable();
+  if(m_portfolioShareTypeHasBeenSet)
+  {
+   payload.WithString("PortfolioShareType", PortfolioShareTypeMapper::GetNameForPortfolioShareType(m_portfolioShareType));
+  }
+
+  return payload.View().WriteReadable();
 }
 
 Aws::Http::HeaderValueCollection RejectPortfolioShareRequest::GetRequestSpecificHeaders() const

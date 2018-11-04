@@ -56,6 +56,7 @@ namespace Aws
         static const int Penelope_HASH = HashingUtils::HashString("Penelope");
         static const int Chantal_HASH = HashingUtils::HashString("Chantal");
         static const int Celine_HASH = HashingUtils::HashString("Celine");
+        static const int Lea_HASH = HashingUtils::HashString("Lea");
         static const int Mathieu_HASH = HashingUtils::HashString("Mathieu");
         static const int Dora_HASH = HashingUtils::HashString("Dora");
         static const int Karl_HASH = HashingUtils::HashString("Karl");
@@ -82,6 +83,7 @@ namespace Aws
         static const int Takumi_HASH = HashingUtils::HashString("Takumi");
         static const int Seoyeon_HASH = HashingUtils::HashString("Seoyeon");
         static const int Aditi_HASH = HashingUtils::HashString("Aditi");
+        static const int Zhiyu_HASH = HashingUtils::HashString("Zhiyu");
 
 
         VoiceId GetVoiceIdForName(const Aws::String& name)
@@ -191,6 +193,10 @@ namespace Aws
           {
             return VoiceId::Celine;
           }
+          else if (hashCode == Lea_HASH)
+          {
+            return VoiceId::Lea;
+          }
           else if (hashCode == Mathieu_HASH)
           {
             return VoiceId::Mathieu;
@@ -295,6 +301,10 @@ namespace Aws
           {
             return VoiceId::Aditi;
           }
+          else if (hashCode == Zhiyu_HASH)
+          {
+            return VoiceId::Zhiyu;
+          }
           EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
           if(overflowContainer)
           {
@@ -361,6 +371,8 @@ namespace Aws
             return "Chantal";
           case VoiceId::Celine:
             return "Celine";
+          case VoiceId::Lea:
+            return "Lea";
           case VoiceId::Mathieu:
             return "Mathieu";
           case VoiceId::Dora:
@@ -413,6 +425,8 @@ namespace Aws
             return "Seoyeon";
           case VoiceId::Aditi:
             return "Aditi";
+          case VoiceId::Zhiyu:
+            return "Zhiyu";
           default:
             EnumParseOverflowContainer* overflowContainer = Aws::GetEnumOverflowContainer();
             if(overflowContainer)

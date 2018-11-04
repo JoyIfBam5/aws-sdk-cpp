@@ -32,6 +32,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace KinesisAnalytics
@@ -50,8 +51,8 @@ namespace Model
   {
   public:
     InputDescription();
-    InputDescription(const Aws::Utils::Json::JsonValue& jsonValue);
-    InputDescription& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    InputDescription(Aws::Utils::Json::JsonView jsonValue);
+    InputDescription& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -223,77 +224,72 @@ namespace Model
 
     /**
      * <p>If an Amazon Kinesis stream is configured as streaming source, provides
-     * Amazon Kinesis stream's ARN and an IAM role that enables Amazon Kinesis
-     * Analytics to access the stream on your behalf.</p>
+     * Amazon Kinesis stream's Amazon Resource Name (ARN) and an IAM role that enables
+     * Amazon Kinesis Analytics to access the stream on your behalf.</p>
      */
     inline const KinesisStreamsInputDescription& GetKinesisStreamsInputDescription() const{ return m_kinesisStreamsInputDescription; }
 
     /**
      * <p>If an Amazon Kinesis stream is configured as streaming source, provides
-     * Amazon Kinesis stream's ARN and an IAM role that enables Amazon Kinesis
-     * Analytics to access the stream on your behalf.</p>
+     * Amazon Kinesis stream's Amazon Resource Name (ARN) and an IAM role that enables
+     * Amazon Kinesis Analytics to access the stream on your behalf.</p>
      */
     inline void SetKinesisStreamsInputDescription(const KinesisStreamsInputDescription& value) { m_kinesisStreamsInputDescriptionHasBeenSet = true; m_kinesisStreamsInputDescription = value; }
 
     /**
      * <p>If an Amazon Kinesis stream is configured as streaming source, provides
-     * Amazon Kinesis stream's ARN and an IAM role that enables Amazon Kinesis
-     * Analytics to access the stream on your behalf.</p>
+     * Amazon Kinesis stream's Amazon Resource Name (ARN) and an IAM role that enables
+     * Amazon Kinesis Analytics to access the stream on your behalf.</p>
      */
     inline void SetKinesisStreamsInputDescription(KinesisStreamsInputDescription&& value) { m_kinesisStreamsInputDescriptionHasBeenSet = true; m_kinesisStreamsInputDescription = std::move(value); }
 
     /**
      * <p>If an Amazon Kinesis stream is configured as streaming source, provides
-     * Amazon Kinesis stream's ARN and an IAM role that enables Amazon Kinesis
-     * Analytics to access the stream on your behalf.</p>
+     * Amazon Kinesis stream's Amazon Resource Name (ARN) and an IAM role that enables
+     * Amazon Kinesis Analytics to access the stream on your behalf.</p>
      */
     inline InputDescription& WithKinesisStreamsInputDescription(const KinesisStreamsInputDescription& value) { SetKinesisStreamsInputDescription(value); return *this;}
 
     /**
      * <p>If an Amazon Kinesis stream is configured as streaming source, provides
-     * Amazon Kinesis stream's ARN and an IAM role that enables Amazon Kinesis
-     * Analytics to access the stream on your behalf.</p>
+     * Amazon Kinesis stream's Amazon Resource Name (ARN) and an IAM role that enables
+     * Amazon Kinesis Analytics to access the stream on your behalf.</p>
      */
     inline InputDescription& WithKinesisStreamsInputDescription(KinesisStreamsInputDescription&& value) { SetKinesisStreamsInputDescription(std::move(value)); return *this;}
 
 
     /**
      * <p>If an Amazon Kinesis Firehose delivery stream is configured as a streaming
-     * source, provides the Firehose delivery stream's Amazon Resource Name (ARN) and
-     * an IAM role that enables Amazon Kinesis Analytics to access the stream on your
-     * behalf.</p>
+     * source, provides the delivery stream's ARN and an IAM role that enables Amazon
+     * Kinesis Analytics to access the stream on your behalf.</p>
      */
     inline const KinesisFirehoseInputDescription& GetKinesisFirehoseInputDescription() const{ return m_kinesisFirehoseInputDescription; }
 
     /**
      * <p>If an Amazon Kinesis Firehose delivery stream is configured as a streaming
-     * source, provides the Firehose delivery stream's Amazon Resource Name (ARN) and
-     * an IAM role that enables Amazon Kinesis Analytics to access the stream on your
-     * behalf.</p>
+     * source, provides the delivery stream's ARN and an IAM role that enables Amazon
+     * Kinesis Analytics to access the stream on your behalf.</p>
      */
     inline void SetKinesisFirehoseInputDescription(const KinesisFirehoseInputDescription& value) { m_kinesisFirehoseInputDescriptionHasBeenSet = true; m_kinesisFirehoseInputDescription = value; }
 
     /**
      * <p>If an Amazon Kinesis Firehose delivery stream is configured as a streaming
-     * source, provides the Firehose delivery stream's Amazon Resource Name (ARN) and
-     * an IAM role that enables Amazon Kinesis Analytics to access the stream on your
-     * behalf.</p>
+     * source, provides the delivery stream's ARN and an IAM role that enables Amazon
+     * Kinesis Analytics to access the stream on your behalf.</p>
      */
     inline void SetKinesisFirehoseInputDescription(KinesisFirehoseInputDescription&& value) { m_kinesisFirehoseInputDescriptionHasBeenSet = true; m_kinesisFirehoseInputDescription = std::move(value); }
 
     /**
      * <p>If an Amazon Kinesis Firehose delivery stream is configured as a streaming
-     * source, provides the Firehose delivery stream's Amazon Resource Name (ARN) and
-     * an IAM role that enables Amazon Kinesis Analytics to access the stream on your
-     * behalf.</p>
+     * source, provides the delivery stream's ARN and an IAM role that enables Amazon
+     * Kinesis Analytics to access the stream on your behalf.</p>
      */
     inline InputDescription& WithKinesisFirehoseInputDescription(const KinesisFirehoseInputDescription& value) { SetKinesisFirehoseInputDescription(value); return *this;}
 
     /**
      * <p>If an Amazon Kinesis Firehose delivery stream is configured as a streaming
-     * source, provides the Firehose delivery stream's Amazon Resource Name (ARN) and
-     * an IAM role that enables Amazon Kinesis Analytics to access the stream on your
-     * behalf.</p>
+     * source, provides the delivery stream's ARN and an IAM role that enables Amazon
+     * Kinesis Analytics to access the stream on your behalf.</p>
      */
     inline InputDescription& WithKinesisFirehoseInputDescription(KinesisFirehoseInputDescription&& value) { SetKinesisFirehoseInputDescription(std::move(value)); return *this;}
 

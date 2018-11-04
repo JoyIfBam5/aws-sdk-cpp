@@ -25,6 +25,7 @@ using namespace Aws::Utils;
 UpdateQueueRequest::UpdateQueueRequest() : 
     m_descriptionHasBeenSet(false),
     m_nameHasBeenSet(false),
+    m_reservationPlanSettingsHasBeenSet(false),
     m_status(QueueStatus::NOT_SET),
     m_statusHasBeenSet(false)
 {
@@ -40,12 +41,18 @@ Aws::String UpdateQueueRequest::SerializePayload() const
 
   }
 
+  if(m_reservationPlanSettingsHasBeenSet)
+  {
+   payload.WithObject("reservationPlanSettings", m_reservationPlanSettings.Jsonize());
+
+  }
+
   if(m_statusHasBeenSet)
   {
    payload.WithString("status", QueueStatusMapper::GetNameForQueueStatus(m_status));
   }
 
-  return payload.WriteReadable();
+  return payload.View().WriteReadable();
 }
 
 

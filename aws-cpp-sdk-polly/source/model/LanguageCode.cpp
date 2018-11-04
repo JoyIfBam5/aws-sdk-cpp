@@ -30,6 +30,7 @@ namespace Aws
       namespace LanguageCodeMapper
       {
 
+        static const int cmn_CN_HASH = HashingUtils::HashString("cmn-CN");
         static const int cy_GB_HASH = HashingUtils::HashString("cy-GB");
         static const int da_DK_HASH = HashingUtils::HashString("da-DK");
         static const int de_DE_HASH = HashingUtils::HashString("de-DE");
@@ -44,8 +45,9 @@ namespace Aws
         static const int fr_FR_HASH = HashingUtils::HashString("fr-FR");
         static const int is_IS_HASH = HashingUtils::HashString("is-IS");
         static const int it_IT_HASH = HashingUtils::HashString("it-IT");
-        static const int ko_KR_HASH = HashingUtils::HashString("ko-KR");
         static const int ja_JP_HASH = HashingUtils::HashString("ja-JP");
+        static const int hi_IN_HASH = HashingUtils::HashString("hi-IN");
+        static const int ko_KR_HASH = HashingUtils::HashString("ko-KR");
         static const int nb_NO_HASH = HashingUtils::HashString("nb-NO");
         static const int nl_NL_HASH = HashingUtils::HashString("nl-NL");
         static const int pl_PL_HASH = HashingUtils::HashString("pl-PL");
@@ -60,7 +62,11 @@ namespace Aws
         LanguageCode GetLanguageCodeForName(const Aws::String& name)
         {
           int hashCode = HashingUtils::HashString(name.c_str());
-          if (hashCode == cy_GB_HASH)
+          if (hashCode == cmn_CN_HASH)
+          {
+            return LanguageCode::cmn_CN;
+          }
+          else if (hashCode == cy_GB_HASH)
           {
             return LanguageCode::cy_GB;
           }
@@ -116,13 +122,17 @@ namespace Aws
           {
             return LanguageCode::it_IT;
           }
-          else if (hashCode == ko_KR_HASH)
-          {
-            return LanguageCode::ko_KR;
-          }
           else if (hashCode == ja_JP_HASH)
           {
             return LanguageCode::ja_JP;
+          }
+          else if (hashCode == hi_IN_HASH)
+          {
+            return LanguageCode::hi_IN;
+          }
+          else if (hashCode == ko_KR_HASH)
+          {
+            return LanguageCode::ko_KR;
           }
           else if (hashCode == nb_NO_HASH)
           {
@@ -174,6 +184,8 @@ namespace Aws
         {
           switch(enumValue)
           {
+          case LanguageCode::cmn_CN:
+            return "cmn-CN";
           case LanguageCode::cy_GB:
             return "cy-GB";
           case LanguageCode::da_DK:
@@ -202,10 +214,12 @@ namespace Aws
             return "is-IS";
           case LanguageCode::it_IT:
             return "it-IT";
-          case LanguageCode::ko_KR:
-            return "ko-KR";
           case LanguageCode::ja_JP:
             return "ja-JP";
+          case LanguageCode::hi_IN:
+            return "hi-IN";
+          case LanguageCode::ko_KR:
+            return "ko-KR";
           case LanguageCode::nb_NO:
             return "nb-NO";
           case LanguageCode::nl_NL:

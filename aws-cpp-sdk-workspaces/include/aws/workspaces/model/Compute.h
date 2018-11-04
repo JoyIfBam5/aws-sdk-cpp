@@ -28,7 +28,11 @@ namespace Model
     NOT_SET,
     VALUE,
     STANDARD,
-    PERFORMANCE
+    PERFORMANCE,
+    POWER,
+    GRAPHICS,
+    POWERPRO,
+    GRAPHICSPRO
   };
 
 namespace ComputeMapper

@@ -25,6 +25,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace AppStream
@@ -33,7 +34,7 @@ namespace Model
 {
 
   /**
-   * <p>Contains the information needed for streaming instances to join a
+   * <p>Contains the information needed to join a Microsoft Active Directory
    * domain.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DomainJoinInfo">AWS
    * API Reference</a></p>
@@ -42,8 +43,8 @@ namespace Model
   {
   public:
     DomainJoinInfo();
-    DomainJoinInfo(const Aws::Utils::Json::JsonValue& jsonValue);
-    DomainJoinInfo& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    DomainJoinInfo(Aws::Utils::Json::JsonView jsonValue);
+    DomainJoinInfo& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 

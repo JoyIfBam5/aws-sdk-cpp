@@ -160,37 +160,37 @@ namespace Model
 
 
     /**
-     * <p>The ID for the address that you want the cluster shipped to.&gt;</p>
+     * <p>The ID for the address that you want the cluster shipped to.</p>
      */
     inline const Aws::String& GetAddressId() const{ return m_addressId; }
 
     /**
-     * <p>The ID for the address that you want the cluster shipped to.&gt;</p>
+     * <p>The ID for the address that you want the cluster shipped to.</p>
      */
     inline void SetAddressId(const Aws::String& value) { m_addressIdHasBeenSet = true; m_addressId = value; }
 
     /**
-     * <p>The ID for the address that you want the cluster shipped to.&gt;</p>
+     * <p>The ID for the address that you want the cluster shipped to.</p>
      */
     inline void SetAddressId(Aws::String&& value) { m_addressIdHasBeenSet = true; m_addressId = std::move(value); }
 
     /**
-     * <p>The ID for the address that you want the cluster shipped to.&gt;</p>
+     * <p>The ID for the address that you want the cluster shipped to.</p>
      */
     inline void SetAddressId(const char* value) { m_addressIdHasBeenSet = true; m_addressId.assign(value); }
 
     /**
-     * <p>The ID for the address that you want the cluster shipped to.&gt;</p>
+     * <p>The ID for the address that you want the cluster shipped to.</p>
      */
     inline CreateClusterRequest& WithAddressId(const Aws::String& value) { SetAddressId(value); return *this;}
 
     /**
-     * <p>The ID for the address that you want the cluster shipped to.&gt;</p>
+     * <p>The ID for the address that you want the cluster shipped to.</p>
      */
     inline CreateClusterRequest& WithAddressId(Aws::String&& value) { SetAddressId(std::move(value)); return *this;}
 
     /**
-     * <p>The ID for the address that you want the cluster shipped to.&gt;</p>
+     * <p>The ID for the address that you want the cluster shipped to.</p>
      */
     inline CreateClusterRequest& WithAddressId(const char* value) { SetAddressId(value); return *this;}
 
@@ -310,113 +310,108 @@ namespace Model
 
 
     /**
-     * <p>The type of AWS Snowball appliance to use for this cluster. Currently, the
-     * only supported appliance type for cluster jobs is <code>EDGE</code>.</p>
+     * <p>The type of AWS Snowball device to use for this cluster. Currently, the only
+     * supported device type for cluster jobs is <code>EDGE</code>.</p>
      */
     inline const SnowballType& GetSnowballType() const{ return m_snowballType; }
 
     /**
-     * <p>The type of AWS Snowball appliance to use for this cluster. Currently, the
-     * only supported appliance type for cluster jobs is <code>EDGE</code>.</p>
+     * <p>The type of AWS Snowball device to use for this cluster. Currently, the only
+     * supported device type for cluster jobs is <code>EDGE</code>.</p>
      */
     inline void SetSnowballType(const SnowballType& value) { m_snowballTypeHasBeenSet = true; m_snowballType = value; }
 
     /**
-     * <p>The type of AWS Snowball appliance to use for this cluster. Currently, the
-     * only supported appliance type for cluster jobs is <code>EDGE</code>.</p>
+     * <p>The type of AWS Snowball device to use for this cluster. Currently, the only
+     * supported device type for cluster jobs is <code>EDGE</code>.</p>
      */
     inline void SetSnowballType(SnowballType&& value) { m_snowballTypeHasBeenSet = true; m_snowballType = std::move(value); }
 
     /**
-     * <p>The type of AWS Snowball appliance to use for this cluster. Currently, the
-     * only supported appliance type for cluster jobs is <code>EDGE</code>.</p>
+     * <p>The type of AWS Snowball device to use for this cluster. Currently, the only
+     * supported device type for cluster jobs is <code>EDGE</code>.</p>
      */
     inline CreateClusterRequest& WithSnowballType(const SnowballType& value) { SetSnowballType(value); return *this;}
 
     /**
-     * <p>The type of AWS Snowball appliance to use for this cluster. Currently, the
-     * only supported appliance type for cluster jobs is <code>EDGE</code>.</p>
+     * <p>The type of AWS Snowball device to use for this cluster. Currently, the only
+     * supported device type for cluster jobs is <code>EDGE</code>.</p>
      */
     inline CreateClusterRequest& WithSnowballType(SnowballType&& value) { SetSnowballType(std::move(value)); return *this;}
 
 
     /**
      * <p>The shipping speed for each node in this cluster. This speed doesn't dictate
-     * how soon you'll get each Snowball Edge appliance, rather it represents how
-     * quickly each appliance moves to its destination while in transit. Regional
-     * shipping speeds are as follows:</p> <ul> <li> <p>In Australia, you have access
-     * to express shipping. Typically, appliances shipped express are delivered in
-     * about a day.</p> </li> <li> <p>In the European Union (EU), you have access to
-     * express shipping. Typically, Snowball Edges shipped express are delivered in
-     * about a day. In addition, most countries in the EU have access to standard
-     * shipping, which typically takes less than a week, one way.</p> </li> <li> <p>In
-     * India, Snowball Edges are delivered in one to seven days.</p> </li> <li> <p>In
-     * the US, you have access to one-day shipping and two-day shipping.</p> </li>
-     * </ul>
+     * how soon you'll get each Snowball Edge device, rather it represents how quickly
+     * each device moves to its destination while in transit. Regional shipping speeds
+     * are as follows:</p> <ul> <li> <p>In Australia, you have access to express
+     * shipping. Typically, devices shipped express are delivered in about a day.</p>
+     * </li> <li> <p>In the European Union (EU), you have access to express shipping.
+     * Typically, Snowball Edges shipped express are delivered in about a day. In
+     * addition, most countries in the EU have access to standard shipping, which
+     * typically takes less than a week, one way.</p> </li> <li> <p>In India, Snowball
+     * Edges are delivered in one to seven days.</p> </li> <li> <p>In the US, you have
+     * access to one-day shipping and two-day shipping.</p> </li> </ul>
      */
     inline const ShippingOption& GetShippingOption() const{ return m_shippingOption; }
 
     /**
      * <p>The shipping speed for each node in this cluster. This speed doesn't dictate
-     * how soon you'll get each Snowball Edge appliance, rather it represents how
-     * quickly each appliance moves to its destination while in transit. Regional
-     * shipping speeds are as follows:</p> <ul> <li> <p>In Australia, you have access
-     * to express shipping. Typically, appliances shipped express are delivered in
-     * about a day.</p> </li> <li> <p>In the European Union (EU), you have access to
-     * express shipping. Typically, Snowball Edges shipped express are delivered in
-     * about a day. In addition, most countries in the EU have access to standard
-     * shipping, which typically takes less than a week, one way.</p> </li> <li> <p>In
-     * India, Snowball Edges are delivered in one to seven days.</p> </li> <li> <p>In
-     * the US, you have access to one-day shipping and two-day shipping.</p> </li>
-     * </ul>
+     * how soon you'll get each Snowball Edge device, rather it represents how quickly
+     * each device moves to its destination while in transit. Regional shipping speeds
+     * are as follows:</p> <ul> <li> <p>In Australia, you have access to express
+     * shipping. Typically, devices shipped express are delivered in about a day.</p>
+     * </li> <li> <p>In the European Union (EU), you have access to express shipping.
+     * Typically, Snowball Edges shipped express are delivered in about a day. In
+     * addition, most countries in the EU have access to standard shipping, which
+     * typically takes less than a week, one way.</p> </li> <li> <p>In India, Snowball
+     * Edges are delivered in one to seven days.</p> </li> <li> <p>In the US, you have
+     * access to one-day shipping and two-day shipping.</p> </li> </ul>
      */
     inline void SetShippingOption(const ShippingOption& value) { m_shippingOptionHasBeenSet = true; m_shippingOption = value; }
 
     /**
      * <p>The shipping speed for each node in this cluster. This speed doesn't dictate
-     * how soon you'll get each Snowball Edge appliance, rather it represents how
-     * quickly each appliance moves to its destination while in transit. Regional
-     * shipping speeds are as follows:</p> <ul> <li> <p>In Australia, you have access
-     * to express shipping. Typically, appliances shipped express are delivered in
-     * about a day.</p> </li> <li> <p>In the European Union (EU), you have access to
-     * express shipping. Typically, Snowball Edges shipped express are delivered in
-     * about a day. In addition, most countries in the EU have access to standard
-     * shipping, which typically takes less than a week, one way.</p> </li> <li> <p>In
-     * India, Snowball Edges are delivered in one to seven days.</p> </li> <li> <p>In
-     * the US, you have access to one-day shipping and two-day shipping.</p> </li>
-     * </ul>
+     * how soon you'll get each Snowball Edge device, rather it represents how quickly
+     * each device moves to its destination while in transit. Regional shipping speeds
+     * are as follows:</p> <ul> <li> <p>In Australia, you have access to express
+     * shipping. Typically, devices shipped express are delivered in about a day.</p>
+     * </li> <li> <p>In the European Union (EU), you have access to express shipping.
+     * Typically, Snowball Edges shipped express are delivered in about a day. In
+     * addition, most countries in the EU have access to standard shipping, which
+     * typically takes less than a week, one way.</p> </li> <li> <p>In India, Snowball
+     * Edges are delivered in one to seven days.</p> </li> <li> <p>In the US, you have
+     * access to one-day shipping and two-day shipping.</p> </li> </ul>
      */
     inline void SetShippingOption(ShippingOption&& value) { m_shippingOptionHasBeenSet = true; m_shippingOption = std::move(value); }
 
     /**
      * <p>The shipping speed for each node in this cluster. This speed doesn't dictate
-     * how soon you'll get each Snowball Edge appliance, rather it represents how
-     * quickly each appliance moves to its destination while in transit. Regional
-     * shipping speeds are as follows:</p> <ul> <li> <p>In Australia, you have access
-     * to express shipping. Typically, appliances shipped express are delivered in
-     * about a day.</p> </li> <li> <p>In the European Union (EU), you have access to
-     * express shipping. Typically, Snowball Edges shipped express are delivered in
-     * about a day. In addition, most countries in the EU have access to standard
-     * shipping, which typically takes less than a week, one way.</p> </li> <li> <p>In
-     * India, Snowball Edges are delivered in one to seven days.</p> </li> <li> <p>In
-     * the US, you have access to one-day shipping and two-day shipping.</p> </li>
-     * </ul>
+     * how soon you'll get each Snowball Edge device, rather it represents how quickly
+     * each device moves to its destination while in transit. Regional shipping speeds
+     * are as follows:</p> <ul> <li> <p>In Australia, you have access to express
+     * shipping. Typically, devices shipped express are delivered in about a day.</p>
+     * </li> <li> <p>In the European Union (EU), you have access to express shipping.
+     * Typically, Snowball Edges shipped express are delivered in about a day. In
+     * addition, most countries in the EU have access to standard shipping, which
+     * typically takes less than a week, one way.</p> </li> <li> <p>In India, Snowball
+     * Edges are delivered in one to seven days.</p> </li> <li> <p>In the US, you have
+     * access to one-day shipping and two-day shipping.</p> </li> </ul>
      */
     inline CreateClusterRequest& WithShippingOption(const ShippingOption& value) { SetShippingOption(value); return *this;}
 
     /**
      * <p>The shipping speed for each node in this cluster. This speed doesn't dictate
-     * how soon you'll get each Snowball Edge appliance, rather it represents how
-     * quickly each appliance moves to its destination while in transit. Regional
-     * shipping speeds are as follows:</p> <ul> <li> <p>In Australia, you have access
-     * to express shipping. Typically, appliances shipped express are delivered in
-     * about a day.</p> </li> <li> <p>In the European Union (EU), you have access to
-     * express shipping. Typically, Snowball Edges shipped express are delivered in
-     * about a day. In addition, most countries in the EU have access to standard
-     * shipping, which typically takes less than a week, one way.</p> </li> <li> <p>In
-     * India, Snowball Edges are delivered in one to seven days.</p> </li> <li> <p>In
-     * the US, you have access to one-day shipping and two-day shipping.</p> </li>
-     * </ul>
+     * how soon you'll get each Snowball Edge device, rather it represents how quickly
+     * each device moves to its destination while in transit. Regional shipping speeds
+     * are as follows:</p> <ul> <li> <p>In Australia, you have access to express
+     * shipping. Typically, devices shipped express are delivered in about a day.</p>
+     * </li> <li> <p>In the European Union (EU), you have access to express shipping.
+     * Typically, Snowball Edges shipped express are delivered in about a day. In
+     * addition, most countries in the EU have access to standard shipping, which
+     * typically takes less than a week, one way.</p> </li> <li> <p>In India, Snowball
+     * Edges are delivered in one to seven days.</p> </li> <li> <p>In the US, you have
+     * access to one-day shipping and two-day shipping.</p> </li> </ul>
      */
     inline CreateClusterRequest& WithShippingOption(ShippingOption&& value) { SetShippingOption(std::move(value)); return *this;}
 

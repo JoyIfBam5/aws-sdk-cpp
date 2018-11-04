@@ -27,11 +27,13 @@ using namespace Aws::Utils;
 using namespace Aws;
 
 GetDetectorResult::GetDetectorResult() : 
+    m_findingPublishingFrequency(FindingPublishingFrequency::NOT_SET),
     m_status(DetectorStatus::NOT_SET)
 {
 }
 
 GetDetectorResult::GetDetectorResult(const Aws::AmazonWebServiceResult<JsonValue>& result) : 
+    m_findingPublishingFrequency(FindingPublishingFrequency::NOT_SET),
     m_status(DetectorStatus::NOT_SET)
 {
   *this = result;
@@ -39,10 +41,16 @@ GetDetectorResult::GetDetectorResult(const Aws::AmazonWebServiceResult<JsonValue
 
 GetDetectorResult& GetDetectorResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
-  const JsonValue& jsonValue = result.GetPayload();
+  JsonView jsonValue = result.GetPayload().View();
   if(jsonValue.ValueExists("createdAt"))
   {
     m_createdAt = jsonValue.GetString("createdAt");
+
+  }
+
+  if(jsonValue.ValueExists("findingPublishingFrequency"))
+  {
+    m_findingPublishingFrequency = FindingPublishingFrequencyMapper::GetFindingPublishingFrequencyForName(jsonValue.GetString("findingPublishingFrequency"));
 
   }
 

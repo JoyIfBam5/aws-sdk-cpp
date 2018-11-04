@@ -19,6 +19,7 @@
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/rds/model/Tag.h>
+#include <aws/rds/model/ProcessorFeature.h>
 #include <utility>
 
 namespace Aws
@@ -55,7 +56,7 @@ namespace Model
      * <p>Name of the DB instance to create from the DB snapshot. This parameter isn't
      * case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63
      * numbers, letters, or hyphens</p> </li> <li> <p>First character must be a
-     * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
+     * letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive
      * hyphens</p> </li> </ul> <p>Example: <code>my-snapshot-id</code> </p>
      */
     inline const Aws::String& GetDBInstanceIdentifier() const{ return m_dBInstanceIdentifier; }
@@ -64,7 +65,7 @@ namespace Model
      * <p>Name of the DB instance to create from the DB snapshot. This parameter isn't
      * case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63
      * numbers, letters, or hyphens</p> </li> <li> <p>First character must be a
-     * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
+     * letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive
      * hyphens</p> </li> </ul> <p>Example: <code>my-snapshot-id</code> </p>
      */
     inline void SetDBInstanceIdentifier(const Aws::String& value) { m_dBInstanceIdentifierHasBeenSet = true; m_dBInstanceIdentifier = value; }
@@ -73,7 +74,7 @@ namespace Model
      * <p>Name of the DB instance to create from the DB snapshot. This parameter isn't
      * case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63
      * numbers, letters, or hyphens</p> </li> <li> <p>First character must be a
-     * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
+     * letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive
      * hyphens</p> </li> </ul> <p>Example: <code>my-snapshot-id</code> </p>
      */
     inline void SetDBInstanceIdentifier(Aws::String&& value) { m_dBInstanceIdentifierHasBeenSet = true; m_dBInstanceIdentifier = std::move(value); }
@@ -82,7 +83,7 @@ namespace Model
      * <p>Name of the DB instance to create from the DB snapshot. This parameter isn't
      * case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63
      * numbers, letters, or hyphens</p> </li> <li> <p>First character must be a
-     * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
+     * letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive
      * hyphens</p> </li> </ul> <p>Example: <code>my-snapshot-id</code> </p>
      */
     inline void SetDBInstanceIdentifier(const char* value) { m_dBInstanceIdentifierHasBeenSet = true; m_dBInstanceIdentifier.assign(value); }
@@ -91,7 +92,7 @@ namespace Model
      * <p>Name of the DB instance to create from the DB snapshot. This parameter isn't
      * case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63
      * numbers, letters, or hyphens</p> </li> <li> <p>First character must be a
-     * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
+     * letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive
      * hyphens</p> </li> </ul> <p>Example: <code>my-snapshot-id</code> </p>
      */
     inline RestoreDBInstanceFromDBSnapshotRequest& WithDBInstanceIdentifier(const Aws::String& value) { SetDBInstanceIdentifier(value); return *this;}
@@ -100,7 +101,7 @@ namespace Model
      * <p>Name of the DB instance to create from the DB snapshot. This parameter isn't
      * case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63
      * numbers, letters, or hyphens</p> </li> <li> <p>First character must be a
-     * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
+     * letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive
      * hyphens</p> </li> </ul> <p>Example: <code>my-snapshot-id</code> </p>
      */
     inline RestoreDBInstanceFromDBSnapshotRequest& WithDBInstanceIdentifier(Aws::String&& value) { SetDBInstanceIdentifier(std::move(value)); return *this;}
@@ -109,7 +110,7 @@ namespace Model
      * <p>Name of the DB instance to create from the DB snapshot. This parameter isn't
      * case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63
      * numbers, letters, or hyphens</p> </li> <li> <p>First character must be a
-     * letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive
+     * letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive
      * hyphens</p> </li> </ul> <p>Example: <code>my-snapshot-id</code> </p>
      */
     inline RestoreDBInstanceFromDBSnapshotRequest& WithDBInstanceIdentifier(const char* value) { SetDBInstanceIdentifier(value); return *this;}
@@ -185,8 +186,8 @@ namespace Model
      * Regions, or for all database engines. For the full list of DB instance classes,
      * and availability for your engine, see <a
      * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">DB
-     * Instance Class</a> in the Amazon RDS User Guide. </p> <p>Default: The same
-     * DBInstanceClass as the original DB instance.</p>
+     * Instance Class</a> in the <i>Amazon RDS User Guide.</i> </p> <p>Default: The
+     * same DBInstanceClass as the original DB instance.</p>
      */
     inline const Aws::String& GetDBInstanceClass() const{ return m_dBInstanceClass; }
 
@@ -196,8 +197,8 @@ namespace Model
      * Regions, or for all database engines. For the full list of DB instance classes,
      * and availability for your engine, see <a
      * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">DB
-     * Instance Class</a> in the Amazon RDS User Guide. </p> <p>Default: The same
-     * DBInstanceClass as the original DB instance.</p>
+     * Instance Class</a> in the <i>Amazon RDS User Guide.</i> </p> <p>Default: The
+     * same DBInstanceClass as the original DB instance.</p>
      */
     inline void SetDBInstanceClass(const Aws::String& value) { m_dBInstanceClassHasBeenSet = true; m_dBInstanceClass = value; }
 
@@ -207,8 +208,8 @@ namespace Model
      * Regions, or for all database engines. For the full list of DB instance classes,
      * and availability for your engine, see <a
      * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">DB
-     * Instance Class</a> in the Amazon RDS User Guide. </p> <p>Default: The same
-     * DBInstanceClass as the original DB instance.</p>
+     * Instance Class</a> in the <i>Amazon RDS User Guide.</i> </p> <p>Default: The
+     * same DBInstanceClass as the original DB instance.</p>
      */
     inline void SetDBInstanceClass(Aws::String&& value) { m_dBInstanceClassHasBeenSet = true; m_dBInstanceClass = std::move(value); }
 
@@ -218,8 +219,8 @@ namespace Model
      * Regions, or for all database engines. For the full list of DB instance classes,
      * and availability for your engine, see <a
      * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">DB
-     * Instance Class</a> in the Amazon RDS User Guide. </p> <p>Default: The same
-     * DBInstanceClass as the original DB instance.</p>
+     * Instance Class</a> in the <i>Amazon RDS User Guide.</i> </p> <p>Default: The
+     * same DBInstanceClass as the original DB instance.</p>
      */
     inline void SetDBInstanceClass(const char* value) { m_dBInstanceClassHasBeenSet = true; m_dBInstanceClass.assign(value); }
 
@@ -229,8 +230,8 @@ namespace Model
      * Regions, or for all database engines. For the full list of DB instance classes,
      * and availability for your engine, see <a
      * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">DB
-     * Instance Class</a> in the Amazon RDS User Guide. </p> <p>Default: The same
-     * DBInstanceClass as the original DB instance.</p>
+     * Instance Class</a> in the <i>Amazon RDS User Guide.</i> </p> <p>Default: The
+     * same DBInstanceClass as the original DB instance.</p>
      */
     inline RestoreDBInstanceFromDBSnapshotRequest& WithDBInstanceClass(const Aws::String& value) { SetDBInstanceClass(value); return *this;}
 
@@ -240,8 +241,8 @@ namespace Model
      * Regions, or for all database engines. For the full list of DB instance classes,
      * and availability for your engine, see <a
      * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">DB
-     * Instance Class</a> in the Amazon RDS User Guide. </p> <p>Default: The same
-     * DBInstanceClass as the original DB instance.</p>
+     * Instance Class</a> in the <i>Amazon RDS User Guide.</i> </p> <p>Default: The
+     * same DBInstanceClass as the original DB instance.</p>
      */
     inline RestoreDBInstanceFromDBSnapshotRequest& WithDBInstanceClass(Aws::String&& value) { SetDBInstanceClass(std::move(value)); return *this;}
 
@@ -251,8 +252,8 @@ namespace Model
      * Regions, or for all database engines. For the full list of DB instance classes,
      * and availability for your engine, see <a
      * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">DB
-     * Instance Class</a> in the Amazon RDS User Guide. </p> <p>Default: The same
-     * DBInstanceClass as the original DB instance.</p>
+     * Instance Class</a> in the <i>Amazon RDS User Guide.</i> </p> <p>Default: The
+     * same DBInstanceClass as the original DB instance.</p>
      */
     inline RestoreDBInstanceFromDBSnapshotRequest& WithDBInstanceClass(const char* value) { SetDBInstanceClass(value); return *this;}
 
@@ -412,15 +413,8 @@ namespace Model
      * <p>Specifies the accessibility options for the DB instance. A value of true
      * specifies an Internet-facing instance with a publicly resolvable DNS name, which
      * resolves to a public IP address. A value of false specifies an internal instance
-     * with a DNS name that resolves to a private IP address.</p> <p>Default: The
-     * default behavior varies depending on whether a VPC has been requested or not.
-     * The following list shows the default behavior in each case.</p> <ul> <li> <p>
-     * <b>Default VPC:</b> true</p> </li> <li> <p> <b>VPC:</b> false</p> </li> </ul>
-     * <p>If no DB subnet group has been specified as part of the request and the
-     * PubliclyAccessible value has not been set, the DB instance is publicly
-     * accessible. If a specific DB subnet group has been specified as part of the
-     * request and the PubliclyAccessible value has not been set, the DB instance is
-     * private.</p>
+     * with a DNS name that resolves to a private IP address. For more information, see
+     * <a>CreateDBInstance</a>.</p>
      */
     inline bool GetPubliclyAccessible() const{ return m_publiclyAccessible; }
 
@@ -428,15 +422,8 @@ namespace Model
      * <p>Specifies the accessibility options for the DB instance. A value of true
      * specifies an Internet-facing instance with a publicly resolvable DNS name, which
      * resolves to a public IP address. A value of false specifies an internal instance
-     * with a DNS name that resolves to a private IP address.</p> <p>Default: The
-     * default behavior varies depending on whether a VPC has been requested or not.
-     * The following list shows the default behavior in each case.</p> <ul> <li> <p>
-     * <b>Default VPC:</b> true</p> </li> <li> <p> <b>VPC:</b> false</p> </li> </ul>
-     * <p>If no DB subnet group has been specified as part of the request and the
-     * PubliclyAccessible value has not been set, the DB instance is publicly
-     * accessible. If a specific DB subnet group has been specified as part of the
-     * request and the PubliclyAccessible value has not been set, the DB instance is
-     * private.</p>
+     * with a DNS name that resolves to a private IP address. For more information, see
+     * <a>CreateDBInstance</a>.</p>
      */
     inline void SetPubliclyAccessible(bool value) { m_publiclyAccessibleHasBeenSet = true; m_publiclyAccessible = value; }
 
@@ -444,15 +431,8 @@ namespace Model
      * <p>Specifies the accessibility options for the DB instance. A value of true
      * specifies an Internet-facing instance with a publicly resolvable DNS name, which
      * resolves to a public IP address. A value of false specifies an internal instance
-     * with a DNS name that resolves to a private IP address.</p> <p>Default: The
-     * default behavior varies depending on whether a VPC has been requested or not.
-     * The following list shows the default behavior in each case.</p> <ul> <li> <p>
-     * <b>Default VPC:</b> true</p> </li> <li> <p> <b>VPC:</b> false</p> </li> </ul>
-     * <p>If no DB subnet group has been specified as part of the request and the
-     * PubliclyAccessible value has not been set, the DB instance is publicly
-     * accessible. If a specific DB subnet group has been specified as part of the
-     * request and the PubliclyAccessible value has not been set, the DB instance is
-     * private.</p>
+     * with a DNS name that resolves to a private IP address. For more information, see
+     * <a>CreateDBInstance</a>.</p>
      */
     inline RestoreDBInstanceFromDBSnapshotRequest& WithPubliclyAccessible(bool value) { SetPubliclyAccessible(value); return *this;}
 
@@ -571,12 +551,11 @@ namespace Model
 
     /**
      * <p>The database engine to use for the new instance.</p> <p>Default: The same as
-     * source</p> <p>Constraint: Must be compatible with the engine of the source. You
-     * can restore a MariaDB 10.1 DB instance from a MySQL 5.6 snapshot.</p> <p>Valid
-     * Values:</p> <ul> <li> <p> <code>aurora</code> </p> </li> <li> <p>
-     * <code>aurora-postgresql</code> </p> </li> <li> <p> <code>mariadb</code> </p>
-     * </li> <li> <p> <code>mysql</code> </p> </li> <li> <p> <code>oracle-ee</code>
-     * </p> </li> <li> <p> <code>oracle-se2</code> </p> </li> <li> <p>
+     * source</p> <p>Constraint: Must be compatible with the engine of the source. For
+     * example, you can restore a MariaDB 10.1 DB instance from a MySQL 5.6
+     * snapshot.</p> <p>Valid Values:</p> <ul> <li> <p> <code>mariadb</code> </p> </li>
+     * <li> <p> <code>mysql</code> </p> </li> <li> <p> <code>oracle-ee</code> </p>
+     * </li> <li> <p> <code>oracle-se2</code> </p> </li> <li> <p>
      * <code>oracle-se1</code> </p> </li> <li> <p> <code>oracle-se</code> </p> </li>
      * <li> <p> <code>postgres</code> </p> </li> <li> <p> <code>sqlserver-ee</code>
      * </p> </li> <li> <p> <code>sqlserver-se</code> </p> </li> <li> <p>
@@ -587,12 +566,11 @@ namespace Model
 
     /**
      * <p>The database engine to use for the new instance.</p> <p>Default: The same as
-     * source</p> <p>Constraint: Must be compatible with the engine of the source. You
-     * can restore a MariaDB 10.1 DB instance from a MySQL 5.6 snapshot.</p> <p>Valid
-     * Values:</p> <ul> <li> <p> <code>aurora</code> </p> </li> <li> <p>
-     * <code>aurora-postgresql</code> </p> </li> <li> <p> <code>mariadb</code> </p>
-     * </li> <li> <p> <code>mysql</code> </p> </li> <li> <p> <code>oracle-ee</code>
-     * </p> </li> <li> <p> <code>oracle-se2</code> </p> </li> <li> <p>
+     * source</p> <p>Constraint: Must be compatible with the engine of the source. For
+     * example, you can restore a MariaDB 10.1 DB instance from a MySQL 5.6
+     * snapshot.</p> <p>Valid Values:</p> <ul> <li> <p> <code>mariadb</code> </p> </li>
+     * <li> <p> <code>mysql</code> </p> </li> <li> <p> <code>oracle-ee</code> </p>
+     * </li> <li> <p> <code>oracle-se2</code> </p> </li> <li> <p>
      * <code>oracle-se1</code> </p> </li> <li> <p> <code>oracle-se</code> </p> </li>
      * <li> <p> <code>postgres</code> </p> </li> <li> <p> <code>sqlserver-ee</code>
      * </p> </li> <li> <p> <code>sqlserver-se</code> </p> </li> <li> <p>
@@ -603,12 +581,11 @@ namespace Model
 
     /**
      * <p>The database engine to use for the new instance.</p> <p>Default: The same as
-     * source</p> <p>Constraint: Must be compatible with the engine of the source. You
-     * can restore a MariaDB 10.1 DB instance from a MySQL 5.6 snapshot.</p> <p>Valid
-     * Values:</p> <ul> <li> <p> <code>aurora</code> </p> </li> <li> <p>
-     * <code>aurora-postgresql</code> </p> </li> <li> <p> <code>mariadb</code> </p>
-     * </li> <li> <p> <code>mysql</code> </p> </li> <li> <p> <code>oracle-ee</code>
-     * </p> </li> <li> <p> <code>oracle-se2</code> </p> </li> <li> <p>
+     * source</p> <p>Constraint: Must be compatible with the engine of the source. For
+     * example, you can restore a MariaDB 10.1 DB instance from a MySQL 5.6
+     * snapshot.</p> <p>Valid Values:</p> <ul> <li> <p> <code>mariadb</code> </p> </li>
+     * <li> <p> <code>mysql</code> </p> </li> <li> <p> <code>oracle-ee</code> </p>
+     * </li> <li> <p> <code>oracle-se2</code> </p> </li> <li> <p>
      * <code>oracle-se1</code> </p> </li> <li> <p> <code>oracle-se</code> </p> </li>
      * <li> <p> <code>postgres</code> </p> </li> <li> <p> <code>sqlserver-ee</code>
      * </p> </li> <li> <p> <code>sqlserver-se</code> </p> </li> <li> <p>
@@ -619,12 +596,11 @@ namespace Model
 
     /**
      * <p>The database engine to use for the new instance.</p> <p>Default: The same as
-     * source</p> <p>Constraint: Must be compatible with the engine of the source. You
-     * can restore a MariaDB 10.1 DB instance from a MySQL 5.6 snapshot.</p> <p>Valid
-     * Values:</p> <ul> <li> <p> <code>aurora</code> </p> </li> <li> <p>
-     * <code>aurora-postgresql</code> </p> </li> <li> <p> <code>mariadb</code> </p>
-     * </li> <li> <p> <code>mysql</code> </p> </li> <li> <p> <code>oracle-ee</code>
-     * </p> </li> <li> <p> <code>oracle-se2</code> </p> </li> <li> <p>
+     * source</p> <p>Constraint: Must be compatible with the engine of the source. For
+     * example, you can restore a MariaDB 10.1 DB instance from a MySQL 5.6
+     * snapshot.</p> <p>Valid Values:</p> <ul> <li> <p> <code>mariadb</code> </p> </li>
+     * <li> <p> <code>mysql</code> </p> </li> <li> <p> <code>oracle-ee</code> </p>
+     * </li> <li> <p> <code>oracle-se2</code> </p> </li> <li> <p>
      * <code>oracle-se1</code> </p> </li> <li> <p> <code>oracle-se</code> </p> </li>
      * <li> <p> <code>postgres</code> </p> </li> <li> <p> <code>sqlserver-ee</code>
      * </p> </li> <li> <p> <code>sqlserver-se</code> </p> </li> <li> <p>
@@ -635,12 +611,11 @@ namespace Model
 
     /**
      * <p>The database engine to use for the new instance.</p> <p>Default: The same as
-     * source</p> <p>Constraint: Must be compatible with the engine of the source. You
-     * can restore a MariaDB 10.1 DB instance from a MySQL 5.6 snapshot.</p> <p>Valid
-     * Values:</p> <ul> <li> <p> <code>aurora</code> </p> </li> <li> <p>
-     * <code>aurora-postgresql</code> </p> </li> <li> <p> <code>mariadb</code> </p>
-     * </li> <li> <p> <code>mysql</code> </p> </li> <li> <p> <code>oracle-ee</code>
-     * </p> </li> <li> <p> <code>oracle-se2</code> </p> </li> <li> <p>
+     * source</p> <p>Constraint: Must be compatible with the engine of the source. For
+     * example, you can restore a MariaDB 10.1 DB instance from a MySQL 5.6
+     * snapshot.</p> <p>Valid Values:</p> <ul> <li> <p> <code>mariadb</code> </p> </li>
+     * <li> <p> <code>mysql</code> </p> </li> <li> <p> <code>oracle-ee</code> </p>
+     * </li> <li> <p> <code>oracle-se2</code> </p> </li> <li> <p>
      * <code>oracle-se1</code> </p> </li> <li> <p> <code>oracle-se</code> </p> </li>
      * <li> <p> <code>postgres</code> </p> </li> <li> <p> <code>sqlserver-ee</code>
      * </p> </li> <li> <p> <code>sqlserver-se</code> </p> </li> <li> <p>
@@ -651,12 +626,11 @@ namespace Model
 
     /**
      * <p>The database engine to use for the new instance.</p> <p>Default: The same as
-     * source</p> <p>Constraint: Must be compatible with the engine of the source. You
-     * can restore a MariaDB 10.1 DB instance from a MySQL 5.6 snapshot.</p> <p>Valid
-     * Values:</p> <ul> <li> <p> <code>aurora</code> </p> </li> <li> <p>
-     * <code>aurora-postgresql</code> </p> </li> <li> <p> <code>mariadb</code> </p>
-     * </li> <li> <p> <code>mysql</code> </p> </li> <li> <p> <code>oracle-ee</code>
-     * </p> </li> <li> <p> <code>oracle-se2</code> </p> </li> <li> <p>
+     * source</p> <p>Constraint: Must be compatible with the engine of the source. For
+     * example, you can restore a MariaDB 10.1 DB instance from a MySQL 5.6
+     * snapshot.</p> <p>Valid Values:</p> <ul> <li> <p> <code>mariadb</code> </p> </li>
+     * <li> <p> <code>mysql</code> </p> </li> <li> <p> <code>oracle-ee</code> </p>
+     * </li> <li> <p> <code>oracle-se2</code> </p> </li> <li> <p>
      * <code>oracle-se1</code> </p> </li> <li> <p> <code>oracle-se</code> </p> </li>
      * <li> <p> <code>postgres</code> </p> </li> <li> <p> <code>sqlserver-ee</code>
      * </p> </li> <li> <p> <code>sqlserver-se</code> </p> </li> <li> <p>
@@ -667,12 +641,11 @@ namespace Model
 
     /**
      * <p>The database engine to use for the new instance.</p> <p>Default: The same as
-     * source</p> <p>Constraint: Must be compatible with the engine of the source. You
-     * can restore a MariaDB 10.1 DB instance from a MySQL 5.6 snapshot.</p> <p>Valid
-     * Values:</p> <ul> <li> <p> <code>aurora</code> </p> </li> <li> <p>
-     * <code>aurora-postgresql</code> </p> </li> <li> <p> <code>mariadb</code> </p>
-     * </li> <li> <p> <code>mysql</code> </p> </li> <li> <p> <code>oracle-ee</code>
-     * </p> </li> <li> <p> <code>oracle-se2</code> </p> </li> <li> <p>
+     * source</p> <p>Constraint: Must be compatible with the engine of the source. For
+     * example, you can restore a MariaDB 10.1 DB instance from a MySQL 5.6
+     * snapshot.</p> <p>Valid Values:</p> <ul> <li> <p> <code>mariadb</code> </p> </li>
+     * <li> <p> <code>mysql</code> </p> </li> <li> <p> <code>oracle-ee</code> </p>
+     * </li> <li> <p> <code>oracle-se2</code> </p> </li> <li> <p>
      * <code>oracle-se1</code> </p> </li> <li> <p> <code>oracle-se</code> </p> </li>
      * <li> <p> <code>postgres</code> </p> </li> <li> <p> <code>sqlserver-ee</code>
      * </p> </li> <li> <p> <code>sqlserver-se</code> </p> </li> <li> <p>
@@ -691,8 +664,8 @@ namespace Model
      * <p>The provisioned IOPS value must follow the requirements for your database
      * engine. For more information, see <a
      * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS">Amazon
-     * RDS Provisioned IOPS Storage to Improve Performance</a>. </p> <p>Constraints:
-     * Must be an integer greater than 1000.</p>
+     * RDS Provisioned IOPS Storage to Improve Performance</a> in the <i>Amazon RDS
+     * User Guide.</i> </p> <p>Constraints: Must be an integer greater than 1000.</p>
      */
     inline int GetIops() const{ return m_iops; }
 
@@ -705,8 +678,8 @@ namespace Model
      * <p>The provisioned IOPS value must follow the requirements for your database
      * engine. For more information, see <a
      * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS">Amazon
-     * RDS Provisioned IOPS Storage to Improve Performance</a>. </p> <p>Constraints:
-     * Must be an integer greater than 1000.</p>
+     * RDS Provisioned IOPS Storage to Improve Performance</a> in the <i>Amazon RDS
+     * User Guide.</i> </p> <p>Constraints: Must be an integer greater than 1000.</p>
      */
     inline void SetIops(int value) { m_iopsHasBeenSet = true; m_iops = value; }
 
@@ -719,8 +692,8 @@ namespace Model
      * <p>The provisioned IOPS value must follow the requirements for your database
      * engine. For more information, see <a
      * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS">Amazon
-     * RDS Provisioned IOPS Storage to Improve Performance</a>. </p> <p>Constraints:
-     * Must be an integer greater than 1000.</p>
+     * RDS Provisioned IOPS Storage to Improve Performance</a> in the <i>Amazon RDS
+     * User Guide.</i> </p> <p>Constraints: Must be an integer greater than 1000.</p>
      */
     inline RestoreDBInstanceFromDBSnapshotRequest& WithIops(int value) { SetIops(value); return *this;}
 
@@ -1057,8 +1030,7 @@ namespace Model
      * to database accounts, and otherwise false.</p> <p>You can enable IAM database
      * authentication for the following database engines</p> <ul> <li> <p>For MySQL
      * 5.6, minor version 5.6.34 or higher</p> </li> <li> <p>For MySQL 5.7, minor
-     * version 5.7.16 or higher</p> </li> <li> <p>Aurora 5.6 or higher.</p> </li> </ul>
-     * <p>Default: <code>false</code> </p>
+     * version 5.7.16 or higher</p> </li> </ul> <p>Default: <code>false</code> </p>
      */
     inline bool GetEnableIAMDatabaseAuthentication() const{ return m_enableIAMDatabaseAuthentication; }
 
@@ -1067,8 +1039,7 @@ namespace Model
      * to database accounts, and otherwise false.</p> <p>You can enable IAM database
      * authentication for the following database engines</p> <ul> <li> <p>For MySQL
      * 5.6, minor version 5.6.34 or higher</p> </li> <li> <p>For MySQL 5.7, minor
-     * version 5.7.16 or higher</p> </li> <li> <p>Aurora 5.6 or higher.</p> </li> </ul>
-     * <p>Default: <code>false</code> </p>
+     * version 5.7.16 or higher</p> </li> </ul> <p>Default: <code>false</code> </p>
      */
     inline void SetEnableIAMDatabaseAuthentication(bool value) { m_enableIAMDatabaseAuthenticationHasBeenSet = true; m_enableIAMDatabaseAuthentication = value; }
 
@@ -1077,10 +1048,258 @@ namespace Model
      * to database accounts, and otherwise false.</p> <p>You can enable IAM database
      * authentication for the following database engines</p> <ul> <li> <p>For MySQL
      * 5.6, minor version 5.6.34 or higher</p> </li> <li> <p>For MySQL 5.7, minor
-     * version 5.7.16 or higher</p> </li> <li> <p>Aurora 5.6 or higher.</p> </li> </ul>
-     * <p>Default: <code>false</code> </p>
+     * version 5.7.16 or higher</p> </li> </ul> <p>Default: <code>false</code> </p>
      */
     inline RestoreDBInstanceFromDBSnapshotRequest& WithEnableIAMDatabaseAuthentication(bool value) { SetEnableIAMDatabaseAuthentication(value); return *this;}
+
+
+    /**
+     * <p>The list of logs that the restored DB instance is to export to CloudWatch
+     * Logs. The values in the list depend on the DB engine being used. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch">Publishing
+     * Database Logs to Amazon CloudWatch Logs</a> in the <i>Amazon Aurora User
+     * Guide</i>.</p>
+     */
+    inline const Aws::Vector<Aws::String>& GetEnableCloudwatchLogsExports() const{ return m_enableCloudwatchLogsExports; }
+
+    /**
+     * <p>The list of logs that the restored DB instance is to export to CloudWatch
+     * Logs. The values in the list depend on the DB engine being used. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch">Publishing
+     * Database Logs to Amazon CloudWatch Logs</a> in the <i>Amazon Aurora User
+     * Guide</i>.</p>
+     */
+    inline void SetEnableCloudwatchLogsExports(const Aws::Vector<Aws::String>& value) { m_enableCloudwatchLogsExportsHasBeenSet = true; m_enableCloudwatchLogsExports = value; }
+
+    /**
+     * <p>The list of logs that the restored DB instance is to export to CloudWatch
+     * Logs. The values in the list depend on the DB engine being used. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch">Publishing
+     * Database Logs to Amazon CloudWatch Logs</a> in the <i>Amazon Aurora User
+     * Guide</i>.</p>
+     */
+    inline void SetEnableCloudwatchLogsExports(Aws::Vector<Aws::String>&& value) { m_enableCloudwatchLogsExportsHasBeenSet = true; m_enableCloudwatchLogsExports = std::move(value); }
+
+    /**
+     * <p>The list of logs that the restored DB instance is to export to CloudWatch
+     * Logs. The values in the list depend on the DB engine being used. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch">Publishing
+     * Database Logs to Amazon CloudWatch Logs</a> in the <i>Amazon Aurora User
+     * Guide</i>.</p>
+     */
+    inline RestoreDBInstanceFromDBSnapshotRequest& WithEnableCloudwatchLogsExports(const Aws::Vector<Aws::String>& value) { SetEnableCloudwatchLogsExports(value); return *this;}
+
+    /**
+     * <p>The list of logs that the restored DB instance is to export to CloudWatch
+     * Logs. The values in the list depend on the DB engine being used. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch">Publishing
+     * Database Logs to Amazon CloudWatch Logs</a> in the <i>Amazon Aurora User
+     * Guide</i>.</p>
+     */
+    inline RestoreDBInstanceFromDBSnapshotRequest& WithEnableCloudwatchLogsExports(Aws::Vector<Aws::String>&& value) { SetEnableCloudwatchLogsExports(std::move(value)); return *this;}
+
+    /**
+     * <p>The list of logs that the restored DB instance is to export to CloudWatch
+     * Logs. The values in the list depend on the DB engine being used. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch">Publishing
+     * Database Logs to Amazon CloudWatch Logs</a> in the <i>Amazon Aurora User
+     * Guide</i>.</p>
+     */
+    inline RestoreDBInstanceFromDBSnapshotRequest& AddEnableCloudwatchLogsExports(const Aws::String& value) { m_enableCloudwatchLogsExportsHasBeenSet = true; m_enableCloudwatchLogsExports.push_back(value); return *this; }
+
+    /**
+     * <p>The list of logs that the restored DB instance is to export to CloudWatch
+     * Logs. The values in the list depend on the DB engine being used. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch">Publishing
+     * Database Logs to Amazon CloudWatch Logs</a> in the <i>Amazon Aurora User
+     * Guide</i>.</p>
+     */
+    inline RestoreDBInstanceFromDBSnapshotRequest& AddEnableCloudwatchLogsExports(Aws::String&& value) { m_enableCloudwatchLogsExportsHasBeenSet = true; m_enableCloudwatchLogsExports.push_back(std::move(value)); return *this; }
+
+    /**
+     * <p>The list of logs that the restored DB instance is to export to CloudWatch
+     * Logs. The values in the list depend on the DB engine being used. For more
+     * information, see <a
+     * href="http://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch">Publishing
+     * Database Logs to Amazon CloudWatch Logs</a> in the <i>Amazon Aurora User
+     * Guide</i>.</p>
+     */
+    inline RestoreDBInstanceFromDBSnapshotRequest& AddEnableCloudwatchLogsExports(const char* value) { m_enableCloudwatchLogsExportsHasBeenSet = true; m_enableCloudwatchLogsExports.push_back(value); return *this; }
+
+
+    /**
+     * <p>The number of CPU cores and the number of threads per core for the DB
+     * instance class of the DB instance.</p>
+     */
+    inline const Aws::Vector<ProcessorFeature>& GetProcessorFeatures() const{ return m_processorFeatures; }
+
+    /**
+     * <p>The number of CPU cores and the number of threads per core for the DB
+     * instance class of the DB instance.</p>
+     */
+    inline void SetProcessorFeatures(const Aws::Vector<ProcessorFeature>& value) { m_processorFeaturesHasBeenSet = true; m_processorFeatures = value; }
+
+    /**
+     * <p>The number of CPU cores and the number of threads per core for the DB
+     * instance class of the DB instance.</p>
+     */
+    inline void SetProcessorFeatures(Aws::Vector<ProcessorFeature>&& value) { m_processorFeaturesHasBeenSet = true; m_processorFeatures = std::move(value); }
+
+    /**
+     * <p>The number of CPU cores and the number of threads per core for the DB
+     * instance class of the DB instance.</p>
+     */
+    inline RestoreDBInstanceFromDBSnapshotRequest& WithProcessorFeatures(const Aws::Vector<ProcessorFeature>& value) { SetProcessorFeatures(value); return *this;}
+
+    /**
+     * <p>The number of CPU cores and the number of threads per core for the DB
+     * instance class of the DB instance.</p>
+     */
+    inline RestoreDBInstanceFromDBSnapshotRequest& WithProcessorFeatures(Aws::Vector<ProcessorFeature>&& value) { SetProcessorFeatures(std::move(value)); return *this;}
+
+    /**
+     * <p>The number of CPU cores and the number of threads per core for the DB
+     * instance class of the DB instance.</p>
+     */
+    inline RestoreDBInstanceFromDBSnapshotRequest& AddProcessorFeatures(const ProcessorFeature& value) { m_processorFeaturesHasBeenSet = true; m_processorFeatures.push_back(value); return *this; }
+
+    /**
+     * <p>The number of CPU cores and the number of threads per core for the DB
+     * instance class of the DB instance.</p>
+     */
+    inline RestoreDBInstanceFromDBSnapshotRequest& AddProcessorFeatures(ProcessorFeature&& value) { m_processorFeaturesHasBeenSet = true; m_processorFeatures.push_back(std::move(value)); return *this; }
+
+
+    /**
+     * <p>A value that specifies that the DB instance class of the DB instance uses its
+     * default processor features.</p>
+     */
+    inline bool GetUseDefaultProcessorFeatures() const{ return m_useDefaultProcessorFeatures; }
+
+    /**
+     * <p>A value that specifies that the DB instance class of the DB instance uses its
+     * default processor features.</p>
+     */
+    inline void SetUseDefaultProcessorFeatures(bool value) { m_useDefaultProcessorFeaturesHasBeenSet = true; m_useDefaultProcessorFeatures = value; }
+
+    /**
+     * <p>A value that specifies that the DB instance class of the DB instance uses its
+     * default processor features.</p>
+     */
+    inline RestoreDBInstanceFromDBSnapshotRequest& WithUseDefaultProcessorFeatures(bool value) { SetUseDefaultProcessorFeatures(value); return *this;}
+
+
+    /**
+     * <p>The name of the DB parameter group to associate with this DB instance. If
+     * this argument is omitted, the default DBParameterGroup for the specified engine
+     * is used.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match the name
+     * of an existing DBParameterGroup.</p> </li> <li> <p>Must be 1 to 255 letters,
+     * numbers, or hyphens.</p> </li> <li> <p>First character must be a letter.</p>
+     * </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens.</p>
+     * </li> </ul>
+     */
+    inline const Aws::String& GetDBParameterGroupName() const{ return m_dBParameterGroupName; }
+
+    /**
+     * <p>The name of the DB parameter group to associate with this DB instance. If
+     * this argument is omitted, the default DBParameterGroup for the specified engine
+     * is used.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match the name
+     * of an existing DBParameterGroup.</p> </li> <li> <p>Must be 1 to 255 letters,
+     * numbers, or hyphens.</p> </li> <li> <p>First character must be a letter.</p>
+     * </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens.</p>
+     * </li> </ul>
+     */
+    inline void SetDBParameterGroupName(const Aws::String& value) { m_dBParameterGroupNameHasBeenSet = true; m_dBParameterGroupName = value; }
+
+    /**
+     * <p>The name of the DB parameter group to associate with this DB instance. If
+     * this argument is omitted, the default DBParameterGroup for the specified engine
+     * is used.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match the name
+     * of an existing DBParameterGroup.</p> </li> <li> <p>Must be 1 to 255 letters,
+     * numbers, or hyphens.</p> </li> <li> <p>First character must be a letter.</p>
+     * </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens.</p>
+     * </li> </ul>
+     */
+    inline void SetDBParameterGroupName(Aws::String&& value) { m_dBParameterGroupNameHasBeenSet = true; m_dBParameterGroupName = std::move(value); }
+
+    /**
+     * <p>The name of the DB parameter group to associate with this DB instance. If
+     * this argument is omitted, the default DBParameterGroup for the specified engine
+     * is used.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match the name
+     * of an existing DBParameterGroup.</p> </li> <li> <p>Must be 1 to 255 letters,
+     * numbers, or hyphens.</p> </li> <li> <p>First character must be a letter.</p>
+     * </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens.</p>
+     * </li> </ul>
+     */
+    inline void SetDBParameterGroupName(const char* value) { m_dBParameterGroupNameHasBeenSet = true; m_dBParameterGroupName.assign(value); }
+
+    /**
+     * <p>The name of the DB parameter group to associate with this DB instance. If
+     * this argument is omitted, the default DBParameterGroup for the specified engine
+     * is used.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match the name
+     * of an existing DBParameterGroup.</p> </li> <li> <p>Must be 1 to 255 letters,
+     * numbers, or hyphens.</p> </li> <li> <p>First character must be a letter.</p>
+     * </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens.</p>
+     * </li> </ul>
+     */
+    inline RestoreDBInstanceFromDBSnapshotRequest& WithDBParameterGroupName(const Aws::String& value) { SetDBParameterGroupName(value); return *this;}
+
+    /**
+     * <p>The name of the DB parameter group to associate with this DB instance. If
+     * this argument is omitted, the default DBParameterGroup for the specified engine
+     * is used.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match the name
+     * of an existing DBParameterGroup.</p> </li> <li> <p>Must be 1 to 255 letters,
+     * numbers, or hyphens.</p> </li> <li> <p>First character must be a letter.</p>
+     * </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens.</p>
+     * </li> </ul>
+     */
+    inline RestoreDBInstanceFromDBSnapshotRequest& WithDBParameterGroupName(Aws::String&& value) { SetDBParameterGroupName(std::move(value)); return *this;}
+
+    /**
+     * <p>The name of the DB parameter group to associate with this DB instance. If
+     * this argument is omitted, the default DBParameterGroup for the specified engine
+     * is used.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match the name
+     * of an existing DBParameterGroup.</p> </li> <li> <p>Must be 1 to 255 letters,
+     * numbers, or hyphens.</p> </li> <li> <p>First character must be a letter.</p>
+     * </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens.</p>
+     * </li> </ul>
+     */
+    inline RestoreDBInstanceFromDBSnapshotRequest& WithDBParameterGroupName(const char* value) { SetDBParameterGroupName(value); return *this;}
+
+
+    /**
+     * <p>Indicates if the DB instance should have deletion protection enabled. The
+     * database can't be deleted when this value is set to true. The default is false.
+     * For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html">
+     * Deleting a DB Instance</a>. </p>
+     */
+    inline bool GetDeletionProtection() const{ return m_deletionProtection; }
+
+    /**
+     * <p>Indicates if the DB instance should have deletion protection enabled. The
+     * database can't be deleted when this value is set to true. The default is false.
+     * For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html">
+     * Deleting a DB Instance</a>. </p>
+     */
+    inline void SetDeletionProtection(bool value) { m_deletionProtectionHasBeenSet = true; m_deletionProtection = value; }
+
+    /**
+     * <p>Indicates if the DB instance should have deletion protection enabled. The
+     * database can't be deleted when this value is set to true. The default is false.
+     * For more information, see <a
+     * href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html">
+     * Deleting a DB Instance</a>. </p>
+     */
+    inline RestoreDBInstanceFromDBSnapshotRequest& WithDeletionProtection(bool value) { SetDeletionProtection(value); return *this;}
 
   private:
 
@@ -1149,6 +1368,21 @@ namespace Model
 
     bool m_enableIAMDatabaseAuthentication;
     bool m_enableIAMDatabaseAuthenticationHasBeenSet;
+
+    Aws::Vector<Aws::String> m_enableCloudwatchLogsExports;
+    bool m_enableCloudwatchLogsExportsHasBeenSet;
+
+    Aws::Vector<ProcessorFeature> m_processorFeatures;
+    bool m_processorFeaturesHasBeenSet;
+
+    bool m_useDefaultProcessorFeatures;
+    bool m_useDefaultProcessorFeaturesHasBeenSet;
+
+    Aws::String m_dBParameterGroupName;
+    bool m_dBParameterGroupNameHasBeenSet;
+
+    bool m_deletionProtection;
+    bool m_deletionProtectionHasBeenSet;
   };
 
 } // namespace Model

@@ -263,43 +263,43 @@ namespace Model
 
     /**
      * <p>The name of the parameter used as the target resource for the rate-controlled
-     * execution. Required if you specify Targets.</p>
+     * execution. Required if you specify targets.</p>
      */
     inline const Aws::String& GetTargetParameterName() const{ return m_targetParameterName; }
 
     /**
      * <p>The name of the parameter used as the target resource for the rate-controlled
-     * execution. Required if you specify Targets.</p>
+     * execution. Required if you specify targets.</p>
      */
     inline void SetTargetParameterName(const Aws::String& value) { m_targetParameterNameHasBeenSet = true; m_targetParameterName = value; }
 
     /**
      * <p>The name of the parameter used as the target resource for the rate-controlled
-     * execution. Required if you specify Targets.</p>
+     * execution. Required if you specify targets.</p>
      */
     inline void SetTargetParameterName(Aws::String&& value) { m_targetParameterNameHasBeenSet = true; m_targetParameterName = std::move(value); }
 
     /**
      * <p>The name of the parameter used as the target resource for the rate-controlled
-     * execution. Required if you specify Targets.</p>
+     * execution. Required if you specify targets.</p>
      */
     inline void SetTargetParameterName(const char* value) { m_targetParameterNameHasBeenSet = true; m_targetParameterName.assign(value); }
 
     /**
      * <p>The name of the parameter used as the target resource for the rate-controlled
-     * execution. Required if you specify Targets.</p>
+     * execution. Required if you specify targets.</p>
      */
     inline StartAutomationExecutionRequest& WithTargetParameterName(const Aws::String& value) { SetTargetParameterName(value); return *this;}
 
     /**
      * <p>The name of the parameter used as the target resource for the rate-controlled
-     * execution. Required if you specify Targets.</p>
+     * execution. Required if you specify targets.</p>
      */
     inline StartAutomationExecutionRequest& WithTargetParameterName(Aws::String&& value) { SetTargetParameterName(std::move(value)); return *this;}
 
     /**
      * <p>The name of the parameter used as the target resource for the rate-controlled
-     * execution. Required if you specify Targets.</p>
+     * execution. Required if you specify targets.</p>
      */
     inline StartAutomationExecutionRequest& WithTargetParameterName(const char* value) { SetTargetParameterName(value); return *this;}
 
@@ -345,6 +345,49 @@ namespace Model
      * TargetParameterName.</p>
      */
     inline StartAutomationExecutionRequest& AddTargets(Target&& value) { m_targetsHasBeenSet = true; m_targets.push_back(std::move(value)); return *this; }
+
+
+    /**
+     * <p>A key-value mapping of document parameters to target resources. Both Targets
+     * and TargetMaps cannot be specified together.</p>
+     */
+    inline const Aws::Vector<Aws::Map<Aws::String, Aws::Vector<Aws::String>>>& GetTargetMaps() const{ return m_targetMaps; }
+
+    /**
+     * <p>A key-value mapping of document parameters to target resources. Both Targets
+     * and TargetMaps cannot be specified together.</p>
+     */
+    inline void SetTargetMaps(const Aws::Vector<Aws::Map<Aws::String, Aws::Vector<Aws::String>>>& value) { m_targetMapsHasBeenSet = true; m_targetMaps = value; }
+
+    /**
+     * <p>A key-value mapping of document parameters to target resources. Both Targets
+     * and TargetMaps cannot be specified together.</p>
+     */
+    inline void SetTargetMaps(Aws::Vector<Aws::Map<Aws::String, Aws::Vector<Aws::String>>>&& value) { m_targetMapsHasBeenSet = true; m_targetMaps = std::move(value); }
+
+    /**
+     * <p>A key-value mapping of document parameters to target resources. Both Targets
+     * and TargetMaps cannot be specified together.</p>
+     */
+    inline StartAutomationExecutionRequest& WithTargetMaps(const Aws::Vector<Aws::Map<Aws::String, Aws::Vector<Aws::String>>>& value) { SetTargetMaps(value); return *this;}
+
+    /**
+     * <p>A key-value mapping of document parameters to target resources. Both Targets
+     * and TargetMaps cannot be specified together.</p>
+     */
+    inline StartAutomationExecutionRequest& WithTargetMaps(Aws::Vector<Aws::Map<Aws::String, Aws::Vector<Aws::String>>>&& value) { SetTargetMaps(std::move(value)); return *this;}
+
+    /**
+     * <p>A key-value mapping of document parameters to target resources. Both Targets
+     * and TargetMaps cannot be specified together.</p>
+     */
+    inline StartAutomationExecutionRequest& AddTargetMaps(const Aws::Map<Aws::String, Aws::Vector<Aws::String>>& value) { m_targetMapsHasBeenSet = true; m_targetMaps.push_back(value); return *this; }
+
+    /**
+     * <p>A key-value mapping of document parameters to target resources. Both Targets
+     * and TargetMaps cannot be specified together.</p>
+     */
+    inline StartAutomationExecutionRequest& AddTargetMaps(Aws::Map<Aws::String, Aws::Vector<Aws::String>>&& value) { m_targetMapsHasBeenSet = true; m_targetMaps.push_back(std::move(value)); return *this; }
 
 
     /**
@@ -538,6 +581,9 @@ namespace Model
 
     Aws::Vector<Target> m_targets;
     bool m_targetsHasBeenSet;
+
+    Aws::Vector<Aws::Map<Aws::String, Aws::Vector<Aws::String>>> m_targetMaps;
+    bool m_targetMapsHasBeenSet;
 
     Aws::String m_maxConcurrency;
     bool m_maxConcurrencyHasBeenSet;

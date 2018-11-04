@@ -30,6 +30,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace Glue
@@ -46,43 +47,50 @@ namespace Model
   {
   public:
     TableInput();
-    TableInput(const Aws::Utils::Json::JsonValue& jsonValue);
-    TableInput& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    TableInput(Aws::Utils::Json::JsonView jsonValue);
+    TableInput& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
     /**
-     * <p>Name of the table.</p>
+     * <p>Name of the table. For Hive compatibility, this is folded to lowercase when
+     * it is stored.</p>
      */
     inline const Aws::String& GetName() const{ return m_name; }
 
     /**
-     * <p>Name of the table.</p>
+     * <p>Name of the table. For Hive compatibility, this is folded to lowercase when
+     * it is stored.</p>
      */
     inline void SetName(const Aws::String& value) { m_nameHasBeenSet = true; m_name = value; }
 
     /**
-     * <p>Name of the table.</p>
+     * <p>Name of the table. For Hive compatibility, this is folded to lowercase when
+     * it is stored.</p>
      */
     inline void SetName(Aws::String&& value) { m_nameHasBeenSet = true; m_name = std::move(value); }
 
     /**
-     * <p>Name of the table.</p>
+     * <p>Name of the table. For Hive compatibility, this is folded to lowercase when
+     * it is stored.</p>
      */
     inline void SetName(const char* value) { m_nameHasBeenSet = true; m_name.assign(value); }
 
     /**
-     * <p>Name of the table.</p>
+     * <p>Name of the table. For Hive compatibility, this is folded to lowercase when
+     * it is stored.</p>
      */
     inline TableInput& WithName(const Aws::String& value) { SetName(value); return *this;}
 
     /**
-     * <p>Name of the table.</p>
+     * <p>Name of the table. For Hive compatibility, this is folded to lowercase when
+     * it is stored.</p>
      */
     inline TableInput& WithName(Aws::String&& value) { SetName(std::move(value)); return *this;}
 
     /**
-     * <p>Name of the table.</p>
+     * <p>Name of the table. For Hive compatibility, this is folded to lowercase when
+     * it is stored.</p>
      */
     inline TableInput& WithName(const char* value) { SetName(value); return *this;}
 
@@ -431,62 +439,62 @@ namespace Model
 
 
     /**
-     * <p>Properties associated with this table, as a list of key-value pairs.</p>
+     * <p>These key-value pairs define properties associated with the table.</p>
      */
     inline const Aws::Map<Aws::String, Aws::String>& GetParameters() const{ return m_parameters; }
 
     /**
-     * <p>Properties associated with this table, as a list of key-value pairs.</p>
+     * <p>These key-value pairs define properties associated with the table.</p>
      */
     inline void SetParameters(const Aws::Map<Aws::String, Aws::String>& value) { m_parametersHasBeenSet = true; m_parameters = value; }
 
     /**
-     * <p>Properties associated with this table, as a list of key-value pairs.</p>
+     * <p>These key-value pairs define properties associated with the table.</p>
      */
     inline void SetParameters(Aws::Map<Aws::String, Aws::String>&& value) { m_parametersHasBeenSet = true; m_parameters = std::move(value); }
 
     /**
-     * <p>Properties associated with this table, as a list of key-value pairs.</p>
+     * <p>These key-value pairs define properties associated with the table.</p>
      */
     inline TableInput& WithParameters(const Aws::Map<Aws::String, Aws::String>& value) { SetParameters(value); return *this;}
 
     /**
-     * <p>Properties associated with this table, as a list of key-value pairs.</p>
+     * <p>These key-value pairs define properties associated with the table.</p>
      */
     inline TableInput& WithParameters(Aws::Map<Aws::String, Aws::String>&& value) { SetParameters(std::move(value)); return *this;}
 
     /**
-     * <p>Properties associated with this table, as a list of key-value pairs.</p>
+     * <p>These key-value pairs define properties associated with the table.</p>
      */
     inline TableInput& AddParameters(const Aws::String& key, const Aws::String& value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, value); return *this; }
 
     /**
-     * <p>Properties associated with this table, as a list of key-value pairs.</p>
+     * <p>These key-value pairs define properties associated with the table.</p>
      */
     inline TableInput& AddParameters(Aws::String&& key, const Aws::String& value) { m_parametersHasBeenSet = true; m_parameters.emplace(std::move(key), value); return *this; }
 
     /**
-     * <p>Properties associated with this table, as a list of key-value pairs.</p>
+     * <p>These key-value pairs define properties associated with the table.</p>
      */
     inline TableInput& AddParameters(const Aws::String& key, Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, std::move(value)); return *this; }
 
     /**
-     * <p>Properties associated with this table, as a list of key-value pairs.</p>
+     * <p>These key-value pairs define properties associated with the table.</p>
      */
     inline TableInput& AddParameters(Aws::String&& key, Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters.emplace(std::move(key), std::move(value)); return *this; }
 
     /**
-     * <p>Properties associated with this table, as a list of key-value pairs.</p>
+     * <p>These key-value pairs define properties associated with the table.</p>
      */
     inline TableInput& AddParameters(const char* key, Aws::String&& value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, std::move(value)); return *this; }
 
     /**
-     * <p>Properties associated with this table, as a list of key-value pairs.</p>
+     * <p>These key-value pairs define properties associated with the table.</p>
      */
     inline TableInput& AddParameters(Aws::String&& key, const char* value) { m_parametersHasBeenSet = true; m_parameters.emplace(std::move(key), value); return *this; }
 
     /**
-     * <p>Properties associated with this table, as a list of key-value pairs.</p>
+     * <p>These key-value pairs define properties associated with the table.</p>
      */
     inline TableInput& AddParameters(const char* key, const char* value) { m_parametersHasBeenSet = true; m_parameters.emplace(key, value); return *this; }
 

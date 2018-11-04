@@ -43,11 +43,13 @@ JobProcessDetails::JobProcessDetails() :
     m_numberOfInProgressThings(0),
     m_numberOfInProgressThingsHasBeenSet(false),
     m_numberOfRemovedThings(0),
-    m_numberOfRemovedThingsHasBeenSet(false)
+    m_numberOfRemovedThingsHasBeenSet(false),
+    m_numberOfTimedOutThings(0),
+    m_numberOfTimedOutThingsHasBeenSet(false)
 {
 }
 
-JobProcessDetails::JobProcessDetails(const JsonValue& jsonValue) : 
+JobProcessDetails::JobProcessDetails(JsonView jsonValue) : 
     m_processingTargetsHasBeenSet(false),
     m_numberOfCanceledThings(0),
     m_numberOfCanceledThingsHasBeenSet(false),
@@ -62,16 +64,18 @@ JobProcessDetails::JobProcessDetails(const JsonValue& jsonValue) :
     m_numberOfInProgressThings(0),
     m_numberOfInProgressThingsHasBeenSet(false),
     m_numberOfRemovedThings(0),
-    m_numberOfRemovedThingsHasBeenSet(false)
+    m_numberOfRemovedThingsHasBeenSet(false),
+    m_numberOfTimedOutThings(0),
+    m_numberOfTimedOutThingsHasBeenSet(false)
 {
   *this = jsonValue;
 }
 
-JobProcessDetails& JobProcessDetails::operator =(const JsonValue& jsonValue)
+JobProcessDetails& JobProcessDetails::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("processingTargets"))
   {
-    Array<JsonValue> processingTargetsJsonList = jsonValue.GetArray("processingTargets");
+    Array<JsonView> processingTargetsJsonList = jsonValue.GetArray("processingTargets");
     for(unsigned processingTargetsIndex = 0; processingTargetsIndex < processingTargetsJsonList.GetLength(); ++processingTargetsIndex)
     {
       m_processingTargets.push_back(processingTargetsJsonList[processingTargetsIndex].AsString());
@@ -126,6 +130,13 @@ JobProcessDetails& JobProcessDetails::operator =(const JsonValue& jsonValue)
     m_numberOfRemovedThings = jsonValue.GetInteger("numberOfRemovedThings");
 
     m_numberOfRemovedThingsHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("numberOfTimedOutThings"))
+  {
+    m_numberOfTimedOutThings = jsonValue.GetInteger("numberOfTimedOutThings");
+
+    m_numberOfTimedOutThingsHasBeenSet = true;
   }
 
   return *this;
@@ -185,6 +196,12 @@ JsonValue JobProcessDetails::Jsonize() const
   if(m_numberOfRemovedThingsHasBeenSet)
   {
    payload.WithInteger("numberOfRemovedThings", m_numberOfRemovedThings);
+
+  }
+
+  if(m_numberOfTimedOutThingsHasBeenSet)
+  {
+   payload.WithInteger("numberOfTimedOutThings", m_numberOfTimedOutThings);
 
   }
 

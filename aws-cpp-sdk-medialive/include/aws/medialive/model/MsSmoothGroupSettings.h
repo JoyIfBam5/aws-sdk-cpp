@@ -35,6 +35,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace MediaLive
@@ -51,8 +52,8 @@ namespace Model
   {
   public:
     MsSmoothGroupSettings();
-    MsSmoothGroupSettings(const Aws::Utils::Json::JsonValue& jsonValue);
-    MsSmoothGroupSettings& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    MsSmoothGroupSettings(Aws::Utils::Json::JsonView jsonValue);
+    MsSmoothGroupSettings& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -138,40 +139,35 @@ namespace Model
     /**
      * If set to verifyAuthenticity, verify the https certificate chain to a trusted
      * Certificate Authority (CA).  This will cause https outputs to self-signed
-     * certificates to fail unless those certificates are manually added to the OS
-     * trusted keystore.
+     * certificates to fail.
      */
     inline const SmoothGroupCertificateMode& GetCertificateMode() const{ return m_certificateMode; }
 
     /**
      * If set to verifyAuthenticity, verify the https certificate chain to a trusted
      * Certificate Authority (CA).  This will cause https outputs to self-signed
-     * certificates to fail unless those certificates are manually added to the OS
-     * trusted keystore.
+     * certificates to fail.
      */
     inline void SetCertificateMode(const SmoothGroupCertificateMode& value) { m_certificateModeHasBeenSet = true; m_certificateMode = value; }
 
     /**
      * If set to verifyAuthenticity, verify the https certificate chain to a trusted
      * Certificate Authority (CA).  This will cause https outputs to self-signed
-     * certificates to fail unless those certificates are manually added to the OS
-     * trusted keystore.
+     * certificates to fail.
      */
     inline void SetCertificateMode(SmoothGroupCertificateMode&& value) { m_certificateModeHasBeenSet = true; m_certificateMode = std::move(value); }
 
     /**
      * If set to verifyAuthenticity, verify the https certificate chain to a trusted
      * Certificate Authority (CA).  This will cause https outputs to self-signed
-     * certificates to fail unless those certificates are manually added to the OS
-     * trusted keystore.
+     * certificates to fail.
      */
     inline MsSmoothGroupSettings& WithCertificateMode(const SmoothGroupCertificateMode& value) { SetCertificateMode(value); return *this;}
 
     /**
      * If set to verifyAuthenticity, verify the https certificate chain to a trusted
      * Certificate Authority (CA).  This will cause https outputs to self-signed
-     * certificates to fail unless those certificates are manually added to the OS
-     * trusted keystore.
+     * certificates to fail.
      */
     inline MsSmoothGroupSettings& WithCertificateMode(SmoothGroupCertificateMode&& value) { SetCertificateMode(std::move(value)); return *this;}
 
@@ -516,41 +512,17 @@ Options:
 
 
     /**
-     * Outputs that are "output locked" can use this delay. Assign a delay to the
-     * output that is "secondary".  Do not assign a delay to the "primary" output. The
-     * delay means that the primary output will always reach the downstream system
-     * before the secondary, which helps ensure that the downstream system always uses
-     * the primary output. (If there were no delay, the downstream system might
-     * flip-flop between whichever output happens to arrive first.) If the primary
-     * fails, the downstream system will switch to the secondary output. When the
-     * primary is restarted, the downstream system will switch back to the primary
-     * (because once again it is always arriving first)
+     * Number of milliseconds to delay the output from the second pipeline.
      */
     inline int GetSendDelayMs() const{ return m_sendDelayMs; }
 
     /**
-     * Outputs that are "output locked" can use this delay. Assign a delay to the
-     * output that is "secondary".  Do not assign a delay to the "primary" output. The
-     * delay means that the primary output will always reach the downstream system
-     * before the secondary, which helps ensure that the downstream system always uses
-     * the primary output. (If there were no delay, the downstream system might
-     * flip-flop between whichever output happens to arrive first.) If the primary
-     * fails, the downstream system will switch to the secondary output. When the
-     * primary is restarted, the downstream system will switch back to the primary
-     * (because once again it is always arriving first)
+     * Number of milliseconds to delay the output from the second pipeline.
      */
     inline void SetSendDelayMs(int value) { m_sendDelayMsHasBeenSet = true; m_sendDelayMs = value; }
 
     /**
-     * Outputs that are "output locked" can use this delay. Assign a delay to the
-     * output that is "secondary".  Do not assign a delay to the "primary" output. The
-     * delay means that the primary output will always reach the downstream system
-     * before the secondary, which helps ensure that the downstream system always uses
-     * the primary output. (If there were no delay, the downstream system might
-     * flip-flop between whichever output happens to arrive first.) If the primary
-     * fails, the downstream system will switch to the secondary output. When the
-     * primary is restarted, the downstream system will switch back to the primary
-     * (because once again it is always arriving first)
+     * Number of milliseconds to delay the output from the second pipeline.
      */
     inline MsSmoothGroupSettings& WithSendDelayMs(int value) { SetSendDelayMs(value); return *this;}
 

@@ -75,6 +75,7 @@
 #include <aws/apigateway/model/GetSdkTypesResult.h>
 #include <aws/apigateway/model/GetStageResult.h>
 #include <aws/apigateway/model/GetStagesResult.h>
+#include <aws/apigateway/model/GetTagsResult.h>
 #include <aws/apigateway/model/GetUsageResult.h>
 #include <aws/apigateway/model/GetUsagePlanResult.h>
 #include <aws/apigateway/model/GetUsagePlanKeyResult.h>
@@ -138,11 +139,6 @@ namespace Threading
 {
   class Executor;
 } // namespace Threading
-
-namespace Json
-{
-  class JsonValue;
-} // namespace Json
 } // namespace Utils
 
 namespace Auth
@@ -238,6 +234,7 @@ namespace Model
         class GetSdkTypesRequest;
         class GetStageRequest;
         class GetStagesRequest;
+        class GetTagsRequest;
         class GetUsageRequest;
         class GetUsagePlanRequest;
         class GetUsagePlanKeyRequest;
@@ -254,8 +251,10 @@ namespace Model
         class PutMethodRequest;
         class PutMethodResponseRequest;
         class PutRestApiRequest;
+        class TagResourceRequest;
         class TestInvokeAuthorizerRequest;
         class TestInvokeMethodRequest;
+        class UntagResourceRequest;
         class UpdateAccountRequest;
         class UpdateApiKeyRequest;
         class UpdateAuthorizerRequest;
@@ -356,6 +355,7 @@ namespace Model
         typedef Aws::Utils::Outcome<GetSdkTypesResult, Aws::Client::AWSError<APIGatewayErrors>> GetSdkTypesOutcome;
         typedef Aws::Utils::Outcome<GetStageResult, Aws::Client::AWSError<APIGatewayErrors>> GetStageOutcome;
         typedef Aws::Utils::Outcome<GetStagesResult, Aws::Client::AWSError<APIGatewayErrors>> GetStagesOutcome;
+        typedef Aws::Utils::Outcome<GetTagsResult, Aws::Client::AWSError<APIGatewayErrors>> GetTagsOutcome;
         typedef Aws::Utils::Outcome<GetUsageResult, Aws::Client::AWSError<APIGatewayErrors>> GetUsageOutcome;
         typedef Aws::Utils::Outcome<GetUsagePlanResult, Aws::Client::AWSError<APIGatewayErrors>> GetUsagePlanOutcome;
         typedef Aws::Utils::Outcome<GetUsagePlanKeyResult, Aws::Client::AWSError<APIGatewayErrors>> GetUsagePlanKeyOutcome;
@@ -372,8 +372,10 @@ namespace Model
         typedef Aws::Utils::Outcome<PutMethodResult, Aws::Client::AWSError<APIGatewayErrors>> PutMethodOutcome;
         typedef Aws::Utils::Outcome<PutMethodResponseResult, Aws::Client::AWSError<APIGatewayErrors>> PutMethodResponseOutcome;
         typedef Aws::Utils::Outcome<PutRestApiResult, Aws::Client::AWSError<APIGatewayErrors>> PutRestApiOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<APIGatewayErrors>> TagResourceOutcome;
         typedef Aws::Utils::Outcome<TestInvokeAuthorizerResult, Aws::Client::AWSError<APIGatewayErrors>> TestInvokeAuthorizerOutcome;
         typedef Aws::Utils::Outcome<TestInvokeMethodResult, Aws::Client::AWSError<APIGatewayErrors>> TestInvokeMethodOutcome;
+        typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<APIGatewayErrors>> UntagResourceOutcome;
         typedef Aws::Utils::Outcome<UpdateAccountResult, Aws::Client::AWSError<APIGatewayErrors>> UpdateAccountOutcome;
         typedef Aws::Utils::Outcome<UpdateApiKeyResult, Aws::Client::AWSError<APIGatewayErrors>> UpdateApiKeyOutcome;
         typedef Aws::Utils::Outcome<UpdateAuthorizerResult, Aws::Client::AWSError<APIGatewayErrors>> UpdateAuthorizerOutcome;
@@ -474,6 +476,7 @@ namespace Model
         typedef std::future<GetSdkTypesOutcome> GetSdkTypesOutcomeCallable;
         typedef std::future<GetStageOutcome> GetStageOutcomeCallable;
         typedef std::future<GetStagesOutcome> GetStagesOutcomeCallable;
+        typedef std::future<GetTagsOutcome> GetTagsOutcomeCallable;
         typedef std::future<GetUsageOutcome> GetUsageOutcomeCallable;
         typedef std::future<GetUsagePlanOutcome> GetUsagePlanOutcomeCallable;
         typedef std::future<GetUsagePlanKeyOutcome> GetUsagePlanKeyOutcomeCallable;
@@ -490,8 +493,10 @@ namespace Model
         typedef std::future<PutMethodOutcome> PutMethodOutcomeCallable;
         typedef std::future<PutMethodResponseOutcome> PutMethodResponseOutcomeCallable;
         typedef std::future<PutRestApiOutcome> PutRestApiOutcomeCallable;
+        typedef std::future<TagResourceOutcome> TagResourceOutcomeCallable;
         typedef std::future<TestInvokeAuthorizerOutcome> TestInvokeAuthorizerOutcomeCallable;
         typedef std::future<TestInvokeMethodOutcome> TestInvokeMethodOutcomeCallable;
+        typedef std::future<UntagResourceOutcome> UntagResourceOutcomeCallable;
         typedef std::future<UpdateAccountOutcome> UpdateAccountOutcomeCallable;
         typedef std::future<UpdateApiKeyOutcome> UpdateApiKeyOutcomeCallable;
         typedef std::future<UpdateAuthorizerOutcome> UpdateAuthorizerOutcomeCallable;
@@ -595,6 +600,7 @@ namespace Model
     typedef std::function<void(const APIGatewayClient*, const Model::GetSdkTypesRequest&, const Model::GetSdkTypesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetSdkTypesResponseReceivedHandler;
     typedef std::function<void(const APIGatewayClient*, const Model::GetStageRequest&, const Model::GetStageOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetStageResponseReceivedHandler;
     typedef std::function<void(const APIGatewayClient*, const Model::GetStagesRequest&, const Model::GetStagesOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetStagesResponseReceivedHandler;
+    typedef std::function<void(const APIGatewayClient*, const Model::GetTagsRequest&, const Model::GetTagsOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetTagsResponseReceivedHandler;
     typedef std::function<void(const APIGatewayClient*, const Model::GetUsageRequest&, const Model::GetUsageOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetUsageResponseReceivedHandler;
     typedef std::function<void(const APIGatewayClient*, const Model::GetUsagePlanRequest&, const Model::GetUsagePlanOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetUsagePlanResponseReceivedHandler;
     typedef std::function<void(const APIGatewayClient*, const Model::GetUsagePlanKeyRequest&, const Model::GetUsagePlanKeyOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetUsagePlanKeyResponseReceivedHandler;
@@ -611,8 +617,10 @@ namespace Model
     typedef std::function<void(const APIGatewayClient*, const Model::PutMethodRequest&, const Model::PutMethodOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > PutMethodResponseReceivedHandler;
     typedef std::function<void(const APIGatewayClient*, const Model::PutMethodResponseRequest&, const Model::PutMethodResponseOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > PutMethodResponseResponseReceivedHandler;
     typedef std::function<void(const APIGatewayClient*, const Model::PutRestApiRequest&, const Model::PutRestApiOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > PutRestApiResponseReceivedHandler;
+    typedef std::function<void(const APIGatewayClient*, const Model::TagResourceRequest&, const Model::TagResourceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > TagResourceResponseReceivedHandler;
     typedef std::function<void(const APIGatewayClient*, const Model::TestInvokeAuthorizerRequest&, const Model::TestInvokeAuthorizerOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > TestInvokeAuthorizerResponseReceivedHandler;
     typedef std::function<void(const APIGatewayClient*, const Model::TestInvokeMethodRequest&, const Model::TestInvokeMethodOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > TestInvokeMethodResponseReceivedHandler;
+    typedef std::function<void(const APIGatewayClient*, const Model::UntagResourceRequest&, const Model::UntagResourceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UntagResourceResponseReceivedHandler;
     typedef std::function<void(const APIGatewayClient*, const Model::UpdateAccountRequest&, const Model::UpdateAccountOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateAccountResponseReceivedHandler;
     typedef std::function<void(const APIGatewayClient*, const Model::UpdateApiKeyRequest&, const Model::UpdateApiKeyOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateApiKeyResponseReceivedHandler;
     typedef std::function<void(const APIGatewayClient*, const Model::UpdateAuthorizerRequest&, const Model::UpdateAuthorizerOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > UpdateAuthorizerResponseReceivedHandler;
@@ -669,12 +677,12 @@ namespace Model
 
         virtual ~APIGatewayClient();
 
-        inline virtual const char* GetServiceClientName() const override { return "apigateway"; }
+        inline virtual const char* GetServiceClientName() const override { return "API Gateway"; }
 
 
         /**
          * <p>Create an <a>ApiKey</a> resource. </p> <div class="seeAlso"><a
-         * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/create-api-key.html">AWS
+         * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/create-api-key.html">AWS
          * CLI</a></div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateApiKey">AWS
          * API Reference</a></p>
@@ -683,7 +691,7 @@ namespace Model
 
         /**
          * <p>Create an <a>ApiKey</a> resource. </p> <div class="seeAlso"><a
-         * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/create-api-key.html">AWS
+         * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/create-api-key.html">AWS
          * CLI</a></div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateApiKey">AWS
          * API Reference</a></p>
@@ -694,7 +702,7 @@ namespace Model
 
         /**
          * <p>Create an <a>ApiKey</a> resource. </p> <div class="seeAlso"><a
-         * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/create-api-key.html">AWS
+         * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/create-api-key.html">AWS
          * CLI</a></div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateApiKey">AWS
          * API Reference</a></p>
@@ -706,7 +714,7 @@ namespace Model
         /**
          * <p>Adds a new <a>Authorizer</a> resource to an existing <a>RestApi</a>
          * resource.</p> <div class="seeAlso"><a
-         * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/create-authorizer.html">AWS
+         * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/create-authorizer.html">AWS
          * CLI</a></div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateAuthorizer">AWS
          * API Reference</a></p>
@@ -716,7 +724,7 @@ namespace Model
         /**
          * <p>Adds a new <a>Authorizer</a> resource to an existing <a>RestApi</a>
          * resource.</p> <div class="seeAlso"><a
-         * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/create-authorizer.html">AWS
+         * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/create-authorizer.html">AWS
          * CLI</a></div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateAuthorizer">AWS
          * API Reference</a></p>
@@ -728,7 +736,7 @@ namespace Model
         /**
          * <p>Adds a new <a>Authorizer</a> resource to an existing <a>RestApi</a>
          * resource.</p> <div class="seeAlso"><a
-         * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/create-authorizer.html">AWS
+         * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/create-authorizer.html">AWS
          * CLI</a></div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateAuthorizer">AWS
          * API Reference</a></p>
@@ -1104,7 +1112,7 @@ namespace Model
 
         /**
          * <p>Deletes an existing <a>Authorizer</a> resource.</p> <div class="seeAlso"><a
-         * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/delete-authorizer.html">AWS
+         * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/delete-authorizer.html">AWS
          * CLI</a></div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteAuthorizer">AWS
          * API Reference</a></p>
@@ -1113,7 +1121,7 @@ namespace Model
 
         /**
          * <p>Deletes an existing <a>Authorizer</a> resource.</p> <div class="seeAlso"><a
-         * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/delete-authorizer.html">AWS
+         * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/delete-authorizer.html">AWS
          * CLI</a></div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteAuthorizer">AWS
          * API Reference</a></p>
@@ -1124,7 +1132,7 @@ namespace Model
 
         /**
          * <p>Deletes an existing <a>Authorizer</a> resource.</p> <div class="seeAlso"><a
-         * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/delete-authorizer.html">AWS
+         * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/delete-authorizer.html">AWS
          * CLI</a></div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteAuthorizer">AWS
          * API Reference</a></p>
@@ -1784,7 +1792,7 @@ namespace Model
 
         /**
          * <p>Describe an existing <a>Authorizer</a> resource.</p> <div class="seeAlso"><a
-         * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-authorizer.html">AWS
+         * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-authorizer.html">AWS
          * CLI</a></div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetAuthorizer">AWS
          * API Reference</a></p>
@@ -1793,7 +1801,7 @@ namespace Model
 
         /**
          * <p>Describe an existing <a>Authorizer</a> resource.</p> <div class="seeAlso"><a
-         * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-authorizer.html">AWS
+         * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-authorizer.html">AWS
          * CLI</a></div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetAuthorizer">AWS
          * API Reference</a></p>
@@ -1804,7 +1812,7 @@ namespace Model
 
         /**
          * <p>Describe an existing <a>Authorizer</a> resource.</p> <div class="seeAlso"><a
-         * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-authorizer.html">AWS
+         * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-authorizer.html">AWS
          * CLI</a></div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetAuthorizer">AWS
          * API Reference</a></p>
@@ -1815,7 +1823,7 @@ namespace Model
 
         /**
          * <p>Describe an existing <a>Authorizers</a> resource.</p> <div class="seeAlso"><a
-         * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-authorizers.html">AWS
+         * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-authorizers.html">AWS
          * CLI</a></div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetAuthorizers">AWS
          * API Reference</a></p>
@@ -1824,7 +1832,7 @@ namespace Model
 
         /**
          * <p>Describe an existing <a>Authorizers</a> resource.</p> <div class="seeAlso"><a
-         * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-authorizers.html">AWS
+         * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-authorizers.html">AWS
          * CLI</a></div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetAuthorizers">AWS
          * API Reference</a></p>
@@ -1835,7 +1843,7 @@ namespace Model
 
         /**
          * <p>Describe an existing <a>Authorizers</a> resource.</p> <div class="seeAlso"><a
-         * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-authorizers.html">AWS
+         * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-authorizers.html">AWS
          * CLI</a></div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetAuthorizers">AWS
          * API Reference</a></p>
@@ -2700,6 +2708,34 @@ namespace Model
         virtual void GetStagesAsync(const Model::GetStagesRequest& request, const GetStagesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
+         * <p>Gets the <a>Tags</a> collection for a given resource.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetTags">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::GetTagsOutcome GetTags(const Model::GetTagsRequest& request) const;
+
+        /**
+         * <p>Gets the <a>Tags</a> collection for a given resource.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetTags">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::GetTagsOutcomeCallable GetTagsCallable(const Model::GetTagsRequest& request) const;
+
+        /**
+         * <p>Gets the <a>Tags</a> collection for a given resource.</p><p><h3>See
+         * Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetTags">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void GetTagsAsync(const Model::GetTagsRequest& request, const GetTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
          * <p>Gets the usage data of a usage plan in a specified time
          * interval.</p><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetUsage">AWS
@@ -3136,9 +3172,34 @@ namespace Model
         virtual void PutRestApiAsync(const Model::PutRestApiRequest& request, const PutRestApiResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
+         * <p>Adds or updates a tag on a given resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/TagResource">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::TagResourceOutcome TagResource(const Model::TagResourceRequest& request) const;
+
+        /**
+         * <p>Adds or updates a tag on a given resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/TagResource">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::TagResourceOutcomeCallable TagResourceCallable(const Model::TagResourceRequest& request) const;
+
+        /**
+         * <p>Adds or updates a tag on a given resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/TagResource">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void TagResourceAsync(const Model::TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
          * <p>Simulate the execution of an <a>Authorizer</a> in your <a>RestApi</a> with
          * headers, parameters, and an incoming request body.</p> <div class="seeAlso"> <a
-         * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html">Enable
+         * href="https://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html">Enable
          * custom authorizers</a> </div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/TestInvokeAuthorizer">AWS
          * API Reference</a></p>
@@ -3148,7 +3209,7 @@ namespace Model
         /**
          * <p>Simulate the execution of an <a>Authorizer</a> in your <a>RestApi</a> with
          * headers, parameters, and an incoming request body.</p> <div class="seeAlso"> <a
-         * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html">Enable
+         * href="https://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html">Enable
          * custom authorizers</a> </div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/TestInvokeAuthorizer">AWS
          * API Reference</a></p>
@@ -3160,7 +3221,7 @@ namespace Model
         /**
          * <p>Simulate the execution of an <a>Authorizer</a> in your <a>RestApi</a> with
          * headers, parameters, and an incoming request body.</p> <div class="seeAlso"> <a
-         * href="http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html">Enable
+         * href="https://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html">Enable
          * custom authorizers</a> </div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/TestInvokeAuthorizer">AWS
          * API Reference</a></p>
@@ -3196,6 +3257,31 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void TestInvokeMethodAsync(const Model::TestInvokeMethodRequest& request, const TestInvokeMethodResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Removes a tag from a given resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UntagResource">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::UntagResourceOutcome UntagResource(const Model::UntagResourceRequest& request) const;
+
+        /**
+         * <p>Removes a tag from a given resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UntagResource">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::UntagResourceOutcomeCallable UntagResourceCallable(const Model::UntagResourceRequest& request) const;
+
+        /**
+         * <p>Removes a tag from a given resource.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UntagResource">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void UntagResourceAsync(const Model::UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Changes information about the current <a>Account</a> resource.</p><p><h3>See
@@ -3255,7 +3341,7 @@ namespace Model
 
         /**
          * <p>Updates an existing <a>Authorizer</a> resource.</p> <div class="seeAlso"><a
-         * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/update-authorizer.html">AWS
+         * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/update-authorizer.html">AWS
          * CLI</a></div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateAuthorizer">AWS
          * API Reference</a></p>
@@ -3264,7 +3350,7 @@ namespace Model
 
         /**
          * <p>Updates an existing <a>Authorizer</a> resource.</p> <div class="seeAlso"><a
-         * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/update-authorizer.html">AWS
+         * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/update-authorizer.html">AWS
          * CLI</a></div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateAuthorizer">AWS
          * API Reference</a></p>
@@ -3275,7 +3361,7 @@ namespace Model
 
         /**
          * <p>Updates an existing <a>Authorizer</a> resource.</p> <div class="seeAlso"><a
-         * href="http://docs.aws.amazon.com/cli/latest/reference/apigateway/update-authorizer.html">AWS
+         * href="https://docs.aws.amazon.com/cli/latest/reference/apigateway/update-authorizer.html">AWS
          * CLI</a></div><p><h3>See Also:</h3>   <a
          * href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateAuthorizer">AWS
          * API Reference</a></p>
@@ -3862,6 +3948,7 @@ namespace Model
         void GetSdkTypesAsyncHelper(const Model::GetSdkTypesRequest& request, const GetSdkTypesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void GetStageAsyncHelper(const Model::GetStageRequest& request, const GetStageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void GetStagesAsyncHelper(const Model::GetStagesRequest& request, const GetStagesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void GetTagsAsyncHelper(const Model::GetTagsRequest& request, const GetTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void GetUsageAsyncHelper(const Model::GetUsageRequest& request, const GetUsageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void GetUsagePlanAsyncHelper(const Model::GetUsagePlanRequest& request, const GetUsagePlanResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void GetUsagePlanKeyAsyncHelper(const Model::GetUsagePlanKeyRequest& request, const GetUsagePlanKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
@@ -3878,8 +3965,10 @@ namespace Model
         void PutMethodAsyncHelper(const Model::PutMethodRequest& request, const PutMethodResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void PutMethodResponseAsyncHelper(const Model::PutMethodResponseRequest& request, const PutMethodResponseResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void PutRestApiAsyncHelper(const Model::PutRestApiRequest& request, const PutRestApiResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void TagResourceAsyncHelper(const Model::TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void TestInvokeAuthorizerAsyncHelper(const Model::TestInvokeAuthorizerRequest& request, const TestInvokeAuthorizerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void TestInvokeMethodAsyncHelper(const Model::TestInvokeMethodRequest& request, const TestInvokeMethodResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void UntagResourceAsyncHelper(const Model::UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateAccountAsyncHelper(const Model::UpdateAccountRequest& request, const UpdateAccountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateApiKeyAsyncHelper(const Model::UpdateApiKeyRequest& request, const UpdateApiKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void UpdateAuthorizerAsyncHelper(const Model::UpdateAuthorizerRequest& request, const UpdateAuthorizerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;

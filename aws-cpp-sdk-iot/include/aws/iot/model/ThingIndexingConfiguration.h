@@ -25,6 +25,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace IoT
@@ -41,13 +42,13 @@ namespace Model
   {
   public:
     ThingIndexingConfiguration();
-    ThingIndexingConfiguration(const Aws::Utils::Json::JsonValue& jsonValue);
-    ThingIndexingConfiguration& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    ThingIndexingConfiguration(Aws::Utils::Json::JsonView jsonValue);
+    ThingIndexingConfiguration& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
     /**
-     * <p>Thing indexing mode. Valid values are: </p> <ul> <li> <p>REGISTRY – Your
+     * <p>Thing indexing mode. Valid values are: </p> <ul> <li> <p>REGISTRY �� Your
      * thing index will contain only registry data.</p> </li> <li>
      * <p>REGISTRY_AND_SHADOW - Your thing index will contain registry and shadow
      * data.</p> </li> <li> <p>OFF - Thing indexing is disabled.</p> </li> </ul>
@@ -55,7 +56,7 @@ namespace Model
     inline const ThingIndexingMode& GetThingIndexingMode() const{ return m_thingIndexingMode; }
 
     /**
-     * <p>Thing indexing mode. Valid values are: </p> <ul> <li> <p>REGISTRY – Your
+     * <p>Thing indexing mode. Valid values are: </p> <ul> <li> <p>REGISTRY �� Your
      * thing index will contain only registry data.</p> </li> <li>
      * <p>REGISTRY_AND_SHADOW - Your thing index will contain registry and shadow
      * data.</p> </li> <li> <p>OFF - Thing indexing is disabled.</p> </li> </ul>
@@ -63,7 +64,7 @@ namespace Model
     inline void SetThingIndexingMode(const ThingIndexingMode& value) { m_thingIndexingModeHasBeenSet = true; m_thingIndexingMode = value; }
 
     /**
-     * <p>Thing indexing mode. Valid values are: </p> <ul> <li> <p>REGISTRY – Your
+     * <p>Thing indexing mode. Valid values are: </p> <ul> <li> <p>REGISTRY �� Your
      * thing index will contain only registry data.</p> </li> <li>
      * <p>REGISTRY_AND_SHADOW - Your thing index will contain registry and shadow
      * data.</p> </li> <li> <p>OFF - Thing indexing is disabled.</p> </li> </ul>
@@ -71,7 +72,7 @@ namespace Model
     inline void SetThingIndexingMode(ThingIndexingMode&& value) { m_thingIndexingModeHasBeenSet = true; m_thingIndexingMode = std::move(value); }
 
     /**
-     * <p>Thing indexing mode. Valid values are: </p> <ul> <li> <p>REGISTRY – Your
+     * <p>Thing indexing mode. Valid values are: </p> <ul> <li> <p>REGISTRY �� Your
      * thing index will contain only registry data.</p> </li> <li>
      * <p>REGISTRY_AND_SHADOW - Your thing index will contain registry and shadow
      * data.</p> </li> <li> <p>OFF - Thing indexing is disabled.</p> </li> </ul>
@@ -79,7 +80,7 @@ namespace Model
     inline ThingIndexingConfiguration& WithThingIndexingMode(const ThingIndexingMode& value) { SetThingIndexingMode(value); return *this;}
 
     /**
-     * <p>Thing indexing mode. Valid values are: </p> <ul> <li> <p>REGISTRY – Your
+     * <p>Thing indexing mode. Valid values are: </p> <ul> <li> <p>REGISTRY �� Your
      * thing index will contain only registry data.</p> </li> <li>
      * <p>REGISTRY_AND_SHADOW - Your thing index will contain registry and shadow
      * data.</p> </li> <li> <p>OFF - Thing indexing is disabled.</p> </li> </ul>

@@ -28,20 +28,22 @@ using namespace Aws;
 
 DeleteConnectionResult::DeleteConnectionResult() : 
     m_connectionState(ConnectionState::NOT_SET),
-    m_vlan(0)
+    m_vlan(0),
+    m_jumboFrameCapable(false)
 {
 }
 
 DeleteConnectionResult::DeleteConnectionResult(const Aws::AmazonWebServiceResult<JsonValue>& result) : 
     m_connectionState(ConnectionState::NOT_SET),
-    m_vlan(0)
+    m_vlan(0),
+    m_jumboFrameCapable(false)
 {
   *this = result;
 }
 
 DeleteConnectionResult& DeleteConnectionResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
-  const JsonValue& jsonValue = result.GetPayload();
+  JsonView jsonValue = result.GetPayload().View();
   if(jsonValue.ValueExists("ownerAccount"))
   {
     m_ownerAccount = jsonValue.GetString("ownerAccount");
@@ -111,6 +113,18 @@ DeleteConnectionResult& DeleteConnectionResult::operator =(const Aws::AmazonWebS
   if(jsonValue.ValueExists("awsDevice"))
   {
     m_awsDevice = jsonValue.GetString("awsDevice");
+
+  }
+
+  if(jsonValue.ValueExists("jumboFrameCapable"))
+  {
+    m_jumboFrameCapable = jsonValue.GetBool("jumboFrameCapable");
+
+  }
+
+  if(jsonValue.ValueExists("awsDeviceV2"))
+  {
+    m_awsDeviceV2 = jsonValue.GetString("awsDeviceV2");
 
   }
 

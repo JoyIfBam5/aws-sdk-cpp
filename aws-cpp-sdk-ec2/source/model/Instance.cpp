@@ -80,7 +80,10 @@ Instance::Instance() :
     m_stateReasonHasBeenSet(false),
     m_tagsHasBeenSet(false),
     m_virtualizationType(VirtualizationType::NOT_SET),
-    m_virtualizationTypeHasBeenSet(false)
+    m_virtualizationTypeHasBeenSet(false),
+    m_cpuOptionsHasBeenSet(false),
+    m_capacityReservationIdHasBeenSet(false),
+    m_capacityReservationSpecificationHasBeenSet(false)
 {
 }
 
@@ -134,7 +137,10 @@ Instance::Instance(const XmlNode& xmlNode) :
     m_stateReasonHasBeenSet(false),
     m_tagsHasBeenSet(false),
     m_virtualizationType(VirtualizationType::NOT_SET),
-    m_virtualizationTypeHasBeenSet(false)
+    m_virtualizationTypeHasBeenSet(false),
+    m_cpuOptionsHasBeenSet(false),
+    m_capacityReservationIdHasBeenSet(false),
+    m_capacityReservationSpecificationHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -415,6 +421,24 @@ Instance& Instance::operator =(const XmlNode& xmlNode)
       m_virtualizationType = VirtualizationTypeMapper::GetVirtualizationTypeForName(StringUtils::Trim(virtualizationTypeNode.GetText().c_str()).c_str());
       m_virtualizationTypeHasBeenSet = true;
     }
+    XmlNode cpuOptionsNode = resultNode.FirstChild("cpuOptions");
+    if(!cpuOptionsNode.IsNull())
+    {
+      m_cpuOptions = cpuOptionsNode;
+      m_cpuOptionsHasBeenSet = true;
+    }
+    XmlNode capacityReservationIdNode = resultNode.FirstChild("capacityReservationId");
+    if(!capacityReservationIdNode.IsNull())
+    {
+      m_capacityReservationId = StringUtils::Trim(capacityReservationIdNode.GetText().c_str());
+      m_capacityReservationIdHasBeenSet = true;
+    }
+    XmlNode capacityReservationSpecificationNode = resultNode.FirstChild("capacityReservationSpecification");
+    if(!capacityReservationSpecificationNode.IsNull())
+    {
+      m_capacityReservationSpecification = capacityReservationSpecificationNode;
+      m_capacityReservationSpecificationHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -663,6 +687,25 @@ void Instance::OutputToStream(Aws::OStream& oStream, const char* location, unsig
       oStream << location << index << locationValue << ".VirtualizationType=" << VirtualizationTypeMapper::GetNameForVirtualizationType(m_virtualizationType) << "&";
   }
 
+  if(m_cpuOptionsHasBeenSet)
+  {
+      Aws::StringStream cpuOptionsLocationAndMemberSs;
+      cpuOptionsLocationAndMemberSs << location << index << locationValue << ".CpuOptions";
+      m_cpuOptions.OutputToStream(oStream, cpuOptionsLocationAndMemberSs.str().c_str());
+  }
+
+  if(m_capacityReservationIdHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".CapacityReservationId=" << StringUtils::URLEncode(m_capacityReservationId.c_str()) << "&";
+  }
+
+  if(m_capacityReservationSpecificationHasBeenSet)
+  {
+      Aws::StringStream capacityReservationSpecificationLocationAndMemberSs;
+      capacityReservationSpecificationLocationAndMemberSs << location << index << locationValue << ".CapacityReservationSpecification";
+      m_capacityReservationSpecification.OutputToStream(oStream, capacityReservationSpecificationLocationAndMemberSs.str().c_str());
+  }
+
 }
 
 void Instance::OutputToStream(Aws::OStream& oStream, const char* location) const
@@ -868,6 +911,22 @@ void Instance::OutputToStream(Aws::OStream& oStream, const char* location) const
   if(m_virtualizationTypeHasBeenSet)
   {
       oStream << location << ".VirtualizationType=" << VirtualizationTypeMapper::GetNameForVirtualizationType(m_virtualizationType) << "&";
+  }
+  if(m_cpuOptionsHasBeenSet)
+  {
+      Aws::String cpuOptionsLocationAndMember(location);
+      cpuOptionsLocationAndMember += ".CpuOptions";
+      m_cpuOptions.OutputToStream(oStream, cpuOptionsLocationAndMember.c_str());
+  }
+  if(m_capacityReservationIdHasBeenSet)
+  {
+      oStream << location << ".CapacityReservationId=" << StringUtils::URLEncode(m_capacityReservationId.c_str()) << "&";
+  }
+  if(m_capacityReservationSpecificationHasBeenSet)
+  {
+      Aws::String capacityReservationSpecificationLocationAndMember(location);
+      capacityReservationSpecificationLocationAndMember += ".CapacityReservationSpecification";
+      m_capacityReservationSpecification.OutputToStream(oStream, capacityReservationSpecificationLocationAndMember.c_str());
   }
 }
 

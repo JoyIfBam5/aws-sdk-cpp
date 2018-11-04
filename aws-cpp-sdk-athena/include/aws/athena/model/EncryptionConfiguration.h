@@ -26,6 +26,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace Athena
@@ -34,8 +35,9 @@ namespace Model
 {
 
   /**
-   * <p>If query results are encrypted in Amazon S3, indicates the Amazon S3
-   * encryption option used.</p><p><h3>See Also:</h3>   <a
+   * <p>If query results are encrypted in Amazon S3, indicates the encryption option
+   * used (for example, <code>SSE-KMS</code> or <code>CSE-KMS</code>) and key
+   * information.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/EncryptionConfiguration">AWS
    * API Reference</a></p>
    */
@@ -43,8 +45,8 @@ namespace Model
   {
   public:
     EncryptionConfiguration();
-    EncryptionConfiguration(const Aws::Utils::Json::JsonValue& jsonValue);
-    EncryptionConfiguration& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    EncryptionConfiguration(Aws::Utils::Json::JsonView jsonValue);
+    EncryptionConfiguration& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 

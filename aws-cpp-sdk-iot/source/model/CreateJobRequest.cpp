@@ -32,7 +32,7 @@ CreateJobRequest::CreateJobRequest() :
     m_targetSelection(TargetSelection::NOT_SET),
     m_targetSelectionHasBeenSet(false),
     m_jobExecutionsRolloutConfigHasBeenSet(false),
-    m_documentParametersHasBeenSet(false)
+    m_timeoutConfigHasBeenSet(false)
 {
 }
 
@@ -86,18 +86,13 @@ Aws::String CreateJobRequest::SerializePayload() const
 
   }
 
-  if(m_documentParametersHasBeenSet)
+  if(m_timeoutConfigHasBeenSet)
   {
-   JsonValue documentParametersJsonMap;
-   for(auto& documentParametersItem : m_documentParameters)
-   {
-     documentParametersJsonMap.WithString(documentParametersItem.first, documentParametersItem.second);
-   }
-   payload.WithObject("documentParameters", std::move(documentParametersJsonMap));
+   payload.WithObject("timeoutConfig", m_timeoutConfig.Jsonize());
 
   }
 
-  return payload.WriteReadable();
+  return payload.View().WriteReadable();
 }
 
 

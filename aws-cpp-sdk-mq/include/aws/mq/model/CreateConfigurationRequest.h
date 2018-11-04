@@ -29,9 +29,8 @@ namespace Model
 
   /**
    * Creates a new configuration for the specified configuration name. Amazon MQ uses
-   * the default configuration (the engine type and version). Note: If the
-   * configuration name already exists, Amazon MQ doesn't create a
-   * configuration.<p><h3>See Also:</h3>   <a
+   * the default configuration (the engine type and version).<p><h3>See Also:</h3>  
+   * <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27/CreateConfigurationRequest">AWS
    * API Reference</a></p>
    */
@@ -82,43 +81,43 @@ namespace Model
 
     /**
      * Required. The version of the broker engine. Note: Currently, Amazon MQ supports
-     * only 5.15.0.
+     * only 5.15.6 and 5.15.0.
      */
     inline const Aws::String& GetEngineVersion() const{ return m_engineVersion; }
 
     /**
      * Required. The version of the broker engine. Note: Currently, Amazon MQ supports
-     * only 5.15.0.
+     * only 5.15.6 and 5.15.0.
      */
     inline void SetEngineVersion(const Aws::String& value) { m_engineVersionHasBeenSet = true; m_engineVersion = value; }
 
     /**
      * Required. The version of the broker engine. Note: Currently, Amazon MQ supports
-     * only 5.15.0.
+     * only 5.15.6 and 5.15.0.
      */
     inline void SetEngineVersion(Aws::String&& value) { m_engineVersionHasBeenSet = true; m_engineVersion = std::move(value); }
 
     /**
      * Required. The version of the broker engine. Note: Currently, Amazon MQ supports
-     * only 5.15.0.
+     * only 5.15.6 and 5.15.0.
      */
     inline void SetEngineVersion(const char* value) { m_engineVersionHasBeenSet = true; m_engineVersion.assign(value); }
 
     /**
      * Required. The version of the broker engine. Note: Currently, Amazon MQ supports
-     * only 5.15.0.
+     * only 5.15.6 and 5.15.0.
      */
     inline CreateConfigurationRequest& WithEngineVersion(const Aws::String& value) { SetEngineVersion(value); return *this;}
 
     /**
      * Required. The version of the broker engine. Note: Currently, Amazon MQ supports
-     * only 5.15.0.
+     * only 5.15.6 and 5.15.0.
      */
     inline CreateConfigurationRequest& WithEngineVersion(Aws::String&& value) { SetEngineVersion(std::move(value)); return *this;}
 
     /**
      * Required. The version of the broker engine. Note: Currently, Amazon MQ supports
-     * only 5.15.0.
+     * only 5.15.6 and 5.15.0.
      */
     inline CreateConfigurationRequest& WithEngineVersion(const char* value) { SetEngineVersion(value); return *this;}
 

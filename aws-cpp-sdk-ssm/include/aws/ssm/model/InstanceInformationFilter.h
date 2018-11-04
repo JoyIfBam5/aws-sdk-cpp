@@ -27,6 +27,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace SSM
@@ -35,8 +36,12 @@ namespace Model
 {
 
   /**
-   * <p>Describes a filter for a specific list of instances. </p><p><h3>See
-   * Also:</h3>   <a
+   * <p>Describes a filter for a specific list of instances. You can filter instances
+   * information by using tags. You specify tags by using a key-value mapping.</p>
+   * <p>Use this action instead of the
+   * <a>DescribeInstanceInformationRequest$InstanceInformationFilterList</a> method.
+   * The <code>InstanceInformationFilterList</code> method is a legacy method and
+   * does not support tags. </p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/InstanceInformationFilter">AWS
    * API Reference</a></p>
    */
@@ -44,8 +49,8 @@ namespace Model
   {
   public:
     InstanceInformationFilter();
-    InstanceInformationFilter(const Aws::Utils::Json::JsonValue& jsonValue);
-    InstanceInformationFilter& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    InstanceInformationFilter(Aws::Utils::Json::JsonView jsonValue);
+    InstanceInformationFilter& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 

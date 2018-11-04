@@ -30,7 +30,8 @@ DeleteLagResult::DeleteLagResult() :
     m_numberOfConnections(0),
     m_lagState(LagState::NOT_SET),
     m_minimumLinks(0),
-    m_allowsHostedConnections(false)
+    m_allowsHostedConnections(false),
+    m_jumboFrameCapable(false)
 {
 }
 
@@ -38,14 +39,15 @@ DeleteLagResult::DeleteLagResult(const Aws::AmazonWebServiceResult<JsonValue>& r
     m_numberOfConnections(0),
     m_lagState(LagState::NOT_SET),
     m_minimumLinks(0),
-    m_allowsHostedConnections(false)
+    m_allowsHostedConnections(false),
+    m_jumboFrameCapable(false)
 {
   *this = result;
 }
 
 DeleteLagResult& DeleteLagResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
-  const JsonValue& jsonValue = result.GetPayload();
+  JsonView jsonValue = result.GetPayload().View();
   if(jsonValue.ValueExists("connectionsBandwidth"))
   {
     m_connectionsBandwidth = jsonValue.GetString("connectionsBandwidth");
@@ -106,9 +108,15 @@ DeleteLagResult& DeleteLagResult::operator =(const Aws::AmazonWebServiceResult<J
 
   }
 
+  if(jsonValue.ValueExists("awsDeviceV2"))
+  {
+    m_awsDeviceV2 = jsonValue.GetString("awsDeviceV2");
+
+  }
+
   if(jsonValue.ValueExists("connections"))
   {
-    Array<JsonValue> connectionsJsonList = jsonValue.GetArray("connections");
+    Array<JsonView> connectionsJsonList = jsonValue.GetArray("connections");
     for(unsigned connectionsIndex = 0; connectionsIndex < connectionsJsonList.GetLength(); ++connectionsIndex)
     {
       m_connections.push_back(connectionsJsonList[connectionsIndex].AsObject());
@@ -118,6 +126,12 @@ DeleteLagResult& DeleteLagResult::operator =(const Aws::AmazonWebServiceResult<J
   if(jsonValue.ValueExists("allowsHostedConnections"))
   {
     m_allowsHostedConnections = jsonValue.GetBool("allowsHostedConnections");
+
+  }
+
+  if(jsonValue.ValueExists("jumboFrameCapable"))
+  {
+    m_jumboFrameCapable = jsonValue.GetBool("jumboFrameCapable");
 
   }
 

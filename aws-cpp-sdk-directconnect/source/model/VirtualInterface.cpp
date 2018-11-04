@@ -49,14 +49,20 @@ VirtualInterface::VirtualInterface() :
     m_virtualInterfaceState(VirtualInterfaceState::NOT_SET),
     m_virtualInterfaceStateHasBeenSet(false),
     m_customerRouterConfigHasBeenSet(false),
+    m_mtu(0),
+    m_mtuHasBeenSet(false),
+    m_jumboFrameCapable(false),
+    m_jumboFrameCapableHasBeenSet(false),
     m_virtualGatewayIdHasBeenSet(false),
     m_directConnectGatewayIdHasBeenSet(false),
     m_routeFilterPrefixesHasBeenSet(false),
-    m_bgpPeersHasBeenSet(false)
+    m_bgpPeersHasBeenSet(false),
+    m_regionHasBeenSet(false),
+    m_awsDeviceV2HasBeenSet(false)
 {
 }
 
-VirtualInterface::VirtualInterface(const JsonValue& jsonValue) : 
+VirtualInterface::VirtualInterface(JsonView jsonValue) : 
     m_ownerAccountHasBeenSet(false),
     m_virtualInterfaceIdHasBeenSet(false),
     m_locationHasBeenSet(false),
@@ -77,15 +83,21 @@ VirtualInterface::VirtualInterface(const JsonValue& jsonValue) :
     m_virtualInterfaceState(VirtualInterfaceState::NOT_SET),
     m_virtualInterfaceStateHasBeenSet(false),
     m_customerRouterConfigHasBeenSet(false),
+    m_mtu(0),
+    m_mtuHasBeenSet(false),
+    m_jumboFrameCapable(false),
+    m_jumboFrameCapableHasBeenSet(false),
     m_virtualGatewayIdHasBeenSet(false),
     m_directConnectGatewayIdHasBeenSet(false),
     m_routeFilterPrefixesHasBeenSet(false),
-    m_bgpPeersHasBeenSet(false)
+    m_bgpPeersHasBeenSet(false),
+    m_regionHasBeenSet(false),
+    m_awsDeviceV2HasBeenSet(false)
 {
   *this = jsonValue;
 }
 
-VirtualInterface& VirtualInterface::operator =(const JsonValue& jsonValue)
+VirtualInterface& VirtualInterface::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("ownerAccount"))
   {
@@ -192,6 +204,20 @@ VirtualInterface& VirtualInterface::operator =(const JsonValue& jsonValue)
     m_customerRouterConfigHasBeenSet = true;
   }
 
+  if(jsonValue.ValueExists("mtu"))
+  {
+    m_mtu = jsonValue.GetInteger("mtu");
+
+    m_mtuHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("jumboFrameCapable"))
+  {
+    m_jumboFrameCapable = jsonValue.GetBool("jumboFrameCapable");
+
+    m_jumboFrameCapableHasBeenSet = true;
+  }
+
   if(jsonValue.ValueExists("virtualGatewayId"))
   {
     m_virtualGatewayId = jsonValue.GetString("virtualGatewayId");
@@ -208,7 +234,7 @@ VirtualInterface& VirtualInterface::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("routeFilterPrefixes"))
   {
-    Array<JsonValue> routeFilterPrefixesJsonList = jsonValue.GetArray("routeFilterPrefixes");
+    Array<JsonView> routeFilterPrefixesJsonList = jsonValue.GetArray("routeFilterPrefixes");
     for(unsigned routeFilterPrefixesIndex = 0; routeFilterPrefixesIndex < routeFilterPrefixesJsonList.GetLength(); ++routeFilterPrefixesIndex)
     {
       m_routeFilterPrefixes.push_back(routeFilterPrefixesJsonList[routeFilterPrefixesIndex].AsObject());
@@ -218,12 +244,26 @@ VirtualInterface& VirtualInterface::operator =(const JsonValue& jsonValue)
 
   if(jsonValue.ValueExists("bgpPeers"))
   {
-    Array<JsonValue> bgpPeersJsonList = jsonValue.GetArray("bgpPeers");
+    Array<JsonView> bgpPeersJsonList = jsonValue.GetArray("bgpPeers");
     for(unsigned bgpPeersIndex = 0; bgpPeersIndex < bgpPeersJsonList.GetLength(); ++bgpPeersIndex)
     {
       m_bgpPeers.push_back(bgpPeersJsonList[bgpPeersIndex].AsObject());
     }
     m_bgpPeersHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("region"))
+  {
+    m_region = jsonValue.GetString("region");
+
+    m_regionHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("awsDeviceV2"))
+  {
+    m_awsDeviceV2 = jsonValue.GetString("awsDeviceV2");
+
+    m_awsDeviceV2HasBeenSet = true;
   }
 
   return *this;
@@ -321,6 +361,18 @@ JsonValue VirtualInterface::Jsonize() const
 
   }
 
+  if(m_mtuHasBeenSet)
+  {
+   payload.WithInteger("mtu", m_mtu);
+
+  }
+
+  if(m_jumboFrameCapableHasBeenSet)
+  {
+   payload.WithBool("jumboFrameCapable", m_jumboFrameCapable);
+
+  }
+
   if(m_virtualGatewayIdHasBeenSet)
   {
    payload.WithString("virtualGatewayId", m_virtualGatewayId);
@@ -352,6 +404,18 @@ JsonValue VirtualInterface::Jsonize() const
      bgpPeersJsonList[bgpPeersIndex].AsObject(m_bgpPeers[bgpPeersIndex].Jsonize());
    }
    payload.WithArray("bgpPeers", std::move(bgpPeersJsonList));
+
+  }
+
+  if(m_regionHasBeenSet)
+  {
+   payload.WithString("region", m_region);
+
+  }
+
+  if(m_awsDeviceV2HasBeenSet)
+  {
+   payload.WithString("awsDeviceV2", m_awsDeviceV2);
 
   }
 

@@ -25,6 +25,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace Glue
@@ -33,7 +34,8 @@ namespace Model
 {
 
   /**
-   * <p>A job run that preceded this one.</p><p><h3>See Also:</h3>   <a
+   * <p>A job run that was used in the predicate of a conditional trigger that
+   * triggered this job run.</p><p><h3>See Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/Predecessor">AWS
    * API Reference</a></p>
    */
@@ -41,79 +43,79 @@ namespace Model
   {
   public:
     Predecessor();
-    Predecessor(const Aws::Utils::Json::JsonValue& jsonValue);
-    Predecessor& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    Predecessor(Aws::Utils::Json::JsonView jsonValue);
+    Predecessor& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
     /**
-     * <p>The name of the predecessor job.</p>
+     * <p>The name of the job definition used by the predecessor job run.</p>
      */
     inline const Aws::String& GetJobName() const{ return m_jobName; }
 
     /**
-     * <p>The name of the predecessor job.</p>
+     * <p>The name of the job definition used by the predecessor job run.</p>
      */
     inline void SetJobName(const Aws::String& value) { m_jobNameHasBeenSet = true; m_jobName = value; }
 
     /**
-     * <p>The name of the predecessor job.</p>
+     * <p>The name of the job definition used by the predecessor job run.</p>
      */
     inline void SetJobName(Aws::String&& value) { m_jobNameHasBeenSet = true; m_jobName = std::move(value); }
 
     /**
-     * <p>The name of the predecessor job.</p>
+     * <p>The name of the job definition used by the predecessor job run.</p>
      */
     inline void SetJobName(const char* value) { m_jobNameHasBeenSet = true; m_jobName.assign(value); }
 
     /**
-     * <p>The name of the predecessor job.</p>
+     * <p>The name of the job definition used by the predecessor job run.</p>
      */
     inline Predecessor& WithJobName(const Aws::String& value) { SetJobName(value); return *this;}
 
     /**
-     * <p>The name of the predecessor job.</p>
+     * <p>The name of the job definition used by the predecessor job run.</p>
      */
     inline Predecessor& WithJobName(Aws::String&& value) { SetJobName(std::move(value)); return *this;}
 
     /**
-     * <p>The name of the predecessor job.</p>
+     * <p>The name of the job definition used by the predecessor job run.</p>
      */
     inline Predecessor& WithJobName(const char* value) { SetJobName(value); return *this;}
 
 
     /**
-     * <p>The job-run ID of the precessor job run.</p>
+     * <p>The job-run ID of the predecessor job run.</p>
      */
     inline const Aws::String& GetRunId() const{ return m_runId; }
 
     /**
-     * <p>The job-run ID of the precessor job run.</p>
+     * <p>The job-run ID of the predecessor job run.</p>
      */
     inline void SetRunId(const Aws::String& value) { m_runIdHasBeenSet = true; m_runId = value; }
 
     /**
-     * <p>The job-run ID of the precessor job run.</p>
+     * <p>The job-run ID of the predecessor job run.</p>
      */
     inline void SetRunId(Aws::String&& value) { m_runIdHasBeenSet = true; m_runId = std::move(value); }
 
     /**
-     * <p>The job-run ID of the precessor job run.</p>
+     * <p>The job-run ID of the predecessor job run.</p>
      */
     inline void SetRunId(const char* value) { m_runIdHasBeenSet = true; m_runId.assign(value); }
 
     /**
-     * <p>The job-run ID of the precessor job run.</p>
+     * <p>The job-run ID of the predecessor job run.</p>
      */
     inline Predecessor& WithRunId(const Aws::String& value) { SetRunId(value); return *this;}
 
     /**
-     * <p>The job-run ID of the precessor job run.</p>
+     * <p>The job-run ID of the predecessor job run.</p>
      */
     inline Predecessor& WithRunId(Aws::String&& value) { SetRunId(std::move(value)); return *this;}
 
     /**
-     * <p>The job-run ID of the precessor job run.</p>
+     * <p>The job-run ID of the predecessor job run.</p>
      */
     inline Predecessor& WithRunId(const char* value) { SetRunId(value); return *this;}
 

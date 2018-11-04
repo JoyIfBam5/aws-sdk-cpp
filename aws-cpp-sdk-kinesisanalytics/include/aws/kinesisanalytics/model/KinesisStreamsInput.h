@@ -25,6 +25,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace KinesisAnalytics
@@ -34,8 +35,9 @@ namespace Model
 
   /**
    * <p> Identifies an Amazon Kinesis stream as the streaming source. You provide the
-   * stream's ARN and an IAM role ARN that enables Amazon Kinesis Analytics to access
-   * the stream on your behalf.</p><p><h3>See Also:</h3>   <a
+   * stream's Amazon Resource Name (ARN) and an IAM role ARN that enables Amazon
+   * Kinesis Analytics to access the stream on your behalf.</p><p><h3>See Also:</h3> 
+   * <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/kinesisanalytics-2015-08-14/KinesisStreamsInput">AWS
    * API Reference</a></p>
    */
@@ -43,8 +45,8 @@ namespace Model
   {
   public:
     KinesisStreamsInput();
-    KinesisStreamsInput(const Aws::Utils::Json::JsonValue& jsonValue);
-    KinesisStreamsInput& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    KinesisStreamsInput(Aws::Utils::Json::JsonView jsonValue);
+    KinesisStreamsInput& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 

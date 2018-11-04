@@ -114,7 +114,10 @@ namespace Model
     /**
      * <p>One or more filters to limit the items returned in the response.</p> <p>Use
      * the <code>backupIds</code> filter to return only the specified backups. Specify
-     * backups by their backup identifier (ID).</p> <p>Use the <code>clusterIds</code>
+     * backups by their backup identifier (ID).</p> <p>Use the
+     * <code>sourceBackupIds</code> filter to return only the backups created from a
+     * source backup. The <code>sourceBackupID</code> of a source backup is returned by
+     * the <a>CopyBackupToRegion</a> operation.</p> <p>Use the <code>clusterIds</code>
      * filter to return only the backups for the specified clusters. Specify clusters
      * by their cluster identifier (ID).</p> <p>Use the <code>states</code> filter to
      * return only backups that match the specified state.</p>
@@ -124,7 +127,10 @@ namespace Model
     /**
      * <p>One or more filters to limit the items returned in the response.</p> <p>Use
      * the <code>backupIds</code> filter to return only the specified backups. Specify
-     * backups by their backup identifier (ID).</p> <p>Use the <code>clusterIds</code>
+     * backups by their backup identifier (ID).</p> <p>Use the
+     * <code>sourceBackupIds</code> filter to return only the backups created from a
+     * source backup. The <code>sourceBackupID</code> of a source backup is returned by
+     * the <a>CopyBackupToRegion</a> operation.</p> <p>Use the <code>clusterIds</code>
      * filter to return only the backups for the specified clusters. Specify clusters
      * by their cluster identifier (ID).</p> <p>Use the <code>states</code> filter to
      * return only backups that match the specified state.</p>
@@ -134,7 +140,10 @@ namespace Model
     /**
      * <p>One or more filters to limit the items returned in the response.</p> <p>Use
      * the <code>backupIds</code> filter to return only the specified backups. Specify
-     * backups by their backup identifier (ID).</p> <p>Use the <code>clusterIds</code>
+     * backups by their backup identifier (ID).</p> <p>Use the
+     * <code>sourceBackupIds</code> filter to return only the backups created from a
+     * source backup. The <code>sourceBackupID</code> of a source backup is returned by
+     * the <a>CopyBackupToRegion</a> operation.</p> <p>Use the <code>clusterIds</code>
      * filter to return only the backups for the specified clusters. Specify clusters
      * by their cluster identifier (ID).</p> <p>Use the <code>states</code> filter to
      * return only backups that match the specified state.</p>
@@ -144,7 +153,10 @@ namespace Model
     /**
      * <p>One or more filters to limit the items returned in the response.</p> <p>Use
      * the <code>backupIds</code> filter to return only the specified backups. Specify
-     * backups by their backup identifier (ID).</p> <p>Use the <code>clusterIds</code>
+     * backups by their backup identifier (ID).</p> <p>Use the
+     * <code>sourceBackupIds</code> filter to return only the backups created from a
+     * source backup. The <code>sourceBackupID</code> of a source backup is returned by
+     * the <a>CopyBackupToRegion</a> operation.</p> <p>Use the <code>clusterIds</code>
      * filter to return only the backups for the specified clusters. Specify clusters
      * by their cluster identifier (ID).</p> <p>Use the <code>states</code> filter to
      * return only backups that match the specified state.</p>
@@ -154,7 +166,10 @@ namespace Model
     /**
      * <p>One or more filters to limit the items returned in the response.</p> <p>Use
      * the <code>backupIds</code> filter to return only the specified backups. Specify
-     * backups by their backup identifier (ID).</p> <p>Use the <code>clusterIds</code>
+     * backups by their backup identifier (ID).</p> <p>Use the
+     * <code>sourceBackupIds</code> filter to return only the backups created from a
+     * source backup. The <code>sourceBackupID</code> of a source backup is returned by
+     * the <a>CopyBackupToRegion</a> operation.</p> <p>Use the <code>clusterIds</code>
      * filter to return only the backups for the specified clusters. Specify clusters
      * by their cluster identifier (ID).</p> <p>Use the <code>states</code> filter to
      * return only backups that match the specified state.</p>
@@ -164,7 +179,10 @@ namespace Model
     /**
      * <p>One or more filters to limit the items returned in the response.</p> <p>Use
      * the <code>backupIds</code> filter to return only the specified backups. Specify
-     * backups by their backup identifier (ID).</p> <p>Use the <code>clusterIds</code>
+     * backups by their backup identifier (ID).</p> <p>Use the
+     * <code>sourceBackupIds</code> filter to return only the backups created from a
+     * source backup. The <code>sourceBackupID</code> of a source backup is returned by
+     * the <a>CopyBackupToRegion</a> operation.</p> <p>Use the <code>clusterIds</code>
      * filter to return only the backups for the specified clusters. Specify clusters
      * by their cluster identifier (ID).</p> <p>Use the <code>states</code> filter to
      * return only backups that match the specified state.</p>
@@ -174,7 +192,10 @@ namespace Model
     /**
      * <p>One or more filters to limit the items returned in the response.</p> <p>Use
      * the <code>backupIds</code> filter to return only the specified backups. Specify
-     * backups by their backup identifier (ID).</p> <p>Use the <code>clusterIds</code>
+     * backups by their backup identifier (ID).</p> <p>Use the
+     * <code>sourceBackupIds</code> filter to return only the backups created from a
+     * source backup. The <code>sourceBackupID</code> of a source backup is returned by
+     * the <a>CopyBackupToRegion</a> operation.</p> <p>Use the <code>clusterIds</code>
      * filter to return only the backups for the specified clusters. Specify clusters
      * by their cluster identifier (ID).</p> <p>Use the <code>states</code> filter to
      * return only backups that match the specified state.</p>
@@ -184,7 +205,10 @@ namespace Model
     /**
      * <p>One or more filters to limit the items returned in the response.</p> <p>Use
      * the <code>backupIds</code> filter to return only the specified backups. Specify
-     * backups by their backup identifier (ID).</p> <p>Use the <code>clusterIds</code>
+     * backups by their backup identifier (ID).</p> <p>Use the
+     * <code>sourceBackupIds</code> filter to return only the backups created from a
+     * source backup. The <code>sourceBackupID</code> of a source backup is returned by
+     * the <a>CopyBackupToRegion</a> operation.</p> <p>Use the <code>clusterIds</code>
      * filter to return only the backups for the specified clusters. Specify clusters
      * by their cluster identifier (ID).</p> <p>Use the <code>states</code> filter to
      * return only backups that match the specified state.</p>
@@ -194,7 +218,10 @@ namespace Model
     /**
      * <p>One or more filters to limit the items returned in the response.</p> <p>Use
      * the <code>backupIds</code> filter to return only the specified backups. Specify
-     * backups by their backup identifier (ID).</p> <p>Use the <code>clusterIds</code>
+     * backups by their backup identifier (ID).</p> <p>Use the
+     * <code>sourceBackupIds</code> filter to return only the backups created from a
+     * source backup. The <code>sourceBackupID</code> of a source backup is returned by
+     * the <a>CopyBackupToRegion</a> operation.</p> <p>Use the <code>clusterIds</code>
      * filter to return only the backups for the specified clusters. Specify clusters
      * by their cluster identifier (ID).</p> <p>Use the <code>states</code> filter to
      * return only backups that match the specified state.</p>
@@ -204,7 +231,10 @@ namespace Model
     /**
      * <p>One or more filters to limit the items returned in the response.</p> <p>Use
      * the <code>backupIds</code> filter to return only the specified backups. Specify
-     * backups by their backup identifier (ID).</p> <p>Use the <code>clusterIds</code>
+     * backups by their backup identifier (ID).</p> <p>Use the
+     * <code>sourceBackupIds</code> filter to return only the backups created from a
+     * source backup. The <code>sourceBackupID</code> of a source backup is returned by
+     * the <a>CopyBackupToRegion</a> operation.</p> <p>Use the <code>clusterIds</code>
      * filter to return only the backups for the specified clusters. Specify clusters
      * by their cluster identifier (ID).</p> <p>Use the <code>states</code> filter to
      * return only backups that match the specified state.</p>
@@ -214,12 +244,25 @@ namespace Model
     /**
      * <p>One or more filters to limit the items returned in the response.</p> <p>Use
      * the <code>backupIds</code> filter to return only the specified backups. Specify
-     * backups by their backup identifier (ID).</p> <p>Use the <code>clusterIds</code>
+     * backups by their backup identifier (ID).</p> <p>Use the
+     * <code>sourceBackupIds</code> filter to return only the backups created from a
+     * source backup. The <code>sourceBackupID</code> of a source backup is returned by
+     * the <a>CopyBackupToRegion</a> operation.</p> <p>Use the <code>clusterIds</code>
      * filter to return only the backups for the specified clusters. Specify clusters
      * by their cluster identifier (ID).</p> <p>Use the <code>states</code> filter to
      * return only backups that match the specified state.</p>
      */
     inline DescribeBackupsRequest& AddFilters(const char* key, const Aws::Vector<Aws::String>& value) { m_filtersHasBeenSet = true; m_filters.emplace(key, value); return *this; }
+
+
+    
+    inline bool GetSortAscending() const{ return m_sortAscending; }
+
+    
+    inline void SetSortAscending(bool value) { m_sortAscendingHasBeenSet = true; m_sortAscending = value; }
+
+    
+    inline DescribeBackupsRequest& WithSortAscending(bool value) { SetSortAscending(value); return *this;}
 
   private:
 
@@ -231,6 +274,9 @@ namespace Model
 
     Aws::Map<Aws::String, Aws::Vector<Aws::String>> m_filters;
     bool m_filtersHasBeenSet;
+
+    bool m_sortAscending;
+    bool m_sortAscendingHasBeenSet;
   };
 
 } // namespace Model

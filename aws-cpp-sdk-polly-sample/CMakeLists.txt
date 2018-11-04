@@ -10,5 +10,8 @@ file(GLOB AWS_SAMPLE_SRC
 
 add_executable(${PROJECT_NAME} ${AWS_SAMPLE_SRC})
 
-target_link_libraries(${PROJECT_NAME} ${PROJECT_LIBS})
+set_compiler_flags(${PROJECT_NAME})
+set_compiler_warnings(${PROJECT_NAME})
+
+target_link_libraries(${PROJECT_NAME} ${PLATFORM_DEP_LIBS} ${PROJECT_LIBS})
 copyDlls(${PROJECT_NAME} ${PROJECT_LIBS})

@@ -28,6 +28,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace AlexaForBusiness
@@ -44,8 +45,8 @@ namespace Model
   {
   public:
     Profile();
-    Profile(const Aws::Utils::Json::JsonValue& jsonValue);
-    Profile& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    Profile(Aws::Utils::Json::JsonView jsonValue);
+    Profile& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -119,6 +120,22 @@ namespace Model
      * <p>The name of a room profile.</p>
      */
     inline Profile& WithProfileName(const char* value) { SetProfileName(value); return *this;}
+
+
+    /**
+     * <p>Retrieves if the profile is default or not.</p>
+     */
+    inline bool GetIsDefault() const{ return m_isDefault; }
+
+    /**
+     * <p>Retrieves if the profile is default or not.</p>
+     */
+    inline void SetIsDefault(bool value) { m_isDefaultHasBeenSet = true; m_isDefault = value; }
+
+    /**
+     * <p>Retrieves if the profile is default or not.</p>
+     */
+    inline Profile& WithIsDefault(bool value) { SetIsDefault(value); return *this;}
 
 
     /**
@@ -318,6 +335,42 @@ namespace Model
      */
     inline Profile& WithPSTNEnabled(bool value) { SetPSTNEnabled(value); return *this;}
 
+
+    /**
+     * <p>The ARN of the address book.</p>
+     */
+    inline const Aws::String& GetAddressBookArn() const{ return m_addressBookArn; }
+
+    /**
+     * <p>The ARN of the address book.</p>
+     */
+    inline void SetAddressBookArn(const Aws::String& value) { m_addressBookArnHasBeenSet = true; m_addressBookArn = value; }
+
+    /**
+     * <p>The ARN of the address book.</p>
+     */
+    inline void SetAddressBookArn(Aws::String&& value) { m_addressBookArnHasBeenSet = true; m_addressBookArn = std::move(value); }
+
+    /**
+     * <p>The ARN of the address book.</p>
+     */
+    inline void SetAddressBookArn(const char* value) { m_addressBookArnHasBeenSet = true; m_addressBookArn.assign(value); }
+
+    /**
+     * <p>The ARN of the address book.</p>
+     */
+    inline Profile& WithAddressBookArn(const Aws::String& value) { SetAddressBookArn(value); return *this;}
+
+    /**
+     * <p>The ARN of the address book.</p>
+     */
+    inline Profile& WithAddressBookArn(Aws::String&& value) { SetAddressBookArn(std::move(value)); return *this;}
+
+    /**
+     * <p>The ARN of the address book.</p>
+     */
+    inline Profile& WithAddressBookArn(const char* value) { SetAddressBookArn(value); return *this;}
+
   private:
 
     Aws::String m_profileArn;
@@ -325,6 +378,9 @@ namespace Model
 
     Aws::String m_profileName;
     bool m_profileNameHasBeenSet;
+
+    bool m_isDefault;
+    bool m_isDefaultHasBeenSet;
 
     Aws::String m_address;
     bool m_addressHasBeenSet;
@@ -349,6 +405,9 @@ namespace Model
 
     bool m_pSTNEnabled;
     bool m_pSTNEnabledHasBeenSet;
+
+    Aws::String m_addressBookArn;
+    bool m_addressBookArnHasBeenSet;
   };
 
 } // namespace Model

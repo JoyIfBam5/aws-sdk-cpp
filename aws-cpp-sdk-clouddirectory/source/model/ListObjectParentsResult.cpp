@@ -37,10 +37,10 @@ ListObjectParentsResult::ListObjectParentsResult(const Aws::AmazonWebServiceResu
 
 ListObjectParentsResult& ListObjectParentsResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
-  const JsonValue& jsonValue = result.GetPayload();
+  JsonView jsonValue = result.GetPayload().View();
   if(jsonValue.ValueExists("Parents"))
   {
-    Aws::Map<Aws::String, JsonValue> parentsJsonMap = jsonValue.GetObject("Parents").GetAllObjects();
+    Aws::Map<Aws::String, JsonView> parentsJsonMap = jsonValue.GetObject("Parents").GetAllObjects();
     for(auto& parentsItem : parentsJsonMap)
     {
       m_parents[parentsItem.first] = parentsItem.second.AsString();
@@ -51,6 +51,15 @@ ListObjectParentsResult& ListObjectParentsResult::operator =(const Aws::AmazonWe
   {
     m_nextToken = jsonValue.GetString("NextToken");
 
+  }
+
+  if(jsonValue.ValueExists("ParentLinks"))
+  {
+    Array<JsonView> parentLinksJsonList = jsonValue.GetArray("ParentLinks");
+    for(unsigned parentLinksIndex = 0; parentLinksIndex < parentLinksJsonList.GetLength(); ++parentLinksIndex)
+    {
+      m_parentLinks.push_back(parentLinksJsonList[parentLinksIndex].AsObject());
+    }
   }
 
 

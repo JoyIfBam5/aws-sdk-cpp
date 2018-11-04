@@ -12,6 +12,7 @@
   * express or implied. See the License for the specific language governing
   * permissions and limitations under the License.
   */
+#define AWS_DISABLE_DEPRECATION
 
 #include <aws/core/http/windows/WinINetSyncHttpClient.h>
 
@@ -87,13 +88,14 @@ WinINetSyncHttpClient::WinINetSyncHttpClient(const ClientConfiguration& config) 
 
     AWS_LOGSTREAM_DEBUG(GetLogTag(), "API handle " << GetOpenHandle());
     SetConnectionPoolManager(Aws::New<WinINetConnectionPoolMgr>(GetLogTag(),
-        GetOpenHandle(), config.maxConnections, config.requestTimeoutMs, config.connectTimeoutMs));
+        GetOpenHandle(), config.maxConnections, config.requestTimeoutMs, config.connectTimeoutMs, config.enableTcpKeepAlive, config.tcpKeepAliveIntervalMs));
 }
 
 
 WinINetSyncHttpClient::~WinINetSyncHttpClient()
 {
-    InternetCloseHandle(GetOpenHandle());   
+    InternetCloseHandle(GetOpenHandle());
+    SetOpenHandle(nullptr);  // the handle is already closed, annul it to avoid double-closing the handle (in the base class' destructor)
 }
 
 void* WinINetSyncHttpClient::OpenRequest(const Aws::Http::HttpRequest& request, void* connection, const Aws::StringStream& ss) const
@@ -155,7 +157,7 @@ bool WinINetSyncHttpClient::DoReceiveResponse(void* hHttpRequest) const
     return (HttpEndRequest(hHttpRequest, nullptr, 0, 0) != 0);
 }
    
-bool WinINetSyncHttpClient::DoQueryHeaders(void* hHttpRequest, std::shared_ptr<StandardHttpResponse>& response, Aws::StringStream& ss, uint64_t& read) const
+bool WinINetSyncHttpClient::DoQueryHeaders(void* hHttpRequest, std::shared_ptr<HttpResponse>& response, Aws::StringStream& ss, uint64_t& read) const
 {
 
     char dwStatusCode[256];

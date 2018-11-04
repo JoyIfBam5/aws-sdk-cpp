@@ -17,14 +17,15 @@
 #include <aws/codebuild/CodeBuild_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
 #include <aws/codebuild/model/ProjectSource.h>
+#include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/codebuild/model/ProjectArtifacts.h>
 #include <aws/codebuild/model/ProjectCache.h>
 #include <aws/codebuild/model/ProjectEnvironment.h>
-#include <aws/core/utils/memory/stl/AWSVector.h>
 #include <aws/core/utils/DateTime.h>
 #include <aws/codebuild/model/Webhook.h>
 #include <aws/codebuild/model/VpcConfig.h>
 #include <aws/codebuild/model/ProjectBadge.h>
+#include <aws/codebuild/model/LogsConfig.h>
 #include <aws/codebuild/model/Tag.h>
 #include <utility>
 
@@ -35,6 +36,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace CodeBuild
@@ -51,8 +53,8 @@ namespace Model
   {
   public:
     Project();
-    Project(const Aws::Utils::Json::JsonValue& jsonValue);
-    Project& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    Project(Aws::Utils::Json::JsonView jsonValue);
+    Project& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -191,6 +193,42 @@ namespace Model
 
 
     /**
+     * <p> An array of <code>ProjectSource</code> objects. </p>
+     */
+    inline const Aws::Vector<ProjectSource>& GetSecondarySources() const{ return m_secondarySources; }
+
+    /**
+     * <p> An array of <code>ProjectSource</code> objects. </p>
+     */
+    inline void SetSecondarySources(const Aws::Vector<ProjectSource>& value) { m_secondarySourcesHasBeenSet = true; m_secondarySources = value; }
+
+    /**
+     * <p> An array of <code>ProjectSource</code> objects. </p>
+     */
+    inline void SetSecondarySources(Aws::Vector<ProjectSource>&& value) { m_secondarySourcesHasBeenSet = true; m_secondarySources = std::move(value); }
+
+    /**
+     * <p> An array of <code>ProjectSource</code> objects. </p>
+     */
+    inline Project& WithSecondarySources(const Aws::Vector<ProjectSource>& value) { SetSecondarySources(value); return *this;}
+
+    /**
+     * <p> An array of <code>ProjectSource</code> objects. </p>
+     */
+    inline Project& WithSecondarySources(Aws::Vector<ProjectSource>&& value) { SetSecondarySources(std::move(value)); return *this;}
+
+    /**
+     * <p> An array of <code>ProjectSource</code> objects. </p>
+     */
+    inline Project& AddSecondarySources(const ProjectSource& value) { m_secondarySourcesHasBeenSet = true; m_secondarySources.push_back(value); return *this; }
+
+    /**
+     * <p> An array of <code>ProjectSource</code> objects. </p>
+     */
+    inline Project& AddSecondarySources(ProjectSource&& value) { m_secondarySourcesHasBeenSet = true; m_secondarySources.push_back(std::move(value)); return *this; }
+
+
+    /**
      * <p>Information about the build output artifacts for the build project.</p>
      */
     inline const ProjectArtifacts& GetArtifacts() const{ return m_artifacts; }
@@ -214,6 +252,42 @@ namespace Model
      * <p>Information about the build output artifacts for the build project.</p>
      */
     inline Project& WithArtifacts(ProjectArtifacts&& value) { SetArtifacts(std::move(value)); return *this;}
+
+
+    /**
+     * <p> An array of <code>ProjectArtifacts</code> objects. </p>
+     */
+    inline const Aws::Vector<ProjectArtifacts>& GetSecondaryArtifacts() const{ return m_secondaryArtifacts; }
+
+    /**
+     * <p> An array of <code>ProjectArtifacts</code> objects. </p>
+     */
+    inline void SetSecondaryArtifacts(const Aws::Vector<ProjectArtifacts>& value) { m_secondaryArtifactsHasBeenSet = true; m_secondaryArtifacts = value; }
+
+    /**
+     * <p> An array of <code>ProjectArtifacts</code> objects. </p>
+     */
+    inline void SetSecondaryArtifacts(Aws::Vector<ProjectArtifacts>&& value) { m_secondaryArtifactsHasBeenSet = true; m_secondaryArtifacts = std::move(value); }
+
+    /**
+     * <p> An array of <code>ProjectArtifacts</code> objects. </p>
+     */
+    inline Project& WithSecondaryArtifacts(const Aws::Vector<ProjectArtifacts>& value) { SetSecondaryArtifacts(value); return *this;}
+
+    /**
+     * <p> An array of <code>ProjectArtifacts</code> objects. </p>
+     */
+    inline Project& WithSecondaryArtifacts(Aws::Vector<ProjectArtifacts>&& value) { SetSecondaryArtifacts(std::move(value)); return *this;}
+
+    /**
+     * <p> An array of <code>ProjectArtifacts</code> objects. </p>
+     */
+    inline Project& AddSecondaryArtifacts(const ProjectArtifacts& value) { m_secondaryArtifactsHasBeenSet = true; m_secondaryArtifacts.push_back(value); return *this; }
+
+    /**
+     * <p> An array of <code>ProjectArtifacts</code> objects. </p>
+     */
+    inline Project& AddSecondaryArtifacts(ProjectArtifacts&& value) { m_secondaryArtifactsHasBeenSet = true; m_secondaryArtifacts.push_back(std::move(value)); return *this; }
 
 
     /**
@@ -529,42 +603,27 @@ namespace Model
 
 
     /**
-     * <p>If your AWS CodeBuild project accesses resources in an Amazon VPC, you
-     * provide this parameter that identifies the VPC ID and the list of security group
-     * IDs and subnet IDs. The security groups and subnets must belong to the same VPC.
-     * You must provide at least one security group and one subnet ID.</p>
+     * <p>Information about the VPC configuration that AWS CodeBuild will access.</p>
      */
     inline const VpcConfig& GetVpcConfig() const{ return m_vpcConfig; }
 
     /**
-     * <p>If your AWS CodeBuild project accesses resources in an Amazon VPC, you
-     * provide this parameter that identifies the VPC ID and the list of security group
-     * IDs and subnet IDs. The security groups and subnets must belong to the same VPC.
-     * You must provide at least one security group and one subnet ID.</p>
+     * <p>Information about the VPC configuration that AWS CodeBuild will access.</p>
      */
     inline void SetVpcConfig(const VpcConfig& value) { m_vpcConfigHasBeenSet = true; m_vpcConfig = value; }
 
     /**
-     * <p>If your AWS CodeBuild project accesses resources in an Amazon VPC, you
-     * provide this parameter that identifies the VPC ID and the list of security group
-     * IDs and subnet IDs. The security groups and subnets must belong to the same VPC.
-     * You must provide at least one security group and one subnet ID.</p>
+     * <p>Information about the VPC configuration that AWS CodeBuild will access.</p>
      */
     inline void SetVpcConfig(VpcConfig&& value) { m_vpcConfigHasBeenSet = true; m_vpcConfig = std::move(value); }
 
     /**
-     * <p>If your AWS CodeBuild project accesses resources in an Amazon VPC, you
-     * provide this parameter that identifies the VPC ID and the list of security group
-     * IDs and subnet IDs. The security groups and subnets must belong to the same VPC.
-     * You must provide at least one security group and one subnet ID.</p>
+     * <p>Information about the VPC configuration that AWS CodeBuild will access.</p>
      */
     inline Project& WithVpcConfig(const VpcConfig& value) { SetVpcConfig(value); return *this;}
 
     /**
-     * <p>If your AWS CodeBuild project accesses resources in an Amazon VPC, you
-     * provide this parameter that identifies the VPC ID and the list of security group
-     * IDs and subnet IDs. The security groups and subnets must belong to the same VPC.
-     * You must provide at least one security group and one subnet ID.</p>
+     * <p>Information about the VPC configuration that AWS CodeBuild will access.</p>
      */
     inline Project& WithVpcConfig(VpcConfig&& value) { SetVpcConfig(std::move(value)); return *this;}
 
@@ -594,6 +653,37 @@ namespace Model
      */
     inline Project& WithBadge(ProjectBadge&& value) { SetBadge(std::move(value)); return *this;}
 
+
+    /**
+     * <p> Information about logs for the build project. A project can create Amazon
+     * CloudWatch Logs, logs in an S3 bucket, or both. </p>
+     */
+    inline const LogsConfig& GetLogsConfig() const{ return m_logsConfig; }
+
+    /**
+     * <p> Information about logs for the build project. A project can create Amazon
+     * CloudWatch Logs, logs in an S3 bucket, or both. </p>
+     */
+    inline void SetLogsConfig(const LogsConfig& value) { m_logsConfigHasBeenSet = true; m_logsConfig = value; }
+
+    /**
+     * <p> Information about logs for the build project. A project can create Amazon
+     * CloudWatch Logs, logs in an S3 bucket, or both. </p>
+     */
+    inline void SetLogsConfig(LogsConfig&& value) { m_logsConfigHasBeenSet = true; m_logsConfig = std::move(value); }
+
+    /**
+     * <p> Information about logs for the build project. A project can create Amazon
+     * CloudWatch Logs, logs in an S3 bucket, or both. </p>
+     */
+    inline Project& WithLogsConfig(const LogsConfig& value) { SetLogsConfig(value); return *this;}
+
+    /**
+     * <p> Information about logs for the build project. A project can create Amazon
+     * CloudWatch Logs, logs in an S3 bucket, or both. </p>
+     */
+    inline Project& WithLogsConfig(LogsConfig&& value) { SetLogsConfig(std::move(value)); return *this;}
+
   private:
 
     Aws::String m_name;
@@ -608,8 +698,14 @@ namespace Model
     ProjectSource m_source;
     bool m_sourceHasBeenSet;
 
+    Aws::Vector<ProjectSource> m_secondarySources;
+    bool m_secondarySourcesHasBeenSet;
+
     ProjectArtifacts m_artifacts;
     bool m_artifactsHasBeenSet;
+
+    Aws::Vector<ProjectArtifacts> m_secondaryArtifacts;
+    bool m_secondaryArtifactsHasBeenSet;
 
     ProjectCache m_cache;
     bool m_cacheHasBeenSet;
@@ -643,6 +739,9 @@ namespace Model
 
     ProjectBadge m_badge;
     bool m_badgeHasBeenSet;
+
+    LogsConfig m_logsConfig;
+    bool m_logsConfigHasBeenSet;
   };
 
 } // namespace Model

@@ -32,20 +32,28 @@ SkillSummary::SkillSummary() :
     m_skillIdHasBeenSet(false),
     m_skillNameHasBeenSet(false),
     m_supportsLinking(false),
-    m_supportsLinkingHasBeenSet(false)
+    m_supportsLinkingHasBeenSet(false),
+    m_enablementType(EnablementType::NOT_SET),
+    m_enablementTypeHasBeenSet(false),
+    m_skillType(SkillType::NOT_SET),
+    m_skillTypeHasBeenSet(false)
 {
 }
 
-SkillSummary::SkillSummary(const JsonValue& jsonValue) : 
+SkillSummary::SkillSummary(JsonView jsonValue) : 
     m_skillIdHasBeenSet(false),
     m_skillNameHasBeenSet(false),
     m_supportsLinking(false),
-    m_supportsLinkingHasBeenSet(false)
+    m_supportsLinkingHasBeenSet(false),
+    m_enablementType(EnablementType::NOT_SET),
+    m_enablementTypeHasBeenSet(false),
+    m_skillType(SkillType::NOT_SET),
+    m_skillTypeHasBeenSet(false)
 {
   *this = jsonValue;
 }
 
-SkillSummary& SkillSummary::operator =(const JsonValue& jsonValue)
+SkillSummary& SkillSummary::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("SkillId"))
   {
@@ -66,6 +74,20 @@ SkillSummary& SkillSummary::operator =(const JsonValue& jsonValue)
     m_supportsLinking = jsonValue.GetBool("SupportsLinking");
 
     m_supportsLinkingHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("EnablementType"))
+  {
+    m_enablementType = EnablementTypeMapper::GetEnablementTypeForName(jsonValue.GetString("EnablementType"));
+
+    m_enablementTypeHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("SkillType"))
+  {
+    m_skillType = SkillTypeMapper::GetSkillTypeForName(jsonValue.GetString("SkillType"));
+
+    m_skillTypeHasBeenSet = true;
   }
 
   return *this;
@@ -91,6 +113,16 @@ JsonValue SkillSummary::Jsonize() const
   {
    payload.WithBool("SupportsLinking", m_supportsLinking);
 
+  }
+
+  if(m_enablementTypeHasBeenSet)
+  {
+   payload.WithString("EnablementType", EnablementTypeMapper::GetNameForEnablementType(m_enablementType));
+  }
+
+  if(m_skillTypeHasBeenSet)
+  {
+   payload.WithString("SkillType", SkillTypeMapper::GetNameForSkillType(m_skillType));
   }
 
   return payload;

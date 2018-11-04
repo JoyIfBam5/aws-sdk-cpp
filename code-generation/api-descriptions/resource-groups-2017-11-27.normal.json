@@ -104,8 +104,8 @@
     "ListGroupResources":{
       "name":"ListGroupResources",
       "http":{
-        "method":"GET",
-        "requestUri":"/groups/{GroupName}/resource-identifiers"
+        "method":"POST",
+        "requestUri":"/groups/{GroupName}/resource-identifiers-list"
       },
       "input":{"shape":"ListGroupResourcesInput"},
       "output":{"shape":"ListGroupResourcesOutput"},
@@ -123,8 +123,8 @@
     "ListGroups":{
       "name":"ListGroups",
       "http":{
-        "method":"GET",
-        "requestUri":"/groups"
+        "method":"POST",
+        "requestUri":"/groups-list"
       },
       "input":{"shape":"ListGroupsInput"},
       "output":{"shape":"ListGroupsOutput"},
@@ -247,7 +247,7 @@
       "members":{
         "Name":{
           "shape":"GroupName",
-          "documentation":"<p>The name of the group, which is the identifier of the group in other operations. A resource group name cannot be updated after it is created. A resource group name can have a maximum of 127 characters, including letters, numbers, hyphens, dots, and underscores. The name cannot start with <code>AWS</code> or <code>aws</code>; these are reserved. A resource group name must be unique within your account.</p>"
+          "documentation":"<p>The name of the group, which is the identifier of the group in other operations. A resource group name cannot be updated after it is created. A resource group name can have a maximum of 128 characters, including letters, numbers, hyphens, dots, and underscores. The name cannot start with <code>AWS</code> or <code>aws</code>; these are reserved. A resource group name must be unique within your account.</p>"
         },
         "Description":{
           "shape":"GroupDescription",
@@ -259,7 +259,7 @@
         },
         "Tags":{
           "shape":"Tags",
-          "documentation":"<p>The tags to add to the group. A tag is a string-to-string map of key-value pairs. Tag keys can have a maximum character length of 127 characters, and tag values can have a maximum length of 255 characters.</p>"
+          "documentation":"<p>The tags to add to the group. A tag is a string-to-string map of key-value pairs. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>"
         }
       }
     },
@@ -411,7 +411,62 @@
     "GroupDescription":{
       "type":"string",
       "max":512,
-      "pattern":"[\\sa-zA-Z0-9_\\.-]+"
+      "pattern":"[\\sa-zA-Z0-9_\\.-]*"
+    },
+    "GroupFilter":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Values"
+      ],
+      "members":{
+        "Name":{
+          "shape":"GroupFilterName",
+          "documentation":"<p>The name of the filter. Filter names are case-sensitive.</p>"
+        },
+        "Values":{
+          "shape":"GroupFilterValues",
+          "documentation":"<p>One or more filter values. Allowed filter values vary by group filter name, and are case-sensitive.</p>"
+        }
+      },
+      "documentation":"<p>A filter name and value pair that is used to obtain more specific results from a list of groups.</p>"
+    },
+    "GroupFilterList":{
+      "type":"list",
+      "member":{"shape":"GroupFilter"}
+    },
+    "GroupFilterName":{
+      "type":"string",
+      "enum":["resource-type"]
+    },
+    "GroupFilterValue":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "GroupFilterValues":{
+      "type":"list",
+      "member":{"shape":"GroupFilterValue"},
+      "max":5,
+      "min":1
+    },
+    "GroupIdentifier":{
+      "type":"structure",
+      "members":{
+        "GroupName":{
+          "shape":"GroupName",
+          "documentation":"<p>The name of a resource group.</p>"
+        },
+        "GroupArn":{
+          "shape":"GroupArn",
+          "documentation":"<p>The ARN of a resource group.</p>"
+        }
+      },
+      "documentation":"<p>The ARN and group name of a group.</p>"
+    },
+    "GroupIdentifierList":{
+      "type":"list",
+      "member":{"shape":"GroupIdentifier"}
     },
     "GroupList":{
       "type":"list",
@@ -460,6 +515,10 @@
           "location":"uri",
           "locationName":"GroupName"
         },
+        "Filters":{
+          "shape":"ResourceFilterList",
+          "documentation":"<p>Filters, formatted as ResourceFilter objects, that you want to apply to a ListGroupResources operation.</p> <ul> <li> <p> <code>resource-type</code> - Filter resources by their type. Specify up to five resource types in the format AWS::ServiceCode::ResourceType. For example, AWS::EC2::Instance, or AWS::S3::Bucket.</p> </li> </ul>"
+        },
         "MaxResults":{
           "shape":"MaxResults",
           "documentation":"<p>The maximum number of group member ARNs that are returned in a single call by ListGroupResources, in paginated output. By default, this number is 50.</p>",
@@ -490,6 +549,10 @@
     "ListGroupsInput":{
       "type":"structure",
       "members":{
+        "Filters":{
+          "shape":"GroupFilterList",
+          "documentation":"<p>Filters, formatted as GroupFilter objects, that you want to apply to a ListGroups operation.</p> <ul> <li> <p> <code>group-type</code> - Filter groups by resource type. Specify up to five group types in the format AWS::ServiceCode::ResourceType. For example, AWS::EC2::Instance, or AWS::S3::Bucket.</p> </li> </ul>"
+        },
         "MaxResults":{
           "shape":"MaxResults",
           "documentation":"<p>The maximum number of resource group results that are returned by ListGroups in paginated output. By default, this number is 50.</p>",
@@ -507,9 +570,15 @@
     "ListGroupsOutput":{
       "type":"structure",
       "members":{
+        "GroupIdentifiers":{
+          "shape":"GroupIdentifierList",
+          "documentation":"<p>A list of GroupIdentifier objects. Each identifier is an object that contains both the GroupName and the GroupArn.</p>"
+        },
         "Groups":{
           "shape":"GroupList",
-          "documentation":"<p>A list of resource groups.</p>"
+          "documentation":"<p>A list of resource groups.</p>",
+          "deprecated":true,
+          "deprecatedMessage":"This field is deprecated, use GroupIdentifiers instead."
         },
         "NextToken":{
           "shape":"NextToken",
@@ -551,7 +620,45 @@
     },
     "ResourceArn":{
       "type":"string",
-      "pattern":"arn:aws:[a-z0-9]*:([a-z]{2}-[a-z]+-\\d{1})?:([0-9]{12})?:.+"
+      "pattern":"arn:aws:[a-z0-9\\-]*:([a-z]{2}-[a-z]+-\\d{1})?:([0-9]{12})?:.+"
+    },
+    "ResourceFilter":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Values"
+      ],
+      "members":{
+        "Name":{
+          "shape":"ResourceFilterName",
+          "documentation":"<p>The name of the filter. Filter names are case-sensitive.</p>"
+        },
+        "Values":{
+          "shape":"ResourceFilterValues",
+          "documentation":"<p>One or more filter values. Allowed filter values vary by resource filter name, and are case-sensitive.</p>"
+        }
+      },
+      "documentation":"<p>A filter name and value pair that is used to obtain more specific results from a list of resources.</p>"
+    },
+    "ResourceFilterList":{
+      "type":"list",
+      "member":{"shape":"ResourceFilter"}
+    },
+    "ResourceFilterName":{
+      "type":"string",
+      "enum":["resource-type"]
+    },
+    "ResourceFilterValue":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"AWS::[a-zA-Z0-9]+::[a-zA-Z0-9]+"
+    },
+    "ResourceFilterValues":{
+      "type":"list",
+      "member":{"shape":"ResourceFilterValue"},
+      "max":5,
+      "min":1
     },
     "ResourceIdentifier":{
       "type":"structure",
@@ -639,7 +746,7 @@
         },
         "Tags":{
           "shape":"Tags",
-          "documentation":"<p>The tags to add to the specified resource. A tag is a string-to-string map of key-value pairs. Tag keys can have a maximum character length of 127 characters, and tag values can have a maximum length of 255 characters.</p>"
+          "documentation":"<p>The tags to add to the specified resource. A tag is a string-to-string map of key-value pairs. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>"
         }
       }
     },

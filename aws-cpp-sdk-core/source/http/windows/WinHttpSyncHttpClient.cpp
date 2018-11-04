@@ -12,7 +12,7 @@
   * express or implied. See the License for the specific language governing
   * permissions and limitations under the License.
   */
-
+#define AWS_DISABLE_DEPRECATION
 #include <aws/core/http/windows/WinHttpSyncHttpClient.h>
 
 #include <aws/core/Http/HttpRequest.h>
@@ -96,15 +96,23 @@ WinHttpSyncHttpClient::WinHttpSyncHttpClient(const ClientConfiguration& config) 
         }
     }
 
+    // WinHTTP doesn't have option to turn off keep-alive, we will set a large interval to try our best.
+    DWORD keepAliveIntervalMs = config.enableTcpKeepAlive ? config.tcpKeepAliveIntervalMs : ULONG_MAX;
+    if (!WinHttpSetOption(GetOpenHandle(), WINHTTP_OPTION_WEB_SOCKET_KEEPALIVE_INTERVAL, &keepAliveIntervalMs, sizeof(keepAliveIntervalMs)))
+    {
+        AWS_LOGSTREAM_FATAL(GetLogTag(), "Failed setting TCP keep-alive interval with error code: " << GetLastError());
+    }
+
     AWS_LOGSTREAM_DEBUG(GetLogTag(), "API handle " << GetOpenHandle());
     SetConnectionPoolManager(Aws::New<WinHttpConnectionPoolMgr>(GetLogTag(),
-        GetOpenHandle(), config.maxConnections, config.requestTimeoutMs, config.connectTimeoutMs));
+        GetOpenHandle(), config.maxConnections, config.requestTimeoutMs, config.connectTimeoutMs, config.enableTcpKeepAlive, config.tcpKeepAliveIntervalMs));
 }
 
 
 WinHttpSyncHttpClient::~WinHttpSyncHttpClient()
 {
     WinHttpCloseHandle(GetOpenHandle());
+    SetOpenHandle(nullptr);  // the handle is already closed, annul it to avoid double-closing the handle (in the base class' destructor)
 }
 
 void* WinHttpSyncHttpClient::OpenRequest(const Aws::Http::HttpRequest& request, void* connection, const Aws::StringStream& ss) const
@@ -180,7 +188,7 @@ bool WinHttpSyncHttpClient::DoReceiveResponse(void* httpRequest) const
     return (WinHttpReceiveResponse(httpRequest, nullptr) != 0);
 }
 
-bool WinHttpSyncHttpClient::DoQueryHeaders(void* hHttpRequest, std::shared_ptr<StandardHttpResponse>& response, Aws::StringStream& ss, uint64_t& read) const
+bool WinHttpSyncHttpClient::DoQueryHeaders(void* hHttpRequest, std::shared_ptr<HttpResponse>& response, Aws::StringStream& ss, uint64_t& read) const
 {
     wchar_t dwStatusCode[256];
     DWORD dwSize = sizeof(dwStatusCode);

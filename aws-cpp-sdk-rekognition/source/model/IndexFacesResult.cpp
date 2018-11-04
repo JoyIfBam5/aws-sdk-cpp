@@ -39,10 +39,10 @@ IndexFacesResult::IndexFacesResult(const Aws::AmazonWebServiceResult<JsonValue>&
 
 IndexFacesResult& IndexFacesResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
-  const JsonValue& jsonValue = result.GetPayload();
+  JsonView jsonValue = result.GetPayload().View();
   if(jsonValue.ValueExists("FaceRecords"))
   {
-    Array<JsonValue> faceRecordsJsonList = jsonValue.GetArray("FaceRecords");
+    Array<JsonView> faceRecordsJsonList = jsonValue.GetArray("FaceRecords");
     for(unsigned faceRecordsIndex = 0; faceRecordsIndex < faceRecordsJsonList.GetLength(); ++faceRecordsIndex)
     {
       m_faceRecords.push_back(faceRecordsJsonList[faceRecordsIndex].AsObject());
@@ -59,6 +59,15 @@ IndexFacesResult& IndexFacesResult::operator =(const Aws::AmazonWebServiceResult
   {
     m_faceModelVersion = jsonValue.GetString("FaceModelVersion");
 
+  }
+
+  if(jsonValue.ValueExists("UnindexedFaces"))
+  {
+    Array<JsonView> unindexedFacesJsonList = jsonValue.GetArray("UnindexedFaces");
+    for(unsigned unindexedFacesIndex = 0; unindexedFacesIndex < unindexedFacesJsonList.GetLength(); ++unindexedFacesIndex)
+    {
+      m_unindexedFaces.push_back(unindexedFacesJsonList[unindexedFacesIndex].AsObject());
+    }
   }
 
 

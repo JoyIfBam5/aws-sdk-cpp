@@ -31,7 +31,9 @@ AllocatePublicVirtualInterfaceResult::AllocatePublicVirtualInterfaceResult() :
     m_asn(0),
     m_amazonSideAsn(0),
     m_addressFamily(AddressFamily::NOT_SET),
-    m_virtualInterfaceState(VirtualInterfaceState::NOT_SET)
+    m_virtualInterfaceState(VirtualInterfaceState::NOT_SET),
+    m_mtu(0),
+    m_jumboFrameCapable(false)
 {
 }
 
@@ -40,14 +42,16 @@ AllocatePublicVirtualInterfaceResult::AllocatePublicVirtualInterfaceResult(const
     m_asn(0),
     m_amazonSideAsn(0),
     m_addressFamily(AddressFamily::NOT_SET),
-    m_virtualInterfaceState(VirtualInterfaceState::NOT_SET)
+    m_virtualInterfaceState(VirtualInterfaceState::NOT_SET),
+    m_mtu(0),
+    m_jumboFrameCapable(false)
 {
   *this = result;
 }
 
 AllocatePublicVirtualInterfaceResult& AllocatePublicVirtualInterfaceResult::operator =(const Aws::AmazonWebServiceResult<JsonValue>& result)
 {
-  const JsonValue& jsonValue = result.GetPayload();
+  JsonView jsonValue = result.GetPayload().View();
   if(jsonValue.ValueExists("ownerAccount"))
   {
     m_ownerAccount = jsonValue.GetString("ownerAccount");
@@ -138,6 +142,18 @@ AllocatePublicVirtualInterfaceResult& AllocatePublicVirtualInterfaceResult::oper
 
   }
 
+  if(jsonValue.ValueExists("mtu"))
+  {
+    m_mtu = jsonValue.GetInteger("mtu");
+
+  }
+
+  if(jsonValue.ValueExists("jumboFrameCapable"))
+  {
+    m_jumboFrameCapable = jsonValue.GetBool("jumboFrameCapable");
+
+  }
+
   if(jsonValue.ValueExists("virtualGatewayId"))
   {
     m_virtualGatewayId = jsonValue.GetString("virtualGatewayId");
@@ -152,7 +168,7 @@ AllocatePublicVirtualInterfaceResult& AllocatePublicVirtualInterfaceResult::oper
 
   if(jsonValue.ValueExists("routeFilterPrefixes"))
   {
-    Array<JsonValue> routeFilterPrefixesJsonList = jsonValue.GetArray("routeFilterPrefixes");
+    Array<JsonView> routeFilterPrefixesJsonList = jsonValue.GetArray("routeFilterPrefixes");
     for(unsigned routeFilterPrefixesIndex = 0; routeFilterPrefixesIndex < routeFilterPrefixesJsonList.GetLength(); ++routeFilterPrefixesIndex)
     {
       m_routeFilterPrefixes.push_back(routeFilterPrefixesJsonList[routeFilterPrefixesIndex].AsObject());
@@ -161,11 +177,23 @@ AllocatePublicVirtualInterfaceResult& AllocatePublicVirtualInterfaceResult::oper
 
   if(jsonValue.ValueExists("bgpPeers"))
   {
-    Array<JsonValue> bgpPeersJsonList = jsonValue.GetArray("bgpPeers");
+    Array<JsonView> bgpPeersJsonList = jsonValue.GetArray("bgpPeers");
     for(unsigned bgpPeersIndex = 0; bgpPeersIndex < bgpPeersJsonList.GetLength(); ++bgpPeersIndex)
     {
       m_bgpPeers.push_back(bgpPeersJsonList[bgpPeersIndex].AsObject());
     }
+  }
+
+  if(jsonValue.ValueExists("region"))
+  {
+    m_region = jsonValue.GetString("region");
+
+  }
+
+  if(jsonValue.ValueExists("awsDeviceV2"))
+  {
+    m_awsDeviceV2 = jsonValue.GetString("awsDeviceV2");
+
   }
 
 

@@ -24,6 +24,7 @@ using namespace Aws::Utils;
 
 ListAppliedSchemaArnsRequest::ListAppliedSchemaArnsRequest() : 
     m_directoryArnHasBeenSet(false),
+    m_schemaArnHasBeenSet(false),
     m_nextTokenHasBeenSet(false),
     m_maxResults(0),
     m_maxResultsHasBeenSet(false)
@@ -40,6 +41,12 @@ Aws::String ListAppliedSchemaArnsRequest::SerializePayload() const
 
   }
 
+  if(m_schemaArnHasBeenSet)
+  {
+   payload.WithString("SchemaArn", m_schemaArn);
+
+  }
+
   if(m_nextTokenHasBeenSet)
   {
    payload.WithString("NextToken", m_nextToken);
@@ -52,7 +59,7 @@ Aws::String ListAppliedSchemaArnsRequest::SerializePayload() const
 
   }
 
-  return payload.WriteReadable();
+  return payload.View().WriteReadable();
 }
 
 

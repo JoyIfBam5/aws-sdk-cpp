@@ -32,6 +32,7 @@
 #include <aws/codedeploy/model/CreateDeploymentConfigResult.h>
 #include <aws/codedeploy/model/CreateDeploymentGroupResult.h>
 #include <aws/codedeploy/model/DeleteDeploymentGroupResult.h>
+#include <aws/codedeploy/model/DeleteGitHubAccountTokenResult.h>
 #include <aws/codedeploy/model/GetApplicationResult.h>
 #include <aws/codedeploy/model/GetApplicationRevisionResult.h>
 #include <aws/codedeploy/model/GetDeploymentResult.h>
@@ -73,11 +74,6 @@ namespace Threading
 {
   class Executor;
 } // namespace Threading
-
-namespace Json
-{
-  class JsonValue;
-} // namespace Json
 } // namespace Utils
 
 namespace Auth
@@ -111,6 +107,7 @@ namespace Model
         class DeleteApplicationRequest;
         class DeleteDeploymentConfigRequest;
         class DeleteDeploymentGroupRequest;
+        class DeleteGitHubAccountTokenRequest;
         class DeregisterOnPremisesInstanceRequest;
         class GetApplicationRequest;
         class GetApplicationRevisionRequest;
@@ -151,6 +148,7 @@ namespace Model
         typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<CodeDeployErrors>> DeleteApplicationOutcome;
         typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<CodeDeployErrors>> DeleteDeploymentConfigOutcome;
         typedef Aws::Utils::Outcome<DeleteDeploymentGroupResult, Aws::Client::AWSError<CodeDeployErrors>> DeleteDeploymentGroupOutcome;
+        typedef Aws::Utils::Outcome<DeleteGitHubAccountTokenResult, Aws::Client::AWSError<CodeDeployErrors>> DeleteGitHubAccountTokenOutcome;
         typedef Aws::Utils::Outcome<Aws::NoResult, Aws::Client::AWSError<CodeDeployErrors>> DeregisterOnPremisesInstanceOutcome;
         typedef Aws::Utils::Outcome<GetApplicationResult, Aws::Client::AWSError<CodeDeployErrors>> GetApplicationOutcome;
         typedef Aws::Utils::Outcome<GetApplicationRevisionResult, Aws::Client::AWSError<CodeDeployErrors>> GetApplicationRevisionOutcome;
@@ -191,6 +189,7 @@ namespace Model
         typedef std::future<DeleteApplicationOutcome> DeleteApplicationOutcomeCallable;
         typedef std::future<DeleteDeploymentConfigOutcome> DeleteDeploymentConfigOutcomeCallable;
         typedef std::future<DeleteDeploymentGroupOutcome> DeleteDeploymentGroupOutcomeCallable;
+        typedef std::future<DeleteGitHubAccountTokenOutcome> DeleteGitHubAccountTokenOutcomeCallable;
         typedef std::future<DeregisterOnPremisesInstanceOutcome> DeregisterOnPremisesInstanceOutcomeCallable;
         typedef std::future<GetApplicationOutcome> GetApplicationOutcomeCallable;
         typedef std::future<GetApplicationRevisionOutcome> GetApplicationRevisionOutcomeCallable;
@@ -234,6 +233,7 @@ namespace Model
     typedef std::function<void(const CodeDeployClient*, const Model::DeleteApplicationRequest&, const Model::DeleteApplicationOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteApplicationResponseReceivedHandler;
     typedef std::function<void(const CodeDeployClient*, const Model::DeleteDeploymentConfigRequest&, const Model::DeleteDeploymentConfigOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteDeploymentConfigResponseReceivedHandler;
     typedef std::function<void(const CodeDeployClient*, const Model::DeleteDeploymentGroupRequest&, const Model::DeleteDeploymentGroupOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteDeploymentGroupResponseReceivedHandler;
+    typedef std::function<void(const CodeDeployClient*, const Model::DeleteGitHubAccountTokenRequest&, const Model::DeleteGitHubAccountTokenOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeleteGitHubAccountTokenResponseReceivedHandler;
     typedef std::function<void(const CodeDeployClient*, const Model::DeregisterOnPremisesInstanceRequest&, const Model::DeregisterOnPremisesInstanceOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > DeregisterOnPremisesInstanceResponseReceivedHandler;
     typedef std::function<void(const CodeDeployClient*, const Model::GetApplicationRequest&, const Model::GetApplicationOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetApplicationResponseReceivedHandler;
     typedef std::function<void(const CodeDeployClient*, const Model::GetApplicationRevisionRequest&, const Model::GetApplicationRevisionOutcome&, const std::shared_ptr<const Aws::Client::AsyncCallerContext>&) > GetApplicationRevisionResponseReceivedHandler;
@@ -284,21 +284,21 @@ namespace Model
    * Auto Scaling groups, or both. </p> </li> <li> <p> <b>Deployment
    * configuration</b>: A set of deployment rules and deployment success and failure
    * conditions used by AWS CodeDeploy during a deployment.</p> </li> <li> <p>
-   * <b>Deployment</b>: The process, and the components involved in the process, of
+   * <b>Deployment</b>: The process and the components used in the process of
    * updating a Lambda function or of installing content on one or more instances.
-   * </p> </li> <li> <p> <b>Application revisions</b>: For an AWS Lambda deployment
+   * </p> </li> <li> <p> <b>Application revisions</b>: For an AWS Lambda deployment,
    * this is an AppSpec file that specifies the Lambda function to update and one or
    * more functions to validate deployment lifecycle events. For an EC2/On-premises
    * deployment, this is an archive file containing source content—source code, web
-   * pages, executable files, and deployment scripts—along with an application
-   * specification file (AppSpec file). Revisions are stored in Amazon S3 buckets or
-   * GitHub repositories. For Amazon S3, a revision is uniquely identified by its
-   * Amazon S3 object key and its ETag, version, or both. For GitHub, a revision is
-   * uniquely identified by its commit ID.</p> </li> </ul> <p>This guide also
-   * contains information to help you get details about the instances in your
-   * deployments, to make on-premises instances available for AWS CodeDeploy
-   * deployments, and to get details about a Lambda function deployment.</p> <p>
-   * <b>AWS CodeDeploy Information Resources</b> </p> <ul> <li> <p> <a
+   * pages, executable files, and deployment scripts—along with an AppSpec file.
+   * Revisions are stored in Amazon S3 buckets or GitHub repositories. For Amazon S3,
+   * a revision is uniquely identified by its Amazon S3 object key and its ETag,
+   * version, or both. For GitHub, a revision is uniquely identified by its commit
+   * ID.</p> </li> </ul> <p>This guide also contains information to help you get
+   * details about the instances in your deployments, to make on-premises instances
+   * available for AWS CodeDeploy deployments, and to get details about a Lambda
+   * function deployment.</p> <p> <b>AWS CodeDeploy Information Resources</b> </p>
+   * <ul> <li> <p> <a
    * href="http://docs.aws.amazon.com/codedeploy/latest/userguide">AWS CodeDeploy
    * User Guide</a> </p> </li> <li> <p> <a
    * href="http://docs.aws.amazon.com/codedeploy/latest/APIReference/">AWS CodeDeploy
@@ -334,7 +334,7 @@ namespace Model
 
         virtual ~CodeDeployClient();
 
-        inline virtual const char* GetServiceClientName() const override { return "codedeploy"; }
+        inline virtual const char* GetServiceClientName() const override { return "CodeDeploy"; }
 
 
         /**
@@ -753,6 +753,31 @@ namespace Model
          * Queues the request into a thread executor and triggers associated callback when operation has finished.
          */
         virtual void DeleteDeploymentGroupAsync(const Model::DeleteDeploymentGroupRequest& request, const DeleteDeploymentGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
+
+        /**
+         * <p>Deletes a GitHub account connection.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/DeleteGitHubAccountToken">AWS
+         * API Reference</a></p>
+         */
+        virtual Model::DeleteGitHubAccountTokenOutcome DeleteGitHubAccountToken(const Model::DeleteGitHubAccountTokenRequest& request) const;
+
+        /**
+         * <p>Deletes a GitHub account connection.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/DeleteGitHubAccountToken">AWS
+         * API Reference</a></p>
+         *
+         * returns a future to the operation so that it can be executed in parallel to other requests.
+         */
+        virtual Model::DeleteGitHubAccountTokenOutcomeCallable DeleteGitHubAccountTokenCallable(const Model::DeleteGitHubAccountTokenRequest& request) const;
+
+        /**
+         * <p>Deletes a GitHub account connection.</p><p><h3>See Also:</h3>   <a
+         * href="http://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06/DeleteGitHubAccountToken">AWS
+         * API Reference</a></p>
+         *
+         * Queues the request into a thread executor and triggers associated callback when operation has finished.
+         */
+        virtual void DeleteGitHubAccountTokenAsync(const Model::DeleteGitHubAccountTokenRequest& request, const DeleteGitHubAccountTokenResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context = nullptr) const;
 
         /**
          * <p>Deregisters an on-premises instance.</p><p><h3>See Also:</h3>   <a
@@ -1437,6 +1462,7 @@ namespace Model
         void DeleteApplicationAsyncHelper(const Model::DeleteApplicationRequest& request, const DeleteApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteDeploymentConfigAsyncHelper(const Model::DeleteDeploymentConfigRequest& request, const DeleteDeploymentConfigResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeleteDeploymentGroupAsyncHelper(const Model::DeleteDeploymentGroupRequest& request, const DeleteDeploymentGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
+        void DeleteGitHubAccountTokenAsyncHelper(const Model::DeleteGitHubAccountTokenRequest& request, const DeleteGitHubAccountTokenResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void DeregisterOnPremisesInstanceAsyncHelper(const Model::DeregisterOnPremisesInstanceRequest& request, const DeregisterOnPremisesInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void GetApplicationAsyncHelper(const Model::GetApplicationRequest& request, const GetApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;
         void GetApplicationRevisionAsyncHelper(const Model::GetApplicationRevisionRequest& request, const GetApplicationRevisionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const;

@@ -25,6 +25,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace WorkSpaces
@@ -33,7 +34,7 @@ namespace Model
 {
 
   /**
-   * <p>Contains information about a WorkSpace that could not be rebooted
+   * <p>Information about a WorkSpace that could not be rebooted
    * (<a>RebootWorkspaces</a>), rebuilt (<a>RebuildWorkspaces</a>), terminated
    * (<a>TerminateWorkspaces</a>), started (<a>StartWorkspaces</a>), or stopped
    * (<a>StopWorkspaces</a>).</p><p><h3>See Also:</h3>   <a
@@ -44,8 +45,8 @@ namespace Model
   {
   public:
     FailedWorkspaceChangeRequest();
-    FailedWorkspaceChangeRequest(const Aws::Utils::Json::JsonValue& jsonValue);
-    FailedWorkspaceChangeRequest& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    FailedWorkspaceChangeRequest(Aws::Utils::Json::JsonView jsonValue);
+    FailedWorkspaceChangeRequest& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 

@@ -16,6 +16,7 @@
 #pragma once
 #include <aws/athena/Athena_EXPORTS.h>
 #include <aws/core/utils/memory/stl/AWSString.h>
+#include <aws/athena/model/StatementType.h>
 #include <aws/athena/model/ResultConfiguration.h>
 #include <aws/athena/model/QueryExecutionContext.h>
 #include <aws/athena/model/QueryExecutionStatus.h>
@@ -29,6 +30,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace Athena
@@ -46,8 +48,8 @@ namespace Model
   {
   public:
     QueryExecution();
-    QueryExecution(const Aws::Utils::Json::JsonValue& jsonValue);
-    QueryExecution& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    QueryExecution(Aws::Utils::Json::JsonView jsonValue);
+    QueryExecution& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -121,6 +123,52 @@ namespace Model
      * <p>The SQL query statements which the query execution ran.</p>
      */
     inline QueryExecution& WithQuery(const char* value) { SetQuery(value); return *this;}
+
+
+    /**
+     * <p>The type of query statement that was run. <code>DDL</code> indicates DDL
+     * query statements. <code>DML</code> indicates DML (Data Manipulation Language)
+     * query statements, such as <code>CREATE TABLE AS SELECT</code>.
+     * <code>UTILITY</code> indicates query statements other than DDL and DML, such as
+     * <code>SHOW CREATE TABLE</code>, or <code>DESCRIBE &lt;table&gt;</code>.</p>
+     */
+    inline const StatementType& GetStatementType() const{ return m_statementType; }
+
+    /**
+     * <p>The type of query statement that was run. <code>DDL</code> indicates DDL
+     * query statements. <code>DML</code> indicates DML (Data Manipulation Language)
+     * query statements, such as <code>CREATE TABLE AS SELECT</code>.
+     * <code>UTILITY</code> indicates query statements other than DDL and DML, such as
+     * <code>SHOW CREATE TABLE</code>, or <code>DESCRIBE &lt;table&gt;</code>.</p>
+     */
+    inline void SetStatementType(const StatementType& value) { m_statementTypeHasBeenSet = true; m_statementType = value; }
+
+    /**
+     * <p>The type of query statement that was run. <code>DDL</code> indicates DDL
+     * query statements. <code>DML</code> indicates DML (Data Manipulation Language)
+     * query statements, such as <code>CREATE TABLE AS SELECT</code>.
+     * <code>UTILITY</code> indicates query statements other than DDL and DML, such as
+     * <code>SHOW CREATE TABLE</code>, or <code>DESCRIBE &lt;table&gt;</code>.</p>
+     */
+    inline void SetStatementType(StatementType&& value) { m_statementTypeHasBeenSet = true; m_statementType = std::move(value); }
+
+    /**
+     * <p>The type of query statement that was run. <code>DDL</code> indicates DDL
+     * query statements. <code>DML</code> indicates DML (Data Manipulation Language)
+     * query statements, such as <code>CREATE TABLE AS SELECT</code>.
+     * <code>UTILITY</code> indicates query statements other than DDL and DML, such as
+     * <code>SHOW CREATE TABLE</code>, or <code>DESCRIBE &lt;table&gt;</code>.</p>
+     */
+    inline QueryExecution& WithStatementType(const StatementType& value) { SetStatementType(value); return *this;}
+
+    /**
+     * <p>The type of query statement that was run. <code>DDL</code> indicates DDL
+     * query statements. <code>DML</code> indicates DML (Data Manipulation Language)
+     * query statements, such as <code>CREATE TABLE AS SELECT</code>.
+     * <code>UTILITY</code> indicates query statements other than DDL and DML, such as
+     * <code>SHOW CREATE TABLE</code>, or <code>DESCRIBE &lt;table&gt;</code>.</p>
+     */
+    inline QueryExecution& WithStatementType(StatementType&& value) { SetStatementType(std::move(value)); return *this;}
 
 
     /**
@@ -213,31 +261,31 @@ namespace Model
 
     /**
      * <p>The amount of data scanned during the query execution and the amount of time
-     * that it took to execute.</p>
+     * that it took to execute, and the type of statement that was run.</p>
      */
     inline const QueryExecutionStatistics& GetStatistics() const{ return m_statistics; }
 
     /**
      * <p>The amount of data scanned during the query execution and the amount of time
-     * that it took to execute.</p>
+     * that it took to execute, and the type of statement that was run.</p>
      */
     inline void SetStatistics(const QueryExecutionStatistics& value) { m_statisticsHasBeenSet = true; m_statistics = value; }
 
     /**
      * <p>The amount of data scanned during the query execution and the amount of time
-     * that it took to execute.</p>
+     * that it took to execute, and the type of statement that was run.</p>
      */
     inline void SetStatistics(QueryExecutionStatistics&& value) { m_statisticsHasBeenSet = true; m_statistics = std::move(value); }
 
     /**
      * <p>The amount of data scanned during the query execution and the amount of time
-     * that it took to execute.</p>
+     * that it took to execute, and the type of statement that was run.</p>
      */
     inline QueryExecution& WithStatistics(const QueryExecutionStatistics& value) { SetStatistics(value); return *this;}
 
     /**
      * <p>The amount of data scanned during the query execution and the amount of time
-     * that it took to execute.</p>
+     * that it took to execute, and the type of statement that was run.</p>
      */
     inline QueryExecution& WithStatistics(QueryExecutionStatistics&& value) { SetStatistics(std::move(value)); return *this;}
 
@@ -248,6 +296,9 @@ namespace Model
 
     Aws::String m_query;
     bool m_queryHasBeenSet;
+
+    StatementType m_statementType;
+    bool m_statementTypeHasBeenSet;
 
     ResultConfiguration m_resultConfiguration;
     bool m_resultConfigurationHasBeenSet;

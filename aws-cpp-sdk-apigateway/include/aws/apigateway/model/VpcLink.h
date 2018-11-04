@@ -27,6 +27,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace APIGateway
@@ -40,7 +41,7 @@ namespace Model
    * a resource in an Amazon Virtual Private Cloud through Amazon API Gateway, you,
    * as an API developer, create a <a>VpcLink</a> resource targeted for one or more
    * network load balancers of the VPC and then integrate an API method with a
-   * private integration that uses the <a>VpcLink</a>. The private integraiton has an
+   * private integration that uses the <a>VpcLink</a>. The private integration has an
    * integration type of <code>HTTP</code> or <code>HTTP_PROXY</code> and has a
    * connection type of <code>VPC_LINK</code>. The integration uses the
    * <code>connectionId</code> property to identify the <a>VpcLink</a> used.</p> </p>
@@ -52,8 +53,8 @@ namespace Model
   {
   public:
     VpcLink();
-    VpcLink(const Aws::Utils::Json::JsonValue& jsonValue);
-    VpcLink& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    VpcLink(Aws::Utils::Json::JsonView jsonValue);
+    VpcLink& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 

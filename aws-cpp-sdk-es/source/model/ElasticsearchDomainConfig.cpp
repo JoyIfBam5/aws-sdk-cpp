@@ -35,25 +35,31 @@ ElasticsearchDomainConfig::ElasticsearchDomainConfig() :
     m_accessPoliciesHasBeenSet(false),
     m_snapshotOptionsHasBeenSet(false),
     m_vPCOptionsHasBeenSet(false),
+    m_cognitoOptionsHasBeenSet(false),
+    m_encryptionAtRestOptionsHasBeenSet(false),
+    m_nodeToNodeEncryptionOptionsHasBeenSet(false),
     m_advancedOptionsHasBeenSet(false),
     m_logPublishingOptionsHasBeenSet(false)
 {
 }
 
-ElasticsearchDomainConfig::ElasticsearchDomainConfig(const JsonValue& jsonValue) : 
+ElasticsearchDomainConfig::ElasticsearchDomainConfig(JsonView jsonValue) : 
     m_elasticsearchVersionHasBeenSet(false),
     m_elasticsearchClusterConfigHasBeenSet(false),
     m_eBSOptionsHasBeenSet(false),
     m_accessPoliciesHasBeenSet(false),
     m_snapshotOptionsHasBeenSet(false),
     m_vPCOptionsHasBeenSet(false),
+    m_cognitoOptionsHasBeenSet(false),
+    m_encryptionAtRestOptionsHasBeenSet(false),
+    m_nodeToNodeEncryptionOptionsHasBeenSet(false),
     m_advancedOptionsHasBeenSet(false),
     m_logPublishingOptionsHasBeenSet(false)
 {
   *this = jsonValue;
 }
 
-ElasticsearchDomainConfig& ElasticsearchDomainConfig::operator =(const JsonValue& jsonValue)
+ElasticsearchDomainConfig& ElasticsearchDomainConfig::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("ElasticsearchVersion"))
   {
@@ -95,6 +101,27 @@ ElasticsearchDomainConfig& ElasticsearchDomainConfig::operator =(const JsonValue
     m_vPCOptions = jsonValue.GetObject("VPCOptions");
 
     m_vPCOptionsHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("CognitoOptions"))
+  {
+    m_cognitoOptions = jsonValue.GetObject("CognitoOptions");
+
+    m_cognitoOptionsHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("EncryptionAtRestOptions"))
+  {
+    m_encryptionAtRestOptions = jsonValue.GetObject("EncryptionAtRestOptions");
+
+    m_encryptionAtRestOptionsHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("NodeToNodeEncryptionOptions"))
+  {
+    m_nodeToNodeEncryptionOptions = jsonValue.GetObject("NodeToNodeEncryptionOptions");
+
+    m_nodeToNodeEncryptionOptionsHasBeenSet = true;
   }
 
   if(jsonValue.ValueExists("AdvancedOptions"))
@@ -151,6 +178,24 @@ JsonValue ElasticsearchDomainConfig::Jsonize() const
   if(m_vPCOptionsHasBeenSet)
   {
    payload.WithObject("VPCOptions", m_vPCOptions.Jsonize());
+
+  }
+
+  if(m_cognitoOptionsHasBeenSet)
+  {
+   payload.WithObject("CognitoOptions", m_cognitoOptions.Jsonize());
+
+  }
+
+  if(m_encryptionAtRestOptionsHasBeenSet)
+  {
+   payload.WithObject("EncryptionAtRestOptions", m_encryptionAtRestOptions.Jsonize());
+
+  }
+
+  if(m_nodeToNodeEncryptionOptionsHasBeenSet)
+  {
+   payload.WithObject("NodeToNodeEncryptionOptions", m_nodeToNodeEncryptionOptions.Jsonize());
 
   }
 

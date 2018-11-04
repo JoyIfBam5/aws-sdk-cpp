@@ -26,6 +26,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace AppStream
@@ -34,7 +35,7 @@ namespace Model
 {
 
   /**
-   * <p>Describes the reason why the last state change occurred.</p><p><h3>See
+   * <p>Describes the reason why the last image state change occurred.</p><p><h3>See
    * Also:</h3>   <a
    * href="http://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ImageStateChangeReason">AWS
    * API Reference</a></p>
@@ -43,8 +44,8 @@ namespace Model
   {
   public:
     ImageStateChangeReason();
-    ImageStateChangeReason(const Aws::Utils::Json::JsonValue& jsonValue);
-    ImageStateChangeReason& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    ImageStateChangeReason(Aws::Utils::Json::JsonView jsonValue);
+    ImageStateChangeReason& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 

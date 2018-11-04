@@ -94,7 +94,14 @@ DBInstance::DBInstance() :
     m_iAMDatabaseAuthenticationEnabledHasBeenSet(false),
     m_performanceInsightsEnabled(false),
     m_performanceInsightsEnabledHasBeenSet(false),
-    m_performanceInsightsKMSKeyIdHasBeenSet(false)
+    m_performanceInsightsKMSKeyIdHasBeenSet(false),
+    m_performanceInsightsRetentionPeriod(0),
+    m_performanceInsightsRetentionPeriodHasBeenSet(false),
+    m_enabledCloudwatchLogsExportsHasBeenSet(false),
+    m_processorFeaturesHasBeenSet(false),
+    m_deletionProtection(false),
+    m_deletionProtectionHasBeenSet(false),
+    m_listenerEndpointHasBeenSet(false)
 {
 }
 
@@ -162,7 +169,14 @@ DBInstance::DBInstance(const XmlNode& xmlNode) :
     m_iAMDatabaseAuthenticationEnabledHasBeenSet(false),
     m_performanceInsightsEnabled(false),
     m_performanceInsightsEnabledHasBeenSet(false),
-    m_performanceInsightsKMSKeyIdHasBeenSet(false)
+    m_performanceInsightsKMSKeyIdHasBeenSet(false),
+    m_performanceInsightsRetentionPeriod(0),
+    m_performanceInsightsRetentionPeriodHasBeenSet(false),
+    m_enabledCloudwatchLogsExportsHasBeenSet(false),
+    m_processorFeaturesHasBeenSet(false),
+    m_deletionProtection(false),
+    m_deletionProtectionHasBeenSet(false),
+    m_listenerEndpointHasBeenSet(false)
 {
   *this = xmlNode;
 }
@@ -527,6 +541,48 @@ DBInstance& DBInstance::operator =(const XmlNode& xmlNode)
       m_performanceInsightsKMSKeyId = StringUtils::Trim(performanceInsightsKMSKeyIdNode.GetText().c_str());
       m_performanceInsightsKMSKeyIdHasBeenSet = true;
     }
+    XmlNode performanceInsightsRetentionPeriodNode = resultNode.FirstChild("PerformanceInsightsRetentionPeriod");
+    if(!performanceInsightsRetentionPeriodNode.IsNull())
+    {
+      m_performanceInsightsRetentionPeriod = StringUtils::ConvertToInt32(StringUtils::Trim(performanceInsightsRetentionPeriodNode.GetText().c_str()).c_str());
+      m_performanceInsightsRetentionPeriodHasBeenSet = true;
+    }
+    XmlNode enabledCloudwatchLogsExportsNode = resultNode.FirstChild("EnabledCloudwatchLogsExports");
+    if(!enabledCloudwatchLogsExportsNode.IsNull())
+    {
+      XmlNode enabledCloudwatchLogsExportsMember = enabledCloudwatchLogsExportsNode.FirstChild("member");
+      while(!enabledCloudwatchLogsExportsMember.IsNull())
+      {
+        m_enabledCloudwatchLogsExports.push_back(StringUtils::Trim(enabledCloudwatchLogsExportsMember.GetText().c_str()));
+        enabledCloudwatchLogsExportsMember = enabledCloudwatchLogsExportsMember.NextNode("member");
+      }
+
+      m_enabledCloudwatchLogsExportsHasBeenSet = true;
+    }
+    XmlNode processorFeaturesNode = resultNode.FirstChild("ProcessorFeatures");
+    if(!processorFeaturesNode.IsNull())
+    {
+      XmlNode processorFeaturesMember = processorFeaturesNode.FirstChild("ProcessorFeature");
+      while(!processorFeaturesMember.IsNull())
+      {
+        m_processorFeatures.push_back(processorFeaturesMember);
+        processorFeaturesMember = processorFeaturesMember.NextNode("ProcessorFeature");
+      }
+
+      m_processorFeaturesHasBeenSet = true;
+    }
+    XmlNode deletionProtectionNode = resultNode.FirstChild("DeletionProtection");
+    if(!deletionProtectionNode.IsNull())
+    {
+      m_deletionProtection = StringUtils::ConvertToBool(StringUtils::Trim(deletionProtectionNode.GetText().c_str()).c_str());
+      m_deletionProtectionHasBeenSet = true;
+    }
+    XmlNode listenerEndpointNode = resultNode.FirstChild("ListenerEndpoint");
+    if(!listenerEndpointNode.IsNull())
+    {
+      m_listenerEndpoint = listenerEndpointNode;
+      m_listenerEndpointHasBeenSet = true;
+    }
   }
 
   return *this;
@@ -839,6 +895,43 @@ void DBInstance::OutputToStream(Aws::OStream& oStream, const char* location, uns
       oStream << location << index << locationValue << ".PerformanceInsightsKMSKeyId=" << StringUtils::URLEncode(m_performanceInsightsKMSKeyId.c_str()) << "&";
   }
 
+  if(m_performanceInsightsRetentionPeriodHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".PerformanceInsightsRetentionPeriod=" << m_performanceInsightsRetentionPeriod << "&";
+  }
+
+  if(m_enabledCloudwatchLogsExportsHasBeenSet)
+  {
+      unsigned enabledCloudwatchLogsExportsIdx = 1;
+      for(auto& item : m_enabledCloudwatchLogsExports)
+      {
+        oStream << location << index << locationValue << ".EnabledCloudwatchLogsExports.member." << enabledCloudwatchLogsExportsIdx++ << "=" << StringUtils::URLEncode(item.c_str()) << "&";
+      }
+  }
+
+  if(m_processorFeaturesHasBeenSet)
+  {
+      unsigned processorFeaturesIdx = 1;
+      for(auto& item : m_processorFeatures)
+      {
+        Aws::StringStream processorFeaturesSs;
+        processorFeaturesSs << location << index << locationValue << ".ProcessorFeature." << processorFeaturesIdx++;
+        item.OutputToStream(oStream, processorFeaturesSs.str().c_str());
+      }
+  }
+
+  if(m_deletionProtectionHasBeenSet)
+  {
+      oStream << location << index << locationValue << ".DeletionProtection=" << std::boolalpha << m_deletionProtection << "&";
+  }
+
+  if(m_listenerEndpointHasBeenSet)
+  {
+      Aws::StringStream listenerEndpointLocationAndMemberSs;
+      listenerEndpointLocationAndMemberSs << location << index << locationValue << ".ListenerEndpoint";
+      m_listenerEndpoint.OutputToStream(oStream, listenerEndpointLocationAndMemberSs.str().c_str());
+  }
+
 }
 
 void DBInstance::OutputToStream(Aws::OStream& oStream, const char* location) const
@@ -1096,6 +1189,38 @@ void DBInstance::OutputToStream(Aws::OStream& oStream, const char* location) con
   if(m_performanceInsightsKMSKeyIdHasBeenSet)
   {
       oStream << location << ".PerformanceInsightsKMSKeyId=" << StringUtils::URLEncode(m_performanceInsightsKMSKeyId.c_str()) << "&";
+  }
+  if(m_performanceInsightsRetentionPeriodHasBeenSet)
+  {
+      oStream << location << ".PerformanceInsightsRetentionPeriod=" << m_performanceInsightsRetentionPeriod << "&";
+  }
+  if(m_enabledCloudwatchLogsExportsHasBeenSet)
+  {
+      unsigned enabledCloudwatchLogsExportsIdx = 1;
+      for(auto& item : m_enabledCloudwatchLogsExports)
+      {
+        oStream << location << ".EnabledCloudwatchLogsExports.member." << enabledCloudwatchLogsExportsIdx++ << "=" << StringUtils::URLEncode(item.c_str()) << "&";
+      }
+  }
+  if(m_processorFeaturesHasBeenSet)
+  {
+      unsigned processorFeaturesIdx = 1;
+      for(auto& item : m_processorFeatures)
+      {
+        Aws::StringStream processorFeaturesSs;
+        processorFeaturesSs << location <<  ".ProcessorFeature." << processorFeaturesIdx++;
+        item.OutputToStream(oStream, processorFeaturesSs.str().c_str());
+      }
+  }
+  if(m_deletionProtectionHasBeenSet)
+  {
+      oStream << location << ".DeletionProtection=" << std::boolalpha << m_deletionProtection << "&";
+  }
+  if(m_listenerEndpointHasBeenSet)
+  {
+      Aws::String listenerEndpointLocationAndMember(location);
+      listenerEndpointLocationAndMember += ".ListenerEndpoint";
+      m_listenerEndpoint.OutputToStream(oStream, listenerEndpointLocationAndMember.c_str());
   }
 }
 

@@ -26,6 +26,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace AppStream
@@ -43,8 +44,8 @@ namespace Model
   {
   public:
     Application();
-    Application(const Aws::Utils::Json::JsonValue& jsonValue);
-    Application& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    Application(Aws::Utils::Json::JsonView jsonValue);
+    Application& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -85,37 +86,37 @@ namespace Model
 
 
     /**
-     * <p>The application name displayed to end users.</p>
+     * <p>The application name for display.</p>
      */
     inline const Aws::String& GetDisplayName() const{ return m_displayName; }
 
     /**
-     * <p>The application name displayed to end users.</p>
+     * <p>The application name for display.</p>
      */
     inline void SetDisplayName(const Aws::String& value) { m_displayNameHasBeenSet = true; m_displayName = value; }
 
     /**
-     * <p>The application name displayed to end users.</p>
+     * <p>The application name for display.</p>
      */
     inline void SetDisplayName(Aws::String&& value) { m_displayNameHasBeenSet = true; m_displayName = std::move(value); }
 
     /**
-     * <p>The application name displayed to end users.</p>
+     * <p>The application name for display.</p>
      */
     inline void SetDisplayName(const char* value) { m_displayNameHasBeenSet = true; m_displayName.assign(value); }
 
     /**
-     * <p>The application name displayed to end users.</p>
+     * <p>The application name for display.</p>
      */
     inline Application& WithDisplayName(const Aws::String& value) { SetDisplayName(value); return *this;}
 
     /**
-     * <p>The application name displayed to end users.</p>
+     * <p>The application name for display.</p>
      */
     inline Application& WithDisplayName(Aws::String&& value) { SetDisplayName(std::move(value)); return *this;}
 
     /**
-     * <p>The application name displayed to end users.</p>
+     * <p>The application name for display.</p>
      */
     inline Application& WithDisplayName(const char* value) { SetDisplayName(value); return *this;}
 

@@ -52,6 +52,9 @@ set(KINESIS-VIDEO-ARCHIVED-MEDIA_INCLUDES
 add_library(${PROJECT_NAME} ${LIBTYPE} ${KINESIS-VIDEO-ARCHIVED-MEDIA_SRC})
 add_library(AWS::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
+set_compiler_flags(${PROJECT_NAME})
+set_compiler_warnings(${PROJECT_NAME})
+
 if(USE_WINDOWS_DLL_SEMANTICS AND BUILD_SHARED_LIBS)
     target_compile_definitions(${PROJECT_NAME} PRIVATE "AWS_KINESISVIDEOARCHIVEDMEDIA_EXPORTS")
 endif()
@@ -60,7 +63,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>)
 
-target_link_libraries(${PROJECT_NAME} ${PROJECT_LIBS})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${PLATFORM_DEP_LIBS} ${PROJECT_LIBS})
 
 
 setup_install()
@@ -69,7 +72,8 @@ install (FILES ${AWS_KINESIS-VIDEO-ARCHIVED-MEDIA_HEADERS} DESTINATION ${INCLUDE
 install (FILES ${AWS_KINESIS-VIDEO-ARCHIVED-MEDIA_MODEL_HEADERS} DESTINATION ${INCLUDE_DIRECTORY}/aws/kinesis-video-archived-media/model)
 
 if(PLATFORM_WINDOWS AND MSVC)
-    install (FILES nuget/${PROJECT_NAME}.autopkg DESTINATION nuget)
+    file(GLOB NUGET_FILES "nuget/${PROJECT_NAME}.*.autopkg")
+    install (FILES ${NUGET_FILES} DESTINATION nuget)
 endif()
 
 do_packaging()

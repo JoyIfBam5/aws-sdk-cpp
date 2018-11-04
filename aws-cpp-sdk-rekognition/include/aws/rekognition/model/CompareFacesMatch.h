@@ -25,6 +25,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace Rekognition
@@ -34,7 +35,7 @@ namespace Model
 
   /**
    * <p>Provides information about a face in a target image that matches the source
-   * image face analysed by <code>CompareFaces</code>. The <code>Face</code> property
+   * image face analyzed by <code>CompareFaces</code>. The <code>Face</code> property
    * contains the bounding box of the face in the target image. The
    * <code>Similarity</code> property is the confidence that the source image face
    * matches the face in the bounding box.</p><p><h3>See Also:</h3>   <a
@@ -45,8 +46,8 @@ namespace Model
   {
   public:
     CompareFacesMatch();
-    CompareFacesMatch(const Aws::Utils::Json::JsonValue& jsonValue);
-    CompareFacesMatch& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    CompareFacesMatch(Aws::Utils::Json::JsonView jsonValue);
+    CompareFacesMatch& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 

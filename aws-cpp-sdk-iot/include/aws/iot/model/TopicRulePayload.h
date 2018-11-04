@@ -27,6 +27,7 @@ namespace Utils
 namespace Json
 {
   class JsonValue;
+  class JsonView;
 } // namespace Json
 } // namespace Utils
 namespace IoT
@@ -43,8 +44,8 @@ namespace Model
   {
   public:
     TopicRulePayload();
-    TopicRulePayload(const Aws::Utils::Json::JsonValue& jsonValue);
-    TopicRulePayload& operator=(const Aws::Utils::Json::JsonValue& jsonValue);
+    TopicRulePayload(Aws::Utils::Json::JsonView jsonValue);
+    TopicRulePayload& operator=(Aws::Utils::Json::JsonView jsonValue);
     Aws::Utils::Json::JsonValue Jsonize() const;
 
 
@@ -221,6 +222,32 @@ namespace Model
      */
     inline TopicRulePayload& WithAwsIotSqlVersion(const char* value) { SetAwsIotSqlVersion(value); return *this;}
 
+
+    /**
+     * <p>The action to take when an error occurs.</p>
+     */
+    inline const Action& GetErrorAction() const{ return m_errorAction; }
+
+    /**
+     * <p>The action to take when an error occurs.</p>
+     */
+    inline void SetErrorAction(const Action& value) { m_errorActionHasBeenSet = true; m_errorAction = value; }
+
+    /**
+     * <p>The action to take when an error occurs.</p>
+     */
+    inline void SetErrorAction(Action&& value) { m_errorActionHasBeenSet = true; m_errorAction = std::move(value); }
+
+    /**
+     * <p>The action to take when an error occurs.</p>
+     */
+    inline TopicRulePayload& WithErrorAction(const Action& value) { SetErrorAction(value); return *this;}
+
+    /**
+     * <p>The action to take when an error occurs.</p>
+     */
+    inline TopicRulePayload& WithErrorAction(Action&& value) { SetErrorAction(std::move(value)); return *this;}
+
   private:
 
     Aws::String m_sql;
@@ -237,6 +264,9 @@ namespace Model
 
     Aws::String m_awsIotSqlVersion;
     bool m_awsIotSqlVersionHasBeenSet;
+
+    Action m_errorAction;
+    bool m_errorActionHasBeenSet;
   };
 
 } // namespace Model

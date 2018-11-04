@@ -26,6 +26,8 @@
 #include <aws/ec2/model/LaunchTemplateSpecification.h>
 #include <aws/ec2/model/InstanceMarketOptionsRequest.h>
 #include <aws/ec2/model/CreditSpecificationRequest.h>
+#include <aws/ec2/model/CpuOptionsRequest.h>
+#include <aws/ec2/model/CapacityReservationSpecification.h>
 #include <aws/ec2/model/BlockDeviceMapping.h>
 #include <aws/ec2/model/InstanceIpv6Address.h>
 #include <aws/ec2/model/InstanceNetworkInterfaceSpecification.h>
@@ -121,37 +123,51 @@ namespace Model
 
 
     /**
-     * <p>The ID of the AMI, which you can get by calling <a>DescribeImages</a>.</p>
+     * <p>The ID of the AMI, which you can get by calling <a>DescribeImages</a>. An AMI
+     * is required to launch an instance and must be specified here or in a launch
+     * template.</p>
      */
     inline const Aws::String& GetImageId() const{ return m_imageId; }
 
     /**
-     * <p>The ID of the AMI, which you can get by calling <a>DescribeImages</a>.</p>
+     * <p>The ID of the AMI, which you can get by calling <a>DescribeImages</a>. An AMI
+     * is required to launch an instance and must be specified here or in a launch
+     * template.</p>
      */
     inline void SetImageId(const Aws::String& value) { m_imageIdHasBeenSet = true; m_imageId = value; }
 
     /**
-     * <p>The ID of the AMI, which you can get by calling <a>DescribeImages</a>.</p>
+     * <p>The ID of the AMI, which you can get by calling <a>DescribeImages</a>. An AMI
+     * is required to launch an instance and must be specified here or in a launch
+     * template.</p>
      */
     inline void SetImageId(Aws::String&& value) { m_imageIdHasBeenSet = true; m_imageId = std::move(value); }
 
     /**
-     * <p>The ID of the AMI, which you can get by calling <a>DescribeImages</a>.</p>
+     * <p>The ID of the AMI, which you can get by calling <a>DescribeImages</a>. An AMI
+     * is required to launch an instance and must be specified here or in a launch
+     * template.</p>
      */
     inline void SetImageId(const char* value) { m_imageIdHasBeenSet = true; m_imageId.assign(value); }
 
     /**
-     * <p>The ID of the AMI, which you can get by calling <a>DescribeImages</a>.</p>
+     * <p>The ID of the AMI, which you can get by calling <a>DescribeImages</a>. An AMI
+     * is required to launch an instance and must be specified here or in a launch
+     * template.</p>
      */
     inline RunInstancesRequest& WithImageId(const Aws::String& value) { SetImageId(value); return *this;}
 
     /**
-     * <p>The ID of the AMI, which you can get by calling <a>DescribeImages</a>.</p>
+     * <p>The ID of the AMI, which you can get by calling <a>DescribeImages</a>. An AMI
+     * is required to launch an instance and must be specified here or in a launch
+     * template.</p>
      */
     inline RunInstancesRequest& WithImageId(Aws::String&& value) { SetImageId(std::move(value)); return *this;}
 
     /**
-     * <p>The ID of the AMI, which you can get by calling <a>DescribeImages</a>.</p>
+     * <p>The ID of the AMI, which you can get by calling <a>DescribeImages</a>. An AMI
+     * is required to launch an instance and must be specified here or in a launch
+     * template.</p>
      */
     inline RunInstancesRequest& WithImageId(const char* value) { SetImageId(value); return *this;}
 
@@ -1214,51 +1230,58 @@ namespace Model
 
 
     /**
-     * <p>The tags to apply to the resources during launch. You can tag instances and
-     * volumes. The specified tags are applied to all instances or volumes that are
-     * created during launch.</p>
+     * <p>The tags to apply to the resources during launch. You can only tag instances
+     * and volumes on launch. The specified tags are applied to all instances or
+     * volumes that are created during launch. To tag a resource after it has been
+     * created, see <a>CreateTags</a>.</p>
      */
     inline const Aws::Vector<TagSpecification>& GetTagSpecifications() const{ return m_tagSpecifications; }
 
     /**
-     * <p>The tags to apply to the resources during launch. You can tag instances and
-     * volumes. The specified tags are applied to all instances or volumes that are
-     * created during launch.</p>
+     * <p>The tags to apply to the resources during launch. You can only tag instances
+     * and volumes on launch. The specified tags are applied to all instances or
+     * volumes that are created during launch. To tag a resource after it has been
+     * created, see <a>CreateTags</a>.</p>
      */
     inline void SetTagSpecifications(const Aws::Vector<TagSpecification>& value) { m_tagSpecificationsHasBeenSet = true; m_tagSpecifications = value; }
 
     /**
-     * <p>The tags to apply to the resources during launch. You can tag instances and
-     * volumes. The specified tags are applied to all instances or volumes that are
-     * created during launch.</p>
+     * <p>The tags to apply to the resources during launch. You can only tag instances
+     * and volumes on launch. The specified tags are applied to all instances or
+     * volumes that are created during launch. To tag a resource after it has been
+     * created, see <a>CreateTags</a>.</p>
      */
     inline void SetTagSpecifications(Aws::Vector<TagSpecification>&& value) { m_tagSpecificationsHasBeenSet = true; m_tagSpecifications = std::move(value); }
 
     /**
-     * <p>The tags to apply to the resources during launch. You can tag instances and
-     * volumes. The specified tags are applied to all instances or volumes that are
-     * created during launch.</p>
+     * <p>The tags to apply to the resources during launch. You can only tag instances
+     * and volumes on launch. The specified tags are applied to all instances or
+     * volumes that are created during launch. To tag a resource after it has been
+     * created, see <a>CreateTags</a>.</p>
      */
     inline RunInstancesRequest& WithTagSpecifications(const Aws::Vector<TagSpecification>& value) { SetTagSpecifications(value); return *this;}
 
     /**
-     * <p>The tags to apply to the resources during launch. You can tag instances and
-     * volumes. The specified tags are applied to all instances or volumes that are
-     * created during launch.</p>
+     * <p>The tags to apply to the resources during launch. You can only tag instances
+     * and volumes on launch. The specified tags are applied to all instances or
+     * volumes that are created during launch. To tag a resource after it has been
+     * created, see <a>CreateTags</a>.</p>
      */
     inline RunInstancesRequest& WithTagSpecifications(Aws::Vector<TagSpecification>&& value) { SetTagSpecifications(std::move(value)); return *this;}
 
     /**
-     * <p>The tags to apply to the resources during launch. You can tag instances and
-     * volumes. The specified tags are applied to all instances or volumes that are
-     * created during launch.</p>
+     * <p>The tags to apply to the resources during launch. You can only tag instances
+     * and volumes on launch. The specified tags are applied to all instances or
+     * volumes that are created during launch. To tag a resource after it has been
+     * created, see <a>CreateTags</a>.</p>
      */
     inline RunInstancesRequest& AddTagSpecifications(const TagSpecification& value) { m_tagSpecificationsHasBeenSet = true; m_tagSpecifications.push_back(value); return *this; }
 
     /**
-     * <p>The tags to apply to the resources during launch. You can tag instances and
-     * volumes. The specified tags are applied to all instances or volumes that are
-     * created during launch.</p>
+     * <p>The tags to apply to the resources during launch. You can only tag instances
+     * and volumes on launch. The specified tags are applied to all instances or
+     * volumes that are created during launch. To tag a resource after it has been
+     * created, see <a>CreateTags</a>.</p>
      */
     inline RunInstancesRequest& AddTagSpecifications(TagSpecification&& value) { m_tagSpecificationsHasBeenSet = true; m_tagSpecifications.push_back(std::move(value)); return *this; }
 
@@ -1266,61 +1289,81 @@ namespace Model
     /**
      * <p>The launch template to use to launch the instances. Any parameters that you
      * specify in <a>RunInstances</a> override the same parameters in the launch
-     * template.</p>
+     * template. You can specify either the name or ID of a launch template, but not
+     * both.</p>
      */
     inline const LaunchTemplateSpecification& GetLaunchTemplate() const{ return m_launchTemplate; }
 
     /**
      * <p>The launch template to use to launch the instances. Any parameters that you
      * specify in <a>RunInstances</a> override the same parameters in the launch
-     * template.</p>
+     * template. You can specify either the name or ID of a launch template, but not
+     * both.</p>
      */
     inline void SetLaunchTemplate(const LaunchTemplateSpecification& value) { m_launchTemplateHasBeenSet = true; m_launchTemplate = value; }
 
     /**
      * <p>The launch template to use to launch the instances. Any parameters that you
      * specify in <a>RunInstances</a> override the same parameters in the launch
-     * template.</p>
+     * template. You can specify either the name or ID of a launch template, but not
+     * both.</p>
      */
     inline void SetLaunchTemplate(LaunchTemplateSpecification&& value) { m_launchTemplateHasBeenSet = true; m_launchTemplate = std::move(value); }
 
     /**
      * <p>The launch template to use to launch the instances. Any parameters that you
      * specify in <a>RunInstances</a> override the same parameters in the launch
-     * template.</p>
+     * template. You can specify either the name or ID of a launch template, but not
+     * both.</p>
      */
     inline RunInstancesRequest& WithLaunchTemplate(const LaunchTemplateSpecification& value) { SetLaunchTemplate(value); return *this;}
 
     /**
      * <p>The launch template to use to launch the instances. Any parameters that you
      * specify in <a>RunInstances</a> override the same parameters in the launch
-     * template.</p>
+     * template. You can specify either the name or ID of a launch template, but not
+     * both.</p>
      */
     inline RunInstancesRequest& WithLaunchTemplate(LaunchTemplateSpecification&& value) { SetLaunchTemplate(std::move(value)); return *this;}
 
 
     /**
-     * <p>The market (purchasing) option for the instances.</p>
+     * <p>The market (purchasing) option for the instances.</p> <p>For
+     * <a>RunInstances</a>, persistent Spot Instance requests are only supported when
+     * <b>InstanceInterruptionBehavior</b> is set to either <code>hibernate</code> or
+     * <code>stop</code>.</p>
      */
     inline const InstanceMarketOptionsRequest& GetInstanceMarketOptions() const{ return m_instanceMarketOptions; }
 
     /**
-     * <p>The market (purchasing) option for the instances.</p>
+     * <p>The market (purchasing) option for the instances.</p> <p>For
+     * <a>RunInstances</a>, persistent Spot Instance requests are only supported when
+     * <b>InstanceInterruptionBehavior</b> is set to either <code>hibernate</code> or
+     * <code>stop</code>.</p>
      */
     inline void SetInstanceMarketOptions(const InstanceMarketOptionsRequest& value) { m_instanceMarketOptionsHasBeenSet = true; m_instanceMarketOptions = value; }
 
     /**
-     * <p>The market (purchasing) option for the instances.</p>
+     * <p>The market (purchasing) option for the instances.</p> <p>For
+     * <a>RunInstances</a>, persistent Spot Instance requests are only supported when
+     * <b>InstanceInterruptionBehavior</b> is set to either <code>hibernate</code> or
+     * <code>stop</code>.</p>
      */
     inline void SetInstanceMarketOptions(InstanceMarketOptionsRequest&& value) { m_instanceMarketOptionsHasBeenSet = true; m_instanceMarketOptions = std::move(value); }
 
     /**
-     * <p>The market (purchasing) option for the instances.</p>
+     * <p>The market (purchasing) option for the instances.</p> <p>For
+     * <a>RunInstances</a>, persistent Spot Instance requests are only supported when
+     * <b>InstanceInterruptionBehavior</b> is set to either <code>hibernate</code> or
+     * <code>stop</code>.</p>
      */
     inline RunInstancesRequest& WithInstanceMarketOptions(const InstanceMarketOptionsRequest& value) { SetInstanceMarketOptions(value); return *this;}
 
     /**
-     * <p>The market (purchasing) option for the instances.</p>
+     * <p>The market (purchasing) option for the instances.</p> <p>For
+     * <a>RunInstances</a>, persistent Spot Instance requests are only supported when
+     * <b>InstanceInterruptionBehavior</b> is set to either <code>hibernate</code> or
+     * <code>stop</code>.</p>
      */
     inline RunInstancesRequest& WithInstanceMarketOptions(InstanceMarketOptionsRequest&& value) { SetInstanceMarketOptions(std::move(value)); return *this;}
 
@@ -1330,9 +1373,10 @@ namespace Model
      * <code>standard</code> and <code>unlimited</code>. To change this attribute after
      * launch, use <a>ModifyInstanceCreditSpecification</a>. For more information, see
      * <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/t2-instances.html">T2
-     * Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
-     * <p>Default: <code>standard</code> </p>
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html">Burstable
+     * Performance Instances</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.</p> <p>Default: <code>standard</code> (T2 instances) or
+     * <code>unlimited</code> (T3 instances)</p>
      */
     inline const CreditSpecificationRequest& GetCreditSpecification() const{ return m_creditSpecification; }
 
@@ -1341,9 +1385,10 @@ namespace Model
      * <code>standard</code> and <code>unlimited</code>. To change this attribute after
      * launch, use <a>ModifyInstanceCreditSpecification</a>. For more information, see
      * <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/t2-instances.html">T2
-     * Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
-     * <p>Default: <code>standard</code> </p>
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html">Burstable
+     * Performance Instances</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.</p> <p>Default: <code>standard</code> (T2 instances) or
+     * <code>unlimited</code> (T3 instances)</p>
      */
     inline void SetCreditSpecification(const CreditSpecificationRequest& value) { m_creditSpecificationHasBeenSet = true; m_creditSpecification = value; }
 
@@ -1352,9 +1397,10 @@ namespace Model
      * <code>standard</code> and <code>unlimited</code>. To change this attribute after
      * launch, use <a>ModifyInstanceCreditSpecification</a>. For more information, see
      * <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/t2-instances.html">T2
-     * Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
-     * <p>Default: <code>standard</code> </p>
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html">Burstable
+     * Performance Instances</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.</p> <p>Default: <code>standard</code> (T2 instances) or
+     * <code>unlimited</code> (T3 instances)</p>
      */
     inline void SetCreditSpecification(CreditSpecificationRequest&& value) { m_creditSpecificationHasBeenSet = true; m_creditSpecification = std::move(value); }
 
@@ -1363,9 +1409,10 @@ namespace Model
      * <code>standard</code> and <code>unlimited</code>. To change this attribute after
      * launch, use <a>ModifyInstanceCreditSpecification</a>. For more information, see
      * <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/t2-instances.html">T2
-     * Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
-     * <p>Default: <code>standard</code> </p>
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html">Burstable
+     * Performance Instances</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.</p> <p>Default: <code>standard</code> (T2 instances) or
+     * <code>unlimited</code> (T3 instances)</p>
      */
     inline RunInstancesRequest& WithCreditSpecification(const CreditSpecificationRequest& value) { SetCreditSpecification(value); return *this;}
 
@@ -1374,11 +1421,74 @@ namespace Model
      * <code>standard</code> and <code>unlimited</code>. To change this attribute after
      * launch, use <a>ModifyInstanceCreditSpecification</a>. For more information, see
      * <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/t2-instances.html">T2
-     * Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
-     * <p>Default: <code>standard</code> </p>
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html">Burstable
+     * Performance Instances</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.</p> <p>Default: <code>standard</code> (T2 instances) or
+     * <code>unlimited</code> (T3 instances)</p>
      */
     inline RunInstancesRequest& WithCreditSpecification(CreditSpecificationRequest&& value) { SetCreditSpecification(std::move(value)); return *this;}
+
+
+    /**
+     * <p>The CPU options for the instance. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html">Optimizing
+     * CPU Options</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+     */
+    inline const CpuOptionsRequest& GetCpuOptions() const{ return m_cpuOptions; }
+
+    /**
+     * <p>The CPU options for the instance. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html">Optimizing
+     * CPU Options</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+     */
+    inline void SetCpuOptions(const CpuOptionsRequest& value) { m_cpuOptionsHasBeenSet = true; m_cpuOptions = value; }
+
+    /**
+     * <p>The CPU options for the instance. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html">Optimizing
+     * CPU Options</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+     */
+    inline void SetCpuOptions(CpuOptionsRequest&& value) { m_cpuOptionsHasBeenSet = true; m_cpuOptions = std::move(value); }
+
+    /**
+     * <p>The CPU options for the instance. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html">Optimizing
+     * CPU Options</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+     */
+    inline RunInstancesRequest& WithCpuOptions(const CpuOptionsRequest& value) { SetCpuOptions(value); return *this;}
+
+    /**
+     * <p>The CPU options for the instance. For more information, see <a
+     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html">Optimizing
+     * CPU Options</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>
+     */
+    inline RunInstancesRequest& WithCpuOptions(CpuOptionsRequest&& value) { SetCpuOptions(std::move(value)); return *this;}
+
+
+    /**
+     * <p>Information about the Capacity Reservation targeting option.</p>
+     */
+    inline const CapacityReservationSpecification& GetCapacityReservationSpecification() const{ return m_capacityReservationSpecification; }
+
+    /**
+     * <p>Information about the Capacity Reservation targeting option.</p>
+     */
+    inline void SetCapacityReservationSpecification(const CapacityReservationSpecification& value) { m_capacityReservationSpecificationHasBeenSet = true; m_capacityReservationSpecification = value; }
+
+    /**
+     * <p>Information about the Capacity Reservation targeting option.</p>
+     */
+    inline void SetCapacityReservationSpecification(CapacityReservationSpecification&& value) { m_capacityReservationSpecificationHasBeenSet = true; m_capacityReservationSpecification = std::move(value); }
+
+    /**
+     * <p>Information about the Capacity Reservation targeting option.</p>
+     */
+    inline RunInstancesRequest& WithCapacityReservationSpecification(const CapacityReservationSpecification& value) { SetCapacityReservationSpecification(value); return *this;}
+
+    /**
+     * <p>Information about the Capacity Reservation targeting option.</p>
+     */
+    inline RunInstancesRequest& WithCapacityReservationSpecification(CapacityReservationSpecification&& value) { SetCapacityReservationSpecification(std::move(value)); return *this;}
 
   private:
 
@@ -1471,6 +1581,12 @@ namespace Model
 
     CreditSpecificationRequest m_creditSpecification;
     bool m_creditSpecificationHasBeenSet;
+
+    CpuOptionsRequest m_cpuOptions;
+    bool m_cpuOptionsHasBeenSet;
+
+    CapacityReservationSpecification m_capacityReservationSpecification;
+    bool m_capacityReservationSpecificationHasBeenSet;
   };
 
 } // namespace Model

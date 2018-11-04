@@ -44,11 +44,15 @@ AssociationDescription::AssociationDescription() :
     m_outputLocationHasBeenSet(false),
     m_lastExecutionDateHasBeenSet(false),
     m_lastSuccessfulExecutionDateHasBeenSet(false),
-    m_associationNameHasBeenSet(false)
+    m_associationNameHasBeenSet(false),
+    m_maxErrorsHasBeenSet(false),
+    m_maxConcurrencyHasBeenSet(false),
+    m_complianceSeverity(AssociationComplianceSeverity::NOT_SET),
+    m_complianceSeverityHasBeenSet(false)
 {
 }
 
-AssociationDescription::AssociationDescription(const JsonValue& jsonValue) : 
+AssociationDescription::AssociationDescription(JsonView jsonValue) : 
     m_nameHasBeenSet(false),
     m_instanceIdHasBeenSet(false),
     m_associationVersionHasBeenSet(false),
@@ -64,12 +68,16 @@ AssociationDescription::AssociationDescription(const JsonValue& jsonValue) :
     m_outputLocationHasBeenSet(false),
     m_lastExecutionDateHasBeenSet(false),
     m_lastSuccessfulExecutionDateHasBeenSet(false),
-    m_associationNameHasBeenSet(false)
+    m_associationNameHasBeenSet(false),
+    m_maxErrorsHasBeenSet(false),
+    m_maxConcurrencyHasBeenSet(false),
+    m_complianceSeverity(AssociationComplianceSeverity::NOT_SET),
+    m_complianceSeverityHasBeenSet(false)
 {
   *this = jsonValue;
 }
 
-AssociationDescription& AssociationDescription::operator =(const JsonValue& jsonValue)
+AssociationDescription& AssociationDescription::operator =(JsonView jsonValue)
 {
   if(jsonValue.ValueExists("Name"))
   {
@@ -129,10 +137,10 @@ AssociationDescription& AssociationDescription::operator =(const JsonValue& json
 
   if(jsonValue.ValueExists("Parameters"))
   {
-    Aws::Map<Aws::String, JsonValue> parametersJsonMap = jsonValue.GetObject("Parameters").GetAllObjects();
+    Aws::Map<Aws::String, JsonView> parametersJsonMap = jsonValue.GetObject("Parameters").GetAllObjects();
     for(auto& parametersItem : parametersJsonMap)
     {
-      Array<JsonValue> parameterValueListJsonList = parametersItem.second.AsArray();
+      Array<JsonView> parameterValueListJsonList = parametersItem.second.AsArray();
       Aws::Vector<Aws::String> parameterValueListList;
       parameterValueListList.reserve((size_t)parameterValueListJsonList.GetLength());
       for(unsigned parameterValueListIndex = 0; parameterValueListIndex < parameterValueListJsonList.GetLength(); ++parameterValueListIndex)
@@ -153,7 +161,7 @@ AssociationDescription& AssociationDescription::operator =(const JsonValue& json
 
   if(jsonValue.ValueExists("Targets"))
   {
-    Array<JsonValue> targetsJsonList = jsonValue.GetArray("Targets");
+    Array<JsonView> targetsJsonList = jsonValue.GetArray("Targets");
     for(unsigned targetsIndex = 0; targetsIndex < targetsJsonList.GetLength(); ++targetsIndex)
     {
       m_targets.push_back(targetsJsonList[targetsIndex].AsObject());
@@ -194,6 +202,27 @@ AssociationDescription& AssociationDescription::operator =(const JsonValue& json
     m_associationName = jsonValue.GetString("AssociationName");
 
     m_associationNameHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("MaxErrors"))
+  {
+    m_maxErrors = jsonValue.GetString("MaxErrors");
+
+    m_maxErrorsHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("MaxConcurrency"))
+  {
+    m_maxConcurrency = jsonValue.GetString("MaxConcurrency");
+
+    m_maxConcurrencyHasBeenSet = true;
+  }
+
+  if(jsonValue.ValueExists("ComplianceSeverity"))
+  {
+    m_complianceSeverity = AssociationComplianceSeverityMapper::GetAssociationComplianceSeverityForName(jsonValue.GetString("ComplianceSeverity"));
+
+    m_complianceSeverityHasBeenSet = true;
   }
 
   return *this;
@@ -308,6 +337,23 @@ JsonValue AssociationDescription::Jsonize() const
   {
    payload.WithString("AssociationName", m_associationName);
 
+  }
+
+  if(m_maxErrorsHasBeenSet)
+  {
+   payload.WithString("MaxErrors", m_maxErrors);
+
+  }
+
+  if(m_maxConcurrencyHasBeenSet)
+  {
+   payload.WithString("MaxConcurrency", m_maxConcurrency);
+
+  }
+
+  if(m_complianceSeverityHasBeenSet)
+  {
+   payload.WithString("ComplianceSeverity", AssociationComplianceSeverityMapper::GetNameForAssociationComplianceSeverity(m_complianceSeverity));
   }
 
   return payload;
